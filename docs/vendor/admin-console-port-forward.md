@@ -35,15 +35,16 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 
 ## Configure Port Forwarding
 
-This section desribes how to configure the KOTS Application Custom Resource, the Kubernetes Application Custom Resource, and the target service to enable port forwarding for both existing and embedded cluster installations.
-
-For examples of the tasks described in this section, see [Examples](#examples) below.
+This section desribes how to configure port forwarding for an application, including:
+* Adding extra ports to the `ports` key in the KOTS Application custom resource
+* Adding a NodePort Service specification to support port fowarding for embedded cluster installations
+* Adding a link to a port-forwarded service from the admin console dashboard
 
 ### Add Ports to the `ports` Key {#ports-key}
 
-You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel. When you add a port to the `ports` key, users can get the URL to access the specified service from their local machine by running `kubectl kots admin-console`. For more information about accessing port-forwaded services, see [Accessing Port Forwarded Services](#accessing-port-forwarded-services) below.
+You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel.
 
-The following shows an example `ports` key that allows users to access the `gitea` service at port 8888 on the local machine at installation: 
+The following example KOTS Application custom resource includes a `ports` key that allows users to access a `gitea` service at port 8888 on the local machine at installation: 
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -64,7 +65,7 @@ As shown in the example above, the `ports` key has the following fields:
 
 <p><PortsServiceName/></p>
 
-For embedded cluster installations with Replicated kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster. For more information, see [Create a NodePort Service for kURL Installations](#nodeport) below.
+For embedded cluster installations with Replicated kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster. For more information, see [Create a NodePort Service for kURL Installations](#nodeport).
 
 <PortsServicePort/>
 
@@ -84,9 +85,23 @@ For more information about how to add a link to a port-forwarded service from th
 
 ### (kURL Only) Create a NodePort Service for kURL Installations {#nodeport}
 
-Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
+Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on VMs or bare metal servers by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-To work around this limitation in embedded cluster installations, the admin console service is created with a NodePort type so that it can be accessed at the node's IP address from the user's local machine. For any additional services that you want KOTS to port forward, Replicated recommends that you use the same method of creating NodePort specifications for the service. For more information about the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
+To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. Similarly, the UIs of Prometheus, Grafana, and Alertmanager are exposed on NodePorts as well. For example, the following shows output of a kURL installation command, which provides the URL where the admin console can be accessed at the node's IP address:
+
+```
+		Installation
+		  Complete ✔
+
+
+Kotsadm: http://34.30.14.46:8800
+Login with password (will not be shown again): j5xU89gT
+This password has been set for you by default. It is recommended that you change this password; this can be done with the following command: kubectl kots reset-password default
+
+The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
+```
+
+For any additional services that you want KOTS to port forward, Replicated recommends that you use the same method of creating NodePort specifications for the service. For more information about the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
 #### Example
 
@@ -161,9 +176,6 @@ spec:
 ```
 
 After adding both service specifications to the release, you can then add the port for the service to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
-
-For additional examples of conditionally deploying either a ClusterIP or NodePort service based on the cluster distribution, see [Examples](#examples) below.
-
 
 ### Add a Link on the Admin Console Dashboard {#link}
 
@@ -247,9 +259,32 @@ Users can access port-forwarded services by clicking a link on the admin console
 
 ## Examples
 
-This section includes several examples for configuring port forwarding in both Helm chart-based applications and applications that use standard manifests.
+This section includes examples for configuring port forwarding in both Helm chart-based applications and applications that use standard manifests.
 
 To test each of the examples in this section, add the files provided to a new release. For the Helm chart-based applications, add the Service manifest provided to the Helm chart templates directory and then package the Helm chart into a `.tgz` archive before adding it to the release.
+
+### Standard Manifests with ClusterIP and NodePort Services
+
+<Tabs>
+<TabItem value="service" label="example-service.yaml" default>
+<h5>Description</h5>
+<p>The hello-world application includes a basic NodePort service named <code>nginx</code>. As shown in the YAML below, the <code>nginx</code> service is exposed on port 80 and node port 30888.</p>
+<h5>YAML</h5>
+<NginxService/>
+</TabItem>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<p>Given the ports specified in the <code>example-service.yaml</code> manifest, the following KOTS Application custom resource adds </p>
+<h5>YAML</h5>
+<NginxKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
+<h5>YAML</h5>
+<NginxK8sApp/>
+</TabItem>
+</Tabs>
 
 ### Helm Chart with LoadBalancer Service
 
@@ -276,87 +311,6 @@ To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitn
 <p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
 <h5>YAML</h5>
 <GiteaK8sApp/>
-</TabItem>
-</Tabs>
-
-### Helm Chart with ClusterIP and NodePort Services
-
-This example uses the Enterprise GTM Starter example project in the replicatedhq org in GitHub. To view the full set of release files in the example project, see [enterprise-gtm-starter](https://github.com/replicatedhq/enterprise-gtm-starter/tree/main) in GitHub. 
-
-<Tabs>
-<TabItem value="service" label="service.yaml" default>
-<h5>Description</h5>
-<p>The Enterprise GTM Starter Helm chart includes the following Service specification in the templates directory. The Service specification uses Helm templates to conditionally deploy either a ClusterIP or a NodePort type service depending on if the cluster was provisioned by Replicated kURL.</p>
-<p>To view the source, see <a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/templates/service.yaml">service.yaml</a> in GitHub.</p>
-<h5>YAML</h5>
-<HelmService/>
-</TabItem>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<p>Based on the <code>service.yaml</code> file, the following KOTS Application custom resource configures KOTS to forward local port 8888 to the container port 8888.</p>
-<p>To view the source, see <a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/kots-app.yaml">kots-app.yaml</a> in GitHub.</p>
-<h5>YAML</h5>
-<HelmKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
-<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/k8s-app.yaml">k8s-app.yaml</a></p>
-<h5>YAML</h5>
-<HelmK8sApp/>
-</TabItem>
-</Tabs>
-
-### Standard Manifests with ClusterIP and NodePort Services
-
-<Tabs>
-<TabItem value="service-cip" label="service-default.yaml" default>
-<h5>Description</h5>
-<p>The following example shows the default ClusterIP service specification for a service named <code>sentry</code>. This specification includes a <code>kots.io/when</code> annotation, which ensures that the service is only created for existing cluster installations.</p>
-<h5>YAML</h5>
-<SentryClusterIp/>
-</TabItem>
-<TabItem value="service-np" label="service-kurl.yaml" default>
-<h5>Description</h5>
-<p>The following example shows a NodePort specification for the <code>sentry</code> service. This specification includes a <code>kots.io/when</code> annotation that ensures that the service is only created for kURL installations.</p>
-<h5>YAML</h5>
-<SentryNodePort/>
-</TabItem>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<h5>YAML</h5>
-<SentryKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
-<h5>YAML</h5>
-<SentryK8sApp/>
-</TabItem>
-</Tabs>
-
-### Standard Manifests with NodePort Service
-
-This example uses the hello-world NGINX application from the replicated-field-labs repository in GitHub. To view the full set of release files for the hello-world application, see [hello-world/vendor/manifests](https://github.com/replicatedhq/replicated-field-labs/tree/main/instruqt/hello-world/vendor/manifests) in GitHub.
-
-<Tabs>
-<TabItem value="service" label="example-service.yaml" default>
-<h5>Description</h5>
-<p>The hello-world application includes a basic NodePort service named <code>nginx</code>. As shown in the YAML below, the <code>nginx</code> service is exposed on port 80 and node port 30888.</p>
-<h5>YAML</h5>
-<NginxService/>
-</TabItem>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<p>Given the ports specified in the <code>example-service.yaml</code> manifest, the following KOTS Application custom resource adds </p>
-<h5>YAML</h5>
-<NginxKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
-<h5>YAML</h5>
-<NginxK8sApp/>
 </TabItem>
 </Tabs>
 
