@@ -9,8 +9,9 @@ import NginxKotsApp from "../partials/port-forward/_nginx-kots-app.mdx"
 import NginxK8sApp from "../partials/port-forward/_nginx-k8s-app.mdx"
 import NginxService from "../partials/port-forward/_nginx-service.mdx"
 import NginxDeployment from "../partials/port-forward/_nginx-deployment.mdx"
-import GiteaKotsApp from "../partials/port-forward/_gitea-kots-app.mdx"
-import GiteaK8sApp from "../partials/port-forward/_gitea-k8s-app.mdx"
+import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
+import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
+import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
 # Configuring Port Forwarding
 
@@ -30,7 +31,7 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 
 This section desribes how to configure port forwarding for an application, including:
 * Adding extra ports to the `ports` key in the KOTS Application custom resource
-* Adding a NodePort Service specification to support port fowarding for embedded cluster installations
+* Adding a NodePort Service specification to support port forwarding for embedded cluster installations
 * Adding a link to a port-forwarded service from the admin console dashboard
 
 ### Add Ports to the `ports` Key {#ports-key}
@@ -39,18 +40,7 @@ You can configure the `ports` key in the KOTS Application custom resource to add
 
 The following example KOTS Application custom resource includes a `ports` key that allows users to access a `gitea` service at port 8888 on the local machine at installation: 
 
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: gitea
-spec:
-  ports:
-    - serviceName: "gitea"
-      servicePort: 3000
-      localPort: 8888
-      applicationUrl: "http://gitea"
-```
+<GiteaKotsApp/>
 
 As shown in the example above, the `ports` key has the following fields:
 
@@ -98,6 +88,8 @@ This password has been set for you by default. It is recommended that you change
 The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
 ```
 
+For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
+
 #### Create a Conditional NodePort Service
 
 For each additional service that you want KOTS to port forward, Replicated recommends that you create a Service specificatons for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
@@ -123,58 +115,60 @@ spec:
     role: web
 ```
 
-Add a separate specification for the `sentry` service with `type: NodePort` and `annotation.kots.io/when: "{{repl IsKurl}}"`. This creates a NodePort service _only_ when installing in embedded clusters with kURL. For more information about using the `kots.io/when` annotation, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources). For more information about the IsKurl template fuction, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
+To add a NodePort service for embedded cluster installations given the ClusterIP specification above:
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: sentry
-  labels:
-    app: sentry
-annotations:
-  # This annotation prevents the NodePort service from being created in non-kURL clusters
-  kots.io/when: "{{repl IsKurl}}"
-spec:
-  type: NodePort
-  ports:
-  - port: 9000
-    targetPort: 9000
-    nodePort: 9000
-    protocol: TCP
+1. Add a separate specification for the `sentry` service with `type: NodePort` and `annotation.kots.io/when: "{{repl IsKurl}}"`:
+
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
     name: sentry
-  selector:
-    app: sentry
-    role: web
-```
-
-To prevent the ClusterIP service from also being created in embedded cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: sentry
-  labels:
-    app: sentry
+    labels:
+      app: sentry
   annotations:
-  # This annotation prevents the ClusterIP service from being created in kURL clusters
-    kots.io/when: "{{repl not IsKurl}}"
-spec:
-  type: ClusterIP
-  ports:
-  - port: 9000
-    targetPort: 9000
-    protocol: TCP
+  # This annotation prevents the NodePort service from being created in non-kURL clusters
+    kots.io/when: "{{repl IsKurl}}"
+  spec:
+    type: NodePort
+    ports:
+    - port: 9000
+      targetPort: 9000
+      nodePort: 9000
+      protocol: TCP
+      name: sentry
+    selector:
+      app: sentry
+      role: web
+  ```
+
+  This creates a NodePort service _only_ when installing in embedded clusters with kURL. For more information about using the `kots.io/when` annotation, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources). For more information about the IsKurl template fuction, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
+
+1. To prevent the ClusterIP service from also being created in embedded cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
+
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
     name: sentry
-  selector:
-    app: sentry
-    role: web
-```
+    labels:
+      app: sentry
+    annotations:
+    # This annotation prevents the ClusterIP service from being created in kURL clusters
+      kots.io/when: "{{repl not IsKurl}}"
+  spec:
+    type: ClusterIP
+    ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+      name: sentry
+    selector:
+      app: sentry
+      role: web
+  ```
 
-After adding both service specifications to the release, add the port to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
-
-For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
+1. After adding both service specifications to the release, add the port to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
 
 ### Add a Link on the Admin Console Dashboard {#link}
 
@@ -186,7 +180,7 @@ Providing a link on the admin console dashboard is particularly helpful for embe
 When adding a link to a port-forwarded service, it is recommended to use `http` instead of `https`, unless TLS termination takes place in the application Pod.
 :::
 
-To add a link to a port-forwaded service on the admin console dashboard:
+To add a link to a port-forwarded service on the admin console dashboard:
 
 1. Edit the KOTS Application custom resource to add a `ports.applicationURL` field.
 
@@ -266,11 +260,15 @@ This section includes examples for configuring port forwarding for Helm chart-ba
 
 ### NGINX Application with ClusterIP and NodePort Services
 
-The following example includes a Service, Deployment, KOTS Applicaton custom resource, and Kubernetes Application custom resource for a basic NGINX application.
+The following example configures port forwarding for a basic NGINX application for both existing cluster and embedded cluster installations.
 
-To test the port forwarding for this example, add the manifest files below to a new, empty release in the vendor portal, then install the release into both an existing cluster and an embedded cluster. You can confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard for the application. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) and [Installing an Application](/enterprise/installing-overview).
+To test the port forwarding for this example:
 
-<Tabs>
+1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the vendor portal. Promote to the channel that you use for internal testing.
+
+  For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+
+  <Tabs>
 <TabItem value="service" label="example-service.yaml" default>
 <h5>Description</h5>
 <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
@@ -298,19 +296,29 @@ To test the port forwarding for this example, add the manifest files below to a 
 </TabItem>
 </Tabs>
 
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](enterprise/installing-existing-cluster).
+
+1. Install the same release into an embedded cluster with kURL and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
+
+  :::note
+  Ensure that the VM where you install allows HTTP traffic.
+  :::
+
 ### Bitnami Gitea Helm Chart with LoadBalancer Service
 
 This example provides a KOTS Application custom resource and Kubernetes Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
-To test this example:
+To test the port forwarding for this example:
 1. Pull version 1.0.6 of the Gitea Helm chart from Bitnami:
 
    ```
    helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
    ```
-1. Add the `.tgz` chart archive to a new, empty release in the vendor portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below, then install the release into an existing cluster with KOTS. 
+1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the vendor portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing.
 
-<Tabs>
+  For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+
+  <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
 <h5>Description</h5>
 <p>Based on the <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/templates/svc.yaml">templates/svc.yaml</a> and <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">values.yaml</a> files in the Gitea Helm chart, the following KOTS Application custom resource adds port 3000 to the port forward tunnel and maps local port 8888. Port 3000 is the container port of the Pod where the <code>gitea</code> service runs.</p>
@@ -323,7 +331,15 @@ To test this example:
 <h5>YAML</h5>
 <GiteaK8sApp/>
 </TabItem>
+<TabItem value="helmchart" label="gitea.yaml" default>
+<h5>Description</h5>
+<p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+<h5>YAML</h5>
+<GiteaHelmChart/>
+</TabItem>
 </Tabs>
+
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](enterprise/installing-existing-cluster).
 
 ## Additional Resources and Examples
 
