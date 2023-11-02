@@ -10,7 +10,7 @@ To include or exclude resources from your application deployment, you can use th
 
 ## Requirements
 
-The `kots.io/exclude` nor `kots.io/when` annotations have the following requirements:
+The `kots.io/exclude` and `kots.io/when` annotations have the following requirements:
 
 * By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
