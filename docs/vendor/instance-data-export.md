@@ -15,7 +15,12 @@ By collecting and organizing this data wherever it is most visible and valuable,
 
 ## Export Data
 
-### Export Instance Event Data 
+### Instance Event Timeseries Data
+The [bulk export endpoint](https://replicated-vendor-api.readme.io/reference/listappinstanceevents) allows users to programatically access historical timeseries data containing instance level events including customer defined [metrics](vendor/custom-metrics#configure-custom-metrics).  The endpoint returns data  scoped to a given application identifier and allows filtering based on time periods, instances identifiers, customers identifers, and event types. You must provide at least **one** query parameter to scope the query in order to receive a response. 
+
+This data allows vendors to:
+    * Identify trends and potential problem areas 
+    * Demonstrate the impact, adoption, and usage of recent product features
 
 ### Customer Instance Data
 <Download/>
