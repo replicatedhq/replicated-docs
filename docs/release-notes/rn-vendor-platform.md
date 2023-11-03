@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.03-1
+
+Released on November 3, 2023
+
+### New Features {#new-features-v2023-11-03-1}
+* Audit log initial search query filters out "read" events.
+
 ## v2023.10.30-3
 
 Released on October 30, 2023
