@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.03-2
+
+Released on November 3, 2023
+
+### New Features {#new-features-v2023-11-03-2}
+* User will be redirected  to last application managed upon login.
+
 ## v2023.10.30-3
 
 Released on October 30, 2023
