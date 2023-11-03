@@ -15,6 +15,13 @@ Released on November 3, 2023
 ### Bug Fixes {#bug-fixes-v2023-11-03-1}
 * Audit log initial search query filters out "read" events.
 
+## v2023.11.03-2
+
+Released on November 3, 2023
+
+### Improvements {#improvements-v2023-11-03-2}
+* Upon login, the user is redirected to most recently managed application.
+
 ## v2023.10.30-3
 
 Released on October 30, 2023
