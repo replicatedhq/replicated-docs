@@ -102,6 +102,7 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <td>
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
+        <li>Openshift versions prior to 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Dockerhub. We recommend implementing an image pull secret to pull images as an authenticated Dockerhub user.</li>
         <li><p>OpenShift builds take approximately 17 minutes.</p>
             <p><Pool/></p>
           </li>
