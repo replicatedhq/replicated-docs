@@ -15,9 +15,12 @@ By collecting and organizing this data wherever it is most visible and valuable,
 
 ## Export Data
 
+### Export Instance Event Data 
+
+### Customer Instance Data
 <Download/>
 
-## Data Dictionary
+#### Data Dictionary
 
 The following table lists the data fields that can be included in the customers and instances CSV downloads, including the label, data type, and description.
 
