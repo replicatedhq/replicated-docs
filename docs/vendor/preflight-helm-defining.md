@@ -23,20 +23,23 @@ A KOTS entitlement is required to create KOTS releases.
 
 Preflight checks are not included by default, so you must enable them.
 
-For KOTS installations, preflight checks run automatically during installation. For Helm CLI installations, preflight checks run when the user runs a `helm template` command before they install the application. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
+For Helm installations, preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation. For more information about running the `helm install` command, see [Running Preflight Checks for Helm Installations](preflight-running).
+
+For KOTS installations with Helm charts, preflight checks run automatically.
 
 ## Choose an Input Kind
 
 You run preflight checks with the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
 
-The plugin requires a preflight check specification as input. For Helm installations, this specification is provided by running `helm template` to produce a stream of stdout and piping the result to `preflight -`. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout. For KOTS installations, KOTS v1.101.0 and later automatically looks for preflights specified in the Helm chart archive.
+The plugin requires a preflight check specification as input. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for the following input kinds:
 
-You can define preflight check specifications in the following input kinds:
+-  Secret (`kind: Secret`)
+-  ConfigMap (`kind: ConfigMap`)
+-  Preflight custom resource (`kind: Preflight`)
 
--  Kubernetes Secret or ConfigMap
--  Troubleshoot Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`)
+All of these input options allow customization of preflight checks based on values unique to the customer, using Helm templates with conditional statements.
 
-All of these input options allow customization of preflight checks based on values unique to the customer using Helm templates and conditional statements.
+In KOTS v1.101.0 and later, a KOTS installation looks for the preflights specified in the Helm chart archive.
 
 ### Create a Secret (Recommended)
 
