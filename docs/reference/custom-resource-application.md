@@ -313,7 +313,7 @@ spec:
 <tr>
     <th>Description</th>
     <td>
-      <p>Extra ports (additional to the <code>8800</code> admin console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed.</p>
+      <p>Extra ports (additional to the <code>8800</code> admin console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed. For more information, see <a href="/vendor/admin-console-port-forward">Configuring Port Forwarding</a>.</p>
       <KurlNote/>
       <p>The <code>ports</code> key has the following fields:</p>
       <ul>
@@ -322,6 +322,7 @@ spec:
         <ServicePortNote/>
         <PortsLocalPort/>
         <PortsApplicationURL/>
+        For more information, see <a href="/vendor/admin-console-port-forward#link">Add a Link on the Admin Console Dashboard</a>.
       </ul> 
     </td>
   </tr>
