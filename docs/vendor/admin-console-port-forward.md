@@ -74,19 +74,7 @@ This section describes how to create a NodePort service for port forwarding in e
 
 Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on VMs or bare metal servers by kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. The UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts. For example, the following shows output of a kURL installation command, which provides the URL where the admin console can be accessed at the node's IP address:
-
-```
-		Installation
-		  Complete ✔
-
-
-Kotsadm: http://34.30.14.46:8800
-Login with password (will not be shown again): j5xU89gT
-This password has been set for you by default. It is recommended that you change this password; this can be done with the following command: kubectl kots reset-password default
-
-The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
-```
+To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. The UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
 For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
@@ -298,7 +286,41 @@ To test the port forwarding for this example:
 
 1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](enterprise/installing-existing-cluster).
 
-1. Install the same release into an embedded cluster with kURL and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
+1. If there is not already a Kubernetes installer promoted to the channel, add a Kubernetes installer to the release to support embedded cluster installs. For more information, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+
+   **Example:**
+
+   ```yaml
+   apiVersion: cluster.kurl.sh/v1beta1
+  kind: Installer
+  metadata:
+    name: ""
+   spec:
+    containerd:
+      version: 1.6.24
+    contour:
+      version: 1.27.0
+    ekco:
+      version: 0.28.3
+    flannel:
+      version: 0.23.0
+    kotsadm:
+      version: 1.103.3
+    kubernetes:
+      version: 1.27.6
+    minio:
+      version: 2023-11-01T18-37-25Z
+    openebs:
+      isLocalPVEnabled: true
+      localPVStorageClassName: local
+      version: 3.9.0
+    prometheus:
+      version: 0.68.0-51.0.0
+    registry:
+      version: 2.8.3
+   ```
+
+1. Install the release into an embedded cluster on a VM and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
 
   :::note
   Ensure that the VM where you install allows HTTP traffic.
