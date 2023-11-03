@@ -67,6 +67,8 @@ To create a Secret for the support bundle specification:
 
 1. Add the Secret to your Helm chart `templates/` directory.  
 
+KOTS versions v1.104.0 and later will discover support bundle specs from Secrets and ConfigMaps deployed to the cluster that have the `troubleshoot.sh/kind: support-bundle` label.
+
 Next, define the support bundle specification by adding collectors and analyzers. For more information, see [Define the Support Bundle Specification](#spec).
 
 ### Create a SupportBundle Custom Resource
