@@ -15,13 +15,9 @@ For information about defining host preflight checks for Replicated kURL, see [C
 
 ## Define the Preflight Checks Specification
 
-Preflight checks are not included by default, so you must enable them. For releases that use standard Kubernetes manifests or Kubernetes Operators, you add a Preflight custom resource to your release to define a specification for preflight checks.
+Preflight checks are not included by default. For releases that use standard Kubernetes manifests or Kubernetes Operators, you can add a Preflight custom resource to your release to define preflight checks.
 
-In the `spec:` of the Preflight custom resource, you define collectors and analyzers for the preflight checks that you want to add.
-
-<PreflightsDefineXref/>
-
-The following is a template manifest file for the Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`):
+The following is an empty template for the Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
