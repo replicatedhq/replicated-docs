@@ -102,6 +102,7 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <td>
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
+        <li>OpenShift versions earlier than 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Docker Hub. For information about Docker Hub rate limiting, see <a href="https://docs.docker.com/docker-hub/download-rate-limit/">Docker Hub rate limit</a>. To increase limits, Replicated recommends that you configure an image pull secret to pull public Docker Hub images as an authenticated user. For more information about how to configure image pull secrets, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">Pull an Image from a Private Registry</a> in the Kubernetes documentation.</li>
         <li><p>OpenShift builds take approximately 17 minutes.</p>
             <p><Pool/></p>
           </li>
