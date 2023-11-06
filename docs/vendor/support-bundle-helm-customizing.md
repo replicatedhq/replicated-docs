@@ -75,6 +75,10 @@ Next, define the support bundle specification by adding collectors and analyzers
 
 If you do not want to use Secrets or ConfigMaps, you can create a SupportBundle custom resource instead.
 
+:::note
+For specifications created in a SupportBundle custom resource, Helm templates are supported only when the support bundle is generated from a link to the specification at an OCI registry. For example, `kubectl support-bundle oci://my.oci.registry/image`.
+:::
+
 Create a SupportBundle custom resource (`kind: SupportBundle`) using the following basic support bundle template. For more information about this custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
 ```yaml
