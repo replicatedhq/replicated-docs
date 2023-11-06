@@ -587,7 +587,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Testing with Compatibility Matrix (Beta)',
+      label: 'Testing with Compatibility Matrix',
       items: [
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
