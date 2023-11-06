@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.12
+
+Released on November 6, 2023
+
+### New Features {#new-features-1-0-0-beta-12}
+* Adds support for custom metrics in air gapped installs.
+
 ## 1.0.0-beta.11
 
 Released on October 30, 2023
