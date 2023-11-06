@@ -41,13 +41,14 @@ rules:
   resourceNames:
   - replicated
   - replicated-instance-report
+  - replicated-custom-app-metrics-report
 ```
 
 ### Minimum RBAC Requirements
 
 The SDK requires the following minimum RBAC permissions:
 * Create Secrets.
-* Get and update Secrets named `replicated` and `replicated-instance-report`.
+* Get and update Secrets named `replicated`, `replicated-instance-report`, and `replicated-custom-app-metrics-report`.
 * The SDK requires the following minimum RBAC permissions for status informers:
   * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
   * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch the following resources:
