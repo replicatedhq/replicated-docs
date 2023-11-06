@@ -16,6 +16,22 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.104.0
+
+Released on November 6, 2023
+
+Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-104-0}
+* Upgrades the replicated/local-volume-provider image to v0.5.5 to resolve CVE-2023-45128 with critical severity, CVE-2023-4911, CVE-2023-29491, CVE-2023-45141, and GHSA-m425-mq94-257g with high severity, and CVE-2023-36054, CVE-2023-3446, CVE-2023-3817, CVE-2023-41338, CVE-2023-39325, CVE-2023-3978, and CVE-2023-44487 with medium severity.
+* Upgrades the replicated/schemahero image to 0.16.0 to resolve CVE-2023-4911 with high severity, CVE-2023-2603, CVE-2023-29491, CVE-2023-2650, CVE-2023-31484, and CVE-2023-3978 with medium severity.
+* Upgrades the minio/minio image to RELEASE.2023-10-25T06-33-25Z to resolve CVE-2023-4911 and CVE-2023-44487 with high severity, CVE-2023-4527, CVE-2023-4806, CVE-2023-4813, CVE-2023-39325, and CVE-2023-44487 with medium severity.
+* Upgrades the minio/mc image to RELEASE.2023-10-14T01-57-03Z to resolve CVE-2023-4911 with high severity, and CVE-2023-4527, CVE-2023-4806, CVE-2023-4813, and CVE-2023-39325 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-104-0}
+* Fixes an issue where KOTS support bundles were not discovering specs with the `troubleshoot.sh/kind=support-bundle` label.
+* Fixes an issue where in rare scenarios, telemetry events that closely followed each other were reported out of order.
+
 ## 1.103.3
 
 Released on October 25, 2023
