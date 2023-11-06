@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.06-1
+
+Released on November 6, 2023
+
+### Improvements {#improvements-v2023-11-06-1}
+* Improves the way large amounts of custom metrics display on the Instance Details page, in both the Filters dropdown and the Custom Metrics section on the left.
+
 ## v2023.11.03-1
 
 Released on November 3, 2023
