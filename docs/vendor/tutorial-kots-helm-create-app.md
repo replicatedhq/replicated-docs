@@ -23,7 +23,7 @@ To create an application:
 1. Create an application named `Gitea`:
 
    ```
-   replicated create app Gitea
+   replicated app create Gitea
    ```
 
 1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
