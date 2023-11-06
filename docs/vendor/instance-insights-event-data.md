@@ -4,31 +4,35 @@ This topic provides an overview of the customer and instance insights that you c
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-The vendor portal collects data from instances installed in online environments. Depending on the application's installation method, either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+The vendor portal collects data from instances installed in online environments. Either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then both KOTS and the SDK send instance data.
 
-The vendor portal receives instance data from either the Replicated SDK or from KOTS when any of the following _check-ins_ occur:
+The data sent to the vendor portal includes properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
-* For Helm installations that include the Replicated SDK, the SDK sends instance data to the vendor portal when any of the following occur:
+### From the Replicated SDK
 
-  * The instance checks for updates. An update check occurs when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
+When installed alongside the application, the SDK automatically sends instance data to the vendor portal when any of the following occur:
 
-  * The instance completes a Helm update to a new application version. After the update completes, the SDK sends data when it restarts.
+* The SDK sends data every four hours.
 
-  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* The instance checks for updates. An update check occurs when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
 
-  * Every four hours, the SDK automatically sends data.
+* The instance completes a Helm update to a new application version. After the update completes, the SDK sends data when it restarts.
 
-* For KOTS installations, KOTS sends instance data to the vendor portal when any of the following occur:
+* The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
-  * The instance checks for updates. By default, KOTS checks for updates every four hours. Additionally, an update check can occur when a user clicks the **Check for updates** button in the Replicated admin console. 
+### From KOTS
 
-    :::note
-    KOTS users can modify or disable automatic update checks from the admin console. For more information, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
-    :::
+When installed alongisde the application, KOTS automatically sends instance data to the vendor portal when any of the following occur:
 
-  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* The instance checks for updates. By default, KOTS checks for updates every four hours. Additionally, an update check can occur when a user clicks the **Check for updates** button in the Replicated admin console. 
 
-  * (KOTS v1.92 and later only) The instance completes an update to a new application version.
+  :::note
+  KOTS users can modify or disable automatic update checks from the admin console. For more information, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
+  :::
+
+* The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+
+* (KOTS v1.92 and later only) The instance deploys a new application version.
 
 ## How the Vendor Portal Generates Events and Insights
 
@@ -40,11 +44,11 @@ The vendor portal uses events to display insights for each active instance in a 
 
 ## Requirements
 
-Viewing instance data in the vendor portal has the following requirements:
+Collecting instance data has the following requirements:
 
-* For applications installed with Helm, the Replicated SDK must also be installed in the cluster to send data to the vendor portal. To install the SDK with your application, include the SDK as a dependency in your `Chart.yaml` file. For more information, [About the Replicated SDK (Alpha)](replicated-sdk-overview).
+* Replicated KOTS or the Replicated SDK must be installed in the cluster where the application instance is running. 
 
-* Collecting application status data for an instance requires additional configuration. You must indicate Kubernetes resources that Replicated will monitor for changes in state. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* For KOTS installations and for Helm CLI installations that use `helm template` then `kubectl apply`, additional configuration is required to get application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
 
 ## Limitations
 

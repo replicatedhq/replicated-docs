@@ -52,6 +52,8 @@ After you include the SDK as a dependency, the requirements for enabling status 
 
 For applications installed with Replicated KOTS, configure one or more status informers in the Replicated Application custom resource. For more information, see [Add Status Informers](admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_.
 
+When Helm chart-based applications that include the Replicated SDK are deployed by KOTS, the SDK inherits the KOTS status informers configured in the Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
+
 ## Understanding Application Status
 
 This section provides information about how Replicated interprets and aggregates the status of Kubernetes resources for your application to report an application status.

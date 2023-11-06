@@ -16,7 +16,11 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
-The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+## How the Vendor Portal Collects Custom Metrics
+
+The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application.
+
+KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
 If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
 
@@ -70,10 +74,15 @@ Custom metrics have the following limitations:
 
 ## Configure Custom Metrics
 
-You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+You can configure your application to POST a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
 
-The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
-* For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
+Both KOTS and the SDK expose an in-cluster API:
+
+:::note
+If both KOTS and the SDK are installed in the cluster, then you can POST custom metrics to either in-cluster API.
+:::
+
+* KOTS provides an in-cluster API custom metrics endpoint at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
   **Example:**
 
@@ -90,7 +99,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   }
   ```
 
-* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated:3000/api/v1/app/custom-metrics`.
+* The Replicated SDK provides an in-cluster API custom metrics endpoint at `http://replicated:3000/api/v1/app/custom-metrics`.
 
   **Example:**
 
