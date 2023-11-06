@@ -1,6 +1,6 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 
-# Supported Compatibility Matrix Cluster Types (Beta)
+# Supported Compatibility Matrix Cluster Types
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix. 
 

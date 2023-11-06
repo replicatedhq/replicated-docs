@@ -2,13 +2,9 @@ import Overview from "../partials/cmx/_overview.mdx"
 import Billing from "../partials/cmx/_billing.mdx"
 import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 
-# About the Compatibility Matrix (Beta)
+# About the Compatibility Matrix
 
 This topic describes the Replicated compatibility matrix, including use cases, billing, limitations, and more.
-
-:::note
-The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
-:::
 
 ## Overview
 
@@ -72,4 +68,4 @@ The compatibility matrix has the following limitations:
 - The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
 - Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
 
-For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).
