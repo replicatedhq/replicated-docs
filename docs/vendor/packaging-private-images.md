@@ -10,6 +10,7 @@ Replicated recommends that application vendors use one the following external pr
 * DockerHub
 * GitHub Container Registry
 * Google Container Registry
+* Google Artifact Registry
 * Quay.io
 
 These registries have been tested for compatibility with KOTS.
