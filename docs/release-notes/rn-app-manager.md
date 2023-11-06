@@ -22,6 +22,9 @@ Released on November 6, 2023
 
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
+### New Features {#new-features-1-104-0}
+* Releases that include the Replicated SDK can now be installed by KOTS. When KOTS deploys a release that includes the SDK, the SDK and KOTS both operate in the environment and independently report telemetry. Moving forward, we recommend everyone--not just vendors doing Helm CLI installations--include the SDK in their application for access to the latest features from Replicated!
+
 ### Improvements {#improvements-1-104-0}
 * Upgrades the replicated/local-volume-provider image to v0.5.5 to resolve CVE-2023-45128 with critical severity, CVE-2023-4911, CVE-2023-29491, CVE-2023-45141, and GHSA-m425-mq94-257g with high severity, and CVE-2023-36054, CVE-2023-3446, CVE-2023-3817, CVE-2023-41338, CVE-2023-39325, CVE-2023-3978, and CVE-2023-44487 with medium severity.
 * Upgrades the replicated/schemahero image to 0.16.0 to resolve CVE-2023-4911 with high severity, CVE-2023-2603, CVE-2023-29491, CVE-2023-2650, CVE-2023-31484, and CVE-2023-3978 with medium severity.
@@ -29,8 +32,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 * Upgrades the minio/mc image to RELEASE.2023-10-14T01-57-03Z to resolve CVE-2023-4911 with high severity, and CVE-2023-4527, CVE-2023-4806, CVE-2023-4813, and CVE-2023-39325 with medium severity.
 
 ### Bug Fixes {#bug-fixes-1-104-0}
-* Fixes an issue where KOTS support bundles were not discovering specs with the `troubleshoot.sh/kind=support-bundle` label.
-* Fixes an issue where in rare scenarios, telemetry events that closely followed each other were reported out of order.
+* Fixes an issue where KOTS didn't discover specs with the `troubleshoot.sh/kind=support-bundle` label when generating support bundles.
 
 ## 1.103.3
 
