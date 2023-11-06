@@ -15,9 +15,6 @@ Released on November 6, 2023
 ### New Features {#new-features-1-0-0-beta-12}
 * Adds support for custom metrics in air gapped installs.
 
-### Bug Fixes {#bug-fixes-1-0-0-beta-12}
-* Fixes an issue where in rare scenarios, telemetry events that closely followed each other were reported out of order.
-
 ## 1.0.0-beta.11
 
 Released on October 30, 2023
