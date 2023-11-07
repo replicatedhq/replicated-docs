@@ -13,7 +13,7 @@ import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
-# Configuring Port Forwarding
+# Exposing Services at Installation
 
 This topic describes how to add one or more ports to the Replicated KOTS port forward tunnel by configuring the `ports` key in the KOTS Application custom resource.
 
@@ -27,14 +27,11 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 * List the primary application ports to provide one or more links directly to the application before ingress and firewalls are configured 
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
 
-## Configure Port Forwarding
+## Expose Services
 
-This section describes how to configure port forwarding for an application, including:
-* Adding extra ports to the `ports` key in the KOTS Application custom resource
-* Adding a NodePort Service specification for port forwarding in embedded cluster installations with Replicated kURL
-* Adding a link to a port-forwarded service from the admin console dashboard
+### Configure KOTS Port Forwarding for Existing Cluster Installations
 
-### Add Ports to the `ports` Key {#ports-key}
+This section describes how to configure port forwarding for existing cluster installations by adding extra ports to the `ports` key in the KOTS Application custom resource
 
 You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel.
 
@@ -66,7 +63,7 @@ For more information about how to add a link to a port-forwarded service from th
 
 </ul>
 
-### (kURL Only) Create a NodePort Service for kURL Installations {#nodeport}
+### Create NodePort Services for kURL Installations {#nodeport}
 
 This section describes how to create a NodePort service for exposing additional services in embedded cluster installations with kURL.
 
@@ -158,7 +155,7 @@ To add a NodePort service for embedded cluster installations given the ClusterIP
 
 1. Add port 9000 to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
 
-### Add a Link on the Admin Console Dashboard {#link}
+## Add Links to Services on the Admin Console Dashboard {#link}
 
 Replicated recommends that you provide a link on the admin console dashboard where users can open the port-forwarded service. 
 
