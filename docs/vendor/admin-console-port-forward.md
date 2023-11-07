@@ -29,7 +29,7 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 
 ## Configure Port Forwarding
 
-This section desribes how to configure port forwarding for an application, including:
+This section describes how to configure port forwarding for an application, including:
 * Adding extra ports to the `ports` key in the KOTS Application custom resource
 * Adding a NodePort Service specification for port forwarding in embedded cluster installations with Replicated kURL
 * Adding a link to a port-forwarded service from the admin console dashboard
@@ -68,7 +68,7 @@ For more information about how to add a link to a port-forwarded service from th
 
 ### (kURL Only) Create a NodePort Service for kURL Installations {#nodeport}
 
-This section describes how to create a NodePort service for port forwarding in embedded cluster installations with kURL.
+This section describes how to create a NodePort service for exposing additional services in embedded cluster installations with kURL.
 
 #### Overview
 
@@ -80,7 +80,7 @@ For more information about working with the NodePort service type, see [type: No
 
 #### Create a NodePort Service
 
-For each additional service that you want KOTS to port forward, Replicated recommends that you create a specificaton for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
+For each additional service that you want KOTS to expose, Replicated recommends that you create a specification for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
 
 For example, a release contains the following `sentry` service with `type: ClusterIP`: 
 
@@ -320,7 +320,7 @@ To test the port forwarding for this example:
       version: 2.8.3
    ```
 
-1. Install the release into an embedded cluster on a VM and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
+1. Install the release into an embedded cluster on a VM and confirm that the service was exposed successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
 
   :::note
   Ensure that the VM where you install allows HTTP traffic.
