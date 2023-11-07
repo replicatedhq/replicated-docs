@@ -18,7 +18,6 @@ You can customize the default support bundle specification by adding, editing, o
 
 <PreflightsSbNote/>
 
-
 <PreflightsSpecLocations/>
 
 ## Customize the Support Bundle Resource
