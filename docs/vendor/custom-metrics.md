@@ -8,7 +8,7 @@ The custom metrics feature is Beta and is subject to change. To access this feat
 
 ## Overview
 
-In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments.
+In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments.
 
 Custom metrics can be used to generate insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions. For example:
 * Decreased or plateaued usage for a customer can indicate a potential churn risk
@@ -32,7 +32,7 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 ## Requirements
 
-To support the collection of custom metrics, Replicated SDK version 1.0.0-beta.5 or later must be running in the cluster alongside the application instance.
+To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
 
