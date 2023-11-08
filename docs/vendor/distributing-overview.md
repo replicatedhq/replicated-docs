@@ -23,6 +23,37 @@ For more information about how to install an application with Helm, see [Install
 
 For information about how to get started distributing your Helm chart with Replicated, see [Replicated Quick Start](replicated-onboarding).
 
+### Replicated Helm Values {#replicated-values}
+
+When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file.
+
+The following is an example of a Helm values file containing the `global.replicated` field injected by the Replicated registry:
+
+```yaml
+# Helm values.yaml
+global:
+  replicated:
+    channelName: Stable
+    customerEmail: username@example.com
+    customerName: Example Customer
+    dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
+    licenseFields:
+      expires_at:
+        description: License Expiration
+        name: expires_at
+        signature:
+          v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
+        title: Expiration
+        value: "2023-05-30T00:00:00Z"
+        valueType: String
+    licenseID: YiIXRTjiB7R...
+    licenseType: dev
+```
+
+The values in the `global.replicated` field provide information about the following:
+* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
+* A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
+
 ### Limitations
 
 The following limitations apply when using Helm to install applications distributed with Replicated:
