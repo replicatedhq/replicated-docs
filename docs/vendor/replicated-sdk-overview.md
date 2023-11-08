@@ -23,12 +23,6 @@ The Replicated SDK has the following limitations:
 
   * The SDK does not automatically generate status informers to report status data for installed instances of the application. To get instance status data, you must enable custom status informers by overriding the `replicated.statusInformers` Helm value. See [Enable Application Status Insights](/vendor/insights-app-status#enable-application-status-insights) in _Enabling and Understanding Application Status_.
 
-## How to Distribute the SDK
-
-The SDK can be installed alongside Helm chart- or standard manifest-based applications using the Helm CLI or Replicated KOTS. You can also install the SDK separately from an application as a standalone component in integration mode.
-
-For more information, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
-
 ## SDK Resiliency
 
 At startup and when serving requests, the SDK retrieves and caches the latest information from the upstream Replicated APIs, including customer license information.
