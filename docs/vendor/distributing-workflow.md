@@ -1,3 +1,5 @@
+import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
+
 # Onboarding with KOTS
 
 This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
@@ -5,22 +7,29 @@ This topic describes how to onboard with Replicated KOTS, including prerequisite
 ## Prerequisites
 
 If you are new to Replicated, complete the following prerequisites before you get started with KOTS:
+
 * Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+
 * Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, see [Replicated Quick Start](/vendor/replicated-onboarding).
+  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete [Replicated Quick Start](/vendor/replicated-onboarding) before getting started with KOTS. The workflow in Replicated Quick Start demonstrates how to 
   
-    Distributing your application as a Helm chart is recommended because you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [Helm Charts with KOTS](/vendor/distributing-overview#helm-charts-with-kots) in _About Distributing Applications with Replicated_.
+    :::note 
+    Distributing your application as a Helm chart is recommended because you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
+    :::
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
-* Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform. You can integrate these platform features before, during, or after onboarding with KOTS.
 
-## Custom Resources Checklist
+## Add Custom Resources
 
 To support installations with KOTS, you add custom resources to your releases. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add, including links to additional documentation about how to configure each one.
+
+### Workflow
 
 Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. The custom resources are listed in a recommended order, though you can add them to releases in any order that you prefer.
 
 For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Updating Applications](/enterprise/updating-apps).
+
+### Custom Resource Checklist
 
 <table>
   <tr>
@@ -86,3 +95,13 @@ For more information about creating releases, see [Managing Releases with the Ve
     </td>
   </tr>
 </table>
+
+## Distribute the SDK with your Application
+
+<SDKOverview/>
+
+## Configure Additional Replicated Features
+
+Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform.
+
+For example, you can add custom domains for the Replicated registry and app service, configure checks in your application for custom license entitlements, collect custom metrics using the Replicated SDK API, and more.
