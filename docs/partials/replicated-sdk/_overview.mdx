@@ -1,5 +1,10 @@
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application Helm chart. The Replicated SDK provides an in-cluster API that you can use to embed Replicated features into your application such as:
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK can be installed alongside Helm chart- or standard manifest-based applications using the Helm CLI or KOTS. Replicated recommends that the SDK is distributed with all applications because it provides access to key Replicated functionality.
 
-* Insights and operational telemetry for instances of your application running in customer environments, including support for collecting custom metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data) and [Enabling and Understanding Application Status](insights-app-status).
-* Support for checking customer license entitlements at runtime, including signature verification. See [Checking Entitlements for Helm Installations (Beta)](/vendor/licenses-reference-helm) and [Verifying License Field Signatures for Helm Installations (Beta)](/vendor/licenses-verify-fields-sdk-api). 
-* Support for update checks to alert your customers when new versions of your application are available for upgrade. See [Support Update Checks in Your Admin Console](/reference/replicated-sdk-apis#support-update-checks-in-your-admin-console) in _Replicated SDK API (Beta)_.
+For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
+
+The SDK automatically provides access to insights and operational telemetry for instances running in customer environments. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data) and [Enabling and Understanding Application Status](insights-app-status).
+
+Addtionally, the Replicated SDK provides an in-cluster API that you can use to embed Replicated features into your application such as:
+* Collect custom metrics on instances running in online or air gap environments. See [Configuring Custom Metrics](/vendor/custom-metrics).
+* Check customer license entitlements at runtime, including signature verification. See [Checking Entitlements for Helm Installations (Beta)](/vendor/licenses-reference-helm) and [Verifying License Field Signatures for Helm Installations (Beta)](/vendor/licenses-verify-fields-sdk-api). 
+* Provide update checks to alert your customers when new versions of your application are available for upgrade. See [Support Update Checks in Your Admin Console](/reference/replicated-sdk-apis#support-update-checks-in-your-admin-console) in _Replicated SDK API (Beta)_.

@@ -183,13 +183,13 @@ Response:
 
 This section provides example use cases for the Replicated SDK API.
 
-### Support Update Checks in Your Admin Console 
+### Support Update Checks in Your Application
 
-The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. If your application includes an admin console, you could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from the admin console.
+The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. You could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from your application.
 
-Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your admin console by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
+Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your application by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
 
-The following examples show how you could include a page in your application's admin console that lists available updates and also provides customer-specific upgrade instructions:  
+The following examples show how you could include a page in your application that lists available updates and also provides customer-specific upgrade instructions:  
 
 ![a user interface showing a list of available releases](/images/slackernews-update-page.png)
 [View a larger version of this image](/images/slackernews-update-page.png)
@@ -199,7 +199,7 @@ The following examples show how you could include a page in your application's a
 
 To use the SDK API to check for available application updates and provide customer-specific upgrade instructions:
 
-1. From your admin console application, call the `api/v1/app/updates` endpoint to return available updates for the application instance. Use the response to display available upgrades for the customer.
+1. From your application, call the `api/v1/app/updates` endpoint to return available updates for the application instance. Use the response to display available upgrades for the customer.
 
    ```bash 
    curl replicated:3000/api/v1/app/updates
