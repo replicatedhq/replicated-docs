@@ -34,7 +34,7 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 To support the collection of custom metrics, Replicated SDK version 1.0.0-beta.5 or later must be running in the cluster alongside the application instance.
 
-If you have any customers that are running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
+If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
 
 ## Limitations
 
