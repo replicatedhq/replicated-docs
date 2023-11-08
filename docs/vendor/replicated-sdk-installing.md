@@ -5,6 +5,8 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 This topic describes the methods for distributing and installing the Replicated SDK.
 
+It includes information about how to install the SDK alongside Helm chart- or standard manifest-based applications using the Helm CLI or Replicated KOTS. It also includes information about installing the SDK separately from an application as a standalone component in integration mode.
+
 ## Install the SDK as a Subchart
 
 You can include the SDK as a dependency of your application Helm chart. When included as a dependency, the SDK is installed as a subchart alongside your Helm chart-based application in customer environments.
@@ -33,7 +35,7 @@ To install the SDK as a subchart alongside an application Helm chart:
 
 1. (Optional) Add a HelmChart custom resource to the release to support installation with KOTS. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about) and [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-1. Promote the release to an internal-only channel used for testing, such as the default Unstable channel.
+1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
 
 1. Install the release using the Helm CLI or KOTS. For information about installing releases with the Helm CLI, see [Installing with Helm](/vendor/install-with-helm). For information about installing with KOTS, see [About Installing an Application](/enterprise/installing-overview).
 
@@ -65,14 +67,16 @@ To add the SDK Helm chart to a release for a standard manifest-based application
   ```
   For more information, including alternative installation options, see [Install Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
 
-1. Pull the SDK Helm chart:
+1. Download the `.tgz` chart archive for the SDK Helm chart:
 
   ```
   helm pull oci://registry.replicated.com/library/replicated --version SDK_VERSION
   ```
   Where `SDK_VERSION` is the version of the SDK to install. For a list of available SDK versions, see the [replicated-sdk repository](https://github.com/replicatedhq/replicated-sdk/tags) in GitHub.
 
-  The output of this command is a `.tgz` chart archive of the SDK Helm chart. The naming convention for Helm chart archives is `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.12.tgz`.
+  The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.12.tgz`.
+
+  For more information and additional options, see [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
 
 1. Add the SDK `.tgz` chart archive to a new release. For more information, see [Managing Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
@@ -84,7 +88,7 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
 1. If one was not created automatically, add a Replicated HelmChart custom resource to the release. HelmChart custom resources have `apiVersion: kots.io/v1beta2` and `kind: HelmChart`. 
 
-  **Example**
+  **Example:**
   
   ```yaml
   apiVersion: kots.io/v1beta2
@@ -103,9 +107,15 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
   As shown in the example above, the HelmChart custom resource requires the name and version of the SDK Helm chart that you added to the release:
    * **`chart.name`**: The name of the SDK Helm chart is `replicated`. You can find the chart name in the `name` field of the SDK Helm chart `Chart.yaml` file.
-   * **`chartVersion`**: The chart version varies depending on the version of the SDK that you pulled and added to the release. You can find the chart version in the `version` field of SDK Helm chart `Chart.yaml` file.
+   * **`chart.chartVersion`**: The chart version varies depending on the version of the SDK that you pulled and added to the release. You can find the chart version in the `version` field of SDK Helm chart `Chart.yaml` file.
 
   For more information about configuring the HelmChart custom resource to support KOTS installations, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about) and [HelmChart v2](/reference/custom-resource-helmchart-v2).
+
+1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
+
+1. Install the release using KOTS. For more information, see [About Installing an Application](/enterprise/installing-overview).
+
+1. Confirm that the SDK was installed by seeing that the replicated Deployment was created:
 
 ## Install the SDK in Integration Mode
 
