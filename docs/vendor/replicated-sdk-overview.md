@@ -23,19 +23,6 @@ The Replicated SDK has the following limitations:
 
   * The SDK does not automatically generate status informers to report status data for installed instances of the application. To get instance status data, you must enable custom status informers by overriding the `replicated.statusInformers` Helm value. See [Enable Application Status Insights](/vendor/insights-app-status#enable-application-status-insights) in _Enabling and Understanding Application Status_.
 
-
-## How to Distribute the SDK
-
-You can distribute the Replicated SDK with your application by declaring it as a dependency in your application Helm chart `Chart.yaml` file:
-
-<DependencyYaml/>
-
-Consider the following guidelines for adding the SDK as a dependency:
-
-* <ChartRequirements/>
-
-* Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
-
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
 The following diagram shows how the Replicated SDK is installed and runs in a customer environment:
