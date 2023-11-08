@@ -20,7 +20,7 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 
 The vendor portal collects custom metrics through the Replicated SDK that is installed in the cluster alongside the application.
 
-The Replicated SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+The SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
 If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
 
