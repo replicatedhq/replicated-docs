@@ -115,7 +115,21 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
 1. Install the release using KOTS. For more information, see [About Installing an Application](/enterprise/installing-overview).
 
-1. Confirm that the SDK was installed by seeing that the replicated Deployment was created:
+1. Confirm that the SDK was installed by seeing that the `replicated` Deployment was created:
+
+  ```
+  kubectl get deploy --namespace NAMESPACE
+  ```
+  Where `NAMESPACE` is the namespace in the cluster where the application, the admin console, and the SDK are installed. 
+
+  **Example output**:
+
+  ```
+  NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+  kotsadm      1/1     1            1           112s
+  my-app       1/1     1            1           28s
+  replicated   1/1     1            1           27s
+  ```
 
 ## Install the SDK in Integration Mode
 
