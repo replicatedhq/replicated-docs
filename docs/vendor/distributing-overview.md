@@ -51,8 +51,8 @@ global:
 ```
 
 The values in the `global.replicated` field provide information about the following:
-* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
-* A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
+* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define. You can use this license information to check license entitlments before the application is installed. For more information, see [Check Entitlements Before Installation](/vendor/licenses-reference-helm#before-install) in _Checking Entitlements for Helm Installations_.
+* A base64 encoded Docker configuration file. To proxy images from an external private registry with the Replicated proxy service, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
 
 ### Limitations
 
@@ -105,5 +105,3 @@ For more information about how KOTS installs Helm charts, see [About Distributin
 ## About Distributing the Replicated SDK with an Application {#sdk}
 
 <SDKOverview/>
-
-For more information, see [About the Replicated SDK](replicated-sdk-overview).
