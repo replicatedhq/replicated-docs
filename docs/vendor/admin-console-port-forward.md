@@ -99,9 +99,9 @@ This section includes examples for configuring port forwarding for Helm chart-ba
 
 ### NGINX Application with ClusterIP and NodePort Services
 
-The following example configures port forwarding for a basic NGINX application for both existing cluster and embedded cluster installations.
+The following example demonstrates how to expose a basic NGINX service for both existing cluster and embedded cluster installations.
 
-To test the port forwarding for this example:
+To test this example:
 
 1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the vendor portal. Promote to the channel that you use for internal testing.
 
@@ -181,7 +181,7 @@ To test the port forwarding for this example:
 
 This example provides a KOTS Application custom resource and Kubernetes Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
-To test the port forwarding for this example:
+To test this example:
 1. Pull version 1.0.6 of the Gitea Helm chart from Bitnami:
 
    ```
