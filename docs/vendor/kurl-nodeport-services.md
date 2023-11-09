@@ -80,7 +80,7 @@ For example, the following `sentry` service with `type: NodePort` includes `anno
       role: web
   ```
 
-Similarly, to ensure that a `sentry` service with `type; ClusterIP` is only created in existing cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
+Similarly, to ensure that a `sentry` service with `type: ClusterIP` is only created in existing cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
 
 ```yaml
 apiVersion: v1
