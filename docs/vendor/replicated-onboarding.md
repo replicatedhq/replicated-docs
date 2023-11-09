@@ -2,7 +2,6 @@
 pagination_next: null
 ---
 
-import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Replicated Quick Start
@@ -89,10 +88,6 @@ To begin onboarding to the Replicated platform with a Helm chart:
    <DependencyYaml/>
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
-
-   :::note
-   <ChartRequirements/>
-   :::
 
 1. Update dependencies then package the Helm chart to a `.tgz` file:
 
@@ -214,12 +209,14 @@ This section provides a checklist of key Replicated features to integrate with y
     <th width="50%">Description</th>
     <th width="30%">How to</th>
   </tr>
-  <tr>
-    <td>Slack and email notifications</td>
-    <td><p>Set up Slack or email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases.</p>
-    <p><strong>Estimated time:</strong> 15 minutes, plus time to test</p>
+    <tr>
+    <td>Proxy service</td>
+    <td>
+      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy service allows you to pull your images so that you can test your deployment.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy service</p>
     </td>
-    <td><a href="/vendor/instance-notifications-config">Configuring Instance Notifications</a>
+    <td>
+      <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
     </td>
   </tr>
   <tr>
@@ -270,7 +267,7 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
   <td>Runtime license entitlement checks with the SDK API</td>
     <td>
-      <p>Use the SDK API to add checks for customer license entitlements during runtime. You can install the SDK in integration to quickly develop against the SDK API.</p>
+      <p>Use the SDK API to add checks for customer license entitlements during runtime.</p>
       <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
       <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
     </td>
@@ -298,16 +295,6 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
     <td>
       <a href="/vendor/custom-metrics">Configuring Custom Metrics</a>
-    </td>
-  </tr>
-  <tr>
-    <td>Proxy service</td>
-    <td>
-      <p>Allow customer licenses to grant proxy access to your application's private images.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy service</p>
-    </td>
-    <td>
-      <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
     </td>
   </tr>
   <tr>

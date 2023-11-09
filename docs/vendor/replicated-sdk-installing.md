@@ -1,4 +1,3 @@
-import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Installing the Replicated SDK (Beta)
@@ -19,11 +18,7 @@ To install the SDK as a subchart alongside an application Helm chart:
 
   <DependencyYaml/>
 
-  Consider the following guidelines for adding the SDK as a dependency:
-
-    * <ChartRequirements/>
-
-    * Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
+  Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
 
 1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 

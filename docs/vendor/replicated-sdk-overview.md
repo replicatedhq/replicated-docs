@@ -1,11 +1,10 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
-import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # About the Replicated SDK (Beta)
 
-This topic provides an introduction to using the Replicated SDK with your Helm chart application.
+This topic provides an introduction to using the Replicated SDK with your application.
 
 ## Overview
 
