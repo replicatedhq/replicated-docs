@@ -50,7 +50,7 @@ To install the SDK as a subchart alongside an application Helm chart:
 
   ```
   NAME         READY   UP-TO-DATE   AVAILABLE   AGE
-  my-app       0/1     1            0           35s
+  my-app       1/1     1            1           35s
   replicated   1/1     1            1           35s
   ```
 
