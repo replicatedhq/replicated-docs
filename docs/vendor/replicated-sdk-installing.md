@@ -128,6 +128,6 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
 ## Install the SDK in Integration Mode
 
-You can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to add the SDK to your application, create a release in the Replicated vendor portal, or make changes in your environment.
+You can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to add the SDK to your application, create a release in the Replicated vendor portal, or make changes in your environment. You can also use integration mode to test sending instance data to the vendor portal, including any custom metrics that you configure.
 
 To use integration mode, install the Replicated SDK as a standalone component using a valid development license. For more information, see [Developing Against the SDK API](/vendor/replicated-sdk-development).
