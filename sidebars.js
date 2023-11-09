@@ -24,11 +24,11 @@ const sidebars = {
       value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots-logo">',
       defaultStyle: true,
     },
+    // DISTRIBUTE WITH KOTS 
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
+    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     'intro-kots',
     'vendor/distributing-workflow',
-    // DISTRIBUTE WITH KOTS 
-    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Helm Charts with KOTS',
@@ -45,6 +45,7 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-port-forward',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
       ],
@@ -62,10 +63,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Kubernetes Installers with kURL',
+      label: 'Replicated kURL',
       items: [
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
+        'vendor/kurl-nodeport-services',
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
         'vendor/packaging-using-tls-certs',

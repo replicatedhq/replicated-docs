@@ -1,81 +1,54 @@
-# Adding Buttons and Links
+# Adding Application Links to the Dashboard
 
-This topic describes how to use the Kubernetes and KOTS Application custom resources to add buttons and links to the Replicated admin console dashboard.
+This topic describes how to use the Kubernetes SIG Application and KOTS Application custom resources to add links to the Replicated admin console dashboard.
 
 ## Overview
 
-When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
-Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.
+Replicated recommends that every application include a Kubernetes SIG Application custom resource. The Kubernetes Application custom resource provides a standard API for creating, viewing, and managing applications. For more information, see [Kubernetes Applications](https://github.com/kubernetes-sigs/application#kubernetes-applications) in the `kubernetes-sigs/application` GitHub repository.
 
-Replicated KOTS can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
+You can configure the Kubernetes Application custom resource to add links to the Replicated admin console dashboard. A common use case for this is adding a button to the dashboard that users can click on to navigate to dashboards or landing pages for an application. For example, the following shows an **Open App** button on the dashboard of the admin console for an application named Gitea:
 
-To export a port and a button on the Replicated admin console dashboard to the application, a couple of additional steps are necessary.
+![admin console dashboard with Open App link](/images/gitea-open-app.png)
 
-## Add A Button to the Dashboard
+[View a larger version of this image](/images/gitea-open-app.png)
 
-Replicated recommends that every application include a Kubernetes SIG Application custom resource. The Kubernetes SIG Application custom resource provides a standard API for creating, viewing, and managing applications. For more information, see [Kubernetes Applications](https://github.com/kubernetes-sigs/application#kubernetes-applications) in the `kubernetes-sigs/application` Github repository.
+:::note
+KOTS uses the Kubernetes Application custom resource as metadata and does not require or use an in-cluster controller to handle this custom resource. An application that follows best practices does not require cluster admin privileges or any cluster-wide components to be installed.
+:::
 
-KOTS uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
-An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
+## Prerequisites
 
-The Kubernetes Application custom resource `spec.descriptor.links` field is an array of links that reference the application, after the application is deployed. The `spec.descriptor.links` field can be used to configure buttons on the Replicated admin console that link to application dashboards or landing pages.
+Before you can add application links to the dashboard, ensure that the target service is exposed through KOTS port forwarding (existing cluster installations) or a NodePort type service (embedded cluster installations):
 
-Each link contains two fields, description and url. 
+* For existing cluster installations, see [Port Forwarding Service with KOTS](/vendor/admin-console-port-forward).
+* For embedded cluster installations, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services). 
 
-The description field is the title of the button that will be added to the admin console.
-The url field should be the url of your application.
+## Add an Application Link to the Dashboard
 
-You can use the service name in place of the host name and KOTS will rewrite the URL with hostname in the browser.
+To add a link on the admin console dashboard, configure a Kubernetes SIG Application custom resource that includes a `spec.descriptor.links` field. The `spec.descriptor.links` field is an array of application links after the application is deployed.
 
-For example:
+**For example:**
 
-```yaml
-apiVersion: app.k8s.io/v1beta1
-kind: Application
-metadata:
-  name: "my-application"
-  labels:
-    app.kubernetes.io/name: "my-application"
-    app.kubernetes.io/version: "1.0.0"
-spec:
-  selector:
-    matchLabels:
-     app.kubernetes.io/name: "my-application"
-  descriptor:
-    links:
-      - description: "Open My Application"
-        url: https://my-application-url
-```
+  ```yaml
+  # app.k8s.io/v1beta1 Application Custom resource
 
-## Additional Ports and Port Forwarding
+  apiVersion: app.k8s.io/v1beta1
+  kind: Application
+  metadata:
+    name: "gitea"
+  spec:
+    descriptor:
+      links:
+        - description: Open App
+          url: "http://gitea"
+  ```
 
-When running the `kubectl` plugin for the kots CLI, KOTS can add additional ports that are defined in the application to the port-forward tunnel.
-This is useful for internal services such as application admin controls and other services that should not be exposed to all users.
-It's also recommended to list the primary application port(s) here to make verification of the installation possible before ingress is installed.
-
-In order to define additional ports, add a `ports` key to the Application custom resource manifest file.
-
-#### Example
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-application
-spec:
-  title: My Application
-  icon: my-application-logo-uri
-  ports:
-    - serviceName: "myapplication-service"
-      servicePort: 9000
-      localPort: 9000
-      applicationUrl: "http://myapplication-service"
- ```
-
-Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
-Service should reference the service name that the application deployed without the namespace.
-
-## Using dashboard buttons with port forward
-
-Finally, it's possible to combine these two features and use a dashboard button that links to a port-forwarded service.
-When doing this, it's recommended to not use https but instead use http, unless TLS termination is happening in the application pod.
+As shown in the example above, each link contains two fields:
+* `description`: The title of the button that will be added to the admin console. For example, `Open App`.
+* `url` : The URL of your application. Consider the following requirements and guidelines:
+  * Use `http` instead of `https` unless TLS termination takes place in the application Pod.
+  * You can use the service name in place of the hostname in the URL. KOTS rewrites the URL with the hostname in the browser.
+  * The URL _must_ match a URL in the `ports.applicationURL` field in the KOTS Application custom resource. For more information, see [ports](/reference/custom-resource-application#ports) in _Application_.
+    :::note
+    The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in embedded cluster installations, the `ports` key must be configured in order to add links to the admin console dashboard.
+    :::  
