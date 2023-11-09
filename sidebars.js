@@ -464,6 +464,15 @@ const sidebars = {
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
       type: 'category',
+      label: 'Replicated SDK (Beta)',
+      items: [
+        'vendor/replicated-sdk-overview',
+        'vendor/replicated-sdk-installing',
+        'vendor/replicated-sdk-customizing',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Vendor Portal Teams and Accounts',
       items: [
         'vendor/vendor-portal-creating-account',
@@ -625,15 +634,6 @@ const sidebars = {
 
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
-    {
-      type: 'category',
-      label: 'Replicated SDK (Beta)',
-      items: [
-        'vendor/replicated-sdk-overview',
-        'vendor/replicated-sdk-installing',
-        'vendor/replicated-sdk-customizing',
-      ],
-    },
     {
       type: 'category',
       label: 'Replicated SDK API (Beta)',
