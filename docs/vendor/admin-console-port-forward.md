@@ -103,7 +103,7 @@ To test this example:
 <TabItem value="service" label="example-service.yaml" default>
 <h5>Description</h5>
 <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
-<p>As shown below, both the ClusterIP and LoadBalancer <code>nginx</code> services are exposed on port 80.</p>
+<p>As shown below, both the ClusterIP and NodePort <code>nginx</code> services are exposed on port 80.</p>
 <h5>YAML</h5>
 <NginxService/>
 </TabItem>
