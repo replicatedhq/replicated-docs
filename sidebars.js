@@ -24,11 +24,11 @@ const sidebars = {
       value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots-logo">',
       defaultStyle: true,
     },
+    // DISTRIBUTE WITH KOTS 
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
+    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     'intro-kots',
     'vendor/distributing-workflow',
-    // DISTRIBUTE WITH KOTS 
-    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Helm Charts with KOTS',
@@ -68,6 +68,7 @@ const sidebars = {
       items: [
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
+        'vendor/kurl-nodeport-services',
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
         'vendor/packaging-using-tls-certs',

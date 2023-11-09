@@ -5,31 +5,30 @@ import PortsServiceName from "../partials/custom-resource-application/_ports-ser
 import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
 import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
 import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import NginxKotsApp from "../partials/port-forward/_nginx-kots-app.mdx"
-import NginxK8sApp from "../partials/port-forward/_nginx-k8s-app.mdx"
-import NginxService from "../partials/port-forward/_nginx-service.mdx"
-import NginxDeployment from "../partials/port-forward/_nginx-deployment.mdx"
+import NginxKotsApp from "../partials/application-links/_nginx-kots-app.mdx"
+import NginxK8sApp from "../partials/application-links/_nginx-k8s-app.mdx"
+import NginxService from "../partials/application-links/_nginx-service.mdx"
+import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx"
 import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
-# Exposing Services at Installation
+# Port Forwarding Services with KOTS
 
 This topic describes how to add one or more ports to the Replicated KOTS port forward tunnel by configuring the `ports` key in the KOTS Application custom resource.
+
+The information in this topic applies to existing cluster installations. For information about exposing services for embedded cluster installations with Replicated kURL, see [Exposing Services Using NodePorts](kurl-nodeport-services).
 
 ## Overview
 
 When distributing an application, it is helpful to ensure that the person or process installing the application is able to easily verify that the application is running. However, networking and ingress is handled differently in each cluster, and this makes it difficult to provide a consistent application URL at installation. Additionally, the cluster operator might be required to create firewall rules before they can open the application.
 
-To address these challenges, KOTS automatically creates a port forward tunnel and exposes the admin console on port 8800 where it can be accessed by users at installation.
+To address these challenges with installations into existing clusters, KOTS automatically creates a port forward tunnel and exposes the admin console on port 8800 where it can be accessed by users at installation.
 
-In addition to the 8800 admin console port, you can configure the KOTS Application custom resource to add one or more extra ports to the port forward tunnel so that users can easily access your application at installation. For example, you can:
+In addition to the 8800 admin console port, you can configure the KOTS Application custom resource to add one or more extra ports to the port forward tunnel so that users installing in exsting clusters can easily access your application at installation. For example, you can:
 * List the primary application ports to provide one or more links directly to the application before ingress and firewalls are configured 
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
-
-## Expose Services
-
-### Configure KOTS Port Forwarding for Existing Cluster Installations
+## Configure Port Forwarding
 
 This section describes how to configure port forwarding for existing cluster installations by adding extra ports to the `ports` key in the KOTS Application custom resource
 
@@ -44,8 +43,6 @@ As shown in the example above, the `ports` key has the following fields:
 <ul>
 
 <p><PortsServiceName/></p>
-
-For embedded cluster installations with kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster. For more information, see [Create a NodePort Service for kURL Installations](#nodeport).
 
 <PortsServicePort/>
 
@@ -62,147 +59,6 @@ When adding a link to a port-forwarded service, it is recommended to use `http` 
 For more information about how to add a link to a port-forwarded service from the admin console, see [Add a Link on the Admin Console Dashboard](#link) below.
 
 </ul>
-
-### Create NodePort Services for kURL Installations {#nodeport}
-
-This section describes how to create a NodePort service for exposing additional services in embedded cluster installations with kURL.
-
-#### Overview
-
-Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on VMs or bare metal servers by kURL. This is because it cannot be verified that the ports are secure and authenticated.
-
-To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. The UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
-
-For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
-
-#### Create a NodePort Service
-
-For each additional service that you want KOTS to expose, Replicated recommends that you create a specification for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
-
-For example, a release contains the following `sentry` service with `type: ClusterIP`: 
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: sentry
-  labels:
-    app: sentry
-spec:
-  type: ClusterIP
-  ports:
-  - port: 9000
-    targetPort: 9000
-    protocol: TCP
-    name: sentry
-  selector:
-    app: sentry
-    role: web
-```
-
-To add a NodePort service for embedded cluster installations given the ClusterIP specification above:
-
-1. Add a separate specification for the `sentry` service with `type: NodePort` and `annotation.kots.io/when: "{{repl IsKurl}}"`:
-
-  ```yaml
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: sentry
-    labels:
-      app: sentry
-  annotations:
-  # This annotation prevents the NodePort service from being created in non-kURL clusters
-    kots.io/when: "{{repl IsKurl}}"
-  spec:
-    type: NodePort
-    ports:
-    - port: 9000
-      targetPort: 9000
-      nodePort: 9000
-      protocol: TCP
-      name: sentry
-    selector:
-      app: sentry
-      role: web
-  ```
-
-  This creates a NodePort service _only_ when installing in embedded clusters with kURL. For more information about using the `kots.io/when` annotation, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources). For more information about the IsKurl template fuction, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
-
-1. To ensure that the ClusterIP type service is only created in existing cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
-
-  ```yaml
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: sentry
-    labels:
-      app: sentry
-    annotations:
-    # This annotation prevents the ClusterIP service from being created in kURL clusters
-      kots.io/when: "{{repl not IsKurl}}"
-  spec:
-    type: ClusterIP
-    ports:
-    - port: 9000
-      targetPort: 9000
-      protocol: TCP
-      name: sentry
-    selector:
-      app: sentry
-      role: web
-  ```
-
-1. Add port 9000 to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
-
-## Add Links to Services on the Admin Console Dashboard {#link}
-
-Replicated recommends that you provide a link on the admin console dashboard where users can open the port-forwarded service. 
-
-Providing a link on the admin console dashboard is particularly helpful for embedded cluster installations with kURL because it allows users to easily open the application without needing to forward a port on their local machine to the target port on the remote virtual machine (VM) where the cluster was installed.
-
-:::note
-When adding a link to a port-forwarded service, it is recommended to use `http` instead of `https`, unless TLS termination takes place in the application Pod.
-:::
-
-To add a link to a port-forwarded service on the admin console dashboard:
-
-1. Edit the KOTS Application custom resource to add a `ports.applicationURL` field.
-
-  **Example:**
-
-  ```yaml
-  # kots.io/v1beta1 Application custom resource
-
-  apiVersion: kots.io/v1beta1
-  kind: Application
-  metadata:
-    name: gitea
-  spec:
-    ports:
-      - serviceName: "gitea"
-        servicePort: 3000
-        localPort: 8888
-        applicationUrl: "http://gitea"
-  ```
-
-1. Configure a Kubernetes Application custom resource that includes the same URL as the `ports.applicationURL` field in the KOTS custom resource
-
-  Given the `applicationUrl` in the example KOTS Application custom resource in the previous step, the following Kubernetes Application custom resource adds an **Open App** button to the admin console dashboard that the user can click to open the application:
-
-  ```yaml
-  # app.k8s.io/v1beta1 Application Custom resource
-
-  apiVersion: app.k8s.io/v1beta1
-  kind: Application
-  metadata:
-    name: "gitea"
-  spec:
-    descriptor:
-      links:
-        - description: Open App
-          url: "http://gitea"
-  ```
 
 For more information, see [Adding Buttons and Links](admin-console-adding-buttons-links).
 
@@ -226,8 +82,6 @@ kubectl kots admin-console --namespace gitea
 • Go to http://localhost:8800 to access the Admin Console
 • Go to http://localhost:8888 to access the application
 ```
-
-For embedded cluster installations with kURL, if the user installed in a bare metal server or in a VM where they cannot open a browser window, they must first forward a port on their local machine to the target port on the remote VM using the SSH client before they can run the `kots admin-console` command to open the port forward tunnel. For an example of how to forward a port on a local machine to the admin console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console).
 
 ### From the Admin Console
 
