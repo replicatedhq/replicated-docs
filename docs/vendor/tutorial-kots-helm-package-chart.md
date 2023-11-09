@@ -1,4 +1,3 @@
-import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Step 3: Package the Helm Chart

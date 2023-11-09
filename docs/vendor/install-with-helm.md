@@ -7,7 +7,7 @@ This topic describes how to use Helm to install releases that contain one or mor
 Before you install, complete the following prerequisites:
 
 * You must have a customer in the Replicated vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
-* (Recommended) To install the Replicated SDK alongside the application, declare the SDK as a dependency. For more information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK (Beta)_.
+* (Recommended) To install the Replicated SDK alongside the application, declare the SDK as a dependency. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
 ## Install
 

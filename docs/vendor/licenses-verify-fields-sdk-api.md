@@ -25,7 +25,7 @@ Replicated recommends that you use signature verification to ensure the integrit
 
 ## Requirement
 
-You must include the Replicated SDK as a dependency of your application. For more information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
+Include the Replicated SDK as a dependency of your application Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
 ## Use Your Public Key to Verify License Field Signatures
 

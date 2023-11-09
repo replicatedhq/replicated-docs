@@ -32,7 +32,7 @@ To package a Helm chart so that it can be added to a release:
 
     <DependencyYaml/>
     
-    For additional guidelines related to adding the SDK as a dependency, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
+    For additional guidelines related to adding the SDK as a dependency, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
 1. Update the `charts/` directory:
 
