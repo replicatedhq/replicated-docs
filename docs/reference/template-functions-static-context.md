@@ -79,9 +79,9 @@ Trim returns a string with all leading and trailing spaces removed.
 ```go
 func Trim(s string, args ...string) string
 ```
-Trim returns a string with all leading and trailing string contained in the optional args removed (default space).
+Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
 ```yaml
-'{{repl ConfigOption "str_value" | Trim " " "." }}'
+'{{repl Trim (ConfigOption "str_value") "." }}'
 ```
 
 ## UrlEncode

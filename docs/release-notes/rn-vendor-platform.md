@@ -8,6 +8,49 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.06-1
+
+Released on November 6, 2023
+
+### Improvements {#improvements-v2023-11-06-1}
+* Improves the way large amounts of custom metrics display on the Instance Details page, in both the Filters dropdown and the Custom Metrics section on the left.
+
+## v2023.11.03-1
+
+Released on November 3, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-03-1}
+* Audit log initial search query filters out "read" events.
+
+## v2023.11.03-2
+
+Released on November 3, 2023
+
+### Improvements {#improvements-v2023-11-03-2}
+* Upon login, the user is redirected to most recently managed application.
+
+## v2023.10.30-3
+
+Released on October 30, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-30-3}
+* Fixes style bug on the Audit Log page where the search input border is partially hidden.
+
+## v2023.10.30-2
+
+Released on October 30, 2023
+
+### Improvements {#improvements-v2023-10-30-2}
+* Make some columns hidden by default in the Instances view on the Customers page and update column names.
+
+## v2023.10.30-1
+
+Released on October 30, 2023
+
+### Improvements {#improvements-v2023-10-30-1}
+* Update styles on **Instance Details** page.
+* Update tab styles throughout the vendor portal.
+
 ## v2023.10.27-2
 
 Released on October 27, 2023

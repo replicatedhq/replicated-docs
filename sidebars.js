@@ -35,7 +35,6 @@ const sidebars = {
       items: [
         'vendor/helm-native-about',
         'vendor/helm-native-v2-using',
-        'vendor/helm-kots-using-sdk',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
@@ -417,6 +416,20 @@ const sidebars = {
       items: [
         {
           type: 'category',
+          label: 'Deploy a Helm Chart with KOTS and Helm CLI',
+          items: [
+            'vendor/tutorial-kots-helm-setup',
+            'vendor/tutorial-kots-helm-get-chart',
+            'vendor/tutorial-kots-helm-create-app',
+            'vendor/tutorial-kots-helm-package-chart',
+            'vendor/tutorial-kots-helm-create-release',
+            'vendor/tutorial-kots-helm-create-customer',
+            'vendor/tutorial-kots-helm-install-kots',
+            'vendor/tutorial-kots-helm-install-helm',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',
@@ -576,7 +589,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Testing with Compatibility Matrix (Beta)',
+      label: 'Testing with Compatibility Matrix',
       items: [
         'vendor/testing-about',
         'vendor/testing-supported-clusters',

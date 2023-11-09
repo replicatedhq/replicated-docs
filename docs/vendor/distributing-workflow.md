@@ -32,10 +32,7 @@ For more information about creating releases, see [Managing Releases with the Ve
     <td>HelmChart</td>
     <td><p>Provides instructions for KOTS about how to deploy your Helm chart.</p><p><strong>Note:</strong> Required for supporting KOTS installations of Helm charts.</p></td>
     <td>
-      <ul>
-        <li><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></li>
-        <li><a href="helm-kots-using-sdk">Using an SDK-Enabled Helm Chart for KOTS Installations</a></li>
-      </ul>  
+      <a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a>
     </td>
   </tr>
   <tr>

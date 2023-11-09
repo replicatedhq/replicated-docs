@@ -9,9 +9,9 @@ import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
 
 
-# Customize Support Bundles for Helm Installations
+# Customize Support Bundles for Helm Charts
 
-This topic provides a basic understanding and some key considerations about support bundle specifications for Helm installations to help guide you in defining them for your application.
+This topic provides a basic understanding and some key considerations about support bundle specifications for Helm charts to help guide you in defining them for your application. The content in this topic applies to Helm chart-based applications installed with the Helm CLI or with Replicated KOTS v1.104.0 and later.
 
 ## About Support Bundles
 
@@ -23,14 +23,16 @@ Customizing a support bundle is unique to your application and depends on what k
 
 ## Choose an Input Kind
 
-You can create support bundle specifications using the following kinds:
+Support bundles are generated with the open source support-bundle kubectl plugin by running `kubectl support-bundle`. For more information about the support-bundle plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
 
-- Secret (`kind: Secret`)
-- SupportBundle custom resource (`kind: SupportBundle`)
+The support-bundle plugin requires a support bundle specification as input. You can define support bundle specifications in using the following kinds of resources:
+
+- Kubernetes Secret or ConfigMap with `label.troubleshoot.sh/kind: support-bundle`
+- SupportBundle custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: SupportBundle`)
 
 ### Create a Secret (Recommended)
 
-Replicated recommends using Secrets to contain a support bundle specifications in your Helm chart. This method allows customers to automatically discover and generate a support bundle without specifying a long URL. Using Secrets also allows specifications to be templated using information in the `values.yaml` file.
+Replicated recommends defining support bundle specifications in Secrets in your Helm chart templates. For installations with the Helm CLI or with KOTS v1.104.0 and later, defining specifications in Secrets allows your users to automatically discover and generate a support bundle without needing to provide multiple files or specify a long URL with the `kubectl support-bundle` command. Using Secrets also allows specifications to be templated using information in the `values.yaml` file.
 
 <ConfigmapNote/>
 
@@ -65,13 +67,17 @@ To create a Secret for the support bundle specification:
           analyzers: []
     ```
 
-1. Add the Secret to your Helm chart `templates/` directory.  
+1. Add the Secret to your Helm chart `templates/` directory.
 
 Next, define the support bundle specification by adding collectors and analyzers. For more information, see [Define the Support Bundle Specification](#spec).
 
 ### Create a SupportBundle Custom Resource
 
-If you do not want to use Secrets, you can create a SupportBundle custom resource instead. Helm templates are supported when the specification is distributed using an OCI registry.
+If you do not want to use Secrets or ConfigMaps, you can create a SupportBundle custom resource instead.
+
+:::note
+For specifications created in a SupportBundle custom resource, Helm templates are supported only when the support bundle is generated from a link to the specification at an OCI registry. For example, `kubectl support-bundle oci://my.oci.registry/image`.
+:::
 
 Create a SupportBundle custom resource (`kind: SupportBundle`) using the following basic support bundle template. For more information about this custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 

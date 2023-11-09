@@ -142,7 +142,11 @@
   
 [[redirects]]
   from="https://docs.replicated.com/vendor/replicated-sdk-rbac"
-  to="https://docs.replicated.com/vendor/replicated-sdk-customizing"           
+  to="https://docs.replicated.com/vendor/replicated-sdk-customizing" 
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/helm-kots-using-sdk"
+  to="https://docs.replicated.com/vendor/helm-native-about"               
 
 ###################################################
 # Redirects To the Enterprise Section
