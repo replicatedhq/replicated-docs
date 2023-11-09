@@ -66,7 +66,7 @@ For more information, see [Adding Buttons and Links](admin-console-adding-button
 
 When you configure port forwarding for your application, your users can access the port-forwarded services by getting the URL from the kots CLI, or by clicking a link on the admin console dashboard.
 
-### From the Command Line
+### Command Line
 
 Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel.
 
@@ -83,7 +83,7 @@ kubectl kots admin-console --namespace gitea
 • Go to http://localhost:8888 to access the application
 ```
 
-### From the Admin Console
+### Admin Console
 
 Users can access port-forwarded services by clicking a link on the admin console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Add a Link on the Admin Console Dashboard](#link) above. 
 

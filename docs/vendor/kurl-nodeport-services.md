@@ -105,6 +105,22 @@ spec:
     role: web
 ```
 
+## Access NodePort Services
+
+Users can access NodePort services by clicking a link to the service on the admin console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+
+To be able to access the service, the firewall for the VM where the user installed must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+
+The following example shows an **Open App** button on the dashboard of the admin console for an application named Gitea:
+
+![admin console dashboard with Open App link](/images/gitea-open-app.png)
+
+[View a larger version of this image](/images/gitea-open-app.png)
+
+During embedded cluster installations with kURL, the admin console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the admin console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
+
+If the user is not able to access the admin console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the admin console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the admin console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with Automation_.
+
 ## Example: NGINX Application with ClusterIP and NodePort Services
 
 The following example demonstrates how to expose a basic NGINX service for both existing cluster and embedded cluster installations.
@@ -184,3 +200,4 @@ To test this example:
   :::note
   Ensure that the VM where you install allows HTTP traffic.
   :::
+

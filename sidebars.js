@@ -64,7 +64,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Kubernetes Installers with kURL',
+      label: 'Replicated kURL',
       items: [
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
