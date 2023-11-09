@@ -322,7 +322,7 @@ spec:
         <ServicePortNote/>
         <PortsLocalPort/>
         <PortsApplicationURL/>
-        For more information, see <a href="/vendor/admin-console-port-forward#link">Add a Link on the Admin Console Dashboard</a>.
+        For more information, see <a href="/vendor/admin-console-adding-buttons-links">Adding Application Links to the Dashboard</a>.
       </ul> 
     </td>
   </tr>

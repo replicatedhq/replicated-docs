@@ -52,15 +52,9 @@ As shown in the example above, the `ports` key has the following fields:
 
 <PortsApplicationURL/>
 
-:::note
-When adding a link to a port-forwarded service, it is recommended to use `http` instead of `https`, unless TLS termination takes place in the application Pod.
-:::
-
-For more information about how to add a link to a port-forwarded service from the admin console, see [Add a Link on the Admin Console Dashboard](#link) below.
+For more information about how to add a link to a port-forwarded service from the admin console, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
 </ul>
-
-For more information, see [Adding Buttons and Links](admin-console-adding-buttons-links).
 
 ## Access Port-Forwarded Services
 

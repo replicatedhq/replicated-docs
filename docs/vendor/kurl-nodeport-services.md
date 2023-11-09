@@ -48,7 +48,7 @@ The following shows an example of a NodePort type service:
       role: web
   ```
 
-## Use KOTS Annotations to Conditionally Deploy the NodePort Service 
+## Use KOTS Annotations to Conditionally Deploy NodePort Services 
 
 You can use the KOTS `kots.io/when` annotation in your application resources to deploy resources based on a conditional statement. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
 
