@@ -12,11 +12,38 @@ To make the admin console accessible in embedded cluster installations, the admi
 
 For each additional service that you want to expose for embedded cluster installations with kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster.
 
-For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
-
 ## Create a NodePort Service
 
-For example, a release contains the following `sentry` service with `type: ClusterIP`: 
+For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
+
+A NodePort type service:
+
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: sentry
+    labels:
+      app: sentry
+  annotations:
+  # This annotation prevents the NodePort service from being created in non-kURL clusters
+    kots.io/when: "{{repl IsKurl}}"
+  spec:
+    type: NodePort
+    ports:
+    - port: 9000
+      targetPort: 9000
+      nodePort: 9000
+      protocol: TCP
+      name: sentry
+    selector:
+      app: sentry
+      role: web
+  ```
+
+## Use KOTS Annotations to Conditionally Deploy the NodePort Service   
+
+For example, given the following `sentry` service with `type: ClusterIP`: 
 
 ```yaml
 apiVersion: v1
@@ -90,4 +117,6 @@ To add a NodePort service for embedded cluster installations given the ClusterIP
       role: web
   ```
 
-1. Add port 9000 to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
+## Add a Link to the NodePort Service on the Admin Console Dashboard  
+
+Add the port to the KOTS Application custom resource.
