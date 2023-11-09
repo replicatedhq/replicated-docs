@@ -22,7 +22,7 @@ For each application service that you want to expose for embedded cluster instal
 
 ## Create a NodePort Service
 
-Services with `type: NodePort` are able to be contacted from outside the cluster by connecting to any node using the appropriate protocol and the port. This is helpful for embedded cluster installations where users must be able access your application from their local machine rather than from inside the cluster.
+Services with `type: NodePort` are able to be contacted from outside the cluster by connecting to any node using the appropriate protocol and port. This is helpful for embedded cluster installations where users must be able access your application from their local machine rather than from inside the cluster.
 
 For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 

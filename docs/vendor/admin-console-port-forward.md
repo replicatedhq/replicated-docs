@@ -30,9 +30,7 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
 ## Configure Port Forwarding
 
-This section describes how to configure port forwarding for existing cluster installations by adding extra ports to the `ports` key in the KOTS Application custom resource
-
-You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel.
+This section describes how to configure port forwarding for existing cluster installations by adding extra ports to the `ports` key in the KOTS Application custom resource.
 
 The following example KOTS Application custom resource includes a `ports` key that allows users to access a `gitea` service at port 8888 on the local machine at installation: 
 
@@ -58,7 +56,7 @@ For more information about how to add a link to a port-forwarded service from th
 
 ## Access Port-Forwarded Services
 
-When you configure port forwarding for your application, your users can access the port-forwarded services by getting the URL from the kots CLI, or by clicking a link on the admin console dashboard.
+When you configure port forwarding for existing cluster installations, your users can access the port-forwarded services by getting the URL from the kots CLI or by clicking a link on the admin console dashboard.
 
 ### Command Line
 
