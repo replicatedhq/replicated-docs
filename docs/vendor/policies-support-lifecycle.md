@@ -33,6 +33,12 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
+    <td><a href="https://docs.replicated.com/vendor/testing-about">Replicated (Compatibility Matrix)</a></td>
+    <td>GA</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
     <td><a href="https://docs.replicated.com/vendor/replicated-sdk-overview">Replicated (Replicated SDK)</a></td>
     <td>Beta</td>
     <td>N/A</td>
@@ -91,14 +97,8 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <td>v2023.01.03-0 and later</td>
     <td>2024-02-28</td>
   </tr>
-  <tr>
-    <td>1.25</td>
-    <td>v1.87.0 and later</td>
-    <td>v2022.09.16-0 and later</td>
-    <td>2023-10-28</td>
-  </tr>
 </table>
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified August 29, 2023.
+Last modified November 09, 2023.
