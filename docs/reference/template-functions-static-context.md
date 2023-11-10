@@ -434,6 +434,7 @@ Distribution returns the Kubernetes distribution detected. The possible return v
 * minikube      
 * rke2          
 * k3s  
+* oke
 
 ```yaml
 repl{{ Distribution }}
