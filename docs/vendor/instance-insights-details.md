@@ -31,7 +31,7 @@ As shown in the image above, the **Instance details** page includes the followin
 * **Current State**: Information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
 * **Instance Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
 * **Instance Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Instance Information](#install-information) below.
-* **Custom Metrics**: The values for any custom metrics that you configured at the most recent check-in. For more information about configuring custom metrics, see [Configuring Custom Metrics (Beta)](/vendor/custom-metrics).
+* **Custom Metrics**: The values for any custom metrics that are configured for the application, from the most recent check-in. For more information about configuring custom metrics, see [Configuring Custom Metrics](/vendor/custom-metrics).
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
 
