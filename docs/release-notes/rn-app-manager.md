@@ -16,6 +16,22 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.104.1
+
+Released on November 10, 2023
+
+Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-104-1}
+* Upgrades the kotsadm base image to `debian:bookworm-slim` to resolve CVE-2023-23914 with critical severity, and CVE-2022-42916 and CVE-2022-43551 with high severity.
+* Surfaces preflight check errors that are due to insufficient RBAC permissions to the CLI.
+* Upgrades the Helm binary in the kotsadm image to 3.13.2 to resolve CVE-2023-39325 and GHSA-m425-mq94-257g with high severity and CVE-2023-44487 and GHSA-jq35-85cj-fj4p with medium severity.
+* Upgrades the google.golang.org/grpc go module to v1.59.0 to resolve GHSA-m425-mq94-257g with high severity and  CVE-2023-44487 with medium severity.
+* Upgrades the github.com/docker/docker go module to v24.0.7 to resolve GHSA-jq35-85cj-fj4p with medium severity.
+
+### Bug Fixes {#bug-fixes-1-104-1}
+* Fixes an issue where the reporting data stored in secrets in air gapped installations could exceed the size of the secret (1MB).
+
 ## 1.104.0
 
 Released on November 6, 2023
