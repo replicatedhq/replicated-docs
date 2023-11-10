@@ -11,106 +11,47 @@ import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
 
 # Define Preflight Checks for Helm Charts
 
-This topic provides a basic understanding and some key considerations about preflight checks for Helm charts with KOTS and Helm installations, and to help guide you in defining them for your application.
+This topic describes how to define preflight checks in Helm chart-based applications. The information in this topic applies to Helm chart-based applications that are installed with the Helm CLI or with Replicated KOTS.
 
-:::note
-A KOTS entitlement is required to create KOTS releases.
-:::
-
-## About Preflight Checks for Helm Charts
+## Overview
 
 <PreflightsAbout/>
 
-Preflight checks are not included by default, so you must enable them.
+For Helm installations, preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation. For more information about running the `helm install` command, see [Running Preflight Checks for Helm Installations](preflight-running). Your users run preflight checks with the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. The plugin requires a preflight check specification as input. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for preflight specifications.
 
-For Helm installations, preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation. For more information about running the `helm install` command, see [Running Preflight Checks for Helm Installations](preflight-running).
+For KOTS installations with Helm charts, preflight checks run automatically. In KOTS v1.101.0 and later, a KOTS installation looks for the preflights specified in the Helm chart archive.
+## Create a Kubernetes Secret
 
-For KOTS installations with Helm charts, preflight checks run automatically.
-
-## Choose an Input Kind
-
-You run preflight checks with the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
-
-The plugin requires a preflight check specification as input. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for the following input kinds:
-
--  Secret (`kind: Secret`)
--  ConfigMap (`kind: ConfigMap`)
--  Preflight custom resource (`kind: Preflight`)
-
-All of these input options allow customization of preflight checks based on values unique to the customer, using Helm templates with conditional statements.
-
-In KOTS v1.101.0 and later, a KOTS installation looks for the preflights specified in the Helm chart archive.
-
-### Create a Secret (Recommended)
-
-Replicated recommends writing your preflight checks specification in one or more Secrets. Using Secrets protects secure information in a cluster.
+Write your preflight specifications in one or more Kubernetes Secrets in the `templates/` directory of your application Helm chart. Using Secrets protects secure information in a cluster.
 
 <ConfigmapNote/>
 
-To create a Secret for the preflight checks specification:
+To add a specfication to a Secret for preflight checks in your Helm chart `templates/` directory, create a Secret as a YAML file with `kind: Secret` and `apiVersion: v1`.
 
-1. Create a Secret as a YAML file with `kind: Secret` and `apiVersion: v1`. The Secret must include the following:
+The Secret must include the following:
 
-    - The label `troubleshoot.sh/kind: preflight`
-    - A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
+* The label `troubleshoot.sh/kind: preflight`
+* A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
-    **Template:**
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      labels:
-        troubleshoot.sh/kind: preflight
-      name: "{{ .Release.Name }}-preflight-config"
-    stringData:
-      preflight.yaml: |
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: Preflight
-        metadata:
-          name: preflight-sample
-        spec:
-          collectors: []
-          analyzers: []
-    ```
-
-1. Add the Secret to your Helm chart `templates/` directory.    
-
-Next, define the preflight checks specification by adding collectors and analyzers. For more information, see [Define the Preflight Checks Specification](#preflights).
-
-### Create a Preflight Custom Resource
-
-The Preflight custom resource lets you provide preflight checks in a Helm template without using `stringData`. If you use this input kind, you must use conditional statements because the custom resource definition is not installed in the cluster.
-
-<PreflightsCrNote/>
-
-To define a Preflight custom resource as a template:
-
-1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml` file or on the Helm CLI.
-
-    **Example**:
-
-    ```yaml
-    {{ if .Values.renderpreflights }}
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: preflight
+  name: "{{ .Release.Name }}-preflight-config"
+stringData:
+  preflight.yaml: |
     apiVersion: troubleshoot.sh/v1beta2
     kind: Preflight
     metadata:
-      name: example-name
+      name: preflight-sample
     spec:
       collectors: []
       analyzers: []
-    {{ end }}
-    ```
+``` 
 
-1. Configure your `values.yaml` file to enable the Preflight custom resource.
-
-    **Example:**
-
-    ```yaml
-    renderpreflights: true
-    ```
-
-Next, define the preflight checks specification by adding collectors and analyzers. Optionally, you can add to the default redactors. For more information, see [Define the Preflight Checks Specification](#preflights).
+Next, define the preflight checks specification by adding collectors and analyzers. For more information, see [Define the Preflight Checks Specification](#preflights).
 
 ## Define the Preflight Checks Specification {#preflights}
 
@@ -119,7 +60,6 @@ Next, define the preflight checks specification by adding collectors and analyze
 <PreflightsDefineXref/>
 
 <PreflightSbHelmTemplates/>
-
 
 ### Collectors
 

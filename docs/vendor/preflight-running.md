@@ -2,6 +2,12 @@
 
 You can run Helm preflight checks before running `helm install` and during the installation of an application. Additionally, your preflight checks can include one or more specification types and resources.
 
+## Overview
+
+For Replicated KOTS installations of Helm chart- or standard manifest-based applications, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed in the Replicated admin console.
+
+For installations with the Helm CLI, your users can optionally run preflight checks with the open source preflight kubectl plugin before they run `helm install`. The kubectl preflight plugin requires a preflight check specification as input. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for preflight specifications.
+
 ## Prerequisite
 
 Customers must install the preflight plug-in, which is a client-side utility that adds a single binary to their path.
@@ -24,6 +30,7 @@ To install the preflight plug-in:
     ```
     curl https://krew.sh/preflight | bash
     ```
+    For information about the preflight plugin, including additional installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. 
 
 ## Run Preflight Checks
 

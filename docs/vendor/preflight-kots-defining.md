@@ -7,17 +7,81 @@ import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 
-# Define Preflight Checks for KOTS
+# Define Preflight Checks
 
-This topic provides information about creating preflight checks for releases that are distributed with Replicaed KOTS and that use standard Kubernetes manifests or Kubernetes Operators. For information about defining preflight checks for Helm chart-based applications, see [Define Preflight Checks for Helm Charts](preflight-helm-defining).
+This topic describes how to define preflight checks in Helm chart- and standard Kubernetes manifest-based applications. The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
 
-For information about defining host preflight checks for Replicated kURL, see [Customizing Host Preflight Checks for kURL](preflight-host-preflights).
+## Step 1: Create the Manifest File
 
-## Define the Preflight Checks Specification
+You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource.
 
-Preflight checks are not included by default. For releases that use standard Kubernetes manifests or Kubernetes Operators, you can add a Preflight custom resource to your release to define preflight checks.
+The method you choose depends on your application type (Helm chart or standard manifests) and installation method (Helm CLI or KOTS), as shown in the following table:
 
-The following is an empty template for the Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`):
+<table>
+  <tr>
+    <th width="25%"></th>
+    <th width="15%">Helm CLI</th>
+    <th width="30%">KOTS v1.101.0 and Later</th>
+    <th width="30%">KOTS v1.100.3 and Earlier</th>
+  </tr>
+  <tr>
+    <th>Helm Charts</th>
+    <td><a href="#secret">Secret</a></td>
+    <td><a href="#secret">Secret</a></td>
+    <td><a href="#preflight-cr">Custom Resource</a></td>
+  </tr>
+  <tr>
+    <th>Standard Manifests</th>
+    <td>N/A</td>
+    <td><a href="#preflight-cr">Custom Resource</a></td>
+    <td><a href="#preflight-cr">Custom Resource</a></td>
+  </tr>
+</table>  
+
+### Create a Secret {#secret}
+
+Define preflight check specifications in a Kubernetes Secret for the following installation types:
+  * Installations with the Helm CLI
+  * Helm chart-based applications installed with KOTS v1.101.0 and later
+
+Add the following YAML to a Kubernetes Secret in your Helm chart `templates/` directory:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: preflight
+  name: "{{ .Release.Name }}-preflight-config"
+stringData:
+  preflight.yaml: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: preflight-sample
+    spec:
+      collectors: []
+      analyzers: []
+```
+
+As shown above, the Secret must include the following:
+
+* The label `troubleshoot.sh/kind: preflight`
+* A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
+
+### (KOTS Only) Create a Preflight Custom Resource {#preflight-cr}
+
+Define preflight check specifications in a Preflight custom resource for the following installation types:
+* Standard manifest-based applications installed with KOTS
+* Helm chart-based applications installed with KOTS v1.100.3 and earlier
+
+:::note
+For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends that you define preflight checks in a Secret in the Helm chart templates instead of using the Preflight custom resource. See [Create a Secret](#secret) above.
+
+In KOTS v1.101.0 and later, preflights defined in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS v1.101.0 and later cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release.
+:::
+
+Add the following YAML for a Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`) to a release for your application:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -31,13 +95,9 @@ spec:
 
 <PreflightsCrNote/>
 
-:::note
->Introduced in KOTS v1.101.0
+## Step 2: Define Preflight Check Collectors and Analyzers
 
-If you have already created a KOTS release using Helm charts and want to add support for Helm CLI installations, Replicated recommends defining preflight checks directly in the Helm charts instead of using the Preflight custom resource. This lets you maintain one set of preflight specifications for all installation types. 
-
-Preflights specified in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release. For more information, see [Define Preflight Checks for Helm Charts](preflight-helm-defining).
-:::
+This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors:` and `spec.analyzers:` fields in the manifest file that you created.
 
 ### Collectors
 
@@ -64,7 +124,7 @@ The Troubleshoot open source project includes several analyzers that you can inc
 
 To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
-### `strict` Analyzers
+### (KOTS Only) `strict` Analyzers
 
 <PreflightsAddStrict/> 
 
@@ -401,6 +461,66 @@ The following shows an example of how a `pass` outcome for this preflight check 
 
 [View a larger version of this image](/images/preflight-cpu-pass.png)
 
-## Next Step
+### Spec with Helm Templating
 
-Save and promote the release to a development environment to test your changes. For more information about installing with KOTS, see [About Installing an Application](/enterprise/installing-overview).
+<PreflightsDefineXref/>
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: preflight
+  name: "{{ .Release.Name }}-preflight-config"
+stringData:
+  # This is the preflight spec that will be used to run the preflight checks
+  # Note: here we demonstrate using Helm's templating to conditionally run a preflight check based on a value
+  # plus getting some configuration from the local values.yaml file
+  preflight.yaml: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: preflight-sample
+    spec:
+      {{ if eq .Values.global.mariadb.enabled false }}
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
+      {{ end }}
+      analyzers:
+        - nodeResources:
+            checkName: Node Count Check
+            outcomes:
+              - fail:
+                  when: 'count() > {{ .Values.global.maxNodeCount }}'
+                  message: "The cluster has more than {{ .Values.global.maxNodeCount }} nodes."
+              - pass:
+                  message: You have the correct number of nodes.
+        - clusterVersion:
+            outcomes:
+              - fail:
+                  when: "< 1.22.0"
+                  message: The application requires at least Kubernetes 1.22.0, and recommends 1.23.0.
+                  uri: https://kubernetes.io
+              - warn:
+                  when: "< 1.23.0"
+                  message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
+                  uri: https://kubernetes.io
+              - pass:
+                  message: Your cluster meets the recommended and required versions of Kubernetes.
+        {{ if eq .Values.global.mariadb.enabled false }}
+        - mysql:
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+        {{ end }}
+```
