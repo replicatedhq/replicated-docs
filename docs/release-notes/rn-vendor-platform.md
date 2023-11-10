@@ -14,6 +14,8 @@ Released on November 10, 2023
 
 ### New Features {#new-features-v2023-11-10-0}
 * Adds the ability to save table settings (column order, column visibility, sort by, page size) on Customer and Instances table.
+
+### Improvements {#improvements-v2023-11-10-0}
 * Standardizes button styles on Releases, Channels, and Customers pages.
 
 ### Bug Fixes {#bug-fixes-v2023-11-10-0}
