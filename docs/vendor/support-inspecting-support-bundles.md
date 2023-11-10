@@ -4,7 +4,7 @@ You can use the vendor portal to get a visual analysis of customer support bundl
 
 To inspect a support bundle:
 
-1. From the vendor portal, select **Troubleshoot > Upload a support bundle**.
+1. From the vendor portal, select **Troubleshoot > Add support bundle > Upload a support bundle**.
 1. In the Analyze a support bundle dialog, drag and drop or use the file selector to upload a support bundle file to the vendor portal.
 
   ![Analyze a support bundle](/images/support-bundle-analyze.png)

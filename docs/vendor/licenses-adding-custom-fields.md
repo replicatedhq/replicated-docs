@@ -20,7 +20,7 @@ To create a custom license field:
 
 1. Log in to the vendor portal and select the application.
 
-1. On the **License Fields** page, click **Create a custom field**.
+1. On the **License Fields** page, click **Create license field**.
 
    <img width="500" alt="create a new License Field dialog" src="/images/license-add-custom-field.png"/>
 

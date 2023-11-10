@@ -13,11 +13,13 @@ To add and configure a custom domain:
 
 1. In the [vendor portal](https://vendor.replicated.com), go to **Custom Domains**. 
 
-1. In the section for the target Replicated endpoint, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
+1. In the **Add custom domain** dropdown, select the Replicated endpoint for which you want to add a custom domain.
 
   The **Configure a custom domain** wizard opens.
 
-  <img src="/images/custom-domains-download-configure.png" alt="custom domain wizard" width="600"/>
+  <img src="/images/custom-domains-download-configure.png" alt="custom domain wizard" width="500"/>
+
+  [View a larger version of this image](/images/custom-domains-download-configure.png)
 
 1. For **Domain**, enter the custom domain. Click **Save & continue**.
 
