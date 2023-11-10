@@ -29,8 +29,9 @@ The following shows an example of the **Instance details** page:
 As shown in the image above, the **Instance details** page includes the following sections:
 
 * **Current State**: Information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
-* **Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
+* **Instance Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
 * **Instance Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Instance Information](#install-information) below.
+* **Custom Metrics**: The values for any custom metrics that you configured at the most recent check-in. For more information about configuring custom metrics, see [Configuring Custom Metrics (Beta)](/vendor/custom-metrics).
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
 
@@ -64,7 +65,7 @@ The **Current State** section displays the following event data about the status
 
   <Checkins/>
 
-### Insights
+### Instance Insights
 
 The **Insights** section includes the following metrics computed by the vendor portal:
 
@@ -193,6 +194,7 @@ You can filter the **Instance Activity** stream by the following categories:
 * [App install/upgrade](#app-install-upgrade)
 * [App status](#app-status)
 * [Cluster status](#cluster)
+* [Custom metrics](#custom-metrics)
 * [Infrastructure status](#infrastructure)
 * [KOTS version](#kots)
 * [Replicated SDK version](#sdk)
@@ -292,7 +294,11 @@ The following tables describe the events that can be displayed in the **Instance
   </tr>  
 </table>
 
+#### Custom metrics {#custom-metrics}
 
+You can filter the activity feed by any custom metrics that are configured for the application. The labels for the custom metrics vary depending on the custom key value pairs included in the data set that is sent to the vendor portal. For example, the key value pair `"num_projects": 5` is displayed as **Num Projects: 5** in the activity feed.
+
+For more information about configuring custom metrics, see [Configuring Custom Metrics](/vendor/custom-metrics).
 #### Infrastructure status {#infrastructure}
 
 <table>
