@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.10-1
+
+Released on November 10, 2023
+
+### Improvements {#improvements-v2023-11-10-1}
+* Update button styles on Troubleshoot, License Fields, Images, Kubernetes Installers, and Custom Domains.
+* Standardize button styles on Team and Account Settings pages.
+
 ## v2023.11.10-0
 
 Released on November 10, 2023
