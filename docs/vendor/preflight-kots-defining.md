@@ -12,6 +12,16 @@ import MySqlSecret from "../partials/preflights/_mysql-secret.mdx"
 import MySqlCr from "../partials/preflights/_mysql-cr.mdx"
 import K8sVersionSecret from "../partials/preflights/_k8s-version-secret.mdx"
 import K8sVersionCr from "../partials/preflights/_k8s-version-cr.mdx"
+import K8sDistroSecret from "../partials/preflights/_k8s-distro-secret.mdx"
+import K8sDistroCr from "../partials/preflights/_k8s-distro-cr.mdx"
+import NodeReqSecret from "../partials/preflights/_node-req-secret.mdx"
+import NodeReqCr from "../partials/preflights/_node-req-cr.mdx"
+import NodeCountSecret from "../partials/preflights/_node-count-secret.mdx"
+import NodeCountCr from "../partials/preflights/_node-count-cr.mdx"
+import NodeMemSecret from "../partials/preflights/_node-mem-secret.mdx"
+import NodeMemCr from "../partials/preflights/_node-mem-cr.mdx"
+import NodeStorageSecret from "../partials/preflights/_node-storage-secret.mdx"
+import NodeStorageCr from "../partials/preflights/_node-storage-cr.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -154,7 +164,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <HttpCr/>
-    <p>The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
     <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-http-pass.png"/>
     <a href="/images/preflight-http-pass.png">View a larger version of this image</a>
   </TabItem>
@@ -172,7 +182,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <K8sVersionCr/>
-    <p>The following shows an example of how the `warn` outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows an example of how the <code>warn</code> outcome for this preflight check is displayed in the admin console:</p>
     <img alt="Preflight checks in admin console showing warning message" src="/images/preflight-k8s-version-warn.png"/>
     <a href="/images/preflight-k8s-version-warn.png">View a larger version of this image</a>
   </TabItem>
@@ -184,83 +194,17 @@ The following example uses the `distribution` analyzer to check the Kubernetes d
 
 For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Distribution](https://troubleshoot.sh/docs/analyze/distribution/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:              
-    - distribution:
-        checkName: Kubernetes distribution
-        outcomes:
-          - fail:
-              when: "== docker-desktop"
-              message: The application does not support Docker Desktop Clusters
-          - fail:
-              when: "== microk8s"
-              message: The application does not support Microk8s Clusters
-          - fail:
-              when: "== minikube"
-              message: The application does not support Minikube Clusters
-          - pass:
-              when: "== eks"
-              message: EKS is a supported distribution
-          - pass:
-              when: "== gke"
-              message: GKE is a supported distribution
-          - pass:
-              when: "== aks"
-              message: AKS is a supported distribution
-          - pass:
-              when: "== kurl"
-              message: KURL is a supported distribution
-          - pass:
-              when: "== digitalocean"
-              message: DigitalOcean is a supported distribution
-          - warn:
-              message: Unable to determine the distribution of Kubernetes
-```
-
-The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing pass message](/images/preflight-k8s-distro.png)
-
-[View a larger version of this image](/images/preflight-k8s-distro.png)
-
-### Check Requirements Are Met By At Least One Node
-
-The following example uses the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
-
-For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:  
-    - nodeResources:
-        checkName: Node requirements
-        filters:
-        # Must have 1 node with 16 GB (available) memory and 5 cores (on a single node) with amd64 architecture
-          allocatableMemory: 16Gi
-          cpuArchitecture: amd64
-          cpuCapacity: "5"
-        outcomes:
-          - fail:
-              when: "count() < 1"
-              message: This application requires at least 1 node with 16GB available memory and 5 cpu cores with amd64 architecture
-          - pass:
-              message: This cluster has a node with enough memory and cpu cores
-```  
-
-The following shows an example of how the `fail` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing fail message](/images/preflight-node-filters-faill.png)
-
-[View a larger version of this image](/images/preflight-node-filters-faill.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <K8sDistroSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <K8sDistroCr/>
+    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-k8s-distro.png"/>
+    <a href="/images/preflight-k8s-distro.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check MySQL Version Using Template Functions
 
@@ -284,39 +228,27 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
   </TabItem>
 </Tabs>
 
+### Check Node Count
+
+<NodeCountSecret/>
+
 ### Check Node Memory
 
 The following example uses the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
-        outcomes:
-        - fail:
-            when: "min(memoryCapacity) < 8Gi"
-            message: All nodes must have at least 8 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(memoryCapacity) < 32Gi"
-            message: All nodes are recommended to have at least 32 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 32 GB of memory.
-```  
-
-The following shows an example of how a `warn` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing warn message](/images/preflight-node-memory-warn.png)
-
-[View a larger version of this image](/images/preflight-node-memory-warn.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeMemSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeMemCr/>
+    <p>The following shows an example of how a <code>warn</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing warn message" src="/images/preflight-node-memory-warn.png"/>
+    <a href="/images/preflight-node-memory-warn.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Node Storage Class Availability
 
@@ -324,28 +256,17 @@ The following example uses the `storageClass` analyzer to check that a required 
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:
-    - storageClass:
-        checkName: Required storage classes
-        storageClassName: "default"
-        outcomes:
-          - fail:
-              message: Could not find a storage class called "default".
-          - pass:
-              message: A storage class called "default" is present.
-``` 
-
-The following shows an example of how a `fail` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing fail message](/images/preflight-storageclass-fail.png)
-
-[View a larger version of this image](/images/preflight-storageclass-fail.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeStorageSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeStorageCr/>
+    <p>The following shows an example of how a <code>fail</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-storageclass-fail.png"/>
+    <a href="/images/preflight-storageclass-fail.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Node Ephemeral Storage
 
@@ -381,6 +302,24 @@ The following shows an example of how a `pass` outcome for this preflight check 
 
 [View a larger version of this image](/images/preflight-ephemeral-storage-pass.png)
 
+### Check Requirements Are Met By At Least One Node
+
+The following example uses the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeReqSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeReqCr/>
+    <p>The following shows an example of how the <code>fail</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-node-filters-faill.png"/>
+    <a href="/images/preflight-node-filters-faill.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
 ### Check Total CPU Cores Across Nodes
 
 The following example uses the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
@@ -411,67 +350,3 @@ The following shows an example of how a `pass` outcome for this preflight check 
 ![Preflight checks in admin console showing pass message](/images/preflight-cpu-pass.png)
 
 [View a larger version of this image](/images/preflight-cpu-pass.png)
-
-### Spec with Helm Templating
-
-<PreflightsDefineXref/>
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    troubleshoot.sh/kind: preflight
-  name: "{{ .Release.Name }}-preflight-config"
-stringData:
-  # This is the preflight spec that will be used to run the preflight checks
-  # Note: here we demonstrate using Helm's templating to conditionally run a preflight check based on a value
-  # plus getting some configuration from the local values.yaml file
-  preflight.yaml: |
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: Preflight
-    metadata:
-      name: preflight-sample
-    spec:
-      {{ if eq .Values.global.mariadb.enabled false }}
-      collectors:
-        - mysql:
-            collectorName: mysql
-            uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
-      {{ end }}
-      analyzers:
-        - nodeResources:
-            checkName: Node Count Check
-            outcomes:
-              - fail:
-                  when: 'count() > {{ .Values.global.maxNodeCount }}'
-                  message: "The cluster has more than {{ .Values.global.maxNodeCount }} nodes."
-              - pass:
-                  message: You have the correct number of nodes.
-        - clusterVersion:
-            outcomes:
-              - fail:
-                  when: "< 1.22.0"
-                  message: The application requires at least Kubernetes 1.22.0, and recommends 1.23.0.
-                  uri: https://kubernetes.io
-              - warn:
-                  when: "< 1.23.0"
-                  message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
-                  uri: https://kubernetes.io
-              - pass:
-                  message: Your cluster meets the recommended and required versions of Kubernetes.
-        {{ if eq .Values.global.mariadb.enabled false }}
-        - mysql:
-            checkName: Must be MySQL 8.x or later
-            collectorName: mysql
-            outcomes:
-              - fail:
-                  when: connected == false
-                  message: Cannot connect to MySQL server
-              - fail:
-                  when: version < 8.x
-                  message: The MySQL server must be at least version 8
-              - pass:
-                  message: The MySQL server is ready
-        {{ end }}
-```
