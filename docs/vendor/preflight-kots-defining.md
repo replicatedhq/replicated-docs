@@ -35,38 +35,38 @@ This topic describes how to define preflight checks in Helm chart- and standard 
 
 ## Step 1: Create the Manifest File
 
-You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource.
+You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
 
-The method you choose depends on your application type (Helm chart or standard manifests) and installation method (Helm CLI or KOTS), as shown in the following table:
+Use the following table to determine which type of manifest file to use for defining preflight checks:
 
 <table>
   <tr>
     <th width="25%"></th>
-    <th width="15%">Helm CLI</th>
-    <th width="30%">KOTS v1.101.0 and Later</th>
-    <th width="30%">KOTS v1.100.3 and Earlier</th>
+    <th width="25%">Helm CLI</th>
+    <th width="25%">KOTS v1.101.0 and Later</th>
+    <th width="25%">KOTS v1.100.3 and Earlier</th>
   </tr>
   <tr>
-    <th>Helm Charts</th>
-    <td><a href="#secret">Secret</a></td>
-    <td><a href="#secret">Secret</a></td>
-    <td><a href="#preflight-cr">Custom Resource</a></td>
+    <th>Helm Chart-Based Application</th>
+    <td><a href="#secret">Kubernetes Secret</a></td>
+    <td><a href="#secret">Kubernetes Secret</a></td>
+    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
   </tr>
   <tr>
-    <th>Standard Manifests</th>
+    <th>Standard Manifest-Based Application</th>
     <td>N/A</td>
-    <td><a href="#preflight-cr">Custom Resource</a></td>
-    <td><a href="#preflight-cr">Custom Resource</a></td>
+    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
+    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
   </tr>
 </table>  
 
 ### Create a Secret {#secret}
 
-Define preflight check specifications in a Kubernetes Secret for the following installation types:
-  * Installations with the Helm CLI
-  * Helm chart-based applications installed with KOTS v1.101.0 and later
+You can define preflight check specifications in a Kubernetes Secret for the following installation types:
+* Installations with the Helm CLI
+* Helm chart-based applications installed with KOTS v1.101.0 and later
 
-Add the following YAML to a Kubernetes Secret in your Helm chart `templates/` directory:
+Add the following YAML to a Kubernetes Secret in your Helm chart `templates` directory:
 
 ```yaml
 apiVersion: v1
@@ -93,7 +93,7 @@ As shown above, the Secret must include the following:
 
 ### (KOTS Only) Create a Preflight Custom Resource {#preflight-cr}
 
-Define preflight check specifications in a Preflight custom resource for the following installation types:
+You can define preflight check specifications in a Preflight custom resource for the following installation types:
 * Standard manifest-based applications installed with KOTS
 * Helm chart-based applications installed with KOTS v1.100.3 and earlier
 
@@ -103,7 +103,7 @@ For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends th
 In KOTS v1.101.0 and later, preflights defined in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS v1.101.0 and later cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release.
 :::
 
-Add the following YAML for a Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`) to a release for your application:
+Add the following YAML to a new file in a release:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -120,6 +120,8 @@ spec:
 ## Step 2: Define Collectors and Analyzers
 
 This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors:` and `spec.analyzers:` fields in the manifest file that you created.
+
+For examples of collectors and analyzers defined in Kubernetes Secrets and Preflight custom resources, see [Example Specifications](#example-specifications) below. 
 
 ### Collectors
 
@@ -151,6 +153,14 @@ To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/d
 <PreflightsAddStrict/> 
 
 For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+
+## Step 3: Promote a Release and Test
+
+After adding one or more collectors and analyzers to a preflight specification, create and promote a new release with the preflight specification. Then, test the preflight checks by installing in a development environment.
+
+For Helm chart-based applications installed with the Helm CLI or with KOTS:
+1. Repackage the Helm chart into an archive, then add the archive to a new release. See [Managing Releases with the CLI](/vendor/releases-creating-cli).
+1. 
 
 ## Example Specifications
 

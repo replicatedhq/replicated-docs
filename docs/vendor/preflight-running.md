@@ -1,59 +1,84 @@
 # Running Preflight Checks for Helm Installations
 
-You can run Helm preflight checks before running `helm install` and during the installation of an application. Additionally, your preflight checks can include one or more specification types and resources.
+This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
 
 ## Overview
 
-For Replicated KOTS installations of Helm chart- or standard manifest-based applications, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed in the Replicated admin console.
+For Replicated KOTS installations of Helm chart- or standard manifest-based applications, preflight checks run automatically as part of the installation process.
 
 For installations with the Helm CLI, your users can optionally run preflight checks with the open source preflight kubectl plugin before they run `helm install`. The kubectl preflight plugin requires a preflight check specification as input. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for preflight specifications.
 
-## Prerequisite
+## Prerequisites
 
-Customers must install the preflight plug-in, which is a client-side utility that adds a single binary to their path.
+* 
+* The preflight kubectl plugin is required to run preflight checks for Helm CLI installations. The preflight plugin is a client-side utility that adds a single binary to the path.
 
-To install the preflight plug-in:
+  To install the preflight plugin, run the following command to install the preflight plug-in using krew:
 
-1. Log in to the registry where the Helm chart and preflight specification were pushed to:
-
-    ```
-    helm registry login REGISTRY_DOMAIN --username USERNAME --password PASSWORD
-    ```
-
-    Replace:
-
-    - `REGISTRY_DOMAIN` with the registry domain that contains the Helm chart.
-    - `USERNAME` with the username that has access to the registry.
-    - `PASSWORD` with the password for the registry.
-
-1. Run the following command to install the preflight plug-in using krew:
-    ```
-    curl https://krew.sh/preflight | bash
-    ```
-    For information about the preflight plugin, including additional installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. 
+  ```
+  curl https://krew.sh/preflight | bash
+  ```
+  For information about the preflight plugin, including additional installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. 
 
 ## Run Preflight Checks
 
-Before running the `helm install` command, your customers run the preflight checks to verify that their environments meet the installation requirements before they run the actual installation. 
+For more information about running preflight checks with the kubectl preflight plugin, see [Run Preflight Checks using the CLI](https://troubleshoot.sh/docs/preflight/cli-usage/#options) in the open source Troubleshoot documentation.
+
+To run preflights checks:
+
+1. In the [vendor portal](https://vendor.replicated.com/apps/gitea-boxer/customers), go to the **Customers** page. Click on the name of the target customer.
+
+1. On the landing page for the customer, click **Helm install instructions**.
+
+  The **Helm install instructions** dialog opens. For example:
+
+  <img alt="Helm install instructions dialog with preflight checks" src="/images/helm-install-preflights.png" width="550px"/>
+
+1. Run the commands in the dialog to run preflight checks:
+
+    1. Log in to the registry where the Helm chart and preflight specification were pushed:
+
+        ```
+        helm registry login REGISTRY_DOMAIN --username USERNAME --password PASSWORD
+        ```
+
+        Where:
+
+        - `REGISTRY_DOMAIN` is the registry domain that contains the Helm chart.
+        - `USERNAME` is the username that has access to the registry.
+        - `PASSWORD` is the password for the registry.
+
+        **Example:**
+        ```
+        helm registry login registry.replicated.com --username example@companyname.com password 1234abcd
+        ```
+
+    1. Run the following command to template the Helm chart and then pipe the result to the kubectl preflight plugin:
+
+        ```
+        helm template oci://REGISTRY/APP_SLUG/CHANNEL/CHART | kubectl preflight -
+        ```
+
+        Where:
+        - `REGISTRY` is the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
+        - `APP_SLUG` is the name of the application.
+        - `CHANNEL` is the lowercased name of the release channel.
+        - `CHART` is the name of the Helm chart.
+
+        For all available options with this command, see [Run Preflight Checks using the CLI](https://troubleshoot.sh/docs/preflight/cli-usage/#options) in the open source Troubleshoot documentation.
+
+        **Examples:**
+
+        ```
+        helm template oci://registry.replicated.com/gitea-app/unstable/gitea | kubectl preflight -
+        ```
+        ```
+        helm template oci://registry.replicated.com/gitea-app/unstable/gitea --values values.yaml | kubectl preflight -
+        ```
+        ```
+        helm template oci://registry.replicated.com/gitea-app/unstable/gitea --set mysql.enabled=true | kubectl preflight -
+        ```
+
+## (Optional) Save Output
 
 The output shows the success, warning, or fail message for each preflight check, depending on how they were configured. You can ask customers to send you the results of the preflight checks if needed.
-
-- To run the basic `preflight` command:
-
-    ```
-    helm template oci://REGISTRY/APP_NAME/CHANNEL/CHART | kubectl preflight -
-    ```
-
-- If preflight checks are dependent on customer values, run the preflights using the values file to override chart defaults:
-
-    ```
-    helm template oci://REGISTRY/APP_NAME/CHANNEL/CHART --values FILENAME.yaml | kubectl preflight -
-    ```
-
-    Replace:
-
-    - `REGISTRY` with the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
-    - `APP_NAME` with the name of the application.
-    - `CHANNEL` with the release channel.
-    - `CHART` with the name of the Helm chart.
-    - `FILENAME` with the name of the values file.
