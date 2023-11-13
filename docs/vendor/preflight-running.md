@@ -10,7 +10,9 @@ For installations with the Helm CLI, your users can optionally run preflight che
 
 ## Prerequisites
 
-* 
+Before you run preflight checks, complete the following prerequisites:
+
+* These instructions assume that the there is a valid preflight specification defined in a Kubernetes Secret in the `templates` directory of your application Helm chart. For more information, see [Defining Preflight Checks](/vendor/preflight-kots-defining).
 * The preflight kubectl plugin is required to run preflight checks for Helm CLI installations. The preflight plugin is a client-side utility that adds a single binary to the path.
 
   To install the preflight plugin, run the following command to install the preflight plug-in using krew:
@@ -20,7 +22,7 @@ For installations with the Helm CLI, your users can optionally run preflight che
   ```
   For information about the preflight plugin, including additional installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. 
 
-## Run Preflight Checks
+## Run Preflight Checks from a Release
 
 For more information about running preflight checks with the kubectl preflight plugin, see [Run Preflight Checks using the CLI](https://troubleshoot.sh/docs/preflight/cli-usage/#options) in the open source Troubleshoot documentation.
 
@@ -79,6 +81,10 @@ To run preflights checks:
         helm template oci://registry.replicated.com/gitea-app/unstable/gitea --set mysql.enabled=true | kubectl preflight -
         ```
 
+![Example preflight checks output on the command line](/images/helm-preflight-output.png)        
+
 ## (Optional) Save Output
 
 The output shows the success, warning, or fail message for each preflight check, depending on how they were configured. You can ask customers to send you the results of the preflight checks if needed.
+
+![Save output dialog](/images/helm-preflight-save-output.png)
