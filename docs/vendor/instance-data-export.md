@@ -23,6 +23,39 @@ By bulk exporting this instance event data with the `/app/{app_id}/events` endpo
 * Identify trends and potential problem areas 
 * Demonstrate the impact, adoption, and usage of recent product features
 
+
+### Filter Examples for Bulk Export
+For time series bulk export, the following filters will be supported. If any filter is passed for an object that doesn’t exist, no warning will be given (e.g. if a `customerIDs` filter is passed for an ID that doesn’t exist or a for an ID that user doesn’t have access to, an empty array will be returned)
+
+- **Date Range Export**
+    - **Before Filter** - Get instance events at or before the query date
+        ```bash
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?before=2023-10-15"
+        ```
+    - **After Filter** - Get instance events at or after the query date
+        ```shell
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?after=2023-10-15"
+        ```
+    - **Timerange Filter** -  You can compose  `before` and `after` query params to get instance events in a specific timerange [after, before]
+        ```shell
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?after=2023-05-02&before=2023-10-15"
+        ```
+- **Customer Focused Export**
+    - **Customer Filter** - Get instance events from one or more customers (comma separated list of customer IDs)
+        ```bash
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+        ```
+- **Event Type Focused Export**
+    - **Event Type Filter** Get instance events by event type (comma separated list of event types)
+        ```bash
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+        ```
+
 ## Download Customer Instance Data CSVs
 <Download/>
 
