@@ -8,14 +8,14 @@ spec:
     - nodeResources:
         checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
         outcomes:
-        - fail:
-            when: "min(memoryCapacity) < 8Gi"
-            message: All nodes must have at least 8 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(memoryCapacity) < 32Gi"
-            message: All nodes are recommended to have at least 32 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 32 GB of memory.
+          - fail:
+              when: "min(memoryCapacity) < 8Gi"
+              message: All nodes must have at least 8 GB of memory.
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - warn:
+              when: "min(memoryCapacity) < 32Gi"
+              message: All nodes are recommended to have at least 32 GB of memory.
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: All nodes have at least 32 GB of memory.
 ``` 

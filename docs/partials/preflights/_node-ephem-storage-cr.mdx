@@ -1,0 +1,21 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  analyzers:
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
+        outcomes:
+          - fail:
+              when: "min(ephemeralStorageCapacity) < 40Gi"
+              message: All nodes must have at least 40 GB of ephemeral storage.
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - warn:
+              when: "min(ephemeralStorageCapacity) < 100Gi"
+              message: All nodes are recommended to have at least 100 GB of ephemeral storage.
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: All nodes have at least 100 GB of ephemeral storage.
+``` 

@@ -20,8 +20,12 @@ import NodeCountSecret from "../partials/preflights/_node-count-secret.mdx"
 import NodeCountCr from "../partials/preflights/_node-count-cr.mdx"
 import NodeMemSecret from "../partials/preflights/_node-mem-secret.mdx"
 import NodeMemCr from "../partials/preflights/_node-mem-cr.mdx"
-import NodeStorageSecret from "../partials/preflights/_node-storage-secret.mdx"
-import NodeStorageCr from "../partials/preflights/_node-storage-cr.mdx"
+import NodeStorageClassSecret from "../partials/preflights/_node-storage-secret.mdx"
+import NodeStorageClassCr from "../partials/preflights/_node-storage-cr.mdx"
+import NodeEphemStorageSecret from "../partials/preflights/_node-ephem-storage-secret.mdx"
+import NodeEphemStorageCr from "../partials/preflights/_node-ephem-storage-cr.mdx"
+import NodeCpuSecret from "../partials/preflights/_node-cpu-secret.mdx"
+import NodeCpuCr from "../partials/preflights/_node-cpu-cr.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -258,10 +262,10 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 <Tabs>
   <TabItem value="secret" label="Kubernetes Secret" default>
-    <NodeStorageSecret/>
+    <NodeStorageClassSecret/>
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
-    <NodeStorageCr/>
+    <NodeStorageClassCr/>
     <p>The following shows an example of how a <code>fail</code> outcome for this preflight check is displayed in the admin console:</p>
     <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-storageclass-fail.png"/>
     <a href="/images/preflight-storageclass-fail.png">View a larger version of this image</a>
@@ -274,33 +278,17 @@ The following example uses the `nodeResources` analyzer to check the ephemeral s
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
-        outcomes:
-        - fail:
-            when: "min(ephemeralStorageCapacity) < 40Gi"
-            message: All nodes must have at least 40 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(ephemeralStorageCapacity) < 100Gi"
-            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 100 GB of ephemeral storage.
-```  
-
-The following shows an example of how a `pass` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing pass message](/images/preflight-ephemeral-storage-pass.png)
-
-[View a larger version of this image](/images/preflight-ephemeral-storage-pass.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeEphemStorageSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeEphemStorageCr/>
+    <p>The following shows an example of how a <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-ephemeral-storage-pass.png"/>
+    <a href="/images/preflight-ephemeral-storage-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Requirements Are Met By At Least One Node
 
@@ -326,27 +314,14 @@ The following example uses the `nodeResources` analyzer to check the version of 
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-  analyzers:
-    - nodeResources:
-        checkName: Total CPU Cores in the cluster is 4 or greater
-        outcomes:
-          - fail:
-              when: "sum(cpuCapacity) < 4"
-              message: The cluster must contain at least 4 cores
-              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-          - pass:
-              message: There are at least 4 cores in the cluster
-```
-
-The following shows an example of how a `pass` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing pass message](/images/preflight-cpu-pass.png)
-
-[View a larger version of this image](/images/preflight-cpu-pass.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeCpuSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeCpuCr/>
+    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-cpu-pass.png"/>
+    <a href="/images/preflight-cpu-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
