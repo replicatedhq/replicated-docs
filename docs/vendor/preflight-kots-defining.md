@@ -158,7 +158,7 @@ This section includes common examples of preflight check specifications. For mor
 
 ### Check HTTP or HTTPS Requests from the Cluster
 
-The following example uses the `http` collector and the `regex` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
+The examples below use the `http` collector and the `regex` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
 For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
@@ -168,7 +168,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <HttpCr/>
-    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-http-pass.png"/>
     <a href="/images/preflight-http-pass.png">View a larger version of this image</a>
   </TabItem>
@@ -176,7 +176,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
 
 ### Check Kubernetes Version
 
-The following example uses the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+The examples below use the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
 
 For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
 
@@ -186,7 +186,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <K8sVersionCr/>
-    <p>The following shows an example of how the <code>warn</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how the <code>warn</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing warning message" src="/images/preflight-k8s-version-warn.png"/>
     <a href="/images/preflight-k8s-version-warn.png">View a larger version of this image</a>
   </TabItem>
@@ -194,7 +194,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
 
 ### Check Kubernetes Distribution
 
-The following example uses the `distribution` analyzer to check the Kubernetes distribution of the cluster. The `distribution` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+The examples below use the `distribution` analyzer to check the Kubernetes distribution of the cluster. The `distribution` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
 
 For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Distribution](https://troubleshoot.sh/docs/analyze/distribution/) in the Troubleshoot documentation.
 
@@ -204,7 +204,7 @@ For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cl
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <K8sDistroCr/>
-    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-k8s-distro.png"/>
     <a href="/images/preflight-k8s-distro.png">View a larger version of this image</a>
   </TabItem>
@@ -212,7 +212,7 @@ For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cl
 
 ### Check MySQL Version Using Template Functions
 
-The following example uses the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
+The examples below use the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
 
 For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Analyze > MySQL](https://troubleshoot.sh/docs/analyze/mysql/) in the Troubleshoot documentation.
 
@@ -226,7 +226,7 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
     <p>This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console <strong>Config</strong> page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see <a href="/reference/template-functions-about">About Template Functions</a>.</p>
     <p>This example also uses an analyzer with <code>strict: true</code>, which prevents installation from continuing if the preflight check fails.</p>
     <MySqlCr/>
-    <p>The following shows an example of how a <code>fail</code> outcome for this preflight check is displayed in the admin console when <code>strict: true</code> is set for the analyzer:</p>
+    <p>The following shows how a <code>fail</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade when <code>strict: true</code> is set for the analyzer:</p>
     <img alt="Strict preflight checks in admin console showing fail message" src="/images/preflight-mysql-fail-strict.png"/>
     <a href="/images/preflight-mysql-fail-strict.png">View a larger version of this image</a>
   </TabItem>
@@ -238,7 +238,7 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
 
 ### Check Node Memory
 
-The following example uses the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+The examples below use the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -248,7 +248,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <NodeMemCr/>
-    <p>The following shows an example of how a <code>warn</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how a <code>warn</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing warn message" src="/images/preflight-node-memory-warn.png"/>
     <a href="/images/preflight-node-memory-warn.png">View a larger version of this image</a>
   </TabItem>
@@ -256,7 +256,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 ### Check Node Storage Class Availability
 
-The following example uses the `storageClass` analyzer to check that a required storage class is available in the nodes in the cluster. The `storageClass` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+The examples below use the `storageClass` analyzer to check that a required storage class is available in the nodes in the cluster. The `storageClass` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -266,7 +266,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <NodeStorageClassCr/>
-    <p>The following shows an example of how a <code>fail</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how a <code>fail</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-storageclass-fail.png"/>
     <a href="/images/preflight-storageclass-fail.png">View a larger version of this image</a>
   </TabItem>
@@ -274,7 +274,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 ### Check Node Ephemeral Storage
 
-The following example uses the `nodeResources` analyzer to check the ephemeral storage available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+The examples below use the `nodeResources` analyzer to check the ephemeral storage available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -284,7 +284,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <NodeEphemStorageCr/>
-    <p>The following shows an example of how a <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how a <code>pass</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-ephemeral-storage-pass.png"/>
     <a href="/images/preflight-ephemeral-storage-pass.png">View a larger version of this image</a>
   </TabItem>
@@ -292,7 +292,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 ### Check Requirements Are Met By At Least One Node
 
-The following example uses the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+The examples below use the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -302,7 +302,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <NodeReqCr/>
-    <p>The following shows an example of how the <code>fail</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how the <code>fail</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-node-filters-faill.png"/>
     <a href="/images/preflight-node-filters-faill.png">View a larger version of this image</a>
   </TabItem>
@@ -310,7 +310,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 ### Check Total CPU Cores Across Nodes
 
-The following example uses the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+The examples below use the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -320,7 +320,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
     <NodeCpuCr/>
-    <p>The following shows an example of how the <code>pass</code> outcome for this preflight check is displayed in the admin console:</p>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade:</p>
     <img alt="Preflight checks in admin console showing fail message" src="/images/preflight-cpu-pass.png"/>
     <a href="/images/preflight-cpu-pass.png">View a larger version of this image</a>
   </TabItem>
