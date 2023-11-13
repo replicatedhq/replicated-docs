@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.13-0
+
+Released on November 13, 2023
+
+### New Features {#new-features-v2023-11-13-0}
+* Standardizes button styles on the Compatibility Matrix pages.
+
 ## v2023.11.10-1
 
 Released on November 10, 2023
