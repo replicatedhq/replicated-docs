@@ -6,6 +6,14 @@ import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
 import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
+import HttpSecret from "../partials/preflights/_http-requests-secret.mdx"
+import HttpCr from "../partials/preflights/_http-requests-cr.mdx"
+import MySqlSecret from "../partials/preflights/_mysql-secret.mdx"
+import MySqlCr from "../partials/preflights/_mysql-cr.mdx"
+import K8sVersionSecret from "../partials/preflights/_k8s-version-secret.mdx"
+import K8sVersionCr from "../partials/preflights/_k8s-version-cr.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Define Preflight Checks
 
@@ -95,7 +103,7 @@ spec:
 
 <PreflightsCrNote/>
 
-## Step 2: Define Preflight Check Collectors and Analyzers
+## Step 2: Define Collectors and Analyzers
 
 This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors:` and `spec.analyzers:` fields in the manifest file that you created.
 
@@ -140,37 +148,17 @@ The following example uses the `http` collector and the `regex` analyzer to chec
 
 For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: preflight-checks
-spec:
-  collectors:
-    - http:
-        collectorName: slack
-        get:
-          url: https://api.slack.com/methods/api.test
-  analyzers:  
-    - textAnalyze:
-        checkName: Slack Accessible
-        fileName: slack.json
-        regex: '"status": 200,'
-        outcomes:
-          - pass:
-              when: "true"
-              message: "Can access the Slack API"
-          - fail:
-              when: "false"
-              message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."        
-```
-
-The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing pass message](/images/preflight-http-pass.png)
-
-[View a larger version of this image](/images/preflight-http-pass.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <HttpSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <HttpCr/>
+    <p>The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing pass message" src="/images/preflight-http-pass.png"/>
+    <a href="/images/preflight-http-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Kubernetes Version
 
@@ -178,32 +166,17 @@ The following example uses the `clusterVersion` analyzer to check the version of
 
 For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  analyzers:
-    - clusterVersion:
-        outcomes:
-          - fail:
-              when: "< 1.25.0"
-              message: The application requires Kubernetes 1.25.0 or later, and recommends 1.28.0.
-              uri: https://www.kubernetes.io
-          - warn:
-              when: "< 1.28.0"
-              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.28.0 or later.
-              uri: https://kubernetes.io
-          - pass:
-              message: Your cluster meets the recommended and required versions of Kubernetes.
-``` 
-
-The following shows an example of how the `warn` outcome for this preflight check is displayed in the admin console:
-
-![Preflight checks in admin console showing warning message](/images/preflight-k8s-version-warn.png)
-
-[View a larger version of this image](/images/preflight-k8s-version-warn.png)
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <K8sVersionSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <K8sVersionCr/>
+    <p>The following shows an example of how the `warn` outcome for this preflight check is displayed in the admin console:</p>
+    <img alt="Preflight checks in admin console showing warning message" src="/images/preflight-k8s-version-warn.png"/>
+    <a href="/images/preflight-k8s-version-warn.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Kubernetes Distribution
 
@@ -289,49 +262,27 @@ The following shows an example of how the `fail` outcome for this preflight chec
 
 [View a larger version of this image](/images/preflight-node-filters-faill.png)
 
-### Check MySQL Version Using Replicated Template Functions
+### Check MySQL Version Using Template Functions
 
 The following example uses the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
 
 For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Analyze > MySQL](https://troubleshoot.sh/docs/analyze/mysql/) in the Troubleshoot documentation.
 
-This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console **Config** page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
-
-This example also uses an analyzer with `strict: true`, which prevents installation from continuing if the preflight check fails.
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-    - mysql:
-        collectorName: mysql
-        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
-  analyzers:
-    - mysql:
-        # `strict: true` prevents installation from continuing if the preflight check fails
-        strict: true
-        checkName: Must be MySQL 8.x or later
-        collectorName: mysql
-        outcomes:
-          - fail:
-              when: connected == false
-              message: Cannot connect to MySQL server
-          - fail:
-              when: version < 8.x
-              message: The MySQL server must be at least version 8
-          - pass:
-              message: The MySQL server is ready
-```
-
-The following shows an example of how a `fail` outcome for this preflight check is displayed in the admin console when `strict: true` is set for the analyzer:
-
-![Strict preflight checks in admin console showing fail message](/images/preflight-mysql-fail-strict.png)
-
-[View a larger version of this image](/images/preflight-mysql-fail-strict.png)
-
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <p>This example uses Helm template functions to render the credentials and connection details for the MySQL server that were supplied by the user. Additionally, it uses Helm template functions to create a conditional statement so that the MySQL collector and analyzer are included in the preflight checks only when MySQL is deployed, as indicated by a <code>.Values.global.mysql.enabled</code> field evaluating to true.</p>
+    <p>For more information about using Helm template functions to access values from the values file, see <a href="https://helm.sh/docs/chart_template_guide/values_files/">Values Files</a>.</p>
+    <MySqlSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <p>This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console <strong>Config</strong> page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see <a href="/reference/template-functions-about">About Template Functions</a>.</p>
+    <p>This example also uses an analyzer with <code>strict: true</code>, which prevents installation from continuing if the preflight check fails.</p>
+    <MySqlCr/>
+    <p>The following shows an example of how a <code>fail</code> outcome for this preflight check is displayed in the admin console when <code>strict: true</code> is set for the analyzer:</p>
+    <img alt="Strict preflight checks in admin console showing fail message" src="/images/preflight-mysql-fail-strict.png"/>
+    <a href="/images/preflight-mysql-fail-strict.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
 
 ### Check Node Memory
 
