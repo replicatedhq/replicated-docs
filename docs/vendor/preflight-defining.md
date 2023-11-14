@@ -232,10 +232,6 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
   </TabItem>
 </Tabs>
 
-### Check Node Count
-
-<NodeCountSecret/>
-
 ### Check Node Memory
 
 The examples below use the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
