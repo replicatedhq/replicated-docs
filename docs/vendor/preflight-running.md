@@ -6,11 +6,9 @@ This topic describes how to use the preflight kubectl plugin to run preflight ch
 
 For applications installed with the Helm CLI, your users can optionally run preflight checks using the open source preflight kubectl plugin before they run `helm install`.
 
-The kubectl preflight plugin requires a preflight check specification as input. For Helm chart-based applications, the specification is defined in a Secret in the Helm chart `templates` directory.
+The preflight plugin requires a preflight check specification as input. For Helm chart-based applications, the specification is defined in a Secret in the Helm chart `templates` directory. For information about how to configure preflight checks for your application, see [Defining Preflight Checks](preflight-kots-defining).
 
-To run preflight checks that are defined in Helm chart templates, your users run `helm template` to render the Helm chart templates and provide the result to the preflight plugin as stdin. The preflight plugin automatically filters the stream of stdout from the `helm template` command to find any run any preflight specifications.
-
-For information about how to configure preflight checks for your application, see [Defining Preflight Checks](preflight-kots-defining).
+To run preflight checks that are defined in your application Helm chart templates, your users run `helm template` to render the Helm chart templates and then provide the result to the preflight plugin as stdin. The preflight plugin automatically filters the stream of stdout from the `helm template` command to find any run any preflight specifications.
 
 ## Prerequisite
 
@@ -103,6 +101,8 @@ To run preflights checks from a release before installation:
         ```
         helm template oci://registry.replicated.com/gitea-app/unstable/gitea --values values.yaml | kubectl preflight -
         ```
+
+        For all available options with this command, see [Run Preflight Checks using the CLI](https://troubleshoot.sh/docs/preflight/cli-usage/#options) in the open source Troubleshoot documentation.
 
     1. (Optional) Run the fourth command to install the application. For more information, see [Installing with Helm](install-with-helm).      
 
