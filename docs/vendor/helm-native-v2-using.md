@@ -1,26 +1,58 @@
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
-# Configuring the HelmChart Custom Resource
+# Configuring the HelmChart Custom Resource v2
 
-This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with KOTS.
+This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with Replicated KOTS.
 
-It also includes guidance for migrating existing installations that use the HelmChart custom resource `kots.io/v1beta1` with `useHelmInstall: true` to `kots.io/v1beta2`.
-
-## Workflow
+## Overview
 
 <KotsHelmCrDescription/>
 
-For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+For more information about the HelmChart custom resource, including the unique requirements and limitations for the keys described in this topic, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-To configure the HelmChart custom resource, do the following:
+After you complete the tasks in this topic to configure the `kots.io/v1beta2` HelmChart custom resource, you can migrate any existing installations that were deployed with `kots.io/v1beta1` with `useHelmInstall: true` to use `kots.io/v1beta2` instead. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
+
+## HelmChart v1 and v2 Differences
+
+The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
+
+<table>
+  <tr>
+    <th>HelmChart v1beta2</th>
+    <th>HelmChart v1beta1</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>apiVersion: kots.io/v1beta2</code></td>
+    <td><code>apiVersion: kots.io/v1beta1</code></td>
+    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
+  </tr>
+  <tr>
+    <td><code>releaseName</code></td>
+    <td><code>chart.releaseName</code></td>
+    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>helmVersion</code></td>
+    <td><code>helmVersion</code> field is removed</td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>useHelmInstall</code></td>
+    <td><code>useHelmInstall</code> field is removed</td>
+  </tr>
+</table>
+
+## Workflow
+
+To support installations with the `kots.io/v1beta2` HelmChart custom resource, do the following:
 * Rewrite image names so that images can be located in your private registry or in the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).
 * Inject a KOTS-generated image pull secret that grants access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
 * Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
 * Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
 
-The HelmChart custom resource `builder`, `values`, and `optionalValues` keys each have unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#values), [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues), and [builders](/reference/custom-resource-helmchart-v2#builders) in _HelmChart v2_.
-
-## Rewrite Image Names
+### Rewrite Image Names
 
 To locate images for your application in a registry, Kubernetes must have the image name and the domain of the registry. For example, you might have an image with the name `example/imagename` on a registry with the domain `example.registry.com`. For more information, see [Images](https://kubernetes.io/docs/concepts/containers/images/) in the Kubernetes documentation.
 
@@ -30,7 +62,7 @@ For more information:
 * If you use a private image registry and you do _not_ support users pushing to local registries, see [External Private Registries](#external). 
 * If you need to support users that push to local registries, such as users in air gap environments, see [Local Registries](#local-registries).
 
-### External Private Registries {#external}
+#### External Private Registries {#external}
 
 If you use private images with your application, then your images must be accessed through the Replicated proxy service at `proxy.replicated.com/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image in your external registry. For example, `proxy.replicated.com/proxy/my-app/quay.io/my-org/api`.
 
@@ -80,7 +112,7 @@ spec:
     image: {{ .Values.image.name }}:{{ .Values.image.tag }}
 ```
 
-### Local Registries
+#### Local Registries
 
 If you support the use of local registries for air gap or online environments, then you can use the Replicated LocalRegistryHost, LocalRegistryNamespace, and HasLocalRegistry template functions to rewrite image names in the HelmChart custom resource. When you use these template functions along with a ternary operator to rewrite image names, you ensure that images are discovered either in the user's local registry, or in your public or private registry if no local registry is configured.
 
@@ -183,7 +215,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-## Inject Image Pull Secrets
+### Inject Image Pull Secrets
 
 Kubernetes requires a Secret of type `kubernetes.io/dockerconfigjson` to authenticate with a registry and pull a private image. When you reference a private image in a Pod definition, you also provide the name of the Secret in a `imagePullSecrets` key in the Pod definition. For more information, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
 
@@ -240,7 +272,7 @@ spec:
   {{- end }}
 ```
 
-## Add Backup Labels for Snapshots
+### Add Backup Labels for Snapshots
 
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
@@ -279,7 +311,7 @@ spec:
           kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
 
-## Support Local Image Registries for Online Installations
+### Support Local Image Registries for Online Installations
 
 Local image registries are required for KOTS installations in air gapped environments. Also, users in online environments can optionally push images to a local private registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
@@ -290,54 +322,3 @@ For more information about how to configure the `builder` key, see [`builder`](/
 :::note
 If you already configured the `builder` key previously to support air gap installations, then you can use the same configuration in your HelmChart custom resource to support the use of local registries for online installations. No additional configuration is required.
 :::
-## Migrate to kots.io/v1beta2 {#migrating}
-
-The HelmChart custom resource `kots.io/v1beta1` is deprecated and is not recommended for new installations. Existing installations that installed with `kots.io/v1beta1` and `useHelmInstall: true` can be migrated to `kots.io/v1beta2` without needing to reinstall the application.
-
-:::note
-Migration from `kots.io/v1beta1` with `useHelmInstall: false` to any other installation method (including to `kots.io/v1beta1` with `useHelmInstall: true` or to `kots.io/v1beta2`) is _not_ supported.
-
-To change the installation method from `useHelmInstall: false` to a different method, the user must reinstall your application in a new environment.
-:::
-
-### Support Both Versions {#support-both}
-
-The HelmChart custom resource version `kots.io/v1beta2` is available only for installations that use KOTS v1.99.0 or later. To support existing users that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you include both a `kots.io/v1beta2` and a `kots.io/v1beta1` (with `useHelmInstall: true`) HelmChart custom resource for each Helm chart in your release. This allows you to support both installation methods from the same release.
-
-When you include both versions in a single release for the same Helm chart, installations with KOTS v1.98.0 or earlier use `kots.io/v1beta1`. Installations with KOTS v1.99.0 or later use `kots.io/v1beta2`.
-
-After all customer environments where the Helm chart was previously installed with `kots.io/v1beta1` and `useHelmInstall: true` are upgraded to KOTS v1.99.0 or later, you can remove version `kots.io/v1beta1` of the HelmChart custom resource from your releases.
-
-### HelmChart v1 and v2 Differences
-
-The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
-
-<table>
-  <tr>
-    <th>HelmChart v1beta2</th>
-    <th>HelmChart v1beta1</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>apiVersion: kots.io/v1beta2</code></td>
-    <td><code>apiVersion: kots.io/v1beta1</code></td>
-    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
-  </tr>
-  <tr>
-    <td><code>releaseName</code></td>
-    <td><code>chart.releaseName</code></td>
-    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>helmVersion</code></td>
-    <td><code>helmVersion</code> field is removed</td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>useHelmInstall</code></td>
-    <td><code>useHelmInstall</code> field is removed</td>
-  </tr>
-</table>
-
-For an example of the HelmChart v2 custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
