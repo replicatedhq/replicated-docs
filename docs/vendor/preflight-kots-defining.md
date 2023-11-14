@@ -1,11 +1,3 @@
-import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
-import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
-import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
-import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
-import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
-import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
-import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
-import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 import HttpSecret from "../partials/preflights/_http-requests-secret.mdx"
 import HttpCr from "../partials/preflights/_http-requests-cr.mdx"
 import MySqlSecret from "../partials/preflights/_mysql-secret.mdx"
@@ -115,27 +107,31 @@ spec:
   analyzers: []
 ```
 
-<PreflightsCrNote/>
+For more information about the Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
 ## Step 2: Define Collectors and Analyzers
 
-This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors:` and `spec.analyzers:` fields in the manifest file that you created.
+This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors` and `spec.analyzers` keys in the manifest file that you created.
 
 For examples of collectors and analyzers defined in Kubernetes Secrets and Preflight custom resources, see [Example Specifications](#example-specifications) below. 
 
 ### Collectors
 
-Add collectors to gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define to generate results for the preflight checks. 
+Collectors gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define to generate results for the preflight checks. 
 
-The default `clusterInfo` and `clusterResources` collectors are always automatically included in the specification to gather information about the cluster and cluster resources. You do not need to manually included these default collectors. For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
+The following default collectors are included automatically to gather information about the cluster and cluster resources:
+* [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
+* [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
 
-The Troubleshoot open source project includes several additional collectors that you can include in the specification to gather more information from the installation environment. To view all the available collectors that you can add, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
+You do not need manually include the `clusterInfo` or `clusterResources` collectors in the specification. To use only the `clusterInfo` and `clusterResources` collectors, delete the `spec.collectors` key from the preflight specification.
+
+The Troubleshoot open source project includes several additional collectors that you can include in the specification to gather more information from the installation environment. To view all the available collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
 
 ### Analyzers
 
 Analyzers use the output from the collectors to generate results for the preflight checks, including the criteria for pass, fail, and warn outcomes and custom messages for each outcome.
 
-For example, in a preflight check that checks the version of Kubernetes running in the target cluster, the analyzer can define a fail outcome when the cluster is running a version of Kubernetes less than 1.25 that includes the following message to the user: `The application requires Kubernetes 1.25.0 or later, and recommends 1.27.0`.
+For example, in a preflight check that checks the version of Kubernetes running in the target cluster, the analyzer can define a fail outcome when the cluster is running a version of Kubernetes less than 1.25 that includes the following custom message to the user: `The application requires Kubernetes 1.25.0 or later, and recommends 1.27.0`.
 
 The Troubleshoot open source project includes several analyzers that you can include in your preflight check specification. The following are some of the analyzers in the Troubleshoot project that use the default `clusterInfo` or `clusterResources` collectors:
 * [clusterPodStatuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/)
@@ -150,17 +146,11 @@ To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/d
 
 ### (KOTS Only) `strict` Analyzers
 
-<PreflightsAddStrict/> 
+For applications installed with KOTS, you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release. For more information, see [strict](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation.
 
-For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
-
-## Step 3: Promote a Release and Test
-
-After adding one or more collectors and analyzers to a preflight specification, create and promote a new release with the preflight specification. Then, test the preflight checks by installing in a development environment.
-
-For Helm chart-based applications installed with the Helm CLI or with KOTS:
-1. Repackage the Helm chart into an archive, then add the archive to a new release. See [Managing Releases with the CLI](/vendor/releases-creating-cli).
-1. 
+:::note
+Strict preflight analyzers are ignored if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
+:::
 
 ## Example Specifications
 
