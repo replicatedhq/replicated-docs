@@ -23,6 +23,42 @@ By bulk exporting this instance event data with the `/app/{app_id}/events` endpo
 * Identify trends and potential problem areas 
 * Demonstrate the impact, adoption, and usage of recent product features
 
+### Filter Bulk Data Exports
+
+You can use the following types of filters to filter timeseries data for bulk export:
+
+- **Filter by date**:
+    - Get instance events recorded _at or before_ the query date. For example:
+        ```bash
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?before=2023-10-15"
+        ```
+    - Get instance events recorded _at or after_ the query date. For example:
+        ```shell
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?after=2023-10-15"
+        ```
+    - Get instance events recorded within a range of dates [after, before]. For example:
+        ```shell
+        curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+        "https://api.replicated.com/vendor/v3/app/:appID/events?after=2023-05-02&before=2023-10-15"
+        ```
+- **Filter by customer**: Get instance events from one or more customers using a comma-separated list of customer IDs. For example:
+    ```bash
+    curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+    "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+    ```
+- **Filter by event type**: Get instance events by event type using a comma-separated list of event types. For example:
+    ```bash
+    curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
+    "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+    ```
+
+:::note
+If any filter is passed for an object that does not exist, no warning is given. For example, if a `customerIDs` filter is passed for an ID that does not exist, or for an ID that the user does not have access to, then an empty array is returned.
+:::
+
+
 ## Download Customer Instance Data CSVs
 <Download/>
 
