@@ -21,7 +21,7 @@ import NodeCpuCr from "../partials/preflights/_node-cpu-cr.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Define Preflight Checks
+# Defining Preflight Checks
 
 This topic describes how to define preflight checks in Helm chart- and standard Kubernetes manifest-based applications. The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
 
