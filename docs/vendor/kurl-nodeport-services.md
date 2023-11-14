@@ -14,7 +14,7 @@ This topic describes how to create a NodePort service for exposing services in e
 
 Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on virtual machines (VMs) or bare metal servers by kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-For more information about KOTS port forwarding for existing cluster installations, see [Port Forwarding Services with KOTS](admin-console-port-forwarding).
+For more information about KOTS port forwarding for existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
 To expose the admin console in embedded cluster installations, KOTS creates the admin console as a NodePort service so it can be accessed at the node's IP address on port 8800. The UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
