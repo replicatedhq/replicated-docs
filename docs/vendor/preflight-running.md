@@ -110,6 +110,6 @@ To run preflights checks from a release before installation:
 
 The output of the preflight plugin shows the success, warning, or fail message for each preflight, depending on how they were configured. You can ask your users to send you the results of the preflight checks if needed.
 
-To save the results of preflight checks to a `.txt` file, users can can press `s` 
+To save the results of preflight checks to a `.txt` file, users can can press `s` when viewing the results from the CLI, as shown in the example below:
 
 ![Save output dialog](/images/helm-preflight-save-output.png)
