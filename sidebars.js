@@ -700,6 +700,7 @@ const sidebars = {
         'reference/replicated-cli-release-update',
       ],
     },
+    {type: 'ref', id: 'reference/kots-cli-getting-started', label: 'kots CLI', className: 'menu__list-item__ref-link'},
     {
       type: 'category',
       label: 'Vendor API v3',
