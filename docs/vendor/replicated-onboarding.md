@@ -227,7 +227,7 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
     <td>
       <ul>
-      <li><a href="/vendor/preflight-helm-defining">Defining Preflight Checks for Helm Charts</a></li>
+      <li><a href="/vendor/preflight-defining">Defining Preflight Checks</a></li>
       <li><a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a></li>
       </ul>
     </td>

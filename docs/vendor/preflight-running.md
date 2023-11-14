@@ -6,7 +6,7 @@ This topic describes how to use the preflight kubectl plugin to run preflight ch
 
 For applications installed with the Helm CLI, your users can optionally run preflight checks using the open source preflight kubectl plugin before they run `helm install`.
 
-The preflight plugin requires a preflight check specification as input. For Helm chart-based applications, the specification is defined in a Secret in the Helm chart `templates` directory. For information about how to configure preflight checks for your application, see [Defining Preflight Checks](preflight-kots-defining).
+The preflight plugin requires a preflight check specification as input. For Helm chart-based applications, the specification is defined in a Secret in the Helm chart `templates` directory. For information about how to configure preflight checks for your application, see [Defining Preflight Checks](preflight-defining).
 
 To run preflight checks that are defined in your application Helm chart templates, your users run `helm template` to render the Helm chart templates and then provide the result to the preflight plugin as stdin. The preflight plugin automatically filters the stream of stdout from the `helm template` command to find any run any preflight specifications.
 

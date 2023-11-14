@@ -48,10 +48,7 @@ For more information about creating releases, see [Managing Releases with the Ve
     <td>Preflight and SupportBundle</td>
     <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p><p><strong>Note:</strong> If you are using Helm charts, define the preflight and support bundle specifications within the Helm chart rather than creating custom resources.</p></td>
     <td>
-      <ul>
-        <li><a href="/vendor/preflight-helm-defining">Define Preflight Checks for Helm Charts</a></li>
-        <li><a href="/vendor/preflight-kots-defining">Define Preflight Checks for KOTS</a></li>
-      </ul>  
+      <li><a href="/vendor/preflight-defining">Define Preflight Checks</a>
     </td>
   </tr>
   <tr>
