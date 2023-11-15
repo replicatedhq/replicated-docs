@@ -1,7 +1,7 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
 
-# cluster upgrade (Beta)
+# cluster upgrade
 
 Upgrade cluster version for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 

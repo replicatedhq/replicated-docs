@@ -1,6 +1,6 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
-# cluster kubeconfig (Beta)
+# cluster kubeconfig
 
 Download the credentials for a test cluster. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
