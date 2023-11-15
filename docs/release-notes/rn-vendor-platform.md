@@ -8,6 +8,10 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.15-1
+
+Released on November 15, 2023
+
 ## v2023.11.13-0
 
 Released on November 13, 2023
