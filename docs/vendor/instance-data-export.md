@@ -51,7 +51,7 @@ You can use the following types of filters to filter timeseries data for bulk ex
 - **Filter by event type**: Get instance events by event type using a comma-separated list of event types. For example:
     ```bash
     curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
-    "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+    "https://api.replicated.com/vendor/v3/app/:appID/events?eventTypes=numUsers,numProjects"
     ```
 
 :::note
