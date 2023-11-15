@@ -256,6 +256,11 @@ To install KOTS in an embedded cluster created by kURL, your environment must me
 * 40GB of disk space per machine
 * TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes
 * UDP port 8472 open between cluster nodes
+
+  :::note
+  If the Kubernetes installer specification uses the deprecated kURL [Weave add-on](https://kurl.sh/docs/add-ons/weave), UDP ports 6783 and 6784 must be open between cluster nodes. Reach out to your software vendor for more information.
+  :::
+
 * Root access is required
 * (Rook Only) The Rook add-on version 1.4.3 and later requires block storage on each node in the cluster. For more information about how to enable block storage for Rook, see [Block Storage](https://kurl.sh/docs/add-ons/rook/#block-storage) in _Rook Add-On_ in the kURL documentation.
 
