@@ -13,7 +13,7 @@ pagination_prev: null
 Released on November 16, 2023
 
 ### New Features {#new-features-v2023-11-16-0}
-* Add cert-manager 1.13.2.
+* Add [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.13.2.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.69.1-53.0.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-11-11T08-14-41Z.
 * Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to use runc v1.1.10.
