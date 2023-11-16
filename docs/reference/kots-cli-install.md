@@ -182,6 +182,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     </tr>
 </table>
 
+
 ### Examples
 
 ```bash

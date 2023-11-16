@@ -1,0 +1,17 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  analyzers:
+    - nodeResources:
+        checkName: Total CPU Cores in the cluster is 4 or greater
+        outcomes:
+          - fail:
+              when: "sum(cpuCapacity) < 4"
+              message: The cluster must contain at least 4 cores
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: There are at least 4 cores in the cluster
+```

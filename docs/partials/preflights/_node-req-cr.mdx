@@ -1,0 +1,21 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  analyzers:  
+    - nodeResources:
+        checkName: Node requirements
+        filters:
+        # Must have 1 node with 16 GB (available) memory and 5 cores (on a single node) with amd64 architecture
+          allocatableMemory: 16Gi
+          cpuArchitecture: amd64
+          cpuCapacity: "5"
+        outcomes:
+          - fail:
+              when: "count() < 1"
+              message: This application requires at least 1 node with 16GB available memory and 5 cpu cores with amd64 architecture
+          - pass:
+              message: This cluster has a node with enough memory and cpu cores
+```  

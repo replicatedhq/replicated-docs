@@ -568,8 +568,7 @@ const sidebars = {
           type: 'category',
           label: 'Preflight Checks',
           items: [
-             'vendor/preflight-helm-defining',
-             'vendor/preflight-kots-defining',
+             'vendor/preflight-defining',
              'vendor/preflight-running',
          ],
         },
