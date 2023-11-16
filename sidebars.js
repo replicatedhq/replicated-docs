@@ -31,13 +31,11 @@ const sidebars = {
     'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Helm Charts with KOTS',
+      label: 'Distributing Helm Chart-Based Applications with KOTS',
       items: [
         'vendor/helm-native-about',
         'vendor/helm-native-v2-using',
         'vendor/helm-v2-migrate',
-        'vendor/helm-optional-charts',
-        'vendor/helm-optional-value-keys',
       ],
     },
     {
@@ -58,6 +56,7 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
+          'vendor/helm-optional-value-keys',
           'vendor/helm-mapping-example',
       ],
     },
@@ -98,6 +97,7 @@ const sidebars = {
       items: [
         'vendor/admin-console-display-app-status',
         'vendor/packaging-include-resources',
+        'vendor/helm-optional-charts',
         'vendor/resources-annotations-templating',
         'vendor/orchestrating-resource-deployment',
         'vendor/database-config-adding-options',
