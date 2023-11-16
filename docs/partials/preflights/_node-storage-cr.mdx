@@ -1,0 +1,16 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  analyzers:
+    - storageClass:
+        checkName: Required storage classes
+        storageClassName: "default"
+        outcomes:
+          - fail:
+              message: Could not find a storage class called "default".
+          - pass:
+              message: A storage class called "default" is present.
+``` 

@@ -1,0 +1,26 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+    - mysql:
+        # `strict: true` prevents installation from continuing if the preflight check fails
+        strict: true
+        checkName: Must be MySQL 8.x or later
+        collectorName: mysql
+        outcomes:
+          - fail:
+              when: connected == false
+              message: Cannot connect to MySQL server
+          - fail:
+              when: version < 8.x
+              message: The MySQL server must be at least version 8
+          - pass:
+              message: The MySQL server is ready
+```
