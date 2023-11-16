@@ -1,3 +1,5 @@
+import StrictSecurityContext from "../partials/kots-cli/_strict-security-context.mdx"
+
 # install
 
 Installs the application and the Replicated admin console directly to a cluster.
