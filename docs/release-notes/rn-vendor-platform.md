@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.15-0
+
+Released on November 15, 2023
+
+### New Features {#new-features-v2023-11-15-0}
+* Save Channels ordering, sorting, and hidden columns table settings when the user updates them.
+
+### Improvements {#improvements-v2023-11-15-0}
+* Standardize tooltips on Dashboard, Customers, and Channels pages.
+* Disallow adding a .zip file when uploading a bundle in the support request form.
+
+### Bug Fixes {#bug-fixes-v2023-11-15-0}
+* Fix button alignment in empty state on Releases page when KOTS installer is not enabled.
+
 ## v2023.11.13-0
 
 Released on November 13, 2023
