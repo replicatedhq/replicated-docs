@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on November 17, 2023
 
-### New Features {#new-features-v2023-11-17-2}
-* Hide the 'NEW' badge on the Instances CSV download after it's been clicked.
+### Improvements {#improvements-v2023-11-17-2}
+* Hide the 'NEW' badge on the Instances CSV download after it has been clicked.
 
 ## v2023.11.15-0
 
