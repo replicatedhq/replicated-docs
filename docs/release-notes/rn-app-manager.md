@@ -16,6 +16,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.104.2
+
+Released on November 17, 2023
+
+Support for Kubernetes: 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-104-2}
+* Upgrades the golang.org/x/net go module to 0.17.0 in kurl_proxy to resolve CVE-2023-39325 with high severity, and CVE-2023-3978 and CVE-2023-44487 with medium severity.
+* Upgrades the minio/minio image to RELEASE.2023-11-11T08-14-41Z to resolve CVE-2023-46129 and GHSA-m425-mq94-257g with high severity, and CVE-2023-44487 with medium severity.
+
 ## 1.104.1
 
 Released on November 10, 2023
