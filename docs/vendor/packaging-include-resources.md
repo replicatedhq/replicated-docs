@@ -1,6 +1,6 @@
 # Conditionally Including or Excluding Resources
 
-This topic describes how to include or exclude optional application resources based on one or more conditional statements. The information in this topic applies to Helm chart- and standard manifest-based application deployed with Replicated KOTS.
+This topic describes how to include or exclude optional application resources based on one or more conditional statements. The information in this topic applies to Helm chart- and standard manifest-based applications.
 
 ## Overview
 
@@ -10,9 +10,9 @@ Software vendors often need a way to conditionally deploy resources for an appli
 
 For application deployed with KOTS, Replicated template functions are available for creating the conditional statements that control which optional resources are deployed for a given user. Replicated template functions can be used in standard manifest files such as Replicated custom resources or Kubernetes resources like StatefulSets, Secrets, and Services.
 
-For example, the Replicated ConfigOptionEquals template functions returns true if the configuration option value is equal to a supplied value. This is useful for creating conditional statements that include or exclude a resource based on a user's application configuration choices.
+For example, the Replicated ConfigOptionEquals template functions returns true if the specified configuration option value is equal to a supplied value. This is useful for creating conditional statements that include or exclude a resource based on a user's application configuration choices.
 
-For more information about the available template functions, see [About Template Functions](/reference/template-functions-about).
+For more information about the available Replicated template functions, see [About Template Functions](/reference/template-functions-about).
 
 ## Include or Exclude Helm Charts
 
@@ -22,7 +22,7 @@ This section describes methods for including or excluding Helm charts from your 
 
 For Helm chart-based applications installed with the Helm CLI or with Replicated KOTS, you can add a `condition` field to dependencies in your `Chart.yaml` to include subcharts based on one or more boolean values evaluating to true.
 
-The `condition` field can be assigned one or more YAML paths delimited by commas. If this path exists in the `values.yaml` file for the parent Helm chart and resolves to a boolean value, then the subchart is included or excluded based on that boolean value. Only the first valid path found in the list is evaluated and if no paths exist then the condition has no effect.
+The `condition` field can be set to one or more YAML paths delimited by commas. If this path exists in the `values.yaml` file for the parent Helm chart and resolves to a boolean value, then the subchart is included or excluded based on that boolean value. Only the first valid path found in the list is evaluated and if no paths exist then the condition has no effect.
 
 For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value from the Helm chart `values.yaml` file is true. 
 
@@ -42,7 +42,7 @@ For more information about working with dependencies and defining conditional de
 
 For Helm chart-based applications installed with KOTS, you can configure KOTS to exclude certain Helm charts from deployment using the HelmChart custom resource [`exclude`](/reference/custom-resource-helmchart#exclude) field. When the `exclude` field is set to a conditional statement, KOTS excludes the chart if the condition evaluates to `true`.
 
-The following example shows an `exclude` field that specifies that a Postgres Helm chart must be excluded from the deployment if the user chooses to bring their own external Postgres instance:
+The following example shows an `exclude` field that excludes a Postgres Helm chartå if the user chooses to bring their own external Postgres instance. This example uses the ConfigOptionEquals template function to evaluate if the user selected  
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -57,17 +57,25 @@ spec:
   releaseName: samplechart-release-1
 ```
 
-## Include or Exclude Resources Defined by Standard Manifests
+## Include or Exclude Standard Manifests
 
 For standard manifest-based applications installed with KOTS, you can use the `kots.io/exclude` or `kots.io/when` annotations to include or exclude resources based on a conditional statement.
 
 By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
+### Requirements
+
+The `kots.io/exclude` and `kots.io/when` annotations have the following requirements:
+
+* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
+
+* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations must be strings. For more information about working with Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
+
 ### `kots.io/exclude`
 
 When the `kots.io/exclude: '<bool>'` annotation is present on a resource and evaluates to true, the resource is excluded from the deployment.
 
-The following example excludes the Postgres `StatefulSet` when the user disables a `install_postgres` checkbox on the Replicated admin console **Config** page:
+The following example uses the`kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the Postgres `StatefulSet` when a `install_postgres` checkbox on the Replicated admin console **Config** page is disabled:
 
 ```yaml
 apiVersion: apps/v1
@@ -100,7 +108,7 @@ spec:
 
 When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
 
-The following example excludes the postgres `StatefulSet` resource when the `install_postgres` checkbox is enabled:
+The following example uses the`kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgres `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled.
 
 ```yaml
 apiVersion: apps/v1
@@ -128,11 +136,3 @@ spec:
         imagePullPolicy: ""
 ...
 ```
-
-### Requirements
-
-The `kots.io/exclude` and `kots.io/when` annotations have the following requirements:
-
-* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
-
-* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations cannot be booleans and must be strings. For more information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
