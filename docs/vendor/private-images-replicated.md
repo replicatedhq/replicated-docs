@@ -9,6 +9,10 @@ For applications installed with KOTS, you can host private images on the Replica
 
 For more information about security for the Replicated registry, see [Replicated Registry Security](packaging-private-registry-security).
 
+## Limitation
+
+When using Docker Build to build and push images to the Replicated registry, provenance attestations are not supported. To avoid a 400 error, include the `--provenance=false` flag to disable all provenance attestations. For more information, see [docker buildx build](https://docs.docker.com/engine/reference/commandline/buildx_build/#provenance) and [Provenance Attestations](https://docs.docker.com/build/attestations/slsa-provenance/) in the Docker documentation.
+
 ## Push Images to the Replicated Registry
 
 This procedure describes how to tag and push images to the Replicated registry. For more information about building, tagging, and pushing Docker images, see the
