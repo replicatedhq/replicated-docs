@@ -4,17 +4,23 @@ import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx
 
 # Orchestrating Resource Deployment
 
-Vendors often need to control the how Kubernetes resources are deployed. For example, some applications require that certain resources are deployed in a Ready state before other resources can be deployed.
+This topic describes how to orchestrate the deployment order of resources deployed by your application. The information in this topic applies to Helm chart- and standard manifest-based application deployed with Replicated KOTS.
 
-## Resource Deployment Order in KOTS Installations
+## Overview
+
+Many applications require that certain resources are deployed and in a Ready state before other resources can be deployed. So, software vendors often need a way to control the order that resources are deployed. 
+
+For applications installed with KOTS, you can manage the order in which resources are deployed using the following methods:
+
+* For standard manifest-based applications, add KOTS annotations to resources to specify their deployment order. 
+
+* For Helm chart-based applications, use the `weight` property in the HelmChart custom resource to specify the deployment order of Helm charts and subcharts.
+
+## Helm Chart and Standard Manifest Deployment Order
 
 When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. 
 
-This allows you to control the deployment order of your application resources by either defining the resources as standard manifests or as Helm charts. Additionally, you can manage the order in which resources are deployed using the following methods:
-
-* Add KOTS annotations to standard manifests to specify their deployment order. For example, you can add a `wait-for-properties` annotation to a resource so that KOTS waits for a given property to reach a target value before deploying other resources. For more information, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
-
-* Use the `weight` property in the HelmChart custom resource to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
+This allows you to control the deployment order of your application resources by either defining the resources as standard manifests or as Helm charts.
 
 ## Set Helm Chart Deployment Order with `weight` Property
 
@@ -38,7 +44,7 @@ The `weight` field in the HelmChart custom resource has the following limitation
 
 * <HookWeightsLimitation/>
 
-### Subcharts and Dependencies
+### Using `weight` with Subcharts and Dependencies
 
 When you add a `weight` property to HelmChart custom resources in your application, KOTS instructs Helm to install any dependencies, including subcharts, along with the parent chart.
 
@@ -48,7 +54,7 @@ If you do not add a `weight` to Helm charts in your application, you can still u
 
 For more information about using Helm dependencies, see [Chart Dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) in the Helm documentation.
 
-### Hooks
+### Using `weight` with Hooks
 
 Helm hooks enable more control over when Helm installs the resources in your Helm charts. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources.
 

@@ -4,21 +4,17 @@ This topic describes how to include or exclude optional application resources ba
 
 ## Overview
 
-Often, software vendors need a way to conditionally deploy resources for an application depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
-
-Replicated supports several methods for including or excluding resources for Helm chart- or standard manifest-based applications.
-
-For applications installed with Replicated KOTS, Replicated template functions. For example, you can add a template function that evaluates to `true` or `false` depending on the user's selection for a configuration field on the Replicated admin console Config page. For information about Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
+Software vendors often need a way to conditionally deploy resources for an application depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
 
 ## Include or Exclude Helm Charts
 
-For Helm chart-based applications, you can conditionally deploy subcharts by defining conditional dependencies in the `Chart.yaml`, or by configuring the `exclude` field in the Replicated HelmChart custom resource. 
+This section describes methods for including or excluding Helm charts from your application deployment.
 
 ### Conditional Dependencies 
 
-For Helm chart-based application installed with the Helm CLI or with Replicated KOTS, you can include conditional dependencies in your `Chart.yaml` to include or exclude subcharts based on a conditional statement.
+For Helm chart-based applications installed with the Helm CLI or with Replicated KOTS, you can add a `condition` field to dependencies in your `Chart.yaml` to include subcharts based on one or more values evaluating to true.
 
-For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value is true. 
+For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value from the Helm chart `values.yaml` file is true. 
 
 ```yaml
 # parentchart/Chart.yaml
@@ -29,24 +25,14 @@ dependencies:
     version: 0.1.0
     condition: mysubchart.enabled
 ```
-Based on the `Chart.yaml` above, the following `values.yaml` would allow the `mysubchart` subchart to be deployed: 
 
-```yaml
-# parentchart/values.yaml
-
-mysubchart:
-  enabled: true
-```
-
-For more information about working with dependencies and defining conditional dependencies, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
+For more information about working with dependencies and defining conditional dependencies for Helm charts, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
 
 ### (KOTS Only) HelmChart `exclude` Field
 
-By default, KOTS creates an instance of a Helm chart for every HelmChart custom resource manifest file in the upstream application manifests. However, you can configure your application so that KOTS excludes certain Helm charts based on a conditional statement. 
+For Helm chart-based applications installed with KOTS, you can configure KOTS to exclude certain Helm charts from deployment using the HelmChart custom resource [`exclude`](/reference/custom-resource-helmchart#exclude) field. When the `exclude` field is set to a conditional statement, KOTS excludes the chart if the condition evaluates to `true`.
 
-KOTS renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
-
-The following example shows an `exclude` field that specifies that a Postgres Helm chart must be excluded from the deployment if the user choose to use their own external Postgres instance:
+The following example shows an `exclude` field that specifies that a Postgres Helm chart must be excluded from the deployment if the user chooses to bring their own external Postgres instance:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -61,19 +47,13 @@ spec:
   releaseName: samplechart-release-1
 ```
 
+This example uses the Replicated ConfigOptionEquals template function to render the user's configuration choice during deployment. For information about Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
+
 ## Include or Exclude Resources Defined by Standard Manifests
 
-To include or exclude resources from your application deployment, you can use the `kots.io/exclude` or `kots.io/when` annotation on the resource.
+For standard manifest-based applications installed with KOTS, you can use the `kots.io/exclude` or `kots.io/when` annotations to include or exclude resources based on a conditional statement.
 
-### Requirements
-
-The `kots.io/exclude` and `kots.io/when` annotations have the following requirements:
-
-* By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
-
-* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
-
-* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations cannot be booleans and must be strings. For more information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
+You can create conditional statements using Replicated template functions. For more information, see [About Template Functions](/reference/template-functions-about) in _Template Functions_. 
 
 ### `kots.io/exclude`
 
@@ -140,3 +120,13 @@ spec:
         imagePullPolicy: ""
 ...
 ```
+
+### Requirements
+
+The `kots.io/exclude` and `kots.io/when` annotations have the following requirements:
+
+* By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
+
+* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
+
+* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations cannot be booleans and must be strings. For more information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
