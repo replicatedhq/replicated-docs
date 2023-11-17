@@ -3,7 +3,7 @@
   <td>bool</td>
   <td>
   <p>Set to <code>true</code> to explicitly enable strict security contexts for all KOTS Pods and containers.</p>
-  <p>By default, KOTS Pods and containers are deployed with a security context that requires them to run as root. When <code>true</code>, <code>--strict-security-context</code> does the following:</p>
+  <p>By default, KOTS Pods and containers are not deployed with a specific security context. When <code>true</code>, <code>--strict-security-context</code> does the following:</p>
   <ul>
     <li>Ensures containers run as a non-root user</li>
     <li>Sets the specific UID for the containers (1001)</li>
