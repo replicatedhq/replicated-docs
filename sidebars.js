@@ -96,14 +96,20 @@ const sidebars = {
       label: 'Managing Resources and Objects',
       items: [
         'vendor/admin-console-display-app-status',
-        'vendor/packaging-include-resources',
-        'vendor/helm-optional-charts',
+        {
+          type: 'category',
+            label: 'Conditionally Deploying Resources',
+            items: [
+              'vendor/packaging-include-resources',
+              'vendor/helm-optional-charts',
+              'vendor/tutorial-adding-db-config',
+            ],
+        },
         'vendor/resources-annotations-templating',
         'vendor/orchestrating-resource-deployment',
         'vendor/database-config-adding-options',
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-ingress',
-        'vendor/tutorial-adding-db-config',
       ],
     }, 
     

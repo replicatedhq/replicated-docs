@@ -86,14 +86,6 @@ The `weight` field in the HelmChart custom resource has the following limitation
 
 You can use KOTS annotations to control the order in which resources are deployed. For more information about annotations in Kubernetes resources, see [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation.
 
-:::note
-You must quote the boolean in the annotation because Kubernetes annotations must be strings.
-:::
-
-:::note
-You must quote the integer in the annotation because Kubernetes annotations must be strings.
-:::
-
 ### `kots.io/creation-phase`
 
 If a creation or deletion phase is not specified for a resource, the resource is created or deleted as part of the default phase `'0'`. Phases can be any positive or negative integer ranging from `'-9999'` to `'9999'`.
@@ -162,7 +154,6 @@ spec:
 ...
 ```
 
-
 ### `kots.io/wait-for-properties`
 
 When the `kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'` annotation is present on a resource, KOTS waits for one or more specified resource properties to match the desired values before continuing to deploy other resources. The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property.
@@ -184,4 +175,6 @@ status:
     transform: false
     load: false
 ```
+### Requirement
 
+You must quote the boolean or integer value in annotation because Kubernetes annotations must be strings.
