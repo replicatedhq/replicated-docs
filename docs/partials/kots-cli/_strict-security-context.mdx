@@ -1,5 +1,20 @@
 <tr>
   <td><code>--strict-security-context</code></td>
   <td>bool</td>
-  <td>Set to <code>true</code> to explicitly enable strict security contexts for all KOTS Pods and containers. Might not work for some storage providers. <strong>Default:</strong> <code>false</code></td>
+  <td>
+  <p>Set to <code>true</code> to explicitly enable strict security contexts for all KOTS Pods and containers.</p>
+  <p>By default, KOTS Pods and containers are not deployed with a specific security context. When <code>true</code>, <code>--strict-security-context</code> does the following:</p>
+  <ul>
+    <li>Ensures containers run as a non-root user</li>
+    <li>Sets the specific UID for the containers (1001)</li>
+    <li>Sets the GID for volume ownership and permissions (1001)</li>
+    <li>Applies the default container runtime seccomp profile for security</li>
+    <li>Ensures the container is not run with privileged system access</li>
+    <li>Prevents the container from gaining more privileges than its parent process</li>
+    <li>Ensures the container's root filesystem is mounted as read-only</li>
+    <li>Removes all Linux capabilities from the container</li>
+  </ul>
+  <p><strong>Default:</strong> <code>false</code></p>
+  <p><strong>Note:</strong> Might not work for some storage providers.</p>
+  </td>
 </tr>
