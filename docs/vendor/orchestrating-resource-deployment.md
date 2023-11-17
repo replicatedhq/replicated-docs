@@ -12,11 +12,11 @@ Many applications require that certain resources are deployed and in a Ready sta
 
 You can manage the order in which resources are deployed using the following methods:
 
-* For Helm charts and subcharts, use the `weight` property in the corresponding HelmChart custom resource. See [Helm Chart `weight`](#weight).
+* For Helm charts and subcharts, use the `weight` property in the corresponding HelmChart custom resource. See [Helm Chart Deployment Order with `weight`](#weight).
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
-## Helm Chart `weight` {#weight}
+## Helm Chart Deployment Order with `weight` {#weight}
 
 You can configure the [`weight`](/reference/custom-resource-helmchart-v2#weight) property of the Replicated HelmChart custom resource to define the order in which the Helm charts in your release are installed.
 

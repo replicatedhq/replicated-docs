@@ -22,9 +22,9 @@ This section describes methods for including or excluding Helm charts from your 
 
 For Helm chart-based applications installed with the Helm CLI or with Replicated KOTS, you can add a `condition` field to dependencies in your `Chart.yaml` to include subcharts based on one or more boolean values evaluating to true.
 
-The `condition` field can be set to one or more YAML paths delimited by commas. If this path exists in the `values.yaml` file for the parent Helm chart and resolves to a boolean value, then the subchart is included or excluded based on that boolean value. Only the first valid path found in the list is evaluated and if no paths exist then the condition has no effect.
+The `condition` field can be set to one or more YAML paths delimited by commas. If the path exists in the `values.yaml` file for the parent Helm chart and resolves to a boolean value, then the subchart is included or excluded based on that boolean value.
 
-For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value from the Helm chart `values.yaml` file is true. 
+For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value from the Helm chart `values.yaml` file is true: 
 
 ```yaml
 # parentchart/Chart.yaml
@@ -38,11 +38,11 @@ dependencies:
 
 For more information about working with dependencies and defining conditional dependencies for Helm charts, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
 
-### (KOTS Only) HelmChart `exclude` Field
+### HelmChart `exclude` Field
 
 For Helm chart-based applications installed with KOTS, you can configure KOTS to exclude certain Helm charts from deployment using the HelmChart custom resource [`exclude`](/reference/custom-resource-helmchart#exclude) field. When the `exclude` field is set to a conditional statement, KOTS excludes the chart if the condition evaluates to `true`.
 
-The following example shows an `exclude` field that excludes a Postgres Helm chartå if the user chooses to bring their own external Postgres instance. This example uses the ConfigOptionEquals template function to evaluate if the user selected  
+The following example uses the `exclude` field and the ConfigOptionEquals template function to exclude a postgresql Helm chart when the `external_postgres` option is selected on the Replicated admin console **Config** page:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -75,7 +75,7 @@ The `kots.io/exclude` and `kots.io/when` annotations have the following requirem
 
 When the `kots.io/exclude: '<bool>'` annotation is present on a resource and evaluates to true, the resource is excluded from the deployment.
 
-The following example uses the`kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the Postgres `StatefulSet` when a `install_postgres` checkbox on the Replicated admin console **Config** page is disabled:
+The following example uses the `kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` when an `install_postgres` checkbox on the admin console **Config** page is disabled:
 
 ```yaml
 apiVersion: apps/v1
@@ -108,7 +108,7 @@ spec:
 
 When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
 
-The following example uses the`kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgres `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled.
+The following example uses the `kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled:
 
 ```yaml
 apiVersion: apps/v1

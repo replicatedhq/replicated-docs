@@ -1,4 +1,4 @@
-# Configuring Optional Value Keys
+# Configuring Optional Helm Chart Value Keys
 
 The Helm chart `values.yaml` file is not a static mapping in an application.
 It is possible to either override values or include values when certain conditions are met using the Replicated HelmChart custom resource.
@@ -105,7 +105,7 @@ mariadb:
   enabled: true
 ```
 
-## Example: Recursive Merge
+## Recursive Merge
 
 The `recursiveMerge` boolean defines how Replicated KOTS merges the values and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
 
