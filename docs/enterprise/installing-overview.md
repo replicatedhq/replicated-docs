@@ -29,7 +29,7 @@ For information about installing in air gapped environments:
 
 ### Existing Cluster Installations into Hardened Environments
 
-By default, KOTS Pods and containers are not deployed with a specific security context. For existing cluster installations into a hardened environment, you can use the `--strict-secuirty-context` flag with the installation command so that KOTS runs with a strict security context for Pods and containers.
+By default, KOTS Pods and containers are not deployed with a specific security context. For existing cluster installations into a hardened environment, you can use the `--strict-security-context` flag with the installation command so that KOTS runs with a strict security context for Pods and containers.
 
 For more information about the security context enabled by the `--strict-security-context` flag, see [kots install](/reference/kots-cli-install).
 
