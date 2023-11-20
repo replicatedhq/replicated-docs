@@ -6,27 +6,58 @@ import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
 import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 
 
-# Customize Support Bundles for KOTS
+# Customizing Support Bundles
 
-This topic provides a basic understanding and some key considerations about support bundle specifications for Replicated KOTS installations to help guide you in customizing them for your application.
+This topic describes how to customize the default support bundle specification in Helm chart- and standard Kubernetes manifest-based applications. The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
 
-## About Support Bundles
+## Step 1: Create the Manifest File with the Defaults
 
-Replicated KOTS provides the ability to generate support bundles from the admin console using the default support bundle specifications. However, there may be application-related data that you want to collect and analyze for troubleshooting.
+You can create a support bundle specification in a Kubernetes Secret or in a Preflight custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
 
-You can customize the default support bundle specification by adding, editing, or excluding the default collectors and analyzers.
+In this template, the collectors field is empty, so only the default collectors run until you customize this file. You can add more collectors and analyzers to add to the defaults.
 
-<PreflightsSbNote/>
+Collectors gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define to generate the support bundle. 
 
-<PreflightsSpecLocations/>
+The following default collectors are included automatically to gather information about the cluster and cluster resources:
+* [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
+* [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
 
-## Customize the Support Bundle Resource
+### Create a Secret
 
-To customize a support bundle for KOTS, add a SupportBundle custom resource manifest file (`kind: SupportBundle`) to your release.
+Add the following YAML to a Kubernetes Secret in your Helm chart `templates` directory:   
+
+```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: support-bundle
+      name: {{ .Release.Name }}-support-bundle
+    stringData:
+      # This is the support bundle spec that is used to generate the support bundle.
+      # Notes: You can use {{ .Release.Namespace }} to ensure that the support bundle
+      # is scoped to the release namespace.
+      # You can use any of Helm's templating features here, including {{ .Values.someValue }}
+      support-bundle-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+          name: support-bundle
+        spec:
+          collectors: []
+          analyzers: []
+```
+
+As shown in the example above, the Secret must include the following:
+
+- The label `troubleshoot.sh/kind: support-bundle`
+- A `stringData` field with a key named `support-bundle-spec`  
+
+### (KOTS Only) Create a SupportBundle Custom Resource
+
+Add a SupportBundle custom resource manifest file (`kind: SupportBundle`) to your release.
 
 Use one of the following support bundle template options to start populating your manifest file:
-
-- To add collectors and analyzers to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
 
   ```yaml
   apiVersion: troubleshoot.sh/v1beta2
@@ -37,34 +68,14 @@ Use one of the following support bundle template options to start populating you
       collectors: []
       analyzers: []
   ```
-- To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-Then edit the collectors and analyzers as needed.
+## (Optional) Step 2: Customize Collectors and Analyzers
 
-<PreflightsDefineXref/>
+To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-### Cluster Collectors
+### Collectors
 
-Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can set the `exclude` field to `true` to exclude them.
-
-If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
-
-The following example shows the `clusterInfo` collector will run because the `exlcude` field is set to the default value `false`. Additionally, there is a second namespace being used for the application.
-
-```yaml
-spec:
-    collectors:
-      - clusterInfo:
-          exclude: false
-      - clusterResources:
-          namespaces:
-          - default
-          - my-app-namespace
-```
-
-<PreflightsDefineXref/>
-
-### Pod Log Collectors
+#### Pod Log Collectors
 
 <SupportBundleAddLogs/>
 
@@ -88,17 +99,29 @@ spec:
               maxLines: 10000
 ```
 
-<PreflightsDefineXref/>
-
-### Recommended Collectors
+#### Other Recommended Collectors
 
 <SupportBundleCustomCollectors/>
 
-<PreflightsDefineXref/>
-
 ### Analyzers
 
-<SupportBundleAddAnalyzers/>
+Analyzers use the output from the collectors to generate results for the preflight checks, including the criteria for pass, fail, and warn outcomes and custom messages for each outcome.
+
+Add analyzers based on conditions that you expect for your application. For example, you might require that a cluster have at least 2 CPUs and 4GB memory available.
+
+Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
+
+#### Log Analyzers
+
+At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
+
+#### Other Recommended Analyzers
+
+Analyzers that Replicated recommends considering are:
+
+- **Resource statuses:** Check the status of various resources, such as Deployments, StatefulSets, Jobs, and so on.
+- **Regular expressions:** Analyze arbitrary data.
+- **Databases:** Check the version and connection status.
 
 The following example shows an analyzer for a minimum version of Kubernetes that can be run on the cluster, and an analyzer to check the status of the nodes. You can customize the messages to help guide customers to fix the issue on their own.
 
@@ -128,15 +151,11 @@ spec:
               message: "All nodes are online."
 ```   
 
-<PreflightsDefineXref/>
-
-## Examples
+## Example Specifications
 
 ### Simplified Specification
 
-The following example shows a simplified specification with some edits to the default settings.
-
-<PreflightsDefineXref/>
+The following example shows a simplified specification with some edits to the default settings. If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
 
 ```yaml
   apiVersion: troubleshoot.sh/v1beta2
@@ -181,8 +200,6 @@ The following example shows a simplified specification with some edits to the de
 ### Full Specification
 
 The following example shows a full specification for KOTS. To get the most current full specification, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
-
-<PreflightsDefineXref/>
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -500,17 +517,3 @@ spec:
               when: "!= Healthy" # Catch all unhealthy pods. A pod is considered healthy if it has a status of Completed, or Running and all of its containers are ready.
               message: A Contour pod, {{ .Name }}, is unhealthy with a status of {{ .Status.Reason }}. Restarting the pod may fix the issue.
 ```
-
-## Next Steps
-
-To test this feature in a promoted release:
-
-1. Install the release in your development environment, and then generate a support bundle using one of the following options:
-
-    - Generate the support bundle from the CLI. See [Generating Support Bundles](support-bundle-generating).
-    - Generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
-
-      - If you have the Support Bundle Upload Enabled license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Creating a Customer](releases-creating-customer).
-      - Download the `support-bundle.tar.gz` file.
-      
-1. You can use the vendor portal to run an analysis and inspect the support bundle. See [Inspecting Support Bundles](support-inspecting-support-bundles).
