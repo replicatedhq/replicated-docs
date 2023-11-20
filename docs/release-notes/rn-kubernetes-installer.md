@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.20-0
+
+Released on November 20, 2023
+
+### New Features {#new-features-v2023-11-20-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.8.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.8.4.
+* Adds support for RHEL and Oracle Linux 8.9.
+
+### Bug Fixes {#bug-fixes-v2023-11-20-0}
+* Improve error reporting capabilities during weave to flannel migration.
+
 ## v2023.11.16-0
 
 Released on November 16, 2023
