@@ -149,8 +149,8 @@
   to="https://docs.replicated.com/vendor/helm-native-about"      
 
 [[redirects]]
-  from:"https://docs.replicated.com/vendor/helm-native-helm-install-order" 
-  to:"https://docs.replicated.com/vendor/orchestrating-resource-deployment"        
+  from="https://docs.replicated.com/vendor/helm-native-helm-install-order" 
+  to="https://docs.replicated.com/vendor/orchestrating-resource-deployment"        
 
 ###################################################
 # Redirects To the Enterprise Section
