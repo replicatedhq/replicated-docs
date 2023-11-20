@@ -148,7 +148,7 @@
   from="https://docs.replicated.com/vendor/helm-kots-using-sdk"
   to="https://docs.replicated.com/vendor/helm-native-about"      
 
-
+[[redirects]]
   from:"https://docs.replicated.com/vendor/helm-native-helm-install-order" 
   to:"https://docs.replicated.com/vendor/orchestrating-resource-deployment"        
 
