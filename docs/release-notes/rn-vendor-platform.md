@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.20-2
+
+Released on November 20, 2023
+
+### New Features {#new-features-v2023-11-20-2}
+* Hide inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
+
 ## v2023.11.15-0
 
 Released on November 15, 2023
