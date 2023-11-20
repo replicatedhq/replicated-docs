@@ -5,6 +5,13 @@ We'll use a PostgreSQL database as an example, configuring an example app to con
 
 This tutorial explores advanced topics like workload coordination, credential management, and refactoring your application's user-facing configuration in the Replicated admin console. We'll also review best practices for integrating persistent stores like databases, queues, and caches.
 
+It is split into 5 sections:	
+
+- [The Example Application](#the-example-application)	
+- [User-Facing Configuration](#user-facing-configuration)	
+- [Embedding a Database](#embedding-a-database)	
+- [Connecting to an External Database](#connecting-to-an-external-database)
+
 ### Prerequisites
 
 This guide assumes you have:
