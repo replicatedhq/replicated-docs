@@ -6,7 +6,7 @@ Add a Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to you
 
 You must add annotations for each volume that you want to back up. For more information about configuring backups, see [Configuring Backups](/vendor/snapshots-configuring-backups).
 
-The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Include Optional and Conditional Resources](/vendor/packaging-include-resources).
+The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
 
 Full backups are recommended because they give the flexibility of restoring full data, the application only, or the Replicated admin console only. For an example of a full backup and a list of the supported fields, see [Example](#example) and [Fields](#fields).
 
