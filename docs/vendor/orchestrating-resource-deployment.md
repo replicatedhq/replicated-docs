@@ -8,11 +8,9 @@ This topic describes how to orchestrate the deployment order of resources deploy
 
 ## Overview
 
-Many applications require that certain resources are deployed and in a Ready state before other resources can be deployed. 
+Many applications require that certain resources are deployed and in a ready state before other resources can be deployed. For applications deployed with KOTS, you can manage the order in which resources are deployed using the following methods:
 
-You can manage the order in which resources are deployed using the following methods:
-
-* For Helm charts and subcharts, use the `weight` property in the corresponding HelmChart custom resource. See [Helm Chart Deployment Order with `weight`](#weight).
+* For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. See [Helm Chart Deployment Order with `weight`](#weight).
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
@@ -56,7 +54,7 @@ For more information about using Helm dependencies, see [Chart Dependencies](htt
 
 Helm hooks enable more control over when Helm installs the resources in your Helm charts. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources.
 
-KOTS supports using some Helm hooks with Helm charts. If you use hooks in your Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that Replicated KOTS directs Helm to install chart B before chart A.
+KOTS supports using some Helm hooks with Helm charts. If you use hooks in your Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that KOTS directs Helm to install chart B before chart A.
 
 The following hooks are supported:
   * `pre-install`: Executes after resources are rendered but before any resources are installed.
@@ -65,8 +63,6 @@ The following hooks are supported:
   * `post-upgrade`: Executes after resources are upgraded.
   * `pre-delete`: Executes before any resources are deleted.
   * `post-delete`: Executes after resources are deleted.
-
-<HooksLimitation/>
 
 For more information about Helm hooks and weights, see the [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
 
@@ -80,10 +76,8 @@ The `weight` field in the HelmChart custom resource has the following limitation
 
 * <HookWeightsLimitation/>
 
-* When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
-
-  The `weight` property does not allow Helm charts to be deployed before standard manifests. For any resources that must be deployed before any Helm charts, Replicated recommends that you define those resources as standard manifests.
-
+* When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. The `weight` property does not allow Helm charts to be deployed before standard manifests.
+  
 ## Standard Manifest Deployment Order with KOTS Annotations {#manifests}
 
 You can use the KOTS annotations descirbed in this section to control the order in which standard manifests are deployed.
@@ -161,11 +155,9 @@ spec:
 
 ### `kots.io/wait-for-properties`
 
-When the `kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'` annotation is present on a resource, KOTS waits for one or more specified resource properties to match the desired values before deploying other resources. The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property.
+When the `kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'` annotation is present on a resource, KOTS waits for one or more specified resource properties to match the desired values before deploying other resources. This annotation is useful when the `kots.io/wait-for-ready` annotation, which waits for a resource to exist, is not sufficient.
 
-This annotation is useful when waiting for a custom resource to exist (as with `kots.io/wait-for-ready`) is not sufficient.
-
-In the following example, KOTS waits for a custom resource to reach a desired state before deploying other resources. In this case, KOTS waits until each of the three status properties have the target values:
+The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property. In the following example, KOTS waits for a resource to reach a desired state before deploying other resources. In this case, KOTS waits until each of the three status properties have the target values:
 
 ```yaml
 kind: MyResource
