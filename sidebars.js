@@ -576,7 +576,8 @@ const sidebars = {
           type: 'category',
           label: 'Support Bundles',
           items: [
-            'vendor/support-bundle-kots-customizing',
+            'vendor/support-bundle-default',
+            'vendor/support-bundle-customizing',
             'vendor/support-online-support-bundle-specs',
             'vendor/support-modular-support-bundle-specs',
             'vendor/support-bundle-generating',
