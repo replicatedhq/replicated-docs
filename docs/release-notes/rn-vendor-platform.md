@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.22-1
+
+Released on November 22, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-22-1}
+* Fixes an issue where the CMX kURL version displayed in the create cluster command is incorrect.
+
 ## v2023.11.15-0
 
 Released on November 15, 2023
