@@ -1,4 +1,6 @@
 import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
+import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
+import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 
 # Orchestrating Resource Deployment
 
@@ -12,15 +14,17 @@ Many applications require that certain resources are deployed and in a ready sta
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
-## Helm Chart Deployment Order with `weight` {#weight}
+## Helm Chart Deployment Order
+
+This section describes the supported methods for controlling the deployment order of Helm charts in your release.
+
+### HelmChart `weight` {#weight}
 
 You can configure the [`weight`](/reference/custom-resource-helmchart-v2#weight) property of the Replicated HelmChart custom resource to define the order in which the Helm charts in your release are installed.
 
 KOTS directs Helm to install the Helm charts based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. Any dependencies are installed along with the parent chart. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`. 
 
 The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a Helm chart, the `weight` is `0`.
-
-Assigning a `weight` helps you avoid relying on Helm dependencies and subcharts to define a chart installation order with KOTS. For example, when you include hooks in your Helm charts, Helm waits for certain hooks to complete before continuing.
 
 For example:
 
@@ -38,13 +42,33 @@ spec:
   weight: 4
 ```
 
-### Limitations
+#### Limitations
 
 The `weight` field in the HelmChart custom resource has the following limitations:
 
 * <WeightLimitation/>
 
 * When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. The `weight` property does not allow Helm charts to be deployed before standard manifests.
+
+### Support for Helm Hooks
+
+Helm hooks control when Helm installs the resources in your Helm charts. Hooks are useful for bundling actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources. For more information about Helm hooks and weights, see the [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
+
+KOTS supports the following hooks:
+* `pre-install`: Executes after resources are rendered but before any resources are installed.
+* `post-install`: Executes after resources are installed.
+* `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
+* `post-upgrade`: Executes after resources are upgraded.
+* `pre-delete`: Executes before any resources are deleted.
+* `post-delete`: Executes after resources are deleted.
+
+#### Limitations
+
+The following limitations apply to using hooks with Helm charts deployed by KOTS:
+
+* <HooksLimitation/>
+
+* <HookWeightsLimitation/>
   
 ## Standard Manifest Deployment Order with KOTS Annotations {#manifests}
 
