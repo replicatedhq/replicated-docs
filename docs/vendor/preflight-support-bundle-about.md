@@ -7,8 +7,7 @@ bundles, which can be used to troubleshoot your application release before and a
 
 Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to help users troubleshoot issues.
 
-* **Preflight checks**: Preflight checks let you define requirements and dependencies for the cluster
-where your application is installed. Preflight checks provide clear
+* **Preflight checks**: Preflight checks let you define requirements and dependencies for the cluster where your application is installed. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 

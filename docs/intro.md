@@ -134,19 +134,19 @@ pagination_next: null
         <p>APIs, CLIs, and SDK</p>
     </li>
     <li>
-      <a href="vendor/replicated-sdk-overview">Replicated SDK</a>
+      <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>
     </li>
     <li>
-      <a href="reference/replicated-sdk-apis">Replicated SDK API</a>
+      <a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
     </li>
     <li>
-      <a href="reference/replicated-cli-installing">replicated CLI</a>
+      <a href="/reference/replicated-cli-installing">replicated CLI</a>
     </li>
     <li>
-      <a href="reference/vendor-api-using">Vendor API v3</a>
+      <a href="/reference/vendor-api-using">Vendor API v3</a>
     </li>
     <li>
-      <a href="reference/kots-cli-getting-started">kots CLI</a>
+      <a href="/reference/kots-cli-getting-started">kots CLI</a>
     </li>
   </ul>
   <ul class="tile">
