@@ -6,6 +6,8 @@ This topic describes how to include or exclude optional application resources ba
 
 Software vendors often need a way to conditionally deploy resources for an application depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources.
 
+There are different options for creating conditional statements to include or exclude resources based on the application type (Helm chart- or standard manifest-based) and the installation method (Replicated KOTS or Helm CLI).
+
 ### About Replicated Template Functions
 
 For applications deployed with KOTS, Replicated template functions are available for creating the conditional statements that control which optional resources are deployed for a given user. Replicated template functions can be used in standard manifest files such as Replicated custom resources or Kubernetes resources like StatefulSets, Secrets, and Services.

@@ -1,6 +1,4 @@
-import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
-import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 
 # Orchestrating Resource Deployment
 
