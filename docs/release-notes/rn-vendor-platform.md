@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.27-1
+
+Released on November 27, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-27-1}
+* Fix bug with automatic air gap builds in channel settings modal, where it would still show false if automatic air gap builds were enabled.
+
 ## v2023.11.23-0
 
 Released on November 23, 2023
