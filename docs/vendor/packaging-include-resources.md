@@ -4,11 +4,11 @@ This topic describes how to include or exclude optional application resources ba
 
 ## Overview
 
-Software vendors often need a way to conditionally deploy resources for an application depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
+Software vendors often need a way to conditionally deploy resources for an application depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources.
 
 ### About Replicated Template Functions
 
-For application deployed with KOTS, Replicated template functions are available for creating the conditional statements that control which optional resources are deployed for a given user. Replicated template functions can be used in standard manifest files such as Replicated custom resources or Kubernetes resources like StatefulSets, Secrets, and Services.
+For applications deployed with KOTS, Replicated template functions are available for creating the conditional statements that control which optional resources are deployed for a given user. Replicated template functions can be used in standard manifest files such as Replicated custom resources or Kubernetes resources like StatefulSets, Secrets, and Services.
 
 For example, the Replicated ConfigOptionEquals template functions returns true if the specified configuration option value is equal to a supplied value. This is useful for creating conditional statements that include or exclude a resource based on a user's application configuration choices.
 
@@ -69,7 +69,7 @@ The `kots.io/exclude` and `kots.io/when` annotations have the following requirem
 
 * Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
 
-* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations must be strings. For more information about working with Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
+* The `kots.io/exclude` and `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations must be strings. For more information about working with Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
 
 ### `kots.io/exclude`
 
@@ -108,7 +108,7 @@ spec:
 
 When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
 
-The following example uses the `kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled:
+The following example uses the `kots.io/when` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is disabled:
 
 ```yaml
 apiVersion: apps/v1
