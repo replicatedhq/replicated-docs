@@ -196,13 +196,10 @@ pagination_next: null
         <p>Define and verify installation environment requirements.</p>
     </li>
     <li>
-      <a href="vendor/preflight-helm-defining">Define preflights for Helm charts</a>
+      <a href="vendor/preflight-defining">Define preflight checks</a>
     </li>
     <li>
-      <a href="vendor/preflight-kots-defining">Define preflights for KOTS installations</a>
-    </li>
-    <li>
-      <a href="vendor/preflight-running">Run preflight checks for Helm installations</a>
+      <a href="vendor/preflight-running">Run preflight checks for Helm CLI installations</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight checks lab in Instruqt</a>

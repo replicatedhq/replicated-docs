@@ -152,6 +152,14 @@
   from="https://docs.replicated.com/vendor/helm-native-helm-install-order" 
   to="https://docs.replicated.com/vendor/orchestrating-resource-deployment"        
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/preflight-kots-defining"
+  to="https://docs.replicated.com/vendor/preflight-defining" 
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/preflight-helm-defining"
+  to="https://docs.replicated.com/vendor/preflight-defining"                     
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

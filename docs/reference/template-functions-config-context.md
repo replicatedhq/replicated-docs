@@ -114,15 +114,15 @@ spec:
       configMap:
         name: demo-configmap
         items:
-        - key: repl{{ ConfigOptionFilename pom_file }}
-          path: data_key_one
+        - key: data_key_one
+          path: repl{{ ConfigOptionFilename pom_file }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-configmap
 data:
-  data_key_one: repl{{ ConfigOption pom_file }}
+  data_key_one: repl{{ ConfigOptionData pom_file }}
 ```
 
 ## ConfigOptionEquals

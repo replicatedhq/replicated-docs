@@ -102,7 +102,7 @@ Note the following requirements and guidelines for Kubernetes installers:
 
 - (Introduced in kURL v2021.09.24-0) After you configure a Kubernetes installer, Replicated recommends that you customize host preflight checks to support the installation experience with kURL. Host preflight checks help ensure successful installation and the ongoing health of the cluster. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
 
-- (Introduced in Replicated KOTS v1.74.0) For Installers included in a release, Replicated recommends that you define a preflight check in the release to ensure that the target Kubernetes installer is deployed before the release is installed. For more information about how to define preflight checks, see [Define KOTS Preflight Checks](preflight-kots-defining).
+- (Introduced in Replicated KOTS v1.74.0) For Installers included in a release, Replicated recommends that you define a preflight check in the release to ensure that the target Kubernetes installer is deployed before the release is installed. For more information about how to define preflight checks, see [Defining Preflight Checks](preflight-defining).
    
    For example, the following preflight check uses the `yamlCompare` analyzer with the `kots.io/installer: "true"` annotation to compare the target Kubernetes installer that is included in the release against the Kubernetes installer that is currently deployed in the customer's environment. For more information about the `yamlCompare` analyzer, see [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) in the open source Troubleshoot documentation.
 
