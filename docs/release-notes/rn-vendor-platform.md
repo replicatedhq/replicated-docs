@@ -15,6 +15,13 @@ Released on November 22, 2023
 ### Bug Fixes {#bug-fixes-v2023-11-22-1}
 * Fixes an issue where the compatibility matrix kURL version displayed in the `create cluster` command was incorrect.
 
+## v2023.11.20-2
+
+Released on November 20, 2023
+
+### Improvements {#improvements-v2023-11-20-2}
+* Hide inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
+
 ## v2023.11.17-2
 
 Released on November 17, 2023
