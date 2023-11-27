@@ -22,6 +22,13 @@ Released on November 20, 2023
 ### Improvements {#improvements-v2023-11-20-2}
 * Hide inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
 
+## v2023.11.17-2
+
+Released on November 17, 2023
+
+### Improvements {#improvements-v2023-11-17-2}
+* Hide the 'NEW' badge on the Instances CSV download after it has been clicked.
+
 ## v2023.11.15-0
 
 Released on November 15, 2023
