@@ -16,6 +16,12 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2023.11.27-1a9186a-nightly
+
+Released on November 27, 2023
+
+Support for Kubernetes: 1.26, 1.27, and 1.28
+
 ## 1.104.2
 
 Released on November 17, 2023
