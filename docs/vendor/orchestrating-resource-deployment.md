@@ -10,7 +10,7 @@ This topic describes how to orchestrate the deployment order of resources deploy
 
 Many applications require that certain resources are deployed and in a ready state before other resources can be deployed. For applications deployed with KOTS, you can manage the order in which resources are deployed using the following methods:
 
-* For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. See [Helm Chart Deployment Order with `weight`](#weight).
+* For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. KOTS also supports some Helm hooks. See [HelmChart `weight`](#weight) or [Support for Helm Hooks](#hooks).
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
@@ -50,7 +50,7 @@ The `weight` field in the HelmChart custom resource has the following limitation
 
 * When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. The `weight` property does not allow Helm charts to be deployed before standard manifests.
 
-### Support for Helm Hooks
+### Support for Helm Hooks {#hooks}
 
 Helm hooks control when Helm installs the resources in your Helm charts. Hooks are useful for bundling actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources. For more information about Helm hooks and weights, see the [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
 
