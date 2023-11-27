@@ -13,7 +13,7 @@ pagination_prev: null
 Released on November 23, 2023
 
 ### New Features {#new-features-v2023-11-23-0}
-* Allowing multinode kurl clusters up to 10 nodes.
+* Supports multi-node kURL clusters up to 10 nodes.
 
 ## v2023.11.22-1
 
