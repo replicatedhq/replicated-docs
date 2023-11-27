@@ -25,10 +25,10 @@ pagination_next: null
       <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting started lab in Instruqt</a>
     </li>
     <li>
-      <a href="/vendor/distributing-overview">About distributing Helm charts with Replicated</a>
+      <a href="/vendor/distributing-overview">About distributing applications with Replicated</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">KOTS tutorials</a>
+      <a href="/vendor/tutorial-kots-helm-setup">Tutorials</a>
     </li>
   </ul>
   <ul class="tile">
@@ -105,7 +105,7 @@ pagination_next: null
         <p>Distribute your Helm chart application with Replicated.</p>
     </li>
     <li>
-      <a href="/vendor/distributing-overview#helm">About Helm installations</a>
+      <a href="/vendor/distributing-overview#helm">About Helm CLI installations</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Use the Replicated SDK</a>
@@ -117,7 +117,7 @@ pagination_next: null
       <a href="/vendor/helm-image-registry">Use the proxy service for private images</a>
     </li>
     <li>
-      <a href="/vendor/install-with-helm">Install with Helm</a>
+      <a href="/vendor/install-with-helm">Get Helm CLI installation instructions</a>
     </li>
     <li>
       <a href="/vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>
