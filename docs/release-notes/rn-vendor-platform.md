@@ -15,6 +15,13 @@ Released on November 22, 2023
 ### Bug Fixes {#bug-fixes-v2023-11-22-1}
 * Fixes an issue where the compatibility matrix kURL version displayed in the `create cluster` command was incorrect.
 
+## v2023.11.17-2
+
+Released on November 17, 2023
+
+### Improvements {#improvements-v2023-11-17-2}
+* Hide the 'NEW' badge on the Instances CSV download after it has been clicked.
+
 ## v2023.11.15-0
 
 Released on November 15, 2023
