@@ -92,9 +92,9 @@ spec:
 
 ### `kots.io/when`
 
-When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
+When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to true, the resource is included in the deployment.
 
-The following example uses the `kots.io/when` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is disabled:
+The following example uses the `kots.io/when` annotation and the ConfigOptionEquals template function to include the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled:
 
 ```yaml
 apiVersion: apps/v1
