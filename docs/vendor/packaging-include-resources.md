@@ -18,25 +18,11 @@ For more information about the available Replicated template functions, see [Abo
 
 This section describes methods for including or excluding Helm charts from your application deployment.
 
-### Optional Dependencies 
+### Helm Optional Dependencies 
 
-For Helm chart-based applications installed with the Helm CLI or with Replicated KOTS, you can add a `condition` field to dependencies in your `Chart.yaml` to include subcharts based on one or more boolean values evaluating to true.
+Helm supports adding a `condition` field to dependencies in the Helm chart `Chart.yaml` file to include subcharts based on one or more boolean values evaluating to true.
 
-The `condition` field can be set to one or more YAML paths delimited by commas. If the path exists in the `values.yaml` file for the parent Helm chart and resolves to a boolean value, then the subchart is included or excluded based on that boolean value.
-
-For example, the `Chart.yaml` below lists `mysubchart` as a dependency. `mysubchart` is deployed only when the `mysubchart.enabled` value from the Helm chart `values.yaml` file is true: 
-
-```yaml
-# parentchart/Chart.yaml
-
-dependencies:
-  - name: mysubchart
-    repository: http://localhost:10191
-    version: 0.1.0
-    condition: mysubchart.enabled
-```
-
-For more information about working with dependencies and defining conditional dependencies for Helm charts, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
+For more information about working with dependencies and defining optional dependencies for Helm charts, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
 
 ### HelmChart `exclude` Field
 
