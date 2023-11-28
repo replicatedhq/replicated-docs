@@ -8,6 +8,16 @@ import K8sVersionSecret from "../partials/support-bundles/_k8s-version-secret.md
 import K8sVersionCr from "../partials/support-bundles/_k8s-version-cr.mdx"
 import DeployStatusSecret from "../partials/support-bundles/_deploy-status-secret.mdx"
 import DeployStatusCr from "../partials/support-bundles/_deploy-status-cr.mdx"
+import NodeResourcesSecret from "../partials/support-bundles/_node-resources-secret.mdx"
+import NodeResourcesCr from "../partials/support-bundles/_node-resources-cr.mdx"
+import LogsSelectorsSecret from "../partials/support-bundles/_logs-selectors-secret.mdx"
+import LogsSelectorsCr from "../partials/support-bundles/_logs-selectors-cr.mdx"
+import LogsLimitsSecret from "../partials/support-bundles/_logs-limits-secret.mdx"
+import LogsLimitsCr from "../partials/support-bundles/_logs-limits-cr.mdx"
+import RedisMysqlSecret from "../partials/support-bundles/_redis-mysql-secret.mdx"
+import RedisMysqlCr from "../partials/support-bundles/_redis-mysql-cr.mdx"
+import RunPodsSecret from "../partials/support-bundles/_run-pods-secret.mdx"
+import RunPodsCr from "../partials/support-bundles/_run-pods-cr.mdx"
 
 # Adding and Customizing Support Bundles
 
@@ -268,60 +278,14 @@ The examples below use the `nodeResources` analyzer to check that the minimum re
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:      
-        - clusterInfo: {}
-        - clusterResources: {}
-      analyzers:
-        - nodeResources:
-            checkName: One node must have 2 GB RAM and 1 CPU Cores
-            filters:
-              allocatableMemory: 2Gi
-              cpuCapacity: "1"
-            outcomes:
-              - fail:
-                  when: count() < 1
-                  message: Cannot find a node with sufficient memory and cpu
-              - pass:
-                  message: Sufficient CPU and memory is available
-        - nodeResources:
-            checkName: Must have at least 3 nodes in the cluster
-            outcomes:
-              - fail:
-                  when: "count() < 3"
-                  message: This application requires at least 3 nodes
-              - warn:
-                  when: "count() < 5"
-                  message: This application recommends at last 5 nodes.
-              - pass:
-                  message: This cluster has enough nodes.
-        - nodeResources:
-            checkName: Each node must have at least 40 GB of ephemeral storage
-            outcomes:
-              - fail:
-                  when: "min(ephemeralStorageCapacity) < 40Gi"
-                  message: Noees in this cluster do not have at least 40 GB of ephemeral storage.
-                  uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-              - warn:
-                  when: "min(ephemeralStorageCapacity) < 100Gi"
-                  message: Nodes in this cluster are recommended to have at least 100 GB of ephemeral storage.
-                  uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-              - pass:
-                  message: The nodes in this cluster have enough ephemeral storage.          
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeResourcesSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <NodeResourcesCr/>
+  </TabItem>
+</Tabs> 
 
 ### Collect Logs Using Multiple Selectors
 
@@ -331,137 +295,27 @@ Typically the `selector` attribute is matched to the labels. To get the labels f
 
 Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector as many times as needed.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:      
-        - clusterInfo: {}
-        - clusterResources: {}
-        - logs:
-            namespace: {{ .Release.Namespace }}
-            selector:
-              - app=slackernews-nginx
-        - logs:
-            namespace: {{ .Release.Namespace }}
-            selector:
-              - app=slackernews-api
-        - logs:
-            namespace: {{ .Release.Namespace }}
-            selector:
-              - app=slackernews-frontend
-        - logs:
-            selector:
-              - app=postgres
-      analyzers:      
-        - textAnalyze:
-            checkName: Axios Errors
-            fileName: slackernews-frontend-*/slackernews.log
-            regex: "error - AxiosError"
-            outcomes:
-              - pass:
-                  when: "false"
-                  message: "Axios errors not found in logs"
-              - fail:
-                  when: "true"
-                  message: "Axios errors found in logs"
-```
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:      
-    - clusterInfo: {}
-    - clusterResources: {}
-    - logs:
-        namespace: example-namespace
-        selector:
-          - app=slackernews-nginx
-    - logs:
-        namespace: example-namespace
-        selector:
-          - app=slackernews-api
-    - logs:
-        namespace: example-namespace
-        selector:
-          - app=slackernews-frontend
-    - logs:
-        selector:
-          - app=postgres
-  analyzers:      
-    - textAnalyze:
-        checkName: Axios Errors
-        fileName: slackernews-frontend-*/slackernews.log
-        regex: "error - AxiosError"
-        outcomes:
-          - pass:
-              when: "false"
-              message: "Axios errors not found in logs"
-          - fail:
-              when: "true"
-              message: "Axios errors found in logs"
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <LogsSelectorsSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <LogsSelectorsCr/>
+  </TabItem>
+</Tabs> 
 
 ### Collect Logs Using `limits`
 
 The examples below use the `logs` collector to collect Pod logs from the Pod where the application is running. These specifications use the `limits` field to set a `maxAge` and `maxLines` to limit the output provided. 
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:
-        - clusterInfo: {}
-        - clusterResources: {}
-        - logs:
-            selector:
-              - app.kubernetes.io/name=myapp
-            namespace: {{ .Release.Namespace }}
-            limits:
-              maxAge: 720h
-              maxLines: 10000
-```
-
-```yaml
-apiVersion: troubleshoot.replicated.com/v1beta1
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:
-    - clusterInfo: {}
-    - clusterResources: {}
-    - logs:
-        selector:
-          - app.kubernetes.io/name=myapp
-        namespace: '{{repl Namespace }}'
-        limits:
-          maxAge: 720h
-          maxLines: 10000
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <LogsLimitsSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <LogsLimitsCr/>
+  </TabItem>
+</Tabs> 
 
 ### Collect Redis and MySQL Server Information
 
@@ -469,59 +323,14 @@ The following examples use the `mysql` and `redis` collectors to collect informa
 
 For more information, see [MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Redis](https://troubleshoot.sh/docs/collect/redis/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:
-        - mysql:
-            collectorName: mysql
-            uri: 'root:my-secret-pw@tcp(localhost:3306)/mysql'
-            parameters:
-              - character_set_server
-              - collation_server
-              - init_connect
-              - innodb_file_format
-              - innodb_large_prefix
-              - innodb_strict_mode
-              - log_bin_trust_function_creators
-        - redis:
-            collectorName: my-redis
-            uri: rediss://default:replicated@server:6380
-```
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:
-    - mysql:
-        collectorName: mysql
-        uri: 'root:my-secret-pw@tcp(localhost:3306)/mysql'
-        parameters:
-          - character_set_server
-          - collation_server
-          - init_connect
-          - innodb_file_format
-          - innodb_large_prefix
-          - innodb_strict_mode
-          - log_bin_trust_function_creators
-    - redis:
-        collectorName: my-redis
-        uri: rediss://default:replicated@server:6380
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <RedisMysqlSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <RedisMysqlCr/>
+  </TabItem>
+</Tabs>
 
 ### Run and Analyze a Pod
 
@@ -529,62 +338,11 @@ The examples below use the `textAnalyze` analyzer to check that a command succes
 
 For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-pod/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:
-        - runPod:
-            collectorName: "static-hi"
-            podSpec:
-              containers:
-              - name: static-hi
-                image: alpine:3
-                command: ["echo", "hi static!"]
-      analyzers:
-        - textAnalyze:
-            checkName: Said hi!
-            fileName: /static-hi.log
-            regex: 'hi static'
-            outcomes:
-              - fail:
-                  message: Didn't say hi.
-              - pass:
-                  message: Said hi!            
-```
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:
-    - runPod:
-        collectorName: "static-hi"
-        podSpec:
-          containers:
-          - name: static-hi
-            image: alpine:3
-            command: ["echo", "hi static!"]
-  analyzers:
-    - textAnalyze:
-        checkName: Said hi!
-        fileName: /static-hi.log
-        regex: 'hi static'
-        outcomes:
-          - fail:
-              message: Didn't say hi.
-          - pass:
-              message: Said hi!            
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <RunPodsSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <RunPodsCr/>
+  </TabItem>
+</Tabs>

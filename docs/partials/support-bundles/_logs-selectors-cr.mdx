@@ -1,0 +1,37 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors:      
+    - clusterInfo: {}
+    - clusterResources: {}
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-nginx
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-api
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-frontend
+    - logs:
+        selector:
+          - app=postgres
+  analyzers:      
+    - textAnalyze:
+        checkName: Axios Errors
+        fileName: slackernews-frontend-*/slackernews.log
+        regex: "error - AxiosError"
+        outcomes:
+          - pass:
+              when: "false"
+              message: "Axios errors not found in logs"
+          - fail:
+              when: "true"
+              message: "Axios errors found in logs"
+```
