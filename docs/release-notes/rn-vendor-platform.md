@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.28-1
+
+Released on November 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-28-1}
+* Align Helm icon with helm chart in release editor.
+
 ## v2023.11.27-1
 
 Released on November 27, 2023
