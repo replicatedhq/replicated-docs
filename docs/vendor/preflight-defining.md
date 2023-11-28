@@ -23,7 +23,9 @@ import TabItem from '@theme/TabItem';
 
 # Defining Preflight Checks
 
-This topic describes how to define preflight checks in Helm chart- and standard Kubernetes manifest-based applications. The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
+This topic describes how to define preflight checks in Helm chart- and standard Kubernetes manifest-based applications. For more information about preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+
+The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
 
 ## Step 1: Create the Manifest File
 
@@ -52,7 +54,7 @@ Use the following table to determine which type of manifest file to use for defi
   </tr>
 </table>  
 
-### Create a Secret {#secret}
+### Kubernetes Secret {#secret}
 
 You can define preflight check specifications in a Kubernetes Secret for the following installation types:
 * Installations with the Helm CLI
@@ -83,7 +85,7 @@ As shown above, the Secret must include the following:
 * The label `troubleshoot.sh/kind: preflight`
 * A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
-### (KOTS Only) Create a Preflight Custom Resource {#preflight-cr}
+### (KOTS Only) Preflight Custom Resource {#preflight-cr}
 
 You can define preflight check specifications in a Preflight custom resource for the following installation types:
 * Standard manifest-based applications installed with KOTS

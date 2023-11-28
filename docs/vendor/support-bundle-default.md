@@ -1,4 +1,4 @@
-# Adding the Default Support Bundle Specification
+# Creating a Support Bundle Specification
 
 This topic describes how to add the default support bundle specification to a release for your application. The information in this topic applies to Helm chart- and standard manifest-based application installed with the Helm CLI or with Replicated KOTS.
 
@@ -189,12 +189,24 @@ The following example shows a simplified specification with some edits to the de
           - default
           - my-app-namespace
       - logs:
-            selector:
-              - app=api
-            namespace: my-app-namespace
-            limits:
-              maxLines: 10000
-      analyzers:
+          selector:
+            - app=api
+          namespace: my-app-namespace
+          limits:
+            maxLines: 10000
+      - http:
+          name: healthz
+          get:
+            url: http://api:3000/healthz
+      - exec:
+        name: mysql-version
+        selector:
+          - app=mysql
+        namespace: default
+        command: ["mysql"]
+        args: ["-V"]
+        timeout: 5s   
+    analyzers:
       - clusterVersion:
           outcomes:
             - fail:
