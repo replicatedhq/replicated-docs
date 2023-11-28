@@ -1,9 +1,13 @@
-import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-add-logs.mdx"
-import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
-import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
-import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
-import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
-import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import HttpSecret from "../partials/support-bundles/_http-requests-secret.mdx"
+import HttpCr from "../partials/support-bundles/_http-requests-cr.mdx"
+import NodeStatusSecret from "../partials/support-bundles/_node-status-secret.mdx"
+import NodeStatusCr from "../partials/support-bundles/_node-status-cr.mdx"
+import K8sVersionSecret from "../partials/support-bundles/_k8s-version-secret.mdx"
+import K8sVersionCr from "../partials/support-bundles/_k8s-version-cr.mdx"
+import DeployStatusSecret from "../partials/support-bundles/_deploy-status-secret.mdx"
+import DeployStatusCr from "../partials/support-bundles/_deploy-status-cr.mdx"
 
 # Adding and Customizing Support Bundles
 
@@ -16,7 +20,6 @@ The information in this topic applies to Helm chart- and standard manifest-based
 This section describes how to create a blank support bundle specification that includes the following default collectors:
 * [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
 * [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
-
 
 You can add a support bundle specification to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
 
@@ -207,69 +210,27 @@ The examples below use the `http` collector and the `textAnalyze` analyzer to ch
 
 For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:      
-        - clusterInfo: {}
-        - clusterResources: {}
-        - http:
-            collectorName: slack
-            get:
-              url: https://api.slack.com/methods/api.test
-      analyzers:      
-        - textAnalyze:
-            checkName: Slack Accessible
-            fileName: slack.json
-            regex: '"status": 200,'
-            outcomes:
-              - pass:
-                  when: "true"
-                  message: "Can access the Slack API"
-              - fail:
-                  when: "false"
-                  message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <HttpSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <HttpCr/>
+  </TabItem>
+</Tabs>
 
 ### Check Node Status
 
-```yaml
-  apiVersion: troubleshoot.sh/v1beta2
-  kind: SupportBundle
-  metadata:
-    name: example
-  spec:
-    collectors:
-      - clusterInfo:
-          exclude: false
-      - clusterResources:
-          namespaces:
-          - default
-          - my-app-namespace
-    analyzers:
-      - nodeResources:
-        checkName: Node status check
-        outcomes:
-          - fail:
-              when: "nodeCondition(Ready) == False"
-              message: "Not all nodes are online."
-          - warn:
-              when: "nodeCondition(Ready) == Unknown"
-              message: "Not all nodes are online."
-          - pass:
-              message: "All nodes are online."
-  ``` 
+For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeStatusSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <NodeStatusCr/>
+  </TabItem>
+</Tabs> 
 
 ### Check Kubernetes Version
 
@@ -277,72 +238,29 @@ The examples below use the `clusterVersion` analyzer to check the version of Kub
 
 For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:      
-        - clusterInfo: {}
-        - clusterResources: {}
-      analyzers:      
-        - clusterVersion:
-            outcomes:
-            - fail:
-                message: This application relies on kubernetes features only present in 1.16.0
-                  and later.
-                uri: https://kubernetes.io
-                when: < 1.16.0
-            - warn:
-                message: Your cluster is running a version of kubernetes that is out of support.
-                uri: https://kubernetes.io
-                when: < 1.24.0
-            - pass:
-                message: Your cluster meets the recommended and quired versions of Kubernetes.
-```
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <K8sVersionSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <K8sVersionCr/>
+  </TabItem>
+</Tabs> 
 
 ### Check API Deployment Status
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  labels:
-    troubleshoot.sh/kind: support-bundle
-stringData: 
-  support-bundle-spec: |-
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: example
-    spec:
-      collectors:      
-        - clusterInfo: {}
-        - clusterResources: {}
-      analyzers: 
-        - deploymentStatus:
-            name: api
-            namespace: default
-            outcomes:
-              - fail:
-                  when: "< 1"
-                  message: The API deployment does not have any ready replicas.
-              - warn:
-                  when: "= 1"
-                  message: The API deployment has only a single ready replica.
-              - pass:
-                  message: There are multiple replicas of the API deployment ready.
-```
+The examples below use the `deploymentStatus` analyzer to check the version of Kubernetes running in the cluster. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
+
+For more information, see [Deployment Status](https://troubleshoot.sh/docs/analyze/deployment-status/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <DeployStatusSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="SupportBundle Custom Resource">
+    <DeployStatusCr/>
+  </TabItem>
+</Tabs> 
 
 ### Check Node Resources
 
@@ -405,45 +323,13 @@ stringData:
                   message: The nodes in this cluster have enough ephemeral storage.          
 ```
 
-### Collect All Logs
-
-```yaml
-apiVersion: troubleshoot.replicated.com/v1beta1
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:
-    - clusterInfo: {}
-    - clusterResources: {}
-    - logs:
-        collectorName: all-logs
-        name: all-logs
-``` 
-
-### Collect Logs with Limits
-
-Typically the selector attribute is matched to the labels. To get the labels for an application, either inspect the YAML or run `kubectl get pods --show-labels`. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector as many times as needed. The `limits` field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`
-
-```yaml
-apiVersion: troubleshoot.replicated.com/v1beta1
-kind: SupportBundle
-metadata:
-  name: example
-spec:
-  collectors:
-    - clusterInfo: {}
-    - clusterResources: {}
-    - logs:
-        selector:
-          - app.kubernetes.io/name=myapp
-        namespace: '{{repl Namespace }}'
-        limits:
-          maxAge: 720h
-          maxLines: 10000
-```
-
 ### Collect Logs Using Multiple Selectors
+
+The examples below use the `logs` collector to collect logs from various Pods where application workloads are running.
+
+Typically the `selector` attribute is matched to the labels. To get the labels for an application, either inspect the YAML or run `kubectl get pods --show-labels`. After the labels are discovered, create collectors to include logs from these pods in a bundle.
+
+Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector as many times as needed.
 
 ```yaml
 apiVersion: v1
@@ -491,7 +377,128 @@ stringData:
                   message: "Axios errors found in logs"
 ```
 
-### Collect Information About MySQL and Redis Servers
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors:      
+    - clusterInfo: {}
+    - clusterResources: {}
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-nginx
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-api
+    - logs:
+        namespace: example-namespace
+        selector:
+          - app=slackernews-frontend
+    - logs:
+        selector:
+          - app=postgres
+  analyzers:      
+    - textAnalyze:
+        checkName: Axios Errors
+        fileName: slackernews-frontend-*/slackernews.log
+        regex: "error - AxiosError"
+        outcomes:
+          - pass:
+              when: "false"
+              message: "Axios errors not found in logs"
+          - fail:
+              when: "true"
+              message: "Axios errors found in logs"
+```
+
+### Collect Logs Using `limits`
+
+The examples below use the `logs` collector to collect Pod logs from the Pod where the application is running. These specifications use the `limits` field to set a `maxAge` and `maxLines` to limit the output provided. 
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example
+  labels:
+    troubleshoot.sh/kind: support-bundle
+stringData: 
+  support-bundle-spec: |-
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: example
+    spec:
+      collectors:
+        - clusterInfo: {}
+        - clusterResources: {}
+        - logs:
+            selector:
+              - app.kubernetes.io/name=myapp
+            namespace: {{ .Release.Namespace }}
+            limits:
+              maxAge: 720h
+              maxLines: 10000
+```
+
+```yaml
+apiVersion: troubleshoot.replicated.com/v1beta1
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors:
+    - clusterInfo: {}
+    - clusterResources: {}
+    - logs:
+        selector:
+          - app.kubernetes.io/name=myapp
+        namespace: '{{repl Namespace }}'
+        limits:
+          maxAge: 720h
+          maxLines: 10000
+```
+
+### Collect Redis and MySQL Server Information
+
+The following examples use the `mysql` and `redis` collectors to collect information about MySQL and Redis servers running in the cluster.
+
+For more information, see [MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Redis](https://troubleshoot.sh/docs/collect/redis/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example
+  labels:
+    troubleshoot.sh/kind: support-bundle
+stringData: 
+  support-bundle-spec: |-
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: example
+    spec:
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: 'root:my-secret-pw@tcp(localhost:3306)/mysql'
+            parameters:
+              - character_set_server
+              - collation_server
+              - init_connect
+              - innodb_file_format
+              - innodb_large_prefix
+              - innodb_strict_mode
+              - log_bin_trust_function_creators
+        - redis:
+            collectorName: my-redis
+            uri: rediss://default:replicated@server:6380
+```
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -518,9 +525,43 @@ spec:
 
 ### Run and Analyze a Pod
 
-The examples below use the `textAnalyze` analyzer to check that a command successfully runs in a Pod running in the cluster. The Pod specification is defined in the `runPod` collector.
+The examples below use the `textAnalyze` analyzer to check that a command successfully executes in a Pod running in the cluster. The Pod specification is defined in the `runPod` collector.
 
 For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-pod/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example
+  labels:
+    troubleshoot.sh/kind: support-bundle
+stringData: 
+  support-bundle-spec: |-
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: example
+    spec:
+      collectors:
+        - runPod:
+            collectorName: "static-hi"
+            podSpec:
+              containers:
+              - name: static-hi
+                image: alpine:3
+                command: ["echo", "hi static!"]
+      analyzers:
+        - textAnalyze:
+            checkName: Said hi!
+            fileName: /static-hi.log
+            regex: 'hi static'
+            outcomes:
+              - fail:
+                  message: Didn't say hi.
+              - pass:
+                  message: Said hi!            
+```
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
