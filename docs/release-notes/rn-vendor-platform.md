@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.29-0
+
+Released on November 29, 2023
+
+### New Features {#new-features-v2023-11-29-0}
+* Vendor portal app drop down now supports open in new tab upon right mouse click.
+
+### Bug Fixes {#bug-fixes-v2023-11-29-0}
+* Fixes an issue that could cause user to not be able to upload support bundles on the Instance Insights page.
+
 ## v2023.11.27-1
 
 Released on November 27, 2023
