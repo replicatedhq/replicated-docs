@@ -321,8 +321,7 @@ In the Helm chart `values.yaml` file, add a `pullSecrets` array that corresponds
 image:
   registry: docker.io
   repository: my-org/example-docker-hub-image
-  pullSecrets:
-  - name:
+  pullSecrets: []
 ```
 
 During installation, KOTS adds the `example-app-slug-kotsadm-dockerhub` secret to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access `image.pullSecrets` are updated to use `example-app-slug-kotsadm-dockerhub`:

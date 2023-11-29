@@ -12,7 +12,7 @@ For more information on rate limits, see [Understanding Docker Hub rate limiting
 
 ## Provide Docker Hub Credentials
 
-If the application that you are installing or upgrading has public Docker Hub images that are rate limited, then an error can occur when the rate limit is reached because Replicated KOTS attempts to use the Replicated proxy service to access the rate-limited image.
+If the application that you are installing or upgrading has public Docker Hub images that are rate limited, then an error occurs when the rate limit is reached.
 
 To avoid errors caused by reaching the Docker Hub rate limit, a Docker Hub username and password can be passed to the `kots docker ensure-secret` command. The Docker Hub username and password are used only to increase rate limits and do not need access to any private repositories on Docker Hub.
 
