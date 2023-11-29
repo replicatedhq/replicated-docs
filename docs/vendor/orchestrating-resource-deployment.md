@@ -114,7 +114,7 @@ metadata:
 ```
 ### `kots.io/wait-for-ready`
 
-When the `kots.io/wait-for-ready: '<bool>'` annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a Ready state before deploying any other resources. To determine if a resource is ready, KOTS uses any status informers that were created for the resource type. If there is no existing status informer for the given resource type, then KOTS waits until the resource exists and is queryable from the Kubernetes API server. For more information about status informers, see [Adding Resource Status Informers](/vendor/admin-console-display-app-status).
+When the `kots.io/wait-for-ready: '<bool>'` annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a ready state before deploying any other resources. For most resource types, KOTS has existing logic to determine if a resource is ready. If there is no existing logic for the given resource type, then KOTS waits until the resource exists and is queryable from the Kubernetes API server.
 
 In the following example, KOTS waits for the Postgres `StatefulSet` to be ready before continuing to deploy other resources:
 
