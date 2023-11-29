@@ -15,6 +15,13 @@ Released on November 29, 2023
 ### New Features {#new-features-v2023-11-29-2}
 * Add Custom Metrics timeseries graphing on the Instance Details page.
 
+## v2023.11.28-1
+
+Released on November 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-28-1}
+* Align Helm icon with helm chart in release editor.
+
 ## v2023.11.28-0
 
 Released on November 28, 2023
