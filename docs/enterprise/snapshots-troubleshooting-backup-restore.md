@@ -1,3 +1,5 @@
+import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
+
 # Troubleshooting Backup and Restore
 
 When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
@@ -115,33 +117,7 @@ For more information, see the [Restic backup — OOM-killed on raspberry pi afte
 
 #### Solution
 
-Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation. For example, the following kubectl commands will increase the memory limit for the node-agent (restic) daemon set from the default of 1Gi to 2Gi.
-
-**Velero  1.10 and later**:
-
-```
-kubectl -n velero patch daemonset node-agent -p '{"spec":{"template":{"spec":{"containers":[{"name":"node-agent","resources":{"limits":{"memory":"2Gi"}}}]}}}}'
-```
-
-**Velero versions earlier than 1.10**:
-
-```
-kubectl -n velero patch daemonset restic -p '{"spec":{"template":{"spec":{"containers":[{"name":"restic","resources":{"limits":{"memory":"2Gi"}}}]}}}}'
-```
-
-Alternatively, you can potentially avoid the node-agent (restic) Pod reaching the memory limit during snapshot creation by running the following kubectl command to lower the memory garbage collection target percentage on the node-agent (restic) daemon set:
-
-**Velero  1.10 and later**:
-
-```
-kubectl -n velero set env daemonset/node-agent GOGC=1
-```
-
-**Velero versions earlier than 1.10**:
-
-```
-kubectl -n velero set env daemonset/restic GOGC=1
-```
+<NodeAgentMemLimit/>
 
 ## Snapshot Restore is Failing
 
