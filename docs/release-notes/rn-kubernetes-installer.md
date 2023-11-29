@@ -20,6 +20,14 @@ Released on November 20, 2023
 ### Bug Fixes {#bug-fixes-v2023-11-20-0}
 * Improve error reporting capabilities during weave to flannel migration.
 
+## v2023.11.17-0
+
+Released on November 17, 2023
+
+### New Features {#new-features-v2023-11-17-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-11-15T20-43-25Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.57.1.
+
 ## v2023.11.16-0
 
 Released on November 16, 2023

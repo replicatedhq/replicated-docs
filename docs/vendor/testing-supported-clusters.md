@@ -166,7 +166,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports a single node.</td>
+    <td>Supports multiple nodes.</td>
   </tr>  
   <tr>
     <th>Limitations</th>

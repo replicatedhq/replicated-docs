@@ -8,6 +8,41 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.27-1
+
+Released on November 27, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-27-1}
+* Fixes a bug with automatic air gap builds in the Channel Settings modal, where it would show false even if automatic air gap builds were enabled.
+
+## v2023.11.23-0
+
+Released on November 23, 2023
+
+### New Features {#new-features-v2023-11-23-0}
+* Supports multi-node kURL clusters up to 10 nodes.
+
+## v2023.11.22-1
+
+Released on November 22, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-22-1}
+* Fixes an issue where the compatibility matrix kURL version displayed in the `create cluster` command was incorrect.
+
+## v2023.11.20-2
+
+Released on November 20, 2023
+
+### Improvements {#improvements-v2023-11-20-2}
+* Hide inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
+
+## v2023.11.17-2
+
+Released on November 17, 2023
+
+### Improvements {#improvements-v2023-11-17-2}
+* Hide the 'NEW' badge on the Instances CSV download after it has been clicked.
+
 ## v2023.11.15-0
 
 Released on November 15, 2023

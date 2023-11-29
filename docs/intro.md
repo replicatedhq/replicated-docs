@@ -19,16 +19,16 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="vendor/replicated-onboarding">Replicated quick start workflow</a>
+      <a href="/vendor/replicated-onboarding">Replicated quick start workflow</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting started lab in Instruqt</a>
     </li>
     <li>
-      <a href="vendor/distributing-overview">About distributing Helm charts with Replicated</a>
+      <a href="/vendor/distributing-overview">About distributing applications with Replicated</a>
     </li>
     <li>
-      <a href="vendor/tutorial-ui-setup">KOTS tutorials</a>
+      <a href="/vendor/tutorial-kots-helm-setup">Tutorials</a>
     </li>
   </ul>
   <ul class="tile">
@@ -40,25 +40,25 @@ pagination_next: null
         <p>Manage your team, releases, channels, customers, and more.</p>
     </li>
     <li>
-      <a href="vendor/vendor-portal-creating-account">Create an account</a>
+      <a href="/vendor/vendor-portal-creating-account">Create an account</a>
     </li>
     <li>
-      <a href="vendor/team-management#invite-members">Invite team members</a>
+      <a href="/vendor/team-management#invite-members">Invite team members</a>
     </li>
     <li>
-      <a href="vendor/licenses-adding-custom-fields">Define custom entitlements</a>
+      <a href="/vendor/licenses-adding-custom-fields">Define custom entitlements</a>
     </li>
     <li>
-      <a href="vendor/releases-creating-releases">Create a release</a>
+      <a href="/vendor/releases-creating-releases">Create a release</a>
     </li>
     <li>
-      <a href="vendor/releases-creating-channels">Manage channels</a>
+      <a href="/vendor/releases-creating-channels">Manage channels</a>
     </li>
     <li>
-      <a href="vendor/custom-domains-using">Configure custom domains</a>
+      <a href="/vendor/custom-domains-using">Configure custom domains</a>
     </li>
     <li>
-      <a href="vendor/packaging-private-images">Connect a private registry</a>
+      <a href="/vendor/packaging-private-images">Connect a private registry</a>
     </li>
   </ul>
 </section>
@@ -75,22 +75,22 @@ pagination_next: null
       <a href="intro-kots">Introduction to KOTS</a>
     </li>
     <li>
-      <a href="vendor/distributing-workflow">Onboard with KOTS</a>
+      <a href="/vendor/distributing-workflow">Onboard with KOTS</a>
     </li>
     <li>
-      <a href="vendor/helm-native-about">About distributing Helm charts with KOTS</a>
+      <a href="/vendor/helm-native-about">About distributing Helm charts with KOTS</a>
     </li>
     <li>
-      <a href="enterprise/installing-overview">Install with KOTS and kURL</a>
+      <a href="/enterprise/installing-overview">Install with KOTS and kURL</a>
     </li>
     <li>
-      <a href="vendor/packaging-embedded-kubernetes">Configure Kubernetes installers with kURL</a>
+      <a href="/vendor/packaging-embedded-kubernetes">Configure Kubernetes installers with kURL</a>
     </li>
     <li>
-      <a href="vendor/admin-console-customize-config-screen">Edit the admin console Config page</a>
+      <a href="/vendor/admin-console-customize-config-screen">Edit the admin console Config page</a>
     </li>
     <li>
-      <a href="vendor/snapshots-configuring-backups">Configure snapshots</a>
+      <a href="/vendor/snapshots-configuring-backups">Configure snapshots</a>
     </li>
     <li>
       <a href="https://kurl.sh/docs/introduction/">kURL.sh Documentation</a>
@@ -105,25 +105,25 @@ pagination_next: null
         <p>Distribute your Helm chart application with Replicated.</p>
     </li>
     <li>
-      <a href="vendor/distributing-overview#helm">About Helm installations</a>
+      <a href="/vendor/distributing-overview#helm">About Helm CLI installations</a>
     </li>
     <li>
-      <a href="vendor/replicated-sdk-overview">Use the Replicated SDK</a>
+      <a href="/vendor/replicated-sdk-overview">Use the Replicated SDK</a>
     </li>
     <li>
-      <a href="vendor/replicated-sdk-development">Get started with the SDK API</a>
+      <a href="/vendor/replicated-sdk-development">Get started with the SDK API</a>
     </li>
     <li>
-      <a href="vendor/helm-image-registry">Use the proxy service for private images</a>
+      <a href="/vendor/helm-image-registry">Use the proxy service for private images</a>
     </li>
     <li>
-      <a href="vendor/install-with-helm">Install with Helm</a>
+      <a href="/vendor/install-with-helm">Get Helm CLI installation instructions</a>
     </li>
     <li>
-      <a href="vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>
+      <a href="/vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>
     </li>
     <li>
-      <a href="vendor/licenses-verify-fields-sdk-api">Verifying license field signatures</a>
+      <a href="/vendor/licenses-verify-fields-sdk-api">Verifying license field signatures</a>
     </li>
   </ul>
 </section>
@@ -155,16 +155,16 @@ pagination_next: null
         <p>Compatibility Matrix</p>
     </li>
     <li>
-      <a href="vendor/testing-about">About the compatibility matrix</a>
+      <a href="/vendor/testing-about">About the compatibility matrix</a>
     </li>
     <li>
-      <a href="vendor/testing-how-to">Create clusters</a>
+      <a href="/vendor/testing-how-to">Create clusters</a>
     </li>
     <li>
-      <a href="vendor/testing-supported-clusters">Supported cluster types</a>
+      <a href="/vendor/testing-supported-clusters">Supported cluster types</a>
     </li>
     <li>
-      <a href="reference/replicated-cli-cluster-create">replicated CLI reference</a>
+      <a href="/reference/replicated-cli-cluster-create">replicated CLI reference</a>
     </li>
   </ul>
   <ul class="tile">
@@ -173,16 +173,16 @@ pagination_next: null
         <p>Insights and Telemetry</p>
     </li>
     <li>
-      <a href="vendor/customer-adoption">Customer adoption</a>
+      <a href="/vendor/customer-adoption">Customer adoption</a>
     </li>
     <li>
-      <a href="vendor/instance-insights-details">Instance details</a>
+      <a href="/vendor/instance-insights-details">Instance details</a>
     </li>
     <li>
-      <a href="vendor/insights-app-status">Configure application telemetry</a>
+      <a href="/vendor/insights-app-status">Configure application telemetry</a>
     </li>
     <li>
-      <a href="vendor/instance-notifications-config">Set up notifications</a>
+      <a href="/vendor/instance-notifications-config">Set up notifications</a>
     </li>
   </ul>
 </section>
@@ -196,10 +196,10 @@ pagination_next: null
         <p>Define and verify installation environment requirements.</p>
     </li>
     <li>
-      <a href="vendor/preflight-defining">Define preflight checks</a>
+      <a href="/vendor/preflight-defining">Define preflight checks</a>
     </li>
     <li>
-      <a href="vendor/preflight-running">Run preflight checks for Helm CLI installations</a>
+      <a href="/vendor/preflight-running">Run preflight checks for Helm CLI installations</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight checks lab in Instruqt</a>
@@ -219,11 +219,12 @@ pagination_next: null
     <li>
       <a href="vendor/support-bundle-customizing">Add and customize support bundles</a>
     </li>
-    <li>
-      <a href="vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
     </li>
     <li>
-      <a href="vendor/support-bundle-generating">Generate support bundles</a>
+      <a href="/vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
+    </li>
+    <li>
+      <a href="/vendor/support-bundle-generating">Generate support bundles</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support bundles lab in Instruqt</a>
