@@ -219,7 +219,6 @@ pagination_next: null
     <li>
       <a href="vendor/support-bundle-customizing">Add and customize support bundles</a>
     </li>
-    </li>
     <li>
       <a href="/vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
     </li>
