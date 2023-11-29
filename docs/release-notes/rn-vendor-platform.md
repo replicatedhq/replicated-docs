@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.29-2
+
+Released on November 29, 2023
+
+### New Features {#new-features-v2023-11-29-2}
+* Add Custom Metrics timeseries graphing on the Instance Details page.
+
 ## v2023.11.28-0
 
 Released on November 28, 2023
