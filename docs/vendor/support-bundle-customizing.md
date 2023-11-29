@@ -62,7 +62,7 @@ Use the following table to determine which type of manifest file to use for crea
 
 ### Kubernetes Secret
 
-You can define support bundle specifications in a Kubernetes Secret the following installation types:
+You can define support bundle specifications in a Kubernetes Secret for the following installation types:
 * Installations with the Helm CLI
 * Helm chart-based applications installed with KOTS v1.94.2 and later
 
@@ -74,7 +74,7 @@ kind: Secret
 metadata:
   labels:
     troubleshoot.sh/kind: support-bundle
-  name: {{ .Release.Name }}-support-bundle
+  name: example
 stringData:
   support-bundle-spec: |
     apiVersion: troubleshoot.sh/v1beta2
@@ -103,7 +103,7 @@ In a release for your application, add the following YAML to a new `support-bund
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
 metadata:
-  name: collectors
+  name: example
 spec:
   collectors: []
   analyzers: []

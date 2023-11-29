@@ -217,10 +217,7 @@ pagination_next: null
         <p>Gather information about customer environments for troubleshooting.</p>
     </li>
     <li>
-      <a href="vendor/support-bundle-helm-customizing">Customize support bundles for Helm charts</a>
-    </li>
-    <li>
-      <a href="vendor/support-bundle-kots-customizing">Customize support bundles for KOTS installations</a>
+      <a href="vendor/support-bundle-customizing">Add and customize support bundles</a>
     </li>
     <li>
       <a href="vendor/support-host-support-bundles">Customize host support bundles for kURL</a>

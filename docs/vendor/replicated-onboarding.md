@@ -240,7 +240,7 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
     <td>
       <ul>
-      <li><a href="/vendor/support-bundle-helm-customizing">Customize Support Bundles for Helm Installations</a></li>
+      <li><a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a></li>
       <li><a href="/vendor/support-bundle-generating">Generating Support Bundles</a></li>
       </ul>
     </td>
