@@ -4,10 +4,8 @@ kind: SupportBundle
 metadata:
   name: example
 spec:
-  collectors:      
-    - clusterInfo: {}
-    - clusterResources: {}
-    analyzers:
+  collectors: []
+  analyzers:
     - nodeResources:
         checkName: One node must have 2 GB RAM and 1 CPU Cores
         filters:
