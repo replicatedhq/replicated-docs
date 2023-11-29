@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.29-2
+
+Released on November 29, 2023
+
+### New Features {#new-features-v2023-11-29-2}
+* Add Custom Metrics timeseries graphing on the Instance Details page.
+
 ## v2023.11.29-0
 
 Released on November 29, 2023
@@ -17,6 +24,14 @@ Released on November 29, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-11-29-0}
 * Fixes an issue that could cause the user to not be able to upload support bundles on the Instance Insights page.
+
+## v2023.11.28-0
+
+Released on November 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-28-0}
+* Fixes an issue that caused linter results to not be displayed when opening a KOTS release for editing.
+* Fixes loading state on the Customers table view.
 
 ## v2023.11.27-1
 
