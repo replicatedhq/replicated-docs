@@ -25,6 +25,13 @@ Released on November 29, 2023
 ### Bug Fixes {#bug-fixes-v2023-11-29-0}
 * Fixes an issue that could cause the user to not be able to upload support bundles on the Instance Insights page.
 
+## v2023.11.28-1
+
+Released on November 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-28-1}
+* Align Helm icon with helm chart in release editor.
+
 ## v2023.11.28-0
 
 Released on November 28, 2023
