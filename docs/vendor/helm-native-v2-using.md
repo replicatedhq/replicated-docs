@@ -291,7 +291,7 @@ The following Helm chart `values.yaml` file includes `image.registry` and `image
 # Helm chart values.yaml file
 
 image:
-  registry: dockerhub.io
+  registry: docker.io
   repository: my-org/example-docker-hub-image
 ```
 
@@ -307,7 +307,7 @@ metadata:
 spec:
   values:
     image:
-      registry: dockerhub.io
+      registry: docker.io
       repository: my-org/example-docker-hub-image
       pullSecrets:
       - name: example-app-slug-kotsadm-dockerhub
@@ -319,7 +319,7 @@ In the Helm chart `values.yaml` file, add a `pullSecrets` array that corresponds
 # Helm chart values.yaml file
 
 image:
-  registry: dockerhub.io
+  registry: docker.io
   repository: my-org/example-docker-hub-image
   pullSecrets:
   - name:
@@ -331,10 +331,10 @@ During installation, KOTS adds the `example-app-slug-kotsadm-dockerhub` secret t
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: example
 spec:
   containers:
-  - name: nginx
+  - name: example
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
   {{- with .Values.image.pullSecrets }}
   imagePullSecrets:
