@@ -285,7 +285,7 @@ For more information about Docker Hub rate limiting, see [Understanding Docker H
 
 **Example**
 
-The following Helm chart `values.yaml` file includes `image.registry` and `image.repository` fields for a rate-limited Docker Hub image:
+The following Helm chart `values.yaml` file includes `image.registry`, `image.repository`, and `image.pullSecrets` for a rate-limited Docker Hub image:
 
 ```yaml
 # Helm chart values.yaml file
@@ -293,9 +293,12 @@ The following Helm chart `values.yaml` file includes `image.registry` and `image
 image:
   registry: docker.io
   repository: my-org/example-docker-hub-image
+  pullSecrets: []
 ```
 
-The following HelmChart custom resource includes `spec.values.image.registry` and `spec.values.image.respository` fields that correspond to those in the Helm chart `values.yaml` file above. It also includes a new `spec.values.image.pullSecrets` array that lists the `<app-slug>-kotsadm-dockerhub` pull secret, where the slug for the application is `example-app-slug`:
+The following HelmChart custom resource includes `spec.values.image.registry`, `spec.values.image.repository`, and `spec.values.image.pullSecrets`, which correspond to those in the Helm chart `values.yaml` file above.
+
+The `spec.values.image.pullSecrets` array lists the `<app-slug>-kotsadm-dockerhub` pull secret, where the slug for the application is `example-app-slug`:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -311,17 +314,6 @@ spec:
       repository: my-org/example-docker-hub-image
       pullSecrets:
       - name: example-app-slug-kotsadm-dockerhub
-```
-
-In the Helm chart `values.yaml` file, add a `pullSecrets` array that corresponds to the new `spec.values.image.pullSecrets` array from the HelmChart custom resource:
-
-```yaml
-# Helm chart values.yaml file
-
-image:
-  registry: docker.io
-  repository: my-org/example-docker-hub-image
-  pullSecrets: []
 ```
 
 During installation, KOTS adds the `example-app-slug-kotsadm-dockerhub` secret to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access `image.pullSecrets` are updated to use `example-app-slug-kotsadm-dockerhub`:
