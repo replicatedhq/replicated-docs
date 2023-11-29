@@ -49,6 +49,7 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 To support installations with the `kots.io/v1beta2` HelmChart custom resource, do the following:
 * Rewrite image names so that images can be located in your private registry or in the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).
 * Inject a KOTS-generated image pull secret that grants access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
+* Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
 * Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
 * Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
 
@@ -272,11 +273,11 @@ spec:
   {{- end }}
 ```
 
-### Add Pull Secret for Rate-Limited Docker Hub Images
+### Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
 Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
-If you are deploying a Helm chart with Docker Hub images that could be rate-limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret, where `<app-slug>` is your application slug. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
+If you are deploying a Helm chart with Docker Hub images that could be rate limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret, where `<app-slug>` is your application slug. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
 
 You can do this by adding the `<app-slug>-kotsadm-dockerhub` pull secret to a field in the `values` key of the HelmChart custom resource, along with a matching field in your Helm chart `values.yaml` file. During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
 
