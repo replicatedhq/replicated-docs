@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.28-0
+
+Released on November 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-11-28-0}
+* Fixes an issue that caused linter results to not be displayed when opening a KOTS release for editing.
+* Fixes loading state on the Customers table view.
+
 ## v2023.11.27-1
 
 Released on November 27, 2023
