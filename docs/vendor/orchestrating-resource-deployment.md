@@ -72,7 +72,7 @@ The following limitations apply to using hooks with Helm charts deployed by KOTS
   
 ## Standard Manifest Deployment Order with KOTS Annotations {#manifests}
 
-You can use the KOTS annotations descirbed in this section to control the order in which standard manifests are deployed.
+You can use the KOTS annotations described in this section to control the order in which standard manifests are deployed.
 
 ### Requirement
 
