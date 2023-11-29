@@ -272,6 +272,75 @@ spec:
   {{- end }}
 ```
 
+### Add Pull Secret for Rate-Limited Docker Hub Images
+
+Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
+
+If you are deploying a Helm chart with Docker Hub images that could be rate-limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret, where `<app-slug>` is your application slug. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
+
+You can do this by adding the `<app-slug>-kotsadm-dockerhub` pull secret to a field in the `values` key of the HelmChart custom resource, along with a matching field in your Helm chart `values.yaml` file. During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
+
+For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+
+**Example**
+
+The following Helm chart `values.yaml` file includes `image.registry` and `image.repository` fields for a rate-limited Docker Hub image:
+
+```yaml
+# Helm chart values.yaml file
+
+image:
+  registry: dockerhub.io
+  repository: my-org/example-docker-hub-image
+```
+
+The following HelmChart custom resource includes `spec.values.image.registry` and `spec.values.image.respository` fields that correspond to those in the Helm chart `values.yaml` file above. It also includes a new `spec.values.image.pullSecrets` array that lists the `<app-slug>-kotsadm-dockerhub` pull secret, where the slug for the application is `example-app-slug`:
+
+```yaml
+# kots.io/v1beta2 HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    image:
+      registry: dockerhub.io
+      repository: my-org/example-docker-hub-image
+      pullSecrets:
+      - name: example-app-slug-kotsadm-dockerhub
+```
+
+In the Helm chart `values.yaml` file, add a `pullSecrets` array that corresponds to the new `spec.values.image.pullSecrets` array from the HelmChart custom resource:
+
+```yaml
+# Helm chart values.yaml file
+
+image:
+  registry: dockerhub.io
+  repository: my-org/example-docker-hub-image
+  pullSecrets:
+  - name:
+```
+
+During installation, KOTS adds the `example-app-slug-kotsadm-dockerhub` secret to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access `image.pullSecrets` are updated to use `example-app-slug-kotsadm-dockerhub`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
+  {{- with .Values.image.pullSecrets }}
+  imagePullSecrets:
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
+```
+
 ### Add Backup Labels for Snapshots
 
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
