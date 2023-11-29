@@ -22,6 +22,9 @@ Released on November 29, 2023
 
 Support for Kubernetes: 1.26, 1.27, and 1.28
 
+### Improvements {#improvements-1-104-3}
+* Upgrades the github.com/go-jose/go-jose/v3 go module to 3.0.1 to resolve GHSA-2c7c-3mj9-8fqh with medium severity.
+
 ## 1.104.2
 
 Released on November 17, 2023
