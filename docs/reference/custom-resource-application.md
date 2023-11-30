@@ -185,6 +185,10 @@ spec:
 
 ## kubectlVersion
 
+:::important
+`kubectlVersion` is deprecated and will be removed from KOTS on or after February 1, 2024. `kubectlVersion` allows for the use of unsupported versions of kubectl, which can cause security vulnerabilities.
+:::
+
 <table>
   <tr>
     <th>Description</th>
@@ -225,6 +229,10 @@ spec:
 </table>
 
 ## kustomizeVersion
+
+:::important
+`kustomizeVersion` is deprecated and will be removed from KOTS on or after February 1, 2024.
+:::
 
 <table>
   <tr>
