@@ -184,7 +184,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Local Private Registries',
+          label: 'Image Registries',
           items: [
             'enterprise/image-registry-settings',
             'enterprise/image-registry-embedded-cluster',
