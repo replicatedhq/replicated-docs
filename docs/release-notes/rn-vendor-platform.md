@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.29-3
+
+Released on November 29, 2023
+
+### New Features {#new-features-v2023-11-29-3}
+* Users can subscribe to custom metrics notifications.
+
+### Improvements {#improvements-v2023-11-29-3}
+* Notifications for "All" events are split into "App Status" and "System Events".
+
 ## v2023.11.29-2
 
 Released on November 29, 2023
