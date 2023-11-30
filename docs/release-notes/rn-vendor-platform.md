@@ -13,8 +13,10 @@ pagination_prev: null
 Released on November 29, 2023
 
 ### New Features {#new-features-v2023-11-29-3}
-* Users can now subscribe to custom metrics notifications.
-* Notifications for "All" events have been split into "App Status" and "System Events".
+* Users can subscribe to custom metrics notifications.
+
+### Improvements {#improvements-v2023-11-29-3}
+* Notifications for "All" events are split into "App Status" and "System Events".
 
 ## v2023.11.29-2
 
