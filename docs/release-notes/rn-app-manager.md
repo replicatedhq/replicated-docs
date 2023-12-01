@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.104.4
+
+Released on December 1, 2023
+
+Support for Kubernetes: 1.26, 1.27, and 1.28
+
+### Bug Fixes {#bug-fixes-1-104-4}
+* Fixes an issue in the Cluster Management page in the admin console where a secondary node join command was displayed when the primary node type was selected.
+
 ## 1.104.3
 
 Released on November 29, 2023
