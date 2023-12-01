@@ -13,7 +13,7 @@ pagination_prev: null
 Released on December 1, 2023
 
 ### New Features {#new-features-v2023-12-01-4}
-* Unify the Customer page search and filter results across all tabs.
+* Unify the Customers page search, sort, and filter results across all tabs.
 
 ## v2023.11.29-3
 
