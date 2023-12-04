@@ -135,11 +135,6 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td>Repo URI to use when installing a Helm chart.</td>
     </tr>
     <tr>
-        <td><code>--set</code></td>
-        <td>strings</td>
-        <td>Values to pass to Helm when running <code>helm template</code>.</td>
-    </tr>
-    <tr>
         <td><code>--shared-password</code></td>
         <td>string</td>
         <td>Shared password to use when deploying the admin console.</td>
