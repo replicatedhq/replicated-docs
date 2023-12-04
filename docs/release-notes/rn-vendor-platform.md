@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.04-4
+
+Released on December 4, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-04-4}
+* Fixes 'Copy download URL' for airgap builds on the Channel Release History page in Safari.
+
 ## v2023.12.04-1
 
 Released on December 4, 2023
