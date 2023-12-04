@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.04-1
+
+Released on December 4, 2023
+
+### New Features {#new-features-v2023-12-04-1}
+* Add the "installer support enabled" license option to the customer create and manage pages.
+
 ## v2023.12.01-4
 
 Released on December 1, 2023
