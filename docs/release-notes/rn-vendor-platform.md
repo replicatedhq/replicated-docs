@@ -8,6 +8,31 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.04-1
+
+Released on December 4, 2023
+
+### New Features {#new-features-v2023-12-04-1}
+* Add the "installer support enabled" license option to the customer create and manage pages.
+* .
+* #### Does this PR require documentation?.
+* <!--.
+* If no, just write "NONE" below.
+* If yes, link to the related https://github.com/replicatedhq/replicated-docs documentation PR:.
+* ->.
+* .
+* .
+* ## Checklist.
+* <!---.
+* Not all items on the checklist may be applicable to your changes. Feel free to skip or remove items that are not applicable.
+* ->.
+* .
+* [x] I have verified the change on the Okteto deployment preview environment for this PR.
+* [x] I have spot-checked any other areas I believe could be impacted.
+* [x] I have made sure that related tests are still passing.
+* .
+* ## Relevant screenshots & videos.
+
 ## v2023.11.29-3
 
 Released on November 29, 2023
