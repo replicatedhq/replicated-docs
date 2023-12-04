@@ -15,6 +15,13 @@ Released on December 4, 2023
 ### New Features {#new-features-v2023-12-04-1}
 * Add the "installer support enabled" license option to the customer create and manage pages.
 
+## v2023.12.01-4
+
+Released on December 1, 2023
+
+### New Features {#new-features-v2023-12-01-4}
+* Unify the Customers page search, sort, and filter results across all tabs.
+
 ## v2023.11.29-3
 
 Released on November 29, 2023
