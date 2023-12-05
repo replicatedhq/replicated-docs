@@ -176,7 +176,7 @@ The following example shows how to use Helm template functions to set the namesp
 spec:
   collectors:
     - clusterResources:
-        namespace: {{ .Release.Namespace }}
+        namespaces: {{ .Release.Namespace }}
         ignoreRBAC: true
 ```
 
@@ -186,7 +186,7 @@ The following example shows how to use the Replicated Namespace template functio
 spec:
   collectors:
     - clusterResources:
-        namespace: '{{repl Namespace }}'
+        namespaces: '{{repl Namespace }}'
         ignoreRBAC: true
 ```
 For more information, see [Namespace](/reference/template-functions-static-context#namespace) in _Static Context_. 
