@@ -13,7 +13,7 @@ pagination_prev: null
 Released on December 4, 2023
 
 ### New Features {#new-features-v2023-12-04-1}
-* Add the "installer support enabled" license option to the customer create and manage pages.
+* Add the "installer support enabled" license option to the customer create and manage pages. This option is only visibile to vendors with the associated entitlement enabled. 
 
 ## v2023.12.01-4
 
@@ -76,7 +76,7 @@ Released on November 27, 2023
 Released on November 23, 2023
 
 ### New Features {#new-features-v2023-11-23-0}
-* Supports multi-node kURL clusters up to 10 nodes.
+* Supports multi-node kURL clusters up to 10 nodes with Compatibility Matrix.
 
 ## v2023.11.22-1
 
