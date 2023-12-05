@@ -17,13 +17,9 @@ To inspect a support bundle:
 
   ![Support bundle analysis overview](/images/support-bundle-analysis-overview.png)
 
-  [View larger version of this image](/images/support-bundle-analysis-overview.png)
+  [View a larger version of this image](/images/support-bundle-analysis-overview.png)
 
 1. On the **File inspector** tab, select any files from the directory tree to inspect the details of any files included in the support bundle, such as log files.
-
-  ![Support bundle file inspector](/images/support-bundle-file-inspector.png)
-
-  [View larger version of this image](/images/support-bundle-file-inspector.png)
 
 1. (Optional) Click **Download bundle** to download the bundle. This can be helpful if you want to access the bundle from another system or if other team members want to access the bundle and use other tools to examine the files.
 
