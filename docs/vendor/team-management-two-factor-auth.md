@@ -20,19 +20,23 @@ To enable two-factor authentication on your individual account:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
-    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="300"/>
+    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
+
+    [View a larger version of this image](/images/vendor-portal-account-settings.png)
 
 1. In the **Two-Factor Authentication** pane, click **Turn on two-factor authentication**.
 
     <img src="/images/vendor-portal-password-2fa.png" alt="Turn on 2FA in the vendor portal" width="600"/>
 
-    [View a larger image](/images/vendor-portal-password-2fa.png)
+    [View a larger version of this image](/images/vendor-portal-password-2fa.png)
 
 1. In the **Confirm password** dialog, enter your vendor portal account password. Click **Confirm password**.
 
 1. Scan the QR code that displays using a supported two-factor authentication application on your mobile device, such as Google Authenticator. Alternatively, click **Use this text code** in the vendor portal to generate an alphanumeric code that you enter in the mobile application.
 
     <img src="/images/vendor-portal-scan-qr.png" alt="Turn on 2FA in the vendor portal" width="400"/>
+
+    [View a larger version of this image](/images/vendor-portal-scan-qr.png)
 
     Your mobile application displays an authentication code.
 
@@ -51,11 +55,11 @@ To disable two-factor authentication on your individual account:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
-    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="300"/>
+    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
+
+    [View a larger version of this image](/images/vendor-portal-account-settings.png)
 
 1. In the **Two-Factor Authentication** pane, click **Turn off two-factor authentication**.
-
-    <img src="/images/vendor-portal-2fa-turn-off.png" alt="Turn off 2FA in the vendor portal" width="300"/>
 
 1. In the **Confirm password** dialog, enter your vendor portal account password. Click **Confirm password**.
 
