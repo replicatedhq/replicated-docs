@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on December 5, 2023
 
-### New Features {#new-features-v2023-12-05-1}
-* Shows 'Created by' and 'Last modified by' information on the Releases, view/edit release, and Channel Release History pages.
+### Improvements {#improvements-v2023-12-05-1}
+* Shows 'Created by' and 'Last modified by' on the **Releases**, **View Release**, **Edit Release**, and **Release History** pages.
 
 ## v2023.12.04-4
 
