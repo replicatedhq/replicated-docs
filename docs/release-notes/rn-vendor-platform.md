@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.05-1
+
+Released on December 5, 2023
+
+### New Features {#new-features-v2023-12-05-1}
+* Shows 'Created by' and 'Last modified by' information on the Releases, view/edit release, and Channel Release History pages.
+
 ## v2023.12.04-4
 
 Released on December 4, 2023
