@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 4, 2023
 
-### New Features {#new-features-v2023-12-04-3}
+### Improvements {#improvements-v2023-12-04-3}
 * Add the capability to update a test cluster TTL.
 
 ## v2023.12.04-1
