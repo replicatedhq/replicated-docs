@@ -154,7 +154,15 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/preflight-helm-defining"
-  to="https://docs.replicated.com/vendor/preflight-defining"                     
+  to="https://docs.replicated.com/vendor/preflight-defining"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/support-bundle-kots-customizing"
+  to="https://docs.replicated.com/vendor/support-bundle-customizing" 
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/support-bundle-helm-customizing"
+  to="https://docs.replicated.com/vendor/support-bundle-customizing"                               
 
 ###################################################
 # Redirects To the Enterprise Section

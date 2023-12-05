@@ -1,0 +1,21 @@
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors: []
+  analyzers: 
+    - deploymentStatus:
+        name: api
+        namespace: default
+        outcomes:
+          - fail:
+              when: "< 1"
+              message: The API deployment does not have any ready replicas.
+          - warn:
+              when: "= 1"
+              message: The API deployment has only a single ready replica.
+          - pass:
+              message: There are multiple replicas of the API deployment ready.
+```
