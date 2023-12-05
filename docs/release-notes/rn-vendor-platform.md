@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.04-3
+
+Released on December 4, 2023
+
+### Improvements {#improvements-v2023-12-04-3}
+* Add the capability to update a test cluster TTL.
+
 ## v2023.12.04-1
 
 Released on December 4, 2023
