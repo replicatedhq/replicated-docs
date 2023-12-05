@@ -17,7 +17,7 @@ For email notification, no prior configuration is required. The email address li
 
 ## Configure Notifications
 
-Follow this procedure to configure Slack or email notifications for one or more customer instances. You can enable notifications for the application status only, for all changes on the instance, or disable notifications as needed.
+Follow this procedure to configure Slack or email notifications for application instances. You can enable notifications for application status changes, system events such as Kubernetes upgrades, or changes in the values of any custom metrics configured for the application.
 
 To configure notifications:
 
@@ -29,19 +29,15 @@ To configure notifications:
 
     <img width="600px" src="/images/instance-notifications.png" />
 
-1. From the **Configure Instance Notifications** dialog, select the **Slack Notifications** tab or use the default **My Notifications** tab for email notifications.
+1. From the **Configure Instance Notifications** dialog, select the types of notifications to enable.
  
-    <img width="400px" src="/images/instance-notifications-dialog.png" />
+    ![Configure Instance Notifications dialog](/images/instance-notifications-dialog.png)
 
-1. Select one of the following options:
+    [View a larger version of this image](/images/instance-notifications-dialog.png)
 
-    - **App Changes:** Sends notifications for application health status changes.
-    - **All Changes:** Sends notifications for all instance changes, including version changes and Kubernetes upgrades.
-    - **None:** Turns off notifications.
+1. Click **Save**.
 
-1. Click **Save My Notifications**.
-
-1. Repeat these steps for every instance that you want to receive or manage notifications for.
+1. Repeat these steps to configure notifications for other application instances.
 
 
 ## Test Notifications
