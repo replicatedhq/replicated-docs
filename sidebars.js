@@ -576,14 +576,13 @@ const sidebars = {
           type: 'category',
           label: 'Support Bundles',
           items: [
-            'vendor/support-online-support-bundle-specs',
-            'vendor/support-modular-support-bundle-specs',
-            'vendor/support-bundle-helm-customizing',
-            'vendor/support-bundle-kots-customizing',
+            'vendor/support-bundle-customizing',
+            'vendor/support-host-support-bundles',
             'vendor/support-bundle-generating',
             'vendor/support-inspecting-support-bundles',
             'vendor/support-submit-request',
-            'vendor/support-host-support-bundles',
+            'vendor/support-online-support-bundle-specs',
+            'vendor/support-modular-support-bundle-specs',
          ],
         },
         {

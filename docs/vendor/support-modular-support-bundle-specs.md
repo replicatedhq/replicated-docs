@@ -1,6 +1,6 @@
 # About Modular Specifications
 
-Preflight and support bundle specifications can be designed using a modular approach. This helps teams develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. 
+Preflight and support bundle specifications can be designed using a modular approach. This helps teams develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts.
 
 <!--You can create separate YAML files or use a combination of YAML files, URLs, and Kubernetes Secrets or ConfigMaps. -->
 
