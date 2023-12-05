@@ -23,11 +23,13 @@ Teams that have enforced SAML-only authentication do not use the email invitatio
 
 To invite a new team member:
 
-1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Invite member**.
+1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Invite team member**.
 
   The Invite team member dialog opens.
 
   <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="500"/>
+
+  [Invite team member dialog](/images/teams-invite-member.png)
 
 1. Enter the email address of the member.
 
@@ -35,7 +37,7 @@ To invite a new team member:
 
     <CollabRbacImportant/>
 
-1. Click **Invite Member**.
+1. Click **Invite member**.
 
   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
