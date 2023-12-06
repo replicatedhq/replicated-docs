@@ -6,11 +6,11 @@ This topic describes how to use the Replicated HelmChart custom resource to over
 
 You can use the Replicated HelmChart custom resource `values` and `optionalValues` keys to override or include values in a Helm chart during installation or upgrade with KOTS.
 
-The HelmChart custom resource `values` and `optionalValues` keys can create a mapping between KOTS and the Helm chart `values.yaml` file. This mapping allows you to manipulate values in your Helm chart for KOTS installations without having to make any changes to the Helm chart itself. 
+The HelmChart custom resource `values` and `optionalValues` keys create a mapping between KOTS and the Helm chart `values.yaml` file. This mapping allows you to manipulate values in your Helm chart for KOTS installations without having to make any changes to the Helm chart itself. 
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-## Override Existing Value Keys
+## Override Existing Values
 
 During installation or upgrade, KOTS uses the values in the HelmChart custom resource `values` key to override the values of any matching keys in the corresponding Helm chart `values.yaml` file.
 
@@ -113,7 +113,7 @@ externalDatabase:
   ##
   database: bitnami_wordpress
 ```
-If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the HelmChart custom resource, instead of attempting to modify the render logic in the Helm chart:
+If a user wants to configure an external database, you can enable this dynamically by adding an `optionalValues` section to the HelmChart custom resource:
 
 ```yaml
 apiVersion: kots.io/v1beta2
