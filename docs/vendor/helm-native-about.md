@@ -43,6 +43,24 @@ KOTS supports installations into air gap environments. When a user installs an a
 
 To support air gap installations of your Helm chart with KOTS, you configure the `builder` field in the HelmChart custom resource. For more information, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
+### Support for Helm Hooks {#hooks}
+
+KOTS supports the following hooks for Helm charts:
+* `pre-install`: Executes after resources are rendered but before any resources are installed.
+* `post-install`: Executes after resources are installed.
+* `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
+* `post-upgrade`: Executes after resources are upgraded.
+* `pre-delete`: Executes before any resources are deleted.
+* `post-delete`: Executes after resources are deleted.
+
+The following limitations apply to using hooks with Helm charts deployed by KOTS:
+
+* <HooksLimitation/>
+
+* <HookWeightsLimitation/>
+
+For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
+
 ## Installation Methods
 
 The version and configuration of the HelmChart custom resource determines the method that KOTS uses to install the associated Helm chart in your release. The HelmChart custom resource supports either `apiVersion: kots.io/v1beta2` or `apiVersion: kots.io/v1beta1`.
