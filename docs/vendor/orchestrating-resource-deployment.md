@@ -10,15 +10,11 @@ This topic describes how to orchestrate the deployment order of resources deploy
 
 Many applications require that certain resources are deployed and in a ready state before other resources can be deployed. For applications deployed with KOTS, you can manage the order in which resources are deployed using the following methods:
 
-* For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. KOTS also supports some Helm hooks. See [HelmChart `weight`](#weight) or [Support for Helm Hooks](#hooks).
+* For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. See [HelmChart `weight`](#weight).
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
-## Helm Chart Deployment Order
-
-This section describes the supported methods for controlling the deployment order of Helm charts in your release.
-
-### HelmChart `weight` {#weight}
+## Helm Chart Deployment Order with `weight` {#weight}
 
 You can configure the [`weight`](/reference/custom-resource-helmchart-v2#weight) property of the Replicated HelmChart custom resource to define the order in which the Helm charts in your release are installed.
 

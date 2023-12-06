@@ -14,13 +14,13 @@ For more information about the syntax for these fields, see [`values`](/referenc
 
 During installation or upgrade, KOTS uses the values in the HelmChart custom resource `values` key to override the values of any matching keys in the corresponding Helm chart `values.yaml` file.
 
-You can use the HelmChart custom resource `values` key to override existing values in the Helm chart `values.yaml`, including updating a value or setting a key to `null` to delete it.
+You can use the HelmChart custom resource `values` key to set existing values in the Helm chart `values.yaml`
 
-### Update a Value
+### Set a Value
 
-You can update the value of a key in your Helm chart `values.yaml` file with KOTS by creating a matching key in the HelmChart custom resource `values` field.
+You can set a value in your Helm chart `values.yaml` file with KOTS by creating a matching key in the HelmChart custom resource `values` field.
 
-For example, the following Helm chart `values.yaml` file contains a `postgresql.enabled` field that is `false` by default: 
+For example, the following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
 
 ```yaml
 # Helm chart values.yaml
