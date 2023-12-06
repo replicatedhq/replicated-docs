@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.06-2
+
+Released on December 6, 2023
+
+### New Features {#new-features-v2023-12-06-2}
+* Shows 'Created by' and 'Last modified by' information on the Customers, Customer Reporting, and Customer Manage pages.
+
 ## v2023.12.05-1
 
 Released on December 5, 2023
