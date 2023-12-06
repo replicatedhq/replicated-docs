@@ -8,9 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## v2023.12.06-1
+## v2023.12.06-0
 
 Released on December 6, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-06-0}
+* Fixes a bug on generating the Embedded Cluster binary for Channels whose Semantic Versioning is not enabled.
+* Fixes bug in Channel Settings modal where the user could not set custom domains back to the Replicated default.
 
 ## v2023.12.05-1
 
