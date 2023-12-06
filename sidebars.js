@@ -31,11 +31,12 @@ const sidebars = {
     'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Distributing Helm Chart-Based Applications with KOTS',
+      label: 'Distributing Helm Charts with KOTS',
       items: [
         'vendor/helm-native-about',
         'vendor/helm-native-v2-using',
         'vendor/helm-v2-migrate',
+        'vendor/helm-optional-value-keys',
       ],
     },
     {
@@ -56,7 +57,6 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
-          'vendor/helm-optional-value-keys',
           'vendor/helm-mapping-example',
       ],
     },
@@ -182,7 +182,6 @@ const sidebars = {
                 'enterprise/cluster-management-add-nodes',
               ],
             },
-            
             'enterprise/installing-existing-cluster-automation',
             'enterprise/installing-stateful-component-requirements',
           ],

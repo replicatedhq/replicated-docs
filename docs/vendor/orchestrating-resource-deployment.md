@@ -4,7 +4,7 @@ import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx
 
 # Orchestrating Resource Deployment
 
-This topic describes how to orchestrate the deployment order of resources deployed by your application. The information in this topic applies to Helm chart- and standard manifest-based applications deployed with Replicated KOTS.
+This topic describes how to orchestrate the deployment order of resources deployed as part of your application. The information in this topic applies to Helm chart- and standard manifest-based applications deployed with Replicated KOTS.
 
 ## Overview
 
@@ -49,26 +49,6 @@ The `weight` field in the HelmChart custom resource has the following limitation
 * <WeightLimitation/>
 
 * When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. The `weight` property does not allow Helm charts to be deployed before standard manifests.
-
-### Support for Helm Hooks {#hooks}
-
-Helm hooks control when Helm installs the resources in your Helm charts. Hooks are useful for bundling actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources. For more information about Helm hooks and weights, see the [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
-
-KOTS supports the following hooks:
-* `pre-install`: Executes after resources are rendered but before any resources are installed.
-* `post-install`: Executes after resources are installed.
-* `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
-* `post-upgrade`: Executes after resources are upgraded.
-* `pre-delete`: Executes before any resources are deleted.
-* `post-delete`: Executes after resources are deleted.
-
-#### Limitations
-
-The following limitations apply to using hooks with Helm charts deployed by KOTS:
-
-* <HooksLimitation/>
-
-* <HookWeightsLimitation/>
   
 ## Standard Manifest Deployment Order with KOTS Annotations {#manifests}
 
