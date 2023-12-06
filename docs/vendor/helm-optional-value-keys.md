@@ -166,7 +166,7 @@ mariadb:
 
 The `optionalValues.recursiveMerge` boolean defines how KOTS merges the `values` and `optionalValues` datasets:
 * When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`.
-* When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included in the merged dataset.
+* When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included in the merged dataset. In the case of a conflict where there is a matching key in `optionalValues` and `values`, the merged dataset uses the value of the key from `optionalValues`.
 
 KOTS uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.
 
