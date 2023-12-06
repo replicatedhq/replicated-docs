@@ -16,15 +16,15 @@ For installations with Replicated KOTS, Replicated provides a set of custom temp
 
 You can use all functionality of the Go templating language with Replicated template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
-## Replicated Template Function Rendering
+### Template Function Rendering
 
 KOTS templates all standard Kubernetes manifest files in a release (except for the Replicated Config custom resource) at the same time during a single process.
 
 For the Config custom resource, Replicated templates each configuration field defined in the `items:` field separately.
 
-## Access to Variables
+### Access to Variables
 
-Template functions have access to variables defined in other manifest files that are templated at the same time. This means that you can assign the result returned by a template function to a variable in a manifest file, then use that variable in another template function.
+Template functions have access to variables defined in other manifest files that are templated at the same time. This means that you can assign a template function to a variable in a manifest file, then use that variable in other manifest files.
 
 Template functions in the Config custom resource do _not_ have access to variables defined in other configuration fields under `items:`. For information about how to use `hidden` fields to pass variables to template functions in the Config custom resource, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_.
 
