@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.07-1
+
+Released on December 7, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-07-1}
+* Fixes a bug that prompts the user about unsaved changes when clicking "Create release" on the Draft Release page.
+
 ## v2023.12.06-2
 
 Released on December 6, 2023
