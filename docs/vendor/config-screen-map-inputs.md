@@ -10,11 +10,11 @@ You use the values that your users provide in the admin console configuration sc
 
 For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
-For a tutorial of mapping database configuration options in a sample application, see [Tutorial: Adding Database Configuration Options](tutorial-adding-db-config).
+For an example of mapping database configuration options in a sample application, see [Example: Adding Database Configuration Options](tutorial-adding-db-config).
 
 You can also conditionally deploy custom resources depending on the user input for a given field. For example, if a customer chooses to use their own database with your application rather than an embedded database option, it is not desirable to deploy the optional database resources such as a StatefulSet and a Service.
 
-For more information about including optional resources conditionally based on user-supplied values, see [Including Optional and Conditional Resources](packaging-include-resources).
+For more information about including optional resources conditionally based on user-supplied values, see [Conditionally Including or Excluding Resources](packaging-include-resources).
 
 ## About Mapping Values with Template Functions
 

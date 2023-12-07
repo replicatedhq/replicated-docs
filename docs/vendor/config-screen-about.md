@@ -10,7 +10,7 @@ If you use a Helm chart for your application, your users provide any values spec
 
 For example, you can use the configuration screen to provide database configuration options for your application. Your users could connect your application to an external database by providing required values in the configuration screen, such as the host, port, and a username and password for the database.
 
-Or, you can also use the configuration screen to provide a database option that runs in the cluster as part of your application. For a tutorial of this use case, see [Tutorial: Adding Database Configuration Options](tutorial-adding-db-config).
+Or, you can also use the configuration screen to provide a database option that runs in the cluster as part of your application. For an example of this use case, see [Example: Adding Database Configuration Options](tutorial-adding-db-config).
 
 ## Viewing the Configuration Screen
 

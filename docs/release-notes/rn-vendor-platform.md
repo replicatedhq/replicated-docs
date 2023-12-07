@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.06-2
+
+Released on December 6, 2023
+
+### Improvements {#improvements-v2023-12-06-2}
+* Shows 'Created by' and 'Last modified by' information on the **Customers**, **Reporting**, and **Customer details** pages.
+
 ## v2023.12.06-0
 
 Released on December 6, 2023
