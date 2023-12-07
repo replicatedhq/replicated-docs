@@ -25,8 +25,11 @@ All functionality of the Go templating language is supported with KOTS template 
 
 ### Supported File Types
 
-You can use KOTS template functions in any Kubernetes manifest files that are deployed by KOTS, such as:
+You can use KOTS template functions in any Kubernetes manifest files for applications deployed by KOTS, such as:
 * Custom resources in the `kots.io` API group like Application, Config, or HelmChart
+  :::note
+  Not all fields in the Config custom resource support templating. For more information, see [Item Properties](/reference/custom-resource-config#item-properties) in _Config_.
+  :::
 * Custom resources in other API groups like Preflight, SupportBundle, or Backup
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
 * Kubernetes Operators
