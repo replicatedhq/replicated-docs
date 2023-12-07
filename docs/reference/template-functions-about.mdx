@@ -9,22 +9,29 @@ This topic describes Replicated KOTS template functions, including information a
 
 ## Overview
 
-For standard Kubernetes manifests deployed with Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. Common use cases for KOTS template functions include rendering values that are specific to the customer environment during installation or upgrade, such as:
+For standard Kubernetes manifests deployed with Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
+
+Common use cases for KOTS template functions include rendering values that are specific to the customer environment during installation or upgrade, such as:
 * Customer license field values
 * User-provided configuration values
 * Information about the customer environment, such the number of nodes or the Kubernetes version in the cluster where the application is installed
 
-You can use all functionality of the Go templating language with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
+KOTS template functions are also useful for rendering values that are not specific to the customer environment, such as:
+* Generating random strings
+* Performing mathematical operations
+* Converting a string to lowercase or uppercase  
+
+All functionality of the Go templating language is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
 ### Supported File Types
 
 You can use KOTS template functions in any Kubernetes manifest files that are deployed by KOTS, such as:
-* KOTS custom resources like Application, Config, or HelmChart
-* Other custom resources like Preflight, SupportBundle, or Backup
+* Custom resources in the `kots.io` API group like Application, Config, or HelmChart
+* Custom resources in other API groups like Preflight, SupportBundle, or Backup
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
 * Kubernetes Operators
 
-KOTS template functions are _not_ supported in Helm charts. This is because, to deploy a Helm chart, KOTS does a Helm install or upgrade of the chart directly and does not modify or template the chart during installation.
+KOTS template functions are _not_ supported in Helm charts. This is because, to deploy a Helm chart, KOTS does a Helm install or upgrade of the chart directly and does not modify the chart during installation. To include values rendered by KOTS template functions in your Helm chart, you can instead use KOTS template functions in the HelmChart custom resource and map the values to your Helm chart `values.yaml` file. For more information, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ### Template Function Rendering
 
@@ -32,11 +39,11 @@ KOTS templates all standard Kubernetes manifest files in a release (except for t
 
 Template functions have access to variables defined in manifest files that are templated at the same time. This means that you can assign a template function to a variable, then use that variable in another template function.
 
-For the Config custom resource, KOTS templates each array of items separately. This means that Config context template functions used in the Config custom resource have access only to variables defined within the same item. For more information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
+For the Config custom resource, KOTS templates each array of items separately. This means that template functions used in the Config custom resource have access only to variables defined within the same item. For more information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
 
 For an example of how to use template functions within an array of items in the Config custom resource, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_.
 
-## Template Function Syntax {#syntax}
+## Syntax {#syntax}
 
 You can include KOTS template functions in manifest files as strings, using the syntax described in this section.
 
@@ -85,13 +92,13 @@ The KOTS template function syntax supports the following functionally equivalent
 </table>
 
 
-## Template Function Contexts {#contexts}
+## Contexts {#contexts}
 
 KOTS template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context of the data that is provided.
 
 ### Static Context
 
-You can use template functions in the static context in any manifest file. Static context template functions are available at any time.
+You can use template functions in the static context in any manifest file at any time.
 
 The static context also includes the Masterminds Sprig function library. For more information, see [Sprig Function Documentation](http://masterminds.github.io/sprig/) on the sprig website.
 
@@ -99,7 +106,7 @@ For a list of all KOTS template functions available in the static context, see [
 
 ### Config Context
 
-Template functions in the config context are available when rendering an application that includes a Replicated Config custom resource.
+Template functions in the config context are available when rendering an application that includes a Config custom resource.
 At execution time, template functions in the config context also can use the static context functions.
 
 For a list of all KOTS template functions available in the config context, see [Config context](template-functions-config-context).
@@ -108,7 +115,7 @@ For a list of all KOTS template functions available in the config context, see [
 
 Template functions in the license context have access to customer license and version data.
 
-For a list of all Replicated functions available in the license context, see [License context](template-functions-license-context).
+For a list of all KOTS template functions available in the license context, see [License context](template-functions-license-context).
 
 ### kURL Context
 
