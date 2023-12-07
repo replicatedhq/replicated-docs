@@ -15,12 +15,27 @@ Released on December 7, 2023
 ### Improvements {#improvements-v2023-12-07-2}
 * Users can specify tags at cluster creation in Compatibility Matrix.
 
+## v2023.12.07-1
+
+Released on December 7, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-07-1}
+* Fixes a bug that prompts the user about unsaved changes when clicking "Create release" on the Draft Release page.
+
 ## v2023.12.06-2
 
 Released on December 6, 2023
 
 ### Improvements {#improvements-v2023-12-06-2}
 * Shows 'Created by' and 'Last modified by' information on the **Customers**, **Reporting**, and **Customer details** pages.
+
+## v2023.12.06-0
+
+Released on December 6, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-06-0}
+* Fixes a bug that could occur when generating the embedded cluster binary for channels where semantic versioning was not enabled.
+* Fixes bug in the **Channel Settings** modal where the user could not return custom domains to the Replicated default.
 
 ## v2023.12.05-1
 
