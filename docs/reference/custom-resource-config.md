@@ -25,6 +25,10 @@ The following example shows three groups defined in the Config custom resource m
 For more information about the properties of groups and items, see [Group Properties](#group-properties) and [Item Properties](#item-properties) below.
 
 ```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: my-application
 spec:
   groups:
     - name: example_group
