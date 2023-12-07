@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.07-2
+
+Released on December 7, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-07-2}
+* Users can specify tags at cluster creation in Compatibility Matrix.
+
 ## v2023.12.06-2
 
 Released on December 6, 2023
