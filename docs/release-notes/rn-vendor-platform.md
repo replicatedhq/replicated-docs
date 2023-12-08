@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.08-0
+
+Released on December 8, 2023
+
+### New Features {#new-features-v2023-12-08-0}
+* Vendors can upload multiple support bundles when opening a support issue in troubleshoot or support page.
+
 ## v2023.12.07-2
 
 Released on December 7, 2023
