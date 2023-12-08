@@ -21,7 +21,7 @@ KOTS template functions are also useful for rendering values that are not specif
 * Performing mathematical operations
 * Converting a string to lowercase or uppercase  
 
-All functionality of the Go templating language is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
+All functionality of the Go templating language, including if statements, loops, and variables, is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
 ### Supported File Types
 
@@ -42,9 +42,9 @@ For information about how to map values from the HelmChart custom resource to He
 
 ### Template Function Rendering
 
-During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
+During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process. For the Config custom resource, KOTS templates each array of items separately. For information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
 
-For the Config custom resource, KOTS templates each array of items separately. For more information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
+Within valid YAML that is templated at the same time, you can use Go to assign a template function to a variable for the purpose of accessing the rendered value from another template function. For an example of using Go variables with KOTS template functions to generate and then access values, see [Example: Using Variables to Generate TLS Certificates and Keys](/reference/template-functions-config-context#tls-cert-example).
 
 ## Syntax {#syntax}
 
