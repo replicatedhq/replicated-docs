@@ -34,17 +34,17 @@ You can use KOTS template functions in any Kubernetes manifest files for applica
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
 * Kubernetes Operators
 
-KOTS template functions are _not_ supported in Helm charts. This is because, to deploy a Helm chart, KOTS does a Helm install or upgrade of the chart directly and does not modify the chart during installation. To include values rendered by KOTS template functions in your Helm chart, you can instead use KOTS template functions in the HelmChart custom resource and map the values to your Helm chart `values.yaml` file. For more information, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+### Helm Charts
+
+The HelmChart custom resource provides a way to access values rendered by KOTS template functions from Helm charts in your KOTS releases. This allows you to use KOTS template functions to get information about customer environments during installation or upgrade, then access those values from your application without needing to make changes to any Helm charts directly.
+
+For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ### Template Function Rendering
 
-KOTS templates all standard Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
+During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
 
-Template functions have access to variables defined in manifest files that are templated at the same time. This means that you can assign a template function to a variable, then use that variable in another template function.
-
-For the Config custom resource, KOTS templates each array of items separately. This means that template functions used in the Config custom resource have access only to variables defined within the same item. For more information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
-
-For an example of how to use template functions within an array of items in the Config custom resource, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_.
+For the Config custom resource, KOTS templates each array of items separately. For more information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
 
 ## Syntax {#syntax}
 
