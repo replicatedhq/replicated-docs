@@ -15,6 +15,13 @@ Released on December 8, 2023
 ### Bug Fixes {#bug-fixes-v2023-12-08-4}
 * Persist column visibility on Compatibility Matrix cluster history.
 
+## v2023.12.08-1
+
+Released on December 8, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-08-1}
+* Fixes bug where the selected file in the editor would be reset after saving changes to a KOTS release.
+
 ## v2023.12.08-0
 
 Released on December 8, 2023
