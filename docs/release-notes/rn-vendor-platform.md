@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.08-4
+
+Released on December 8, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-08-4}
+* Persist column visibility on Compatibility Matrix cluster history.
+
 ## v2023.12.08-1
 
 Released on December 8, 2023
