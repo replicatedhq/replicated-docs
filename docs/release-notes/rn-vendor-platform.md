@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 11, 2023
 
-### New Features {#new-features-v2023-12-11-0}
+### Improvements {#improvements-v2023-12-11-0}
 * Re-order the support request form to ensure that the customer (or "no customer") is selected prior to the selection of the product area, and auto fill the form smartly.
 
 ## v2023.12.08-4
