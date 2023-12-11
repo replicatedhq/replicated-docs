@@ -30,7 +30,7 @@ If the cloud access credentials are invalid or do not have access to the locatio
 
 #### Solution
 
-If this is the case, Replicated recommends that you validate the access key / secret or service account json.
+Replicated recommends that you validate the access key / secret or service account json.
 
 
 ### Invalid Top-level Directories
@@ -79,7 +79,7 @@ This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port was
 
 #### Solution
 
-If this is the case, Replicated recommends that you either upgrade to Velero 1.12.2 or later, or downgrade to a version earlier than 1.12.0.
+Replicated recommends that you either upgrade to Velero 1.12.2 or later, or downgrade to a version earlier than 1.12.0.
 
 ## Snapshot Creation is Failing
 
