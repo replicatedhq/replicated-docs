@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 11, 2023
 
-### New Features {#new-features-v2023-12-11-2}
+### Improvements {#improvements-v2023-12-11-2}
 * Improves usability of the Download Portal by providing descriptions, better button names, and improved styles.
 * Improve messaging when RBAC prevents requesting more credits in CMX.
 
