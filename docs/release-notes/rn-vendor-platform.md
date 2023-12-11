@@ -8,6 +8,17 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.11-2
+
+Released on December 11, 2023
+
+### New Features {#new-features-v2023-12-11-2}
+* Improves usability of the Download Portal by providing descriptions, better button names, and improved styles.
+* Improve messaging when RBAC prevents requesting more credits in CMX.
+
+### Bug Fixes {#bug-fixes-v2023-12-11-2}
+* Fixes version label on customer instances table.
+
 ## v2023.12.11-1
 
 Released on December 11, 2023
