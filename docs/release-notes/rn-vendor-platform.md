@@ -15,6 +15,20 @@ Released on December 11, 2023
 ### New Features {#new-features-v2023-12-11-1}
 * Show last version downloaded for Download Portal on the **Customer Reporting** page.
 
+## v2023.12.11-0
+
+Released on December 11, 2023
+
+### Improvements {#improvements-v2023-12-11-0}
+* Re-order the support request form to ensure that the customer (or "no customer") is selected prior to the selection of the product area, and auto fill the form smartly.
+
+## v2023.12.09-0
+
+Released on December 9, 2023
+
+### Improvements {#improvements-v2023-12-09-0}
+* Vendors can upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** page.
+
 ## v2023.12.08-4
 
 Released on December 8, 2023
