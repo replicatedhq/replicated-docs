@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.11-1
+
+Released on December 11, 2023
+
+### Improvements {#improvements-v2023-12-11-1}
+* Show the release version that was most recently downloaded from the Download Portal on the **Customer Reporting** page.
+
 ## v2023.12.11-0
 
 Released on December 11, 2023
