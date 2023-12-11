@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.11-3
+
+Released on December 11, 2023
+
+### New Features {#new-features-v2023-12-11-3}
+* Adds "Last Airgap Download Version" and "Last Airgap Download Date" columns to the Customers and Instances table views.
+
+### Bug Fixes {#bug-fixes-v2023-12-11-3}
+* Fixes issues with customer instances CSV row repetition.
+
 ## v2023.12.11-1
 
 Released on December 11, 2023
