@@ -75,7 +75,7 @@ time="2023-11-16T21:29:44Z" level=fatal msg="Failed to start metric server for n
 
 #### Cause
 
-This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port was not being set correctly when starting the metrics server. This can cause the metrics server to fail to start with a `permission denied` error in environments that are not running MinIO and have Host Path, NFS, or Internal storage destinations configured. When the metrics server fails to start, the node-agent Pod will crash. For more information about this issue, see [the GitHub issue details](https://github.com/vmware-tanzu/velero/issues/6792).
+This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port is not set correctly when starting the metrics server. This causes the metrics server to fail to start with a `permission denied` error in environments that do not run MinIO and have Host Path, NFS, or internal storage destinations configured. When the metrics server fails to start, the node-agent Pod crashes. For more information about this issue, see [the GitHub issue details](https://github.com/vmware-tanzu/velero/issues/6792).
 
 #### Solution
 
