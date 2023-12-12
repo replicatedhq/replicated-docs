@@ -163,6 +163,56 @@ The following table lists the data fields that can be included in the customers 
         <td>The values of any custom license fields configured for the customer. For example, customer_entitlement__active-users.</td>
     </tr>
     <tr>
+        <td>customer_created_by_id</td>
+        <td>string</td>
+        <td>The ID of the actor that created this customer: user ID or a hashed value of a token.</td>
+    </tr>
+    <tr>
+        <td>customer_created_by_type</td>
+        <td>string</td>
+        <td>The type of the actor that created this customer: user, service-account, or service-account.</td>
+    </tr>
+    <tr>
+        <td>customer_created_by_description</td>
+        <td>string</td>
+        <td>The description of the actor that created this customer. Includes username or token name depending on actor type.</td>
+    </tr>
+    <tr>
+        <td>customer_created_by_link</td>
+        <td>string</td>
+        <td>The link to the actor that created this customer.</td>
+    </tr>
+    <tr>
+        <td>customer_created_by_timestamp</td>
+        <td>timestamptz</td>
+        <td>The date the customer was created by this actor. When available, matches the value in the customer_created_date column</td>
+    </tr>
+    <tr>
+        <td>customer_updated_by_id</td>
+        <td>string</td>
+        <td>The ID of the actor that updated this customer: user ID or a hashed value of a token.</td>
+    </tr>
+    <tr>
+        <td>customer_updated_by_type</td>
+        <td>string</td>
+        <td>The type of the actor that updated this customer: user, service-account, or service-account.</td>
+    </tr>
+    <tr>
+        <td>customer_updated_by_description</td>
+        <td>string</td>
+        <td>The description of the actor that updated this customer. Includes username or token name depending on actor type.</td>
+    </tr>
+    <tr>
+        <td>customer_updated_by_link</td>
+        <td>string</td>
+        <td>The link to the actor that updated this customer.</td>
+    </tr>
+    <tr>
+        <td>customer_updated_by_timestamp</td>
+        <td>timestamptz</td>
+        <td>The date the customer was updated by this actor.</td>
+    </tr>
+    <tr>
         <td>instance_id</td>
         <td>string</td>
         <td>Instance identifier</td>
