@@ -8,10 +8,10 @@ Remove the test clusters. You can delete multiple clusters at a time. For more i
 ## Usage
 
 ```bash
-replicated cluster rm [ID...] [flags]
+replicated cluster rm [Cluster ID, name, or tag] [flags]
 ```
 
-Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command. Or you can also remove using the name of the cluster or matching tag(s).
+Replace `Cluster ID, name, or tag` with one or more cluster IDs, names, or tags. You can find cluster IDs, names, and tags in the output of the `replicated cluster ls` command.
 
 <table>
   <tr>
