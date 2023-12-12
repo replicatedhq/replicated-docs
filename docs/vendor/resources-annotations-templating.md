@@ -1,6 +1,6 @@
 # Templating Annotations
 
-This topic describes how to use Replicated template functions to template annotations for resources and objects based on user-supplied values.
+This topic describes how to use Replicated KOTS template functions to template annotations for resources and objects based on user-supplied values.
 
 ## Overview
 
@@ -8,9 +8,9 @@ It is common for users to need to set custom annotations for a resource or objec
 
 For applications installed with Replicated KOTS, you can apply user-supplied annotations to resources or objects by first adding a field to the Replicated admin console **Config** page where users can enter one or more annotations. For information about how to add fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
 
-You can then map these user-supplied values from the **Config** page to resources and objects in your release using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. The template functions in the Config context return user-supplied values on the **Config** page.
+You can then map these user-supplied values from the **Config** page to resources and objects in your release using KOTS template functions. KOTS template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. The template functions in the Config context return user-supplied values on the **Config** page.
 
-For more information about Replicated template functions in the Config text, see [Config Context](/reference/template-functions-config-context). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
+For more information about KOTS template functions in the Config text, see [Config Context](/reference/template-functions-config-context). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
 
 ## About `kots.io/placeholder`
 
@@ -27,7 +27,7 @@ annotations:
 ```
 
 :::note
-For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file using the Replicated HelmChart custom resource, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file using the Replicated HelmChart custom resource, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include KOTS template functions directly in the Helm chart templates.
 
 For an example, see [Map User-Supplied Annotations to Helm Chart Values](#map-user-supplied-annotations-to-helm-chart-values) below.
 :::
@@ -214,7 +214,7 @@ spec:
 
 ### Map User-Supplied Annotations to Helm Chart Values
 
-For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include KOTS template functions directly in the Helm chart templates.
 
 To map user-supplied annotations from the **Config** page to the Helm chart `values.yaml` file, you use the `values` field of the Replicated HelmChart custom resource. For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 

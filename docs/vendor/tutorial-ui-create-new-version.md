@@ -80,7 +80,7 @@ To create and promote a new version of the application:
      <p>This is a hidden value: '{{repl ConfigOption "hidden_text"}}'</p>
    </body>
    ```
-    This creates a reference to the `more_text` field using a Replicated template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
+    This creates a reference to the `more_text` field using a Replicated KOTS template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
 
 1. Check the linter messages in the Help pane to ensure there are no errors.
 

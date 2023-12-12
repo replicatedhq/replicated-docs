@@ -1,6 +1,6 @@
 # Using Conditional Statements in Configuration Fields
 
-This topic describes how to use Replicated template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
+This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
 
 ## Overview
 
@@ -14,7 +14,7 @@ You can conditionally show or hide configuration fields based on the user's envi
 
 For more information about the Config custom resource `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
 
-You can construct conditional statements in the `when` property using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
+You can construct conditional statements in the `when` property using KOTS template functions. KOTS template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about KOTS template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
 
 ## Conditional Statement Examples
 

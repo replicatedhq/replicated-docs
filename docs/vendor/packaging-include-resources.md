@@ -1,12 +1,12 @@
 # Conditionally Including or Excluding Resources
 
-This topic describes how to use Replicated KOTS annotations and Replicated template functions to include or exclude optional resources based on a conditional statement.
+This topic describes how to use Replicated KOTS annotations and Replicated KOTS template functions to include or exclude optional resources based on a conditional statement.
 
 ## Overview
 
 Often, vendors need a way to optionally install resources depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
 
-To include or exclude resources from your application deployment, you can use the `kots.io/exclude` or `kots.io/when` annotation on the resource. You can also set the value of the annotation to a conditional statement using Replicated template functions. For information about Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
+To include or exclude resources from your application deployment, you can use the `kots.io/exclude` or `kots.io/when` annotation on the resource. You can also set the value of the annotation to a conditional statement using KOTS template functions. For information about KOTS template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
 
 ## Requirements
 

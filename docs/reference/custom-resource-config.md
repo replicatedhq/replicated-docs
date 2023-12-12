@@ -278,7 +278,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the admin console.</p><p> The item <code>name</code> can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
+    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the admin console.</p><p> The item <code>name</code> can be used with KOTS template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -573,7 +573,7 @@ The `password` type is a text field that hides the character input.
 
 `select_one` items must contain nested items. The nested items are displayed as radio buttons in the admin console.
 
-You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
+You can use the `name` field of a `select_one` item with KOTS template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
 
 For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
 
