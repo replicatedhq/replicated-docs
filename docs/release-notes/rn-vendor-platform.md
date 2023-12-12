@@ -18,6 +18,17 @@ Released on December 11, 2023
 ### Bug Fixes {#bug-fixes-v2023-12-11-3}
 * Fixes issues with customer instances CSV row repetition.
 
+## v2023.12.11-2
+
+Released on December 11, 2023
+
+### Improvements {#improvements-v2023-12-11-2}
+* Improves usability of the Download Portal by providing descriptions, better button names, and improved styles.
+* Improve messaging when RBAC prevents requesting more credits in CMX.
+
+### Bug Fixes {#bug-fixes-v2023-12-11-2}
+* Fixes version label on customer instances table.
+
 ## v2023.12.11-1
 
 Released on December 11, 2023
