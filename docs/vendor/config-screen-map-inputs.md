@@ -18,7 +18,7 @@ For more information about including optional resources conditionally based on u
 
 ## About Mapping Values with Template Functions
 
-To map user-supplied values, you use Replicated template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
+To map user-supplied values, you use Replicated KOTS template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
 
 For more information about template functions, including use cases and examples, see [About Template Functions](/reference/template-functions-about).
 
@@ -148,7 +148,7 @@ To map user inputs from the configuration screen to the `values.yaml` file:
    ```
    Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field that you created in the Config custom resource.
 
-   For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
+   For more information about the KOTS ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
    **Example:**
 

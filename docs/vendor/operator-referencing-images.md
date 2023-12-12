@@ -16,7 +16,7 @@ The steps to ensure that an Operator is using the correct image names and has th
 ### Adding a reference to the local registry
 
 The manager of an Operator is often a `Statefulset`, but could be a `Deployment` or another kind.
-Regardless of where the spec is defined, the location of the private images can be read using the Replicated template functions. For more information about using template functions, see [About Template Functions](/reference/template-functions-about).
+Regardless of where the spec is defined, the location of the private images can be read using the Replicated KOTS template functions. For more information about using template functions, see [About Template Functions](/reference/template-functions-about).
 
 #### Option 1: Define each image
 If an Operator only requires one additional image, the easiest way to determine this location is to use the `LocalImageName` function.
@@ -45,7 +45,7 @@ In the above example, this is a private image, and will always be rewritten. For
 
 #### Option 2: Build image names manually
 
-For applications that have multiple images or dynamically construct the image name at runtime, the Replicated template functions can also return the elements that make up the local registry endpoint and secrets, and let the application developer construct the locally-referenceable image name.
+For applications that have multiple images or dynamically construct the image name at runtime, the KOTS template functions can also return the elements that make up the local registry endpoint and secrets, and let the application developer construct the locally-referenceable image name.
 
 **Example:**
 

@@ -225,7 +225,7 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
     <MySqlSecret/>
   </TabItem>
   <TabItem value="custom-resource" label="Preflight Custom Resource">
-    <p>This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console <strong>Config</strong> page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see <a href="/reference/template-functions-about">About Template Functions</a>.</p>
+    <p>This example uses KOTS template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console <strong>Config</strong> page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see <a href="/reference/template-functions-about">About Template Functions</a>.</p>
     <p>This example also uses an analyzer with <code>strict: true</code>, which prevents installation from continuing if the preflight check fails.</p>
     <MySqlCr/>
     <p>The following shows how a <code>fail</code> outcome for this preflight check is displayed in the admin console during KOTS installation or upgrade when <code>strict: true</code> is set for the analyzer:</p>

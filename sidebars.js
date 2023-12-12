@@ -133,7 +133,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Custom Resources',
+      label: 'KOTS Custom Resources',
       items: [
         'reference/custom-resource-about',
         'reference/custom-resource-application',
@@ -145,7 +145,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Template Functions',
+      label: 'KOTS Template Functions',
       items: [
         'reference/template-functions-about',
         'reference/template-functions-config-context',
