@@ -8,10 +8,10 @@ Remove the test clusters. You can delete multiple clusters at a time. For more i
 ## Usage
 
 ```bash
-replicated cluster rm ID [ID...] [flags]
+replicated cluster rm [ID...] [flags]
 ```
 
-Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command.
+Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command. Or you can also remove using the name of the cluster or matching tag(s).
 
 <table>
   <tr>
@@ -20,6 +20,16 @@ Replace `ID` with the ID of the cluster from the output of the `replicated clust
     <th width="50%">Description</th>
   </tr>
   <Help/>
+  <tr>
+    <td>--name</td>
+    <td>stringArray</td>
+    <td>Name of the cluster to remove (can be specified multiple times).</td>
+  </tr>
+  <tr>
+    <td>--tag</td>
+    <td>stringArray</td>
+    <td>Tag of the cluster to remove (key=value format, can be specified multiple times).</td>
+  </tr>
   <tr>
     <td>--all</td>
     <td></td>
@@ -31,6 +41,10 @@ Replace `ID` with the ID of the cluster from the output of the `replicated clust
 
 ```bash
 replicated cluster rm 1234567890
+```
+
+```bash
+replicated cluster rm --name qatesting
 ```
 
 ```bash
