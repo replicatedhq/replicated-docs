@@ -1,15 +1,15 @@
-# Tutorial: Adding Database Configuration Options
+# Example: Adding Database Configuration Options
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.
 
 This tutorial explores advanced topics like workload coordination, credential management, and refactoring your application's user-facing configuration in the Replicated admin console. We'll also review best practices for integrating persistent stores like databases, queues, and caches.
 
-It is split into 5 sections:
+It is split into 5 sections:	
 
-- [The Example Application](#the-example-application)
-- [User-Facing Configuration](#user-facing-configuration)
-- [Embedding a Database](#embedding-a-database)
+- [The Example Application](#the-example-application)	
+- [User-Facing Configuration](#user-facing-configuration)	
+- [Embedding a Database](#embedding-a-database)	
 - [Connecting to an External Database](#connecting-to-an-external-database)
 
 ### Prerequisites

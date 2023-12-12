@@ -1,4 +1,4 @@
-# Including Optional Charts
+# Example: Including Optional Helm Charts
 
 This topic describes using optional Helm charts in your application. It also provides an example of how to configure the Replicated HelmChart custom resource to exclude optional Helm charts from your application when a given condition is met. 
 
@@ -19,8 +19,7 @@ For more information about template functions, see [About Template Functions](/r
 This example uses an application that has a Postgres database.
 The community-supported Postgres Helm chart is available at https://github.com/bitnami/charts/tree/main/bitnami/postgresql.
 
-In this example, you create a configuration field on the admin console Config page that lets the user provide their own Postgres instance or use a Postgres service that is embedded with the application. Then, you configure the HelmChart custom resource in a release for an application in the Replicated vendor portal to conditionally exclude the optional Postgres component.
-
+In this example, you create a configuration field on the admin console Config page that lets the user provide their own Postgres instance or use a Postgres service that is embedded with the application. Then, you configure the HelmChart custom resource in a release for an application in the Replicated vendor portal to conditionally exclude the optional Postgres component. 
 
 ### Step 1: Create the Configuration Fields
 

@@ -30,7 +30,7 @@ If the cloud access credentials are invalid or do not have access to the locatio
 
 #### Solution
 
-If this is the case, Replicated recommends that you validate the access key / secret or service account json.
+Replicated recommends that you validate the access key / secret or service account json.
 
 
 ### Invalid Top-level Directories
@@ -57,6 +57,29 @@ When configuring Velero to use a bucket, the bucket cannot contain other data, o
 #### Solution
 
 Configure Velero to use a bucket that does not contain other data.
+
+## Node Agent is Crashing
+
+If the node-agent Pod is crashing and not starting, some common causes are:
+
+### Metrics Server is Failing to Start
+
+#### Symptom
+
+You see the following error in the node-agent logs.
+
+```shell
+time="2023-11-16T21:29:44Z" level=info msg="Starting metric server for node agent at address []" logSource="pkg/cmd/cli/nodeagent/server.go:229"
+time="2023-11-16T21:29:44Z" level=fatal msg="Failed to start metric server for node agent at []: listen tcp :80: bind: permission denied" logSource="pkg/cmd/cli/nodeagent/server.go:236"
+```
+
+#### Cause
+
+This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port is not set correctly when starting the metrics server. This causes the metrics server to fail to start with a `permission denied` error in environments that do not run MinIO and have Host Path, NFS, or internal storage destinations configured. When the metrics server fails to start, the node-agent Pod crashes. For more information about this issue, see [the GitHub issue details](https://github.com/vmware-tanzu/velero/issues/6792).
+
+#### Solution
+
+Replicated recommends that you either upgrade to Velero 1.12.2 or later, or downgrade to a version earlier than 1.12.0.
 
 ## Snapshot Creation is Failing
 

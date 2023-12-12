@@ -26,30 +26,32 @@ To install a Helm chart:
    ```bash
    helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
    ```
-   Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the dialog. The `--username` flag requires the customer's email address and the `--password` flag requires the ID of the customer's license. 
+   Where:
+   * `EMAIL_ADDRESS` is the customer's email address
+   * `LICENSE_ID` is the ID of the customer's license
 
-   :::note
-   You can safely ignore the following warning message: `WARNING: Using --password via the CLI is insecure.` This message is displayed because using the `--password` flag stores the password in bash history. This login method is not insecure.
+  :::note
+  You can safely ignore the following warning message: `WARNING: Using --password via the CLI is insecure.` This message is displayed because using the `--password` flag stores the password in bash history. This login method is not insecure.
 
-   Alternatively, to avoid the warning message, you can click **(show advanced)** in the **Helm install instructions** dialog to display a login command that excludes the `--password` flag. With the advanced login command, you are prompted for the password after running the command.  
-   :::
+  Alternatively, to avoid the warning message, you can click **(show advanced)** in the **Helm install instructions** dialog to display a login command that excludes the `--password` flag. With the advanced login command, you are prompted for the password after running the command.  
+  :::
 
 1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 1. Run the fourth command to install using Helm:
 
-    ```bash
-    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
-    ```
-    Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
+   ```bash
+   helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL/CHART_NAME
+   ```
+   Where:
+   * `RELEASE_NAME` is the name of the Helm release.
+   * `APP_SLUG` is the slug for the application. For information about how to find the application slug, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
+   * `CHANNEL` is the lowercased name of the channel where the release was promoted, such as `beta` or `unstable`. Channel is not required for releases promoted to the Stable channel.
+   * `CHART_NAME` is the name of the Helm chart.
 
-    :::note
-    The channel slug is not required for releases promoted to the Stable channel.
-    :::
-
-    :::note
-    To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
-    :::
+   :::note
+   To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
+   :::
 
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 
 
