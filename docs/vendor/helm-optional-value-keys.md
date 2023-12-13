@@ -17,7 +17,11 @@ This allows you to override or include Helm chart values during installation or 
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-## Override Existing Values with `values`
+## Override Existing Values
+
+This section describeshow to overrides or delete existing Helm chart values using the HelmChart custom resource `values` key.
+
+### About `values`
 
 <Values/>
 
@@ -81,7 +85,11 @@ Typically, this situation happens when you are including a community chart as a 
 
 For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
-## Include Optional Values with `optionalValues`
+## Include Optional Values
+
+This section describes how to include optional Helm chart values using the HelmChart custom resource `optionalValues` key.
+
+### About `optionalValues`
 
 <OptionalValues/>
 
