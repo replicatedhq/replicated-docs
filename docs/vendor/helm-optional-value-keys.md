@@ -1,24 +1,29 @@
-# Manipulating Helm Chart Values with KOTS
+import Values from "../partials/helm/_helm-cr-values.mdx"
+import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
+import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
+import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
+
+# Setting Helm Chart Values with KOTS
 
 This topic describes how to use the Replicated HelmChart custom resource to override or include values in the `values.yaml` file for a Helm chart deployed with Replicated KOTS.
 
 ## Overview
 
-You can use the Replicated HelmChart custom resource `values` and `optionalValues` keys to override or include values in a Helm chart during installation or upgrade with KOTS.
+The Replicated HelmChart custom resource `values` and `optionalValues` keys can be used to create a mapping between KOTS and the Helm chart `values.yaml` file.
 
-The HelmChart custom resource `values` and `optionalValues` keys create a mapping between KOTS and the Helm chart `values.yaml` file. This mapping allows you to manipulate values in your Helm chart for KOTS installations without having to make any changes to the Helm chart itself. 
+The mapping works when there is a value in your Helm chart `values.yaml` file by creating a matching key in the HelmChart custom resource `values` field. For example, `spec.values.images.pullSecret` in the HelmChart custom resource maps to `images.pullSecret` in the Helm chart `values.yaml`.
+
+This allows you to override or include Helm chart values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-## Override Existing Values
+## Override Existing Values with `values`
 
-During installation or upgrade, KOTS uses the values in the HelmChart custom resource `values` key to override the values of any matching keys in the corresponding Helm chart `values.yaml` file.
+<Values/>
 
-You can use the HelmChart custom resource `values` key to set existing values in the Helm chart `values.yaml`
+### Override a Value
 
-### Set a Value
-
-You can set a value in your Helm chart `values.yaml` file with KOTS by creating a matching key in the HelmChart custom resource `values` field.
+You can override a value in your Helm chart `values.yaml` file by creating a matching key in the HelmChart custom resource `values` field.
 
 For example, the following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
 
@@ -76,13 +81,9 @@ Typically, this situation happens when you are including a community chart as a 
 
 For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
-## Include Optional Value Keys
+## Include Optional Values with `optionalValues`
 
-Some use cases involve writing keys to a Helm chart `values.yaml` file only if there is a value to apply. For example, a customer might choose to include an optional application component in their deployment. In this case, it could be necessary to include values in the Helm chart for the configuration of the optional component.
-
-To include optional value keys, you can use the HelmChart custom resource `optionalValues` key with a conditional `when` statement. This ensures that the optional values are only written to the Helm chart when the condition evaluates to true.
-
-`optionalValues` also includes a `recursiveMerge` field that defines how to merge the dataset. For more information, see [How KOTS Merges the `values` and `optionalValues` datasets](#recursive-merge) below.
+<OptionalValues/>
 
 For example, in the Bitnami Wordpress [chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) file, there is a reference to `mariadb`. This reference is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086) file:
 
@@ -162,7 +163,7 @@ mariadb:
   enabled: true
 ```
 
-## How KOTS Merges the `values` and `optionalValues` Datasets {#recursive-merge}
+### About Recursive Merge {#recursive-merge}
 
 The `optionalValues.recursiveMerge` boolean defines how KOTS merges the `values` and `optionalValues` datasets:
 * When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`.

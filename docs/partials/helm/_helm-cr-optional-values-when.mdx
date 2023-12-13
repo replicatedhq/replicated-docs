@@ -1,12 +1,10 @@
-The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment. 
+The `optionalValues.when` field defines a conditional statement that must evaluate to true for the given values to be in included. Evaluation of the conditional in the `optionalValues.when` field is deferred until render time in the customer environment. 
 
-To write the `when` conditional statement, use template functions. The following example shows a conditional statement for selecting a database option on the admin console configuration screen:
+Use KOTS template functions to write the `optionalValues.when` conditional statement. The following example shows a conditional statement for selecting a database option on the admin console configuration screen:
 
 ```yaml
 optionalValues:
   - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
-```  
+```
 
-For more information about using optional values, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys). 
-
-For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
+For more information about using KOTS template functions, see [About Template Functions](/reference/template-functions-about).

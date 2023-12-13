@@ -53,23 +53,27 @@ The following is an example manifest file for the HelmChart v2 custom resource:
 
 <HelmUpgradeFlags/>
 
+## exclude
+
+<Exclude/>
+
 ## values
 
 <Values/>
 
-## exclude
-
-<Exclude/>
+For more information about using `values`, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## optionalValues
 
 <OptionalValues/>
 
-### optionalValues[].when
+For more information about using `optionalValues`, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+
+### optionalValues.when
 
 <OptionalValuesWhen/>
 
-### optionalValues[].recursiveMerge
+### optionalValues.recursiveMerge
 
 <OptionalValuesRecursiveMerge/>
 

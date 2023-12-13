@@ -1,25 +1,76 @@
-The `recursiveMerge` boolean defines how Replicated KOTS merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
+The `optionalValues.recursiveMerge` boolean defines how KOTS merges the `values` and `optionalValues` datasets:
 
-The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application. For an example of recursive merge, see [How KOTS Merges the `values` and `optionalValues` Datasets](/vendor/helm-optional-value-keys#example-recursive-merge) in _Manipulating Helm Chart Values with KOTS_.        
+* When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`.
 
-The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
+* When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included in the merged dataset. In the case of a conflict where there is a matching key in `optionalValues` and `values`, the merged dataset uses the value of the key from `optionalValues`.
 
-<table>
-  <tr>
-    <th width="30%">Value</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>false</code> (Default)</td>
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively.</p>
-    <p>The top level keys in <code>optionalValues</code> overwrite the top level keys in <code>values</code>.</p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>true</code></td>    
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively.</p>
-    <p>All keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset.</p>
-    <p>In the case of a conflict where there is a matching key in <code>optionalValues</code> and <code>values</code>, the merged dataset uses the value of the key from <code>optionalValues</code>.</p>
-    </td>
-  </tr>
-</table>
+KOTS uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.
+
+For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
+
+```yaml
+values:
+  favorite:
+    drink:
+      hot: tea
+      cold: soda
+    dessert: ice cream
+    day: saturday
+
+optionalValues:
+  - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
+    recursiveMerge: false
+    values:
+      example_config_option:
+        enabled: true
+      favorite:
+        drink:
+          cold: lemonade
+```
+
+The `values.yaml` file for the associated Helm chart defines the following key value pairs:
+
+```yaml
+favorite:
+  drink:
+    hot: coffee
+    cold: soda
+  dessert: pie
+```
+The `templates/configmap.yaml` file for the Helm chart maps these values to the following fields:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-configmap
+data:
+  favorite_day: {{ .Values.favorite.day }}
+  favorite_dessert: {{ .Values.favorite.dessert }}
+  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
+  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
+```
+
+When `recursiveMerge` is set to `false`, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+favorite_day: null
+favorite_dessert: pie
+favorite_drink_cold: lemonade
+favorite_drink_hot: coffee
+```
+
+In this case, the top level keys in `optionalValues` override the top level keys in `values`.
+
+KOTS then uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
+
+When `recursiveMerge` is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+favorite_day: saturday
+favorite_dessert: ice cream
+favorite_drink_cold: lemonade
+favorite_drink_hot: tea
+```
+
+In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Because both include `favorite.drink.cold`, the merged dataset uses `lemonade` from `optionalValues`.
