@@ -1,0 +1,46 @@
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: wordpress
+spec:
+  chart:
+    name: wordpress
+    chartVersion: 15.3.2
+
+  releaseName: sample-release-1
+
+  values:
+    mariadb:
+      enabled: repl{{ ConfigOptionEquals `mariadb_type` `embedded`}}
+
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
+      recursiveMerge: false
+      values:
+        externalDatabase:
+          host: "repl{{ ConfigOption `external_db_host`}}"
+          user: "repl{{ ConfigOption `external_db_user`}}"
+          password: "repl{{ ConfigOption `external_db_password`}}"
+          database: "repl{{ ConfigOption `external_db_database`}}"
+          port: "repl{{ ConfigOption `external_ db_port`}}"
+```
+
+During installation or upgrade, if the user chooses to use an external database, then the following `values.yaml` is rendered with the user-supplied values for the database:
+
+```yaml
+mariadb:
+  enabled: false
+externalDatabase:
+  host: example-hostname
+  user: example-username
+  password: example-password
+  database: example-database-name
+  port: 1234
+```
+If the user selects a `mariadb_type` of `embedded`, then the HelmChart custom resource above results in the following `values.yaml`:
+
+```yaml
+mariadb:
+  enabled: true
+```
