@@ -16,6 +16,21 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.104.6
+
+Released on December 13, 2023
+
+Support for Kubernetes: 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-104-6}
+* Uses Chainguard to build the kotsadm-migrations image to resolve CVE-2023-45853 with critical severity; CVE-2023-31484, CVE-2023-47038, and CVE-2023-39325 with high severity; CVE-2023-5981, CVE-2023-4039, CVE-2023-5678, CVE-2023-4641, and CVE-2023-44487 with medium severity; TEMP-0841856-B18BAF, CVE-2022-0563, CVE-2016-2781, CVE-2017-18018, CVE-2022-27943, CVE-2022-3219, CVE-2011-3374, CVE-2010-4756, CVE-2018-20796, CVE-2019-1010022, CVE-2019-1010023, CVE-2019-1010024, CVE-2019-1010025, CVE-2019-9192, CVE-2018-6829, CVE-2011-3389, CVE-2013-4392, CVE-2023-31437, CVE-2023-31438, CVE-2023-31439, CVE-2007-6755, CVE-2010-0928, CVE-2007-5686, CVE-2019-19882, CVE-2023-29383, TEMP-0628843-DBAD28, CVE-2011-4116, CVE-2023-31486, TEMP-0517018-A83CE6, CVE-2005-2541, CVE-2022-48303, CVE-2023-39804, and TEMP-0290435-0B57B5 with low severity.
+* Uses Chainguard to build the rqlite image to resolve CVE-2023-5363, CVE-2023-39325, and GHSA-m425-mq94-257g with high severity; CVE-2023-5678, CVE-2023-3978, and CVE-2023-44487 with medium severity.
+* Uses Chainguard to build the MinIO image to resolve CVE-2022-27943 and CVE-2022-29458 with low severity.
+* Uses Chainguard to build the dex image to resolve CVE-2022-48174 with critical severity; CVE-2023-5363, CVE-2023-39325, and GHSA-m425-mq94-257g with high severity; CVE-2023-2975, CVE-2023-3446, CVE-2023-3817, CVE-2023-5678, GHSA-2c7c-3mj9-8fqh, CVE-2023-3978, and CVE-2023-44487 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-104-6}
+* Fixes an issue where re-running preflights for sequences created by KOTS versions prior to 1.96.0 could hang indefinitely.
+
 ## 1.104.5
 
 Released on December 8, 2023
