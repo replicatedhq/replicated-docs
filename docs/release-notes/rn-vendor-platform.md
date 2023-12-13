@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 13, 2023
 
-### New Features {#new-features-v2023-12-13-0}
+### Improvements {#improvements-v2023-12-13-0}
 * Adds "Created By" and "Updated By" columns to the Customers and Instances table views.
 
 ## v2023.12.11-3
