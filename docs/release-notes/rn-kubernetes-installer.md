@@ -8,6 +8,19 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.14-0
+
+Released on December 14, 2023
+
+### New Features {#new-features-v2023-12-14-0}
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.25.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.2.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.70.0-55.0.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-12-02T10-51-33Z.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.9.0.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.26.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-12-09T18-17-51Z.
+
 ## v2023.11.20-0
 
 Released on November 20, 2023
