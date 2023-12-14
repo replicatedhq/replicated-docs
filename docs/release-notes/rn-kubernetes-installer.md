@@ -8,6 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.14-0
+
+Released on December 14, 2023
+
+### New Features {#new-features-v2023-12-14-0}
+* Adds support for RHEL 9.3 and Rocky Linux 9.3.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.25 and 1.6.26.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.2.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.70.0-55.0.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-12-02T10-51-33Z and RELEASE.2023-12-09T18-17-51Z.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.9.0.
+
+### Bug Fixes {#bug-fixes-v2023-12-14-0}
+* Fixes an issue where Kubernetes 1.27 or later could prune the pause image being used, causing pods to fail.
+
 ## v2023.11.20-0
 
 Released on November 20, 2023

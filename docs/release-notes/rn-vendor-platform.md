@@ -15,6 +15,16 @@ Released on December 14, 2023
 ### Bug Fixes {#bug-fixes-v2023-12-14-0}
 * Fixes the default product options on the support request form. These will be generated based on enabled entitlements.
 
+## v2023.12.13-1
+
+Released on December 13, 2023
+
+### Improvements {#improvement-v2023-12-13-1}
+* Use `sortColumn=tag` and `tag-sort-key` to sort clusters on the values for a tag key.
+
+### Bug Fixes {#bug-fixes-v2023-12-13-1}
+* Show error message when updating Compatibility Matrix quotas to the same value or less than the current value.
+
 ## v2023.12.13-0
 
 Released on December 13, 2023
