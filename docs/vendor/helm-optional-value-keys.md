@@ -200,9 +200,9 @@ In this case, all keys from `values` and `optionalValues` are included in the me
 
 ## Examples
 
-### Include Values Based on Config Options
+### Include Optional Values Based on Config Options
 
-You can use the Replicated KOTS ConfigOption and ConfigOptionEqual template functions to 
+You can use the Replicated KOTS ConfigOption and ConfigOptionEqual template functions to include user-supplied values in the Helm chart `values.yaml` file.
 
 <Tabs>
   <TabItem value="values" label="values.yaml">
