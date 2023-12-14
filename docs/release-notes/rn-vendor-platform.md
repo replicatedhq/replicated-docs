@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 14, 2023
 
-### New Features {#new-features-v2023-12-14-4}
+### Improvements {#improvements-v2023-12-14-4}
 * Persist create cluster form inputs when there's an error.
 
 ## v2023.12.14-0
