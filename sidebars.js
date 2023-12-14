@@ -435,6 +435,17 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Map Config Values to a Helm Chart',
+          items: [
+            'vendor/tutorial-config-setup',
+            'vendor/tutorial-config-get-chart',
+            'vendor/tutorial-config-create-app',
+            'vendor/tutorial-config-package-chart',
+            'vendor/tutorial-config-create-release',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',
