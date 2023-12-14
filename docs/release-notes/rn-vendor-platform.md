@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.14-0
+
+Released on December 14, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-14-0}
+* The default product select options will be generated from vendor-api based on enabled entitlements.
+
 ## v2023.12.13-0
 
 Released on December 13, 2023
