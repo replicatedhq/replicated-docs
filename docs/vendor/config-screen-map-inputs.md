@@ -97,7 +97,7 @@ The `values.yaml` file in a Helm chart defines parameters that are specific to e
 
 To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a HelmChart custom resource.
 
-To follow a tutorial that maps values from the configuration screen to a Helm chart, see [Example: Mapping the Configuration Screen to Helm Values](helm-mapping-example).
+To follow a tutorial that maps values from the configuration screen to a Helm chart, see [Map Config Values to a Helm Chart](/vendor/tutorial-config-setup).
 
 To map user inputs from the configuration screen to the `values.yaml` file:
 

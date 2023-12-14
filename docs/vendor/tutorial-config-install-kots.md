@@ -120,7 +120,7 @@ To install the release with KOTS:
 
 ## Next Step
 
-Congratulations! As part of this tutorial, you used the KOTS Config custom resource to collect a username and password from users. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to map the user-supplied credentials to the Grafana `values.yaml` file so they could be used to log in to the application.
+Congratulations! As part of this tutorial, you used the KOTS Config custom resource to collect a username and password from users. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to map the user-supplied credentials to the Grafana `values.yaml` file.
 
 To learn more about how to customize the Config custom resource to create configuration fields for your application, see [Config](/reference/custom-resource-config).
 

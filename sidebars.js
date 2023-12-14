@@ -57,7 +57,6 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
-          'vendor/helm-mapping-example',
       ],
     },
     {
@@ -442,6 +441,8 @@ const sidebars = {
             'vendor/tutorial-config-create-app',
             'vendor/tutorial-config-package-chart',
             'vendor/tutorial-config-create-release',
+            'vendor/tutorial-config-create-customer',
+            'vendor/tutorial-config-install-kots',
           ],
         },
         {
