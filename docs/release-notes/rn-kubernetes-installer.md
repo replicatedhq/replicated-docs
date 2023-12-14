@@ -21,7 +21,7 @@ Released on December 14, 2023
 * Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.9.0.
 
 ### Bug Fixes {#bug-fixes-v2023-12-14-0}
-* Fixes an issue where Kubernetes 1.27+ could prune the pause image being used, causing pods to fail.
+* Fixes an issue where Kubernetes 1.27 or later could prune the pause image being used, causing pods to fail.
 
 ## v2023.11.20-0
 
