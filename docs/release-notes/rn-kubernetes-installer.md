@@ -13,6 +13,7 @@ pagination_prev: null
 Released on December 14, 2023
 
 ### New Features {#new-features-v2023-12-14-0}
+* Adds support for RHEL 9.3 and Rocky Linux 9.3.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.25 and 1.6.26.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.2.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.70.0-55.0.0.
