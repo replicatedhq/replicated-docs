@@ -13,13 +13,14 @@ pagination_prev: null
 Released on December 14, 2023
 
 ### New Features {#new-features-v2023-12-14-0}
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.25.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.25 and 1.6.26.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.2.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.70.0-55.0.0.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-12-02T10-51-33Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-12-02T10-51-33Z and RELEASE.2023-12-09T18-17-51Z.
 * Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.9.0.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.26.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-12-09T18-17-51Z.
+
+### Bug Fixes {#bug-fixes-v2023-12-14-0}
+* Fixes an issue where Kubernetes 1.27+ could prune the pause image being used, causing pods to fail.
 
 ## v2023.11.20-0
 
