@@ -13,7 +13,7 @@ pagination_prev: null
 Released on December 14, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-14-0}
-* The default product select options will be generated from vendor-api based on enabled entitlements.
+* Fixes the default product options on the support request form. These will be generated based on enabled entitlements.
 
 ## v2023.12.13-0
 
