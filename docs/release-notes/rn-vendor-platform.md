@@ -15,6 +15,14 @@ Released on December 14, 2023
 ### Improvements {#improvements-v2023-12-14-4}
 * Persist create cluster form inputs when there's an error.
 
+## v2023.12.14-3
+
+Released on December 14, 2023
+
+### New Features {#new-features-v2023-12-14-3}
+* Display maintenance notifications per distro in create cluster form.
+* Add ability to select the date time range filter in Cluster History page. Cluster stats can be filtered by `start-time` and `end-time`.
+
 ## v2023.12.14-0
 
 Released on December 14, 2023
