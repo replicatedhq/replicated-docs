@@ -80,7 +80,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
-OpenShift clusters are provisioned with two user types:
+OpenShift clusters are provisioned with two users:
 * (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
 * A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
 
