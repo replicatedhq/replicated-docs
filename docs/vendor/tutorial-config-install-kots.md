@@ -6,9 +6,9 @@ To install the release with KOTS:
 
 1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
-  ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
+  ![KOTS Install tab on the Unstable channel card](/images/grafana-unstable-channel.png)
 
-  [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
+  [View a larger version of this image](/images/grafana-unstable-channel.png)
 
 1. On the command line, run the **KOTS Install** command that you copied:
 
@@ -49,17 +49,13 @@ To install the release with KOTS:
 
 1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
 
-1. On the login page, enter the password that you created.
+1. On the login page, enter the password that you created for the admin console.
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-1. On the Config page, in the **Admin User** and **Admin Password** fields, enter any username and password, respectively. The credentials that you provide will be mapped to the Grafana `values.yaml` file. You will use these credentials to log in to Grafana. 
+1. On the **Configure Grafana** page, in the **Admin User** and **Admin Password** fields, enter any username and password, respectively. The credentials that you provide will be mapped to the Grafana `values.yaml` file. You will use these credentials to log in to Grafana. 
 
-   The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created:
-
-   ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
-
-   [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
+   The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
 
 1. While waiting for the `grafana` Deployment to be created, do the following:
 
@@ -81,15 +77,13 @@ To install the release with KOTS:
 
       On the admin console dashboard, the application status is now displayed as Ready:
 
-      ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
+      ![Admin console dashboard showing ready status](/images/grafana-ready.png)
 
-      [View a larger version of this image](/images/tutorial-gitea-ready.png)
+      [View a larger version of this image](/images/grafana-ready.png)
 
 1. Click **Open App** to access the Grafana application in a browser:
 
-1. On the Grafana login page, enter the credentials that you created on the Config page:
-
-   The Grafana application dashboard opens: 
+1. On the Grafana login page, enter the credentials that you created on the **Configure Grafana** page during installation. Confirm that you can log in successfully to view the Grafana application dashboard.
 
 1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
 

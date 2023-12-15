@@ -53,7 +53,7 @@ To create a release:
    </TabItem>
    <TabItem value="config" label="kots-config.yaml">
     <h5>Description</h5>
-    <p>The Config custom resource defines a user-facing Config page in the Replicated admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" configuration fields that will be shown to the user on the admin console Config page during installation.</p>
+    <p>The Config custom resource specifies a user-facing configuration page in the Replicated admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the credentials for logging in to the Grafana application.</p>
     <h5>YAML</h5>
     <Config/>
    </TabItem>
