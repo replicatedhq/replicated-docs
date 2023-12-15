@@ -13,7 +13,7 @@ pagination_prev: null
 Released on December 14, 2023
 
 ### Improvements {#improvements-v2023-12-14-4}
-* Persist create cluster form inputs when there's an error.
+* Persist inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
 
 ## v2023.12.14-3
 
