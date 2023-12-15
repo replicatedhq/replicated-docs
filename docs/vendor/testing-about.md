@@ -62,7 +62,6 @@ The compatibility matrix has the following limitations:
 - Multi-node support is available only for GKE, EKS, and AKS.
 - There is no support for IPv6.
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
 - The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
 - The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.

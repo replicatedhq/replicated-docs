@@ -1,5 +1,5 @@
 import Help from "../partials/replicated-cli/_help.mdx"
-
+import Output from "../partials/replicated-cli/_output.mdx"
 
 # cluster create
 
@@ -47,20 +47,16 @@ replicated cluster create [flags]
     <td>integer</td>
     <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
-  <tr>
-    <td>--output</td>
-    <td>string</td>
-    <td>The output format to use. <strong>Valid values:</strong> json or table. <strong>Default:</strong> table</td>
-  </tr>
+  <Output/>
   <tr>
     <td>--ttl</td>
     <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
+    <td>The cluster Time to Live (TTL) duration, in hours. When the TTL expires, the cluster is automatically deleted. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1h through 48h. <strong>Default:</strong> One hour</td>
   </tr>
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
+    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>

@@ -667,6 +667,7 @@ const sidebars = {
         'reference/replicated-cli-cluster-ls',
         'reference/replicated-cli-cluster-prepare',
         'reference/replicated-cli-cluster-rm',
+        'reference/replicated-cli-cluster-update-ttl',
         'reference/replicated-cli-cluster-upgrade',
         'reference/replicated-cli-cluster-versions',
         'reference/replicated-cli-completion',
