@@ -114,6 +114,16 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
   </tr>
+  <tr>
+    <th>Distribution Specific Features</th>
+    <td>
+      The cluster is provisioned with two users, a "kubeadmin" user with cluster admin priviledges, and a "developer" user with namespace scoped permissions.
+      The context is set to the kubeadmin user by default in the kubeconfig returned from the `replicated cluster kubeconfig` command.
+      To switch to the developer user, use the command `oc login --username developer`.
+      The developer user can be used to better simulate access in end-customer environments.
+      Use the kubeadmin user only for administrative tasks such as creating new users or setting roles.
+    </td>
+  </tr>
 </table>
 
 ### HelmVM
