@@ -51,12 +51,12 @@ replicated cluster create [flags]
   <tr>
     <td>--ttl</td>
     <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours. When the TTL expires, the cluster is automatically deleted. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1h through 48h. <strong>Default:</strong> One hour</td>
+    <td><p>The cluster Time to Live (TTL) duration, in hours or minutes. When the TTL expires, the cluster is automatically deleted.</p><p> <strong>Valid values:</strong> 10m through 48h. For example, <code>10h</code> or <code>120min</code>.  TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1h through 48h. <strong>Default:</strong> 1h</p></td>
   </tr>
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
+    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>

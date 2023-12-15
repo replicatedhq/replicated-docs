@@ -3,7 +3,7 @@ import Output from "../partials/replicated-cli/_output.mdx"
 
 # cluster update ttl
 
-Increase the Time to Live (TTL) for a cluster provisioned with the Replicated compatibility matrix. The `cluster update ttl` command updates the expiration timestamp for a cluster and does _not_ change the creation timestamp.
+Increase or decrease the Time to Live (TTL) for a running cluster that was provisioned with the Replicated compatibility matrix. The `cluster update ttl` command updates the expiration timestamp for a cluster and does _not_ change the creation timestamp.
 
 For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
@@ -25,8 +25,7 @@ replicated cluster update ttl [ID] [flags]
     <td><code>--ttl</code></td>
     <td>string</td>
     <td>
-    <p>The updated TTL for the cluster, in hours. <strong>Valid values:</strong> 1h through 48h. For example, to update the TTL to ten hours, use <code>--ttl 10h</code>.</p>
-    <p>The updated TTL must be higher than the current TTL. You cannot reduce the TTL of a cluster.</p>
+    <p>The updated TTL for the cluster, in hours or minutes. Must be a duration longer than the current lifespan of the cluster. <strong>Valid values:</strong> 10m through 48h. For example, <code>15h</code> or <code>120min</code>.</p>
     </td>
   </tr>
 </table>
