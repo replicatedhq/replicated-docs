@@ -13,9 +13,9 @@ pagination_prev: null
 Released on December 18, 2023
 
 ### New Features {#new-features-v2023-12-18-0}
-* Add ability to extend cluster TTL after creation on UI.
+* Add ability to extend cluster Time to Live (TTL) after creation in the Compatibility Matrix page. 
 * Adds Embedded Cluster `v1.28.4+ec.4` as the default version.
-* Remove the 'NEW' badge from the Instances CSV download.
+* Removes the 'NEW' badge from the Instances CSV download.
 
 ## v2023.12.14-3
 
