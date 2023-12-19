@@ -16,7 +16,32 @@ Released on December 19, 2023
 * Start to attach specific KOTS release version to the Embedded Cluster release.
 
 ### Bug Fixes {#bug-fixes-v2023-12-19-3}
-* Allow user to hit 'enter' to submit when logging in to the download portal.
+* Allows user to hit 'enter' to submit when logging in to the download portal.
+
+## v2023.12.19-2
+
+Released on December 19, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-19-2}
+* Fixes scrolling on Kubernetes installer teaser page.
+
+## v2023.12.19-1
+
+Released on December 19, 2023
+
+### Improvements {#improvements-v2023-12-19-1}
+* Redesign the Customers page search to make it more streamlined.
+
+## v2023.12.19-0
+
+Released on December 19, 2023
+
+### New Features {#new-features-v2023-12-19-0}
+* Release Embedded Cluster v1.28.4+ec.5 replacing v1.28.4+ec.4.
+* Show max disk size on create cluster form (CMX) based on entitlement value.
+
+### Bug Fixes {#bug-fixes-v2023-12-19-0}
+* Disable create cluster button when loading team entitlement.
 
 ## v2023.12.18-0
 
