@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on December 19, 2023
 
-### New Features {#new-features-v2023-12-19-1}
+### Improvements {#improvements-v2023-12-19-1}
 * Redesign the Customers page search to make it more streamlined.
 
 ## v2023.12.18-0
