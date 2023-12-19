@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.14-4
+
+Released on December 14, 2023
+
+### Improvements {#improvements-v2023-12-14-4}
+* Persist inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
+
 ## v2023.12.14-3
 
 Released on December 14, 2023
