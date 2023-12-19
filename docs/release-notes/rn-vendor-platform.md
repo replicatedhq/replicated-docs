@@ -19,6 +19,24 @@ Released on December 19, 2023
 ### Bug Fixes {#bug-fixes-v2023-12-19-0}
 * Disable create cluster button when loading team entitlement.
 
+## v2023.12.18-0
+
+Released on December 18, 2023
+
+### New Features {#new-features-v2023-12-18-0}
+* Add ability to extend cluster Time to Live (TTL) after creation in the Compatibility Matrix page.
+
+### Improvements {#improvements-v2023-12-18-0}
+* Adds Embedded Cluster `v1.28.4+ec.4` as the default version.
+* Removes the 'NEW' badge from the Instances CSV download.
+
+## v2023.12.14-4
+
+Released on December 14, 2023
+
+### Improvements {#improvements-v2023-12-14-4}
+* Persist inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
+
 ## v2023.12.14-3
 
 Released on December 14, 2023
