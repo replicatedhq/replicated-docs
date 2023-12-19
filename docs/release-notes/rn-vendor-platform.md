@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.19-3
+
+Released on December 19, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-19-3}
+* Allows user to press 'Enter' to submit when logging in to the download portal.
+
 ## v2023.12.19-2
 
 Released on December 19, 2023
