@@ -12,11 +12,8 @@ pagination_prev: null
 
 Released on December 19, 2023
 
-### New Features {#new-features-v2023-12-19-3}
-* Start to attach specific KOTS release version to the Embedded Cluster release.
-
 ### Bug Fixes {#bug-fixes-v2023-12-19-3}
-* Allows user to hit 'enter' to submit when logging in to the download portal.
+* Allows user to press 'Enter' to submit when logging in to the download portal.
 
 ## v2023.12.19-2
 
