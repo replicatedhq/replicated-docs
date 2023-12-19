@@ -13,7 +13,7 @@ pagination_prev: null
 Released on December 19, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-19-2}
-* Fix scrolling on Kubernetes installer teaser page.
+* Fixes scrolling on Kubernetes installer teaser page.
 
 ## v2023.12.19-1
 
