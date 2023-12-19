@@ -17,6 +17,13 @@ Released on December 18, 2023
 * Adds Embedded Cluster `v1.28.4+ec.4` as the default version.
 * Removes the 'NEW' badge from the Instances CSV download.
 
+## v2023.12.14-4
+
+Released on December 14, 2023
+
+### Improvements {#improvements-v2023-12-14-4}
+* Persist inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
+
 ## v2023.12.14-3
 
 Released on December 14, 2023
