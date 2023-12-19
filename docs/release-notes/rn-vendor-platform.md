@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.19-1
+
+Released on December 19, 2023
+
+### Improvements {#improvements-v2023-12-19-1}
+* Redesign the Customers page search to make it more streamlined.
+
 ## v2023.12.19-0
 
 Released on December 19, 2023
