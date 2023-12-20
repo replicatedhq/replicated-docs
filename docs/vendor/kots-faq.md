@@ -2,25 +2,25 @@ import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
 # KOTS Terminology and FAQs
 
-This topic lists frequently-asked questions (FAQs) and key terminology for the Replicated KOTS installer.
+This topic lists key terminology and frequently-asked questions (FAQs) for the Replicated KOTS installer that are helpful to understand before getting started.
 
 ## Key Terminology
 
-This section includes key terminology related to KOTS that is useful to understand before getting started.
-
 ### Air Gap
 
-_Air gap_ or _air-gapped_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise customers that require high security.
+_Air gap_ or _air-gapped_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise users that require high security.
 
 ### Embedded Clusters
 
-_Embedded clusters_ are Kubernetes clusters provisioned on a virtual machine (VM) or a bare metal server using Replicated kURL.
+_Embedded clusters_ are Kubernetes clusters provisioned on a virtual machine (VM) or a bare metal server using Replicated kURL. Enterprise users that do not have an existing cluster (or do not have experience with Kubernetes) can install an application with KOTS on an embedded cluster. 
 
 ### KOTS Custom Resources
 
-KOTS provides several custom resources in the `kots.io` API group that can be included in releases. KOTS custom resources provide instructions to KOTS and control the application experience.
+KOTS provides several Kubernetes custom resources in the `kots.io` API group. KOTS custom resources are consumed by KOTS or other kubectl plugins and are _not_ deployed to the cluster.
 
-KOTS custom resources are _not_ deployed to the cluster. Rather, they are consumed by KOTS or other kubectl plugins.
+Software vendors can configure KOTS custom resources to provide installation instructions and control the application experience.
+
+For more information, see [About Custom Resources](/reference/custom-resources-about).
 
 ### KOTS Template Functions
 
@@ -28,67 +28,70 @@ KOTS provides a set of custom template functions based on the Go text/template l
 
 KOTS template functions can be used to generate values specific to the customer environment that can be useful during installation. For example, customer entitlement information, user-provided configuration values, or the number of nodes detected in the Kubernetes cluster where the application is installed.
 
-## FAQs
+For more information, see [About Template Functions](/reference/template-functions-about).
 
-This section provides FAQs related to the KOTS installer.
+## FAQs
 
 ### What is KOTS?
 
 Replicated KOTS is an open source kubectl plugin maintained by Replicated. KOTS provides highly successful installations of Kubernetes applications into diverse environments (including on-prem and air gap environments).
 
+For more information, see [About KOTS and kURL](intro-kots).
+
+### What do I have to do to enable KOTS installations for my application?
+
+Enabling KOTS installations requires that the Replicated KOTS entitlement is assigned to your vendor portal team.
+
+Teams with the KOTS entitlement can create KOTS-enabled releases by configuring the custom resources required by KOTS to install the application. For a checklist of the required and optional custom resources for KOTS, see [Onboarding with KOTS](/vendor/distributing-workflow).
+
 ### How do KOTS installations work?
 
-Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS then deploys the admin console where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install and deploy the application.
+Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS deploys the admin console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
-### How do embedded cluster installations with KOTS work?
+For detailed installation steps, see [Installing in Existing Clusters](/enterprise/installing-existing-cluster).
 
-In embedded cluster installations, users run the Replicated kURL installation command to provision a cluster, install KOTS in the cluster, and deploy the admin console.
+### How do embedded cluster installations work?
 
-Users log in to the admin console to provide their license file, define application-specific configuration values, run preflight checks, and install and deploy the application.
+In embedded cluster installations, users run the kURL installation command to provision a cluster on a VM or bare metal server. The kURL installation command also installs KOTS in the cluster.
 
-### What are the benefits of installing applications with KOTS versus Helm?
+KOTS deploys the admin console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
-Many enterprise customers that have experience with Kubernetes and Helm will expect to be able to install an application with Helm.
+For detailed installation steps, see [Installing with kURL](/enterprise/installing-embedded-cluster).
 
-Compared to Helm, installing with KOTS offers additional features and functionality, including:
-* A UI-based installation experience, including a UI for collecting user configuration values
-* Support for air gap installations
-* Support for embedded cluster installations on a VM or bare metal server
+### Can I use my own branding for KOTS installations?
 
-Use cases for KOTS include:
-* Enterprise customers that do not have experience with Helm
-* Do not have an existing Kubernetes cluster (kURL might be helpful to have more consistent operating environments for your app)
+Yes. The KOTS admin console supports custom branding, including customizing a logo, primary colors, and buttons and links on the dashboard. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
+
+For more information, see [Customizing the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon).
 
 ### Does KOTS support installations into air gap environments?
 
-Yes. KOTS supports installations into air gap environments in existing or embedded clusters.
+Yes. Software vendors can use KOTS to generate air gap bundles for installation into air gap environments. KOTS also provides customer-specific download portals where air gap bundles and license files can be shared with enterprise users.
+
+Air gap installations are supported for existing and embedded clusters. 
 
 ### Can I deploy Helm charts with KOTS?
 
-Yes. Using KOTS to install Helm charts provides additional functionality not directly available with the Helm CLI, such as:
-* A user interface for collecting user configuration values
-* Support for air gap installations
-* Support for embedded cluster installations on a VM or bare metal server (for enterprise users that do not have an existing cluster)
-* Backup and restore with the KOTS snapshots feature
+Yes. An application deployed with KOTS can use one or more Helm charts, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
-### How does KOTS deploy Helm charts?
+For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-The KOTS HelmChart custom resource provides instructions to KOTS about how to install a given Helm chart. Each Helm chart in a release that will be installed by KOTS requires a unique HelmChart custom resource.
+### What are the use cases for installing applications with KOTS versus Helm?
+
+Helm is a popular package manager for Kubernetes applications. Many enterprise users that have experience with Kubernetes and Helm will expect to be able to install an application with the Helm CLI. 
+
+The UI-based installation experience of KOTS can provide an easier installation experience for enterprise users that do not have experience with Kubernetes or Helm. Additionally, KOTS provides support for installations into air gap environments, which is not directly supported by Helm.
 
 ### Can I support both Helm CLI and KOTS installations for my application?
 
-Yes. For software vendors with Helm chart-based applications, you can support installations with the Helm CLI and with KOTS from the same release.
+Yes. Software vendors that distribute their application as one or more Helm charts can support installations with both the Helm CLI and with KOTS from the same release.
 
 For a tutorial that demonstrates how to add the Bitnami Gitea Helm chart to a release in the Replicated vendor portal and then install with both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and Helm CLI](/vendor/tutorial-kots-helm-setup).
 
 ### How does the Replicated SDK work with KOTS?
 
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK can be installed alongside Helm chart- or standard manifest-based applications using the Helm CLI or KOTS.
+The Replicated SDK is a Helm chart that can be installed as a small service alongside an application, or as a standalone component. The SDK can be installed using the Helm CLI or KOTS.
 
-Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for collecting custom metrics from application instances.
+Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for sending custom metrics from application instances. When both the SDK and KOTS are installed in a cluster alongside an application, both send instance telemetry to the vendor portal.
 
-### What do I have to do to enable KOTS installations for my application?
-
-To enable KOTS installations for your application:
-* Request the KOTS entitlement
-* Add a set of custom resources to your release to control the application experience, such as branding the admin console, setting up a page to collect user-provided configuration options, and defining preflight checks 
+For more information, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
