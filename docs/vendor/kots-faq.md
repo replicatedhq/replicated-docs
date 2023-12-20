@@ -72,7 +72,7 @@ Air gap installations are supported for existing and embedded clusters.
 
 ### Can I deploy Helm charts with KOTS?
 
-Yes. An application deployed with KOTS can use one or more Helm charts, can include Helm charts as components, and can use more than a single instance of any Helm chart.
+Yes. An application deployed with KOTS can use one or more Helm charts, can include Helm charts as components, and can use more than a single instance of any Helm chart. Each Helm chart deployed by KOTS requires a unique HelmChart custom resource (`apiVersion: kots.io/v1beta2`) in the release.
 
 For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
