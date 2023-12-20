@@ -14,19 +14,19 @@ _Air gap_ or _air-gapped_ refers to customer environments that do not have outbo
 
 ### Embedded Clusters
 
-_Embedded clusters_ are Kubernetes clusters provisioned on a virtual machine (VM) or a bare metal server using Replicated's embedded cluster offering.
+_Embedded clusters_ are Kubernetes clusters provisioned on a virtual machine (VM) or a bare metal server using Replicated kURL.
 
 ### KOTS Custom Resources
 
-KOTS provides several custom resources in the `kots.io` API group that can be included in releases to provide instructions to KOTS and control the application experience.
+KOTS provides several custom resources in the `kots.io` API group that can be included in releases. KOTS custom resources provide instructions to KOTS and control the application experience.
 
 KOTS custom resources are _not_ deployed to the cluster. Rather, they are consumed by KOTS or other kubectl plugins.
 
 ### KOTS Template Functions
 
-KOTS provides a set of custom template functions based on the Go text/template library.
+KOTS provides a set of custom template functions based on the Go text/template library that can be used in any Kubernetes manifests for applications deployed with KOTS.
 
-A common use case for KOTS template functions is to generate values that are specific to the customer environment, such as customer entitlement information, user-provided configurations, or the number of nodes detected in the Kubernetes cluster where the application is installed.
+KOTS template functions can be used to generate values specific to the customer environment that can be useful during installation. For example, customer entitlement information, user-provided configuration values, or the number of nodes detected in the Kubernetes cluster where the application is installed.
 
 ## FAQs
 
@@ -38,29 +38,38 @@ Replicated KOTS is an open source kubectl plugin maintained by Replicated. KOTS 
 
 ### How do KOTS installations work?
 
-KOTS deploys an admin console, which provides a user interface for installing and managing applications. After installing KOTS in a cluster, users can log in to the admin console to provide their license file, define configuration values, run preflight checks, and then install and deploy your application with KOTS.
+Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS then deploys the admin console where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install and deploy the application.
 
 ### How do embedded cluster installations with KOTS work?
 
-Users that do not have an existing Kubernetes cluster can install KOTS and your application using Replicated's embedded cluster offering.
+In embedded cluster installations, users run the Replicated kURL installation command to provision a cluster, install KOTS in the cluster, and deploy the admin console.
 
-When doing an embedded cluster installation, users can run a single command to provision a cluster, install KOTS in the cluster, provide their license file. This command also makes the admin console available, where users can log in to complete application installation. 
+Users log in to the admin console to provide their license file, define application-specific configuration values, run preflight checks, and install and deploy the application.
 
-### What are the pros and cons of installing applications with KOTS versus Helm?
+### What are the benefits of installing applications with KOTS versus Helm?
 
-Helm is a popular package manager for Kubernetes applications and many enterprise users expect to be able to install an application with Helm.
+Many enterprise customers that have experience with Kubernetes and Helm will expect to be able to install an application with Helm.
+
+Compared to Helm, installing with KOTS offers additional features and functionality, including:
+* A UI-based installation experience, including a UI for collecting user configuration values
+* Support for air gap installations
+* Support for embedded cluster installations on a VM or bare metal server
+
+Use cases for KOTS include:
+* Enterprise customers that do not have experience with Helm
+* Do not have an existing Kubernetes cluster (kURL might be helpful to have more consistent operating environments for your app)
 
 ### Does KOTS support installations into air gap environments?
 
-Yes. KOTS supports installations in air gap environments in both existing and embedded clusters.
-
-For information about installing in air gap environments with KOTS:
-* **Existing clusters**: See [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped)
-* **Embedded clusters**: See [Air Gap Installation with kURL](installing-embedded-airgapped)
+Yes. KOTS supports installations into air gap environments in existing or embedded clusters.
 
 ### Can I deploy Helm charts with KOTS?
 
-Yes. Using KOTS to install Helm charts provides additional functionality not directly available with the Helm CLI, such as a user interface for collecting user configuration values, support for air gap installations, and backup and restore with the KOTS snapshots feature.
+Yes. Using KOTS to install Helm charts provides additional functionality not directly available with the Helm CLI, such as:
+* A user interface for collecting user configuration values
+* Support for air gap installations
+* Support for embedded cluster installations on a VM or bare metal server (for enterprise users that do not have an existing cluster)
+* Backup and restore with the KOTS snapshots feature
 
 ### How does KOTS deploy Helm charts?
 
