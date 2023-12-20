@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.20-1
+
+Released on December 19, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-20-1}
+* Fixes failures in deploying applications with empty files in Helm charts.
+
 ## v2023.12.19-3
 
 Released on December 19, 2023
