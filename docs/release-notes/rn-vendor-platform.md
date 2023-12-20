@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.20-1
+
+Released on December 20, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-20-1}
+* Provides better error messaging when you visit an instance details page with an invalid app slug, customer ID, or instance ID in the URL.
+
 ## v2023.12.19-3
 
 Released on December 19, 2023
