@@ -14,6 +14,7 @@ Released on December 20, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-20-1}
 * Provides better error messaging when you visit an instance details page with an invalid app slug, customer ID, or instance ID in the URL.
+* Fixes failures installing applications with helm charts containing empty files.
 
 ## v2023.12.19-3
 
