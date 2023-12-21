@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.21-3
+
+Released on December 21, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-21-3}
+* Fixes incorrect link for releases and customers created by Service Accounts.
+
 ## v2023.12.20-1
 
 Released on December 20, 2023
