@@ -15,6 +15,21 @@ Released on December 21, 2023
 ### Improvements {#improvements-v2023-12-21-4}
 * Adds ability to add tags to customer instances.
 
+## v2023.12.21-3
+
+Released on December 21, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-21-3}
+* Fixes incorrect link for releases and customers created by Service Accounts.
+
+
+## v2023.12.21-2
+
+Released on December 21, 2023
+
+### Improvements {#improvements-v2023-12-21-2}
+* Ability to add tags to customer instances.
+
 ## v2023.12.20-1
 
 Released on December 20, 2023
