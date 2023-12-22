@@ -34,7 +34,7 @@ This repository has been made public so that vendors and the open-source communi
 
 - **Submit a PR** You can submit a PR directly from a specific topic in the documentation by clicking the **Create pull request or raise issue on GitHub** at the bottom of the page. This method lets you edit the content directly and commit your changes on a new branch. After submitting your proposed changes, the Replicated team will verify the accuracy of the changes and perform an editorial review. If the PR is approved, it will be merged directly into the main branch.
 
-- **Open a Github Issue** - To open a GitHub issue for this repository, click the Issues tab and click **New Issue**. This method may be more useful when you want to report a bug specifically for the documentation. If you are having an issue with the product itself, we encourage you to report it to us in a Zendesk ticket, Slack message, or by emailing support@replicated.com.
+- **Open a Github Issue** - To open a GitHub issue for this repository, click the Issues tab and click **New Issue**. This method may be more useful when you want to report a bug specifically for the documentation. If you are having an issue with the product itself, we encourage you to report it to us in a support issue submitted in the vendor portal.
 
 ## Setting Up Local WYSIWYG Previews
 
