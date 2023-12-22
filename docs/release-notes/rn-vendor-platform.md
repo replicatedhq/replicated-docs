@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.22-0
+
+Released on December 22, 2023
+
+### New Features {#new-features-v2023-12-22-0}
+* Customer instances can now be tagged.
+
 ## v2023.12.20-1
 
 Released on December 20, 2023
