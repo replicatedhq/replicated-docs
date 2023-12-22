@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.22-0
+
+Released on December 22, 2023
+
+### Improvements {#improvements-v2023-12-22-0}
+* Adds ability to add tags to customer instances.
+
+## v2023.12.21-3
+
+Released on December 21, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-21-3}
+* Fixes incorrect link for releases and customers created by Service Accounts.
+
 ## v2023.12.20-1
 
 Released on December 20, 2023
@@ -35,7 +49,7 @@ Released on December 19, 2023
 Released on December 19, 2023
 
 ### Improvements {#improvements-v2023-12-19-1}
-* Redesign the Customers page search to make it more streamlined.
+* Redesigns the Customers page search to make it more streamlined.
 
 ## v2023.12.19-0
 
@@ -43,17 +57,17 @@ Released on December 19, 2023
 
 ### New Features {#new-features-v2023-12-19-0}
 * Release Embedded Cluster v1.28.4+ec.5 replacing v1.28.4+ec.4.
-* Show max disk size on create cluster form (CMX) based on entitlement value.
+* Shows max disk size on create cluster form (CMX) based on entitlement value.
 
 ### Bug Fixes {#bug-fixes-v2023-12-19-0}
-* Disable create cluster button when loading team entitlement.
+* Disables create cluster button when loading team entitlement.
 
 ## v2023.12.18-0
 
 Released on December 18, 2023
 
 ### New Features {#new-features-v2023-12-18-0}
-* Add ability to extend cluster Time to Live (TTL) after creation in the Compatibility Matrix page.
+* Adds ability to extend cluster Time to Live (TTL) after creation with the compatibility matrix.
 
 ### Improvements {#improvements-v2023-12-18-0}
 * Adds Embedded Cluster `v1.28.4+ec.4` as the default version.
@@ -64,15 +78,15 @@ Released on December 18, 2023
 Released on December 14, 2023
 
 ### Improvements {#improvements-v2023-12-14-4}
-* Persist inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
+* Persists inputs on the **Compatibility Matrix > Create Cluster** dialog when there is an error.
 
 ## v2023.12.14-3
 
 Released on December 14, 2023
 
-### New Features {#new-features-v2023-12-14-3}
-* Display maintenance notifications per distro in create cluster form.
-* Add ability to select the date time range filter in Cluster History page. Cluster stats can be filtered by `start-time` and `end-time`.
+### Improvements {#improvements-v2023-12-14-3}
+* Displays maintenance notifications per distro in create cluster form.
+* Adds ability to select the date time range filter in Cluster History page. Cluster stats can be filtered by `start-time` and `end-time`.
 
 ## v2023.12.14-0
 
@@ -86,10 +100,10 @@ Released on December 14, 2023
 Released on December 13, 2023
 
 ### Improvements {#improvement-v2023-12-13-1}
-* Use `sortColumn=tag` and `tag-sort-key` to sort clusters on the values for a tag key.
+* Uses `sortColumn=tag` and `tag-sort-key` to sort clusters on the values for a tag key.
 
 ### Bug Fixes {#bug-fixes-v2023-12-13-1}
-* Show error message when updating Compatibility Matrix quotas to the same value or less than the current value.
+* Shows error message when updating Compatibility Matrix quotas to the same value or less than the current value.
 
 ## v2023.12.13-0
 
@@ -114,7 +128,7 @@ Released on December 11, 2023
 
 ### Improvements {#improvements-v2023-12-11-2}
 * Improves usability of the Download Portal by providing descriptions, better button names, and improved styles.
-* Improve messaging when RBAC prevents requesting more credits in CMX.
+* Improves messaging when RBAC prevents requesting more credits in CMX.
 
 ### Bug Fixes {#bug-fixes-v2023-12-11-2}
 * Fixes version label on customer instances table.
@@ -124,28 +138,28 @@ Released on December 11, 2023
 Released on December 11, 2023
 
 ### Improvements {#improvements-v2023-12-11-1}
-* Show the release version that was most recently downloaded from the Download Portal on the **Customer Reporting** page.
+* Shows the release version that was most recently downloaded from the Download Portal on the **Customer Reporting** page.
 
 ## v2023.12.11-0
 
 Released on December 11, 2023
 
 ### Improvements {#improvements-v2023-12-11-0}
-* Re-order the support request form to ensure that the customer (or "no customer") is selected prior to the selection of the product area, and auto fill the form smartly.
+* Re-orders the support request form to ensure that the customer (or "no customer") is selected prior to the selection of the product area, and auto fill the form smartly.
 
 ## v2023.12.09-0
 
 Released on December 9, 2023
 
 ### Improvements {#improvements-v2023-12-09-0}
-* Vendors can upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** page.
+* Adds ability to upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** page.
 
 ## v2023.12.08-4
 
 Released on December 8, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-08-4}
-* Persist column visibility on Compatibility Matrix cluster history.
+* Persists column visibility on Compatibility Matrix cluster history.
 
 ## v2023.12.08-1
 
@@ -158,15 +172,15 @@ Released on December 8, 2023
 
 Released on December 8, 2023
 
-### New Features {#new-features-v2023-12-08-0}
-* Vendors can upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** pages.
+### Improvements {#improvements-v2023-12-08-0}
+* Adds ability to upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** pages.
 
 ## v2023.12.07-2
 
 Released on December 7, 2023
 
 ### Improvements {#improvements-v2023-12-07-2}
-* Users can specify tags at cluster creation in Compatibility Matrix.
+* Adds ability to specify tags at cluster creation with the compatibility matrix.
 
 ## v2023.12.07-1
 
@@ -209,45 +223,43 @@ Released on December 4, 2023
 Released on December 4, 2023
 
 ### Improvements {#improvements-v2023-12-04-3}
-* Add the capability to update a test cluster TTL.
+* Adds the ability to update a test cluster TTL.
 
 ## v2023.12.04-1
 
 Released on December 4, 2023
 
 ### New Features {#new-features-v2023-12-04-1}
-* Add the "installer support enabled" license option to the customer create and manage pages. This option is only visibile to vendors with the associated entitlement enabled. 
+* Adds the "installer support enabled" license option to the customer create and manage pages. This option is only visibile to vendors with the associated entitlement enabled. 
 
 ## v2023.12.01-4
 
 Released on December 1, 2023
 
-### New Features {#new-features-v2023-12-01-4}
-* Unify the Customers page search, sort, and filter results across all tabs.
+### Improvements {#improvements-v2023-12-01-4}
+* Unifies the Customers page search, sort, and filter results across all tabs.
 
 ## v2023.11.29-3
 
 Released on November 29, 2023
 
-### New Features {#new-features-v2023-11-29-3}
-* Users can subscribe to custom metrics notifications.
-
 ### Improvements {#improvements-v2023-11-29-3}
-* Notifications for "All" events are split into "App Status" and "System Events".
+* Adds the ability to subscribe to custom metrics notifications.
+* Splits notifications for "All" events into "App Status" and "System Events".
 
 ## v2023.11.29-2
 
 Released on November 29, 2023
 
 ### New Features {#new-features-v2023-11-29-2}
-* Add Custom Metrics timeseries graphing on the Instance Details page.
+* Adds Custom Metrics timeseries graphing on the Instance Details page.
 
 ## v2023.11.29-0
 
 Released on November 29, 2023
 
 ### Improvements {#improvements-v2023-11-29-0}
-* The Application drop down in the vendor portal supports opening in new tab on right click.
+* Adds support for opening a new tab on right click in the Application drop down.
 
 ### Bug Fixes {#bug-fixes-v2023-11-29-0}
 * Fixes an issue that could cause the user to not be able to upload support bundles on the Instance Insights page.
@@ -257,7 +269,7 @@ Released on November 29, 2023
 Released on November 28, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-11-28-1}
-* Align Helm icon with helm chart in release editor.
+* Aligns Helm icon with helm chart in release editor.
 
 ## v2023.11.28-0
 
@@ -279,7 +291,7 @@ Released on November 27, 2023
 Released on November 23, 2023
 
 ### New Features {#new-features-v2023-11-23-0}
-* Supports multi-node kURL clusters up to 10 nodes with Compatibility Matrix.
+* Supports multi-node kURL clusters up to 10 nodes with the compatibility matrix.
 
 ## v2023.11.22-1
 
@@ -293,28 +305,26 @@ Released on November 22, 2023
 Released on November 20, 2023
 
 ### Improvements {#improvements-v2023-11-20-2}
-* Hide inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
+* Hides inactive instances from the Instances table view by default. Add checkbox to show inactive instances in table.
 
 ## v2023.11.17-2
 
 Released on November 17, 2023
 
 ### Improvements {#improvements-v2023-11-17-2}
-* Hide the 'NEW' badge on the Instances CSV download after it has been clicked.
+* Hides the 'NEW' badge on the Instances CSV download after it has been clicked.
 
 ## v2023.11.15-0
 
 Released on November 15, 2023
 
-### New Features {#new-features-v2023-11-15-0}
-* Save Channels ordering, sorting, and hidden columns table settings when the user updates them.
-
 ### Improvements {#improvements-v2023-11-15-0}
+* Saves Channels ordering, sorting, and hidden columns table settings when the user updates them.
 * Standardize tooltips on Dashboard, Customers, and Channels pages.
 * Disallow adding a .zip file when uploading a bundle in the support request form.
 
 ### Bug Fixes {#bug-fixes-v2023-11-15-0}
-* Fix button alignment in empty state on Releases page when KOTS installer is not enabled.
+* Fixes button alignment in empty state on the **Releases** page when the KOTS installer is not enabled.
 
 ## v2023.11.13-0
 
@@ -328,17 +338,15 @@ Released on November 13, 2023
 Released on November 10, 2023
 
 ### Improvements {#improvements-v2023-11-10-1}
-* Update button styles on Troubleshoot, License Fields, Images, Kubernetes Installers, and Custom Domains.
-* Standardize button styles on Team and Account Settings pages.
+* Updates button styles on Troubleshoot, License Fields, Images, Kubernetes Installers, and Custom Domains.
+* Standardizes button styles on Team and Account Settings pages.
 
 ## v2023.11.10-0
 
 Released on November 10, 2023
 
-### New Features {#new-features-v2023-11-10-0}
-* Adds the ability to save table settings (column order, column visibility, sort by, page size) on Customer and Instances table.
-
 ### Improvements {#improvements-v2023-11-10-0}
+* Adds the ability to save table settings (column order, column visibility, sort by, page size) on Customer and Instances table.
 * Standardizes button styles on Releases, Channels, and Customers pages.
 
 ### Bug Fixes {#bug-fixes-v2023-11-10-0}
@@ -356,14 +364,14 @@ Released on November 6, 2023
 Released on November 3, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-11-03-1}
-* Audit log initial search query filters out "read" events.
+* Filters out "read" events in the audit log initial search query.
 
 ## v2023.11.03-2
 
 Released on November 3, 2023
 
 ### Improvements {#improvements-v2023-11-03-2}
-* Upon login, the user is redirected to most recently managed application.
+* Redirects user to the most recently managed application upon login.
 
 ## v2023.10.30-3
 
@@ -377,36 +385,36 @@ Released on October 30, 2023
 Released on October 30, 2023
 
 ### Improvements {#improvements-v2023-10-30-2}
-* Make some columns hidden by default in the Instances view on the Customers page and update column names.
+* Makes some columns hidden by default in the Instances view on the Customers page and updates column names.
 
 ## v2023.10.30-1
 
 Released on October 30, 2023
 
 ### Improvements {#improvements-v2023-10-30-1}
-* Update styles on **Instance Details** page.
-* Update tab styles throughout the vendor portal.
+* Updates styles on **Instance Details** page.
+* Updates tab styles throughout the vendor portal.
 
 ## v2023.10.27-2
 
 Released on October 27, 2023
 
 ### Improvements {#improvements-v2023-10-27-2}
-* Standardize breadcrumbs across the site.
+* Standardizes breadcrumbs across the site.
 
 ## v2023.10.27-1
 
 Released on October 27, 2023
 
 ### Improvements {#improvements-v2023-10-27-1}
-* Various style updates to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
+* Various style improvements to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
 
 ## v2023.10.26-3
 
 Released on October 26, 2023
 
 ### Improvements {#improvements-v2023-10-26-3}
-* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
+* Various style improvements to the compatibility matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
 
 ## v2023.10.26-2
 
@@ -419,16 +427,16 @@ Released on October 26, 2023
 
 Released on October 26, 2023
 
-### New Features {#new-features-v2023-10-26-0}
-* Allow editing tags in the Cluster History table.
-* Allow adding tags as separate columns in the Cluster History table.
-* Show some statistics at the top of the Cluster History table.
+### Improvements {#improvements-v2023-10-26-0}
+* Allows editing tags in the Cluster History table.
+* Allows adding tags as separate columns in the Cluster History table.
+* Shows some statistics at the top of the Cluster History table.
 
 ## v2023.10.24-0
 
 Released on October 24, 2023
 
-### New Features {#new-features-v2023-10-24-0}
+### Improvements {#improvements-v2023-10-24-0}
 * Adds links to release notes in the vendor portal.
 
 ## v2023.10.23-0
@@ -449,11 +457,11 @@ Released on October 18, 2023
 
 Released on October 18, 2023
 
-### New Features {#new-features-v2023-10-18-0}
+### Improvements {#improvements-v2023-10-18-0}
 * Shows tags on the cluster and cluster history table.
 
 ### Bug Fixes {#bug-fixes-v2023-10-18-0}
-* When using [v3 API to create a release](https://replicated-vendor-api.readme.io/reference/createrelease), release size will be limited to 16MiB when compressed.
+* Limits release size to 16MiB when compressed using the [Vendor API v3 to create a release](https://replicated-vendor-api.readme.io/reference/createrelease).
 * Shows error message if user encounters an error during application creation.
 * Fixes a bug that would allow creating accounts using an email address with trailing or leading white spaces.
 
@@ -475,7 +483,7 @@ Released on October 13, 2023
 
 ### Improvements {#improvements-v2023-10-13-0}
 * Adds the name of the entity that created the cluster to the cluster page.
-* Various design updates to the **Cluster History** page to improve the user experience.
+* Various design imporvements to the **Cluster History** page to improve the user experience.
 
 ## v2023.10.11-1
 
@@ -496,7 +504,7 @@ Released on October 11, 2023
 
 Released on October 10, 2023
 
-### New Features {#new-features-v2023-10-10-0}
+### Improvements {#improvements-v2023-10-10-0}
 * Adds a verification stage when provisioning bare metal clusters of type Kind, K3s, kURL, and HelmVM to check that the cluster is running and healthy.
 
 ## v2023.10.09-1
@@ -504,12 +512,12 @@ Released on October 10, 2023
 Released on October 9, 2023
 
 ### Bug Fixes {#bug-fixes-v2023.10.09-1}
-* Updates the icon for Custom Metrics events on Instance Details pages.
+* Updates the icon for custom metrics events on the Instance Details pages.
 
 ## v2023.10.09-0
 
 Released on October 9, 2023
 
 ### Improvements {#improvements-v2023.10.09-0}
-* Sets `false` as the default value for any new Boolean license fields.
-* Changes Boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
+* Sets `false` as the default value for any new boolean license fields.
+* Changes boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
