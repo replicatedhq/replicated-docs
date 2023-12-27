@@ -58,7 +58,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native Installer)</a></td>
-    <td>LA</td>
+    <td>EOA</td>
     <td>2023-12-31&#42;</td>
     <td>2024-12-31&#42;</td>
   </tr>
@@ -101,4 +101,4 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified November 09, 2023.
+Last modified January 01, 2024.
