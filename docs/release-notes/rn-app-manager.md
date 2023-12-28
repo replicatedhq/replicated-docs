@@ -23,7 +23,11 @@ Released on December 28, 2023
 Support for Kubernetes: 1.26, 1.27, and 1.28
 
 ### New Features {#new-features-1-105-0}
-* TBD.
+* Adds the ability to template the entire [values](/reference/custom-resource-helmchart-v2#values) field in the HelmChart custom resource.
+
+### Bug Fixes {#bug-fixes-1-105-0}
+* Fixes an issue where the [namespace](/reference/custom-resource-helmchart-v2#namespace) field in HelmChart custom resources was not rendered when uninstalling the corresponding chart.
+* Fixes an issue where KOTS failed to parse the Preflight custom resource if template functions were used for non-string fields.
 
 ## 1.104.7
 
