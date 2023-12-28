@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.28-0
+
+Released on December 28, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-28-0}
+* Removes references to the deprecated support@replicated.com email address.
+
 ## v2023.12.27-1
 
 Released on December 27, 2023
