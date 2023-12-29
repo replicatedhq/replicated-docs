@@ -127,13 +127,14 @@ The following describes the _License time to install_ and _Instance time to inst
 
 ### Instance Information
 
-The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed:
+The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed as well as vendor specified metadata about the instance:
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
 * The version of KOTS or the Replicated SDK installed in the cluster.
 * For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
+* Custom vendor defined instance tags (max of 10 key-value pairs) and an optional friendly name for the instance.
 
 In addition to the details listed above, the **Instance Information** section also displays the following for embedded clusters provisioned by Replicated kURL:
 * Node operating systems
