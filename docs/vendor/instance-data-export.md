@@ -337,4 +337,14 @@ The following table lists the data fields that can be included in the customers 
         <td>string/integer/boolean</td>
         <td>The values of any custom metrics that have been sent by the instance. For example, custom_metric__active_users</td>
     </tr>
+    <tr>
+        <td>instance_has_tags</td>
+        <td>boolean</td>
+        <td>Indicates the presence or absence of instance tags and instance_tag__* columns</td>
+    </tr>
+    <tr>
+        <td>instance_tag__*</td>
+        <td>string/integer/boolean</td>
+        <td>The values of any instance tag that have been set by the vendor. For example, instance_tag__name</td>
+    </tr>
 </table>
