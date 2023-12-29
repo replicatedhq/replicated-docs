@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.29-0
+
+Released on December 29, 2023
+
+### New Features {#new-features-v2023-12-29-0}
+* Customer instances' name and tags can be updated in the Customer reporting and Instance details page.
+
 ## v2023.12.28-0
 
 Released on December 28, 2023
