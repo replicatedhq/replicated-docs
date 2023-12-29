@@ -23,7 +23,7 @@ Released on December 29, 2023
 Support for Kubernetes: 1.26, 1.27, and 1.28
 
 ### Bug Fixes {#bug-fixes-1-105-1}
-* Fixes an issue where fields such as `minKotsVersion` in the Application custom resource would not be respected if it was part of a multi-doc yaml file.
+* Fixes an issue where the `minKotsVersion` and `targetKotsVersion` fields in the Application custom resource would not be enforced if it was part of a multi-doc yaml file.
 
 ## 1.105.0
 
