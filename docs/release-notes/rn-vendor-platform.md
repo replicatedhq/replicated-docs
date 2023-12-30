@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.12.30-0
+
+Released on December 30, 2023
+
+### Bug Fixes {#bug-fixes-v2023-12-30-0}
+* Fixes an issue where the instance name failed to render after creating an instance tag with the key "name.".
+
 ## v2023.12.29-5
 
 Released on December 29, 2023
