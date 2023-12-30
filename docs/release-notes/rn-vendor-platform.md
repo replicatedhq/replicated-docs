@@ -12,6 +12,9 @@ pagination_prev: null
 
 Released on December 29, 2023
 
+### New Features {#new-features-v2023-12-29-5}
+* Adds the ability to add a custom name to a given instance along with other vendor-defined instance tags. 
+
 ## v2023.12.28-0
 
 Released on December 28, 2023
