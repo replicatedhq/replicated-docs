@@ -4,8 +4,10 @@ A Replicated installation connects to a Replicated-hosted endpoint periodically 
 
 - The IP address of the primary Replicated instance.
 - The ID of the installation.
-- The state of the installation (running, stopped, and so on).
-- Information about the installation (version of the app, version of Replicated components, version of Kubernetes, version of Kubernetes addons, and so on).
+- [Resource statuses](https://docs.replicated.com/enterprise/status-viewing-details#resource-statuses)
+- Information about the installation including data needed for [instance details](https://docs.replicated.com/vendor/instance-insights-details).
+- [Custom metrics](https://docs.replicated.com/vendor/custom-metrics) which the vendor may configure as part of the installation.
+- Date and timestamps of the data transmission.
 
 This data is required to provide the expected update and license services. The data is also used to provide telemetry and other reporting features.
 
@@ -15,4 +17,4 @@ All data is encrypted in transit according to industry best practices. For more 
 
 For more information about application instance data fields that the Replicated vendor portal uses to generate events for instances, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
-Last modified May 24, 2023
+Last modified December 31, 2023
