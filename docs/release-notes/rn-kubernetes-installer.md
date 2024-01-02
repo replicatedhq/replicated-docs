@@ -8,6 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.02-0
+
+Released on January 2, 2024
+
+### New Features {#new-features-v2024-01-02-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.0 1.28.5 1.28.4 1.27.9 1.27.8 1.26.12 1.26.11.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3 to use HAProxy 2.9.1.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.10.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.24.0.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.9.0-6.1.2.
+
+### Bug Fixes {#bug-fixes-v2024-01-02-0}
+* Fixes an issue where the 'minimum-node-count' parameter for Rook storage would require port 31880 to be opened between the node joining the cluster and a primary node.
+* Adds a preflight to Kubernetes 1.29.x+ to prevent installing KOTS versions prior to 1.96.2 due to version incompatibilities.
+
 ## v2023.12.14-0
 
 Released on December 14, 2023
