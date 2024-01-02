@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.13
+
+Released on January 2, 2024
+
+### Improvements {#improvements-1-0-0-beta-13}
+* Upgrades the helm.sh/helm/v3 go module to v3.13.3 to resolve CVE-2023-39325 and GHSA-m425-mq94-257g with high severity and CVE-2023-44487 and GHSA-jq35-85cj-fj4p with medium severity.
+
 ## 1.0.0-beta.12
 
 Released on November 6, 2023
