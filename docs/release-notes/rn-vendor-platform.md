@@ -13,7 +13,7 @@ pagination_prev: null
 Released on January 2, 2024
 
 ### New Features {#new-features-v2024-01-02-0}
-* Displays instance name on customer's page.
+* Displays instance name on the **Customers** page hybrid view.
 
 ## v2023.12.30-0
 
@@ -41,7 +41,7 @@ Released on December 28, 2023
 Released on December 27, 2023
 
 ### New Features {#new-features-v2023-12-27-1}
-* Adds additional bundle and instance metadata to the Support Bundle Analysis page.
+* Adds additional bundle and instance metadata to the **Support Bundle Analysis** page.
 
 ## v2023.12.21-3
 
@@ -55,7 +55,7 @@ Released on December 21, 2023
 Released on December 20, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-20-1}
-* Improves error messaging for the Instance Details page when there is an invalid app slug, customer ID, or instance ID in the URL.
+* Improves error messaging for the **Instance Details** page when there is an invalid app slug, customer ID, or instance ID in the URL.
 * Fixes installation failures for applications with Helm charts that contain empty files.
 
 ## v2023.12.19-3
@@ -70,14 +70,14 @@ Released on December 19, 2023
 Released on December 19, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-12-19-2}
-* Fixes scrolling on Kubernetes installer teaser page.
+* Fixes scrolling on **Kubernetes Installers** teaser page.
 
 ## v2023.12.19-1
 
 Released on December 19, 2023
 
 ### Improvements {#improvements-v2023-12-19-1}
-* Redesigns the Customers page search to make it more streamlined.
+* Redesigns the **Customers** page search to make it more streamlined.
 
 ## v2023.12.19-0
 
@@ -114,7 +114,7 @@ Released on December 14, 2023
 
 ### Improvements {#improvements-v2023-12-14-3}
 * Displays maintenance notifications per distro in create cluster form.
-* Adds ability to select the date time range filter in Cluster History page. Cluster stats can be filtered by `start-time` and `end-time`.
+* Adds ability to select the date time range filter in **Cluster History** page. Cluster stats can be filtered by `start-time` and `end-time`.
 
 ## v2023.12.14-0
 
