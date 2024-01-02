@@ -21,7 +21,7 @@ Released on January 2, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-01-02-0}
 * Fixes an issue where the 'minimum-node-count' parameter for Rook storage would require port 31880 to be opened between the node joining the cluster and a primary node.
-* A preflight was added to Kubernetes 1.29.x+ to prevent installing Kots versions prior to 1.96.2.
+* Adds a preflight to Kubernetes 1.29.x+ to prevent installing KOTS versions prior to 1.96.2 due to version incompatibilities.
 
 ## v2023.12.14-0
 
