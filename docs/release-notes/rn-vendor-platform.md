@@ -19,7 +19,7 @@ Released on January 3, 2024
 
 Released on January 2, 2024
 
-### New Features {#new-features-v2024-01-02-0}
+### Improvements {#improvements-v2024-01-02-0}
 * Displays instance name on the **Customers** page hybrid view.
 
 ## v2023.12.30-0
