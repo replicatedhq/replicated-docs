@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on January 3, 2024
 
-### New Features {#new-features-v2024-01-03-0}
+### Improvements {#improvements-v2024-01-03-0}
 * Displays instance tags in Instance table view.
 
 ## v2024.01.02-0
