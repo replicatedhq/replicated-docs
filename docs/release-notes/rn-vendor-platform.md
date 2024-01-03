@@ -15,11 +15,18 @@ Released on January 3, 2024
 ### Improvements {#improvements-v2024-01-03-2}
 * Includes instance name on the **Support Bundle Analysis** page.
 
+## v2024.01.03-0
+
+Released on January 3, 2024
+
+### Improvements {#improvements-v2024-01-03-0}
+* Displays instance tags in Instance table view.
+
 ## v2024.01.02-0
 
 Released on January 2, 2024
 
-### New Features {#new-features-v2024-01-02-0}
+### Improvements {#improvements-v2024-01-02-0}
 * Displays instance name on the **Customers** page hybrid view.
 
 ## v2023.12.30-0
