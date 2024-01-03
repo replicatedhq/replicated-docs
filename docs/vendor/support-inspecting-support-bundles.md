@@ -13,7 +13,8 @@ To inspect a support bundle:
   [View a larger version of this image](/images/support-bundle-analyze.png)
 
 1. Click **Upload support bundle**.
-  The Support bundle analysis page opens and displays the analysis overview. This analysis includes a snapshot of any available instance reporting data from the point in time the bundle was collected.
+
+  The **Support bundle analysis** page opens. The **Support bundle analysis** page includes information about the bundle, any available instance reporting data from the point in time when the bundle was collected, an analysis overview that can be filtered to show errors and warnings, and a file inspector.
 
   ![Support bundle analysis overview](/images/support-bundle-analysis-overview.png)
 
