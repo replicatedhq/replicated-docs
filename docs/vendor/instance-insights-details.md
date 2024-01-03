@@ -30,7 +30,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 * **Current State**: Information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
 * **Instance Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
-* **Instance Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Instance Information](#install-information) below.
+* **Instance Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Instance Information](#instance-information) below.
 * **Custom Metrics**: The values for any custom metrics that are configured for the application, from the most recent check-in. For more information about configuring custom metrics, see [Configuring Custom Metrics](/vendor/custom-metrics).
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
@@ -127,14 +127,15 @@ The following describes the _License time to install_ and _Instance time to inst
 
 ### Instance Information
 
-The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed as well as vendor specified metadata about the instance:
+The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed as well as vendor-defined metadata about the instance:
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
 * The version of KOTS or the Replicated SDK installed in the cluster.
 * For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
-* An optional vendor defined name for the instance as well as any other vendor defined instance tags (max of 10 key-value pairs). 
+* An optional vendor-defined name for the instance.
+* Optional vendor-defined instance tags in the form of key-value pairs. Each instance can have a maximum of 10 tags.
 
 In addition to the details listed above, the **Instance Information** section also displays the following for embedded clusters provisioned by Replicated kURL:
 * Node operating systems
