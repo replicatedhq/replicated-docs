@@ -53,7 +53,7 @@ To install the release with KOTS:
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-1. On the **Configure Grafana** page, enter any username and password. The credentials that you provide are mapped to the Grafana `values.yaml` file so that they can be used to log in to the Grafana application.
+1. On the **Configure Grafana** page, enter a username and password. KOTS maps these credentials to the Grafana `values.yaml` file so that you can use them to log in to Grafana.
 
    ![admin console config page with username and password fields](/images/grafana-config.png)
 
@@ -97,7 +97,7 @@ To install the release with KOTS:
 
    [View a larger version of this image](/images/grafana-login.png)
 
-1. On the Grafana login page, enter the credentials that you created on the **Configure Grafana** page during installation. Confirm that you can log in to the application to access the Grafana dashboard:
+1. On the Grafana login page, enter the username and password that you created on the **Configure Grafana** page during installation. Confirm that you can log in to the application to access the Grafana dashboard:
 
    <img alt="Grafana dashboard" src="/images/grafana-dashboard.png" width="500px"/>
 
@@ -132,7 +132,7 @@ To install the release with KOTS:
 
 ## Next Step
 
-Congratulations! As part of this tutorial, you used the KOTS Config custom resource to collect a username and password from users. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to map the user-supplied credentials to the Grafana `values.yaml` file.
+Congratulations! As part of this tutorial, you used the KOTS Config custom resource to define a configuration page in the admin console. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to override the default Grafana login credentials with a user-supplied username and password.
 
 To learn more about how to customize the Config custom resource to create configuration fields for your application, see [Config](/reference/custom-resource-config).
 

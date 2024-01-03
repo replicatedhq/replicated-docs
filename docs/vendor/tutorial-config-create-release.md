@@ -9,7 +9,7 @@ import Config from "../partials/getting-started/_grafana-config.mdx"
 
 Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
 
-The purpose of this step is to configure a release that supports installation with KOTS. Additionally, you will define a user-facing application configuration page that displays in the Replicated admin console during installation where users can set their own Grafana login credentials.
+The purpose of this step is to configure a release that supports installation with KOTS. Additionally, this step defines a user-facing application configuration page that displays in the Replicated admin console during installation where users can set their own Grafana login credentials.
 
 To create a release:
 
@@ -61,7 +61,7 @@ To create a release:
     <h5>Description</h5>
     <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart.</p>
     <p>The HelmChart custom resource below contains a <code>values</code> key, which creates a mapping to the Grafana <code>values.yaml</code> file. In this case, the <code>values.admin.user</code> and <code>values.admin.password</code> fields map to <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file.</p>
-    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then overrides the corresponding values in the Grafana <code>values.yaml</code> file accordingly.</p>
+    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then overrides the corresponding Grafana values accordingly.</p>
     <h5>YAML</h5>
     <HelmChart/>
    </TabItem>
@@ -130,3 +130,5 @@ Create a customer with the KOTS entitlement so that you can install the release 
 
 * [About Channels and Releases](/vendor/releases-about)
 * [Configuring the HelmChart Custom Resource](/vendor/helm-native-v2-using)
+* [Config Custom Resource](/reference/custom-resource-config)
+* [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys)

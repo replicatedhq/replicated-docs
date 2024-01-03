@@ -4,8 +4,6 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 Next, add the Replicated SDK as a dependency of the Helm chart and then package the chart into a `.tgz` archive. The purpose of this step is to prepare the Helm chart to be added to a release.
 
-The Replicated SDK is a Helm chart that can be optionally added as a dependency of your application Helm chart. The SDK is installed as a small service running alongside your application, and provides an in-cluster API that you can use to embed Replicated features into your application. Additionally, the Replicated SDK provides access to insights and telemetry for instances of your application installed with the Helm CLI.
-
 To add the Replicated SDK and package the Helm chart:
 
 1. In your local file system, go to the `grafana` directory that was created as part of [Step 1: Get the Sample Chart and Test](tutorial-config-get-chart).

@@ -420,7 +420,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and Helm CLI',
+          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',

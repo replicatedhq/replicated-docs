@@ -1,6 +1,6 @@
 # Step 5: Create a KOTS-Enabled Customer
 
-After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS. A _customer_ represents a single licensed user of your application.
+After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS.
 
 To create a customer:
 
@@ -30,7 +30,7 @@ To create a customer:
 
 ## Next Step
 
-Get the KOTS installation command and install. See [Step 6: Install the Release with KOTS](tutorial-kots-helm-install-kots).
+Get the KOTS installation command and install. See [Step 6: Install the Release with KOTS](tutorial-config-install-kots).
 
 ## Related Topics
 
