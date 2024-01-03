@@ -434,7 +434,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Map Config Values to a Helm Chart',
+          label: 'Override Helm Chart Values with KOTS',
           items: [
             'vendor/tutorial-config-setup',
             'vendor/tutorial-config-get-chart',

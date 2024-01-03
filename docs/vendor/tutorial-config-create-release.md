@@ -7,9 +7,9 @@ import Config from "../partials/getting-started/_grafana-config.mdx"
 
 # Step 4: Add the Chart Archive to a Release
 
-Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform. The purpose of this step is to configure a release that supports installation with both Replicated KOTS and with the Helm CLI.
+Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
 
-A _release_ represents a single version of your application and contains your application files. Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available.
+The purpose of this step is to configure a release that supports installation with KOTS. Additionally, you will define a user-facing application configuration page that displays in the Replicated admin console during installation where users can set their own Grafana login credentials.
 
 To create a release:
 
@@ -53,7 +53,7 @@ To create a release:
    </TabItem>
    <TabItem value="config" label="kots-config.yaml">
     <h5>Description</h5>
-    <p>The Config custom resource specifies a user-facing configuration page in the Replicated admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the credentials for logging in to the Grafana application.</p>
+    <p>The Config custom resource specifies a user-facing configuration page in the Replicated admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
     <h5>YAML</h5>
     <Config/>
    </TabItem>
@@ -61,7 +61,7 @@ To create a release:
     <h5>Description</h5>
     <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart.</p>
     <p>The HelmChart custom resource below contains a <code>values</code> key, which creates a mapping to the Grafana <code>values.yaml</code> file. In this case, the <code>values.admin.user</code> and <code>values.admin.password</code> fields map to <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file.</p>
-    <p>The <code>values.admin.user</code> and <code>values.admin.password</code> fields also use ConfigOption template functions, which return the user-supplied values from the fields that you created in the Config custom resource. During installation, KOTS renders the template functions and then overrides <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file accordingly.</p>
+    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then overrides the corresponding values in the Grafana <code>values.yaml</code> file accordingly.</p>
     <h5>YAML</h5>
     <HelmChart/>
    </TabItem>

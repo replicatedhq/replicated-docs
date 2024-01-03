@@ -2,8 +2,6 @@
 
 Next, install the replicated CLI and then create an application in the Replicated vendor platform.
 
-An _application_ is an object that has its own customers, channels, releases, license fields, and more. A single team can have more than one application. It is common for teams to have multiple applications for the purpose of onboarding, testing, and iterating.
-
 To create an application:
 
 1. Install the replicated CLI:

@@ -4,13 +4,12 @@ This topic provides a summary of the goals and outcomes for the tutorial and als
 
 ## Summary
 
-This tutorial introduces you to using the KOTS Config custom resource, the KOTS HelmChart custom resource, and KOTS template functions to map user-supplied configuration values to a Helm chart `values.yaml` file.
+This tutorial introduces you to using the KOTS Config custom resource, the KOTS HelmChart custom resource, and KOTS template functions to map user-supplied configuration values to a Helm chart `values.yaml` file. This allows you to use KOTS to override Helm chart values during installation.
 
 In this tutorial, you use a sample Helm chart to learn how to:
 
-* Add a KOTS Config custom resource to a release to provide a user-facing configuration screen in the Replicated admin console
-* Map the configuration values to a Helm chart `values.yaml` file using the KOTS HelmChart custom resource
-* Install the release in a cluster using KOTS and the Replicated admin console to test
+* Define a user-facing application configuration page in the Replicated admin console
+* Override Helm chart values with the user-supplied values from the admin console configuration page
 
 ## Set Up the Environment
 

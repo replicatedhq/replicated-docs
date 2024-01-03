@@ -1,6 +1,6 @@
 # Step 6: Install the Release with KOTS
 
-Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
+Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded. As part of installation, you will set Grafana login credentials on the admin console configuration page.
 
 To install the release with KOTS:
 

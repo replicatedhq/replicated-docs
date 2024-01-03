@@ -2,7 +2,7 @@
 
 To begin, get the sample Grafana Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall. The purpose of this step is to confirm that you can successfully install and access the application before adding the chart to a release in the Replicated vendor platform.
 
-To get the sample grafana Helm chart and test installation:
+To get the sample Grafana chart and test installation:
 
 1. Run the following command to pull and untar version 9.6.5 of the Bitnami Grafana Helm chart:
 
@@ -23,7 +23,7 @@ To get the sample grafana Helm chart and test installation:
    ```
    Chart.lock  Chart.yaml  README.md  charts  templates  values.yaml
    ```
-1. Install the grafana chart in your cluster:
+1. Install the chart in your cluster:
 
    ```
    helm install grafana . --namespace grafana --create-namespace
@@ -57,7 +57,7 @@ To get the sample grafana Helm chart and test installation:
    # Note: Do not include grafana.validateValues.database here. See https://github.com/bitnami/charts/issues/20629
    ```
 
-1. Watch the `grafana` Deployment service until an external IP is available:
+1. Watch the `grafana` Deployment until it is ready:
 
    ```
    kubectl get deploy grafana --namespace grafana --watch
@@ -81,9 +81,9 @@ To get the sample grafana Helm chart and test installation:
    Include `--namespace grafana` in the `kubectl port-forward` command.
    :::
 
-1. In a browser, go to the URL to open the Grafana login screen:
+1. In a browser, go to the URL to open the Grafana login page:
 
-   <img alt="Grafana login webpage" src="/images/grafana-login.png" width="300px"/>
+   <img alt="Grafana login page" src="/images/grafana-login.png" width="300px"/>
 
    [View a larger version of this image](/images/grafana-login.png)
 
