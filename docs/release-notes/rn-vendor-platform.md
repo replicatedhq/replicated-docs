@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.03-0
+
+Released on January 3, 2024
+
+### New Features {#new-features-v2024-01-03-0}
+* Displays instance tags in Instance table view.
+
 ## v2023.12.30-0
 
 Released on December 30, 2023
