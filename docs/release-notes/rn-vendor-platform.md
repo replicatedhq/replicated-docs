@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on January 3, 2024
 
-### New Features {#new-features-v2024-01-03-2}
-* Include instance name in support bundle analysis view.
+### Improvements {#improvements-v2024-01-03-2}
+* Includes instance name on the **Support bundle analysis** page.
 
 ## v2024.01.02-0
 
