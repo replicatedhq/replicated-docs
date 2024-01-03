@@ -13,7 +13,7 @@ pagination_prev: null
 Released on January 3, 2024
 
 ### Improvements {#improvements-v2024-01-03-2}
-* Includes instance name on the **Support bundle analysis** page.
+* Includes instance name on the **Support Bundle Analysis** page.
 
 ## v2024.01.02-0
 
