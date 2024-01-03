@@ -83,7 +83,7 @@ To get the sample grafana Helm chart and test installation:
 
 1. In a browser, go to the URL to open the Grafana login screen:
 
-   <img alt="Grafana login webpage" src="/images/grafana-login.png" width="500px"/>
+   <img alt="Grafana login webpage" src="/images/grafana-login.png" width="300px"/>
 
    [View a larger version of this image](/images/grafana-login.png)
 

@@ -53,9 +53,19 @@ To install the release with KOTS:
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-1. On the **Configure Grafana** page, in the **Admin User** and **Admin Password** fields, enter any username and password, respectively. The credentials that you provide will be mapped to the Grafana `values.yaml` file. You will use these credentials to log in to Grafana. 
+1. On the **Configure Grafana** page, enter any username and password. The credentials that you provide are mapped to the Grafana `values.yaml` file so that they can be used to log in to the Grafana application.
+
+   ![admin console config page with username and password fields](/images/grafana-config.png)
+
+   [View a larger version of this image](/images/grafana-config.png)
+
+1. Click **Continue**.
 
    The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
+
+   ![admin console dashboard showing unavailable application status](/images/grafana-unavailable.png)
+
+   [View a larger version of this image](/images/grafana-unavailable.png)
 
 1. While waiting for the `grafana` Deployment to be created, do the following:
 
@@ -77,13 +87,21 @@ To install the release with KOTS:
 
       On the admin console dashboard, the application status is now displayed as Ready:
 
-      ![Admin console dashboard showing ready status](/images/grafana-ready.png)
+      ![Admin console dashboard showing ready application status](/images/grafana-ready.png)
 
       [View a larger version of this image](/images/grafana-ready.png)
 
-1. Click **Open App** to access the Grafana application in a browser:
+1. Click **Open App** to open the Grafana login page in a browser.
 
-1. On the Grafana login page, enter the credentials that you created on the **Configure Grafana** page during installation. Confirm that you can log in successfully to view the Grafana application dashboard.
+   <img alt="Grafana login webpage" src="/images/grafana-login.png" width="300px"/>
+
+   [View a larger version of this image](/images/grafana-login.png)
+
+1. On the Grafana login page, enter the credentials that you created on the **Configure Grafana** page during installation. Confirm that you can log in to the application to access the Grafana dashboard:
+
+   <img alt="Grafana dashboard" src="/images/grafana-dashboard.png" width="500px"/>
+
+   [View a larger version of this image](/images/grafana-dashboard.png)
 
 1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
 
