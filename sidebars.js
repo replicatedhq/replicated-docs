@@ -27,8 +27,15 @@ const sidebars = {
     // DISTRIBUTE WITH KOTS 
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
-    'intro-kots',
-    'vendor/distributing-workflow',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      items: [
+        'intro-kots',
+        'vendor/kots-faq',
+        'vendor/distributing-workflow',
+      ],
+    },
     {
       type: 'category',
       label: 'Distributing Helm Charts with KOTS',
