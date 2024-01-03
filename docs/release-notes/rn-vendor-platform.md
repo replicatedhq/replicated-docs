@@ -12,8 +12,10 @@ pagination_prev: null
 
 Released on January 3, 2024
 
-### New Features {#new-features-v2024-01-03-3}
+### Improvements {#improvements-v2024-01-03-3}
 * Improves the wording and styling of the Adoption Rate section of the channels on the **Channels** page.
+
+### Bug Fixes {#bug-fixes-v2024-01-03-3}
 * Fixes the filtering for the active/inactive customer links on the **Channels** page.
 
 ## v2024.01.02-0
