@@ -10,6 +10,8 @@ The HelmChart custom resource `values` and `optionalValues` keys create a mappin
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
+For a tutorial that shows how to override values in a sample Helm chart during installation with KOTS, see [Override Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
+
 ## Override Existing Values
 
 During installation or upgrade, KOTS uses the values in the HelmChart custom resource `values` key to override the values of any matching keys in the corresponding Helm chart `values.yaml` file.
