@@ -105,7 +105,7 @@ To install the release with KOTS:
 
    [View a larger version of this image](/images/grafana-dashboard.png)
 
-1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
+1. Uninstall the Grafana application from your cluster:
 
   ```bash
   kubectl kots remove $REPLICATED_APP --namespace grafana --undeploy
@@ -142,4 +142,5 @@ To learn more about how to customize the Config custom resource to create config
 
 * [kots install](/reference/kots-cli-install/)
 * [Installing the kots CLI](/reference/kots-cli-getting-started/)
+* [Installing an Application](/enterprise/installing-overview)
 * [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
