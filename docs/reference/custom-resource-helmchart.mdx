@@ -132,15 +132,13 @@ For more information about how KOTS deploys Helm charts when `useHelmInstall` is
 
 ## weight
 
-<Weight/>
-
 <WeightLimitation/>
+
+<Weight/>
 
 ## helmUpgradeFlags
 
-:::note
-`helmUpgradeFlags` is available in KOTS v1.75.0 and later.
-:::
+The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources with `useHelmInstall: false`.
 
 <HelmUpgradeFlags/>
 
