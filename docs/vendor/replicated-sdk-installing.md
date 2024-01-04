@@ -1,4 +1,5 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # Installing the Replicated SDK (Beta)
 
@@ -8,9 +9,11 @@ It includes information about how to install the SDK alongside Helm chart- or st
 
 ## Install the SDK as a Subchart
 
-You can include the SDK as a dependency of your application Helm chart. When included as a dependency, the SDK is installed as a subchart alongside your Helm chart-based application in customer environments.
+You can include the SDK as a dependency of your application Helm chart. When included as a dependency, the SDK is installed as a subchart alongside your application in customer environments.
 
-Helm charts can be installed using the Helm CLI or Replicated KOTS.
+The SDK can be installed as a subchart using the Helm CLI or Replicated KOTS.
+
+<KotsVerReq/>
 
 To install the SDK as a subchart alongside an application Helm chart:
 
@@ -51,7 +54,9 @@ To install the SDK as a subchart alongside an application Helm chart:
 
 ## Install the SDK Alongside a Standard Manifest-Based Application
 
-For applications that use standard Kubernetes manifest files, the SDK Helm chart can be added to a release and then installed by KOTS in the customer environment alongside the application.
+For applications that use standard Kubernetes manifest files, the SDK Helm chart can be added to a release and then installed by KOTS alongside the application.
+
+<KotsVerReq/>
 
 To add the SDK Helm chart to a release for a standard manifest-based application:
 
@@ -69,13 +74,13 @@ To add the SDK Helm chart to a release for a standard manifest-based application
   ```
   Where `SDK_VERSION` is the version of the SDK to install. For a list of available SDK versions, see the [replicated-sdk repository](https://github.com/replicatedhq/replicated-sdk/tags) in GitHub.
 
-  The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.12.tgz`.
+  The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.13.tgz`.
 
   For more information and additional options, see [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
 
 1. Add the SDK `.tgz` chart archive to a new release. For more information, see [Managing Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-  The following shows an example of version 1.0.0-beta.12 of the SDK Helm chart added to a draft release for a standard manifest-based application:
+  The following shows an example of the SDK Helm chart added to a draft release for a standard manifest-based application:
 
   ![SDK Helm chart in a draft release](/images/sdk-kots-release.png)
   
@@ -97,7 +102,7 @@ To add the SDK Helm chart to a release for a standard manifest-based application
       name: replicated
       # for chartversion, enter the version of the
       # SDK Helm chart in the release
-      chartVersion: 1.0.0-beta.12
+      chartVersion: 1.0.0-beta.13
   ```
 
   As shown in the example above, the HelmChart custom resource requires the name and version of the SDK Helm chart that you added to the release:
