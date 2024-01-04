@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on January 4, 2024
 
-### New Features {#new-features-v2024-01-04-2}
+### Improvements {#improvements-v2024-01-04-2}
 * Instance name can now be edited on the **Customers** page.
 
 ### Bug Fixes {#bug-fixes-v2024-01-04-2}
