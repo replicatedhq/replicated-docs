@@ -49,7 +49,7 @@ To install the SDK as a subchart alongside an application Helm chart:
   replicated   1/1     1            1           35s
   ```
 
-## Install the SDK Alongside a Standard Manifest-Based Applcation
+## Install the SDK Alongside a Standard Manifest-Based Application
 
 For applications that use standard Kubernetes manifest files, the SDK Helm chart can be added to a release and then installed by KOTS in the customer environment alongside the application.
 
