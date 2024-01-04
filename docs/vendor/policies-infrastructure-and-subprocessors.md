@@ -37,3 +37,5 @@ Replicated might use the following entities to provide infrastructure that helps
 | Salesforce |Customer and sales relationship management| United States | 
 | Snowflake | Usage data analysis and transformation   | United States |
 | Timescale | Time-series data of instance metrics  | United States | See our [Data Transmission Policy](/vendor/policies-data-transmission)
+
+Last modified January 4, 2024
