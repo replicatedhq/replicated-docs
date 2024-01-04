@@ -1,3 +1,5 @@
+import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
+
 # Step 6: Install the Release with KOTS
 
 Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
@@ -22,7 +24,7 @@ To install the release with KOTS:
   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
   :::note
-  KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
+  <KotsVerReq/>
   :::
 
 1. Complete the installation command prompts:
