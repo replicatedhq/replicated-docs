@@ -69,29 +69,35 @@ To install the release with KOTS:
 
    [View a larger version of this image](/images/grafana-unavailable.png)
 
-1. While waiting for the `grafana` Deployment to be created, do the following:
+1. On the command line, press Ctrl+C to exit the port forward.
 
-   1. On the command line, press Ctrl+C to exit the port forward.
+1. Watch for the `grafana` Deployment to become ready:
 
-   1. Watch for the `grafana` Deployment to become ready:
+   ```
+   kubectl get deploy grafana --namespace grafana --watch
+   ```
 
-      ```
-      kubectl get deploy grafana --namespace grafana --watch
-      ```
+1. After the Deployment is ready, run the following command to confirm that the `grafana-admin` Secret was updated with the new password that you created on the **Configure Grafana** page:
 
-   1. Start the port foward again to access the admin console:
+   ```
+   echo "Password: $(kubectl get secret grafana-admin --namespace grafana -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
+   ```
 
-      ```
-      kubectl kots admin-console --namespace grafana 
-      ```
+   The ouput of this command displays the password that you created.
 
-   1. Go to `http://localhost:8800` to open the admin console.   
+1. Start the port foward again to access the admin console:
 
-      On the admin console dashboard, the application status is now displayed as Ready:
+   ```
+   kubectl kots admin-console --namespace grafana 
+   ```
 
-      ![Admin console dashboard showing ready application status](/images/grafana-ready.png)
+1. Go to `http://localhost:8800` to open the admin console.   
 
-      [View a larger version of this image](/images/grafana-ready.png)
+   On the admin console dashboard, the application status is now displayed as Ready:
+
+   ![Admin console dashboard showing ready application status](/images/grafana-ready.png)
+
+   [View a larger version of this image](/images/grafana-ready.png)
 
 1. Click **Open App** to open the Grafana login page in a browser.
 
