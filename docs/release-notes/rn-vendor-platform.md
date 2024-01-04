@@ -13,7 +13,7 @@ pagination_prev: null
 Released on January 4, 2024
 
 ### Improvements {#improvements-v2024-01-04-2}
-* Instance name can now be edited on the **Customers** page.
+* Adds ability to edit instance name on the **Customers** page.
 
 ### Bug Fixes {#bug-fixes-v2024-01-04-2}
 * Shows an error state when you visit a customer page with an invalid app slug or customer ID in the URL.
