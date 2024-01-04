@@ -442,6 +442,19 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Run Preflight Checks for a Helm Chart',
+          items: [
+            'vendor/tutorial-preflight-helm-setup',
+            'vendor/tutorial-preflight-helm-get-chart',
+            'vendor/tutorial-preflight-helm-define-checks',
+            'vendor/tutorial-preflight-helm-create-release',
+            'vendor/tutorial-preflight-helm-create-customer',
+            'vendor/tutorial-preflight-helm-install',
+            'vendor/tutorial-preflight-helm-install-kots',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',
