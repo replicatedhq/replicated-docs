@@ -57,6 +57,10 @@
   from = "https://docs.replicated.com/vendor/tutorial-installing-without-existing-cluster"
   to = "https://docs.replicated.com/vendor/tutorial-ui-setup"
 
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/helm-mapping-example"
+  to = "https://docs.replicated.com/vendor/tutorial-config-setup"
+
 ###################################################
 # Redirects To the Vendor Section
 ###################################################
