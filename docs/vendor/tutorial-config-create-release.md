@@ -9,7 +9,7 @@ import Config from "../partials/getting-started/_grafana-config.mdx"
 
 Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
 
-The purpose of this step is to configure a release that supports installation with KOTS. Additionally, this step defines a user-facing application configuration page that displays in the Replicated admin console during installation where users can set their own Grafana login credentials.
+The purpose of this step is to configure a release that supports installation with KOTS. Additionally, this step defines a user-facing application configuration page that displays in the KOTS admin console during installation where users can set their own Grafana login credentials.
 
 To create a release:
 
@@ -41,19 +41,19 @@ To create a release:
    <Tabs>
       <TabItem value="kots-app" label="kots-app.yaml" default>
    <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
+    <p>The KOTS Application custom resource enables features in the admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
     <h5>YAML</h5>
     <KotsApp/>
    </TabItem>
    <TabItem value="k8s-app" label="k8s-app.yaml">
    <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
     <h5>YAML</h5>
     <K8sApp/>
    </TabItem>
    <TabItem value="config" label="kots-config.yaml">
     <h5>Description</h5>
-    <p>The Config custom resource specifies a user-facing configuration page in the Replicated admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
+    <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
     <h5>YAML</h5>
     <Config/>
    </TabItem>

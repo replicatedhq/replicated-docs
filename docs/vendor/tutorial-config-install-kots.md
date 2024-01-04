@@ -1,6 +1,8 @@
 # Step 6: Install the Release with KOTS
 
-Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded. As part of installation, you will set Grafana login credentials on the admin console configuration page.
+Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
+
+As part of installation, you will set Grafana login credentials on the KOTS admin console configuration page.
 
 To install the release with KOTS:
 
@@ -17,7 +19,7 @@ To install the release with KOTS:
   kubectl kots install $REPLICATED_APP/unstable
   ```
 
-  This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+  This installs the latest version of the kots CLI and the  admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
 
   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
@@ -53,7 +55,7 @@ To install the release with KOTS:
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-1. On the **Configure Grafana** page, enter a username and password. KOTS maps these credentials to the Grafana `values.yaml` file so that you can use them to log in to Grafana.
+1. On the **Configure Grafana** page, enter a username and password. You will use these credentials to log in to Grafana.
 
    ![admin console config page with username and password fields](/images/grafana-config.png)
 
@@ -97,7 +99,7 @@ To install the release with KOTS:
 
    [View a larger version of this image](/images/grafana-login.png)
 
-1. On the Grafana login page, enter the username and password that you created on the **Configure Grafana** page during installation. Confirm that you can log in to the application to access the Grafana dashboard:
+1. On the Grafana login page, enter the username and password that you created on the **Configure Grafana** page. Confirm that you can log in to the application to access the Grafana dashboard:
 
    <img alt="Grafana dashboard" src="/images/grafana-dashboard.png" width="500px"/>
 
