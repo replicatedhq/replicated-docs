@@ -23,10 +23,6 @@ To install the release with KOTS:
 
   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-  :::note
-  KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
-  :::
-
 1. Complete the installation command prompts:
 
    1. For `Enter the namespace to deploy to`, enter `grafana`. 
@@ -110,6 +106,8 @@ To install the release with KOTS:
    <img alt="Grafana dashboard" src="/images/grafana-dashboard.png" width="500px"/>
 
    [View a larger version of this image](/images/grafana-dashboard.png)
+
+1. On the command line, press Ctrl+C to exit the port forward. 
 
 1. Uninstall the Grafana application from your cluster:
 

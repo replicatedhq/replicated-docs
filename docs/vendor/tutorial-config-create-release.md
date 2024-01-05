@@ -53,7 +53,7 @@ To create a release:
    </TabItem>
    <TabItem value="config" label="kots-config.yaml">
     <h5>Description</h5>
-    <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration preference from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
+    <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
     <h5>YAML</h5>
     <Config/>
    </TabItem>
@@ -61,7 +61,7 @@ To create a release:
     <h5>Description</h5>
     <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart.</p>
     <p>The HelmChart custom resource below contains a <code>values</code> key, which creates a mapping to the Grafana <code>values.yaml</code> file. In this case, the <code>values.admin.user</code> and <code>values.admin.password</code> fields map to <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file.</p>
-    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then overrides the corresponding Grafana values accordingly.</p>
+    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then sets the corresponding Grafana values accordingly.</p>
     <h5>YAML</h5>
     <HelmChart/>
    </TabItem>

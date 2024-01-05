@@ -57,6 +57,19 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
+          {
+            type: 'category',
+            label: 'Tutorial: Set Helm Chart Values with KOTS',
+            items: [
+              'vendor/tutorial-config-setup',
+              'vendor/tutorial-config-get-chart',
+              'vendor/tutorial-config-create-app',
+              'vendor/tutorial-config-package-chart',
+              'vendor/tutorial-config-create-release',
+              'vendor/tutorial-config-create-customer',
+              'vendor/tutorial-config-install-kots',
+            ],
+          },
       ],
     },
     {
@@ -430,19 +443,6 @@ const sidebars = {
             'vendor/tutorial-kots-helm-create-customer',
             'vendor/tutorial-kots-helm-install-kots',
             'vendor/tutorial-kots-helm-install-helm',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Override Helm Chart Values with KOTS',
-          items: [
-            'vendor/tutorial-config-setup',
-            'vendor/tutorial-config-get-chart',
-            'vendor/tutorial-config-create-app',
-            'vendor/tutorial-config-package-chart',
-            'vendor/tutorial-config-create-release',
-            'vendor/tutorial-config-create-customer',
-            'vendor/tutorial-config-install-kots',
           ],
         },
         {
