@@ -4,7 +4,7 @@ import Token from "../partials/replicated-cli/_token.mdx"
 
 # instance ls
 
-List customer instances
+List customer instances.
 
 ## Usage
 
@@ -18,23 +18,23 @@ instance ls [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
+  <App/>
   <tr>
     <td><code>--customer</code></td>
     <td>string</td>
     <td>Customer Name or ID to list instances for.</td>
   </tr>
-  <tr>
-    <td><code>--tag</code></td>
-    <td>string</td>
-    <td>Tags to filter instances. Multiple <code>--tag</code> flags can be specified. Only one of the tags has to match per instance.</td>
-  </tr>
+  <Help/>
   <tr>
     <td><code>--output</code></td>
     <td>string</td>
-    <td>The output format to use. One of: <code>json|table</code> (default: <code>table</code>)</td>
+    <td>The output format to use: <code>json</code> or <code>table</code>. <strong>Default:</strong> <code>table</code></td>
   </tr>
-  <Help/>
-  <App/>
+  <tr>
+    <td><code>--tag</code></td>
+    <td>string</td>
+    <td>Tags to filter instances. Multiple <code>--tag</code> flags can be specified. Only one of the tags must match per instance.</td>
+  </tr>
   <Token/>
 </table>
 
