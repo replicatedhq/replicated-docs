@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.08-0
+
+Released on January 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-08-0}
+* Fixes a bug where the support bundle and customer name would not be prefilled on the support request form if you navigated there from one of the "Submit support ticket" links on the **Troubleshoot** or **Dashboard** pages.
+
 ## v2024.01.04-2
 
 Released on January 4, 2024
