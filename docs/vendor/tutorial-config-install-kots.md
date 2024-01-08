@@ -45,7 +45,7 @@ To install the release with KOTS:
   • Go to http://localhost:8800 to access the Admin Console
   ```
 
-1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
+1. With the port forward running, go to `http://localhost:8800` in a browser to access the admin console.
 
 1. On the login page, enter the password that you created for the admin console.
 

@@ -98,7 +98,7 @@ To get the sample Grafana chart and test installation:
    ```
    helm uninstall grafana --namespace grafana
    ```
-   This command removes all the Kubernetes components associated with the chart and uninstalls the `grafana` release.
+   This command removes all the Kubernetes resources associated with the chart and uninstalls the `grafana` release.
 
 1. Delete the namespace:
 

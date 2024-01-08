@@ -34,7 +34,7 @@ To create an application:
       **Example output**:
       ```
       ID                             NAME            SLUG            SCHEDULER
-      2WthxUIfGT13RlrsUx9HR7So8bR    Grafana           grafana-python     kots
+      2WthxUIfGT13RlrsUx9HR7So8bR    Grafana         grafana-python  kots
       ```
       In the example above, the application slug is `grafana-python`.
 
