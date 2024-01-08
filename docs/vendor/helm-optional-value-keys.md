@@ -15,6 +15,8 @@ This topic describes how to use the Replicated KOTS HelmChart custom resource to
 
 The KOTS HelmChart custom resource `values` and `optionalValues` keys can create a mapping between KOTS and the Helm chart `values.yaml` file. This allows you to set, delete, or include Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
 
+The HelmChart custom resource `values` and `optionalValues` keys also support the use of Replicated KOTS template functions to render values, including values specific to the customer environment. This allows you to use the values rendered by KOTS template functions in any Helm charts in your release.
+
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
 * Setting Helm values based on the user-supplied values on the KOTS admin console configuration page 
 * Setting Helm values based on the user's unique license entitlements 
@@ -24,9 +26,11 @@ For more information about the syntax for these fields, see [`values`](/referenc
 
 ## Set an Existing Value
 
-You can use KOTS to set an existing Helm value by creating a matching value in the HelmChart custom resource `values` field.
+You can use KOTS to set an existing Helm value by creating a matching value in the HelmChart custom resource `values` key. During installation or upgrade, KOTS uses the values defined in the HelmChart custom resource `values` key to set any matching values in the Helm chart `values.yaml` file.
 
-For example, the following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
+### Config Example
+
+The following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
 
 ```yaml
 # Helm chart values.yaml
@@ -57,6 +61,39 @@ spec:
 The `values.postgresql.enabled` field in the HelmChart custom resource above uses the Replicated [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the user's selection for a `postgres_type` configuration option.
 
 During installation or upgrade, the template function is rendered to true or false based on the user's selction. Then, KOTS sets the matching `postgresql.enabled` value in the Helm chart `values.yaml` file accordingly.
+
+### License Field Example
+
+The following Helm chart `values.yaml` file contains `nodeCount`, which is not set by default: 
+
+```yaml
+# Helm chart values.yaml
+nodeCount: ""
+```
+
+The following HelmChart custom resource includes a `nodeCount` field that maps to the `nodeCount` field in the Helm chart `values.yaml` file:
+
+```yaml
+# KOTS HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  
+  releaseName: samplechart-release-1
+
+  values:
+    nodeCount: '{{repl LicenseFieldValue "node_count"}}'
+```
+
+The `values.nodeCount` field in the HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate the value of a `node_count` custom license field in the license used for installation.
+
+During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, KOTS sets the matching `nodeCount` value in the Helm chart `values.yaml` file accordingly.
 
 ## Delete a Default Key
 
