@@ -1,0 +1,20 @@
+```yaml
+  apiVersion: kots.io/v1beta1
+  kind: Config
+  metadata:
+    name: grafana-config
+  spec:
+    groups:
+      - name: grafana
+        title: Grafana
+        description: Grafana Configuration
+        items:
+          - name: admin_user
+            title: Admin User
+            type: text
+            default: 'admin'
+          - name: admin_password
+            title: Admin Password
+            type: password
+            default: 'admin'
+  ```

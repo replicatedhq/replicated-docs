@@ -1,0 +1,15 @@
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: grafana
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: grafana
+    chartVersion: 9.6.5
+  values:
+    admin:
+      user: "repl{{ ConfigOption `admin_user`}}"
+      password: "repl{{ ConfigOption `admin_password`}}"
+```      
