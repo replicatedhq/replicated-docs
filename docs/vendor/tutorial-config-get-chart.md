@@ -70,7 +70,7 @@ To get the sample Grafana chart and test installation:
    echo "Password: $(kubectl get secret grafana-admin --namespace grafana -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 -d)"
    ```
 
-1. Run the commands provided in the ouptut to get the Grafana URL:
+1. Run the commands provided in the ouptut of the installation command to get the Grafana URL:
 
    ```
    echo "Browse to http://127.0.0.1:8080"
