@@ -64,7 +64,19 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
-          'vendor/helm-mapping-example',
+          {
+            type: 'category',
+            label: 'Tutorial: Set Helm Chart Values with KOTS',
+            items: [
+              'vendor/tutorial-config-setup',
+              'vendor/tutorial-config-get-chart',
+              'vendor/tutorial-config-create-app',
+              'vendor/tutorial-config-package-chart',
+              'vendor/tutorial-config-create-release',
+              'vendor/tutorial-config-create-customer',
+              'vendor/tutorial-config-install-kots',
+            ],
+          },
       ],
     },
     {
@@ -428,7 +440,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and Helm CLI',
+          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',
