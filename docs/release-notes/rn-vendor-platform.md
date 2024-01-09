@@ -17,10 +17,10 @@ Released on January 8, 2024
 * Adds an error state when user visits an invalid release.
 * Simplifies the search design on the **Troubleshoot** pages.
 * Adds an empty state when there are no search results on the **Troubleshoot** pages.
-* Persists the search query and shows correct results if switching between the app-level **Troubleshoot** page and the top-level **Troubleshoot** page.
+* Persists the search query and shows correct results when switching between the application-level **Troubleshoot** page and the top-level **Troubleshoot** page.
 
 ### Bug Fixes {#bug-fixes-v2024-01-08-5}
-* Fixes bug where the search box would disappear on the top-level **Troubleshoot** page if your query returned no results.
+* Fixes bug where the search box would disappear on the top-level **Troubleshoot** page if the query returned no results.
 
 ## v2024.01.08-0
 
