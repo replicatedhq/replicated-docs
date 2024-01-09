@@ -15,6 +15,13 @@ Released on January 9, 2024
 ### Bug Fixes {#bug-fixes-v2024-01-09-4}
 * Fixes the install links on the **Channels** page for Native applications.
 
+## v2024.01.09-3
+
+Released on January 9, 2024
+
+### Improvements {#improvements-v2024-01-09-3}
+* Adds pagination for the **Customers** page table view.
+
 ## v2024.01.08-5
 
 Released on January 8, 2024
