@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.09-4
+
+Released on January 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-09-4}
+* Fixes the install links on the **Channels** page for Native applications.
+
 ## v2024.01.08-5
 
 Released on January 8, 2024
