@@ -8,6 +8,17 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.08-1
+
+Released on January 8, 2024
+
+### New Features {#new-features-v2024-01-08-1}
+* Adds both TTL and Duration to the **Cluster History** page.
+* Fixes sort by TTL and sort by duration to work with paginated results.
+* Adds filter by Kubernetes distribution to the **Cluster History** page.
+* Adds filter by Cost to the **Cluster History** page.
+* Adds filter by Node Count to the **Cluster History** page.
+
 ## v2024.01.08-0
 
 Released on January 8, 2024
