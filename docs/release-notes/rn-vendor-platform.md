@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.09-3
+
+Released on January 9, 2024
+
+### New Features {#new-features-v2024-01-09-3}
+* Adds pagination for **Customers** table view page.
+
 ## v2024.01.08-5
 
 Released on January 8, 2024
