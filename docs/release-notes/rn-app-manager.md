@@ -24,7 +24,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Bug Fixes {#bug-fixes-1-105-2}
 * Fixes an issue where rendering KOTS custom resources could fail if there are required configuration items that don't have defaults.
-* Fixes an issue where the `kotsadm-rqlite` and `kotsadm-minio` pods could be scheduled on arm nodes.
+* Fixes an issue where the `kotsadm-rqlite` and `kotsadm-minio` Pods could be incorrectly scheduled on Arm nodes.
 
 ## 1.105.1
 
