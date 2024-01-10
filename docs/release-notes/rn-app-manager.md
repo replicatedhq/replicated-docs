@@ -22,6 +22,9 @@ Released on January 10, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
+### Improvements {#improvements-1-105-3}
+* Upgrades the github.com/cloudflare/circl go module from 1.3.3 to 1.3.7 to resolve GHSA-9763-4f94-gfch with high severity.
+
 ## 1.105.2
 
 Released on January 9, 2024
