@@ -2,6 +2,8 @@ import Values from "../partials/helm/_helm-cr-values.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
 import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
 import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
+import ConfigExample from "../partials/helm/_set-values-config-example.mdx"
+import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -33,78 +35,14 @@ This section describes how to use KOTS template functions or static values in th
 
 You can use KOTS template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Template Functions](/reference/template-functions-about).
 
-#### Config Context Example
-
-Using KOTS template functions in the [Config](/reference/template-functions-config-context) context allows you to set Helm values based on user-supplied values from the KOTS admin console configuration page.
-
-For example, the following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
-
-```yaml
-# Helm chart values.yaml
-postgresql:
-  enabled: false
-```
-The following HelmChart custom resource contains a mapping to `postgresql.enabled` in its `values` key:
-
-```yaml
-# KOTS HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  chart:
-    name: samplechart
-    chartVersion: 3.1.7
-  
-  releaseName: samplechart-release-1
-
-  values:
-    postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-```
-
-The `values.postgresql.enabled` field in the HelmChart custom resource above uses the Replicated [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the user's selection for a `postgres_type` configuration option.
-
-During installation or upgrade, the template function is rendered to true or false based on the user's selction. Then, KOTS sets the matching `postgresql.enabled` value in the Helm chart `values.yaml` file accordingly.
-
-For a tutorial that demonstrates how to map user-supplied values from the configuration page to a Helm chart `values.yaml` file, see [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
-
-#### License Context Example
-
-Using KOTS template functions in the [License](/reference/template-functions-license-context) context allows you to set Helm values based on user-supplied values from the KOTS admin console configuration page.
-
-For example, the following Helm chart `values.yaml` file contains `nodeCount`, which is not set by default: 
-
-```yaml
-# Helm chart values.yaml
-nodeCount: ""
-```
-
-The following HelmChart custom resource includes a `nodeCount` field that maps to the `nodeCount` field in the Helm chart `values.yaml` file:
-
-```yaml
-# KOTS HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  chart:
-    name: samplechart
-    chartVersion: 3.1.7
-  
-  releaseName: samplechart-release-1
-
-  values:
-    nodeCount: '{{repl LicenseFieldValue "node_count"}}'
-```
-
-The `values.nodeCount` field in the HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate the value of a `node_count` custom license field in the license used for installation.
-
-During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, KOTS sets the matching `nodeCount` value in the Helm chart `values.yaml` file accordingly.
+<Tabs>
+  <TabItem value="config" label="Config Context Example" default>
+  <ConfigExample/>
+  </TabItem>
+  <TabItem value="license" label="License Context Example" default>
+  <LicenseExample/>
+  </TabItem>
+</Tabs>
 
 ### Using a Static Value
 
