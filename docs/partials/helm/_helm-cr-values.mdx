@@ -1,8 +1,3 @@
-The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This mapping makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file. For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
+The `values` key can be used to set or delete existing values in the Helm chart `values.yaml` file. Any values that you include in the `values` key must match values in the Helm chart `values.yaml`. For example, `spec.values.images.pullSecret` in the HelmChart custom resource matches `images.pullSecret` in the Helm chart `values.yaml`.
 
-The keys below `values` must map exactly to the keys in your `values.yaml`.
-Only include the keys below `values` that you want to change. These are merged with the `values.yaml` in the chart archive.
-
-To exclude a value that is set in the Helm chart `values.yaml`, set the value equal to the string `"null"` (with quotes) in the `values` section of the HelmChart custom resource.
-
-For more options, see the [Allow deletion of a previous values file key](https://github.com/helm/helm/pull/2648) pull request in the Helm repository in GitHub.
+During installation or upgrade with KOTS, the `values` dataset is merged with the Helm chart `values.yaml` in the chart archive. Only include values in the `values` key that you want to set or delete.

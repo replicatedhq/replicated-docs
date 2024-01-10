@@ -11,11 +11,16 @@ import HelmChartsKots from "../partials/helm/_helm-charts-kots.mdx"
 
 # About Distributing Helm Charts with KOTS
 
-This topic provides an overview of how Replicated KOTS deploys Helm charts.
+This topic provides an overview of how Replicated KOTS deploys Helm charts, including an introduction to the KOTS HelmChart custom resource, limitations of deploying Helm charts with KOTS, and more.
 
 ## Overview
 
 <HelmChartsKots/>
+
+An application deployed with KOTS can:
+* Use one or more Helm charts
+* Include Helm charts as components
+* Use more than a single instance of any Helm chart
 
 ## How KOTS Deploys Helm Charts
 
@@ -23,14 +28,11 @@ This section describes how KOTS uses the HelmChart custom resource to deploy Hel
 
 ### About the HelmChart Custom Resource
 
-An application deployed with KOTS can:
-* Use one or more Helm charts
-* Include Helm charts as components
-* Use more than a single instance of any Helm chart
-
 <KotsHelmCrDescription/>
 
-The HelmChart custom resource with `apiVersion: kots.io/v1beta2` is supported with KOTS v1.99.0 and later. For information about how KOTS v1.99.0 and later deploys Helm charts with the `kots.io/v1beta2` HelmChart custom resource, see [About the HelmChart kots.io/v1beta2 Installation Method](#v2-install) below.
+For information about the fields and syntax of the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+
+The HelmChart custom resource with `apiVersion: kots.io/v1beta2` is supported with KOTS v1.99.0 and later. For more information, see [About the HelmChart kots.io/v1beta2 Installation Method](#v2-install) below.
 
 KOTS versions earlier than v1.99.0 can install Helm charts with `apiVersion: kots.io/v1beta1` of the HelmChart custom resource. The `kots.io/v1beta1` HelmChart custom resource is deprecated. For more information, see [Deprecated HelmChart kots.io/v1beta1 Installation Methods](#deprecated-helmchart-kotsiov1beta1-installation-methods) below.
 
@@ -102,6 +104,10 @@ For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/to
 ## Deprecated HelmChart kots.io/v1beta1 Installation Methods
 
 This section describes the deprecated Helm chart installation methods that use the HelmChart custom resource `apiVersion: kots.io/v1beta1`.
+
+:::important
+<Deprecated/>
+:::
 
 ### useHelmInstall: true {#v1beta1}
 
