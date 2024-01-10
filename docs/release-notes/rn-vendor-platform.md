@@ -15,6 +15,20 @@ Released on January 10, 2024
 ### New Features {#new-features-v2024-01-10-1}
 * Adds pagination to the **Kubernetes Installers* page.
 
+## v2024.01.10-0
+
+Released on January 10, 2024
+
+### Improvements {#improvements-v2024-01-10-0}
+* Improve refetching on **Customers** page.
+
+## v2024.01.09-4
+
+Released on January 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-09-4}
+* Fixes the install links on the **Channels** page for Native applications.
+
 ## v2024.01.09-3
 
 Released on January 9, 2024
