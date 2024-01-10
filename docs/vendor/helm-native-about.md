@@ -22,6 +22,8 @@ An application deployed with KOTS can:
 * Include Helm charts as components
 * Use more than a single instance of any Helm chart
 
+For a tutorial that demonstrates how to add a sample Helm chart to a release, then install the release using both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup).
+
 ## How KOTS Deploys Helm Charts
 
 This section describes how KOTS uses the HelmChart custom resource to deploy Helm charts.
@@ -73,7 +75,7 @@ This allows you to control the deployment order of your application resources by
 
 * Use the `weight` property in the HelmChart custom resource to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
 
-## Support for Air Gap Installations
+## Air Gap Installations
 
 KOTS supports installations into air gap environments. When a user installs an application with one or more Helm charts in an air gap environment, the chart processing is managed in the end user environment. This means that KOTS can use user-supplied values, license values, and existing values to create deployable manifests.
 
@@ -96,10 +98,6 @@ The following limitations apply to using hooks with Helm charts deployed by KOTS
 * <HookWeightsLimitation/>
 
 For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
-
-## Replicated SDK
-
-<SDKOverview/>
 
 ## Deprecated HelmChart kots.io/v1beta1 Installation Methods
 

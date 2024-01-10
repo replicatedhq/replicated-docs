@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 
 This topic describes how to use the Replicated KOTS HelmChart custom resource to set, delete, and include values in `values.yaml` files for Helm charts deployed with Replicated KOTS.
 
+For a tutorial that demonstrates how to set Helm values in a sample Helm chart using the KOTS HelmChart custom resource, see [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
+
 ## Overview
 
 The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys can create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set, delete, or include Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
