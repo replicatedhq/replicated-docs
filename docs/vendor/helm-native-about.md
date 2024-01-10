@@ -43,11 +43,11 @@ When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` 
 
 The `kots.io/v1beta2` HelmChart custom resource does _not_ modify the chart during installation. This results in Helm chart installations that are more consistent, reliable, and easier to troubleshoot. For example, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`. And, you can view the values that were used to install with `helm get values`.
 
-The `kots.io/v1beta2` HelmChart custom resource requires configuration. For more information, see [Configuring the HelmChart v2 Custom Resource](helm-native-v2-using).
+The `kots.io/v1beta2` HelmChart custom resource requires configuration. For more information, see [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
 
 ### Limitations
 
-The following limitations apply when deploying Helm charts with version `kots.io/v1beta2` of the HelmChart custom resource:
+The following limitations apply when deploying Helm charts with the `kots.io/v1beta2` HelmChart custom resource:
 
 * Available only for Helm V3.
 

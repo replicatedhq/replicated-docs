@@ -19,7 +19,7 @@ The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmcha
 
 You can create this mapping by adding a value under `values` or `optionalValues` that uses the exact same key name as a value in the corresponding Helm chart `values.yaml` file. During installation or upgrade, KOTS sets the Helm chart `values.yaml` file with any matching values from the `values` or `optionalValues` keys.
 
-The `values` and `optionalValues` keys also support the use of Replicated KOTS template functions. When you use KOTS template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding `values.yaml` with the rendered values. For more information, see [About Template Functions](/reference/template-functions-about).
+The `values` and `optionalValues` keys also support the use of Replicated KOTS template functions. When you use KOTS template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding Helm chart `values.yaml` with the rendered values. For more information, see [About Template Functions](/reference/template-functions-about).
 
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
 * Setting Helm values based on user-supplied values from the KOTS admin console configuration page
@@ -29,7 +29,7 @@ Common use cases for the HelmChart custom resource `values` and `optionalValues`
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-## Set an Existing Value
+## Set Existing Values
 
 This section describes how to use KOTS template functions or static values in the HelmChart custom resource `values` key to set existing Helm values.
 
