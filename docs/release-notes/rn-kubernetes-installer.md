@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.09-0
+
+Released on January 9, 2024
+
+### New Features {#new-features-v2024-01-09-0}
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to use runc v1.1.11.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-01-01T16-36-33Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4.
+
 ## v2024.01.02-0
 
 Released on January 2, 2024

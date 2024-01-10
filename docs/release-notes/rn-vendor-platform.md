@@ -22,6 +22,13 @@ Released on January 9, 2024
 ### Improvements {#improvements-v2024-01-09-3}
 * Adds pagination for the **Customers** page table view.
 
+## v2024.01.08-6
+
+Released on January 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-08-6}
+* Fixes back button behavior when navigating to the **Customers** page from a link on the **Channels** page.
+
 ## v2024.01.08-5
 
 Released on January 8, 2024
