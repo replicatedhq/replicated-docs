@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.10-0
+
+Released on January 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-10-0}
+* Improve refetching on **Customers** page.
+
 ## v2024.01.08-5
 
 Released on January 8, 2024
