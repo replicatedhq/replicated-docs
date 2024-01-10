@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.10-1
+
+Released on January 10, 2024
+
+### New Features {#new-features-v2024-01-10-1}
+* Adds pagination to the **Kubernetes Installers* page.
+
 ## v2024.01.09-3
 
 Released on January 9, 2024
