@@ -1,13 +1,10 @@
 # Creating and Editing Channels
 
-There are three default channels that can be edited or archived. You can also add custom channels.
+This topic describes how to create and edit channels using the Replicated vendor portal. For more information about channels, see [About Channels and Releases](releases-about).
 
-The default channels are:
-* **Stable**: The Stable channel is intended for production installations.
-* **Unstable**: The Unstable channel is intended for internal testing.
-* **Beta**: The Beta channel is intended for release candidates and early adopting customers.
+For information about creating channels with the replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
 
-For more information, see [About Channels and Releases](releases-about).
+For information about creating and managing channels with the Vendor API v3, see the [channels](https://replicated-vendor-api.readme.io/reference/createchannel) section in the Vendor API v3 documentation.
 
 ## Create a Channel
 

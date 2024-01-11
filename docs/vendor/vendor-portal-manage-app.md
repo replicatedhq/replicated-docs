@@ -2,6 +2,8 @@
 
 This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated vendor portal and with the replicated CLI.
 
+For information about creating and managing application with the Vendor API v3, see the [apps](https://replicated-vendor-api.readme.io/reference/createapp) section in the Vendor API v3 documentation.
+
 ## Create an Application
 
 Teams can create one or more applications. It is common to create multiple applications for testing purposes.
