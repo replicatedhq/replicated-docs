@@ -2,10 +2,6 @@
 
 This topic describes how to configure an application to send custom metrics to the Replicated vendor portal.
 
-:::note
-The custom metrics feature is Beta and is subject to change. To access this feature, open a [feature request](https://vendor.replicated.com/support).
-:::
-
 ## Overview
 
 In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments.
@@ -147,3 +143,7 @@ As shown in the image above, the **Custom Metrics** section of the **Instance De
 * Each custom metric that you configured, along with the most recent value for the metric for the instance.
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
+
+## Export Custom Metrics
+
+You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
