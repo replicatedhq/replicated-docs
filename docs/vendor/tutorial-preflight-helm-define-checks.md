@@ -1,10 +1,10 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
-# Step 2: Define and Test Preflight Checks
+# Step 2: Add and Test Preflight Checks
 
-Next, define preflight checks for the Helm chart by adding a preflight spec to a Secret in the chart's templates.
+Next, add a preflight check specification to the Helm chart.
 
-To define preflight checks:
+To add preflight checks:
 
 1. In your local file system, go to the `gitea` directory.
 
@@ -47,7 +47,7 @@ To define preflight checks:
 
    This YAML adds a preflight spec that checks the version of Kubernetes running in the target cluster.
 
-1. Test the spec by running preflight checks:
+1. Test the spec by running preflight checks using the Helm CLI:
 
    1. Install the preflight kubectl plugin:
 
@@ -75,7 +75,7 @@ To define preflight checks:
 
 ## Next Step
 
-
+Add the chart archive to a release.
 ## Related Topics
 
 * [Defining Preflight Checks](/vendor/preflight-defining)

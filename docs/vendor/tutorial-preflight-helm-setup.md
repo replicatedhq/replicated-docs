@@ -4,13 +4,14 @@ This topic provides a summary of the goals and outcomes for the tutorial and als
 
 ## Summary
 
-This tutorial introduces you to preflight checks, including how to add preflight checks to Helm charts.
+This tutorial introduces you to preflight checks. Preflight checks are custom  can be run before an application is installed or upgraded to provide clear feedback about any missing requirements or incompatibilities.
 
 In this tutorial, you use a sample Helm chart to learn how to:
 
-* Define preflight checks in a Secret in the templates directory for a Helm chart
-* Package the Helm chart and add it to a release in the Replicated vendor platform
-* Run preflight checks using the Helm CLI before installing the application
+* Define preflight checks in a Kubernetes Secret in a Helm chart
+* Package a Helm chart and add it to a release in the Replicated vendor platform
+* Run preflight checks using the Helm CLI
+* Run preflight checks in the Replicated KOTS admin console 
 
 ## Set Up the Environment
 

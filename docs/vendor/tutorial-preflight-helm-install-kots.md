@@ -1,12 +1,79 @@
-# (Optional) Step 6: Run Preflight Checks and Install with KOTS
+# (Optional) Step 6: Run Preflight Checks with KOTS
 
-Optionally, install the same release with KOTS to see how preflight checks are embedded into the KOTS installation experience.
+Optionally, create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks are run from the KOTS admin console during installation.
 
-To install with KOTS:
+To run preflight checks with KOTS:
+
+1. In your local file system, go to the `gitea` directory.   
+
+1. In the `gitea` directory, create a subdirectory named `manifests`:
+
+   ```
+   mkdir manifests
+   ```
+
+   You will add the files required to support installation with Replicated KOTS to this subdirectory.
+
+1. Move the Helm chart archive that you created to `manifests`:
+
+   ```
+   mv gitea-1.0.6.tgz manifests
+   ```
+
+1. In `manifests`, create the YAML manifests required by KOTS:
+   ```
+   cd manifests
+   ```
+   ```
+   touch gitea.yaml kots-app.yaml k8s-app.yaml
+   ```
+
+1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
+
+   <Tabs>
+   <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <h5>YAML</h5>
+    <HelmChartCr/>
+   </TabItem>
+   <TabItem value="kots-app" label="kots-app.yaml">
+   <h5>Description</h5>
+    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <h5>YAML</h5>
+    <KotsCr/>
+   </TabItem>
+   <TabItem value="k8s-app" label="k8s-app.yaml">
+   <h5>Description</h5>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <h5>YAML</h5>
+    <K8sCr/>
+   </TabItem>
+   </Tabs>   
+
+1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
+
+   ```
+   replicated release lint --yaml-dir .
+   ```
+   `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
+
+   **Example output**:
+
+   ```
+   RULE                               TYPE    FILENAME        LINE  MESSAGE
+   config-spec                        warn                          Missing config spec                                                         
+   preflight-spec                     warn                          Missing preflight spec
+   troubleshoot-spec                  warn                          Missing troubleshoot spec
+   nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   ```
+   :::note
+   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `gitea` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
+   :::
 
 1. In the [vendor portal](https://vendor.replicated.com), go to the **Customers** page.
 
-1. For the customer that you created, for **License options**, verify that **KOTS Install Enabled** is enabled. This is the entitlement that allows the customer to install with KOTS.
+1. Create a new customer named `KOTS Preflight Customer`. For **License options**, enable the **KOTS Install Enabled** checkbox. This is the entitlement that allows the customer to install with KOTS.
 
 1. Go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 

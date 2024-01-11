@@ -1,6 +1,6 @@
 # Step 4: Create a Customer
 
-After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS. A _customer_ represents a single licensed user of your application.
+After promoting the release, create a customer so that you can install the release.
 
 To create a customer:
 
@@ -12,7 +12,7 @@ To create a customer:
 
    [View a larger version of this image](/images/create-customer.png)
 
-1. For **Customer name**, enter a name for the customer. For example, `KOTS Customer`.
+1. For **Customer name**, enter a name for the customer. For example, `Preflight Customer`.
 
 1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 

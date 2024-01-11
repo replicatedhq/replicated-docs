@@ -2,7 +2,7 @@
 
 Next, use the Helm installation instructions provided for the customer that you created to run preflight checks and install.
 
-The purpose of this step is to demonstrate how enterprise users can authenticate with the Replicated registry to run preflight checks defined in a Helm chart in a release before installing.
+The purpose of this step is to demonstrate how enterprise users can authenticate with the Replicated registry to run preflight checks defined in a Helm chart before installing.
 
 To run preflight checks and install with the Helm CLI:
 
@@ -30,9 +30,11 @@ To run preflight checks and install with the Helm CLI:
 
 1. Run the first command in the provided in the **Helm install instructions** dialog to log in to the registry.
 
-1. Skip the second command to install the preflight kubectl plugin because you already installed it in a previous step.
+1. Run the first command to install the preflight kubectl plugin.
 
 1. Run the third command to run preflight checks.
+
+   Check the ouput of the preflight command to see that your cluster's version of Kubernetes meets the requirements.
 
 1. Run the fourth command to install the application.
 

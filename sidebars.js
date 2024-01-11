@@ -442,7 +442,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Run Preflight Checks for a Helm Chart',
+          label: 'Add Preflight Checks to a Helm Chart',
           items: [
             'vendor/tutorial-preflight-helm-setup',
             'vendor/tutorial-preflight-helm-get-chart',
