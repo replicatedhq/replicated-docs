@@ -1,6 +1,6 @@
 # Creating and Editing Channels
 
-This topics describes how to create and edit channels using the Replicated vendor portal. For more information about channels, see [About Channels and Releases](releases-about).
+This topic describes how to create and edit channels using the Replicated vendor portal. For more information about channels, see [About Channels and Releases](releases-about).
 
 For information about creating channels with the replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
 
