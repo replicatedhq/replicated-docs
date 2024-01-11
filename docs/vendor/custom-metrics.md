@@ -2,10 +2,6 @@
 
 This topic describes how to configure an application to send custom metrics to the Replicated vendor portal.
 
-:::note
-The custom metrics feature is Beta and is subject to change. To access this feature, open a [feature request](https://vendor.replicated.com/support).
-:::
-
 ## Overview
 
 In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments.
