@@ -143,3 +143,7 @@ As shown in the image above, the **Custom Metrics** section of the **Instance De
 * Each custom metric that you configured, along with the most recent value for the metric for the instance.
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
+
+## Export Custom Metrics
+
+You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
