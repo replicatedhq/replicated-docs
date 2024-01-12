@@ -16,7 +16,7 @@ To create a customer:
 
 1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-1. For **License type**, select Trial.
+1. For **License type**, select Development.
 
 1. For **License options**, verify that **KOTS Install Enabled** is enabled. This is the entitlement that allows the customer to install with KOTS.
 
