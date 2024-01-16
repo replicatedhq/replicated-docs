@@ -3,6 +3,7 @@ import TabItem from '@theme/TabItem';
 import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import KotsCr from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
+import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # (Optional) Step 6: Run Preflight Checks and Install with KOTS
 
@@ -78,20 +79,20 @@ To run preflight checks during installation with KOTS:
 1. Create a release:
 
    ```bash 
-   replicated release lint --yaml-dir .   
+   replicated release create --yaml-dir .   
+   ```
+   **Example output**:
+   ```bash
+   • Reading manifests from . ✓
+   • Creating Release ✓
+     • SEQUENCE: 2
    ```
 
-1. Log in to the vendor portal and go to **Releases**.
+1. Log in to the [vendor portal](https://vendor.replicated.com) and go to **Releases**. The new release is labeled **Sequence 2**.
 
-1. Click **Edit release** to view the files in the release.
+1. Promote the release to the Unstable channel.
 
-  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
-
-  ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
-
-  [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
-
-1. In the [vendor portal](https://vendor.replicated.com), go to the **Customers** page.
+1. Go to the **Customers** page.
 
 1. Create a new customer named `KOTS Preflight Customer`. For **License options**, enable the **KOTS Install Enabled** checkbox. This is the entitlement that allows the customer to install with KOTS.
 
