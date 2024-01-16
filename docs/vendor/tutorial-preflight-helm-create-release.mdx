@@ -55,20 +55,34 @@ To create a release:
    ```
    replicated release create --chart=gitea-1.0.6.tgz
    ```
+   ```bash
+   You are creating a release that will only be installable with the helm CLI.
+   For more information, see
+   https://docs.replicated.com/vendor/helm-install#about-helm-installations-with-replicated
+
+   • Reading chart from gitea-1.0.6.tgz ✓
+   • Creating Release ✓
+     • SEQUENCE: 1
+   ```
 
 1. Log in to the vendor portal and go to **Releases**.
 
   The release that you created is listed under **All releases**.
 
-1. Click **Edit release** to view the files in the release.
+1. Click **View YAML** to view the files in the release.
 
 1. At the top of the page, click **Promote**.
 
-1. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing. Click **Promote**.
-
    <img alt="Promote release dialog" src="/images/release-promote.png" width="400px"/>
 
-   [View a larger version of this image](/images/release-promote.png)    
+   [View a larger version of this image](/images/release-promote.png) 
+
+1. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
+
+1. For **Version label**, open the dropdown and select **1.0.6**.
+
+1. Click **Promote**.
+
 
 ## Next Step
 

@@ -5,7 +5,7 @@ Next, add the preflight check specification to the Gitea chart as a Kubernetes S
 1. Move the `gitea-preflights.yaml` file to the Gitea `templates` subdirectory:
 
    ```
-   mv gitea-preflights.yaml gitea/templates
+   mv gitea-preflights.yaml templates
    ```
 
 1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the required label `troubleshoot.sh/kind: preflight`. The preflight check specification that you created is included in this Secret under `stringData`. 

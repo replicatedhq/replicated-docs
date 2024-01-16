@@ -28,19 +28,26 @@ To run preflight checks and install with the Helm CLI:
 
    You will use the instructions provided in the **Helm install instructions** dialog to install the chart.
 
-1. Run the first command in the provided in the **Helm install instructions** dialog to log in to the registry.
+1. Run the first command in the provided in the **Helm install instructions** dialog to log in to the registry:
+
+   ```bash
+   WARNING: Using --password via the CLI is insecure. Use --password-stdin.
+   Login Succeeded
+   ```
 
 1. Run the first command to install the preflight kubectl plugin.
 
 1. Run the third command to run the preflight checks by templating the Gitea chart and then piping the result to the preflight plugin:
 
-    ```bash
-    helm template gitea . | kubectl preflight -
-    ```
+   ```bash
+   helm template oci://registry.replicated.com/$REPLICATED_APP/unstable/gitea | kubectl preflight -
+   ```
 
-   Check the ouput of the preflight command to see that your cluster's version of Kubernetes meets the requirements.
+1. Run the fourth command labelled **Option 1: Install Gitea** to install the application:
 
-1. Run the fourth command to install the application.
+   ```bash
+   helm install gitea oci://registry.replicated.com/$REPLICATED_APP/unstable/gitea
+   ```   
 
 1. Uninstall the Helm chart:
 
