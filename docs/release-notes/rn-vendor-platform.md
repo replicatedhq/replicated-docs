@@ -13,7 +13,7 @@ pagination_prev: null
 Released on January 11, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-01-11-1}
-* Fixes bug in the Customers page search feature, where it would not display the ‘not found’ state if no results were found.
+* Fixes bug in the **Customers** page search feature, where it would not display the ‘not found’ state if no results were found.
 
 ## v2024.01.10-2
 
