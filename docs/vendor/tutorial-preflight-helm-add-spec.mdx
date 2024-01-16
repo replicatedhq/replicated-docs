@@ -1,6 +1,6 @@
 # Step 3: Add the Preflight Spec to the Chart
 
-Next, add the preflight check specification to the Gitea chart as a Kubernetes Secret. Including the preflight spec in a Secret in the templates of a Helm chart allows you to deliver the preflight checks are part of your application.
+Next, add the preflight check specification to the Gitea chart as a Kubernetes Secret. Including the spec in a Secret in the templates of a Helm chart allows preflight checks to be delivered as part of the application.
 
 1. Move the `gitea-preflights.yaml` file to the Gitea `templates` subdirectory:
 
@@ -8,7 +8,7 @@ Next, add the preflight check specification to the Gitea chart as a Kubernetes S
    mv gitea-preflights.yaml gitea/templates
    ```
 
-1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the required label `troubleshoot.sh/kind: preflight`. The preflight spec that you created is added to this Secret under `stringData`: 
+1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the required label `troubleshoot.sh/kind: preflight`. The preflight check specification that you created is included in this Secret under `stringData`. 
 
    ```yaml
    apiVersion: v1

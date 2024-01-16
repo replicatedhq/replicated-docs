@@ -1,6 +1,6 @@
 # Step 4: Add the Chart Archive to a Release
 
-Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
+Add the Gitea Helm chart archive to a release for an application in the Replicated vendor platform.
 
 To create a release:
 
@@ -53,7 +53,7 @@ To create a release:
 1. Create a release with the Gitea chart archive:
 
    ```
-   replicated release create --chart=
+   replicated release create --chart=gitea-1.0.6.tgz
    ```
 
 1. Log in to the vendor portal and go to **Releases**.
@@ -61,12 +61,6 @@ To create a release:
   The release that you created is listed under **All releases**.
 
 1. Click **Edit release** to view the files in the release.
-
-  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
-
-  ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
-
-  [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
 1. At the top of the page, click **Promote**.
 

@@ -4,13 +4,11 @@ import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import KotsCr from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
-# Step 6: Run Preflight Checks and Install with KOTS
+# (Optional) Step 6: Run Preflight Checks and Install with KOTS
 
-Create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks are run from the KOTS admin console during installation.
+Optionally, create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks can be run from the KOTS admin console during installation.
 
-To run preflight checks with KOTS:
-
-1. In your local file system, go to the `gitea` directory.   
+To run preflight checks during installation with KOTS: 
 
 1. In the `gitea` directory, create a subdirectory named `manifests`:
 
@@ -18,9 +16,9 @@ To run preflight checks with KOTS:
    mkdir manifests
    ```
 
-   You will add the files required to support installation with Replicated KOTS to this subdirectory.
+   You will add the files required to support installation with KOTS to this subdirectory.
 
-1. Move the Helm chart archive that you created to `manifests`:
+1. Move the Helm chart archive to `manifests`:
 
    ```
    mv gitea-1.0.6.tgz manifests
@@ -74,8 +72,24 @@ To run preflight checks with KOTS:
    nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
    :::note
-   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `gitea` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
+   The output includes warning messages, including a warning about a missing preflight spec. This warning appears because the preflight spec is defined in the Helm chart. The warnings can be ignored for the purpose of this tutorial. 
    :::
+
+1. Create a release:
+
+   ```bash 
+   replicated release lint --yaml-dir .   
+   ```
+
+1. Log in to the vendor portal and go to **Releases**.
+
+1. Click **Edit release** to view the files in the release.
+
+  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
+
+  ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
+
+  [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
 1. In the [vendor portal](https://vendor.replicated.com), go to the **Customers** page.
 
