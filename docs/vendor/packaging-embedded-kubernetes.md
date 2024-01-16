@@ -1,6 +1,8 @@
 # Creating a Kubernetes Installer
 
-This topic describes creating a Replicated Kubernetes installer to distribute your application without an existing cluster.
+This topic describes how to create a Kubernetes installer specification to support embedded cluster installations with Replicated kURL.
+
+For information about creating installers with the replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
 
 ## Overview
 

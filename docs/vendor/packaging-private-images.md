@@ -1,6 +1,8 @@
 # Connecting to an External Registry
 
-This topic describes how to add credentials for an external private registry. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information about how to enable the proxy service, see [About Proxying Images with Replicated](private-images-about).
+This topic describes how to add credentials for an external private registry using the Replicated vendor portal or replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information about how to enable the proxy service, see [About Proxying Images with Replicated](private-images-about).
+
+For information about adding a registry with the Vendor API v3, see [Create an external registry with the specified parameters](https://replicated-vendor-api.readme.io/reference/createexternalregistry) in the Vendor API v3 documentation.
 
 ## Supported Registries
 

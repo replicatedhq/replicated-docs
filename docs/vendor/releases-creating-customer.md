@@ -7,7 +7,11 @@ This topic describes how to create and manage customers in the Replicated vendor
 
 ## Create a Customer
 
-This procedure describes how to create a new customer in the vendor portal. You can edit customer details at any time in the vendor portal by going to the **Customer details** for a customer. For more information, see [Customer Details Page](licenses-about#customer-details-page) in _About Customers_.
+This procedure describes how to create a new customer in the vendor portal. You can edit customer details at any time in the vendor portal.
+
+For information about creating a customer with the replicated CLI, see [customer create](/reference/replicated-cli-customer-create).
+
+For information about creating and managing customers with the Vendor API v3, see the [customers](https://replicated-vendor-api.readme.io/reference/getcustomerentitlements) section in the Vendor API v3 documentation.
 
 To create a customer:
 
@@ -72,7 +76,7 @@ To create a customer:
 
 ## Edit a Customer
 
-You can edit the built-in and custom license fields for a customer at any time.
+You can edit the built-in and custom license fields for a customer at any time by going to the **Customer details** for a customer. For more information, see [Customer Details Page](licenses-about#customer-details-page) in _About Customers_.
    
 Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
 
