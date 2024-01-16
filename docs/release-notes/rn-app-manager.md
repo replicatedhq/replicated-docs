@@ -16,6 +16,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.105.4
+
+Released on January 16, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-105-4}
+* Fixes an issue where Pods associated with KOTS components could be incorrectly scheduled on a non-AMD64 node.
+* Fixes an issue where configuring snapshots to use internal storage failed in kURL clusters with HA MinIO and OpenEBS.
+
 ## 1.105.3
 
 Released on January 10, 2024
