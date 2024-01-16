@@ -23,8 +23,8 @@ Released on January 16, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Bug Fixes {#bug-fixes-1-105-4}
-* Fixes an issue where Pods associated with KOTS components could be incorrectly scheduled on a non-amd64 node.
-* Fixes an issue where configuring snapshots to use internal storage in kURL clusters with HA MinIO and OpenEBS configuration failed.
+* Fixes an issue where Pods associated with KOTS components could be incorrectly scheduled on a non-AMD64 node.
+* Fixes an issue where configuring snapshots to use internal storage failed in kURL clusters with HA MinIO and OpenEBS.
 
 ## 1.105.3
 
