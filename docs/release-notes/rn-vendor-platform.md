@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.10-2
+
+Released on January 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-10-2}
+* Adds an error state for the **Support Bundle Analysis** page if there is an invalid bundle slug in the URL.
+
 ## v2024.01.10-1
 
 Released on January 10, 2024
