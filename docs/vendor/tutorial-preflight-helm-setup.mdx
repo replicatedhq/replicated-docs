@@ -4,14 +4,16 @@ This topic provides a summary of the goals and outcomes for the tutorial and als
 
 ## Summary
 
-This tutorial introduces you to preflight checks. Preflight checks are custom  can be run before an application is installed or upgraded to provide clear feedback about any missing requirements or incompatibilities.
+This tutorial introduces you to preflight checks. The purpose of preflight checks is to provide clear feedback about any missing requirements or incompatibilities in the customer's cluster _before_ they install or upgrade an application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
+
+Preflight checks are part of the [Troubleshoot](https://troubleshoot.sh/) open source project, which is maintained by Replicated.
 
 In this tutorial, you use a sample Helm chart to learn how to:
 
-* Define preflight checks in a Kubernetes Secret in a Helm chart
+* Define custom preflight checks in a Kubernetes Secret in a Helm chart
 * Package a Helm chart and add it to a release in the Replicated vendor platform
-* Run preflight checks using the Helm CLI
-* Run preflight checks in the Replicated KOTS admin console 
+* Run preflight checks using the preflight kubectl plugin
+* Run preflight checks in the Replicated KOTS admin console
 
 ## Set Up the Environment
 

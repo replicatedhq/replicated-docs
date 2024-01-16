@@ -1,0 +1,58 @@
+# Step 3: Add the Preflight Spec to the Chart
+
+Next, add the preflight check specification to the Gitea chart as a Kubernetes Secret. Including the preflight spec in a Secret in the templates of a Helm chart allows you to deliver the preflight checks are part of your application.
+
+1. Move the `gitea-preflights.yaml` file to the Gitea `templates` subdirectory:
+
+   ```
+   mv gitea-preflights.yaml gitea/templates
+   ```
+
+1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the required label `troubleshoot.sh/kind: preflight`. The preflight spec that you created is added to this Secret under `stringData`: 
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     labels:
+       troubleshoot.sh/kind: preflight
+     name: gitea-preflight-checks
+   stringData:
+     preflight.yaml: |
+       apiVersion: troubleshoot.sh/v1beta2
+       kind: Preflight
+       metadata:
+         name: gitea-preflight-checks
+       spec:
+         analyzers:
+           - clusterVersion:
+               outcomes:
+                 - fail:
+                     when: "< 1.23.0"
+                     message: |-
+                       Your cluster is running a version of Kubernetes that is not supported and your installation will not succeed. To continue, upgrade your cluster to Kubernetes 1.23.0 or later.
+                     uri: https://www.kubernetes.io
+                 - pass:
+                     message: Your cluster is running the recommended version of Kubernetes.
+   ```
+
+1. Package the Helm chart to an archive:
+
+   1. In the `Chart.yaml` file, add the Replicated SDK as a dependency:
+
+      <DependencyYaml/>
+
+   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
+
+      ```bash
+      helm package . --dependency-update
+      ```       
+
+## Next Step
+
+Add the chart archive to a release.
+
+## Related Topics
+
+* [Defining Preflight Checks](/vendor/preflight-defining)
+* [Running Preflight Checks](/vendor/preflight-running)      

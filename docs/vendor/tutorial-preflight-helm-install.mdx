@@ -1,4 +1,4 @@
-# Step 5: Run Preflights and Install
+# Step 5: Run Preflights and Install with the Helm CLI
 
 Next, use the Helm installation instructions provided for the customer that you created to run preflight checks and install.
 
@@ -32,7 +32,11 @@ To run preflight checks and install with the Helm CLI:
 
 1. Run the first command to install the preflight kubectl plugin.
 
-1. Run the third command to run preflight checks.
+1. Run the third command to run the preflight checks by templating the Gitea chart and then piping the result to the preflight plugin:
+
+    ```bash
+    helm template gitea . | kubectl preflight -
+    ```
 
    Check the ouput of the preflight command to see that your cluster's version of Kubernetes meets the requirements.
 
@@ -50,3 +54,12 @@ To run preflight checks and install with the Helm CLI:
    ```
    kubectl delete namespace gitea
    ```
+
+## Next Step
+
+Install the application with KOTS to see how preflight checks are run from the KOTS admin console.
+
+## Related Topics
+
+* [Defining Preflight Checks](/vendor/preflight-defining)
+* [Running Preflight Checks](/vendor/preflight-running)       
