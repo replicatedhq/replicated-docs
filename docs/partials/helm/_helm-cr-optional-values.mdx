@@ -1,10 +1,10 @@
-The `optionalValues` key can be used to include values in the Helm chart `values.yaml` file when a given conditional statement evaluates to true.
+The `optionalValues` key can be used to set values in the Helm chart `values.yaml` file when a given conditional statement evaluates to true.
 
 This supports use cases in which values must be written to a Helm chart `values.yaml` file only if there is a value to apply. For example, if a customer chooses to include an optional application component in their deployment, it might be necessary to include Helm chart values related to the optional component.
 
 `optionalValues` includes the following properties:
 
-* `optionalValues.when`: Defines a conditional statement using KOTS template functions. If `optionalValues.when` evaluates to true, then the values specified in `optionalValues` are included.
+* `optionalValues.when`: Defines a conditional statement using KOTS template functions. If `optionalValues.when` evaluates to true, then the values specified in `optionalValues` are set.
 
 * `optionalValues.recursiveMerge`: Defines how the `optionalValues` dataset is merged with `values`.
 

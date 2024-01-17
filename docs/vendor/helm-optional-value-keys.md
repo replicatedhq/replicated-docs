@@ -15,7 +15,7 @@ For a tutorial that demonstrates how to set Helm values in a sample Helm chart u
 
 ## Overview
 
-The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys can create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set, delete, or include Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
+The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set, delete, or include Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
 
 You can create this mapping by adding a value under `values` or `optionalValues` that uses the exact same key name as a value in the corresponding Helm chart `values.yaml` file. During installation or upgrade, KOTS sets the Helm chart `values.yaml` file with any matching values from the `values` or `optionalValues` keys.
 
@@ -24,7 +24,7 @@ The `values` and `optionalValues` keys also support the use of Replicated KOTS t
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
 * Setting Helm values based on user-supplied values from the KOTS admin console configuration page
 * Setting Helm values based on the user's unique license entitlements
-* Including optional Helm values only when a given condition met
+* Including optional Helm values only when a given condition is met
 * Deleting a default value key from the `values.yaml` file that should not be included for KOTS installations
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
@@ -85,7 +85,7 @@ During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in t
 
 If the Helm chart `values.yaml` contains a static value that must be deleted when deploying with KOTS, you can set the value to `"null"` (including the quotation marks) in the `values` key of the HelmChart custom resource.
 
-A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior that the community chart does not easily expose.
+A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior.
 
 For example, the following HelmChart custom resource sets an `exampleKey` value to `"null"` when the chart is deployed with KOTS:
 
@@ -108,11 +108,11 @@ spec:
 ```
 
 For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
-## Inlcude Optional Values
+## Include Optional Values
 
 <OptionalValues/>
 
-For example, the following HelmChart custom resource uses the `optionalValues` key and the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to include values for a MariaDB components only when the user opts to include the component:
+For example, the following HelmChart custom resource uses the `optionalValues` key and the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to include values for a MariaDB component only when the user opts to include the component:
 
 ```yaml
 # KOTS HelmChart custom resource
