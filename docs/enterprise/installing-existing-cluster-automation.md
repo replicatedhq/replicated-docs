@@ -12,13 +12,29 @@ This topic describes using the Replicated kots CLI to automate the installation 
 
 ## About Installing with Automation
 
-You can automate the installation of an application in your existing cluster or in an embedded cluster that you previously created with the Replicated kURL installer. To automate installation, you create an installation command with the kots CLI `kots install` command.
+You can use the kots CLI `kots install` command to automate the installation of an application. Automated installations with the kots CLI are supported for existing clusters and for clusters that were created with Replicated kURL.
 
-In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license-file` flag.
+In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the KOTS admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the admin console.
 
-The flags that you use with the `kots install` command vary depending on the type of your cluster (existing cluster or embedded cluster) and on the cluster's internet access (_online_ environment with internet access or _air gap_ environment without internet access).
+The following shows an example of output from the `kots install` command for an automated installation:
+
+```
+• Deploying Admin Console
+ • Creating namespace ✓
+ • Waiting for datastore to be ready ✓
+• Waiting for Admin Console to be ready ✓
+• Waiting for installation to complete ✓
+• Waiting for preflight checks to complete ✓
+
+• Press Ctrl+C to exit
+• Go to http://localhost:8800 to access the Admin Console
+
+• Go to http://localhost:8888 to access the application
+```
 
 For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+
+For a tutorial that demonstrates how to install a sample application using the kots CLI, see [KOTS Tutorial (CLI)](/vendor/tutorial-cli-setup).
 
 ## Prerequisites
 
@@ -49,7 +65,7 @@ Before you install an application with the kots CLI, you must complete the follo
    
 ## Installation Commands
 
-This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded cluster. It includes commands for both online and air gap environments.
+This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded cluster. It includes commands for both _online_ environments (with access to the internet) and _air gap_ environments (without internet access).
 
 ### Online Existing Cluster
 
