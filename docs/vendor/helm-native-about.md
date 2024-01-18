@@ -39,7 +39,7 @@ KOTS versions earlier than v1.99.0 can install Helm charts with `apiVersion: kot
 
 When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly.
 
-The `kots.io/v1beta2` HelmChart custom resource does _not_ modify the chart during installation. This results in Helm chart installations that are consistent, reliable, and easier to troubleshoot. For example, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`. And you can use `helm get values` to view the values that were used to install.
+The `kots.io/v1beta2` HelmChart custom resource does _not_ modify the chart during installation. This results in Helm chart installations that are consistent, reliable, and easy to troubleshoot. For example, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`. And, you can use `helm get values` to view the values that were used to install.
 
 The `kots.io/v1beta2` HelmChart custom resource requires configuration. For more information, see [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
 
@@ -82,7 +82,7 @@ For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/to
 
 When installing an application that includes one or more Helm charts, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying any Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
 
-For more information, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
+For information about how to set the deployment order for Helm charts with KOTS, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
 
 ## Deprecated HelmChart kots.io/v1beta1 Installation Methods
 
