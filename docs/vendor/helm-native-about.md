@@ -78,6 +78,12 @@ The following limitations apply to using hooks with Helm charts deployed by KOTS
 
 For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
 
+## Air Gap Installations
+
+KOTS supports installation of Helm charts into air gap environments with configuration of the HelmChart custom resource `builder` key. The `builder` key specifies the Helm values to use in the air gap installation bundle for the application.
+
+For more information about how to configure the `builder` key to support air gap installations including requirements and recommendations, see [builder](/reference/custom-resource-helmchart-v2#builder) in HelmChart v2.
+
 ## Resource Deployment Order
 
 When installing an application that includes one or more Helm charts, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying any Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
