@@ -15,7 +15,7 @@ For a tutorial that demonstrates how to set Helm values in a sample Helm chart u
 
 ## Overview
 
-The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set, delete, or include Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
+The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set or delete Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
 
 You can create this mapping by adding a value under `values` or `optionalValues` that uses the exact same key name as a value in the corresponding Helm chart `values.yaml` file. During installation or upgrade, KOTS sets the Helm chart `values.yaml` file with any matching values from the `values` or `optionalValues` keys.
 
@@ -23,32 +23,19 @@ The `values` and `optionalValues` keys also support the use of Replicated KOTS t
 
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
 * Setting Helm values based on user-supplied values from the KOTS admin console configuration page
-* Setting Helm values based on the user's unique license entitlements
-* Including optional Helm values only when a given condition is met
+* Setting values based on the user's unique license entitlements
+* Conditionally setting values when a given condition is met
 * Deleting a default value key from the `values.yaml` file that should not be included for KOTS installations
 
 For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-## Set Existing Values
+## Set Values
 
 This section describes how to use KOTS template functions or static values in the HelmChart custom resource `values` key to set existing Helm values.
 
-### Using KOTS Template Functions
-
-You can use KOTS template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Template Functions](/reference/template-functions-about).
-
-<Tabs>
-  <TabItem value="config" label="Config Context Example" default>
-  <ConfigExample/>
-  </TabItem>
-  <TabItem value="license" label="License Context Example" default>
-  <LicenseExample/>
-  </TabItem>
-</Tabs>
-
 ### Using a Static Value
 
-You can use static values in the HelmChart custom resource `values` key when a given Helm value must be set the same for all KOTS installations. This allows you to include values in your `values.yaml` file that are set for KOTS installations only, without affecting values for any installations that use the Helm CLI.
+You can use static values in the HelmChart custom resource `values` key when a given Helm value must be set the same for all KOTS installations. This allows you to set values for KOTS installations only, without affecting values for any installations that use the Helm CLI.
 
 For example, the following Helm chart `values.yaml` file contains `kotsOnlyValue.enabled`, which is set to `false` by default: 
 
@@ -79,7 +66,20 @@ spec:
       enabled: true
 ```
 
-During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in the Helm chart `values.yaml` file to `true` so that the KOTS-only value is enabled for the installation. For installations that use the Helm CLI instead of KOTS, `kotsOnlyValue.enabled` remains `false`. 
+During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in the Helm chart `values.yaml` file to `true` so that the KOTS-only value is enabled for the installation. For installations that use the Helm CLI instead of KOTS, `kotsOnlyValue.enabled` remains `false`.
+
+### Using KOTS Template Functions
+
+You can use KOTS template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Template Functions](/reference/template-functions-about).
+
+<Tabs>
+  <TabItem value="config" label="Config Context Example" default>
+  <ConfigExample/>
+  </TabItem>
+  <TabItem value="license" label="License Context Example" default>
+  <LicenseExample/>
+  </TabItem>
+</Tabs> 
 
 ## Conditionally Set Values
 
@@ -113,13 +113,13 @@ spec:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-During installation, KOTS renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file only if the user selects the `external` option for the `mariadb_type` field on the admin console configuration page.
+During installation, KOTS renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file only when the user selects the `external` option for `mariadb_type` on the admin console configuration page.
 
-### About Recursive Merge for Optional Values {#recursive-merge}
+### About Recursive Merge for optionalValues {#recursive-merge}
 
 <OptionalValuesRecursiveMerge/>
 
-For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
+For example, the following HelmChart custom resource has both `values` and `optionalValues`:
 
 ```yaml
 values:
@@ -186,7 +186,7 @@ favorite_drink_cold: lemonade
 favorite_drink_hot: tea
 ```
 
-In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Because both include `favorite.drink.cold`, the merged dataset uses `lemonade` from `optionalValues`.
+In this case, all keys from `values` and `optionalValues` are merged. Because both include `favorite.drink.cold`, KOTS uses `lemonade` from `optionalValues`.
 
 ## Delete a Default Key
 
