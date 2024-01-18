@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Setting Helm Values with KOTS
 
-This topic describes how to use the Replicated KOTS HelmChart custom resource to set, delete, and include values in `values.yaml` files for Helm charts deployed with Replicated KOTS.
+This topic describes how to use the Replicated KOTS HelmChart custom resource to set and delete values in `values.yaml` files for Helm charts deployed with Replicated KOTS.
 
 For a tutorial that demonstrates how to set Helm values in a sample Helm chart using the KOTS HelmChart custom resource, see [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
 
@@ -81,38 +81,11 @@ spec:
 
 During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in the Helm chart `values.yaml` file to `true` so that the KOTS-only value is enabled for the installation. For installations that use the Helm CLI instead of KOTS, `kotsOnlyValue.enabled` remains `false`. 
 
-## Delete a Default Key
-
-If the Helm chart `values.yaml` contains a static value that must be deleted when deploying with KOTS, you can set the value to `"null"` (including the quotation marks) in the `values` key of the HelmChart custom resource.
-
-A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior.
-
-For example, the following HelmChart custom resource sets an `exampleKey` value to `"null"` when the chart is deployed with KOTS:
-
-```yaml
-# KOTS HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  chart:
-    name: samplechart
-    chartVersion: 3.1.7
-  
-  releaseName: samplechart-release-1
-
-  values:
-    exampleKey: "null"
-```
-
-For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
-## Include Optional Values
+## Conditionally Set Values
 
 <OptionalValues/>
 
-For example, the following HelmChart custom resource uses the `optionalValues` key and the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to include values for a MariaDB component only when the user opts to include the component:
+For example, the following HelmChart custom resource uses the `optionalValues` key and the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to set user-supplied values for an external MariaDB database:
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -214,3 +187,31 @@ favorite_drink_hot: tea
 ```
 
 In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Because both include `favorite.drink.cold`, the merged dataset uses `lemonade` from `optionalValues`.
+
+## Delete a Default Key
+
+If the Helm chart `values.yaml` contains a static value that must be deleted when deploying with KOTS, you can set the value to `"null"` (including the quotation marks) in the `values` key of the HelmChart custom resource.
+
+A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior.
+
+For example, the following HelmChart custom resource sets an `exampleKey` value to `"null"` when the chart is deployed with KOTS:
+
+```yaml
+# KOTS HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  
+  releaseName: samplechart-release-1
+
+  values:
+    exampleKey: "null"
+```
+
+For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
