@@ -8,12 +8,27 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.01.18-3
 
 Released on January 18, 2024
 
-### New Features {#new-features-v2024-01-18-3}
-* Display air-gap build status on the **Channels** page.
+### Improvements {#improvements-v2024-01-18-3}
+* Displays air gap build status on the **Channels** page.
+
+## v2024.01.18-2
+
+Released on January 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-18-2}
+* Instances CSV export shows relevant `.airgap` bundle downloaded timestamp, channel_id, and channel_sequence data.
+
+## v2024.01.17-1
+
+Released on January 17, 2024
+
+### New Features {#new-features-v2024-01-17-1}
+* Adds support to the compatibility matrix for running Openshift clusters with multiple nodes.
 
 ## v2024.01.11-1
 
