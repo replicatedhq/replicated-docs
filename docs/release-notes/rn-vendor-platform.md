@@ -13,7 +13,7 @@ pagination_prev: null
 Released on January 17, 2024
 
 ### New Features {#new-features-v2024-01-17-1}
-* Added support for running an Openshift cluster with multiple nodes.
+* Adds support to the compatibility matrix for running Openshift clusters with multiple nodes.
 
 ## v2024.01.11-1
 
