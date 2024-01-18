@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.18-3
+
+Released on January 18, 2024
+
+### New Features {#new-features-v2024-01-18-3}
+* Display air-gap build status on the **Channels** page.
+
 ## v2024.01.11-1
 
 Released on January 11, 2024
