@@ -80,7 +80,7 @@ For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/to
 
 ## Air Gap Installations
 
-KOTS supports installation of Helm charts into air gap environments with configuration of the HelmChart custom resource `builder` key. The `builder` key specifies the Helm values to use in the air gap installation bundle for the application.
+KOTS supports installation of Helm charts into air gap environments with configuration of the HelmChart custom resource `builder` key. The `builder` key specifies the Helm values to use when building the air gap bundle for the application.
 
 For more information about how to configure the `builder` key to support air gap installations including requirements and recommendations, see [builder](/reference/custom-resource-helmchart-v2#builder) in HelmChart v2.
 
