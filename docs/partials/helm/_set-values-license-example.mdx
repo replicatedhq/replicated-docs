@@ -1,0 +1,24 @@
+Using KOTS template functions in the [License](/reference/template-functions-license-context) context allows you to set Helm values based on the unique license file used for installation or upgrade.
+
+For example, the following HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate if the license has the boolean `newFeatureEntitlement` field set to `true`:
+
+```yaml
+# KOTS HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  
+  releaseName: samplechart-release-1
+
+  values:
+    newFeature:
+      enabled: repl{{ LicenseFieldValue "newFeatureEntitlement" }}
+```
+
+During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, KOTS sets the matching `newFeature.enabled` value in the Helm chart `values.yaml` file accordingly.

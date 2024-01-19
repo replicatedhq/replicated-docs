@@ -12,16 +12,18 @@ import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
 import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
 import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
-import Intro from "../partials/helm/_helm-cr-intro.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
+import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
 # HelmChart v2
 
 > Introduced in Replicated KOTS v1.99.0
 
-<Intro/>
+<KotsHelmCrDescription/>
+
+For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ## Example
 
@@ -53,25 +55,31 @@ The following is an example manifest file for the HelmChart v2 custom resource:
 
 <HelmUpgradeFlags/>
 
+## exclude
+
+<Exclude/>
+
 ## values
 
 <Values/>
 
-## exclude
-
-<Exclude/>
+For more information about using `values`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## optionalValues
 
 <OptionalValues/>
 
-### optionalValues[].when
+For more information about using `optionalValues`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+
+### optionalValues.when
 
 <OptionalValuesWhen/>
 
-### optionalValues[].recursiveMerge
+### optionalValues.recursiveMerge
 
 <OptionalValuesRecursiveMerge/>
+
+For an example of recursive and non-recursive merging, see [About Recursive Merge](/vendor/helm-optional-vales-key#recursive-merge).
 
 ## namespace
 
@@ -81,7 +89,9 @@ The following is an example manifest file for the HelmChart v2 custom resource:
 
 The `builder` key is required for the following use cases:
 
-* <BuilderAirgapIntro/>
+* To create an `.airgap` bundle for installations into air gap environments.
+
+  <BuilderAirgapIntro/>
 
 * To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
 
