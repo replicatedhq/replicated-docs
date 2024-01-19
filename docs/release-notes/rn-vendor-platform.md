@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.19-1
+
+Released on January 19, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-19-1}
+* Adds the ability to scroll on **License Fields** page.
+
 
 ## v2024.01.18-3
 
