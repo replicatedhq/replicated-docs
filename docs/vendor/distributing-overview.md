@@ -4,10 +4,18 @@ pagination_prev: null
 
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
+import ReplHelmValues from "../partials/helm/_repl-helm-values-description.mdx"
+import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
 
 # About Distributing Applications with Replicated
 
 This topic describes the options for using Replicated to distribute applications, including information about supporting installations with the Helm CLI and with the Replicated KOTS installer.
+
+## Overview
+
+<img alt="Distribution and installation workflow" src="/images/replicated-distribute-and-install.png" width="750px"/>
+
+[View a larger version of this image](/images/replicated-distribute-and-install.png)
 
 ## About Installations with the Helm CLI {#helm}
 
@@ -15,7 +23,9 @@ You can distribute your Helm chart-based application with Replicated and allow y
 
 The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
-<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="800px"/> 
+
+[View a larger version of this image](/images/helm-install-diagram.png)
 
 <HelmDiagramOverview/>
 
@@ -25,46 +35,11 @@ For information about how to get started distributing your Helm chart with Repli
 
 ### Replicated Helm Values {#replicated-values}
 
-When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file.
-
-The following is an example of a Helm values file containing the `global.replicated` field injected by the Replicated registry:
-
-```yaml
-# Helm values.yaml
-global:
-  replicated:
-    channelName: Stable
-    customerEmail: username@example.com
-    customerName: Example Customer
-    dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
-    licenseFields:
-      expires_at:
-        description: License Expiration
-        name: expires_at
-        signature:
-          v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
-        title: Expiration
-        value: "2023-05-30T00:00:00Z"
-        valueType: String
-    licenseID: YiIXRTjiB7R...
-    licenseType: dev
-```
-
-The values in the `global.replicated` field provide information about the following:
-* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define. You can use this license information to check license entitlments before the application is installed. For more information, see [Check Entitlements Before Installation](/vendor/licenses-reference-helm#before-install) in _Checking Entitlements for Helm Installations_.
-* A base64 encoded Docker configuration file. To proxy images from an external private registry with the Replicated proxy service, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
+<ReplHelmValues/>
 
 ### Limitations
 
-The following limitations apply when using Helm to install applications distributed with Replicated:
-
-* Replicated does not support Helm installations into air gap environments.
-
-* Helm installations do not provide access to any of the features of the Replicated KOTS installer, including:
-  * The Replicated admin console
-  * Strict preflight checks that block installation
-  * Backup and restore with snapshots
-  * Required releases with the **Prevent this release from being skipped during upgrades** option
+<HelmLimitations/>
 
 ## About Installations with KOTS
 

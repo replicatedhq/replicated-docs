@@ -1,6 +1,28 @@
+import ReplHelmValues from "../partials/helm/_repl-helm-values-description.mdx"
+import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
+import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
+
 # Installing with Helm
 
 This topic describes how to use Helm to install releases that contain one or more Helm charts. For more information about the `helm install` command, including how to override values in a chart during installation, see [Helm Install](https://helm.sh/docs/helm/helm_install/) in the Helm documentation.
+
+## About Installations with the Helm CLI
+
+The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
+
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="800px"/> 
+
+[View a larger version of this image](/images/helm-install-diagram.png)
+
+<HelmDiagramOverview/>
+
+### Replicated Helm Values
+
+<ReplHelmValues/>
+
+### Limitations
+
+<HelmLimitations/>
 
 ## Prerequisites
 

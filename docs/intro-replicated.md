@@ -14,6 +14,10 @@ Replicated lets you distribute, install, support, and observe your applications 
 
 The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully. 
 
+![replicated platform workflow](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
 ### Distributing  
 
 Replicated provides features for distributing and managing your application in diverse environments, including:
