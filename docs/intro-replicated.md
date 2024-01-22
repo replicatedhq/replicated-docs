@@ -8,25 +8,33 @@ import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
 
 This topic provides an introduction to working with the Replicated platform, including key features, supported application installation options, and platform interfaces.
 
-## About the Replicated Platform
+## Overview
 
-Replicated provides features that help software vendors successfully distribute commercial software to diverse customer environments. 
+Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use Replicated features to distribute modern enterprise software in complex, customer-controlled environments.
+
+## Replicated Features
+
+The Replicated platform provides features that support ISVs through each phase of the software development lifecycle, including:
+* Develop
+* Test
+* Release
+* License
+* Install
+* Report
+* Support
 
 ![replicated platform workflow](/images/replicated-platform.png)
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully.
+For more information about the Replicated features that support each of these phases, see the sections below.
 
 ### Develop
 
-Manage development teams in the Replicated vendor platform, including:
+Enhance application development by distributing the Replicated SDK with your application.
 
-- Invite and remove members. See [Managing Team Members](/vendor/team-management).
-- Manage permissions. See [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
-- Configure authentication options and enable two-factor authentication. See [Managing Google Authentication](/vendor/team-management-google-auth) and [Managing Two-Factor Authentication](/vendor/team-management-two-factor-auth).
+The Replicated SDK provides the following features for both Helm charts and applications that use standard Kubernetes manifests:
 
-Distribute the Replicated SDK with your application to get:
 * Automatic access to insights and operational telemetry for instances running in customer environments.
 * An in-cluster API that you can use to embed Replicated features into your application, including:
   * Collect custom metrics on instances running in online or air gap environments.
@@ -35,7 +43,7 @@ Distribute the Replicated SDK with your application to get:
 
 ### Test
 
-Rapidly provision ephemeral Kubernetes clusters using the Replicated compatibility matrix. Incorportate the compatibility matrix into your existing continuous integration and continuous delivery (CI/CD) workflows to install and test each release of your application in a variety of customer-representative environments before you share the release with customers.
+Use the Replicated compatibility matrix to rapidly provision ephemeral Kubernetes clusters for developing, testing, and troubleshooting. Incorportate the compatibility matrix into your existing continuous integration and continuous delivery (CI/CD) workflows to install and test each release of your application in a variety of customer-representative environments before you share the release with customers.
 
 See [About the Compatibility Matrix](/vendor/testing-about).
 
@@ -46,11 +54,22 @@ See [About the Compatibility Matrix](/vendor/testing-about).
 
 ### License
 
-Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](/vendor/releases-creating-customer).
+Create _customers_ in the Replicated vendor platform to handle licensing for your application in online and air gap environments:
+* License free trials and different tiers of product plans
+* Manage custom license entitlements
+* Restrict access to expired accounts
+
+For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+
+<img alt="Customer details page in the vendor portal" src="/images/customer-details.png" width="600px"/>
 
 ### Install
 
 With Replicated,software vendors can distribute their application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely install in any environment, including on-prem and air gap.
+
+<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="500px"/>
+
+[View a larger version of this image](/images/installation-options.png)
 
 When you distribute your application with Replicated, you can install your application using the Helm CLI or Replicated installers:
 

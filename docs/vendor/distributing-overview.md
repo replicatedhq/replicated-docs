@@ -11,19 +11,13 @@ import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
 
 This topic describes the options for using Replicated to distribute applications, including information about supporting installations with the Helm CLI and with the Replicated KOTS installer.
 
-## Overview
+## Application Installation Options
 
-![replicated platform workflow](/images/replicated-platform.png)
-
-[View a larger version of this image](/images/replicated-platform.png)
-
-### Installation Options
-
-<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="600px"/>
+<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="500px"/>
 
 [View a larger version of this image](/images/installation-options.png)
 
-## About Installations with the Helm CLI {#helm}
+### Helm CLI {#helm}
 
 You can distribute your Helm chart-based application with Replicated and allow your customers to install with the Helm CLI. Additionally, you can add the Replicated SDK Helm chart as a subchart of your application to get access to Replicated functionality. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
 
@@ -39,21 +33,23 @@ For more information about how to install an application with Helm, see [Install
 
 For information about how to get started distributing your Helm chart with Replicated, see [Replicated Quick Start](replicated-onboarding).
 
-### Replicated Helm Values {#replicated-values}
+#### Replicated Helm Values {#replicated-values}
 
 <ReplHelmValues/>
 
-### Limitations
+#### Limitations
 
 <HelmLimitations/>
 
-## About Installations with KOTS
+### Replicated KOTS
 
 :::note
 You must have the Replicated KOTS entitlement to use the Replicated KOTS and kURL installers and features.
 :::
 
-The Replicated KOTS installer provides highly successful installs of Kubernetes applications or Helm charts in diverse customer environments, including on-prem and air gap environments. Additionally, the Replicated kURL installer allows customers that do not have their own Kubernetes cluster to install your application with KOTS by provisioning a cluster on a virtual machine (VM) or bare metal server. For more information, see [About KOTS and kURL](../intro-kots).
+The Replicated KOTS installer provides highly successful installs of Kubernetes manifest-based applications or Helm charts in diverse customer environments, including both on-prem and air gap environments. 
+
+Additionally, the Replicated kURL installer allows customers that do not have their own Kubernetes cluster to install your application with KOTS by provisioning a cluster on a virtual machine (VM) or bare metal server.
 
 KOTS provides access to feautures such as:
 * Support for air gap installations
@@ -63,17 +59,9 @@ KOTS provides access to feautures such as:
 * Backup and restore with Replicated snapshots
 * Required releases with the **Prevent this release from being skipped during upgrades** option
 
-In addition to the features listed above, you can distribute the Replicated SDK with your application to get access to more Replicated features, including support for collecting custom metrics from application instances. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
+For more information about KOTS installations, see [About Installing an Application](/enterprise/installing-overview).
 
-The following diagram demonstrates how applications distributed with Replicated are installed into an existing cluster or VM with KOTS and kURL:
-
-![KOTS and kURL deployments](/images/replicated-components-diagram.png)
-
-[View larger image](/images/replicated-components-diagram.png)
-
-As shown in the diagram above, customers can install an application by first installing KOTS in their existing cluster or in the cluster provisioned by kURL. Then, they can use KOTS to configure and install the application. For more information about installing with KOTS and kURL, see [About Installing an Application](/enterprise/installing-overview).
-
-### Helm Charts with KOTS
+#### Helm Charts with KOTS
 
 Helm is a popular package manager for Kubernetes applications. For vendors that support installations with KOTS, Replicated strongly recommends that you distribute your application as a Helm chart. When you distribute your application as a Helm chart, you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. This is important because many enterprise users expect to be able to install an application with Helm.
 
@@ -83,6 +71,6 @@ For information about how to get started distributing your Helm chart with Repli
 
 For more information about how KOTS installs Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
 
-## About Distributing the Replicated SDK with an Application {#sdk}
+## About Distributing the Replicated SDK {#sdk}
 
 <SDKOverview/>
