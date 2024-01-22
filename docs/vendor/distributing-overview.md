@@ -13,7 +13,13 @@ This topic describes the options for using Replicated to distribute applications
 
 ## Overview
 
-<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="700px"/>
+![replicated platform workflow](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
+### Installation Options
+
+<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="600px"/>
 
 [View a larger version of this image](/images/installation-options.png)
 
@@ -23,7 +29,7 @@ You can distribute your Helm chart-based application with Replicated and allow y
 
 The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
-<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="800px"/> 
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
 
 [View a larger version of this image](/images/helm-install-diagram.png)
 
