@@ -10,7 +10,7 @@ This topic describes how to use Helm to install releases that contain one or mor
 
 The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
-<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="800px"/> 
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="700px"/> 
 
 [View a larger version of this image](/images/helm-install-diagram.png)
 

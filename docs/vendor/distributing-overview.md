@@ -13,9 +13,9 @@ This topic describes the options for using Replicated to distribute applications
 
 ## Overview
 
-<img alt="Distribution and installation workflow" src="/images/replicated-distribute-and-install.png" width="750px"/>
+<img alt="Distribution and installation workflow" src="/images/installation-options.png" width="700px"/>
 
-[View a larger version of this image](/images/replicated-distribute-and-install.png)
+[View a larger version of this image](/images/installation-options.png)
 
 ## About Installations with the Helm CLI {#helm}
 
