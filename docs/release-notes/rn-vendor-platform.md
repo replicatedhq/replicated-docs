@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.22-0
+
+Released on January 22, 2024
+
+### New Features {#new-features-v2024-01-22-0}
+* Adds embedded-cluster v1.28.5+ec.3.
+
 
 ## v2024.01.18-3
 
