@@ -10,7 +10,7 @@ This topic provides an introduction to working with the Replicated platform, inc
 
 ## Overview
 
-Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use Replicated features to distribute modern enterprise software in complex, customer-controlled environments.
+Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use Replicated features to distribute modern enterprise software into complex, customer-controlled environments.
 
 ## Replicated Features
 
