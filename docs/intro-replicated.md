@@ -12,26 +12,25 @@ This topic provides an introduction to working with the Replicated platform, inc
 
 Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use Replicated features to distribute modern enterprise software into complex, customer-controlled environments.
 
-## Replicated Features
+The Replicated platform provides features that support ISVs through each phase of the software development lifecycle:
 
-The Replicated platform provides features that support ISVs through each phase of the software development lifecycle, including:
-* Develop
-* Test
-* Release
-* License
-* Install
-* Report
-* Support
+<img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="600px"/>
 
-![replicated platform workflow](/images/replicated-platform.png)
+[View a larger version of this image](/images/software-dev-lifecycle.png)
 
-[View a larger version of this image](/images/replicated-platform.png)
+* **Develop**: Collaborate with teammates to quickly integrate and test new features.
+* **Test**: Run automated tests in several different environments as part of continuous integration and continuous delivery (CI/CD) workflows before releasing software to customers.
+* **License**: Ensure that your customers have access to the right features based on their license, both before installation or upgrade and during runtime.
+* **Release**: Use an single, automated release process to share new releases of your software with both on-prem and SaaS customers.
+* **Install**: Meet your customers where they are by providing installation options that support a variety of environments and Kubernetes experience levels.
+* **Report**: Get insights on instances of your software running in customer environments to better understand adoption and performance.
+* **Support**: Respond to, reproduce, and diagnose support issues quickly.
 
 For more information about the Replicated features that support each of these phases, see the sections below.
 
 ### Develop
 
-When you distribute the Replicated SDK with your application, you get access to an in-cluster API that makes it easy to embed Replicated features with your application, such as:
+When you distribute the Replicated SDK with your application, you get access to an in-cluster API that makes it easy to develop and embed Replicated features with your application, such as:
 * Collecting custom metrics on instances running in online or air gap environments
 * Checking customer license entitlements at runtime
 * Providing update checks to alert customers when new versions are available for upgrade
@@ -42,7 +41,7 @@ The Replicated SDK also provides automatic access to operational telemetry for i
 
 The Replicated compatibility matrix allows you to rapidly provision ephemeral Kubernetes clusters for testing, developing, or troubleshooting.
 
-You can integrate the compatibility matrix into existing continuous integration and continuous delivery (CI/CD) workflows to test each release of your application in a variety of customer-representative environments.
+You can integrate the compatibility matrix into existing CI/CD pipelines to test each release of your application in a variety of customer-representative environments.
 
 For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 

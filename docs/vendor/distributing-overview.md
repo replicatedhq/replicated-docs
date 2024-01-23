@@ -11,7 +11,11 @@ import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
 
 This topic describes the options for using Replicated to distribute applications, including information about supporting installations with the Helm CLI and with the Replicated KOTS installer.
 
-## Application Installation Options
+## Overview
+
+![replicated platform](/images/replicated-platform.png)
+
+## Installation Options
 
 <img alt="Distribution and installation workflow" src="/images/installation-options.png" width="500px"/>
 
