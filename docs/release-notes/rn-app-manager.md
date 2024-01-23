@@ -23,7 +23,7 @@ Released on January 23, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### New Features {#new-features-1-106-0}
-* Adds support for diff air gap bundles.
+* Adds support for an experimental air gap bundle feature that allows KOTS to process partial air gap bundles that only include the images needed to update to the desired version.
 
 ## 1.105.5
 
