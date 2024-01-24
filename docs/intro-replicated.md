@@ -10,21 +10,23 @@ This topic provides an introduction to working with the Replicated platform, inc
 
 ## Overview
 
-Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use Replicated features to distribute modern enterprise software into complex, customer-controlled environments.
+Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
 
-The Replicated platform provides features that support ISVs through each phase of the software development lifecycle:
+Replicated features are designed to support ISVs in each phase of the software development lifecycle, as shown below:
 
 <img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="600px"/>
 
 [View a larger version of this image](/images/software-dev-lifecycle.png)
 
-* **Develop**: Collaborate with teammates to quickly integrate and test new features.
-* **Test**: Run automated tests in several different environments as part of continuous integration and continuous delivery (CI/CD) workflows before releasing software to customers.
-* **License**: Ensure that your customers have access to the right features based on their license, both before installation or upgrade and during runtime.
-* **Release**: Use an single, automated release process to share new releases of your software with both on-prem and SaaS customers.
-* **Install**: Meet your customers where they are by providing installation options that support a variety of environments and Kubernetes experience levels.
-* **Report**: Get insights on instances of your software running in customer environments to better understand adoption and performance.
-* **Support**: Respond to, reproduce, and diagnose support issues quickly.
+The following describes the phases of the software development lifecycle:
+
+* **[Develop](#develop)**: Development teams can quickly integrate and test new features.
+* **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows that run multiple times per day.
+* **[License](#license)**: Customers have access to the correct features based on their license based on entitlement checks that run before installation or upgrade and during runtime.
+* **[Release](#release)**: Use an single, automated release process to share new releases with both on-prem and SaaS customers.
+* **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
+* **[Report](#report)**: Collect adoption and performance data for application instances running in customer environments.
+* **[Support](#support)**: Triage and resolve support issues quickly.
 
 For more information about the Replicated features that support each of these phases, see the sections below.
 

@@ -9,11 +9,25 @@ import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
 
 # About Distributing Applications with Replicated
 
-This topic describes the options for using Replicated to distribute applications, including information about supporting installations with the Helm CLI and with the Replicated KOTS installer.
+This topic describes distributing applications with the Replicated platform, including information about how to support installations with the Helm CLI and with the Replicated KOTS installer.
 
 ## Overview
 
+_Distributing_ an application includes:
+* Developing
+* Testing
+* Releasing
+* Installing
+* Reporting
+* Supporting
+
+The following diagram demonstrates an example workflow of distributing an application using the Replicated platform and installing in an enterprise customer environment:
+
 ![replicated platform](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
+As shown in the diagram above, an application can be tested on clusters created by the compatiblity matrix. After testing, a new release can be created and promoted to a channel in the Replicated vendor platform to be shared with customers or internal teams. When the release is promoted, any licensed customers assigned to the given channel are able to install or upgrade to the release.  
 
 ## Installation Options
 
@@ -23,7 +37,7 @@ This topic describes the options for using Replicated to distribute applications
 
 ### Helm CLI {#helm}
 
-You can distribute your Helm chart-based application with Replicated and allow your customers to install with the Helm CLI. Additionally, you can add the Replicated SDK Helm chart as a subchart of your application to get access to Replicated functionality. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
+You can distribute Helm charts with Replicated and allow your customers to install with the Helm CLI. You can add the Replicated SDK Helm chart as a subchart of your application to get access to Replicated functionality. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
 
 The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
