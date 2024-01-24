@@ -56,7 +56,7 @@ Create _customers_ in the Replicated vendor platform to handle licensing for you
 * License free trials and different tiers of product plans
 * Create and manage custom license entitlements
 * Automatically restrict access to expired accounts
-* Verify license entitlements both before installation during runtime
+* Verify license entitlements both before installation and during runtime
 
 For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
 
@@ -64,11 +64,9 @@ For more information about working with customers and custom license fields, see
 
 Applications distributed with Replicated can be installed using any method, including the Helm CLI for Helm charts or any proprietary installation method already used by the ISV.
 
-Replicated also offers the Replicated KOTS installer, which is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap (offline) environments.
+Replicated also offers the Replicated KOTS installer, which is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap environments. The UI-based installation experience available through the KOTS admin console can also make installation easier for customers that are less experienced with Kubernetes or Helm. 
 
-The UI-based installation experience available through the KOTS admin console can make installation easier for customers that are less sophisticated with Kubernetes or Helm. 
-
-For more information, see [About KOTS and kURL](intro-kots).
+For more information, see the [KOTS documentation](intro-kots).
 
 ### Report
 
@@ -90,7 +88,7 @@ Additionally, Replicated maintains the Troubleshoot open source project, which p
 
 For more information, see [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-## Interfaces
+## Vendor Platform Interfaces
 
 This section describes the GUI, CLI, and API that software vendors use to interact with the vendor platform.
 
