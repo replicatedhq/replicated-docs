@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.01.23-1
+
+Released on January 23, 2024
+
+### Improvements {#improvements-v2024-01-23-1}
+* Application release information is extracted from an attached support bundle and displayed in the Github support case for better reference.
+
 ## v2024.01.19-1
 
 Released on January 19, 2024
