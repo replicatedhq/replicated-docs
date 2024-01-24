@@ -20,9 +20,9 @@ Replicated features are designed to support ISVs in each phase of the software d
 
 The following describes the phases of the software development lifecycle:
 
-* **[Develop](#develop)**: Development teams can quickly integrate and test new features.
-* **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows that run multiple times per day.
-* **[License](#license)**: Customers have access to the correct features based on their license based on entitlement checks that run before installation or upgrade and during runtime.
+* **[Develop](#develop)**: Development teams quickly integrate and test new features.
+* **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
+* **[License](#license)**: Customers have access to the correct features based on their license.
 * **[Release](#release)**: Use an single, automated release process to share new releases with both on-prem and SaaS customers.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
 * **[Report](#report)**: Collect adoption and performance data for application instances running in customer environments.
@@ -78,12 +78,12 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 
 ### Support
 
-Support teams can used Replicated features to more quickly diagnose and resolve application issues. For example:
+Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
 - Provision customer-representative environments with the compatibility matrix to recreate and diagnose issues. See [About the Compatiblity Matrix](/vendor/testing-about).
-- Understand the state of an instance, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
+- Understand the state of an instance with access to telemetry, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
 
-Additionally, Replicated maintains the Troubleshoot open source project, which provides the following features to help both reduce and resolve support issues:
+Additionally, Replicated maintains the Troubleshoot open source project, which provides the following features for reducing and resolving support issues:
 
 - _Preflight checks_ run before installation to verify that the customer environment meets application requirements.
 - _Support bundles_ collect and analyze redacted data from customer environments to diagnose application issues faster.
