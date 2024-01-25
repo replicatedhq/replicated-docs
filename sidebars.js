@@ -414,6 +414,7 @@ const sidebars = {
     {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/replicated-onboarding',
+    'vendor/replicated-onboarding-checklist',
     // {
     //   type: 'category',
     //   label: 'Planning',

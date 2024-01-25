@@ -6,30 +6,20 @@ This topic describes how to onboard with Replicated KOTS, including prerequisite
 
 ## Prerequisites
 
-If you are new to Replicated, complete the following prerequisites before you get started with KOTS:
 
-* Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-* Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete [Replicated Quick Start](/vendor/replicated-onboarding) before getting started with KOTS. The workflow in Replicated Quick Start demonstrates how to 
-  
-    :::note 
-    Distributing your application as a Helm chart is recommended because you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
-    :::
+## Onboarding Workflow
 
-  * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
+1. Configure Custom Resources.
+1. Add the Replicated SDK.
 
-## Add Custom Resources
+### Configure Custom Resources
 
 To support installations with KOTS, you add custom resources to your releases. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add, including links to additional documentation about how to configure each one.
-
-### Workflow
 
 Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. The custom resources are listed in a recommended order, though you can add them to releases in any order that you prefer.
 
 For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Updating Applications](/enterprise/updating-apps).
-
-### Custom Resource Checklist
 
 <table>
   <tr>
@@ -46,7 +36,7 @@ For more information about creating releases, see [Managing Releases with the Ve
   </tr>
   <tr>
     <td>Preflight and SupportBundle</td>
-    <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p><p><strong>Note:</strong> If you are using Helm charts, define the preflight and support bundle specifications within the Helm chart rather than creating custom resources.</p></td>
+    <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p></td>
     <td>
       <a href="/vendor/preflight-defining">Define Preflight Checks</a>
     </td>
@@ -91,12 +81,14 @@ For more information about creating releases, see [Managing Releases with the Ve
   </tr>
 </table>
 
-## Distribute the SDK with your Application
+### (Recommended) Add the Replicated SDK
 
 <SDKOverview/>
 
-## Configure Additional Replicated Features
+## Get Help from the Community
 
-Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform.
+The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
 
-For example, you can add custom domains for the Replicated registry and app service, configure checks in your application for custom license entitlements, collect custom metrics using the Replicated SDK API, and more.
+Before posting in the community site, use the search to find existing knowledge base articles related to your question. If you are not able to find an existing article that addresses your question, create a new topic or add a reply to an existing topic so that a member of the Replicated community or team can respond.
+
+To search and participate in the Replicated community, see https://community.replicated.com/.
