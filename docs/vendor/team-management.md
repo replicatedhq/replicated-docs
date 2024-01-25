@@ -112,7 +112,7 @@ To remove a member:
 ## Update Email Addresses
 
 :::important
-Changing email addresses has security implications. Replicated advises that you avoid changing the email address for any team member if possible.
+Changing team member email addresses has security implications. Replicated advises that you avoid changing team member email addresses if possible.
 :::
 
 Updating the email address for a team member requires creating a new account with the updated email address, and then deactivating the previous account.
