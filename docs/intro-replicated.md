@@ -44,15 +44,15 @@ For more information, see [About the Compatibility Matrix](/vendor/testing-about
 
 ### Release
 
-Release _channels_ in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
+Release channels in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
 
 For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
 
-Additionally, to make it easier to host image regsitries as part of releasing an application, the Replicated proxy service can be used to grant proxy access to private images without exposing registry credentials to customers. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
+Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
 
 ### License
 
-Create _customers_ in the Replicated vendor platform to handle licensing for your application in both online and air gap environments. For example:
+Create customers in the Replicated vendor platform to handle licensing for your application in both online and air gap environments. For example:
 * License free trials and different tiers of product plans
 * Create and manage custom license entitlements
 * Automatically restrict access to expired accounts
@@ -78,15 +78,9 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
+- Customize support bundles, which can be used to collect and analyze redacted information from the customer's cluster, environment, application instance, or other sources. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments with the compatibility matrix to recreate and diagnose issues. See [About the Compatiblity Matrix](/vendor/testing-about).
 - Understand the state of an instance with access to telemetry, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
-
-Additionally, Replicated maintains the Troubleshoot open source project, which provides the following features for reducing and resolving support issues:
-
-- _Preflight checks_ run before installation to verify that the customer environment meets application requirements.
-- _Support bundles_ collect and analyze redacted data from customer environments to diagnose application issues faster.
-
-For more information, see [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
 ## Vendor Platform Interfaces
 
