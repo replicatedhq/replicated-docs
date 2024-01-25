@@ -108,3 +108,13 @@ To remove a member:
   If the member added their GitHub username to the vendor portal to access the collab repository, then the vendor portal also removes their GitHub username from the collab repository.
 
   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
+
+## Update Email Address
+
+Please note that changing email addresses has security implications, and it is advised not to change email addresses.
+
+To update the email address:
+
+1. From the Team Members page, click **Invite team member**
+
+1. Assign the RBAC policies to the new user
