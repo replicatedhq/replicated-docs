@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.25-4
+
+Released on January 25, 2024
+
+### New Features {#new-features-v2024-01-25-4}
+* Adds ability to filter customers by channel version on the **Customers** page.
+* Adds links to filter customers by adopted version from the **Channels** page.
+
 ## v2024.01.25-0
 
 Released on January 25, 2024
