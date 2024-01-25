@@ -14,16 +14,16 @@ Replicated is a commercial software distribution platform. Independent software 
 
 Replicated features are designed to support ISVs in each phase of the software development lifecycle, as shown below:
 
-<img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="600px"/>
+<img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="700px"/>
 
 [View a larger version of this image](/images/software-dev-lifecycle.png)
 
 The following describes the phases of the software development lifecycle:
 
-* **[Develop](#develop)**: Development teams quickly integrate and test new features.
+* **[Develop](#develop)**: Development teams quickly iterate on new features.
 * **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
 * **[License](#license)**: Customers have access to the correct features based on their license.
-* **[Release](#release)**: Use an single, automated release process to share new releases with both on-prem and SaaS customers.
+* **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
 * **[Report](#report)**: Collect adoption and performance data for application instances running in customer environments.
 * **[Support](#support)**: Triage and resolve support issues quickly.
