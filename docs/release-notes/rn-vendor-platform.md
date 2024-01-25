@@ -12,9 +12,8 @@ pagination_prev: null
 
 Released on January 25, 2024
 
-### New Features {#new-features-v2024-01-25-0}
+### Improvements {#improvements-v2024-01-25-0}
 * Adds more helpful messaging on the **Support Bundle Analysis** page if your bundle does not contain an instance ID.
-
 
 ## v2024.01.23-1
 
