@@ -109,12 +109,18 @@ To remove a member:
 
   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
 
-## Update Email Address
+## Update Email Addresses
 
-Please note that changing email addresses has security implications, and it is advised not to change email addresses.
+:::important
+Changing email addresses has security implications. Replicated advises that you avoid changing the email address for any team member if possible.
+:::
 
-To update the email address:
+Updating the email address for a team member requires creating a new account with the updated email address, and then deactivating the previous account.
 
-1. From the Team Members page, click **Invite team member**
+To update the email address for a team member:
 
-1. Assign the RBAC policies to the new user
+1. From the Team Members page, click **Invite team member**.
+
+1. Assign the required RBAC policies to the new user.
+
+1. Deactivate the previous team member account. 
