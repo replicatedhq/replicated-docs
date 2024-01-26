@@ -9,9 +9,15 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 Welcome! This topic provides a quick start workflow to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
 
 The goals of this quick start workflow are to introduce new Replicated users to the following common tasks so that they can successfully onboard their application to the Replicated platform:
-* Working with applications, channels, releases, and customers in the Replicated vendor portal and replicated CLI
+* Working with _applications_, _channels_, _releases_, and _customers_ in the Replicated vendor portal and replicated CLI
+* Packaging a Helm chart into a chart archive and adding it to a release
 * Testing and iterating on releases by installing in a development environment
-* Integrating key Replicated features and functionality with an application
+
+:::note
+For vendors with access to the Replicated KOTS installer that do _not_ intend to distribute an application that is packaged with Helm, see [KOTS Tutorial (UI)](tutorial-ui-setup)
+
+to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
+::: 
 
 ## Prerequisites
 
@@ -42,11 +48,7 @@ Before you begin, complete the following prerequisites:
 
        ```
        helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
-       ``` 
-
-  :::note
-  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
-  ::: 
+       ```
 
 * You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
 
@@ -172,13 +174,10 @@ You will repeat these same basic steps to create and test releases throughout th
 
       [View a larger version](/images/onboarding-instance-details-new-version.png)
 
-
 ## Next Steps
 
-Now that you are familiar with the workflow of creating and installing releases, you can continue creating new releases to integrate and test new Replicated features with the application. Integrate one feature at a time by creating a release and then upgrading in a development environment to test. For the list of recommended features to integrate, see [Onboarding Checklist](replicated-onboarding-checklist).
+Now that you are familiar with the workflow of creating and installing releases, you can continue creating new releases to configure and test additional Replicated features.
 
-(Recommended) Finish setting up your vendor portal account and team:
+You can continue testing features with the sample Helm chart, or you can use your own application to begin the onboarding process.
 
-   * If you are an admin, invite and manage team members. See [Invite Members](/vendor/team-management#invite-members) in _Managing Team Members_.
-
-   * Set up Slack or email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases. See [Configuring Instance Notifications](/vendor/instance-notifications-config).
+To begin onboarding to the Replicated platform, see [Onboarding Checklist](replicated-onboarding-checklist).
