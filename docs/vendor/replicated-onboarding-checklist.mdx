@@ -21,13 +21,12 @@ The following are Replicated's best practices and recommendations for successful
   * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure your customer is installing into a supported environment.
   * [Closing the Support Information Gap](https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca): Learn how to use support bundles to close the information gap between your customers and your support team.
 
-
 ## Feature Checklist
 
-This section provides a checklist of key Replicated features to configure and integrate with your application to fully onboard onto the Replicated platform. 
+The table below provides a checklist of key Replicated features to integrate with your application in order to onboard onto the Replicated platform. It also includes a link to information about how to configure the Replicated KOTS installer for vendors that will support KOTS installations for their application.
 
 :::note
-This checklist lists features in a suggested order, though you can configure and test features in any order.
+This checklist lists features in a suggested order, though you can configure and test features in any order that you prefer.
 :::
 
 <table>
@@ -140,7 +139,7 @@ This checklist lists features in a suggested order, though you can configure and
   <tr>
     <th>Enable notifications</th>
     <td>Set up Slack and email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases.</td>
-    <td><a href="/vendor/instance-notifications-config">Configuring Instance Notifications</a>.
+    <td><a href="/vendor/instance-notifications-config">Configuring Instance Notifications</a>
   </td>
   </tr>
   <tr>
@@ -159,7 +158,7 @@ This checklist lists features in a suggested order, though you can configure and
   <tr>
     <th>Application update checks with the SDK API</th>
     <td>
-      <p>Use the SDK API to allow your users to easily check for available updates from your application..</p>
+      <p>Use the SDK API to allow your users to easily check for available updates from your application.</p>
       <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
       <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate with your application</p>
     </td>
@@ -183,6 +182,10 @@ This checklist lists features in a suggested order, though you can configure and
     </td>
   </tr>
 </table>
+
+## Configure Replicated KOTS
+
+For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.
 
 ## Get Help from the Community
 

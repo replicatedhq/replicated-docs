@@ -1,7 +1,7 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import Community from "../partials/getting-started/_community.mdx"
 
-# KOTS Onboarding Checklist
+# Onboarding with KOTS
 
 This topic describes how to onboard with Replicated KOTS in order to support KOTS installations for your application.
 
@@ -21,16 +21,17 @@ Complete the following prerequisites before you get started with KOTS:
 
 ## Workflow
 
-To onboard with KOTS:
+To enable support for KOTS installations, complete the following steps:
 
 1. [Configure Custom Resources](#cr)
 1. [(Recommended) Add the Replicated SDK](#sdk)
+1. [Complete Replicated Platform Onboarding](#onboarding)
 
 ### Configure Custom Resources {#cr}
 
 To support installations with KOTS, you add a set of custom resources to your releases. These custom resources are consumed by KOTS and are _not_ deployed to the cluster. 
 
-Replicated recommends that you configure and add one custom resource at a time by creating a release and then installing or updating with KOTS in a development environment to test. For more information, see:
+Replicated recommends that you configure and add one custom resource at a time by creating a release and then installing or updating with KOTS in a development environment to test. For more information about creating releases or installing and updating applications with KOTS, see:
 * [Managing Releases with the Vendor Portal](releases-creating-releases)
 * [About Installing an Application](/enterprise/installing-overview)
 * [Updating Applications](/enterprise/updating-apps)
@@ -104,6 +105,21 @@ The custom resources are listed in a recommended order, though you can configure
 ### (Recommended) Add the Replicated SDK {#sdk}
 
 <SDKOverview/>
+
+### Complete Replicated Platform Onboarding {#onboarding}
+
+If you have not done so already, complete Replicated platform onboarding for your application by configuring and integrating the features listed in the Replicated platform [Onboarding Checklist](/vendor/replicated-onboarding-checklist#feature-checklist).
+## Onboarding Best Practices and Recommendations
+
+The following are Replicated's best practices and recommendations for successfully onboarding:
+
+* If you are relatively new to Kubernetes or Helm, start with a basic tutorial. For example, see [10 Helm Tutorials to Start your Kubernetes Journey](https://jfrog.com/blog/10-helm-tutorials-to-start-your-kubernetes-journey/) or [Tutorials](https://kubernetes.io/docs/tutorials/) in the Kubernetes documentation.
+
+* When integrating new KOTS features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
+
+* Try creating and managing releases with both the vendor portal and the replicated CLI. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community) below.
 
 ## Get Help from the Community
 
