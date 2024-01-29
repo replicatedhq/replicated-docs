@@ -16,6 +16,24 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.106.0
+
+Released on January 23, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-106-0}
+* Adds support for an experimental air gap bundle feature that allows KOTS to process partial air gap bundles that only include the images needed to update to the desired version.
+
+## 1.105.5
+
+Released on January 18, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Improvements {#improvements-1-105-5}
+* Adds the namespace to the password reset command that is displayed when the admin console is locked after hitting the limit of unsuccessful login attempts.
+
 ## 1.105.4
 
 Released on January 16, 2024

@@ -7,6 +7,7 @@ import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 import ReplHelmValues from "../partials/helm/_repl-helm-values-description.mdx"
 import HelmLimitations from "../partials/helm/_helm-install-limitations.mdx"
 import SDLC from "../partials/getting-started/_sdlc-phases.mdx"
+import HelmChartsKots from "../partials/helm/_helm-charts-kots.mdx"
 
 # About Distributing Applications with Replicated
 
@@ -67,6 +68,8 @@ For vendors that support installations with Replicated KOTS, you can support bot
 <img src="/images/installation-options.png" width="600px" alt="One release being installed into three different customer environments"/>
 
 [View a larger version of this image](/images/installation-options.png)
+
+<HelmChartsKots/>
 
 Using KOTS to distribute Helm charts also provides additional functionality not directly available with the Helm CLI, such as a user interface for collecting user configuration values and backup and restore with snapshots.
 

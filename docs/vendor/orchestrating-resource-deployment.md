@@ -8,7 +8,11 @@ This topic describes how to orchestrate the deployment order of resources deploy
 
 ## Overview
 
-Many applications require that certain resources are deployed and in a ready state before other resources can be deployed. For applications deployed with KOTS, you can manage the order in which resources are deployed using the following methods:
+Many applications require that certain resources are deployed and in a ready state before other resources can be deployed.
+
+When installing an application that includes one or more Helm charts, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying any Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
+
+For applications deployed with KOTS, you can manage the order in which resources are deployed using the following methods:
 
 * For Helm charts, set the `weight` property in the corresponding HelmChart custom resource. See [HelmChart `weight`](#weight).
 

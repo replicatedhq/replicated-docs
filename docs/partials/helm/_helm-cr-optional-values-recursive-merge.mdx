@@ -1,25 +1,5 @@
-The `recursiveMerge` boolean defines how Replicated KOTS merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
+The `optionalValues.recursiveMerge` boolean defines how KOTS merges `values` and `optionalValues`:
 
-The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application. For an example of recursive merge, see [How KOTS Merges the `values` and `optionalValues` Datasets](/vendor/helm-optional-value-keys#example-recursive-merge) in _Manipulating Helm Chart Values with KOTS_.        
+* When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`.
 
-The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
-
-<table>
-  <tr>
-    <th width="30%">Value</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>false</code> (Default)</td>
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively.</p>
-    <p>The top level keys in <code>optionalValues</code> overwrite the top level keys in <code>values</code>.</p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>true</code></td>    
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively.</p>
-    <p>All keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset.</p>
-    <p>In the case of a conflict where there is a matching key in <code>optionalValues</code> and <code>values</code>, the merged dataset uses the value of the key from <code>optionalValues</code>.</p>
-    </td>
-  </tr>
-</table>
+* When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included. In the case of a conflict where there is a matching key in `optionalValues` and `values`, KOTS uses the value of the key from `optionalValues`.

@@ -8,6 +8,57 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.25-4
+
+Released on January 25, 2024
+
+### New Features {#new-features-v2024-01-25-4}
+* Adds ability to filter customers by channel version on the **Customers** page.
+* Adds links to filter customers by adopted version from the **Channels** page.
+
+## v2024.01.25-0
+
+Released on January 25, 2024
+
+### Improvements {#improvements-v2024-01-25-0}
+* Adds more helpful messaging on the **Support Bundle Analysis** page if your bundle does not contain an instance ID.
+
+## v2024.01.23-1
+
+Released on January 23, 2024
+
+### Improvements {#improvements-v2024-01-23-1}
+* Application release information is extracted from an attached support bundle and displayed in the Github support case for better reference.
+
+## v2024.01.19-1
+
+Released on January 19, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-19-1}
+* Adds the ability to scroll on the **License Fields** page.
+
+
+## v2024.01.18-3
+
+Released on January 18, 2024
+
+### Improvements {#improvements-v2024-01-18-3}
+* Displays air gap build status on the **Channels** page.
+
+## v2024.01.18-2
+
+Released on January 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-18-2}
+* Instances CSV export shows relevant `.airgap` bundle downloaded timestamp, channel_id, and channel_sequence data.
+
+## v2024.01.17-1
+
+Released on January 17, 2024
+
+### New Features {#new-features-v2024-01-17-1}
+* Adds support to the compatibility matrix for running Openshift clusters with multiple nodes.
+
 ## v2024.01.11-1
 
 Released on January 11, 2024
