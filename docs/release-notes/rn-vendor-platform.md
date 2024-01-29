@@ -15,6 +15,13 @@ Released on January 29, 2024
 ### Improvements {#improvements-v2024-01-29-0}
 * Adds link to documentation for updating team member email addresses.
 
+## v2024.01.26-3
+
+Released on January 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-26-3}
+* Display accurate active instance count on the **Customers** page.
+
 ## v2024.01.25-4
 
 Released on January 25, 2024
