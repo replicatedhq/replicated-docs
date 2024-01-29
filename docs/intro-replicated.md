@@ -14,7 +14,7 @@ Replicated is a commercial software distribution platform. Independent software 
 
 Replicated features are designed to support ISVs in each phase of the software development lifecycle, as shown below:
 
-<img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="700px"/>
+![software development lifecycle wheel](/images/software-dev-lifecycle.png)
 
 [View a larger version of this image](/images/software-dev-lifecycle.png)
 
@@ -22,11 +22,11 @@ The following describes the phases of the software development lifecycle:
 
 * **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams quickly integrate and test new features.
 * **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
-* **[License](#license)**: Customers have access to the correct features based on their license.
+* **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
 * **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
 * **[Report](#report)**: Make more informed prioritization decisions by collecting adoption and performance data for application instances running in customer environments.
-* **[Support](#support)**: Triage and resolve support issues quickly.
+* **[Support](#support)**: Diagnose and resolve support issues quickly.
 
 For more information about the Replicated features that support each of these phases, see the sections below.
 
@@ -64,7 +64,7 @@ For more information about working with customers and custom license fields, see
 
 Applications distributed with Replicated can be installed using any method, including the Helm CLI for Helm charts or any proprietary installation method already used by the ISV.
 
-Replicated also offers the Replicated KOTS installer, which is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap environments. The UI-based installation experience available through the KOTS admin console can also make installation easier for customers that are less experienced with Kubernetes or Helm. 
+Replicated also offers the Replicated KOTS installer, which is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap environments. For users that have less experience with Kubernetes, KOTS supports installations onto VMs or bare metal servers through _embedded clusters_, which are provisioned in the customer environment at the time of installation.
 
 For more information, see the [KOTS documentation](intro-kots).
 
@@ -90,7 +90,7 @@ This section describes the GUI, CLI, and API that software vendors use to intera
 
 The Replicated vendor portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
-The following shows an example of the **Reporting** page for a customer that has two active application instances:
+The following shows an example of the **Reporting** page for a customer:
 
 ![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
 
