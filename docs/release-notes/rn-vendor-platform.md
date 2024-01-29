@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on January 29, 2024
 
-### New Features {#new-features-v2024-01-29-0}
-* Adds link to documentation for updating email address.
+### Improvements {#improvements-v2024-01-29-0}
+* Adds link to documentation for updating team member email addresses.
 
 ## v2024.01.25-4
 
