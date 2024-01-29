@@ -1,0 +1,192 @@
+import Community from "../partials/getting-started/_community.mdx"
+
+# Onboarding Checklist
+
+This topic provides a checklist of key Replicated features to integrate with your application to fully onboard onto the Replicated platform. It also includes best practices and recommendations to consider while onboarding.
+
+## Onboarding Best Practices and Recommendations
+
+The following are Replicated's best practices and recommendations for successfully onboarding:
+
+* If you are relatively new to Kubernetes or Helm, start with a basic tutorial. For example, see [10 Helm Tutorials to Start your Kubernetes Journey](https://jfrog.com/blog/10-helm-tutorials-to-start-your-kubernetes-journey/) or [Tutorials](https://kubernetes.io/docs/tutorials/) in the Kubernetes documentation.
+
+* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
+
+* Try creating and managing releases with both the vendor portal and the replicated CLI. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community) below.
+
+* Replicated also offers labs in Instruqt that provide a hands-on introduction to working with Replicated features, without needing your own sample application or development environment. To complete one or more labs before you begin the onboarding workflow, see:
+  * [Distributing Your Application with Replicated](https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN): Learn how to quickly get value from the Replicated platform for your application.
+  * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure your customer is installing into a supported environment.
+  * [Closing the Support Information Gap](https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca): Learn how to use support bundles to close the information gap between your customers and your support team.
+
+## Feature Checklist
+
+The table below provides a checklist of key Replicated features to integrate with your application in order to onboard onto the Replicated platform. It also includes a link to information about how to configure the Replicated KOTS installer for vendors that will support KOTS installations for their application.
+
+:::note
+This checklist lists features in a suggested order, though you can configure and test features in any order that you prefer.
+:::
+
+<table>
+  <tr>
+    <th width="20%">Feature</th>
+    <th width="50%">Description</th>
+    <th width="30%">How to</th>
+  </tr>
+  <tr>
+    <th>Invite team members</th>
+    <td>If you are an admin, invite and manage RBAC policies for team members.</td>
+    <td><a href="/vendor/team-management#invite-members">Invite Members</a></td>
+  </tr>
+  <tr>
+    <th>Proxy service</th>
+    <td>
+      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy service allows you to pull your images so that you can test your deployment.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy service</p>
+    </td>
+    <td>
+      <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Preflight checks</th>
+    <td>
+      <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
+      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
+    </td>
+    <td>
+      <ul>
+      <li><a href="/vendor/preflight-defining">Defining Preflight Checks</a></li>
+      <li><a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Support bundles</th>
+    <td>
+      <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p>
+      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
+    </td>
+    <td>
+      <ul>
+      <li><a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a></li>
+      <li><a href="/vendor/support-bundle-generating">Generating Support Bundles</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Custom license entitlements</th>
+    <td>
+      <p>Configure custom license fields that are specific to a customer, such as limiting the number of active users permitted.</p>
+      <p><strong>Estimated time:</strong> 30 minutes to create and test each entitlement</p>
+    </td>
+    <td>
+      <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
+    </td>
+  </tr>
+  <tr>
+  <th>Pre-installation license entitlement checks</th>
+    <td>
+      <p>Add checks for customer license entitlements before installation.</p>
+      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
+    </td>
+    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a>
+    </td>
+  </tr>
+  <tr>
+  <th>Runtime license entitlement checks with the SDK API</th>
+    <td>
+      <p>Use the SDK API to add checks for customer license entitlements during runtime.</p>
+      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
+      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
+    </td>
+    <td>
+    <ul>
+      <li><a href="/vendor/licenses-reference-helm#runtime">Check Entitlements at Runtime</a></li>
+      <li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
+      <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>License field signature validation</th>
+    <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
+    <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
+    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Custom metrics with the SDK API</th>
+    <td>
+      <p>Use the SDK API to send custom metrics that measure instances of your application running in online or air gap environments.</p>
+      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
+      <p><strong>Estimated time:</strong> 30 minutes to create mock data and test the endpoints locally with integration mode, plus more time to integrate with your application</p>
+    </td>
+    <td>
+      <a href="/vendor/custom-metrics">Configuring Custom Metrics</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Custom domains</th>
+    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
+    <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
+    </td>
+    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Enable notifications</th>
+    <td>Set up Slack and email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases.</td>
+    <td><a href="/vendor/instance-notifications-config">Configuring Instance Notifications</a>
+  </td>
+  </tr>
+  <tr>
+    <th>Integrate with CI/CD</th>
+    <td><p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated compatibility matrix, installing releases in test environments, and more.</p>
+    <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using replicated CLI commands or Replicated GitHub Actions.</p>
+    </td>
+    <td>
+     <ul>
+      <li><a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a></li>
+      <li><a href="/vendor/ci-workflows">About Integrating with CI/CD</a></li>
+      <li><a href="/vendor/testing-how-to">Using the Compatibility Matrix</a></li>
+     </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Application update checks with the SDK API</th>
+    <td>
+      <p>Use the SDK API to allow your users to easily check for available updates from your application.</p>
+      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
+      <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate with your application</p>
+    </td>
+    <td>
+     <ul>
+      <li><a href="/reference/replicated-sdk-apis#support-update-checks-in-your-application">Support Update Checks in Your Application</a></li>
+      <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Replicated KOTS</th>
+    <td><p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
+    <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
+    </td>
+    <td>
+    <ul>
+    <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
+    <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
+    </ul>
+    </td>
+  </tr>
+</table>
+
+## Configure Replicated KOTS
+
+For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.
+
+## Get Help from the Community
+
+<Community/>
