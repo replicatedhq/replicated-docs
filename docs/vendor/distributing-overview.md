@@ -8,99 +8,86 @@ import HelmChartsKots from "../partials/helm/_helm-charts-kots.mdx"
 
 # About Distributing Applications with Replicated
 
-This topic describes the options for using Replicated to distribute applications, including information about supporting installations with the Helm CLI and with the Replicated KOTS installer.
+This topic provides an overview of distributing applications with the Replicated platform.
 
-## About Installations with the Helm CLI {#helm}
+## Overview
 
-You can distribute your Helm chart-based application with Replicated and allow your customers to install with the Helm CLI. Additionally, you can add the Replicated SDK Helm chart as a subchart of your application to get access to Replicated functionality. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
+Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
 
-The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
+_Distributing_ software includes completing key tasks as part of each phase of the software development lifecycle, as shown below:
 
-<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
+<img alt="software development lifecycle wheel" src="/images/software-dev-lifecycle.png" width="800px"/>
+
+[View a larger version of this image](/images/software-dev-lifecycle.png)
+
+The following describes the phases of the software development lifecycle:
+
+* **Develop**: Application design and architecture decisions align with customer needs, and development teams quickly integrate and test new features.
+* **Test**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
+* **License**: Licenses are customized to each customer and are easy to issue, manage, and update.
+* **Release**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
+* **Install**: Provide unique installation options depending on customers' preferences and experience levels.
+* **Report**: Make more informed prioritization decisions by collecting adoption and performance data for application instances running in customer environments.
+* **Support**: Diagnose and resolve support issues quickly.
+
+## Application Distribution Workflow
+
+Distributing software with Replicated includes using Replicated features to enhance and support each phase of the software development cycle.
+
+The following diagram provides an example workflow of distributing an application using the Replicated platform:
+
+![replicated platform features workflow](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
+As shown in the diagram above:
+* The Replicated SDK can be distributed alongside an application to get access to an in-cluster API to more easily integrate key functionality.
+* The Replicated compatibility matrix can be used to quickly generate Kubernetes clusters for running application tests as part of CI/CD workflows.
+* After testing, application releases can be promoted to a channel in the Replicated vendor platform to be shared with customers or internal teams.
+* Customers can be assigned to channels in order to control which application releases they are able to access and install.
+* Customers' unique licenses grant proxy access to private application images through the Replicated proxy service.
+* Before installation, customers can install the kubectl preflight plugin (provided by the Troubleshoot open source project) to run preflight checks. Preflight checks verify the environment meets application requirements.
+* After installation, instance telemtry is automatically sent back to the vendor platform by the Replicated SDK. If the application was installed using Replicated KOTS, then KOTS also sends telemetry data.
+* If any issues occur during installation or at runtime, customers can install the kubectl support-bundle plugin (provided by the Troubleshoot open source project) to generate a support bundle. Support bundles can then be uploaded in the vendor platform for analysis.
+
+For more information about how to get started with the features of the Replicated platform, see the Replicated [Onboarding Checklist](replicated-onboarding-checklist). 
+
+## About Distributing Helm Charts
+
+Helm is a popular open source package manager for Kubernetes applications. Many ISVs use Helm to configure and deploy Kubernetes applications because it provides a consistent, reusable, and sharable packaging format. For more information, see the [Helm documentation](https://helm.sh/docs).
+
+Applications distributed with Replicated can be packaged using Helm, Kubernetes manifests, or Kubernetes Operators. Howevever, Replicated strongly recommends that all applications are packaged using Helm because many enterprise users expect to be able to install an application with the Helm CLI.
+
+For more information about the installation options for Helm charts distributed with Replicated, see the sections below:
+* [With the Helm CLI](#with-the-helm-cli)
+* [With KOTS](#with-kots)
+
+### With the Helm CLI
+
+Helm charts distributed with Replicated can be installed with the Helm CLI. The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
+
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="700px"/> 
+
+[View a larger version of this image](/images/helm-install-diagram.png)
 
 <HelmDiagramOverview/>
 
-For more information about how to install an application with Helm, see [Installing with Helm](install-with-helm).
+For more information, including limitations and installation instructions, see [Installing with Helm](install-with-helm).
 
-For information about how to get started distributing your Helm chart with Replicated, see [Replicated Quick Start](replicated-onboarding).
+### With KOTS
 
-### Replicated Helm Values {#replicated-values}
-
-When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file.
-
-The following is an example of a Helm values file containing the `global.replicated` field injected by the Replicated registry:
-
-```yaml
-# Helm values.yaml
-global:
-  replicated:
-    channelName: Stable
-    customerEmail: username@example.com
-    customerName: Example Customer
-    dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
-    licenseFields:
-      expires_at:
-        description: License Expiration
-        name: expires_at
-        signature:
-          v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
-        title: Expiration
-        value: "2023-05-30T00:00:00Z"
-        valueType: String
-    licenseID: YiIXRTjiB7R...
-    licenseType: dev
-```
-
-The values in the `global.replicated` field provide information about the following:
-* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define. You can use this license information to check license entitlments before the application is installed. For more information, see [Check Entitlements Before Installation](/vendor/licenses-reference-helm#before-install) in _Checking Entitlements for Helm Installations_.
-* A base64 encoded Docker configuration file. To proxy images from an external private registry with the Replicated proxy service, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
-
-### Limitations
-
-The following limitations apply when using Helm to install applications distributed with Replicated:
-
-* Replicated does not support Helm installations into air gap environments.
-
-* Helm installations do not provide access to any of the features of the Replicated KOTS installer, including:
-  * The Replicated admin console
-  * Strict preflight checks that block installation
-  * Backup and restore with snapshots
-  * Required releases with the **Prevent this release from being skipped during upgrades** option
-
-## About Installations with KOTS
-
-:::note
-You must have the Replicated KOTS entitlement to use the Replicated KOTS and kURL installers and features.
-:::
-
-The Replicated KOTS installer provides highly successful installs of Kubernetes applications or Helm charts in diverse customer environments, including on-prem and air gap environments. Additionally, the Replicated kURL installer allows customers that do not have their own Kubernetes cluster to install your application with KOTS by provisioning a cluster on a virtual machine (VM) or bare metal server. For more information, see [About KOTS and kURL](../intro-kots).
-
-KOTS provides access to feautures such as:
-* Support for air gap installations
-* Insights and telemetry sent to the vendor portal for instances running in online or air gap environments
-* The Replicated admin console, which provides a user interface where your customers can enter their application configuration preferences, upgrade their instance, view performance metrics, and more 
-* Strict preflight checks that block installation if environment requirements are not met
-* Backup and restore with Replicated snapshots
-* Required releases with the **Prevent this release from being skipped during upgrades** option
-
-In addition to the features listed above, you can distribute the Replicated SDK with your application to get access to more Replicated features, including support for collecting custom metrics from application instances. For more information, see [About Distributing the Replicated SDK with an Application](#sdk) below.
-
-The following diagram demonstrates how applications distributed with Replicated are installed into an existing cluster or VM with KOTS and kURL:
-
-![KOTS and kURL deployments](/images/replicated-components-diagram.png)
-
-[View larger image](/images/replicated-components-diagram.png)
-
-As shown in the diagram above, customers can install an application by first installing KOTS in their existing cluster or in the cluster provisioned by kURL. Then, they can use KOTS to configure and install the application. For more information about installing with KOTS and kURL, see [About Installing an Application](/enterprise/installing-overview).
-
-### Helm Charts with KOTS
+The Replicated KOTS installer provides highly successful installs of Kubernetes applications or Helm charts in diverse customer environments, including on-prem and air gap environments.
 
 <HelmChartsKots/>
 
-For information about how to get started distributing your Helm chart with Replicated so that you can support both installations with the Helm CLI and with KOTS, see [Replicated Quick Start](replicated-onboarding).
+The following diagram demonstrates how a single release containing one or more Helm charts can be installed using either the Helm CLI or KOTS, including using KOTS to install into embedded clusters and air gap environments:
+
+<img src="/images/helm-kots-install-options.png" width="600px" alt="One release being installed into three different customer environments"/>
+
+[View a larger version of this image](/images/helm-kots-install-options.png)
 
 For more information about how KOTS installs Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
 
-## About Distributing the Replicated SDK with an Application {#sdk}
+## About Distributing the Replicated SDK
 
 <SDKOverview/>
