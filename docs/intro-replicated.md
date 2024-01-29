@@ -25,7 +25,7 @@ The following describes the phases of the software development lifecycle:
 * **[License](#license)**: Customers have access to the correct features based on their license.
 * **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
-* **[Report](#report)**: Collect adoption and performance data for application instances running in customer environments.
+* **[Report](#report)**: Make more informed prioritization decisions by collecting adoption and performance data for application instances running in customer environments.
 * **[Support](#support)**: Triage and resolve support issues quickly.
 
 For more information about the Replicated features that support each of these phases, see the sections below.
