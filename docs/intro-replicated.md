@@ -78,7 +78,7 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
-- Customize support bundles, which can be used to collect and analyze redacted information from the customer's cluster, environment, application instance, or other sources. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments with the compatibility matrix to recreate and diagnose issues. See [About the Compatiblity Matrix](/vendor/testing-about).
 - Understand the state of an instance with access to telemetry, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
 
