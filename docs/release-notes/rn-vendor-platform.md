@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.26-3
+
+Released on January 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-26-3}
+* Display accurate active instance count on the **Customers** page.
+
 ## v2024.01.25-4
 
 Released on January 25, 2024
