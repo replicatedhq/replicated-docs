@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.01.29-0
+
+Released on January 29, 2024
+
+### New Features {#new-features-v2024-01-29-0}
+* Adds link to documentation for updating email address.
+
 ## v2024.01.25-4
 
 Released on January 25, 2024
