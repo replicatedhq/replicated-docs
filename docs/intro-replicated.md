@@ -42,14 +42,6 @@ The Replicated compatibility matrix rapidly provisions ephemeral Kubernetes clus
 
 For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
-### Release
-
-Release channels in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
-
-For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
-
-Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
-
 ### License
 
 Create customers in the Replicated vendor platform to handle licensing for your application in both online and air gap environments. For example:
@@ -59,6 +51,14 @@ Create customers in the Replicated vendor platform to handle licensing for your 
 * Verify license entitlements both before installation and during runtime
 
 For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
+
+### Release
+
+Release channels in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
+
+For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
+
+Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
 
 ### Install
 
