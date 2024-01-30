@@ -23,7 +23,7 @@ Released on January 30, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### New Features {#new-features-1-107-0}
-* Adds support for running KOTS components on Linux Arm64 based clusters / nodes.
+* Adds support for running KOTS components on Linux Arm64 based clusters and nodes.
 
 ## 1.106.0
 
