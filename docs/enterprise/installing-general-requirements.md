@@ -55,7 +55,7 @@ To install the admin console on an existing cluster, the cluster must meet the f
 
     * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
 
-* **Supported operating systems**: Nodes must use one of the following supported operating systems:
+* **Supported operating systems**: The following are the supported operating systems for nodes:
   * Linux AMD64
   * Linux ARM64
 
