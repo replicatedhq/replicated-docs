@@ -20,7 +20,7 @@ Replicated features are designed to support ISVs in each phase of the software d
 
 The following describes the phases of the software development lifecycle:
 
-* **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams quickly integrate and test new features.
+* **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams can quickly iterate on new features.
 * **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
 * **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
 * **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
