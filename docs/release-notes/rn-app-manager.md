@@ -23,7 +23,7 @@ Released on January 30, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### New Features {#new-features-1-107-0}
-* Adds support for running KOTS on ARM64 nodes. For additional requirements, see [Installation Requirements](/enterprise/installing-general-requirements).
+* Adds support for running KOTS on ARM64 nodes. For additional requirements, see [Installation Requirements](/enterprise/installing-general-requirements). For air gap installations, the format of the KOTS air gap bundle changed and it now includes images for both AMD64 and ARM64 architectures. When updating KOTS in air gap environments, make sure the CLI version you use matches the version of KOTS of the air gap bundle.
 
 ## 1.106.0
 
