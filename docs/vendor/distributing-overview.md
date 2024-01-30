@@ -63,9 +63,9 @@ Replicated strongly recommends that all applications are packaged using Helm bec
 
 ### (KOTS Only) Packaging with Kubernetes
 
-For ISVs that do not want to use Helm, application distributed with Replicated can also be packaged with standard Kubernetes manifests or with Kubernetes Operators.
+For ISVs that do not want to use Helm, applications distributed with Replicated can alternatively be packaged with standard Kubernetes manifests or with Kubernetes Operators. Replicated recommends that Operators are used only for specific use cases, as Operators can be difficult to build and maintain. For more information about the common use cases for Operators, see [Distributing Operators in KOTS](https://www.replicated.com/blog/operators-in-kots) in the _Replicated Blog_.
 
-Applications packaged with Kubernetes manifests or Kubernetes Operators can be installed using the Replicated KOTS installer or any proprietary installer already used by the ISV.
+Applications packaged with Kubernetes manifests or Operators can be installed using the Replicated KOTS installer or any proprietary installer already used by the ISV. For more information about how to get started with KOTS, see [Onboarding with KOTS](distributing-workflow).
 
 <KotsEntitlement/>
 
