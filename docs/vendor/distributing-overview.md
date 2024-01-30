@@ -56,13 +56,13 @@ Replicated strongly recommends that all applications are packaged using Helm bec
 
 Helm-based applications distributed with Replicated can be deployed with the Helm CLI or with Replicated KOTS:
 
-#### Helm CLI
+#### Helm CLI Installations
 
-For applications deployed with the Helm CLI, Replicated platform features such as licensing and the proxy service ensure that customers have access to the right features and application images.
+Helm-based applications distributed with the Replicated platform can be installed with the Helm CLI. This allows you to continue to support Helm CLI installations for your customers, while also having access to features of the Replicated platform that enhance and support other key tasks involved in distributing modern enterprise software, such as tools for licensing, releasing, and supporting applications.
 
-For more information about how Replicated platform feautes support installing applications with the Helm CLI, see [Installing with Helm](install-with-helm).
+For more information, see [Installing with Helm](install-with-helm).
 
-#### KOTS
+#### KOTS Installations
 
 <Kots/>
 
@@ -76,9 +76,7 @@ For more information about how to deploy Helm charts with KOTS, see [About Distr
 
 ### (KOTS Only) Packaging with Kubernetes
 
-For ISVs that do not want to use Helm, applications distributed with Replicated can alternatively be packaged with standard Kubernetes manifests or with Kubernetes Operators. Replicated recommends that Operators are used only for specific use cases, as Operators can be difficult to build and maintain. For more information about the common use cases for Operators, see [Distributing Operators in KOTS](https://www.replicated.com/blog/operators-in-kots) in the _Replicated Blog_.
-
-Applications packaged with Kubernetes manifests or Operators can be installed using Replicated KOTS or any proprietary installer already used by the ISV.
+For ISVs that do not want to use Helm, applications distributed with Replicated can be packaged with standard Kubernetes manifest files or with Kubernetes Operators. Applications packaged with Kubernetes manifests or Operators can be installed using Replicated KOTS or any proprietary installer already used by the ISV.
 
 <Kots/>
 
@@ -86,7 +84,11 @@ For more information about KOTS, see the [KOTS documentation](../kots-intro).
 
 <KotsEntitlement/>
 
-## About Distributing the Replicated SDK with an Application
+:::note
+Replicated recommends that Operators are used only for specific use cases because they can be difficult to build and maintain. For more information about the common use cases for Operators, see [Distributing Operators in KOTS](https://www.replicated.com/blog/operators-in-kots) in the _Replicated Blog_.
+:::
+
+## About Distributing the Replicated SDK with an Application {#sdk}
 
 <SDKOverview/>
 
