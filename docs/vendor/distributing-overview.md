@@ -7,11 +7,11 @@ import Helm from "../partials/getting-started/_helm-definition.mdx"
 import KotsEntitlement from "../partials/kots/_kots-entitlement-note.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
-# About Distributing Applications with Replicated
+# About Distributing Applications
 
-This topic provides an overview of distributing applications with the Replicated platform.
+This topic provides an overview of distributing applications with Replicated, including the Replicated features that can be used to distribute applications and the options for packaging an application.
 
-## Overview
+## About Distributing with Replicated
 
 <Replicated/>
 
@@ -43,7 +43,7 @@ For more information about the Replicated features depicted in this diagram, see
 * [About Preflight Checks and Support Bundles](preflight-support-bundle-about)
 * [About Instance and Event Data](instance-insights-event-data)
 
-## About Packaging an Application
+## About Packaging Applications
 
 This section describes the options for packaging an application that is distributed with the Replicated platform.
 ### Packaging with Helm

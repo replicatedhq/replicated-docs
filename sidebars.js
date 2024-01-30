@@ -484,8 +484,8 @@ const sidebars = {
         },
       ],
     },
-    // DISTRIBUTE AND SUPPORT
-    {type: 'html', value: '<h5>distribute</h5>', defaultStyle: true}, 
+    // PACKAGE AND DISTRIBUTE
+    {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true}, 
     'vendor/distributing-overview',
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
@@ -536,7 +536,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Channel and Release Management',
+      label: 'Channels and Releases',
       items: [
         'vendor/releases-about',
         'vendor/releases-creating-channels',
@@ -629,7 +629,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI/CD',
+      label: 'Integrating with CI/CD',
       items: [
         'vendor/ci-overview',
         'vendor/ci-workflows',
@@ -651,9 +651,14 @@ const sidebars = {
          'vendor/instance-data-export',
        ],
     },
-    {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
-    'vendor/install-with-helm',
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+    {
+      type: 'category',
+      label: 'Installing Applications',
+      items: [
+        'vendor/install-with-helm',
+        {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+      ],
+    },
     
 
     // DEVELOPER TOOLS
