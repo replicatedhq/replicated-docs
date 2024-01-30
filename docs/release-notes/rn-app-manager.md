@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.107.0
+
+Released on January 30, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-107-0}
+* Adds support for running KOTS on ARM64 nodes. For air gap installations, the format of the KOTS air gap bundle now includes images for both AMD64 and ARM64 architectures. When updating KOTS in air gap environments, make sure the CLI version you use matches the version of KOTS of the air gap bundle. For more information about KOTS installation requirements, see [Installation Requirements](/enterprise/installing-general-requirements). 
+
 ## 1.106.0
 
 Released on January 23, 2024
