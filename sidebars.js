@@ -414,7 +414,6 @@ const sidebars = {
     {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/replicated-onboarding',
-    'vendor/distributing-overview',
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -486,8 +485,8 @@ const sidebars = {
       ],
     },
     // DISTRIBUTE AND SUPPORT
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
-    
+    {type: 'html', value: '<h5>distribute</h5>', defaultStyle: true}, 
+    'vendor/distributing-overview',
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
       type: 'category',
