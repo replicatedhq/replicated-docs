@@ -55,6 +55,10 @@ To install the admin console on an existing cluster, the cluster must meet the f
 
     * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
 
+* **Supported operating systems**: Nodes must use one of the following supported operating systems:
+  * Linux AMD64
+  * Linux ARM64
+
 * **Available StorageClass**: The cluster must have an existing StorageClass available. KOTS creates the required stateful components using the default StorageClass in the cluster. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.  
 
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
