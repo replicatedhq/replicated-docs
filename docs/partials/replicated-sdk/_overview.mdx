@@ -4,8 +4,8 @@ For information about how to distribute and install the SDK with your applicatio
 
 Replicated recommends that the SDK is distributed with all applications because it provides access to key Replicated functionality, such as:
 
-* Automatic access to insights and operational telemetry for instances running in customer environments.
-* An in-cluster SDK API that you can use to embed Replicated features into your application. For example:
-  * Collect custom metrics on instances running in online or air gap environments
-  * Check customer license entitlements at runtime
-  * Provide update checks to alert customers when new versions of your application are available for upgrade
+* Automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+* An in-cluster API that you can use to embed Replicated features into your application, including:
+  * Collect custom metrics on instances running in online or air gap environments. See [Configuring Custom Metrics](/vendor/custom-metrics).
+  * Check customer license entitlements at runtime. See [Checking Entitlements for Helm Installations (Beta)](/vendor/licenses-reference-helm) and [Verifying License Field Signatures for Helm Installations (Beta)](/vendor/licenses-verify-fields-sdk-api). 
+  * Provide update checks to alert customers when new versions of your application are available for upgrade. See [Support Update Checks in Your Application](/reference/replicated-sdk-apis#support-update-checks-in-your-application) in _Replicated SDK API (Beta)_.
