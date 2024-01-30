@@ -3,7 +3,8 @@ pagination_prev: null
 ---
 
 import Replicated from "../partials/getting-started/_replicated-definition.mdx"
-import Helm from "../partials/getting-started/_helm-definition.mdx"
+import Helm from "../partials/helm/_helm-definition.mdx"
+import Kots from "../partials/kots/_kots-definition.mdx"
 import KotsEntitlement from "../partials/kots/_kots-entitlement-note.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
@@ -15,7 +16,7 @@ This topic provides an overview of distributing applications with Replicated, in
 
 <Replicated/>
 
-_Distributing_ software with Replicated refers to using Replicated features during each phase of the software development cycle. For more information about how Replicated defines the software development cycle and the Replicated features that support each phase of the lifecycle, see [Introduction to Replicated](../intro-replicated).
+_Distributing_ software with Replicated refers to using Replicated features to enhance and support each phase of the software development cycle. For more information about how Replicated defines the software development cycle and the Replicated features that can be used during each phase of the lifecycle, see [Introduction to Replicated](../intro-replicated).
 
 The following diagram demonstrates the process of distributing an application with the Replicated platform:
 
@@ -30,7 +31,8 @@ As shown in the diagram above:
 * Customers can be assigned to channels in order to control which application releases they are able to access and install.
 * Customers' unique licenses grant proxy access to private application images through the Replicated proxy service.
 * Before installation, customers can run preflight checks to verify that their environment meets installation requirements.
-* After installation, instance telemtry is automatically sent back to the vendor platform by the Replicated SDK. If the application was installed using Replicated KOTS, then KOTS also sends telemetry data.
+* Customers can install using any method, including the Helm CLI, Replicated KOTS, or any proprietary installation method already used by the ISV.
+* After installation, instance telemtry is automatically sent back to the vendor platform by the Replicated SDK. If the application was installed using KOTS, then KOTS also sends telemetry data.
 * If any issues occur during installation or at runtime, customers can generate a support bundle. Support bundles can also be uploaded in the vendor platform for analysis.
 
 For more information about the Replicated features depicted in this diagram, see:
@@ -50,22 +52,37 @@ This section describes the options for packaging an application that is distribu
 
 <Helm/>
 
-Replicated strongly recommends that all applications are packaged using Helm because many enterprise users expect to be able to install an application with the Helm CLI. Helm-based applications distributed with Replicated can be deployed with the Helm CLI or with the Replicated KOTS installer:
+Replicated strongly recommends that all applications are packaged using Helm because many enterprise users expect to be able to install an application with the Helm CLI. 
 
-* **Helm CLI**: For applications deployed with the Helm CLI, Replicated platform features such as licensing and the proxy service ensure that customers have access to the right features and application images. For more information about installing applications with the Helm CLI, see [Installing with Helm](install-with-helm).
-* **KOTS**: Deploying Helm-based applications with KOTS provides additional functionality not directly available with the Helm CLI, such as the KOTS admin console and support for air gap installations. Additionally, when you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests. 
+Helm-based applications distributed with Replicated can be deployed with the Helm CLI or with Replicated KOTS:
 
-  For more information about how to deploy Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
+#### Helm CLI
 
-  :::note
-  The Replicated KOTS entitlement is required to install applications with KOTS. For more information, see [Pricing](https://www.replicated.com/pricing) on the Replicated website.
-  :::
+For applications deployed with the Helm CLI, Replicated platform features such as licensing and the proxy service ensure that customers have access to the right features and application images.
+
+For more information about how Replicated platform feautes support installing applications with the Helm CLI, see [Installing with Helm](install-with-helm).
+
+#### KOTS
+
+<Kots/>
+
+For more information about KOTS, see the [KOTS documentation](../kots-intro).
+
+Deploying Helm-based applications with KOTS provides additional functionality not directly available with the Helm CLI, such as the KOTS admin console and support for air gap installations. Additionally, when you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests. 
+
+For more information about how to deploy Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
+
+<KotsEntitlement/>
 
 ### (KOTS Only) Packaging with Kubernetes
 
 For ISVs that do not want to use Helm, applications distributed with Replicated can alternatively be packaged with standard Kubernetes manifests or with Kubernetes Operators. Replicated recommends that Operators are used only for specific use cases, as Operators can be difficult to build and maintain. For more information about the common use cases for Operators, see [Distributing Operators in KOTS](https://www.replicated.com/blog/operators-in-kots) in the _Replicated Blog_.
 
-Applications packaged with Kubernetes manifests or Operators can be installed using the Replicated KOTS installer or any proprietary installer already used by the ISV. For more information about how to get started with KOTS, see [Onboarding with KOTS](distributing-workflow).
+Applications packaged with Kubernetes manifests or Operators can be installed using Replicated KOTS or any proprietary installer already used by the ISV.
+
+<Kots/>
+
+For more information about KOTS, see the [KOTS documentation](../kots-intro).
 
 <KotsEntitlement/>
 
