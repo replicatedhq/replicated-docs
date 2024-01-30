@@ -1,11 +1,11 @@
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK can be installed alongside Helm chart- or standard manifest-based applications using the Helm CLI or KOTS.
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK can be installed alongside applications packaged with Helm, Kubernetes manifests, or Kubernetes Operators. The SDK can be installed using the Helm CLI or KOTS.
 
 For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
 
 Replicated recommends that the SDK is distributed with all applications because it provides access to key Replicated functionality, such as:
 
-* Automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
-* An in-cluster API that you can use to embed Replicated features into your application, including:
-  * Collect custom metrics on instances running in online or air gap environments. See [Configuring Custom Metrics](/vendor/custom-metrics).
-  * Check customer license entitlements at runtime. See [Checking Entitlements for Helm Installations (Beta)](/vendor/licenses-reference-helm) and [Verifying License Field Signatures for Helm Installations (Beta)](/vendor/licenses-verify-fields-sdk-api). 
-  * Provide update checks to alert customers when new versions of your application are available for upgrade. See [Support Update Checks in Your Application](/reference/replicated-sdk-apis#support-update-checks-in-your-application) in _Replicated SDK API (Beta)_.
+* Automatic access to insights and operational telemetry for instances running in customer environments.
+* An in-cluster SDK API that you can use to embed Replicated features into your application. For example:
+  * Collect custom metrics on instances running in online or air gap environments
+  * Check customer license entitlements at runtime
+  * Provide update checks to alert customers when new versions of your application are available for upgrade

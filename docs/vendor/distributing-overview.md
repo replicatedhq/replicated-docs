@@ -5,6 +5,7 @@ pagination_prev: null
 import Replicated from "../partials/getting-started/_replicated-definition.mdx"
 import Helm from "../partials/getting-started/_helm-definition.mdx"
 import KotsEntitlement from "../partials/kots/_kots-entitlement-note.mdx"
+import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
 # About Distributing Applications with Replicated
 
@@ -67,3 +68,9 @@ For ISVs that do not want to use Helm, application distributed with Replicated c
 Applications packaged with Kubernetes manifests or Kubernetes Operators can be installed using the Replicated KOTS installer or any proprietary installer already used by the ISV.
 
 <KotsEntitlement/>
+
+## About Distributing the Replicated SDK with an Application
+
+<SDKOverview/>
+
+For information about the Replicated SDK API endpoints, see [Replicated SDK API](/reference/replicated-sdk-apis). For information about developing against the SDK API locally, see [Developing Against the SDK API](replicated-sdk-development).
