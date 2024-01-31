@@ -56,7 +56,7 @@ Unless the existing customer is using a community license, it is not possible to
 
 Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
 
-### License Expiration Handling
+### License Expiration Handling {#expiration}
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
