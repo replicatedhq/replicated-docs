@@ -60,11 +60,11 @@ Community licenses are the only license type that can be replaced with a new lic
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
-The `expires_at` field includes the following default logic for license expiration handling:
+Replicated enforces the following logic when a license expires:
 * By default, instances with expired licenses continue to run. To change the behavior of your application when a license expires, you can can add custom logic using the `expires_at` field. For more information, see [Checking Entitlements for Helm Installations](/vendor/licenses-reference-helm) or [Checking Entitlements for KOTS](/vendor/licenses-referencing-fields).
-* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation
-* Expired licenses cannot pull application images through the proxy service or from the Replicated registry
-* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates
+* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation.
+* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
+* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
 ### Synchronizing Licenses with KOTS
 
