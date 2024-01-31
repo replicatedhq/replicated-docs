@@ -1,5 +1,5 @@
 The `optionalValues.recursiveMerge` boolean defines how KOTS merges `values` and `optionalValues`:
 
-* When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`.
+* When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`. By default, `optionalValues.recursiveMerge` is set to false.
 
 * When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included. In the case of a conflict where there is a matching key in `optionalValues` and `values`, KOTS uses the value of the key from `optionalValues`.
