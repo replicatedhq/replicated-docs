@@ -101,7 +101,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports a single node.</td>
+    <td>Supports multiple nodes versions >= 4.13.0-okd.</td>
   </tr>
   <tr>
     <th>Limitations</th>
