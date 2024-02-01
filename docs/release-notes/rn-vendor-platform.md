@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.01-4
+
+Released on February 1, 2024
+
+### New Features {#new-features-v2024-02-01-4}
+* Improve the display of large quantity Custom Metrics on **Instance reporting** page.
+
 ## v2024.01.29-0
 
 Released on January 29, 2024
