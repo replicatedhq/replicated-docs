@@ -24,7 +24,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-107-1}
 
-* Resolves CVE-2023-6779, CVE-2023-6246, CVE-2024-21626 with high severity; and CVE-2023-6780 with medium severity.
+* Updates the `kotsadm`, `kotsadm-migrations`, and `kurl-proxy` images to resolves CVE-2023-6779, CVE-2023-6246, CVE-2024-21626 with high severity; and CVE-2023-6780 with medium severity.
 
 ## 1.107.0
 
