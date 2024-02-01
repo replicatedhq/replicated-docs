@@ -1,5 +1,4 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
-import KotsHelmChannels from "../partials/releases/_kots-helm-release-promotion.mdx"
 import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Customers
@@ -40,7 +39,7 @@ You can change the type of a license at any time in the vendor portal. For examp
 
 Customer licenses have built-in fields and also support custom fields.
 
-Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, customer name, and application slug. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
+Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, customer name, and application slug. For more information about built-in fields, see [Built-in License Fields](licenses-using-builtin-fields).
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
@@ -62,7 +61,7 @@ The built-in `expires_at` license field defines the expiration date for a custom
 
 Replicated enforces the following logic when a license expires:
 * By default, instances with expired licenses continue to run. To change the behavior of your application when a license expires, you can can add custom logic using the `expires_at` field. For more information, see [Checking Entitlements for Helm Installations](/vendor/licenses-reference-helm) or [Checking Entitlements for KOTS](/vendor/licenses-referencing-fields).
-* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation.
+* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
 * Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
 * (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
@@ -77,7 +76,7 @@ For online instances, license updates are pulled from the vendor portal when:
 
 For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
 
-For more information about community licenses, including how KOTS users can update licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
+For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ## About Customer Channel Assignment {#channel-assignment}
 
@@ -91,32 +90,22 @@ For example, if the latest release promoted to the Beta channel is version 1.25.
 
 For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
-### Assigning KOTS-Enabled and Helm-Only Customers
+### Assigning KOTS and Helm-Only Customers
 
 <KotsEntitlement/>
 
-Customers can only be assigned to channels where they can install the head release. As shown in the diagram below, both KOTS-enabled and Helm CLI-only customers can be assigned to a channel where the head release contains the required Kubernetes manifests for KOTS releases and contains one or more Helm charts:
-
-<img width="400px" alt="KOTS and Helm customers successfully assigned to a channel" src="/images/channel-assignment-kots-and-helm.png"/>
-
-  [View a larger version of this image](/images/channel-assignment-kots-and-helm.png) 
-
-To prevent KOTS-enabled or Helm CLI-only customers from accessing a release that they cannot install, Replicated prevents the following channel assignments:
-* A KOTS-enabled customer cannot be assigned to a channel where the head release does _not_ contain the Kubernetes manifests required by KOTS.
+To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following channel assignment rules:
+* A KOTS customer can be assigned to a channel only when the head release contains the required KOTS manifests.
 
   <img width="400px" alt="KOTS customer blocked from channel assignment" src="/images/channel-assignment-helm-only.png"/>
 
   [View a larger version of this image](/images/channel-assignment-helm-only.png) 
 
-* A Helm CLI-only customer cannot be assigned to a channel where the head release does _not_ contain any Helm charts.
+* A Helm CLI-only customer can be assigned to a channel only when the head release contains at least one Helm chart.
 
   <img width="400px" alt="Helm customer blocked from channel assignment" src="/images/channel-assignment-kots-only.png"/>
   
-  [View a larger version of this image](/images/channel-assignment-kots-only.png)     
-
-Additionally, Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
-
-<KotsHelmChannels/>
+  [View a larger version of this image](/images/channel-assignment-kots-only.png)
 
 ## About the Customers Page
 
@@ -132,7 +121,7 @@ From the **Customers** page, you can do the following:
 
 * Download CSVs with customer and instance data.
 
-* Search and filter customers based on whether they are active, by license type, and by channel name.
+* Search and filter customers.
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 

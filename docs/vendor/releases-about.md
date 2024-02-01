@@ -2,7 +2,6 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
-import KotsHelmChannels from "../partials/releases/_kots-helm-release-promotion.mdx"
 import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Channels and Releases
@@ -79,9 +78,19 @@ Every customer license file that you create is assigned to a channel. Each time 
 
 <KotsEntitlement/>
 
-Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
+To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following release promotion rules:
 
-<KotsHelmChannels/>
+* A release must contain the required KOTS manifests to be promoted to a channel where one or more KOTS customers are assigned.
+
+  <img width="400px" alt="Release without the required manifests blocked from promotion" src="/images/release-promotion-kots-customers.png"/>
+  
+  [View a larger version of this image](/images/release-promotion-kots-customers.png)
+
+* A release must contain at least one Helm chart to be promoted to a channel where one or more Helm CLI-only customers are assigned.
+
+  <img width="400px" src="/images/release-promotion-helm-customers.png" alt="Release with no helm charts blocked from being promoted"/>
+  
+  [View a larger version of this image](/images/release-promotion-helm-customers.png)
 
 ### Properties
 
