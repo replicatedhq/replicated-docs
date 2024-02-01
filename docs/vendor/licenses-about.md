@@ -21,9 +21,7 @@ This section describes license properties, including license types, built-in fie
 
 ### License Types
 
-Each customer license includes a type. The license type is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
-
-The customer license types are:
+Each customer license is assigned one of the following types:
 
 * **Development**: The Development type can be used internally by the development
 team for testing and integration.
@@ -32,6 +30,8 @@ of your software.
 * **Paid**: The Paid type identifies the customer as a paying customer for which
 additional information can be provided.
 * **Community**: The Community type is designed for a free or low cost version of your application. For more details about this type, see [Community Licenses](licenses-about-types).
+
+Except Community licenses, the license type is used solely for reporting purposes and a customer's access to your application is not affected by the type that you assign.
 
 You can change the type of a license at any time in the vendor portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes. 
 
