@@ -95,7 +95,7 @@ For more information about how to mark a release as required, see [Properties](r
 
 <KotsEntitlement/>
 
-Customers can only be assigned to channels where they can install the head release. As shown in the diagram below, both KOTS-enabled and Helm CLI-only customers can be installed to a channel where the head release contains the required Kubernetes manifests for KOTS releases and contains one or more Helm charts:
+Customers can only be assigned to channels where they can install the head release. As shown in the diagram below, both KOTS-enabled and Helm CLI-only customers can be assigned to a channel where the head release contains the required Kubernetes manifests for KOTS releases and contains one or more Helm charts:
 
 <img width="400px" alt="KOTS and Helm customers successfully assigned to a channel" src="/images/channel-assignment-kots-and-helm.png"/>
 
