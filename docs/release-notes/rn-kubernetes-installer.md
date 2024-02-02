@@ -623,7 +623,7 @@ Released on March 20, 2023
 * Adds checks and better log information when removing Rook or Longhorn to notify users of the reasons for a failure.
 
 ### Bug Fixes {#bug-fixes-v2023-03-20-0}
-* Fixes an issue where the weave-to-flannel-{primary,secondary} tasks fail with "Flannel images not present...".
+* Fixes an issue where the weave-to-flannel-\{primary,secondary\} tasks fail with "Flannel images not present...".
 
 ## v2023.03.13-0
 

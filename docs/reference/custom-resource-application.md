@@ -167,9 +167,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p>An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p>
-    <p>KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.
-    </p></td>
+    <td><p>An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p><p>KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -271,10 +269,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p>
-    <p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
-    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p>
-      </td>
+    <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p><p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p><p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -295,11 +290,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p>
-    <p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
-    <p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command.</p>
-    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p>
-      </td>
+    <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p><p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p><p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command.</p><p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -370,22 +361,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>
-      Custom graphs to include on the admin console application dashboard.
-      For more information about how to create custom graphs,
-      see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p>
-      <p><code>graphs</code> has the following fields:</p>
-      <ul>
-        <li><code>graphs.title</code>: The graph title.</li>
-        <li><code>graphs.query</code>: The Prometheus query.</li>
-        <li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li>
-        <li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.
-        </li>  
-        <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li>
-        <li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li>
-      </ul>
-    </td>
+    <td><p>Custom graphs to include on the admin console application dashboard.For more information about how to create custom graphs, see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p><p><code>graphs</code> has the following fields:</p><ul><li><code>graphs.title</code>: The graph title.</li><li><code>graphs.query</code>: The Prometheus query.</li><li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li><li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.</li>  <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li><li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li></ul></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -408,10 +384,7 @@ spec:
 <table>	
   <tr>	
     <th>Description</th>	
-    <td>	
-      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	
-      <p>Introduced in KOTS v1.91.1.</p>	
-    </td>	
+    <td><p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	<p>Introduced in KOTS v1.91.1.</p>	</td>	
   </tr>	
   <tr>	
     <th>Example</th>	
@@ -432,10 +405,7 @@ spec:
 <table>	
   <tr>	
     <th>Description</th>	
-    <td>	
-      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	
-      <p>Introduced in KOTS v1.91.1.</p>	
-    </td>	
+    <td><p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p><p>Introduced in KOTS v1.91.1.</p>	</td>	
   </tr>	
   <tr>	
     <th>Example</th>	
@@ -452,10 +422,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
-      <p>Introduced in KOTS v1.62.0.</p>
-    </td>
+    <td><p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p><p>Introduced in KOTS v1.62.0.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -472,10 +439,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
-      <p>Introduced in KOTS v1.62.0.</p>
-    </td>
+    <td><p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p><p>Introduced in KOTS v1.62.0.</p></td>
   </tr>
   <tr>
     <th>Example</th>
