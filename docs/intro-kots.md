@@ -12,7 +12,7 @@ You must have the Replicated KOTS entitlement to use KOTS. For more information,
 
 ## Overview
 
-The Replicated KOTS installer is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap environments. KOTS also provides an admin console, which can make application installation and management easier for customers that are less experienced with Kubernetes or Helm.
+Replicated KOTS is a kubectl plugin that provides highly successful installations of Helm charts and Kubernetes applications into customer-controlled environments, including on-prem and air gap environments. KOTS also supports installations onto VMs or bare metal servers through _embedded clusters_, which are clusters built from a customized Kubernetes distribution embedded with an application and provisioned in the customer environment at the time of installation.
 
 KOTS communicates securely with the Replicated vendor platform to synchronize customer licenses, check for available application updates, send instance data, share customer-generated support bundles, and more.
 
@@ -28,25 +28,47 @@ Installing an application with KOTS provides access to feautures such as:
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
 
-## About KOTS Installations
+## About Installing with KOTS
 
-KOTS is installed in Kubernetes clusters. Customers can install in their own existing cluster. Or, for customers that do not have a cluster or that have less experience with Kubernetes, KOTS can also be installed in an _embedded cluster_ on a VM or bare metal server. An embedded cluster is a cluster provisioned by Replicated kURL at the time of installation.
+KOTS is installed in Kubernetes clusters. Customers can install in their own existing cluster. Or, for customers that do not have a cluster or that have less experience with Kubernetes, KOTS can also be installed in an embedded cluster on a VM or bare metal server.
 
-### Existing Cluster
+<img alt="Embedded cluster, air gap, and existing cluster app installation workflows" src="/images/kots-installation-overview.png" width="700px"/>
 
-KOTS supports both online (internet-connected) and air gap installations into existing Kubernetes clusters.
+[View a larger version of this image](/images/kots-installation-overview.png)
 
-### Embedded Cluster
+As shown in the diagram above, customers can install an application with KOTS by first installing KOTS in the cluster. Then, they can use KOTS to configure and install the application. 
 
-The Replicated kURL installer allows customers that do not have their own Kubernetes cluster to install your application with KOTS by provisioning a cluster on a virtual machine (VM) or bare metal server.
+### Existing Cluster Installations
 
-Embedded clusters can be provisioned in online or air gap environments.
+KOTS supports installation into existing Kubernetes clusters. To install an application with KOTS in an existing cluster, users first install the kots CLI
 
-kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, customers can run a kURL installation script on their VM or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Your application is then deployed with KOTS. 
+For more information about existing cluster installations with KOTS, see:
+* [Existing Cluster Requirements](/enterprise/installing-general-requirements#existing-cluster-requirements)
+* [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster)
+* [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped)
 
-For information about how to install applications in embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+### Embedded Cluster Installations
 
-kURL is an open source project that is maintained by Replicated. For more information, see the [kURL repository](https://github.com/replicatedhq/kURL) in GitHub and the [kURL documentation](https://kurl.sh).
+KOTS supports installations onto VMs or bare metal servers through embedded clusters, which are clusters built from a customized Kubernetes distribution embedded with an application and provisioned in the customer environment at the time of installation.
+
+Replicated kURL provisions Kubernetes clusters, which allow customers who do not have an existing cluster to install your application without provisioning a cluster themselves. Clusters created by kURL are called embedded clusters.
+
+kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, customers can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Your application is then deployed with KOTS.
+
+For information about how to install applications in embedded clusters, see Installing with kURL. For information about how to create a specification for kURL, see Creating a Kubernetes Installer.
+
+kURL is an open source project that is maintained by Replicated. For more information, see the kURL repository in GitHub and the kURL documentation.
+
+### Air Gap Installations
+
+KOTS supports both online (internet-connected) and air gap installations into existing or embedded clusters.
+
+Most Kubernetes clusters are able to make outbound internet requests. Inbound access is never recommended or required.
+As such, most cluster operators are able to perform an online installation.
+
+If the target cluster does not have outbound internet access, the application can also be delivered through an air gap installation.
+
+To install an application in an air gapped environment, the cluster must have access to an image registry. In this case, KOTS re-tags and pushes all images to the target registry. KOTS supports installations in air gapped environments on both existing clusters and on clusters created by the kURL installer.
 
 ## KOTS User Interfaces
 

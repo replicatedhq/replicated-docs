@@ -245,7 +245,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
   After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster.md#prerequisites) in _Online Installation in Existing Clusters_.
   :::
 
-## Embedded Cluster Requirements {#embedded-cluster-requirements}
+## Embedded Cluster (kURL) Requirements {#embedded-cluster-requirements}
 
 To install KOTS in an embedded cluster created by kURL, your environment must meet the following requirements.
 
