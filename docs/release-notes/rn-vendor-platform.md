@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on February 1, 2024
 
-### New Features {#new-features-v2024-02-01-4}
-* Improve the display of large quantity Custom Metrics on **Instance reporting** page.
+### Improvements {#improvements-v2024-02-01-4}
+* Improves the display of large quantities of Custom Metrics on the **Instance Reporting** page.
 
 ## v2024.01.29-0
 
