@@ -20,7 +20,7 @@ KOTS provides several Kubernetes custom resources in the `kots.io` API group. KO
 
 Software vendors can configure KOTS custom resources to provide installation instructions and control the application experience.
 
-For more information, see [About Custom Resources](/reference/custom-resources-about).
+For more information, see [About Custom Resources](/reference/custom-resource-about).
 
 ### KOTS Template Functions
 
