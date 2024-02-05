@@ -53,11 +53,11 @@ To enable the air gap entitlement and download the updated license:
 
 1.  In the [vendor portal](https://vendor.replicated.com), click **[App Name] > Customer > [Customer Name]**.
 
-  ![Airgap Customers](/images/guides/kots/airgap-customers.png)
+    ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
 1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets KOTS use the `.airgap` bundle.
 
-  ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
+    ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
 
 1. Click **Download license** to download the updated air gapped enabled YAML license.
 
