@@ -104,7 +104,7 @@ To create a cluster using the vendor portal:
      </tr>
      <tr>
        <td>TTL</td>
-       <td><p>Select the Time to Live (TTL) for the cluster.</p> <TTL/></td>
+       <td><p>Select the Time to Live (TTL) for the cluster.</p></td>
      </tr>
      <tr>
        <td>Disk size</td>
