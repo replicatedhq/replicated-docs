@@ -102,7 +102,7 @@ To install Velero and configure host path storage for existing clusters:
 
    ![Snapshot Provider Host Path Fields](/images/snapshot-provider-hostpath-field.png)
 
-  A dialog opens with instructions on how to set up Velero with the specified host path configuration.
+   A dialog opens with instructions on how to set up Velero with the specified host path configuration.
 
 1. Follow the steps in the dialog to install Velero and configure the storage destination.
 
