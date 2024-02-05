@@ -78,12 +78,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>midstream</code></td>
         <td>No</td>
-        <td><p>Contains KOTS-specific kustomizations, such as:</p>
-        <ul>
-          <li>Backup labels, such as those used to configure Velero.</li>
-          <li>Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</li>
-        </ul>
-        </td>
+        <td>Contains KOTS-specific kustomizations, such as:<ul><li>Backup labels, such as those used to configure Velero.</li><li>Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</li></ul></td>
       </tr>
       <tr>
         <td><code>downstream</code></td>

@@ -261,8 +261,7 @@ This section provides a checklist of key Replicated features to integrate with y
       <p>Add checks for customer license entitlements before installation.</p>
       <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
     </td>
-    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a>
-    </td>
+    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a></td>
   </tr>
   <tr>
   <td>Runtime license entitlement checks with the SDK API</td>
@@ -283,8 +282,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>License field signature validation</td>
     <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
     <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
-    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a>
-    </td>
+    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a></td>
   </tr>
   <tr>
     <td>Custom metrics with the SDK API</td>
@@ -299,16 +297,17 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Custom domains</td>
-    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
-    <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
+    <td>
+      <p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
+      <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
     </td>
-    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
-    </td>
+    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a></td>
   </tr>
   <tr>
     <td>Integrate with CI/CD</td>
-    <td><p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated compatibility matrix, installing releases in test environments, and more.</p>
-    <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using replicated CLI commands or Replicated GitHub Actions.</p>
+    <td>
+      <p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated compatibility matrix, installing releases in test environments, and more.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using replicated CLI commands or Replicated GitHub Actions.</p>
     </td>
     <td>
      <ul>
@@ -334,14 +333,15 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Replicated KOTS</td>
-    <td><p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
-    <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
+    <td>
+      <p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
     <td>
-    <ul>
-    <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
-    <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
-    </ul>
+      <ul>
+        <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
+        <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
+      </ul>
     </td>
   </tr>
 </table>

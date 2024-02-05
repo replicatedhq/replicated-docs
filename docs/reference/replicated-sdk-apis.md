@@ -151,12 +151,12 @@ Response:
 }
 ```
 
-### GET /license/fields/{field_name}
+### GET /license/fields/\{field_name\}
 
 List details about one of the fields in the license that was used to install, including the field name, description, value, and signature.
 
 ```
-/api/v1/license/fields/{field_name}
+/api/v1/license/fields/\{field_name\}
 ```
 
 Example request:
