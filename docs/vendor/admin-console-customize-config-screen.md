@@ -117,14 +117,14 @@ To add fields to the admin console configuration screen:
     ```  
 3. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
-   **Example**:
+    **Example**:
 
-   ```yaml
-   - name: smtp_password
-     title: SMTP Password
-     type: password
-     required: true
-  ```      
+    ```yaml
+    - name: smtp_password
+      title: SMTP Password
+      type: password
+      required: true
+    ```      
 
 4. Save and promote the release to a development environment to test your changes.
 
