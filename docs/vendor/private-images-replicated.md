@@ -49,6 +49,6 @@ Docker format:
 
 1. Push your private image to the Replicated registry:
 
-  ```
-  docker push registry.replicated.com/APPLICATION_SLUG/TARGET_IMAGE_NAME:TAG
-  ```
+   ```
+   docker push registry.replicated.com/APPLICATION_SLUG/TARGET_IMAGE_NAME:TAG
+   ```

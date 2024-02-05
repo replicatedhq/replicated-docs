@@ -53,11 +53,11 @@ To run preflights checks from a release before installation:
 
 1. On the landing page for the customer, click **Helm install instructions**.
 
-  The **Helm install instructions** dialog opens:
+    The **Helm install instructions** dialog opens:
 
-  <img alt="Helm install instructions dialog with preflight checks" src="/images/helm-install-preflights.png" width="550px"/>
+    <img alt="Helm install instructions dialog with preflight checks" src="/images/helm-install-preflights.png" width="550px"/>
 
-  [View a larger version of this image](/images/helm-install-preflights.png)
+    [View a larger version of this image](/images/helm-install-preflights.png)
 
 1. Run the commands provided in the dialog:
 
@@ -78,9 +78,9 @@ To run preflights checks from a release before installation:
 
     1. Run the second command to install the kubectl plugin with krew:
 
-      ```
-      curl https://krew.sh/preflight | bash
-      ```
+        ```
+        curl https://krew.sh/preflight | bash
+        ```
     
     1. Run the third command to run preflight checks:
 
