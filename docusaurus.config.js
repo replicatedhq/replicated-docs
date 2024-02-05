@@ -18,7 +18,7 @@ const config = {
   trailingSlash: false,
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -122,9 +122,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} Replicated, Inc. All Rights Reserved.
-
-`,
+        copyright: `© ${new Date().getFullYear()} Replicated, Inc. All Rights Reserved.`,
       },
       prism: {
         theme: lightCodeTheme,
