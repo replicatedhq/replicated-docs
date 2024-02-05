@@ -30,21 +30,22 @@ To install Velero and configure an AWS storage destination:
 1. Follow the instructions for [installing Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
 
 1. Run the `velero install` command with these additional flags:
+
    * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
    * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
-  **Example:**
+   **Example:**
 
-  ```
-  velero install \
-     --provider aws \
-     --plugins velero/velero-plugin-for-aws:v1.2.0 \
-     --bucket $BUCKET \
-     --backup-location-config region=$REGION \
-     --secret-file CREDS_FILE \
-     --use-node-agent --uploader-type=restic \
-     --use-volume-snapshots=false
-  ```
+   ```
+   velero install \
+      --provider aws \
+      --plugins velero/velero-plugin-for-aws:v1.2.0 \
+      --bucket $BUCKET \
+      --backup-location-config region=$REGION \
+      --secret-file CREDS_FILE \
+      --use-node-agent --uploader-type=restic \
+      --use-volume-snapshots=false
+   ```
 
 ## Configure GCP Storage for Online Environments
 
@@ -58,17 +59,17 @@ To install Velero and configure a GCP storage destination:
    * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
    * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
-  **Example:**
+   **Example:**
 
-  ```
-  velero install \
-    --provider gcp \
-    --plugins velero/velero-plugin-for-gcp:v1.5.0 \
-    --bucket $BUCKET \
-    --secret-file ./CREDS_FILE
-    --use-node-agent --uploader-type=restic \
-    --use-volume-snapshots=false
-  ```
+   ```
+   velero install \
+     --provider gcp \
+     --plugins velero/velero-plugin-for-gcp:v1.5.0 \
+     --bucket $BUCKET \
+     --secret-file ./CREDS_FILE
+     --use-node-agent --uploader-type=restic \
+     --use-volume-snapshots=false
+   ```
 
 ## Configure Azure Storage for Online Environments
 
@@ -82,19 +83,19 @@ To install Velero and configure an Azure storage destination:
    * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
    * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
-  **Example:**
+   **Example:**
 
-  ```
-  velero install \
-    --provider azure \
-    --plugins velero/velero-plugin-for-microsoft-azure:v1.5.0 \
-    --bucket $BLOB_CONTAINER \
-    --secret-file ./CREDS_FILE \
-    --backup-location-config resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,storageAccount=$AZURE_STORAGE_ACCOUNT_ID[,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID] \
-    --snapshot-location-config apiTimeout=<YOUR_TIMEOUT>[,resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID]
-    --use-node-agent --uploader-type=restic \
-    --use-volume-snapshots=false
-  ```
+   ```
+   velero install \
+     --provider azure \
+     --plugins velero/velero-plugin-for-microsoft-azure:v1.5.0 \
+     --bucket $BLOB_CONTAINER \
+     --secret-file ./CREDS_FILE \
+     --backup-location-config resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,storageAccount=$AZURE_STORAGE_ACCOUNT_ID[,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID] \
+     --snapshot-location-config apiTimeout=<YOUR_TIMEOUT>[,resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID]
+     --use-node-agent --uploader-type=restic \
+     --use-volume-snapshots=false
+   ```
 
 ## Configure S3-Compatible Storage for Online Environments
 

@@ -163,7 +163,7 @@ To patch your application:
 
 1. Add the filename that you created in the previous step to the `patches` field in the `kustomization.yaml` file, located in `/overlays/downstream/this-cluster`. The `downstream/this-cluster` subdirectory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [overlays](#overlays).
 
-  **Example:**
+   **Example:**
 
    ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -188,16 +188,16 @@ To patch your application:
 
 1. Click **Deploy** to apply the changes.
 
-  ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
+   ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
 
 1. Verify your changes. For example, running the following command shows that there are two NGINX pods running after deploying two replicas in the example YAML above:
 
-  ```shell
-  $ kubectl get po | grep example-nginx
-  ```
-  **Example output:**
+   ```shell
+   kubectl get po | grep example-nginx
+   ```
+   **Example output:**
 
-  ```shell
-  example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
-  example-nginx-t6ght74jr-58fhr         1/1     Running     0          1m
-  ```
+   ```shell
+   example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
+   example-nginx-t6ght74jr-58fhr         1/1     Running     0          1m
+   ```

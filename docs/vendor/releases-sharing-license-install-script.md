@@ -106,7 +106,7 @@ To download the `.airgap` bundle:
 
 1. From the Replicated [vendor portal](https://vendor.replicated.com), click **[App Name] > Channels > [Channel Name] > Release History**.
 
-  ![Airgap Channels](/images/guides/kots/airgap-channels.png)
+    ![Airgap Channels](/images/guides/kots/airgap-channels.png)
 
 1. Click **Build** to build the `.airgap` bundle.
 

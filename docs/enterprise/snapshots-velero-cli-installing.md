@@ -21,35 +21,35 @@ To install the Velero CLI in an online cluster:
 
 1. Run the following command to download the latest supported Velero CLI version for the **Linux AMD64** operating system to the cluster:
 
-  ```
-  curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
-  ```
+   ```
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
+   ```
 
-  Replace VERSION with the version number using the format `vx.x.x`
+   Replace VERSION with the version number using the format `vx.x.x`
 
-  **Example:**
+   **Example:**
 
-  ```
-  curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
-  ```
+   ```
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+   ```
 
 1. Run the following command to uncompress the TAR file:
 
-  ```
-  tar zxvf velero-VERSION-linuxamd64.tar.gz
-  ```
-  Replace VERSION with the version number using the format `vx.x.x`.
+   ```
+   tar zxvf velero-VERSION-linuxamd64.tar.gz
+   ```
+   Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run the following command to install the Velero CLI:
   
-  ```
-  sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
-  ```
-  Replace VERSION with the version number using the format `vx.x.x`.
+   ```
+   sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
+   ```
+   Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run `velero version` to test that the Velero CLI installation worked correctly.
 
-  You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you also see the server version.
+   You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you also see the server version.
 
 ## Install the Velero CLI in an Air Gapped Cluster
 
@@ -61,38 +61,38 @@ To install the Velero CLI in an air gapped cluster:
 
 1. Run the following command to download the latest supported Velero CLI version for the **Linux AMD64** operating system to the cluster:
 
-  ```
-  curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
-  ```
+   ```
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
+   ```
 
-  Replace VERSION with the version number using the format `vx.x.x`
+   Replace VERSION with the version number using the format `vx.x.x`
 
-  **Example:**
+   **Example:**
 
-  ```
-  curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
-  ```
+   ```
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+   ```
 
 1. Copy the TAR file to the air gapped node.
 
 1. Run the following command to uncompress the TAR file:
 
-  ```
-  tar zxvf velero-VERSION-linuxamd64.tar.gz
-  ```
-  Replace VERSION with the version number using the format `vx.x.x`.
+   ```
+   tar zxvf velero-VERSION-linuxamd64.tar.gz
+   ```
+   Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run the following command to install the Velero CLI:
   
-  ```
-  sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
-  ```
+   ```
+   sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
+   ```
 
-  Replace VERSION with the version number using the format `vx.x.x`.
+   Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run `velero version` to test that the Velero CLI installation worked correctly.
 
-  You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+   You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
 
 ## Next Step

@@ -1,23 +1,23 @@
 Run one of the following commands to install Velero, depending on the version of the velero CLI you are using:
 
-  * **Velero v1.10 and later**:
+   * **Velero v1.10 and later**:
 
-  ```bash
-  velero install \
-    --no-default-backup-location \
-    --no-secret \
-    --use-node-agent --uploader-type=restic \
-    --use-volume-snapshots=false \
-    --plugins velero/velero-plugin-for-aws:v1.5.3
-  ```
+     ```bash
+     velero install \
+       --no-default-backup-location \
+       --no-secret \
+       --use-node-agent --uploader-type=restic \
+       --use-volume-snapshots=false \
+       --plugins velero/velero-plugin-for-aws:v1.5.3
+     ```
 
-  * **Velero versions earlier than v1.10**:
+   * **Velero versions earlier than v1.10**:
 
-  ```bash
-  velero install \
-    --no-default-backup-location \
-    --no-secret \
-    --use-restic \
-    --use-volume-snapshots=false \
-    --plugins velero/velero-plugin-for-aws:v1.5.3
-  ```
+     ```bash
+     velero install \
+       --no-default-backup-location \
+       --no-secret \
+       --use-restic \
+       --use-volume-snapshots=false \
+       --plugins velero/velero-plugin-for-aws:v1.5.3
+     ```

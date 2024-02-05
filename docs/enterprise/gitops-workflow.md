@@ -45,7 +45,7 @@ To enable pushing updates to a GitOps workflow:
     1. Select the Git provider.
     1. Enter the repository details:
 
-      <table>
+       <table>
         <tr>
           <th width="30%">Field Name</th>
           <th width="70%">Description</th>
@@ -62,7 +62,7 @@ To enable pushing updates to a GitOps workflow:
           <td>Path</td>
           <td>Enter the folder name in the repository where the application deployment file will be committed. If you leave this field blank, the Replicated KOTS creates a folder for you. However, the best practice is to manually create a folder in the repository labeled with the application name and dedicated for the deployment file only.</td>
           </tr>
-      </table>
+       </table>
 
     1. Click **Generate SSH Key**, and then **Copy key**.
     1. Go to your Git repository and open the settings page. On the settings page:
