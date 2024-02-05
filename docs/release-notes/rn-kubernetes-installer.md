@@ -13,19 +13,14 @@ pagination_prev: null
 Released on February 5, 2024
 
 ### New Features {#new-features-v2024-02-05-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4.
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.1 1.28.6 1.27.10 1.26.13.
-* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.24.1.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.27.
-* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4 to use haproxy:2.9.2-alpine3.19.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) versions 0.24.1 and 0.24.2.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.27 and 1.6.28.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.3.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.28.
-* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.24.2.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.71.2-56.6.0.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-01-31T20-20-33Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-02-04T22-36-13Z.
 * Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4 to use haproxy 2.9.4.
 * Users of VMWare clusters using the VMXNET3 NIC driver will see a new systemd .service file included that disables tcp checksum offloading on the flannel interface.  This fixes an issue we have seen with dropped packets under certain combinations of VMWare NIC and cluster configurations.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-02-04T22-36-13Z.
 
 ### Improvements {#improvements-v2024-02-05-0}
 * Install an openebs support bundle spec whenever openebs addon is added to a kURL spec.
