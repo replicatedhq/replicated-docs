@@ -107,7 +107,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Requires an Application custom resource manifest file.</p>
+    <td>
+      <p>Requires an Application custom resource manifest file.</p>
       <p>Accepted value for <code>kind</code>: <code>Application</code></p>
     </td>
   </tr>
@@ -175,9 +176,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      Enforces that all ConfigOption items do not reference themselves.
-  </td>
+    <td>Enforces that all ConfigOption items do not reference themselves.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -279,8 +278,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
-    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.</td>
   </tr>
 </table>
 
@@ -300,8 +298,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
-    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.</td>
   </tr>
   <tr>
     <th>Example</th>
@@ -326,8 +323,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
-    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.</td>
   </tr>
   <tr>
     <th>Example</th>
@@ -340,7 +336,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Requires a Config custom resource manifest file.</p>
+    <td>
+      <p>Requires a Config custom resource manifest file.</p>
       <p>Accepted value for <code>kind</code>: <code>Config</code></p>
       <p>Accepted value for <code>apiVersion</code>: <code>kots.io/v1beta1</code></p>
     </td>
@@ -494,8 +491,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforces unique <code>spec.chart.releaseName</code>
-      across all HelmChart custom resource manifest files.</p>
+      <p>Enforces unique <code>spec.chart.releaseName</code> across all HelmChart custom resource manifest files.</p>
     </td>
   </tr>
   <tr>
@@ -570,9 +566,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p>
-    </td>
+    <td><p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p></td>
   </tr>
   <tr>
     <th>Level</th>
@@ -591,9 +585,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p>
-    </td>
+    <td><p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p></td>
   </tr>
   <tr>
     <th>Level</th>
@@ -700,9 +692,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Enforces valid YAML after rendering the manifests using the Config spec.</p>
-    </td>
+    <td><p>Enforces valid YAML after rendering the manifests using the Config spec.</p></td>
   </tr>
   <tr>
     <th>Level</th>
@@ -752,9 +742,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Requires that the value of a property matches that property's expected type.</p>
-    </td>
+    <td><p>Requires that the value of a property matches that property's expected type.</p></td>
   </tr>
   <tr>
     <th>Level</th>
@@ -777,9 +765,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Enforces valid YAML.</p>
-    </td>
+    <td><p>Enforces valid YAML.</p></td>
   </tr>
   <tr>
     <th>Level</th>
@@ -802,9 +788,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      Notifies if any manifest file may contain secrets.
-    </td>
+    <td> Notifies if any manifest file may contain secrets.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -837,9 +821,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p>
-    <MissingAPIVersionField/>
-    </td>
+    <td><p>Example of correct YAML for this rule:</p><MissingAPIVersionField/></td>
   </tr>
 </table>
 
@@ -860,9 +842,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p>
-    <MissingKindField/>
-    </td>
+    <td><p>Example of correct YAML for this rule:</p><MissingKindField/></td>
   </tr>
 </table>
 
@@ -894,7 +874,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Requires a Preflight custom resource manifest file with:</p>
+    <td>
+      <p>Requires a Preflight custom resource manifest file with:</p>
       <p><code>kind: Preflight</code></p>
       <p>and one of the following:</p>
       <ul>
@@ -1117,7 +1098,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Requires a Troubleshoot manifest file.</p>
+    <td>
+      <p>Requires a Troubleshoot manifest file.</p>
       <p>Accepted values for <code>kind</code>:</p>
       <ul>
         <li><code>Collector</code></li>

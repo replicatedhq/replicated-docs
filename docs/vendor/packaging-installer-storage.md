@@ -7,13 +7,13 @@ This topic provides guidance for selecting the Replicated kURL add-ons to includ
 kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in embedded clusters. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for Replicated KOTS is managed in the cluster.
 
 The following lists the kURL add-ons for data storage:
-* **MinIO**: MinIO is an open source, S3-compatible object store. See <a href="https://kurl.sh/docs/add-ons/minio">MinIO Add-on</a> in the kURL documentation.
-* **Rook**: Rook provides dynamic PV provisioning of distributed Ceph storage. Ceph is a distributed storage system that provides S3-compatible object storage. See <a href="https://kurl.sh/docs/add-ons/rook">Rook Add-on</a> in the kURL documentation.
-* **OpenEBS**: OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes (PVs) in a cluster. See <a href="https://kurl.sh/docs/add-ons/openebs">OpenEBS Add-on</a> in the kURL documentation.
-* **Longhorn**: Longhorn is an open source distributed block storage system for Kubernetes. See <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn Add-on</a> in the kURL documentation.
+* **MinIO**: MinIO is an open source, S3-compatible object store. See [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
+* **Rook**: Rook provides dynamic PV provisioning of distributed Ceph storage. Ceph is a distributed storage system that provides S3-compatible object storage. See [Rook Add-on](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
+* **OpenEBS**: OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes (PVs) in a cluster. See [OpenEBS Add-on](https://kurl.sh/docs/add-ons/openebs) in the kURL documentation.
+* **Longhorn**: Longhorn is an open source distributed block storage system for Kubernetes. See [Longhorn Add-on](https://kurl.sh/docs/add-ons/longhorn) in the kURL documentation.
 
   :::important
-  The Longhorn add-on is deprecated and not supported in production embedded clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see <a href="https://kurl.sh/docs/install-with-kurl/migrating-csi">Migrating to Change CSI Add-On</a> in the kURL documentation.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.
+  The Longhorn add-on is deprecated and not supported in production embedded clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
   :::
 
 ## About Persistent Storage for KOTS

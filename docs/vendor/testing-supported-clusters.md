@@ -109,9 +109,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
         <li>OpenShift versions earlier than 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Docker Hub. For information about Docker Hub rate limiting, see <a href="https://docs.docker.com/docker-hub/download-rate-limit/">Docker Hub rate limit</a>. To increase limits, Replicated recommends that you configure an image pull secret to pull public Docker Hub images as an authenticated user. For more information about how to configure image pull secrets, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">Pull an Image from a Private Registry</a> in the Kubernetes documentation.</li>
-        <li><p>OpenShift builds take approximately 17 minutes.</p>
-            <p><Pool/></p>
-          </li>
+        <li>
+          <p>OpenShift builds take approximately 17 minutes.</p>
+          <p><Pool/></p>
+        </li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
@@ -128,8 +129,8 @@ The compatibility matrix supports creating [HelmVM](https://github.com/replicate
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported HelmVM Version</th>
@@ -159,8 +160,8 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
@@ -194,8 +195,8 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -225,8 +226,8 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -256,8 +257,8 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -287,9 +288,9 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
 
 <table>
   <tr>
-        <th width="30%">Type</th>
-        <th width="35%">Memory (GiB)</th>
-        <th width="35%">VCPU Count</th>
+    <th width="30%">Type</th>
+    <th width="35%">Memory (GiB)</th>
+    <th width="35%">VCPU Count</th>
   </tr>
   <tr>
     <th>r1.small</th>

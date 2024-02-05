@@ -40,16 +40,12 @@ For more information about creating releases, see [Managing Releases with the Ve
   <tr>
     <td>HelmChart</td>
     <td><p>Provides instructions for KOTS about how to deploy your Helm chart.</p><p><strong>Note:</strong> Required for supporting KOTS installations of Helm charts.</p></td>
-    <td>
-      <a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a>
-    </td>
+    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
   </tr>
   <tr>
     <td>Preflight and SupportBundle</td>
     <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p><p><strong>Note:</strong> If you are using Helm charts, define the preflight and support bundle specifications within the Helm chart rather than creating custom resources.</p></td>
-    <td>
-      <a href="/vendor/preflight-defining">Define Preflight Checks</a>
-    </td>
+    <td><a href="/vendor/preflight-defining">Define Preflight Checks</a></td>
   </tr>
   <tr>
   <td>Config</td>
@@ -61,7 +57,8 @@ For more information about creating releases, see [Managing Releases with the Ve
   </tr>
   <tr>
     <td>Application</td>
-    <td><p>Control the KOTS experience for your application, including:</p>
+    <td>
+    <p>Control the KOTS experience for your application, including:</p>
     <ul>
       <li>Specify the application icon displayed in the admin console and download portal</li>
       <li>Customize the functionality of the admin console, such as adding port forwarding, custom graphs, and more</li>
@@ -85,9 +82,7 @@ For more information about creating releases, see [Managing Releases with the Ve
   <tr>
     <td>Backup</td>
     <td>Enable snapshots so that end users can back up and restore their application data.</td>
-    <td>
-      <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
-    </td>
+    <td><a href="snapshots-configuring-backups">Configuring Backup and Restore</a></td>
   </tr>
 </table>
 
