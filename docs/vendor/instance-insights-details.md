@@ -61,9 +61,7 @@ The **Current State** section displays the following event data about the status
 
    For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
 
-* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal. The vendor portal receives instance data when any of the following occur:
-
-  <Checkins/>
+* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal.
 
 ### Instance Insights
 
