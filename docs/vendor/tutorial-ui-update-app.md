@@ -10,7 +10,7 @@ To update the application:
 
 1. On the Version history tab, click **Check for update**. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
 
-  ![View Update](/images/guides/kots/view-update.png)
+   ![View Update](/images/guides/kots/view-update.png)
 
 1. Click **Deploy**. In the dialog that opens, click **Yes, deploy** to deploy the new version. The deployment takes only a few seconds.
 
@@ -18,21 +18,21 @@ To update the application:
 
 1. In the new **Another Text Example** field, enter any text. Click **Save config**.
 
-  The admin console notifies you that the configuration settings for the application have changed.
+   The admin console notifies you that the configuration settings for the application have changed.
 
 1. In the dialog, click **Go to updated version**.
 
-  The updated version is loaded on the Version history page.
+   The updated version is loaded on the Version history page.
 
 1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
 
 1. After the admin console deploys the configuration change, go to the Dashboard page and click **Open App**.
 
-  The application displays the text that you added to the field.
+   The application displays the text that you added to the field.
 
-  :::note
-  If you do not see the new text, refresh your browser.
-  :::
+   :::note
+   If you do not see the new text, refresh your browser.
+   :::
 
 1. In the vendor portal, return to the **Customers > Reporting** page. Confirm that you can see the new application version in the **Instances** pane and then drill down from the details area to see the **Instance details** page.
 
