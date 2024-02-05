@@ -75,13 +75,13 @@ To create and promote a new release:
 
       1. Lint the application manifest files and ensure that there are no errors in the YAML:
 
-        ```bash
-        replicated release lint --yaml-dir=PATH_TO_APP_DIR
-        ```
+          ```bash
+          replicated release lint --yaml-dir=PATH_TO_APP_DIR
+          ```
 
-        Replace `PATH_TO_APP_DIR` with path to the local directory with your application files.
+          Replace `PATH_TO_APP_DIR` with path to the local directory with your application files.
 
-        For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter).
+          For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter).
 
       1. Create a new release:
 
@@ -90,7 +90,7 @@ To create and promote a new release:
           ```
           Replace `PATH_TO_APP_DIR` with path to the local directory with your application files.
 
-        For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_.
+          For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_.
 
       1. Continue to edit and lint the release as needed, then update the release:
 
@@ -119,9 +119,9 @@ To create and promote a new release:
 
 1. Verify that the release was promoted to the channel:
 
-  ```
-  replicated release ls
-  ```
+    ```
+    replicated release ls
+    ```
 
 ## Create a Release With a Helm Chart Only
 
@@ -153,6 +153,6 @@ To create a release for an application that contains a Helm chart:
 
 1. Verify that the release was promoted to the channel:
 
-  ```
-  replicated release ls
-  ```   
+    ```
+    replicated release ls
+    ```   

@@ -12,20 +12,20 @@ To create a customer license and download the license file:
 
 1. Click **Create your first customer**.
 
-  The Create a new customer page opens.
+   The Create a new customer page opens.
 
 1. Edit the following fields, leaving the rest of the fields set to the default values:
 
     1. Enter a name for the **Customer Name**.
     1. Select **Unstable** for the **Assigned Channel**. The Unstable channel is where you promoted the release in [Step 3: Create a Release](tutorial-ui-create-release). Assigning the customer to a channel allows them to install the releases that are promoted to that channel.
 
-      ![Create Customer](/images/guides/kots/create-customer.png)
+       ![Create Customer](/images/guides/kots/create-customer.png)
 
     1. Click **Save Changes**.
 
     1. Click **Download license** from the dropdown menu in the upper right corner.
 
-      The license file with your customer name and a YAML extension is downloaded. This is the license file that your customer uses to install your application. You will also use this license file to install and test the application.
+       The license file with your customer name and a YAML extension is downloaded. This is the license file that your customer uses to install your application. You will also use this license file to install and test the application.
 
 ## Next Step
 

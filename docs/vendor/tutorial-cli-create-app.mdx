@@ -19,22 +19,22 @@ To create an application:
 
 1. Export the application slug in the output of the `app create` command as an environment variable:
 
-  ```
-  export REPLICATED_APP=YOUR_SLUG
-  ```
-  Replace `YOUR_SLUG` with the slug for the application you created in the previous step.
+   ```
+   export REPLICATED_APP=YOUR_SLUG
+   ```
+   Replace `YOUR_SLUG` with the slug for the application you created in the previous step.
 
 1. Verify that both the `REPLICATED_API_TOKEN` environment variable that you created as part of [Step 1: Install the replicated CLI](tutorial-cli-install-cli) and the `REPLICATED_APP` environment variable are set correctly:
 
-  ```
-  replicated release ls
-  ```
+   ```
+   replicated release ls
+   ```
 
-  In the output of this command, you now see an empty list of releases for the application:
+   In the output of this command, you now see an empty list of releases for the application:
 
-  ```
-  SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
-  ```
+   ```
+   SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
+   ```
 
 ## Next Step
 

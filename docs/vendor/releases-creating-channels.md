@@ -13,9 +13,9 @@ To create a channel:
 1. From the Replicated [vendor portal](https://vendor.replicated.com), select **Channels** from the left menu.
 1. Click **Create Channel**.
 
-  The Create a new channel dialog opens. For example:
+   The Create a new channel dialog opens. For example:
 
-  <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
+   <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
 
 1. Enter a name and description for the channel.
 1. (KOTS Only) For applications that support installation with Replicated KOTS, to enable semantic versioning on the channel if it is not enabled by default, turn on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
@@ -31,9 +31,9 @@ To edit the settings of an existing channel:
 1. In the vendor portal, select **Channels** from the left menu.
 1. Click the gear icon on the top right of the channel that you want to modify.
 
-  The Channel settings dialog opens. For example:
+   The Channel settings dialog opens. For example:
 
-  <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
+   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
 
 1. Edit the fields and click **Save**.
 

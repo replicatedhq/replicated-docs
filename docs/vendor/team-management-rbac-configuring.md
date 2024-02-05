@@ -27,7 +27,7 @@ To configure a custom RBAC policy:
 
 1. Edit the fields in the policy dialog. In the **Definition** pane, specify the `allow` and `denied` arrays in the resources key to create limits for the role.
 
-  The default policy allows everything and the **Config help** pane displays any errors.
+   The default policy allows everything and the **Config help** pane displays any errors.
 
     ![Create RBAC Policy](/images/policy-create.png) 
 
@@ -35,11 +35,11 @@ To configure a custom RBAC policy:
     - For more information and examples of rule order, see [Rule Order](#rule-order).
     - For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
-  1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
+1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
 
-    :::note
-    Click **Cancel** to exit without saving changes.
-    :::
+   :::note
+   Click **Cancel** to exit without saving changes.
+   :::
 
 1. To apply RBAC policies to vendor portal team members, you can:
 

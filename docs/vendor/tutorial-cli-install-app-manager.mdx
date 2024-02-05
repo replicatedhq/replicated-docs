@@ -45,56 +45,56 @@ To install KOTS and the application:
 
 1. Run the `EXISTING` installation script with the following flags to automatically upload the license file and run the preflight checks at the same time you run the installation.
 
-  **Example:**
+    **Example:**
 
-  ```
-  curl -fsSL https://kots.io/install | bash
-  kubectl kots install cli-tutorial/unstable \
-  --license-file ./LICENSE_YAML \
-  --shared-password PASSWORD \
-  --namespace NAMESPACE
-  ```
+    ```
+    curl -fsSL https://kots.io/install | bash
+    kubectl kots install cli-tutorial/unstable \
+    --license-file ./LICENSE_YAML \
+    --shared-password PASSWORD \
+    --namespace NAMESPACE
+    ```
 
-  Replace:
+    Replace:
 
-    - `LICENSE_YAML` with the local path to your license file.
-    - `PASSWORD` with a password to access the admin console.
-    - `NAMESPACE` with the namespace where KOTS and application will be installed.
+      - `LICENSE_YAML` with the local path to your license file.
+      - `PASSWORD` with a password to access the admin console.
+      - `NAMESPACE` with the namespace where KOTS and application will be installed.
 
-  When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
+   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
    **Example output**:
 
    ```
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-  • Waiting for Admin Console to be ready ✓
-  • Waiting for installation to complete ✓
-  • Waiting for preflight checks to complete ✓
+    • Deploying Admin Console
+      • Creating namespace ✓
+      • Waiting for datastore to be ready ✓
+    • Waiting for Admin Console to be ready ✓
+    • Waiting for installation to complete ✓
+    • Waiting for preflight checks to complete ✓
 
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
+    • Press Ctrl+C to exit
+    • Go to http://localhost:8800 to access the Admin Console
 
-  • Go to http://localhost:8888 to access the application
+    • Go to http://localhost:8888 to access the application
    ```
 
 1. Verify that the Pods are running for the example NGNIX service and for kotsadm:
 
-  ```bash
-  kubectl get pods --namespace NAMESPACE
-  ```
+    ```bash
+    kubectl get pods --namespace NAMESPACE
+    ```
 
-  Replace `NAMESPACE` with the namespace where KOTS and application was installed.
+    Replace `NAMESPACE` with the namespace where KOTS and application was installed.
 
-  **Example output:**
+    **Example output:**
 
-  ```NAME                       READY   STATUS    RESTARTS   AGE
-  kotsadm-7ccc8586b8-n7vf6   1/1     Running   0          12m
-  kotsadm-minio-0            1/1     Running   0          17m
-  kotsadm-rqlite-0           1/1     Running   0          17m
-  nginx-688f4b5d44-8s5v7     1/1     Running   0          11m
-  ```
+    ```NAME                       READY   STATUS    RESTARTS   AGE
+    kotsadm-7ccc8586b8-n7vf6   1/1     Running   0          12m
+    kotsadm-minio-0            1/1     Running   0          17m
+    kotsadm-rqlite-0           1/1     Running   0          17m
+    nginx-688f4b5d44-8s5v7     1/1     Running   0          11m
+    ```
 
 ## Next Step
 

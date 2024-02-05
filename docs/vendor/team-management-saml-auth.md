@@ -55,11 +55,11 @@ To configure Okta and download the required files:
 
 1. On this same page, edit the following fields:
 
-  | Field Name              | Description                                                                                     |
-  | :---------------------- | ----------------------------------------------------------------------------------------------- |
-  | Single Sign On URL      | Set this to `https://id.replicated.com/v1/saml`.                                                  |
-  | Audience URI (SP Entity ID) | Displays on the vendor portal [SAML authentication](https://vendor.replicated.com/team/saml-authentication) tab, and is unique to your team. |
-  | Name ID Format          | Change this to `EmailAddress`.                                                                  |
+    | Field Name              | Description                                                                                     |
+    | :---------------------- | ----------------------------------------------------------------------------------------------- |
+    | Single Sign On URL      | Set this to `https://id.replicated.com/v1/saml`.                                                  |
+    | Audience URI (SP Entity ID) | Displays on the vendor portal [SAML authentication](https://vendor.replicated.com/team/saml-authentication) tab, and is unique to your team. |
+    | Name ID Format          | Change this to `EmailAddress`.                                                                  |
 
 1. Click **Next**.
 
