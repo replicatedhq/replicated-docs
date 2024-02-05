@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -26,7 +26,6 @@ const config = {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: false,
-          // Please change this to your repo.
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
             tag: ':::',
@@ -40,12 +39,6 @@ const config = {
         gtag: {
           trackingID: 'G-MBWBP4JW70',
           anonymizeIP: true,
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/replicatedhq/replicated-docs/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
