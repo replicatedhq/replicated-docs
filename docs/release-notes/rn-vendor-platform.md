@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.05-0
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-0}
+* Label and comment on support cases with End Of Life (EOL) addons in Installer specs pinned to channels.
+
 ## v2024.02.01-4
 
 Released on February 1, 2024
