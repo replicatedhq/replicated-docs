@@ -21,7 +21,7 @@ To add a custom application icon:
 
     1. Drag and drop an icon image file to the drop zone. Alternatively, paste a link or Base64 encoded data URL in the text box. Click **Preview**.
 
-      ![Application icon preview](/images/app-icon-preview.png)
+       ![Application icon preview](/images/app-icon-preview.png)
 
     1. (Air gap only) If you paste a link to the image in the text box, click **Preview** and **Base64 encode icon** to convert the image to a Base64 encoded data URL. An encoded URL displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
 

@@ -49,7 +49,7 @@ To configure Okta and download the required files:
 
 1. Click **Next**.
 
-  The Configuring SAML page opens.
+   The Configuring SAML page opens.
 
 1. Click **Download Okta Certificate**. This downloads your x.509 certificate to provide to Replicated. Save this file to safe location.
 
@@ -84,9 +84,9 @@ To configure SAML:
 1. Log in to the vendor portal [Team Members page](https://vendor.replicated.com/team/members) as a user with Admin access.
 1. Click [SAML Authentication](https://vendor.replicated.com/team/saml-authentication) from the left menu. If you do not see these options, contact [Support](https://vendor.replicated.com/support).
 
- The SAML Authentication page opens.
+   The SAML Authentication page opens.
 
- ![SAML Authentication](/images/team-mgmt-saml-authentication.png)
+   ![SAML Authentication](/images/team-mgmt-saml-authentication.png)
 
 1. Browse for, or drag and drop, your XML Metadata file and x.509 public certificate from your SAML provider.
 
@@ -106,11 +106,11 @@ To enable SAML enforcement:
 
 1. Select either or both login method options in the the Manage your SAML authentication pane. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
-  **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured in the vendor portal. If you enable SAML and your team already is logging in with accounts provisioned in the vendor portal, they will be able to continue logging in with those accounts.
+   **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured in the vendor portal. If you enable SAML and your team already is logging in with accounts provisioned in the vendor portal, they will be able to continue logging in with those accounts.
 
-  **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
+   **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
-  ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
+   ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
 
 1. (Optional) Set a default policy for new accounts from the drop-down list.
 1. (Optional) Click **Change IdP Metadata** and follow the prompts to upload any changes to your metadata.
@@ -127,4 +127,4 @@ To disable SAML enforcement:
 
 1. Click **Deprovision SAML** in the Manage your SAML authentication pane.
 
-  ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
+   ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)

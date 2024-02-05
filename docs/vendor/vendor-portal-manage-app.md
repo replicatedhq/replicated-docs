@@ -133,13 +133,13 @@ To delete an application with the replicated CLI:
 
 1. When prompted, type `yes` to confirm that you want to delete the application.
 
-   **Example:**
+    **Example:**
 
-   ```bash
-   replicated app delete deletion-example
-     • Fetching App ✓
-   ID                NAME                SLUG                 SCHEDULER
-   1xyAIzrmbvq...    deletion-example    deletion-example     kots
-   Delete the above listed application? There is no undo: yes█
-    • Deleting App ✓
-  ```
+    ```bash
+    replicated app delete deletion-example
+      • Fetching App ✓
+    ID                NAME                SLUG                 SCHEDULER
+    1xyAIzrmbvq...    deletion-example    deletion-example     kots
+    Delete the above listed application? There is no undo: yes█
+     • Deleting App ✓
+    ```
