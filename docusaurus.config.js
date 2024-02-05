@@ -16,7 +16,6 @@ const config = {
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
   projectName: 'replicated-docs', // Usually your repo name.
   trailingSlash: false,
-
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -28,8 +27,8 @@ const config = {
           breadcrumbs: false,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
-            tag: ':::',
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
+            extendDefaults: true,
           },
         },
         googleAnalytics: {
