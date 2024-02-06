@@ -141,6 +141,9 @@ The following shows an example of an instance with custom metrics:
 As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
 * Each custom metric that you configured, along with the most recent value for the metric for the instance.
+* Time-series graph depicting the historical data trends for that specific metric.
+
+![Custom Metrics time-series graph of Instance details page](/images/instance-custom-metrics-expanded.png)
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
 
