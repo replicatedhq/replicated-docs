@@ -16,7 +16,7 @@ This topic provides an overview of distributing applications with Replicated. It
 
 <Replicated/>
 
-_Distributing_ software with Replicated refers to using Replicated features to enhance and support each phase of the software development cycle:
+_Distributing_ software with Replicated refers to using Replicated features to enhance and support each phase of the commercial software distribution life cycle:
 * Develop
 * Test
 * License
@@ -25,7 +25,7 @@ _Distributing_ software with Replicated refers to using Replicated features to e
 * Report
 * Support
 
-For more information about the software development lifecycle, see [Introduction to Replicated](../intro-replicated).
+For more information about how Replicated defines the commercial software distribution life cycle, see [Introduction to Replicated](../intro-replicated).
 
 The following diagram demonstrates the process of distributing an application with Replicated and then installing the application in an enterprise customer environment:
 
@@ -83,11 +83,11 @@ For more information about how to distribute and install Helm charts with KOTS, 
 
 ### Packaging with Kubernetes
 
-For ISVs that do not want to use Helm, applications distributed with Replicated can be packaged with standard Kubernetes manifest files or with Kubernetes Operators. Applications packaged with Kubernetes manifests or Operators can be installed using Replicated KOTS or any proprietary installer already used by the ISV.
+For ISVs that do not want to use Helm, applications distributed with Replicated can be packaged as standard Kubernetes manifest files. Applications packaged as Kubernetes manifests can be installed using Replicated KOTS or any proprietary installer already used by the ISV.
 
 <Kots/>
 
-For more information about how to distribute and install Kubernetes manifest- or Operator-based applications with KOTS, see the [KOTS documentation](../intro-kots).
+For more information about how to distribute and install Kubernetes manifest-based applications with KOTS, see the [KOTS documentation](../intro-kots).
 
 <KotsEntitlement/>
 

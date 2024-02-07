@@ -22,7 +22,7 @@ Replicated strongly recommends that all applications are packaged using Helm bec
 * Support for air gap installations
 * Support for embedded cluster installations on VMs or bare metal servers
 
-Helm-based applications installed with KOTS can include any of the following:
+KOTS can install applications that include:
 * One or more Helm charts
 * A combination of Helm charts and standard Kubernetes manifests
 * More than a single instance of any Helm chart
