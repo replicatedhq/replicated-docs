@@ -169,19 +169,20 @@ To configure access to private images in an external registry using the replicat
 
 1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _replicated CLI_.
 
-  For example, to add a DockerHub registry:
+   For example, to add a DockerHub registry:
 
-  ```bash
-  replicated registry add dockerhub --username USERNAME \
-    --password PASSWORD
-  ```
-  Where:
-    * `USERNAME` is the username for DockerHub credentials with access to the registry.
-    * `PASSWORD` is the password for DockerHub credentials with access to the registry.
+   ```bash
+   replicated registry add dockerhub --username USERNAME \
+     --password PASSWORD
+   ```
+  
+   Where:
+   * `USERNAME` is the username for DockerHub credentials with access to the registry.
+   * `PASSWORD` is the password for DockerHub credentials with access to the registry.
 
-    :::note
-    To prevent the password from being saved in your shell history, Replicated recommends that you use the `--password-stdin` flag and entering the password when prompted.
-    :::
+   :::note
+   To prevent the password from being saved in your shell history, Replicated recommends that you use the `--password-stdin` flag and entering the password when prompted.
+   :::
 
 ## Test External Registry Credentials
 
@@ -193,6 +194,7 @@ To validate that the configured registry can pull specific images:
 replicated registry test HOSTNAME \
     --image IMAGE_NAME
 ```
+
 Where:
 * `HOSTNAME` is the name of the host, such as `index.docker.io`.
 * `IMAGE_NAME` is the name of the target image in the registry.

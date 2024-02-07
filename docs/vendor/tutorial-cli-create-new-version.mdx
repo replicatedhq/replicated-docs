@@ -107,32 +107,32 @@ To create and promote a new version of the application:
 
 1. Type `y` and press **Enter** to continue with the defaults.
 
-   **Example output**:
+    **Example output**:
 
-  ```
-  RULE    TYPE    FILENAME    LINE    MESSAGE
+    ```
+    RULE    TYPE    FILENAME    LINE    MESSAGE
 
-  • Reading manifests from ./manifests ✓
-  • Creating Release ✓
-    • SEQUENCE: 2
-  • Promoting ✓
-    • Channel 2GmYFUFzj8JOSLYw0jAKKJKFua8 successfully set to release 2
-  ```
+    • Reading manifests from ./manifests ✓
+    • Creating Release ✓
+      • SEQUENCE: 2
+    • Promoting ✓
+      • Channel 2GmYFUFzj8JOSLYw0jAKKJKFua8 successfully set to release 2
+    ```
 
-  The release is created and promoted to the Unstable channel with `SEQUENCE: 2`.
+    The release is created and promoted to the Unstable channel with `SEQUENCE: 2`.
 
 1. Verify that the release was promoted to the Unstable channel:
 
-  ```
-  replicated release ls
-  ```
-  **Example output**:
+    ```
+    replicated release ls
+    ```
+    **Example output**:
 
-  ```
-  SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
-  2           2022-11-03T19:16:24Z    0001-01-01T00:00:00Z    Unstable
-  1           2022-11-03T18:49:13Z    0001-01-01T00:00:00Z
-  ```
+    ```
+    SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
+    2           2022-11-03T19:16:24Z    0001-01-01T00:00:00Z    Unstable
+    1           2022-11-03T18:49:13Z    0001-01-01T00:00:00Z
+    ```
 
 ## Next Step
 

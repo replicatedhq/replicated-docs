@@ -16,6 +16,6 @@ To add primary and secondary nodes:
 1. In the admin console, click **Cluster Management > Add a node**.
 1. Copy the command that displays in the text box and run it on the node that you are joining to the cluster.
 
- ![Join node in admin console](/images/join-node.png)
+     ![Join node in admin console](/images/join-node.png)
 
- [View a larger image](/images/join-node.png)
+     [View a larger image](/images/join-node.png)

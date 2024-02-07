@@ -58,25 +58,25 @@ To use the SDK API to check entitlements at runtime:
 
       1. Use port forwarding to access the `replicated` service from the local development environment on port 3000:
 
-        ```bash
-        kubectl port-forward service/replicated 3000
-        ```
+         ```bash
+         kubectl port-forward service/replicated 3000
+         ```
 
-        The output looks similar to the following:
+         The output looks similar to the following:
 
-        ```bash
-        Forwarding from 127.0.0.1:3000 -> 3000
-        ```
+         ```bash
+         Forwarding from 127.0.0.1:3000 -> 3000
+         ```
 
-        For more information about `kubectl port-forward`, see [port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) in the kubectl reference documentation.
+         For more information about `kubectl port-forward`, see [port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) in the kubectl reference documentation.
 
       1. With the port forward running, in another terminal, use the SDK API to return information about the license.
 
-        **Example:**
+         **Example:**
 
-        ```
-        curl localhost:3000/api/v1/license/fields/expires_at
-        ```
+         ```
+         curl localhost:3000/api/v1/license/fields/expires_at
+         ```
 
 1. Repeat these steps to add and test new license fields.
 

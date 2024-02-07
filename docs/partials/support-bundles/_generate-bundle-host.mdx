@@ -19,22 +19,23 @@ To generate a host support bundle:
 
     - Run the following command to download a host support bundle YAML file from the Troubleshoot repository that can help troubleshoot a degraded embedded cluster:
 
-    ```
-    kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml
-    ```
-  :::note
-  For air gap environments, download the YAML file and copy it to the air gap machine.
-  :::
+      ```
+      kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml
+      ```
+
+   :::note
+   For air gap environments, download the YAML file and copy it to the air gap machine.
+   :::
 
 1. Run the following command on the host to generate a host support bundle:
 
-  ```
-  ./support-bundle --interactive=false PATH/FILE.yaml
-  ```
-  Replace:
+   ```
+   ./support-bundle --interactive=false PATH/FILE.yaml
+   ```
 
-    - `PATH` with the path to the host support bundle YAML file.
-    - `FILE` with the name of the host support bundle YAML file from your vendor.
+   Replace:
+     - `PATH` with the path to the host support bundle YAML file.
+     - `FILE` with the name of the host support bundle YAML file from your vendor.
 
 1. Share the host support bundle with your vendor's support team, if needed.
 
