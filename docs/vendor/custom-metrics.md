@@ -136,11 +136,14 @@ You can view the custom metrics that you configure for each active instance of y
 
 The following shows an example of an instance with custom metrics:
 
-![Custom Metrics section of Instance details page](/images/instance-custom-metrics.png)
+<img alt="Custom Metrics section of Instance details page" src="/images/instance-custom-metrics.png" width="700px"/>
+
+[View a larger version of this image](/images/instance-custom-metrics.png)
 
 As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
-* Each custom metric that you configured, along with the most recent value for the metric for the instance.
+* Each custom metric that you configured, along with the most recent value for the metric.
+* A time-series graph depicting the historical data trends for the selected metric.
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
 
