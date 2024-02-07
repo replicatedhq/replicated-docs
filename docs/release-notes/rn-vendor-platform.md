@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.07-7
+
+Released on February 7, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-07-7}
+* Fix: Custom Metrics chart tooltip should display two digits for the minutes field. Added GMT TZ for clarity.
+
 ## v2024.02.05-1
 
 Released on February 5, 2024
