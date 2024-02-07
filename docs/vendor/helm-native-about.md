@@ -22,12 +22,9 @@ Replicated strongly recommends that all applications are packaged using Helm bec
 * Support for air gap installations
 * Support for embedded cluster installations on VMs or bare metal servers
 
-KOTS can install applications that include:
-* One or more Helm charts
-* A combination of Helm charts and standard Kubernetes manifests
-* More than a single instance of any Helm chart
+KOTS can install applications that include one or more Helm charts, or more than a single instance of any chart.
 
-Additionally, when you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests. The following diagram demonstrates how a single release containing one or more Helm charts can be installed using the Helm CLI and KOTS:
+When you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests. The following diagram demonstrates how a single release containing one or more Helm charts can be installed using the Helm CLI and KOTS:
 
 <img src="/images/helm-kots-install-options.png" width="650px" alt="One release being installed into three different customer environments"/>
 
