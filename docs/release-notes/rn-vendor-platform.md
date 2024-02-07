@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.05-1
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-1}
+* Adds status indicator to Customer rows on the **Customers** page Hybrid view.
+* Adds entitlement badges to Customer rows on the **Customers** page Hybrid view.
+
 ## v2024.02.05-0
 
 Released on February 5, 2024
