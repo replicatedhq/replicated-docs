@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.08-1
+
+Released on February 8, 2024
+
+### New Features {#new-features-v2024-02-08-1}
+* CMX clusters that use EKS versions with extended support, will have different cost associated.
+
 ## v2024.02.07-7
 
 Released on February 7, 2024
