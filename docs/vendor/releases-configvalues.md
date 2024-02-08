@@ -8,13 +8,13 @@ import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
 # Sharing a ConfigValues File
 
-This topic describes how to access and download the ConfigValues file for an application installed with Replicated KOTS.
+This topic describes how to view the ConfigValues file for an application installed with Replicated KOTS and prepare the ConfigValues file to be shared with your users.
 
 ## About ConfigValues Files
 
 A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the kots CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the kots CLI, see [Installing with Automation](/enterprise/installing-existing-cluster-automation).
 
-ConfigValues files include the configuration fields defined in the Config custom resource for the release, along with the user-supplied or default values for each field. The following is an example of a ConfigValues file:
+ConfigValues files include the configuration fields defined in the Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
 
 <ConfigValuesExample/>
 
@@ -22,26 +22,25 @@ ConfigValues files include the configuration fields defined in the Config custom
 
 When installing an application, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file.
 
-To get the ConfigValues file for your application:
+To get the ConfigValues file for an application:
 
-1. Install the target release for your application in a development environment. For more information, see [About Installing an Application](/enterprise/installing-overview).
+1. Install the target release for the application in a development environment. For more information, see [About Installing an Application](/enterprise/installing-overview).
 
 1. View the generated ConfigValues file for the installed instance:
 
     ```
     kubectl kots get config --namespace APP_NAMESPACE --decrypt 
     ```
-    Where:
-    * `APP_NAMESPACE` is the namespace on the cluster where the application is installed.
-    * The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
+    Where `APP_NAMESPACE` is the cluster namespace where the application is installed.
+    
+    :::note
+    The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
+    :::
 
-    For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
-
-    The output of the `kots get config` command is the contents of the ConfigValues file.
-
+    The output of the `kots get config` command is the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
 ## Share a Sample ConfigValues File    
 
-Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit the file for use with automated installations with the kots CLI.
+Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use with automated installations with the kots CLI.
 
 After you get the ConfigValues for your application using the `kots get config` command, Replicated recommends that you do the following to edit the contents of the ConfigValues file before sharing it with users:
 
