@@ -24,9 +24,9 @@ To create and promote a release in the vendor portal:
 
 1. Click **Releases > Create release**. 
 
-  ![Create Release](/images/release-create-new.png)
+   ![Create Release](/images/release-create-new.png)
 
-  [View a larger version of this image](/images/release-create-new.png)
+   [View a larger version of this image](/images/release-create-new.png)
 
 1. If a drop down is displayed, select one of the following options:
    * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
@@ -37,9 +37,9 @@ To create and promote a release in the vendor portal:
 1. Add your files to the release:
    * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select a Helm chart `.tgz` file.
    
-    <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
+     <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
 
-    [View a larger version of this image](/images/upload-helm-chart-modal.png)
+     [View a larger version of this image](/images/upload-helm-chart-modal.png)
 
    * For KOTS releases, drag and drop your application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
    
@@ -55,40 +55,40 @@ To create and promote a release in the vendor portal:
 
    For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in <em>About Channels and Releases</em>.
 
-  <table>
-  <tr>
-    <th width="30%">Field</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>Channel</td>
-    <td>
-      <p>Select the channel where you want to promote the release. If you are not sure which channel to use, use the default Unstable channel.</p>
-      <p><ReleasePromotionXref/></p>
-    </td>
-  </tr>
-  <tr>
-    <td>Version label</td>
-    <td>
-      <p>Enter a version label.</p>
-      <p>If you have one or more Helm charts in your release, the vendor portal automatically populates this field. You can change the version label to any <code>version</code> specified in any of the <code>Chart.yaml</code> files included in the release.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>Requirements</td>
-    <td>
-      (KOTS Only) Select the <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required for KOTS installations. This option does not apply to installations with Helm.
-    </td>
-  </tr>
-  <tr>
-    <td>Release notes</td>
-    <td>Add release notes. The release notes support markdown and are shown to your customer.</td>
-  </tr>
-</table>
+   <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>Channel</td>
+      <td>
+        <p>Select the channel where you want to promote the release. If you are not sure which channel to use, use the default Unstable channel.</p>
+        <p><ReleasePromotionXref/></p>
+      </td>
+    </tr>
+    <tr>
+      <td>Version label</td>
+      <td>
+        <p>Enter a version label.</p>
+        <p>If you have one or more Helm charts in your release, the vendor portal automatically populates this field. You can change the version label to any <code>version</code> specified in any of the <code>Chart.yaml</code> files included in the release.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Requirements</td>
+      <td>
+        (KOTS Only) Select the <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required for KOTS installations. This option does not apply to installations with Helm.
+      </td>
+    </tr>
+    <tr>
+      <td>Release notes</td>
+      <td>Add release notes. The release notes support markdown and are shown to your customer.</td>
+    </tr>
+   </table>
 
 1. Click **Promote**.
 
-  The release appears in an **Active** state on the Releases page.
+   The release appears in an **Active** state on the Releases page.
 
 ## Edit a Draft Release
 
@@ -97,9 +97,9 @@ To edit a draft release:
 1. From the **Applications** dropdown list, select an existing application to update.
 1. On the **Releases** page, find the draft release you want to edit and click **Edit YAML**.
 
-  <img src="/images/releases-edit-draft.png" alt="Edit YAML button for a draft release in the vendor portal" width="400"/>
+   <img src="/images/releases-edit-draft.png" alt="Edit YAML button for a draft release in the vendor portal" width="400"/>
 
-  [View a larger image](/images/releases-edit-draft.png)
+   [View a larger image](/images/releases-edit-draft.png)
 
 1. Click **Save** to save your updated draft.
 1. (Optional) Click **Promote**.

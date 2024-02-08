@@ -91,27 +91,27 @@ To create a release:
 
 1. Log in to the vendor portal and go to **Releases**.
 
-  The release that you created is listed under **All releases**.
+    The release that you created is listed under **All releases**.
 
-  ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
+    ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
 
-  [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
+    [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
 
 1. Click **Edit release** to view the files in the release.
 
-  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
+    In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
-  ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
+    ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
-  [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
+    [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
 1. At the top of the page, click **Promote**.
 
 1. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing. Click **Promote**.
 
-   <img alt="Promote release dialog" src="/images/release-promote.png" width="400px"/>
+    <img alt="Promote release dialog" src="/images/release-promote.png" width="400px"/>
 
-   [View a larger version of this image](/images/release-promote.png)    
+    [View a larger version of this image](/images/release-promote.png)    
 
 ## Next Step
 

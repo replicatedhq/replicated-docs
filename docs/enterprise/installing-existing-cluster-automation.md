@@ -174,30 +174,30 @@ To access the admin console:
 
 1. If you installed in a VM where you cannot open a browser window, forward a port on your local machine to `localhost:8800` on the remote VM using the SSH client:
 
-  ```bash
-  ssh -L LOCAL_PORT:localhost:8800 USERNAME@IP_ADDRESS
-  ```
-  Replace:
-   * `LOCAL_PORT` with the port on your local machine to forward. For example, `9900` or `8800`.
-   * `USERNAME` with your username for the VM.
-   * `IP_ADDRESS` with the IP address for the VM.
+   ```bash
+   ssh -L LOCAL_PORT:localhost:8800 USERNAME@IP_ADDRESS
+   ```
+   Replace:
+    * `LOCAL_PORT` with the port on your local machine to forward. For example, `9900` or `8800`.
+    * `USERNAME` with your username for the VM.
+    * `IP_ADDRESS` with the IP address for the VM.
 
-  **Example**:
+   **Example**:
 
-  The following example shows using the SSH client to forward port 8800 on your local machine to `localhost:8800` on the remote VM.
+   The following example shows using the SSH client to forward port 8800 on your local machine to `localhost:8800` on the remote VM.
   
-  ```bash
-  ssh -L 8800:localhost:8800 user@ip-addr
-  ```
+   ```bash
+   ssh -L 8800:localhost:8800 user@ip-addr
+   ```
 
 1. Run the following kots CLI command to open localhost port 8800, which forwards to the admin console service:
 
-  ```bash
-  kubectl kots admin-console --namespace NAMESPACE
-  ```
-  Replace `NAMESPACE` with the namespace where the admin console was installed.
+   ```bash
+   kubectl kots admin-console --namespace NAMESPACE
+   ```
+   Replace `NAMESPACE` with the namespace where the admin console was installed.
 
-  For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
+   For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
 
 1. Open a browser window and go to `https://localhost:8800`.
 

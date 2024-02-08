@@ -47,21 +47,21 @@ To provision an embedded cluster:
 
 1. Run one of the following commands to create the cluster with the kURL installer:
 
-    * For a regular installation, run:
+     * For a regular installation, run:
 
-      ```bash
-      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
-      ```
+       ```bash
+       curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
+       ```
     
-    * For high availability mode:
+     * For high availability mode:
 
-      ```bash
-      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash -s ha
-      ```
+       ```bash
+       curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash -s ha
+       ```
       
-  Replace:
+   Replace:
 
-    <AppNameUI/>
+   <AppNameUI/>
 
 1. <HAStep/> 
 

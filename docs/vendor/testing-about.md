@@ -45,7 +45,7 @@ Clusters created with the compatibility matrix can have the following statuses:
 
 * `running`: A working kubeconfig for the cluster is accessible. Billing begins when the cluster reaches a `running` status.
 
-   Additionally, OpenShift, Kind, K3s, kURL and HelmVM clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
+   Additionally, OpenShift, Kind, K3s, and kURL clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
 
 * `terminated`: The cluster is deleted. Billing ends when the cluster status is changed from `running` to `terminated`.
 

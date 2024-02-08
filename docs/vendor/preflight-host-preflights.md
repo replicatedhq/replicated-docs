@@ -39,109 +39,107 @@ To customize host preflight checks:
 
 1. (Optional) To disable the default host preflight checks for Kubernetes and all included add-ons, add the `kurl` field to your Installer manifest and add `kurl.excludeBuiltinHostPreflights: true` to your Installer manifest. In this case, no host preflight checks are run.
 
-  `excludeBuiltinHostPreflights` is an aggregate flag, so setting it to `true` disables the default host preflights for Kubernetes and all included add-ons.
+   `excludeBuiltinHostPreflights` is an aggregate flag, so setting it to `true` disables the default host preflights for Kubernetes and all included add-ons.
 
-  **Example:**
+   **Example:**
 
-  ```yaml
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
-  metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
-        version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      excludeBuiltinHostPreflights: true
-  ```
+   ```yaml
+   apiVersion: "cluster.kurl.sh/v1beta1"
+   kind: "Installer"
+   metadata:
+     name: "latest"
+   spec:
+     kubernetes:
+       version: "1.23.x"
+     weave:
+       version: "2.6.x"
+     contour:
+       version: "1.21.x"
+     prometheus:
+       version: "0.57.x"
+     registry:
+       version: "2.7.x"
+     containerd:
+       version: "1.5.x"
+     kotsadm:
+         version: "latest"
+     ekco:
+       version: "latest"
+     minio:
+       version: "2022-06-11T19-55-32Z"
+     longhorn:
+       version: "1.2.x"
+     kurl:
+       excludeBuiltinHostPreflights: true
+   ```
 
 1. (Optional) To run customized host preflight checks in addition to the default host preflight checks, add a `hostPreflights` field to the `kurl` field in your Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations. You only need to specify your customizations because the default host preflights run automatically.
 
-  Customized host preflight checks run in addition to default host preflight checks, if the default host preflight checks are enabled. If you only want to make the default host preflight checks more restrictive, add your more restrictive host preflight checks to `kurl.hostPreflights`, and do not set `excludeBuiltinHostPreflights`. For example, if your application requires 6 CPUs but the default host preflight check requires 4 CPUs, you can simply add a custom host preflight check for 6 CPUs, since the default host preflight must pass if the more restrictive custom check passes.
+   Customized host preflight checks run in addition to default host preflight checks, if the default host preflight checks are enabled. If you only want to make the default host preflight checks more restrictive, add your more restrictive host preflight checks to `kurl.hostPreflights`, and do not set `excludeBuiltinHostPreflights`. For example, if your application requires 6 CPUs but the default host preflight check requires 4 CPUs, you can simply add a custom host preflight check for 6 CPUs, since the default host preflight must pass if the more restrictive custom check passes.
 
-  The following example shows customized `kurl` host preflight checks for:
+   The following example shows customized `kurl` host preflight checks for:
 
-    - An application that requires more CPUs than the default
-    - Accessing a website that is critical to the application
+     - An application that requires more CPUs than the default
+     - Accessing a website that is critical to the application
 
-  ```yaml
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
-  metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
-        version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      hostPreflights:
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: HostPreflight
-        spec:
-          collectors:
-            - cpu: {}
-            - http:
-                collectorName: Can Access A Website
-                get:
-                  url: https://myFavoriteWebsite.com
-          analyzers:
-            - cpu:
-                checkName: Number of CPU check
-                outcomes:
-                  - fail:
-                      when: "count < 4"
-                      message: This server has less than 4 CPU cores
-                  - warn:
-                      when: "count < 6"
-                      message: This server has less than 6 CPU cores
-                  - pass:
-                      message: This server has at least 6 CPU cores
-            - http:
-                checkName: Can Access A Website
-                collectorName: Can Access A Website
-                outcomes:
-                  - warn:
-                      when: "error"
-                      message: Error connecting to https://myFavoriteWebsite.com
-                  - pass:
-                      when: "statusCode == 200"
-                      message: Connected to https://myFavoriteWebsite.com
-  ```
+   ```yaml
+   apiVersion: "cluster.kurl.sh/v1beta1"
+   kind: "Installer"
+   metadata:
+     name: "latest"
+   spec:
+     kubernetes:
+       version: "1.23.x"
+     weave:
+       version: "2.6.x"
+     contour:
+       version: "1.21.x"
+     prometheus:
+       version: "0.57.x"
+     registry:
+       version: "2.7.x"
+     containerd:
+       version: "1.5.x"
+     kotsadm:
+       version: "latest"
+     ekco:
+       version: "latest"
+     minio:
+       version: "2022-06-11T19-55-32Z"
+     kurl:
+       hostPreflights:
+         apiVersion: troubleshoot.sh/v1beta2
+         kind: HostPreflight
+         spec:
+           collectors:
+             - cpu: {}
+             - http:
+                 collectorName: Can Access A Website
+                 get:
+                   url: https://myFavoriteWebsite.com
+           analyzers:
+             - cpu:
+                 checkName: Number of CPU check
+                 outcomes:
+                   - fail:
+                       when: "count < 4"
+                       message: This server has less than 4 CPU cores
+                   - warn:
+                       when: "count < 6"
+                       message: This server has less than 6 CPU cores
+                   - pass:
+                       message: This server has at least 6 CPU cores
+             - http:
+                 checkName: Can Access A Website
+                 collectorName: Can Access A Website
+                 outcomes:
+                   - warn:
+                       when: "error"
+                       message: Error connecting to https://myFavoriteWebsite.com
+                   - pass:
+                       when: "statusCode == 200"
+                       message: Connected to https://myFavoriteWebsite.com
+   ```
 
 1. (Optional) To disable the default host preflight checks and only run completely customized host preflight collectors and analyzers, Replicated recommends that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely is ill-advised. To completely customize host preflights, using the default host preflights as a starting point:
 
@@ -153,7 +151,7 @@ To customize host preflight checks:
 
 1. (Optional) Set either of the following flags to customize the outcome of your host preflight checks:
 
-    <table>
+     <table>
       <tr>
         <th width="30%">Flag: Value</th>
         <th width="70%">Description</th>
@@ -166,75 +164,73 @@ To customize host preflight checks:
         <td><code>hostPreflightEnforceWarnings: true</code></td>
         <td>Blocks an installation if the results include a warning.</td>
       </tr>
-    </table>
+     </table>
 
-    The following example shows:
+     The following example shows:
 
-    - Default host preflights checks are disabled
-    - Customized host preflight checks run
-    - The installation is blocked if there is a warning
+     - Default host preflights checks are disabled
+     - Customized host preflight checks run
+     - The installation is blocked if there is a warning
 
-    ```yaml
-    apiVersion: "cluster.kurl.sh/v1beta1"
-    kind: "Installer"
-    metadata:
-      name: "latest"
-    spec:
-      kubernetes:
-        version: "1.23.x"
-      weave:
-        version: "2.6.x"
-      contour:
-        version: "1.21.x"
-      prometheus:
-        version: "0.57.x"
-      registry:
-        version: "2.7.x"
-      containerd:
-        version: "1.5.x"
-      kotsadm:
-          version: "latest"
-      ekco:
-        version: "latest"
-      minio:
-        version: "2022-06-11T19-55-32Z"
-      longhorn:
-        version: "1.2.x"
-      kurl:
-        excludeBuiltinHostPreflights: true
-        hostPreflightEnforceWarnings: true
-        hostPreflights:
-          apiVersion: troubleshoot.sh/v1beta2
-          kind: HostPreflight
-          spec:
-            collectors:
-              - cpu: {}
-              - http:
-                  collectorName: Can Access A Website
-                  get:
-                   Url: https://myFavoriteWebsite.com
-            analyzers:
-              - cpu:
-                  checkName: Number of CPU check
-                  outcomes:
-                    - fail:
-                        when: "count < 4"
-                        message: This server has less than 4 CPU cores
-                    - warn:
-                        when: "count < 6"
-                        message: This server has less than 6 CPU cores
-                    - pass:
-                        message: This server has at least 6 CPU cores
-              - http:
-                  checkName: Can Access A Website
-                  collectorName: Can Access A Website
-                  outcomes:
-                    - warn:
-                        when: "error"
-                        message: Error connecting to https://myFavoriteWebsite.com
-                    - pass:
-                        when: "statuscode == 200"
-                        message: Connected to https://myFavoriteWebsite.com
-    ```
+     ```yaml
+     apiVersion: "cluster.kurl.sh/v1beta1"
+     kind: "Installer"
+     metadata:
+       name: "latest"
+     spec:
+       kubernetes:
+         version: "1.23.x"
+       weave:
+         version: "2.6.x"
+       contour:
+         version: "1.21.x"
+       prometheus:
+         version: "0.57.x"
+       registry:
+         version: "2.7.x"
+       containerd:
+         version: "1.5.x"
+       kotsadm:
+         version: "latest"
+       ekco:
+         version: "latest"
+       minio:
+         version: "2022-06-11T19-55-32Z"
+       kurl:
+         excludeBuiltinHostPreflights: true
+         hostPreflightEnforceWarnings: true
+         hostPreflights:
+           apiVersion: troubleshoot.sh/v1beta2
+           kind: HostPreflight
+           spec:
+             collectors:
+               - cpu: {}
+               - http:
+                   collectorName: Can Access A Website
+                   get:
+                     url: https://myFavoriteWebsite.com
+             analyzers:
+               - cpu:
+                   checkName: Number of CPU check
+                   outcomes:
+                     - fail:
+                         when: "count < 4"
+                         message: This server has less than 4 CPU cores
+                     - warn:
+                         when: "count < 6"
+                         message: This server has less than 6 CPU cores
+                     - pass:
+                         message: This server has at least 6 CPU cores
+               - http:
+                   checkName: Can Access A Website
+                   collectorName: Can Access A Website
+                   outcomes:
+                     - warn:
+                         when: "error"
+                         message: Error connecting to https://myFavoriteWebsite.com
+                     - pass:
+                         when: "statuscode == 200"
+                         message: Connected to https://myFavoriteWebsite.com
+     ``` 
 
 1. Promote and test your installer in a development environment before sharing it with customers.

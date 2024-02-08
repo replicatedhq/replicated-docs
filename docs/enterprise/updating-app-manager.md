@@ -37,12 +37,12 @@ To update KOTS in an online existing cluster:
 
 1. Run the following command to update KOTS to the same version as the kots CLI:
 
-  ```bash
-  kubectl kots admin-console upgrade -n NAMESPACE
-  ```
-  Replace `NAMESPACE` with the namespace in your cluster where KOTS is installed.
+   ```bash
+   kubectl kots admin-console upgrade -n NAMESPACE
+   ```
+   Replace `NAMESPACE` with the namespace in your cluster where KOTS is installed.
 
-  For help information, run `kubectl kots admin-console upgrade -h`.
+   For help information, run `kubectl kots admin-console upgrade -h`.
 
 ### Air Gap Environments
 

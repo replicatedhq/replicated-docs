@@ -123,37 +123,6 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
 </table>
 
-### HelmVM
-
-The compatibility matrix supports creating [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
-
-<table>
-  <tr>
-    <th width="35%">Type</th>
-    <th width="65%">Description</th>
-  </tr>
-  <tr>
-    <th>Supported HelmVM Version</th>
-    <td>1.27</td>
-  </tr>
-  <tr>
-    <th>Supported Instance Types</th>
-    <td>See <a href="#types">Replicated Instance Types</a></td>
-  </tr>
-  <tr>
-    <th>Nodes</th>
-    <td>Supports a single node.</td>
-  </tr>
-  <tr>
-    <th>Limitations</th>
-    <td>See <a href="testing-about#limitations">Limitations</a></td>
-  </tr> 
-  <tr>
-    <th>Common Use Cases</th>
-    <td>Customer release tests</td>
-  </tr>
-</table>
-
 ### kURL
 
 The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.

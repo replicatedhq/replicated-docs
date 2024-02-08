@@ -25,21 +25,21 @@ To invite a new team member:
 
 1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Invite team member**.
 
-  The Invite team member dialog opens.
+   The Invite team member dialog opens.
 
-  <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="500"/>
+   <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="500"/>
 
-  [Invite team member dialog](/images/teams-invite-member.png)
+   [Invite team member dialog](/images/teams-invite-member.png)
 
 1. Enter the email address of the member.
 
 1. In the **Permissions** field, assign an RBAC policy from the dropdown list.
 
-    <CollabRbacImportant/>
+     <CollabRbacImportant/>
 
 1. Click **Invite member**.
 
-  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
+   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
 ## Managing Invitations
 
@@ -57,19 +57,19 @@ To re-invite or remove a prospective member, do one of the following on the **Te
 
 You can edit the RBAC policy that is assigned to a member at any time.
 
-  <CollabRbacImportant/>
+<CollabRbacImportant/>
 
 To edit policy permissions for individual team members:
 
 1. From the the Team Members list, click **Edit permissions** next to a members name.
 
-  :::note
-  The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
-  :::
+   :::note
+   The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
+   :::
 
 1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
-  <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
+   <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
 
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
@@ -81,9 +81,9 @@ To enable users to auto-join your team:
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
 
-  <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
+   <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
 
-  [View a larger image](/images/teams-auto-join.png)
+   [View a larger image](/images/teams-auto-join.png)
 
 1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
 
@@ -103,11 +103,11 @@ To remove a member:
 
 1. Click **Remove** in the confirmation dialog.
 
-  The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
+   The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
 
-  If the member added their GitHub username to the vendor portal to access the collab repository, then the vendor portal also removes their GitHub username from the collab repository.
+   If the member added their GitHub username to the vendor portal to access the collab repository, then the vendor portal also removes their GitHub username from the collab repository.
 
-  For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
+   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
 
 ## Update Email Addresses
 

@@ -20,29 +20,29 @@ To enable two-factor authentication on your individual account:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
-    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
+     <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
 
-    [View a larger version of this image](/images/vendor-portal-account-settings.png)
+     [View a larger version of this image](/images/vendor-portal-account-settings.png)
 
 1. In the **Two-Factor Authentication** pane, click **Turn on two-factor authentication**.
 
-    <img src="/images/vendor-portal-password-2fa.png" alt="Turn on 2FA in the vendor portal" width="600"/>
+     <img src="/images/vendor-portal-password-2fa.png" alt="Turn on 2FA in the vendor portal" width="600"/>
 
-    [View a larger version of this image](/images/vendor-portal-password-2fa.png)
+     [View a larger version of this image](/images/vendor-portal-password-2fa.png)
 
 1. In the **Confirm password** dialog, enter your vendor portal account password. Click **Confirm password**.
 
 1. Scan the QR code that displays using a supported two-factor authentication application on your mobile device, such as Google Authenticator. Alternatively, click **Use this text code** in the vendor portal to generate an alphanumeric code that you enter in the mobile application.
 
-    <img src="/images/vendor-portal-scan-qr.png" alt="Turn on 2FA in the vendor portal" width="400"/>
+     <img src="/images/vendor-portal-scan-qr.png" alt="Turn on 2FA in the vendor portal" width="400"/>
 
-    [View a larger version of this image](/images/vendor-portal-scan-qr.png)
+     [View a larger version of this image](/images/vendor-portal-scan-qr.png)
 
-    Your mobile application displays an authentication code.
+     Your mobile application displays an authentication code.
 
 1. Enter the authentication code in the vendor portal.
 
-    Two-factor authentication is enabled and a list of recovery codes is displayed at the bottom of the **Two-Factor Authentication** pane.
+     Two-factor authentication is enabled and a list of recovery codes is displayed at the bottom of the **Two-Factor Authentication** pane.
 
 1. Save the recovery codes in a secure location. These codes can be used any time (one time per code), if you lose your mobile device.
 
@@ -55,9 +55,9 @@ To disable two-factor authentication on your individual account:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
-    <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
+     <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
 
-    [View a larger version of this image](/images/vendor-portal-account-settings.png)
+     [View a larger version of this image](/images/vendor-portal-account-settings.png)
 
 1. In the **Two-Factor Authentication** pane, click **Turn off two-factor authentication**.
 
@@ -71,14 +71,14 @@ To enable or disable 2FA for a team:
 
 1. In the [vendor portal](https://vendor.replicated.com), select the **Team** tab, then select **Multifactor Auth**.
 
-    <img src="/images/team-2fa-auth.png" alt="Multifactor authentication for teams in the vendor portal" width="600"/>
+     <img src="/images/team-2fa-auth.png" alt="Multifactor authentication for teams in the vendor portal" width="600"/>
 
-    [View a larger image](/images/team-2fa-auth.png)
+     [View a larger image](/images/team-2fa-auth.png)
 
 1. On the **Multifactor Authentication** page, do one of the following with the **Require Two-Factor Authentication for all Username/Password authenticating users** toggle:
 
-    - Turn on the toggle to enable 2FA
-    - Turn off the toggle to disable 2FA
+     - Turn on the toggle to enable 2FA
+     - Turn off the toggle to disable 2FA
 
 1. Click **Save changes**.
 

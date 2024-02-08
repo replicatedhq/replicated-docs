@@ -12,37 +12,37 @@ To install the replicated CLI:
 
 1. Run the following command to use [Homebrew](https://brew.sh) to install the CLI:
 
-  ```
-  brew install replicatedhq/replicated/cli
-  ```
+    ```
+    brew install replicatedhq/replicated/cli
+    ```
 
-  For the latest Linux or macOS versions of the replicated CLI, see the [replicatedhq/replicated](https://github.com/replicatedhq/replicated/releases) releases in GitHub.
+    For the latest Linux or macOS versions of the replicated CLI, see the [replicatedhq/replicated](https://github.com/replicatedhq/replicated/releases) releases in GitHub.
 
 1. Verify the installation:
 
-  ```
-  replicated version
-  ```
-  **Example output**:
+      ```
+      replicated version
+      ```
+      **Example output**:
 
-  ```json
-  {
-      "version": "0.37.2",
-      "git": "8664ac3",
-      "buildTime": "2021-08-24T17:05:26Z",
-      "go": {
-          "version": "go1.14.15",
-          "compiler": "gc",
-          "os": "darwin",
-          "arch": "amd64"
+      ```json
+      {
+            "version": "0.37.2",
+            "git": "8664ac3",
+            "buildTime": "2021-08-24T17:05:26Z",
+            "go": {
+               "version": "go1.14.15",
+               "compiler": "gc",
+               "os": "darwin",
+               "arch": "amd64"
+            }
       }
-  }
-  ```
-  If you run a replicated CLI command, such as `replicated release ls`, you see the following error message about a missing API token:
+      ```
+      If you run a replicated CLI command, such as `replicated release ls`, you see the following error message about a missing API token:
 
-  ```
-  Error: set up APIs: Please provide your API token
-  ```
+      ```
+      Error: set up APIs: Please provide your API token
+      ```
 
 1. Create an API token for the replicated CLI:
 
@@ -50,7 +50,7 @@ To install the replicated CLI:
 
    1. Under User API Tokens, click **New User API Token**. For Nickname, provide a name for the token. For Permissions, select **Read and Write**.
 
-      For more information about User API tokens, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Generating API Tokens_.
+       For more information about User API tokens, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Generating API Tokens_.
 
    1. Click **Create Token**.
 
@@ -58,22 +58,22 @@ To install the replicated CLI:
 
 1. Export the string that you copied in the previous step to an environment variable named `REPLICATED_API_TOKEN`:
 
-   ```
-   export REPLICATED_API_TOKEN=YOUR_TOKEN
-   ```
-   Replace `YOUR_TOKEN` with the token string that you copied from the vendor portal in the previous step.
+    ```
+    export REPLICATED_API_TOKEN=YOUR_TOKEN
+    ```
+    Replace `YOUR_TOKEN` with the token string that you copied from the vendor portal in the previous step.
 
 1. Verify the User API token:
 
-   ```
-   replicated release ls
-   ```
+    ```
+    replicated release ls
+    ```
 
-   You see the following error message:
+    You see the following error message:
 
-   ```
-   Error: App not found:
-   ```
+    ```
+    Error: App not found:
+    ```
 
 ## Next Step
 

@@ -14,55 +14,55 @@ To install and deploy the application:
 
 1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 
-  The admin console can pull the application YAML and containers now.
+   The admin console can pull the application YAML and containers now.
 
 1. On the configuration screen, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
-  This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
+   This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
-  There are other example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
+   There are other example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
-  :::note
-  You will customize what appears on this screen in a later step.
-  :::
+   :::note
+   You will customize what appears on this screen in a later step.
+   :::
 
 1. Click **Continue**.
 
-  The preflight checks run automatically. In the **Results from your preflight checks** list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
+   The preflight checks run automatically. In the **Results from your preflight checks** list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
 
-  ![Preflight Results](/images/preflight-warning.png)
+   ![Preflight Results](/images/preflight-warning.png)
 
 1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog.
 
-  The admin console dashboard opens.
+   The admin console dashboard opens.
 
-  ![Cluster](/images/guides/kots/application-tutorial-ui.png)
+   ![Cluster](/images/guides/kots/application-tutorial-ui.png)
 
-  On the **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
+   On the **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
 1. Click **Open App** to view the application in your browser.
 
-  ![Open App](/images/guides/kots/open-app.png)
+   ![Open App](/images/guides/kots/open-app.png)
 
-  Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
+   Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
 
 1. In your cluster, press **Ctrl + C** to exit the admin console.
 
 1. Run the following command to reload your shell so that you can access the cluster with kubectl:
 
-  ```bash
+    ```bash
     bash -l
     ```
 1. Run the following command to see the example NGINX service that you just deployed:
 
-  ```bash
-  kubectl get pods --namespace NAMESPACE_NAME
-  ```
-  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+   ```bash
+   kubectl get pods --namespace NAMESPACE_NAME
+   ```
+   Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
 
-  **Example output:**
+   **Example output:**
 
-  ```
+    ```
     NAME                                 READY   STATUS    RESTARTS   AGE
     kotsadm-7595595bf5-pmlng   1/1     Running   0          21m
     kotsadm-minio-0            1/1     Running   0          22m
@@ -72,19 +72,19 @@ To install and deploy the application:
 
 1. Run the following command to start the console again:
 
-  ```bash
-  kubectl kots admin-console --namespace NAMESPACE_NAME
-  ```
+   ```bash
+   kubectl kots admin-console --namespace NAMESPACE_NAME
+   ```
 
-  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+   Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
 
-  If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
+   If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 
 1. Under **Customers** in the vendor portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the **Instance details** page. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
 
-  ![Customer instance reporting](/images/customer-instances-tutorial.png)
+   ![Customer instance reporting](/images/customer-instances-tutorial.png)
 
-  [View a larger version of this image](/images/customer-instances-tutorial.png)
+   [View a larger version of this image](/images/customer-instances-tutorial.png)
 
 ## Next Step
 

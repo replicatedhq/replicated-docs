@@ -60,9 +60,9 @@ For detailed installation steps, see [Installing with kURL](/enterprise/installi
 
 ### Can I use my own branding for KOTS installations?
 
-Yes. The KOTS admin console supports custom branding, including customizing a logo, primary colors, and buttons and links on the dashboard. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
+The KOTS admin console and the download portal support the use of a custom logo. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
 
-For more information, see [Customizing the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon).
+For more information, see [Customizing the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon) and [About Custom Domains](custom-domains-about).
 
 ### Does KOTS support installations into air gap environments?
 
