@@ -51,46 +51,18 @@ After you get the ConfigValues file for your application using the `kots get con
    * (Optional) Remove any fields that have `hidden` set to `true`. Fields with `hidden` set to `true` can be edited by users, but are hidden from the admin console Config page. For more information, see [hidden](/reference/custom-resource-config#hidden) in _Config_.
 
    * Write comments in the file or provide supplementary documentation to describe the following:
+      * The fields that are required and optional. For any required configuration fields that do not have a default value, users must provide a value in the ConfigValues file to install the application.
+      * The supported values for each configuration field. For example, for `select_one` fields, document each of the possible values that users can provide.
+      * The supported YAML format for each value. The following table describes the supported value format for each configuration field type:
 
-     * The fields that are required and optional. For any required configuration fields that do not have a default value, users must provide a value in the ConfigValues file to install the application.
-     * The supported values for each configuration field. For example, for `select_one` fields, document each of the possible values that users can provide.
-     * The supported YAML format for each value. The following table describes the supported value format for each configuration field type:
-
-     <table>
-      <tr>
-       <th>Field Type</th>
-       <th>Supported Value Format</th>
-      </tr>
-      <tr>
-       <td><code>bool</code></td>
-       <td><p><code>"1"</code> specifies true and <code>"0"</code> specifies false.</p><BoolExample/>
-       </td>
-      </tr>
-      <tr>
-       <td><code>file</code></td>
-       <td><p>A <code>filename</code> field and a Base64 encoded string of the contents of the file in the <code>value</code> field.</p><FileExample/>
-       </td>
-      </tr>
-      <tr>
-      <td><code>password</code></td>
-      <td><p>A <code>valuePlaintext</code> field that contains the password in plain text. KOTS encrypts any values in <code>valuePlaintext</code> fields during installation.</p><PasswordExample/>
-      </td>
-      </tr>
-      <tr>
-      <td><code>select_one</code></td>
-      <td><p>The <code>value</code> must match the name of one of the options for the <code>select_one</code> field as defined in the Config custom resource manifest.</p><SelectOneExample/>
-      </td>
-      </tr>
-      <tr>
-      <td><code>text</code></td>
-      <td><p>Plain text in the <code>value</code> field.</p><TextExample/>
-      </td>
-      </tr>
-      <tr>
-      <td><code>textarea</code></td>
-      <td><p>Plain text in the <code>value</code> field.</p><TextAreaExample/>
-      </td>
-      </tr>
-    </table>
-
+        <table>
+          <tr><th>Field Type</th><th>Supported Value Format</th></tr>
+          <tr><td><code>bool</code></td><td><p><code>"1"</code> specifies true and <code>"0"</code> specifies false.</p><BoolExample/></td></tr>
+          <tr><td><code>file</code></td><td><p>A <code>filename</code> field and a Base64 encoded string of the contents of the file in the <code>value</code> field.</p><FileExample/></td></tr>
+          <tr><td><code>password</code></td><td><p>A <code>valuePlaintext</code> field that contains the password in plain text. KOTS encrypts any values in <code>valuePlaintext</code> fields during installation.</p><PasswordExample/></td></tr>
+          <tr><td><code>select_one</code></td><td><p>The <code>value</code> must match the name of one of the options for the <code>select_one</code> field as defined in the Config custom resource manifest.</p><SelectOneExample/></td></tr>
+          <tr><td><code>text</code></td><td><p>Plain text in the <code>value</code> field.</p><TextExample/></td></tr>
+          <tr><td><code>textarea</code></td><td><p>Plain text in the <code>value</code> field.</p><TextAreaExample/></td></tr>
+        </table>
+  
     For more information about each configuration field type in the Config custom resource, see [Config](/reference/custom-resource-config).
