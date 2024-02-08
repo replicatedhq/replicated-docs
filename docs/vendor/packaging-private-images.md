@@ -47,8 +47,8 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
-          <td>Enter the host name for the registry.</td>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as 123456689.dkr.ecr.us-east-1.amazonaws.com</td>
         </tr>
         <tr>
           <td>Access Key ID</td>
@@ -68,7 +68,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as index.docker.io.</td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry.</td>
         </tr>
         <tr>
@@ -106,15 +106,36 @@ To add an external registry using the vendor portal:
         </tr>
       </table>
 
-    * **Google Container Registry**
-
+    * **Google Artifact Registry**
       <table>
         <tr>
           <th width="30%">Field</th>
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as <br/>us-east1-docker.pkg.dev</td>
+        </tr>   
+        <tr>
+          <td>Auth Type</td>
+          <td>Select the authentication type for a Google Cloud Platform account that has pull access to the registry.</td>
+        </tr>   
+        <tr>
+          <td>Service Account JSON Key or Token</td>         
+          <td><p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p><p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p> </td>
+        </tr>
+      </table>   
+    * **Google Container Registry**
+    :::important
+    Google Container Registry is deprecated. If you use Container Registry, <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">learn more about the deprecation.</a>
+    :::
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as gcr.io.</td>
         </tr>
         <tr>
@@ -131,7 +152,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as quay.io.</td>
         </tr>
         <tr>
@@ -148,7 +169,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as example.registry.com.</td>
         </tr>
         <tr>
