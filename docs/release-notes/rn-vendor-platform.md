@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.08-2
+
+Released on February 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-08-2}
+* Replaces GMT timezone value with UTC label.
+
+## v2024.02.08-1
+
+Released on February 8, 2024
+
+### New Features {#new-features-v2024-02-08-1}
+* Updates the pricing for compatibiliy matrix clusters that use Amazon Elastic Kubernetes Service (EKS) versions with extended support. For more information, see [Compatibility Matrix Platform Pricing]([https://www.replicated.com/pricing](https://www.replicated.com/matrix/pricing)) on the Replicated website.
+
 ## v2024.02.07-7
 
 Released on February 7, 2024
