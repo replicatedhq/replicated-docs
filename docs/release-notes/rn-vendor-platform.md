@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.08-2
+
+Released on February 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-08-2}
+* Replace GMT timezone value with UTC label.
+
 ## v2024.02.07-7
 
 Released on February 7, 2024
