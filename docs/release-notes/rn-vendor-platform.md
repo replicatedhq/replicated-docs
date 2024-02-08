@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 8, 2024
 
 ### New Features {#new-features-v2024-02-08-1}
-* CMX clusters that use EKS versions with extended support, will have different cost associated.
+* Updates the pricing for compatibiliy matrix clusters that use Amazon Elastic Kubernetes Service (EKS) versions with extended support. For more information, see [Compatibility Matrix Platform Pricing]([https://www.replicated.com/pricing](https://www.replicated.com/matrix/pricing)) on the Replicated website.
 
 ## v2024.02.07-7
 
