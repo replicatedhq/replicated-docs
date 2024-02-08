@@ -40,9 +40,9 @@ To get the ConfigValues file for an application:
     The output of the `kots get config` command is the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
 ## Share a Sample ConfigValues File    
 
-Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use with automated installations with the kots CLI.
+Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use in automated installations with the kots CLI.
 
-After you get the ConfigValues for your application using the `kots get config` command, Replicated recommends that you do the following to edit the contents of the ConfigValues file before sharing it with users:
+After you get the ConfigValues file for your application using the `kots get config` command, Replicated recommends that you do the following to edit the contents of the ConfigValues file before sharing it with users:
 
    * Remove any configuration fields that have `readonly` set to `true`. Users cannot edit read only fields. For more information, see [readonly](/reference/custom-resource-config#readonly) in _Config_.
 
