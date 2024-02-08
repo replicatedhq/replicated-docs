@@ -130,7 +130,7 @@ To add an external registry using the vendor portal:
       </table>   
     * **Google Container Registry**
       :::important
-      Google Container Registry is deprecated. If you use Container Registry, <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">learn more about the deprecation.</a>
+      Google Container Registry is deprecated. For more information, see <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">Container Registry deprecation</a> in the Google documentation.
       :::
       <table>
         <tr>
