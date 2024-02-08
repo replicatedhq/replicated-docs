@@ -12,7 +12,7 @@ Replicated recommends that application vendors use one the following external pr
 * DockerHub
 * GitHub Container Registry
 * Google Artifact Registry
-* Google Container Registry
+* Google Container Registry (Deprecated)
 * Quay.io
 
 These registries have been tested for compatibility with KOTS.
@@ -122,13 +122,16 @@ To add an external registry using the vendor portal:
         </tr>   
         <tr>
           <td>Service Account JSON Key or Token</td>         
-          <td><p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p><p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p> </td>
+          <td>
+          <p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p> 
+          <p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p>
+          </td>
         </tr>
       </table>   
     * **Google Container Registry**
-    :::important
-    Google Container Registry is deprecated. If you use Container Registry, <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">learn more about the deprecation.</a>
-    :::
+      :::important
+      Google Container Registry is deprecated. If you use Container Registry, <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">learn more about the deprecation.</a>
+      :::
       <table>
         <tr>
           <th width="30%">Field</th>
