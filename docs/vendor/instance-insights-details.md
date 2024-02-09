@@ -63,7 +63,7 @@ The **Current State** section displays the following event data about the status
 
 * **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal.
 
-### Instance Insights
+### Instance Insights {#insights}
 
 The **Insights** section includes the following metrics computed by the vendor portal:
 
@@ -141,8 +141,6 @@ In addition to the details listed above, the **Instance Information** section al
 * Total number of cluster nodes
 * Number of cluster nodes in a Ready state
 * ID of the Kubernetes installer specification
-
-For more information about the data fields displayed in the **Instance Information** section, see [Cluster Status Events](instance-insights-event-data#cluster) and [Infrastructure Status Events](instance-insights-event-data#infrastructure) in _Event Data_.
 
 ### Instance Uptime
 

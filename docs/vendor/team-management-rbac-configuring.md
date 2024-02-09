@@ -43,9 +43,11 @@ To configure a custom RBAC policy:
 
 1. To apply RBAC policies to vendor portal team members, you can:
 
-    - Assign policies to existing team members. See [Edit Permissions](team-management#edit-permissions) in _Managing Team Members_.
-    - Specify a policy when inviting new team members. See [Invite Members](team-management#invite-members) in _Managing Team Members_.
-    - Set a default policy for auto-joining a team. See [Enable Users to Auto-join Your Team](team-management#enable-users-to-auto-join-your-team) in _Managing Team Members_.
+    - Assign policies to existing team members
+    - Specify a policy when inviting new team members
+    - Set a default policy for auto-joining a team
+
+    See [Managing Team Members](team-management).
 
 ## Policy Definition
 

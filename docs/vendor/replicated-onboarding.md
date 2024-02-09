@@ -164,7 +164,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
       
       [View a larger image](/images/onboarding-view-telemetry.png)
    
-      This instance telemetry is automatically collected and sent back to the vendor portal when the Replicated SDK is installed alongside the application. For more information, see [Customer Reporting and Instance Insights](/vendor/replicated-sdk-overview#insights) in _About the Replicated SDK_.
+      This instance telemetry is automatically collected and sent back to the vendor portal when the Replicated SDK is installed alongside the application. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
    1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
 

@@ -22,7 +22,7 @@ The purpose of this tutorial is to walk you through how to configure Replicated 
 
 The guide is divided into the following steps:
 
- 1. [Set Up the Testing Environment](#1-set-up-testing-environment)
+ 1. [Set Up the Testing Environment](#set-up)
 
  2. [Configure Private Registries in Replicated](#2-configure-private-registries-in-replicated)
 
@@ -30,7 +30,7 @@ The guide is divided into the following steps:
 
  4. [Install the New Version](#4-install-the-new-version)
 
-## 1. Set Up the Testing Environment
+## 1. Set Up the Testing Environment {#set-up}
 
 We are going to use the default NGINX deployment to create our application and then update it to pull the same container from a private repository in ECR and note the differences.
 
