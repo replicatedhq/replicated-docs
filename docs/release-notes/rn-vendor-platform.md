@@ -8,6 +8,19 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.09-3
+
+Released on February 9, 2024
+
+### New Features {#new-features-v2024-02-09-3}
+* Add Google Artifact Registry as an External Registry option.
+* As a vendor-portal user, customer instances have pagination on the customer details page.
+
+### Bug Fixes {#bug-fixes-v2024-02-09-3}
+* As a API consumer -- pageSize and offset properties are not longer required for the /v3/customers/search endpoint.  API consumers must provide at least one inclusion criteria for a valid customer search.
+* As a API consumer -- pageSize and offset properties are not longer required for the /v3/customers/search endpoint.  API consumers must provide at least one inclusion criteria for a valid customer search.
+* As a API consumer -- pageSize and offset properties are not longer required for the /v3/customers/search endpoint.  API consumers must provide at least one inclusion criteria for a valid customer search.
+
 ## v2024.02.08-2
 
 Released on February 8, 2024
