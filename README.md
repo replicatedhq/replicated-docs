@@ -38,7 +38,7 @@ This repository has been made public so that vendors and the open-source communi
 
 ## Setting Up Local WYSIWYG Previews
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
 When you submit a PR in GitHub, Netlify builds a preview automatically. However, you can preview your changes locally. To do this, you must install `yarn` and run a build to create a Docusaurus preview in your local browser.
 
