@@ -1,10 +1,18 @@
 # Patching with Kustomize
 
-Replicated KOTS leverages Kustomize to let you make kustomization patches to an application outside of the options available in the Replicated admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in kustomization.yaml files, that describe how to transform or generate other Kubernetes objects.
+This topic describes how to use Kustomize to patch an application before deploying.
+
+## Overview
+
+Replicated KOTS uses Kustomize to let you make patches to an application outside of the options available in the KOTS admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in `kustomization.yaml` files, that describe how to transform or generate other Kubernetes objects.
 
 These kustomizations overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
 For more information, see the [Kustomize website](https://kustomize.io).
+
+## Limitation
+
+For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart custom resource, editing the downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ## About the Directory Structure
 
@@ -133,7 +141,7 @@ To patch the application with Kustomize so that your changes persist between upd
 
 The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
-To patch your application:
+To patch an application:
 
 1. On the View Files tab in the admin console, click **Need to edit these files? Click here to learn how**.
 

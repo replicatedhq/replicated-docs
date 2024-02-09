@@ -57,6 +57,8 @@ The following limitations apply when deploying Helm charts with the `kots.io/v1b
 
 * When updating the HelmChart custom resource in a release from `kots.io/v1beta1` to `kots.io/v1beta2`, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different.
 
+* Editing downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information about patching applications with Kustomize, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize).
+
 * <GitOpsLimitation/>
 
    For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
