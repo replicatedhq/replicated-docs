@@ -55,7 +55,7 @@ To install the Velero CLI in an online cluster:
 
 To install the Velero CLI in an air gapped cluster:
 
-1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest [supported version](/vendor/snapshots-understanding#velero-version-compatibility).
+1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest [supported version](/enterprise/snapshots-understanding#velero-version-compatibility).
 
     Note the version number for the next step.
 

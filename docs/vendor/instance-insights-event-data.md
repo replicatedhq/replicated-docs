@@ -34,7 +34,7 @@ When installed alongisde the application, KOTS automatically sends instance data
 
 * (KOTS v1.92 and later only) The instance deploys a new application version.
 
-## How the Vendor Portal Generates Events and Insights
+## How the Vendor Portal Generates Events and Insights {#about-events}
 
 When the vendor portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from Ready to Degraded in the application status generates an event.
 

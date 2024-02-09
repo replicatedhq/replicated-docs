@@ -10,22 +10,17 @@ For information about creating and managing releases with the Vendor API v3, see
 
 Before you create a release using the replicated CLI, complete the following prerequisites:
 
-* Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+* Install the replicated CLI and then log in to authorize the CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
   
 * Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-* Set the `REPLICATED_APP` and `REPLICATED_API_TOKEN` environment variables. See [Set the Environment Variables](/reference/replicated-cli-installing#set-environment-variables) in _Installing the replicated CLI_.
+* Set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the replicated CLI_.
 
   **Example**:
 
   ```bash
   export REPLICATED_APP=my-app-slug
-  export REPLICATED_API_TOKEN=1234abcd
   ```
-
-  :::note
-  The token environment variable is valid for a single session. You must export it for each new session.
-  :::
 
 ## Create a Release From a Local Directory {#dir}
 

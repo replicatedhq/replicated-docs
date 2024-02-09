@@ -173,7 +173,7 @@ Then, you enable semantic versioning on that channel. The admin console sequence
 - xyz
 - 2.0.0
 
-For information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](/enterprise/updating-apps#checking-for-updates).
+For information about how enterprise application users check for application updates in the admin console, see [Updating an Application](/enterprise/updating-apps).
 
 ### Semantic Versioning
 
@@ -256,7 +256,7 @@ You can do the following tasks on the **Draft** page:
 
 - Edit the YAML files by selecting a file in the directory and making changes in the YAML editor.
 
-- In the **Help** or **Config help** pane, view the linter for any errors. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link. For more information, see [Using the Linter](/reference/linter#using-the-linter) in _Linter Rules_.
+- In the **Help** or **Config help** pane, view the linter for any errors. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link. For more information, see [Linter Rules](/reference/linter).
 
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](config-screen-about).
 

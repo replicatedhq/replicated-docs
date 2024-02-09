@@ -80,9 +80,9 @@ This example development workflow does _not_ create releases or customers in the
 
 The following describes the recommended steps to include in a development workflow using the compatibility matrix:
 
-1. [Define workflow triggers](#dev-cmx-triggers)
-1. [Build source code](#dev-cmx-build)
-1. [Create cluster matrix, deploy, and test](#dev-cmx-deploy)
+1. [Define workflow triggers](#dev-triggers)
+1. [Build source code](#dev-build)
+1. [Create cluster matrix, deploy, and test](#dev-deploy)
 
 ### Define workflow triggers {#dev-triggers}
 
@@ -110,7 +110,7 @@ jobs:
 <Build/>
 
 
-### Create cluster matrix, deploy, and test {#dev-cmx-deploy}
+### Create cluster matrix, deploy, and test {#dev-deploy}
 
 Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
 
