@@ -1,0 +1,29 @@
+# Introduction to kURL
+
+This topic provides an introduction to the Replicated kURL installer.
+
+## Overview
+
+kURL is an open source project maintained by Replicated that software vendors can use to create custom Kubernetes distributions.
+
+This means that you can distribute your Kubernetes application to customers who do not have access to a Kubernetes cluster in their environment.
+
+For more information about the kURL open source project, see the [kURL documentation](https://kurl.sh).
+
+## About Defining kURL Installer Specs
+
+To provision a cluster, kURL uses a spec defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. Software vendors can add kURL add-ons to an Installer spec to create a custom Kubernetes distribution based on their application requirements. kURL add-ons include services for networking, storage, ingress, and more. kURL also includes a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS admin console.
+
+You can create Installer specs using the Replicated vendor portal [Kubernetes installers](https://vendor.replicated.com/kurl) page. To distribute the Installer alongside your application, promote the spec to the same channel as the target application release. All releases from that channel will use the currently promoted installer.
+
+## About Embedded Cluster Installations with KOTS and kURL
+
+kURL has a built-in integration with KOTS through the KOTS add-on. When the KOTS add-on is included in a kURL Installer spec, customers can run the kURL installation script in their environment to provision an embedded cluster and automatically deploy the KOTS admin console to the cluster.
+
+For information about how to install applications in embedded clusters with KOTS and kURL, see Installing with kURL.
+
+## About kURL Cluster Node Management
+
+## About the Open Source kURL Documentation
+
+The open source kURL documentation contains additional information and reference material about the kURL installation options, the supported kURL add-ons and 
