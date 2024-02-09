@@ -52,14 +52,14 @@ By default, KOTS also creates Kubernetes ClusterRole and ClusterRoleBinding reso
 
 If you need to completely delete the admin console and an application installation, such as during testing, follow one of these procedures depending on the type of cluster where you installed the admin console:
 
-* **Existing cluster**: Manually delete the admin console Kubernetes objects and resources from the cluster. See [Delete from an Existing Cluster](#delete-from-an-existing-cluster) below.
-* **Embedded cluster**: Remove Kubernetes from the VM where the cluster is installed. See [Delete from an Embedded Cluster](#delete-from-a-kubernetes-installer-cluster) below.
+* **Existing cluster**: Manually delete the admin console Kubernetes objects and resources from the cluster. See [Delete from an Existing Cluster](#existing) below.
+* **Embedded cluster**: Remove Kubernetes from the VM where the cluster is installed. See [Delete from an Embedded Cluster](#embedded) below.
 
 :::note
 These procedures do not uninstall the kots CLI. To uninstall the kots CLI, see [Uninstall](https://docs.replicated.com/reference/kots-cli-getting-started#uninstall) in _Installing the kots CLI_.
 :::
 
-### Delete from an Existing Cluster
+### Delete from an Existing Cluster {#existing}
 
 In existing cluster installations, if the admin console is not installed in the `default` namespace, then you delete the admin console by deleting the namespace where it is installed. 
 
@@ -93,7 +93,7 @@ To delete the admin console from an existing cluster:
    kubectl delete clusterrolebinding kotsadm-rolebinding
    ```
 
-### Delete from an Embedded Cluster
+### Delete from an Embedded Cluster {#embedded}
 
 If you installed on a cluster created by Replicated kURL, KOTS installs the admin console in the `default` namespace. Kubernetes does not allow the `default` namespace to be deleted.
 

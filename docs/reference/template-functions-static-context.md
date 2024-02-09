@@ -171,7 +171,7 @@ Depending on if the `hidden` and `readonly` properties are `true` or `false`, th
 For more information about these properties, see [`hidden`](custom-resource-config#hidden) and [`readonly`](custom-resource-config#readonly) in _Config_.
 
 :::note
-If you assign the RandomString template function to a `default` key in the Config custom resource rather than a `value` key, then the `hidden` and `readonly` properties do _not_ affect the behavior of the RandomString template function. For more information about the behavior of the `default` key in the Config custom resource, see [`default` and `value`](custom-resource-config#default-and-value) in _Config_.
+If you assign the RandomString template function to a `default` key in the Config custom resource rather than a `value` key, then the `hidden` and `readonly` properties do _not_ affect the behavior of the RandomString template function. For more information about the behavior of the `default` key in the Config custom resource, see [`default`](custom-resource-config#default) in _Config_.
 :::
 
 The following table describes the behavior of the RandomString template function when it is assigned to a `value` key in the Config custom resource and the `hidden` and `readonly` properties are `true` or `false`: 
