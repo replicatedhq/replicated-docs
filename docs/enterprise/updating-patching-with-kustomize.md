@@ -12,7 +12,7 @@ For more information, see the [Kustomize website](https://kustomize.io).
 
 ## Limitation
 
-For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart custom resource, editing the downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the HelmChart custom resource `kots.io/v1beta2`. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about)
+For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart custom resource, editing the downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ## About the Directory Structure
 
