@@ -46,27 +46,27 @@ To generate a service account:
 
 1. Edit the fields in the **New Service Account** dialog:
 
-    <img alt="New Service Accounts Dialog" src="/images/service-accounts.png" width="400px"/>
+     <img alt="New Service Accounts Dialog" src="/images/service-accounts.png" width="400px"/>
 
-      [View a larger version of this image](/images/service-accounts.png)
+     [View a larger version of this image](/images/service-accounts.png)
 
-    1. For **Nickname**, enter a name the token. Names for service accounts must be unique within a given team.
+     1. For **Nickname**, enter a name the token. Names for service accounts must be unique within a given team.
 
-    1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
+     1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
 
-      This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
+       This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
-      Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
+       Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
 
-    1. (Optional) For custom RBAC policies, select the **Limit to read-only version of above policy** check box to if you want use a policy that has Read/Write permissions but limit this service account to read-only. This option lets you maintain one version of a custom RBAC policy and use it two ways: as read/write and as read-only.
+     1. (Optional) For custom RBAC policies, select the **Limit to read-only version of above policy** check box to if you want use a policy that has Read/Write permissions but limit this service account to read-only. This option lets you maintain one version of a custom RBAC policy and use it two ways: as read/write and as read-only.
 
 1. Select **Create Service Account**.
 
 1. Copy the service account token and save it in a secure location. The token will not be available to view again.
 
-  :::note
-  To remove a service account, select **Remove** for the service account that you want to delete.
-  :::
+   :::note
+   To remove a service account, select **Remove** for the service account that you want to delete.
+   :::
 
 ### Generate a User API Token
 
@@ -75,23 +75,24 @@ To generate a user API token:
 1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
 1. Under **User API Tokens**, select **Create a user API token**. If one or more tokens already exist, you can add another by selecting **New user API token**.
 
-  <img alt="User API Token Page" src="/images/user-token-list.png" width="600px"/>
+   <img alt="User API Token Page" src="/images/user-token-list.png" width="600px"/>
 
-  [View a larger version of this image](/images/user-token-list.png)
+   [View a larger version of this image](/images/user-token-list.png)
 
 1. In the **New user API token** dialog, enter a name for the token in the **Nickname** field. Names for user API tokens must be unique per user. 
 
-  <img alt="Create New User Token Dialog" src="/images/user-token-create.png" width="400px"/>
+   <img alt="Create New User Token Dialog" src="/images/user-token-create.png" width="400px"/>
 
-  [View a larger version of this image](/images/user-token-create.png)
+   [View a larger version of this image](/images/user-token-create.png)
 
 1. Select the required permissions or use the default **Read and Write** permissions. Then select **Create token**.
-  :::note
-  The token must have `Read and Write` access to create new releases.
-  :::
+
+   :::note
+   The token must have `Read and Write` access to create new releases.
+   :::
 
 1. Copy the user API token that displays and save it in a secure location. The token will not be available to view again.
 
-  :::note
-  To revoke a token, select **Revoke token** for the token that you want to delete.
-  :::
+   :::note
+   To revoke a token, select **Revoke token** for the token that you want to delete.
+   :::

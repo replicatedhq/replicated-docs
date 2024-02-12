@@ -18,7 +18,7 @@ The vendor portal collects custom metrics through the Replicated SDK that is ins
 
 The SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
-If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
+If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
 
 The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the vendor portal, as described above:
 
@@ -136,11 +136,14 @@ You can view the custom metrics that you configure for each active instance of y
 
 The following shows an example of an instance with custom metrics:
 
-![Custom Metrics section of Instance details page](/images/instance-custom-metrics.png)
+<img alt="Custom Metrics section of Instance details page" src="/images/instance-custom-metrics.png" width="700px"/>
+
+[View a larger version of this image](/images/instance-custom-metrics.png)
 
 As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
-* Each custom metric that you configured, along with the most recent value for the metric for the instance.
+* Each custom metric that you configured, along with the most recent value for the metric.
+* A time-series graph depicting the historical data trends for the selected metric.
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
 

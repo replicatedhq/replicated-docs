@@ -8,46 +8,46 @@ To install the release with KOTS:
 
 1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
-  ![KOTS Install tab on the Unstable channel card](/images/grafana-unstable-channel.png)
+    ![KOTS Install tab on the Unstable channel card](/images/grafana-unstable-channel.png)
 
-  [View a larger version of this image](/images/grafana-unstable-channel.png)
+    [View a larger version of this image](/images/grafana-unstable-channel.png)
 
 1. On the command line, run the **KOTS Install** command that you copied:
 
-  ```bash
-  curl https://kots.io/install | bash
-  kubectl kots install $REPLICATED_APP/unstable
-  ```
+    ```bash
+    curl https://kots.io/install | bash
+    kubectl kots install $REPLICATED_APP/unstable
+    ```
 
-  This installs the latest version of the kots CLI and the  admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+    This installs the latest version of the kots CLI and the  admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
 
-  For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+    For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-  :::note
-  KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
-  :::
+    :::note
+    KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
+    :::
 
 1. Complete the installation command prompts:
 
-   1. For `Enter the namespace to deploy to`, enter `grafana`. 
+    1. For `Enter the namespace to deploy to`, enter `grafana`. 
 
-   1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
+    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
 
-  When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+   When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
 
-  **Example output:**
+   **Example output:**
 
-  ```bash
-  Enter the namespace to deploy to: grafana
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-  Enter a new password for the admin console (6+ characters): ••••••••
-  • Waiting for Admin Console to be ready ✓
-
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
-  ```
+   ```bash
+   Enter the namespace to deploy to: grafana
+   • Deploying Admin Console
+     • Creating namespace ✓
+     • Waiting for datastore to be ready ✓
+   Enter a new password for the admin console (6+ characters): ••••••••
+   • Waiting for Admin Console to be ready ✓
+ 
+   • Press Ctrl+C to exit
+   • Go to http://localhost:8800 to access the Admin Console
+   ```
 
 1. With the port forward running, go to `http://localhost:8800` in a browser to access the admin console.
 
@@ -57,25 +57,25 @@ To install the release with KOTS:
 
 1. On the **Configure Grafana** page, enter a username and password. You will use these credentials to log in to Grafana.
 
-   ![admin console config page with username and password fields](/images/grafana-config.png)
+     ![admin console config page with username and password fields](/images/grafana-config.png)
 
-   [View a larger version of this image](/images/grafana-config.png)
+     [View a larger version of this image](/images/grafana-config.png)
 
 1. Click **Continue**.
 
-   The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
+     The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
 
-   ![admin console dashboard showing unavailable application status](/images/grafana-unavailable.png)
+     ![admin console dashboard showing unavailable application status](/images/grafana-unavailable.png)
 
-   [View a larger version of this image](/images/grafana-unavailable.png)
+     [View a larger version of this image](/images/grafana-unavailable.png)
 
 1. On the command line, press Ctrl+C to exit the port forward.
 
 1. Watch for the `grafana` Deployment to become ready:
 
-   ```
-   kubectl get deploy grafana --namespace grafana --watch
-   ```
+    ```
+    kubectl get deploy grafana --namespace grafana --watch
+    ```
 
 1. After the Deployment is ready, run the following command to confirm that the `grafana-admin` Secret was updated with the new password that you created on the **Configure Grafana** page:
 
@@ -115,14 +115,14 @@ To install the release with KOTS:
 
 1. Uninstall the Grafana application from your cluster:
 
-  ```bash
-  kubectl kots remove $REPLICATED_APP --namespace grafana --undeploy
-  ```
-  **Example output**:
-  ```
-   • Removing application grafana-python reference from Admin Console and deleting associated resources from the cluster ✓
-   • Application grafana-python has been removed
-  ```
+    ```bash
+    kubectl kots remove $REPLICATED_APP --namespace grafana --undeploy
+    ```
+    **Example output**:
+    ```
+     • Removing application grafana-python reference from Admin Console and deleting associated resources from the cluster ✓
+     • Application grafana-python has been removed
+    ```
 
 1. Remove the admin console from the cluster:  
 

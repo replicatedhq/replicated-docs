@@ -55,27 +55,27 @@ The following table describes the supported special characters:
       <th width="80%">Description</th>
     </tr>
     <tr>
-      <td><center>Comma (,)</center></td>
+      <td>Comma (,)</td>
       <td>Specifies a list or multiple values, which can be consecutive or not. For example, <code>1,2,4</code> in the Day-of-week field signifies every Monday, Tuesday, and Thursday.</td>
     </tr>
     <tr>
-      <td><center>Dash (-)</center></td>
+      <td>Dash (-)</td>
       <td>Specifies a contiguous range. For example, <code>4-6</code> in the Month field signifies April through June.</td>
     </tr>
     <tr>
-      <td><center>Asterisk (*)</center></td>
+      <td>Asterisk (&#42;)</td>
       <td>Specifies that all of the values for the field are used. For example, using <code>*</code> in the Month field means that all of the months are included in the schedule.</td>
     </tr>
     <tr>
-      <td><center>Question mark (?)</center></td>
+      <td>Question mark (?)</td>
       <td> Specifies that one or another value can be used. For example, enter <code>5</code> for Day-of-the-month and <code>?</code> for Day-of-the-week to check for updates on the 5th day of the month, regardless of which day of the week it is.</td>
     </tr>
     <tr>
-      <td><center>L</center></td>
+      <td>L</td>
       <td>Specifies the last day of the month or week respectively for the Day-of-month or Day-of-week fields.</td>
     </tr>
     <tr>
-      <td><center>W</center></td>
+      <td>W</td>
       <td>Specifies the "N-th" occurrence or given day in the month. For example, the second Friday of the month is specified as <code>6#2</code>.</td>
     </tr>
 </table>

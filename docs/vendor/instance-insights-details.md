@@ -61,11 +61,9 @@ The **Current State** section displays the following event data about the status
 
    For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
 
-* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal. The vendor portal receives instance data when any of the following occur:
+* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal.
 
-  <Checkins/>
-
-### Instance Insights
+### Instance Insights {#insights}
 
 The **Insights** section includes the following metrics computed by the vendor portal:
 
@@ -143,8 +141,6 @@ In addition to the details listed above, the **Instance Information** section al
 * Total number of cluster nodes
 * Number of cluster nodes in a Ready state
 * ID of the Kubernetes installer specification
-
-For more information about the data fields displayed in the **Instance Information** section, see [Cluster Status Events](instance-insights-event-data#cluster) and [Infrastructure Status Events](instance-insights-event-data#infrastructure) in _Event Data_.
 
 ### Instance Uptime
 

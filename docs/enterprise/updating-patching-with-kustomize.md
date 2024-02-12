@@ -1,10 +1,18 @@
 # Patching with Kustomize
 
-Replicated KOTS leverages Kustomize to let you make kustomization patches to an application outside of the options available in the Replicated admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in kustomization.yaml files, that describe how to transform or generate other Kubernetes objects.
+This topic describes how to use Kustomize to patch an application before deploying.
+
+## Overview
+
+Replicated KOTS uses Kustomize to let you make patches to an application outside of the options available in the KOTS admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in `kustomization.yaml` files, that describe how to transform or generate other Kubernetes objects.
 
 These kustomizations overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
 For more information, see the [Kustomize website](https://kustomize.io).
+
+## Limitation
+
+For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart custom resource, editing the downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ## About the Directory Structure
 
@@ -78,12 +86,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>midstream</code></td>
         <td>No</td>
-        <td><p>Contains KOTS-specific kustomizations, such as:</p>
-        <ul>
-          <li>Backup labels, such as those used to configure Velero.</li>
-          <li>Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</li>
-        </ul>
-        </td>
+        <td>Contains KOTS-specific kustomizations, such as:<ul><li>Backup labels, such as those used to configure Velero.</li><li>Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</li></ul></td>
       </tr>
       <tr>
         <td><code>downstream</code></td>
@@ -138,7 +141,7 @@ To patch the application with Kustomize so that your changes persist between upd
 
 The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
-To patch your application:
+To patch an application:
 
 1. On the View Files tab in the admin console, click **Need to edit these files? Click here to learn how**.
 
@@ -168,7 +171,7 @@ To patch your application:
 
 1. Add the filename that you created in the previous step to the `patches` field in the `kustomization.yaml` file, located in `/overlays/downstream/this-cluster`. The `downstream/this-cluster` subdirectory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [overlays](#overlays).
 
-  **Example:**
+   **Example:**
 
    ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -193,16 +196,16 @@ To patch your application:
 
 1. Click **Deploy** to apply the changes.
 
-  ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
+   ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
 
 1. Verify your changes. For example, running the following command shows that there are two NGINX pods running after deploying two replicas in the example YAML above:
 
-  ```shell
-  $ kubectl get po | grep example-nginx
-  ```
-  **Example output:**
+   ```shell
+   kubectl get po | grep example-nginx
+   ```
+   **Example output:**
 
-  ```shell
-  example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
-  example-nginx-t6ght74jr-58fhr         1/1     Running     0          1m
-  ```
+   ```shell
+   example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
+   example-nginx-t6ght74jr-58fhr         1/1     Running     0          1m
+   ```

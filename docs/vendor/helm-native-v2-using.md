@@ -51,7 +51,7 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 * Inject a KOTS-generated image pull secret that grants access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
 * Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
 * Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
-* Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
+* Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#local-registries).
 
 ### Rewrite Image Names
 
@@ -372,7 +372,7 @@ spec:
           kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
 
-### Support Local Image Registries for Online Installations
+### Support Local Image Registries for Online Installations {#local-registries}
 
 Local image registries are required for KOTS installations in air gapped environments. Also, users in online environments can optionally push images to a local private registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 

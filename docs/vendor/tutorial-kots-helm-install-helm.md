@@ -80,31 +80,31 @@ To install the release with the Helm CLI:
 
 1. In another browser window, open the [vendor portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created for the Helm CLI installation.
 
-  On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer's license and installed instances:
+    On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer's license and installed instances:
 
-  ![Customer reporting](/images/tutorial-gitea-helm-reporting.png)
+    ![Customer reporting](/images/tutorial-gitea-helm-reporting.png)
 
-  [View a larger version of this image](/images/tutorial-gitea-helm-reporting.png)
+    [View a larger version of this image](/images/tutorial-gitea-helm-reporting.png)
 
 1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
 
-  On the instance details page, you can see additional insights such as the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
+    On the instance details page, you can see additional insights such as the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
 
-  ![Customer instance details](/images/tutorial-gitea-helm-instance.png)
+    ![Customer instance details](/images/tutorial-gitea-helm-instance.png)
 
-  [View a larger version of this image](/images/tutorial-gitea-helm-instance.png)
+    [View a larger version of this image](/images/tutorial-gitea-helm-instance.png)
 
 1. Uninstall the Helm chart and the Replicated SDK:
 
-   ```
-   helm uninstall gitea
-   ```
+    ```
+    helm uninstall gitea
+    ```
 
 1. Delete the `gitea` namespace:
-
-   ```
-   kubectl delete namespace gitea
-   ```
+ 
+    ```
+    kubectl delete namespace gitea
+    ```
 
 ## Next Step
 

@@ -109,9 +109,9 @@ To manually download and install the `kots` CLI:
       curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_arm64.tar.gz
       ```
 
- :::note
- For air gap environments, download the kots CLI release from the download portal provided by your vendor.
- :::
+   :::note
+   For air gap environments, download the kots CLI release from the download portal provided by your vendor.
+   :::
 
 1. Unarchive the `.tar.gz` file that you downloaded:
 

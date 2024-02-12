@@ -79,16 +79,17 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/helm-install">helm-install</a></td>
-    <td><p>In development or release workflows, use this action to install a release using the Helm CLI in one or more clusters for testing.</p>
-    <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    <td>
+      <p>In development or release workflows, use this action to install a release using the Helm CLI in one or more clusters for testing.</p>
+      <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td>N/A</td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/kots-install">kots-install</a></td>
     <td>
-    <p>In development or release workflows, use this action to install a release with Replicated KOTS in one or more clusters for testing.</p>
-    <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+      <p>In development or release workflows, use this action to install a release with Replicated KOTS in one or more clusters for testing.</p>
+      <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td>N/A</td>
   </tr>
@@ -110,8 +111,9 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">remove-cluster</a></td>
-    <td><p>In development or release workflows, use this action to remove a cluster after running tests if no <code>ttl</code> was set for the cluster.</p>
-    <p>See <a href="/vendor/ci-workflows#dev-deploy">Prepare clusters, deploy, and test</a> and <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    <td>
+      <p>In development or release workflows, use this action to remove a cluster after running tests if no <code>ttl</code> was set for the cluster.</p>
+      <p>See <a href="/vendor/ci-workflows#dev-deploy">Prepare clusters, deploy, and test</a> and <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-cluster-rm"><code>cluster rm</code></a></td>
   </tr>

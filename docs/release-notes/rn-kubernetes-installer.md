@@ -8,6 +8,24 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.05-0
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.1 1.28.6 1.27.10 1.26.13.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) versions 0.24.1 and 0.24.2.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.27 and 1.6.28.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.3.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.71.2-56.6.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-02-04T22-36-13Z.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4 to use haproxy 2.9.4.
+* Users of VMWare clusters using the VMXNET3 NIC driver will see a new systemd .service file included that disables tcp checksum offloading on the flannel interface.  This fixes an issue we have seen with dropped packets under certain combinations of VMWare NIC and cluster configurations.
+
+### Improvements {#improvements-v2024-02-05-0}
+* Install an openebs support bundle spec whenever openebs addon is added to a kURL spec.
+* Install a velero support bundle spec whenever velero addon is added to a kURL spec.
+
 ## v2024.01.09-0
 
 Released on January 9, 2024
@@ -623,7 +641,7 @@ Released on March 20, 2023
 * Adds checks and better log information when removing Rook or Longhorn to notify users of the reasons for a failure.
 
 ### Bug Fixes {#bug-fixes-v2023-03-20-0}
-* Fixes an issue where the weave-to-flannel-{primary,secondary} tasks fail with "Flannel images not present...".
+* Fixes an issue where the weave-to-flannel-\{primary,secondary\} tasks fail with "Flannel images not present...".
 
 ## v2023.03.13-0
 

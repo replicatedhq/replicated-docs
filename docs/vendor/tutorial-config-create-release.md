@@ -29,62 +29,62 @@ To create a release:
 
 1. In the `manifests` directory, create the following YAML files to configure the release:
    
-  ```
-  cd manifests
-  ```
-  ```
-  touch kots-app.yaml k8s-app.yaml kots-config.yaml grafana.yaml
-  ```
+     ```
+     cd manifests
+     ```
+     ```
+     touch kots-app.yaml k8s-app.yaml kots-config.yaml grafana.yaml
+     ```
 
 1. In each file, paste the corresponding YAML provided in the tabs below:
 
-   <Tabs>
+     <Tabs>
       <TabItem value="kots-app" label="kots-app.yaml" default>
-   <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
-    <h5>YAML</h5>
-    <KotsApp/>
-   </TabItem>
-   <TabItem value="k8s-app" label="k8s-app.yaml">
-   <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
-    <h5>YAML</h5>
-    <K8sApp/>
-   </TabItem>
-   <TabItem value="config" label="kots-config.yaml">
-    <h5>Description</h5>
-    <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
-    <h5>YAML</h5>
-    <Config/>
-   </TabItem>
-   <TabItem value="helmchart" label="grafana.yaml">
-    <h5>Description</h5>
-    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart.</p>
-    <p>The HelmChart custom resource below contains a <code>values</code> key, which creates a mapping to the Grafana <code>values.yaml</code> file. In this case, the <code>values.admin.user</code> and <code>values.admin.password</code> fields map to <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file.</p>
-    <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then sets the corresponding Grafana values accordingly.</p>
-    <h5>YAML</h5>
-    <HelmChart/>
-   </TabItem>
-   </Tabs>
+      <h5>Description</h5>
+      <p>The KOTS Application custom resource enables features in the admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
+      <h5>YAML</h5>
+      <KotsApp/>
+      </TabItem>
+      <TabItem value="k8s-app" label="k8s-app.yaml">
+      <h5>Description</h5>
+      <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+      <h5>YAML</h5>
+      <K8sApp/>
+      </TabItem>
+      <TabItem value="config" label="kots-config.yaml">
+      <h5>Description</h5>
+      <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
+      <h5>YAML</h5>
+      <Config/>
+      </TabItem>
+      <TabItem value="helmchart" label="grafana.yaml">
+      <h5>Description</h5>
+      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart.</p>
+      <p>The HelmChart custom resource below contains a <code>values</code> key, which creates a mapping to the Grafana <code>values.yaml</code> file. In this case, the <code>values.admin.user</code> and <code>values.admin.password</code> fields map to <code>admin.user</code> and <code>admin.password</code> in the Grafana <code>values.yaml</code> file.</p>
+      <p>During installation, KOTS renders the ConfigOption template functions in the <code>values.admin.user</code> and <code>values.admin.password</code> fields and then sets the corresponding Grafana values accordingly.</p>
+      <h5>YAML</h5>
+      <HelmChart/>
+      </TabItem>
+      </Tabs>
 
 1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
 
-   ```
-   replicated release lint --yaml-dir .
-   ```
-   `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
+     ```
+     replicated release lint --yaml-dir .
+     ```
+     `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
 
-   **Example output**:
+     **Example output**:
 
-   ```
-   RULE                               TYPE    FILENAME        LINE  MESSAGE                                                     
-   preflight-spec                     warn                          Missing preflight spec
-   troubleshoot-spec                  warn                          Missing troubleshoot spec
-   nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-   ```
-   :::note
-   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `grafana` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
-   :::
+     ```
+     RULE                               TYPE    FILENAME        LINE  MESSAGE                                                     
+     preflight-spec                     warn                          Missing preflight spec
+     troubleshoot-spec                  warn                          Missing troubleshoot spec
+     nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+     ```
+     :::note
+     The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `grafana` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
+     :::
 
 1. Create a release:
 
@@ -100,19 +100,19 @@ To create a release:
 
 1. Log in to the vendor portal and go to **Releases**.
 
-  The release that you created is listed under **All releases**.
+    The release that you created is listed under **All releases**.
 
-  ![Release page in the vendor portal with one release](/images/grafana-release-seq-1.png)
+    ![Release page in the vendor portal with one release](/images/grafana-release-seq-1.png)
 
-  [View a larger version of this image](/images/grafana-release-seq-1.png)
+    [View a larger version of this image](/images/grafana-release-seq-1.png)
 
 1. Click **Edit release** to view the files in the release.
 
-  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Grafana Helm chart. You can also see the same warning messages that were displayed in the CLI output.
+    In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Grafana Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
-  ![Edit Release page in the vendor portal](/images/grafana-edit-release-seq-1.png)
+    ![Edit Release page in the vendor portal](/images/grafana-edit-release-seq-1.png)
 
-  [View a larger version of this image](/images/grafana-edit-release-seq-1.png)
+    [View a larger version of this image](/images/grafana-edit-release-seq-1.png)
 
 1. At the top of the page, click **Promote**.
 

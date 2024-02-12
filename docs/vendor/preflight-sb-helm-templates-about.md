@@ -86,7 +86,7 @@ stringData:
 
 You can also use Helm templates with the Troubleshoot template functions to automatically add the Pod name and namespace to a message when a `clusterPodStatuses` analyzer fails. For more information about the Troubleshoot template function, see [Cluster Pod Statuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/) in the Troubleshoot documentation.
 
-When you add the `clusterPodStatuses` analyzer template function values (such as `{{ .Name }}`) to your Helm template, you must encapsulate the Helm template using {{ ` ` }} so that Helm does not expand it.
+When you add the `clusterPodStatuses` analyzer template function values (such as `{{ .Name }}`) to your Helm template, you must encapsulate the Helm template using \{\{ ` ` \}\} so that Helm does not expand it.
 
 The following example shows an analyzer that uses Troubleshoot templates and the override for Helm:
 

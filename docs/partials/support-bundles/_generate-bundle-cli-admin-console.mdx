@@ -6,14 +6,14 @@ To generate a support bundle with the CLI:
 
 1. On the Troubleshoot page, at the bottom of the Support Bundles section, click the **If you'd prefer, click here to get a command to manually generate a support bundle** link to get the command to generate a support bundle.
 
-  The command includes customizations provided by your application vendor.
+   The command includes customizations provided by your application vendor.
 
 1. Run the command provided in the admin console to generate a support bundle:
 
-  ```
-  kubectl support-bundle secret/NAMESPACE/kotsadm-APP_SLUG-supportbundle --redactors=configmap/NAMESPACE/kotsadm-redact-spec/redact-spec,configmap/NAMESPACE/kotsadm-APP_SLUG-redact-spec/redact-spec
-  ```
+   ```
+   kubectl support-bundle secret/NAMESPACE/kotsadm-APP_SLUG-supportbundle --redactors=configmap/NAMESPACE/kotsadm-redact-spec/redact-spec,configmap/NAMESPACE/kotsadm-APP_SLUG-redact-spec/redact-spec
+   ```
 
-  Replace:
-  - `NAMESPACE` with the name of the namespace.
-  - `APP_SLUG` with the unique application slug.
+   Replace:
+   - `NAMESPACE` with the name of the namespace.
+   - `APP_SLUG` with the unique application slug.

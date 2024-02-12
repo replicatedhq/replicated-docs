@@ -8,6 +8,49 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.08-2
+
+Released on February 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-08-2}
+* Replaces GMT timezone value with UTC label.
+
+## v2024.02.08-1
+
+Released on February 8, 2024
+
+### New Features {#new-features-v2024-02-08-1}
+* Updates the pricing for compatibiliy matrix clusters that use Amazon Elastic Kubernetes Service (EKS) versions with extended support. For more information, see [Compatibility Matrix Platform Pricing](https://www.replicated.com/matrix/pricing) on the Replicated website.
+
+## v2024.02.07-7
+
+Released on February 7, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-07-7}
+* Custom Metrics chart tooltip displays two digits for the minutes field. Also adds GMT TZ for clarity.
+
+## v2024.02.05-1
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-1}
+* Adds status indicator to Customer rows on the **Customers** page Hybrid view.
+* Adds entitlement badges to Customer rows on the **Customers** page Hybrid view.
+
+## v2024.02.05-0
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-0}
+* Label and comment on support cases with End Of Life (EOL) addons in Installer specs pinned to channels.
+
+## v2024.02.01-4
+
+Released on February 1, 2024
+
+### Improvements {#improvements-v2024-02-01-4}
+* Improves the display of large quantities of Custom Metrics on the **Instance Reporting** page.
+
 ## v2024.01.29-0
 
 Released on January 29, 2024

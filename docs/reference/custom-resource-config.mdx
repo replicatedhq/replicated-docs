@@ -327,8 +327,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Recommended tag for the config item in the admin console.</p>
-    </td>
+    <td><p>Displays a Recommended tag for the config item in the admin console.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -351,8 +350,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Required tag for the config item in the admin console. A required item prevents the application from starting until it has a value.</p>
-    </td>
+    <td><p>Displays a Required tag for the config item in the admin console. A required item prevents the application from starting until it has a value.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -396,8 +394,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
     <th>Description</th>
     <td>
       <p>Each item has a <code>type</code> property that defines the type of user input accepted by the field.</p>
-      <p>The <code>type</code> property supports the following values: <ItemTypes/>
-      </p>
+      <p>The <code>type</code> property supports the following values: <ItemTypes/></p>
       <p>For information about each type, see <a href="#item-types">Item Types</a>.</p>
     </td>
   </tr>

@@ -138,9 +138,9 @@ The following table lists the data fields that can be included in the customers 
         <td>The feature the customer has enabled - GitOps</td>
     </tr>
     <tr>
-        <td>customer_is_helmvm_download_enabled</td>
+        <td>customer_is_embedded_cluster_download_enabled</td>
         <td>boolean</td>
-        <td>The feature the customer has enabled - HelmVM</td>
+        <td>The feature the customer has enabled - Embedded Cluster</td>
     </tr>
     <tr>
         <td>customer_is_identity_service_supported</td>

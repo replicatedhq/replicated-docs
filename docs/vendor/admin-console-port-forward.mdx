@@ -77,7 +77,7 @@ kubectl kots admin-console --namespace gitea
 
 ### Admin Console
 
-Users can access port-forwarded services by clicking a link on the admin console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Add a Link on the Admin Console Dashboard](#link) above. 
+Users can access port-forwarded services by clicking a link on the admin console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links). 
 
 The following example shows an **Open App** button on the dashboard of the admin console for an application named Gitea:
 
@@ -97,77 +97,45 @@ To test this example:
 
 1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the vendor portal. Promote to the channel that you use for internal testing.
 
-  For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-  <Tabs>
-<TabItem value="service" label="example-service.yaml" default>
-<h5>Description</h5>
-<p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
-<p>As shown below, both the ClusterIP and NodePort <code>nginx</code> services are exposed on port 80.</p>
-<h5>YAML</h5>
-<NginxService/>
-</TabItem>
-<TabItem value="deployment" label="example-deployment.yaml" default>
-<h5>Description</h5>
-<p>A basic Deployment specification for the NGINX application.</p>
-<h5>YAML</h5>
-<NginxDeployment/>
-</TabItem>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<p>The KOTS Application custom resource below adds port 80 to the KOTS port forward tunnel and maps port 8888 on the local machine. The specification also includes <code>applicationUrl: "http://nginx"</code> so that a link to the service can be added to the admin console dashboard.</p>
-<h5>YAML</h5>
-<NginxKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the admin console dashboard. The label to be used for the link in the admin console is "Open App".</p>
-<h5>YAML</h5>
-<NginxK8sApp/>
-</TabItem>
-</Tabs>
+    <Tabs>
+    <TabItem value="service" label="example-service.yaml" default>
+    <h5>Description</h5>
+    <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
+    <p>As shown below, both the ClusterIP and NodePort <code>nginx</code> services are exposed on port 80.</p>
+    <h5>YAML</h5>
+    <NginxService/>
+    </TabItem>
+    <TabItem value="deployment" label="example-deployment.yaml" default>
+    <h5>Description</h5>
+    <p>A basic Deployment specification for the NGINX application.</p>
+    <h5>YAML</h5>
+    <NginxDeployment/>
+    </TabItem>
+    <TabItem value="kots-app" label="kots-app.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS Application custom resource below adds port 80 to the KOTS port forward tunnel and maps port 8888 on the local machine. The specification also includes <code>applicationUrl: "http://nginx"</code> so that a link to the service can be added to the admin console dashboard.</p>
+    <h5>YAML</h5>
+    <NginxKotsApp/>
+    </TabItem>
+    <TabItem value="k8s-app" label="k8s-app.yaml" default>
+    <h5>Description</h5>
+    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the admin console dashboard. The label to be used for the link in the admin console is "Open App".</p>
+    <h5>YAML</h5>
+    <NginxK8sApp/>
+    </TabItem>
+    </Tabs>
 
-1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](enterprise/installing-existing-cluster).
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
 1. If there is not already a Kubernetes installer promoted to the channel, add a Kubernetes installer to the release to support embedded cluster installs. For more information, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
-   **Example:**
+1. Install the release into an embedded cluster on a VM and confirm that the service was exposed successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](/enterprise/installing-embedded-cluster).
 
-   ```yaml
-   apiVersion: cluster.kurl.sh/v1beta1
-  kind: Installer
-  metadata:
-    name: ""
-   spec:
-    containerd:
-      version: 1.6.24
-    contour:
-      version: 1.27.0
-    ekco:
-      version: 0.28.3
-    flannel:
-      version: 0.23.0
-    kotsadm:
-      version: 1.103.3
-    kubernetes:
-      version: 1.27.6
-    minio:
-      version: 2023-11-01T18-37-25Z
-    openebs:
-      isLocalPVEnabled: true
-      localPVStorageClassName: local
-      version: 3.9.0
-    prometheus:
-      version: 0.68.0-51.0.0
-    registry:
-      version: 2.8.3
-   ```
-
-1. Install the release into an embedded cluster on a VM and confirm that the service was exposed successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Embedded Clusters](enterprise/installing-embedded-cluster).
-
-  :::note
-  Ensure that the VM where you install allows HTTP traffic.
-  :::
+    :::note
+    Ensure that the VM where you install allows HTTP traffic.
+    :::
 
 ### Bitnami Gitea Helm Chart with LoadBalancer Service
 
@@ -176,35 +144,36 @@ This example provides a KOTS Application custom resource and Kubernetes Applicat
 To test this example:
 1. Pull version 1.0.6 of the Gitea Helm chart from Bitnami:
 
-   ```
-   helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
-   ```
+    ```
+    helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
+    ```
+
 1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the vendor portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing.
 
-  For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-  <Tabs>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<p>Based on the <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/templates/svc.yaml">templates/svc.yaml</a> and <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">values.yaml</a> files in the Gitea Helm chart, the following KOTS Application custom resource adds port 3000 to the port forward tunnel and maps local port 8888. Port 3000 is the container port of the Pod where the <code>gitea</code> service runs.</p>
-<h5>YAML</h5>
-<GiteaKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the admin console dashboard. The label to be used for the link in the admin console is "Open App".</p>
-<h5>YAML</h5>
-<GiteaK8sApp/>
-</TabItem>
-<TabItem value="helmchart" label="gitea.yaml" default>
-<h5>Description</h5>
-<p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
-<h5>YAML</h5>
-<GiteaHelmChart/>
-</TabItem>
-</Tabs>
+    <Tabs>
+    <TabItem value="kots-app" label="kots-app.yaml" default>
+    <h5>Description</h5>
+    <p>Based on the <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/templates/svc.yaml">templates/svc.yaml</a> and <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">values.yaml</a> files in the Gitea Helm chart, the following KOTS Application custom resource adds port 3000 to the port forward tunnel and maps local port 8888. Port 3000 is the container port of the Pod where the <code>gitea</code> service runs.</p>
+    <h5>YAML</h5>
+    <GiteaKotsApp/>
+    </TabItem>
+    <TabItem value="k8s-app" label="k8s-app.yaml" default>
+    <h5>Description</h5>
+    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the admin console dashboard. The label to be used for the link in the admin console is "Open App".</p>
+    <h5>YAML</h5>
+    <GiteaK8sApp/>
+    </TabItem>
+    <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <h5>YAML</h5>
+    <GiteaHelmChart/>
+    </TabItem>
+    </Tabs>
 
-1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](enterprise/installing-existing-cluster).
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the admin console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
 ## Additional Resources and Examples
 

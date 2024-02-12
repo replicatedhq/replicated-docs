@@ -12,7 +12,7 @@ Replicated recommends that application vendors use one the following external pr
 * DockerHub
 * GitHub Container Registry
 * Google Artifact Registry
-* Google Container Registry
+* Google Container Registry (Deprecated)
 * Quay.io
 
 These registries have been tested for compatibility with KOTS.
@@ -47,8 +47,8 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
-          <td>Enter the host name for the registry.</td>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as 123456689.dkr.ecr.us-east-1.amazonaws.com</td>
         </tr>
         <tr>
           <td>Access Key ID</td>
@@ -68,7 +68,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as index.docker.io.</td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry.</td>
         </tr>
         <tr>
@@ -106,15 +106,39 @@ To add an external registry using the vendor portal:
         </tr>
       </table>
 
-    * **Google Container Registry**
-
+    * **Google Artifact Registry**
       <table>
         <tr>
           <th width="30%">Field</th>
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as <br/>us-east1-docker.pkg.dev</td>
+        </tr>   
+        <tr>
+          <td>Auth Type</td>
+          <td>Select the authentication type for a Google Cloud Platform account that has pull access to the registry.</td>
+        </tr>   
+        <tr>
+          <td>Service Account JSON Key or Token</td>         
+          <td>
+          <p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p> 
+          <p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p>
+          </td>
+        </tr>
+      </table>   
+    * **Google Container Registry**
+      :::important
+      Google Container Registry is deprecated. For more information, see <a href="https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation">Container Registry deprecation</a> in the Google documentation.
+      :::
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as gcr.io.</td>
         </tr>
         <tr>
@@ -131,7 +155,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as quay.io.</td>
         </tr>
         <tr>
@@ -148,7 +172,7 @@ To add an external registry using the vendor portal:
           <th width="70%">Instructions</th>
         </tr>
         <tr>
-          <td>Endpoint</td>
+          <td>Hostname</td>
           <td>Enter the host name for the registry, such as example.registry.com.</td>
         </tr>
         <tr>
@@ -169,19 +193,20 @@ To configure access to private images in an external registry using the replicat
 
 1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _replicated CLI_.
 
-  For example, to add a DockerHub registry:
+   For example, to add a DockerHub registry:
 
-  ```bash
-  replicated registry add dockerhub --username USERNAME \
-    --password PASSWORD
-  ```
-  Where:
-    * `USERNAME` is the username for DockerHub credentials with access to the registry.
-    * `PASSWORD` is the password for DockerHub credentials with access to the registry.
+   ```bash
+   replicated registry add dockerhub --username USERNAME \
+     --password PASSWORD
+   ```
+  
+   Where:
+   * `USERNAME` is the username for DockerHub credentials with access to the registry.
+   * `PASSWORD` is the password for DockerHub credentials with access to the registry.
 
-    :::note
-    To prevent the password from being saved in your shell history, Replicated recommends that you use the `--password-stdin` flag and entering the password when prompted.
-    :::
+   :::note
+   To prevent the password from being saved in your shell history, Replicated recommends that you use the `--password-stdin` flag and entering the password when prompted.
+   :::
 
 ## Test External Registry Credentials
 
@@ -193,6 +218,7 @@ To validate that the configured registry can pull specific images:
 replicated registry test HOSTNAME \
     --image IMAGE_NAME
 ```
+
 Where:
 * `HOSTNAME` is the name of the host, such as `index.docker.io`.
 * `IMAGE_NAME` is the name of the target image in the registry.
