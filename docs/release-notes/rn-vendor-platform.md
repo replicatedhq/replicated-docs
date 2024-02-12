@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.12-0
+
+Released on February 12, 2024
+
+### New Features {#new-features-v2024-02-12-0}
+* Add customer channel and latest release they can update to whenever support cases are raised.
+
 ## v2024.02.08-2
 
 Released on February 8, 2024
