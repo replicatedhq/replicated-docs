@@ -23,7 +23,7 @@ Released on February 12, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Bug Fixes {#bug-fixes-1-107-3}
-* Fixes an issue where the initial install flow preflight page would not be displayed if the application's preflight spec was included in a Secret or ConfigMap within the Helm chart templates.
+* Fixes an issue where the preflights page was not displayed during initial installation if the preflight spec was included in a Secret or ConfigMap in the Helm chart templates.
 
 ## 1.107.2
 
