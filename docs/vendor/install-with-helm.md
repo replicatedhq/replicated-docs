@@ -47,15 +47,12 @@ The values in the `global.replicated` field provide information about the follow
 
 ### Limitations
 
-The following limitations apply when using the Helm CLI to install applications distributed with Replicated:
-
-* Replicated does not provide an air gap bundle for Helm CLI installations into air gap environments.
-
-* Helm CLI installations do not provide access to any of the features of the Replicated KOTS installer, such as:
-  * The Replicated admin console
-  * Strict preflight checks that block installation
-  * Backup and restore with snapshots
-  * Required releases with the **Prevent this release from being skipped during upgrades** option
+Helm CLI installations do not provide access to any of the features of the Replicated KOTS installer, such as:
+* Air gap bundles for installations into air gapped environments
+* The Replicated admin console
+* Strict preflight checks that block installation
+* Backup and restore with snapshots
+* Required releases with the **Prevent this release from being skipped during upgrades** option
 
 ## Prerequisites
 
