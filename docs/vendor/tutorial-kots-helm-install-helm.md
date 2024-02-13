@@ -112,7 +112,6 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 
 ## Related Topics
 
-* [About Installations with the Helm CLI](/vendor/distributing-overview#helm)
 * [Installing with Helm](/vendor/install-with-helm)
 * [About the Replicated SDK](/vendor/replicated-sdk-overview)
 * [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)
