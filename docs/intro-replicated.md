@@ -63,7 +63,7 @@ Additionally, the Replicated proxy service grants proxy access to private applic
 
 ### Install
 
-Applications distributed with Replicated can be installed using any method, including the Helm CLI for Helm charts or any proprietary installation method already used by the ISV. Replicated also offers the Replicated KOTS installer.
+Applications distributed with Replicated can be installed using the Helm CLI or the Replicated KOTS installer. The Helm CLI supports installation of Helm charts and KOTS supports installation of Helm charts and Kubernetes manifests.
 
 <Kots/>
 
