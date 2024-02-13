@@ -31,6 +31,8 @@ To create a customer:
    <ChangeChannel/>
    :::
 
+1. For **Custom ID**, you can enter a custom ID for the customer. The custom ID is a unique identifier for the customer that you can use to track the customer in your own systems (ex: Salesforce). The custom ID is not used by Replicated for any purpose.
+
 1. For **Expiration policy**, by default, **Customer's license does not expire** is enabled. To set an expiration date for the license, enable **Customer's license has an expiration date** and specify an expiration date in the **When does this customer expire?** calendar. 
 
 1. For **Customer type**, set the customer type. Customer type is used only for reporting purposes. Customer access to your application is not affected by the type you assign to them. By default, **Trial** is selected. For more information, see [About Customer License Types](licenses-about-types).
@@ -126,5 +128,9 @@ The **Customers** page provides a search box and filters that help you find cust
 [View a larger version of this image](/images/customers-filter.png)
 
 You can filter customers based on whether they are active, by license type, and by channel name. You can filter using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time.
+
+If there is adoption rate data available for the channel that you are filtering by, you can also filter by current version, previous version, and older versions.
+
+You can also filter customers by custom ID. To filter customers by custom ID, use the search box and prepend your search term with "customId:" (ex: `customId:1234`).
 
 If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
