@@ -599,7 +599,6 @@ const sidebars = {
               items: [
                 'vendor/tutorial-preflight-helm-setup',
                 'vendor/tutorial-preflight-helm-get-chart',
-                'vendor/tutorial-preflight-helm-define-checks',
                 'vendor/tutorial-preflight-helm-add-spec',
                 'vendor/tutorial-preflight-helm-create-release',
                 'vendor/tutorial-preflight-helm-create-customer',

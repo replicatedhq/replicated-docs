@@ -1,14 +1,16 @@
-# Step 3: Add the Preflight Spec to the Chart
+# Step 2: Add a Preflight Spec to the Chart
 
-Next, add the preflight check specification to the Gitea chart as a Kubernetes Secret. Including the spec in a Secret in the templates of a Helm chart allows preflight checks to be delivered as part of the application.
+Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0. According to the Gitea installation requirements listed under [Prerequisites](https://github.com/bitnami/charts/tree/main/bitnami/gitea#prerequisites), Gitea requires Kubernetes 1.23.0 or later. 
 
-1. Move the `gitea-preflights.yaml` file to the Gitea `templates` subdirectory:
+Add the specification to the Gitea chart as a Kubernetes Secret. Including the spec in a Secret in the templates of a Helm chart allows preflight checks to be delivered as part of the application.
+
+1. In the `gitea/templates` directory, create a `gitea-preflights.yaml` file:
 
    ```
-   mv gitea-preflights.yaml templates
+   touch templates/gitea-preflights.yaml
    ```
 
-1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the preflight check specification that you created: 
+1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a preflight check specification: 
 
    ```yaml
    apiVersion: v1
@@ -36,17 +38,13 @@ Next, add the preflight check specification to the Gitea chart as a Kubernetes S
                      message: Your cluster is running the recommended version of Kubernetes.
    ```
 
-1. Package the chart to an archive:
+   This YAML defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. 
 
-   1. In the `Chart.yaml` file, add the Replicated SDK as a dependency:
+1. Update dependencies and package the chart to a `.tgz` chart archive:
 
-      <DependencyYaml/>
-
-   1. Update dependencies and package the chart to a `.tgz` chart archive:
-
-      ```bash
-      helm package . --dependency-update
-      ```       
+    ```bash
+    helm package . --dependency-update
+    ```       
 
 ## Next Step
 
