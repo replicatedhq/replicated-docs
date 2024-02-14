@@ -1,8 +1,6 @@
 # Step 2: Add a Preflight Spec to the Chart
 
-Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0. According to the Gitea installation requirements listed under [Prerequisites](https://github.com/bitnami/charts/tree/main/bitnami/gitea#prerequisites), Gitea requires Kubernetes 1.23.0 or later. 
-
-Add the specification to the Gitea chart as a Kubernetes Secret. Including the spec in a Secret in the templates of a Helm chart allows preflight checks to be delivered as part of the application.
+Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0, then add the specification to the Gitea chart as a Kubernetes Secret.
 
 1. In the `gitea/templates` directory, create a `gitea-preflights.yaml` file:
 
@@ -35,10 +33,10 @@ Add the specification to the Gitea chart as a Kubernetes Secret. Including the s
                        Your cluster is running a version of Kubernetes that is not supported and your installation will not succeed. To continue, upgrade your cluster to Kubernetes 1.23.0 or later.
                      uri: https://www.kubernetes.io
                  - pass:
-                     message: Your cluster is running the recommended version of Kubernetes.
+                     message: Your cluster is running the required version of Kubernetes.
    ```
 
-   This YAML defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. 
+   This defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. 
 
 1. Update dependencies and package the chart to a `.tgz` chart archive:
 
@@ -48,7 +46,7 @@ Add the specification to the Gitea chart as a Kubernetes Secret. Including the s
 
 ## Next Step
 
-Add the chart archive to a release.
+Add the chart archive to a release. See [Add the Chart Archive to a Release](tutorial-preflight-helm-create-release).
 
 ## Related Topics
 
