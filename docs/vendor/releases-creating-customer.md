@@ -31,7 +31,7 @@ To create a customer:
    <ChangeChannel/>
    :::
 
-1. For **Custom ID**, you can enter a custom ID for the customer. This custom ID is an identifier for the customer that you can use to track the customer in your own systems (ex: Salesforce). This custom ID does not need to be unique. The custom ID is not used by Replicated for any purpose.
+1. For **Custom ID**, you can enter a custom ID for the customer. Setting a custom ID allows you to easily tie this Replicated customer record to your own internal customer data systems during data exports. We suggest setting an alphanumeric value such as your Salesforce ID, Hubspot ID, etc for that customer. Replicated does not require the custom ID to be unique. The custom ID is for vendor data reconciliation purposes, and is not used by Replicated for any functionality purposes.
 
 1. For **Expiration policy**, by default, **Customer's license does not expire** is enabled. To set an expiration date for the license, enable **Customer's license has an expiration date** and specify an expiration date in the **When does this customer expire?** calendar. 
 
