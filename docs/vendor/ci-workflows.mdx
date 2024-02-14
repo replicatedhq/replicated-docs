@@ -80,9 +80,9 @@ This example development workflow does _not_ create releases or customers in the
 
 The following describes the recommended steps to include in a development workflow using the compatibility matrix:
 
-1. [Define workflow triggers](#dev-cmx-triggers)
-1. [Build source code](#dev-cmx-build)
-1. [Create cluster matrix, deploy, and test](#dev-cmx-deploy)
+1. [Define workflow triggers](#dev-triggers)
+1. [Build source code](#dev-build)
+1. [Create cluster matrix, deploy, and test](#dev-deploy)
 
 ### Define workflow triggers {#dev-triggers}
 
@@ -110,7 +110,7 @@ jobs:
 <Build/>
 
 
-### Create cluster matrix, deploy, and test {#dev-cmx-deploy}
+### Create cluster matrix, deploy, and test {#dev-deploy}
 
 Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
 
@@ -287,4 +287,4 @@ Consider the following requirements and recommendations:
 
 Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
 
-See the [channel delete](/reference/replicated-cli-channel-delete) replicated CLI command and the [customer/{customer_id}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) endpoint in the Vendor API v3 documentation. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.
+See the [channel delete](/reference/replicated-cli-channel-delete) replicated CLI command and the [customer/\{customer_id\}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) endpoint in the Vendor API v3 documentation. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.

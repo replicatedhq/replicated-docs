@@ -148,22 +148,23 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the Helm chart. Skip the step to run preflight checks.
 
-     <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
+      <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
      
-     [View a larger image](/images/helm-install-instructions-no-preflights.png)
+      [View a larger image](/images/helm-install-instructions-no-preflights.png)
 
-     :::note
-     Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
-     ::: 
+      :::note
+      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
+      ::: 
 
    1. After you install, in the vendor portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
 
-     **Example**: 
+      **Example**: 
 
-     ![Customers page with one customer that has an active isntance](/images/onboarding-view-telemetry.png)
-     [View a larger image](/images/onboarding-view-telemetry.png)
+      ![Customers page with one customer that has an active isntance](/images/onboarding-view-telemetry.png)
+      
+      [View a larger image](/images/onboarding-view-telemetry.png)
    
-     This instance telemetry is automatically collected and sent back to the vendor portal when the Replicated SDK is installed alongside the application. For more information, see [Customer Reporting and Instance Insights](/vendor/replicated-sdk-overview#insights) in _About the Replicated SDK_.
+      This instance telemetry is automatically collected and sent back to the vendor portal when the Replicated SDK is installed alongside the application. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
    1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
 
@@ -261,8 +262,7 @@ This section provides a checklist of key Replicated features to integrate with y
       <p>Add checks for customer license entitlements before installation.</p>
       <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
     </td>
-    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a>
-    </td>
+    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a></td>
   </tr>
   <tr>
   <td>Runtime license entitlement checks with the SDK API</td>
@@ -283,8 +283,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>License field signature validation</td>
     <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
     <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
-    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a>
-    </td>
+    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a></td>
   </tr>
   <tr>
     <td>Custom metrics with the SDK API</td>
@@ -299,16 +298,17 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Custom domains</td>
-    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
-    <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
+    <td>
+      <p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
+      <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
     </td>
-    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
-    </td>
+    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a></td>
   </tr>
   <tr>
     <td>Integrate with CI/CD</td>
-    <td><p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated compatibility matrix, installing releases in test environments, and more.</p>
-    <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using replicated CLI commands or Replicated GitHub Actions.</p>
+    <td>
+      <p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated compatibility matrix, installing releases in test environments, and more.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using replicated CLI commands or Replicated GitHub Actions.</p>
     </td>
     <td>
      <ul>
@@ -334,14 +334,15 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Replicated KOTS</td>
-    <td><p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
-    <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
+    <td>
+      <p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
     <td>
-    <ul>
-    <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
-    <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
-    </ul>
+      <ul>
+        <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
+        <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
+      </ul>
     </td>
   </tr>
 </table>

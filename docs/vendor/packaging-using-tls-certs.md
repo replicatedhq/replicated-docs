@@ -45,52 +45,52 @@ To use the `kotsadm-tls` secret in a Deployment resource:
 
 1. In the Deployment YAML file, configure SSL for volumeMounts and volumes, and add the `kotsadm-tls` secret to volumes:
 
-  **Example:**
+   **Example:**
 
-  ```yaml
-  apiVersion:  apps/v1
-  kind: Deployment
-  metadata:
-    name: nginx
-  spec:
-    template:
-      spec:
-        containers:
-          volumeMounts:
-            - mountPath: "/etc/nginx/ssl"
-              name: nginx-ssl
-              readOnly: true
-        volumes:
-          - name: nginx-ssl
-            secret:
-              secretName: kotsadm-tls
-  ```
+   ```yaml
+   apiVersion:  apps/v1
+   kind: Deployment
+   metadata:
+     name: nginx
+   spec:
+     template:
+       spec:
+         containers:
+           volumeMounts:
+             - mountPath: "/etc/nginx/ssl"
+               name: nginx-ssl
+               readOnly: true
+         volumes:
+           - name: nginx-ssl
+             secret:
+               secretName: kotsadm-tls
+   ```
 
 1. Deploy the release, and then verify the pod deployment using the `kubectl exec` command:
 
-  **Example:**
+   **Example:**
 
-  ```shell
-  $ export POD_NAME=nginx-<hash>
-  $ kubectl exec -it ${POD_NAME} bash
-  ```
+   ```shell
+   export POD_NAME=nginx-<hash>
+   kubectl exec -it ${POD_NAME} bash
+   ```
 
 1. Run the `ls` and `cat` commands to verify that the certificate and key were deployed to the specified volumeMount:
 
-  **Example:**
+   **Example:**
 
-  ```shell
-  $ ls /etc/nginx/ssl
-  tls.crt tls.key
+   ```shell
+   $ ls /etc/nginx/ssl
+   tls.crt tls.key
 
-  $ cat /etc/nginx/ssl/tls.crt
-  -----BEGIN CERTIFICATE-----
-  MIID8zCCAtugAwIBAgIUZF+NWHnpJCt2R1rDUhYjwgVv72UwDQYJKoZIhvcNAQEL
+   $ cat /etc/nginx/ssl/tls.crt
+   -----BEGIN CERTIFICATE-----
+   MIID8zCCAtugAwIBAgIUZF+NWHnpJCt2R1rDUhYjwgVv72UwDQYJKoZIhvcNAQEL
 
-  $ cat /etc/nginx/ssl/tls.key
-  -----BEGIN PRIVATE KEY-----
-  MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyiGNuHw2LY3Rv
-  ```
+   $ cat /etc/nginx/ssl/tls.key
+   -----BEGIN PRIVATE KEY-----
+   MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyiGNuHw2LY3Rv
+   ```
 
 ### Use TLS in an Ingress Resource
 

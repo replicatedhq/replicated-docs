@@ -2,7 +2,6 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
-import KotsHelmChannels from "../partials/releases/_kots-helm-release-promotion.mdx"
 import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Channels and Releases
@@ -79,9 +78,19 @@ Every customer license file that you create is assigned to a channel. Each time 
 
 <KotsEntitlement/>
 
-Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
+To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following release promotion rules:
 
-<KotsHelmChannels/>
+* A release must contain the required KOTS manifests to be promoted to a channel where one or more KOTS customers are assigned.
+
+  <img width="400px" alt="Release without the required manifests blocked from promotion" src="/images/release-promotion-kots-customers.png"/>
+  
+  [View a larger version of this image](/images/release-promotion-kots-customers.png)
+
+* A release must contain at least one Helm chart to be promoted to a channel where one or more Helm CLI-only customers are assigned.
+
+  <img width="400px" src="/images/release-promotion-helm-customers.png" alt="Release with no helm charts blocked from being promoted"/>
+  
+  [View a larger version of this image](/images/release-promotion-helm-customers.png)
 
 ### Properties
 
@@ -164,7 +173,7 @@ Then, you enable semantic versioning on that channel. The admin console sequence
 - xyz
 - 2.0.0
 
-For information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](/enterprise/updating-apps#checking-for-updates).
+For information about how enterprise application users check for application updates in the admin console, see [Updating an Application](/enterprise/updating-apps).
 
 ### Semantic Versioning
 
@@ -247,7 +256,7 @@ You can do the following tasks on the **Draft** page:
 
 - Edit the YAML files by selecting a file in the directory and making changes in the YAML editor.
 
-- In the **Help** or **Config help** pane, view the linter for any errors. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link. For more information, see [Using the Linter](/reference/linter#using-the-linter) in _Linter Rules_.
+- In the **Help** or **Config help** pane, view the linter for any errors. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link. For more information, see [Linter Rules](/reference/linter).
 
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](config-screen-about).
 

@@ -21,8 +21,8 @@ To change your admin console password:
 
 1. Click **Change Password**.
 
-  If there are any issues with changing the password, an error message displays the specific problem.
+   If there are any issues with changing the password, an error message displays the specific problem.
 
-  When the password change succeeds, the current session closes and you are redirected to the Log In page.
+   When the password change succeeds, the current session closes and you are redirected to the Log In page.
 
 1. Log in with the new password.

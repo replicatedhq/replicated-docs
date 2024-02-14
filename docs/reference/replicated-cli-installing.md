@@ -64,17 +64,17 @@ To install and run the latest replicated CLI on Linux:
 
 1. Run the following command:
 
-  ```shell
-  curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-  | grep "browser_download_url.*linux_amd64.tar.gz" \
-  | cut -d : -f 2,3 \
-  | tr -d \" \
-  | wget -O replicated.tar.gz -qi -
-  tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-  mv replicated /usr/local/bin/replicated
-  ```
+    ```shell
+    curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+    | grep "browser_download_url.*linux_amd64.tar.gz" \
+    | cut -d : -f 2,3 \
+    | tr -d \" \
+    | wget -O replicated.tar.gz -qi -
+    tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+    mv replicated /usr/local/bin/replicated
+    ```
 
-  <Sudo/>
+    <Sudo/>
 
 1. <Verify/>
 
@@ -94,28 +94,28 @@ To install and run the latest replicated CLI in Docker environments:
 
 1. Get the latest replicated CLI installation files from the [replicatedhq/replicated repository](https://github.com/replicatedhq/replicated/releases) on GitHub.
 
-  Download and install the files. For simplicity, the usage in the next step is represented assuming that the CLI is downloaded and installed to the desktop.
+    Download and install the files. For simplicity, the usage in the next step is represented assuming that the CLI is downloaded and installed to the desktop.
 
 1. Authorize the replicated CLI:
 
-   - Through a Docker container:
+     - Through a Docker container:
 
-    ```shell
-    docker run \
-      -e REPLICATED_API_TOKEN=$TOKEN \
-      replicated/vendor-cli --help
-    ```
-    Replace `TOKEN` with your API token.
+        ```shell
+        docker run \
+          -e REPLICATED_API_TOKEN=$TOKEN \
+          replicated/vendor-cli --help
+        ```
+        Replace `TOKEN` with your API token.
 
-   - On Windows:
+     - On Windows:
 
-    ```dos
-    docker.exe run \
-      -e REPLICATED_API_TOKEN=%TOKEN% \
-      replicated/vendor-cli --help
-    ```
+        ```dos
+        docker.exe run \
+          -e REPLICATED_API_TOKEN=%TOKEN% \
+          replicated/vendor-cli --help
+        ```
 
-    Replace `TOKEN` with your API token.
+        Replace `TOKEN` with your API token.
 
   For more information about the `docker run` command, see [docker run](https://docs.docker.com/engine/reference/commandline/run/) in the Docker documentation.  
 
@@ -145,17 +145,17 @@ To set the `REPLICATED_API_TOKEN` environment variable:
 
     * **MacOs or Linux**:
 
-     ```
-     export REPLICATED_API_TOKEN=TOKEN
-     ```
+      ```
+      export REPLICATED_API_TOKEN=TOKEN
+      ```
 
     * **Docker**:
 
-     ```
-     docker run \
-      -e REPLICATED_API_TOKEN=$TOKEN \
-      replicated/vendor-cli --help
-     ```
+      ```
+      docker run \
+       -e REPLICATED_API_TOKEN=$TOKEN \
+       replicated/vendor-cli --help
+      ```
 
     * **Windows**:
 
@@ -175,17 +175,17 @@ To set the `REPLICATED_APP` environment variable:
 
     * **MacOs or Linux**:
 
-     ```
-     export REPLICATED_APP=APP_NAME
-     ```
+      ```
+      export REPLICATED_APP=APP_NAME
+      ```
 
     * **Docker**:
 
-     ```
-     docker run \
-        -e REPLICATED_APP=$APP_NAME
-        replicated/vendor-cli --help
-     ```
+      ```
+      docker run \
+         -e REPLICATED_APP=$APP_NAME
+         replicated/vendor-cli --help
+      ```
 
     * **Windows**:
 

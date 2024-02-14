@@ -8,6 +8,228 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.09-3
+
+Released on February 9, 2024
+
+### New Features {#new-features-v2024-02-09-3}
+* Adds support for Google Artifact Registry.
+
+### Improvements {#improvements-v2024-02-09-3}
+* Adds pagination to the list of customer instances on the customer details page.
+
+### Bug Fixes {#bug-fixes-v2024-02-09-3}
+* pageSize and offset properties are no longer required for the `/v3/customers/search` Vendor API endpoint.  API consumers must provide at least one inclusion criteria for a valid customer search.
+
+## v2024.02.08-2
+
+Released on February 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-08-2}
+* Replaces GMT timezone value with UTC label.
+
+## v2024.02.08-1
+
+Released on February 8, 2024
+
+### New Features {#new-features-v2024-02-08-1}
+* Updates the pricing for compatibiliy matrix clusters that use Amazon Elastic Kubernetes Service (EKS) versions with extended support. For more information, see [Compatibility Matrix Platform Pricing](https://www.replicated.com/matrix/pricing) on the Replicated website.
+
+## v2024.02.07-7
+
+Released on February 7, 2024
+
+### Bug Fixes {#bug-fixes-v2024-02-07-7}
+* Custom Metrics chart tooltip displays two digits for the minutes field. Also adds GMT TZ for clarity.
+
+## v2024.02.05-1
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-1}
+* Adds status indicator to Customer rows on the **Customers** page Hybrid view.
+* Adds entitlement badges to Customer rows on the **Customers** page Hybrid view.
+
+## v2024.02.05-0
+
+Released on February 5, 2024
+
+### New Features {#new-features-v2024-02-05-0}
+* Label and comment on support cases with End Of Life (EOL) addons in Installer specs pinned to channels.
+
+## v2024.02.01-4
+
+Released on February 1, 2024
+
+### Improvements {#improvements-v2024-02-01-4}
+* Improves the display of large quantities of Custom Metrics on the **Instance Reporting** page.
+
+## v2024.01.29-0
+
+Released on January 29, 2024
+
+### Improvements {#improvements-v2024-01-29-0}
+* Adds link to documentation for updating team member email addresses.
+
+## v2024.01.26-3
+
+Released on January 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-26-3}
+* Display accurate active instance count on the **Customers** page.
+
+## v2024.01.25-4
+
+Released on January 25, 2024
+
+### New Features {#new-features-v2024-01-25-4}
+* Adds ability to filter customers by channel version on the **Customers** page.
+* Adds links to filter customers by adopted version from the **Channels** page.
+
+## v2024.01.25-0
+
+Released on January 25, 2024
+
+### Improvements {#improvements-v2024-01-25-0}
+* Adds more helpful messaging on the **Support Bundle Analysis** page if your bundle does not contain an instance ID.
+
+## v2024.01.23-1
+
+Released on January 23, 2024
+
+### Improvements {#improvements-v2024-01-23-1}
+* Application release information is extracted from an attached support bundle and displayed in the Github support case for better reference.
+
+## v2024.01.19-1
+
+Released on January 19, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-19-1}
+* Adds the ability to scroll on the **License Fields** page.
+
+
+## v2024.01.18-3
+
+Released on January 18, 2024
+
+### Improvements {#improvements-v2024-01-18-3}
+* Displays air gap build status on the **Channels** page.
+
+## v2024.01.18-2
+
+Released on January 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-18-2}
+* Instances CSV export shows relevant `.airgap` bundle downloaded timestamp, channel_id, and channel_sequence data.
+
+## v2024.01.17-1
+
+Released on January 17, 2024
+
+### New Features {#new-features-v2024-01-17-1}
+* Adds support to the compatibility matrix for running Openshift clusters with multiple nodes.
+
+## v2024.01.11-1
+
+Released on January 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-11-1}
+* Fixes bug in the **Customers** page search feature, where it would not display the ‘not found’ state if no results were found.
+
+## v2024.01.10-2
+
+Released on January 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-10-2}
+* Adds an error state for the **Support Bundle Analysis** page if there is an invalid bundle slug in the URL.
+
+## v2024.01.10-1
+
+Released on January 10, 2024
+
+### Improvements {#improvements-v2024-01-10-1}
+* Adds pagination to the **Kubernetes Installers* page.
+
+## v2024.01.10-0
+
+Released on January 10, 2024
+
+### Improvements {#improvements-v2024-01-10-0}
+* Improve refetching on **Customers** page.
+
+## v2024.01.09-4
+
+Released on January 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-09-4}
+* Fixes the install links on the **Channels** page for Native applications.
+
+## v2024.01.09-3
+
+Released on January 9, 2024
+
+### Improvements {#improvements-v2024-01-09-3}
+* Adds pagination for the **Customers** page table view.
+
+## v2024.01.08-6
+
+Released on January 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-08-6}
+* Fixes back button behavior when navigating to the **Customers** page from a link on the **Channels** page.
+
+## v2024.01.08-5
+
+Released on January 8, 2024
+
+### Improvements {#improvements-v2024-01-08-5}
+* Adds an 'Add support bundle' button the the **Customer Support Bundles** page.
+* Adds an error state when user visits an invalid release.
+* Simplifies the search design on the **Troubleshoot** pages.
+* Adds an empty state when there are no search results on the **Troubleshoot** pages.
+* Persists the search query and shows correct results when switching between the application-level **Troubleshoot** page and the top-level **Troubleshoot** page.
+
+### Bug Fixes {#bug-fixes-v2024-01-08-5}
+* Fixes bug where the search box would disappear on the top-level **Troubleshoot** page if the query returned no results.
+
+## v2024.01.08-1
+
+Released on January 8, 2024
+
+### New Features {#new-features-v2024-01-08-1}
+* Adds both TTL and Duration to the **Cluster History** page.
+* Fixes sort by TTL and sort by duration to work with paginated results.
+* Adds filter by Kubernetes distribution to the **Cluster History** page.
+* Adds filter by Cost to the **Cluster History** page.
+* Adds filter by Node Count to the **Cluster History** page.
+
+## v2024.01.08-0
+
+Released on January 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-01-08-0}
+* Fixes a bug where the support bundle and customer name would not be prefilled on the support request form if you navigated there from one of the "Submit support ticket" links on the **Troubleshoot** or **Dashboard** pages.
+
+## v2024.01.04-2
+
+Released on January 4, 2024
+
+### Improvements {#improvements-v2024-01-04-2}
+* Adds ability to edit instance name on the **Customers** page.
+
+### Bug Fixes {#bug-fixes-v2024-01-04-2}
+* Shows an error state when you visit a customer page with an invalid app slug or customer ID in the URL.
+
+## v2024.01.03-3
+
+Released on January 3, 2024
+
+### Improvements {#improvements-v2024-01-03-3}
+* Improves the wording and styling of the Adoption Rate section of the channels on the **Channels** page.
+
+### Bug Fixes {#bug-fixes-v2024-01-03-3}
+* Fixes the filtering for the active/inactive customer links on the **Channels** page.
+
 ## v2024.01.03-2
 
 Released on January 3, 2024

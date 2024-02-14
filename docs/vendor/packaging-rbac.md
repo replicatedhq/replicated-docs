@@ -76,7 +76,7 @@ To enable namespace-scoped RBAC permissions for KOTS, specify one of the followi
 
 * `requireMinimalRBACPrivileges`: Set to `true` to require that all installations to existing clusters use namespace-scoped access. When `requireMinimalRBACPrivileges` is `true`, all installations use namespace-scoped RBAC automatically and users do not pass the `--use-minimal-rbac` flag.  
 
-For more information about these options, see [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireMinimalRBACPrivileges) and [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportMinimalRBACPrivileges) in _Application_.
+For more information about these options, see [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireminimalrbacprivileges) and [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportminimalrbacprivileges) in _Application_.
 
 ### About Installing with Minimal RBAC
 
@@ -108,7 +108,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
    In non-headless installations in air gap environments, KOTS does not have access to the application's `.airgap` package during installation. This means that KOTS does not have the information required to determine whether namespace-scoped access is needed, so it defaults to the more permissive, default cluster-scoped RBAC policy.
 
-   For more information about how to do headless installations in air gap environments, see [Installing in an Air Gap Environment](/enterprise/installing-existing-cluster-automation#installing-in-an-air-gap-environment) in _Using Automation to Install in an Existing Cluster_.
+   For more information about how to do headless installations in air gap environments, see [Air Gap Existing Cluster](/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster) in _Installing with Automation_.
 
 * **Changing RBAC permissions for installed instances**: The RBAC permissions for KOTS are set during its initial installation. KOTS runs using the assumed identity and cannot change its own authorization. When you update your application to add or remove the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in the Application custom resource, the RBAC permissions for KOTS are affected only for new installations. Existing KOTS installations continue to run with their current RBAC permissions.
 

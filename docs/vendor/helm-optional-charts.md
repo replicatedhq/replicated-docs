@@ -29,45 +29,45 @@ To start, define the admin console Config page that gives the user a choice of "
 
 1. In the Config custom resource manifest file in the release, add the following YAML to create the "Embedded Postgres" or "External Postgres" configuration options:
 
-  ```yaml
-  apiVersion: kots.io/v1beta1
-  kind: Config
-  metadata:
-    name: example-application
-  spec:
-    groups:
-      - name: database
-        title: Database
-        description: Database Options
-        items:
-          - name: postgres_type
-            type: select_one
-            title: Postgres
-            default: embedded_postgres
-            items:
-              - name: embedded_postgres
-                title: Embedded Postgres
-              - name: external_postgres
-                title: External Postgres
-          - name: embedded_postgres_password
-            type: password
-            value: "{{repl RandomString 32}}"
-            hidden: true
-          - name: external_postgres_uri
-            type: text
-            title: External Postgres Connection String
-            help_text: Connection string for a Postgres 10.x server
-            when: '{{repl ConfigOptionEquals "postgres_type" "external_postgres"}}'
-  ```
+    ```yaml
+    apiVersion: kots.io/v1beta1
+    kind: Config
+    metadata:
+      name: example-application
+    spec:
+      groups:
+        - name: database
+          title: Database
+          description: Database Options
+          items:
+            - name: postgres_type
+              type: select_one
+              title: Postgres
+              default: embedded_postgres
+              items:
+                - name: embedded_postgres
+                  title: Embedded Postgres
+                - name: external_postgres
+                  title: External Postgres
+            - name: embedded_postgres_password
+              type: password
+              value: "{{repl RandomString 32}}"
+              hidden: true
+            - name: external_postgres_uri
+              type: text
+              title: External Postgres Connection String
+              help_text: Connection string for a Postgres 10.x server
+              when: '{{repl ConfigOptionEquals "postgres_type" "external_postgres"}}'
+    ```
 
-  The YAML above does the following:
+    The YAML above does the following:
     * Creates a `select_one` field with "Embedded Postgres" or "External Postgres" options
     * Uses the Replicated RandomString template function to generate a unique default password for the embedded Postgres instance at installation time
     * Creates fields for the Postgres password and connection string, if the user selects the External Postgres option
 
-  The following shows how this Config custom resource manifest file displays on the admin console Config page:
+    The following shows how this Config custom resource manifest file displays on the admin console Config page:
 
-  ![Postgres Config Screen](/images/postgres-config-screen.gif)
+    ![Postgres Config Screen](/images/postgres-config-screen.gif)
 
 ### Step 2: Create a Secret for Postgres
 
@@ -77,27 +77,27 @@ Define a Secret for Postgres that renders differently if the user selects the Em
 
 1. In the release, create a Secret file and add the following YAML:
 
-  ```yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: postgresql-secret
-  stringData:
-    uri: postgres://username:password@postgresql:5432/database?sslmode=disable
-  ```   
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: postgresql-secret
+    stringData:
+      uri: postgres://username:password@postgresql:5432/database?sslmode=disable
+    ```   
 
 1. Edit the `uri` field in the Secret to add a conditional statement that renders either a connection string to the embedded Postgres chart or to the user supplied instance:
 
-  ```yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: postgresql-secret
-  stringData:
-    uri: repl{{ if ConfigOptionEquals "postgres_type" "embedded_postgres" }}postgres://myapplication:repl{{ ConfigOption "embedded_postgres_password" }}@postgres:5432/mydatabase?sslmode=disablerepl{{ else }}repl{{ ConfigOption "external_postgres_uri" }}repl{{ end }}
-  ```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: postgresql-secret
+    stringData:
+      uri: repl{{ if ConfigOptionEquals "postgres_type" "embedded_postgres" }}postgres://myapplication:repl{{ ConfigOption "embedded_postgres_password" }}@postgres:5432/mydatabase?sslmode=disablerepl{{ else }}repl{{ ConfigOption "external_postgres_uri" }}repl{{ end }}
+    ```
 
-  As shown above, you must use a single line for the conditional statement. Optionally, you can use the Replicated Base64Encode function to pipe a string through. See [Base64Encode](/reference/template-functions-static-context#base64encode) in _Static Context_.
+    As shown above, you must use a single line for the conditional statement. Optionally, you can use the Replicated Base64Encode function to pipe a string through. See [Base64Encode](/reference/template-functions-static-context#base64encode) in _Static Context_.
 
 ### Step 3: Add the Helm Chart
 
@@ -105,14 +105,14 @@ Next, package the Helm chart and add it to the release in the vendor portal:
 
 1. Run the following commands to generate a `.tgz` package of the Helm chart:
 
-  ```
-  helm repo add bitnami https://charts.bitnami.com/bitnami
-  helm fetch bitnami/postgresql
-  ```
+    ```
+    helm repo add bitnami https://charts.bitnami.com/bitnami
+    helm fetch bitnami/postgresql
+    ```
 
 1. Drag and drop the `.tgz` file into the file tree of the release. The vendor portal automatically creates a new HelmChart custom resource named `postgresql.yaml`, which references the `.tgz` file you uploaded.
 
-   For more information about adding Helm charts to a release in the vendor portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information about adding Helm charts to a release in the vendor portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
 ### Step 4: Edit the HelmChart Custom Resource
 
@@ -120,26 +120,26 @@ Finally, edit the HelmChart custom resource:
 
 1. In the HelmChart custom resource, add a mapping to the `values` key so that it uses the password you created. Also, add an `exclude` field to specify that the Postgres Helm chart must only be included when the user selects the embedded Postgres option on the Config page:
 
-  ```yaml
-  apiVersion: kots.io/v1beta2
-  kind: HelmChart
-  metadata:
-    name: postgresql
-  spec:
-    exclude: 'repl{{ ConfigOptionEquals `postgres_type` `external_postgres` }}'
-    chart:
+    ```yaml
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
       name: postgresql
-      chartVersion: 12.1.7
+    spec:
+      exclude: 'repl{{ ConfigOptionEquals `postgres_type` `external_postgres` }}'
+      chart:
+        name: postgresql
+        chartVersion: 12.1.7
 
-    releaseName: samplechart-release-1
+      releaseName: samplechart-release-1
     
-    # values are used in the customer environment, as a pre-render step
-    # these values will be supplied to helm template
-    values:
-      auth:
-        username: username
-        password: "repl{{ ConfigOption `embedded_postgres_password` }}"
-        database: mydatabase
-  ```
+      # values are used in the customer environment, as a pre-render step
+      # these values will be supplied to helm template
+      values:
+        auth:
+          username: username
+          password: "repl{{ ConfigOption `embedded_postgres_password` }}"
+          database: mydatabase
+    ```
 
 1. Save and promote the release. Then, install the release in a development environment to test the embedded and external Postgres options. For more information, see [Installing in an Existing Cluster](/enterprise/installing-existing-cluster).

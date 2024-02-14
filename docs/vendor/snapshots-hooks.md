@@ -69,9 +69,10 @@ The following describes key fields from the example above:
 * `spec.exclude`: A common and recommended pattern for applications. The customer can choose to bring an external Postgres instance instead of running it in-cluster. The Replicated KOTS template function in `spec.exclude` evaluates to true when the user specifies the external database option in the admin console **Config** page. This means that the internal Postgres database is not included in the deployment.
 
 * `spec.values.master.podAnnotations`: Adds podAnnotations to the postgres master PodSpec. Velero backup and restore hooks are included in the podAnnotations. The following table describes the podAnnotations:
-:::note
-Run backup hooks inside the container that contains the data to back up.
-:::
+
+   :::note
+   Run backup hooks inside the container that contains the data to back up.
+   :::
 
    <table>
      <tr>

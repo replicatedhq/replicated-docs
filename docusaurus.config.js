@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+const lightTheme = themes.github;
+const darkTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -16,21 +17,19 @@ const config = {
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
   projectName: 'replicated-docs', // Usually your repo name.
   trailingSlash: false,
-
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: false,
-          // Please change this to your repo.
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
-            tag: ':::',
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
+            extendDefaults: true,
           },
         },
         googleAnalytics: {
@@ -41,12 +40,6 @@ const config = {
           trackingID: 'G-MBWBP4JW70',
           anonymizeIP: true,
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/replicatedhq/replicated-docs/edit/main/',
-        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -54,6 +47,19 @@ const config = {
     ],
   ],
 
+  scripts: [
+    {
+      src:
+        '/js/qualified.js',
+      async: false,
+    },
+    {
+      src:
+        'https://js.qualified.com/qualified.js?token=Fj948QvXpLAwjfVs',
+      async: true,
+    },
+  ],
+  
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -117,13 +123,11 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} Replicated, Inc. All Rights Reserved.
-
-`,
+        copyright: `© ${new Date().getFullYear()} Replicated, Inc. All Rights Reserved.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: lightTheme,
+        darkTheme: darkTheme,
       },
     }),
 };

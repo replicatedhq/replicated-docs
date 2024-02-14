@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.14
+
+Released on February 5, 2024
+
+### Improvements {#improvements-1-0-0-beta-14}
+* Adds `fsGroup` and `supplementalGroups` to the default PodSecurityContext for the Replicated SDK deployment.
+
 ## 1.0.0-beta.13
 
 Released on January 2, 2024

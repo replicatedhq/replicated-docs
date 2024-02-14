@@ -1,13 +1,10 @@
 # Creating and Editing Channels
 
-There are three default channels that can be edited or archived. You can also add custom channels.
+This topic describes how to create and edit channels using the Replicated vendor portal. For more information about channels, see [About Channels and Releases](releases-about).
 
-The default channels are:
-* **Stable**: The Stable channel is intended for production installations.
-* **Unstable**: The Unstable channel is intended for internal testing.
-* **Beta**: The Beta channel is intended for release candidates and early adopting customers.
+For information about creating channels with the replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
 
-For more information, see [About Channels and Releases](releases-about).
+For information about creating and managing channels with the Vendor API v3, see the [channels](https://replicated-vendor-api.readme.io/reference/createchannel) section in the Vendor API v3 documentation.
 
 ## Create a Channel
 
@@ -16,9 +13,9 @@ To create a channel:
 1. From the Replicated [vendor portal](https://vendor.replicated.com), select **Channels** from the left menu.
 1. Click **Create Channel**.
 
-  The Create a new channel dialog opens. For example:
+   The Create a new channel dialog opens. For example:
 
-  <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
+   <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
 
 1. Enter a name and description for the channel.
 1. (KOTS Only) For applications that support installation with Replicated KOTS, to enable semantic versioning on the channel if it is not enabled by default, turn on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
@@ -34,9 +31,9 @@ To edit the settings of an existing channel:
 1. In the vendor portal, select **Channels** from the left menu.
 1. Click the gear icon on the top right of the channel that you want to modify.
 
-  The Channel settings dialog opens. For example:
+   The Channel settings dialog opens. For example:
 
-  <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
+   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
 
 1. Edit the fields and click **Save**.
 

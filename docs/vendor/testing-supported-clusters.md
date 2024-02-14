@@ -56,7 +56,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.28.1, 1.28.2, 1.28.3</td>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.29.0</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -101,7 +101,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports a single node.</td>
+    <td>Supports multiple nodes for versions 4.13.0-okd and later.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -109,43 +109,13 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
         <li>OpenShift versions earlier than 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Docker Hub. For information about Docker Hub rate limiting, see <a href="https://docs.docker.com/docker-hub/download-rate-limit/">Docker Hub rate limit</a>. To increase limits, Replicated recommends that you configure an image pull secret to pull public Docker Hub images as an authenticated user. For more information about how to configure image pull secrets, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">Pull an Image from a Private Registry</a> in the Kubernetes documentation.</li>
-        <li><p>OpenShift builds take approximately 17 minutes.</p>
-            <p><Pool/></p>
-          </li>
+        <li>
+          <p>OpenShift builds take approximately 17 minutes.</p>
+          <p><Pool/></p>
+        </li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
-  </tr> 
-  <tr>
-    <th>Common Use Cases</th>
-    <td>Customer release tests</td>
-  </tr>
-</table>
-
-### HelmVM
-
-The compatibility matrix supports creating [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
-
-<table>
-  <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
-  </tr>
-  <tr>
-    <th>Supported HelmVM Version</th>
-    <td>1.27</td>
-  </tr>
-  <tr>
-    <th>Supported Instance Types</th>
-    <td>See <a href="#types">Replicated Instance Types</a></td>
-  </tr>
-  <tr>
-    <th>Nodes</th>
-    <td>Supports a single node.</td>
-  </tr>
-  <tr>
-    <th>Limitations</th>
-    <td>See <a href="testing-about#limitations">Limitations</a></td>
   </tr> 
   <tr>
     <th>Common Use Cases</th>
@@ -159,8 +129,8 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
@@ -194,12 +164,12 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24, 1.25, 1.26, 1.27, 1.28</td>
+    <td>1.23, 1.24, 1.25, 1.26, 1.27, 1.28</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -225,12 +195,12 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24, 1.25, 1.26, 1.27, 1.28</td>
+    <td>1.25, 1.26, 1.27, 1.28</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -256,8 +226,8 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -287,9 +257,9 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
 
 <table>
   <tr>
-        <th width="30%">Type</th>
-        <th width="35%">Memory (GiB)</th>
-        <th width="35%">VCPU Count</th>
+    <th width="30%">Type</th>
+    <th width="35%">Memory (GiB)</th>
+    <th width="35%">VCPU Count</th>
   </tr>
   <tr>
     <th>r1.small</th>

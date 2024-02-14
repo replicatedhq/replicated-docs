@@ -15,7 +15,9 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 ## Create and Manage Clusters
 
-This section explains how to use the compatibility matrix from the replicated CLI and the vendor portal to create and manage clusters.
+This section explains how to use the compatibility matrix to create and manage clusters with the replicated CLI or the vendor portal.
+
+For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
 ### Create Clusters
 
@@ -102,7 +104,7 @@ To create a cluster using the vendor portal:
      </tr>
      <tr>
        <td>TTL</td>
-       <td><p>Select the Time to Live (TTL) for the cluster.</p> <TTL/></td>
+       <td><p>Select the Time to Live (TTL) for the cluster.</p></td>
      </tr>
      <tr>
        <td>Disk size</td>
@@ -112,15 +114,15 @@ To create a cluster using the vendor portal:
 
 1. Click **Create cluster**.
 
-  The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
+   The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
 
-  :::note
-  If the cluster is not automatically displayed, refresh your browser window.
-  :::
+   :::note
+   If the cluster is not automatically displayed, refresh your browser window.
+   :::
 
-  <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
+   <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
 
-  [View a larger version of this image](/images/cmx-assigned-cluster.png)
+   [View a larger version of this image](/images/cmx-assigned-cluster.png)
 
 ### Prepare Clusters
 

@@ -1,5 +1,9 @@
-The `optionalValues` array supports advanced use cases where value overwrites must be dependent on a given condition evaluating to true.
+The `optionalValues` key can be used to set values in the Helm chart `values.yaml` file when a given conditional statement evaluates to true. For example, if a customer chooses to include an optional application component in their deployment, it might be necessary to include Helm chart values related to the optional component.
 
-Not all Helm charts treat `""` and missing as the same value. If you need to have a value set that is always optional, and an empty string does not provide the same functionality as "not set", use the `optionalValues` key.
+`optionalValues` includes the following properties:
 
-For more information about using `optionalValues`, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+* `optionalValues.when`: Defines a conditional statement using KOTS template functions. If `optionalValues.when` evaluates to true, then the values specified in `optionalValues` are set.
+
+* `optionalValues.recursiveMerge`: Defines how `optionalValues` is merged with `values`.
+
+* `optionalValues.values`: An array of key-value pairs.

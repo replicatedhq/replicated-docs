@@ -3,75 +3,95 @@ pagination_prev: null
 ---
 
 import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
+import Kots from "/docs/partials/kots/_kots-definition.mdx"
 
 # Introduction to Replicated
 
-This topic describes the Replicated platform, including features, installation options, and vendor platform interface options for distributing and managing your application with Replicated.
+This topic provides an introduction to working with the Replicated platform, including key features, supported application installation options, and platform interfaces.
 
-## About Replicated
+## Overview
 
-Replicated lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely install in any environment, including on-prem and air gap.
+Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
 
-The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully. 
+Replicated features are designed to support ISVs in each phase of the commercial software distribution life cycle, as shown below:
 
-### Distributing  
+![software distribution life cycle wheel](/images/software-dev-lifecycle.png)
 
-Replicated provides features for distributing and managing your application in diverse environments, including:
+[View a larger version of this image](/images/software-dev-lifecycle.png)
 
-- Use release channels and versioning for controlled customer distribution and effective management of your product lifecycle. See [About Channels and Releases](/vendor/releases-about).
-- Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments. See [About the Compatibility Matrix](/vendor/testing-about).
-- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](/vendor/releases-creating-customer).
-- Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](/vendor/custom-domains-using).
-- Use the proxy service to grant proxy access to private images without exposing registry credentials to your customers. See [About Proxying Image with Replicated](/vendor/private-images-about).
+The following describes the phases of the software distribution life cycle:
 
-### Installing
+* **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams can quickly iterate on new features.
+* **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
+* **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
+* **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
+* **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
+* **[Report](#report)**: Make more informed prioritization decisions by collecting adoption and performance data for application instances running in customer environments.
+* **[Support](#support)**: Diagnose and resolve support issues quickly.
 
-When you distribute your application with Replicated, you can install your application using the Helm CLI or Replicated installers:
+For more information about the Replicated features that support each of these phases, see the sections below.
 
-- **Helm CLI:** You can use the Helm CLI to install Helm chart-based applications. Add the recommended Replicated SDK to your Helm chart to integrate valuable Replicated features such as telemetry and licensing. Supported for online, existing cluster installations. See [About Installations with the Helm CLI](/vendor/distributing-overview#helm) in _About Distributing Applications with Replicated_.
+### Develop
 
-- **KOTS:** With a KOTS entitlement, you can use KOTS to install your application in the following environments:
+The Replicated SDK exposes an in-cluster API that can be developed against to quickly integrate and test core functionality with an application. For example, when the SDK is installed alongside an application in a customer environment, the in-cluster API can be used to send custom metrics from the instance to the Replicated vendor platform. 
 
-    - Online or air gap existing clusters
-    - Online or air gap _embedded clusters_ provisioned by Replicated kURL on a VM or bare metal server
+For more information about using the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-  For more information, see [About KOTS and kURL](intro-kots) and [About Installations with KOTS](/vendor/distributing-overview#about-installations-with-kots) in _About Distribution Applications with Replicated_.
+### Test
 
-If your application uses Helm charts, you can create a single release that supports both Helm and KOTS installations, without having to maintain separate sets of Helm charts or application manifests.
+The Replicated compatibility matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the compatibility matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
 
-### Supporting
+For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
-Use Replicated features to support your customers and application:
+### License
 
-- Quickly understand the state of a customer instance, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
-- Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
-- Provision customer-representative environments to quickly recreate and diagnose issues.
+Create customers in the Replicated vendor platform to handle licensing for your application in both online and air gap environments. For example:
+* License free trials and different tiers of product plans
+* Create and manage custom license entitlements
+* Automatically restrict access to expired accounts
+* Verify license entitlements both before installation and during runtime
 
-### Observing and Measuring
+For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
 
-Replicated provides comprehensive insights of application instances installed in customer environments:
+### Release
 
-- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data) and [Adoption Report](/vendor/customer-adoption).
+Release channels in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
 
-- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook](/vendor/team-management-slack-config) and [Configuring Instance Notifications](/vendor/instance-notifications-config).
+For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
 
-### Team Management
+Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
 
-Manage your teams in the vendor portal, such as:
+### Install
 
-- Invite and remove members. See [Managing Team Members](/vendor/team-management).
-- Manage permissions. See [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
-- Configure authentication options and enable two-factor authentication. See [Managing Google Authentication](/vendor/team-management-google-auth) and [Managing Two-Factor Authentication](/vendor/team-management-two-factor-auth).
+Applications distributed with Replicated can be installed using the Helm CLI or the Replicated KOTS installer. The Helm CLI supports installation of Helm charts and KOTS supports installation of Helm charts and Kubernetes manifests.
 
-## Interfaces
+<Kots/>
 
-This section describes the GUI, CLI, and API that vendors use to interact with the Replicated platform.
+For more information, see the [KOTS documentation](intro-kots).
+
+### Report
+
+When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated vendor platform. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+ISVs can also set up email and Slack notifications to get alerted of important instance issues or performance trends. For more information, see [Configuring Instance Notifications](/vendor/instance-notifications-config).
+
+### Support
+
+Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
+
+- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+- Provision customer-representative environments with the compatibility matrix to recreate and diagnose issues. See [About the Compatiblity Matrix](/vendor/testing-about).
+- Understand the state of an instance with access to telemetry, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
+
+## Vendor Platform Interfaces
+
+This section describes the GUI, CLI, and API that software vendors use to interact with the vendor platform.
 
 ### Vendor Portal
 
 The Replicated vendor portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
-The following shows an example of the **Reporting** page for a customer that has two active application instances:
+The following shows an example of the **Reporting** page for a customer:
 
 ![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
 

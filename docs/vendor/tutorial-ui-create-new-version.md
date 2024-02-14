@@ -10,17 +10,17 @@ To create and promote a new version of the application:
 
 1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console **Config** page:
 
-  ```yaml
-   - name: more_text
-     title: Another Text Example
-     type: text
-     value: ""
-     when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
-  ```
+    ```yaml
+    - name: more_text
+      title: Another Text Example
+      type: text
+      value: ""
+      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+    ```
 
-  The following shows the full YAML for the `kots-config.yaml` file after you add the new field:
+   The following shows the full YAML for the `kots-config.yaml` file after you add the new field:
 
-  ```yaml
+   ```yaml
    apiVersion: kots.io/v1beta1
    kind: Config
    metadata:
@@ -67,7 +67,7 @@ To create and promote a new version of the application:
          hidden: true
          value: "{{repl RandomString 40}}"
 
-   ```
+    ```
 1. Check the linter messages in the Help pane to ensure there are no errors.
 
 1. In the `example-configmap.yaml` file, copy and paste the following HTML to replace the `<body>` section:
@@ -92,7 +92,7 @@ To create and promote a new version of the application:
 
     1. Choose the Unstable channel in the Promote Release dialog, and click **Promote**.
 
-  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates.
+   Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates.
 
 ## Next Step
 

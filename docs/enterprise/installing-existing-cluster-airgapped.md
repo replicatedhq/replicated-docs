@@ -54,9 +54,9 @@ To install KOTS:
 
 1. Run the following command to confirm that the kots CLI version matches the version of the `kotsadm.tar.gz` air gap bundle that you downloaded:
 
-  ```shell
-  kubectl kots version
-  ```
+   ```shell
+   kubectl kots version
+   ```
 
 1. Run the following command to extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 

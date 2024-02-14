@@ -36,6 +36,8 @@ and preview your customer's experience.
 
 To install your application, your customer must provide a valid license file. This section describes how to download a license file for online or air gap installations so that you can share it with your customer.
 
+For information about how to download customer licenses with the Vendor API v3, see [Download a customer license file as YAML](https://replicated-vendor-api.readme.io/reference/downloadlicense) in the Vendor API v3 documentation.
+
 ### Download Online Licenses
 
 To download a license file for online installations:
@@ -51,11 +53,11 @@ To enable the air gap entitlement and download the updated license:
 
 1.  In the [vendor portal](https://vendor.replicated.com), click **[App Name] > Customer > [Customer Name]**.
 
-  ![Airgap Customers](/images/guides/kots/airgap-customers.png)
+    ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
 1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets KOTS use the `.airgap` bundle.
 
-  ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
+    ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
 
 1. Click **Download license** to download the updated air gapped enabled YAML license.
 
@@ -63,9 +65,13 @@ To enable the air gap entitlement and download the updated license:
 
 Your customers install your application using an installation command that you share. The installation command is unique to the channel and the installation method for the application.
 
-You can also share installation commands for specific versions of the application. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a version. Typically you do not need to share a specific version for air gap installations because the customer can select the application version in the download portal, and the correct assets are available automatically. For more information, see [(Optional) Share Files through the Download Portal](#download-portal).
+You can also share installation commands for specific versions of the application. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a version. Typically you do not need to share a specific version for air gap installations because the customer can select the application version in the download portal, and the correct assets are available automatically. For more information, see [(Optional) Share Files through the Download Portal](#download-portal) above.
 
-To get the installation commands:
+For information about getting installation commands with the replicated CLI, see [channel inspect](/reference/replicated-cli-channel-inspect).
+
+For information about getting installation commands with the Vendor API v3, see [Get install commands for a specific channel release](https://replicated-vendor-api.readme.io/reference/getchannelreleaseinstallcommands) in the Vendor API v3 documentation.
+
+To get the installation commands from the vendor portal:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the customer is assigned.
 
@@ -94,11 +100,13 @@ The kURL bundle is kept separate from the `.airgap` app bundle for the following
 
 The `airgap` bundle contains application-specific files, such as Kubernetes YAML and Docker images. You can view its contents with `tar -zxvf`.
 
+For information about building and downloading air gap bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
+
 To download the `.airgap` bundle:
 
 1. From the Replicated [vendor portal](https://vendor.replicated.com), click **[App Name] > Channels > [Channel Name] > Release History**.
 
-  ![Airgap Channels](/images/guides/kots/airgap-channels.png)
+    ![Airgap Channels](/images/guides/kots/airgap-channels.png)
 
 1. Click **Build** to build the `.airgap` bundle.
 

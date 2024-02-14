@@ -20,14 +20,14 @@ As part of this tutorial, you will install a sample application into a Kubernete
 
 * Create a Kubernetes cluster that meets the minimum system requirements described in [Existing Cluster Requirements](/enterprise/installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_. You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE), Amazon Web Services (AWS), or minikube.
 
-  **Example:**
+   **Example:**
 
-  For example, to create a cluster in GKE, run the following command in the gcloud CLI:
+   For example, to create a cluster in GKE, run the following command in the gcloud CLI:
 
-  ```
-  gcloud container clusters create NAME --preemptible --no-enable-ip-alias
-  ```
-  Where `NAME` is any name for the cluster.
+   ```
+   gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+   ```
+   Where `NAME` is any name for the cluster.
 
 * Install kubectl, the Kubernetes command line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 * Configure kubectl command line access to the cluster that you created. See [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.

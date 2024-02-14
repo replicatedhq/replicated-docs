@@ -64,27 +64,27 @@ To install Velero and configure NFS storage in air gapped environments:
 
 1. Run the following command to configure the NFS storage destination: 
 
-  ```
-  kubectl kots velero configure-nfs \
-    --namespace NAME \
-    --nfs-server HOST \
-    --nfs-path PATH \
-    --kotsadm-registry REGISTRY_HOSTNAME \
-    --kotsadm-namespace REGISTRY_NAMESPACE \
-    --registry-username REGISTRY_USERNAME \
-    --registry-password REGISTRY_PASSWORD
-  ```
+   ```
+   kubectl kots velero configure-nfs \
+     --namespace NAME \
+     --nfs-server HOST \
+     --nfs-path PATH \
+     --kotsadm-registry REGISTRY_HOSTNAME \
+     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --registry-username REGISTRY_USERNAME \
+     --registry-password REGISTRY_PASSWORD
+   ```
 
-  Replace:
-    - `NAME` with the namespace where the admin console is installed and running
-    - `HOST` with the hostname or IP address of the NFS server
-    - `PATH` with the path that is exported by the NFS server
-    - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
-    - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
-    - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
-    - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
+   Replace:
+     - `NAME` with the namespace where the admin console is installed and running
+     - `HOST` with the hostname or IP address of the NFS server
+     - `PATH` with the path that is exported by the NFS server
+     - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
+     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+     - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
+     - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
-  For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+   For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ## Configure NFS Storage in the Admin Console
 
@@ -96,21 +96,21 @@ To install Velero and configure NFS storage for existing clusters:
 
 1. Click **Add a new storage destination**.
 
-  The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
+   The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
 
 1. Click **NFS**.
 
-  ![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
+   ![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
 
 1. In the Configure NFS dialog, enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Get instructions**.
 
-  ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
+   ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
 
-  A dialog opens with instructions on how to set up Velero with the specified NFS configuration.
+   A dialog opens with instructions on how to set up Velero with the specified NFS configuration.
 
 1. Follow the steps in the dialog to install Velero and configure the storage destination.
 
-  ![Snapshot Provider File System Instructions](/images/snapshot-provider-nfs-instructions.png)
+   ![Snapshot Provider File System Instructions](/images/snapshot-provider-nfs-instructions.png)
 
 1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 

@@ -44,32 +44,32 @@ To change private registry settings in an air gap cluster:
 
 1. On the Registry Settings tab in the admin console, select the **Disable Pushing Images to Private Registry** checkbox, and click **Save changes**. 
 
-  This is a temporary action that allows you to edit the registry namespace and hostname. If you only want to change the username or password, you do not have to disable pushing the images.
+   This is a temporary action that allows you to edit the registry namespace and hostname. If you only want to change the username or password, you do not have to disable pushing the images.
 
 1. Edit the fields as needed, and click **Save changes**.
 
-  <table>
-    <tr>
-      <th width="30%">Field</th>
-      <th width="70%">Description</th>
-    </tr>
-    <tr>
-      <td>Hostname</td>
-      <td>Specify a registry domain that uses the Docker V2 protocol.</td>
-    </tr>
-    <tr>
-      <td>Username</td>
-      <td>Specify the username for the domain.</td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td>Specify the password for the domain.</td>
-    </tr>
-    <tr>
-      <td>Registry Namespace</td>
-      <td>Specify the registry namespace. For air gap environments, this setting overwrites the registry namespace that you pushed images to when you installed KOTS.</td>
-    </tr>
-  </table>
+     <table>
+      <tr>
+        <th width="30%">Field</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <td>Hostname</td>
+        <td>Specify a registry domain that uses the Docker V2 protocol.</td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>Specify the username for the domain.</td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>Specify the password for the domain.</td>
+      </tr>
+      <tr>
+        <td>Registry Namespace</td>
+        <td>Specify the registry namespace. For air gap environments, this setting overwrites the registry namespace that you pushed images to when you installed KOTS.</td>
+      </tr>
+     </table>
 
 1. Deselect the **Disable Pushing Images to Private Registry** checkbox. This action re-enables KOTS to push images to your registry.
 

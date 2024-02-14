@@ -64,7 +64,19 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/config-screen-conditional',
-          'vendor/helm-mapping-example',
+          {
+            type: 'category',
+            label: 'Tutorial: Set Helm Chart Values with KOTS',
+            items: [
+              'vendor/tutorial-config-setup',
+              'vendor/tutorial-config-get-chart',
+              'vendor/tutorial-config-create-app',
+              'vendor/tutorial-config-package-chart',
+              'vendor/tutorial-config-create-release',
+              'vendor/tutorial-config-create-customer',
+              'vendor/tutorial-config-install-kots',
+            ],
+          },
       ],
     },
     {
@@ -428,7 +440,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and Helm CLI',
+          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',
@@ -486,8 +498,8 @@ const sidebars = {
         },
       ],
     },
-    // DISTRIBUTE AND SUPPORT
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
+    // PACKAGE AND DISTRIBUTE
+    {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true}, 
     'vendor/distributing-overview',
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
@@ -538,7 +550,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Channel and Release Management',
+      label: 'Channels and Releases',
       items: [
         'vendor/releases-about',
         'vendor/releases-creating-channels',
@@ -631,7 +643,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI/CD',
+      label: 'Integrating with CI/CD',
       items: [
         'vendor/ci-overview',
         'vendor/ci-workflows',
@@ -653,9 +665,14 @@ const sidebars = {
          'vendor/instance-data-export',
        ],
     },
-    {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
-    'vendor/install-with-helm',
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+    {
+      type: 'category',
+      label: 'Installing Applications',
+      items: [
+        'vendor/install-with-helm',
+        {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+      ],
+    },
     
 
     // DEVELOPER TOOLS
@@ -701,6 +718,9 @@ const sidebars = {
         'reference/replicated-cli-customer-ls',
         'reference/replicated-cli-installer-create',
         'reference/replicated-cli-installer-ls',
+        'reference/replicated-cli-instance-inspect',
+        'reference/replicated-cli-instance-ls',
+        'reference/replicated-cli-instance-tag',
         'reference/replicated-cli-login',
         'reference/replicated-cli-logout',
         'reference/replicated-cli-registry-add',

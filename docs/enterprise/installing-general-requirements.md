@@ -26,9 +26,9 @@ The following table lists the browser requirements for the Replicated admin cons
 
 Each release of KOTS maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
-Kubernetes versions 1.24 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
+Kubernetes versions 1.25 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-Replicated recommends using a version of KOTS that is compatible with Kubernetes 1.25 and higher.
+Replicated recommends using a version of KOTS that is compatible with Kubernetes 1.26 and higher.
 
 <KubernetesCompatibility/>
 
@@ -54,6 +54,10 @@ To install the admin console on an existing cluster, the cluster must meet the f
       :::
 
     * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
+
+* **Supported operating systems**: The following are the supported operating systems for nodes:
+  * Linux AMD64
+  * Linux ARM64
 
 * **Available StorageClass**: The cluster must have an existing StorageClass available. KOTS creates the required stateful components using the default StorageClass in the cluster. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.  
 

@@ -1,9 +1,10 @@
 # Using Custom Domains
 
-This topic describes how to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
+This topic describes how to use the Replicated vendor portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
+
+For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
 For an overview about custom domains and limitations, see [About Custom Domains](custom-domains).
-
 
 ## Configure a Custom Domain
 
@@ -15,11 +16,11 @@ To add and configure a custom domain:
 
 1. In the **Add custom domain** dropdown, select the target Replicated endpoint.
 
-  The **Configure a custom domain** wizard opens.
+    The **Configure a custom domain** wizard opens.
 
-  <img src="/images/custom-domains-download-configure.png" alt="custom domain wizard" width="500"/>
+    <img src="/images/custom-domains-download-configure.png" alt="custom domain wizard" width="500"/>
 
-  [View a larger version of this image](/images/custom-domains-download-configure.png)
+    [View a larger version of this image](/images/custom-domains-download-configure.png)
 
 1. For **Domain**, enter the custom domain. Click **Save & continue**.
 
@@ -27,7 +28,7 @@ To add and configure a custom domain:
 
 1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
-  Your changes can take up to 24 hours to propagate.
+    Your changes can take up to 24 hours to propagate.
 
 1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
@@ -35,9 +36,9 @@ To add and configure a custom domain:
 
 1. For **Use Domain**, to set the new domain as the default, click **Yes, set as default**. Otherwise, click **Not now**.
 
-  :::note
-  Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers.
-  :::
+    :::note
+    Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers.
+    :::
 
 The vendor portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.
 
@@ -75,9 +76,9 @@ To assign a custom domain to a channel:
 
 1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
-   <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
+    <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
 
-   [View a larger version of this image](/images/channel-settings.png)
+    View a larger version of this image](/images/channel-settings.png)
 
 ## Reuse a Custom Domain for Another Application
 
@@ -91,17 +92,17 @@ To reuse a custom domain for another application:
 
 1. In the section for the target endpoint, click Add your first custom domain for your first domain, or click **Add new domain** for additional domains.
 
-  The **Configure a custom domain** wizard opens.
+    The **Configure a custom domain** wizard opens.
 
 1. In the text box, enter the custom domain name that you want to reuse. Click **Save & continue**.
   
-  The last page of the wizard opens because the custom domain was verified previously.
+    The last page of the wizard opens because the custom domain was verified previously.
 
 1. Do one of the following:
 
-   - Click **Set as default**. In the confirmation dialog that opens, click **Yes, set as default**.
+    - Click **Set as default**. In the confirmation dialog that opens, click **Yes, set as default**.
    
-   - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
+    - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
 
 
 ## Remove a Custom Domain
@@ -118,8 +119,8 @@ To remove a custom domain:
 
 1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
-  :::important
-  When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
-  :::
+    :::important
+    When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
+    :::
 
 1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
