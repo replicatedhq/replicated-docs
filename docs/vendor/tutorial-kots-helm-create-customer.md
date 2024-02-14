@@ -22,7 +22,7 @@ To create a customer:
 
 1. Click **Save Changes**.
 
-1. On the **Customer details** page for the customer, click **Download license**. You will use the license file to install with KOTS.
+1. On the **Manage customer** page for the customer, click **Download license**. You will use the license file to install with KOTS.
 
    ![Download license button on the customer page](/images/customer-download-license.png)
 
