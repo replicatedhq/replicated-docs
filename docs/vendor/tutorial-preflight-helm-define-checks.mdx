@@ -2,11 +2,11 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Step 2: Define and Test Preflight Checks
 
-According to the Gitea installation requirements listed under [Prerequisites](https://github.com/bitnami/charts/tree/main/bitnami/gitea#prerequisites) in the README.md, Gitea requires Kubernetes 1.23.0 or later. 
+Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0.
 
-As part of this step, create a preflight specification that fails is the cluster is running a version of Kubernetes earlier than 1.23.0. 
+According to the Gitea installation requirements listed under [Prerequisites](https://github.com/bitnami/charts/tree/main/bitnami/gitea#prerequisites), Gitea requires Kubernetes 1.23.0 or later. 
 
-To create preflight checks:
+To create a preflight check for the Gitea application:
 
 1. In your local filesystem, create a file named `gitea-preflights.yaml`:
 
@@ -34,7 +34,7 @@ To create preflight checks:
                  message: Your cluster is running the recommended version of Kubernetes.
    ```
 
-   This YAML defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0.
+   This YAML defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check includes a message to the user that describes the failure and lists the required Kubernetes version.
 
 1. Run the preflight check with the preflight kubectl plugin to test:
 

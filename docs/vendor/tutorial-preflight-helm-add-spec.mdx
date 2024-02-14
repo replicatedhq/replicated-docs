@@ -8,7 +8,7 @@ Next, add the preflight check specification to the Gitea chart as a Kubernetes S
    mv gitea-preflights.yaml templates
    ```
 
-1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the required label `troubleshoot.sh/kind: preflight`. The preflight check specification that you created is included in this Secret under `stringData`. 
+1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with the preflight check specification that you created: 
 
    ```yaml
    apiVersion: v1
@@ -36,13 +36,13 @@ Next, add the preflight check specification to the Gitea chart as a Kubernetes S
                      message: Your cluster is running the recommended version of Kubernetes.
    ```
 
-1. Package the Helm chart to an archive:
+1. Package the chart to an archive:
 
    1. In the `Chart.yaml` file, add the Replicated SDK as a dependency:
 
       <DependencyYaml/>
 
-   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
+   1. Update dependencies and package the chart to a `.tgz` chart archive:
 
       ```bash
       helm package . --dependency-update

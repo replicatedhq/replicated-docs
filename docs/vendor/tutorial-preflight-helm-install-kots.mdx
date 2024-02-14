@@ -5,9 +5,9 @@ import KotsCr from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
-# (Optional) Step 6: Run Preflight Checks and Install with KOTS
+# Step 6: Run Preflights and Install with KOTS
 
-Optionally, create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks can be run from the KOTS admin console during installation.
+Create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks can be run from the KOTS admin console during installation.
 
 To run preflight checks during installation with KOTS: 
 
@@ -155,13 +155,13 @@ To run preflight checks during installation with KOTS:
 
    [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
 
-1. (Optional) After the application is in a Ready status, click **Open App** to view the Gitea application in a browser:
+1. After the application is in a Ready status, click **Open App** to view the Gitea application in a browser:
 
    ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
 
    [View a larger version of this image](/images/tutorial-gitea-ready.png) 
 
-1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
+1. Uninstall the Gitea application from your cluster:
 
   ```bash
   kubectl kots remove $REPLICATED_APP --namespace gitea --undeploy
