@@ -49,9 +49,9 @@ To develop against the SDK locally in your development environment, install the 
 
 To install the SDK in integration mode:
 
-1. On the **Customer details** page for the customer you created, click **Helm install instructions**.
+1. On the **Manage customer** page for the customer you created, click **Helm install instructions**.
 
-   ![Helm install instructions button on the customer details page](/images/helm-install-instructions-button.png)
+   ![Helm install instructions button on the manage customer page](/images/helm-install-instructions-button.png)
 
 1. In the **Helm install instructions** dialog, copy and run the command to log in to the Replicated registry.
 

@@ -57,7 +57,7 @@ To set a customer-specific value for a custom license field:
 1. For the target customer, click the **Manage customer** button.
 1. Under **Custom fields**, enter values for the target custom license fields for the customer.
 
-   <img width="600" alt="Custom license fields section in the customer details page" src="/images/customer-license-custom-fields.png"/>
+   <img width="600" alt="Custom license fields section in the manage customer page" src="/images/customer-license-custom-fields.png"/>
 
    [View a larger version of this image](/images/customer-license-custom-fields.png)
 

@@ -28,7 +28,7 @@ To install the release with the Helm CLI:
 
    1. Click **Save Changes**.
 
-1. On the **Customer details** page for the new customer, click **Helm install instructions**.
+1. On the **Manage customer** page for the new customer, click **Helm install instructions**.
 
    ![Helm install instrucitons button](/images/tutorial-gitea-helm-customer-install-button.png)
 
