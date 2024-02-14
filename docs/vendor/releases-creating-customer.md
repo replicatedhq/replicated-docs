@@ -108,11 +108,11 @@ To expire a license, set an expiration date and policy in the **Expiration polic
 
 To archive a customer:
 
-1. In the vendor portal, click **Customers**. Select the target customer then click the **Customer details** tab.
+1. In the vendor portal, click **Customers**. Select the target customer then click the **Manage customer** tab.
 
 1. Click **Archive Customer**. In the confirmation dialog, click **Archive Customer** again.
 
-You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.
+You can unarchive by clicking **Unarchive Customer** in the customer's **Manage customer** page.
 
 ## Export Customer and Instance Data {#export}
 
