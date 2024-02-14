@@ -11,14 +11,14 @@ The **Customers > Reporting** page displays data about the active application in
 [View a larger version of this image](/images/customer-reporting-page.png)
 
 As shown in the image above, the **Reporting** page has the following main sections:
-* [Customer Details](#customer-details)
+* [Manage Customer](#manage-customer)
 * [Time to Install](#time-to-install)
 * [Download Portal](#download-portal)
 * [Instances](#instances)
 
-### Customer Details
+### Manage Customer
 
-The customer details section displays the following information about the customer:
+The manage customer section displays the following information about the customer:
 
 * The customer name
 * The channel the customer is assigned

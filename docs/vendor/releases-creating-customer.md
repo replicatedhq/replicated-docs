@@ -78,7 +78,7 @@ To create a customer:
 
 ## Edit a Customer
 
-You can edit the built-in and custom license fields for a customer at any time by going to the **Customer details** for a customer. For more information, see [Customer Details Page](licenses-about#customer-details-page) in _About Customers_.
+You can edit the built-in and custom license fields for a customer at any time by going to the **Manage customer** for a customer. For more information, see [Manage Customer Page](licenses-about#manage-customer-page) in _About Customers_.
    
 Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
 
@@ -90,11 +90,11 @@ To edit license fields:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Customers**.
 
-1. Select the target customer and click the **Customer details** tab.
+1. Select the target customer and click the **Manage customer** tab.
 
-1. On the **Customer details** page, edit the desired fields and click **Save**.
+1. On the **Manage customer** page, edit the desired fields and click **Save**.
 
-   ![Full customer details page for a customer named Prestige Financial](/images/customer-details.png)
+   ![Full manage customer page for a customer named Prestige Financial](/images/customer-details.png)
 
 1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
     * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).

@@ -253,7 +253,7 @@ You can use the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoin
 
 To revoke access to your application when a license expires:
 
-1. In the vendor portal, click **Customers**. Select the target customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer.
+1. In the vendor portal, click **Customers**. Select the target customer and click the **Manage customer** tab. Alternatively, click **+ Create customer** to create a new customer.
 
 1. Under **Expiration policy**:
 
@@ -261,7 +261,7 @@ To revoke access to your application when a license expires:
 
    1. For **When does this customer expire?**, use the calendar to set an expiration date for the license.
 
-  <img alt="expiration policy field in the customer details page" src="/images/customer-expiration-policy.png" width="500px"/>
+  <img alt="expiration policy field in the manage customer page" src="/images/customer-expiration-policy.png" width="500px"/>
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
