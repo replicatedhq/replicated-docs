@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 13, 2024
 
 ### New Features {#new-features-v2024-02-13-3}
-* Added support for creating multiple nodegroups in CMX EKS clusters.
+* Adds support for creating multiple nodegroups in compatibility matrix EKS clusters.
 
 ## v2024.02.09-3
 
