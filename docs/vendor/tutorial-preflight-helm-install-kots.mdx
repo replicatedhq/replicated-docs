@@ -98,24 +98,24 @@ To run preflight checks during installation with KOTS:
 
 1. Go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
-  ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
+    ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
 
-  [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
+    [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
 
 1. On the command line, run the **KOTS Install** command that you copied:
 
-  ```bash
-  curl https://kots.io/install | bash
-  kubectl kots install $REPLICATED_APP/unstable
-  ```
+   ```bash
+   curl https://kots.io/install | bash
+   kubectl kots install $REPLICATED_APP/unstable
+   ```
 
-  This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+   This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
 
-  For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-  :::note
-  <KotsVerReq/>
-  :::
+   :::note
+   <KotsVerReq/>
+   :::
 
 1. Complete the installation command prompts:
 
@@ -123,21 +123,21 @@ To run preflight checks during installation with KOTS:
 
    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
 
-  When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+   When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
 
-  **Example output:**
+   **Example output:**
 
-  ```bash
-  Enter the namespace to deploy to: gitea
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-  Enter a new password for the admin console (6+ characters): ••••••••
-  • Waiting for Admin Console to be ready ✓
+   ```bash
+   Enter the namespace to deploy to: gitea
+   • Deploying Admin Console
+      • Creating namespace ✓
+      • Waiting for datastore to be ready ✓
+   Enter a new password for the admin console (6+ characters): ••••••••
+   • Waiting for Admin Console to be ready ✓
 
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
-  ```
+   • Press Ctrl+C to exit
+   • Go to http://localhost:8800 to access the Admin Console
+   ```
 
 1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
 
@@ -145,7 +145,11 @@ To run preflight checks during installation with KOTS:
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-  Preflight checks run automatically.
+   Preflight checks run automatically:
+
+   ![Gitea preflight checks page](/images/gitea-preflights.png)
+
+   [View a larger version of this image](/images/gitea-preflights.png)
 
 1. When the preflight checks finish, click **Deploy** to deploy the application.
 
@@ -163,14 +167,14 @@ To run preflight checks during installation with KOTS:
 
 1. Uninstall the Gitea application from your cluster:
 
-  ```bash
-  kubectl kots remove $REPLICATED_APP --namespace gitea --undeploy
-  ```
-  **Example output**:
-  ```
+   ```bash
+   kubectl kots remove $REPLICATED_APP --namespace gitea --undeploy
+   ```
+   **Example output**:
+   ```
    • Removing application gitea-boxer reference from Admin Console and deleting associated resources from the cluster ✓
    • Application gitea-boxer has been removed
-  ```
+   ```
 
 1. Remove the admin console from the cluster:  
 
