@@ -1,8 +1,6 @@
 # Step 5: Run Preflights with the Helm CLI
 
-Use the Helm CLI installation instructions provided for the customer that you created to run preflight checks and install.
-
-The purpose of this step is to demonstrate how enterprise users can authenticate with the Replicated registry to run preflight checks defined in a Helm chart before installing.
+Use the Helm CLI installation instructions provided for the customer that you created to run the preflight checks for Gitea and install. The purpose of this step is to demonstrate how enterprise users can run preflight checks defined in a Helm chart before installing.
 
 To run preflight checks and install with the Helm CLI:
 
@@ -26,15 +24,14 @@ To run preflight checks and install with the Helm CLI:
 
    [View a larger version of this image](/images/tutorial-gitea-helm-customer-install-button.png)
 
-   You will use the instructions provided in the **Helm install instructions** dialog to install the chart.
-
-1. Run the first command in the **Helm install instructions** dialog to log in to the registry.
+1. Run the first command in the **Helm install instructions** dialog to log in to the Replicated registry.
 
 1. Run the second command to install the preflight kubectl plugin:
 
    ```bash
    curl https://krew.sh/preflight | bash
    ```
+   The preflight plugin is a client-side utility used to run preflight checks.
 
 1. Run the third command to run preflight checks:
 
@@ -43,17 +40,17 @@ To run preflight checks and install with the Helm CLI:
    ```
    This command templates the Gitea chart and then pipes the result to the preflight plugin. The following shows an example of the ouput for this command:
 
-   ![Preflight CLI output](/images/gitea-preflights-cli.png)
+   <img alt="Preflight CLI output" src="/images/gitea-preflights-cli.png" width="600px"/>
 
    [View a larger version of this image](/images/gitea-preflights-cli.png)
 
-1. (Optional) Run the fourth command listed under **Option 1: Install Gitea** to install the application:
+1. Run the fourth command listed under **Option 1: Install Gitea** to install the application:
 
    ```bash
    helm install gitea oci://registry.replicated.com/$REPLICATED_APP/unstable/gitea
    ```   
 
-1. If you installed Gitea, uninstall and delete the namespace:
+1. Uninstall and delete the namespace:
 
    ```bash
    helm uninstall gitea --namespace gitea
@@ -68,5 +65,4 @@ Install the application with KOTS to see how preflight checks are run from the K
 
 ## Related Topics
 
-* [Defining Preflight Checks](/vendor/preflight-defining)
-* [Running Preflight Checks](/vendor/preflight-running)       
+[Running Preflight Checks](/vendor/preflight-running)       

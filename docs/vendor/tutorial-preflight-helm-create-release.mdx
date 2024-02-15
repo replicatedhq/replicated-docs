@@ -36,10 +36,6 @@ To create a release:
    ```
    In the example above, the application slug is `gitea-boxer`.
 
-   :::note
-   The application _slug_ is a unique string that is generated based on the application name. You can use the application slug to interact with the application through the replicated CLI and the Vendor API v3. The application name and slug are often different from one another because it is possible to create more than one application with the same name.
-   :::
-
 1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
 
    **Example:**
@@ -86,9 +82,8 @@ To create a release:
 
 ## Next Step
 
-Create a customer. See [Create a Customer](tutorial-preflight-helm-create-customer).
+Create a customer so that you can install the release in a development environment. See [Create a Customer](tutorial-preflight-helm-create-customer).
 
 ## Related Topics
 
-* [About Channels and Releases](/vendor/releases-about)
-* [Configuring the HelmChart Custom Resource](/vendor/helm-native-v2-using)
+[About Channels and Releases](/vendor/releases-about)

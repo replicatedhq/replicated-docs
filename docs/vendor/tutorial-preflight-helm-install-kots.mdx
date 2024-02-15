@@ -159,11 +159,7 @@ To run preflight checks during installation with KOTS:
 
    [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
 
-1. After the application is in a Ready status, click **Open App** to view the Gitea application in a browser:
-
-   ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
-
-   [View a larger version of this image](/images/tutorial-gitea-ready.png) 
+1. (Optional) After the application is in a Ready status, click **Open App** to view the Gitea application in a browser.
 
 1. Uninstall the Gitea application from your cluster:
 
@@ -190,4 +186,12 @@ To run preflight checks during installation with KOTS:
       ```
       ```
       kubectl delete clusterrolebinding kotsadm-rolebinding
-      ```     
+      ```
+
+## Summary
+
+Congratulations! In this tutorial, you defined a preflight check for Gitea that checks the version of Kubernetes running in the cluster. You also ran preflight checks before installing with both the Helm CLI and with KOTS. 
+
+To learn more about defining and running preflight checks, see:
+* [Defining Preflight Checks](/vendor/preflight-defining)
+* [Running Preflight Checks](/vendor/preflight-running) 

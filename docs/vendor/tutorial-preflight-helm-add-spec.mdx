@@ -1,6 +1,10 @@
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+
 # Step 2: Add a Preflight Spec to the Chart
 
-Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0, then add the specification to the Gitea chart as a Kubernetes Secret.
+Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.23.0, and add the specification to the Gitea chart as a Kubernetes Secret.
+
+To add a preflight specification to the Gitea chart:
 
 1. In the `gitea/templates` directory, create a `gitea-preflights.yaml` file:
 
@@ -36,13 +40,23 @@ Create a preflight specification that fails if the cluster is running a version 
                      message: Your cluster is running the required version of Kubernetes.
    ```
 
-   This defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. 
+   The YAML above defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. The `troubleshoot.sh/kind: preflight` label is required to run preflight checks defined in Secrets.
+
+1. In the Gitea `Chart.yaml` file, add the Replicated SDK as a dependency:  
+
+    <DependencyYaml/>
+
+    The SDK is installed as a small service running alongside your application, and provides an in-cluster API that you can use to embed Replicated features into your application.
 
 1. Update dependencies and package the chart to a `.tgz` chart archive:
 
     ```bash
     helm package . --dependency-update
-    ```       
+    ```
+
+    :::note
+    If you see a `401 Unauthorized` error message, log out of the Replicated registry by running `helm registry logout registry.replicated.com` and then run `helm package . --dependency-update` again.
+    :::       
 
 ## Next Step
 
@@ -50,5 +64,4 @@ Add the chart archive to a release. See [Add the Chart Archive to a Release](tut
 
 ## Related Topics
 
-* [Defining Preflight Checks](/vendor/preflight-defining)
-* [Running Preflight Checks](/vendor/preflight-running)      
+* [Defining Preflight Checks](/vendor/preflight-defining)      
