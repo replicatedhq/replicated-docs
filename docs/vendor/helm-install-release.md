@@ -1,4 +1,5 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -28,13 +29,7 @@ To package a Helm chart so that it can be added to a release:
     
     For additional guidelines related to adding the SDK as a dependency, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-1. (Recommended) Run the following command to log out of the Replicated registry:
-
-    ```bash
-    helm registry logout registry.replicated.com
-    ```
-
-    Replicated recommends that you log out of the Replicated registry to avoid errors that can occur when Helm attempts to pull the SDK chart from the registry if you are logged in with a license that has expired. 
+1. <RegistryLogout/> 
 
 1. Update the `charts/` directory:
 

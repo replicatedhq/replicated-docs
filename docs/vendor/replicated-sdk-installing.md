@@ -1,5 +1,6 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
+import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 
 # Installing the Replicated SDK (Beta)
 
@@ -23,13 +24,7 @@ To add and install the SDK as a subchart:
 
    Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
 
-1. (Recommended) Run the following command to log out of the Replicated registry:
-
-    ```bash
-    helm registry logout registry.replicated.com
-    ```
-
-    Replicated recommends that you log out of the Replicated registry to avoid errors that can occur when Helm attempts to pull the SDK chart from the registry if you are logged in with a license that has expired. 
+1. <RegistryLogout/> 
 
 1. Update the `charts/` directory:
 
