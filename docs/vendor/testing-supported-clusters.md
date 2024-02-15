@@ -28,6 +28,10 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
     <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports a single node.</td>
   </tr>
@@ -61,6 +65,10 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   <tr>
     <th>Supported Instance Types</th>
     <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -98,6 +106,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   <tr>
     <th>Supported Instance Types</th>
     <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -141,6 +153,10 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
     <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>  
@@ -176,6 +192,10 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge</td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
@@ -207,6 +227,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
@@ -236,6 +260,10 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   <tr>
     <th>Supported Instance Types</th>
     <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms</p><p>You can specify more than one node.</p></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
