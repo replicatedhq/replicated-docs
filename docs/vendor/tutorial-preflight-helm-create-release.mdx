@@ -1,0 +1,90 @@
+# Step 3: Add the Chart Archive to a Release
+
+Use the replicated CLI to add the Gitea Helm chart archive to a release in the Replicated vendor platform.
+
+To create a release:
+
+1. Install the replicated CLI:
+
+   ```
+   brew install replicatedhq/replicated/cli
+   ```
+   For more installation options, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+1. Authorize the replicated CLI:
+
+   ```
+   replicated login
+   ```
+   In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+
+1. Create an application named `Gitea`:
+
+   ```
+   replicated app create Gitea
+   ```
+
+1. Get the slug for the application that you created:
+
+   ```
+   replicated app ls
+   ```
+   **Example output**:
+   ```
+   ID                             NAME            SLUG            SCHEDULER
+   2WthxUIfGT13RlrsUx9HR7So8bR    Gitea           gitea-boxer     kots
+   ```
+   In the example above, the application slug is `gitea-boxer`.
+
+1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
+
+   **Example:**
+
+   ```
+   export REPLICATED_APP=gitea-boxer
+   ```
+
+1. Go to the `gitea` directory.
+
+1. Create a release with the Gitea chart archive:
+
+   ```
+   replicated release create --chart=gitea-1.0.6.tgz
+   ```
+   ```bash
+   You are creating a release that will only be installable with the helm CLI.
+   For more information, see
+   https://docs.replicated.com/vendor/helm-install#about-helm-installations-with-replicated
+
+   • Reading chart from gitea-1.0.6.tgz ✓
+   • Creating Release ✓
+     • SEQUENCE: 1
+   ```
+
+1. Log in to the vendor portal and go to **Releases**.
+
+    The release that you created is listed under **All releases**.
+
+1. Click **View YAML** to view the files in the release.
+
+1. At the top of the page, click **Promote**.
+
+   <img alt="Promote release dialog" src="/images/release-promote.png" width="400px"/>
+
+   [View a larger version of this image](/images/release-promote.png) 
+
+1. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
+
+1. For **Version label**, open the dropdown and select **1.0.6**.
+
+1. Click **Promote**.
+
+
+## Next Step
+
+Create a customer so that you can install the release in a development environment. See [Create a Customer](tutorial-preflight-helm-create-customer).
+
+## Related Topics
+
+* [About Channels and Releases](/vendor/releases-about)
+* [Managing Releases with the CLI](/vendor/releases-creating-cli)

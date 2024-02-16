@@ -593,6 +593,19 @@ const sidebars = {
           items: [
              'vendor/preflight-defining',
              'vendor/preflight-running',
+             {
+              type: 'category',
+              label: 'Tutorial: Add Preflight Checks to a Helm Chart',
+              items: [
+                'vendor/tutorial-preflight-helm-setup',
+                'vendor/tutorial-preflight-helm-get-chart',
+                'vendor/tutorial-preflight-helm-add-spec',
+                'vendor/tutorial-preflight-helm-create-release',
+                'vendor/tutorial-preflight-helm-create-customer',
+                'vendor/tutorial-preflight-helm-install',
+                'vendor/tutorial-preflight-helm-install-kots',
+              ],
+            },
          ],
         },
         {
