@@ -228,7 +228,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -263,7 +263,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
