@@ -702,6 +702,7 @@ const sidebars = {
         'reference/replicated-cli-cluster-create',
         'reference/replicated-cli-cluster-kubeconfig',
         'reference/replicated-cli-cluster-ls',
+        'reference/replicated-cli-cluster-nodegroup-ls',
         'reference/replicated-cli-cluster-prepare',
         'reference/replicated-cli-cluster-rm',
         'reference/replicated-cli-cluster-update-ttl',
