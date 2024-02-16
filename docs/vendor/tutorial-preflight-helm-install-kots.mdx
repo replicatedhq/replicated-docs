@@ -7,7 +7,7 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # Step 6: Run Preflights with KOTS
 
-Create a KOTS-enabled release and then install with KOTS. This purpose of this step is to see how preflight checks can be run from the KOTS admin console during installation.
+Create a KOTS-enabled release and then install Gitea with KOTS. This purpose of this step is to see how preflight checks automatically run in the KOTS admin console during installation.
 
 To run preflight checks during installation with KOTS: 
 
@@ -72,9 +72,8 @@ To run preflight checks during installation with KOTS:
    troubleshoot-spec                  warn                          Missing troubleshoot spec
    nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
-   :::note
-   The output includes warning messages, including a warning about a missing preflight spec. This warning appears because the preflight spec is defined in the Helm chart. The warnings can be ignored for the purpose of this tutorial. 
-   :::
+   
+   The output includes warning messages, including a warning about a missing preflight spec. This warning appears because the preflight spec is defined in the Helm chart. The warnings can be ignored for the purpose of this tutorial.
 
 1. Create a release:
 
@@ -95,6 +94,8 @@ To run preflight checks during installation with KOTS:
 1. Go to the **Customers** page.
 
 1. Create a new customer named `KOTS Preflight Customer`. For **License options**, enable the **KOTS Install Enabled** checkbox. This is the entitlement that allows the customer to install with KOTS.
+
+1. On the **Manage customer** page for the customer, click **Download license**. You will use the license file to install with KOTS. 
 
 1. Go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
@@ -123,21 +124,21 @@ To run preflight checks during installation with KOTS:
 
    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
 
-   When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+       When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
 
-   **Example output:**
+       **Example output:**
 
-   ```bash
-   Enter the namespace to deploy to: gitea
-   • Deploying Admin Console
-      • Creating namespace ✓
-      • Waiting for datastore to be ready ✓
-   Enter a new password for the admin console (6+ characters): ••••••••
-   • Waiting for Admin Console to be ready ✓
+       ```bash
+       Enter the namespace to deploy to: gitea
+       • Deploying Admin Console
+         • Creating namespace ✓
+         • Waiting for datastore to be ready ✓
+       Enter a new password for the admin console (6+ characters): ••••••••
+       • Waiting for Admin Console to be ready ✓
 
-   • Press Ctrl+C to exit
-   • Go to http://localhost:8800 to access the Admin Console
-   ```
+       • Press Ctrl+C to exit
+       • Go to http://localhost:8800 to access the Admin Console
+       ```
 
 1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
 
@@ -195,3 +196,4 @@ Congratulations! In this tutorial, you defined a preflight check for Gitea that 
 To learn more about defining and running preflight checks, see:
 * [Defining Preflight Checks](/vendor/preflight-defining)
 * [Running Preflight Checks](/vendor/preflight-running) 
+* [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
