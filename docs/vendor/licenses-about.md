@@ -139,7 +139,7 @@ From the **Customers** page, you can do the following:
 
 * Click on a customer on the **Customers** page to access the following customer-specific pages:
   * [Reporting](#reporting-page)
-  * [Customer details](#customer-details-page)
+  * [Manage customer](#manage-customer-page)
   * [Support bundles](#support-bundles-page)
 
 ### Reporting Page
@@ -151,16 +151,16 @@ The **Reporting** page for a customer displays data about the active application
 
 For more information about interpreting the data on the **Reporting** page, see [Customer Reporting](customer-reporting).
 
-### Customer Details Page
+### Manage Customer Page
 
-The **Customer details** page for a customer displays details about the customer license, including the customer name and email, the license expiration policy, custom license fields, and more.
+The **Manage customer** page for a customer displays details about the customer license, including the customer name and email, the license expiration policy, custom license fields, and more.
 
-The following shows an example of the **Customer details** page:
+The following shows an example of the **Manage customer** page:
 
-![Customer details page in the vendor portal](/images/customer-details.png)
+![Manage customer page in the vendor portal](/images/customer-details.png)
 [View a larger version of this image](/images/customer-details.png)
 
-From the **Customer details** page, you can view and edit the customer's license fields or archive the customer. For more information, see [Creating and Managing Customers](releases-creating-customer).
+From the **Manage customer** page, you can view and edit the customer's license fields or archive the customer. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 ### Support Bundles Page
 

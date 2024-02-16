@@ -8,6 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.14-0
+
+Released on February 14, 2024
+
+### New Features {#new-features-v2024-02-14-0}
+* Adds ability to add a Custom ID to a Customer through the vendor portal.
+* Shows Custom ID and License ID on the Customers and Instances table views on the **Customers** page.
+
+## v2024.02.13-3
+
+Released on February 13, 2024
+
+### New Features {#new-features-v2024-02-13-3}
+* Adds support for creating multiple nodegroups in compatibility matrix EKS clusters.
+
 ## v2024.02.09-3
 
 Released on February 9, 2024
