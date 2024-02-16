@@ -1,5 +1,6 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 import Output from "../partials/replicated-cli/_output.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
 
 # cluster nodegroup ls
 
