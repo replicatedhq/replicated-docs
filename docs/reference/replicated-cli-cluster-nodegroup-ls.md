@@ -26,7 +26,7 @@ replicated cluster nodegroup ls [ID]
 
 ## Example
 
-A cluster with 3 nodegroups:
+A cluster with three node groups:
 
 ```bash
 ID          NAME       DEFAULT    INSTANCE TYPE    NODES    DISK
