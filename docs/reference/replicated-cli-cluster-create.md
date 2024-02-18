@@ -47,7 +47,17 @@ replicated cluster create [flags]
     <td>integer</td>
     <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
+  <tr>
+    <td>--nodegroup</td>
+    <td>string</td>
+    <td>Node group to create (name=?,instance-type=?,nodes=?,disk=? format, can be specified multiple times)</td>
+  </tr>
   <Output/>
+  <tr>
+    <td>--tag</td>
+    <td>string</td>
+    <td>Tag to apply to the cluster (key=value format, can be specified multiple times)</td>
+  </tr>
   <tr>
     <td>--ttl</td>
     <td>string</td>
