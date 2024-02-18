@@ -27,7 +27,7 @@ replicated cluster ls [flags]
   <tr>
     <td>--output</td>
     <td>string</td>
-    <td>The output format to use. <strong>Value values:</strong> json or table. <strong>Default:</strong> table</td>
+    <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>
   <tr>
     <td>--show-terminated</td>
