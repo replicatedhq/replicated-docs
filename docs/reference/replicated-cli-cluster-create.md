@@ -83,6 +83,12 @@ replicated cluster create [flags]
   replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m6i.large
   ```
 
+- For an EKS distribution with an additional node group:
+
+  ```bash
+  replicated cluster create --name eks-nodegroup-example --distribution eks --instance-type m6i.large --nodes 1 --nodegroup name=arm,instance-type=m7g.large,nodes=1,disk=50
+  ```
+
 - For a kind distribution:
 
   ```bash
