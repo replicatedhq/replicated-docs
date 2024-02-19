@@ -21,7 +21,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.25.11, 1.26.6, 1.27.3, 1.28.0, 1.29.0</td>
+    <td>1.23.17, 1.24.17, 1.25.16, 1.26.14, 1.27.11, 1.28.7, 1.29.2</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
