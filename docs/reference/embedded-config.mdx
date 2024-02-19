@@ -1,0 +1,34 @@
+# Embedded Cluster Config (Beta)
+
+To use the embedded cluster, an embedded cluster config must be created in a release. The embedded cluster config lets you define several things about the cluster that will be created.
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  version: 1.29.1+ec.0
+  roles:
+    controller:
+      name: management
+      labels:
+        management: "true"
+    custom:
+    - name: app
+      labels:
+       app: "true"
+
+```
+
+## version
+
+## roles
+
+### controller
+
+### custom
+
+### labels
+
+## Unsupported Overrides
+
+## Extensions
