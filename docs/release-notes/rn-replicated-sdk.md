@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.16
+
+Released on February 19, 2024
+
+### New Features {#new-features-1-0-0-beta-16}
+* Adds support for running the SDK on ARM64 nodes.
+
 ## 1.0.0-beta.15
 
 Released on February 15, 2024
