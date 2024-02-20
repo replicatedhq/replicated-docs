@@ -189,7 +189,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge</td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge, g4dn.xlarge, g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</p><p>The g4dn instance types are depending on available capacity.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
