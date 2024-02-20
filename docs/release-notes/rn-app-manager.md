@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.107.5
+
+Released on February 20, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-107-5}
+* Fixes an issue in kURL clusters where images from Helm charts configured using the v1beta2 HelmChart custom resource were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
+
 ## 1.107.4
 
 Released on February 16, 2024
