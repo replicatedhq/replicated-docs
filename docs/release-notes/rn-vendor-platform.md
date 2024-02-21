@@ -13,9 +13,9 @@ pagination_prev: null
 Released on February 21, 2024
 
 ### New Features {#new-features-v2024-02-21-1}
-* Added the EKS g4dn instance types.
-* Added the AKS Standard_D2ps_v5 and higher instance types.
-* Label and comment on support cases with EOL addons in kURL installer specs embedded in application releases.
+* Adds the EKS g4dn instance types.
+* Adds the AKS Standard_D2ps_v5 and higher instance types.
+* Labels and comments on support cases with EOL addons in kURL installer specs embedded in application releases.
 
 ## v2024.02.14-0
 
