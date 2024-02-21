@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 19, 2024
 
 ### New Features {#new-features-v2024-02-19-0}
-* Added support for Node Groups in the Cluster History View.
+* Adds support for Node Groups on the **Cluster History** page.
 
 ## v2024.02.14-0
 
