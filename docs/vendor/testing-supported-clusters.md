@@ -189,7 +189,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge</td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge, g4dn.xlarge, g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</p><p>g4dn instance types depend on available capacity.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
@@ -259,7 +259,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms</p><p>You can specify more than one node.</p></td>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2ps_v5, Standard_D4ps_v5, Standard_D8ps_v5, Standard_D16ps_v5, Standard_D32ps_v5, Standard_D48ps_v5</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>

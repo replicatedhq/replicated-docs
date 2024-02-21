@@ -15,6 +15,13 @@ Released on February 21, 2024
 ### New Features {#new-features-v2024-02-21-0}
 * Adds release info to the **Support bundle analysis** page.
 
+## v2024.02.19-0
+
+Released on February 19, 2024
+
+### New Features {#new-features-v2024-02-19-0}
+* Adds support for Node Groups on the **Cluster History** page.
+
 ## v2024.02.14-0
 
 Released on February 14, 2024
