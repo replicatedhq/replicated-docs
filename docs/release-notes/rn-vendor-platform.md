@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 21, 2024
 
 ### New Features {#new-features-v2024-02-21-0}
-* Add release info to Support bundle analysis page.
+* Adds release info to the **Support bundle analysis** page.
 
 ## v2024.02.14-0
 
