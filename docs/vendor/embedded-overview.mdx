@@ -79,10 +79,16 @@ You can use the following steps to get started quickly with embedded cluster. Mo
 1. Save the release and promote it to the channel your customer is assigned to.
 
 1. Return to the customer page where you enabled embedded cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the embedded cluster binary and install your application.
- 
-1. SSH onto the VM where you will install your application.
 
-1. Run the commands displayed on the embedded cluster install instructions dialog.
+     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+
+     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
+ 
+1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
+
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
+
+     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
 1. Enter an admin console password when prompted.
 
@@ -111,11 +117,19 @@ To download the binary directly from Replicated:
 
 1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the embedded cluster binary and install your application.
 
+     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+
+     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
+
 1. SSH onto the VM where you will install your application.
 
 1. Run the first two commands displayed on **Embedded cluster installation instructions** dialog to download the binary and license and extract them.
 
      The following shows an example of the **Embedded cluster installation instructions** dialog:
+
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
+
+     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
      :::note
      You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
@@ -259,7 +273,9 @@ To add nodes to a cluster:
 
 1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
 
-    **ADD SCREENSHOT**
+     <img alt="Add node page in the admin console" src="/images/admin-console-add-node.png" width="600px"/>
+
+     [View a larger version of this image](/images/admin-console-add-node.png)
 
 1. Copy the provided join command.
 
