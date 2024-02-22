@@ -38,6 +38,11 @@ replicated customer create [Flags]
     <td>duration</td>
     <td>If set, license will expire a specified number of units from the current time. For example, <code>2h</code> or <code>1h60m</code> or <code>120m</code> are all the same duration.</td>
   </tr>
+  <tr>
+    <td><code>--custom-id</code></td>
+    <td>string</td>
+    <td>If set, this custom alphanumeric ID is associated with this customer to more easily tie this record to your external data systems (i.e. Salesforce, Hubspot, etc.) </td>
+  </tr>
   <Help/>
   <App/>
   <Token/>
@@ -45,7 +50,10 @@ replicated customer create [Flags]
 
 ## Examples
 ```bash
-replicated customer create --channel Megacorp_Beta --name "Megacorp" --ensure-channel --expires-in "8760h"
-ID                                  NAME        CHANNELS         EXPIRES                          TYPE
-2u4KGXSY65SAUW0ltG_pPhxBGPJ4XNSS    Megacorp    Megacorp_Beta    2021-01-20 00:17:38 +0000 UTC    dev
+replicated customer create --channel Megacorp_Beta --name "Megacorp" --ensure-channel --expires-in "8760h" --custom-id "salesforceid-123"
+```
+
+```bash
+ID                                  NAME        CHANNELS         EXPIRES                          TYPE    CUSTOM_ID
+2u4KGXSY65SAUW0ltG_pPhxBGPJ4XNSS    Megacorp    Megacorp_Beta    2021-01-20 00:17:38 +0000 UTC    dev     salesforceid-123
 ```
