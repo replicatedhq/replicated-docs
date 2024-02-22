@@ -1,0 +1,47 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import SkipValidation from "../partials/replicated-cli/_skip-validation.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
+
+# registry add gar
+
+Adds a Google Artifact Registry (GAR) using a service account key or token.
+
+## Usage
+
+```bash
+replicated registry add gar [flags]
+```
+
+The following flags are supported:
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <App/>
+  <Help/>
+  <tr>
+    <td><code>--serviceaccountkey</code></td>
+    <td>string</td>
+    <td>The service account key to use when authenticating to the registry.</td>
+  </tr>
+  <tr>
+    <td><code>--serviceaccountkey-stdin</code></td>
+    <td></td>
+    <td>Take the service account key from stdin.</td>
+  </tr>
+  <tr>
+    <td><code>--token</code></td>
+    <td>string</td>
+    <td>The Google Cloud OAuth token to use when authenticating to the registry.</td>
+  </tr>
+  <tr>
+    <td><code>--token-stdin</code></td>
+    <td></td>
+    <td>Takes the Google Cloud OAuth token from stdin.</td>
+  </tr>
+  <SkipValidation/>
+</table>
