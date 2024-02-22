@@ -23,7 +23,7 @@ Released on February 22, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-107-6}
-* UI improvements when running in an Embedded Cluster (alpha)
+* UI improvements when running in an embedded cluster (Alpha)
 
 ## 1.107.5
 
