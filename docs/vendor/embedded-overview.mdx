@@ -1,42 +1,330 @@
 # Using Embedded Cluster (Beta)
 
-This topic describes how to use the Replicated embedded cluster, including how to configure, install, and manage embedded clusters.
+This topic describes how to use the Replicated embedded cluster to configure and deploy Kubernetes clusters in , including how to configure, install, and manage embedded clusters.
+
+:::note
+Embedded cluster is in beta. If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
+:::
 
 ## Overview
 
-The embedded cluster is the next generation of Replicated’s embedded cluster offering. As a successor to kURL, the embedded cluster offers significantly faster installation, updates, and node joins; a redesigned admin console UI; improved support for multi-node clusters; one-click updates that update the application and the cluster at once; and more.
+_Embedded cluster_ is the next generation of Replicated’s embedded Kubernetes offering. As a successor to kURL, embedded cluster offers significantly faster installation, updates, and node joins; a redesigned admin console UI; improved support for multi-node clusters; one-click updates that update the application and the cluster at once; and more.
 
 ### Requirements
 
-Embedded cluster is based on k0s, so all k0s system requirements apply.
-
-Embedded cluster also has the following requirements:
+Embedded cluster has the following requirements:
 
 * Linux operating system
 * x86-64 architecture
+* Embedded cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/head/system-requirements/) in the k0s documentation.
+* Replicated must enable the “Enable Embedded Cluster” feature flag for your team. When this feature flag is enabled, you can select the **Embedded Cluster Binary Enabled (Beta)** license option for customers in the vendor portal. Only licenses with this option enabled can download the embedded cluster binary, which is used to install the embedded cluster.
 
-In addition, someone at Replicated must turn on the “Enable Embedded Cluster” feature flag for your team. Once this feature flag is enabled, you can select the “Embedded Cluster Binary Enabled (Alpha)” license option for customers in the vendor portal. Only licenses with this option enabled can download the embedded cluster binary, which is used to install the embedded cluster.
+### Limtiations and Known Issues
 
-### Limtiations
+This section lists the limtiations and known issues for embedded cluster.
+
+#### Limitations
+
+Embedded cluster has the following limitations:
+
+* **No migration from kURL**: There is not yet a way to migrate a kURL instance to embedded cluster. We intend to build a migration or upgrade for kURL instances. There are many ways that this could be built, each with various tradeoffs. If you are interested in migrating your kURL instances to embedded cluster, contact Alex Parker to discuss.
+
+* **Cannot change spec.api and spec.storage after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
+
+* **GitOps workflow not supported**: Embedded cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for embedded cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
+
+#### Known Issue
+
+If you use Helm extensions and a Helm chart fails to install, you can make changes to your embedded cluster config, promote a new release, and update to that version from the admin console to upgrade the chart. However, there will be a several minute delay before the Helm chart updates.
+
+For more information about using Helm extensions, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
 
 ### kURL Feature Parity
 
+The following features that are available in kURL are not yet available in embedded cluster. Unless otherwise noted, some of these features might not be available at GA:
+
+* **Air gap**: Air gap support is not yet implemented for embedded cluster. We intend to implement support for air gap installations in the future.
+
+* **Backup and restore with Velero**: Velero is not yet installed as part of embedded cluster, so backup and restore is unavailable.
+
+* **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
+
+* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of embedded cluster. No default graphs show on the admin console dashboard, and you cannot create custom graphs.
+
+* **Access the admin console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not yet available for embedded cluster installations.
+
+:::note
+If you require any of these features to use embedded cluster, reach out to Alex Parker at alexp@replicated.com.
+:::
+
 ## Quick Start
 
-## Configure
+You can use the following steps to get started quickly with embedded cluster. More detailed documentation is linked throughout these steps and is available below.
 
-To use the embedded cluster, an embedded cluster config must be created in a release. The embedded cluster config lets you define several things about the cluster that will be created.
+1. Have a Replicated team member turn on the "Enable Embedded Cluster” feature flag for you.
+
+1. Create a new customer or edit an existing customer and select the **Embedded Cluster Binary Enabled (Beta)** license option. Save the customer.
+
+1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the embedded cluster version you want to use. You can also customize and create roles for multi-node clusters if desired.
+
+     Example embedded cluster config:
+
+     ```yaml
+     apiVersion: embeddedcluster.replicated.com/v1beta1
+     kind: Config
+     spec:
+       version: 1.29.1+ec.4
+     ```
+
+1. Save the release and promote it to the channel your customer is assigned to.
+
+1. Return to the customer page where you enabled embedded cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the embedded cluster binary and install your application.
+ 
+1. SSH onto the VM where you will install your application.
+
+1. Run the commands displayed on the embedded cluster install instructions dialog.
+
+1. Enter an admin console password when prompted.
+
+     The admin console URL is printed when the installation finishes. Access the admin console to view the Cluster Management page, add nodes to the cluster, etc. The application will install automatically if preflights pass.
+
+
+## Configure Embedded Cluster
+
+To use embedded cluster, an embedded cluster config must be created in a release. The embedded cluster config lets you define several characteristics about the cluster that will be created.
 
 For more information, see [Embedded Cluster Config](/reference/embedded-cluster-config).
 
+## Download the Embedded Cluster Binary
+
+To install your application with embedded cluster, you need to download an embedded cluster binary and a license. The binary is specific to your application release: it installs that particular version of your application using the embedded cluster config included in that release.
+
+Your customers can download the binary directly from Replicated, or you can host/serve the binary yourself using the Replicated Vendor API.
+
+### Directly from Replicated
+
+For online installations, your customers can run a command to download the embedded cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license (and the command to install the application) is available on the customer page in the vendor portal. You can copy these commands to share with your customers.
+
+To download the binary directly from Replicated:
+
+1. Create a new customer or edit an existing customer and select the **Embedded Cluster Binary Enabled (Beta)** license option. Save the customer.
+
+1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the embedded cluster binary and install your application.
+
+1. SSH onto the VM where you will install your application.
+
+1. Run the first two commands displayed on **Embedded cluster installation instructions** dialog to download the binary and license and extract them.
+
+     The following shows an example of the **Embedded cluster installation instructions** dialog:
+
+     :::note
+     You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
+     :::
+
+### Using the API
+
+Some vendors already have a portal that their customers log in to to access documentation or download artifacts. In cases like this, you can serve the embedded cluster binary yourself using the Replicated Vendor API.
+
+To serve the binary with the Vendor API:
+
+1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+
+1. Call the [Get an embedded cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+
+     Note the following:
+
+     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly from Replicated and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
+
+     * If you do not provide any query parameters, this endpoint downloads the embedded cluster binary for the latest release on the specified channel. You can provide the channelSequence query parameter to download the binary for a particular release.
+
+
 ## Install
+
+After your customers have obtained the embedded cluster binary and their license, they can install your application. For more information about how to get the binary and license, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+
+This procedure assumes customers have copied these artifacts to the machine where they will install your application, and have extracted them from the downloaded tarball.
+
+To install your application in an embedded cluster:
+
+1. SSH onto the machine where you will install your application.
+
+1. Ensure that the embedded cluster binary and the license are available in the working directory.
+
+1. Install the application:
+
+    ```
+    sudo ./APP_SLUG install --license LICENSE_FILE
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application.
+    * `LICENSE_FILE` is the customer's license.
+
+    :::note
+    It is required to pass the license to the install command.
+    :::
+
+1. Enter an admin console password when prompted.
+
+     The admin console URL is printed when the installation finishes. Access the admin console to view the **Cluster Management** page, add nodes to the cluster, and more. The license is embedded in the binary, so it is already uploaded.
+
 
 ## Update
 
+When you update an application installed in an embedded cluster, you update both the application and the cluster together. There is no need or mechanism to update the embedded cluster on its own.
+
+You can check for available application updates in the admin console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The admin console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
+
+Any changes made to the embedded cluster config, including changes to the embedded cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
+
+:::note
+During cluster updates, the admin console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the admin console when the downtime occurs, you’ll see the following message informing you that a cluster update is in progress and that the connection will resume once the admin console is available again.
+:::
+
+:::important
+Do not downgrade the embedded cluster version. This is not supported but is not programmatically prohibited, and it can lead to unexpected behavior.
+:::
+
 ## Access the Cluster
+
+With embedded cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the admin console.
+
+Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
+
+To access the cluster and use other included binaries:
+
+1. SSH onto a controller node.
+
+1. Use the embedded cluster shell command to start a shell with access to the cluster:
+
+     ```
+     sudo ./APP_SLUG shell
+     ```
+
+     The output looks similar to the following:
+     ```
+        __4___
+    _  \ \ \ \   Welcome to APP_SLUG debug shell.
+    <'\ /_/_/_/   This terminal is now configured to access your cluster.
+    ((____!___/) Type 'exit' (or CTRL+d) to exit.
+    \0\0\0\0\/  Happy hacking.
+    ~~~~~~~~~~~
+    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/k0s/pki/admin.conf"
+    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
+    root@alex-ec-2:/home/alex# source /etc/bash_completion
+    ```
+
+     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
+
+     Note: The shell command cannot be run on non-controller nodes.
+
+1. Use the available binaries as needed.
+
+     **Example**:
+
+     ```bash
+     kubectl version
+     ```
+     ```
+     Client Version: v1.29.1
+     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+     Server Version: v1.29.1+k0s
+     ```
+
+1. Type exit or use Ctrl+D to exit the shell.
+
+     :::note
+     If you encounter a typical workflow where your customers have to use the embedded cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional admin console functionality.
+     :::
 
 ## Manage Nodes
 
+The section describes managing nodes in clusters created with embedded cluster, including how to add or reset nodes.
+
 ### Add Nodes
 
+You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the embedded cluster config. The admin console provides a join command to run on a machine with the embedded cluster binary used to install the first node.
+
+For more information about defining node roles, see [Roles](/reference/embedded-config) in _Embedded Cluster Config_.
+
+**Limitation**: You cannot remove nodes from a multi-node cluster. If you need to remove a node from a multi-node cluster, you must create a new cluster. For more information, see [kURL Feature Parity](#kurl-feature-parity) above.
+
+To add nodes to a cluster:
+
+1. In the admin console, click **Cluster Management** at the top.
+
+     When initially installing the application, you are brought to this page automatically after logging into the admin console.
+
+1. Click **Add node**.
+
+1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
+
+    **ADD SCREENSHOT**
+
+1. Copy the provided join command.
+
+     **Example:**
+
+     ```
+     sudo ./APP_SLUG join 10.128.0.43:30000 bM8DO3MNvkouz9TFK3TcFanI
+     ```
+
+
+1. SSH onto the machine you want to join to the cluster. Ensure that the embedded cluster binary is available on that node. For more information on downloading the embedded cluster binary, see Installing.
+
+     :::important
+     You must join nodes with the same installer that you used for the first node. If you use a different installer from a different release of your application, the cluster will not be stable.
+     :::
+
+1. Run the copied join command using the embedded cluster binary.
+
+1. Check the **Cluster Management** page in the admin console to see the node appear and wait for the status to change to Ready.
+
+1. Repeat the process for as many nodes as you would like to add.
+
+
 ### Reset a Node
+
+Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
+
+If you want to completely remove a cluster, you need to reset each node individually.
+
+To reset the node of a cluster:
+
+1. SSH onto the machine. Ensure that the embedded cluster binary is still available on that machine. For more information on downloading the embedded cluster binary, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+
+1. Run the reset command to reset the node.
+
+     ```
+     sudo ./APP_SLUG reset
+     ```
+
+     :::note
+     Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
+     :::
+
+1. Reboot the machine to ensure transient configuration is also reset.
+
+     ```
+     sudo systemctl reboot
+     ```
+
+
+## Additional Use Cases
+
+This section outlines some additional use cases for embedded cluster. These are not officially supported features from Replicated, but are ways of using embedded cluster that we or our customers have experimented with that might be useful to you.
+
+### NVIDIA GPU Operator
+
+The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the embedded cluster Helm extensions. For information about Helm extensions, see [Helm extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+
+Using this operator with embedded cluster requires configuring the containerd options in the operator as follows:
+
+```yaml
+toolkit:
+   env:
+   - name: CONTAINERD_CONFIG
+     value: /etc/k0s/containerd.d/nvidia.toml
+   - name: CONTAINERD_SOCKET
+     value: /run/k0s/containerd.sock
+```     

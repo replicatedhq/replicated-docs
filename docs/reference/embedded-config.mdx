@@ -1,12 +1,24 @@
 # Embedded Cluster Config (Beta)
 
-To use the embedded cluster, an embedded cluster config must be created in a release. The embedded cluster config lets you define several things about the cluster that will be created.
+This topic is a reference for the Replicated embedded cluster config custom resource. For more information about embedded cluster, see [Using Embedded Cluster](/vendor/embedded-overview).
+
+:::note
+Embedded cluster is in beta. If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
+:::
+
+## Overview
+
+To install your application in an embedded cluster, an embedded cluster config must be created in a release. Embedded cluster binaries are available only for releases that include an embedded cluster config.
+
+The embedded cluster config lets you define several aspects of the Kubernetes cluster that will be created.
+
+**Example**:
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
-  version: 1.29.1+ec.0
+  version: 1.29.1+ec.6
   roles:
     controller:
       name: management
@@ -16,19 +28,182 @@ spec:
     - name: app
       labels:
        app: "true"
-
+  extensions:
+    helm:
+      repositories:
+        - name: ingress-nginx
+          url: https://kubernetes.github.io/ingress-nginx
+      charts:
+        - name: ingress-nginx
+          chartname: ingress-nginx/ingress-nginx
+          namespace: ingress-nginx
+          version: "4.8.3"
+          values: |
+            controller:
+              service:
+                type: NodePort
+                nodePorts:
+                  http: "80"
+                  https: "443"
+  unsupportedOverrides:
+    k0s: |
+      config:
+        spec:
+          api:
+            extraArgs:
+              service-node-port-range: 80-32767
 ```
 
-## version
+## Version
 
-## roles
+You must specify an embedded cluster version. This determines which version of embedded cluster is used when this release is installed.
 
-### controller
+For available versions of embedded cluster, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub. Because embedded cluster is under such active development, Replicated recommends using the latest release for the best results.
 
-### custom
+:::important
+Due to breaking and other changes during the Alpha phase, use version 1.29.1+ec.6 or later.
+:::
 
-### labels
+#### About Embedded Cluster Versioning
+
+Embedded cluster is versioned according to the following pattern:
+
+```
+KUBERNETES_VERSION+ec.PATCH
+```
+
+For example, 1.28.4+ec.1. The 1.28.4 indicates that Kubernetes 1.28.4 is installed as part of this embedded cluster release. The build information (everything after the plus sign) indicates which embedded cluster release this is for that particular Kubernetes version.
+
+For example, when Kubernetes 1.30.0 is released, the first embedded cluster release will be 1.30.0+ec.0. If we make additional embedded cluster changes before a new patch version of Kubernetes is released, the next embedded cluster version will be 1.30.0+ec.1. Eventually, 1.30 will receive a new patch release, and we’ll release 1.30.1+ec.0.
+
+A particular version of add-ons like KOTS (Admin Console) and OpenEBS is also included in each embedded cluster release. The `metadata.json` file for each release in GitHub specifies the versions included in that release.
+
+
+## Roles
+
+You can define node roles in the embedded cluster config. Roles are particularly useful for multi-node clusters. One or more roles can be selected and assigned to a node when it is joined to the cluster. Node roles can be used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes.
+
+:::note
+Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again.
+:::
+
+### Controller
+
+The controller role is required in any cluster. Nodes with this role are “controller workers” because they run the control plane and can run other workloads too. The first node in a cluster will always have the controller role because a cluster needs a control plane. Any node that doesn't have the controller role is a worker node.
+
+By default, the controller role is called “controller.” You can customize the name of the controller role with the `spec.roles.controller.name` field, like this:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    controller:
+      name: management
+```      
+
+### Custom
+
+You can define custom roles for other purposes in the cluster. This is particularly useful when combined with labels.
+
+Custom roles are defined with the `spec.roles.custom` array, as shown in the example below:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    custom:
+    - name: app
+```
+
+### Labels
+
+Roles can have associated Kubernetes labels that are applied to any node in the cluster that is assigned that role. This is useful for things like assigning workloads to nodes.
+
+Labels are defined for the controller role and custom roles, as shown in the example below:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    controller:
+      name: management
+      labels:
+        management: "true" # Label applied to "management" nodes
+    custom:
+    - name: app
+      labels:
+        app: "true" # Label applied to "app" nodes
+```
+
+## Helm Extensions
+
+If you need to install Helm charts before your application and as part of the embedded cluster itself, you can do this with Helm extensions. One situation where this is useful is if you want to ship an ingress controller, because embedded cluster does not yet include one.
+
+Helm extensions are updated when new versions of your application are deployed from the admin console. So, for example, you can change the values for a Helm extension from one release to another, and those changes will be applied to the cluster when the new release is deployed.
+
+**Limitation**: If a Helm extension is removed from the embedded cluster config, the associated Helm chart is not removed from the cluster. This is a limitation that we intend to address in the future.
+
+The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/head/helm-charts/#example).
+
+**Example**:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  extensions:
+    helm:
+      repositories:
+        - name: ingress-nginx
+          url: https://kubernetes.github.io/ingress-nginx
+      charts:
+        - name: ingress-nginx
+          chartname: ingress-nginx/ingress-nginx
+          namespace: ingress-nginx
+          version: "4.8.3"
+          values: |
+            controller:
+              service:
+                type: NodePort
+                nodePorts:
+                  http: "80"
+                  https: "443"
+```
+
+:::note
+If an order is not provided, Helm extensions are installed with order 10, and numbers below 10 are reserved for use by embedded cluster to deploy things like a storage provider and the admin console. If you need to install multiple charts in a particular order, choose orders greater than or equal to 10.
+:::
 
 ## Unsupported Overrides
 
-## Extensions
+:::important
+This feature should be used with caution by advanced users knowledgeable about k0s.
+:::
+
+Unsupported overrides allow you to override the default k0s config. This should be used with caution because changes here can disrupt or break embedded clusters.
+
+Though somewhat dangerous, this section is useful if you need to make changes that are not yet otherwise exposed by embedded cluster.
+
+For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/head/configuration/#full-config-reference) in the k0s documentation.
+
+If you need to use unsupported overrides, let Alex Parker know! These overrides are not supported by Replicated, and reasonable modifications to the k0s config will be productized and incorporated directly into the embedded cluster config instead.
+
+A common use case today is to adjust the default service port range to allow node ports on lower port numbers. This will likely be incorporated into the embedded cluster config in the future, but for now you can set it with unsupported overrides, as shown in the example below:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  unsupportedOverrides:
+    k0s: |
+      config:
+        spec:
+          api:
+            extraArgs:
+              service-node-port-range: 80-32767
+```
+
+Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into embedded cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that embedded cluster includes by default.
