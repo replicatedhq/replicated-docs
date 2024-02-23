@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.23-0
+
+Released on February 23, 2024
+
+### New Features {#new-features-v2024-02-23-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.2 1.28.7 1.27.11 1.26.14.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-02-17T01-15-57Z.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4 to use haproxy 2.9.5.
+
 ## v2024.02.05-0
 
 Released on February 5, 2024
