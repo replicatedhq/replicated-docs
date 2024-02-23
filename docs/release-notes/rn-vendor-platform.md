@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.23-2
+
+Released on February 23, 2024
+
+### New Features {#new-features-v2024.02.23-2}
+* Adds the ability to pin a license to a specific release sequence. To get access to this feature, log in to your vendor portal account. Select Support > Request a feature, and submit a feature request for "license release pinning".
+
 ## v2024.02.21-1
 
 Released on February 21, 2024
