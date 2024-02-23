@@ -23,7 +23,7 @@ Released on February 23, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Bug Fixes {#bug-fixes-1-107-7}
-* Fixes an issue where the "Ignore Preflights" option was not displayed on the preflights page when preflights were running.
+* Fixes an issue where the "Ignore Preflights" button was not displayed on the preflights page when preflights were running.
 * Fixes an issue where the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function did not return the new value when syncing the license.
 
 ## 1.107.6
