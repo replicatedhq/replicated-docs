@@ -726,6 +726,7 @@ const sidebars = {
         'reference/replicated-cli-registry-add',
         'reference/replicated-cli-registry-add-dockerhub',
         'reference/replicated-cli-registry-add-ecr',
+        'reference/replicated-cli-registry-add-gar',
         'reference/replicated-cli-registry-add-gcr',
         'reference/replicated-cli-registry-add-ghcr',
         'reference/replicated-cli-registry-add-other',
