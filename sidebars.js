@@ -81,6 +81,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Embedded Cluster (Beta)',
+      items: [
+        'vendor/embedded-overview',
+        'reference/embedded-config',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Replicated kURL',
       items: [
         'vendor/packaging-embedded-kubernetes',
