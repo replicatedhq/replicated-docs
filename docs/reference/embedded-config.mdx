@@ -18,7 +18,7 @@ The embedded cluster config lets you define several aspects of the Kubernetes cl
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
-  version: 1.29.1+ec.6
+  version: 1.29.2+ec.1
   roles:
     controller:
       name: management
@@ -58,26 +58,11 @@ spec:
 
 You must specify an embedded cluster version. This determines which version of embedded cluster is used when this release is installed.
 
-For available versions of embedded cluster, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub. Because embedded cluster is under such active development, Replicated recommends using the latest release for the best results.
+Use one of the following embedded cluster versions based on your desired version of Kubernetes:
+* **Kubernetes 1.28**: `1.28.7+ec.1`
+* **Kubernetes 1.29**: `1.29.1+ec.1`
 
-:::important
-Due to breaking and other changes during the Alpha phase, use version 1.29.1+ec.6 or later.
-:::
-
-#### About Embedded Cluster Versioning
-
-Embedded cluster is versioned according to the following pattern:
-
-```
-KUBERNETES_VERSION+ec.PATCH
-```
-
-For example, 1.28.4+ec.1. The 1.28.4 indicates that Kubernetes 1.28.4 is installed as part of this embedded cluster release. The build information (everything after the plus sign) indicates which embedded cluster release this is for that particular Kubernetes version.
-
-For example, when Kubernetes 1.30.0 is released, the first embedded cluster release will be 1.30.0+ec.0. If we make additional embedded cluster changes before a new patch version of Kubernetes is released, the next embedded cluster version will be 1.30.0+ec.1. Eventually, 1.30 will receive a new patch release, and we’ll release 1.30.1+ec.0.
-
-A particular version of add-ons like KOTS (Admin Console) and OpenEBS is also included in each embedded cluster release. The `metadata.json` file for each release in GitHub specifies the versions included in that release.
-
+A particular version of add-ons like KOTS (Admin Console) and OpenEBS is included in each embedded cluster release.
 
 ## Roles
 
