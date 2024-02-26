@@ -47,7 +47,17 @@ replicated cluster create [flags]
     <td>integer</td>
     <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
+  <tr>
+    <td>--nodegroup</td>
+    <td>string</td>
+    <td>Node group to create (name=?,instance-type=?,nodes=?,disk=? format, can be specified multiple times)</td>
+  </tr>
   <Output/>
+  <tr>
+    <td>--tag</td>
+    <td>string</td>
+    <td>Tag to apply to the cluster (key=value format, can be specified multiple times)</td>
+  </tr>
   <tr>
     <td>--ttl</td>
     <td>string</td>
@@ -71,6 +81,12 @@ replicated cluster create [flags]
 
   ```bash
   replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m6i.large
+  ```
+
+- For an EKS distribution with an additional node group:
+
+  ```bash
+  replicated cluster create --name eks-nodegroup-example --distribution eks --instance-type m6i.large --nodes 1 --nodegroup name=arm,instance-type=m7g.large,nodes=1,disk=50
   ```
 
 - For a kind distribution:

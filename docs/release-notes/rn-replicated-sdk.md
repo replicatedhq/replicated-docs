@@ -8,6 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.16
+
+Released on February 19, 2024
+
+### New Features {#new-features-1-0-0-beta-16}
+* Adds support for running the SDK on ARM64 nodes.
+
+## 1.0.0-beta.15
+
+Released on February 15, 2024
+
+### Improvements {#improvements-1-0-0-beta-15}
+* Upgrades the helm.sh/helm/v3 go module to 3.14.0 to resolve GHSA-7ww5-4wqc-m92c and GHSA-45x7-px36-x8w8 with medium severity.
+* Upgrades the go version used to build the Replicated SDK to 1.21.7 to resolve CVE-2023-45285, CVE-2023-44487, CVE-2023-39325, and CVE-2023-39323 with high severity, and CVE-2023-39326, CVE-2023-39319, and CVE-2023-39318 with medium severity.
+
 ## 1.0.0-beta.14
 
 Released on February 5, 2024

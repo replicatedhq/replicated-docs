@@ -21,11 +21,15 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.25.11, 1.26.6, 1.27.3, 1.28.0, 1.29.0</td>
+    <td>1.23.17, 1.24.17, 1.25.16, 1.26.14, 1.27.11, 1.28.7, 1.29.2</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
     <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -63,6 +67,10 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
     <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>  
@@ -98,6 +106,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   <tr>
     <th>Supported Instance Types</th>
     <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -141,6 +153,10 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
     <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>  
@@ -173,7 +189,11 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge</td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge, g4dn.xlarge, g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</p><p>g4dn instance types depend on available capacity.</p></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -207,6 +227,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
@@ -235,7 +259,11 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms</p><p>You can specify more than one node.</p></td>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2ps_v5, Standard_D4ps_v5, Standard_D8ps_v5, Standard_D16ps_v5, Standard_D32ps_v5, Standard_D48ps_v5</p><p>You can specify more than one node.</p></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>

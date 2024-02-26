@@ -6,7 +6,7 @@ import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
-import HelmChartsKots from "../partials/helm/_helm-charts-kots.mdx"
+import Helm from "../partials/helm/_helm-definition.mdx"
 
 # About Distributing Helm Charts with KOTS
 
@@ -14,12 +14,26 @@ This topic provides an overview of how Replicated KOTS deploys Helm charts, incl
 
 ## Overview
 
-<HelmChartsKots/>
+<Helm/>
 
-An application deployed with KOTS can:
-* Use one or more Helm charts
-* Use a combination of Helm charts and standard Kubernetes manifests
-* Use more than a single instance of any Helm chart
+KOTS can install applications that include:
+* One or more Helm charts
+* More than a single instance of any chart
+* A combination of Helm charts and Kubernetes manifests
+
+Replicated strongly recommends that all applications are packaged as Helm charts because many enterprise users expect to be able to install an application with the Helm CLI.
+
+Deploying Helm charts with KOTS provides additional functionality not directly available with the Helm CLI, such as:
+* The KOTS admin console
+* Backup and restore with snapshots
+* Support for air gap installations
+* Support for embedded cluster installations on VMs or bare metal servers
+
+Additionally, for applications packaged as Helm charts, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests. The following diagram demonstrates how a single release containing one or more Helm charts can be installed using the Helm CLI and KOTS:
+
+<img src="/images/helm-kots-install-options.png" width="650px" alt="One release being installed into three different customer environments"/>
+
+[View a larger version of this image](/images/helm-kots-install-options.png)
 
 For a tutorial that demonstrates how to add a sample Helm chart to a release and then install the release using both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup).
 

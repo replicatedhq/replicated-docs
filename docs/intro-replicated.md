@@ -3,6 +3,7 @@ pagination_prev: null
 ---
 
 import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
+import Kots from "/docs/partials/kots/_kots-definition.mdx"
 
 # Introduction to Replicated
 
@@ -62,9 +63,9 @@ Additionally, the Replicated proxy service grants proxy access to private applic
 
 ### Install
 
-Applications distributed with Replicated can be installed using any method, including the Helm CLI for Helm charts or any proprietary installation method already used by the ISV.
+Applications distributed with Replicated can be installed using the Helm CLI or the Replicated KOTS installer. The Helm CLI supports installation of Helm charts and KOTS supports installation of Helm charts and Kubernetes manifests.
 
-Replicated also offers the Replicated KOTS installer, which is a kubectl plugin that provides highly successful installs of Helm charts and Kubernetes applications into customer-controlled environments, including air gap environments. For users that have less experience with Kubernetes, KOTS supports installations onto VMs or bare metal servers through _embedded clusters_, which are provisioned in the customer environment at the time of installation.
+<Kots/>
 
 For more information, see the [KOTS documentation](intro-kots).
 

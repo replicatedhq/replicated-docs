@@ -29,9 +29,9 @@ List all customers:
 
 ```bash
 replicated customer ls
-ID                                  NAME                            CHANNELS         EXPIRES    TYPE
-iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    John Smith                      Unstable         Never      
-YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Beta    Never      
+ID                                  NAME                            CHANNELS         EXPIRES    TYPE    CUSTOM_ID
+iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    John Smith                      Unstable         Never              Not Set
+YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Beta    Never              salesforceid-123
 ```
 
 List customers and their instances for a specific application version:

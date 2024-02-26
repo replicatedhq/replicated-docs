@@ -8,6 +8,64 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.23-2
+
+Released on February 23, 2024
+
+### New Features {#new-features-v2024.02.23-2}
+* Adds the ability to pin a license to a specific release sequence. To get access to this feature, log in to your vendor portal account. Select Support > Request a feature, and submit a feature request for "license release pinning".
+
+## v2024.02.21-1
+
+Released on February 21, 2024
+
+### New Features {#new-features-v2024-02-21-1}
+* Adds the EKS g4dn instance types to Compatibility Matrix.
+* Adds the AKS Standard_D2ps_v5 and higher instance types to Compatibility Matrix.
+* Labels and comments on support cases with End of Life (EOL) addons in kURL installer specs embedded in application releases.
+
+## v2024.02.21-0
+
+Released on February 21, 2024
+
+### New Features {#new-features-v2024-02-21-0}
+* Adds release info to the **Support bundle analysis** page.
+
+## v2024.02.19-0
+
+Released on February 19, 2024
+
+### New Features {#new-features-v2024-02-19-0}
+* Adds support for Node Groups on the **Cluster History** page.
+
+## v2024.02.14-0
+
+Released on February 14, 2024
+
+### New Features {#new-features-v2024-02-14-0}
+* Adds ability to add a Custom ID to a Customer through the vendor portal.
+* Shows Custom ID and License ID on the Customers and Instances table views on the **Customers** page.
+
+## v2024.02.13-3
+
+Released on February 13, 2024
+
+### New Features {#new-features-v2024-02-13-3}
+* Adds support for creating multiple nodegroups in compatibility matrix EKS clusters.
+
+## v2024.02.09-3
+
+Released on February 9, 2024
+
+### New Features {#new-features-v2024-02-09-3}
+* Adds support for Google Artifact Registry.
+
+### Improvements {#improvements-v2024-02-09-3}
+* Adds pagination to the list of customer instances on the customer details page.
+
+### Bug Fixes {#bug-fixes-v2024-02-09-3}
+* pageSize and offset properties are no longer required for the `/v3/customers/search` Vendor API endpoint.  API consumers must provide at least one inclusion criteria for a valid customer search.
+
 ## v2024.02.08-2
 
 Released on February 8, 2024

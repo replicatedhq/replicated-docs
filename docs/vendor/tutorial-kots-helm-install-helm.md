@@ -28,7 +28,7 @@ To install the release with the Helm CLI:
 
    1. Click **Save Changes**.
 
-1. On the **Customer details** page for the new customer, click **Helm install instructions**.
+1. On the **Manage customer** page for the new customer, click **Helm install instructions**.
 
    ![Helm install instrucitons button](/images/tutorial-gitea-helm-customer-install-button.png)
 
@@ -112,7 +112,6 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 
 ## Related Topics
 
-* [About Installations with the Helm CLI](/vendor/distributing-overview#helm)
 * [Installing with Helm](/vendor/install-with-helm)
 * [About the Replicated SDK](/vendor/replicated-sdk-overview)
 * [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)

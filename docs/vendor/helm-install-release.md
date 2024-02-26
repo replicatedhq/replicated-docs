@@ -1,4 +1,5 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -8,7 +9,7 @@ This topic describes how to package a Helm chart and the Replicated SDK into a c
 
 To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies into a `.tgz` chart archive.
 
-The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended for applications that will be installed with Helm because it provides access to key Replicated features, such as instance insights and telemetry. For more information, see [About the Replicated SDK](replicated-sdk-overview). 
+The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended because it provides access to key Replicated features, such as support for collecting custom metrics on application instances. For more information, see [About the Replicated SDK](replicated-sdk-overview). 
 
 ## Chart Version Requirement
 
@@ -22,17 +23,13 @@ This procedure shows how to create a Helm chart archive to add to a release. For
 
 To package a Helm chart so that it can be added to a release:
 
-1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
-
-   :::note
-   If the Helm chart that you want to use is available in a chart repository and you do not have access to the source, you can run `helm repo add` and `helm pull` to download a local copy of the chart archive. For more information, see [Helm Repo](https://helm.sh/docs/helm/helm_repo/) and [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
-   :::
-
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
     <DependencyYaml/>
     
     For additional guidelines related to adding the SDK as a dependency, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
+
+1. <RegistryLogout/> 
 
 1. Update the `charts/` directory:
 
@@ -50,4 +47,4 @@ To package a Helm chart so that it can be added to a release:
 
 1. Add the `.tgz` chart archive to a release. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing with Helm](install-with-helm).  
+  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install a release with the Helm CLI, see [Installing with Helm](install-with-helm).  

@@ -102,10 +102,10 @@ pagination_next: null
         <p>Helm</p>
     </li>
     <li>
-        <p>Distribute your Helm chart application with Replicated.</p>
+        <p>Distribute Helm-based applications with Replicated.</p>
     </li>
     <li>
-      <a href="/vendor/distributing-overview#helm">About Helm CLI installations</a>
+      <a href="/vendor/install-with-helm">About Helm CLI installations</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Use the Replicated SDK</a>
@@ -115,9 +115,6 @@ pagination_next: null
     </li>
     <li>
       <a href="/vendor/helm-image-registry">Use the proxy service for private images</a>
-    </li>
-    <li>
-      <a href="/vendor/install-with-helm">Get Helm CLI installation instructions</a>
     </li>
     <li>
       <a href="/vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>

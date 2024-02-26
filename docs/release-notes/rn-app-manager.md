@@ -16,6 +16,52 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.107.7
+
+Released on February 23, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-107-7}
+* Fixes an issue where the "Ignore Preflights" button was not displayed on the preflights page when preflights were running.
+* Fixes an issue where the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function did not return the new value when syncing the license.
+
+## 1.107.6
+
+Released on February 22, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Improvements {#improvements-1-107-6}
+* UI improvements when running in an embedded cluster (Alpha)
+
+## 1.107.5
+
+Released on February 20, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-107-5}
+* Fixes an issue in kURL clusters where images from Helm charts configured using the v1beta2 HelmChart custom resource were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
+
+## 1.107.4
+
+Released on February 16, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-107-4}
+* Fixes an issue where processing images from Helm charts configured using the v1beta2 HelmChart custom resource may fail in air gapped mode.
+
+## 1.107.3
+
+Released on February 12, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Bug Fixes {#bug-fixes-1-107-3}
+* Fixes an issue where the preflights page was not displayed during initial installation if the preflight spec was included in a Secret or ConfigMap in the Helm chart templates.
+
 ## 1.107.2
 
 Released on February 2, 2024

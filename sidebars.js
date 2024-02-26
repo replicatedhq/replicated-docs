@@ -485,8 +485,8 @@ const sidebars = {
         },
       ],
     },
-    // DISTRIBUTE AND SUPPORT
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
+    // PACKAGE AND DISTRIBUTE
+    {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true}, 
     'vendor/distributing-overview',
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
@@ -537,7 +537,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Channel and Release Management',
+      label: 'Channels and Releases',
       items: [
         'vendor/releases-about',
         'vendor/releases-creating-channels',
@@ -594,6 +594,19 @@ const sidebars = {
           items: [
              'vendor/preflight-defining',
              'vendor/preflight-running',
+             {
+              type: 'category',
+              label: 'Tutorial: Add Preflight Checks to a Helm Chart',
+              items: [
+                'vendor/tutorial-preflight-helm-setup',
+                'vendor/tutorial-preflight-helm-get-chart',
+                'vendor/tutorial-preflight-helm-add-spec',
+                'vendor/tutorial-preflight-helm-create-release',
+                'vendor/tutorial-preflight-helm-create-customer',
+                'vendor/tutorial-preflight-helm-install',
+                'vendor/tutorial-preflight-helm-install-kots',
+              ],
+            },
          ],
         },
         {
@@ -630,7 +643,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI/CD',
+      label: 'Integrating with CI/CD',
       items: [
         'vendor/ci-overview',
         'vendor/ci-workflows',
@@ -652,9 +665,14 @@ const sidebars = {
          'vendor/instance-data-export',
        ],
     },
-    {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
-    'vendor/install-with-helm',
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+    {
+      type: 'category',
+      label: 'Installing Applications',
+      items: [
+        'vendor/install-with-helm',
+        {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
+      ],
+    },
     
 
     // DEVELOPER TOOLS
@@ -685,6 +703,7 @@ const sidebars = {
         'reference/replicated-cli-cluster-create',
         'reference/replicated-cli-cluster-kubeconfig',
         'reference/replicated-cli-cluster-ls',
+        'reference/replicated-cli-cluster-nodegroup-ls',
         'reference/replicated-cli-cluster-prepare',
         'reference/replicated-cli-cluster-rm',
         'reference/replicated-cli-cluster-update-ttl',
@@ -708,6 +727,7 @@ const sidebars = {
         'reference/replicated-cli-registry-add',
         'reference/replicated-cli-registry-add-dockerhub',
         'reference/replicated-cli-registry-add-ecr',
+        'reference/replicated-cli-registry-add-gar',
         'reference/replicated-cli-registry-add-gcr',
         'reference/replicated-cli-registry-add-ghcr',
         'reference/replicated-cli-registry-add-other',

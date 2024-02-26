@@ -1,4 +1,5 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 
 # Step 3: Package the Helm Chart
 
@@ -17,6 +18,7 @@ To add the Replicated SDK and package the Helm chart:
    ```bash
    helm package . --dependency-update
    ```
+   <UnauthorizedError/>
 
 ## Next Step
 
