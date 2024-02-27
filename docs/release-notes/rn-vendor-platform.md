@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.02.27-1
+
+Released on February 27, 2024
+
+### New Features {#new-features-v2024-02-27-1}
+* Added ARM support for Compatibility Matrix GKE clusters.
+
 ## v2024.02.23-2
 
 Released on February 23, 2024
