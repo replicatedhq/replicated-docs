@@ -26,7 +26,7 @@ Installing an application with KOTS provides access to feautures such as:
 * Instance telemetry automatically sent to the vendor portal for instances running in customer environments
 * Strict preflight checks that block installation if environment requirements are not met
 * Backup and restore with Replicated snapshots
-* Required releases with the **Prevent this release from being skipped during upgrades** option in the vendor portal
+* Support for marking releases as required to prevent users from skipping them during upgrades
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
 
