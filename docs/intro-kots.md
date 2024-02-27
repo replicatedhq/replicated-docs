@@ -2,6 +2,8 @@
 displayed_sidebar: kots
 ---
 
+import Kots from "../docs/partials/kots/_kots-definition.mdx"
+
 # Introduction to KOTS
 
 This topic provides an introduction to the Replicated KOTS installer, including information about KOTS features, installation options, and user interfaces.
@@ -12,7 +14,7 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 ## Overview
 
-Replicated KOTS is a kubectl plugin and an in-cluster admin console that provides highly successful installations of Helm charts and Kubernetes applications into customer-controlled environments, including on-prem and air gap environments. KOTS also supports installations onto VMs or bare metal servers through _embedded clusters_, which are clusters built from a customized Kubernetes distribution embedded with an application and provisioned in the customer environment at the time of installation.
+<Kots/>
 
 KOTS communicates securely with the Replicated vendor platform to synchronize customer licenses, check for available application updates, send instance data, share customer-generated support bundles, and more.
 
@@ -30,22 +32,25 @@ KOTS is an open source project that is maintained by Replicated. For more inform
 
 ## About Installing with KOTS
 
-KOTS can be used to install applications in Kubernetes clusters, including air gapped clusters, embedded clusters provisioned on VMs or bare metal servers with Replicated kURL, or any existing cluster brought by the user.
+KOTS can be used to install applications in Kubernetes clusters, including:
+* Existing clusters brought by the user
+* Online or air gapped clusters
+* Embedded clusters provisioned on VMs or bare metal servers with Replicated embedded cluster or Replicated kURL
 
 To install an application with KOTS, users first run an installation script to install KOTS in the target cluster and deploy the KOTS admin console. After KOTS is installed, users can log in to the KOTS admin console to upload their license file, configure the application, run preflight checks, and install and deploy the application.
 
-The following diagram demonstrates how a single application release promoted the Stable channel in the Replicated vendor platform can be installed using KOTS in an embedded cluster on a VM, in an air gapped cluster, and in an existing internet-connected cluster:
+The following diagram demonstrates how a single release promoted to the Stable channel in the Replicated vendor platform can be installed using KOTS in an embedded cluster on a VM, in an air gapped cluster, and in an existing internet-connected cluster:
 
 <img alt="Embedded cluster, air gap, and existing cluster app installation workflows" src="/images/kots-installation-overview.png" width="650px"/>
 
 [View a larger version of this image](/images/kots-installation-overview.png)
 
 As shown in the diagram above: 
-* For installations into existing clusters with access to the internet, users run a command to install KOTS in their cluster.
+* For installations in existing internet-connected clusters, users run a command to install KOTS in their cluster.
 * For embedded cluster installations on VMs or bare metal servers, users run an installation script that both provisions a cluster in their environment and installs KOTS in the cluster.
 * For installations in air gapped clusters, users download air gap bundles for KOTS and the application from the Replicated download portal and then provide the bundles during installation.
 
-All users are provided a license file that allows them to install with KOTS. After KOTS is installed in the cluster, users can access the KOTS admin console to provide their license file and deploy the application.
+All users must provide a license file to install with KOTS. After KOTS is installed in the cluster, users can access the KOTS admin console to provide their license file and deploy the application.
 
 For more information about how to install applications with KOTS, see the [Installing an Application](/enterprise/installing-overview) section.
 

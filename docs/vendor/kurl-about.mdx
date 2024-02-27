@@ -1,6 +1,6 @@
 # Introduction to kURL
 
-This topic provides an introduction to the Replicated kURL installer, including information about defining specifications for kURL clusters and installing with kURL.
+This topic provides an introduction to the Replicated kURL installer, including information about kURL specifications and installations.
 
 :::note
 The Replicated KOTS entitlement is required to install applications with KOTS and kURL. For more information, see [Pricing](https://www.replicated.com/pricing) on the Replicated website.
@@ -20,11 +20,11 @@ Installer specs can be embedded with an application by promoting the spec to the
 
 For more information about creating Kubernetes installer specs for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
-### Embedded Cluster Installations
+### kURL Installations
 
-Installations with Replicated KOTS in clusters provisioned by kURL are called _embedded cluster_ installations. In embedded cluster installations, users run a kURL installation script on their VM or bare metal server to provision a cluster.
+To install with kURL, users run a kURL installation script on their VM or bare metal server to provision a cluster.
 
-When the KOTS add-on is included in the Kubernetes installer spec, the kURL installation script also automatically installs the kots CLI and KOTS admin console in the cluster. After the installation script completes, users can access the admin console at the URL provided in the ouput of the command to configure and deploy the application. Users can also manage nodes for clusters provisioned with kURL from the **Cluster Management** page of the KOTS admin console.
+When the KOTS add-on is included in the Kubernetes installer spec, the kURL installation script installs the kots CLI and KOTS admin console in the cluster. After the installation script completes, users can access the admin console at the URL provided in the ouput of the command to configure and deploy the application with KOTS.
 
 The following shows an example of the output of the kURL installation script:
 
@@ -40,9 +40,9 @@ this password; this can be done with the following command:
 kubectl kots reset-password default
 ```
 
-Embedded cluster installations are supported in online (internet-connected) and air gapped environments.
+kURL installations are supported in online (internet-connected) and air gapped environments.
 
-For information about how to install applications in embedded clusters with KOTS and kURL, see [Online Installation with kURL](/enterprise/installing-embedded-cluster).
+For information about how to install applications with kURL, see [Online Installation with kURL](/enterprise/installing-embedded-cluster).
 
 ## About the Open Source kURL Documentation
 
