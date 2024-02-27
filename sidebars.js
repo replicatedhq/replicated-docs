@@ -91,6 +91,7 @@ const sidebars = {
       type: 'category',
       label: 'Replicated kURL',
       items: [
+        'vendor/kurl-about',
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
         'vendor/kurl-nodeport-services',
