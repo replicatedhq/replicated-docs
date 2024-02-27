@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.107.8
+
+Released on February 27, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Improvements {#improvements-1-107-8}
+* Resolves the false positive CVEs with critical severity in the `kotsadm` image which stemmed from the Dex Go library.
+
 ## 1.107.7
 
 Released on February 23, 2024
