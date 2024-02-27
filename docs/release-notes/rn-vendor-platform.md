@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 26, 2024
 
 ### New Features {#new-features-v2024-02-26-0}
-* v3 API for `/customer_instances` endpoint now supports filtering via `customerIds=".."` query parameter.
+* v3 API for `/customer_instances` endpoint supports filtering with the `customerIds=".."` query parameter.
 
 ## v2024.02.23-2
 
