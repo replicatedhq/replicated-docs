@@ -101,7 +101,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Supported OpenShift Versions</th>
-    <td>4.10.0-okd, 4.11.0-okd, 4.12.0-okd, 4.13.0-okd, 4.14.0-okd</td>
+    <td>4.10.0-okd, 4.11.0-okd, 4.12.0-okd, 4.13.0-okd, 4.14.0-okd, 4.15.0-okd</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
