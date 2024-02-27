@@ -23,7 +23,7 @@ Released on February 27, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-107-8}
-* Addresses the false positive CVEs with critical severity in the `kotsadm` image which stemmed from the Dex Go library.
+* Resolves the false positive CVEs with critical severity in the `kotsadm` image which stemmed from the Dex Go library.
 
 ## 1.107.7
 
