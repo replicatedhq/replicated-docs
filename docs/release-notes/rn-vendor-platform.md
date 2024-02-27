@@ -13,7 +13,14 @@ pagination_prev: null
 Released on February 27, 2024
 
 ### New Features {#new-features-v2024-02-27-1}
-* Added ARM support for Compatibility Matrix GKE clusters.
+* Adds ARM support for Compatibility Matrix GKE clusters.
+
+## v2024.02.26-0
+
+Released on February 26, 2024
+
+### New Features {#new-features-v2024-02-26-0}
+* v3 API for `/customer_instances` endpoint supports filtering with the `customerIds=".."` query parameter.
 
 ## v2024.02.23-2
 
