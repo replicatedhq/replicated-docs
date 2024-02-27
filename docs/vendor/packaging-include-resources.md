@@ -57,7 +57,7 @@ The `kots.io/exclude` and `kots.io/when` annotations have the following requirem
 
 * Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
 
-* The `kots.io/exclude` and `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations must be strings. For more information about working with Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
+* The values of the `kots.io/exclude` and `kots.io/when` annotations must be wrapped in quotes. This is because Kubernetes annotations must be strings. For more information about working with Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
 
 ### `kots.io/exclude`
 
@@ -71,7 +71,7 @@ kind: Statefulset
 metadata:
   name: postgresql
   annotations:
-    "kots.io/exclude": '{{repl ConfigOptionEquals "install_postgres" "0" }}'
+    kots.io/exclude: '{{repl ConfigOptionEquals "install_postgres" "0" }}'
   labels:
     app: postgresql
 spec:
@@ -104,7 +104,7 @@ kind: Statefulset
 metadata:
   name: postgresql
   annotations:
-    "kots.io/when": '{{repl ConfigOptionEquals "install_postgres" "1" }}'
+    kots.io/when: '{{repl ConfigOptionEquals "install_postgres" "1" }}'
   labels:
     app: postgresql
 spec:
