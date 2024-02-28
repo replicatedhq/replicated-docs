@@ -1,5 +1,9 @@
 # About Installing an Application
 
+This topic provides an introduction to installing with Replicated KOTS, including options to consider before installing.
+
+## Overview
+
 You can use Replicated KOTS to install applications into various environments, with or without existing Kubernetes clusters. The installation options include online and air gapped clusters, and support managed offerings such as EKS, GKE, AKS, and more.
 
 ## Considerations Before Installing
@@ -10,7 +14,7 @@ Before you install an application, consider the following installation options.
 
 With KOTS, you can install an application in one of two ways:
 * **With an existing cluster**: You can install an application in an existing Kubernetes cluster that meets the system requirements. For more information, see [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
-* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated kURL installer can create an embedded cluster for you in a virtual machine or a bare metal server. For more information, see [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
+* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, you can install in a virtual machine or a bare metal server. For more information, see [Embedded kURL Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 
@@ -25,7 +29,7 @@ To install an application in an air gapped environment, the cluster must have ac
 
 For information about installing in air gapped environments:
 * **Existing clusters**: See [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped)
-* **Embedded clusters**: See [Air Gap Installation with kURL](installing-embedded-airgapped)
+* **Embedded clusters with kURL**: See [Air Gap Installation with kURL](installing-embedded-airgapped)
 
 ### Existing Cluster Installations into Hardened Environments
 
