@@ -68,7 +68,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -109,7 +109,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -154,7 +154,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
