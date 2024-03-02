@@ -1,3 +1,4 @@
+[acl-handlers.go.txt](https://github.com/replicatedhq/replicated-docs/files/14469200/acl-handlers.go.txt)
 # Global flags
 
 All kots CLI commands support a set of global flags to be used to connect to the cluster.
