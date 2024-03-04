@@ -4,7 +4,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Kubernetes Installer (kURL) Release Notes
+# kURL Release Notes
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
