@@ -13,7 +13,7 @@ pagination_prev: null
 Released on February 29, 2024
 
 ### New Features {#new-features-v2024-02-29-3}
-* Adding support for nodegroups for k8s distributions that are VM based and support multinode.
+* Adds compatibility matrix support for nodegroups for VM-based Kubernetes distributions that support multinode.
 
 ## v2024.02.27-1
 
