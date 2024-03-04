@@ -33,26 +33,32 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td><a href="https://docs.replicated.com/vendor/testing-about">Replicated (Compatibility Matrix)</a></td>
+    <td><a href="/vendor/testing-about">Replicated (Compatibility Matrix)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://docs.replicated.com/vendor/replicated-sdk-overview">Replicated (Replicated SDK)</a></td>
+    <td><a href="/vendor/replicated-sdk-overview">Replicated (Replicated SDK)</a></td>
     <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://docs.replicated.com/intro-replicated#kots">Replicated (KOTS Installer)</a></td>
+    <td><a href="/intro-kots">Replicated (KOTS Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
     <tr>
-    <td><a href="https://docs.replicated.com/intro-replicated#kurl">Replicated (kURL Installer)</a></td>
+    <td><a href="/vendor/kurl-about">Replicated (kURL Installer)</a></td>
     <td>GA</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td><a href="/vendor/embedded-overview">Replicated (Embedded Cluster)</a></td>
+    <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
