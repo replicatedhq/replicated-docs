@@ -9,7 +9,7 @@ pagination_next: null
 <section class="tile__container">
 <ul class="tile">
     <li class="tile__header">
-        <img src="images/icons/alien_vault.png" alt="ufo icon"></img>
+        <img src="images/icons/alien_vault.png" alt="ufo icon" width="55px" height="55.19px"></img>
         <p>Getting Started</p>
     </li>
     <li>
@@ -35,7 +35,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <img src="images/icons/vendor_portal_2.png" alt="dashboard icon"></img>
+        <img src="images/icons/vendor_portal_2.png" alt="dashboard icon" width="55px" height="55.19px"></img>
         <p>Vendor Portal</p>
     </li>
     <li>
@@ -71,7 +71,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
+        <img src="images/icons/k8s_installer.png" alt="installer icon" width="55px" height="55.19px"></img>
         <p>KOTS and kURL Installers</p>
     </li>
     <li>
@@ -108,7 +108,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm"></img>
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm" width="55px" height="55.19px"></img>
         <p>Helm</p>
     </li>
     <li>
