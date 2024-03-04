@@ -6,7 +6,7 @@ pagination_prev: null
 
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
-# App Manager (KOTS) Release Notes
+# KOTS Release Notes
 
 ## Kubernetes Compatibility
 
