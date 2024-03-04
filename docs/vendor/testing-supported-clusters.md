@@ -68,7 +68,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -109,7 +109,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -154,7 +154,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -224,7 +224,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32</p><p>You can specify more than one node.</p></td>
+    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, t2a-standard-2, t2a-standard-4, t2a-standard-8, t2a-standard-16, t2a-standard-32, t2a-standard-48</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
