@@ -9,7 +9,7 @@ pagination_next: null
 <section class="tile__container">
 <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/alien_vault.png" alt="ufo icon"></img></li>
+        <img src="images/icons/alien_vault.png" alt="ufo icon" width="55px" height="55px"></img>
         <p>Getting Started</p>
     </li>
     <li>
@@ -33,7 +33,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/vendor_portal_2.png" alt="dashboard icon"></img></li>
+        <img src="images/icons/vendor_portal_2.png" alt="dashboard icon" width="55px" height="55px"></img>
         <p>Vendor Portal</p>
     </li>
     <li>
@@ -65,7 +65,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/k8s_installer.png" alt="installer icon"></img></li>
+        <img src="images/icons/k8s_installer.png" alt="installer icon" width="55px" height="55px"></img>
         <p>KOTS and kURL Installers</p>
     </li>
     <li>
@@ -98,7 +98,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm"></img></li>
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm" width="55px" height="55px"></img>
         <p>Helm</p>
     </li>
     <li>
@@ -127,7 +127,7 @@ pagination_next: null
 <section class="tile__container">
    <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/commands.png" alt="command prompt icon"></img></li>
+        <img src="images/icons/commands.png" alt="command prompt icon" width="55px" height="55px"></img>
         <p>APIs, CLIs, and SDK</p>
     </li>
     <li>
@@ -148,7 +148,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/release.png" alt="rocket ship icon"></img></li>
+        <img src="images/icons/release.png" alt="rocket ship icon" width="55px" height="55px"></img>
         <p>Compatibility Matrix</p>
     </li>
     <li>
@@ -166,7 +166,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/dashboard_1.png" alt="dashboard icon"></img></li>
+        <img src="images/icons/dashboard_1.png" alt="dashboard icon" width="55px" height="55px"></img>
         <p>Insights and Telemetry</p>
     </li>
     <li>
@@ -186,7 +186,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/checklist.png" alt="checklist icon"></img></li>
+        <img src="images/icons/checklist.png" alt="checklist icon" width="55px" height="55px"></img>
         <p>Preflight Checks</p>
     </li>
     <li>
@@ -207,7 +207,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/support_bundle.png" alt="support bundle icon"></img></li>
+        <img src="images/icons/support_bundle.png" alt="support bundle icon" width="55px" height="55px"></img>
         <p>Support Bundles</p>
     </li>
     <li>
