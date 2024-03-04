@@ -9,7 +9,7 @@ pagination_next: null
 <section class="tile__container">
 <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/alien_vault.png" alt="ufo icon"></img></li>
+        <img src="images/icons/alien_vault.png" alt="ufo icon"></img>
         <p>Getting Started</p>
     </li>
     <li>
@@ -35,7 +35,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/vendor_portal_2.png" alt="dashboard icon"></img></li>
+        <img src="images/icons/vendor_portal_2.png" alt="dashboard icon"></img>
         <p>Vendor Portal</p>
     </li>
     <li>
@@ -71,7 +71,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/k8s_installer.png" alt="installer icon"></img></li>
+        <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
         <p>KOTS and kURL Installers</p>
     </li>
     <li>
@@ -108,12 +108,12 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm"></img></li>
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm"></img>
         <p>Helm</p>
     </li>
     <li>
-            <p>Distribute Helm-based applications with Replicated.</p>
-        </li>
+       <p>Distribute Helm-based applications with Replicated.</p>
+    </li>
     <li>
       <ul class="tile__topiclist">
         <li>
@@ -141,7 +141,7 @@ pagination_next: null
 <section class="tile__container">
    <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/commands.png" alt="command prompt icon"></img></li>
+        <img src="images/icons/commands.png" alt="command prompt icon"></img>
         <p>APIs, CLIs, and SDK</p>
     </li>
     <li>
@@ -166,7 +166,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/release.png" alt="rocket ship icon"></img></li>
+        <img src="images/icons/release.png" alt="rocket ship icon"></img>
         <p>Compatibility Matrix</p>
     </li>
     <li>
@@ -188,7 +188,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/dashboard_1.png" alt="dashboard icon"></img></li>
+        <img src="images/icons/dashboard_1.png" alt="dashboard icon"></img>
         <p>Insights and Telemetry</p>
     </li>
     <li>
@@ -212,7 +212,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/checklist.png" alt="checklist icon"></img></li>
+        <img src="images/icons/checklist.png" alt="checklist icon"></img>
         <p>Preflight Checks</p>
     </li>
     <li>
@@ -237,7 +237,7 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/support_bundle.png" alt="support bundle icon"></img></li>
+        <img src="images/icons/support_bundle.png" alt="support bundle icon"></img>
         <p>Support Bundles</p>
     </li>
     <li>
