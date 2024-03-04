@@ -148,14 +148,13 @@ ol ol ol {
 }
 
 .tile__container > ul {
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr;
   padding: 1.0em;
   list-style: none;
   border-radius: 10px;
   border: 1px solid rgba(88,88,88,0.2);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
 }
 
 .tile__container > ul:hover {
@@ -183,6 +182,7 @@ ol ol ol {
 .tile__header img {
   background-color:rgba(255,72,86,0.1);
   border-radius: 10px;
+  max-width: 55px;
 }
 
 #tile__header__helm {

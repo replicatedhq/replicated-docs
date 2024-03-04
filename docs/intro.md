@@ -112,10 +112,10 @@ pagination_next: null
         <p>Helm</p>
     </li>
     <li>
-      <ul class="tile__topiclist">
-        <li>
             <p>Distribute Helm-based applications with Replicated.</p>
         </li>
+    <li>
+      <ul class="tile__topiclist">
         <li>
           <a href="/vendor/install-with-helm">About Helm CLI installations</a>
         </li>
