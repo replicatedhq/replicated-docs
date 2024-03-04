@@ -8,12 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.02.29-3
+
+Released on February 29, 2024
+
+### New Features {#new-features-v2024-02-29-3}
+* Adds support for nodegroups to compatibility matrix clusters that use VM-based Kubernetes distributions and support multinode.
+
 ## v2024.02.29-0
 
 Released on February 29, 2024
 
 ### New Features {#new-features-v2024-02-29-0}
 * Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+
 
 ## v2024.02.27-1
 
