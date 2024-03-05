@@ -90,10 +90,10 @@ To update KOTS in an existing air gap cluster:
 
     For help information, run `kubectl kots admin-console upgrade -h`.
 
-## Update KOTS in Embedded Clusters
+## Update KOTS in Embedded kURL Clusters
 
-To update the version of KOTS running in embedded clusters, you rerun the kURL installation script. The installation script uses the specification provided by the application vendor to determine if any updates are required to the version of Kubernetes running in the cluster, or to any of the kURL add-ons that the vendor included.
+To update the version of KOTS running in embedded clusters created with Replicated kURL, rerun the kURL installation script. The installation script uses the specification provided by the application vendor to determine if any updates are required to the version of Kubernetes running in the cluster, or to any of the kURL add-ons that the vendor included.
 
 The version of the kURL KOTS add-on provided in the kURL Installer specification determines the version of KOTS installed in your cluster. For example, if the version of KOTS running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the kURL installer specification to use 1.92.1, then you can run the installation script to update the KOTS version in your cluster to 1.92.1.
 
-For information about how to rerun the installation script to update embedded clusters, see [Updating Embedded Clusters](updating-embedded-cluster).
+For information about how to rerun the installation script to update embedded kURL clusters, see [Updating Embedded kURL Clusters](updating-embedded-cluster).
