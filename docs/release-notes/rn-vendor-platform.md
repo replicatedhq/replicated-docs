@@ -8,6 +8,10 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.05-1
+
+Released on March 5, 2024
+
 
 ## v2024.02.29-3
 
