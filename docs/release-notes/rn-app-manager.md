@@ -16,6 +16,25 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.108.0
+
+Released on March 5, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-108-0}
+* Adds the ability to get the config values of the currently deployed app version via the CLI by passing the `--current` flag to the [kubectl kots get config](/reference/kots-cli-get-config) CLI command.
+* Adds the ability to update the config values of the currently deployed app version via the CLI by passing the `--current` flag to the [kubectl kots set config](/reference/kots-cli-set-config) CLI command.
+* Adds the ability to update the config values of any app version via the CLI by providing the corresponding sequence via the `--sequence` flag in the [kubectl kots set config](/reference/kots-cli-set-config) CLI command.
+* Adds the ability to update the config values for any app version using the UI.
+
+### Improvements {#improvements-1-108-0}
+* Hides the Application and Cluster Management tabs on the navbar during the initial install flow on [Embedded Clusters (Beta)](/vendor/embedded-overview).
+
+### Bug Fixes {#bug-fixes-1-108-0}
+* Fixes an issue where the license upload page flashes briefly before being redirected to the login page.
+* Fixes an issue in Embedded Cluster (Beta) where the cluster upgrade modal may fail to show during upgrades.
+
 ## 1.107.8
 
 Released on February 27, 2024
