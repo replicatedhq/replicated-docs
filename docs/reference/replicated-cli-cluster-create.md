@@ -43,9 +43,19 @@ replicated cluster create [flags]
     <td>The name of the cluster. If no name is specified, a name will be generated.</td>
   </tr>
   <tr>
-    <td>--node-count</td>
+    <td>--nodes</td>
     <td>integer</td>
     <td>The node count. <strong>Default:</strong> 1</td>
+  </tr>
+  <tr>
+    <td>--min-nodes</td>
+    <td>integer</td>
+    <td>Minimum Node count (only for EKS, AKS and GKE clusters). <strong>Default:</strong> -1</td>
+  </tr>
+  <tr>
+    <td>--max-nodes</td>
+    <td>integer</td>
+    <td>Maximum Node count (only for EKS, AKS and GKE clusters). <strong>Default:</strong> 1</td>
   </tr>
   <tr>
     <td>--nodegroup</td>
