@@ -249,7 +249,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
   After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster.md#prerequisites) in _Online Installation in Existing Clusters_.
   :::
 
-## Embedded kURL Cluster Requirements {#embedded-cluster-requirements}
+## kURL Requirements {#kurl-requirements}
 
 To install KOTS in an embedded cluster created by kURL, your environment must meet the following requirements.
 
@@ -301,7 +301,7 @@ For services hosted at domains owned by Replicated, the table below includes a l
 
 For third-party services hosted at domains not owned by Replicated, the table below lists the required domains. Consult the third-party's documentation for the IP address range for each domain, as needed. 
 
-| Host   | Existing Clusters | Embedded Clusters (kURL) | Description |
+| Host   | Existing Clusters | Embedded kURL Clusters | Description |
 |--------|-------------------|-------------------|-------------|
 | Docker Hub    | Required    | Required    | Some dependencies of KOTS are hosted as public images in Docker Hub. The required domains for this service include `index.docker.io` and the domains listed at [Allowlist for Docker Desktop](https://docs.docker.com/desktop/allow-list/). |
 | `replicated.app`       | Required  | Required | <p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p> |

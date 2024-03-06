@@ -14,7 +14,7 @@ Before you install an application, consider the following installation options.
 
 With KOTS, you can install an application in one of two ways:
 * **With an existing cluster**: You can install an application in an existing Kubernetes cluster that meets the system requirements. For more information, see [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
-* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, you can install in a virtual machine or a bare metal server. For more information, see [Embedded kURL Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
+* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, you can install in a virtual machine or a bare metal server. For more information, see [kURL Requirements](installing-general-requirements#kurl-requirements) in _Installation Requirements_.
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 
