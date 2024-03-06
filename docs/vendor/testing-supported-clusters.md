@@ -189,7 +189,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge, g4dn.xlarge, g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large (arm), m7g.xlarge (arm), m7g.2xlarge (arm), m7g.4xlarge (arm), m7g.8xlarge (arm), g4dn.xlarge (gpu), g4dn.2xlarge (gpu), g4dn.4xlarge (gpu), g4dn.8xlarge (gpu), g4dn.12xlarge (gpu), g4dn.16xlarge (gpu)</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
@@ -224,7 +224,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, t2a-standard-2, t2a-standard-4, t2a-standard-8, t2a-standard-16, t2a-standard-32, t2a-standard-48</p><p>You can specify more than one node.</p></td>
+    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, t2a-standard-2 (arm), t2a-standard-4 (arm), t2a-standard-8 (arm), t2a-standard-16 (arm), t2a-standard-32 (arm), t2a-standard-48 (arm)</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
@@ -259,7 +259,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2ps_v5, Standard_D4ps_v5, Standard_D8ps_v5, Standard_D16ps_v5, Standard_D32ps_v5, Standard_D48ps_v5</p><p>You can specify more than one node.</p></td>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2ps_v5 (arm), Standard_D4ps_v5 (arm), Standard_D8ps_v5 (arm), Standard_D16ps_v5 (arm), Standard_D32ps_v5 (arm), Standard_D48ps_v5 (arm)</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
