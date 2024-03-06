@@ -212,13 +212,13 @@ pagination_next: null
       <a href="/vendor/preflight-defining">Defining Preflight Checks</a>
     </li>
     <li>
-      <a href="/vendor/preflight-running">Run preflight checks for Helm CLI installations</a>
+      <a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a>
     </li>
     <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight checks lab in Instruqt</a>
+      <a href="/vendor/tutorial-preflight-helm-setup">Preflight Checks Tutorial for Helm Charts</a>
     </li>
     <li>
-      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight Checks Lab in Instruqt</a>
     </li>
   </ul>
   <ul class="tile">
@@ -230,19 +230,16 @@ pagination_next: null
         <p>Gather information about customer environments for troubleshooting.</p>
     </li>
     <li>
-      <a href="vendor/support-bundle-customizing">Add and customize support bundles</a>
+      <a href="vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
     </li>
     <li>
-      <a href="/vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
+      <a href="/vendor/support-host-support-bundles">Configuring Host Support Bundles</a>
     </li>
     <li>
-      <a href="/vendor/support-bundle-generating">Generate support bundles</a>
+      <a href="/vendor/support-bundle-generating">Generating Support Bundles</a>
     </li>
     <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support bundles lab in Instruqt</a>
-    </li>
-    <li>
-      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support Bundles Lab in Instruqt</a>
     </li>
   </ul>
 </section>
