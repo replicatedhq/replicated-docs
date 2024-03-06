@@ -50,12 +50,12 @@ replicated cluster create [flags]
   <tr>
     <td>--min-nodes</td>
     <td>integer</td>
-    <td>Minimum Node count (only for EKS, AKS and GKE clusters). <strong>Default:</strong> -1</td>
+    <td>Minimum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
     <td>--max-nodes</td>
     <td>integer</td>
-    <td>Maximum Node count (only for EKS, AKS and GKE clusters). <strong>Default:</strong> 1</td>
+    <td>Maximum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
     <td>--nodegroup</td>
