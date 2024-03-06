@@ -34,6 +34,7 @@ Replicated might use the following entities to provide infrastructure that helps
 | Google Looker | Product usage metrics  | United States |
 | Hex | Data transformation or migration | United States |
 | Knock Labs, Inc.| Event notifications | United States |   |
+| Postmark / Active Campaign | Transactional emails from Vendor Portal. Marketing related communications. | United States | Active Campaign and Postmark businesses merged.|
 | Salesforce |Customer and sales relationship management| United States | 
 | Snowflake | Usage data analysis and transformation   | United States |
 | Timescale | Time-series data of instance metrics  | United States | See our [Data Transmission Policy](/vendor/policies-data-transmission)
