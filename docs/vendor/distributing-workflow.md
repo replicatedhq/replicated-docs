@@ -11,17 +11,13 @@ If you are new to Replicated, complete the following prerequisites before you ge
 * Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
 * Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete [Replicated Quick Start](/vendor/replicated-onboarding) before getting started with KOTS. The workflow in Replicated Quick Start demonstrates how to 
-  
-    :::note 
-    Distributing your application as a Helm chart is recommended because you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
-    :::
+  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete [Replicated Quick Start](/vendor/replicated-onboarding) before getting started with KOTS. The workflow in Replicated Quick Start demonstrates how to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
 
 ## Add Custom Resources
 
-You can add custom resources to your releases to support installations with KOTS. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add and the recommended workflows .
+You can add custom resources to your releases to support installations with KOTS. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add as well as information about how to add and test custom resources.
 
 ### How to Add Custom Resources
 
@@ -40,7 +36,7 @@ This section lists the required and recommended custom resources to add to your 
 
 #### KOTS Admin Console
 
-The KOTS Application custom resource is required to enable the admin console and support KOTS installations for your application. For more custom resources that can be added to configure additional features in the admin console, see [Recommended Features](#recommended-features) below.
+The KOTS Application custom resource is required to enable the admin console and support KOTS installations for your application. For more custom resources that can be added to configure additional features for the KOTS admin console, see [Recommended Features](#recommended-features) below.
 
 <table>
   <tr>
