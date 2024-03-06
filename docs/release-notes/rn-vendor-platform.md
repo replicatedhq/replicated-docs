@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.06-3
+
+Released on March 6, 2024
+
+### New Features {#new-features-v2024-03-06-3}
+* Added node autoscaling to EKS, GKE and AKS.
+
 
 ## v2024.02.29-3
 
