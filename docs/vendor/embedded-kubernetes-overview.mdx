@@ -1,4 +1,6 @@
 import KurlDefinition from "../partials/kurl/_kurl-definition.mdx"
+import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
+import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 
 # About Embedded Kubernetes
 
@@ -8,25 +10,19 @@ This topic describes Replicated's embedded Kubernetes solutions, which allow sof
 
 Many enterprise users of commerical software prefer to install applications on a virtual machine (VM) or bare metal server, rather than in a Kubernetes cluster. Reasons for this can include a lack of experience with Kubernetes or the relative ease of provisoning virtual or physical harware in their environment compared to managing Kubernetes.
 
-Software vendors with Kubernetes applications can support installations on VMs or bare metal servers by embedding a Kubernetes distribution with their application. When you use Replicated to embed Kubernetes with your application, a cluster that meets your application's requirements can be provisioned in the customer environment during the application installation process. This allows enterprise customers that lack an existing Kubernetes cluster to install the application without needing to learn, manage, or interact with Kubernetes.
+Software vendors with Kubernetes applications can support installations on VMs or bare metal servers by embedding a Kubernetes distribution with their application. When you use Replicated to embed Kubernetes with your application, you can define a Kubernetes distribution so that a cluster that meets your application's requirements is created in the customer environment at the time of installation. This allows you to distribute your application to enterprise customers that lack an existing Kubernetes cluster without requiring those users to learn, manage, or interact directly with Kubernetes.
 
-## Replicated Embedded Kubernetes
+## Embedded Kubernetes with Replicated
 
-This section describes Replicated's embedded Kubernetes solutions. Software vendors can use one of these solutions to embed Kubernetes with their application and deliver a Kubernetes distribution to the customer environment.
+This section describes Replicated's embedded Kubernetes solutions: Replicated embedded cluster and Replicated kURL.
 
 ### Embedded Cluster (Beta)
 
-Replicated embedded cluster allows you to distribute a Kubernetes cluster as an appliance alongside your application, making it easy for enterprise users to install, update, and manage. Additionally, users can complete ongoing management of the cluster and the application from the KOTS admin console UI, rather than using kubectl.
+<EmbeddedCluster/>
 
-Compared to Replicated kURL, embedded cluster offers several improvements such as:
-* Significantly faster installation, updates, and node joins
-* A redesigned admin console UI for managing the cluster
-* Improved support for multi-node clusters
-* One-click updates that update both the application and the cluster at the same time
+<KurlComparison/>
 
-Embedded cluster is based on k0s, an open source Kubernetes distribution. For more information, see the [k0s documentation](https://docs.k0sproject.io/stable/).
-
-For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+For more information about configuring and installing with embedded cluster, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 ### kURL
 
