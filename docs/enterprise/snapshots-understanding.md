@@ -15,7 +15,7 @@ Full backups, or _instance snapshots_, back up the admin console and all applica
 If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. Each application must include a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`, which you can check for in the admin console.
 
 There are two types of backups:
-  * **Full snapshots (Recommended)**: Backs up the admin console and all application data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
+  * **Full snapshots (Recommended)**: Backs up the admin console and all application data. For embedded clusters created with Replicated kURL, this also backs up the Docker registry, which is required for air gapped installations.
 
   * **Partial snapshots**: Backs up the application volumes and manifest files only. See [Create a Partial Backup](snapshots-creating#partial) in _Creating and Scheduling Backups_.
 
@@ -41,7 +41,7 @@ You can also use the admin console to do a partial restore (application only) fr
 
 ## About Storage Destinations
 
-For disaster recovery snapshots, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations on cluster created with the Replicated kURL, because the default storage location on these clusters is internal.
+For disaster recovery snapshots, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations in clusters created with Replicated kURL, because the default storage location on these clusters is internal.
 
 You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
 
@@ -54,7 +54,7 @@ You initially configure backups on a supported storage provider backend using th
 - Network File System (NFS)
 - Host Path
 
-kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded clusters.
+kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded kURL clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded kURL clusters.
 
 ## Limitations and Considerations
 
