@@ -115,7 +115,7 @@ pagination_next: null
       <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
     </li>
     <li>
-      <a href="/vendor/distributing-workflow">Onboard with KOTS</a>
+      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
     </li>
     <li>
       <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>

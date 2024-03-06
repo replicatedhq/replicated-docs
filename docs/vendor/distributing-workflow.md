@@ -11,7 +11,11 @@ If you are new to Replicated, complete the following prerequisites before you ge
 * Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
 * Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete [Replicated Quick Start](/vendor/replicated-onboarding) before getting started with KOTS. The workflow in Replicated Quick Start demonstrates how to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
+  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete the [Replicated Quick Start](/vendor/replicated-onboarding) workflow before getting started with KOTS. The workflow in _Replicated Quick Start_ demonstrates how to add a Helm chart to a release in the vendor platform and then install with the Helm CLI.
+  
+     :::note
+     Packaging your application with Helm is recommended because it allows you to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
+     :::
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
 
