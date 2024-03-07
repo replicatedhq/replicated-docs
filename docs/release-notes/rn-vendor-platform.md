@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 6, 2024
 
 ### New Features {#new-features-v2024-03-06-3}
-* Adds node autoscaling to EKS, GKE and AKS.
+* Adds node autoscaling for EKS, GKE and AKS clusters created with the compatibility matrix.
 
 ## v2024.02.29-3
 
