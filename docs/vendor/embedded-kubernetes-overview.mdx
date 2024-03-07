@@ -4,14 +4,13 @@ import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 
 # About Embedded Kubernetes
 
-This topic describes Replicated's embedded Kubernetes solutions, which allow software vendors to deliver Kubernetes alongside their application for the purpose of supporting installations on virtual machines (VMs) or bare metal servers.vvccccvnveerturuiuluetbktclefjgjrctnjffbuubf
-
+This topic describes Replicated's embedded Kubernetes solutions, which allow software vendors to deliver Kubernetes alongside their application for the purpose of supporting installations on virtual machines (VMs) or bare metal servers.
 
 ## Overview
 
-Many enterprise users of commerical software prefer to install applications on a virtual machine (VM) or bare metal server, rather than in a Kubernetes cluster. Reasons for this can include a lack of experience with Kubernetes or the relative ease of provisoning virtual or physical harware in their environment compared to managing Kubernetes.
+_Embedded Kubernetes_ refers to delivering a Kubernetes distribution alongside an application, so that both Kubernetes and the application are deployed in the customer environment. Embedding Kubernetes allows software vendors to install their Kubernetes application in non-Kubernetes customer-controlled environments, such as virtual machines (VMs) or bare metal servers. Additionally, software vendors that embed Kubernetes with their application have greater control over the charactersitics of the cluster where their application is installed. This allows vendors to deliver a cluster that meets their application's requirements, which can help reduce errors during installation. 
 
-Software vendors with Kubernetes applications can support installations on VMs or bare metal servers by embedding a Kubernetes distribution with their application. When you use Replicated to embed Kubernetes with your application, you can ensure that a cluster that meets your application's requirements is created in the customer environment at the time of installation. This allows you to distribute your application to enterprise customers that lack an existing Kubernetes cluster without requiring those users to learn, manage, or interact directly with Kubernetes.
+Providing an embedded Kubernetes option for installation is also beneficial to enterprise users because it allows users to install the application without needing to also manage and interact directly with Kubernetes. This is especially important for users that lack experience with Kubernetes, or for users that can more easily provision virtual or physical harware in their environment compared to managing Kubernetes.
 
 ## Embedded Kubernetes with Replicated
 

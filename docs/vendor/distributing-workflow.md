@@ -70,7 +70,7 @@ The following custom resources can be added to customize the admin console exper
   </tr>
   <tr>
     <td>Preflight</td>
-    <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p></td>
+    <td><p>Define preflight checks to test for system compliance during installation and upgrade to reduce the number of support escalations.</p></td>
     <td><a href="/vendor/preflight-defining">Defining Preflight Checks</a></td>
   </tr>
   <tr>
