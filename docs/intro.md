@@ -130,7 +130,7 @@ pagination_next: null
         <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-kubernetes-about">About Embedded Kubernetes</a>
+      <a href="/vendor/embedded-kubernetes-overview">About Embedded Kubernetes</a>
     </li>
     <li>
       <a href="/vendor/kurl-about">Introduction to kURL</a>
