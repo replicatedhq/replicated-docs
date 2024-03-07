@@ -8,6 +8,7 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.03.07-0
 
 Released on March 7, 2024
@@ -15,6 +16,12 @@ Released on March 7, 2024
 ### New Features {#new-features-v2024-03-07-0}
 * Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
+## v2024.03.06-3
+
+Released on March 6, 2024
+
+### New Features {#new-features-v2024-03-06-3}
+* Adds node autoscaling for EKS, GKE and AKS clusters created with the compatibility matrix.
 
 ## v2024.02.29-3
 
