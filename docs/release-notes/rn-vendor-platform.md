@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 7, 2024
 
 ### New Features {#new-features-v2024-03-07-0}
-* Adds the Embedded Cluster distribution to Compatibility Matrix.
+* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 
 ## v2024.02.29-3
