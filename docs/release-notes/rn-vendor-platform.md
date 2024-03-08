@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.08-2
+
+Released on March 8, 2024
+
+### New Features {#new-features-v2024-03-08-2}
+* Added support for e2 family and gpu tesla T4 on GKE.
+
 ## v2024.03.06-3
 
 Released on March 6, 2024
