@@ -166,6 +166,10 @@ ol ol ol {
   background-image: linear-gradient(to bottom right, rgba(88,88,88,0.08), rgba(88,88,88,0.02));
 }
 
+.tile__container ul li h3 {
+  padding-top: 15px;
+}
+
 .tile__header {
   display: flex;
   flex-direction: row;
@@ -181,28 +185,32 @@ ol ol ol {
   border-radius: 7px;
 }
 
-#tile__header__blue {
-  background-color:rgba(15, 22, 137,0.05);
-}
-
-[data-theme='dark'] #tile__header__blue {
-  background-color:rgb(169, 169, 198);
-}
-
 @media (max-width: 1300px) {
   .tile__container {
     flex-direction: column;
   }
 }
 
+/* Helm tile */
+
+#helm {
+  background-color:rgba(15, 22, 137,0.05);
+}
+
+[data-theme='dark'] #helm {
+  background-color:rgb(169, 169, 198);
+}
+
 /* What's new tile */
 
-#whats-new {
+#whats-new,
+[data-theme='dark'] #whats-new:hover {
   background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
   border: 1px solid rgba(69,145,247,0.1);
 }
 
-#whats-new:hover {
+#whats-new:hover,
+[data-theme='dark'] #whats-new {
   background-image: linear-gradient(to bottom right, rgba(69,145,247,0.2), rgba(69,145,247,0.05));
 }
 
@@ -210,34 +218,24 @@ ol ol ol {
   background-color: rgba(69,145,247,0.2);
 }
 
-.whats-new__body h3 {
-  padding-top: 15px;
-}
-
-.whats-new__link a {
-  color: rgb(69,145,247);
-}
-
-[data-theme='dark'] #whats-new {
-  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
-}
-
 [data-theme='dark'] #whats-new .tile__header img {
   content:url("/images/icons/chat_bubble_white.png");
 }
 
-[data-theme='dark'] #whats-new:hover {
-  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.05));
+#whats-new li a {
+  color: rgb(69,145,247);
 }
 
 /* Did you know tile */
 
-#did-you-know {
+#did-you-know,
+[data-theme='dark'] #did-you-know:hover {
   background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
   border: 1px solid rgba(21, 140, 54,0.1);
 }
 
-#did-you-know:hover {
+#did-you-know:hover,
+[data-theme='dark'] #did-you-know {
   background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.2), rgba(21, 140, 54,0.05));
 }
 
@@ -245,27 +243,13 @@ ol ol ol {
   background-color: rgba(21, 140, 54,0.2);
 }
 
-.did-you-know__body h3 {
-  padding-top: 15px;
-}
-
-.did-you-know__link a {
-  color: rgb(21, 140, 54);
-}
-
-[data-theme='dark'] #did-you-know {
-  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
-}
-
 [data-theme='dark'] #did-you-know .tile__header img {
   content:url("/images/icons/lightbulb_white.png");
 }
 
-[data-theme='dark'] #did-you-know:hover {
-  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.05));
+#did-you-know li a {
+  color: rgb(21, 140, 54);
 }
-
-
 
 /*Sidebar Styling*/
 

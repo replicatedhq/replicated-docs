@@ -11,11 +11,11 @@ pagination_next: null
         <img src="/images/icons/chat_bubble.png" alt="chat bubble icon" width="55px" height="55px"></img>
         <p>What's New?</p>
     </li>
-    <li class="whats-new__body">
+    <li>
         <h3>Announcing: Embedded Cluster Single-Node Beta</h3>
         <p>Replicated's next generation embedded Kubernetes solution. Embedded cluster offers signifantly faster installations compared to kURL and one-click updates of both the application and the cluster at the same time.</p>
     </li>
-    <li class="whats-new__link">
+    <li>
       <a href="/vendor/embedded-overview">Learn more</a>
     </li>
   </ul>
@@ -24,11 +24,11 @@ pagination_next: null
         <img src="/images/icons/lightbulb.png" alt="lightbulb icon" width="55px" height="55px"></img>
         <p>Did You Know?</p>
     </li>
-    <li class="did-you-know__body">
+    <li>
         <h3>Use Custom Domains to Alias Replicated Endpoints</h3>
-        <p>Add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.</p>
+        <p>Add custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.</p>
     </li>
-    <li class="did-you-know__link">
+    <li>
       <a href="/vendor/custom-domains">Learn more</a>
     </li>
   </ul>
@@ -106,7 +106,7 @@ pagination_next: null
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__blue"></img>
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="helm"></img>
         <p>Helm Charts</p>
     </li>
     <li>
