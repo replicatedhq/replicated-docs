@@ -159,7 +159,6 @@ ol ol ol {
 }
 
 .tile__container > ul:hover {
-  border: 1px solid rgba(88,88,88,0.5);
   background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.01));
 }
 
@@ -182,12 +181,42 @@ ol ol ol {
   border-radius: 7px;
 }
 
-#tile__header__helm {
+#tile__header__blue {
   background-color:rgba(15, 22, 137,0.05);
 }
 
-[data-theme='dark'] #tile__header__helm {
-  background-color:rgb(243,243,249);
+[data-theme='dark'] #tile__header__blue {
+  background-color:rgb(169, 169, 198);
+}
+
+#whats-new {
+  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
+  border: 1px solid rgba(69,145,247,0.1);
+}
+
+#whats-new:hover {
+  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.2), rgba(69,145,247,0.05));
+}
+
+#whats-new .tile__header img {
+  background-color: rgba(69,145,247,0.2);
+}
+
+.whats-new__body h3 {
+  padding-top: 15px;
+}
+
+.whats-new__link a {
+  color: rgb(69,145,247);
+}
+
+[data-theme='dark'] #whats-new {
+  /* background-image: linear-gradient(to bottom right, rgba(69,145,247,0.4), rgba(69,145,247,0.1)); */
+  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
+}
+
+[data-theme='dark'] #whats-new:hover {
+  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.05));
 }
 
 @media (max-width: 1300px) {
