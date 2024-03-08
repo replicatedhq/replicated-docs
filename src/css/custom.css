@@ -189,6 +189,14 @@ ol ol ol {
   background-color:rgb(169, 169, 198);
 }
 
+@media (max-width: 1300px) {
+  .tile__container {
+    flex-direction: column;
+  }
+}
+
+/* What's new tile */
+
 #whats-new {
   background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
   border: 1px solid rgba(69,145,247,0.1);
@@ -211,19 +219,53 @@ ol ol ol {
 }
 
 [data-theme='dark'] #whats-new {
-  /* background-image: linear-gradient(to bottom right, rgba(69,145,247,0.4), rgba(69,145,247,0.1)); */
   background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
+}
+
+[data-theme='dark'] #whats-new .tile__header img {
+  content:url("/images/icons/chat_bubble_white.png");
 }
 
 [data-theme='dark'] #whats-new:hover {
   background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.05));
 }
 
-@media (max-width: 1300px) {
-  .tile__container {
-    flex-direction: column;
-  }
+/* Did you know tile */
+
+#did-you-know {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
+  border: 1px solid rgba(21, 140, 54,0.1);
 }
+
+#did-you-know:hover {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.2), rgba(21, 140, 54,0.05));
+}
+
+#did-you-know .tile__header img {
+  background-color: rgba(21, 140, 54,0.2);
+}
+
+.did-you-know__body h3 {
+  padding-top: 15px;
+}
+
+.did-you-know__link a {
+  color: rgb(21, 140, 54);
+}
+
+[data-theme='dark'] #did-you-know {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
+}
+
+[data-theme='dark'] #did-you-know .tile__header img {
+  content:url("/images/icons/lightbulb_white.png");
+}
+
+[data-theme='dark'] #did-you-know:hover {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.05));
+}
+
+
 
 /*Sidebar Styling*/
 
