@@ -36,7 +36,6 @@ This section lists the required and recommended custom resources to add to your 
 * [KOTS Admin Console](#admin-console)
 * [Helm Chart Installations](#helm-chart-installations)
 * [Embedded Kubernetes](#embedded-kubernetes)
-* [Recommended Features for KOTS](#recommended-features)
 
 #### KOTS Admin Console {#admin-console}
 
