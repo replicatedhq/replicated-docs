@@ -83,21 +83,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
 
-1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
-
-   <DependencyYaml/>
-
-   The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
-
-1. Update dependencies then package the Helm chart to a `.tgz` file:
-
-   ```bash
-   helm package . --dependency-update
-   ```
-
-   For more information, see [Packaging a Helm Chart for a Release](helm-install-release).  
-
-1. Create a release with the Helm chart:
+1. Create a release for the application:
 
    1. In the vendor portal, click **Releases > Create release**.
    
@@ -105,15 +91,36 @@ To begin onboarding to the Replicated platform with a Helm chart:
       If a drop down is displayed, click **Create Helm-only release**.
       :::
    
-   1. In the **Upload Helm chart** dialog, drag and drop the Helm chart `.tgz` package. Click **Upload chart**.
-      
-      ![Upload Helm chart dialog](/images/upload-helm-chart-modal.png)
-      
-      [View a larger image](/images/upload-helm-chart-modal.png)
+   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
+
+      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
+
+   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
+
+      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
+
+       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+          <DependencyYaml/>
+
+          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+
+       1. Update chart dependencies and package the chart to a `.tgz` file:
+
+           ```bash
+           helm package -u PATH_TO_CHART
+           ```  
+           Where:
+           * `-u` or `--dependency-update` is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [helm package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+           * `PATH_TO_CHART` is the path to the Helm chart in your local directory. For example, `helm package -u .`.
+   
+       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
 
    1. On the release page, click **Promote**.
 
-   1. In the dialog, For **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
+   1. In the dialog, for **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
 
       <img alt="Promote release dialog" src= "/images/release-promote.png" width="500px"/>
 
