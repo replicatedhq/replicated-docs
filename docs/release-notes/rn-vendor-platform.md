@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 7, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-07-5}
-* Fixes a bug that causes "An unknown actor performed the action" message to be shown in the Audit Log".
+* Fixes a bug that caused "An unknown actor performed the action" message to be shown in the Audit Log.
 
 ## v2024.03.06-3
 
