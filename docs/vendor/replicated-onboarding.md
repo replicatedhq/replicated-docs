@@ -3,6 +3,7 @@ pagination_next: null
 ---
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
 
 # Replicated Quick Start
 
@@ -107,14 +108,9 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
           The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
-       1. Update chart dependencies and package the chart to a `.tgz` file:
+       1. Update dependencies and package the chart as a `.tgz` file:
 
-           ```bash
-           helm package -u PATH_TO_CHART
-           ```  
-           Where:
-           * `-u` or `--dependency-update` is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [helm package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
-           * `PATH_TO_CHART` is the path to the Helm chart in your local directory. For example, `helm package -u .`.
+           <HelmPackage/>
    
        1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
 

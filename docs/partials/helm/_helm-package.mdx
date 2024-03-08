@@ -1,0 +1,8 @@
+```bash
+helm package -u PATH_TO_CHART
+```  
+Where:
+* `-u` or `--dependency-update` is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+* `PATH_TO_CHART` is the path to the Helm chart in your local directory. For example, `helm package -u .`.
+
+The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.

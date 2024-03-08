@@ -14,10 +14,6 @@ For information about creating and managing releases with the Vendor API v3, see
 
 A release contains one or more Helm charts. Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only or use a combination of standard manifests and Helm charts. KOTS releases also support the use of Kubernetes Operators.
 
-:::note
-You must package each Helm chart that you want to include in a release and its dependencies to a `.tgz` file before you can add it to the release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
-:::
-
 To create and promote a release in the vendor portal:
 
 1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
@@ -35,7 +31,7 @@ To create and promote a release in the vendor portal:
    If no drop down is displayed, continue to the next step.  
 
 1. Add your files to the release:
-   * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select a Helm chart `.tgz` file.
+   * For Helm-only releases, in the **Add the Replicated SDK to your Helm Chart** dialog, follow the steps to package your chart and upload a `.tgz` chart archive. For more information, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release).
    
      <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
 
