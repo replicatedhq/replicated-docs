@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.08-3
+
+Released on March 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-08-3}
+* UI bug fix for allowing license download when a channel does not have a release.
+
 ## v2024.03.07-5
 
 Released on March 7, 2024
