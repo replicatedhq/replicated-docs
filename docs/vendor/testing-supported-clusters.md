@@ -224,7 +224,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, t2a-standard-2 (arm), t2a-standard-4 (arm), t2a-standard-8 (arm), t2a-standard-16 (arm), t2a-standard-32 (arm), t2a-standard-48 (arm)</p><p>You can specify more than one node.</p></td>
+    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, t2a-standard-2 (arm), t2a-standard-4 (arm), t2a-standard-8 (arm), t2a-standard-16 (arm), t2a-standard-32 (arm), t2a-standard-48 (arm), e2-standard-2, e2-standard-4, e2-standard-8, e2-standard-16, e2-standard-32, n1-standard-1+nvidia-tesla-t4+1 (gpu), n1-standard-1+nvidia-tesla-t4+2 (gpu), n1-standard-1+nvidia-tesla-t4+4 (gpu), n1-standard-2+nvidia-tesla-t4+1 (gpu), n1-standard-2+nvidia-tesla-t4+2 (gpu), n1-standard-2+nvidia-tesla-t4+4 (gpu), n1-standard-4+nvidia-tesla-t4+1 (gpu), n1-standard-4+nvidia-tesla-t4+2 (gpu), n1-standard-4+nvidia-tesla-t4+4 (gpu), n1-standard-8+nvidia-tesla-t4+1 (gpu), n1-standard-8+nvidia-tesla-t4+2 (gpu), n1-standard-8+nvidia-tesla-t4+4 (gpu), n1-standard-16+nvidia-tesla-t4+1 (gpu), n1-standard-16+nvidia-tesla-t4+2 (gpu), n1-standard-16+nvidia-tesla-t4+4 (gpu), n1-standard-32+nvidia-tesla-t4+1 (gpu), n1-standard-32+nvidia-tesla-t4+2 (gpu), n1-standard-32+nvidia-tesla-t4+4 (gpu), n1-standard-64+nvidia-tesla-t4+1 (gpu), n1-standard-64+nvidia-tesla-t4+2 (gpu), n1-standard-64+nvidia-tesla-t4+4 (gpu), n1-standard-96+nvidia-tesla-t4+1 (gpu), n1-standard-96+nvidia-tesla-t4+2 (gpu), n1-standard-96+nvidia-tesla-t4+4 (gpu)</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
