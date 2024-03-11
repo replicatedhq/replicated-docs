@@ -88,7 +88,7 @@ To get the installation commands from the vendor portal:
 
 To support air gap installations, you must share an air gap bundle in addition to the customer license.
 
-For air gap installations in _embedded clusters_ provisioned by Replicated kURL, you must also share the kURL air gap bundle. The kURL bundle provides the open source components to run the cluster: Docker, Kubernetes, the admin console, Weave, Contour, Rook, Registry and a number of other [add-ons](https://kurl.sh/add-ons).
+For air gap installations in embedded clusters created with Replicated kURL, you must also share the kURL air gap bundle. The kURL bundle provides the open source components to run the cluster: Docker, Kubernetes, the admin console, Weave, Contour, Rook, Registry and a number of other [add-ons](https://kurl.sh/add-ons).
 
 The kURL bundle is kept separate from the `.airgap` app bundle for the following reasons:
 
@@ -121,7 +121,7 @@ To download the `.airgap` bundle:
 
 ### Download the kURL Bundle {#installer-bundle}
 
-For embedded cluster installations, customers must provide a kURL air gap bundle in addition to the `.airgap` bundle and license file.
+For embedded cluster installations with kURL, customers must provide a kURL air gap bundle in addition to the `.airgap` bundle and license file.
 
 The kURL bundle is specific to the channel. Run the following commands to download the kURL bundle for the Stable channel or other channels.
 

@@ -1,8 +1,6 @@
 # Excluding MinIO from Air Gap Bundles (Beta)
 
-> Introduced in KOTS v1.69.0
-
-The Replicated admin console requires an S3-compatible object store to store application archives and support bundles. By default, Replicated KOTS deploys MinIO during installation to satisfy the object storage requirement. For more information about the options for installing without MinIO in existing or embedded clusters, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
+The Replicated admin console requires an S3-compatible object store to store application archives and support bundles. By default, Replicated KOTS deploys MinIO during installation to satisfy the object storage requirement. For more information about the options for installing without MinIO in existing cluster or embedded clusters created with Replicated kURL, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
 
 As a software vendor, you can exclude MinIO images from all admin console air gap distributions (`kotsadm.tar.gz`) in the download portal. Excluding MinIO from the `kotsadm.tar.gz` air gap bundle is useful if you want to prevent MinIO images from appearing in the air gap distribution that your end users download. It also reduces the file size of `kotsadm.tar.gz`.
 

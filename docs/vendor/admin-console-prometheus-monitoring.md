@@ -16,7 +16,7 @@ The screenshot below shows an example of the Monitoring section on the admin con
 
 ![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)
 
-If your users install your application on an embedded cluster created by Replicated kURL, the Prometheus monitoring system is included by default alongside the installed application. No additional configuration is required to collect metrics and view any default and custom graphs on the admin console dashboard.
+If your users install your application in an embedded cluster created with Replicated kURL, the Prometheus monitoring system is included by default alongside the installed application. No additional configuration is required to collect metrics and view any default and custom graphs on the admin console dashboard.
 
 If your users install your application on an existing cluster, they must connect the admin console to a Prometheus endpoint on their cluster to collect metrics and view default and custom graphs. For more information about how users connect to a Prometheus endpoint on an existing cluster, see [Monitoring Applications](../enterprise/monitoring-applications) in the _Enterprise_ documentation.
 
@@ -29,7 +29,7 @@ To customize the graphs that are displayed on the admin console, edit the `graph
   * `query`: A valid PromQL Prometheus query. You can also include a list of multiple queries by using the `queries` property. For more information about querying Prometheus with PromQL, see [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
 
   :::note
-  By default, an embedded cluster exposes the Prometheus expression browser at NodePort 30900. For more information, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
+  By default, an embedded kURL cluster exposes the Prometheus expression browser at NodePort 30900. For more information, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
   :::
 
 ## Add and Modify Graphs

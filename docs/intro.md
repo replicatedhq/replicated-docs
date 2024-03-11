@@ -1,16 +1,43 @@
 ---
 slug: /
 pagination_next: null
----
+---  
 
 # Home
 
-
 <section class="tile__container">
-<ul class="tile">
+ <ul id="whats-new">
+    <li class="tile__header">
+        <img src="/images/icons/chat_bubble.png" alt="chat bubble icon" width="55px" height="55px"></img>
+        <p>What's New?</p>
+    </li>
+    <li>
+        <h3>Announcing: Embedded Cluster Single-Node Beta</h3>
+        <p>Replicated's next generation embedded Kubernetes solution. Embedded cluster offers signifantly faster installations compared to kURL, as well as one-click updates of both the application and the cluster at the same time.</p>
+    </li>
+    <li>
+      <a href="/vendor/embedded-overview">Learn more</a>
+    </li>
+  </ul>
+  <ul id="did-you-know">
+    <li class="tile__header">
+        <img src="/images/icons/lightbulb.png" alt="lightbulb icon" width="55px" height="55px"></img>
+        <p>Did You Know?</p>
+    </li>
+    <li>
+        <h3>Use Custom Domains to Alias Replicated Endpoints</h3>
+        <p>You can add custom domains to alias the Replicated registry, proxy service, app service, and download portal.</p>
+    </li>
+    <li>
+      <a href="/vendor/custom-domains">Learn more</a>
+    </li>
+  </ul>
+</section>
+<section class="tile__container">
+<ul>
     <li class="tile__header">
         <img src="images/icons/alien_vault.png" alt="ufo icon" width="55px" height="55px"></img>
-        <p>Getting Started</p>
+        <p>Getting Started with Replicated</p>
     </li>
     <li>
         <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
@@ -19,122 +46,238 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/replicated-onboarding">Replicated quick start workflow</a>
+      <a href="/vendor/distributing-overview">About Distributing Applications with Replicated</a>
     </li>
     <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting started lab in Instruqt</a>
-    </li>
-    <li>
-      <a href="/vendor/distributing-overview">About distributing applications with Replicated</a>
+      <a href="/vendor/replicated-onboarding">Replicated Quick Start</a>
     </li>
     <li>
       <a href="/vendor/tutorial-kots-helm-setup">Tutorials</a>
     </li>
-  </ul>
-  <ul class="tile">
-    <li class="tile__header">
-        <img src="images/icons/vendor_portal_2.png" alt="dashboard icon" width="55px" height="55px"></img>
-        <p>Vendor Portal</p>
-    </li>
     <li>
-        <p>Manage your team, releases, channels, customers, and more.</p>
-    </li>
-    <li>
-      <a href="/vendor/vendor-portal-creating-account">Create an account</a>
-    </li>
-    <li>
-      <a href="/vendor/team-management#invite-members">Invite team members</a>
-    </li>
-    <li>
-      <a href="/vendor/licenses-adding-custom-fields">Define custom entitlements</a>
-    </li>
-    <li>
-      <a href="/vendor/releases-creating-releases">Create a release</a>
-    </li>
-    <li>
-      <a href="/vendor/releases-creating-channels">Manage channels</a>
-    </li>
-    <li>
-      <a href="/vendor/custom-domains-using">Configure custom domains</a>
-    </li>
-    <li>
-      <a href="/vendor/packaging-private-images">Connect a private registry</a>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting Started Lab in Instruqt</a>
     </li>
   </ul>
 </section>
 <section class="tile__container">
-  <ul class="tile">
+<ul>
     <li class="tile__header">
-        <img src="images/icons/k8s_installer.png" alt="installer icon" width="55px" height="55px"></img>
-        <p>KOTS and kURL Installers</p>
+        <img src="images/icons/vendor_portal_1.png" alt="vendor portal icon" width="55px" height="55px"></img>
+        <p>Vendor Platform</p>
     </li>
     <li>
-        <p>Support online and air gap installations in existing clusters (KOTS) or in embedded clusters on VMs (KOTS and kURL).</p>
+        <p>Create and manage your account and team.</p>
+    </li>
+    <li>
+      <a href="/vendor/vendor-portal-creating-account">Creating a Vendor Account</a>
+    </li>
+    <li>
+      <a href="/vendor/team-management#invite-members">Managing Team Members</a>
+    </li>
+    <li>
+      <a href="/vendor/team-management-rbac-configuring">Configuring RBAC Policies</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/release.png" alt="rocket ship icon" width="55px" height="55px"></img>
+        <p>Compatibility Matrix</p>
+    </li>
+    <li>
+        <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
+    </li>
+    <li>
+      <a href="/vendor/testing-about">About the Compatibility Matrix</a>
+    </li>
+    <li>
+      <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
+    </li>
+    <li>
+      <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
+    </li>
+    <li>
+      <a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a>
+    </li>
+  </ul>
+  </section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="helm"></img>
+        <p>Helm Charts</p>
+    </li>
+    <li>
+        <p>Distribute Helm charts with Replicated.</p>
+    </li>
+    <li>
+      <a href="/vendor/distributing-overview#about-packaging-applications">About Packaging Applications with Helm</a>
+    </li>
+    <li>
+      <a href="/vendor/install-with-helm">Installing with Helm</a>
+    </li>
+    <li>
+      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
+    </li>
+    <li>
+      <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>
+    </li>
+    <li>
+      <a href="/vendor/replicated-sdk-overview">About the Replicated SDK</a>
+    </li>
+  </ul>
+    </section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/admin.png" alt="kots icon"></img>
+        <p>Replicated KOTS</p>
+    </li>
+    <li>
+        <p>A kubectl plugin and in-cluster admin console thats installs applications in customer-controlled environments.</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
     </li>
     <li>
-      <a href="/vendor/distributing-workflow">Onboard with KOTS</a>
+      <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
     </li>
     <li>
-      <a href="/vendor/helm-native-about">About distributing Helm charts with KOTS</a>
+      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
     </li>
     <li>
-      <a href="/enterprise/installing-overview">Install with KOTS and kURL</a>
-    </li>
-    <li>
-      <a href="/vendor/packaging-embedded-kubernetes">Configure Kubernetes installers with kURL</a>
-    </li>
-    <li>
-      <a href="/vendor/admin-console-customize-config-screen">Edit the admin console Config page</a>
-    </li>
-    <li>
-      <a href="/vendor/snapshots-configuring-backups">Configure snapshots</a>
-    </li>
-    <li>
-      <a href="https://kurl.sh/docs/introduction/">kURL.sh Documentation</a>
+      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
     </li>
   </ul>
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
-        <img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm" width="55px" height="55px"></img>
-        <p>Helm</p>
+        <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
+        <p>Embedded Kubernetes</p>
     </li>
     <li>
-        <p>Distribute Helm-based applications with Replicated.</p>
+        <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
     </li>
     <li>
-      <a href="/vendor/install-with-helm">About Helm CLI installations</a>
+      <a href="/vendor/embedded-kubernetes-overview">About Embedded Kubernetes</a>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-overview">Use the Replicated SDK</a>
+      <a href="/vendor/kurl-about">Introduction to kURL</a>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-development">Get started with the SDK API</a>
-    </li>
-    <li>
-      <a href="/vendor/helm-image-registry">Use the proxy service for private images</a>
-    </li>
-    <li>
-      <a href="/vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>
-    </li>
-    <li>
-      <a href="/vendor/licenses-verify-fields-sdk-api">Verifying license field signatures</a>
+      <a href="/vendor/embedded-overview">Using Embedded Cluster (Beta)</a>
     </li>
   </ul>
 </section>
 <section class="tile__container">
-   <ul class="tile">
+  <ul>
     <li class="tile__header">
-        <img src="images/icons/commands.png" alt="command prompt icon" width="55px" height="55px"></img>
-        <p>APIs, CLIs, and SDK</p>
+        <img src="images/icons/dashboard_1.png" alt="dashboard icon" width="55px" height="55px"></img>
+        <p>Insights and Telemetry</p>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>
+        <p>Get insights on installed instances of your application.</p>
     </li>
     <li>
-      <a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
+      <a href="/vendor/instance-insights-event-data">About Instance and Event Data</a>
+    </li>
+    <li>
+      <a href="/vendor/customer-adoption">Adoption Report</a>
+    </li>
+    <li>
+      <a href="/vendor/instance-insights-details">Instance Details</a>
+    </li>
+    <li>
+      <a href="/vendor/custom-metrics-about">Configuring Custom Metrics</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/vendor_portal_2.png" alt="vendor portal icon" width="55px" height="55px"></img>
+        <p>Channels and Releases</p>
+    </li>
+    <li>
+        <p>Manage application releases with the vendor platform.</p>
+    </li>
+    <li>
+      <a href="/vendor/releases-about">About Channels and Releases</a>
+    </li>
+    <li>
+      <a href="/vendor/releases-creating-releases">Managing Releases with the Vendor Portal</a>
+    </li>
+    <li>
+      <a href="/vendor/releases-creating-cli">Managing Releases with the CLI</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/licensing.png" alt="dashboard icon" width="55px" height="55px"></img>
+        <p>Customer Licensing</p>
+    </li>
+    <li>
+        <p>Create, customize, and issue customer licenses.</p>
+    </li>
+    <li>
+      <a href="/vendor/licenses-about">About Customers</a>
+    </li>
+    <li>
+      <a href="/vendor/releases-creating-customer">Creating and Managing Customers</a>
+    </li>
+    <li>
+      <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
+    </li>
+  </ul>
+</section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/checklist.png" alt="checklist icon" width="55px" height="55px"></img>
+        <p>Preflight Checks</p>
+    </li>
+    <li>
+        <p>Define and verify installation environment requirements.</p>
+    </li>
+    <li>
+      <a href="/vendor/preflight-defining">Defining Preflight Checks</a>
+    </li>
+    <li>
+      <a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a>
+    </li>
+    <li>
+      <a href="/vendor/tutorial-preflight-helm-setup">Preflight Checks Tutorial for Helm Charts</a>
+    </li>
+    <li>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight Checks Lab in Instruqt</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/support_bundle.png" alt="support bundle icon" width="55px" height="55px"></img>
+        <p>Support Bundles</p>
+    </li>
+    <li>
+        <p>Gather information about customer environments for troubleshooting.</p>
+    </li>
+    <li>
+      <a href="vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+    </li>
+    <li>
+      <a href="/vendor/support-host-support-bundles">Configuring Host Support Bundles</a>
+    </li>
+    <li>
+      <a href="/vendor/support-bundle-generating">Generating Support Bundles</a>
+    </li>
+    <li>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support Bundles Lab in Instruqt</a>
+    </li>
+  </ul>
+</section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/tools.png" alt="carpenter tools icon" width="55px" height="55px"></img>
+        <p>Developer Tools</p>
+    </li>
+    <li>
+        <p>APIs, CLIs, and an SDK for interacting with the Replicated platform.</p>
     </li>
     <li>
       <a href="/reference/replicated-cli-installing">replicated CLI</a>
@@ -145,88 +288,11 @@ pagination_next: null
     <li>
       <a href="/reference/kots-cli-getting-started">kots CLI</a>
     </li>
-  </ul>
-  <ul class="tile">
-    <li class="tile__header">
-        <img src="images/icons/release.png" alt="rocket ship icon" width="55px" height="55px"></img>
-        <p>Compatibility Matrix</p>
+    <li>
+      <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>
     </li>
     <li>
-      <a href="/vendor/testing-about">About the compatibility matrix</a>
-    </li>
-    <li>
-      <a href="/vendor/testing-how-to">Create clusters</a>
-    </li>
-    <li>
-      <a href="/vendor/testing-supported-clusters">Supported cluster types</a>
-    </li>
-    <li>
-      <a href="/reference/replicated-cli-cluster-create">replicated CLI reference</a>
-    </li>
-  </ul>
-  <ul class="tile">
-    <li class="tile__header">
-        <img src="images/icons/dashboard_1.png" alt="dashboard icon" width="55px" height="55px"></img>
-        <p>Insights and Telemetry</p>
-    </li>
-    <li>
-      <a href="/vendor/customer-adoption">Customer adoption</a>
-    </li>
-    <li>
-      <a href="/vendor/instance-insights-details">Instance details</a>
-    </li>
-    <li>
-      <a href="/vendor/insights-app-status">Configure application telemetry</a>
-    </li>
-    <li>
-      <a href="/vendor/instance-notifications-config">Set up notifications</a>
-    </li>
-  </ul>
-</section>
-<section class="tile__container">
-  <ul class="tile">
-    <li class="tile__header">
-        <img src="images/icons/checklist.png" alt="checklist icon" width="55px" height="55px"></img>
-        <p>Preflight Checks</p>
-    </li>
-    <li>
-        <p>Define and verify installation environment requirements.</p>
-    </li>
-    <li>
-      <a href="/vendor/preflight-defining">Define preflight checks</a>
-    </li>
-    <li>
-      <a href="/vendor/preflight-running">Run preflight checks for Helm CLI installations</a>
-    </li>
-    <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight checks lab in Instruqt</a>
-    </li>
-    <li>
-      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
-    </li>
-  </ul>
-  <ul class="tile">
-    <li class="tile__header">
-        <img src="images/icons/support_bundle.png" alt="support bundle icon" width="55px" height="55px"></img>
-        <p>Support Bundles</p>
-    </li>
-    <li>
-        <p>Gather information about customer environments for troubleshooting.</p>
-    </li>
-    <li>
-      <a href="vendor/support-bundle-customizing">Add and customize support bundles</a>
-    </li>
-    <li>
-      <a href="/vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
-    </li>
-    <li>
-      <a href="/vendor/support-bundle-generating">Generate support bundles</a>
-    </li>
-    <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support bundles lab in Instruqt</a>
-    </li>
-    <li>
-      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
+      <a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
     </li>
   </ul>
 </section>
