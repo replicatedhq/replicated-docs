@@ -44,13 +44,13 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Embedded Cluster {#air-gap}
+## Provision the Cluster {#air-gap}
 
 <ProvisionClusterIntro/>
 
 <KotsAbout/>
 
-To provision an embedded cluster:
+To provision a cluster with kURL:
 
 1. In your installation environment, extract the contents of the kURL `.tar.gz` bundle that you downloaded:
 

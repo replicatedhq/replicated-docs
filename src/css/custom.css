@@ -182,12 +182,12 @@ ol ol ol {
   border-radius: 7px;
 }
 
-#tile__header__helm {
+#tile__header__blue {
   background-color:rgba(15, 22, 137,0.05);
 }
 
-[data-theme='dark'] #tile__header__helm {
-  background-color:rgb(243,243,249);
+[data-theme='dark'] #tile__header__blue {
+  background-color:rgb(169, 169, 198);
 }
 
 @media (max-width: 1300px) {
