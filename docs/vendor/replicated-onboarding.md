@@ -102,6 +102,8 @@ To begin onboarding to the Replicated platform with a Helm chart:
       <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
       [View a larger version of this image](/images/upload-helm-chart-modal.png)   
 
+       The following describes the steps in the dialog:
+
        1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
           <DependencyYaml/>

@@ -1,6 +1,5 @@
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
-import ReleasePromotionXref from "../partials/releases/_kots-helm-release-promotion-xref.mdx"
 
 # Managing Releases with the Vendor Portal
 
@@ -29,7 +28,7 @@ To create and promote a release in the vendor portal:
    If no drop down is displayed, continue to the next step.  
 
 1. Add your files to the release:
-   * **Helm-only**: For Helm-only releases, in the **Add the Replicated SDK to your Helm Chart** dialog, follow the steps to package your chart and upload a `.tgz` chart archive. For more information, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release).
+   * **Helm-only**: For Helm-only releases, follow the steps in the **Add the Replicated SDK to your Helm Chart**  dialog to package your chart and upload a `.tgz` chart archive.
    
      <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
 
@@ -45,9 +44,9 @@ To create and promote a release in the vendor portal:
 
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
    
-1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+1. Click **Promote**. In the **Promote Release** dialog, edit the fields:
 
-   For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in <em>About Channels and Releases</em>.
+   For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in _About Channels and Releases_.
 
    <table>
     <tr>
@@ -58,7 +57,6 @@ To create and promote a release in the vendor portal:
       <td>Channel</td>
       <td>
         <p>Select the channel where you want to promote the release. If you are not sure which channel to use, use the default Unstable channel.</p>
-        <p><ReleasePromotionXref/></p>
       </td>
     </tr>
     <tr>
