@@ -22,8 +22,8 @@ From a full backup, you can do any of the following types of restores using the 
 Use the corresponding CLI procedure for your environment:
 
 - [Existing Clusters](#existing)
-- [Online Embedded Clusters](#online)
-- [Air Gapped Embedded Clusters](#air-gapped)
+- [Online Embedded kURL Clusters](#online)
+- [Air Gapped Embedded kURL Clusters](#air-gapped)
 
 
 ### Existing Clusters {#existing}
@@ -49,11 +49,11 @@ To restore a backup on an existing cluster:
     
     For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
-### Online Embedded Clusters {#online}
+### Online Embedded kURL Clusters {#online}
 
 If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `get backups` and `restore` commands in the last two steps.
 
-To restore a backup on an embedded cluster:
+To restore a backup in an embedded kURL cluster:
 
 1. (New or Unhealthy Clusters Only) Provision an embedded cluster with Replicated kURL and install the application. See [Online Installation with kURL](installing-embedded-cluster).
 
@@ -74,9 +74,9 @@ To restore a backup on an embedded cluster:
     
     For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
-### Air Gapped Embedded Clusters {#air-gapped}
+### Air Gapped Embedded kURL Clusters {#air-gapped}
 
-To restore a backup on an air gapped embedded cluster:
+To restore a backup in an air gapped embedded kURL cluster:
 
 1. Run the following command to install a new cluster and provide kURL with the correct registry IP address. kURL must be able to assign the same IP address to the embedded private image registry in the new cluster.
 

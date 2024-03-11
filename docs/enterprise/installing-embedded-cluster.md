@@ -37,13 +37,13 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Embedded Cluster {#provision-cluster}
+## Provision the Cluster {#provision-cluster}
 
 <ProvisionClusterIntro/>
 
 <KotsAbout/>
 
-To provision an embedded cluster:
+To provision a cluster with kURL:
 
 1. Run one of the following commands to create the cluster with the kURL installer:
 

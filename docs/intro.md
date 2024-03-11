@@ -101,7 +101,7 @@ pagination_next: null
   </ul>
   </section>
 <section class="tile__container">
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/helm-logo.png" alt="helm logo" id="helm"></img>
         <p>Helm Charts</p>
@@ -127,7 +127,7 @@ pagination_next: null
   </ul>
     </section>
 <section class="tile__container">
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/admin.png" alt="kots icon"></img>
         <p>Replicated KOTS</p>
@@ -148,7 +148,7 @@ pagination_next: null
       <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
     </li>
   </ul>
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
         <p>Embedded Kubernetes</p>
@@ -168,7 +168,7 @@ pagination_next: null
   </ul>
 </section>
 <section class="tile__container">
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/dashboard_1.png" alt="dashboard icon" width="55px" height="55px"></img>
         <p>Insights and Telemetry</p>
@@ -189,7 +189,7 @@ pagination_next: null
       <a href="/vendor/custom-metrics-about">Configuring Custom Metrics</a>
     </li>
   </ul>
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/vendor_portal_2.png" alt="vendor portal icon" width="55px" height="55px"></img>
         <p>Channels and Releases</p>
@@ -207,7 +207,7 @@ pagination_next: null
       <a href="/vendor/releases-creating-cli">Managing Releases with the CLI</a>
     </li>
   </ul>
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/licensing.png" alt="dashboard icon" width="55px" height="55px"></img>
         <p>Customer Licensing</p>
@@ -227,7 +227,7 @@ pagination_next: null
   </ul>
 </section>
 <section class="tile__container">
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/checklist.png" alt="checklist icon" width="55px" height="55px"></img>
         <p>Preflight Checks</p>
@@ -248,7 +248,7 @@ pagination_next: null
       <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight Checks Lab in Instruqt</a>
     </li>
   </ul>
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
         <img src="images/icons/support_bundle.png" alt="support bundle icon" width="55px" height="55px"></img>
         <p>Support Bundles</p>
@@ -271,9 +271,9 @@ pagination_next: null
   </ul>
 </section>
 <section class="tile__container">
-  <ul class="tile">
+  <ul>
     <li class="tile__header">
-        <img src="images/icons/tools.png" alt="command prompt icon" width="55px" height="55px"></img>
+        <img src="images/icons/tools.png" alt="carpenter tools icon" width="55px" height="55px"></img>
         <p>Developer Tools</p>
     </li>
     <li>

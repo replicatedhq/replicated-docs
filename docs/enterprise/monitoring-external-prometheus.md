@@ -1,10 +1,10 @@
 # Consuming Prometheus Metrics Externally
 
-This topic describes how to consume Prometheus metrics in _embedded clusters_ created by Replicated kURL from a monitoring service that is outside the cluster.
+This topic describes how to consume Prometheus metrics in embedded clusters created by Replicated kURL from a monitoring service that is outside the cluster.
 
 ## About the Prometheus NodePort Service
 
-By default, Prometheus is included in embedded clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
+By default, Prometheus is included in embedded kURL clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
 
 For more information about NodePort services, see [Type NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in _Services_ in the Kubernetes documentation.  
 
@@ -23,11 +23,11 @@ As shown in the example above, port 9090 on the `prometheus-k8s` service maps to
 
 ## Prerequisite
 
-Before you can consume Prometheus metrics in embedded clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
+Before you can consume Prometheus metrics in embedded kURL clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
 
 ## Consume Metrics from External Services
 
-You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by embedded clusters.
+You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by embedded kURL clusters.
 
 To consume Prometheus metrics from an external service:
 
@@ -38,7 +38,7 @@ To consume Prometheus metrics from an external service:
    ```
    kubectl describe node NODE_NAME
    ```
-   Where `NODE_NAME` is the name of a node in the embedded cluster.
+   Where `NODE_NAME` is the name of a node in the cluster.
 
    :::note
    Depending on the node's network configuration, there might be different IP addresses for accessing the node from an external or internal network. For example, the IP address 10.128.0.35 might be assigned to the node in the internal network, whereas the IP address used to access the node from external or public networks is 34.28.178.93.

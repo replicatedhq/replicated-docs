@@ -38,7 +38,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distributing Helm Charts with KOTS',
+      label: 'Distributing Helm Charts',
       items: [
         'vendor/helm-native-about',
         'vendor/helm-native-v2-using',
@@ -81,24 +81,31 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Embedded Cluster (Beta)',
+      label: 'Distributing Embedded Kubernetes',
       items: [
-        'vendor/embedded-overview',
-        'reference/embedded-config',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Replicated kURL',
-      items: [
-        'vendor/kurl-about',
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/kurl-nodeport-services',
-        'vendor/preflight-host-preflights',
-        'vendor/installer-history',
-        'vendor/packaging-using-tls-certs',
-      ],
+        'vendor/embedded-kubernetes-overview',
+        {
+          type: 'category',
+          label: 'Embedded Cluster (Beta)',
+          items: [
+            'vendor/embedded-overview',
+            'reference/embedded-config',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'kURL',
+          items: [
+            'vendor/kurl-about',
+            'vendor/packaging-embedded-kubernetes',
+            'vendor/packaging-installer-storage',
+            'vendor/kurl-nodeport-services',
+            'vendor/preflight-host-preflights',
+            'vendor/installer-history',
+            'vendor/packaging-using-tls-certs',
+          ],
+        },
+      ], 
     },
     {
       type: 'category',
@@ -496,7 +503,7 @@ const sidebars = {
     // PACKAGE AND DISTRIBUTE
     {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true}, 
     'vendor/distributing-overview',
-    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
+    {type: 'ref', id: 'intro-kots', label: 'KOTS Documentation', className: 'menu__list-item__ref-link'},
     {
       type: 'category',
       label: 'Replicated SDK (Beta)',

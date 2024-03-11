@@ -56,16 +56,16 @@ Before you install an application with the kots CLI, you must complete the follo
   * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
   * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Installation in Existing Clusters_. 
 
-* (Embedded Clusters Only) This topic assumes that you have already run the kURL installation script on your VM or bare metal server to provision an embedded cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
+* (kURL Clusters Only) This topic assumes that you have already run the kURL installation script on your VM or bare metal server to provision a cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
 
-  For information about how to provision an embedded cluster with the kURL installer, see the following:
+  For information about how to provision a cluster with the kURL installer, see the following:
 
     * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) and [Provision the Embedded Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with kURL_.
     * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) and [Provision the Embedded Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with kURL_.
    
 ## Installation Commands
 
-This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded cluster. It includes commands for both _online_ environments (with access to the internet) and _air gap_ environments (without internet access).
+This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded kURL cluster. It includes commands for both _online_ environments (with outbound internet access) and _air gap_ environments (without outbound internet access).
 
 ### Online Existing Cluster
 
@@ -87,7 +87,7 @@ Replace:
 
 <PlaceholderNamespaceExisting/>
 
-### Online Embedded Cluster
+### Online Embedded kURL Cluster
 
 <IntroEmbedded/>
 
@@ -140,11 +140,11 @@ Replace:
 
 * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private registry where you pushed the images.
 
-### Air Gap Embedded Cluster
+### Air Gap Embedded kURL Cluster
 
 <IntroEmbedded/>
 
-The following is the kots CLI command for installing an application in an embedded cluster that does not have access to the internet:
+The following is the kots CLI command for installing an application in an embedded kURL cluster that does not have access to the internet:
 
 ```bash
 kubectl kots install APP_NAME \
@@ -164,7 +164,7 @@ Replace:
 
 ## (Optional) Access the Admin Console
 
-When you install an application in an existing cluster or when you provision an embedded cluster with the kURL installer, you also install KOTS in the cluster. KOTS deploys the admin console. The admin console is a user interface where you can manage and upgrade your application instances.
+When you install an application in an existing cluster or when you provision a cluster with the kURL installer, you also install KOTS in the cluster. KOTS deploys the admin console. The admin console is a user interface where you can manage and upgrade your application instances.
 
 By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the admin console. The `--no-port-forward` flag in the `kots install` command prevents KOTS from creating a port forward to the admin console.
 

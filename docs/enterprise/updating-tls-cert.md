@@ -1,6 +1,10 @@
-# Updating TLS Certificates on Embedded Clusters
+# Updating TLS Certificates in Embedded kURL Clusters
 
-For embedded clusters, the default Replicated KOTS self-signed certificate automatically renews 30 days before the expiration date.
+This topic describes how to upload custom TLS certificates for embedded clusters created with Replicated kURL.
+
+## Overview
+
+For embedded clusters created with kURL, the default Replicated KOTS self-signed certificate automatically renews 30 days before the expiration date.
 
 If you have uploaded a custom TLS certificate instead, then no renewal is attempted, even if the certificate is expired. In this case, you must manually upload a new custom certificate.
 
@@ -8,7 +12,7 @@ For information about TLS renewal for registry and Kubernetes control plane with
 
 ## Update Custom TLS Certificates
 
-If you are using a custom TLS certificate in an embedded cluster, you manually upload a new certificate when the previous one expires.                
+If you are using a custom TLS certificate in an embedded kURL cluster, you manually upload a new certificate when the previous one expires.                
 
 :::important
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
