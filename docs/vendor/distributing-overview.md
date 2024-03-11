@@ -19,8 +19,8 @@ This topic provides an overview of distributing applications with Replicated. It
 _Distributing_ software with Replicated refers to using Replicated features to enhance and support each phase of the commercial software distribution life cycle:
 * Develop
 * Test
-* License
 * Release
+* License
 * Install
 * Report
 * Support
