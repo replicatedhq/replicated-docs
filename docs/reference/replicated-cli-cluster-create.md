@@ -49,18 +49,18 @@ replicated cluster create [flags]
   </tr>
   <tr>
     <td>--min-nodes</td>
-    <td>integer</td>
+    <td>string</td>
     <td>Minimum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
     <td>--max-nodes</td>
-    <td>integer</td>
+    <td>string</td>
     <td>Maximum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
     <td>--nodegroup</td>
     <td>string</td>
-    <td>Node group to create (name=?,instance-type=?,nodes=?,disk=? format, can be specified multiple times)</td>
+    <td>Node group to create (name=?,instance-type=?,nodes=?,min-nodes=?,max-nodes=?,disk=? format, can be specified multiple times)</td>
   </tr>
   <Output/>
   <tr>

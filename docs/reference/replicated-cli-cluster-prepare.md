@@ -47,21 +47,6 @@ replicated cluster prepare [flags]
     <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
   <tr>
-    <td>--min-nodes</td>
-    <td>integer</td>
-    <td>Minimum Node count (only for EKS, AKS and GKE clusters).</td>
-  </tr>
-  <tr>
-    <td>--max-nodes</td>
-    <td>integer</td>
-    <td>Maximum Node count (only for EKS, AKS and GKE clusters).</td>
-  </tr>
-  <tr>
-    <td>--nodegroup</td>
-    <td>string</td>
-    <td>Node group to create (name=?,instance-type=?,nodes=?,disk=? format, can be specified multiple times)</td>
-  </tr>
-  <tr>
     <td>--ttl</td>
     <td>string</td>
     <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
