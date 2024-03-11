@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 11, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-11-0}
-* Fixes a bug that could result in a bad URL when downloading airgap bundle for embedded kURL installer from Download Portal.
+* Fixes a bug that could result in a bad URL when downloading an airgap bundle for Replicated kURL from the download portal.
 
 ## v2024.03.07-5
 
