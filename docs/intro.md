@@ -1,7 +1,7 @@
 ---
 slug: /
 pagination_next: null
----
+---  
 
 # Home
 
@@ -13,7 +13,7 @@ pagination_next: null
     </li>
     <li>
         <h3>Announcing: Embedded Cluster Single-Node Beta</h3>
-        <p>Replicated's next generation embedded Kubernetes solution. Embedded cluster offers signifantly faster installations compared to kURL and one-click updates of both the application and the cluster at the same time.</p>
+        <p>Replicated's next generation embedded Kubernetes solution. Embedded cluster offers signifantly faster installations compared to kURL, as well as one-click updates of both the application and the cluster at the same time.</p>
     </li>
     <li>
       <a href="/vendor/embedded-overview">Learn more</a>
@@ -26,16 +26,13 @@ pagination_next: null
     </li>
     <li>
         <h3>Use Custom Domains to Alias Replicated Endpoints</h3>
-        <p>Add custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.</p>
+        <p>You can add custom domains to alias the Replicated registry, proxy service, app service, and download portal.</p>
     </li>
     <li>
       <a href="/vendor/custom-domains">Learn more</a>
     </li>
   </ul>
 </section>
-
-## Product Documentation
-
 <section class="tile__container">
 <ul>
     <li class="tile__header">
