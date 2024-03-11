@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 8, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-08-3}
-* UI bug fix for allowing license download when a channel does not have a release.
+* Fixes a bug in the vendor portal UI related to allowing license download when a channel does not have a release.
 
 ## v2024.03.07-5
 
