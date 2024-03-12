@@ -36,7 +36,6 @@ Released on March 8, 2024
 ### New Features {#new-features-v2024-03-08-2}
 * Adds support for E2 family and GPU Tesla T4 on GKE clusters created with the compatibility matrix.
 
-
 ## v2024.03.07-5
 
 Released on March 7, 2024
