@@ -8,12 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.03.08-3
+
+Released on March 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-08-3}
+* Fixes a bug in the vendor portal UI related to allowing license download when a channel does not have a release.
+
 ## v2024.03.08-2
 
 Released on March 8, 2024
 
 ### New Features {#new-features-v2024-03-08-2}
 * Adds support for E2 family and GPU Tesla T4 on GKE clusters created with the compatibility matrix.
+
 
 ## v2024.03.07-5
 
