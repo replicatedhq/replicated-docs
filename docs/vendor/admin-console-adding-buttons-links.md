@@ -18,10 +18,10 @@ KOTS uses the Kubernetes Application custom resource as metadata and does not re
 
 ## Prerequisites
 
-Before you can add application links to the dashboard, ensure that the target service is exposed through KOTS port forwarding (existing cluster installations) or a NodePort type service (embedded cluster installations):
+Before you can add application links to the dashboard, ensure that the target service is exposed through KOTS port forwarding (existing cluster installations) or a NodePort type service (embedded cluster installations with Replicated kURL):
 
 * For existing cluster installations, see [Port Forwarding Service with KOTS](/vendor/admin-console-port-forward).
-* For embedded cluster installations, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services). 
+* For embedded cluster installations with kURL, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services). 
 
 ## Add an Application Link to the Dashboard
 
@@ -50,5 +50,5 @@ As shown in the example above, each link contains two fields:
   * You can use the service name in place of the hostname in the URL. KOTS rewrites the URL with the hostname in the browser.
   * The URL _must_ match a URL in the `ports.applicationURL` field in the KOTS Application custom resource. For more information, see [ports](/reference/custom-resource-application#ports) in _Application_.
     :::note
-    The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in embedded cluster installations, the `ports` key must be configured in order to add links to the admin console dashboard.
+    The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in embedded kURL clusters, the `ports` key must be configured in order to add links to the admin console dashboard.
     :::  

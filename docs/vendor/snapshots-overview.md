@@ -16,11 +16,11 @@ KOTS provides the Replicated admin console and the Replicated kots CLI so that y
 
 ## What Data is Backed Up
 
-Full backups include the admin console and all application data, including KOTS-specific object-stored data. For Replicated kURL clusters (embedded clusters), this also backs up the Docker registry, which is required for air gapped installations.
+Full backups include the admin console and all application data, including KOTS-specific object-stored data. For embedded clusters created with Replicated kURL, this also backs up the Docker registry, which is required for air gapped installations.
 
 ### Other Object-Stored Data
 
-For embedded clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
+For embedded kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
 
 For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 

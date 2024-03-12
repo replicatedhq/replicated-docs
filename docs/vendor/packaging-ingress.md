@@ -1,12 +1,12 @@
 # Adding Cluster Ingress Options
 
 When delivering a configurable application, ingress can be challenging as it is very cluster specific.
-Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters, including cluster created by Replicated kURL (embedded clusters).
+Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters, including embedded clusters created with Replicated kURL.
 
 ## Example
 
 The following example includes an Ingress resource with a single host based routing rule.
-The resource works in both existing clusters and embedded clusters.
+The resource works in both existing clusters and embedded kURL clusters.
 
 ### Config
 

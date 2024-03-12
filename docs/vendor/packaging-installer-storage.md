@@ -1,10 +1,10 @@
 # About Selecting Storage Add-ons
 
-This topic provides guidance for selecting the Replicated kURL add-ons to include in your Kubernetes installer specification to provide highly available data storage in embedded clusters. For additional guidance, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the open source kURL documentation.
+This topic provides guidance for selecting Replicated kURL add-ons to provide highly available data storage in embedded kURL clusters. For additional guidance, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the open source kURL documentation.
 
 ## Overview
 
-kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in embedded clusters. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for Replicated KOTS is managed in the cluster.
+kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in clusters. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for Replicated KOTS is managed in the cluster.
 
 The following lists the kURL add-ons for data storage:
 * **MinIO**: MinIO is an open source, S3-compatible object store. See [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
@@ -13,7 +13,7 @@ The following lists the kURL add-ons for data storage:
 * **Longhorn**: Longhorn is an open source distributed block storage system for Kubernetes. See [Longhorn Add-on](https://kurl.sh/docs/add-ons/longhorn) in the kURL documentation.
 
   :::important
-  The Longhorn add-on is deprecated and not supported in production embedded clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+  The Longhorn add-on is deprecated and not supported in production clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
   :::
 
 ## About Persistent Storage for KOTS
