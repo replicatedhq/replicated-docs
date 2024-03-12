@@ -2,7 +2,7 @@ import Pool from "../partials/cmx/_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
-This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix. 
+This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix.
 
 The compatibility matrix provisions cloud-based or virtual machine (VM) clusters.
 
@@ -42,7 +42,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   <tr>
     <th>Limitations</th>
     <td>See <a href="testing-about#limitations">Limitations</a></td>
-  </tr>  
+  </tr>
   <tr>
     <th>Common Use Cases</th>
     <td>Smoke tests</td>
@@ -77,11 +77,11 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   <tr>
     <th>Node Auto Scaling</th>
     <td>No</td>
-  </tr>  
+  </tr>
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
-  </tr>  
+  </tr>
   <tr>
     <th>Limitations</th>
     <td>See <a href="https://docs.k3s.io/upgrades/manual">Manual Upgrades</a> in the k3s documentation.<br></br><br></br>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
@@ -140,7 +140,58 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
-  </tr> 
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
+### Embedded Cluster
+
+The compatibility matrix supports creating Replicated Embedded Cluster clusters.
+
+A valid Customer license is required for installing Embedded Clusters.
+
+For example:
+
+```bash
+replicated cluster create --distribution embedded-cluster --license-id <license-id>
+```
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Embedded Cluster Versions</th>
+    <td>
+      Any valid [Channel Release sequence](https://docs.replicated.com/vendor/releases-about) that has previously been promoted to the Channel to which the Customer license is assigned.
+      Version is optional and will default to the latest available Channel Release.
+    </td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td>
+      <p>A valid Customer license is required.</p>
+      <p>The [cluster prepare](https://docs.replicated.com/vendor/testing-how-to#prepare-clusters) command is not supported.</p>
+      <p>Embedded Cluster clusters cannot currently be created from the Vendor Portal.</p>
+      <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
+    </td>
+  </tr>
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
@@ -175,7 +226,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
-  </tr>  
+  </tr>
   <tr>
     <th>Limitations</th>
     <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
@@ -336,12 +387,12 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
     <th>r1.xlarge</th>
     <td>64 GB</td>
     <td>16 VCPUs</td>
-  </tr>      
+  </tr>
   <tr>
     <th>r1.2xlarge</th>
     <td>128 GB</td>
     <td>32 VCPUs</td>
-  </tr>  
+  </tr>
 </table>
 
 ## Kubernetes Version Support Policy
