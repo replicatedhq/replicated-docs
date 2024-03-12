@@ -40,7 +40,7 @@ replicated cluster create [flags]
   <tr>
     <td>--license</td>
     <td>string</td>
-    <td>A valid customer license ID. Required for installing releases in clusters that use the Replicated embedded cluster distribution. The customer must be assigned to the channel where the target release is promoted.</td>
+    <td>A valid customer license ID. Required for distribution Embedded Cluster.</td>
   </tr>
   <tr>
     <td>--name</td>
