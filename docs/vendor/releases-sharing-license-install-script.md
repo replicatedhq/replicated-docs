@@ -76,12 +76,12 @@ To get the installation commands from the vendor portal:
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the customer is assigned.
 
 1. Do one of the following:
-   * **Share the latest release version**: Under **Install**, click either **Existing Cluster** or **Embedded Cluster** to view and copy the desired installation command.
+   * **Share the latest release version**: Under **Install**, click either **KOTS Install** or **kURL Install** to view and copy the desired installation command.
    * **Share a specific release version**:
       1. Click **Release history**.
-      1. Click **Install Commands** for a specific version. Then, click either **Existing Cluster** or **Embedded Cluster** to view and copy the desired installation command.
+      1. Click **Install Commands** for a specific version. Then, click either **KOTS Install** or **kURL Install** to view and copy the desired installation command.
 
-        ![Existing Cluster Command](/images/existing-cluster-command.png)
+        ![Existing Cluster Command](/images/kots-kurl-install-command.png)
 
 
 ## Download Bundles for Air Gap Installations
