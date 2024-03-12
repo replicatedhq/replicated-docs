@@ -34,7 +34,7 @@ To create and promote a release:
 
    1. Move the `.tgz` file or files to the local directory that contains the release files:
 
-       ```
+       ```bash
        mv CHART_TGZ PATH_TO_RELEASE_DIR
        ```
        Where:
@@ -43,7 +43,7 @@ To create and promote a release:
 
        **Example**
 
-       ```
+       ```bash
        mv wordpress-1.3.5.tgz manifests
        ```
 
@@ -63,7 +63,7 @@ To create and promote a release:
 
    * **Create and promote the release with one command**:
 
-      ```
+      ```bash
       replicated release create --yaml-dir PATH_TO_RELEASE_DIR --lint --promote CHANNEL
       ```
       Where:
