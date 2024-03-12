@@ -15,6 +15,29 @@ Released on March 12, 2024
 ### Improvements {#improvements-v2024-03-12-1}
 * When creating a new customer, **Gitops Enabled** is false by default. The description of the **Gitops Enabled** entitlement is also updated.
 
+
+## v2024.03.11-0
+
+Released on March 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-11-0}
+* Fixes a bug that could result in a bad URL when downloading an airgap bundle for Replicated kURL from the download portal.
+
+## v2024.03.08-3
+
+Released on March 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-08-3}
+* Fixes a bug in the vendor portal UI related to allowing license download when a channel does not have a release.
+
+## v2024.03.08-2
+
+Released on March 8, 2024
+
+### New Features {#new-features-v2024-03-08-2}
+* Adds support for E2 family and GPU Tesla T4 on GKE clusters created with the compatibility matrix.
+
+
 ## v2024.03.07-5
 
 Released on March 7, 2024
