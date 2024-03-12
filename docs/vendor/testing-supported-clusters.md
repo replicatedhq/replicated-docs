@@ -186,6 +186,7 @@ replicated cluster create --distribution embedded-cluster --license-id <license-
   <tr>
     <th>Limitations</th>
     <td>
+      <p>The Admin Console UI is not exposed publicly and must be exposed via kubectl port-forward.</p>
       <p>A valid Customer license is required.</p>
       <p>The [cluster prepare](https://docs.replicated.com/vendor/testing-how-to#prepare-clusters) command is not supported.</p>
       <p>Embedded Cluster clusters cannot currently be created from the Vendor Portal.</p>
