@@ -13,8 +13,7 @@ pagination_prev: null
 Released on March 12, 2024
 
 ### Improvements {#improvements-v2024-03-12-1}
-* When creating a new customer, **Gitops Enabled** is false by default. The description of the **Gitops Enabled** entitlement is also updated.
-
+* Makes the **Gitops Enabled** entitlement false by default when creating a customer. Also updates the description of the **Gitops Enabled** entitlement.
 
 ## v2024.03.11-0
 
