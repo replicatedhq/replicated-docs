@@ -26,7 +26,7 @@ By default, the compatibility matrix sets quotas for the capacity that can be us
 
 By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
 
-VM-based cluster distributions (such as kind, OpenShift, and Replicated Embedded Cluster) have the following default quotas:
+VM-based cluster distributions (such as kind, OpenShift, and Replicated embedded cluster) have the following default quotas:
 * 32 vCPUs
 * 128 GiB memory
 * 800 GiB disk size 

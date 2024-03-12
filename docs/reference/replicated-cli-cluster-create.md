@@ -38,6 +38,11 @@ replicated cluster create [flags]
     <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
+    <td>--license</td>
+    <td>string</td>
+    <td>A valid customer license ID. Required for installing releases in clusters that use the Replicated embedded cluster distribution. The customer must be assigned to the channel where the target release is promoted.</td>
+  </tr>
+  <tr>
     <td>--name</td>
     <td>string</td>
     <td>The name of the cluster. If no name is specified, a name will be generated.</td>
@@ -104,3 +109,9 @@ replicated cluster create [flags]
   ```bash
   replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
   ```
+
+- For a Replicated embedded cluster distribution:
+
+```bash
+replicated cluster create --distribution embedded-cluster --license-id <license-id>
+```
