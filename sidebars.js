@@ -18,6 +18,51 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
+  docsStarter: [
+    {
+      type: 'html',
+      value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots-logo">',
+      defaultStyle: true,
+    },
+    {
+      type: 'category',
+      label: 'Installing',
+      items: [
+        'installation-requirements',
+        {
+          type: 'category',
+          label: 'Installing the Admin Console',
+          items: [
+            'installation-admin-console',
+            'installation-existing-cluster',
+            'installation-vm',
+            'installation-air-gap',
+          ],
+        },
+        'app-configuration'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Upgrading',
+      items: [
+        'upgrade-app',
+        'upgrade-kots',
+        'upgrade-kurl',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      items: [
+        'troubleshooting',
+        'support-bundle-create-ui',
+        'uninstall-admin-console',
+        'uninstall-app',
+      ],
+    },
+  ],
+
   kots: [
     {
       type: 'html',
@@ -27,6 +72,7 @@ const sidebars = {
     // DISTRIBUTE WITH KOTS 
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
+    'vendor/kots-home',
     {
       type: 'category',
       label: 'Getting Started',
@@ -410,7 +456,11 @@ const sidebars = {
         'reference/cron-expressions',
       ],
     },  
+    // WRITE DOCS
+    {type: 'html', value: '<h5>writing your docs</h5>', defaultStyle: true},
+    {type: 'ref', id: 'docs-starter/sample-doc', label: 'Sample'},
   ],
+
   // MAIN SIDEBAR
   main: [
     'intro',

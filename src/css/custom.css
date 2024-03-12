@@ -251,7 +251,44 @@ ol ol ol {
   color: rgb(21, 140, 54);
 }
 
+/*KOTS landing page*/
+
+/* #kots {
+  background-color:rgb(50,109,230,.25);
+} */
+
+/* [data-theme='dark'] #helm {
+  background-color:rgb(169, 169, 198);
+} */
+
+#kots,
+[data-theme='dark'] #kots:hover {
+  background-image: linear-gradient(to bottom right, rgba(50,109,230,0.1), rgba(50,109,230,0.025));
+  border: 1px solid rgba(50,109,230,0.1);
+}
+
+#kots:hover,
+[data-theme='dark'] #kots {
+  background-image: linear-gradient(to bottom right, rgba(50,109,230,0.2), rgba(50,109,230,0.05));
+}
+
+#kots .tile__header img {
+  background-color: rgba(50,109,230,0.2);
+}
+
+[data-theme='dark'] #kots .tile__header img {
+  content:url("/images/icons/lightbulb_white.png");
+}
+
+#kots li a {
+  color: rgb(50,109,230);
+}
+
 /*Sidebar Styling*/
+
+.menu__list {
+  margin-bottom: 50px;
+}
 
 .menu__list-item > h5 {
   text-transform: uppercase;

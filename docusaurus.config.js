@@ -46,7 +46,17 @@ const config = {
       }),
     ],
   ],
-
+  // plugins: [
+  //   [
+  //     '@docusaurus/plugin-content-docs',
+  //     {
+  //       id: 'docs-starter',
+  //       path: 'docs-starter',
+  //       routeBasePath: 'docs-starter',
+  //       sidebarPath: './sidebarsDocsStarter.js',
+  //     },
+  //   ],
+  // ],
   scripts: [
     {
       src:
@@ -78,7 +88,6 @@ const config = {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
       },
       footer: {
         style: 'dark',
