@@ -40,7 +40,7 @@ replicated cluster create [flags]
   <tr>
     <td>--license</td>
     <td>string</td>
-    <td>A valid customer license ID. Required for distribution Embedded Cluster.</td>
+    <td>A valid customer license ID. Required for Replicated embedded cluster distribution.</td>
   </tr>
   <tr>
     <td>--name</td>
