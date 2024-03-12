@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.12-1
+
+Released on March 12, 2024
+
+### New Features {#new-features-v2024-03-12-1}
+* When creating a new customer Gitops Enabled is false by default and description copy for the Gitops Enabled feature has been updated.
+
 ## v2024.03.07-5
 
 Released on March 7, 2024
