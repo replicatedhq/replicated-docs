@@ -32,6 +32,10 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
     <td>No</td>
   </tr>
   <tr>
+    <th>Node Auto Scaling</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports a single node.</td>
   </tr>
@@ -70,6 +74,10 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
     <th>Node Groups</th>
     <td>Yes</td>
   </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>No</td>
+  </tr>  
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
@@ -110,6 +118,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   <tr>
     <th>Node Groups</th>
     <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -157,6 +169,10 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
     <td>Yes</td>
   </tr>
   <tr>
+    <th>Node Auto Scaling</th>
+    <td>No</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>  
@@ -196,6 +212,10 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>Yes</td>
   </tr>
   <tr>
+    <th>Node Auto Scaling</th>
+    <td>Yes. Cost will be based on the max number of nodes.</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
@@ -231,6 +251,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td>Yes</td>
   </tr>
   <tr>
+    <th>Node Auto Scaling</th>
+    <td>Yes. Cost will be based on the max number of nodes.</td>
+  </tr>
+  <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
@@ -264,6 +288,10 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   <tr>
     <th>Node Groups</th>
     <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>Yes. Cost will be based on the max number of nodes.</td>
   </tr>
   <tr>
     <th>Nodes</th>
