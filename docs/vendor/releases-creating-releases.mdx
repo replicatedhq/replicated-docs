@@ -1,6 +1,5 @@
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
-import ReleasePromotionXref from "../partials/releases/_kots-helm-release-promotion-xref.mdx"
 
 # Managing Releases with the Vendor Portal
 
@@ -11,12 +10,6 @@ For information about creating and managing releases with the CLI, see [Managing
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) and [channelReleases](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) sections in the Vendor API v3 documentation.
 
 ## Create a Release
-
-A release contains one or more Helm charts. Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only or use a combination of standard manifests and Helm charts. KOTS releases also support the use of Kubernetes Operators.
-
-:::note
-You must package each Helm chart that you want to include in a release and its dependencies to a `.tgz` file before you can add it to the release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
-:::
 
 To create and promote a release in the vendor portal:
 
@@ -30,18 +23,18 @@ To create and promote a release in the vendor portal:
 
 1. If a drop down is displayed, select one of the following options:
    * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
-   * **Create KOTS release**: Create a release with one or more Helm charts or standard Kubernetes manifests. Supports installations with Replicated KOTS. For Helm charts, supports installation with KOTS and installation with the Helm CLI in the same release.
+   * **Create KOTS release**: Create a release that supports installations with Replicated KOTS. KOTS releases can contain Kubernetes manifests and one or more Helm charts. KOTS releases that contain Helm charts can also be installed with the Helm CLI.
 
    If no drop down is displayed, continue to the next step.  
 
 1. Add your files to the release:
-   * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select a Helm chart `.tgz` file.
+   * **Helm-only**: For Helm-only releases, follow the steps in the **Add the Replicated SDK to your Helm Chart**  dialog to package your chart and upload a `.tgz` chart archive.
    
      <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
 
      [View a larger version of this image](/images/upload-helm-chart-modal.png)
 
-   * For KOTS releases, drag and drop your application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
+   * **KOTS**: For KOTS releases, drag and drop your release files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
    
      For any Helm charts that you add, in the **Select Installation Method** dialog, select the version of the HelmChart custom resource that KOTS will use to install the chart. kots.io/v1beta2 is recommended. For more information about the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
@@ -51,9 +44,9 @@ To create and promote a release in the vendor portal:
 
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
    
-1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+1. Click **Promote**. In the **Promote Release** dialog, edit the fields:
 
-   For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in <em>About Channels and Releases</em>.
+   For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in _About Channels and Releases_.
 
    <table>
     <tr>
@@ -64,7 +57,6 @@ To create and promote a release in the vendor portal:
       <td>Channel</td>
       <td>
         <p>Select the channel where you want to promote the release. If you are not sure which channel to use, use the default Unstable channel.</p>
-        <p><ReleasePromotionXref/></p>
       </td>
     </tr>
     <tr>
@@ -121,13 +113,11 @@ To edit release properties:
 
 ## Archiving Releases
 
-You can archive releases to remove them from view on the Releases page. 
-
-Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent KOTS from downloading the archived release.
+You can archive releases to remove them from view on the **Releases** page. Archiving a release that has been promoted does _not_ remove the release from the channel's **Release History** page or prevent KOTS from downloading the archived release.
 
 To archive one or more releases:
 
-1. From the Releases page, click the trash can icon in the upper right corner.
+1. From the **Releases** page, click the trash can icon in the upper right corner.
 1. Select one or more releases.
 1. Click **Archive Releases**.
-1. Confirm the archive action when prompted. Alternatively, click **Cancel** to cancel the archiving action.
+1. Confirm the archive action when prompted.
