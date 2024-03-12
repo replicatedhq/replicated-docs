@@ -1,5 +1,6 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -7,7 +8,7 @@ This topic describes how to package a Helm chart and the Replicated SDK into a c
 
 ## Overview
 
-To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies into a `.tgz` chart archive.
+To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies as a `.tgz` chart archive.
 
 The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended because it provides access to key Replicated features, such as support for collecting custom metrics on application instances. For more information, see [About the Replicated SDK](replicated-sdk-overview). 
 
@@ -31,20 +32,10 @@ To package a Helm chart so that it can be added to a release:
 
 1. <RegistryLogout/> 
 
-1. Update the `charts/` directory:
+1. Update dependencies and package the chart as a `.tgz` file:
 
-   ```
-   helm dependency update
-   ```
-   
-1. Package the Helm chart into a `.tgz` archive:
+    <HelmPackage/>
 
-   ```
-   helm package .
-   ```
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-   The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
-
-1. Add the `.tgz` chart archive to a release. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
-
-  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install a release with the Helm CLI, see [Installing with Helm](install-with-helm).  
+    After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install a release with the Helm CLI, see [Installing with Helm](install-with-helm).  
