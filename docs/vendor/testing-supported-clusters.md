@@ -149,15 +149,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-The compatibility matrix supports creating Replicated Embedded Cluster clusters.
-
-A valid Customer license is required for installing Embedded Clusters.
-
-For example:
-
-```bash
-replicated cluster create --distribution embedded-cluster --license-id <license-id>
-```
+The compatibility matrix supports creating clusters with Replicated embedded cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 <table>
   <tr>
@@ -167,8 +159,8 @@ replicated cluster create --distribution embedded-cluster --license-id <license-
   <tr>
     <th>Supported Embedded Cluster Versions</th>
     <td>
-      Any valid [Channel Release sequence](https://docs.replicated.com/vendor/releases-about) that has previously been promoted to the Channel to which the Customer license is assigned.
-      Version is optional and will default to the latest available Channel Release.
+      Any valid release sequence that has previously been promoted to the channel where the customer license is assigned.
+      Version is optional and defaults to the latest available release on the channel.
     </td>
   </tr>
   <tr>
@@ -186,10 +178,12 @@ replicated cluster create --distribution embedded-cluster --license-id <license-
   <tr>
     <th>Limitations</th>
     <td>
-      <p>The Admin Console UI is not exposed publicly and must be exposed via kubectl port-forward.</p>
-      <p>A valid Customer license is required.</p>
-      <p>The [cluster prepare](https://docs.replicated.com/vendor/testing-how-to#prepare-clusters) command is not supported.</p>
-      <p>Embedded Cluster clusters cannot currently be created from the Vendor Portal.</p>
+      <ul>
+        <li>The admin console UI is not exposed publicly and must be exposed via kubectl port-forward.</li>
+        <li>A valid customer license is required for installing with embedded cluster.</li>
+        <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
+        <li>Embedded clusters cannot be created from the vendor portal.</li>
+      </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
   </tr>
