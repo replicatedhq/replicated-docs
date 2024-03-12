@@ -56,7 +56,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Gitops Enabled</td>
-          <td>Enables existing cluster and embedded cluster installations to transition to a GitOps workflow for deployment.</td>
+          <td>Enables customers with a KOTS-managed installation to transition from click-to-deploy to a GitOps workflow for deployment.</td>
         </tr>
         <tr>
           <td>Identity Service Enabled</td>
