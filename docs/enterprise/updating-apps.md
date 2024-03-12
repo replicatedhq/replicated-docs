@@ -121,9 +121,7 @@ Adding the `--deploy` flag will also automatically deploy this version.
 
 The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
-### Air Gapped Installations on an Embedded Cluster
-
-> Introduced in the KOTS v1.34.0
+### Air Gapped Installations in Embedded kURL Clusters
 
 To update the application in an air gapped environment with Replicated kURL, download the new application air gap bundle, and run the following command:
 

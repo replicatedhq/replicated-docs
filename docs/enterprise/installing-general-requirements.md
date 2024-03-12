@@ -249,7 +249,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
   After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster.md#prerequisites) in _Online Installation in Existing Clusters_.
   :::
 
-## Embedded Cluster Requirements {#embedded-cluster-requirements}
+## kURL Requirements {#kurl-requirements}
 
 To install KOTS in an embedded cluster created by kURL, your environment must meet the following requirements.
 
@@ -258,7 +258,7 @@ To install KOTS in an embedded cluster created by kURL, your environment must me
 * 4 CPUs or equivalent per machine
 * 8GB of RAM per machine
 * 40GB of disk space per machine
-* TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes
+* TCP ports 2379, 2380, 6443, 6783, and 10250 open between cluster nodes
 * UDP port 8472 open between cluster nodes
 
   :::note
@@ -285,7 +285,7 @@ You must meet the additional kURL system requirements when applicable:
 
 ## Private Registry Requirements
 
-A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation. For air gap installations in embedded clusters, the kURL installer automatically uses the registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
+A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation. For air gap installations in kURL clusters, the kURL installer automatically uses the registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 Private registry settings can be changed at any time. For more information, see [Using Private Registries](image-registry-settings).
 
@@ -301,7 +301,7 @@ For services hosted at domains owned by Replicated, the table below includes a l
 
 For third-party services hosted at domains not owned by Replicated, the table below lists the required domains. Consult the third-party's documentation for the IP address range for each domain, as needed. 
 
-| Host   | Existing Clusters | Embedded Clusters (kURL) | Description |
+| Host   | Existing Clusters | Embedded kURL Clusters | Description |
 |--------|-------------------|-------------------|-------------|
 | Docker Hub    | Required    | Required    | Some dependencies of KOTS are hosted as public images in Docker Hub. The required domains for this service are `index.docker.io`, `cdn.auth0.com`, `*.docker.io`, and `*.docker.com.` |
 | `replicated.app`       | Required  | Required | <p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p> |
@@ -310,8 +310,8 @@ For third-party services hosted at domains not owned by Replicated, the table be
 | `registry.replicated.com` | Required&#42;&#42;         | Required&#42;&#42;            | <p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p>
 | `kots.io`              | Required     | Not Required | Requests are made to this domain when installing the Replicated kots CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
 | `github.com `          | Required     | Not Required | Requests are made to this domain when installing the Replicated kots CLI. For information about retrieving GitHub IP addresses, see [About GitHub's IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation. |
-| `k8s.kurl.sh`<br/>`s3.kurl.sh`    | Not Required | Required     | <p>Embedded cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `k8s.kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L34-L39) in GitHub.</p><p> The range of IP addresses for `s3.kurl.sh` are the same as IP addresses for the `kurl.sh` domain. For the range of IP address for `kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L28-L31) in GitHub.</p> |
-| `amazonaws.com`  | Not Required    | Required        | `tar.gz` packages are downloaded from Amazon S3 during embedded cluster installations. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.|
+| `k8s.kurl.sh`<br/>`s3.kurl.sh`    | Not Required | Required     | <p>kURL installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `k8s.kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L34-L39) in GitHub.</p><p> The range of IP addresses for `s3.kurl.sh` are the same as IP addresses for the `kurl.sh` domain. For the range of IP address for `kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L28-L31) in GitHub.</p> |
+| `amazonaws.com`  | Not Required    | Required        | `tar.gz` packages are downloaded from Amazon S3 during installations with kURL. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.|
 
 &#42; Required only if the application uses the Replicated proxy service. Contact your software vendor for more information.
 

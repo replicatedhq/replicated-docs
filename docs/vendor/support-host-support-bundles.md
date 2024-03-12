@@ -1,4 +1,4 @@
-# Configuring kURL Host Support Bundles
+# Configuring Host Support Bundles
 
 This topic describes how to configure host collectors and analyzers to help customers generate host support bundles to troubleshoot _embedded clusters_ created by Replicated kURL.
 
