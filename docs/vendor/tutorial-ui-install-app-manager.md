@@ -69,7 +69,7 @@ To install KOTS in an embedded cluster:
 
    Replace NAME with the name of the cluster.
 
-1. Copy the **Embedded Cluster** command from the Unstable channel in the vendor portal and run it on the cluster.
+1. Copy the **kURL Install** command from the Unstable channel in the vendor portal and run it on the cluster.
 
    ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
