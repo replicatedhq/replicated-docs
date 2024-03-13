@@ -26,7 +26,7 @@ By default, the compatibility matrix sets quotas for the capacity that can be us
 
 By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
 
-VM-based cluster distributions (such as kind, OpenShift, and Replicated kURL) have the following default quotas:
+VM-based cluster distributions (such as kind, OpenShift, and Replicated embedded cluster) have the following default quotas:
 * 32 vCPUs
 * 128 GiB memory
 * 800 GiB disk size 
@@ -45,7 +45,7 @@ Clusters created with the compatibility matrix can have the following statuses:
 
 * `running`: A working kubeconfig for the cluster is accessible. Billing begins when the cluster reaches a `running` status.
 
-   Additionally, OpenShift, Kind, K3s, and kURL clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
+   Additionally, clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
 
 * `terminated`: The cluster is deleted. Billing ends when the cluster status is changed from `running` to `terminated`.
 
