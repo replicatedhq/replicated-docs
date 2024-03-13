@@ -158,7 +158,7 @@ There are file changes between Restic's initial scan of the volume and during th
 
 #### Solution
 
-1. Utilize [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export/import data to a [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
+1. Utilize [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume
 2. Freeze file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. [More info](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze)
 
 
