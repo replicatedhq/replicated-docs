@@ -131,6 +131,6 @@ You can filter customers based on whether they are active, by license type, and 
 
 If there is adoption rate data available for the channel that you are filtering by, you can also filter by current version, previous version, and older versions.
 
-You can also filter customers by custom ID. To filter customers by custom ID, use the search box and prepend your search term with "customId:" (ex: `customId:1234`).
+You can also filter customers by custom ID or email address. To filter customers by custom ID or email, use the search box and prepend your search term with "customId:" (ex: `customId:1234`) or "email:" (ex: `email:bob@replicated.com`).
 
 If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
