@@ -110,7 +110,11 @@ const config = {
                 docId: 'vendor/kurl-about',
                 label: 'kURL',
               },
-              
+              {
+                type: 'doc',
+                docId: 'vendor/private-images-about',
+                label: 'Replicated Proxy Service',
+              },
               {
                 type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
@@ -130,6 +134,11 @@ const config = {
             items: [
               {
                 type: 'doc',
+                docId: 'reference/kots-cli-getting-started',
+                label: 'kots CLI',
+              },
+              {
+                type: 'doc',
                 docId: 'reference/replicated-cli-installing',
                 label: 'replicated CLI',
               },
@@ -137,11 +146,6 @@ const config = {
                 type: 'doc',
                 docId: 'reference/replicated-sdk-apis',
                 label: 'Replicated SDK API (Beta)',
-              },
-              {
-                type: 'doc',
-                docId: 'reference/kots-cli-getting-started',
-                label: 'kots CLI',
               },
               {
                 type: 'doc',

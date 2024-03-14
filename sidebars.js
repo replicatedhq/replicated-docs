@@ -191,7 +191,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Distributing Embedded Kubernetes with KOTS',
+              label: 'Distributing Embedded Kubernetes',
               items: [
                 'vendor/embedded-kubernetes-overview',
                 {
@@ -302,7 +302,7 @@ const sidebars = {
             },  
             {
               type: 'category',
-              label: 'Downloading Installation Files and Sharing Install Commands',
+              label: 'Downloading Files and Sharing Commands for KOTS Installations',
               items: [ 
                 'vendor/releases-sharing-license-install-script',        
                 'vendor/releases-configvalues',
