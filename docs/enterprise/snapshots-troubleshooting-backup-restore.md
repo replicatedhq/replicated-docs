@@ -142,6 +142,28 @@ For more information, see the [Restic backup — OOM-killed on raspberry pi afte
 
 <NodeAgentMemLimit/>
 
+### At least one source file could not be read
+
+#### Symptom
+
+You see the following error in Velero logs:
+
+```
+Error backing up item...Warning: at least one source file could not be read
+```
+
+#### Cause
+
+There are file changes between Restic's initial scan of the volume and during the backup to Restic store.
+
+#### Solution
+
+To resolve this issue, do one of the following:
+
+* Use [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume.
+* Freeze the file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. For more information, see [Hook Example with fsfreeze](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze) in the Velero documentation.
+
+
 ## Snapshot Restore is Failing
 
 ### Service NodePort is Already Allocated
