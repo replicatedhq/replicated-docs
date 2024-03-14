@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.13-0
+
+Released on March 13, 2024
+
+### New Features {#new-features-v2024-03-13-0}
+* Adds the ability to search customers by their email address. For more information, see [Filter and Search Customers](/vendor/releases-creating-customer#filter-and-search-customers) in _Creating and Managing Customers_.
+
 ## v2024.03.12-1
 
 Released on March 12, 2024
