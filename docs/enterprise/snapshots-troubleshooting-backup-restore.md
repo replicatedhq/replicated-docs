@@ -146,7 +146,7 @@ For more information, see the [Restic backup — OOM-killed on raspberry pi afte
 
 #### Symptom
 
-You see the following error in Velero logs.
+You see the following error in Velero logs:
 
 ```
 Error backing up item...Warning: at least one source file could not be read
@@ -158,8 +158,10 @@ There are file changes between Restic's initial scan of the volume and during th
 
 #### Solution
 
-1. Utilize [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume
-2. Freeze file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. [More info](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze)
+To resolve this issue:
+
+1. Use [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume.
+2. Freeze the file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. For more information, see [Hook Example with fsfreeze](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze) in the Velero documentation.
 
 
 ## Snapshot Restore is Failing
