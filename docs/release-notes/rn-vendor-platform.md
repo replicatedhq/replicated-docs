@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 13, 2024
 
 ### New Features {#new-features-v2024-03-13-0}
-* As a vendor portal end user, I can search my customers via email address (exact match only).
+* Adds the ability to search customers by their email address.
 
 ## v2024.03.12-1
 
