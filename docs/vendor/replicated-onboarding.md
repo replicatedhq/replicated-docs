@@ -37,7 +37,7 @@ Before you begin, complete the following prerequisites:
 
 * This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
 
-  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to to create a new `replicated-onboarding` folder with a basic NGINX deployment:
+  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to create a new `replicated-onboarding` folder with a basic NGINX deployment:
   ```bash
   helm create replicated-onboarding
   ``` 
