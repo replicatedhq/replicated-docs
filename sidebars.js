@@ -18,18 +18,6 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
-  // kots: [
-  //   {
-  //     type: 'html',
-  //     value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots-logo">',
-  //     defaultStyle: true,
-  //   },
-  //   // DISTRIBUTE WITH KOTS 
-  //   {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
-  //   {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
-      
-  // ],
-  // MAIN SIDEBAR
   main: [
     'intro',
     {
@@ -186,14 +174,14 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'KOTS',
+      label: 'Distributing and Installing with KOTS',
       items: [
         'intro-kots',
         'vendor/kots-faq',
         'vendor/distributing-workflow',
             {
               type: 'category',
-              label: 'Distributing Helm Charts',
+              label: 'Distributing Helm Charts with KOTS',
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
@@ -203,7 +191,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Distributing Embedded Kubernetes',
+              label: 'Distributing Embedded Kubernetes with KOTS',
               items: [
                 'vendor/embedded-kubernetes-overview',
                 {

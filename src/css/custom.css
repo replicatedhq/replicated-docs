@@ -266,13 +266,13 @@ a.menu__link {
 
 /* Navbar */
 
-.dropdown__link:hover {
+.dropdown__link:hover, .navbar__link {
   background-color: transparent;
   color: var(--ifm-dropdown-link-color);
   text-decoration: none;
 }
 
-.dropdown__link--active {
+.dropdown__link--active, .navbar__link--active {
   background-color: transparent;
   color: #2f2f2f;
 }
