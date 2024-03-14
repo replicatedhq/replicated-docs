@@ -49,8 +49,6 @@ For more information about using Helm extensions, see [Helm Extensions](/referen
 
 The following features that are available in kURL are not yet available in embedded cluster. Unless otherwise noted, some of these features might not be available at GA:
 
-* **Air gap**: Air gap support is not yet implemented for embedded cluster. We intend to implement support for air gap installations in the future.
-
 * **Backup and restore with Velero**: Velero is not yet installed as part of embedded cluster, so backup and restore is unavailable.
 
 * **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
@@ -342,4 +340,18 @@ toolkit:
      value: /etc/k0s/containerd.d/nvidia.toml
    - name: CONTAINERD_SOCKET
      value: /run/k0s/containerd.sock
-```     
+```
+
+## Air Gap Installations
+
+Air Gap installations function almost identically to online installations, but require an airgap bundle unique to your application and version.
+
+With that bundle, you can install your application in an airgapped environment using the same steps as an online installation:
+
+    ```
+    sudo ./APP_SLUG install --license LICENSE_FILE --airgap-bundle AIRGAP_BUNDLE
+    ```
+
+Air Gap installations provide the same functionality as online installations, including updates, adding nodes, and resetting nodes.
+A docker registry will be run within the cluster when using an airgap bundle and used to store application images and infrastructure files.
+Online (non-airgap) installations instead pull images from the public internet.
