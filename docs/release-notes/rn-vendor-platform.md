@@ -12,8 +12,15 @@ pagination_prev: null
 
 Released on March 14, 2024
 
-### New Features {#new-features-v2024-03-14-0}
-* Return a friendly error when attempting to download an embedded-cluster release with an unknown version.
+### Improvements {#improvements-v2024-03-14-0}
+* Returns a friendly error message when attempting to download an embedded cluster release with an unknown version.
+
+## v2024.03.13-0
+
+Released on March 13, 2024
+
+### New Features {#new-features-v2024-03-13-0}
+* Adds the ability to search customers by their email address. For more information, see [Filter and Search Customers](/vendor/releases-creating-customer#filter-and-search-customers) in _Creating and Managing Customers_.
 
 ## v2024.03.12-1
 
