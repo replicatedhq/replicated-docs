@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.14-2
+
+Released on March 14, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-14-2}
+* Update UI command for packaging a Helm chart.
+
 ## v2024.03.13-0
 
 Released on March 13, 2024
