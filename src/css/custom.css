@@ -277,11 +277,11 @@ a.menu__link {
   color: #2f2f2f;
 }
 
-html[data-theme='dark'] .dropdown__link--active {
+html[data-theme='dark'] .dropdown__link--active, .navbar__link--active {
   color: white;
 }
 
-html[data-theme='dark'] .dropdown__link:hover {
+html[data-theme='dark'] .dropdown__link:hover, .navbar__link {
   color: var(--ifm-dropdown-link-color);
   text-decoration: none;
 }
