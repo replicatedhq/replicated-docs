@@ -176,6 +176,21 @@ To install your application in an embedded cluster:
 
      The admin console URL is printed when the installation finishes. Access the admin console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
+## Install in Air Gap Environments
+
+Air gap installations provide the same functionality as online (internet-connected) installations, including support for updates, adding nodes, and resetting nodes. The primary difference between online and air gap installations is that online installations pull images from the public internet, whereas air gap installations use a docker registry running within the cluster to store application images and infrastructure files.
+
+Air Gap installations require an `airgap` bundle unique to your application and the version of embedded cluster. You can generate and download `airgap` bundles from the **Release History** page for the target channel. For more information, see [Build and Download the Air Gap Bundle](/vendor/releases-sharing-license-install-script#air-gap-bundle).
+
+To install your application in an air gap environment:
+
+```
+sudo ./APP_SLUG install --license LICENSE_FILE --airgap-bundle AIRGAP_BUNDLE
+```
+Where:
+* `APP_SLUG` is the unique slug for the application.
+* `LICENSE_FILE` is the customer's license.
+* `AIRGAP_BUNDLE` is the path to the airgap bundle in your local directory.
 
 ## Update
 
@@ -341,17 +356,3 @@ toolkit:
    - name: CONTAINERD_SOCKET
      value: /run/k0s/containerd.sock
 ```
-
-## Air Gap Installations
-
-Air Gap installations function almost identically to online installations, but require an airgap bundle unique to your application and version.
-
-With that bundle, you can install your application in an airgapped environment using the same steps as an online installation:
-
-    ```
-    sudo ./APP_SLUG install --license LICENSE_FILE --airgap-bundle AIRGAP_BUNDLE
-    ```
-
-Air Gap installations provide the same functionality as online installations, including updates, adding nodes, and resetting nodes.
-A docker registry will be run within the cluster when using an airgap bundle and used to store application images and infrastructure files.
-Online (non-airgap) installations instead pull images from the public internet.
