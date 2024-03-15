@@ -163,10 +163,10 @@ const sidebars = {
       label: 'Customer Licenses',
       items: [
         'vendor/licenses-about',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-about-types',
         'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-about-types',
         'vendor/licenses-referencing-fields',
         'vendor/licenses-reference-helm',
         'vendor/licenses-verify-fields-sdk-api',
@@ -343,7 +343,7 @@ const sidebars = {
           },
           {
             type: 'category',
-            label: 'Using Local Image Registries',
+            label: 'Image Registries',
             items: [
               'enterprise/image-registry-settings',
               'enterprise/image-registry-embedded-cluster',
