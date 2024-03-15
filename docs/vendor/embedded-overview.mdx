@@ -77,7 +77,7 @@ You can use the following steps to get started quickly with embedded cluster. Mo
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.29.2+ec.1
+       version: 1.29.2+ec.4
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
@@ -260,7 +260,7 @@ The section describes managing nodes in clusters created with embedded cluster, 
 
 You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the embedded cluster config. The admin console provides the join command you use to join nodes to the cluster.
 
-For more information about defining node roles, see [Roles](/reference/embedded-config) in _Embedded Cluster Config_.
+For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 To add nodes to a cluster:
 
