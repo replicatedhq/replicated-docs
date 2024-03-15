@@ -13,7 +13,25 @@ pagination_prev: null
 Released on March 14, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-14-2}
-* Update UI command for packaging a Helm chart.
+* Updates UI command for packaging a Helm chart.
+
+## v2024.03.14-1
+
+Released on March 14, 2024
+
+### New Features {#new-features-v2024-03-14-1}
+* Adds the ability to view a more granular app status via a tooltip on the **Instance Details** page. To get access to this feature, log in to your vendor portal account, select **Support > Request a feature**, and submit a feature request for "granular app status view".
+
+    :::note
+    Due to a backend API fix, if the application's status informers are templatized, there might be formatting issues until another app release is promoted.
+    :::
+
+## v2024.03.14-0
+
+Released on March 14, 2024
+
+### Improvements {#improvements-v2024-03-14-0}
+* Returns a friendly error message when attempting to download an embedded cluster release with an unknown version.
 
 ## v2024.03.13-0
 
