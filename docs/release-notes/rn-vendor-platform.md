@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.14-0
+
+Released on March 14, 2024
+
+### Improvements {#improvements-v2024-03-14-0}
+* Returns a friendly error message when attempting to download an embedded cluster release with an unknown version.
+
 ## v2024.03.13-0
 
 Released on March 13, 2024
