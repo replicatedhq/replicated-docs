@@ -23,7 +23,6 @@ Released on March 14, 2024
 ### Bug Fixes {#bug-fixes-v2024-03-14-2}
 * Corrects the `helm package` command provided in the **Add the Replicated SDK to your Helm Chart** dialog.
 
-
 ## v2024.03.14-1
 
 Released on March 14, 2024
