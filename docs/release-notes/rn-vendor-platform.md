@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 14, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-14-2}
-* Updates UI command for packaging a Helm chart.
+* Corrects the `helm package` command provided in the **Add the Replicated SDK to your Helm Chart** dialog.
 
 ## v2024.03.14-1
 
