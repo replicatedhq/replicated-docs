@@ -1,7 +1,3 @@
----
-displayed_sidebar: kots
----
-
 import Kots from "../docs/partials/kots/_kots-definition.mdx"
 
 # Introduction to KOTS

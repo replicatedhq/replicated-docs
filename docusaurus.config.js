@@ -78,7 +78,83 @@ const config = {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
+        items: [
+          {
+            type: 'doc',
+            label: 'Release Notes',
+            position: 'left',
+            docId: 'release-notes/rn-whats-new'
+          },
+          {
+            type: 'dropdown',
+            label: 'Product Docs',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'vendor/testing-about',
+                label: 'Compatibility Matrix',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/embedded-overview',
+                label: 'Embedded Cluster (Beta)',
+              },
+              {
+                type: 'doc',
+                docId: 'intro-kots',
+                label: 'KOTS',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/kurl-about',
+                label: 'kURL',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/private-images-about',
+                label: 'Replicated Proxy Service',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/replicated-sdk-overview',
+                label: 'Replicated SDK (Beta)',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/vendor-portal-creating-account',
+                label: 'Vendor Portal',
+              },
+            ],  
+          },
+          {
+            type: 'dropdown',
+            label: 'Developer Tools',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'reference/kots-cli-getting-started',
+                label: 'kots CLI',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/replicated-cli-installing',
+                label: 'replicated CLI',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/replicated-sdk-apis',
+                label: 'Replicated SDK API (Beta)',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/vendor-api-using',
+                label: 'Vendor API v3',
+              },
+            ],  
+          },
+        ],
       },
       footer: {
         style: 'dark',
