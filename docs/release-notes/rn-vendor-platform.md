@@ -15,6 +15,13 @@ Released on March 14, 2024
 ### New Features {#new-features-v2024-03-14-1}
 * Adds the ability to view a more granular app status via a tooltip on the **Instance Details** page. To get access to this feature, log in to your vendor portal account. Select **Support > Request a feature**, and submit a feature request for "granular app status view". **NOTE:** If a user does NOT have templates in their status informers this feature will just work. However, if a user DOES have templates in their status informers, they might notice some visually unappealing template syntax in the granular app status until they promote another app release.
 
+## v2024.03.14-0
+
+Released on March 14, 2024
+
+### Improvements {#improvements-v2024-03-14-0}
+* Returns a friendly error message when attempting to download an embedded cluster release with an unknown version.
+
 ## v2024.03.13-0
 
 Released on March 13, 2024
