@@ -1,8 +1,8 @@
-# Sharing a Release
+# About Sharing Releases with Customers
 
 This topic describes how to share a release with your customers. It includes information about accessing the Replicated download portal, downloading license files and air gap bundles, and retrieving the installation commands from the Replicated vendor portal.
 
-## About Sharing Releases
+## Overview
 
 After you promote a release to a channel in the vendor portal, you can share the release with your customers. Your customers require the following assets to install your application for the first time with Replicated KOTS:
 

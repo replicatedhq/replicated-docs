@@ -304,7 +304,10 @@ const sidebars = {
               type: 'category',
               label: 'Downloading Files and Sharing Commands for KOTS Installations',
               items: [ 
-                'vendor/releases-sharing-license-install-script',        
+                'vendor/releases-sharing-license-install-script', 
+                'vendor/licenses-download', 
+                'vendor/releases-download-airgap-bundles', 
+                'vendor/releases-share-download-portal',     
                 'vendor/releases-configvalues',
               ],
             },
