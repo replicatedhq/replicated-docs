@@ -169,7 +169,7 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
   <tr>
     <th>Nodes</th>
