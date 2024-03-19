@@ -35,7 +35,7 @@ To add and configure a custom domain:
     Your changes can take up to 24 hours to propagate.
 
     :::important
-    If you setup a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, it may prevent TLS certificate renewal in the future, which may result in downtime for your customers.
+    If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, it might prevent TLS certificate renewal in the future. This can result in downtime for your customers.
     :::
 
 1. For **Use Domain**, to set the new domain as the default, click **Yes, set as default**. Otherwise, click **Not now**.
