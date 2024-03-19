@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 18, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-18-1}
-* Adds Helm CLI option on the Install Commands modal on **Release History** page.
+* Adds a **Helm CLI** option to the **Install Commands** modal on the **Release History** page.
 * Fixes an issue that could cause a draft KOTS release to not contain KOTS specs by default.
 
 
