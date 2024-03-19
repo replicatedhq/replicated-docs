@@ -23,7 +23,7 @@ Released on March 19, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-108-1}
-* Prevents app rollback on embedded-cluster installations.
+* Prevents application rollback in Embedded Cluster installations.
 
 ### Bug Fixes {#bug-fixes-1-108-1}
 * Fixes an issue in Embedded Cluster where forward slashes were replaced with dashes in custom role labels.
