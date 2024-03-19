@@ -4,22 +4,41 @@ This topic describes how to share a customer license file and any air gap bundle
 
 ## Overview
 
-To share a license file and air gap bundles with a customer, you can optionally send the customer their unique link and password for the Replicated download portal. Users can log in to the download portal to download the files before installing.
+To share the relevant license file and air gap bundles with a customer, you can send the customer their unique link and password for the Replicated download portal. Users can then log in to the download portal to download the required files before installing. The most common use case for the download portal is for customers installing into air gap environments who must download both their license file as well as multiple air gap bundles. In this case, the download portal makes it easy for customers to find and download the correct air gap bundles to ensure compatibility.
 
-By default, the download portal uses the domain `get.replicated.com`. You can use a custom domain for the download portal. For more information, see [Using Custom Domains](custom-domains-using).
+The download portal uses the customer's license to automatically make the relevant files available for download, such as the:
+* License file
+* `.airgap` bundles for the application releases that the customer has access to based on their channel assignment
+* Replicated KOTS admin console `kotsadm.tar.gz` air gap bundle
+* Replicated kURL `.tgz` air gap bundle
+* Preflight, support bundle, and kots CLI kubectl plugins
 
-## Get the Customer-Specific Download Portal URL
+The following is an example of the download portal for an air gap customer installing in their own existing cluster:
 
-To get the URL and generate a passwork for the download portal:
+![download portal for existing cluster air gap installs](/images/download-portal-existing-cluster.png)
 
-1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
+The following is an example of the download portal for an air gap customer installing in an embedded cluster with kURL:
 
-1. In the Download portal section, click **Generate new password**.
+![download portal for kURL air gap installs](/images/download-portal-kurl.png)
+
+As shown in the images above, users can select the target application version to get access to the right application `.airgap` bundle as well as the compatible air gap bundles for the KOTS admin console or the kURL installer, depending on the installation method.
+
+## Get the Customer-Specific Download Portal URL and Password
+
+To get the URL and generate a password for the download portal:
+
+1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
+
+1. In the **Download portal** section, click **Generate new password**.
 
 1. Save the password that appears in the pop-up window. Your customer uses
 this password to log in to the download portal.
 
 1. Click **Copy URL** to copy the URL to the download portal to your clipboard. This is the URL where your customer can access the download portal.
+
+   :::note
+   By default, the download portal uses the domain `get.replicated.com`. You can optionally use a custom domain for the download portal. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+   :::
 
 1. (Optional) Click **Visit download portal** to log in to the download portal
 and preview your customer's experience.
