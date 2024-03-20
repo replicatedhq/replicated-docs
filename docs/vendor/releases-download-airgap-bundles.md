@@ -92,7 +92,7 @@ To download the kURL bundle for channels other than Stable:
 
 ## Download Air Gap Bundles from the Download Portal {#download-portal}
 
-In addition to downloading air gap bundles using the vendor portal, replicated CLI, or Vendor API v3, you can also download air gap bundles from the Replicated download portal.
+In addition to downloading air gap bundles using the vendor portal, you can also download air gap bundles from the Replicated download portal.
 
 <DownloadPortal/>
 
