@@ -1,17 +1,14 @@
+import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
+
 # Sharing Files Through the Download Portal
 
 This topic describes how to share customer license files and air gap bundles with customers through the Replicated download portal.
 
 ## Overview
 
-You can use the Replicated download portal to share license files and air gap bundles with customers. A unique download portal link is available for each customer. The download portal makes the relevant installation files available for download based on the customer's license, such as:
-* The customer's license file
-* `.airgap` bundles for the application releases that the customer has access to based on their channel assignment
-* The Replicated KOTS admin console `kotsadm.tar.gz` air gap bundle
-* The Replicated kURL `.tgz` air gap bundle
-* Preflight, support bundle, and kots CLI kubectl plugins
+<DownloadPortal/>
 
-The most common use case for the download portal is for customers installing into air gap environments who must download both their license file as well as multiple air gap bundles. In this case, the download portal makes it easy for customers to find and download the correct air gap bundles based on the selected application version to ensure compatibility.
+The most common use case for the download portal is for customers installing into air gap environments who must download both their license file as well as multiple air gap bundles. In this case, the download portal makes it easy for customers to find and download the correct KOTS admin console or kURL air gap bundle based on the selected application version to ensure compatibility.
 
 The following is an example of the download portal for an air gap customer installing in their own existing cluster:
 
@@ -26,6 +23,8 @@ The following is an example of the download portal for an air gap customer insta
 [View a larger version of this image](/images/download-portal-kurl.png)
 
 ## Get the Customer-Specific Download Portal URL and Password
+
+To share installation files with a customer, you can send the customer their unique link and password for the download portal. Users can log in to the download portal to access their license file and air gap bundles, if applicable.
 
 To get the URL and generate a password for the download portal:
 
