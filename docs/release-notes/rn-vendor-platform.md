@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.20-0
+
+Released on March 20, 2024
+
+### New Features {#new-features-v2024-03-20-0}
+* Adds new cluster addon API.
+
+### Bug Fixes {#bug-fixes-v2024-03-20-0}
+* Fixes a bug where users with a "proton.me" email domain could enable auto-join for their team.
+
 ## v2024.03.18-1
 
 Released on March 18, 2024
