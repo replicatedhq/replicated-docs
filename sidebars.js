@@ -302,7 +302,7 @@ const sidebars = {
             },  
             {
               type: 'category',
-              label: 'Downloading Files and Sharing Commands for KOTS Installations',
+              label: 'Downloading Assets and Getting Commands for KOTS Installations',
               items: [ 
                 'vendor/releases-sharing-license-install-script', 
                 'vendor/licenses-download', 
