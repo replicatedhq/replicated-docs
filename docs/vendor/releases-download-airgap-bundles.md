@@ -7,44 +7,48 @@ This topic describes how to download air gap bundles for your application, the R
 
 Air gap bundles are required to install applications in air gap environments with Replicated KOTS. Air gap bundles include the images required to install and run applications in an environment that has no outbound internet access.
 
-Replicated provides the following air gap bundles:
+Replicated provides the following types of air gap bundles:
 * **`.airgap` bundle**: The `.airgap` bundle for a given release contains application-specific files, such as Kubernetes YAML files and Docker images.
 * **`kotsadm.tar.gz` bundle**: The `kotsadm.tar.gz` air gap bundle includes the container images for the Replicated KOTS admin console. Required for existing cluster installations.
 * **kURL bundle**: The kURL `.tar.gz` air gap bundle provides the open source components to run the cluster, includng Docker, Kubernetes, the KOTS admin console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). Required for embedded cluster installations with kURL. 
 
 The following sections describe how to download each type of air gap bundle for a given release.
 
-## Download the Application Bundle {#air-gap-bundle}
+## Build and Download the Application Bundle {#air-gap-bundle}
 
 This section describes how to build and download the application `.airgap` bundle from the vendor portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
 
-To download the `.airgap` bundle for a release:
+To build and download the `.airgap` bundle for a release:
 
-1. From the Replicated [vendor portal](https://vendor.replicated.com), click **[App Name] > Channels > [Channel Name] > Release History**.
+1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. On the target channel, click **Release history**.
 
-    ![Airgap Channels](/images/guides/kots/airgap-channels.png)
+    <img alt="Release history link on a channel card" src="/images/release-history-link.png" width="400px"/>
 
-1. Click **Build** to build the `.airgap` bundle.
+    [View a larger version of this image](/images/release-history-link.png)
+
+1. On the **Release history** page, click **Build** to build the `.airgap` bundle.
 
     :::note
     By default, the Stable and Beta channels automatically build `.airgap` bundles on new releases.
     To edit this functionality on any channel, enable or disable the **Automatically create airgap builds for all releases in this channel** toggle in the channel settings.
     :::
 
-    ![Airgap Download Bundle](/images/guides/kots/airgap-download-bundle.png)
+    ![Build button on the Release history page](/images/release-history-build-airgap-bundle.png)
 
-1. Click **Download Bundle** to download the `.airgap` bundle.
+    [View a larger version of this image](/images/release-history-build-airgap-bundle.png)
+
+1. After the `.airgap` bundle is built, click **Download Bundle**.
 
 1. (Optional) View the contents of the downloaded bundle: 
 
      ```bash
      tar -zxvf AIRGAP_BUNDLE
      ```
-     Where `AIRGAP_BUNDLE` is the `.airgap` file that you downloaded.
+     Where `AIRGAP_BUNDLE` is the filename for the `.airgap` bundle that you downloaded.
 
 ## Download the KOTS Admin Console Bundle
 
-Air gap installations in existing clusters require the `kotsadm.tar.gz` air gap bundle, which includes the images for the KOTS admin console.
+Air gap installations in existing clusters require the `kotsadm.tar.gz` air gap bundle, which includes the images for the KOTS admin console. The version of the `kotsadm.tar.gz` air gap bundle used must be compatible with the version of the application `.airgap` bundle.
 
 The `kotsadm.tar.gz` air gap bundle for each version of KOTS is available for download on the [Releases](https://github.com/replicatedhq/kots/releases) page in the kots repository in GitHub.
 
@@ -52,7 +56,7 @@ You can also download the `kotsadm.tar.gz` air gap bundle from the Replicated do
 
 ## Download the kURL Bundle {#installer-bundle}
 
-Air gap installations in embedded clusters created with Replicated kURL require the kURL `.tar.gz` air gap bundle, which includes the components required to run the cluster.
+Air gap installations in embedded clusters created with Replicated kURL require the kURL `.tar.gz` air gap bundle, which includes the components required to run the cluster. The version of the kURL air gap bundle used must be compatible with the version of the application `.airgap` bundle.
 
 The kURL bundle is kept separate from the `.airgap` app bundle for the following reasons:
 * The kURL bundle can get quite large, so this method lets you update your application with a smaller bundle size.
@@ -86,7 +90,7 @@ To download the kURL bundle for channels other than Stable:
     
 1. In the output of the command, copy the `curl` command with the air gap URL. Run the command to get the kURL air gap bundle.
 
-## Download Air Gap Bundles from the Download Portal
+## Download Air Gap Bundles from the Download Portal {#download-portal}
 
 In addition to downloading air gap bundles using the vendor portal, replicated CLI, or Vendor API v3, you can also download air gap bundles from the Replicated download portal.
 

@@ -1,8 +1,8 @@
 import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 
-# Sharing Files Through the Download Portal
+# Sharing Assets Through the Download Portal
 
-This topic describes how to share customer license files and air gap bundles with customers through the Replicated download portal.
+This topic describes how to share customer license files, air gap bundles, and other assets with customers through the Replicated download portal.
 
 ## Overview
 

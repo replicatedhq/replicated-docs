@@ -1,28 +1,30 @@
-# Getting the Installation Commands
+# Getting the KOTS and kURL Installation Commands
 
-This topic describes how to find the Replicated KOTS and Replicated kURL installation commands for releases in the Replicated vendor portal.
+This topic describes how to get the Replicated KOTS and Replicated kURL installation commands for releases in the Replicated vendor portal.
 
 For information about getting installation commands with the replicated CLI, see [channel inspect](/reference/replicated-cli-channel-inspect). For information about getting installation commands with the Vendor API v3, see [Get install commands for a specific channel release](https://replicated-vendor-api.readme.io/reference/getchannelreleaseinstallcommands) in the Vendor API v3 documentation.
 
-## Overview
+## Get Installation Commands for the Latest Release
 
-Releases can be installed with KOTS using a command that is specific to the channel where the release is promoted. Every channel in the vendor portal includes an **Install** section that lists the installation commands for the latest release promoted to the channel. The **Install** section includes the commands for KOTS installations into existing cluster or embedded clusters created with kURL.
+Every channel in the vendor portal includes an **Install** section that lists the installation commands for the latest release promoted to the channel. This includes commands for installing in existing clusters and in embedded clusters with kURL.
 
-## Get the Installation Command for the Latest Release on a Channel
+In most cases, first time installations should use the commands in the **Install** section to install the latest release version. It is also possible to install a specific release by providing a version label with the installation command. For more information, see [Get Installation Commands for a Specific Release](#specific-release) below.
 
 To get the installation commands for the latest release promoted to a channel:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to the **Channels** page and find the channel where the target release is promoted.
+1. In the [vendor portal](https://vendor.replicated.com), go to the **Channels** page.
 
-1. For the target channel, under **Install**, click either **KOTS Install** or **Embedded Cluster** to view and copy the desired installation command.
+1. For the target channel, under **Install**, click either **KOTS Install** (for existing cluster installations) or **Embedded Cluster** (for embedded cluster installations with kURL) to view the desired installation command.
 
     <img alt="Install section of the channel card" src="/images/channel-card-install.png" width="400px"/>
 
     [View a larger version of this image](/images/channel-card-install.png)
    
-## Get the Installation Command for a Specific Release
+## Get Installation Commands for a Specific Release {#specific-release}
 
-You can also retrieve the installation command for a specific release that was promoted to a channel. This is useful when a customer needs to install a particular version before they can upgrade to the latest, or when you need to install a version for the purpose of troubleshooting. Typically you do not need to share a specific version for air gap installations because the customer can select the application version in the download portal, and the correct assets are available automatically.
+It is possible to install a specific release version by providing a version label with the installation command. A customer might need to install a specific release if, for example, the latest version is not compatible with their installation environment. Additionally, software vendors might need to install a certain version for the purpose of troubleshooting or testing.
+
+Typically, it is not necessary to specify a version label with the installation command for air gap installations because the customer can select the desired version in the Replicated download portal. The download portal will then make the correct assets available automatically. For more information, see [Download Air Gap Bundles from the Download Portal](/vendor/releases-download-airgap-bundles#download-portal).
 
 To get the command for a specific release version:
 
