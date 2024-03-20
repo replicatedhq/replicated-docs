@@ -1,27 +1,29 @@
 # Sharing Files Through the Download Portal
 
-This topic describes how to share a customer license file and any air gap bundles with customers through the Replicated download portal.
+This topic describes how to share customer license files and air gap bundles with customers through the Replicated download portal.
 
 ## Overview
 
-To share the relevant license file and air gap bundles with a customer, you can send the customer their unique link and password for the Replicated download portal. Users can then log in to the download portal to download the required files before installing. The most common use case for the download portal is for customers installing into air gap environments who must download both their license file as well as multiple air gap bundles. In this case, the download portal makes it easy for customers to find and download the correct air gap bundles to ensure compatibility.
-
-The download portal uses the customer's license to automatically make the relevant files available for download, such as the:
-* License file
+You can use the Replicated download portal to share license files and air gap bundles with customers. A unique download portal link is available for each customer. The download portal makes the relevant installation files available for download based on the customer's license, such as:
+* The customer's license file
 * `.airgap` bundles for the application releases that the customer has access to based on their channel assignment
-* Replicated KOTS admin console `kotsadm.tar.gz` air gap bundle
-* Replicated kURL `.tgz` air gap bundle
+* The Replicated KOTS admin console `kotsadm.tar.gz` air gap bundle
+* The Replicated kURL `.tgz` air gap bundle
 * Preflight, support bundle, and kots CLI kubectl plugins
+
+The most common use case for the download portal is for customers installing into air gap environments who must download both their license file as well as multiple air gap bundles. In this case, the download portal makes it easy for customers to find and download the correct air gap bundles based on the selected application version to ensure compatibility.
 
 The following is an example of the download portal for an air gap customer installing in their own existing cluster:
 
 ![download portal for existing cluster air gap installs](/images/download-portal-existing-cluster.png)
 
+[View a larger version of this image](/images/download-portal-existing-cluster.png)
+
 The following is an example of the download portal for an air gap customer installing in an embedded cluster with kURL:
 
 ![download portal for kURL air gap installs](/images/download-portal-kurl.png)
 
-As shown in the images above, users can select the target application version to get access to the right application `.airgap` bundle as well as the compatible air gap bundles for the KOTS admin console or the kURL installer, depending on the installation method.
+[View a larger version of this image](/images/download-portal-kurl.png)
 
 ## Get the Customer-Specific Download Portal URL and Password
 
