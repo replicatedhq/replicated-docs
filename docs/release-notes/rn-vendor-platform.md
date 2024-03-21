@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.21-1
+
+Released on March 21, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-21-1}
+* Fixes channels table view does not load.
+
 ## v2024.03.20-0
 
 Released on March 20, 2024
