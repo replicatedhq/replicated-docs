@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 21, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-21-3}
-* Fixed CMX cluster history pagination.
+* Fixes pagination on the compatibility matrix **Cluster History** page.
 
 ## v2024.03.21-0
 
