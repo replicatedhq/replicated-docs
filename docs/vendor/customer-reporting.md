@@ -58,7 +58,7 @@ From the **Download portal** section, you can:
 * Generate a new password for the download portal. The customer uses this password to log in.
 * Access the unique download portal for the customer.
 
-You can use the download portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Sharing Files through the Download Portal](releases-sharing-license-install-script#download-portal).
+You can use the download portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Sharing Assets through the Download Portal](releases-share-download-portal).
 
 ### Instances
 

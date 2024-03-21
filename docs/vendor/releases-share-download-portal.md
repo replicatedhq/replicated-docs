@@ -24,7 +24,7 @@ The following is an example of the download portal for an air gap customer insta
 
 ## Get the Customer-Specific Download Portal URL and Password
 
-To share installation files with a customer, you can send the customer their unique link and password for the download portal. Users can log in to the download portal to access their license file and air gap bundles, if applicable.
+To share installation files with a customer, you can send the customer their unique link and password for the download portal.
 
 To get the URL and generate a password for the download portal:
 

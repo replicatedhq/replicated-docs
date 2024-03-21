@@ -16,7 +16,7 @@ Air gap installations with KOTS require an air gap bundle with the application a
 
 This section describes how to build and download the application `.airgap` bundle from the vendor portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
 
-For information about how to download the `.airgap` bundle from the Replicated download portal, see [Download Air Gap Bundles from the Download Portal](#download-air-gap-bundles-from-the-download-portal) below.
+For information about how to download the `.airgap` bundle from the Replicated download portal, see [Download Air Gap Bundles from the Download Portal](#download-portal) below.
 
 To build and download the `.airgap` bundle for a release:
 
@@ -52,7 +52,7 @@ Air gap installations in existing clusters require the `kotsadm.tar.gz` air gap 
 
 The `kotsadm.tar.gz` air gap bundle for each version of KOTS is available for download on the [Releases](https://github.com/replicatedhq/kots/releases) page in the kots repository in GitHub.
 
-You can also download the `kotsadm.tar.gz` air gap bundle from the Replicated download portal to ensure its compatibility with the application `.airgap` bundle. For more information, see [Download Air Gap Bundles from the Download Portal](#download-air-gap-bundles-from-the-download-portal) below. 
+You can also download the `kotsadm.tar.gz` air gap bundle from the Replicated download portal to ensure its compatibility with the application `.airgap` bundle. For more information, see [Download Air Gap Bundles from the Download Portal](#download-portal) below. 
 
 ## Download the kURL Bundle {#installer-bundle}
 
@@ -64,7 +64,7 @@ The kURL bundle is kept separate from the `.airgap` bundle for the following rea
 
 kURL air gap bundles are specific to channels. The kURL air gap bundle used for installation must be downloaded from the same channel where the target release is promoted to ensure its compatibility with the application `.airgap` bundle.
 
-You can also download the kURL air gap bundle from the Replicated download portal. For more information, see [Download Air Gap Bundles from the Download Portal](#download-air-gap-bundles-from-the-download-portal) below. 
+You can also download the kURL air gap bundle from the Replicated download portal. For more information, see [Download Air Gap Bundles from the Download Portal](#download-portal) below. 
 
 #### Download the kURL Bundle for the Stable Channel
 
