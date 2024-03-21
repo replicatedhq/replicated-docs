@@ -14,7 +14,7 @@ Released on March 21, 2024
 
 ### New Features {#new-features-v2024-03-21-5}
 * Adds the ability to view more granular app status updates in the Instance Activity section on the **Instance Details** page via a tooltip. To get access to this feature, log in to your vendor portal account, select Support > Request a feature, and submit a feature request for "granular app status view".
-* Display a list of images included in an airgap bundle on Vendor Portal UI.
+* Display a list of images included in an airgap bundle on the **Release History** page.
 
 ## v2024.03.21-3
 
