@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 21, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-21-0}
-* Fixes Compatibility Matrix cluster history page fails to load.
+* Fixes a bug that could cause the compatibility matrix **Cluster History** page to fail to load.
 
 ## v2024.03.20-0
 
