@@ -34,7 +34,7 @@ To get the command for a specific release version:
 
 1. Click the **Install Commands** button for the target release.
 
-1. In the **Install Commands** dialog, click either **KOTS Install** or **Embedded Cluster** to view and copy the desired installation command.
+1. In the **Install Commands** dialog, click either **KOTS Install** (for existing cluster installations) or **Embedded Cluster** (for embedded cluster installations with kURL) to view the desired installation command.
 
      <img alt="Existing Cluster KOTS install Command" src="/images/existing-cluster-command.png" width="500px"/>
 

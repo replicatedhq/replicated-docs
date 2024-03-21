@@ -8,7 +8,7 @@ For information about how to download customer licenses with the Vendor API v3, 
 
 A valid license file is required to install with Replicated KOTS. You can download license files for your customers from the **Customer** page in the vendor portal.
 
-To download the unique license file for a customer:
+To download a license:
 
 1. In the [vendor portal](https://vendor.replicated.com), go to the **Customers** page.
 1. In the row for the target customer, click the **Download License** button.
@@ -33,7 +33,7 @@ To enable the air gap entitlement and download the license:
 
      [View a larger version of this image](/images/airgap-download-enabled.png)
 
-1. At the top of the screen, click **Download license** to download the air gap-enabled license.
+1. At the top of the screen, click **Download license** to download the air gap enabled license.
 
      ![Download air gap license](/images/download-airgap-license.png)
 
