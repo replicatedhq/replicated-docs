@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.21-1
+
+Released on March 21, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-21-1}
+* Fixes a bug that could cause the **Channels** page table view to fail to load.
+
 ## v2024.03.21-0
 
 Released on March 21, 2024
@@ -32,7 +39,6 @@ Released on March 18, 2024
 ### Bug Fixes {#bug-fixes-v2024-03-18-1}
 * Adds a **Helm CLI** option to the **Install Commands** modal on the **Release History** page.
 * Fixes an issue that could cause a draft KOTS release to not contain KOTS specs by default.
-
 
 ## v2024.03.15-2
 
