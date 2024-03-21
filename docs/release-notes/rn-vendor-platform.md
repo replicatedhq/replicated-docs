@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.21-3
+
+Released on March 21, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-21-3}
+* Fixes pagination on the compatibility matrix **Cluster History** page.
+
 ## v2024.03.21-1
 
 Released on March 21, 2024
