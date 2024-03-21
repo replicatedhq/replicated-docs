@@ -10,7 +10,7 @@ _Air gap bundles_ are required to install applications in air gap environments w
 Air gap installations with KOTS require an air gap bundle with the application assets, as well as an air gap bundle for the KOTS or kURL installer depending on the installation method. The following describes the contents of each type of air gap bundle:
 * **`.airgap`**: Assets for a specific release of the application, such as Kubernetes YAML files and Docker images.
 * **`kotsadm.tar.gz`**: Container images for the Replicated KOTS admin console. Required for existing cluster installations in air gap environments.
-* **kURL `.tar.gz`**: Open source components to run the cluster, includng Docker, Kubernetes, the KOTS admin console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). Required for embedded cluster installations with kURL in air gap environments. 
+* **kURL `.tar.gz`**: Open source components to run the cluster, including the container runtime, Kubernetes, the KOTS admin console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). Required for embedded cluster installations with kURL in air gap environments. 
 
 ## Build and Download the Application Bundle {#air-gap-bundle}
 
