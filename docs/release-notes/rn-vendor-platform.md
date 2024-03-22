@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.21-8
+
+Released on March 21, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-21-8}
+* Fixes an issue where online embedded cluster downloads failed if airgap download was not enabled for the customer / license.
+
 ## v2024.03.21-5
 
 Released on March 21, 2024
