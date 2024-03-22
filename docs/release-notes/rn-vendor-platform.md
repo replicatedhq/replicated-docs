@@ -15,6 +15,13 @@ Released on March 22, 2024
 ### Improvements {#improvements-v2024-03-22-1}
 * Hides the "View bundle contents" link on the **Release History** page if there are no images found in the bundle. In order to get a list of images in your airgap bundle, you will have to rebuild the bundle.
 
+## v2024.03.21-8
+
+Released on March 21, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-21-8}
+* Fixes an issue where online embedded cluster downloads failed if airgap download was not enabled for the customer / license.
+
 ## v2024.03.21-5
 
 Released on March 21, 2024
