@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.22-1
+
+Released on March 22, 2024
+
+### New Features {#new-features-v2024-03-22-1}
+* Hide View Bundle contents link on **Release History** page if there are no images in bundle.
+
 ## v2024.03.21-5
 
 Released on March 21, 2024
