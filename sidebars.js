@@ -108,7 +108,7 @@ const sidebars = {
     },
     'vendor/distributing-overview',
     // PRODUCT DOCS
-    {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true}, 
+    {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Vendor Portal Teams and Accounts',
@@ -135,7 +135,7 @@ const sidebars = {
         },
         'vendor/team-management-slack-config',
         'vendor/replicated-api-tokens',
-        
+
       ],
     },
     {
@@ -216,7 +216,7 @@ const sidebars = {
                   ],
                 },
               ],
-            },  
+            },
             {
               type: 'category',
               label: 'Admin Console and Download Portal Customization',
@@ -264,8 +264,8 @@ const sidebars = {
               type: 'category',
               label: 'Managing KOTS',
               items: [
-                'vendor/packaging-kots-versions', 
-                'vendor/packaging-rbac', 
+                'vendor/packaging-kots-versions',
+                'vendor/packaging-rbac',
                 'vendor/packaging-air-gap-excluding-minio',
               ],
             },
@@ -289,7 +289,7 @@ const sidebars = {
                 'vendor/packaging-cleaning-up-jobs',
                 'vendor/packaging-ingress',
               ],
-            }, 
+            },
             {
               type: 'category',
               label: 'Packaging Kubernetes Operators',
@@ -299,15 +299,15 @@ const sidebars = {
                 'vendor/operator-referencing-images',
                 'vendor/operator-defining-additional-namespaces',
               ],
-            },  
+            },
             {
               type: 'category',
               label: 'Downloading Assets and Getting Commands for KOTS Installations',
-              items: [ 
-                'vendor/releases-sharing-license-install-script', 
-                'vendor/licenses-download', 
-                'vendor/releases-download-airgap-bundles', 
-                'vendor/releases-share-download-portal',     
+              items: [
+                'vendor/releases-sharing-license-install-script',
+                'vendor/licenses-download',
+                'vendor/releases-download-airgap-bundles',
+                'vendor/releases-share-download-portal',
                 'vendor/releases-configvalues',
               ],
             },
@@ -315,7 +315,7 @@ const sidebars = {
         {
           type: 'category',
           label: 'Installing and Managing Applications with KOTS',
-          items: [  
+          items: [
           {
             type: 'category',
             label: 'Installing',
@@ -388,7 +388,7 @@ const sidebars = {
             items: [
               'enterprise/monitoring-applications',
               'enterprise/monitoring-external-prometheus',
-            ],   
+            ],
           },
           {
             type: 'category',
@@ -458,7 +458,7 @@ const sidebars = {
       'vendor/replicated-sdk-installing',
       'vendor/replicated-sdk-customizing',
     ],
-  },   
+  },
   {
     type: 'category',
     label: 'Proxying Private Images',
@@ -527,7 +527,7 @@ const sidebars = {
           'reference/custom-resource-preflight',
           'reference/custom-resource-redactor',
         ],
-      },    
+      },
     ],
   },
   {
@@ -538,6 +538,7 @@ const sidebars = {
       'vendor/testing-supported-clusters',
       'vendor/testing-cluster-addons',
       'vendor/testing-how-to',
+      'vendor/testing-ingress',
     ],
   },
   {
@@ -730,7 +731,7 @@ const sidebars = {
           type: 'category',
           label: 'velero',
           items: [
-            
+
             'reference/kots-cli-velero-configure-aws-s3',
             'reference/kots-cli-velero-configure-azure',
             'reference/kots-cli-velero-configure-gcp',
