@@ -311,140 +311,152 @@ const sidebars = {
                 'vendor/releases-configvalues',
               ],
             },
-        // KOTS ENTERPRISE USER DOCS
-        {
-          type: 'category',
-          label: 'Installing and Managing Applications with KOTS',
-          items: [  
-          {
-            type: 'category',
-            label: 'Installing',
-            items: [
-              'enterprise/installing-overview',
-              'enterprise/installing-general-requirements',
-              'enterprise/sbom-validating',
+            {
+              type: 'category',
+              label: 'KOTS Custom Resources',
+              items: [
+                'reference/custom-resource-about',
+                'reference/custom-resource-application',
+                'reference/custom-resource-config',
+                'reference/custom-resource-helmchart-v2',
+                'reference/custom-resource-helmchart',
+                'reference/custom-resource-lintconfig',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'KOTS Template Functions',
+              items: [
+                'reference/template-functions-about',
+                'reference/template-functions-config-context',
+                'reference/template-functions-identity-context',
+                'reference/template-functions-kurl-context',
+                'reference/template-functions-license-context',
+                'reference/template-functions-static-context',
+              ],
+            },    
+          // KOTS ENTERPRISE USER DOCS
+            {
+              type: 'category',
+              label: 'Installing and Managing Applications with KOTS',
+              items: [  
               {
                 type: 'category',
-                label: 'Installing in Existing Clusters',
+                label: 'Installing',
                 items: [
-                  'enterprise/installing-existing-cluster',
-                  'enterprise/installing-existing-cluster-airgapped',
+                  'enterprise/installing-overview',
+                  'enterprise/installing-general-requirements',
+                  'enterprise/sbom-validating',
+                  {
+                    type: 'category',
+                    label: 'Installing in Existing Clusters',
+                    items: [
+                      'enterprise/installing-existing-cluster',
+                      'enterprise/installing-existing-cluster-airgapped',
+                    ],
+                  },
+                  {
+                    type: 'category',
+                    label: 'Installing with kURL',
+                    items: [
+                      'enterprise/installing-embedded-cluster',
+                      'enterprise/installing-embedded-airgapped',
+                      'enterprise/cluster-management-add-nodes',
+                    ],
+                  },
+                  'enterprise/installing-existing-cluster-automation',
+                  'enterprise/installing-stateful-component-requirements',
                 ],
               },
               {
                 type: 'category',
-                label: 'Installing with kURL',
+                label: 'Image Registries',
                 items: [
-                  'enterprise/installing-embedded-cluster',
-                  'enterprise/installing-embedded-airgapped',
-                  'enterprise/cluster-management-add-nodes',
+                  'enterprise/image-registry-settings',
+                  'enterprise/image-registry-embedded-cluster',
+                  'enterprise/image-registry-rate-limits',
                 ],
               },
-              'enterprise/installing-existing-cluster-automation',
-              'enterprise/installing-stateful-component-requirements',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Image Registries',
-            items: [
-              'enterprise/image-registry-settings',
-              'enterprise/image-registry-embedded-cluster',
-              'enterprise/image-registry-rate-limits',
-            ],
-          },
-          'enterprise/updating-patching-with-kustomize',
-          {
-            type: 'category',
-            label: 'Updating',
-            items: [
-              'enterprise/updating-apps',
-              'enterprise/updating-app-manager',
-              'enterprise/updating-embedded-cluster',
-              'enterprise/updating-licenses',
-              'enterprise/updating-tls-cert',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Using a GitOps Workflow',
-            items: [
-              'enterprise/gitops-workflow',
-              'enterprise/gitops-managing-secrets',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Managing Admin Console User Access',
-            items: [
-              'enterprise/auth-changing-passwords',
-              'enterprise/auth-identity-provider',
-              'enterprise/auth-configuring-rbac',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Monitoring Applications',
-            items: [
-              'enterprise/monitoring-applications',
-              'enterprise/monitoring-external-prometheus',
-            ],   
-          },
-          {
-            type: 'category',
-            label: 'Backup and Restore',
-            items: [
-              'enterprise/snapshots-understanding',
+              'enterprise/updating-patching-with-kustomize',
               {
                 type: 'category',
-                label: 'Configuring Backup Storage',
+                label: 'Updating',
                 items: [
-                  'enterprise/snapshots-velero-cli-installing',
-                  'enterprise/snapshots-configuring-hostpath',
-                  'enterprise/snapshots-configuring-nfs',
-                  'enterprise/snapshots-storage-destinations',
-                  'enterprise/snapshots-velero-installing-config',
+                  'enterprise/updating-apps',
+                  'enterprise/updating-app-manager',
+                  'enterprise/updating-embedded-cluster',
+                  'enterprise/updating-licenses',
+                  'enterprise/updating-tls-cert',
                 ],
               },
-              'enterprise/snapshots-creating',
-              'enterprise/snapshots-restoring-full',
-              'enterprise/snapshots-updating-with-admin-console',
-              'enterprise/snapshots-troubleshooting-backup-restore',
+              {
+                type: 'category',
+                label: 'Using a GitOps Workflow',
+                items: [
+                  'enterprise/gitops-workflow',
+                  'enterprise/gitops-managing-secrets',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Managing Admin Console User Access',
+                items: [
+                  'enterprise/auth-changing-passwords',
+                  'enterprise/auth-identity-provider',
+                  'enterprise/auth-configuring-rbac',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Monitoring Applications',
+                items: [
+                  'enterprise/monitoring-applications',
+                  'enterprise/monitoring-external-prometheus',
+                ],   
+              },
+              {
+                type: 'category',
+                label: 'Backup and Restore',
+                items: [
+                  'enterprise/snapshots-understanding',
+                  {
+                    type: 'category',
+                    label: 'Configuring Backup Storage',
+                    items: [
+                      'enterprise/snapshots-velero-cli-installing',
+                      'enterprise/snapshots-configuring-hostpath',
+                      'enterprise/snapshots-configuring-nfs',
+                      'enterprise/snapshots-storage-destinations',
+                      'enterprise/snapshots-velero-installing-config',
+                    ],
+                  },
+                  'enterprise/snapshots-creating',
+                  'enterprise/snapshots-restoring-full',
+                  'enterprise/snapshots-updating-with-admin-console',
+                  'enterprise/snapshots-troubleshooting-backup-restore',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Troubleshooting',
+                items: [
+                  'enterprise/status-viewing-details',
+                  'enterprise/troubleshooting-an-app',
+                  'enterprise/delete-admin-console',
+                ],
+              },
             ],
           },
-          {
-            type: 'category',
-            label: 'Troubleshooting',
-            items: [
-              'enterprise/status-viewing-details',
-              'enterprise/troubleshooting-an-app',
-              'enterprise/delete-admin-console',
-            ],
-          },
-        ],
-      },
       {
         type: 'category',
-        label: 'KOTS Custom Resources',
+        label: 'Writing Your Documentation',
         items: [
-          'reference/custom-resource-about',
-          'reference/custom-resource-application',
-          'reference/custom-resource-config',
-          'reference/custom-resource-helmchart-v2',
-          'reference/custom-resource-helmchart',
-          'reference/custom-resource-lintconfig',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'KOTS Template Functions',
-        items: [
-          'reference/template-functions-about',
-          'reference/template-functions-config-context',
-          'reference/template-functions-identity-context',
-          'reference/template-functions-kurl-context',
-          'reference/template-functions-license-context',
-          'reference/template-functions-static-context',
+          'vendor/docs-writing',
+          {
+            type: 'link',
+            label: 'Docs Website Sample',
+            href: 'https://github.com/replicatedhq/vendor-docs-starter'
+          },
         ],
       },
     ],
