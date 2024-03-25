@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.108.2
+
+Released on March 25, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-108-2}
+* The KOTS CLI `admin-console push-images` command now supports pushing embedded cluster artifacts from airgap bundles.
+
 ## 1.108.1
 
 Released on March 19, 2024
