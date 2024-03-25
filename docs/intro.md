@@ -133,7 +133,7 @@ pagination_next: null
         <p>Replicated KOTS</p>
     </li>
     <li>
-        <p>A kubectl plugin and in-cluster admin console thats installs applications in customer-controlled environments.</p>
+        <p>A kubectl plugin and in-cluster admin console that installs applications in customer-controlled environments.</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
