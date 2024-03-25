@@ -66,6 +66,11 @@ The **Instances** section displays details about the active application instance
 
 You can click any of the rows in the **Instances** section to open the **Instance details** page. The **Instance details** page displays additional event data and computed metrics to help you understand the performance and status of each active application instance. For more information, see [Instance Details](instance-insights-details).
 
+The following shows an example of a row for an active instance in the **Instances** section:
+
+![Row in the Instances section](/images/instance-row.png)
+[View a larger version of this image](/images/instance-row.png)
+
 The **Instances** section displays the following details about each active instance:
 * The first seven characters of the instance ID.
 * The status of the instance. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating. For more information, see [Enabling and Understanding Application Status](insights-app-status).
@@ -73,11 +78,8 @@ The **Instances** section displays the following details about each active insta
 * Details about the cluster where the instance is installed, including:
    * The Kubernetes distribution for the cluster, if applicable.
    * The Kubernetes version running in the cluster.
-   * Whether the instance is installed in a Replicated kURL cluster (embedded cluster).
-   * (Embedded Clusters Only) The number of nodes ready in the cluster.
-     The following shows an example of the Nodes field for an instance installed in an embedded cluster.
-     ![Instance with 1/1 nodes ready](/images/kurl-instance-row.png)
-     [View a larger version of this image](/images/kurl-instance-row.png)
+   * Whether the instance is installed in a Replicated kURL cluster.
+   * (kURL Clusters Only) The number of nodes ready in the cluster.
    * (KOTS Only) The KOTS version running in the cluster.
    * (Replicated SDK Only) The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
