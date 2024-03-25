@@ -22,8 +22,8 @@ Released on March 25, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### New Features {#new-features-1-108-2}
-* The KOTS CLI `admin-console push-images` command now supports pushing embedded cluster artifacts from airgap bundles.
+### Improvements {#improvements-1-108-2}
+* Various updates to enable air gap support for embedded cluster.
 
 ## 1.108.1
 
