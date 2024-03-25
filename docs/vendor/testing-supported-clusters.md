@@ -329,7 +329,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2ps_v5 (arm), Standard_D4ps_v5 (arm), Standard_D8ps_v5 (arm), Standard_D16ps_v5 (arm), Standard_D32ps_v5 (arm), Standard_D48ps_v5 (arm)</p><p>You can specify more than one node.</p></td>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2, Standard_D2ps_v5 (arm), Standard_D4ps_v5 (arm), Standard_D8ps_v5 (arm), Standard_D16ps_v5 (arm), Standard_D32ps_v5 (arm), Standard_D48ps_v5 (arm), Standard_NC4as_T4_v3 (gpu), Standard_NC8as_T4_v3 (gpu), Standard_NC16as_T4_v3 (gpu), Standard_NC64as_T4_v3 (gpu)</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
