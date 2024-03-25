@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 25, 2024
 
 ### New Features {#new-features-v2024-03-25-0}
-* Display View bundle contents option on airgap bundles with warning status.
+* Adds a **View bundle contents** option on `.airgap` bundles that have a warning status.
 
 ## v2024.03.22-1
 
