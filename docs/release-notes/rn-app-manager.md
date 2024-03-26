@@ -22,6 +22,9 @@ Released on March 26, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
+### Improvements {#improvements-1-108-3}
+* Updates to enable air gap support for embedded cluster.
+
 ## 1.108.2
 
 Released on March 25, 2024
