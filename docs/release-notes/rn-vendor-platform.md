@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.26-2
+
+Released on March 26, 2024
+
+### New Features {#new-features-v2024-03-26-2}
+* Adding a release information comparison between current channel and installed instance.
+
 ## v2024.03.25-0
 
 Released on March 25, 2024
