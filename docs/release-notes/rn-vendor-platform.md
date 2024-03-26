@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.26-5
+
+Released on March 26, 2024
+
+### New Features {#new-features-v2024-03-26-5}
+* CMX AKS: Added support for Standard_DS and GPU based instance types.
+* Removes the "Download license" and "Install Instructions" buttons from the **Instance Details** page, as they are not relevant on that page.
+
 ## v2024.03.26-1
 
 Released on March 26, 2024
