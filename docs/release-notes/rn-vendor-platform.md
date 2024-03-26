@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 26, 2024
 
 ### New Features {#new-features-v2024-03-26-2}
-* Adding a release information comparison between current channel and installed instance.
+* Adds release comparison between current channel and installed instance on the **Bundle Analysis** page.
 
 ## v2024.03.25-0
 
