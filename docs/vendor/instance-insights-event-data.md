@@ -16,6 +16,7 @@ The following diagram shows the flow of different types of data from customer en
 
 As shown in the diagram above, application instance data, application status data, and details about the KOTS and the SDK instances running in the cluster are all sent to the vendor portal through the Replicated app service:
 * When both KOTS and the SDK are installed in the cluster, they both send application instance data, including information about the cluster where the instance is running.
+* KOTS and the SDK both send information about themselves, including the version of KOTS or the SDK running in the cluster.
 * Any custom metrics configured by the software vendor are sent to the vendor portal through the Replicated SDK API. For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
 * Application status data, such as if the instance is ready or degraded, is sent by KOTS. If KOTS is not installed in the cluster, then the SDK sends the application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
 
