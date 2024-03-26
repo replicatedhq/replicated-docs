@@ -6,7 +6,21 @@ This topic provides an overview of the customer and instance insights that you c
 
 The vendor portal collects data from instances installed in online environments. Either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then both KOTS and the SDK send instance data.
 
+The following diagram shows the flow of different types of instance data from customer environments to the vendor portal:
+
+![Telemetry sent from instances to vendor platform](/images/telemetry-diagram.png)
+
+[View a larger version of this image](/images/telemetry-diagram.png)
+
+As shown in the diagram above:
+* Any custom metrics configured by the software vendor are sent to the vendor platform using the Replicated SDK API
+* KOTS and the SDK both self-report data to the vendor platform, including the current version of KOTS or the SDK running in the cluster
+* App status data  
+* When both KOTS and the SDK are installed in the cluster, then both send instance data
+
 The data sent to the vendor portal includes properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+
+## Frequency
 
 ### From the Replicated SDK
 
