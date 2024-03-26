@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on March 26, 2024
 
-### New Features {#new-features-v2024-03-26-1}
+### Improvements {#improvements-v2024-03-26-1}
 * Changes the "Instances" option in the "Download CSV" dropdown on the **Customers** page to "Customers + Instances" in order to better communicate that it is a superset (contains customers *and* instances).
 
 ## v2024.03.25-0
