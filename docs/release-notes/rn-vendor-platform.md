@@ -13,7 +13,9 @@ pagination_prev: null
 Released on March 26, 2024
 
 ### New Features {#new-features-v2024-03-26-5}
-* CMX AKS: Added support for Standard_DS and GPU based instance types.
+* Compatibility Matrix AKS: Adds support for Standard_DS and GPU based instance types.
+
+### Improvements {#improvements-v2024-03-26-5}
 * Removes the "Download license" and "Install Instructions" buttons from the **Instance Details** page, as they are not relevant on that page.
 
 ## v2024.03.26-1
