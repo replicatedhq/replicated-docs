@@ -15,6 +15,13 @@ Released on March 26, 2024
 ### New Features {#new-features-v2024-03-26-2}
 * Adds release comparison between current channel and installed instance on the **Bundle Analysis** page.
 
+## v2024.03.26-1
+
+Released on March 26, 2024
+
+### Improvements {#improvements-v2024-03-26-1}
+* Changes the **Instances** option in the **Download CSV** dropdown on the **Customers** page to **Customers + Instances** to better communicate that it is a superset that contains both customers *and* instances.
+
 ## v2024.03.25-0
 
 Released on March 25, 2024
