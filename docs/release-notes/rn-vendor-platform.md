@@ -13,7 +13,7 @@ pagination_prev: null
 Released on March 27, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-03-27-0}
-* Certificate errors will be shown on the Custom Hostnames page if certificates cannot be renewed.
+* Shows certificate errors on the **Custom Domains** page if certificates cannot be renewed.
 
 ## v2024.03.26-1
 
