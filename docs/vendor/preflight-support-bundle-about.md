@@ -1,15 +1,17 @@
-# About Preflight Checks and Support Bundles
+# About the Troubleshoot Project
 
 This topic provides an introduction to preflight checks and support
-bundles, which can be used .
+bundles as well as the Troubleshoot open source project.
 
 ## Overview
 
-Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
+Preflight checks and support bundles are based on the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications.
 
 Preflight checks and support bundles collect and analyze data in the customer environment for help troubleshooting an application release both before and after installation:
-* _Preflight checks_ can be run before installation to check that the installation environment meets requirements.
-* _Support bundles_ collect data from customer environments to help diagnose problems with application deployments.
+* _Preflight checks_ can be run before installation to check that the installation environment meets requirements. For more information, see [About Support Bundles](preflights-about)
+* _Support bundles_ collect data from customer environments to help diagnose problems with application deployments. For more information, see [About Support Bundles](support-bundle-about).
+
+For more information, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ## Workflow for Preflight Checks and Support Bundles
 
