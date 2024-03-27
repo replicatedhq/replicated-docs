@@ -27,7 +27,7 @@ Released on March 25, 2024
 Released on March 22, 2024
 
 ### Improvements {#improvements-v2024-03-22-1}
-* Hides the "View bundle contents" link on the **Release History** page if there are no images found in the bundle. In order to get a list of images in your airgap bundle, you will have to rebuild the bundle.
+* The "View bundle contents" link on the Release History page is now hidden if an airgap bundle contains no images. To view image lists, please rebuild your bundle.
 
 ## v2024.03.21-8
 
@@ -42,7 +42,7 @@ Released on March 21, 2024
 
 ### New Features {#new-features-v2024-03-21-5}
 * Adds the ability to view more granular app status updates in the Instance Activity section on the **Instance Details** page via a tooltip. To get access to this feature, log in to your vendor portal account, select Support > Request a feature, and submit a feature request for "granular app status view".
-* Display a list of images included in an airgap bundle on the **Release History** page.
+* Adds a **View bundle contents** link on the **Release History** page to view a list of images in a given airgap bundle. Note: this link only appears for releases built or rebuilt after this implementation.
 
 ## v2024.03.21-3
 
