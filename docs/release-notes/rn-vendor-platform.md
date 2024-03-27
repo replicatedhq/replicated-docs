@@ -15,6 +15,16 @@ Released on March 27, 2024
 ### Bug Fixes {#bug-fixes-v2024-03-27-0}
 * Shows certificate errors on the **Custom Domains** page if certificates cannot be renewed.
 
+## v2024.03.26-5
+
+Released on March 26, 2024
+
+### New Features {#new-features-v2024-03-26-5}
+* Compatibility matrix supports Standard_DS and GPU based instance types for AKS clusters.
+
+### Improvements {#improvements-v2024-03-26-5}
+* Removes the "Download license" and "Install Instructions" buttons from the **Instance Details** page, as they are not relevant on that page.
+
 ## v2024.03.26-1
 
 Released on March 26, 2024
