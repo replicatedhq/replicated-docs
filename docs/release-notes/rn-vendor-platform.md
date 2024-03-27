@@ -8,13 +8,31 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.03.27-1
 
 Released on March 27, 2024
 
 ### New Features {#new-features-v2024-03-27-1}
 * Allows user to attach both existing support bundles and upload new bundles on the support request form on the **Support** page.
-* Displays the latest release in the channel at time of bundle collection, and the release sequence that was installed at time of bundle collection, on **Support Bundle Analysis** pages.
+* Displays the latest release in the channel at time of bundle collection and the release sequence that was installed at time of bundle collection on **Support Bundle Analysis** pages.
+
+## v2024.03.27-0
+
+Released on March 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-27-0}
+* Shows certificate errors on the **Custom Domains** page if certificates cannot be renewed.
+
+## v2024.03.26-5
+
+Released on March 26, 2024
+
+### New Features {#new-features-v2024-03-26-5}
+* Compatibility matrix supports Standard_DS and GPU based instance types for AKS clusters.
+
+### Improvements {#improvements-v2024-03-26-5}
+* Removes the "Download license" and "Install Instructions" buttons from the **Instance Details** page, as they are not relevant on that page.
 
 ## v2024.03.26-1
 
@@ -35,7 +53,7 @@ Released on March 25, 2024
 Released on March 22, 2024
 
 ### Improvements {#improvements-v2024-03-22-1}
-* Hides the "View bundle contents" link on the **Release History** page if there are no images found in the bundle. In order to get a list of images in your airgap bundle, you will have to rebuild the bundle.
+* Hides the "View bundle contents" link on the **Release History** page if an airgap bundle contains no images. To view image lists, rebuild your bundle.
 
 ## v2024.03.21-8
 
@@ -50,7 +68,11 @@ Released on March 21, 2024
 
 ### New Features {#new-features-v2024-03-21-5}
 * Adds the ability to view more granular app status updates in the Instance Activity section on the **Instance Details** page via a tooltip. To get access to this feature, log in to your vendor portal account, select Support > Request a feature, and submit a feature request for "granular app status view".
-* Display a list of images included in an airgap bundle on the **Release History** page.
+* Adds a **View bundle contents** link on the **Release History** page to view a list of images in a given airgap bundle.
+
+    :::note
+    This link appears only for releases built or rebuilt after this implementation.
+    ::: 
 
 ## v2024.03.21-3
 
