@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.03.27-0
+
+Released on March 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-03-27-0}
+* Shows certificate errors on the **Custom Domains** page if certificates cannot be renewed.
+
 ## v2024.03.26-5
 
 Released on March 26, 2024
