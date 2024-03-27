@@ -13,8 +13,8 @@ pagination_prev: null
 Released on March 27, 2024
 
 ### New Features {#new-features-v2024-03-27-1}
-* User can attach both existing support bundles and upload new bundles.
-* Update the UI to display the latest release in channel and fix support bundle release sequence link mismatch.
+* Allows user to attach both existing support bundles and upload new bundles on the support request form on the **Support** page.
+* Displays the latest release in the channel at time of bundle collection and fixes support bundle release sequence link mismatch on **Support Bundle Analysis** pages.
 
 ## v2024.03.26-1
 
