@@ -57,7 +57,7 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/vendor/embedded-overview">Replicated (Embedded Cluster)</a></td>
+    <td><a href="/vendor/embedded-overview">Replicated (Embedded Cluster Installer)</a></td>
     <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
