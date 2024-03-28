@@ -58,6 +58,11 @@ const config = {
         'https://js.qualified.com/qualified.js?token=Fj948QvXpLAwjfVs',
       async: true,
     },
+    {
+      src:
+        '/js/activecampaign.js',
+      async: true,
+    },
   ],
   
   themeConfig:
