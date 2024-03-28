@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on March 27, 2024
 
-### New Features {#new-features-v2024-03-27-3}
+### Improvements {#improvements-v2024-03-27-3}
 * Moves the **Audit Log** page to be nested under the **Team** section. Shows a message to the user if they visit the **Audit Log** from the account dropdown in the top right, and informs them that the **Audit Log** will be permanently moving to the **Team** section in the near future.
 
 ## v2024.03.26-1
