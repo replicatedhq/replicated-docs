@@ -60,7 +60,7 @@ const config = {
     },
     {
       src:
-        '/js/qualified.js',
+        '/js/activecampaign.js',
       async: true,
     },
   ],
