@@ -48,15 +48,15 @@ Use the following table to determine which type of manifest file to use for crea
   </tr>
   <tr>
     <th>Helm Chart-Based Application</th>
-    <td><a href="#secret">Kubernetes Secret</a></td>
-    <td><a href="#secret">Kubernetes Secret</a></td>
-    <td><a href="#supportbundle-cr">SupportBundle Custom Resource</a></td>
+    <td><a href="#kubernetes-secret">Kubernetes Secret</a></td>
+    <td><a href="#kubernetes-secret">Kubernetes Secret</a></td>
+    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
   </tr>
   <tr>
     <th>Standard Manifest-Based Application</th>
     <td>N/A</td>
-    <td><a href="#supportbundle-cr">SupportBundle Custom Resource</a></td>
-    <td><a href="#supportbundle-cr">SupportBundle Custom Resource</a></td>
+    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
+    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
   </tr>
 </table>  
 
