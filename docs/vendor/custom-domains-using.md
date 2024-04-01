@@ -82,7 +82,7 @@ To assign a custom domain to a channel:
 
     <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
 
-    View a larger version of this image](/images/channel-settings.png)
+    [View a larger version of this image](/images/channel-settings.png)
 
 ## Reuse a Custom Domain for Another Application
 
