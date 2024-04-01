@@ -1,23 +1,20 @@
-# About the Troubleshoot Project
+# About Preflight Checks and Support Bundles
 
-This topic provides an introduction to preflight checks and support
-bundles as well as the Troubleshoot open source project.
+This topic provides an introduction to preflight checks and support bundles, which are provided by the [Troubleshoot](https://troubleshoot.sh/) open source project.
 
 ## Overview
 
-Preflight checks and support bundles are based on the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications.
+Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 Preflight checks and support bundles collect and analyze data in the customer environment for help troubleshooting an application release both before and after installation:
-* _Preflight checks_ can be run before installation to check that the installation environment meets requirements. For more information, see [About Support Bundles](preflights-about)
-* _Support bundles_ collect data from customer environments to help diagnose problems with application deployments. For more information, see [About Support Bundles](support-bundle-about).
+* _Preflight checks_ can be run before installation to check that the installation environment meets requirements.
+* _Support bundles_ collect data from customer environments to help diagnose problems with application deployments.
 
-For more information, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
-
-## Workflow for Preflight Checks and Support Bundles
-
-The following diagram illustrates the workflow for preflight checks and support bundles:
+The following diagram illustrates how the data is collected, redacted, and analyzed when running preflight checks and collecting support bundles:
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
+
+[View a larger version of this image](/images/troubleshoot-workflow-diagram.png)
 
 As shown in the diagram above, preflight checks and support bundles use the following workflow:
 1. Collectors collect data from various sources, including the cluster environment and the application. 
@@ -25,10 +22,10 @@ As shown in the diagram above, preflight checks and support bundles use the foll
 1. Finally, analyzers review the post-redacted data to identify common problems.
 
 ### Collect
-Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
+_Collectors_ identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
 
 ### Redact
-Redactors censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
+_Redactors_ censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
 
 - Passwords
 - API token environment variables in JSON
@@ -41,10 +38,76 @@ This functionality can be disabled by adding the `--redact=false` flag to the co
 For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
-Analyzers use the post-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
+_Analyzers_ use the post-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
 
 Analyzer outcomes for preflight checks differ from the outcomes for support bundles in terms of how they are used:
 
 - Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
+
+## About Preflight Checks
+
+Preflight checks let you define requirements and dependencies for the cluster where your application is installed. Preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
+
+### Defining Preflights
+
+To use preflight checks with your application, create a YAML spec that defines the collectors and analyzers that you want to include in your preflight checks.
+
+For information about how to create specs for preflight checks, see [Defining Preflight Checks](preflight-defining).
+
+### Blocking Installation with Required Preflights
+
+It is possible to block KOTS from installing an application if a preflight check fails using the `strict` option.
+
+### Running Preflights
+
+This section describes running preflight checks for KOTS and Helm CLI installations.
+
+#### KOTS Installations
+
+For installations with Replicated KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the Replicated admin console UI or in the kots CLI, depending on the installation method.
+
+Additionally, users can access preflight checks from the admin console after installation to view their results and optionally re-run the checks.
+
+The following shows an example of the results of preflight checks displayed in the KOTS admin console during installation:
+
+![Preflight results in admin console](/images/preflight-warning.png)
+
+[View a larger version of this image](/images/preflight-warning.png)
+
+For more information about the KOTS installation process, see [About Installing an Application](/enterprise/installing-overview).
+
+#### Helm CLI Installations
+
+For installations of Helm-based applications with the Helm CLI, your customers can optionally run preflight checks before they run `helm install`. In this case, preflight checks run using a `helm template` command to confirm the target cluster has the resources required for a successful installation.
+
+The results of the preflight checks are displayed in the CLI, as shown in the example below:
+
+![Save output dialog](/images/helm-preflight-save-output.png)
+
+[View a larger version of this image](/images/helm-preflight-save-output.png)
+
+For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
+
+## About Support Bundles
+
+Support bundles let you collect and analyze troubleshooting data from customer environments to help you diagnose problems with application deployments.
+
+### Customizing Support Bundles
+
+To use support bundles with your application, add a support bundle spec to a release. An empty support bundle spec automatically includes the default collectors and analzyers. You can also optionally customize support bundles for your application by adding collectors and analyzers to the default spec.
+
+For more information, see [Adding and Customizing Support Bundles](support-bundle-customizing).
+
+### Generating Support Bundles
+
+Customers generate support bundles from the command line, where analyzers can immediately suggest solutions to common problems. Customers can share the results with your team by sending you the resulting tar.gz file.
+
+Replicated KOTS customers can also generate support bundles from the KOTS admin console and share them with your support team.
+
+For any installation, your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis. If you need help resolving an issue, you can open an issue on the Community site.
+
+You can also open a support request ticket with Replicated if you have an SLA. Severity 1 issues are resolved three times faster when submitted with support bundles.
+
+For more information about generating support bundles for KOTS and Helm CLI installations, see [Generating Support Bundles](support-bundle-generating).

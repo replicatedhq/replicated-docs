@@ -489,7 +489,6 @@ const sidebars = {
         type: 'category',
         label: 'Preflight Checks',
         items: [
-            'vendor/preflight-about',
             'vendor/preflight-defining',
             'vendor/preflight-running',
             {
@@ -511,7 +510,6 @@ const sidebars = {
         type: 'category',
         label: 'Support Bundles',
         items: [
-          'vendor/support-bundle-about',
           'vendor/support-bundle-customizing',
           'vendor/support-host-support-bundles',
           'vendor/support-bundle-generating',
