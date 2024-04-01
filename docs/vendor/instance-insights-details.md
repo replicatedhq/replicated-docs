@@ -39,7 +39,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
-* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. You can hover over the **App status** field to view the statuses of the indiviudal resources deployed by the application. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 * **App version**: The version label of the currently running release. You define the version label in the release properties when you promote the release. For more information about defining release properties, see [Properties](releases-about#properties) in _About Channels and Releases_.
 
@@ -226,7 +226,7 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>App Status</td>
     <td>
-      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing.</p>
+      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. Hover to view the statuses of the indiviudal resources deployed by the application.</p>
       <p>Additional configuration is required to get app status data. See <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
     </td>
   </tr>
