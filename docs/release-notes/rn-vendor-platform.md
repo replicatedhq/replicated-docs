@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.01-3
+
+Released on April 1, 2024
+
+### New Features {#new-features-v2024-04-01-3}
+* Makes the granular resource status view generally available (GA). For more information, see [Instance Details](/vendor/instance-insights-details#current-state).
+
 ## v2024.03.27-3
 
 Released on March 27, 2024
