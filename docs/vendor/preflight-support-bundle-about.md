@@ -6,26 +6,30 @@ This topic provides an introduction to preflight checks and support bundles, whi
 
 Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
-Preflight checks and support bundles collect and analyze data in the customer environment for help troubleshooting an application release both before and after installation:
-* _Preflight checks_ can be run before installation to check that the installation environment meets requirements.
+Preflight checks and support bundles collect, redact, and analyze data in the customer environment to help users avoid issues and troubleshoot:
+* _Preflight checks_ can be run before an application is installed to check that the environment meets the requirements.
 * _Support bundles_ collect data from customer environments to help diagnose problems with application deployments.
 
-The following diagram illustrates how the data is collected, redacted, and analyzed when running preflight checks and collecting support bundles:
+The following diagram illustrates how data is collected, redacted, and analyzed when running preflight checks and collecting support bundles:
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
 [View a larger version of this image](/images/troubleshoot-workflow-diagram.png)
 
 As shown in the diagram above, preflight checks and support bundles use the following workflow:
-1. Collectors collect data from various sources, including the cluster environment and the application. 
-1. Built-in redactors censor any sensitive information from the collected data.
-1. Finally, analyzers review the post-redacted data to identify common problems.
+1. Collect data from various sources, including the cluster environment and the application. 
+1. Redact censor any sensitive information from the collected data.
+1. Analyze the redacted data to identify common problems.
+
+For more information about each step in this workflow, see the sections below.
 
 ### Collect
-_Collectors_ identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
+
+During the collection phase, _collectors_ gather information from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
 
 ### Redact
-_Redactors_ censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
+
+During the redact phase, _redactors_ censor sensitive customer information before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
 
 - Passwords
 - API token environment variables in JSON
@@ -38,15 +42,14 @@ This functionality can be disabled by adding the `--redact=false` flag to the co
 For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
-_Analyzers_ use the post-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
 
-Analyzer outcomes for preflight checks differ from the outcomes for support bundles in terms of how they are used:
+During the analyze phase, _analyzers_ use the redacted data to identify potential issues and provide the outcome of the analysis to users.
 
-- Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
+For preflight checks, analyzers define the pass, fail, and warning outcomes, and display custom messages to the user. For example, you can define a fail outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
-- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
+For support bundles, analyzers can be used to identify potential problems and share relevant troubleshooting guidance with users. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
-## About Preflight Checks
+## Preflight Checks
 
 Preflight checks let you define requirements and dependencies for the cluster where your application is installed. Preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
@@ -90,7 +93,7 @@ The results of the preflight checks are displayed in the CLI, as shown in the ex
 
 For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
 
-## About Support Bundles
+## Support Bundles
 
 Support bundles let you collect and analyze troubleshooting data from customer environments to help you diagnose problems with application deployments.
 
