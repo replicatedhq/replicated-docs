@@ -4,8 +4,10 @@ You can download customer and instance data from the **Download CSV** dropdown o
 
 [View a larger version of this image](/images/customers-download-csv.png)
 
-Customer data includes details about your customers, such as the customer's channel assignment, license entitlements, expiration date, last active timestamp, and more.
+The **Download CSV** dropdown has the following options:
 
-Customer and instance data includes details about the instances assoicated with each customer, such as the Kubernetes distribution and cloud provider of the cluster where the instance is running, the most recent application instance status, if the instance is active or inactive, and more. This data is a super set of the customer data, and is the recommended download for most use cases.
+* **Customers**: Includes details about your customers, such as the customer's channel assignment, license entitlements, expiration date, last active timestamp, and more.
+
+* (Recommended) **Customers + Instances**: Includes details about the instances assoicated with each customer, such as the Kubernetes distribution and cloud provider of the cluster where the instance is running, the most recent application instance status, if the instance is active or inactive, and more. The **Customers + Instances** data is a super set of the customer data, and is the recommended download for most use cases.
 
 You can also export customer instance data as JSON using the Vendor API v3 `customer_instances` endpoint. For more information, see [Get customer instance report in CSV or JSON format](https://replicated-vendor-api.readme.io/reference/listappcustomerinstances) in the Vendor API v3 documentation.
