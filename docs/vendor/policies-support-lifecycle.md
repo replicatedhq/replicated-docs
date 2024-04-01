@@ -27,43 +27,43 @@ Replicated will provide support for products per our terms and services until th
 
 <table>
   <tr>
-    <th width="25%">Product</th>
+    <th width="25%">Replicated Product</th>
     <th width="15%">Product Phase</th>
     <th width="25%">End of Availability</th>
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td><a href="/vendor/testing-about">Replicated (Compatibility Matrix)</a></td>
+    <td><a href="/vendor/testing-about">Compatibility Matrix</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/vendor/replicated-sdk-overview">Replicated (Replicated SDK)</a></td>
+    <td><a href="/vendor/replicated-sdk-overview">Replicated SDK</a></td>
     <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/intro-kots">Replicated (KOTS Installer)</a></td>
+    <td><a href="/intro-kots">Replicated KOTS Installer</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
     <tr>
-    <td><a href="/vendor/kurl-about">Replicated (kURL Installer)</a></td>
+    <td><a href="/vendor/kurl-about">Replicated kURL Installer</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/vendor/embedded-overview">Replicated (Embedded Cluster Installer)</a></td>
+    <td><a href="/vendor/embedded-overview">Replicated Embedded Cluster Installer</a></td>
     <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native Installer)</a></td>
+    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic Native Installer</a></td>
     <td>EOA</td>
     <td>2023-12-31&#42;</td>
     <td>2024-12-31&#42;</td>
@@ -72,7 +72,7 @@ Replicated will provide support for products per our terms and services until th
 
 &#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
 
-## Supported Versions
+## Supported Replicated Installer Versions
 
 The following table lists the versions of Replicated KOTS and Replicated kURL that are supported on each Kubernetes version.
 
@@ -105,6 +105,9 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
   </tr>
 </table>
 
+Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS or kURL, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
+
+
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified March 05, 2024.
+Last modified April 01, 2024.
