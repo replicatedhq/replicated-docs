@@ -148,7 +148,7 @@ To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/d
 
 ### (KOTS Only) Block Installation with Strict Analyzers
 
-For applications installed with KOTS, you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release. For more information, see [strict](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation.
+For applications installed with KOTS, you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release.
 
 :::note
 Strict preflight analyzers are ignored if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
