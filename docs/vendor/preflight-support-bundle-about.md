@@ -96,7 +96,7 @@ For more information, see [Running Preflight Checks for Helm Installations](pref
 
 ## Support Bundles
 
-Support bundles collect and analyze troubleshooting data from customer environments to help users diagnose problems with application deployments.
+Support bundles collect and analyze troubleshooting data from customer environments, helping both users and support teams diagnose problems with application deployments.
 
 ### Customizing Support Bundles
 
