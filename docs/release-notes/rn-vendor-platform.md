@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.02-0
+
+Released on April 2, 2024
+
+### New Features {#new-features-v2024-04-02-0}
+* Makes the granular app status feature GA.
+
 ## v2024.04.01-3
 
 Released on April 1, 2024
