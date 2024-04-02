@@ -176,14 +176,14 @@ To set the `REPLICATED_APP` environment variable:
     * **MacOs or Linux**:
 
       ```
-      export REPLICATED_APP=APP_NAME
+      export REPLICATED_APP=APP_SLUG
       ```
 
     * **Docker**:
 
       ```
       docker run \
-         -e REPLICATED_APP=$APP_NAME
+         -e REPLICATED_APP=$APP_SLUG
          replicated/vendor-cli --help
       ```
 
@@ -191,6 +191,6 @@ To set the `REPLICATED_APP` environment variable:
 
       ```
       docker.exe run \
-        -e REPLICATED_APP=%APP_NAME% \
+        -e REPLICATED_APP=%APP_SLUG% \
         replicated/vendor-cli --help
       ```
