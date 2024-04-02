@@ -36,7 +36,7 @@ During the redact phase, _redactors_ censor sensitive customer information from 
 - Database connection strings
 - URLs that include usernames and passwords
 
-It is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
+For Replicated KOTS installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
 
@@ -55,7 +55,7 @@ This section provides an overview of preflight checks, including how preflights 
 
 ### Overview
 
-Preflight checks let you define requirements for the cluster where your application is installed. When run, preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install or upgrade your application. For Replicated KOTS installations, preflight checks can also be used to block the deployment of the application if one or more requirements are not met.
+Preflight checks let you define requirements for the cluster where your application is installed. When run, preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install or upgrade your application. For KOTS installations, preflight checks can also be used to block the deployment of the application if one or more requirements are not met.
 
 Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
@@ -119,7 +119,7 @@ Support bundles can collect a variety of important troubleshooting data from cus
 
 Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response.
 
-Support bundles then use the data collected to provide insights to users on potential problems or suggested troubleshooting steps. The troubleshooting data collected and analyzed by support bundles not only helps users to self-resolve issues in their application deployment, but also helps reduce the amount of time required by support teams to resolve requests.
+Support bundles then use the data collected to provide insights to users on potential problems or suggested troubleshooting steps. The troubleshooting data collected and analyzed by support bundles not only helps users to self-resolve issues with their application deployment, but also helps reduce the amount of time required by support teams to resolve requests by ensuring they have access to all the information they need up front.
 
 ### Customizing Support Bundles
 
@@ -129,7 +129,7 @@ For more information, see [Adding and Customizing Support Bundles](support-bundl
 
 ### Generating Support Bundles
 
-Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Enterprise customers can share support bundles with your team by sending you the resulting `tar.gz` file.
+Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can share their support bundles with your team by sending you the resulting `tar.gz` file.
 
 KOTS users can also generate and share support bundles from the KOTS admin console.
 
