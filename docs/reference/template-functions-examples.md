@@ -1,41 +1,74 @@
+import IntegerComparison from "../partials/template-functions-examples/_integer-comparison.mdx"
+
 # Examples
 
 This topic provides examples of KOTS template function syntax for various common use cases.
 
-## Compare Integer Values
+## Comparisons
+
+This section includes examples of doing different types of comparisons with KOTS template functions.
+
+### Integer Value Comparison
+
+One common use case for comparing integer values is when you need to display different configuration options to your customers depending on values from their license. For example, the customer's license might include an entitlement that indicates the number of seats they are entitled to. In this case, it can be useful to conditionally display or hide certain fields on the KOTS admin console Config screen depending on the customer's team size.
+
+<IntegerComparison/>
+
+### Parse Boolean Values for Comparison
+
+For more information about ParseBool, see [ParseBool](/reference/template-functions-static-context#parsebool).
+
+The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when both the target license field value is present and the target config option is enabled.
 
 ```yaml
-apiVersion: kots.io/v1beta1
-kind: Config
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: config-sample
-spec:
-  groups:  
-  - name: example_group
-    title: Example Config
-    items:
-    - name: small
-      title: Small (100 or Fewer Seats)
-      type: text
-      default: Default for small teams
-      when: '{{repl le (atoi (LicenseFieldValue "numSeats")) 100 }}'
-    - name: medium
-      title: Medium (101-1000 Seats)
-      type: text
-      default: Default for medium teams
-      when: '{{repl (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}'
-    - name: large
-      title: Large (More Than 1000 Seats)
-      type: text
-      default: Default for large teams
-      when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
+  name: test
+data:
+  option-1: '{{repl ConfigOptionEquals "option-1" "0"}}'
+  license-field-1: '{{repl LicenseFieldValue "license-field-1" }}'
+  when: '{{repl and (LicenseFieldValue "license-field-1" | ParseBool) (ConfigOptionEquals "option-1" "0")}}'
 ```
 
-## Conditional If Else Statements
+```yaml
+data:
+  option-1: "true"
+  license-field-1: "false"
+  when: "false"
+```
 
-Using if else statements with KOTS template functions is useful when you need different values to be rendered depending on a give condition. 
+### Logical `and` Comparison
 
-### Single Line
+The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when two target config options are both enabled.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test
+data:
+  option-1: '{{repl ConfigOptionEquals "option-1" "1"}}'
+  option-2: '{{repl ConfigOptionEquals "option-2" "1"}}'
+  when: '{{repl and (ConfigOptionEquals "option-1" "1") (ConfigOptionEquals "option-2" "1")}}'
+```
+
+```yaml
+data:
+  option-1: "true"
+  license-field-1: "true"
+  when: "true"
+```
+
+## Conditional Statements
+
+Conditional statements can be used with KOTS template functions when you need different values to be rendered depending on a given condition. 
+
+### If Else Statements
+
+This section includes examples of single line and multi-line if else statements.
+
+#### Single Line
 
 The following example shows if else statements used in the KOTS HelmChart custom resource `value` field to render different values depending on if the user selected a load balancer or ingress controller as their preferred ingress type for the application. 
 
@@ -90,7 +123,7 @@ spec:
       when: 'repl{{ not IsKurl }}'
 ```
 
-### Multi-Line
+#### Multi-Line
 
 The following example demonstrates a multi-line if else statement that renders the hostname for a private image registry depending on if a local registry is used and if the local registry has a namespace.
 
@@ -110,7 +143,7 @@ replicated-sdk: >-
   {{repl end -}}
 ```   
 
-## Conditional Statements with Ternary Operators
+### Ternary Operators
 
 Ternary operators are useful for tempalting statements where different values should be rendered depending on a given condition. A common use case for this is when templating the hostnames and namespaces for local image registries based on user-supplied values. 
 
@@ -135,25 +168,24 @@ spec:
 The following examples shows a similar use case in which multiple ternary operators are used to render the hostname for a local registry depending if a local registry is used, and if a namespace was supplied for the local registry:
 
 ```yaml
-{{repl LocalRegistryHost }}{{repl HasLocalRegistry | ternary ("/" + (LocalRegistryNamespace | default "")) "" }}{{repl HasLocalRegistry | ternary "" "/replicated" }}/replicated-sdk:v1.0.0-beta.12
-```    
+# kots.io/v1beta2 HelmChart custom resource
 
-## Apply Indentation to Rendered Values
-
-### kots.io/placeholder Annotations
-
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: kots.io/v1beta2
+kind: HelmChart
 metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ ConfigOption "ingress_annotation" | nindent 4 }}
+  name: samplechart
+spec:
+  ...
+  values:
+    image:
+      registry: {{repl LocalRegistryHost }}{{repl HasLocalRegistry | ternary ("/" + (LocalRegistryNamespace | default "")) "" }}{{repl HasLocalRegistry | ternary "" "/replicated" }}/replicated-sdk:v1.0.0-beta.12
 ```
 
-### Custom Annotations for Resources Deployed with Helm
+## Formatting
+
+This section includes examples of how to format the rendered output of KOTS template functions.
+
+### Indentation
 
 The following example shows a textarea input that allows a user to provide some custom Helm values.
 
@@ -221,84 +253,20 @@ spec:
       help_text: See your ingress controller’s documentation for the required annotations.
       when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
 ```
+### Print Formatted Data
 
-## Logical `and` Comparison
+The following example shows how to render a user-supplied custom annotation on an Ingress resource deployed by KOTS. In this example, the user supplied an ingress hostname on the admin console Config page, and that user-supplied hostname is used in a custom annotation applied to the Ingress resource.
 
-The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when two target config options are both enabled.
+This example uses `printf` to print formatted data, and the `%s` variable to format the value of the `"ingress_hostname"` configuration field as a string. This example also uses `| nindent 4` to indent the rendered value four spaces so that YAML is properly rendered at the time of deployment.
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test
-data:
-  option-1: '{{repl ConfigOptionEquals "option-1" "1"}}'
-  option-2: '{{repl ConfigOptionEquals "option-2" "1"}}'
-  when: '{{repl and (ConfigOptionEquals "option-1" "1") (ConfigOptionEquals "option-2" "1")}}'
-```
-
-```yaml
-data:
-  option-1: "true"
-  license-field-1: "true"
-  when: "true"
-```
-
-## Logical `and` Comparison with a Boolean Value
-
-For more information about ParseBool, see [ParseBool](/reference/template-functions-static-context#parsebool).
-
-The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when both the target license field value is present and the target config option is enabled.
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test
-data:
-  option-1: '{{repl ConfigOptionEquals "option-1" "0"}}'
-  license-field-1: '{{repl LicenseFieldValue "license-field-1" }}'
-  when: '{{repl and (LicenseFieldValue "license-field-1" | ParseBool) (ConfigOptionEquals "option-1" "0")}}'
-```
-
-```yaml
-data:
-  option-1: "true"
-  license-field-1: "false"
-  when: "false"
-```
-
-## Multi-Line Templating
-
-```yaml
-replicated-sdk: >-
-  {{repl if HasLocalRegistry -}}
-    {{repl if LocalRegistryNamespace -}}
-      {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.12
-    {{repl else -}}
-      {{repl LocalRegistryHost }}/replicated-sdk:v1.0.0-beta.12
-    {{repl end -}}
-  {{repl else -}}
-    docker.io/replicated/replicated-sdk:v1.0.0-beta.12
-  {{repl end -}}
-``` 
-
-## Print Formatted Data
+For more information about `printf` and `%s`, see [fmt](https://pkg.go.dev/fmt) in the Go documentation.
 
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: example-annotation
+  name: example
   annotations:
     kots.io/placeholder: |-
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
-```
-
-```yaml
-      tls:
-        enabled: repl{{ ConfigOptionEquals "determined_ingress_type" "ingress_controller" }}
-        genSelfSignedCert: repl{{ ConfigOptionEquals "determined_ingress_tls_type" "self_signed" }}
-        cert: repl{{ print `|`}}repl{{ ConfigOptionData `determined_ingress_tls_cert` | nindent 10 }}
-        key: repl{{ print `|`}}repl{{ ConfigOptionData `determined_ingress_tls_key` | nindent 10 }}
 ```

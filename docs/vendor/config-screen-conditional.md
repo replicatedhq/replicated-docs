@@ -1,3 +1,5 @@
+import IntegerComparison from "../partials/template-functions-examples/_integer-comparison.mdx"
+
 # Using Conditional Statements in Configuration Fields
 
 This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
@@ -137,42 +139,7 @@ As shown in the image below, the **Config** page displays the `new_feature_confi
 
 You can show or hide configuration fields based on the values in a license to ensure that users only see configuration options for the features and entitlements granted by their license. You can also compare integer values from license fields to control the configuration experience for your users.
 
-The following example uses the LicenseFieldValue template function to evaluate the number of seats permitted by the license. This example also uses the Atoi function in the strconv Go package to convert the string values from the license to integers, then uses Go binary comparison operators to compare the integers.
-
-For more information about the LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_. For more information about Atoi, see [strconv](https://pkg.go.dev/strconv) in the Go documentation.
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Config
-metadata:
-  name: config-sample
-spec:
-  groups:  
-  - name: example_group
-    title: Example Config
-    items:
-    - name: small
-      title: Small (100 or Fewer Seats)
-      type: text
-      default: Default for small teams
-      when: '{{repl le (atoi (LicenseFieldValue "numSeats")) 100 }}'
-    - name: medium
-      title: Medium (101-1000 Seats)
-      type: text
-      default: Default for medium teams
-      when: '{{repl (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}'
-    - name: large
-      title: Large (More Than 1000 Seats)
-      type: text
-      default: Default for large teams
-      when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
-```
-
-As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page and the `small` and `large` items are not displayed:
-
-![Config page displaying the Medium (101-1000 Seats) item](/images/config-example-numseats.png)
-
-[View a larger version of this image](/images/config-example-numseats.png)
+<IntegerComparison/>
 
 ### User-Supplied Value Check
 
