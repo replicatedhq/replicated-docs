@@ -154,6 +154,8 @@ replicated-sdk: >-
 
 Ternary operators are useful for tempalting statements where different values should be rendered depending on a given condition. A common use case for this is when templating the hostnames and namespaces for local image registries based on user-supplied values. 
 
+#### Single Ternary Operator
+
 For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did not configure a local registry, then the template function evaluates to `my-org/maridb`.
 
 ```yaml
@@ -171,6 +173,8 @@ spec:
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
 ```
+
+#### Nested Ternary Operators
 
 The following examples shows a similar use case in which multiple ternary operators are used to render the hostname for a local registry depending if a local registry is used, and if a namespace was supplied for the local registry:
 
