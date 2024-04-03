@@ -1,4 +1,5 @@
 import IntegerComparison from "../partials/template-functions-examples/_integer-comparison.mdx"
+import StringComparison from "../partials/template-functions-examples/_string-comparison.mdx"
 
 # Examples
 
@@ -8,17 +9,23 @@ This topic provides examples of KOTS template function syntax for various common
 
 This section includes examples of doing different types of comparisons with KOTS template functions.
 
-### Integer Value Comparison
+### Integer Comparison with Binary Operators
 
 One common use case for comparing integer values is when you need to display different configuration options to your customers depending on values from their license. For example, the customer's license might include an entitlement that indicates the number of seats they are entitled to. In this case, it can be useful to conditionally display or hide certain fields on the KOTS admin console Config screen depending on the customer's team size.
 
 <IntegerComparison/>
 
+### String Comparison with Binary Operators
+
+It can be useful to compare the rendered value of a template function against a string. For example, one common use case for comparing string values is to check the Kubernetes distribution of the cluster where an application is deployed.
+
+<StringComparison/>
+
 ### Parse Boolean Values for Comparison
 
-For more information about ParseBool, see [ParseBool](/reference/template-functions-static-context#parsebool).
+One common use case for using boolean values in comparisons is when you need to check that a given license field is present. In this case, the LicenseFieldValue template function will return the value of a specified license field. In order to evaluate the rendered value of the LicenseFieldValue template function as a boolean for the purpose of comparison, you need to use the [ParseBool](/reference/template-functions-static-context#parsebool). template function. ParseBool returns the boolean value represented by the string.
 
-The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when both the target license field value is present and the target config option is enabled.
+The following example shows a conditional statement that uses a logical `and` operator that evaluates to true when both the specified license field value is present and the specified config option is enabled.
 
 ```yaml
 apiVersion: v1

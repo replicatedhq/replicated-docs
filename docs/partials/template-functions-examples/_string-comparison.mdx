@@ -1,0 +1,32 @@
+In the following example, the `when` properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the `when` property evaluates to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+
+```yaml
+# Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: example_settings
+      title: My Example Config
+      description: Example fields for using Distribution template function
+      items:
+      - name: gke_distribution
+        type: label
+        title: "You are deploying to GKE"
+        when: 'repl{{ eq Distribution "gke" }}'
+      - name: kurl_distribution
+        type: label
+        title: "You are deploying to kURL"
+        when: 'repl{{ eq Distribution "kurl" }}'
+      - name: eks_distribution
+        type: label
+        title: "You are deploying to EKS"
+        when: 'repl{{ eq Distribution "eks" }}'
+      ...
+```
+
+The following image shows how only the `gke_distribution` item is displayed on the **Config** page when KOTS is running in a GKE cluster:
+
+![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)
