@@ -22,6 +22,9 @@ Released on April 3, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
+### Improvements {#improvements-1-108-4}
+* Re-builds the kotsadm image with the latest Wolfi base image to mitigate CVE-2024-3094.
+
 ## 1.108.3
 
 Released on March 26, 2024
