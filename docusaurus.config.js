@@ -68,6 +68,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
+      },
       algolia: {
         // The application ID provided by Algolia
         appId: 'BHWS2Z6GO0',
