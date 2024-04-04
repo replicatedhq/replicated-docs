@@ -88,7 +88,7 @@ Conditional statements can be used with KOTS template functions when you need di
 
 ### If Else Statements
 
-This section includes examples of single line and multi-line if else statements. A common use case for if else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data. For example, you might need to change the 
+This section includes examples of single line and multi-line if else statements. A common use case for if else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
 
 #### Single Line
 
@@ -168,9 +168,9 @@ replicated-sdk: >-
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
-#### Single Ternary Operator
+#### Ternary Operators for Local Image Registries
 
-The following example uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions with ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used.
+The following example uses the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions with ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used.
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -192,9 +192,11 @@ In the example above, if the user configured a local registry and used the names
 
 If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
 
-#### Nested Ternary Operators
+#### Ternary Operators for Local Image Registries with Empty Namespace
 
-The following examples shows a similar use case in which multiple ternary operators are used to render the hostname for a local registry depending if a local registry is used, and if a namespace was supplied for the local registry:
+The following example uses the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions with ternary operators to render the registry and repository for a private image.
+
+In the following example, multiple ternary operators are used to render the hostname for the image registry depending on two conditions: if a local registry is used and if a namespace was supplied for the local registry. This example is useful for cases in which users supply an empty namespace for a local registry.
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -216,35 +218,15 @@ This section includes examples of how to format the rendered output of KOTS temp
 
 ### Indentation
 
-The following example shows a textarea input that allows a user to provide some custom Helm values.
+When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations for resources or objects deployed by your application based on user-supplied values. 
 
-```yaml
-# KOTS HelmChart v2 custom resource
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: determined
-spec:
-  chart:
-    name: determined
-    chartVersion: 0.23.0
-  values:
-    ingresses:
-      determined:
-        enabled: repl{{ ConfigOptionEquals "determined_ingress_type" "ingress_controller" }}
-        serviceName: determined
-        annotations: repl{{ ConfigOption "determined_ingress_annotations" | nindent 10 }}
-        hosts:
-          - host: 'repl{{ ConfigOption "determined_ingress_host"}}'
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 8081
-```
+#### Templating Helm Chart Values
+
+The following example shows an input that allows a user to provide custom annotations for an Ingress object.
 
 ```yaml
 # KOTS Config custom resource
+
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
@@ -253,42 +235,70 @@ spec:
   groups:
   - name: ingress_settings
     title: Ingress Settings
-    description: Configure Ingress for Determined
+    description: Configure Ingress
     items:
-    - name: determined_ingress_type
-      title: Determined Ingress Type
-      help_text: | 
-        Select how traffic will ingress to the Determined appliction. The Ingress Controller option will create an Ingress object, 
-        and Load Balancer will configure Determined's Kubernetes service to be of type LoadBalancer.
-      type: select_one
-      items:
-      - name: ingress_controller
-        title: Ingress Controller
-      - name: load_balancer
-        title: Load Balancer
-      default: "ingress_controller"
-      required: true
-      when: 'repl{{ not IsKurl }}'
-    - name: determined_ingress_host
-      title: Determined Hostname
-      help_text: Hostname which will be used to access Determined
-      type: text
-      default: "determined.example.com"
-      required: true
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
-    - name: determined_ingress_annotations
+    - name: ingress_annotations
       type: textarea
       title: Ingress Annotations
-      help_text: See your ingress controller’s documentation for the required annotations.
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
+      help_text: See your cloud provider’s documentation for the required annotations.
 ```
+
+```yaml
+# KOTS HelmChart v2 custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: my-app
+spec:
+  chart:
+    name: my-app
+    chartVersion: 0.23.0
+  values:
+    ingresses:
+      my-ingress-service:
+        enabled: repl{{ ConfigOptionEquals "ingress_type" "ingress_controller" }}
+        serviceName: my-ingress-service
+        # Indent the rendered value from the ConfigOption template function
+        # ten spaces so that the YAML renders correctly
+        annotations: repl{{ ConfigOption "ingress_annotations" | nindent 10 }}
+```
+
+#### Templating Annotations in Manifests
+
+```yaml
+# KOTS Config custom resource
+
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config
+spec:
+  groups:
+  - name: ingress_settings
+    title: Ingress Settings
+    description: Configure Ingress
+    items:
+    - name: ingress_annotations
+      type: textarea
+      title: Ingress Annotations
+      help_text: See your cloud provider’s documentation for the required annotations.
+```
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
+```
+
 ### Print Formatted Data
 
-The following example shows how to render a user-supplied custom annotation on an Ingress resource deployed by KOTS. In this example, the user supplied an ingress hostname on the admin console Config page, and that user-supplied hostname is used in a custom annotation applied to the Ingress resource.
+The following example shows how to render a user-supplied custom annotation on an Ingress object deployed by KOTS. In this example, a user-supplied hostname is used in a custom annotation for the Ingress object.
 
-This example uses `printf` to print formatted data, and the `%s` variable to format the value of the `"ingress_hostname"` configuration field as a string. This example also uses `| nindent 4` to indent the rendered value four spaces so that YAML is properly rendered at the time of deployment.
-
-For more information about `printf` and `%s`, see [fmt](https://pkg.go.dev/fmt) in the Go documentation.
+This example uses [printf]((https://pkg.go.dev/fmt)) to print formatted data, and the [%s](https://pkg.go.dev/fmt) variable to format the value of the `"ingress_hostname"` configuration field as a string. This example also uses `| nindent 4` to indent the rendered value four spaces so that YAML is properly rendered at the time of deployment.
 
 ```yaml
 apiVersion: extensions/v1beta1
