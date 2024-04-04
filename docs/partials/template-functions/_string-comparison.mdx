@@ -1,0 +1,34 @@
+The following example uses the KOTS [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where KOTS is running. It also uses the [eq](https://pkg.go.dev/text/template#hdr-Functions) binary operator to compare the rendered value of the Distribution template function to a string, then return the boolean truth of the comparison. If the distribution of the cluster is equal to the specified distribution, then the `when` property evaluates to true.
+
+```yaml
+# KOTS Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: example_settings
+      title: My Example Config
+      description: Example fields for using Distribution template function
+      items:
+      - name: gke_distribution
+        type: label
+        title: "You are deploying to GKE"
+        # Use the eq binary operator to check if the rendered value
+        # of the KOTS Distribution template function is equal to gke
+        when: 'repl{{ eq Distribution "gke" }}'
+      - name: openshift_distribution
+        type: label
+        title: "You are deploying to OpenShift"
+        when: 'repl{{ eq Distribution "openShift" }}'
+      - name: eks_distribution
+        type: label
+        title: "You are deploying to EKS"
+        when: 'repl{{ eq Distribution "eks" }}'
+      ...
+```
+
+The following image shows how only the `gke_distribution` item is displayed on the **Config** page when KOTS is running in a GKE cluster:
+
+![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)

@@ -1,31 +1,42 @@
-import IntegerComparison from "../partials/template-functions-examples/_integer-comparison.mdx"
-import StringComparison from "../partials/template-functions-examples/_string-comparison.mdx"
+import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
+import StringComparison from "../partials/template-functions/_string-comparison.mdx"
+import GoSprig from "../partials/template-functions/_go-sprig.mdx"
 
 # Examples
 
-This topic provides examples of KOTS template function syntax for various common use cases.
+This topic provides examples of Replicated KOTS template function syntax for various common use cases. For more information about working with KOTS template functions, including the supported syntax and the types of files where KOTS template functions can be used, see [About Template Functions](template-functions-about).
+
+## Overview
+
+<GoSprig/>
 
 ## Comparisons
 
-This section includes examples of doing different types of comparisons with KOTS template functions.
+This section includes examples of using KOTS template functions to compare different types of data.
 
-### Integer Comparison with Binary Operators
+### Integer Comparison
 
-One common use case for comparing integer values is when you need to display different configuration options to your customers depending on values from their license. For example, the customer's license might include an entitlement that indicates the number of seats they are entitled to. In this case, it can be useful to conditionally display or hide certain fields on the KOTS admin console Config screen depending on the customer's team size.
+Integer values can be compared using operators such as greater than, less than, equal to, and so on.
+
+A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that indicates the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
 
 <IntegerComparison/>
 
-### String Comparison with Binary Operators
+### String Comparison
 
-It can be useful to compare the rendered value of a template function against a string. For example, one common use case for comparing string values is to check the Kubernetes distribution of the cluster where an application is deployed.
+String comparison is used to check if the contents of two strings are equal. A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
 ### Parse Boolean Values for Comparison
 
-One common use case for using boolean values in comparisons is when you need to check that a given license field is present. In this case, the LicenseFieldValue template function will return the value of a specified license field. In order to evaluate the rendered value of the LicenseFieldValue template function as a boolean for the purpose of comparison, you need to use the [ParseBool](/reference/template-functions-static-context#parsebool). template function. ParseBool returns the boolean value represented by the string.
+Comparing booleans with KOTS template functions requires parsing a string value to return the boolean value represented by the string.
 
-The following example shows a conditional statement that uses a logical `and` operator that evaluates to true when both the specified license field value is present and the specified config option is enabled.
+One common use case for comparing boolean values is to check that a given field is present in the customer's license. For example, you might need to show a field on the KOTS admin console **Config** page only when the customer's license enables a certain entitlement.
+
+In this case, the LicenseFieldValue template function returns the value of a specified license field. In order to evaluate the rendered value of the LicenseFieldValue template function as a boolean for the purpose of comparison, you need to use 
+
+The following example uses the KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to return the string value of the `feature-1` entitlement from the customer's license. It also uses the KOTS [ParseBool](/reference/template-functions-static-context#parsebool). template function to returns the boolean value represented by the string rendered by the LicenseFieldValue template function.
 
 ```yaml
 apiVersion: v1
@@ -34,20 +45,24 @@ metadata:
   name: test
 data:
   option-1: '{{repl ConfigOptionEquals "option-1" "0"}}'
-  license-field-1: '{{repl LicenseFieldValue "license-field-1" }}'
-  when: '{{repl and (LicenseFieldValue "license-field-1" | ParseBool) (ConfigOptionEquals "option-1" "0")}}'
+  feature-1: '{{repl LicenseFieldValue "feature-1" }}'
+  # Use a logical `and` operator that evaluates to true when both the specified
+  # license field value is present _and_ the specified config option is enabled
+  when: '{{repl and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "option-1" "0")}}'
 ```
 
 ```yaml
 data:
   option-1: "true"
-  license-field-1: "false"
+  feature-1: "false"
   when: "false"
 ```
 
 ### Logical `and` Comparison
 
-The following example shows how to create a conditional statement using a logical `and` operator that evaluates to true when two target config options are both enabled.
+Logical comparisons such as conditional AND, conditional OR, and NOT comparisons can be used with KOTS template functions. A common use case for logical comparisons is to construct more complex conditional statements where it is necessary that two or more statements evaluate to true.
+
+The following example shows how to compare two values using a logical `and` operator that evaluates to true when two different config options are both enabled.
 
 ```yaml
 apiVersion: v1
@@ -73,7 +88,7 @@ Conditional statements can be used with KOTS template functions when you need di
 
 ### If Else Statements
 
-This section includes examples of single line and multi-line if else statements.
+This section includes examples of single line and multi-line if else statements. A common use case for if else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data. For example, you might need to change the 
 
 #### Single Line
 
@@ -132,10 +147,9 @@ spec:
 
 #### Multi-Line
 
-The following example demonstrates a multi-line if else statement that renders the hostname for a private image registry depending on if a local registry is used and if the local registry has a namespace.
-
 Multi-line if else statements can be useful for longer or more complex if else statements, which are easier to read when split across multiple lines.
 
+The following example demonstrates a multi-line if else statement that renders the hostname for a private image registry depending on if a local registry is used and if the local registry has a namespace.
 
 ```yaml
 replicated-sdk: >-
@@ -152,11 +166,11 @@ replicated-sdk: >-
 
 ### Ternary Operators
 
-Ternary operators are useful for tempalting statements where different values should be rendered depending on a given condition. A common use case for this is when templating the hostnames and namespaces for local image registries based on user-supplied values. 
+Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
 #### Single Ternary Operator
 
-For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did not configure a local registry, then the template function evaluates to `my-org/maridb`.
+The following example uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions with ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used.
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -173,6 +187,10 @@ spec:
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
 ```
+
+In the example above, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`.
+
+If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
 
 #### Nested Ternary Operators
 
