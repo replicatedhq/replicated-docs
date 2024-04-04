@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 2, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-04-02-2}
-* Fixes an issue that causes collisions in kubeconfig context naming when using the `replicated cluster kubeconfig` command resulting in contexts being overwritten.
+* Fixes an issue that caused collisions in kubeconfig context naming when using the `replicated cluster kubeconfig` command resulting in contexts being overwritten.
 
 ## v2024.04.01-3
 
