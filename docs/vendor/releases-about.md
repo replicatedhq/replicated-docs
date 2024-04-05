@@ -149,7 +149,13 @@ The following graphic shows instance sequence numbers on the admin console dashb
 
 #### Channel Sequences
 
-When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increases montonically and tracks the order in which releases were promoted to a channel. While the channel sequence is not visible in the vendor portal, you can see it in certain URLs. For example, a release with **release sequence** of `170` can have a **channel sequence** of `125`. The air gap download URL for that release on that channel can contain `125` in the URL, even though the release sequence is `170`.
+When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel. You can view the channel sequence on the **Release History** page in the vendor portal, as shown in the image below:
+
+<img alt="Channel sequence on Release History page" src="/images/release-history-channel-sequence.png" width="750px"/>
+
+[View a larger version of this image](/images/release-history-channel-sequence.png)
+
+The channel sequence is also used in certain URLs. For example, a release with a *release sequence* of `170` can have a *channel sequence* of `125`. The air gap download URL for that release can contain `125` in the URL, even though the release sequence is `170`.
 
 Ordering is more complex if some or all of the releases in a channel have a semantic version label and semantic versioning is enabled for the channel. For more information, see [Semantic Versioning Sequence](#semantic-versioning-sequence).
 
