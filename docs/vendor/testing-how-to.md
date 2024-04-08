@@ -112,10 +112,14 @@ To create a cluster using the vendor portal:
      </tr>
    </table>
 
-1. (Optional) In the **Cluster configuration** dialog, click **All available options** to configure advanced options for the cluster. In the **Create a cluster** screen, click on any of the following tabs to configure additional options:
-   * **Nodes & Node Groups**: Create node groups
-   * **Ingress & Ports**: Open ports
-   * **Object Store**: Configure object storage for the cluster
+1. (Optional) In the **Cluster configuration** dialog, click **All available options** to configure advanced options for the cluster.
+  
+   ****ADD SCREENSHOT****
+  
+   In the **Create a cluster** screen, click on any of the following tabs to configure additional options:
+     * **Nodes & Node Groups**: Create node groups
+     * **Ingress & Ports**: Open ports
+     * **Object Store**: Configure object storage for the cluster
 
 1. Click **Create cluster**.
 
