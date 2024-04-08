@@ -2,7 +2,7 @@ import IntegerComparison from "../partials/template-functions/_integer-compariso
 import StringComparison from "../partials/template-functions/_string-comparison.mdx"
 import GoSprig from "../partials/template-functions/_go-sprig.mdx"
 
-# Examples
+# KOTS Template Function Examples
 
 This topic provides examples of Replicated KOTS template function syntax for various common use cases. For more information about working with KOTS template functions, including the supported syntax and the types of files where KOTS template functions can be used, see [About Template Functions](template-functions-about).
 
@@ -16,24 +16,16 @@ This section includes examples of using KOTS template functions to compare diffe
 
 ### Boolean Comparison
 
-Comparing booleans with KOTS template functions requires parsing a string value to return the boolean value represented by the string.
+Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many KOTS template functions return string values, working with boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the integer represented by the string.
 
-One common use case for comparing boolean values is to check that a given field is present in the customer's license. For example, you might need to show a field on the KOTS admin console **Config** page only when the customer's license enables a certain entitlement.
+One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS admin console **Config** page only when the customer's license has a certain entitlement.
 
-The following example uses the KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to return the string value of the `feature-1` entitlement from the customer's license. It also uses the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean value represented by the string rendered by the LicenseFieldValue template function.
+The following example creates a logical `and` conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test
-data:
-  option-1: '{{repl ConfigOptionEquals "option-1" "0"}}'
-  feature-1: '{{repl LicenseFieldValue "feature-1" }}'
-  # Use a logical `and` operator that evaluates to true when both the specified
-  # license field value is present _and_ the specified config option is enabled
-  when: '{{repl and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "option-1" "0")}}'
-```
+This example uses the following template functions:
+* [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a license field named `feature-1`
+* [ParseBool](/reference/template-functions-static-context#parsebool) to convert the string returned by the LicenseFieldValue template function to a boolean
+* [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
 
 ```yaml
 # KOTS Config custom resource
@@ -46,24 +38,27 @@ spec:
   - name: example_group
     title: Example Config
     items:
-    - name: item_one
-      title: Item One
+    - name: select_one_field
+      title: Select One
+      type: select_one
+      items:
+      - name: option_one
+        title: Option One
+      - name: option_two
+        title: Option Two  
+    - name: conditional_item
+      title: Conditional Item
       type: text
-      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "ingress_type" "ingress_controller")}}  
-```
-
-```yaml
-data:
-  option-1: "true"
-  feature-1: "false"
-  when: "false"
+      # Display this item only when the customer enables the option_one config field *and*
+      # has the feature-1 entitlement in their license
+      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "select_one_field" "option_one")}}  
 ```
 
 ### Integer Comparison
 
-Integer values can be compared using operators such as greater than, less than, equal to, and so on.
+Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many KOTS template functions return string values, working with integer values often requires using another function, such as the KOTS [ParseInt](/reference/template-functions-static-context#parseint) template function or the Sprig [atoi](https://masterminds.github.io/sprig/conversion.html) function, to return the integer represented by the string. 
 
-A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that indicates the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
+A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's size.
 
 <IntegerComparison/>
 
@@ -75,26 +70,39 @@ String comparison is used to check if the contents of two strings are equal. A c
 
 ### Logical `and` Comparison
 
-Logical comparisons such as conditional AND, conditional OR, and NOT comparisons can be used with KOTS template functions. A common use case for logical comparisons is to construct more complex conditional statements where it is necessary that two or more statements evaluate to true.
+Logical comparisons such as AND, OR, or NOT can be used with KOTS template functions. A common use case for logical `and` comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
-The following example shows how to compare two values using a logical `and` operator that evaluates to true when two different config options are both enabled.
+The following example shows how to use a logical `and` operator that evaluates to true when two different configuration options on the admin console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
-apiVersion: v1
-kind: ConfigMap
+# KOTS Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
 metadata:
-  name: test
-data:
-  option-1: '{{repl ConfigOptionEquals "option-1" "1"}}'
-  option-2: '{{repl ConfigOptionEquals "option-2" "1"}}'
-  when: '{{repl and (ConfigOptionEquals "option-1" "1") (ConfigOptionEquals "option-2" "1")}}'
-```
-
-```yaml
-data:
-  option-1: "true"
-  license-field-1: "true"
-  when: "true"
+  name: config-sample
+spec:
+  groups:  
+  - name: example_group
+    title: Example Config
+    items:
+    - name: select_one_example
+      title: Select One Example
+      type: select_one
+      items:
+      - name: option_one
+        title: Option One
+      - name: option_two
+        title: Option Two
+    - name: boolean_example
+      title: Boolean Example
+      type: bool
+      default: "0"      
+    - name: conditional_item
+      title: Conditional Item
+      type: text
+      # Display this item only when *both* specified config options are enabled
+      when: repl{{ and (ConfigOptionEquals "option_one" "1") (ConfigOptionEquals "boolean_example" "1")}} 
+  when: 
 ```
 
 ## Conditional Statement Examples
@@ -162,18 +170,14 @@ spec:
 
 #### Multi-Line
 
-Multi-line if else statements can be useful for longer or more complex if else statements, which are easier to read when split across multiple lines.
+Multi-line if else statements can be useful for longer if else statements, which are easier to read when split across multiple lines.
 
-The following example demonstrates a multi-line if else statement that renders the hostname for a private image registry depending on if a local registry is used and if the local registry has a namespace.
+The following example demonstrates a multi-line if else statement that renders the hostname for a private image registry depending on if a local registry is used.
 
 ```yaml
 replicated-sdk: >-
   {{repl if HasLocalRegistry -}}
-    {{repl if LocalRegistryNamespace -}}
-      {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.12
-    {{repl else -}}
-      {{repl LocalRegistryHost }}/replicated-sdk:v1.0.0-beta.12
-    {{repl end -}}
+    {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.12
   {{repl else -}}
     docker.io/replicated/replicated-sdk:v1.0.0-beta.12
   {{repl end -}}
