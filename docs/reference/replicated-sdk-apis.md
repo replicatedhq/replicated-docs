@@ -100,7 +100,7 @@ Programmatically set new instance tags or overwrite existing tags. Instance tags
 
 Setting a tag with the `name` key will set the instance's name in the vendor portal.
 
-The `force` parameter defaults to `false`. If `force` is `false`, pre-existing tags will not be overwritten and the existing tags take precedence. If the `force` parameter is set to `true`, any pre-existing tags will be overwritten.
+The `force` parameter defaults to `false`. If `force` is `false`, conflicting pre-existing tags will not be overwritten and the existing tags take precedence. If the `force` parameter is set to `true`, any conflicting pre-existing tags will be overwritten.
 
 To delete a particular tag, set the key's value to an empty string `""`. 
 
