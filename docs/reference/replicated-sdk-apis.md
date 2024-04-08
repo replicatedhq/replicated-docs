@@ -92,7 +92,7 @@ Response:
 
 ### POST /app/custom-metrics
 
-Send custom application metrics. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics)
+Send custom application metrics. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics).
 
 
 ### POST /app/instance-tags
