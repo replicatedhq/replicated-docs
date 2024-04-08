@@ -112,6 +112,11 @@ To create a cluster using the vendor portal:
      </tr>
    </table>
 
+1. (Optional) In the **Cluster configuration** dialog, click **All available options** to configure advanced options for the cluster. In the **Create a cluster** screen, click on any of the following tabs to configure additional options:
+   * **Nodes & Node Groups**: Create node groups
+   * **Ingress & Ports**: Open ports
+   * **Object Store**: Configure object storage for the cluster
+
 1. Click **Create cluster**.
 
    The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
