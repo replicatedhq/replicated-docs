@@ -97,7 +97,11 @@ Send custom application metrics. For more information and examples see [Configur
 
 ### POST /app/instance-tags
 
-Programmatically set new instance-tags or overwrite existing one. The tag keys and values must be of type `string`. If the `force` parameter is set to `true`, any conflicting keys set via the [Vendor Portal](vendor/instance-insights-details#instance-information), [API](https://replicated-vendor-api.readme.io/reference/updatecustomerinstancetags), or [CLI](/reference/replicated-cli-instance-tag) will be periodically overwritten by the SDK. If `force` is set to `false`, the conflicting key's value will not be overwritten and the existing key-value takes precedence. To delete a particular key-value pair, set the key's value value to an empty string `""`. 
+Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
+
+If the `force` parameter is set to `true`, any conflicting keys set via the [Vendor Portal](vendor/instance-insights-details#instance-information), [API](https://replicated-vendor-api.readme.io/reference/updatecustomerinstancetags), or [CLI](/reference/replicated-cli-instance-tag) will be overwritten periodically by the SDK. If `force` is set to `false`, the conflicting key's value will not be overwritten and the existing key-value takes precedence.
+
+To delete a particular key-value pair, set the key's value to an empty string `""`. 
 
 ```bash
 POST http://replicated:3000/api/v1/app/instance-tags
