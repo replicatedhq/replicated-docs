@@ -1,6 +1,7 @@
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
 import StringComparison from "../partials/template-functions/_string-comparison.mdx"
 import GoSprig from "../partials/template-functions/_go-sprig.mdx"
+import UseCases from "../partials/template-functions/_use-cases.mdx"
 
 # KOTS Template Function Examples
 
@@ -9,6 +10,8 @@ This topic provides examples of Replicated KOTS template function syntax for var
 ## Overview
 
 <GoSprig/>
+
+<UseCases/>
 
 ## Comparison Examples
 
@@ -269,22 +272,17 @@ The following example shows templating a Helm chart value that sets annotations 
 
 ```yaml
 # KOTS HelmChart v2 custom resource
+# HelmChart custom resource
+
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
-  name: my-app
+  name: myapp
 spec:
-  chart:
-    name: my-app
-    chartVersion: 0.23.0
   values:
-    ingresses:
-      my-ingress-service:
-        enabled: repl{{ ConfigOptionEquals "ingress_type" "ingress_controller" }}
-        serviceName: my-ingress-service
-        # Indent the rendered value from the ConfigOption template function
-        # ten spaces so that the YAML renders correctly
-        annotations: repl{{ ConfigOption "ingress_annotations" | nindent 10 }}
+    services:
+      myservice:
+        annotations: repl{{ ConfigOption "additional_annotations" | nindent 10 }}
 ```
 
 #### Indent Templated Annotations in Manifest Files
@@ -319,3 +317,13 @@ metadata:
     kots.io/placeholder: |-
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
+
+## Additional Examples
+
+The following topics include additional examples of using KOTS template functions in Kubernetes manifests deployed by KOTS and in KOTS custom resources: 
+
+* [Templating Annotations](/vendor/resources-annotations-templating)
+* [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources)
+* [Example: Including Optional Helm Charts](/vendor/helm-optional-charts)
+* [Example: Adding Database Configuration Options](/vendor/tutorial-adding-db-config)
+* [Add Status Informers](/vendor/admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_

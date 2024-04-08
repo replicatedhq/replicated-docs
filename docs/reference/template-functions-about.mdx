@@ -2,6 +2,7 @@ import SyntaxStringExample from "../partials/template-functions/_syntax-string-e
 import SyntaxString from "../partials/template-functions/_syntax-string.mdx"
 import SyntaxIntegerExample from "../partials/template-functions/_syntax-integer-example.mdx"
 import SyntaxInteger from "../partials/template-functions/_syntax-integer.mdx"
+import UseCases from "../partials/template-functions/_use-cases.mdx"
 
 # About Template Functions
 
@@ -9,17 +10,9 @@ This topic describes Replicated KOTS template functions, including information a
 
 ## Overview
 
-For standard Kubernetes manifests deployed with Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
+For Kubernetes manifest files for applications deployed by Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
 
-Common use cases for KOTS template functions include rendering values that are specific to the customer environment during installation or upgrade, such as:
-* Customer license field values
-* User-provided configuration values
-* Information about the customer environment, such the number of nodes or the Kubernetes version in the cluster where the application is installed
-
-KOTS template functions are also useful for rendering values that are not specific to the customer environment, such as:
-* Generating random strings
-* Performing mathematical operations
-* Converting a string to lowercase or uppercase  
+<UseCases/>
 
 All functionality of the Go templating language, including if statements, loops, and variables, is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
