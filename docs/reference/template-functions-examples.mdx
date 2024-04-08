@@ -22,7 +22,7 @@ One common use case for working with boolean values is to check that a given fie
 
 The following example creates a logical `and` conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
 
-This example uses the following template functions:
+This example uses the following KOTS template functions:
 * [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a license field named `feature-1`
 * [ParseBool](/reference/template-functions-static-context#parsebool) to convert the string returned by the LicenseFieldValue template function to a boolean
 * [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
@@ -116,7 +116,7 @@ A common use case for if else statements with KOTS template functions is to set 
 
 #### Single Line
 
-The following example shows if else statements used in the KOTS HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+The following example shows if else statements used in the KOTS HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -147,9 +147,9 @@ spec:
 #### Multi-Line in KOTS HelmChart Values
 
 The following example uses a multi-line if else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry. This example uses the following KOTS template functions:
-* HasLocalRegistry
-* LocalRegistryHost
-* LocalRegistryNamespace
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
 
 :::note
 For more complex or nested if else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
@@ -199,27 +199,27 @@ data:
   # external db is used.
   # Also, base64 encode the rendered value.
   DB_HOST: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "postgres" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_host" | Base64Encode }}
     {{repl end}}
   DB_PORT: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "5432" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_port" | Base64Encode }}
     {{repl end}}
   DB_USER: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "postgres" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_user" | Base64Encode }}
     {{repl end}}
   DB_PASSWORD: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl ConfigOption "embedded_postgres_password" | Base64Encode }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_password" | Base64Encode }}
     {{repl end}}
 ```
@@ -228,9 +228,10 @@ data:
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
-#### Ternary Operators for Local Image Registries
-
-The following example uses the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions with ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used.
+The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -252,39 +253,19 @@ In the example above, if the user configured a local registry and used the names
 
 If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
 
-#### Ternary Operators for Local Image Registries with Empty Namespace
-
-The following example uses the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions with ternary operators to render the registry and repository for a private image.
-
-In the following example, multiple ternary operators are used to render the hostname for the image registry depending on two conditions: if a local registry is used and if a namespace was supplied for the local registry. This example is useful for cases in which users supply an empty namespace for a local registry.
-
-```yaml
-# kots.io/v1beta2 HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  ...
-  values:
-    image:
-      registry: {{repl LocalRegistryHost }}{{repl HasLocalRegistry | ternary ("/" + (LocalRegistryNamespace | default "")) "" }}{{repl HasLocalRegistry | ternary "" "/replicated" }}/replicated-sdk:v1.0.0-beta.12
-```
-
 ## Formatting Examples
 
 This section includes examples of how to format the rendered output of KOTS template functions.
 
-KOTS template functions in the Static context include several additional options for formatting values, such as converting strings to upper or lower case and trimming leading and trailing space characters. For more information, see [Static Context](/reference/template-functions-static-context). 
+In addition to the examples in this section, KOTS template functions in the Static context include several options for formatting values, such as converting strings to upper or lower case and trimming leading and trailing space characters. For more information, see [Static Context](/reference/template-functions-static-context). 
 
 ### Indentation
 
-When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations for resources or objects deployed by your application based on user-supplied values. 
+When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations for resources or objects deployed by your application based on user-supplied values, as shown in the examples below. 
 
-#### Templating Helm Chart Values
+#### Indent Templated Helm Chart Values
 
-The following example shows setting annotations for an Ingress resource based on a user-supplied value.
+The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses `nindent 10` to indent the rendered value ten spaces.
 
 ```yaml
 # KOTS HelmChart v2 custom resource
@@ -306,15 +287,15 @@ spec:
         annotations: repl{{ ConfigOption "ingress_annotations" | nindent 10 }}
 ```
 
-#### Templating Annotations in Manifests
+#### Indent Templated Annotations in Manifest Files
 
-The following example shows setting annotations for an Ingress resource based on a user-supplied value.
+The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses `nindent 4` to indent the rendered value four spaces.
 
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: example-annotation
+  name: example-ingress
   annotations:
     kots.io/placeholder: |-
       repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
