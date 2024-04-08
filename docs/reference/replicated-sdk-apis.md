@@ -94,14 +94,15 @@ Response:
 
 Send custom application metrics. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics).
 
-
 ### POST /app/instance-tags
 
 Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
 
-If the `force` parameter is set to `true`, any conflicting keys set via the [Vendor Portal](vendor/instance-insights-details#instance-information), [API](https://replicated-vendor-api.readme.io/reference/updatecustomerinstancetags), or [CLI](/reference/replicated-cli-instance-tag) will be overwritten periodically by the SDK. If `force` is set to `false`, the conflicting key's value will not be overwritten and the existing key-value takes precedence.
+Setting a tag with the `name` key will set the instance's name in the vendor portal.
 
-To delete a particular key-value pair, set the key's value to an empty string `""`. 
+The `force` parameter defaults to `false`. If `force` is `false`, pre-existing tags will not be overwritten and the existing tags take precedence. If the `force` parameter is set to `true`, any pre-existing tags will be overwritten.
+
+To delete a particular tag, set the key's value to an empty string `""`. 
 
 ```bash
 POST http://replicated:3000/api/v1/app/instance-tags
@@ -114,11 +115,9 @@ Request:
     "force": "false",
     "tags": {
       "name": "my-instance-name",
-      "hasGPU": "false",
+      "preExistingKey": "will-not-be-overwritten",
       "cpuCores": "10",
       "supportTier": "basic",
-      "onPremDatacenter": "true",
-      "anOldKey": "",
     }
   }
 }
