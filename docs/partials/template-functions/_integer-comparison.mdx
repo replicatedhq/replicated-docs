@@ -18,7 +18,7 @@ spec:
       # Use le and atoi functions to display this config item 
       # only when the value of the numSeats entitlement is
       # less than or equal to 100
-      when: '{{repl le (atoi (LicenseFieldValue "numSeats")) 100 }}'
+      when: repl{{ le (atoi (LicenseFieldValue "numSeats")) 100 }}
     - name: medium
       title: Medium (101-1000 Seats)
       type: text
@@ -26,7 +26,7 @@ spec:
       # Use ge, le, and atoi functions to display this config item 
       # only when the value of the numSeats entitlement is
       # greater than or equal to 101 and less than or equal to 1000
-      when: '{{repl (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}'
+      when: repl{{ (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}
     - name: large
       title: Large (More Than 1000 Seats)
       type: text
@@ -34,7 +34,7 @@ spec:
       # Use gt and atoi functions to display this config item 
       # only when the value of the numSeats entitlement is
       # greater than 1000
-      when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
+      when: repl{{ gt (atoi (LicenseFieldValue "numSeats")) 1000 }}
 ```
 
 As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page and the `small` and `large` items are not displayed:

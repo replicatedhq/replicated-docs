@@ -10,33 +10,17 @@ This topic provides examples of Replicated KOTS template function syntax for var
 
 <GoSprig/>
 
-## Comparisons
+## Comparison Examples
 
 This section includes examples of using KOTS template functions to compare different types of data.
 
-### Integer Comparison
-
-Integer values can be compared using operators such as greater than, less than, equal to, and so on.
-
-A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that indicates the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
-
-<IntegerComparison/>
-
-### String Comparison
-
-String comparison is used to check if the contents of two strings are equal. A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
-
-<StringComparison/>
-
-### Parse Boolean Values for Comparison
+### Boolean Comparison
 
 Comparing booleans with KOTS template functions requires parsing a string value to return the boolean value represented by the string.
 
 One common use case for comparing boolean values is to check that a given field is present in the customer's license. For example, you might need to show a field on the KOTS admin console **Config** page only when the customer's license enables a certain entitlement.
 
-In this case, the LicenseFieldValue template function returns the value of a specified license field. In order to evaluate the rendered value of the LicenseFieldValue template function as a boolean for the purpose of comparison, you need to use 
-
-The following example uses the KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to return the string value of the `feature-1` entitlement from the customer's license. It also uses the KOTS [ParseBool](/reference/template-functions-static-context#parsebool). template function to returns the boolean value represented by the string rendered by the LicenseFieldValue template function.
+The following example uses the KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to return the string value of the `feature-1` entitlement from the customer's license. It also uses the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean value represented by the string rendered by the LicenseFieldValue template function.
 
 ```yaml
 apiVersion: v1
@@ -52,11 +36,42 @@ data:
 ```
 
 ```yaml
+# KOTS Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:  
+  - name: example_group
+    title: Example Config
+    items:
+    - name: item_one
+      title: Item One
+      type: text
+      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "ingress_type" "ingress_controller")}}  
+```
+
+```yaml
 data:
   option-1: "true"
   feature-1: "false"
   when: "false"
 ```
+
+### Integer Comparison
+
+Integer values can be compared using operators such as greater than, less than, equal to, and so on.
+
+A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that indicates the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
+
+<IntegerComparison/>
+
+### String Comparison
+
+String comparison is used to check if the contents of two strings are equal. A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
+
+<StringComparison/>
 
 ### Logical `and` Comparison
 
@@ -82,7 +97,7 @@ data:
   when: "true"
 ```
 
-## Conditional Statements
+## Conditional Statement Examples
 
 Conditional statements can be used with KOTS template functions when you need different values to be rendered depending on a given condition. 
 
@@ -98,22 +113,22 @@ The following example shows if else statements used in the KOTS HelmChart custom
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
-  name: determined
+  name: my-app
 spec:
   chart:
-    name: determined
+    name: my-app
     chartVersion: 0.23.0
   values:
     services:
-      determined:
+      my-service:
         enabled: true
-        appName: ["determined"]
-        type: 'repl{{ if ConfigOptionEquals "determined_ingress_type" "load_balancer" }} LoadBalancer repl{{ else }}ClusterIP repl{{ end }}'
-        annotations: repl{{ ConfigOption "determined_load_balancer_annotations" | nindent 10 }}
+        appName: ["my-app"]
+        type: repl{{ if ConfigOptionEquals "ingress_type" "load_balancer" }} LoadBalancer repl{{ else }}ClusterIP repl{{ end }}
+        annotations: repl{{ ConfigOption "load_balancer_annotations" | nindent 10 }}
         ports:
           http:
             enabled: true
-            port: repl{{ if ConfigOptionEquals "determined_ingress_type" "load_balancer" }} repl{{ ConfigOption "determined_load_balancer_port" }} repl{{ else }} 8081 repl{{ end }}
+            port: repl{{ if ConfigOptionEquals "ingress_type" "load_balancer" }} repl{{ ConfigOption "load_balancer_port" }} repl{{ else }} 8081 repl{{ end }}
             protocol: HTTP
             targetPort: 8081
 ```
@@ -129,7 +144,7 @@ spec:
     title: Ingress Settings
     description: Configure Ingress for Determined
     items:
-    - name: determined_ingress_type
+    - name: ingress_type
       title: Determined Ingress Type
       help_text: | 
         Select how traffic will ingress to the Determined appliction. The Ingress Controller option will create an Ingress object, 
@@ -212,7 +227,7 @@ spec:
       registry: {{repl LocalRegistryHost }}{{repl HasLocalRegistry | ternary ("/" + (LocalRegistryNamespace | default "")) "" }}{{repl HasLocalRegistry | ternary "" "/replicated" }}/replicated-sdk:v1.0.0-beta.12
 ```
 
-## Formatting
+## Formatting Examples
 
 This section includes examples of how to format the rendered output of KOTS template functions.
 
@@ -298,7 +313,7 @@ metadata:
 
 The following example shows how to render a user-supplied custom annotation on an Ingress object deployed by KOTS. In this example, a user-supplied hostname is used in a custom annotation for the Ingress object.
 
-This example uses [printf]((https://pkg.go.dev/fmt)) to print formatted data, and the [%s](https://pkg.go.dev/fmt) variable to format the value of the `"ingress_hostname"` configuration field as a string. This example also uses `| nindent 4` to indent the rendered value four spaces so that YAML is properly rendered at the time of deployment.
+This example uses [printf]((https://pkg.go.dev/fmt)) to print formatted data, and the [%s](https://pkg.go.dev/fmt) variable to format the value of the `"ingress_hostname"` configuration field as a string. This example also uses [nindent](https://masterminds.github.io/sprig/strings.html) to prepend a new line to the beginning of the string and indent the string by four space characters.
 
 ```yaml
 apiVersion: extensions/v1beta1

@@ -17,15 +17,15 @@ spec:
         title: "You are deploying to GKE"
         # Use the eq binary operator to check if the rendered value
         # of the KOTS Distribution template function is equal to gke
-        when: 'repl{{ eq Distribution "gke" }}'
+        when: repl{{ eq Distribution "gke" }}
       - name: openshift_distribution
         type: label
         title: "You are deploying to OpenShift"
-        when: 'repl{{ eq Distribution "openShift" }}'
+        when: repl{{ eq Distribution "openShift" }}
       - name: eks_distribution
         type: label
         title: "You are deploying to EKS"
-        when: 'repl{{ eq Distribution "eks" }}'
+        when: repl{{ eq Distribution "eks" }}
       ...
 ```
 
