@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 8, 2024
 
 ### New Features {#new-features-1-0-0-beta-17}
-* Adds a new [`POST /app/instance-tags`](/reference/replicated-sdk-apis#post-appinstance-tags) endpoint that allows an application to programmatically send instance tags to the Vendor Portal.
+* Adds a new [`POST /app/instance-tags`](/reference/replicated-sdk-apis#post-appinstance-tags) endpoint that allows an application to programmatically send instance tags to the vendor portal.
 
 ## 1.0.0-beta.16
 
