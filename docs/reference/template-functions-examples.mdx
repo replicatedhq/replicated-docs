@@ -101,13 +101,12 @@ spec:
       title: Conditional Item
       type: text
       # Display this item only when *both* specified config options are enabled
-      when: repl{{ and (ConfigOptionEquals "option_one" "1") (ConfigOptionEquals "boolean_example" "1")}} 
-  when: 
+      when: repl{{ and (ConfigOptionEquals "option_one" "1") (ConfigOptionEquals "boolean_example" "1")}}
 ```
 
 ## Conditional Statement Examples
 
-Conditional statements can be used with KOTS template functions when you need different values to be rendered depending on a given condition. 
+This section includes examples of using KOTS template functions to construct conditional statements. Conditional statements can be used with KOTS template functions to render different values depending on a given condition. 
 
 ### If Else Statements
 
@@ -183,6 +182,45 @@ replicated-sdk: >-
   {{repl end -}}
 ```   
 
+```yaml
+# postgres-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres
+data:
+  DB_HOST: >-
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+      {{repl Base64Encode "postgres" }}
+    {{repl else}}
+      {{repl ConfigOption "external_postgres_host" | Base64Encode }}
+    {{repl end}}
+  DB_PORT: >-
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+      {{repl Base64Encode "5432" }}
+    {{repl else}}
+      {{repl ConfigOption "external_postgres_port" | Base64Encode }}
+    {{repl end}}
+  DB_USER: >-
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+      {{repl Base64Encode "postgres" }}
+    {{repl else}}
+      {{repl ConfigOption "external_postgres_user" | Base64Encode }}
+    {{repl end}}
+  DB_PASSWORD: >-
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+      {{repl ConfigOption "embedded_postgres_password" | Base64Encode }}
+    {{repl else}}
+      {{repl ConfigOption "external_postgres_password" | Base64Encode }}
+    {{repl end}}
+  DB_NAME: >-
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+      {{repl Base64Encode "postgres" }}
+    {{repl else}}
+      {{repl ConfigOption "external_postgres_db" | Base64Encode }}
+    {{repl end}}
+```
+
 ### Ternary Operators
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
@@ -234,6 +272,8 @@ spec:
 ## Formatting Examples
 
 This section includes examples of how to format the rendered output of KOTS template functions.
+
+KOTS template functions in the Static context include several additional options for formatting values, such as converting strings to upper or lower case and trimming leading and trailing space characters. For more information, see [Static Context](/reference/template-functions-static-context). 
 
 ### Indentation
 
@@ -328,3 +368,7 @@ metadata:
     kots.io/placeholder: |-
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
+
+### Base64 Encode
+
+[Base64Encode](/reference/template-functions-static-context#base64encode)
