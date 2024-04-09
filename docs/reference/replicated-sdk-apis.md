@@ -117,7 +117,7 @@ Request:
       "name": "my-instance-name",
       "preExistingKey": "will-not-be-overwritten",
       "cpuCores": "10",
-      "supportTier": "basic",
+      "supportTier": "basic"
     }
   }
 }
