@@ -271,7 +271,6 @@ kind: HelmChart
 metadata:
   name: samplechart
 spec:
-  ...
   values:
     image:
       # If a local registry is configured, use the local registry host.
@@ -350,7 +349,7 @@ metadata:
 
 To wrap a rendered value in quotes, you can pipe the result from KOTS template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
 
-One use case for quoted values in YAML is when indicator characters are included in values. In YAML, indicator characters (`-`, `?`, `:`) have a special semantics and must be escaped if used in values. For more information, see [Indicator Charactors](https://yaml.org/spec/1.2.2/#53-indicator-characters) in the YAML documentation.
+One use case for quoted values in YAML is when indicator characters are included in values. In YAML, indicator characters (`-`, `?`, `:`) have special semantics and must be escaped if used in values. For more information, see [Indicator Charactors](https://yaml.org/spec/1.2.2/#53-indicator-characters) in the YAML documentation.
 
 #### Example with `| quote`
 
