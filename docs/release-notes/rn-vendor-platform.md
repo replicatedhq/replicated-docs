@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.04-0
+
+Released on April 4, 2024
+
+### New Features {#new-features-v2024-04-04-0}
+* Adds channel sequence and updates row styles on the **Release History** page.
+
 ## v2024.04.02-2
 
 Released on April 2, 2024
