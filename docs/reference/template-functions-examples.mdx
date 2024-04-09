@@ -19,11 +19,11 @@ This section includes examples of using KOTS template functions to compare diffe
 
 ### Boolean Comparison
 
-Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many KOTS template functions return string values, working with boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the integer represented by the string.
+Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many KOTS template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
 
 One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS admin console **Config** page only when the customer's license has a certain entitlement.
 
-The following example creates a logical `and` conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
+The following example creates a conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
 
 This example uses the following KOTS template functions:
 * [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a license field named `feature-1`
@@ -41,7 +41,7 @@ spec:
   - name: example_group
     title: Example Config
     items:
-    - name: select_one_field
+    - name: select_one_example
       title: Select One
       type: select_one
       items:
@@ -54,28 +54,28 @@ spec:
       type: text
       # Display this item only when the customer enables the option_one config field *and*
       # has the feature-1 entitlement in their license
-      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "select_one_field" "option_one")}}  
+      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "select_one_example" "option_one")}}  
 ```
 
 ### Integer Comparison
 
 Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many KOTS template functions return string values, working with integer values often requires using another function, such as the KOTS [ParseInt](/reference/template-functions-static-context#parseint) template function or the Sprig [atoi](https://masterminds.github.io/sprig/conversion.html) function, to return the integer represented by the string. 
 
-A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's size.
+A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
 
 <IntegerComparison/>
 
 ### String Comparison
 
-String comparison is used to check if the contents of two strings are equal. A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
+A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
-### Logical `and` Comparison
+### Logical AND Comparison
 
-Logical comparisons such as AND, OR, or NOT can be used with KOTS template functions. A common use case for logical `and` comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
+Logical comparisons such as AND, OR, or NOT can be used with KOTS template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
-The following example shows how to use a logical `and` operator that evaluates to true when two different configuration options on the admin console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the admin console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
 # KOTS Config custom resource
@@ -104,8 +104,24 @@ spec:
       title: Conditional Item
       type: text
       # Display this item only when *both* specified config options are enabled
-      when: repl{{ and (ConfigOptionEquals "option_one" "1") (ConfigOptionEquals "boolean_example" "1")}}
+      when: repl{{ and (ConfigOptionEquals "select_one_example" "option_one") (ConfigOptionEquals "boolean_example" "1")}}
 ```
+
+As shown below, when both `Option One` and `Boolean Example` are selected, the conditional statement evaluates to true and the `Conditional Item` field is displayed:
+
+<img alt="Conditional item displayed" src="/images/conditional-item-true.png" width="550px"/>
+
+[View a larger version of this image](/images/conditional-item-true.png)
+
+Alternatively, if either `Option One` or `Boolean Example` is not selected, then the conditional statement evaluates to false and the `Conditional Item` field is not displayed:  
+
+<img alt="Option two selected" src="/images/conditional-item-false-option-two.png" width="550px"/>
+
+[View a larger version of this image](/images/conditional-item-false-option-two.png)
+
+<img alt="Boolean field deselected" src="/images/conditional-item-false-boolean.png" width="550px"/>
+
+[View a larger version of this image](/images/conditional-item-false-boolean.png)
 
 ## Conditional Statement Examples
 
@@ -113,9 +129,15 @@ This section includes examples of using KOTS template functions to construct con
 
 ### If Else Statements
 
-This section includes examples of single line and multi-line if else statements. Multi-line if else statements can be useful for longer if else statements, which are easier to read when split across multiple lines.
-
 A common use case for if else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
+
+This section includes examples of both single line and multi-line if else statements. Using multi-line formatting can be useful to improve the readability of YAML files when longer or more complex if else statements are needed.
+
+Multi-line if else statements can be constructed using YAML block scalars and block chomping characters to ensure the rendered result is valid YAML. A _folded_ block scalar style is denoted using the greater than (`>`) character. With the folded style, single line breaks in the string are treated as a space. Additionally, the block chomping minus (`-`) character is used to remove all the line breaks at the end of a string. For more information about working with these characters, see [Chapter 8: Block Style Productions](https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions) in the YAML documentation.
+
+:::note
+For Helm-based applications that need to use more complex or nested if else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
+:::
 
 #### Single Line
 
@@ -149,13 +171,15 @@ spec:
 
 #### Multi-Line in KOTS HelmChart Values
 
-The following example uses a multi-line if else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry. This example uses the following KOTS template functions:
+The following example uses a multi-line if else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
+
+This example uses the following KOTS template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
 
 :::note
-For more complex or nested if else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
+This example uses the `{{repl ...}}` syntax rather than the `repl{{ ... }}` syntax to improve readability in the YAML file. However, both syntaxes are supported for this use case. For more information, see [Syntax](/reference/template-functions-about#syntax) in _About Template Functions_.
 :::
 
 ```yaml
@@ -184,12 +208,16 @@ replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.14'
 
 #### Multi-Line in Secret Object
 
-The following example uses several multi-line if else statements in a Secret object deployed by KOTS to conditionally set the hostname, port, username, and password for a database depending on if the customer is using the database embedded with the application or is bringing their own external database.
+The following example uses multi-line if else statements in a Secret object deployed by KOTS to conditionally set the database hostname, port, username, and password depending on if the customer uses the database embedded with the application or brings their own external database.
 
 This example uses the following KOTS template functions:
 * [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
 * [ConfigOption](/reference/template-functions-config-context#configoption) to return the user-supplied value for the specified configuration option 
 * [Base64Encode](/reference/template-functions-static-context#base64encode) to encode the string with base64
+
+:::note
+This example uses the `{{repl ...}}` syntax rather than the `repl{{ ... }}` syntax to improve readability in the YAML file. However, both syntaxes are supported for this use case. For more information, see [Syntax](/reference/template-functions-about#syntax) in _About Template Functions_.
+:::
 
 ```yaml
 # Postgres Secret
@@ -231,14 +259,13 @@ data:
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
-The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
+The following example uses ternary operators to render the registry and repository for an nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
 
 ```yaml
 # KOTS HelmChart custom resource
-
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -247,14 +274,14 @@ spec:
   ...
   values:
     image:
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+      # If a local registry is configured, use the local registry host.
+      # Otherwise, use proxy.replicated.com
+      registry: repl{{ HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}
+      # If a local registry is configured, use the local registry's namespace.
+      # Otherwise, use proxy/my-app/quay.io/my-org
+      repository: repl{{ HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx
       tag: v1.0.1
 ```
-
-In the example above, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`.
-
-If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
 
 ## Formatting Examples
 
@@ -271,8 +298,7 @@ When using template functions within nested YAML, it is important that the rende
 The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses `nindent 10` to indent the rendered value ten spaces.
 
 ```yaml
-# KOTS HelmChart v2 custom resource
-# HelmChart custom resource
+# KOTS HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -318,9 +344,39 @@ metadata:
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
 
+### Render Quoted Values
+
+To wrap a rendered value in quotes, you can pipe the result from KOTS template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
+
+One use case for quoted values in YAML is when indicator characters are included in values. In YAML, indicator characters (`-`, `?`, `:`) have a special semantics and must be escaped if used in values. For more information, see [Indicator Charactors](https://yaml.org/spec/1.2.2/#53-indicator-characters) in the YAML documentation.
+
+#### Example with `| quote`
+
+```yaml
+password: repl{{ ConfigOption “password” | quote }}
+```
+
+Result:
+
+```yaml
+password: “abc123”
+```
+
+#### Example with `'{{repl ... }}'` Syntax
+
+```yaml
+password: '{{repl ConfigOption “password” }}'
+```
+
+Result:
+
+```yaml
+password: “abc123”
+```
+
 ## Additional Examples
 
-The following topics include additional examples of using KOTS template functions in Kubernetes manifests deployed by KOTS and in KOTS custom resources: 
+The following topics include additional examples of using KOTS template functions in Kubernetes manifests deployed by KOTS or in KOTS custom resources: 
 
 * [Templating Annotations](/vendor/resources-annotations-templating)
 * [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources)

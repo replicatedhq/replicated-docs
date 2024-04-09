@@ -41,52 +41,29 @@ Within valid YAML that is templated at the same time, you can use Go to assign a
 
 ## Syntax {#syntax}
 
-You can include KOTS template functions in manifest files as strings, using the syntax described in this section.
-
 The KOTS template function syntax supports the following functionally equivalent delimiters:
-* [`'{{repl ... }}'`](#syntax-string): This syntax includes quotation marks to be valid YAML and renders a string value.
-* [`repl{{ ... }}`](#syntax-integer): This syntax renders an integer value.
+* [`repl{{ ... }}`](#syntax-integer)
+* [`{{repl ... }}` or `'{{repl ... }}'`](#syntax-string)
 
-### `'{{repl ... }}'` {#syntax-string}
-
-<table>
-  <tr>
-    <th>Syntax</th>
-    <td><SyntaxString/></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>This syntax is wrapped in quotes because <code>&#123;&#123;</code> is not a valid beginning for a string in YAML.
-      To use a template function with this syntax as a value in a YAML file, you must wrap it in quotation marks.</p>
-      <p>This syntax renders string values. Do not use this syntax if the Kubernetes API field requires an integer value.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><SyntaxStringExample/>
-    </td>
-  </tr>
-</table>
+For examples demonstrating both of these syntaxes, see [KOTS Template Function Examples](/reference/template-functions-examples).
 
 ### `repl{{ ... }}` {#syntax-integer}
 
-<table>
-  <tr>
-    <th>Syntax</th>
-    <td><SyntaxInteger/></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td><p>This syntax uses the delimiter after <code>repl</code>, and does not require quotation marks.
-    Use this syntax to render integer values.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><SyntaxIntegerExample/>
-    </td>
-  </tr>
-</table>
+This syntax renders string, boolean, or integer values and can be used at the beginning, middle, or end of a value in YAML. This syntax _cannot_ be wrapped in quotes because any quotation marks are stripped during rendering.
+
+For example:
+
+<SyntaxIntegerExample/>
+
+### `{{repl ... }}` or `'{{repl ... }}'` {#syntax-string}
+
+This syntax renders string, boolean, or integer values and can be used at the middle or end of a value in YAML. This syntax supports being wrapped in quotes, if you need to the rendered result of the template function to be quoted. When wrapped in quotes, this syntax returns string values only. 
+
+To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character. For example, `'{{repl ... }}'`.
+
+For example:
+
+<SyntaxStringExample/>
 
 
 ## Contexts {#contexts}
