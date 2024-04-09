@@ -112,7 +112,7 @@ Request:
 ```json
 {
   "data": {
-    "force": "false",
+    "force": false,
     "tags": {
       "name": "my-instance-name",
       "preExistingKey": "will-not-be-overwritten",
