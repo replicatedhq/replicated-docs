@@ -291,11 +291,13 @@ In addition to the examples in this section, KOTS template functions in the Stat
 
 ### Indentation
 
-When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations for resources or objects deployed by your application based on user-supplied values, as shown in the examples below. 
+When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations in the metadata of resources or objects deployed by your application based on user-supplied values. 
+
+The [nindent](https://masterminds.github.io/sprig/strings.html) function can be used to prepend a new line to the beginning of the string and indent the string by a specified number of spaces.
 
 #### Indent Templated Helm Chart Values
 
-The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses `nindent 10` to indent the rendered value ten spaces.
+The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -313,7 +315,7 @@ spec:
 
 #### Indent Templated Annotations in Manifest Files
 
-The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses `nindent 4` to indent the rendered value four spaces.
+The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value four spaces.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -330,7 +332,7 @@ metadata:
 The following example shows how to render a user-supplied custom annotation on an Ingress object deployed by KOTS. In this example, a user-supplied hostname is used in a custom annotation for the Ingress object.
 
 This example uses:
-* [printf]((https://pkg.go.dev/fmt)) to print formatted data
+* [printf](https://pkg.go.dev/fmt) to print formatted data
 * [%s](https://pkg.go.dev/fmt) to format the value of the `"ingress_hostname"` configuration field as a string
 * [nindent](https://masterminds.github.io/sprig/strings.html) to prepend a new line to the beginning of the string and indent the string by four space characters
 
