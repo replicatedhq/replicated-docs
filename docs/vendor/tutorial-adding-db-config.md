@@ -686,33 +686,33 @@ metadata:
   name: postgres
 data:
   DB_HOST: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "postgres" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_host" | Base64Encode }}
     {{repl end}}
   DB_PORT: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "5432" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_port" | Base64Encode }}
     {{repl end}}
   DB_USER: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "postgres" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_user" | Base64Encode }}
     {{repl end}}
   DB_PASSWORD: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl ConfigOption "embedded_postgres_password" | Base64Encode }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_password" | Base64Encode }}
     {{repl end}}
   DB_NAME: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
       {{repl Base64Encode "postgres" }}
-    {{repl else}}
+    {{repl else -}}
       {{repl ConfigOption "external_postgres_db" | Base64Encode }}
     {{repl end}}
 ```
@@ -951,20 +951,3 @@ spec:
 ### Integrating a Real Database
 
 If you'd like at this point, you can integrate a real database in your environment, just fill out your configuration fields. You'll know you did it right if your pg-consumer pod can connect.
-
-
-<!-- Coming Soon!
-
-* * *
-
-## Validating User-supplied Configuration with Preflight Checks
-
-* * *
-
-## Using an InitContainer to Coordinate Workloads
-
-* * *
-
-## Preparing for Disaster Recover with Snapshots
-
--->
