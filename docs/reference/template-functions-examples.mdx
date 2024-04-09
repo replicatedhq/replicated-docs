@@ -73,7 +73,7 @@ A common use case for string comparison is to compare the rendered value of a KO
 
 ### Logical AND Comparison
 
-Logical comparisons such as AND, OR, or NOT can be used with KOTS template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
+Logical comparisons such as AND, OR, and NOT can be used with KOTS template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
 The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the admin console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
@@ -127,7 +127,7 @@ Alternatively, if either `Option One` or `Boolean Example` is not selected, then
 
 This section includes examples of using KOTS template functions to construct conditional statements. Conditional statements can be used with KOTS template functions to render different values depending on a given condition. 
 
-### If Else Statements
+### If-Else Statements
 
 A common use case for if else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
 
@@ -136,7 +136,7 @@ This section includes examples of both single line and multi-line if else statem
 Multi-line if else statements can be constructed using YAML block scalars and block chomping characters to ensure the rendered result is valid YAML. A _folded_ block scalar style is denoted using the greater than (`>`) character. With the folded style, single line breaks in the string are treated as a space. Additionally, the block chomping minus (`-`) character is used to remove all the line breaks at the end of a string. For more information about working with these characters, see [Chapter 8: Block Style Productions](https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions) in the YAML documentation.
 
 :::note
-For Helm-based applications that need to use more complex or nested if else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
+For Helm-based applications that need to use more complex or nested if else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
 :::
 
 #### Single Line
@@ -192,9 +192,9 @@ spec:
   values:
     replicated-sdk: >-
       {{repl if HasLocalRegistry -}}
-        {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.14
+        {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.17
       {{repl else -}}
-        docker.io/replicated/replicated-sdk:v1.0.0-beta.14
+        docker.io/replicated/replicated-sdk:v1.0.0-beta.17
       {{repl end}}
 ```
 
@@ -203,7 +203,7 @@ Given the example above, if the user is _not_ using a local registry, then the `
 ```yaml
 # Helm chart values file
 
-replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.14'
+replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.17'
 ```
 
 #### Multi-Line in Secret Object
@@ -259,7 +259,7 @@ data:
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
-The following example uses ternary operators to render the registry and repository for an nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
+The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
