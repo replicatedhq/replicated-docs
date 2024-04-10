@@ -1,14 +1,12 @@
 # Compatibility Matrix Cluster Add-ons (Beta)
 
-This topic describes the supported cluster add-ons for Replicated Compatibility Matrix.
+This topic describes the supported cluster add-ons for Replicated compatibility matrix.
 
-## CLI
-
-The Replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
+The replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
 
 ## Supported Add-ons
 
-This section lists the supported cluster add-ons for clusters created with the Compatiblity Matrix.
+This section lists the supported cluster add-ons for clusters created with compatiblity matrix.
 
 ### object-store
 
