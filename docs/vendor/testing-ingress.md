@@ -30,7 +30,7 @@ Ingress is not perfectly portable either - each ingress controller may require d
 Supported ingress controllers vary based on the distribution.
 Compatibility Matrix supports ingress controllers that are running as a `NodePort` service.
 
-### Compatibility Matrix Tunnels
+### Compatibility Matrix Tunnels (alpha)
 All VM-based (not cloud distributions) Compatibility Matrix clusters support tunneling traffic into a `NodePort` service. 
 When this option is used, Replicated is responsible for creating the DNS record and TLS certs.
 Replicated will route traffic from `:443` and/or `:80` into the `NodePort` service you defined.
@@ -41,6 +41,7 @@ A diagram showing how the traffic is routed into the service using the Compatibi
 
 # Managing Tunnels
 
+Compatibity Matrix tunnels are an alpha feature.
 Tunnels are viewed, created, and removed via the Replicated CLI, GitHub Actions, or directly via the API.
 There is currently no limit to the number of tunnels you can create for a cluster.
 Multiple tunnels can connect to a single service, if desired.
