@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 9, 2024
 
 ### New Features {#new-features-v2024-04-09-2}
-* Adds advanced cluster creation form for Compatibility Matrix.
+* Adds advanced cluster creation form for compatibility matrix.
 
 ## v2024.04.04-0
 
