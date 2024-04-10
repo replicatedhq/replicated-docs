@@ -13,8 +13,10 @@ pagination_prev: null
 Released on April 10, 2024
 
 ### New Features {#new-features-v2024-04-10-0}
-* Allow client to submit sev 1 and 2 for replicated host service like CMX and vendor-portal.
-* Highlight required field if it is not filled.
+* Allows sev 1 and 2 support issues to be submitted for the Replicated host service, including compatibility matrix and vendor portal.
+
+### Improvements {#improvements-v2024-04-10-0}
+* Highlights required fields if not filled.
 
 ## v2024.04.04-0
 
