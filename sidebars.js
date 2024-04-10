@@ -536,6 +536,7 @@ const sidebars = {
     items: [
       'vendor/testing-about',
       'vendor/testing-supported-clusters',
+      'vendor/testing-cluster-addons',
       'vendor/testing-how-to',
     ],
   },
@@ -598,6 +599,9 @@ const sidebars = {
       'reference/replicated-cli-cluster-update-ttl',
       'reference/replicated-cli-cluster-upgrade',
       'reference/replicated-cli-cluster-versions',
+      'reference/replicated-cli-cluster-addon-ls',
+      'reference/replicated-cli-cluster-addon-rm',
+      'reference/replicated-cli-cluster-addon-create-object-store',
       'reference/replicated-cli-completion',
       'reference/replicated-cli-completion-bash',
       'reference/replicated-cli-completion-fish',
