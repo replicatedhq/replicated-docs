@@ -16,7 +16,6 @@ replicated cluster addon ls CLUSTER_ID [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--output</td>
     <td>string</td>

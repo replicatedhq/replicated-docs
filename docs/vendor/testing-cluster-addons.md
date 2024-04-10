@@ -2,6 +2,13 @@
 
 This topic describes the supported cluster add-ons for Replicated compatibility matrix.
 
+## Overview
+
+The Replicated compatibility matrix enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
+This allows you to more easily provision dependencies required by your application.
+
+## CLI
+
 The replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
 
 ## Supported Add-ons
@@ -10,7 +17,7 @@ This section lists the supported cluster add-ons for clusters created with compa
 
 ### object-store
 
-The Replicated cluster object store add-on can be used to create object store buckets for cloud clusters (currently only AWS S3 is supported for EKS clusters).
+The Replicated cluster object store add-on can be used to create S3 compatible object store buckets for clusters (currently only AWS S3 is supported for EKS clusters).
 
 Assuming you already have a cluster, run the following command with the cluster ID to create an object store bucket:
 
@@ -33,7 +40,11 @@ Additional service accounts can be created in any namespace with access to the o
   </tr>
   <tr>
     <th>Supported Kubernetes Distributions</th>
-    <td>EKS</td>
+    <td>EKS (AWS S3)</td>
+  </tr>
+  <tr>
+    <th>Cost</th>
+    <td>Flat fee per bucket.</td>
   </tr>
   <tr>
     <th>Options</th>

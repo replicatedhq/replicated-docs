@@ -601,6 +601,7 @@ const sidebars = {
       'reference/replicated-cli-cluster-versions',
       'reference/replicated-cli-cluster-addon-ls',
       'reference/replicated-cli-cluster-addon-rm',
+      'reference/replicated-cli-cluster-addon-create',
       'reference/replicated-cli-cluster-addon-create-object-store',
       'reference/replicated-cli-completion',
       'reference/replicated-cli-completion-bash',

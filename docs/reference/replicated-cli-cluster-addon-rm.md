@@ -16,7 +16,6 @@ replicated cluster addon rm CLUSTER_ID --id ADDON_ID [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--id</td>
     <td>string</td>

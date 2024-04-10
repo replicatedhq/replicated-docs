@@ -53,6 +53,13 @@ Clusters created with the compatibility matrix can have the following statuses:
 
 You can view the status of clusters using the `replicated cluster ls` command. For more information, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
+### Cluster Add-ons
+
+The Replicated compatibility matrix enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
+This allows you to more easily provision dependencies required by your application.
+
+For more information about how to use the add-ons, see [Compatibility Matrix Cluster Add-ons](testing-cluster-addons).
+
 ## Limitations
 
 The compatibility matrix has the following limitations:

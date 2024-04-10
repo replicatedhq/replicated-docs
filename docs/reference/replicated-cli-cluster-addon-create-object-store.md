@@ -18,7 +18,6 @@ replicated cluster addon create object-store CLUSTER_ID --bucket BUCKET_PREFIX [
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--bucket</td>
     <td>string</td>
