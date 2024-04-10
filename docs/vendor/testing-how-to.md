@@ -69,13 +69,13 @@ To create a cluster using the replicated CLI:
 
 To create a cluster using the vendor portal:
 
-1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix).
+1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
 
-1. In the **Cluster configuration** dialog, complete the fields: 
+    <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
 
-   <img alt="Cluster configuration dialog" src="/images/cmx-cluster-configuration.png" width="400px"/>
+    [View a larger version of this image](/images/create-a-cluster)
 
-   [View a larger version of this image](/images/cmx-cluster-configuration.png)
+1. On the **Create a cluster** page, complete the following fields:
 
    <table>
      <tr>
@@ -83,43 +83,45 @@ To create a cluster using the vendor portal:
        <th>Description</th>
      </tr>
      <tr>
-       <td>Cluster name</td>
-       <td>Enter a name for the cluster.</td>
-     </tr>
-     <tr>
        <td>Kubernetes distribution</td>
        <td>Select the Kubernetes distribution for the cluster.</td>
      </tr>
      <tr>
-       <td>Instance type</td>
-       <td>Select the instance type to use for the nodes in the cluster. The options available are specific to the distribution selected.</td>
-     </tr>
-     <tr>
-       <td>Nodes</td>
-       <td>Select the number of nodes to provision for the cluster. The options available are specific to the distribution selected.</td>
-     </tr>
-     <tr>
-       <td>Kubernetes version</td>
+       <td>Version</td>
        <td>Select the Kubernetes version for the cluster. The options available are specific to the distribution selected.</td>
      </tr>
      <tr>
-       <td>TTL</td>
-       <td><p>Select the Time to Live (TTL) for the cluster.</p></td>
+       <td>Name (optional)</td>
+       <td>Enter an optional name for the cluster.</td>
      </tr>
      <tr>
-       <td>Disk size</td>
-       <td>Select the disk size in GiB to use per node in the cluster.</td>
+       <td>Tags</td>
+       <td>Add one or more tags to the cluster as key-value pairs.</td>
      </tr>
+     <tr>
+       <td>Set TTL</td>
+       <td>Select the Time to Live (TTL) for the cluster. When the TTL expires, the cluster is automatically deleted. TTL can be adjusted after cluster creation with [cluster update ttl](/reference/replicated-cli-cluster-update-ttl).</td>
+     </tr>
+   </table>  
+
+1. For **Nodes & Nodes Groups**, complete the following fields to configure nodes and node groups for the cluster:
+
+   <table>
+   <tr>
+       <td>Instance type</td>
+       <td>Select the instance type to use for the nodes in the node group. The options available are specific to the distribution selected.</td>
+     </tr>   
+     <tr>
+       <td>Disk size</td>
+       <td>Select the disk size in GiB to use per node.</td>
+     </tr>
+     <tr>
+       <td>Nodes</td>
+       <td>Select the number of nodes to provision in the node group. The options available are specific to the distribution selected.</td>
+     </tr>  
    </table>
 
-1. (Optional) In the **Cluster configuration** dialog, click **All available options** to configure advanced options for the cluster.
-  
-   ****ADD SCREENSHOT****
-  
-   In the **Create a cluster** screen, click on any of the following tabs to configure additional options:
-     * **Nodes & Node Groups**: Create node groups
-     * **Ingress & Ports**: Open ports
-     * **Object Store**: Configure object storage for the cluster
+1. (Optional) Click **Add node group** to add additional node groups.
 
 1. Click **Create cluster**.
 
