@@ -4,7 +4,7 @@ You can use the vendor portal to get a visual analysis of customer support bundl
 
 To inspect a support bundle:
 
-1. In the [vendor portal](https://vendor.replicated.com/troubleshoot), go to the **Troubleshoot** tab and click **Add support bundle > Upload a support bundle**.
+1. In the vendor portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Add support bundle > Upload a support bundle**.
 
 1. In the **Upload a support bundle** dialog, drag and drop or use the file selector to upload a support bundle file to the vendor portal.
 
