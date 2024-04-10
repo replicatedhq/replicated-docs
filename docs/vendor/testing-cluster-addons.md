@@ -15,7 +15,7 @@ The replicated CLI can be used to [create](/reference/replicated-cli-cluster-add
 
 This section lists the supported cluster add-ons for clusters created with compatiblity matrix.
 
-### object-store
+### object-store (Alpha)
 
 The Replicated cluster object store add-on can be used to create S3 compatible object store buckets for clusters (currently only AWS S3 is supported for EKS clusters).
 

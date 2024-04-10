@@ -1,10 +1,12 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
-# cluster addon create object-store
+# cluster addon create object-store (Alpha)
 
 Create an object store bucket for a cluster.
 
 Requires a bucket name prefix (using flag "--bucket") that will be used to create a unique bucket name with format "[BUCKET_PREFIX]-[ADDON_ID]-cmx".
+
+*NOTE: This add-on currently only support EKS (AWS S3).*
 
 ## Usage
 
