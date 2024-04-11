@@ -15,6 +15,23 @@ Released on April 11, 2024
 ### Bug Fixes {#bug-fixes-v2024-04-11-1}
 * Fix selected default instance type on Compatibility Matrix.
 
+## v2024.04.11-0
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-0}
+* Fixes an issue that prevented add-ons from multi-node compatibility matrix clusters from working properly.
+
+## v2024.04.10-0
+
+Released on April 10, 2024
+
+### New Features {#new-features-v2024-04-10-0}
+* Allows sev 1 and 2 support issues to be submitted for the Replicated host service, including the compatibility matrix and vendor portal.
+
+### Improvements {#improvements-v2024-04-10-0}
+* Highlights required fields that are not filled on the support issue form on the **Support** page.
+
 ## v2024.04.09-2
 
 Released on April 9, 2024
