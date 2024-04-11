@@ -16,6 +16,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.108.6
+
+Released on April 11, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Improvements {#improvements-1-108-6}
+* The troubleshoot distribution analyzer now has support for distribution Kind.
+* Add more feedback to the user while pushing Images and Embedded Cluster artifacts.
+
 ## 1.108.5
 
 Released on April 8, 2024
