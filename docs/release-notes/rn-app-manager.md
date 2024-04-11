@@ -23,8 +23,7 @@ Released on April 11, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-108-6}
-* The troubleshoot distribution analyzer now has support for distribution Kind.
-* Add more feedback to the user while pushing Images and Embedded Cluster artifacts.
+* Provide a progress indicator to users when pushing images and embedded cluster artifacts during an installation.
 
 ## 1.108.5
 
