@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.11-2
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-2}
+* Eliminates excessive page reloads on the **Support Bundle Analysis** page that would cause users to lose their place.
+
 ## v2024.04.11-1
 
 Released on April 11, 2024
