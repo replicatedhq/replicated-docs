@@ -4,11 +4,18 @@
 ```go
 func LicenseFieldValue(name string) string
 ```
-LicenseFieldValue returns the value of the entitlement with the provided name.
+LicenseFieldValue returns the string value of the entitlement with the provided name.
 
 ```yaml
 '{{repl LicenseFieldValue "numSeats" }}'
 ```
+```yaml
+repl{{ LicenseFieldValue "numSeats" }}
+```
+
+:::note
+The LicenseFieldValue template function always returns a string, regardless of the license field type.
+:::
 
 In addition to custom license fields, `LicenseFieldValue` also accepts the following values:
 

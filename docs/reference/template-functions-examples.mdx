@@ -26,7 +26,10 @@ One common use case for working with boolean values is to check that a given fie
 The following example creates a conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
 
 This example uses the following KOTS template functions:
-* [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a license field named `feature-1`
+* [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a boolean type license field named `feature-1`
+   :::note
+   The LicenseFieldValue template function always returns a string, regardless of the license field type.
+   :::
 * [ParseBool](/reference/template-functions-static-context#parsebool) to convert the string returned by the LicenseFieldValue template function to a boolean
 * [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
 
@@ -59,7 +62,9 @@ spec:
 
 ### Integer Comparison
 
-Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many KOTS template functions return string values, working with integer values often requires using another function, such as the KOTS [ParseInt](/reference/template-functions-static-context#parseint) template function or the Sprig [atoi](https://masterminds.github.io/sprig/conversion.html) function, to return the integer represented by the string. 
+Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many KOTS template functions return string values, working with integer values often requires using another function to return the integer represented by the string, such as:
+* KOTS [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
+* Sprig [atoi](https://masterminds.github.io/sprig/conversion.html), which is equivalent to ParseInt(s, 10, 0), converted to type integer
 
 A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
 
@@ -354,25 +359,19 @@ One use case for quoted values in YAML is when indicator characters are included
 #### Example with `| quote`
 
 ```yaml
-password: repl{{ ConfigOption “password” | quote }}
-```
-
-Result:
-
-```yaml
-password: “abc123”
+password: repl{{ ConfigOption “tag” | quote }}
 ```
 
 #### Example with `'{{repl ... }}'` Syntax
 
 ```yaml
-password: '{{repl ConfigOption “password” }}'
+password: '{{repl ConfigOption “tag” }}'
 ```
 
-Result:
+The result for both examples is:
 
 ```yaml
-password: “abc123”
+password: “key: value”
 ```
 
 ## Additional Examples
