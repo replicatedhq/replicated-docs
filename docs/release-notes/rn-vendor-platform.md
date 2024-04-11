@@ -18,6 +18,13 @@ Released on April 10, 2024
 ### Improvements {#improvements-v2024-04-10-0}
 * Highlights required fields that are not filled on the support issue form on the **Support** page.
 
+## v2024.04.09-2
+
+Released on April 9, 2024
+
+### New Features {#new-features-v2024-04-09-2}
+* Adds advanced cluster creation form for compatibility matrix.
+
 ## v2024.04.04-0
 
 Released on April 4, 2024

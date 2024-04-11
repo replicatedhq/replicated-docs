@@ -96,6 +96,9 @@ pagination_next: null
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
     </li>
     <li>
+      <a href="/vendor/testing-cluster-addons">Cluster Add-ons</a>
+    </li>
+    <li>
       <a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a>
     </li>
   </ul>
