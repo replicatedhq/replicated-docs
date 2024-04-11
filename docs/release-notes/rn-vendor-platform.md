@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.11-1
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-1}
+* Fix selected default instance type on Compatibility Matrix.
+
 ## v2024.04.11-0
 
 Released on April 11, 2024
