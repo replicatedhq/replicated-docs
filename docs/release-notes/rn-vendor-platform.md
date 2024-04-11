@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.11-0
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-0}
+* Fixes an issue which prevented add-ons from multi-node clusters from working properly.
+
 ## v2024.04.04-0
 
 Released on April 4, 2024
