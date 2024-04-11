@@ -159,7 +159,7 @@ spec:
         enabled: true
         appName: ["my-app"]
         # Render the service type based on the user's selection
-        type: repl{{ if ConfigOptionEquals "ingress_type" "load_balancer" }} LoadBalancer repl{{ else }}ClusterIP repl{{ end }}
+        type: '{{repl if ConfigOptionEquals "ingress_type" "load_balancer" }}LoadBalancer{{repl else }}ClusterIP{{repl end }}'
         ports:
           http:
             enabled: true
