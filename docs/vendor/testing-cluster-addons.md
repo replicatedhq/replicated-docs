@@ -104,7 +104,7 @@ This will create a postgres database, and return the `uri` which allows you to c
   </tr>
   <tr>
     <th>Cost</th>
-    <td>Flat fee per bucket.</td>
+    <td>Flat fee per instance.</td>
   </tr>
   <tr>
     <th>Options</th>
