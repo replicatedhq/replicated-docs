@@ -4,32 +4,34 @@
 ```go
 func LicenseFieldValue(name string) string
 ```
-LicenseFieldValue returns the value of the entitlement with the provided name.
+LicenseFieldValue returns the value of the specified license field. LicenseFieldValue accepts custom license fields and all built-in license fields. For a list of all built-in fields, see [Built-in License Fields](/vendor/licenses-using-builtin-fields).
+
+LicenseFieldValue always returns a string, regardless of the license field type. To return integer or boolean values, you need to use the [ParseInt](/reference/template-functions-static-context#parseint) or [ParseBool](/reference/template-functions-static-context#parsebool) template function to convert the string value.
+
+#### String License Field
+
+The following example returns the value of the built-in `customerName` license field:
 
 ```yaml
-'{{repl LicenseFieldValue "numSeats" }}'
+customerName: '{{repl LicenseFieldValue "customerName" }}'
 ```
+#### Integer License Field
 
-In addition to custom license fields, `LicenseFieldValue` also accepts the following values:
+The following example returns the value of a custom integer license field named `numSeats`:
 
-- `appSlug`
-- `channelID`
-- `channelName`
-- `customerName`
-- `endpoint`
-- `entitlements`
-- `expires_at`
-- `isAirgapSupported`
-- `isGeoaxisSupported`
-- `isGitOpsSupported`
-- `isIdentityServiceSupported`
-- `isSemverRequired`
-- `isSnapshotSupported`
-- `isSupportBundleUploadSupported`
-- `licenseID` or `licenseId`
-- `licenseSequence`
-- `licenseType`
-- `signature`
+```yaml
+numSeats: repl{{ LicenseFieldValue "numSeats" | ParseInt }}
+```
+This example uses [ParseInt](/reference/template-functions-static-context#parseint) to convert the returned value to an integer.
+
+#### Boolean License Field
+
+The following example returns the value of a custom boolean license field named `feature-1`:
+
+```yaml
+feature-1: repl{{ LicenseFieldValue "feature-1" | ParseBool }}
+```
+This example uses [ParseBool](/reference/template-functions-static-context#parsebool) to convert the returned value to a boolean.
 
 ## LicenseDockerCfg
 ```go
