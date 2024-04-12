@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Announcing: Embedded Cluster Single-Node Beta</h3>
-        <p>Replicated's next generation embedded Kubernetes solution. Embedded cluster offers signifantly faster installations compared to kURL, as well as one-click updates of both the application and the cluster at the same time.</p>
+        <h3>Granular Resource Status View in Vendor Portal</h3>
+        <p>You can now hover over the app status displayed on the <strong>Instance Details</strong> page to view the statuses of individual workloads for the instance.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-overview">Learn more</a>
+      <a href="/vendor/instance-insights-details#current-state">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Use Custom Domains to Alias Replicated Endpoints</h3>
-        <p>You can add custom domains to alias the Replicated registry, proxy service, app service, and download portal.</p>
+        <h3>Template Annotations for Resources and Objects</h3>
+        <p>For applications deployed with KOTS, you can use KOTS template functions to add user-supplied annotations to resources and objects deployed by your application.</p>
     </li>
     <li>
-      <a href="/vendor/custom-domains">Learn more</a>
+      <a href="/vendor/resources-annotations-templating">Learn more</a>
     </li>
   </ul>
 </section>
@@ -94,6 +94,9 @@ pagination_next: null
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
+    </li>
+    <li>
+      <a href="/vendor/testing-cluster-addons">Cluster Add-ons</a>
     </li>
     <li>
       <a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a>

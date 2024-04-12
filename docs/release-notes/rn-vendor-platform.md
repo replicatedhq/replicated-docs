@@ -8,6 +8,58 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.11-2
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-2}
+* Eliminates excessive page reloads on the **Support Bundle Analysis** page that would cause users to lose their place.
+
+## v2024.04.11-1
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-1}
+* Fix selected default instance type on Compatibility Matrix.
+
+## v2024.04.11-0
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-0}
+* Fixes an issue that prevented add-ons from multi-node compatibility matrix clusters from working properly.
+
+## v2024.04.10-0
+
+Released on April 10, 2024
+
+### New Features {#new-features-v2024-04-10-0}
+* Allows sev 1 and 2 support issues to be submitted for the Replicated host service, including the compatibility matrix and vendor portal.
+
+### Improvements {#improvements-v2024-04-10-0}
+* Highlights required fields that are not filled on the support issue form on the **Support** page.
+
+## v2024.04.09-2
+
+Released on April 9, 2024
+
+### New Features {#new-features-v2024-04-09-2}
+* Adds advanced cluster creation form for compatibility matrix.
+
+## v2024.04.04-0
+
+Released on April 4, 2024
+
+### New Features {#new-features-v2024-04-04-0}
+* Adds channel sequence and updates row styles on the **Release History** page.
+
+## v2024.04.02-2
+
+Released on April 2, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-02-2}
+* Fixes an issue that caused collisions in kubeconfig context naming when using the `replicated cluster kubeconfig` command resulting in contexts being overwritten.
+
 ## v2024.04.01-3
 
 Released on April 1, 2024

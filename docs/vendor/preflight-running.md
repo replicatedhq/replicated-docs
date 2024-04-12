@@ -113,3 +113,5 @@ The output of the preflight plugin shows the success, warning, or fail message f
 To save the results of preflight checks to a `.txt` file, users can can press `s` when viewing the results from the CLI, as shown in the example below:
 
 ![Save output dialog](/images/helm-preflight-save-output.png)
+
+[View a larger version of this image](/images/helm-preflight-save-output.png)
