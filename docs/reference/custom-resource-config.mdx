@@ -136,8 +136,10 @@ For examples of configuring the `when` property, see [Using Conditional Statemen
 #### Requirements and Limitations
 
 `when` has the following requirements and limitations:
-* `when` accepts string or boolean values, including string or booleans rendered with [KOTS template functions](/reference/template-functions-about)
-* To evaluate to true, values compared in the conditional statement of the `when` property must match exactly, without quotes
+* The `when` property accepts the following types of values:
+   * Booleans
+   * Strings that match "true", "True", "false", or "False"
+* Values compared in the conditional statement of the `when` property must match exactly without quotes for the `when` property to evaluate to true
 * `when` can be used only as a property of a group or item. `when` is _not_ an item type and so cannot be used as an option under `select_one`
 
 #### Example
