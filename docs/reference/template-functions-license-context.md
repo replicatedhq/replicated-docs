@@ -22,7 +22,7 @@ The following example returns the value of a custom integer license field named 
 ```yaml
 numSeats: repl{{ LicenseFieldValue "numSeats" | ParseInt }}
 ```
-This example uses [ParseInt](/reference/template-functions-static-context#parseint to convert the returned value to an integer.
+This example uses [ParseInt](/reference/template-functions-static-context#parseint) to convert the returned value to an integer.
 
 #### Boolean License Field
 
