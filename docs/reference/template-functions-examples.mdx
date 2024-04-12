@@ -195,12 +195,13 @@ metadata:
   name: samplechart
 spec:
   values:
-    replicated-sdk: >-
-      {{repl if HasLocalRegistry -}}
-        {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.17
-      {{repl else -}}
-        docker.io/replicated/replicated-sdk:v1.0.0-beta.17
-      {{repl end}}
+    images:
+      replicated-sdk: >-
+        {{repl if HasLocalRegistry -}}
+          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.17
+        {{repl else -}}
+          docker.io/replicated/replicated-sdk:v1.0.0-beta.17
+        {{repl end}}
 ```
 
 Given the example above, if the user is _not_ using a local registry, then the `replicated-sdk` value in the Helm chart is set to the location of the image on the default docker registry, as shown below:
