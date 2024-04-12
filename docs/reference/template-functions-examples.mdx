@@ -359,19 +359,19 @@ One use case for quoted values in YAML is when indicator characters are included
 #### Example with `| quote`
 
 ```yaml
-password: repl{{ ConfigOption “tag” | quote }}
+customTag: repl{{ ConfigOption “tag” | quote }}
 ```
 
 #### Example with `'{{repl ... }}'` Syntax
 
 ```yaml
-password: '{{repl ConfigOption “tag” }}'
+customTag: '{{repl ConfigOption “tag” }}'
 ```
 
 The result for both examples is:
 
 ```yaml
-password: “key: value”
+customTag: “key: value”
 ```
 
 ## Additional Examples
