@@ -1,5 +1,9 @@
 # Managing Secrets with GitOps (Alpha)
 
+:::note
+**Not Recommended**. KOTS GitOps is a legacy feature and is no longer recommended for use. For modern enterprise customers that prefer CI/CD pipeline style software deployment processes, Replicated recommends using the available [Helm CLI deployment method](/vendor/distributing-overview#helm-cli-installations), which is more commonly used in these types of enterprise environments.
+:::
+
 When you enable GitOps, the Replicated admin console pushes the rendered application manifests to the configured git repository. Application manifests often contain secrets and sensitive information that should not be committed to git.
 
 Replicated KOTS v1.18 introduces an integration with SealedSecrets to encrypt secrets before committing.
