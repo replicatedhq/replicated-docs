@@ -4,7 +4,7 @@
 ```go
 func LicenseFieldValue(name string) string
 ```
-LicenseFieldValue returns the value of the specified license field. In addition to custom license fields, `LicenseFieldValue` also accepts all built-in license fields. For a list of all built-in fields, see [Built-in License Fields](/vendor/licenses-using-builtin-fields).
+LicenseFieldValue returns the value of the specified license field. LicenseFieldValue accepts custom license fields and all built-in license fields. For a list of all built-in fields, see [Built-in License Fields](/vendor/licenses-using-builtin-fields).
 
 LicenseFieldValue always returns a string, regardless of the license field type. To return integer or boolean values, you need to include the [ParseInt](/reference/template-functions-static-context#parseint) or [ParseBool](/reference/template-functions-static-context#parsebool) template function to convert the string value.
 
