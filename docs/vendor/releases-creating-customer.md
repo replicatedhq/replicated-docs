@@ -56,7 +56,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Gitops Enabled</td>
-          <td>Enables customers with a KOTS-managed installation to transition from click-to-deploy to a GitOps workflow for deployment.</td>
+          <td> <a href="/enterprise/gitops-workflow">Not Recommended</a>. Enables customers with a KOTS-managed installation to transition from click-to-deploy to a GitOps workflow for deployment.</td>
         </tr>
         <tr>
           <td>Identity Service Enabled</td>
