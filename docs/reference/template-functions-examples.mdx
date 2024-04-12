@@ -332,25 +332,6 @@ metadata:
       repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
 ```
 
-### Print Formatted Data
-
-The following example shows how to render a user-supplied custom annotation on an Ingress object deployed by KOTS. In this example, a user-supplied hostname is used in a custom annotation for the Ingress object.
-
-This example uses:
-* [printf](https://pkg.go.dev/fmt) to print formatted data
-* [%s](https://pkg.go.dev/fmt) to format the value of the `"ingress_hostname"` configuration field as a string
-* [nindent](https://masterminds.github.io/sprig/strings.html) to prepend a new line to the beginning of the string and indent the string by four space characters
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
-```
-
 ### Render Quoted Values
 
 To wrap a rendered value in quotes, you can pipe the result from KOTS template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
@@ -372,6 +353,59 @@ The result for both examples is:
 
 ```yaml
 customTag: 'key: value'
+```
+
+### Using Variables to Generate TLS Certificates and Keys
+
+For template functions that Replicated evaluates at the same time, you can assign the result returned by a template function to a variable in a manifest file, then use the variable in another template function.
+
+Replicated evaluates and templates each item in the Config custom resource separately. Template functions in the Config custom resource do not have access to variables defined in other configuration fields.
+
+As a workaround, you can create a configuration item with `hidden` set to `true` to evaluate complex templates and render the results.
+Then, you can access the result using the [`ConfigOption`](#configoption) function.
+
+The following Config custom resource example demonstrates how to generate a certificate authority (CA), a certificate, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
+
+:::important
+Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
+:::
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: example_settings
+      title: My Example Config
+      items:
+        - name: ingress_hostname
+          title: Ingress Hostname
+          help_text: Enter a DNS hostname to use as the cert's CN.
+          type: text
+        - name: tls_json
+          title: TLS JSON
+          type: textarea
+          hidden: true
+          default: |-
+            repl{{ $ca := genCA (ConfigOption "ingress_hostname") 365 }}
+            repl{{ $tls := dict "ca" $ca }}
+            repl{{ $cert := genSignedCert (ConfigOption "ingress_hostname") (list ) (list (ConfigOption "ingress_hostname")) 365 $ca }}
+            repl{{ $_ := set $tls "cert" $cert }}
+            repl{{ toJson $tls }}
+        - name: tls_ca
+          title: Signing Authority
+          type: textarea
+          default: repl{{ fromJson (ConfigOption "tls_json") | dig "ca" "Cert" "" }}
+        - name: tls_cert
+          title: TLS Cert
+          type: textarea
+          default: repl{{ fromJson (ConfigOption "tls_json") | dig "cert" "Cert" "" }}
+        - name: tls_key
+          title: TLS Key
+          type: textarea
+          default: repl{{ fromJson (ConfigOption "tls_json") | dig "cert" "Key" "" }}
 ```
 
 ## Additional Examples
