@@ -2,7 +2,9 @@ import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
 
 # Pushing Updates to a GitOps Workflow
 
-This topic describes how to enable a GitOps workflow for your application. In a GitOps workflow, the Replicated admin console pushes all updates to the application to a Git repository that you specify.
+:::note
+**Not Recommended**. KOTS GitOps is a legacy feature and is no longer recommended for use. For modern enterprise customers that prefer CI/CD pipeline style software deployment processes, Replicated recommends using the available [Helm CLI deployment method](/vendor/distributing-overview#helm-cli-installations), which is more commonly used in these types of enterprise environments. 
+:::
 
 ## Overview of the GitOps Workflow
 
