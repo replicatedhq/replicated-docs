@@ -357,17 +357,14 @@ customTag: 'key: value'
 
 ### Using Variables to Generate TLS Certificates and Keys
 
-For template functions that Replicated evaluates at the same time, you can assign the result returned by a template function to a variable in a manifest file, then use the variable in another template function.
+One use case for variables with KOTS template functions is when generating default TLS certificates that users can override by providing their own certificate on the admin console **Config** page.
 
-Replicated evaluates and templates each item in the Config custom resource separately. Template functions in the Config custom resource do not have access to variables defined in other configuration fields.
-
-As a workaround, you can create a configuration item with `hidden` set to `true` to evaluate complex templates and render the results.
-Then, you can access the result using the [`ConfigOption`](#configoption) function.
-
-The following Config custom resource example demonstrates how to generate a certificate authority (CA), a certificate, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
+The following [Sprig](http://masterminds.github.io/sprig/) cryptographic and security functions can be used with KOTS template functions to generate certificate authorities (CAs) and signed certificates in JSON format:
+* [genCA](https://masterminds.github.io/sprig/crypto.html)
+* [genSignedCert](https://masterminds.github.io/sprig/crypto.html)
 
 :::important
-Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
+Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Before using this example, be sure that your application can handle updating these parameters dynamically.
 :::
 
 ```yaml
