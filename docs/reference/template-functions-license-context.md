@@ -20,7 +20,7 @@ customerName: '{{repl LicenseFieldValue "customerName" }}'
 The following example returns the value of a custom integer license field named `numSeats`:
 
 ```yaml
-numSeats: '{{repl LicenseFieldValue "numSeats" | ParseInt }}'
+numSeats: repl{{ LicenseFieldValue "numSeats" | ParseInt }}
 ```
 This example uses [ParseInt](/reference/template-functions-static-context#parseint to convert the returned value to an integer.
 
@@ -29,7 +29,7 @@ This example uses [ParseInt](/reference/template-functions-static-context#parsei
 The following example returns the value of a custom boolean license field named `feature-1`:
 
 ```yaml
-feature-1: '{{repl LicenseFieldValue "feature-1" | ParseBool }}'
+feature-1: repl{{ LicenseFieldValue "feature-1" | ParseBool }}
 ```
 This example uses [ParseBool](/reference/template-functions-static-context#parsebool) to convert the returned value to a boolean.
 
