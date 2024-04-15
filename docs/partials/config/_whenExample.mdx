@@ -14,13 +14,13 @@
   - name: database_host
     title: Database Hostname
     type: text
-    when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
+    when: repl{{ (ConfigOptionEquals "db_type" "external")}}
   - name: database_password
     title: Database Password
     type: password
-    when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
+    when: repl{{ (ConfigOptionEquals "db_type" "external")}}
 ```
 
-![External option selected and conditional fields displayed](../../../static/images/config-when-enabled.png)
+<img alt="External option selected and conditional fields displayed" src="/images/config-when-enabled.png" width="500px"/>
 
-![Embedded DB option selected and no additional fields displayed](../../../static/images/config-when-disabled.png)
+<img alt="Embedded DB option selected and no additional fields displayed" src="/images/config-when-disabled.png" width="500px"/>
