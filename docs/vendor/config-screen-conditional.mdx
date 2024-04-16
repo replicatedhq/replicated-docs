@@ -1,4 +1,5 @@
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
+import PropertyWhen from "../partials/config/_property-when.mdx"
 
 # Using Conditional Statements in Configuration Fields
 
@@ -6,17 +7,11 @@ This topic describes how to use Replicated KOTS template functions in the Config
 
 ## Overview
 
-The `when` property in the Config custom resource denotes configuration items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. It can be useful to show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application.
+The `when` property in the Config custom resource denotes configuration groups or items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group or item is not displayed.
 
-You can conditionally show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, conditional statements in the `when` property can be used to evaluate:
-* The Kubernetes distribution of the cluster
-* If the license includes a specific feature entitlement
-* The number of users that the license permits
-* If the user chooses to bring their own external database, rather than using an embedded database offered with the application
+<PropertyWhen/>
 
 For more information about the Config custom resource `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
-
-You can construct conditional statements in the `when` property using KOTS template functions. KOTS template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about KOTS template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
 
 ## Conditional Statement Examples
 

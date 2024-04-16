@@ -1,4 +1,5 @@
 import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
+import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
@@ -74,6 +75,8 @@ The following limitations apply when deploying Helm charts with the `kots.io/v1b
 * Editing downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information about patching applications with Kustomize, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize).
 
 * <GitOpsLimitation/>
+
+   <GitOpsNotRecommended/>
 
    For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
 ## Support for Helm Hooks {#hooks}

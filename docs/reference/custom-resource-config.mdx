@@ -13,6 +13,8 @@ import WhenExample from "../partials/config/_whenExample.mdx"
 import AffixExample from "../partials/config/_affixExample.mdx" 
 import HelpTextExample from "../partials/config/_helpTextExample.mdx"
 import RegexValidationExample from "../partials/config/_regexValidationExample.mdx"
+import WhenRequirements from "../partials/config/_when-requirements.mdx"
+import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
@@ -62,7 +64,7 @@ spec:
       - name: password_text
         title: Password
         type: password
-        value: "{{repl RandomString 10}}"     
+        value: '{{repl RandomString 10}}'     
 ```
 ![Three groups of items on the config page](/images/config-screen-groups.png)
 [View a larger version of this image](/images/config-screen-groups.png)
@@ -129,7 +131,23 @@ spec:
 
 ### `when`
 
+The `when` property denotes groups that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+
 <PropertyWhen/>
+
+:::note
+`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item) below.
+:::
+
+#### Requirements and Limitations
+
+The `when` group property has the following requirements and limitations:
+
+<WhenRequirements/>
+
+#### Example
+
+In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
 
 ```yaml
 spec:
@@ -145,7 +163,7 @@ spec:
     - name: example_group_2
       title: Second Group
       description: This is descriptive help text.
-      # The group is not displayed if when is false
+      # This group is displayed only when the `http_enabled` field is selected 
       when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
       items:
       - name: key
@@ -166,11 +184,13 @@ spec:
       - name: password_text
         title: Password
         type: password
-        value: "{{repl RandomString 10}}"     
+        value: '{{repl RandomString 10}}'     
 ```
 
 ![Only the first and third groups appear on the config screen](/images/config-screen-group-when-false.png)
 [View a larger version of this image](/images/config-screen-group-when-false.png)
+
+For additional examples, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional).
 
 ### `items`
 
@@ -436,12 +456,12 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>    
 </table>
 
-### `when`
+### `when` {#when-item}
 
 <table>
   <tr>
     <th>Description</th>
-    <td><p><PropertyWhen/></p></td>
+    <td><p>The <code>when</code> property denotes items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>select_one</code> item. To conditionally show or hide <code>select_one</code> items, apply the <code>when</code> property to the <code>select_one</code> item itself.</li></ul><WhenNote/></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -450,8 +470,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Example</th>
     <td>
-      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user <br/> selects <code>external</code> for the <code>db_type</code> item:</p>
-      <WhenExample/>
+      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p><p>For additional examples, see <a href="/vendor/config-screen-conditional">Using Conditional Statements in Configuration Fields</a>.</p>
     </td>
   </tr>
   <tr>
@@ -563,7 +582,7 @@ The `password` type is a text field that hides the character input.
     - name: password_text
       title: Password Text
       type: password
-      value: "{{repl RandomString 10}}"
+      value: '{{repl RandomString 10}}'
 ```
 
 ![Password text field on the configuration screen](../../static/images/config-screen-password.png)
