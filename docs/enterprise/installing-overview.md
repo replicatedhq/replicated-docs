@@ -44,12 +44,6 @@ This is useful to enable CVE scans, image policy validation, and other pre-deplo
 
 For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#private-registry-requirements).
 
-### GitOps or Internal Version Control Workflows
-
-In a GitOps workflow, KOTS pushes changes (config changes, upstream updates, license updates) to a private Git repository, where you can use an existing continuous integration and continuous delivery (CI/CD) process to deliver the manifests to the cluster.
-
-For more information, see [Pushing Updates to a GitOps Workflow](gitops-workflow).
-
 ### Automated Installation
 
 You can automate application installation in online, air gap, existing cluster, and embedded cluster environments using the kots CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console.
