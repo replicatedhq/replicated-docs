@@ -31,17 +31,15 @@ For information about how to map values from the HelmChart custom resource to He
 
 ### Template Function Rendering
 
-During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process. For the Config custom resource, KOTS templates each array of items separately. For information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
+During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
 
-Within valid YAML that is templated at the same time, you can use Go to assign a template function to a variable for the purpose of accessing the rendered value from another template function. For an example of using Go variables with KOTS template functions to generate and then access values, see [Example: Using Variables to Generate TLS Certificates and Keys](/reference/template-functions-config-context#tls-cert-example).
+For the Config custom resource, KOTS templates each item separately. This means that variables or generated values such as [RandomString](/reference/template-functions-static-context#randomstring) cannot be referenced across different items because they are evaluated separately for each item. For information about the Config custom resource, see [Config](/reference/custom-resource-config).
 
 ## Syntax {#syntax}
 
 The KOTS template function syntax supports the following functionally equivalent delimiters:
 * [`repl{{ ... }}`](#syntax-integer)
-* [`{{repl ... }}` or `'{{repl ... }}'`](#syntax-string)
-
-For examples demonstrating both of these syntaxes, see [KOTS Template Function Examples](/reference/template-functions-examples).
+* [`{{repl ... }}`](#syntax-string)
 
 ### `repl{{ ... }}` {#syntax-integer}
 
@@ -52,19 +50,33 @@ For example:
 ```yaml
 replicas: repl{{ ConfigOption "replicas" }}
 ```
-The template function above renders as integer:
+The template function above renders an integer:
 
 ```yaml
 replicas: 5
 ```
 
-### `{{repl ... }}` or `'{{repl ... }}'` {#syntax-string}
+For more examples, see [Template Function Examples](/reference/template-functions-examples).
 
-This syntax renders string, boolean, or integer values and can be used at the middle or end of a value in YAML. This syntax supports being wrapped in quotes, if you need to the rendered result of the template function to be quoted. When wrapped in quotes, this syntax returns string values only. 
+### `{{repl ... }}` {#syntax-string}
 
-To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character. For example, `'{{repl ... }}'`.
+This syntax renders string, boolean, or integer values and can be used at the middle or end of a value in YAML.
 
-For example:
+This syntax supports being wrapped in quotes, if you need the rendered result of the template function to be quoted. When wrapped in quotes, this syntax returns string values only.
+
+To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character.
+
+#### Example Without Quotes
+
+```yaml
+links:
+  - description: "Click Me"
+    url: https://{{repl ConfigOption "hostname"}}:{{repl ConfigOption "port"}}
+```
+
+#### Example With Quotes
+
+The following example is wrapped in quotes because it is used at the beginning of a statement in YAML:
 
 ```yaml
 env:
@@ -79,6 +91,7 @@ env:
     value: '100'
 ```
 
+For more examples, see [Template Function Examples](/reference/template-functions-examples).
 
 ## Contexts {#contexts}
 
