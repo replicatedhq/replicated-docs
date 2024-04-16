@@ -166,7 +166,7 @@ spec:
         enabled: true
         appName: ["my-app"]
         # Render the service type based on the user's selection
-        # '{{repl ...}}' syntax is used for `type` to improve readability of the if-else statement
+        # '{{repl ...}}' syntax is used for `type` to improve readability of the if-else statement and render a string
         type: '{{repl if ConfigOptionEquals "ingress_type" "load_balancer" }}LoadBalancer{{repl else }}ClusterIP{{repl end }}'
         ports:
           http:
@@ -213,7 +213,8 @@ Given the example above, if the user is _not_ using a local registry, then the `
 ```yaml
 # Helm chart values file
 
-replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.17'
+images:
+  replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.17'
 ```
 
 #### Multi-Line in Secret Object
@@ -369,7 +370,7 @@ You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) a
 
 The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and KOTS template functions to provide the necessary parameters when calling these functions.
 
-The following example shows how to use variables and KOTS template functions in a [`hidden`](/reference/custom-resource-config#hidden) item in the KOTS Config custom resource to provide the required and optional parameters when calling the `genCA` and `genSignedCert` functions. Because KOTS evaluates each item in the Config custom resource separately, template functions used in an item only have access to variables that are declared in the same item. This means that you can create a configuration item with `hidden` set to `true` to evaluate complex templates and render the results.
+The following example shows how to use variables and KOTS template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the KOTS Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
 
 :::important
 Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Before using this example with your application, be sure that your application can handle updating these parameters dynamically.
@@ -412,6 +413,10 @@ spec:
           type: textarea
           default: repl{{ fromJson (ConfigOption "tls_json") | dig "cert" "Key" "" }}
 ```
+
+The following image shows how the default values for the CA, certificate, and key are displayed on the **Config** page:
+
+![Default values for CA, certificate, and key on the Config page](/images/certificate-chain-default-values.png)
 
 ## Additional Examples
 
