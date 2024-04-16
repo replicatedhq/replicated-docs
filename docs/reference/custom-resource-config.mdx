@@ -145,7 +145,7 @@ The `when` property denotes groups that are displayed on the admin console **Con
 
 #### Example
 
-The following example shows a group of items that is displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
+In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
 
 ```yaml
 spec:
@@ -161,7 +161,7 @@ spec:
     - name: example_group_2
       title: Second Group
       description: This is descriptive help text.
-      # The group is displayed only when the `http_enabled` field is selected 
+      # This group is displayed only when the `http_enabled` field is selected 
       when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
       items:
       - name: key
