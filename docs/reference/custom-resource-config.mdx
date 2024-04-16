@@ -64,7 +64,7 @@ spec:
       - name: password_text
         title: Password
         type: password
-        value: "{{repl RandomString 10}}"     
+        value: '{{repl RandomString 10}}'     
 ```
 ![Three groups of items on the config page](/images/config-screen-groups.png)
 [View a larger version of this image](/images/config-screen-groups.png)
@@ -140,6 +140,8 @@ The `when` property denotes groups that are displayed on the admin console **Con
 :::
 
 #### Requirements and Limitations
+
+The `when` group property has the following requirements and limitations:
 
 <WhenRequirements/>
 
@@ -459,7 +461,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>when</code> property denotes items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><WhenRequirements/><WhenNote/></td>
+    <td><p>The <code>when</code> property denotes items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>select_one</code> item. To conditionally show or hide <code>select_one</code> items, apply the <code>when</code> property to the <code>select_one</code> item itself.</li></ul><WhenNote/></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -580,7 +582,7 @@ The `password` type is a text field that hides the character input.
     - name: password_text
       title: Password Text
       type: password
-      value: "{{repl RandomString 10}}"
+      value: '{{repl RandomString 10}}'
 ```
 
 ![Password text field on the configuration screen](../../static/images/config-screen-password.png)
