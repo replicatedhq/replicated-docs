@@ -33,7 +33,7 @@ For information about how to map values from the HelmChart custom resource to He
 
 During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
 
-For the Config custom resource, KOTS templates each item separately. This means that variables or generated values such as [RandomString](/reference/template-functions-static-context#randomstring) cannot be referenced across different items because they are evaluated separately for each item. For information about the Config custom resource, see [Config](/reference/custom-resource-config).
+For the Config custom resource, KOTS templates each item separately. For information about the Config custom resource, see [Config](/reference/custom-resource-config).
 
 ## Syntax {#syntax}
 
@@ -43,28 +43,48 @@ The KOTS template function syntax supports the following functionally equivalent
 
 ### `repl{{ ... }}` {#syntax-integer}
 
-This syntax renders string, boolean, or integer values and can be used at the beginning, middle, or end of a value in YAML. This syntax _cannot_ be wrapped in quotes because any quotation marks are stripped during rendering.
+This syntax is recommended for most use cases.
 
-For example:
+Any quotation marks wrapped around this syntax are stripped during rendering. If you need the rendered value to be quoted, you can pipe into quote (`| quote`) or use the [`{{repl ... }}`](#syntax-string) syntax instead.
+
+#### Integer Example
 
 ```yaml
-replicas: repl{{ ConfigOption "replicas" }}
+http:
+  port: repl{{ ConfigOption "load_balancer_port" }}
 ```
-The template function above renders an integer:
+```yaml
+http:
+  port: 8888
+```  
+
+#### Example with `| quote`
 
 ```yaml
-replicas: 5
+customTag: repl{{ ConfigOption "tag" | quote }}
+```
+```yaml
+customTag: 'key: value'
+```
+
+#### If-Else Example
+
+```yaml
+http:
+  port: repl{{ if ConfigOptionEquals "ingress_type" "load_balancer" }}repl{{ ConfigOption "load_balancer_port" }}repl{{ else }}8081repl{{ end }}
+```
+```yaml
+http:
+  port: 8081
 ```
 
 For more examples, see [Template Function Examples](/reference/template-functions-examples).
 
 ### `{{repl ... }}` {#syntax-string}
 
-This syntax renders string, boolean, or integer values and can be used at the middle or end of a value in YAML.
+This syntax can be useful when having the delimiters outside the template function improves readability of the YAML, such as in multi-line statements or if-else statements.
 
-This syntax supports being wrapped in quotes, if you need the rendered result of the template function to be quoted. When wrapped in quotes, this syntax returns string values only.
-
-To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character.
+To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
 
 #### Example Without Quotes
 
@@ -73,22 +93,31 @@ links:
   - description: "Click Me"
     url: https://{{repl ConfigOption "hostname"}}:{{repl ConfigOption "port"}}
 ```
+```yaml
+links:
+  - description: "Click Me"
+    url: https://example.com:8888
+```
 
 #### Example With Quotes
 
 The following example is wrapped in quotes because it is used at the beginning of a statement in YAML:
 
 ```yaml
-env:
-  - name: MAX_CONCURRENT_USERS
-    value: '{{repl LicenseFieldValue "max_concurrent_users"}}'
+customTag: '{{repl ConfigOption "tag" }}'
 ```
-The template function above renders a string:
-
 ```yaml
-env:
-  - name: MAX_CONCURRENT_USERS
-    value: '100'
+customTag: 'key: value'
+```
+
+#### If-Else Example
+```yaml
+my-service:
+  type: '{{repl if ConfigOptionEquals "ingress_type" "load_balancer" }}LoadBalancer{{repl else }}ClusterIP{{repl end }}'
+```
+```yaml
+my-service:
+  type: 'LoadBalancer'
 ```
 
 For more examples, see [Template Function Examples](/reference/template-functions-examples).
