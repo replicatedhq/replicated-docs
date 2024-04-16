@@ -1,6 +1,4 @@
-The `when` property in the Config custom resource denotes configuration groups or items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group or item is not displayed. It can be useful to conditionally show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application.
-
-Conditional statements in the `when` property can be used to evaluate the user's environment, license entitlements, and configuration choices. For example:
+It can be useful to conditionally show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application. Conditional statements in the `when` property can be used to evaluate the user's environment, license entitlements, and configuration choices. For example:
 * The Kubernetes distribution of the cluster
 * If the license includes a specific feature entitlement
 * The number of users that the license permits

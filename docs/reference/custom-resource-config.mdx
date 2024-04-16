@@ -13,6 +13,8 @@ import WhenExample from "../partials/config/_whenExample.mdx"
 import AffixExample from "../partials/config/_affixExample.mdx" 
 import HelpTextExample from "../partials/config/_helpTextExample.mdx"
 import RegexValidationExample from "../partials/config/_regexValidationExample.mdx"
+import WhenRequirements from "../partials/config/_when-requirements.mdx"
+import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
@@ -129,21 +131,17 @@ spec:
 
 ### `when`
 
+The `when` property denotes groups that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+
 <PropertyWhen/>
 
-For examples of configuring the `when` property, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional).
+:::note
+`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item) below.
+:::
 
 #### Requirements and Limitations
 
-`when` has the following requirements and limitations:
-* The `when` property accepts the following types of values:
-   * Booleans
-   * Strings that match "true", "True", "false", or "False"
-
-   [KOTS template functions](/reference/template-functions-about) can be used to render these supported value types.
-* For the `when` property to evaluate to true, the values compared in the conditional statement must match exactly without quotes  
-* `when` can be used only as a property of a group or item
-* `when` is _not_ an item type and cannot be used as a standalone item, including as an option under `select_one` items
+<WhenRequirements/>
 
 #### Example
 
@@ -190,7 +188,7 @@ spec:
 ![Only the first and third groups appear on the config screen](/images/config-screen-group-when-false.png)
 [View a larger version of this image](/images/config-screen-group-when-false.png)
 
-For additional examples of configuring the `when` property, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional).
+For additional examples, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional).
 
 ### `items`
 
@@ -461,7 +459,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>when</code> property denotes configuration groups or items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. <code>when</code> is a property of both groups and items. For more information about the <code>when</code> property, including requirements and limitations, see <a href="/reference/custom-resource-config#when">Group Properties > `when`</a> above.</p></td>
+    <td><p>The <code>when</code> property denotes items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><WhenRequirements/><WhenNote/></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -470,8 +468,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Example</th>
     <td>
-      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p>
-      <WhenExample/>
+      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p><p>For additional examples, see <a href="/vendor/config-screen-conditional">Using Conditional Statements in Configuration Fields</a>.</p>
     </td>
   </tr>
   <tr>
