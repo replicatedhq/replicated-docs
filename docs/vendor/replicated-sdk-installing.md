@@ -14,11 +14,11 @@ It includes information about how to install the SDK alongside Helm chart- or st
 
 ## Install the SDK as a Subchart
 
-When included as a dependency of your application Helm chart, the SDK is installed as a subchart alongside the application. The SDK can be installed as a subchart using the Helm CLI or Replicated KOTS.
+When included as a dependency of your application Helm chart, the SDK is installed as a subchart alongside the application.
 
 To install the SDK as a subchart:
 
-1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one Helm chart.
+1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
 
      <DependencyYaml/>
 
