@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 16, 2024
 
 ### New Features {#new-features-v2024-04-16-1}
-* CMX: Added support for Postgres as an addon for EKS clusters.
+* Adds support for Postgres as an addon for EKS clusters in compatibility matrix.
 
 ## v2024.04.11-2
 
