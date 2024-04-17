@@ -466,9 +466,16 @@ const sidebars = {
       'vendor/private-images-about',
       'vendor/packaging-private-images',
       'vendor/helm-image-registry',
+      'vendor/private-images-kots',
       'vendor/private-images-tags-digests',
-      'vendor/private-images-replicated',
-      'vendor/packaging-private-registry-security',
+      {
+        type: 'category',
+        label: 'Replicated Private Registry',
+        items: [
+          'vendor/private-images-replicated',
+          'vendor/packaging-private-registry-security',
+        ],
+      },
       'vendor/tutorial-ecr-private-images',
     ],
   },
