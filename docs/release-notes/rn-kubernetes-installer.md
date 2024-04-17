@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.16-0
+
+Released on April 16, 2024
+
+### New Features {#new-features-v2024-04-16-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.6.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.10.0-6.2.0.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.28.3.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-04-06T05-26-02Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.73.1-58.1.1.
+
 ## v2024.02.23-0
 
 Released on February 23, 2024
