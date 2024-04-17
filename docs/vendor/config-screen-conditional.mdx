@@ -24,7 +24,7 @@ For additional examples of using conditional statements in the Config custom res
 
 It can be useful to show or hide configuration fields depending on the distribution of the cluster because different distributions often have unique requirements.
 
-In the following example, the when properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the when property evaluates to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+In the following example, the `when` properties use the [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the `when` property evaluates to true.
 
 <DistroCheck/>
 

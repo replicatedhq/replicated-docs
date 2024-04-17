@@ -362,7 +362,7 @@ customTag: 'key: value'
 
 ## Variables Example
 
-This section includes an example of using variables with KOTS template functions.
+This section includes an example of using variables with KOTS template functions. For more information, see [Variables](https://pkg.go.dev/text/template#hdr-Variables) in the Go documentation.
 
 ### Using Variables to Generate TLS Certificates in JSON
 
@@ -371,6 +371,12 @@ You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) a
 The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and KOTS template functions to provide the necessary parameters when calling these functions.
 
 The following example shows how to use variables and KOTS template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the KOTS Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
+
+This example uses the following:
+* KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to render the user-supplied value for the ingress hostname. This is passed as a parameter to the [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions 
+* Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions to generate a CA and a certificate signed by the CA
+* Sprig [dict](https://masterminds.github.io/sprig/dicts.html), [set](https://masterminds.github.io/sprig/dicts.html), and [dig](https://masterminds.github.io/sprig/dicts.html) dictionary functions to create a dictionary with entries for both the CA and the certificate, then traverse the dictionary to return the values of the CA, certificate, and key.
+* [toJson](https://masterminds.github.io/sprig/defaults.html) and [fromJson](https://masterminds.github.io/sprig/defaults.html) Sprig functions to encode the CA and certificate into a JSON string, then decode the JSON for the purpose of displaying the values on the **Config** page as defaults
 
 :::important
 Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Before using this example with your application, be sure that your application can handle updating these parameters dynamically.
