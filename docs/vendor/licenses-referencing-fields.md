@@ -1,6 +1,6 @@
-# Checking Entitlements with KOTS Template Functions
+# Querying Entitlements in Preflights with KOTS Template Functions
 
-This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context. This topic applies to all applications installed with KOTS.
+This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
 ## Overview
 

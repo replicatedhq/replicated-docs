@@ -167,11 +167,17 @@ const sidebars = {
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
-        'vendor/licenses-reference-sdk',
-        'vendor/licenses-reference-helm',
-        'vendor/licenses-referencing-fields',
-        'vendor/licenses-reference-kots-runtime',
-        'vendor/licenses-verify-fields-sdk-api',
+        {
+          type: 'category',
+          label: 'Querying License Entitlements',
+          items: [
+            'vendor/licenses-reference-sdk',
+            'vendor/licenses-reference-helm',
+            'vendor/licenses-referencing-fields',
+            'vendor/licenses-reference-kots-runtime',
+            'vendor/licenses-verify-fields-sdk-api',
+          ]
+        },
       ],
     },
     {

@@ -1,6 +1,6 @@
-# Checking Entitlements with the Replicated SDK API (Beta)
+# Querying Entitlements with the Replicated SDK API (Beta)
 
-This topic describes how to check entitlement information from customer licenses using the Replicated SDK.
+This topic describes how to query license entitlements during runtime using the Replicated SDK in-cluster API. The information in this topic applies to applications installed with Replicated KOTS or Helm.
 
 ## Overview
 
@@ -13,9 +13,15 @@ After the Replicated SDK is initialized and running in a customer environment, y
 
 For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
-## Check Entitlements at Runtime {#runtime}
+## Prerequisite
 
-To use the SDK API to check entitlements at runtime:
+Add the Replicated SDK to your application:
+* For Helm-based application, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_
+* For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Standard Manifest-Based Application](/vendor/replicated-sdk-installing#install-the-sdk-alongside-a-standard-manifest-based-application) in _Installing the Replicated SDK_
+
+## Query License Entitlements at Runtime {#runtime}
+
+To use the SDK API to query entitlements at runtime:
 
 1. Create or edit a customer to use for testing:
 
