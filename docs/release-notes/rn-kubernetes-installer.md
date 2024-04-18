@@ -20,6 +20,33 @@ Released on April 16, 2024
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-04-06T05-26-02Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.73.1-58.1.1.
 
+## v2024.04.11-0
+
+Released on April 11, 2024
+
+### Bug Fixes {#new-features-v2024-04-11-0}
+* Fixes an issue where dependencies for the 'fio' package caused Amazon Linux 2 to become CentOS 7.
+
+## v2024.04.03-1
+
+Released on April 3, 2024
+
+### New Features {#new-features-v2024-04-03-1}
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.0.0.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.28.2.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.13.1.
+
+## v2024.04.03-0
+
+Released on April 3, 2024
+
+### New Features {#new-features-v2024-04-03-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.3 1.28.8 1.27.12 1.26.15.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.24.4.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-03-26T22-10-45Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.72.0-57.2.0.
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.4 to use haproxy:2.9.6.
+
 ## v2024.02.23-0
 
 Released on February 23, 2024
