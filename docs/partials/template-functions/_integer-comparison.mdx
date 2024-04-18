@@ -1,0 +1,47 @@
+The following example uses:
+* KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate the number of seats permitted by the license
+* Sprig [atoi](https://masterminds.github.io/sprig/conversion.html) function to convert the string values returned by LicenseFieldValue to integers
+* [Go binary comparison operators](https://pkg.go.dev/text/template#hdr-Functions) `gt`, `lt`, `ge`, and `le` to compare the integers
+
+```yaml
+# KOTS Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:  
+  - name: example_group
+    title: Example Config
+    items:
+    - name: small
+      title: Small (100 or Fewer Seats)
+      type: text
+      default: Default for small teams
+      # Use le and atoi functions to display this config item 
+      # only when the value of the numSeats entitlement is
+      # less than or equal to 100
+      when: repl{{ le (atoi (LicenseFieldValue "numSeats")) 100 }}
+    - name: medium
+      title: Medium (101-1000 Seats)
+      type: text
+      default: Default for medium teams
+      # Use ge, le, and atoi functions to display this config item 
+      # only when the value of the numSeats entitlement is
+      # greater than or equal to 101 and less than or equal to 1000
+      when: repl{{ (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}
+    - name: large
+      title: Large (More Than 1000 Seats)
+      type: text
+      default: Default for large teams
+      # Use gt and atoi functions to display this config item 
+      # only when the value of the numSeats entitlement is
+      # greater than 1000
+      when: repl{{ gt (atoi (LicenseFieldValue "numSeats")) 1000 }}
+```
+
+As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page and the `small` and `large` items are not displayed:
+
+<img alt="Config page displaying the Medium (101-1000 Seats) item" src="/images/config-example-numseats.png" width="550px"/>
+
+[View a larger version of this image](/images/config-example-numseats.png)

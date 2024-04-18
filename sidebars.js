@@ -440,6 +440,7 @@ const sidebars = {
         label: 'KOTS Template Functions',
         items: [
           'reference/template-functions-about',
+          'reference/template-functions-examples',
           'reference/template-functions-config-context',
           'reference/template-functions-identity-context',
           'reference/template-functions-kurl-context',

@@ -1,7 +1,4 @@
-import SyntaxStringExample from "../partials/template-functions-about/_syntax-string-example.mdx"
-import SyntaxString from "../partials/template-functions-about/_syntax-string.mdx"
-import SyntaxIntegerExample from "../partials/template-functions-about/_syntax-integer-example.mdx"
-import SyntaxInteger from "../partials/template-functions-about/_syntax-integer.mdx"
+import UseCases from "../partials/template-functions/_use-cases.mdx"
 
 # About Template Functions
 
@@ -9,17 +6,9 @@ This topic describes Replicated KOTS template functions, including information a
 
 ## Overview
 
-For standard Kubernetes manifests deployed with Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
+For Kubernetes manifest files for applications deployed by Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
 
-Common use cases for KOTS template functions include rendering values that are specific to the customer environment during installation or upgrade, such as:
-* Customer license field values
-* User-provided configuration values
-* Information about the customer environment, such the number of nodes or the Kubernetes version in the cluster where the application is installed
-
-KOTS template functions are also useful for rendering values that are not specific to the customer environment, such as:
-* Generating random strings
-* Performing mathematical operations
-* Converting a string to lowercase or uppercase  
+<UseCases/>
 
 All functionality of the Go templating language, including if statements, loops, and variables, is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
@@ -38,63 +27,87 @@ You can use KOTS template functions in any Kubernetes manifest files for applica
 
 KOTS template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by KOTS template functions to Helm chart values. This allows you to use KOTS template functions with Helm charts without making changes to those Helm charts.
 
-For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Manipulating Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ### Template Function Rendering
 
-During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process. For the Config custom resource, KOTS templates each array of items separately. For information about the syntax of items in the Config custom resource, see [items](/reference/custom-resource-config#items) in _Config_.
+During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
 
-Within valid YAML that is templated at the same time, you can use Go to assign a template function to a variable for the purpose of accessing the rendered value from another template function. For an example of using Go variables with KOTS template functions to generate and then access values, see [Example: Using Variables to Generate TLS Certificates and Keys](/reference/template-functions-config-context#tls-cert-example).
+For the [Config](/reference/custom-resource-config) custom resource, KOTS templates each item separately so that config items can be used in templates for other items. For examples of this, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional) and [Template Function Examples](/reference/template-functions-examples).
 
 ## Syntax {#syntax}
 
-You can include KOTS template functions in manifest files as strings, using the syntax described in this section.
-
 The KOTS template function syntax supports the following functionally equivalent delimiters:
-* [`'{{repl ... }}'`](#syntax-string): This syntax includes quotation marks to be valid YAML and renders a string value.
-* [`repl{{ ... }}`](#syntax-integer): This syntax renders an integer value.
-
-### `'{{repl ... }}'` {#syntax-string}
-
-<table>
-  <tr>
-    <th>Syntax</th>
-    <td><SyntaxString/></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>This syntax is wrapped in quotes because <code>&#123;&#123;</code> is not a valid beginning for a string in YAML.
-      To use a template function with this syntax as a value in a YAML file, you must wrap it in quotation marks.</p>
-      <p>This syntax renders string values. Do not use this syntax if the Kubernetes API field requires an integer value.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><SyntaxStringExample/>
-    </td>
-  </tr>
-</table>
+* [`repl{{ ... }}`](#syntax-integer)
+* [`{{repl ... }}`](#syntax-string)
 
 ### `repl{{ ... }}` {#syntax-integer}
 
-<table>
-  <tr>
-    <th>Syntax</th>
-    <td><SyntaxInteger/></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td><p>This syntax uses the delimiter after <code>repl</code>, and does not require quotation marks.
-    Use this syntax to render integer values.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><SyntaxIntegerExample/>
-    </td>
-  </tr>
-</table>
+This syntax is recommended for most use cases.
 
+Any quotation marks wrapped around this syntax are stripped during rendering. If you need the rendered value to be quoted, you can pipe into quote (`| quote`) or use the [`{{repl ... }}`](#syntax-string) syntax instead.
+
+#### Integer Example
+
+```yaml
+http:
+  port: repl{{ ConfigOption "load_balancer_port" }}
+```
+```yaml
+http:
+  port: 8888
+```  
+
+#### Example with `| quote`
+
+```yaml
+customTag: repl{{ ConfigOption "tag" | quote }}
+```
+```yaml
+customTag: 'key: value'
+```
+
+#### If-Else Example
+
+```yaml
+http:
+  port: repl{{ if ConfigOptionEquals "ingress_type" "load_balancer" }}repl{{ ConfigOption "load_balancer_port" }}repl{{ else }}8081repl{{ end }}
+```
+```yaml
+http:
+  port: 8081
+```
+
+For more examples, see [Template Function Examples](/reference/template-functions-examples).
+
+### `{{repl ... }}` {#syntax-string}
+
+This syntax can be useful when having the delimiters outside the template function improves readability of the YAML, such as in multi-line statements or if-else statements.
+
+To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
+
+#### Example With Quotes
+
+The following example is wrapped in quotes because it is used at the beginning of a statement in YAML:
+
+```yaml
+customTag: '{{repl ConfigOption "tag" }}'
+```
+```yaml
+customTag: 'key: value'
+```
+
+#### If-Else Example
+```yaml
+my-service:
+  type: '{{repl if ConfigOptionEquals "ingress_type" "load_balancer" }}LoadBalancer{{repl else }}ClusterIP{{repl end }}'
+```
+```yaml
+my-service:
+  type: 'LoadBalancer'
+```
+
+For more examples, see [Template Function Examples](/reference/template-functions-examples).
 
 ## Contexts {#contexts}
 

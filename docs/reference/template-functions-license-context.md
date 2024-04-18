@@ -53,8 +53,6 @@ data:
 
 ## Sequence
 
-> Sequence was introduced in KOTS v1.20.0.
-
 ```go
 func Sequence() int64
 ```
@@ -66,8 +64,6 @@ This will start at 0 for each installation, and increase with every app update, 
 ```
 
 ## Cursor
-
-> Cursor was introduced in KOTS v1.20.0.
 
 ```go
 func Cursor() string
@@ -81,8 +77,6 @@ For instance, if 5 releases have been promoted to the channel that the app is ru
 
 ## ChannelName
 
-> ChannelName was introduced in KOTS v1.20.0.
-
 ```go
 func ChannelName() string
 ```
@@ -93,8 +87,6 @@ ChannelName is the name of the deployed channel of the app.
 ```
 
 ## VersionLabel
-
-> VersionLabel was introduced in KOTS v1.20.0.
 
 ```go
 func VersionLabel() string
@@ -107,8 +99,6 @@ VersionLabel is the semantic version of the app, as specified when promoting a r
 
 ## ReleaseNotes
 
-> ReleaseNotes was introduced in KOTS v1.20.0.
-
 ```go
 func ReleaseNotes() string
 ```
@@ -119,8 +109,6 @@ ReleaseNotes is the release notes of the current version of the app.
 ```
 
 ## IsAirgap
-
-> IsAirgap was introduced in KOTS v1.20.0.
 
 ```go
 func IsAirgap() bool
