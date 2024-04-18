@@ -1,0 +1,103 @@
+import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
+import PlaceholderAirgapBundle from "../partials/install/_placeholder-airgap-bundle.mdx"
+import InstallKotsCli from "../partials/install/_install-kots-cli.mdx"
+import DownloadKotsBundle from "../partials/install/_download-kotsadm-bundle.mdx"
+import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
+import InstallKotsAirgap from "../partials/install/_install-kotsadm-airgap.mdx"
+import DownloadkURLBundle from "../partials/install/_download-kurl-bundle.mdx"
+import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
+
+# Quick Install
+
+This topic provides basic installation steps for installing applications with Replicated KOTS in different types of environments. For complete KOTS installation requirements, see [Installation Requirements](installing-general-requirements).
+
+## Existing Cluster
+
+To install in an existing cluster:
+
+1. Install the kots CLI and the KOTS admin console:
+
+    ```shell
+    curl https://kots.io/install | bash
+    kubectl kots install APP_SLUG
+    ``` 
+    Where `APP_SLUG` is the unique slug for the application.
+
+1. Follow the prompts in the CLI output to enter the target installation namespace and set a password for the admin console.
+
+1. Go to the URL provided in the CLI output to log in to the admin console with the password you created.
+
+1. Follow the instructions in the admin console to upload your license, configure the application, run preflight checks, and install.
+
+For complete instructions and prerequisites, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+
+## VM or Bare Metal Server (kURL)
+
+You can use Replicated kURL to provision a cluster and install an application on a VM or bare metal server.
+
+To install in an embedded kURL cluster on a VM or bare metal server:
+
+1. Create the kURL cluster and install the KOTS admin console in the cluster:
+
+   ```
+   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+   ```
+   Where `APP_SLUG` is the unique slug for the application.
+   :::note
+   This command takes five to 10 minutes.
+   :::
+
+1. Use the URL and password provided in the CLI output to log in to the admin console.
+
+1. Follow the instructions in the admin console to upload your license, configure the application, run preflight checks, and install.
+
+For complete instructions and prerequisites, see [Online Installation with kURL](/enterprise/installing-embedded-cluster)
+
+## Air Gap
+
+This section includes installation steps for _air gap_ environments without outbound internet access.
+
+### Existing Cluster
+
+To install in an air gap existing cluster:
+
+1. <InstallKotsCli/>
+
+1. <DownloadKotsBundle/>
+
+1. <PushKotsImages/>
+
+1. <InstallKotsAirgap/>
+
+1. Follow the prompts in the CLI output to enter the target installation namespace and set a password for the admin console.
+
+1. Go to the URL provided in the CLI output to log in to the admin console with the password you created.
+
+1. Follow the instructions in the admin console to upload your license and the application `.airgap` bundle, configure the application, run preflight checks, and install.
+
+For complete instructions and prerequisites, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgap).
+
+### VM or Bare Metal Server (kURL)
+
+To install in an air gap embedded kURL cluster on a VM or bare metal server:
+
+1. Download the kURL `.tar.gz` air gap bundle:
+
+   <DownloadkURLBundle/>
+
+1. <ExtractKurlBundle/>
+
+1. Create the kURL cluster and install the KOTS admin console in the cluster:
+
+   ```
+   cat install.sh | sudo bash -s airgap
+   ```
+   :::note
+   This command takes five to 10 minutes.
+   :::
+
+1. Use the URL and password provided in the CLI output to log in to the admin console.
+
+1. Follow the instructions in the admin console to upload your license and the application `.airgap` bundle, configure the application, run preflight checks, and install.
+
+For complete instructions and prerequisites, see [Air Gap Installation with kURL](/enterprise/installing-embedded-airgapped)

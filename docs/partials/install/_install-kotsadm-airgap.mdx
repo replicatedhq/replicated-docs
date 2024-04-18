@@ -1,0 +1,21 @@
+Install the KOTS admin console using the images that you pushed in the previous step:
+
+   ```shell
+   kubectl kots install APP_SLUG \
+     --kotsadm-registry REGISTRY_HOST \
+     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --registry-username RO-USERNAME \
+     --registry-password RO-PASSWORD
+   ```
+
+   Replace:
+
+    * `APP_SLUG` with the unique application slug.
+    * `REGISTRY_HOST` with the hostname for the private registry where you pushed the admin console images.
+    * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
+    * `RO_USERNAME` and `RO_PASSWORD` with the username and password for an account that has read-only access to the private image registry.
+      :::note
+      KOTS stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
+
+      KOTS uses these credentials to pull the images. To allow KOTS to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
+      :::

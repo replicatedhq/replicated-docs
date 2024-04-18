@@ -6,17 +6,15 @@ import PlaceholderNamespaceExisting from "../partials/install/_placeholder-names
 import IntroExisting from "../partials/install/_automation-intro-existing.mdx"
 import IntroEmbedded from "../partials/install/_automation-intro-embedded.mdx"
 
-# Installing with Automation
+# Installing with the CLI
 
-This topic describes using the Replicated kots CLI to automate the installation of an application in online and air gap clusters.
+This topic describes how to use the Replicated kots CLI to install an application rather than using the Replicated KOTS admin console UI.
 
-## About Installing with Automation
+## Overview
 
-You can use the kots CLI `kots install` command to automate the installation of an application. Automated installations with the kots CLI are supported for existing clusters and for clusters that were created with Replicated kURL.
+You can use the kots CLI to install an application rather than using the KOTS admin console UI. In a CLI installation, you provide all the necessary artifacts to configure and install the application with the `kots install` command. For example, rather than uploading your license file in the admin console, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the admin console.
 
-In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the KOTS admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the admin console.
-
-The following shows an example of output from the `kots install` command for an automated installation:
+The following shows an example of the output from the `kots install` command:
 
 ```
 • Deploying Admin Console
@@ -32,135 +30,185 @@ The following shows an example of output from the `kots install` command for an 
 • Go to http://localhost:8888 to access the application
 ```
 
-For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+One common use case for installing with the CLI is to automate installation, such as installing applications as part of CI/CD pipelines. CLI installations are supported for _online_ environments (with outbound internet access), _air gap_ environments (without outbound internet access), existing clusters, and clusters created with Replicated kURL on a VM or bare metal server.
+
+For more information about the advanced options for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
 For a tutorial that demonstrates how to install a sample application using the kots CLI, see [KOTS Tutorial (CLI)](/vendor/tutorial-cli-setup).
 
-## Prerequisites
+## Prerequisite
 
-Before you install an application with the kots CLI, you must complete the following prerequisites:
+Create a ConfigValues manifest file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment.
 
-* Create a ConfigValues manifest file to define your configuration preferences for the application. Ensure that you can access the ConfigValues file that you create from your installation environment.
+**Example:**
 
-  **Example:**
+<ConfigValuesExample/>
 
-  <ConfigValuesExample/>
+As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field.
 
-  As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field.
-
-  Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file.
-  
-* (Existing Clusters Only) Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
-
-* (Existing Clusters Only) Complete the prerequisites for your environment: 
-  * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
-  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Installation in Existing Clusters_. 
-
-* (kURL Clusters Only) This topic assumes that you have already run the kURL installation script on your VM or bare metal server to provision a cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
-
-  For information about how to provision a cluster with the kURL installer, see the following:
-
-    * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) and [Provision the Embedded Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with kURL_.
-    * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) and [Provision the Embedded Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with kURL_.
+The ConfigValues file is specific to the application. For more information, see [Sharing a ConfigValues File](/vendor/releases-configvalues).
    
-## Installation Commands
+## Install with the CLI
 
-This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded kURL cluster. It includes commands for both _online_ environments (with outbound internet access) and _air gap_ environments (without outbound internet access).
+This section provides the steps for installing an application with the kots CLI in different types of environments.
 
 ### Online Existing Cluster
 
 <IntroExisting/>
 
-The following is the kots CLI command for installing an application in an existing cluster that has access to the internet:
+To install in an online existing cluster:
 
-```bash 
-kubectl kots install APP_NAME \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE \
-  --config-values PATH_TO_CONFIGVALUES \
-  --namespace NAMESPACE \
-  --no-port-forward
-```
-Replace:
+1. Install the kots CLI:
 
-<PlaceholdersGlobal/>
+   ```
+   curl https://kots.io/install | bash
+   ```
 
-<PlaceholderNamespaceExisting/>
+   For more installation options, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-### Online Embedded kURL Cluster
+1. Install the application:
+
+    ```bash 
+    kubectl kots install APP_NAME \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE \
+      --config-values PATH_TO_CONFIGVALUES \
+      --namespace NAMESPACE \
+      --no-port-forward
+    ```
+    Replace:
+
+    <PlaceholdersGlobal/>
+
+    <PlaceholderNamespaceExisting/>
+
+### Online kURL Cluster
 
 <IntroEmbedded/>
 
-The following is the kots CLI command for installing an application in an embedded cluster that has access to the internet:
+To install in an online kURL cluster on a VM or bare metal server:
 
-```bash
-kubectl kots install APP_NAME \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE \
-  --config-values PATH_TO_CONFIGVALUES \
-  --namespace default \
-  --no-port-forward
-```
+1. Create the kURL cluster:
 
-Replace:
+   ```
+   curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
+   ```
 
-<PlaceholdersGlobal/>
+1. Install the application in the cluster:
+
+    ```bash
+    kubectl kots install APP_NAME \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE \
+      --config-values PATH_TO_CONFIGVALUES \
+      --namespace default \
+      --no-port-forward
+    ```
+
+    Replace:
+
+    <PlaceholdersGlobal/>
 
 ### Air Gap Existing Cluster 
 
 <IntroExisting/>
 
-The following is the kots CLI command for installing an application in an existing cluster that does not have access to the internet:
+To install in an air gap existing cluster:
 
-```bash
-kubectl kots install APP_NAME \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE \
-  --config-values PATH_TO_CONFIGVALUES \
-  --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-  --namespace NAMESPACE \
-  --kotsadm-registry REGISTRY_HOST \
-  --kotsadm-namespace REGISTRY_NAMESPACE \
-  --registry-username READ_WRITE_USERNAME \
-  --registry-password READ_WRITE_PASSWORD \
-  --no-port-forward
-```
+1. Install the kots CLI:
 
-Replace:
+   ```
+   curl https://kots.io/install | bash
+   ```
 
-<PlaceholdersGlobal/>
+   For more installation options, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-<PlaceholderAirgapBundle/>
+1. Extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 
-<PlaceholderNamespaceExisting/>
+    ```
+    kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_HOST \
+      --registry-username RW_USERNAME \
+      --registry-password RW_PASSWORD
+    ```
 
-* `REGISTRY_HOST` with the hostname for the private registry where you pushed the images. For example, `private.registry.host`.
+    Replace:
 
-* `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
+    * `REGISTRY_HOST` with the hostname for the private registry. For example, private.registry.host.
 
-* `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private registry where you pushed the images.
+    * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
-### Air Gap Embedded kURL Cluster
+    * `RW_PASSWORD` with the password for the account with read and write access.
+
+       :::note
+       KOTS does not store or reuse these credentials.
+       :::
+
+1. Install the application:
+
+      ```bash
+      kubectl kots install APP_NAME \
+        --shared-password PASSWORD \
+        --license-file PATH_TO_LICENSE \
+        --config-values PATH_TO_CONFIGVALUES \
+        --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+        --namespace NAMESPACE \
+        --kotsadm-registry REGISTRY_HOST \
+        --kotsadm-namespace REGISTRY_NAMESPACE \
+        --registry-username READ_WRITE_USERNAME \
+        --registry-password READ_WRITE_PASSWORD \
+        --no-port-forward
+      ```
+
+      Replace:
+
+      <PlaceholdersGlobal/>
+
+      <PlaceholderAirgapBundle/>
+
+      <PlaceholderNamespaceExisting/>
+
+      * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images. For example, `private.registry.host`.
+
+      * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
+
+      * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private registry where you pushed the images.
+
+### Air Gap kURL Cluster
 
 <IntroEmbedded/>
 
-The following is the kots CLI command for installing an application in an embedded kURL cluster that does not have access to the internet:
+To install in an online kURL cluster on a VM or bare metal server:
 
-```bash
-kubectl kots install APP_NAME \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE \
-  --config-values PATH_TO_CONFIGVALUES \
-  --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-  --namespace default \
-  --no-port-forward
-```
+1. Extract the contents of the kURL `.tar.gz` bundle:
 
-Replace:
+    ```
+    tar -xvzf FILENAME.tar.gz
+    ```
+    Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
 
-<PlaceholdersGlobal/>
+1. Create the kURL cluster:
 
-<PlaceholderAirgapBundle/>
+   ```
+   cat install.sh | sudo bash -s airgap
+   ```
+
+1. Install the application:
+
+    ```bash
+    kubectl kots install APP_NAME \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE \
+      --config-values PATH_TO_CONFIGVALUES \
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+      --namespace default \
+      --no-port-forward
+    ```
+
+    Replace:
+
+    <PlaceholdersGlobal/>
+
+    <PlaceholderAirgapBundle/>
 
 ## (Optional) Access the Admin Console
 

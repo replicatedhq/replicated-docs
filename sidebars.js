@@ -320,9 +320,16 @@ const sidebars = {
             type: 'category',
             label: 'Installing',
             items: [
-              'enterprise/installing-overview',
-              'enterprise/installing-general-requirements',
-              'enterprise/sbom-validating',
+              'enterprise/installing-quick',
+              {
+                type: 'category',
+                label: 'Preparing to Install',
+                items: [
+                  'enterprise/installing-overview',
+                  'enterprise/installing-general-requirements',
+                  'enterprise/sbom-validating',
+                ],
+              },
               {
                 type: 'category',
                 label: 'Installing in Existing Clusters',
