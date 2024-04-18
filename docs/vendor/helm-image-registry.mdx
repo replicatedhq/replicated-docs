@@ -1,3 +1,6 @@
+import StepCreds from "../partials/proxy-service/_step-creds.mdx"
+import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
+
 # Using the Proxy Service with Helm Installations
 
 This topic describes how to use the Replicated proxy service to proxy images for installations with the Helm CLI. For more information about the proxy service, see [About Proxying Images with Replicated](private-images-about).
@@ -12,13 +15,13 @@ For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` S
 
 ## Enable the Proxy Service
 
-This section describes how to enable the proxy service for applications deployed with Helm, including how to use the use the `global.replicated.dockerconfigjson` field that is injected during application deployment to create the required pull secret.
+This section describes how to enable the proxy service for applications deployed with Helm, including how to use the `global.replicated.dockerconfigjson` field that is injected during application deployment to create the required pull secret.
 
 To enable the proxy service:
 
-1. Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
+1. <StepCreds/>
 
-1. (Optional) Add a custom domain for the proxy service instead of `proxy.replicated.com`. See [Using Custom Domains](custom-domains-using).
+1. <StepCustomDomain/>
 
 1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set, and then write the rendered value into a Secret on the cluster:
 

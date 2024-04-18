@@ -1,4 +1,6 @@
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
+import StepCreds from "../partials/proxy-service/_step-creds.mdx"
+import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 
 # Using the Proxy Service with KOTS Installations
 
@@ -52,9 +54,9 @@ This section describes how to enable the proxy service for applications deployed
 
 To enable the proxy service:
 
-1. Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
+1. <StepCreds/>
 
-1. (Optional) Add a custom domain for the proxy service instead of `proxy.replicated.com`. See [Using Custom Domains](custom-domains-using).
+1. <StepCustomDomain/>
 
 1. Rewrite images names to the location of the image at `proxy.replicated.com` or your custom domain. Also, ensure that the correct image pull secret is provided for all private images. The steps required to configure image names and add the image pull secret vary depending on your application type:
 
@@ -66,6 +68,6 @@ To enable the proxy service:
         <Deprecated/>
         :::
 
-    * **Pods Deployed to Additional Namespaces**: If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
-
     * **Kubernetes Operators**: For applications packaged with Kubernetes Operators, KOTS cannot modify pods that are created at runtime by the Operator. To support the use of private images in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created. For instructions, see [Referencing Images](/vendor/operator-referencing-images) in the _Packaging Kubernetes Operators_ section.
+
+1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
