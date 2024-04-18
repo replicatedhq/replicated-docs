@@ -8,12 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.04.16-1
 
 Released on April 16, 2024
 
 ### New Features {#new-features-v2024-04-16-1}
 * Adds support for Postgres as an addon for EKS clusters in compatibility matrix.
+
+## v2024.04.12-5
+
+Released on April 12, 2024
+
+### New Features {#new-features-v2024-04-12-5}
+* Adds the ability to expose NodePorts on VM clusters in compatibility matrix.
+* Adds the ability to attach new S3 buckets to EKS clusters in compatibility matrix.
 
 ## v2024.04.11-2
 
