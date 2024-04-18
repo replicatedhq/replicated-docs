@@ -464,9 +464,9 @@ const sidebars = {
     label: 'Proxying Private Images',
     items: [
       'vendor/private-images-about',
-      'vendor/packaging-private-images',
       'vendor/helm-image-registry',
       'vendor/private-images-kots',
+      'vendor/packaging-private-images',
       'vendor/private-images-tags-digests',
       {
         type: 'category',

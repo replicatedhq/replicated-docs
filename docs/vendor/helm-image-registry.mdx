@@ -6,18 +6,19 @@ This topic describes how to use the Replicated proxy service to proxy images for
 
 With the Replicated proxy service, each customer's unique license can grant proxy access to images in an external private registry. To enable the proxy service for Helm installations, you must create a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service.
 
-During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You use this `global.replicated.dockerconfigjson` field to create the required pull secret.
+During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the required pull secret.
 
 For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
-## Prerequisites
-
-* Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
-* (Optional) Add a custom domain for the proxy service instead of `proxy.replicated.com`. See [Using Custom Domains](custom-domains-using).
-
 ## Enable the Proxy Service
 
-To create an image pull secret to enable the proxy service for Helm installations:
+This section describes how to enable the proxy service for applications deployed with Helm.
+
+To enable the proxy service:
+
+1. Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
+
+1. (Optional) Add a custom domain for the proxy service instead of `proxy.replicated.com`. See [Using Custom Domains](custom-domains-using).
 
 1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set, and then write the rendered value into a Secret on the cluster:
 
