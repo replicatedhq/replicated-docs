@@ -19,9 +19,9 @@ To install in an existing cluster:
 
     ```shell
     curl https://kots.io/install | bash
-    kubectl kots install APP_SLUG
+    kubectl kots install APP_NAME
     ``` 
-    Where `APP_SLUG` is the unique slug for the application.
+    Where `APP_NAME` is a name for the application. This is the unique name that KOTS will use to refer to the application that you install.
 
 1. Follow the prompts in the CLI output to enter the target installation namespace and set a password for the admin console.
 
@@ -40,9 +40,9 @@ To install in an embedded kURL cluster on a VM or bare metal server:
 1. Create the kURL cluster and install the KOTS admin console in the cluster:
 
    ```
-   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+   curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
    ```
-   Where `APP_SLUG` is the unique slug for the application.
+   Where `APP_NAME` is a name for the application. This is the unique name that KOTS will use to refer to the application that you install.
    :::note
    This command takes five to 10 minutes.
    :::
