@@ -4,10 +4,7 @@ This topic explains how to support the use of private image registries for appli
 
 ## Overview
 
-Replicated KOTS is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
-For applications that are packaged as standard manifests (or that are packaged with Helm and deployed with the HelmChart v1 custom resource), KOTS also creates Kustomize patches to automatically rewrite image names and inject image pull secrets to all pods during deployment.
-
-For applications packaged with Kubernetes Operators, KOTS cannot modify pods that are created at runtime by the Operator. To support the use of private images in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
+To support the use of private images in all environments, the Kubernetes Operator code must use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
 
 There are several template functions available to assist with this.
 This might require two new environment variables to be added to a manager to read these values.
