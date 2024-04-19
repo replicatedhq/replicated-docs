@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.18-2
+
+Released on April 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-18-2}
+* Fixes styling on the 'Reset password' modal and 'Trial expired' modal on the **Login** page.
+* Fixes a stray '0' rendering under the "Latest Release" sections on the **Channels** page for Builders Plan users.
+
 
 ## v2024.04.16-1
 
