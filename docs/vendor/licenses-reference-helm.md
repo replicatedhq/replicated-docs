@@ -1,8 +1,8 @@
-# Querying Entitlements in Helm Charts Before Deployment
+# Checking Entitlements in Helm Charts Before Deployment
 
 This topic describes how to check license entitlements before a Helm chart is installed or upgraded. The information in this topic applies to Helm charts installed with Replicated KOTS or Helm.
 
-The Replicated SDK API can be used to check entitlements at runtime. For more information, see [Checking Entitlements with the Replicated SDK API](licenses-reference-sdk).
+The Replicated SDK API can be used to check entitlements at runtime. For more information, see [Querying Entitlements with the Replicated SDK API](licenses-reference-sdk).
 
 ## Overview
 

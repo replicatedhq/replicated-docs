@@ -267,7 +267,7 @@ This section provides a checklist of key Replicated features to integrate with y
       <p>Add checks for customer license entitlements before installation.</p>
       <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
     </td>
-    <td><a href="/vendor/licenses-reference-helm#before-install">Check Entitlements Before Installation</a></td>
+    <td><a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a></td>
   </tr>
   <tr>
   <td>Runtime license entitlement checks with the SDK API</td>
@@ -278,7 +278,7 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
     <td>
     <ul>
-      <li><a href="/vendor/licenses-reference-helm#runtime">Check Entitlements at Runtime</a></li>
+      <li><a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a></li>
       <li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
       <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
       </ul>
@@ -288,7 +288,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>License field signature validation</td>
     <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
     <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
-    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a></td>
+    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a></td>
   </tr>
   <tr>
     <td>Custom metrics with the SDK API</td>
