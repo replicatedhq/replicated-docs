@@ -22,7 +22,7 @@ The Replicated cluster object store add-on can be used to create S3 compatible o
 Assuming you already have a cluster, run the following command with the cluster ID to create an object store bucket:
 
 ```bash
-$ replicated cluster addon create object-store 4d2f7e70 --bucket mybucket
+$ replicated cluster addon create object-store 4d2f7e70 --bucket-prefix mybucket
 05929b24    Object Store    pending         {"bucket_prefix":"mybucket"}
 $ replicated cluster addon ls 4d2f7e70
 ID          TYPE            STATUS          DATA
@@ -50,7 +50,7 @@ Additional service accounts can be created in any namespace with access to the o
     <th>Options</th>
     <td>
       <ul>
-        <li><strong>bucket (string):</strong> A prefix for the bucket name to be created (required)</li>
+        <li><strong>bucket_prefix (string):</strong> A prefix for the bucket name to be created (required)</li>
       </ul>
     </td>
   </tr>
@@ -75,7 +75,6 @@ Additional service accounts can be created in any namespace with access to the o
     </td>
   </tr>
 </table>
-
 
 ### Postgres (Alpha)
 
