@@ -21,7 +21,7 @@ The following shows an example of a Base64 encoded PSS signature for an `expires
 }
 ```
 
-Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about how to check entitlements in your application for Helm CLI installations, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
+Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about how to check entitlements in your application for Helm CLI installations, see [Checking Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
 
 ## Requirement
 
