@@ -193,7 +193,7 @@ A common use case for the `LocalImageName` function is to ensure that a Kubernet
 
 * If there is no private registry configured in the customer's environment and the image does not need to be proxied, return `remoteImageName` without changes.
 
-For more information about the Replicated proxy service, see [How KOTS Accesses Images Through the Proxy Service](/vendor/private-images-about#how-kots) in _About Proxying Images with Replicated_.
+For more information about the Replicated proxy service, see [About the Proxy Service](/vendor/private-images-about#how-kots).
 
 ## LocalRegistryImagePullSecret
 

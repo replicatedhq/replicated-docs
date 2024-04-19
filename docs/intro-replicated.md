@@ -49,7 +49,7 @@ Release channels in the Replicated vendor platform allow ISVs to make different 
 
 For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
 
-Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About Proxying Image with Replicated](/vendor/private-images-about).
+Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Service](/vendor/private-images-about).
 
 ### License
 
