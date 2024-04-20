@@ -146,7 +146,7 @@ The Troubleshoot open source project includes several analyzers that you can inc
 
 To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
-### (KOTS Only) Block Installation with Required Preflights
+### (KOTS Only) Block Installation with Required Preflights {#strict}
 
 For applications installed with KOTS, you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release.
 
