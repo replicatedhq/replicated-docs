@@ -3,8 +3,12 @@ import PlaceholdersGlobal from "../partials/install/_placeholders-global.mdx"
 import PlaceholderAirgapBundle from "../partials/install/_placeholder-airgap-bundle.mdx"
 import PlaceholderNamespaceEmbedded from "../partials/install/_placeholder-namespace-embedded.mdx"
 import PlaceholderNamespaceExisting from "../partials/install/_placeholder-namespace-existing.mdx"
-import IntroExisting from "../partials/install/_automation-intro-existing.mdx"
 import IntroEmbedded from "../partials/install/_automation-intro-embedded.mdx"
+import DownloadKotsBundle from "../partials/install/_download-kotsadm-bundle.mdx"
+import DownloadkURLBundle from "../partials/install/_download-kurl-bundle.mdx"
+import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
+import InstallKotsCliAirGap from "../partials/install/_install-kots-cli-airgap.mdx"
+import InstallKotsCli from "../partials/install/_install-kots-cli.mdx"
 
 # Installing with the CLI
 
@@ -16,7 +20,7 @@ You can use the kots CLI to install an application rather than using the KOTS ad
 
 The following shows an example of the output from the `kots install` command:
 
-```
+```bash
 • Deploying Admin Console
  • Creating namespace ✓
  • Waiting for datastore to be ready ✓
@@ -52,19 +56,11 @@ The ConfigValues file is specific to the application. For more information, see 
 
 This section provides the steps for installing an application with the kots CLI in different types of environments.
 
-### Online Existing Cluster
+### Existing Cluster
 
-<IntroExisting/>
+To install in an existing cluster:
 
-To install in an online existing cluster:
-
-1. Install the kots CLI:
-
-   ```
-   curl https://kots.io/install | bash
-   ```
-
-   For more installation options, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+1. <InstallKotsCli/>
 
 1. Install the application:
 
@@ -82,11 +78,11 @@ To install in an online existing cluster:
 
     <PlaceholderNamespaceExisting/>
 
-### Online kURL Cluster
+### kURL Cluster
 
 <IntroEmbedded/>
 
-To install in an online kURL cluster on a VM or bare metal server:
+To install with kURL on a VM or bare metal server:
 
 1. Create the kURL cluster:
 
@@ -111,17 +107,17 @@ To install in an online kURL cluster on a VM or bare metal server:
 
 ### Air Gap Existing Cluster 
 
-<IntroExisting/>
+Air gap installations in existing clusters require the application `.airgap` bundle and the `kotsadm.tar.gz` air gap bundle. Additionally, the application and KOTS admin console images must be pushed a local private registry.
 
 To install in an air gap existing cluster:
 
-1. Install the kots CLI:
+1. Install the kots CLI. See [Manually Download and Install](/reference/kots-cli-getting-started#manually-download-and-install) in _Installing the kots CLI_.
 
-   ```
-   curl https://kots.io/install | bash
-   ```
+1. <DownloadKotsBundle/>
 
-   For more installation options, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+    :::note
+    The version of the `kotsadm.tar.gz` bundle must match the version of the kots CLI. You can check the version of the kots CLI with `kubectl kots version`.
+    :::
 
 1. Extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 
@@ -177,14 +173,17 @@ To install in an air gap existing cluster:
 
 <IntroEmbedded/>
 
-To install in an online kURL cluster on a VM or bare metal server:
+Air gap installations with kURL require the application `.airgap` bundle and the kURL `.tar.gz` air gap bundle.
 
-1. Extract the contents of the kURL `.tar.gz` bundle:
+To install in an air gap kURL cluster on a VM or bare metal server:
 
-    ```
-    tar -xvzf FILENAME.tar.gz
-    ```
-    Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
+1. Download the kURL `.tar.gz` air gap bundle:
+
+   <DownloadkURLBundle/>
+
+   For more information, see [Download the kURL Bundle](/vendor/releases-download-airgap-bundles#installer-bundle) in _Downloading Air Gap Bundles_.
+
+1. <ExtractKurlBundle/>
 
 1. Create the kURL cluster:
 
