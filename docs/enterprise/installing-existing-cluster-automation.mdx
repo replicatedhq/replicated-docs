@@ -9,6 +9,7 @@ import DownloadkURLBundle from "../partials/install/_download-kurl-bundle.mdx"
 import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
 import InstallKotsCliAirGap from "../partials/install/_install-kots-cli-airgap.mdx"
 import InstallKotsCli from "../partials/install/_install-kots-cli.mdx"
+import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
 
 # Installing with the CLI
 
@@ -121,25 +122,7 @@ To install in an air gap existing cluster:
     The version of the `kotsadm.tar.gz` bundle must match the version of the kots CLI. You can check the version of the kots CLI with `kubectl kots version`.
     :::
 
-1. Extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
-
-    ```
-    kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_HOST \
-      --registry-username RW_USERNAME \
-      --registry-password RW_PASSWORD
-    ```
-
-    Replace:
-
-    * `REGISTRY_HOST` with the hostname for the private registry. For example, private.registry.host.
-
-    * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
-
-    * `RW_PASSWORD` with the password for the account with read and write access.
-
-       :::note
-       KOTS does not store or reuse these credentials.
-       :::
+1. <PushKotsImages/>
 
 1. Install the application:
 
@@ -151,8 +134,8 @@ To install in an air gap existing cluster:
         --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
         --namespace NAMESPACE \
         --kotsadm-registry REGISTRY_HOST \
-        --registry-username READ_WRITE_USERNAME \
-        --registry-password READ_WRITE_PASSWORD \
+        --registry-username RO_USERNAME \
+        --registry-password RO_PASSWORD \
         --no-port-forward
       ```
 
@@ -166,7 +149,13 @@ To install in an air gap existing cluster:
       
       * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images.
       
-      * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials that have read write permissions to the private registry where you pushed the images.
+      * `RO_USERNAME` and `RO_PASSWORD` with the username and password for an account that has read-only access to the private image registry.
+
+         :::note
+         KOTS stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
+
+         KOTS uses these credentials to pull the images. To allow KOTS to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
+         :::
 
 ### Air Gap kURL Cluster
 
