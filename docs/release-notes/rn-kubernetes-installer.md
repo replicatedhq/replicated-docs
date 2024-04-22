@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.19-0
+
+Released on April 19, 2024
+
+### New Features {#new-features-v2024-04-19-0}
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.31.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.29.4 1.28.9 1.27.13 1.26.15.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.13.2.
+
 ## v2024.04.16-0
 
 Released on April 16, 2024
