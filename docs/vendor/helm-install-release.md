@@ -24,7 +24,7 @@ This procedure shows how to create a Helm chart archive to add to a release. For
 
 To package a Helm chart so that it can be added to a release:
 
-1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
 
     <DependencyYaml/>
     
