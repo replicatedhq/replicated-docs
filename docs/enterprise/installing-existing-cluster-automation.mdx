@@ -12,7 +12,7 @@ import InstallKotsCli from "../partials/install/_install-kots-cli.mdx"
 
 # Installing with the CLI
 
-This topic describes how to use the Replicated kots CLI to install an application rather than using the Replicated KOTS admin console UI.
+This topic describes how to use the Replicated kots CLI to install an application.
 
 ## Overview
 
@@ -42,7 +42,7 @@ For a tutorial that demonstrates how to install a sample application using the k
 
 ## Prerequisite
 
-Create a ConfigValues manifest file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment.
+Create a ConfigValues file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment.
 
 **Example:**
 
@@ -52,7 +52,7 @@ As shown in the example above, the ConfigValues file includes the names of the c
 
 The ConfigValues file is specific to the application. For more information, see [Sharing a ConfigValues File](/vendor/releases-configvalues).
    
-## Install with the CLI
+## Install
 
 This section provides the steps for installing an application with the kots CLI in different types of environments.
 
@@ -105,6 +105,8 @@ To install with kURL on a VM or bare metal server:
 
     <PlaceholdersGlobal/>
 
+    <PlaceholderNamespaceEmbedded/>
+
 ### Air Gap Existing Cluster 
 
 Air gap installations in existing clusters require the application `.airgap` bundle and the `kotsadm.tar.gz` air gap bundle. Additionally, the application and KOTS admin console images must be pushed a local private registry.
@@ -149,7 +151,6 @@ To install in an air gap existing cluster:
         --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
         --namespace NAMESPACE \
         --kotsadm-registry REGISTRY_HOST \
-        --kotsadm-namespace REGISTRY_NAMESPACE \
         --registry-username READ_WRITE_USERNAME \
         --registry-password READ_WRITE_PASSWORD \
         --no-port-forward
@@ -158,16 +159,14 @@ To install in an air gap existing cluster:
       Replace:
 
       <PlaceholdersGlobal/>
-
+      
       <PlaceholderAirgapBundle/>
-
+      
       <PlaceholderNamespaceExisting/>
-
-      * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images. For example, `private.registry.host`.
-
-      * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
-
-      * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private registry where you pushed the images.
+      
+      * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images.
+      
+      * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials that have read write permissions to the private registry where you pushed the images.
 
 ### Air Gap kURL Cluster
 
@@ -208,6 +207,8 @@ To install in an air gap kURL cluster on a VM or bare metal server:
     <PlaceholdersGlobal/>
 
     <PlaceholderAirgapBundle/>
+
+    <PlaceholderNamespaceEmbedded/>
 
 ## (Optional) Access the Admin Console
 

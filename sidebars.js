@@ -320,7 +320,6 @@ const sidebars = {
             type: 'category',
             label: 'Installing',
             items: [
-              'enterprise/installing-quick',
               {
                 type: 'category',
                 label: 'Preparing to Install',
