@@ -8,6 +8,68 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.18-2
+
+Released on April 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-18-2}
+* Fixes styling on the 'Reset password' modal and 'Trial expired' modal on the **Login** page.
+* Fixes a stray '0' rendering under the "Latest Release" sections on the **Channels** page for Builders Plan users.
+
+
+## v2024.04.16-1
+
+Released on April 16, 2024
+
+### New Features {#new-features-v2024-04-16-1}
+* Adds support for Postgres as an addon for EKS clusters in compatibility matrix.
+
+## v2024.04.12-5
+
+Released on April 12, 2024
+
+### New Features {#new-features-v2024-04-12-5}
+* Adds the ability to expose NodePorts on VM clusters in compatibility matrix.
+* Adds the ability to attach new S3 buckets to EKS clusters in compatibility matrix.
+
+## v2024.04.11-2
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-2}
+* Eliminates excessive page reloads on the **Support Bundle Analysis** page that would cause users to lose their place.
+
+## v2024.04.11-1
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-1}
+* Fix selected default instance type on Compatibility Matrix.
+
+## v2024.04.11-0
+
+Released on April 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-11-0}
+* Fixes an issue that prevented add-ons from multi-node compatibility matrix clusters from working properly.
+
+## v2024.04.10-0
+
+Released on April 10, 2024
+
+### New Features {#new-features-v2024-04-10-0}
+* Allows sev 1 and 2 support issues to be submitted for the Replicated host service, including the compatibility matrix and vendor portal.
+
+### Improvements {#improvements-v2024-04-10-0}
+* Highlights required fields that are not filled on the support issue form on the **Support** page.
+
+## v2024.04.09-2
+
+Released on April 9, 2024
+
+### New Features {#new-features-v2024-04-09-2}
+* Adds advanced cluster creation form for compatibility matrix.
+
 ## v2024.04.04-0
 
 Released on April 4, 2024

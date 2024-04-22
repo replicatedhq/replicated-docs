@@ -69,7 +69,7 @@ For information about how to add preflight checks to your application, including
 
 For applications installed with KOTS, it is possible to block the deployment of a release if a preflight check fails. This is helpful when it is necessary to prevent an installation or upgrade from continuing unless a given requirement is met.
 
-You can add required preflight checks for your application by including `strict: true` for the target analyzer in the preflight specification. For more information, see [(KOTS Only) Block Installation with Strict Analyzers](preflight-defining#kots-only-block-installation-with-strict-analyzers) in _Defining Preflight Checks_.
+You can add required preflight checks for your application by including `strict: true` for the target analyzer in the preflight specification. For more information, see [Block Installation with Required Preflights](preflight-defining#strict) in _Defining Preflight Checks_.
 
 ### Running Preflights
 

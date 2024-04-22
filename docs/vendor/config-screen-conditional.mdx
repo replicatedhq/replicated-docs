@@ -1,20 +1,18 @@
+import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
+import PropertyWhen from "../partials/config/_property-when.mdx"
+import DistroCheck from "../partials/template-functions/_string-comparison.mdx"
+
 # Using Conditional Statements in Configuration Fields
 
 This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
 
 ## Overview
 
-The `when` property in the Config custom resource denotes configuration items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. It can be useful to show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application.
+The `when` property in the Config custom resource denotes configuration groups or items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group or item is not displayed.
 
-You can conditionally show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, conditional statements in the `when` property can be used to evaluate:
-* The Kubernetes distribution of the cluster
-* If the license includes a specific feature entitlement
-* The number of users that the license permits
-* If the user chooses to bring their own external database, rather than using an embedded database offered with the application
+<PropertyWhen/>
 
 For more information about the Config custom resource `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
-
-You can construct conditional statements in the `when` property using KOTS template functions. KOTS template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about KOTS template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
 
 ## Conditional Statement Examples
 
@@ -26,40 +24,9 @@ For additional examples of using conditional statements in the Config custom res
 
 It can be useful to show or hide configuration fields depending on the distribution of the cluster because different distributions often have unique requirements.
 
-In the following example, the `when` properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the `when` property evaluates to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+In the following example, the `when` properties use the [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the `when` property evaluates to true.
 
-```yaml
-# Config custom resource
-apiVersion: kots.io/v1beta1
-kind: Config
-metadata:
-  name: config-sample
-spec:
-  groups:
-    - name: example_settings
-      title: My Example Config
-      description: Example fields for using Distribution template function
-      items:
-      - name: gke_distribution
-        type: label
-        title: "You are deploying to GKE"
-        when: 'repl{{ eq Distribution "gke" }}'
-      - name: kurl_distribution
-        type: label
-        title: "You are deploying to kURL"
-        when: 'repl{{ eq Distribution "kurl" }}'
-      - name: eks_distribution
-        type: label
-        title: "You are deploying to EKS"
-        when: 'repl{{ eq Distribution "eks" }}'
-      ...
-```
-
-The following image shows how only the `gke_distribution` item is displayed on the **Config** page when KOTS is running in a GKE cluster:
-
-![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)
-
-[View a larger version of this image](/images/config-example-distribution-gke.png)
+<DistroCheck/>
 
 ### kURL Cluster Check
 
@@ -137,42 +104,7 @@ As shown in the image below, the **Config** page displays the `new_feature_confi
 
 You can show or hide configuration fields based on the values in a license to ensure that users only see configuration options for the features and entitlements granted by their license. You can also compare integer values from license fields to control the configuration experience for your users.
 
-The following example uses the LicenseFieldValue template function to evaluate the number of seats permitted by the license. This example also uses the Atoi function in the strconv Go package to convert the string values from the license to integers, then uses Go binary comparison operators to compare the integers.
-
-For more information about the LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_. For more information about Atoi, see [strconv](https://pkg.go.dev/strconv) in the Go documentation.
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Config
-metadata:
-  name: config-sample
-spec:
-  groups:  
-  - name: example_group
-    title: Example Config
-    items:
-    - name: small
-      title: Small (100 or Fewer Seats)
-      type: text
-      default: Default for small teams
-      when: '{{repl le (atoi (LicenseFieldValue "numSeats")) 100 }}'
-    - name: medium
-      title: Medium (101-1000 Seats)
-      type: text
-      default: Default for medium teams
-      when: '{{repl (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}'
-    - name: large
-      title: Large (More Than 1000 Seats)
-      type: text
-      default: Default for large teams
-      when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
-```
-
-As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page and the `small` and `large` items are not displayed:
-
-![Config page displaying the Medium (101-1000 Seats) item](/images/config-example-numseats.png)
-
-[View a larger version of this image](/images/config-example-numseats.png)
+<IntegerComparison/>
 
 ### User-Supplied Value Check
 
