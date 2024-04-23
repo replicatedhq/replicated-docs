@@ -10,6 +10,8 @@ import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
 import InstallKotsCliAirGap from "../partials/install/_install-kots-cli-airgap.mdx"
 import InstallKotsCli from "../partials/install/_install-kots-cli.mdx"
 import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
+import KotsVersionMatch from "../partials/install/_kots-airgap-version-match.mdx"
+import PlaceholderRoCreds from "../partials/install/_placeholder-ro-creds.mdx"
 
 # Installing with the CLI
 
@@ -87,7 +89,7 @@ To install with kURL on a VM or bare metal server:
 
 1. Create the kURL cluster:
 
-   ```
+   ```bash
    curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
    ```
 
@@ -110,7 +112,7 @@ To install with kURL on a VM or bare metal server:
 
 ### Air Gap Existing Cluster 
 
-Air gap installations in existing clusters require the application `.airgap` bundle and the `kotsadm.tar.gz` air gap bundle. Additionally, images for the application and the KOTS admin console must be pushed to a local private registry. For more information about downloading the necessary air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
+Air gap installations in existing clusters require the application `.airgap` bundle and the KOTS admin console `kotsadm.tar.gz` air gap bundle. Additionally, images for the application and the KOTS admin console must be pushed to a local private registry. For more information about downloading the necessary air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
 
 To install in an air gap existing cluster:
 
@@ -118,9 +120,7 @@ To install in an air gap existing cluster:
 
 1. <DownloadKotsBundle/>
 
-    :::note
-    The version of the `kotsadm.tar.gz` bundle must match the version of the kots CLI. You can check the version of the kots CLI with `kubectl kots version`.
-    :::
+    <KotsVersionMatch/>
 
 1. <PushKotsImages/>
 
@@ -144,18 +144,10 @@ To install in an air gap existing cluster:
       <PlaceholdersGlobal/>
       
       <PlaceholderAirgapBundle/>
-      
+      <br/>
       <PlaceholderNamespaceExisting/>
       
-      * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images.
-      
-      * `RO_USERNAME` and `RO_PASSWORD` with the username and password for an account that has read-only access to the private image registry.
-
-         :::note
-         KOTS stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
-
-         KOTS uses these credentials to pull the images. To allow KOTS to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
-         :::
+      <PlaceholderRoCreds/>
 
 ### Air Gap kURL Cluster
 

@@ -12,7 +12,8 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 import InstallKotsCliAirGap from "../partials/install/_install-kots-cli-airgap.mdx"
 import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
-import InstallKotsAirgap from "../partials/install/_install-kotsadm-airgap.mdx"
+import PlaceholderRoCreds from "../partials/install/_placeholder-ro-creds.mdx"
+import KotsVersionMatch from "../partials/install/_kots-airgap-version-match.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -54,15 +55,23 @@ To install KOTS:
 
 1. <InstallKotsCliAirGap/>
 
-1. Confirm that the kots CLI version matches the version of the `kotsadm.tar.gz` air gap bundle that you downloaded:
-
-   ```shell
-   kubectl kots version
-   ```
+    <KotsVersionMatch/>
 
 1. <PushKotsImages/>
 
-1. <InstallKotsAirgap/>
+1. Install the KOTS admin console using the images that you pushed in the previous step:
+
+   ```shell
+   kubectl kots install APP_NAME \
+     --kotsadm-registry REGISTRY_HOST \
+     --registry-username RO-USERNAME \
+     --registry-password RO-PASSWORD
+   ```
+
+   Replace:
+
+    * `APP_NAME` with a name for the application. This is the unique name that KOTS will use to refer to the application that you install.
+    <PlaceholderRoCreds/>
 
 1. <InstallCommandPrompts/>
 
