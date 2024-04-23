@@ -5,16 +5,15 @@ import AppInstallIntroAirGap from "../partials/install/_install-app-admin-consol
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import KotsAbout from "../partials/install/_kots-about.mdx"
-
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-
 import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 import InstallApp from "../partials/install/_install-app-admin-console.mdx"
+import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
 
 # Air Gap Installation with kURL
 
@@ -52,13 +51,7 @@ Complete the following prerequisites:
 
 To provision a cluster with kURL:
 
-1. In your installation environment, extract the contents of the kURL `.tar.gz` bundle that you downloaded:
-
-   ```bash
-   tar -xvzf FILENAME.tar.gz
-   ```
-
-   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
+1. <ExtractKurlBundle/>
 
 1. Run one of the following commands to create the cluster and install KOTS in air gap mode: 
 
