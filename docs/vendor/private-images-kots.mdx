@@ -12,7 +12,7 @@ Replicated KOTS automatically creates the required image pull secret for accessi
 
 ### Image Pull Secret
 
-During application deployment, KOTS automatically creates an `imagePullSecret` with `type: kubernetes.io/dockerconfigjson` that is based on the customer license. This secret is used to authenticate with the proxy registry and grant proxy access to private images.
+During application deployment, KOTS automatically creates an `imagePullSecret` with `type: kubernetes.io/dockerconfigjson` that is based on the customer license. This secret is used to authenticate with the proxy service and grant proxy access to private images.
 
 For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 

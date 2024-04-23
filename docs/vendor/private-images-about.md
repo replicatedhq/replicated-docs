@@ -17,7 +17,7 @@ The following diagram demonstrates how the proxy service pulls images from your 
 ## About Enabling the Proxy Service
 
 To provide proxy access to private images, the proxy service requires the following:
-* Read-only credentials to the private image registry in order to grant proxy access to the images
+* Read-only credentials to the private image registry
 * The location where the image can be accessed at either `proxy.replicated.com` or a custom domain
 * An image pull secret with `type: kubernetes.io/dockerconfigjson`
 
