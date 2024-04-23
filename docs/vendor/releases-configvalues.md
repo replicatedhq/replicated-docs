@@ -12,7 +12,7 @@ This topic describes how to view the ConfigValues file for an application instal
 
 ## About ConfigValues Files
 
-A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the kots CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the kots CLI, see [Installing with Automation](/enterprise/installing-existing-cluster-automation).
+A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the kots CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the kots CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
 ConfigValues files include the configuration fields defined in the Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
 

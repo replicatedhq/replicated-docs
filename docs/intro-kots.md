@@ -70,4 +70,4 @@ The kots command-line interface (CLI) is a kubectl plugin. Customers can run com
 
 For information about getting started with the kots CLI, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-The kots CLI can also be used to install an application without needing to access the admin console. This can be useful for automating installations and upgrades. For information about how to run automated installations with the kots CLI, see [Installing with Automation](/enterprise/installing-existing-cluster-automation).
+The kots CLI can also be used to install an application without needing to access the admin console. This can be useful for automating installations and upgrades. For information about how to run automated installations with the kots CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
