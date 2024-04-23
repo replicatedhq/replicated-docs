@@ -89,6 +89,8 @@ For an example of recursive and non-recursive merging, see [About Recursive Merg
 
 ## builder
 
+The `builder` key is used to provide Helm values that are used during various stages of processing the Helm chart.
+
 The `builder` key is required for the following use cases:
 
 * To create an `.airgap` bundle for installations into air gap environments.
@@ -97,7 +99,7 @@ The `builder` key is required for the following use cases:
 
 * To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
 
-  By default, pushing images to a local registry is enabled for all installations. A user in an online environment might disable the ability to push images to a local registry only if an external process is responsible for pushing all images to the registry. For more information, see [Using Private Registries](/enterprise/image-registry-settings).
+  You cannot prevent customers from configuring a local private registry in KOTS. If you think any of your customers will use a local private registry, you should use the `builder` key. For more information, see [Using Private Registries](/enterprise/image-registry-settings).
 
 <HelmBuilderRequirements/>
 
