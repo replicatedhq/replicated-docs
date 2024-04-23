@@ -8,8 +8,10 @@ on:
         required: true
 
 jobs:
-  generate-release-notes-pr:
+  generate-release-notes:
     runs-on: ubuntu-20.04
+    outputs:
+      releaseNotes: ${{ steps.release-notes.outputs.release-notes }}
     steps:
       - uses: actions/checkout@v3
 
@@ -25,14 +27,19 @@ jobs:
           include-pr-links: false
           github-token: ${{ secrets.VENDOR_PORTAL_PAT }}
           feature-type-labels: type::feature
-
+  generate-release-notes-pr:
+    runs-on: ubuntu-20.04
+    needs: generate-release-notes
+    if: ${{ needs.generate-release-notes.outputs.releaseNotes != '' || needs.generate-release-notes.outputs.releaseNotes != null }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Update Release Notes
         env:
           PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
         run: |
           cat <<EOT >> /tmp/release-notes.txt
 
-          ${{ steps.release-notes.outputs.release-notes }}
+          ${{ needs.generate-release-notes.outputs.releaseNotes }}
           EOT
           sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-vendor-platform.md
           rm -rf /tmp/release-notes.txt
@@ -60,7 +67,7 @@ jobs:
           payload: |
             {
               "version": "${{ github.event.client_payload.version }}",
-              "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
+              "pull_request_url": "${{ steps.cpr.outputs.pull-request-url }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}
