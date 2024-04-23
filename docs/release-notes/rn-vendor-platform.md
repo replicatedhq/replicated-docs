@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.22-1
+
+Released on April 22, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-22-1}
+* Fixes a bug with the 'Reset' filters button on the **Customers** page.
+
 ## v2024.04.18-2
 
 Released on April 18, 2024
