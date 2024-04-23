@@ -42,7 +42,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--config-values</code></td>
         <td>string</td>
-        <td>Path to a manifest file containing configuration values. This manifest must be <code>apiVersion: kots.io/v1beta1</code> and <code>kind: ConfigValues</code>. For more information, see <a href="/enterprise/installing-existing-cluster-automation#define-application-configuration-values">Define Application Configuration Values</a>.</td>
+        <td>Path to a manifest file containing configuration values. This manifest must be <code>apiVersion: kots.io/v1beta1</code> and <code>kind: ConfigValues</code>. For more information, see <a href="/enterprise/installing-existing-cluster-automation">Installing with the CLI</a>.</td>
     </tr>
     <tr>
         <td><code>--copy-proxy-env</code></td>

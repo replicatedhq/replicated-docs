@@ -1,0 +1,17 @@
+Extract the KOTS admin console container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
+
+    ```
+    kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_HOST \
+      --registry-username RW_USERNAME \
+      --registry-password RW_PASSWORD
+    ```
+
+    Replace:
+
+    * `REGISTRY_HOST` with the hostname for the private registry. For example, `private.registry.host` or `my-registry.example.com/my-namespace`.
+    
+    * `RW_USERNAME` and `RW_PASSWORD` with the username and password for an account that has read and write access to the private registry.
+       
+       :::note
+       KOTS does not store or reuse these read-write credentials.
+       :::

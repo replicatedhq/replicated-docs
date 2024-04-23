@@ -246,7 +246,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
        * `TARGET_NAMESPACE` with the namespace where the user will install KOTS.
 
   :::note
-  After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster.md#prerequisites) in _Online Installation in Existing Clusters_.
+  After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
   :::
 
 ## kURL Requirements {#kurl-requirements}
