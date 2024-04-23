@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 23, 2024
 
 ### New Features {#new-features-v2024-04-23-1}
-* When user select customer-supplied k8s cluster in support form, EOL alert will not applied for latest channel kURL install yaml.
+* When a user selects a customer-supplied Kubernetes cluster in the support form, the EOL alert will not apply for the latest channel kURL install yaml.
 
 ## v2024.04.18-2
 
