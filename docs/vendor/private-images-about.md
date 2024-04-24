@@ -16,7 +16,7 @@ The following diagram demonstrates how the proxy service pulls images from your 
 
 ## About Enabling the Proxy Service
 
-The proxy service requires read-only credentials to your private registry to access your application images. See [Connect an External Registry](/vendor/).
+The proxy service requires read-only credentials to your private registry to access your application images. See [Connecting to an External Registry](/vendor/packaging-private-images).
 
 After connecting your registry, the steps the enable the proxy service vary depending on your application deployment method. For more information, see:
 * [Using the Proxy Service with KOTS Installations](/vendor/private-images-kots)
