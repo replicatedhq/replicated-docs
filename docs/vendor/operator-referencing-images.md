@@ -1,19 +1,20 @@
 # Referencing Images
 
-Replicated KOTS is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
-Additionally, KOTS creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.
+This topic explains how to support the use of private image registries for applications that are packaged with Kubernetes Operators.
 
-KOTS cannot modify pods that are created at runtime by the Operator.
-To support this in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
+## Overview
+
+To support the use of private images in all environments, the Kubernetes Operator code must use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
 
 There are several template functions available to assist with this.
-This may require 2 new environment variables to be added to a manager to read these values.
+This might require two new environment variables to be added to a manager to read these values.
+
 The steps to ensure that an Operator is using the correct image names and has the correct image pull secrets in dynamically created pods are:
 
 1. Add a new environment variables to the Manager Pod so that the Manager knows the location of the private registry, if one is set.
 2. Add a new environment variable to the Manager Pod so that the Manager also knows the `imagePullSecret` that's needed to pull the local image.
 
-### Adding a reference to the local registry
+## Step 1: Add a reference to the local registry
 
 The manager of an Operator is often a `Statefulset`, but could be a `Deployment` or another kind.
 Regardless of where the spec is defined, the location of the private images can be read using the Replicated KOTS template functions. For more information about using template functions, see [About Template Functions](/reference/template-functions-about).
@@ -57,7 +58,7 @@ env:
     value: 'repl{{ LocalRegistryNamespace }}'
 ```
 
-### Determining the imagePullSecret
+## Step 2: Determine the imagePullSecret
 
 Private, local images will need to reference an image pull secret to be pulled.
 The value of the secret's `.dockerconfigjson` is provided in a template function, and the application can write this pull secret as a new secret to the namespace.
