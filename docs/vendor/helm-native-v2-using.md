@@ -108,7 +108,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-#### Example: Rewrite public images {#local-public-example}
+#### Example: Rewrite public image names {#local-public-example}
 
 The following example shows a field in the `values` key that rewrites the registry domain to `docker.io` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
 
