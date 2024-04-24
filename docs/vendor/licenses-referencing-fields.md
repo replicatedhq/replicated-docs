@@ -1,6 +1,6 @@
-# Checking Entitlements for KOTS
+# Checking Entitlements in Preflights with KOTS Template Functions
 
-This topic describes how to check custom entitlements during installation, upgrade, and runtime for applications installed with Replicated KOTS.
+This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
 ## Overview
 
@@ -8,12 +8,7 @@ KOTS includes default logic to control access to features in the Replicated admi
 
 For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields). For more information about the built-in license fields, see [Built-In License Fields](licenses-using-builtin-fields).
 
-To check entitlements in applications installed with KOTS, you can:
-
-* [Check Entitlements Before Installation or Upgrade](#install)
-* [Query License Fields at Runtime](#runtime)
-
-## Check Entitlements Before Installation or Upgrade {#install}
+## Add Preflights to Check Entitlements Before Installation or Upgrade {#install}
 
 To enforce entitlements when your customer installs or updates your application,
 you can use the Replicated LicenseFieldValue template function in your application to read the value of license fields. The LicenseFieldValue template function accepts the built-in license fields and any custom fields that you configure. For more information, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.
@@ -50,49 +45,3 @@ In the example above, the preflight check uses the `nodeResources` analyzer and 
 For more information about this example, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
 
 For more information about defining preflight checks, see [Defining Preflight Checks](preflight-defining).
-
-## Query License Fields at Runtime {#runtime}
-
-The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime. You can query the admin console `/license/v1/license` endpoint to enforce entitlements at runtime.
-
-To reference license fields at runtime, send an HTTP request to the admin console `/license/v1/license` endpoint at the following location:
-
-```
-http://kotsadm:3000/license/v1/license
-```
-
-The query returns a response in YAML format. For example:
-
-```javascript
-{"license_id":"WicPRaoCv1pJ57ZMf-iYRxTj25eZalw3",
-"installation_id":"a4r1s31mj48qw03b5vwbxvm5x0fqtdl6",
-"assignee":"FirstCustomer",
-"release_channel":"Unstable",
-"license_type":"trial",
-"expiration_time":"2026-01-23T00:00:00Z",
-"fields":[
-  {"field":"Customer ID","title":"Customer ID (Internal)","type":"Integer","value":121,"hide_from_customer":true},
-  {"field":"Modules","title":"Enabled Modules","type":"String","value":"Analytics, Integration"}]}
-```
-
-To return a license field value, parse the response using the name of the license
-field.
-
-For example, the following Javascript parses the response for the value of a
-`seat_count` custom field:
-
-```javascript
-import * as rp from "request-promise";
-
-rp({
-  uri: "http://kotsadm:3000/license/v1/license",
-  json: true
-}).then(license => {
-  const seatCount = license.fields.find((field) => {
-    return field.field === "seat_count";
-  });
-  console.log(seatCount.value);
-}).catch(err => {
-  // Handle error response from `kotsadm`
-});
-```

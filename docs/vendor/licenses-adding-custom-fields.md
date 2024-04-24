@@ -12,8 +12,6 @@ Custom license fields are useful when there is entitlement information that appl
 
 The custom license fields that you create are displayed in the vendor portal for all new and existing customers. If the custom field is not hidden, it is also displayed under the **Licenses** tab for customers in the Replicated admin console.
 
-After you create custom license fields for a customer, you can query these fields from your application to check customer entitlements both before installation and during runtime. See [Checking Entitlements for Helm Installations](licenses-reference-helm) or [Checking Entitlements for KOTS](licenses-referencing-fields).   
-
 ## Create Custom License Fields
 
 To create a custom license field:
