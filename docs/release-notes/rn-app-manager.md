@@ -16,6 +16,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.108.9
+
+Released on April 24, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### Improvements {#improvements-1-108-9}
+* Updates images to resolves CVE-2024-3817 with critical severity.
+
+### Bug Fixes {#bug-fixes-1-108-9}
+* Fixes an issue where the **Edit config* link on the dashboard was not functioning as expected.
+
 ## 1.108.8
 
 Released on April 18, 2024
