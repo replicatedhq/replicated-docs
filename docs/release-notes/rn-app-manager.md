@@ -26,7 +26,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Updates images to resolve CVE-2024-3817 with critical severity.
 
 ### Bug Fixes {#bug-fixes-1-108-9}
-* Fixes an issue where the *Edit config* link on the dashboard didn't work.
+* Fixes an issue where the **Edit config** link on the dashboard didn't work.
 
 ## 1.108.8
 
