@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.18
+
+Released on April 26, 2024
+
+### Improvements {#improvements-1-0-0-beta-18}
+* Updates the Replicated SDK image to resolve CVE-2024-2961 with high severity, and CVE-2023-6237, CVE-2024-24557, and CVE-2023-45288 with medium severity.
+
 ## 1.0.0-beta.17
 
 Released on April 8, 2024
