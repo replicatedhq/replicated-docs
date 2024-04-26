@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.19
+
+Released on April 26, 2024
+
+### New Features {#new-features-1-0-0-beta-19}
+* Adds SLSA generation for the replicated SDK image. SLSA is the Supply-chain Levels for Software Artifacts ( Pronounced "salsa").
+* .
+* For example, you will be able to validate the attestation via.
+* .
+* cosign download attestation replicated/replicated-sdk:VERSION | jq -r .payload | base64 -d | jq.
+* .
+* or.
+* search Sigstor using Rekor at https://search.sigstore.dev/.
+
 ## 1.0.0-beta.18
 
 Released on April 26, 2024
