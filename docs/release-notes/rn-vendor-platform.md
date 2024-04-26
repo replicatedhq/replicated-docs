@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.23-1
+
+Released on April 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-23-1}
+* When a user selects a customer-supplied Kubernetes cluster in the support form, the end of life (EOL) alert about the deprecated Docker and Weave kURL add-ons will not apply for the latest channel kURL installer.
+
 ## v2024.04.22-1
 
 Released on April 22, 2024
