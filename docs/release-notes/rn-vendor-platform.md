@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.26-1
+
+Released on April 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-26-1}
+* Only user with team/support-issues/write rbac policy can submit the support ticket in analyze page.
+
 ## v2024.04.22-1
 
 Released on April 22, 2024
