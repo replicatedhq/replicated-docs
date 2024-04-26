@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.26-5
+
+Released on April 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-26-5}
+* Fixes Embedded Cluster support on the compatibility matrix create cluster page.
+
 
 ## v2024.04.25-0
 
