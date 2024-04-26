@@ -195,6 +195,7 @@ const sidebars = {
                 'vendor/helm-native-v2-using',
                 'vendor/helm-v2-migrate',
                 'vendor/helm-optional-value-keys',
+                'vendor/packaging-airgap-bundles',
               ],
             },
             {
