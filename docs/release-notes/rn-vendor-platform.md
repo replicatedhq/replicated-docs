@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 26, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-04-26-1}
-* Only users with the `team/support-issues/write` RBAC policy can submit support tickets from the **Support Bundle Analysis** page.
+* Only users with the `team/support-issues/write` RBAC policy can submit support tickets on the **Support Bundle Analysis** page.
 
 ## v2024.04.25-0
 
