@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.04.25-0
+
+Released on April 25, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-25-0}
+* Users can sort customers by the date they were created on the **Customers** page.
+
 ## v2024.04.23-1
 
 Released on April 23, 2024
