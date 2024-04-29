@@ -1,77 +1,33 @@
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
+import AdditionalImages from "../partials/airgap/_additional-images.mdx"
+import AdditionalImagesExample from "../partials/airgap/_additional-images-example.mdx"
+import BuildDownload from "../partials/airgap/_build-download.mdx"
 
-# Packaging and Building Air Gap Bundles
+# Packaging Application Air Gap Bundles
 
-This topic describes how to package and build air gap bundles for applications deployed with Replicated KOTS.
+This topic describes how to package and build `.airgap` bundles for applications deployed with Replicated KOTS.
 
 ## Overview
 
-Air gap bundles are required to install in air gap environments with no outbound internet access. Air gap bundles contain all the necessary artifacts for your application.
+Air gap bundles contain all the necessary artifacts for a single release of your application and are required to install in _air gap_ environments with no outbound internet access. For applications distributed with KOTS, you can build air gap bundles for releases from the Replicated vendor portal.
 
-## Define Additional Namespaces
 
-For clusters running in air gap environments or clusters that are configured by your enterprise customer to use a local registry, the image pull secret must exist in all namespaces where resources will be managed by KOTS.
 
-An application can identify additional namespaces to create during installation time.
-You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
+## Define Additional Images for Air Gap Bundles
 
-In addition to creating the additional namespaces, KOTS ensures that the application secret exists in the namespaces. KOTS also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the additionalImages field. This pull secret is automatically added to all manifest files that use private images.
+<AdditionalImages/>
 
-For dynamically created namespaces, specify <code>"*"</code>.
-
-### Creating additional namespaces
-
-When additional namespaces are defined, `kots install` will create the namespaces and ensure that the Replicated admin console has full access to manage resources in these namespaces.
-
-This is accomplished by creating a Role and RoleBinding per namespace, and setting the Subject to the admin console service account.
-
-If the current user account does not have access to create these additional namespaces, the installer will show an error and fail.
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-operator
-spec:
-  additionalNamespaces:
-    - namespace1
-    - namespace2
-```
-
-In addition to creating these namespaces, the admin console will ensure that the application pull secret exists in them, and that this secret has access to pull the application images. This includes both images that are used and additional images defined in the Application custom resource manifest.
-
-Pull secret name can be obtained using the [ImagePullSecretName](/reference/template-functions-config-context/#imagepullsecretname) template function.
-This secret name can be used in any Pod spec to pull private images.
-
-### Dynamic namespaces
-
-Some applications need access to dynamically created namespaces or even all namespaces.
-In this case, you can list `"*"` for `addtionalNamespaces`.
-When KOTS encounters the wildcard, it will not create any namespaces, but it will ensure that the application image pull secret is copied to all namespaces.
-The admin console will run an informer internally to watch namespaces in the cluster, and when a new namespace is created, the secret will automatically be copied to it.
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-operator
-spec:
-  additionalNamespaces:
-    - "*"
-```
-
-When the wildcard (`"*"`) is listed in `additionalNamespaces`, KOTS will use a ClusterRole and ClusterRoleBinding for the admin console.
-This will ensure that the admin console will continue to have permissions to all newly created namespaces, even after the install has finished.
+<AdditionalImagesExample/>
 
 ## Package Air Gap Bundles for Helm Charts
 
-For Helm charts deployed with KOTS, you need to configure the `builders` field in the HelmChart custom resource to create an `.airgap` bundle for installations into air gap environments. The `builders` field provides Helm values that are used during various stages of processing the Helm chart.
+For Helm charts deployed with KOTS, you need to configure the `builders` key in the HelmChart custom resource. The `builders` key provide the necessary Helm values that are used to deploy the chart.
 
 <BuilderAirgapIntro/>
 
-### `builders` Requirements and Limitations
+### Requirements and Limitations
 
 <HelmBuilderRequirements/>
 
@@ -79,6 +35,13 @@ For Helm charts deployed with KOTS, you need to configure the `builders` field i
 
 <BuilderExample/>
 
-## Build Air Gap Bundles for a Release
+## Build and Download Air Gap Bundles
+
+This section describes how to build and download air gap bundles for your application from the vendor portal.
+
+<BuildDownload/>
 
 ## Related Topics
+
+* [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles)
+* [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_

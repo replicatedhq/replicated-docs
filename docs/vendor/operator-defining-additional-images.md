@@ -1,30 +1,24 @@
+import AdditionalImages from "../partials/airgap/_additional-images.mdx"
+import AdditionalImagesExample from "../partials/airgap/_additional-images-example.mdx"
+
 # Defining Additional Images
 
-To ensure that images will be available locally, Replicated KOTS finds all images defined in the application manifests and includes them in `.airgap` bundles.
-During the application install or update workflow, KOTS collects these images from the internet or from the `.airgap` bundle, if the application is installed in an air gap environment. KOTS then retags and pushes all the images to a customer-defined registry.
+This topic describes how to define additional images to be included in `.airgap` bundles.
 
-If there are required images that are not defined in any of the Kubernetes manifests, these should be listed in the `additionalImages` attribute of the Application custom resource manifest file.
+## Overview
 
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-operator
-spec:
-  additionalImages:
-    - elasticsearch:7.6.0
-    - registry.replicated.com/my-operator/my-private-image:abd123f
-    - quay.io/orgname/private-image:v1.2.3
-```
+KOTS finds all images defined in the application manifests and includes them in the `.airgap` bundle. During installation or upgrade, KOTS collects images from the `.airgap` bundle, then retags and pushes them to the registry supplied by the enterprise user.
 
-KOTS supports additional images that are:
+## Define Additional Images for Air Gap Bundles
 
-- public images: referenced by the docker pullable image name
-- images pushed to the Replicated registry: referenced by the `registry.replicated.com` name
-- images pushed to another [private, linked registry](packaging-private-images): referenced by the docker pullable name
+<AdditionalImages/>
+
+<AdditionalImagesExample/>
 
 ## Authentication
 
 When creating the `.airgap` bundle or performing an online install, KOTS will ensure that private images are available, without sharing registry credentials with the installation.
 Air gap packages include the image layers in the bundle. Online installs will rewrite externally hosted private images to be pulled from `proxy.replicated.com`.
 When the installation sends credentials to `proxy.replicated.com` or `registry.replicated.com`, the credentials are based on the customer license file, and the credentials stop working when the license expires.
+
+For more information, see [About the Replicated Proxy Service](/vendor/private-images-about).

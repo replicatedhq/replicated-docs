@@ -1,4 +1,5 @@
 import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
+import BuildDownload from "../partials/airgap/_build-download.mdx"
 
 # Downloading Air Gap Bundles
 
@@ -18,33 +19,7 @@ This section describes how to build and download the application `.airgap` bundl
 
 For information about how to download the `.airgap` bundle from the Replicated download portal, see [Download Air Gap Bundles from the Download Portal](#download-portal) below.
 
-To build and download the `.airgap` bundle for a release:
-
-1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. On the target channel, click **Release history**.
-
-    <img alt="Release history link on a channel card" src="/images/release-history-link.png" width="400px"/>
-
-    [View a larger version of this image](/images/release-history-link.png)
-
-1. On the **Release history** page, click **Build** to build the `.airgap` bundle.
-
-    :::note
-    By default, the Stable and Beta channels automatically build `.airgap` bundles on new releases.
-    To edit this functionality on any channel, enable or disable the **Automatically create airgap builds for all releases in this channel** toggle in the channel settings.
-    :::
-
-    ![Build button on the Release history page](/images/release-history-build-airgap-bundle.png)
-
-    [View a larger version of this image](/images/release-history-build-airgap-bundle.png)
-
-1. After the `.airgap` bundle is built, click **Download Bundle**.
-
-1. (Optional) View the contents of the downloaded bundle: 
-
-     ```bash
-     tar -zxvf AIRGAP_BUNDLE
-     ```
-     Where `AIRGAP_BUNDLE` is the filename for the `.airgap` bundle that you downloaded.
+<BuildDownload/>
 
 ## Download the KOTS Admin Console Bundle
 
