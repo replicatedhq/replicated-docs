@@ -8,6 +8,28 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.19
+
+Released on April 26, 2024
+
+### New Features {#new-features-1-0-0-beta-19}
+* Adds Supply-chain Levels for Software Artifacts (SLSA) generation for the Replicated SDK image.
+
+   For example, you can run the following to validate the attestation for the SDK image:
+   ```bash
+   cosign download attestation replicated/replicated-sdk:VERSION | jq -r .payload | base64 -d | jq
+   ```
+   Where `VERSION` is the target version of the SDK.
+
+   You can also search Sigstor using Rekor at https://search.sigstore.dev/
+
+## 1.0.0-beta.18
+
+Released on April 26, 2024
+
+### Improvements {#improvements-1-0-0-beta-18}
+* Updates the Replicated SDK image to resolve CVE-2024-2961 with high severity, and CVE-2023-6237, CVE-2024-24557, and CVE-2023-45288 with medium severity.
+
 ## 1.0.0-beta.17
 
 Released on April 8, 2024

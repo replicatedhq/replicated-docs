@@ -202,9 +202,9 @@ spec:
     images:
       replicated-sdk: >-
         {{repl if HasLocalRegistry -}}
-          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.17
+          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.18
         {{repl else -}}
-          docker.io/replicated/replicated-sdk:v1.0.0-beta.17
+          docker.io/replicated/replicated-sdk:v1.0.0-beta.18
         {{repl end}}
 ```
 
@@ -214,7 +214,7 @@ Given the example above, if the user is _not_ using a local registry, then the `
 # Helm chart values file
 
 images:
-  replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.17'
+  replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.18'
 ```
 
 #### Multi-Line in Secret Object
