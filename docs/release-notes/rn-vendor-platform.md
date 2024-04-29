@@ -13,7 +13,7 @@ pagination_prev: null
 Released on April 26, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-04-26-3}
-* Surfaces error to the end user when creating a CMX Embedded Cluster and the --version flag is a non-numeric string.
+* Displays error when creating an embedded cluster with the compatibility matrix and the `--version` flag is a non-numeric string.
 
 ## v2024.04.26-1
 
