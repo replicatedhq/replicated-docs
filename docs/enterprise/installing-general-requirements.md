@@ -123,7 +123,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 
   1. Ensure that the user has the minimum RBAC permissions required by KOTS. The following lists the minimum RBAC permissions:
 
-    ```yaml
+     ```yaml
       - apiGroups: [""]
         resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
         verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
@@ -151,11 +151,11 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
       - apiGroups: ["batch"]
         resources: ["jobs/status"]
         verbs: ["get", "list", "watch"]
-    ```
+     ```
 
-    :::note
-    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of KOTS. Contact your software vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
-    ::: 
+     :::note
+     The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of KOTS. Contact your software vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
+     ::: 
 
    1. Save the following ServiceAccount, Role, and RoleBinding to a single YAML file, such as `rbac.yaml`:
 
@@ -222,32 +222,32 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 
     1. If the application contains any Custom Resource Definitions (CRDs), add the CRDs to the Role in the YAML file that you created in the previous step with as many permissions as possible: `["get", "list", "watch", "create", "update", "patch", "delete"]`.
 
-      :::note
-      Contact your software vendor for information about any CRDs that are included in the application.
-      :::
+       :::note
+       Contact your software vendor for information about any CRDs that are included in the application.
+       :::
 
-      **Example**
+       **Example**
 
-      ```yaml
+       ```yaml
        rules:
        - apiGroups: ["stable.example.com"]
          resources: ["crontabs"]
          verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-      ```
+       ```
     
     1. Run the following command to create the RBAC resources for KOTS in the namespace:
 
-     ```
-     kubectl apply -f RBAC_YAML_FILE -n TARGET_NAMESPACE
-     ```
+        ```
+        kubectl apply -f RBAC_YAML_FILE -n TARGET_NAMESPACE
+        ```
 
-     Replace:
-       * `RBAC_YAML_FILE` with the name of the YAML file with the ServiceAccount, Role, and RoleBinding and that you created.
-       * `TARGET_NAMESPACE` with the namespace where the user will install KOTS.
+        Replace:
+        * `RBAC_YAML_FILE` with the name of the YAML file with the ServiceAccount, Role, and RoleBinding and that you created.
+        * `TARGET_NAMESPACE` with the namespace where the user will install KOTS.
 
-  :::note
-  After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
-  :::
+:::note
+After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
+:::
 
 ## kURL Requirements {#kurl-requirements}
 
