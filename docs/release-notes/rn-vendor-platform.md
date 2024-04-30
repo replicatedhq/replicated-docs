@@ -15,6 +15,19 @@ Released on April 26, 2024
 ### Bug Fixes {#bug-fixes-v2024-04-26-5}
 * Fixes Embedded Cluster support on the compatibility matrix create cluster page.
 
+## v2024.04.26-3
+
+Released on April 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-26-3}
+* Displays error when creating an embedded cluster with the compatibility matrix and the `--version` flag is a non-numeric string.
+
+## v2024.04.26-1
+
+Released on April 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-26-1}
+* Only users with the `team/support-issues/write` RBAC policy can submit support tickets on the **Support Bundle Analysis** page.
 
 ## v2024.04.25-0
 
