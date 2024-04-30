@@ -13,17 +13,15 @@ This topic describes how to package and build air gap bundles for releases that 
 
 Air gap bundles (`.airgap`) contain the images needed to install and run a single release of your application in _air gap_ environments with no outbound internet access. You can build and download air gap bundles from the vendor portal **Release History** page.
 
+For more information about air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
+
+## Configure the `builder` Key
+
 To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release.
 
 <BuilderAirgapIntro/>
 
-## Requirements and Recommendations
-
-<HelmBuilderRequirements/>
-
-## Configure the `builder` Key
-
-The values in the `builder` key map to values in the corresponding Helm chart `values.yaml`. In the example below, `builder.postres.enabled` in the HelmChart custom resource maps to `postres.enabled` in the Helm values:
+The values in the `builder` key map to values in the given Helm chart's `values.yaml` file. For example, `spec.builder.postres.enabled` in the example HelmChart custom resource below would map to a `postgres.enabled` field in the `values.yaml` file for the `samplechart` chart:
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -41,13 +39,15 @@ spec:
       enabled: true 
 ```
 
-The `builder` key contains static (hardcoded) values that override the corresponding Helm values when KOTS templates the Helm chart to build the `.airgap` bundle for the release. This means that you can set values in the `builder` key that are specific to air gap installations.
+For requirements, recommendations, and examples of common use cases for the `builder` key, see the sections below.
 
-For examples of common use cases for the `builder` key, see the sections below.
+### Requirements and Recommendations
+
+<HelmBuilderRequirements/>
 
 ### Example: Set the Image Registry for Air Gap Installations
 
-For air gap installations, it might be required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository, and tag for air gap installations, as shown in the example below:
+For air gap installations, it is often required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository, and tag for air gap installations, as shown in the example below:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -61,14 +61,15 @@ spec:
   builder:
     my-service:
       image:
-      registry: index.docker.io
-      repository: my-app
-      tag: "1.0.2"    
+        registry: index.docker.io
+        repository: my-app
+        tag: "1.0.2"    
 ```
+When building the `.airgap` bundle for the release, KOTS uses the registry, repository, and tag values supplied in the `builder` key to template the Helm chart, rather than the default values defined in the Helm `values.yaml` file. This ensures that the correct image registry details are used for air gap installations, without needing to make any changes to the Helm chart directly.
 
-### Example: Enable Conditional Resources
+### Example: Include Conditional Resources
 
-Many applications include resources that are included or excluded from a deployment based on a given condition. For example, enterprise users might have the option of deploying an embedded database with the application or bringing their own database. To support this use case for air gap installations, the optional resource must be included in the air gap bundle for the release.
+Many applications have resources that are included or excluded from a deployment based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bringing their own database. To support this use case for air gap installations, the conditional resource must always be included in the air gap bundle.
 
 <BuilderExample/>
 
@@ -76,4 +77,4 @@ Many applications include resources that are included or excluded from a deploym
 
 * [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles)
 * [Build and Download the Application Bundle](/vendor/releases-download-airgap-bundles#air-gap-bundle)
-* [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_
+* [builder](/reference/custom-resource-helmchart-v2#builder)
