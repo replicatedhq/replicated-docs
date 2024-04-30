@@ -1,18 +1,22 @@
-The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
-
-`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
+In the following example, a conditional PostgreSQL resource is enabled in the `builder` key :
 
 ```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
   values:
     postgresql:
       enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-```
-As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
-
-To ensure this conditional `postgresql` resource is included in the installation files, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
-
-```yaml
   builder:
     postgresql:
       enabled: true
 ```
+
+As shown above, `postgresql` is defined as a conditional resource in the `values` key, where PostgreSQL is included only when the user selects the `embedded_postgres` option on the admin console **Config** page.
+
+To ensure that the PostgreSQL resource is included in the air gap bundle for the given release, add the same `postgresql` value to the `builder` key with `enabled` set to `true`

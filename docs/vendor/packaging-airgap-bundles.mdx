@@ -13,7 +13,9 @@ This topic describes how to package and build air gap bundles for releases that 
 
 Air gap bundles (`.airgap`) contain the images needed to install and run a single release of your application in _air gap_ environments with no outbound internet access. You can build and download air gap bundles from the vendor portal **Release History** page.
 
-To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release. In the `builder` key, you provide the minimum Helm values required to deploy the chart, as well as any upstream images that must be included in the air gap bundle. KOTS uses these values to template the given Helm chart when building the `.airgap` bundle for the release.
+To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release.
+
+<BuilderAirgapIntro/>
 
 ## Requirements and Recommendations
 
@@ -21,9 +23,11 @@ To build an `.airgap` bundle for a release that contains one or more Helm charts
 
 ## Configure the `builder` Key
 
-The values in the `builder` key map to values in the corresponding Helm chart `values.yaml`. In the example below, `builder.postres.enabled` maps to `postres.enabled` in the Helm values:
+The values in the `builder` key map to values in the corresponding Helm chart `values.yaml`. In the example below, `builder.postres.enabled` in the HelmChart custom resource maps to `postres.enabled` in the Helm values:
 
 ```yaml
+# KOTS HelmChart custom resource
+
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -37,11 +41,13 @@ spec:
       enabled: true 
 ```
 
-The `builder` key contains static (hardcoded) values that override the corresponding Helm values when KOTS templates the Helm chart to build the `.airgap` bundle for the release. This means that you can set values in the `bubilder` key that are specific to air gap installations. For examples of common use cases for the `builder` key, see the sections below.
+The `builder` key contains static (hardcoded) values that override the corresponding Helm values when KOTS templates the Helm chart to build the `.airgap` bundle for the release. This means that you can set values in the `builder` key that are specific to air gap installations.
+
+For examples of common use cases for the `builder` key, see the sections below.
 
 ### Example: Set the Image Registry for Air Gap Installations
 
-For air gap installations, it might be required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository and tags for air gap installations, as shown in the example below:
+For air gap installations, it might be required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository, and tag for air gap installations, as shown in the example below:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -61,6 +67,8 @@ spec:
 ```
 
 ### Example: Enable Conditional Resources
+
+Many applications include resources that are included or excluded from a deployment based on a given condition. For example, enterprise users might have the option of deploying an embedded database with the application or bringing their own database. To support this use case for air gap installations, the optional resource must be included in the air gap bundle for the release.
 
 <BuilderExample/>
 

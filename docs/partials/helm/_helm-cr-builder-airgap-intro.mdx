@@ -1,1 +1,1 @@
-To create an `.airgap` bundle for a release that contains Helm charts, the Replicated vendor portal renders the Helm charts' templates with `helm template`. The `builder` key specifies the Helm chart values that the vendor portal uses when running `helm template` to create the `.airgap` bundle.
+In the `builder` key, you provide the minimum Helm values required to deploy the chart, as well as any upstream images that must be included in the air gap bundle. KOTS uses these values to template the Helm chart when building the `.airgap` bundle for the release.
