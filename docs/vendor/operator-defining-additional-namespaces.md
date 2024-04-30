@@ -1,9 +1,5 @@
 # Defining Additional Namespaces
 
-This topic describes how to configure the `additionalNamespaces` field in the KOTS Application custom resource to ensure that resources in multiple namespaces can be managed.
-
-## Overview
-
 Operators often need to be able to manage resources in multiple namespaces in the cluster.
 When deploying an application to an existing cluster, Replicated KOTS creates a Kubernetes Role and RoleBinding that are limited to only accessing the namespace that the application is being installed into.
 
