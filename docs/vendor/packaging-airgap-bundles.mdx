@@ -5,43 +5,67 @@ import AdditionalImages from "../partials/airgap/_additional-images.mdx"
 import AdditionalImagesExample from "../partials/airgap/_additional-images-example.mdx"
 import BuildDownload from "../partials/airgap/_build-download.mdx"
 
-# Packaging Application Air Gap Bundles
+# Packaging Air Gap Bundles for Helm Charts
 
-This topic describes how to package and build `.airgap` bundles for applications deployed with Replicated KOTS.
+This topic describes how to package and build air gap bundles for releases that contain one or more Helm charts. This topic applies to applications deployed with Replicated KOTS.
 
 ## Overview
 
-Air gap bundles contain all the necessary artifacts for a single release of your application and are required to install in _air gap_ environments with no outbound internet access. For applications distributed with KOTS, you can build air gap bundles for releases from the Replicated vendor portal.
+Air gap bundles (`.airgap`) contain the images needed to install and run a single release of your application in _air gap_ environments with no outbound internet access. You can build and download air gap bundles from the vendor portal **Release History** page.
 
+To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release. In the `builder` key, you provide the minimum Helm values required to deploy the chart, as well as any upstream images that must be included in the air gap bundle. KOTS uses these values to template the given Helm chart when building the `.airgap` bundle for the release.
 
-
-## Define Additional Images for Air Gap Bundles
-
-<AdditionalImages/>
-
-<AdditionalImagesExample/>
-
-## Package Air Gap Bundles for Helm Charts
-
-For Helm charts deployed with KOTS, you need to configure the `builders` key in the HelmChart custom resource. The `builders` key provide the necessary Helm values that are used to deploy the chart.
-
-<BuilderAirgapIntro/>
-
-### Requirements and Limitations
+## Requirements and Recommendations
 
 <HelmBuilderRequirements/>
 
-### Configure the `builders` Key
+## Configure the `builder` Key
+
+The values in the `builder` key map to values in the corresponding Helm chart `values.yaml`. In the example below, `builder.postres.enabled` maps to `postres.enabled` in the Helm values:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  builder:
+    postgres:
+      enabled: true 
+```
+
+The `builder` key contains static (hardcoded) values that override the corresponding Helm values when KOTS templates the Helm chart to build the `.airgap` bundle for the release. This means that you can set values in the `bubilder` key that are specific to air gap installations. For examples of common use cases for the `builder` key, see the sections below.
+
+### Example: Set the Image Registry for Air Gap Installations
+
+For air gap installations, it might be required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository and tags for air gap installations, as shown in the example below:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  builder:
+    my-service:
+      image:
+      registry: index.docker.io
+      repository: my-app
+      tag: "1.0.2"    
+```
+
+### Example: Enable Conditional Resources
 
 <BuilderExample/>
-
-## Build and Download Air Gap Bundles
-
-This section describes how to build and download air gap bundles for your application from the vendor portal.
-
-<BuildDownload/>
 
 ## Related Topics
 
 * [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles)
+* [Build and Download the Application Bundle](/vendor/releases-download-airgap-bundles#air-gap-bundle)
 * [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_

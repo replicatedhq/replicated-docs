@@ -193,8 +193,9 @@ const sidebars = {
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
-                'vendor/helm-v2-migrate',
+                'vendor/packaging-airgap-bundles',
                 'vendor/helm-optional-value-keys',
+                'vendor/helm-v2-migrate',
               ],
             },
             {
@@ -258,7 +259,6 @@ const sidebars = {
                   },
               ],
             },
-            'vendor/packaging-airgap-bundles',
             {
               type: 'category',
               label: 'Configuring Backup and Restore',
