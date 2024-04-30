@@ -1,7 +1,0 @@
-Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
-
-KOTS supports the following types of additional images:
-
-* Public images referenced by the docker pullable image name
-* Images pushed to a private, linked registry referenced by the docker pullable name
-* Images pushed to the Replicated registry referenced by the `registry.replicated.com` name

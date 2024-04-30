@@ -1,9 +1,7 @@
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
-import AdditionalImages from "../partials/airgap/_additional-images.mdx"
-import AdditionalImagesExample from "../partials/airgap/_additional-images-example.mdx"
-import BuildDownload from "../partials/airgap/_build-download.mdx"
+import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
 
 # Packaging Air Gap Bundles for Helm Charts
 
@@ -11,9 +9,9 @@ This topic describes how to package and build air gap bundles for releases that 
 
 ## Overview
 
-Air gap bundles (`.airgap`) contain the images needed to install and run a single release of your application in _air gap_ environments with no outbound internet access. You can build and download air gap bundles from the vendor portal **Release History** page.
+<AirGapBundle/>
 
-For more information about air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
+When building the `.airgap` bundle for a release that contains one or more Helm charts, KOTS templates the Helm charts in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key.
 
 ## Configure the `builder` Key
 
