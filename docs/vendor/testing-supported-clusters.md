@@ -368,7 +368,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.26, 1.27, 1.28, 1.29</td>
+    <td>1.27, 1.28, 1.29</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
