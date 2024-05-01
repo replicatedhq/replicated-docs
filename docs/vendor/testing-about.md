@@ -41,7 +41,7 @@ You can request increased quotas at any time with no additional cost. To view yo
 
 Clusters created with the compatibility matrix can have the following statuses:
 
-* `assigned`: The cluster resources were requested and the compatiblity matrix is provisioning the cluster. You are not billed for the time that a cluster spends in the `assigned` status.
+* `assigned`: The cluster resources were requested and the compatibility matrix is provisioning the cluster. You are not billed for the time that a cluster spends in the `assigned` status.
 
 * `running`: A working kubeconfig for the cluster is accessible. Billing begins when the cluster reaches a `running` status.
 

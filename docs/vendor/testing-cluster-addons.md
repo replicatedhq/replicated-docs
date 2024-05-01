@@ -13,7 +13,7 @@ The replicated CLI can be used to [create](/reference/replicated-cli-cluster-add
 
 ## Supported Add-ons
 
-This section lists the supported cluster add-ons for clusters created with compatiblity matrix.
+This section lists the supported cluster add-ons for clusters created with compatibility matrix.
 
 ### object-store (Alpha)
 

@@ -8,7 +8,7 @@ The compatibility matrix provisions cloud-based or virtual machine (VM) clusters
 
 ## VM Clusters
 
-This section lists the supported VM cluster distributions for clusters created with the compatiblity matrix.
+This section lists the supported VM cluster distributions for clusters created with the compatibility matrix.
 
 ### kind
 
@@ -55,8 +55,8 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported k3s Versions</th>
@@ -84,7 +84,50 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>See <a href="https://docs.k3s.io/upgrades/manual">Manual Upgrades</a> in the k3s documentation.<br></br><br></br>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td><ul><li>Smoke tests</li><li>Customer release tests</li></ul></td>
+  </tr>
+</table>
+
+### RKE2 (Alpha)
+
+The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported RKE2 Versions</th>
+    <td>The upstream k8s version that matches the Kubernetes version requested.</td>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Versions</th>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.29.0, 1.29.1, 1.29.2, 1.29.3</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -286,7 +329,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.25, 1.26, 1.27, 1.28, 1.29</td>
+    <td>1.26, 1.27, 1.28, 1.29</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -325,7 +368,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.26, 1.27, 1.28, 1.29</td>
+    <td>1.27, 1.28, 1.29</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
