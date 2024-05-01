@@ -8,7 +8,7 @@ The compatibility matrix provisions cloud-based or virtual machine (VM) clusters
 
 ## VM Clusters
 
-This section lists the supported VM cluster distributions for clusters created with the compatiblity matrix.
+This section lists the supported VM cluster distributions for clusters created with the compatibility matrix.
 
 ### kind
 
