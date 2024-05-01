@@ -24,8 +24,6 @@ Support for Kubernetes: 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-108-11}
 * Various updates to enable disaster recovery support for embedded cluster.
-
-### Enhancements {#enhancements-1-108-11}
 * Updates Troubleshoot to v0.91.0.
 
 ## 1.108.10
