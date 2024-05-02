@@ -69,7 +69,7 @@ You can use the following steps to get started quickly with embedded cluster. Mo
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
 
-1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the embedded cluster version you want to use.
+1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the embedded cluster version you want to use. See the embedded cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
 
      Example embedded cluster config:
 
@@ -77,7 +77,7 @@ You can use the following steps to get started quickly with embedded cluster. Mo
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.29.2+ec.4
+       version: 1.29.4+ec.3
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
