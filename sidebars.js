@@ -578,6 +578,7 @@ const sidebars = {
     label: 'Insights and Telemetry',
     items: [
         'vendor/instance-insights-event-data',
+        'vendor/telemetry-air-gap',
         'vendor/insights-app-status',
         'vendor/customer-adoption',
         'vendor/customer-reporting',
