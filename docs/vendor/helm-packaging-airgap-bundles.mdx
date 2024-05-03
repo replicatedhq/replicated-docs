@@ -65,9 +65,9 @@ spec:
 ```
 When building the `.airgap` bundle for the release, the vendor portal uses the registry, repository, and tag values supplied in the `builder` key to template the Helm chart, rather than the default values defined in the Helm `values.yaml` file. This ensures that the correct image registry details are used for air gap installations, without needing to make any changes to the Helm chart directly.
 
-### Example: Include Conditional Resources
+### Example: Include Conditional Images
 
-Many applications have images that must be included or excluded based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bring their own database. To support this use case for air gap installations, the image for any conditional resource must always be included in the air gap bundle.
+Many applications have images that are included or excluded based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bring their own database. To support this use case for air gap installations, the image for any conditionally-deployed components must always be included in the air gap bundle.
 
 <BuilderExample/>
 
