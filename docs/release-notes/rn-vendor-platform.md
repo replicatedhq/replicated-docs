@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.03-1
+
+Released on May 3, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-03-1}
+* Fixes an issue which causes addons to stay in a pending state for multi-node clusters.
+
 ## v2024.04.26-5
 
 Released on April 26, 2024
