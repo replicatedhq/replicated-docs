@@ -27,7 +27,7 @@ spec:
 {{- end }}
 ```
 
-In the HelmChart custom resource for this release, the PostgreSQL image is enabled in the `builder` key:
+To ensure that the `postgresql` image is included in the air gap bundle for the release, the `postgresql.enabled` value is added to the `builder` key of the HelmChart custom resource and is hardcoded to `true`:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -46,6 +46,4 @@ spec:
       enabled: true
 ```
 
-As shown above, `postgresql` is defined as conditional in the `values` key, where the `postgresql` image is included only when the user selects an `embedded_postgres` option on the admin console **Config** page.
-
-To ensure that the `postgresql` image is included in the air gap bundle for the release, the same `postgresql.enabled` value is added to the `builder` key and is hardcoded to `true`.
+For online installations, `postgresql.enabled` in the `values` key is set to a conditional statement using KOTS template functions, so that `postgresql.enabled` is `true` only when the user selects an `embedded_postgres` option on the admin console **Config** page.
