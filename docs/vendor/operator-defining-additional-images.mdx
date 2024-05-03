@@ -8,7 +8,7 @@ This topic describes how to define additional images to be included in the `.air
 
 <AirGapBundle/>
 
-When building the `.airgap` bundle for a release, KOTS finds and includes all images defined in the Pod specs for the release. During installation or upgrade, KOTS collects images from the `.airgap` bundle, then retags and pushes them to the registry supplied by the enterprise user.
+When building the `.airgap` bundle for a release, the vendor portal finds and includes all images defined in the Pod specs for the release. During installation or upgrade, KOTS retags images from the `.airgap` bundle and pushes them to the registry configured in KOTS.
 
 Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
 
@@ -30,6 +30,6 @@ metadata:
 spec:
   additionalImages:
     - elasticsearch:7.6.0
-    - registry.replicated.com/my-operator/my-private-image:abd123f
     - quay.io/orgname/private-image:v1.2.3
+    - registry.replicated.com/my-operator/my-private-image:abd123f
 ```
