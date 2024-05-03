@@ -174,7 +174,7 @@ For more information about these properties, see [`hidden`](custom-resource-conf
 If you assign the RandomString template function to a `default` key in the Config custom resource rather than a `value` key, then the `hidden` and `readonly` properties do _not_ affect the behavior of the RandomString template function. For more information about the behavior of the `default` key in the Config custom resource, see [`default`](custom-resource-config#default) in _Config_.
 :::
 
-The following table describes the behavior of the RandomString template function when it is assigned to a `value` key in the Config custom resource and the `hidden` and `readonly` properties are `true` or `false`: 
+The following table describes the behavior of the RandomString template function when it is assigned to a `value` key in the Config custom resource and the `hidden` and `readonly` properties are `true` or `false`:
 
 <table>
   <tr>
@@ -337,11 +337,11 @@ ParseUint returns the unsigned integer value represented by the string with opti
 ```go
 func TLSCert(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
 ```
-TLSCert generates and returns a self-signed certificate identified by `certName`.  
+TLSCert generates and returns a self-signed certificate identified by `certName`.
 The first parameter can be used in the `TLSKey` function to retrieve the matching key.
 
 TLSCert takes the following parameters
-- Unique name that identifies the certificate.  
+- Unique name that identifies the certificate.
 This is a not a part of the returned certificate.
 - Subject’s common name (cn)
 - Optional list of IPs; may be `()`
@@ -358,8 +358,8 @@ repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "ba
 ```go
 func TLSKey(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
 ```
-TLSKey returns the key that matches the certificate identified by `certName`.  
-The rest of the arguments are the same as in `TLSCert` and, if specified, must have the same values.  
+TLSKey returns the key that matches the certificate identified by `certName`.
+The rest of the arguments are the same as in `TLSCert` and, if specified, must have the same values.
 If they are omitted and the certificate with this name does not exist, the function will return an empty string.
 ```yaml
 repl{{ TLSKey "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
@@ -389,7 +389,7 @@ repl{{ TLSCACert "foo.com" 365 }}
 ```go
 func TLSCertFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
 ```
-TLSCertFromCA generates and returns a certificate signed by the CA identified by `caName`.  
+TLSCertFromCA generates and returns a certificate signed by the CA identified by `caName`.
 The rest of the arguments are the same as in `TLSCert`.
 ```yaml
 repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
@@ -402,7 +402,7 @@ repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0
 ```go
 func TLSKeyFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
 ```
-TLSKeyFromCA generates and returns a key that matches the certificate returned by `TLSCertFromCA`.  
+TLSKeyFromCA generates and returns a key that matches the certificate returned by `TLSCertFromCA`.
 The arguments are the same as in `TLSCertFromCA` and their values must match.
 ```yaml
 repl{{ TLSKeyFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
@@ -422,19 +422,22 @@ repl{{ IsKurl }}
 func Distribution() string
 ```
 Distribution returns the Kubernetes distribution detected. The possible return values are:
-* microk8s      
+
+* aks
+* digitalOcean
 * dockerDesktop
-* eks           
-* gke           
-* digitalOcean  
-* openShift     
-* kurl          
-* aks           
-* ibm           
-* minikube      
-* rke2          
-* k3s  
+* eks
+* embedded-cluster
+* gke
+* ibm
+* k0s
+* k3s
+* kind
+* kurl
+* microk8s
+* minikube
 * oke
+* rke2
 
 ```yaml
 repl{{ Distribution }}
