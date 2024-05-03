@@ -1,4 +1,4 @@
-In the following example, a conditional PostgreSQL resource is enabled in the `builder` key :
+In the following example, a conditional PostgreSQL image is enabled in the `builder` key:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -17,6 +17,6 @@ spec:
       enabled: true
 ```
 
-As shown above, `postgresql` is defined as a conditional resource in the `values` key, where the `postgresql` resource is deployed only when the user selects an `embedded_postgres` option on the admin console **Config** page.
+As shown above, `postgresql` is defined as conditional in the `values` key, where the `postgresql` image is included only when the user selects an `embedded_postgres` option on the admin console **Config** page.
 
-To ensure that the PostgreSQL resource is included in the air gap bundle, the same `postgresql.enabled` value is added to the `builder` key and is hardcoded to `true`.
+To ensure that the `postgresql` image is included in the air gap bundle for the release, the same `postgresql.enabled` value is added to the `builder` key and is hardcoded to `true`.

@@ -45,7 +45,7 @@ For requirements, recommendations, and examples of common use cases for the `bui
 
 ### Example: Set the Image Registry for Air Gap Installations
 
-For air gap installations, it is often required to change the default image registry where certain images are pulled. You can use the `builder` key to do this by hardcoding the target values for the image registry, repository, and tag for air gap installations, as shown in the example below:
+For air gap installations, if the [Replicated proxy service](/vendor/private-images-about) domain `proxy.replicated.com` is used as the default image name for any images, you need to rewrite the image to the upstream image name so that it can be processed and included in the air gap bundle. You can use the `builder` key to do this by hardcoding the upstream location of the image (image registry, repository, and tag), as shown in the example below:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -59,7 +59,7 @@ spec:
   builder:
     my-service:
       image:
-        registry: index.docker.io
+        registry: 12345.dkr.ecr.us-west-1.amazonaws.com
         repository: my-app
         tag: "1.0.2"    
 ```
@@ -67,7 +67,7 @@ When building the `.airgap` bundle for the release, the vendor portal uses the r
 
 ### Example: Include Conditional Resources
 
-Many applications have resources that are included or excluded based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bring their own database. To support this use case for air gap installations, the conditional resource must always be included in the air gap bundle.
+Many applications have images that must be included or excluded based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bring their own database. To support this use case for air gap installations, the image for any conditional resource must always be included in the air gap bundle.
 
 <BuilderExample/>
 
