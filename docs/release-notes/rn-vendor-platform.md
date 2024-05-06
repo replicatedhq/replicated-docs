@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.06-2
+
+Released on May 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-06-2}
+* Improve validation when creating and deleting license fields.
+
 ## v2024.04.29-0
 
 Released on April 29, 2024
