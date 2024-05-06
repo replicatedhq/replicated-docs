@@ -45,5 +45,3 @@ spec:
     postgresql:
       enabled: true
 ```
-
-For online installations, `postgresql.enabled` in the `values` key is set to a conditional statement using KOTS template functions, so that `postgresql.enabled` is `true` only when the user selects an `embedded_postgres` option on the admin console **Config** page.
