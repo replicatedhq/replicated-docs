@@ -3,52 +3,55 @@
 This topic describes telemetry for instances in air gap environments with no outbound internet access. This information in this topic applies to instances installed with Replicated KOTS.
 
 :::note
-Air gap telemetry is in beta. This features, requirements, and limitations of air gap telemetry are subject to change. To access this feature, submit a [feature request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor&title=Custom+Metrics+Request). 
+Air gap telemetry is in beta. The functionality, requirements, and limitations of air gap telemetry are subject to change. For this reason, this feature is hidden behind a feature flag. To request access to Air gap telemetry, submit a [feature request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor&title=Air+gap+telemetry) titled "Air+gap+telemetry", and "remove feature flag" in the required fields.
 :::
 
 ## Overview
 
 [EDIT ME]
 
-_Air gap_ instances are instance running in environments with no outbound internet access. Because these instances cannot make outbound requests, it is not possible to send telemetry to the vendor portal using the Replicated SDK or KOTS. For more information about how to vendor portal collects data from online (internet-connected) instances, see [About Instance and Event Data](/vendor/instance-insights-event-data#about-reporting).
+**Air gap instances** operate in environments without outbound internet access. This limitation prevents these instances from sending telemetry data to the vendor portal via the Replicated SDK or KOTS.
 
-To provide telemetry for air gap instances, Replicated parses any support bundle uploaded looking for one of several events archive files. In this case, the Replicated SDK running in the customer environment will maintain a rolling log of recent events in a Kubernetes Secret, using the same state / change detection logic that has powered the Instance Telemetry feature for over a year now.
+:::note
+For information on how the vendor portal collects data from online (internet-connected) instances, see [About Instance and Event Data](/vendor/instance-insights-event-data#about-reporting).
+:::
 
-Any support bundles uploaded for any customer will contribute state and event history to the core dataset used for tactical and strategic insights across all your instances. You’ll be able to inspect airgapped instances with the same view as online instances.
+To gather telemetry from air gap instances, Replicated analyzes support bundles that contain archived event files. The Replicated SDK, running in the customer's environment, continuously logs recent events in a Kubernetes Secret. This utilizes the established state/change detection logic which already powers the Instance Telemetry feature.
 
-Additional bundles can be uploaded periodically to hydrate additional data. Any overlaps in support bundle event archives are handled idempotently.
+Uploaded support bundles from any customer contribute to a comprehensive dataset, providing tactical and strategic insights across all instances. This allows parity in the analysis of air-gapped and online instances.
 
-### How KOTS Packages Telemetry from Support Bundles
+To enrich this data further, additional bundles may be uploaded periodically. The system handles any overlapping event archives idempotently, ensuring data integrity.
 
-This works by packaging event history in a support bundle.
+### Packaging Telemetry in Support Bundles with KOTS
 
-From there, a support bundle can be collected from either the support-bundle CLI or from the KOTS Admin console. In either case, that secret will be included in the support bundle, along with all the normal K8s statuses, application pod logs, etc:
+The process involves encapsulating event history within a support bundle. This bundle can be generated using either the `support-bundle` CLI or via the KOTS Admin Console. It includes:
 
-From there, the sdk-events file will be processed by the replicated backend upon upload by the vendor:
+- The `sdk-events` file
+- Kubernetes statuses
+- Application pod logs
+- Etc.
 
-## Collect and View Air Gap Telemetry
+Upon uploading to the vendor portal, the Replicated backend processes the `sdk-events` file, associating it with the correct customer and instance ID and updating the instance records accordingly.
 
-1. Ensure that your application includes a support bundle spec. For more information, see __
+## Collecting and Viewing Air Gap Telemetry
 
-1. Have your customer start by collecting a support bundle. This can be done from the kubectl support-bundle CLI, or from the KOTS admin console’s Troubleshoot tab. For more information, see ___
+1. **Prepare Your Application**: Ensure your application includes a [support bundle spec](vendor/support-online-support-bundle-specs).
 
-1. Upload the support bundle to the vendor portal.
+1. **Bundle Collection**: Instruct your customer to [generate a support bundle](/enterprise/troubleshooting-an-app) via the `kubectl support-bundle` [CLI](/enterprise/troubleshooting-an-app#generating-a-support-bundle-using-the-cli) or the [KOTS Admin Console’s Troubleshoot tab](/enterprise/troubleshooting-an-app#generate-a-support-bundle-using-the-admin-console).
 
-    Once a bundle is uploaded, Replicated will detect the customer and instance ID based on the bundle contents, and populate data based on the events in the bundle, whether adding the new events to an existing instance or creating a new instance record.
+1. **Upload the Bundle**: Go to the details page for the air gap instance and click the "Upload new bundle" button to upload a support bundle to the vendor portal.
 
+![Configure Identity Provider](/images/airgap-upload-telemetry.png)
 
-1. Go to the instance insights page for the instance to view air gap telemetry.
+1. **Review Telemetry**: The telemetry data will start appearing on the page shortly. Please allow a few minutes for all data to be processed.
 
 ## Requirements
 
-* [Are there any SDK requirements? Just for custom metrics?]
-* Requires KOTS v1.101.0 or later
-* The support bundle must be generated by KOTS. Generic troubleshoot specs (which do not include instance data) are not supported
-* KOTS must be running in air gapped mode to collect telemetry in the support bundle. 
+* Requires KOTS v1.101.0 or later.
+* The support bundle must be generated by KOTS. Generic troubleshoot specs (which do not include instance data) are not supported.
+* KOTS must be running in air gapped mode to collect telemetry in the support bundle.
 
 ## Limitations
-
-Air gap telemetry has the following limtations:
 
 * Air gap telemetry is in beta
 * Air gap telemetry is supported only for instances installed with KOTS. Air gap telemetry is not supported for instances installed with the Helm CLI.
