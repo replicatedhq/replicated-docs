@@ -3,12 +3,12 @@
 This topic describes telemetry for instances in air gap environments with no outbound internet access. This information in this topic applies to instances installed with Replicated KOTS.
 
 :::note
-Air gap telemetry is in beta. The functionality, requirements, and limitations of air gap telemetry are subject to change. For this reason, this feature is hidden behind a feature flag. To request access to Air gap telemetry, submit a [feature request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor&title=Air+gap+telemetry) titled "Air+gap+telemetry", and "remove feature flag" in the required fields.
+Air gap telemetry is in beta. The functionality, requirements, and limitations of air gap telemetry are subject to change.
+
+To request access to Air gap telemetry, submit a [feature request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor&title=Air+gap+telemetry) titled "Air gap telemetry", and "remove feature flag" in the required fields.
 :::
 
 ## Overview
-
-[EDIT ME]
 
 **Air gap instances** operate in environments without outbound internet access. This limitation prevents these instances from sending telemetry data to the vendor portal via the Replicated SDK or KOTS.
 
@@ -39,9 +39,7 @@ Upon uploading to the vendor portal, the Replicated backend processes the `sdk-e
 
 1. **Bundle Collection**: Instruct your customer to [generate a support bundle](/enterprise/troubleshooting-an-app) via the `kubectl support-bundle` [CLI](/enterprise/troubleshooting-an-app#generating-a-support-bundle-using-the-cli) or the [KOTS Admin Console’s Troubleshoot tab](/enterprise/troubleshooting-an-app#generate-a-support-bundle-using-the-admin-console).
 
-1. **Upload the Bundle**: Go to the details page for the air gap instance and click the "Upload new bundle" button to upload a support bundle to the vendor portal.
-
-![Configure Identity Provider](/images/airgap-upload-telemetry.png)
+1. **Upload the Bundle**: Go to the details page for the air gap instance and click the "Upload new bundle" button to upload a support bundle to the vendor portal. ![Configure Identity Provider](/images/airgap-upload-telemetry.png)
 
 1. **Review Telemetry**: The telemetry data will start appearing on the page shortly. Please allow a few minutes for all data to be processed.
 
