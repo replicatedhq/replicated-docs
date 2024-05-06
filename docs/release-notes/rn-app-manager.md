@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.108.13
+
+Released on May 6, 2024
+
+Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-108-13}
+* Updates the snapshot settings page to clarify that retention settings apply to both scheduled and manual snapshots.
+
 ## 1.108.12
 
 Released on May 3, 2024
