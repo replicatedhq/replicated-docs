@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.06-1
+
+Released on May 6, 2024
+
+### New Features {#new-features-v2024-05-06-1}
+* Adds additional bundle validation when uploading a support bundle for air gap telemetry (alpha feature).
+
 ## v2024.04.26-5
 
 Released on April 26, 2024
