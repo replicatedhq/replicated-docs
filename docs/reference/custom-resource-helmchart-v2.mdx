@@ -97,6 +97,8 @@ The `builder` key is required for the following use cases:
 
   <BuilderAirgapIntro/>
 
+  For more information, see [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+
 * To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
 
   You cannot prevent customers from configuring a local private registry in KOTS. If you think any of your customers will use a local private registry, you should use the `builder` key. For more information, see [Using Private Registries](/enterprise/image-registry-settings).
