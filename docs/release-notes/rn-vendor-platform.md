@@ -8,12 +8,19 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.01-2
+
+Released on May 1, 2024
+
+### New Features {#new-features-v2024-05-01-2}
+* Adds support for creating RKE2 clusters with compatibility matrix using the vendor portal UI.
+
 ## v2024.04.29-0
 
 Released on April 29, 2024
 
 ### New Features {#new-features-v2024-04-29-0}
-* Adds support for compatibility matrix RKE2 clusters.
+* Adds support for creating RKE2 clusters with compatibility matrix using the Vendor API v3.
 
 ## v2024.04.26-5
 
