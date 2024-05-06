@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.04.29-0
+
+Released on April 29, 2024
+
+### New Features {#new-features-v2024-04-29-0}
+* Adds support for compatibility matrix RKE2 clusters.
+
 ## v2024.04.26-5
 
 Released on April 26, 2024
