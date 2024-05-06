@@ -23,7 +23,7 @@ Released on May 6, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Improvements {#improvements-1-108-13}
-* Updates the snapshot settings page to clarify that retention settings apply to both scheduled and manual snapshots.
+* Updates the snapshot settings page to clarify that the retention policy applies to all snapshots, not just scheduled snapshots.
 
 ## 1.108.12
 
