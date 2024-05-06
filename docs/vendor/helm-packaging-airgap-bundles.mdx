@@ -1,0 +1,79 @@
+import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
+import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
+import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
+import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
+
+# Packaging Air Gap Bundles for Helm Charts
+
+This topic describes how to package and build air gap bundles for releases that contain one or more Helm charts. This topic applies to applications deployed with Replicated KOTS.
+
+## Overview
+
+<AirGapBundle/>
+
+When building the `.airgap` bundle for a release that contains one or more Helm charts, the vendor portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key. This ensures that the `.airgap` bundle includes all images needed to successfully deploy the chart in air gap environments.
+
+## Configure the `builder` Key
+
+To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release.
+
+<BuilderAirgapIntro/>
+
+The values in the `builder` key map to values in the given Helm chart's `values.yaml` file. For example, `spec.builder.postres.enabled` in the example HelmChart custom resource below would map to a `postgres.enabled` field in the `values.yaml` file for the `samplechart` chart:
+
+```yaml
+# KOTS HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  builder:
+    postgres:
+      enabled: true 
+```
+
+For requirements, recommendations, and examples of common use cases for the `builder` key, see the sections below.
+
+### Requirements and Recommendations
+
+<HelmBuilderRequirements/>
+
+### Example: Set the Image Registry for Air Gap Installations
+
+For air gap installations, if the [Replicated proxy service](/vendor/private-images-about) domain `proxy.replicated.com` is used as the default image name for any images, you need to rewrite the image to the upstream image name so that it can be processed and included in the air gap bundle. You can use the `builder` key to do this by hardcoding the upstream location of the image (image registry, repository, and tag), as shown in the example below:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  builder:
+    my-service:
+      image:
+        registry: 12345.dkr.ecr.us-west-1.amazonaws.com
+        repository: my-app
+        tag: "1.0.2"    
+```
+When building the `.airgap` bundle for the release, the vendor portal uses the registry, repository, and tag values supplied in the `builder` key to template the Helm chart, rather than the default values defined in the Helm `values.yaml` file. This ensures that the image is pulled from the upstream registry using the credentials supplied in the vendor portal, without requiring any changes to the Helm chart directly.
+
+### Example: Include Conditional Images
+
+Many applications have images that are included or excluded based on a given condition. For example, enterprise users might have the option to deploy an embedded database with the application or bring their own database. To support this use case for air gap installations, the images for any conditionally-deployed components must always be included in the air gap bundle.
+
+<BuilderExample/>
+
+## Related Topics
+
+* [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles)
+* [Build and Download the Application Bundle](/vendor/releases-download-airgap-bundles#air-gap-bundle)
+* [builder](/reference/custom-resource-helmchart-v2#builder)
+* [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped)
