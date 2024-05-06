@@ -1,0 +1,38 @@
+import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
+
+# Defining Additional Images
+
+This topic describes how to define additional images to be included in the `.airgap` bundle for a release.
+
+## Overview
+
+<AirGapBundle/>
+
+When building the `.airgap` bundle for a release, the Replicated vendor portal finds and includes all images defined in the Pod specs for the release. During installation or upgrade, KOTS retags images from the `.airgap` bundle and pushes them to the registry configured in KOTS.
+
+Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
+
+## Define Additional Images for Air Gap Bundles
+
+KOTS supports including the following types of images in the `additionalImages` field:
+
+* Public images referenced by the docker pullable image name.
+* Images pushed to a private registry that was configured in the vendor portal, referenced by the docker-pullable, upstream image name. For more information about configuring private registries, see [Connecting to an External Registry](/vendor/packaging-private-images).
+     :::note
+     If you use the [Replicated proxy service](/vendor/private-images-about) for online (internet-connected) installations, be sure to use the _upstream_ image name in the `additionalImages` field, rather than referencing the location of the image at `proxy.replicated.com`.
+     :::
+* Images pushed to the Replicated registry referenced by the `registry.replicated.com` name.
+
+The following example demonstrates adding multiple images to `additionalImages`:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-app
+spec:
+  additionalImages:
+    - elasticsearch:7.6.0
+    - quay.io/orgname/private-image:v1.2.3
+    - registry.replicated.com/my-operator/my-private-image:abd123f
+```
