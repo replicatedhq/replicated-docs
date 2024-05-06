@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.03-0
+
+Released on May 3, 2024
+
+### New Features {#new-features-v2024-05-03-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version 1.30.0.
+
+### Bug Fixes {#bug-fixes-v2024-05-03-0}
+* Fixes list of host package dependencies for RHEL-9.
+* Stop using default yum repos if all dependencies are already installed on RHEL 9.
+* Stop installing sub-dependencies on RHEL-9 systems.
+
 ## v2024.04.19-0
 
 Released on April 19, 2024
