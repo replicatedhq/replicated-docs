@@ -15,6 +15,20 @@ Released on May 1, 2024
 ### New Features {#new-features-v2024-05-01-2}
 * The Vendor Portal now supports creating RKE2 clusters.
 
+## v2024.04.29-0
+
+Released on April 29, 2024
+
+### New Features {#new-features-v2024-04-29-0}
+* Adds support for compatibility matrix RKE2 clusters.
+
+## v2024.04.26-5
+
+Released on April 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-04-26-5}
+* Fixes Embedded Cluster support on the compatibility matrix create cluster page.
+
 ## v2024.04.26-3
 
 Released on April 26, 2024
