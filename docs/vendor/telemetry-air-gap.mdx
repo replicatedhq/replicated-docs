@@ -1,6 +1,6 @@
 # Collecting Telemetry for Air Gap Instances (Beta)
 
-This topic describes telemetry for instances in air gap environments with no outbound internet access. This information in this topic applies to instances installed with Replicated KOTS.
+This topic describes telemetry for instances in air gap environments with no outbound internet access. This information applies to instances installed with Replicated KOTS.
 
 :::note
 Air gap telemetry is in beta. The functionality, requirements, and limitations of air gap telemetry are subject to change.
@@ -14,7 +14,7 @@ Air gap telemetry is in beta. The functionality, requirements, and limitations o
 For information on how the vendor portal collects data from online (internet-connected) instances, see [About Instance and Event Data](/vendor/instance-insights-event-data#about-reporting).
 :::
 
-To gather telemetry from air gap instances, Replicated analyzes support bundles that contain archived event files. The Replicated SDK, running in the customer's environment, continuously logs recent events in a Kubernetes Secret. This utilizes the established state/change detection logic which already powers the Instance Telemetry feature.
+To gather telemetry from air gap instances, Replicated analyzes support bundles that contain archived event files. The Replicated SDK, running in the customer's environment, continuously logs recent events in a Kubernetes Secret. This utilizes the established state/change detection logic which already powers the [Instance Telemetry feature](/vendor/instance-insights-details).
 
 Uploaded support bundles from any customer contribute to a comprehensive dataset, providing tactical and strategic insights across all instances. This allows parity in the analysis of air-gapped and online instances.
 
