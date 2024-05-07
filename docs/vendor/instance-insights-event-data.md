@@ -4,7 +4,11 @@ This topic provides an overview of the customer and instance insights that you c
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-The vendor portal collects data from instances installed in online environments. Either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), then both send instance data.
+This section describes how the vendor portal collects instance data from online and air gap environments.
+
+### Online Environments
+
+For instances running in online (internet-connected) environments, either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), then both send instance data.
 
 The data sent to the vendor portal includes properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
@@ -19,6 +23,10 @@ As shown in the diagram above, application instance data, application status dat
 * KOTS and the SDK both send information about themselves, including the version of KOTS or the SDK running in the cluster.
 * Any custom metrics configured by the software vendor are sent to the vendor portal through the Replicated SDK API. For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
 * Application status data, such as if the instance is ready or degraded, is sent by KOTS. If KOTS is not installed in the cluster, then the SDK sends the application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
+
+### Air Gap Environments
+
+
 
 ## Frequency of Data Sent to the Vendor Portal
 
@@ -50,6 +58,9 @@ When installed alongisde the application, KOTS automatically sends instance data
 
 * (KOTS v1.92 and later only) The instance deploys a new application version.
 
+### From Air Gap Environments
+
+For air gap instances, the frequency of data sent to the vendor portal depends on how frequently support bundles are collected in the customer environmnet and uploaded to the vendor portal.
 ## How the Vendor Portal Generates Events and Insights {#about-events}
 
 When the vendor portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from Ready to Degraded in the application status generates an event.
@@ -60,18 +71,21 @@ The vendor portal uses events to display insights for each active instance in a 
 
 ## Requirements
 
-Collecting instance data has the following requirements:
+### Online Instances
+
+The following requirements apply to collecting telemetry for online instances:
 
 * Replicated KOTS or the Replicated SDK must be installed in the cluster where the application instance is running. 
 
 * For KOTS installations and for Helm CLI installations that use `helm template` then `kubectl apply`, additional configuration is required to get application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
 
+### Air Gap Instances
+
 ## Limitations
 
 The vendor portal has the following limitations for reporting instance data and generating events:
 
-* **Air gap not supported**: Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
-* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than 24 hours ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
+* **Active instances**: Instance data is available for _active_ instances. An instance is considered inactive when its most recent check-in was more than 24 hours ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
 
    The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
 * **Instance data freshness**: The rate at which data is updated in the vendor portal varies depending on how often the vendor portal receives instance data.
