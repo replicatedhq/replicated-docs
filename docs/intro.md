@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Granular Resource Status View in Vendor Portal</h3>
-        <p>You can now hover over the app status displayed on the <strong>Instance Details</strong> page to view the statuses of individual workloads for the instance.</p>
+        <h3>Alpha Support for Compatibility Matrix Cloud Add-ons</h3>
+        <p>For EKS clusters created with the compatibility matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
     </li>
     <li>
-      <a href="/vendor/instance-insights-details#current-state">Learn more</a>
+      <a href="/vendor/testing-cluster-addons">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Template Annotations for Resources and Objects</h3>
-        <p>For applications deployed with KOTS, you can use KOTS template functions to add user-supplied annotations to resources and objects deployed by your application.</p>
+        <h3>Build Air Gap Bundles for KOTS Releases with Helm Charts</h3>
+        <p>For KOTS releases that contain one or more Helm charts, the KOTS HelmChart `builder` key is required to render the chart templates when building the air gap bundle for the release.</p>
     </li>
     <li>
-      <a href="/vendor/resources-annotations-templating">Learn more</a>
+      <a href="/vendor/helm-packaging-airgap-bundles">Learn more</a>
     </li>
   </ul>
 </section>
