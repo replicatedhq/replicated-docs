@@ -14,10 +14,6 @@ Air gap instances run in environments without outbound internet access. This lim
 
 <AirGapTelemetry/>
 
-The event files are named `sdk-events` and are created by the Replicated SDK, which continuously logs events in a Kubernetes Secret. The SDK uses the same state change logic used by the vendor portal to log events. For more information, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
-
-In addition to the `sdk-events` files, the vendor portal also receives data such as Kubernetes statuses and application Pod logs from support bundles generated in air gap environments.
-
 All support bundles that are uploaded to the vendor portal from any air gap customer contribute to a comprehensive dataset, providing parity in the telemetry for air gap and online instances. Replicated recommends that you collect support bundles from air gap customers regularly (monthly or quarterly) to improve the completeness of air gap telemetry. The vendor portal handles any overlapping event archives idempotently, ensuring data integrity.
 
 ## Requirements
