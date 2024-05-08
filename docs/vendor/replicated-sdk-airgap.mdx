@@ -23,7 +23,7 @@ This section describes how to install the Replicated SDK in air gap mode with th
 
 ### Helm CLI
 
-When the SDK is installed with the Helm CLI in air gap environments, air gap mode can be enabled by passing `--set replicated.isAirgap=true` with the Helm CLI installation command.
+When the SDK is installed with the Helm CLI, air gap mode can be enabled by passing `--set replicated.isAirgap=true` with the Helm CLI installation command.
 
 For example:
 
@@ -31,7 +31,7 @@ For example:
 helm install gitea oci://registry.replicated.com/my-app/gitea --set replicated.isAirgap=true
 ```
 
-For more information, see [Installing with Helm](/vendor/install-with-helm).
+For more information about Helm CLI installations with Replicated, see [Installing with Helm](/vendor/install-with-helm). For more information about setting Helm values with the `helm install` command, see [Helm Install](https://helm.sh/docs/helm/helm_install/) in the Helm documentation.
 
 :::note
 Replicated does not provide air gap bundles for applications installed with the Helm CLI. Air gap bundles are a feature of KOTS.
