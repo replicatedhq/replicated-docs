@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.08-0
+
+Released on May 8, 2024
+
+### New Features {#new-features-v2024-05-08-0}
+* Adds "Not Recommended" label to the "GitOps Enabled" option on the **Manage Customer** and **Create New Customer** pages.
+* Improves Airgap Bundle Contents modal size for long image names.
+* Shows the Replicated domain next to the headers on the **Custom Domains** page.
+
+### Bug Fixes {#bug-fixes-v2024-05-08-0}
+* Remove native sorting on Customers and Instances table.
+
 ## v2024.05.06-2
 
 Released on May 6, 2024
