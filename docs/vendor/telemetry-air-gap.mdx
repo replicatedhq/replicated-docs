@@ -30,7 +30,7 @@ Air gap telemetry has the following requirements:
 Air gap telemetry has the following limitations:
 
 * Air gap telemetry is supported only for instances installed with KOTS. Air gap telemetry is not supported for instances installed with the Helm CLI.
-* Telemetry data is capped at 4,000 events or 1MB; whichever limit is reached first. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
+* Telemetry data is capped at 4,000 events or 1MB; whichever limit is reached first. When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
 
 ## Collect and View Air Gap Telemetry
 
