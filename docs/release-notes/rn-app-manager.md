@@ -23,7 +23,7 @@ Released on May 9, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### New Features {#new-features-1-109-0}
-* Adds the ability to detect an embedded cluster distribution via the [Distribution](/reference/template-functions-static-context#distribution) template function.
+* Adds the ability to detect embedded cluster with the [Distribution](/reference/template-functions-static-context#distribution) template function.
 
 ## 1.108.13
 
