@@ -15,7 +15,7 @@ Air gap mode differs from non-air gap installations of the SDK in the following 
 * The SDK returns an empty array (`[]`) for any requests to check for updates using the [`/api/v1/app/updates`](/reference/replicated-sdk-apis#get-appupdates) SDK API endpoint. This is because the SDK is not able to receive updates from the vendor portal when running in air gap environments.
 * The SDK does not atttempt to update tags for the instance in the vendor portal using the [`/app/instance-tags`](/reference/replicated-sdk-apis#post-appinstance-tags) SDK API endpoint.
 
-In air gap mode, the SDK can still make requests to SDK API endpoints that do not require outbound internet access, such as the [`license`](/reference/replicated-sdk-apis#license) endpoints and the [`/app/info`](/reference/replicated-sdk-apis#get-appinfo) endpoint. Note that any values returned by these endpoints might not include the latest information available in the vendor portal because the SDK cannot receive updates when running in air gap environments.
+In air gap mode, the SDK can still make requests to SDK API endpoints that do not require outbound internet access, such as the [`license`](/reference/replicated-sdk-apis#license) endpoints and the [`/app/info`](/reference/replicated-sdk-apis#get-appinfo) endpoint. However, these endpoints will return whatever values were injected into the SDK when the chart was most recently pulled. These values might not match the latest information available in the vendor portal because the SDK cannot receive updates when running in air gap environments.
 
 ## Install the SDK in Air Gap Mode {#install}
 
@@ -41,10 +41,7 @@ Replicated does not provide air gap bundles for applications installed with the 
 
 When the SDK is installed by KOTS in an air gap environment, KOTS automatically sets `isAirGap: true` in the SDK Helm chart values to enable air gap mode. No additional configuration is required.
 
-KOTS automatically detects an air gap installation and sets `isAirGap: true` in the SDK values when any of the following are true:
-* The user passes the `--airgap=true` flag with the `kots install` command.
-* The user provides the path to the `.airgap` bundle for the release by passing the `--airgap-bundle` flag with the `kots install` command. Setting `--airgap-bundle` implies `--airgap=true`.
-* The user provides a local registry where images are pushed by passing the `--kotsadm-registry`, `--registry-username`, and `--registry-password` flags with the `kots install` command.
-* For Replicated kURL installations, the user passes `-s airgap` with the kURL installation command.
-
-For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped) or [Air Gap Installation with kURL](/enterprise/installing-embedded-airgapped).
+KOTS automatically enables air gap mode for the SDK when the user follows any of these procedures to do an air gap installation:
+* [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped)
+* [Air Gap Installation with kURL](/enterprise/installing-embedded-airgapped)
+* [Air Gap Existing Cluster](/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster) or [Air Gap kURL Cluster](/enterprise/installing-existing-cluster-automation#air-gap-kurl-cluster) in _Installing with the CLI_
