@@ -133,7 +133,7 @@ Helm extensions are updated when new versions of your application are deployed f
 
 **Limitation**: If a Helm extension is removed from the embedded cluster config, the associated Helm chart is not removed from the cluster. This is a limitation that we intend to address in the future.
 
-The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/head/helm-charts/#example).
+The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/head/helm-charts/#example). The `version` field is required. Though the latest version of the chart should successfully deploy if you don't specify a version, this will cause problems for upgrades.
 
 **Example**:
 
@@ -161,7 +161,7 @@ spec:
 ```
 
 :::note
-If an order is not provided, Helm extensions are installed with order 10, and numbers below 10 are reserved for use by embedded cluster to deploy things like a storage provider and the admin console. If you need to install multiple charts in a particular order, choose orders greater than or equal to 10.
+If an order is not provided, Helm extensions are installed with order 10. Numbers below 10 are reserved for use by embedded cluster to deploy things like a storage provider and the admin console. If you need to install multiple charts in a particular order, choose orders greater than or equal to 10.
 :::
 
 ## Unsupported Overrides
