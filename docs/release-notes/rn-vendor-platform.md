@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.10-1
+
+Released on May 10, 2024
+
+### New Features {#new-features-v2024-05-10-1}
+* Adds support for creating compatibility matrix ports with wildcard domains and TLS certificates.
+
 ## v2024.05.08-0
 
 Released on May 8, 2024
