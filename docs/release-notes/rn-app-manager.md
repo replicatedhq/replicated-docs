@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.109.0
+
+Released on May 9, 2024
+
+Support for Kubernetes: 1.27, 1.28, and 1.29
+
+### New Features {#new-features-1-109-0}
+* Adds the ability to detect embedded cluster with the [Distribution](/reference/template-functions-static-context#distribution) template function.
+
 ## 1.108.13
 
 Released on May 6, 2024
