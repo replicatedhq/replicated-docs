@@ -2,13 +2,13 @@ import Help from "../partials/replicated-cli/\_help.mdx"
 
 # cluster port expose
 
-Expose a port on a cluster to the public internet.
+Expose a port on a cluster to the public internet. This command creates a DNS entry and TLS certificate (if "https") for the specified port on the cluster.
 
-This command will create a DNS entry and TLS certificate (if "https") for the specified port on the cluster.
+A wildcard DNS entry and TLS certificate can be created by specifying the `--wildcard` flag. This will take extra time to provision.
 
-A wildcard DNS entry and TLS certificate can be created by specifying the "--wildcard" flag. This will take extra time to provision.
-
-_NOTE: This feature currently only supports VM cluster distributions._
+:::note
+This feature supports only VM cluster distributions. For more information, see [VM Cluster](/vendor/testing-supported-clusters#vm-clusters) in _Supported Compatibility Matrix Cluster Types_.
+:::
 
 ## Usage
 
