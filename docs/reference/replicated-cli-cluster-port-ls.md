@@ -2,7 +2,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster port ls
 
-List cluster ports for a cluster
+List cluster ports for a cluster.
 
 ## Usage
 

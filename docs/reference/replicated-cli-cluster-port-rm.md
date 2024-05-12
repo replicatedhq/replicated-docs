@@ -2,7 +2,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster port rm
 
-Remove cluster port by ID
+Remove cluster port by ID.
 
 ## Usage
 
