@@ -51,7 +51,6 @@ Tunnels are viewed, created, and removed using the replicated CLI, GitHub Action
 ### Limitations
 
 Compatibility Matrix tunnels have the following limitations:
-* Subdomains and wildcards are not supported.
 * One tunnel can only connect to one service. If you need fanout routing into different services, consider installing the nginx ingress controller as a `NodePort` service and exposing it.
 * Tunnels are not supported for cloud distributions (EKS, GKE, AKS).
 
