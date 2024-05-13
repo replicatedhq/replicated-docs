@@ -65,17 +65,20 @@ WebSockets, GRPC, and other protocols are not routed into the cluster.
 Once you have a node port available on the cluster, you can use the replicated CLI to expose the node port to the public internet. 
 This can be used multiple times on a single cluster.
 
+Optionally, you can specify the `--wildcard` flag to expose this port with wildcard DNS and TLS certificate.
+This feature adds extra time to provision the port so should only be used if necessary.
 
-```
+```bash
 replicated cluster port expose \
     [cluster id] \
     --port [node port] \
-    --protocol [protocol]
+    --protocol [protocol] \
+    --wildcard
 ```
 
 For example, if you have the nginx ingress controller installed and the node port is 32456:
 
-```
+```bash
 % replicated cluster ls
 ID          NAME                           DISTRIBUTION    VERSION       STATUS         
 1e616c55    tender_ishizaka                k3s             1.29.2        running        
@@ -84,7 +87,8 @@ ID          NAME                           DISTRIBUTION    VERSION       STATUS
     1e616c55 \
     --port 32456 \
     --protocol http \
-    --protocol https
+    --protocol https \
+    --wildcard
 ```
 
 :::note
@@ -95,16 +99,20 @@ This is useful if you have a deterministic node port, but need the DNS name as a
 ### Viewing Ports
 To view all exposed ports, use the replicated CLI `port ls` subcommand with the cluster ID:
 
-```
-replicated cluster port ls 1e616c55
+```bash
+% replicated cluster port ls 1e616c55
+ID              CLUSTER PORT    PROTOCOL        EXPOSED PORT                                            WILDCARD        STATUS
+d079b2fc        32456           http            http://happy-germain.ingress.replicatedcluster.com      true            ready
+
+d079b2fc        32456           https           https://happy-germain.ingress.replicatedcluster.com     true            ready
 ```
 
 ### Removing Ports
 Exposed ports are automatically deleted when a cluster terminates.
 If you want to remove a port (and the associated DNS records and TLS certs) prior to cluster termination, run the `port rm` subcommand with the cluster ID:
 
-```
-replicated cluster port rm 1e616c55 --port 32456 --protocol http --protocol https
+```bash
+% replicated cluster port rm 1e616c55 --id d079b2fc
 ```
 
 You can remove just one protocol, or all.
