@@ -39,7 +39,7 @@ replicated cluster create [flags]
     <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
-    <td>--ip-family</id>
+    <td>--ip-family</td>
     <td>string</td>
     <td>IP Family to use for the cluster (ipv4|ipv6|dual).</td>
   </tr>
