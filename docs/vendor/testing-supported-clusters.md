@@ -1,4 +1,4 @@
-import Pool from "../partials/cmx/_openshift-pool.mdx"
+import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
@@ -38,6 +38,10 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   <tr>
     <th>Nodes</th>
     <td>Supports a single node.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4` or `dual`.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -83,6 +87,10 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>  
+  <tr>
     <th>Limitations</th>
     <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
@@ -126,6 +134,10 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
@@ -140,8 +152,9 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
 The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
-* (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
-* A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
+
+- (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
+- A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
 
 By default, kubeconfig context is set to the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
 
@@ -169,6 +182,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes for versions 4.13.0-okd and later.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -219,6 +236,10 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
     <td>Supports a single node.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>
       <ul>
@@ -266,6 +287,10 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -309,6 +334,10 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -348,6 +377,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>You can choose only a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -385,6 +418,10 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
   </tr>
   <tr>
     <th>Limitations</th>
