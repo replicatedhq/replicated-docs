@@ -76,6 +76,20 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
+          items: [
+            'vendor/tutorial-embedded-cluster-setup',
+            'vendor/tutorial-embedded-cluster-get-chart',
+            'vendor/tutorial-embedded-cluster-create-app',
+            'vendor/tutorial-embedded-cluster-package-chart',
+            'vendor/tutorial-embedded-cluster-create-release',
+            'vendor/tutorial-embedded-cluster-create-customer',
+            'vendor/tutorial-embedded-cluster-install',
+            'vendor/tutorial-embedded-cluster-reporting',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',

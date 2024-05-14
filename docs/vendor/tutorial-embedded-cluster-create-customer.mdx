@@ -1,0 +1,38 @@
+# Step 5: Create an Embedded Cluster-Enabled Customer
+
+After promoting the release, create a customer with the embedded cluster entitlement so that you can install the release with embedded cluster. A _customer_ represents a single licensed user of your application.
+
+To create a customer:
+
+1. In the [vendor portal](https://vendor.replicated.com), click **Customers > Create customer**.
+
+   The **Create a new customer** page opens:
+
+   ![Customer a new customer page in the vendor portal](/images/create-customer.png)
+
+   [View a larger version of this image](/images/create-customer.png)
+
+1. For **Customer name**, enter a name for the customer. For example, `EC Customer`.
+
+1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+1. For **License type**, select Development.
+
+1. For **License options**, enable the following entitlements:
+     * **KOTS Install Enabled**
+     * **Embedded Cluster Enabled (Beta)**
+
+     :::note
+     Embedded cluster uses KOTS to install the application.
+     :::
+
+1. Click **Save Changes**.
+
+## Next Step
+
+Get the embedded cluster installation commands and install. See [Step 6: Install the Release on a VM](tutorial-embedded-cluster-install).
+
+## Related Topics
+
+* [About Customers](/vendor/licenses-about)
+* [Creating and Managing Customers](/vendor/releases-creating-customer)
