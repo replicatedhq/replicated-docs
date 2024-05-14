@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on May 10, 2024
 
-### New Features {#new-features-v2024-05-10-0}
+### Improvements {#improvements-v2024-05-10-0}
 * Moves release information for the bundle under "Versions Behind" on the **Support Bundle Analysis** page.
 
 ### Bug Fixes {#bug-fixes-v2024-05-10-0}
