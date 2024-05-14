@@ -59,17 +59,22 @@ To install the release with embedded cluster:
 
 1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
 
-    The admin console dashboard opens. The application status changes from Missing, to Unavailable, to Ready while the `gitea` Deployment is being created:
+    The admin console dashboard opens.
+    
+    
+1. In the **Version** section, for version `0.1.0`, click **Deploy**. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
 
     ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
 
     [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
 
-1. When the application status is Ready, click **Open App** to view the Gitea application in a browser:
+1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser:
 
     ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
 
     [View a larger version of this image](/images/tutorial-gitea-ready.png)
+
+1. Go to the **Cluster Management** tab to see the same nodes information that was displayed during installation. Users can manage cluster nodes.     
 
 ## Next Step
 
