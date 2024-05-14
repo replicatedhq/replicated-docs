@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.14-2
+
+Released on May 14, 2024
+
+### New Features {#new-features-v2024-05-14-2}
+* Remove airgap telemetry feature flag and expose Airgap telemetry functionality.
+* Allows Helm Installs to upload a support bundle on **Customer Reporting** page.
+* Improves mobile responsiveness of the main sign up and log in flow in the vendor portal.
+* CMX: If a team is low on credits we will send out a notification to the admin team members.
+
 ## v2024.05.08-0
 
 Released on May 8, 2024
