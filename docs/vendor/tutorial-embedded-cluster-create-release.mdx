@@ -5,7 +5,7 @@ import KotsCr from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import EcCr from "../partials/getting-started/_gitea-ec-config.mdx"
 
-# Step 4: Add the Chart Archive to a Release
+# Step 3: Add the Chart Archive to a Release
 
 Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform. The purpose of this step is to configure a release that supports installation with Replicated embedded cluster.
 
@@ -62,27 +62,7 @@ To create a release:
     <h5>YAML</h5>
     <EcCr/>
    </TabItem>
-   </Tabs>   
-
-1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
-
-   ```
-   replicated release lint --yaml-dir .
-   ```
-   `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
-
-   **Example output**:
-
-   ```
-   RULE                               TYPE    FILENAME        LINE  MESSAGE
-   config-spec                        warn                          Missing config spec                                                         
-   preflight-spec                     warn                          Missing preflight spec
-   troubleshoot-spec                  warn                          Missing troubleshoot spec
-   nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-   ```
-   :::note
-   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `gitea` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
-   :::
+   </Tabs>
 
 1. Create a release:
 

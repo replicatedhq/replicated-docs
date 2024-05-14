@@ -1,6 +1,6 @@
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
-# Step 6: Install the Release on a VM
+# Step 5: Install the Release on a VM
 
 Next, get the customer-specific embedded cluster installation commands and then install the release on a Linux VM.
 
@@ -10,27 +10,27 @@ To install the release with embedded cluster:
 
 1. Click **Install instructions > Embedded cluster**. The **Embedded cluster install instructions** dialog opens.
 
-1. SSH onto your Linux VM.
+1. On the command line, SSH onto your Linux VM.
 
-1. On the command line, run the first command in the **Embedded cluster install instructions** to download the release.
+1. Run the first command in the **Embedded cluster install instructions** dialog to download the release.
 
 1. Run the second command in the dialog to extract the release:
 
     ```bash
-    tar -xvzf gitea-unstable.tgz
+    tar -xvzf $REPLICATED_APP-unstable.tgz
     ```
 
 1. Run the third command to install the release:
 
     ```bash
-    sudo ./gitea install --license license.yaml
+    sudo ./$REPLICATED_APP install --license license.yaml
     ```
 
 1. When prompted, enter a password for accessing the KOTS admin console.
 
-    The installation command takes about three minutes to complete.
+    The installation command takes a few minutes to complete.
 
-1. When the installation command completes, go to the URL provided in the output of the command to log in to the admin console.
+1. When the installation command completes, go to the URL provided in the output to log in to the admin console.
 
     **Example output:**
 
@@ -47,11 +47,15 @@ To install the release with embedded cluster:
     Visit the admin console to configure and install gitea: http://104.155.145.60:30000
     ```
 
-1. Bypass the browser TLS warning.
+    At this point, the cluster is provisioned and the KOTS admin console is deployed, but the application is not yet installed.
+
+1. Bypass the browser TLS warning by clicking the URL provided to proceed.
+
+1. Click **Advanced > Proceed**
 
 1. On the **HTTPS for the Gitea admin console** page, select **Self-signed** and click **Continue**.
 
-1. On the login page, enter the password that you created.
+1. On the login page, enter the password that you created during installation.
 
 1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
 

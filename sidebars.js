@@ -79,7 +79,6 @@ const sidebars = {
           label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
           items: [
             'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-get-chart',
             'vendor/tutorial-embedded-cluster-create-app',
             'vendor/tutorial-embedded-cluster-package-chart',
             'vendor/tutorial-embedded-cluster-create-release',
