@@ -18,7 +18,7 @@ The embedded cluster config lets you define several aspects of the Kubernetes cl
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
-  version: 1.29.4+ec.3
+  version: 1.1.0+k8s-1.29
   roles:
     controller:
       name: management
@@ -56,15 +56,9 @@ spec:
 
 ## Version
 
-You must specify an embedded cluster version. This determines which version of embedded cluster is used when this release is installed.
+You must specify which version of embedded cluster to install. Each version of embedded cluster includes particular versions of components like KOTS (admin console) and OpenEBS.
 
-Use one of the following embedded cluster versions based on your desired version of Kubernetes:
-* **Kubernetes 1.28**: `1.28.7+ec.1` or later
-* **Kubernetes 1.29**: `1.29.1+ec.1` or later
-
-For a full list of versions, see the embedded cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub.
-
-A particular version of add-ons like KOTS (Admin Console) and OpenEBS is included in each embedded cluster release.
+For a full list of versions, see the embedded cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because embedded cluster is changing rapidly.
 
 ## Roles
 
