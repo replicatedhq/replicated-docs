@@ -190,3 +190,36 @@ spec:
 ```
 
 Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into embedded cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that embedded cluster includes by default.
+
+### Overriding The Default Add-On Deployment Values
+
+:::important
+To utilize this feature, please ensure that you are using version v1.2.0 or later. If you are currently running an older version, you must first upgrade to v1.2.0 before proceeding.
+:::
+
+Each add-on deployed by the Embedded Cluster comes with a predefined set of values. In Helm terminology, these values are equivalent to those found in the `values.yaml` file used when deploying a Helm Chart.
+
+To overwrite these default values, you can use the Embedded Cluster configuration by utilizing the `builtInExtensions` property on the `unsupportedOverrides` config section. For example, if you want to override the default values for the OpenEBS add-on, you can create a configuration file like the one shown below:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+metadata:
+  name: my-cluster-config
+spec:
+  version: 1.2.0+k8s-1.29
+  unsupportedOverrides:
+    builtInExtensions:
+    - name: openebs
+      values: |
+        key: value
+```
+
+In this configuration file, the fields specified in the `values` property will be merged with the Embedded Cluster default values for OpenEBS before the cluster is installed or upgraded. The `name` property indicates which add-on the values apply to. The available options for the `name` property are:
+
+- `openebs`
+- `embedded-cluster-operator`
+- `velero`
+- `admin-console`
+
+This feature allows for greater flexibility and customisation of your add-on deployments. By specifying the `builtInExtensions` property, you can ensure that your add-ons are configured exactly as needed for your specific use case.
