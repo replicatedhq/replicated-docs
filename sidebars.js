@@ -580,6 +580,7 @@ const sidebars = {
     items: [
         'vendor/instance-insights-event-data',
         'vendor/insights-app-status',
+        'vendor/telemetry-air-gap',
         'vendor/customer-adoption',
         'vendor/customer-reporting',
         'vendor/instance-insights-details',
