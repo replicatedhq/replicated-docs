@@ -15,6 +15,16 @@ Released on May 10, 2024
 ### New Features {#new-features-v2024-05-10-1}
 * Adds support for creating compatibility matrix ports with wildcard domains and TLS certificates.
 
+## v2024.05.10-0
+
+Released on May 10, 2024
+
+### Improvements {#improvements-v2024-05-10-0}
+* Moves release information for the bundle under "Versions Behind" on the **Support Bundle Analysis** page.
+
+### Bug Fixes {#bug-fixes-v2024-05-10-0}
+* Fixes a bug where product options are not updated correctly when changing installation type in the create a support issue modal.
+
 ## v2024.05.08-0
 
 Released on May 8, 2024

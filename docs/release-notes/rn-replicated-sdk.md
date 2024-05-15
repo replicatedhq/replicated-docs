@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.20
+
+Released on May 14, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-20}
+* Fixes an issue where the namespace fields in the support bundle spec were not quoted, which caused the linter to show schema warnings.
+
 ## 1.0.0-beta.19
 
 Released on April 26, 2024

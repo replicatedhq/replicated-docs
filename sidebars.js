@@ -52,7 +52,7 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
-
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
 
     },
@@ -472,6 +472,7 @@ const sidebars = {
     items: [
       'vendor/replicated-sdk-overview',
       'vendor/replicated-sdk-installing',
+      'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
     ],
   },
@@ -580,6 +581,7 @@ const sidebars = {
     items: [
         'vendor/instance-insights-event-data',
         'vendor/insights-app-status',
+        'vendor/telemetry-air-gap',
         'vendor/customer-adoption',
         'vendor/customer-reporting',
         'vendor/instance-insights-details',
@@ -619,6 +621,9 @@ const sidebars = {
       'reference/replicated-cli-cluster-ls',
       'reference/replicated-cli-cluster-nodegroup-ls',
       'reference/replicated-cli-cluster-prepare',
+      'reference/replicated-cli-cluster-port-expose',
+      'reference/replicated-cli-cluster-port-ls',
+      'reference/replicated-cli-cluster-port-rm',
       'reference/replicated-cli-cluster-rm',
       'reference/replicated-cli-cluster-update-ttl',
       'reference/replicated-cli-cluster-upgrade',
