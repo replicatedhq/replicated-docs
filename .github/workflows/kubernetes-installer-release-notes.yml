@@ -41,7 +41,7 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       id: cpr
       with:
-        token: ${{ secrets.DOCS_GH_PAT }}
+        token: ${{ secrets.REPLICATED_GH_PAT }}
         commit-message: Kubernetes Installer ${{ github.event.client_payload.version }} release notes
         title: Kubernetes Installer ${{ github.event.client_payload.version }} release notes
         branch: automation/kubernetes-installer-release-notes-${{ github.event.client_payload.version }}
