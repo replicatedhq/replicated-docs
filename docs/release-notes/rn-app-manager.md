@@ -16,6 +16,19 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.109.1
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-109-1}
+* Improved the display of volume names in the snapshot viewer.
+
+### Bug Fixes {#bug-fixes-1-109-1}
+* Fixes an issue where the "Config" and "View Files" tabs would not display as active when clicked.
+* Fixes an issue where processing Helm charts that include required values and are configured with the v1beta2 HelmChart custom resource failed.
+
 ## 1.109.0
 
 Released on May 9, 2024
