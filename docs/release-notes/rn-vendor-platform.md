@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.15-1
+
+Released on May 15, 2024
+
+### New Features {#new-features-v2024-05-15-1}
+* CMX: If a team is low on credits we will send out a notification to the admin team members.
+
 ## v2024.05.08-0
 
 Released on May 8, 2024
