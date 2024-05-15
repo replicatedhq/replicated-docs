@@ -23,7 +23,7 @@ Released on May 15, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-109-3}
-* Fixes an issue in Embedded cluster where the [Distribution](/reference/template-functions-static-context#distribution) template function returned `k0s` instead of `embedded-cluster`.
+* Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returned `k0s` instead of `embedded-cluster` for Embedded clusters.
 
 ## 1.109.2
 
