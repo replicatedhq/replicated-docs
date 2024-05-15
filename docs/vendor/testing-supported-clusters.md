@@ -1,4 +1,4 @@
-import Pool from "../partials/cmx/_openshift-pool.mdx"
+import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
@@ -140,8 +140,9 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
 The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
-* (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
-* A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
+
+- (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
+- A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
 
 By default, kubeconfig context is set to the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
 
@@ -329,7 +330,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.26, 1.27, 1.28, 1.29</td>
+    <td>1.27, 1.28, 1.29</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
