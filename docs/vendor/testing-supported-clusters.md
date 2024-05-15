@@ -1,4 +1,4 @@
-import Pool from "../partials/cmx/_openshift-pool.mdx"
+import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
@@ -21,7 +21,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.23.17, 1.24.17, 1.25.16, 1.26.14, 1.27.11, 1.28.7, 1.29.2</td>
+    <td>1.25.16, 1.26.15, 1.27.13, 1.28.9, 1.29.4, 1.30.0</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -140,8 +140,9 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
 The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
-* (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
-* A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
+
+- (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
+- A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
 
 By default, kubeconfig context is set to the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
 
