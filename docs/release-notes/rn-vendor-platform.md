@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.14-1
+
+Released on May 14, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-14-1}
+* Fixes a bug that would cause downloaded licenses to not include custom hostname in the `endpoint` field.
+
 ## v2024.05.10-1
 
 Released on May 10, 2024
