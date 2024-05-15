@@ -472,6 +472,7 @@ const sidebars = {
     items: [
       'vendor/replicated-sdk-overview',
       'vendor/replicated-sdk-installing',
+      'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
     ],
   },
