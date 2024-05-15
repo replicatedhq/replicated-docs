@@ -13,10 +13,36 @@ pagination_prev: null
 Released on May 14, 2024
 
 ### New Features {#new-features-v2024-05-14-2}
-* Remove airgap telemetry feature flag and expose Airgap telemetry functionality.
-* Allows Helm Installs to upload a support bundle on **Customer Reporting** page.
-* Improves mobile responsiveness of the main sign up and log in flow in the vendor portal.
-* CMX: If a team is low on credits we will send out a notification to the admin team members.
+* Adds Beta support for collecting telemetry from instances running in air gap environments with no outbound internet access. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+* Sends a notification to team admins when a team is low on compatibility matrix credits.
+
+### Improvements {#improvements-v2024-05-14-2}
+* Allows installations with the Helm CLI to upload a support bundle on the **Customer Reporting** page.
+* Improves mobile responsiveness of the sign up and login flow in the vendor portal.
+
+## v2024.05.14-1
+
+Released on May 14, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-14-1}
+* Fixes a bug that would cause downloaded licenses to not include custom hostname in the `endpoint` field.
+
+## v2024.05.10-1
+
+Released on May 10, 2024
+
+### New Features {#new-features-v2024-05-10-1}
+* Adds support for creating compatibility matrix ports with wildcard domains and TLS certificates.
+
+## v2024.05.10-0
+
+Released on May 10, 2024
+
+### Improvements {#improvements-v2024-05-10-0}
+* Moves release information for the bundle under "Versions Behind" on the **Support Bundle Analysis** page.
+
+### Bug Fixes {#bug-fixes-v2024-05-10-0}
+* Fixes a bug where product options are not updated correctly when changing installation type in the create a support issue modal.
 
 ## v2024.05.08-0
 
