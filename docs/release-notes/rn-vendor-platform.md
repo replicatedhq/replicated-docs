@@ -14,7 +14,6 @@ Released on May 14, 2024
 
 ### New Features {#new-features-v2024-05-14-2}
 * Adds Beta support for collecting telemetry from instances running in air gap environments with no outbound internet access. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
-* Sends a notification to team admins when a team is low on compatibility matrix credits.
 
 ### Improvements {#improvements-v2024-05-14-2}
 * Allows installations with the Helm CLI to upload a support bundle on the **Customer Reporting** page.
