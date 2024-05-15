@@ -166,7 +166,7 @@ If an order is not provided, Helm extensions are installed with order 10. Number
 This feature should be used with caution by advanced users who understand the risks and ramifications of changing the default configuration.
 :::
 
-Unsupported overrides allow you to override embedded cluster's default configuration, including the k0s config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break embedded clusters, leading to a loss of support.
+Unsupported overrides allow you to override embedded cluster's default configuration, including the k0s config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break embedded clusters. Any issues that are caused by unsupported overrides are not supported.
 
 While they should be used with caution, unsupported overrides are useful if you need to make changes that are not yet otherwise exposed by embedded cluster.
 
@@ -193,13 +193,13 @@ spec:
 
 Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into embedded cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that embedded cluster includes by default.
 
-### Override the Helm Values for Built In Extensions
+### Override the Helm Values for Built-In Extensions
 
 > Introduced in embedded cluster v1.2.0.
 
-Embedded cluster deploys built in extensions like KOTS and OpenEBS to provide capabilities like storage and application management. These extensions are deployed with Helm, and the Helm values for each can be modified if necessary.
+Embedded cluster deploys built-in extensions like KOTS and OpenEBS to provide capabilities like storage and application management. These extensions are deployed with Helm, and the Helm values for each can be modified if necessary.
 
-To modify these values, you can use the `unsupportedOverrides.builtInExtensions` key of the embedded cluster config. Each chart you want to modify is an item in the array. The `name` key identifies the Helm chart that you want to modify, and the `values` key is a string where you specify your modified Helm values. Your modified values will be merged into the values used by embedded cluster.
+To modify these values, you can use the `unsupportedOverrides.builtInExtensions` key of the embedded cluster config. Each chart you want to modify is an item in the array. The `name` key identifies the Helm chart that you want to modify, and the `values` key is a string where you specify your modified Helm values. Your modified values are merged into the values used by embedded cluster.
 
 Example:
 ```yaml
@@ -216,7 +216,7 @@ spec:
         key: value
 ```
 
-The following are the built in extensions available for modification:
+The following are the built-in extensions available for modification:
 
 - `openebs`
 - `admin-console`
