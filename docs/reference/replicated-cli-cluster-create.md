@@ -41,7 +41,7 @@ replicated cluster create [flags]
   <tr>
     <td>--ip-family</td>
     <td>string</td>
-    <td>IP Family to use for the cluster (ipv4|ipv6|dual).</td>
+    <td>IP Family to use for the cluster (ipv4|ipv6|dual). <strong>Default:</strong> ipv4</td>
   </tr>
   <tr>
     <td>--license-id</td>
