@@ -1,36 +1,25 @@
 import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
+import RestoreTypes from "../partials/snapshots/_restore-types.mdx"
+import GetBackups from "../partials/snapshots/_step-get-backups.mdx"
+import Restore from "../partials/snapshots/_step-restore.mdx"
 
 # Restoring from Backups
 
-This topic describes how to restore from backups using Replicated snapshots.
+This topic describes how to restore from full or partial backups using Replicated snapshots.
 
 ## Overview
 
-Snapshots supports the following types of restores:
-* Restore both the application and the KOTS admin console (also referred to as _full_ restores)
-* Restore the KOTS admin console only 
-* Restore the application only (also referred to as _partial_ restores)
+<RestoreTypes/>
 
-The type of restore that you can do depends on the type of backup that you have.
+You can do any type of restore from a full backup using the kots CLI. You can also restore an application from a full or partial backup using the admin console.
 
-Partial restores (application only) can be done using the:
+## Restore From a Full Backup Using the CLI {#full-cli}
 
-- kots CLI from a full backup
-- Admin console from either a full or partial backup
+You can use the kots CLI to restore both the admin console and the application, the admin console only, or the application only. If you need to restore the admin console, you must use the kots CLI because the admin console gets recreated and is disconnected during the restore process.
 
-For more information about the restore process, see [About Restores](snapshots-understanding#restores) in _About Backup and Restore_.
+Only full backups can be restored using the kots CLI. To restore an application from a partial backup, use the admin console. See [Restore the Application Only Using the Admin Console](#admin-console).
 
-## Limitations
-
-* In order to restore 
-
-## Restore from a Full Backup Using the CLI {#full-cli}
-
-From a full backup, you can use the kots CLI to do any type of restore.
-
-Full restores and KOTS admin console-only restores must be done using the Replicated kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
-
-Use the corresponding CLI procedure for your environment:
+To restore using the CLI, see the corresponding procedure for your environment:
 
 - [Existing Clusters](#existing)
 - [Online kURL Clusters](#online)
@@ -38,55 +27,47 @@ Use the corresponding CLI procedure for your environment:
 
 ### Existing Clusters {#existing}
 
+:::note
 If you are restoring to a healthy cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
+:::
 
-To restore a backup on an existing cluster:
+To restore a full backup in an existing cluster:
 
-1. (New or Unhealthy Clusters Only) Install a version of Velero compatible with the one that was used to make the snapshot backup:
+1. (New or Unhealthy Clusters Only) In the cluster where you will do the restore, install a version of Velero that is compatible with the version that was used to make the snapshot backup.
+
+    The Velero installation command varies depending on the storage destination for the backup. For the Velero installation command, see one of the following:
 
     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
     * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
 
-1. Run the `kubectl kots get backups` command to get a list of backups.
+1. <GetBackups/>
 
-1. Run the following command to restore a full backup: 
-
-    ```bash
-    kubectl kots restore --from-backup BACKUP
-    ```
-    Replace `BACKUP` with the the name of the backup to restore from.
-    
-    For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
+1. <Restore/>
 
 ### Online Embedded kURL Clusters {#online}
 
+:::note
 If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `get backups` and `restore` commands in the last two steps.
+:::
 
-To restore a backup in an embedded kURL cluster:
+To restore a full backup in a kURL cluster:
 
-1. (New or Unhealthy Clusters Only) Provision an embedded cluster with Replicated kURL and install the application. See [Online Installation with kURL](installing-embedded-cluster).
+1. (New or Unhealthy Clusters Only) Provision a cluster with kURL and install the target application in the cluster. See [Online Installation with kURL](installing-embedded-cluster).
 
-1. (New or Unhealthy Clusters Only) Configure a storage destination that holds the backup you want to use:
+1. (New or Unhealthy Clusters Only) In the new kURL cluster, configure a storage destination that holds the backup you want to use:
 
     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
     * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations).
 
-1. Run the `kubectl kots get backups` command to get a list of backups.
+1. <GetBackups/>
 
-1. Run the following command to restore a full backup: 
+1. <Restore/>
 
-    ```bash
-    kubectl kots restore --from-backup BACKUP
-    ```
-    Replace `BACKUP` with the the name of the backup to restore from.
-    
-    For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
+### Air Gap kURL Clusters {#air-gapped}
 
-### Air Gapped Embedded kURL Clusters {#air-gapped}
-
-To restore a backup in an air gapped embedded kURL cluster:
+To restore a full backup in an air gap kURL cluster:
 
 1. Run the following command to install a new cluster and provide kURL with the correct registry IP address. kURL must be able to assign the same IP address to the embedded private image registry in the new cluster.
 
@@ -102,26 +83,17 @@ To restore a backup in an air gapped embedded kURL cluster:
     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
     * **S3-Compatible:** See [Configure S3-Compatible Storage for Air Gapped Environments](snapshots-storage-destinations#configure-s3-compatible-storage-for-air-gapped-environments) in _Configuring Other Storage Destinations_.
 
-1. Run the `kubectl kots get backups` command to get a list of backups.
+1. <GetBackups/>
 
-1. Run the following command to restore a full backup: 
+1. <Restore/>
 
-    ```bash
-    kubectl kots restore --from-backup BACKUP
-    ```
-    Replace `BACKUP` with the the name of the backup to restore from.
-    
-    For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
+## Restore the Application Only Using the Admin Console {#admin-console}
 
-## Restore the Application from the Admin Console {#admin-console}
+You can restore an application from a full or partial backup using the admin console.
 
-You can restore the application only, known as a _partial restore_, from either a full backup or a partial backup in the admin console.
+### Restore an Application From a Full Backup
 
-Alternatively, you can use the kots CLI to restore any type of backup. See [Restore Any Backup from the CLI](#full-cli).
-
-### Use a Full Backup to do a Partial Restore
-
-To use a full backup to do a partial restore in the admin console:
+To restore an application from a full backup:
 
 1. Select **Full Snapshots (Instance)** from the Snapshots tab.
 
@@ -143,9 +115,9 @@ To use a full backup to do a partial restore in the admin console:
 
 1. Click **Confirm and restore**.
 
-### Use a Partial Backup to do a Partial Restore
+### Restore an Application From a Partial Backup 
 
-To use a partial backup to do a partial restore in the admin console:
+To restore an application from a partial backup:
 
 1. Select **Partial Snapshots (Application)** from the Snapshots tab.
 
