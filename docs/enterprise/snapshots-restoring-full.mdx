@@ -5,6 +5,7 @@ import Restore from "../partials/snapshots/_step-restore.mdx"
 import Dr from "../partials/snapshots/_limitation-dr.mdx"
 import Os from "../partials/snapshots/_limitation-os.mdx"
 import InstallMethod from "../partials/snapshots/_limitation-install-method.mdx"
+import CliRestores from "../partials/snapshots/_limitation-cli-restores.mdx"
 
 # Restoring from Backups
 
@@ -23,6 +24,7 @@ The following limitations apply to restoring from backups using snapshots:
 * <Dr/>
 * <Os/>
 * <InstallMethod/>
+* <CliRestores/>
 
 For a full list of limitations and considerations related to the snapshots feature, see  [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_. 
 
@@ -30,7 +32,9 @@ For a full list of limitations and considerations related to the snapshots featu
 
 You can use the kots CLI to restore both the admin console and the application, the admin console only, or the application only. If you need to restore the admin console, you must use the kots CLI because the admin console gets recreated and is disconnected during the restore process.
 
-Only full backups can be restored using the kots CLI. To restore an application from a partial backup, use the admin console. See [Restore the Application Only Using the Admin Console](#admin-console).
+:::note
+<CliRestores/>
+:::
 
 To restore using the CLI, see the corresponding procedure for your environment:
 
