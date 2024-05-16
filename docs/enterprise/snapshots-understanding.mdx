@@ -1,38 +1,39 @@
-import RestoreType from "../partials/snapshots/_restore-types.mdx"
+import RestoreTypes from "../partials/snapshots/_restore-types.mdx"
+import Dr from "../partials/snapshots/_limitation-dr.mdx"
+import Os from "../partials/snapshots/_limitation-os.mdx"
+import InstallMethod from "../partials/snapshots/_limitation-install-method.mdx"
 
 # About Backup and Restore
 
-This topic describes usnig the Replicated snapshots feature to back up and restore the Replicated KOTS admin console and applications. 
+This topic provides an introduction to the Replicated KOTS snapshots feature, including information about backing up and restoring KOTS installations with snapshots. 
 
 ## Overview
 
-An important part of the lifecycle of an application is backup and restore. The Replicated snapshots feature can be used to create backups and restore from backups. The KOTS admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
+An important part of the lifecycle of an application is backup and restore. The snapshots feature can be used to create backups of KOTS installations and restore from backups. The KOTS admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
 
-Velero and restic are the underlying technologies for snapshots.
+Velero and restic are the underlying technologies for snapshots. For more information, see the [Velero documentation](https://velero.io/docs/).
 
 :::note
-The snapshots feature is available only for licenses that have the **Allow Snapshots** feature enabled.
+The snapshots feature is available only for KOTS-enabled licenses with the **Allow Snapshots** feature.
 :::
 
 ### Limitations and Considerations
 
-- Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
+- Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration.
 
-- Only full backups that include both the application and the admin console are usable in disaster recovery scenarios.
+- <Dr/>
 
-- Partial backups that include the application only _cannot_ be restored to a new cluster. Only full backups can be restored to a new cluster.
+- <Os/>
 
-- Snapshots must be restored on the same operating system that the snapshot was taken on. For example, snapshots taken on a CentOS cluster must be restored on a CentOS cluster.
-
-- Snapshots can be restored only to clusters that use the same installation method as the cluster the snapshot was taken from. For example, snapshots taken in an online (internet-connected) cluster must be restored to an online cluster.
-
-- Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
+- <InstallMethod/>
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the **Snapshots** tab in the admin console to cleanup and remove snapshots.
 
+- Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
+
 ### Velero Version Compatibility
 
-The following table lists which versions of Velero are compatible with each version of KOTS.
+The following table lists which versions of Velero are compatible with each version of KOTS. For more information, see the [Velero documentation](https://velero.io/docs/).
 
 | KOTS version | Velero version |
 |------|-------------|
@@ -42,7 +43,9 @@ The following table lists which versions of Velero are compatible with each vers
 
 ## About Backups
 
-This section describes the types of backups that are supported with snapshots.
+This section describes the types of backups that are supported with snapshots. For information about how to configure backup storage destinations for snapshots, see the [Configuring Backup Storage](/enterprise/snapshots-velero-cli-installing) section.
+
+
 ### Application and Admin Console (Full) Backups
 
 Full backups (also referred to as _instance_ backups) include the KOTS admin console and all application data, including application volumes and manifest files.
@@ -76,6 +79,8 @@ You initially configure backups on a supported storage provider backend using th
 
 kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded kURL clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded kURL clusters.
 
+For information about how to configure backup storage destinations for snapshots, see the [Configuring Backup Storage](/enterprise/snapshots-velero-cli-installing) section.
+
 ## About Restores {#restores}
 
 <RestoreTypes/>
@@ -86,4 +91,4 @@ Then, the restore process redeploys all of the application manifests. All Pods a
 
 When you restore the admin console only, no changes are made to the application.
 
-For more information about how to restore using the admin console or the kots CLI, see [Restoring from Backups](snapshots-restoring-full).
+For information about how to restore using the admin console or the kots CLI, see [Restoring from Backups](snapshots-restoring-full).
