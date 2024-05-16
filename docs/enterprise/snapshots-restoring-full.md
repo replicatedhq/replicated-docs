@@ -2,7 +2,16 @@ import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
 
 # Restoring from Backups
 
-Full restores and Replicated admin console only restores must be done using the Replicated kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
+This topic describes how to restore from backups using Replicated snapshots.
+
+## Overview
+
+Snapshots supports the following types of restores:
+* Restore both the application and the KOTS admin console (also referred to as _full_ restores)
+* Restore the KOTS admin console only 
+* Restore the application only (also referred to as _partial_ restores)
+
+The type of restore that you can do depends on the type of backup that you have.
 
 Partial restores (application only) can be done using the:
 
@@ -11,20 +20,21 @@ Partial restores (application only) can be done using the:
 
 For more information about the restore process, see [About Restores](snapshots-understanding#restores) in _About Backup and Restore_.
 
-## Restore from the CLI {#full-cli}
+## Limitations
 
-From a full backup, you can do any of the following types of restores using the kots CLI:
+* In order to restore 
 
-- **Full restore:** Restores the admin console and the application
-- **Partial restore:** Restores the application only
-- **Admin console:** Restores the admin console only
+## Restore from a Full Backup Using the CLI {#full-cli}
+
+From a full backup, you can use the kots CLI to do any type of restore.
+
+Full restores and KOTS admin console-only restores must be done using the Replicated kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
 
 Use the corresponding CLI procedure for your environment:
 
 - [Existing Clusters](#existing)
-- [Online Embedded kURL Clusters](#online)
-- [Air Gapped Embedded kURL Clusters](#air-gapped)
-
+- [Online kURL Clusters](#online)
+- [Air Gap kURL Clusters](#air-gapped)
 
 ### Existing Clusters {#existing}
 
