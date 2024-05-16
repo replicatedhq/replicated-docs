@@ -61,3 +61,11 @@ replicated cluster update ttl 81cd2169 --ttl 2h
 ID          NAME                           DISTRIBUTION    VERSION       STATUS          CREATED                          EXPIRES                          TAGS
 81cd2169    gallant_fermat                 gke             1.27          running         2023-12-15 19:16:56 +0000 UTC    2023-12-15 21:21:35 +0000 UTC
 ```
+
+Update the TTL to two hours using the `name` flag. We first look for [ID]. If not specified, we look for the first matching cluster with the same name as specified by `--name`. If also `--name` is not provided, we look for `--id`.
+
+```bash
+replicated cluster update ttl --name gallant_fermat --ttl 2h
+ID          NAME                           DISTRIBUTION    VERSION       STATUS          CREATED                          EXPIRES                          TAGS
+81cd2169    gallant_fermat                 gke             1.27          running         2023-12-15 19:16:56 +0000 UTC    2023-12-15 21:21:35 +0000 UTC
+```
