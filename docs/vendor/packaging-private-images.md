@@ -13,6 +13,7 @@ Replicated recommends that application vendors use one the following external pr
 * GitHub Container Registry
 * Google Artifact Registry
 * Google Container Registry (Deprecated)
+* Nexus Repository Manager 
 * Quay.io
 
 These registries have been tested for compatibility with KOTS.
@@ -157,6 +158,23 @@ To add an external registry using the vendor portal:
         <tr>
           <td>Hostname</td>
           <td>Enter the host name for the registry, such as quay.io.</td>
+        </tr>
+        <tr>
+          <td>Username and Password</td>
+          <td>Enter the username and password for an account that has pull access to the registry.</td>
+        </tr>
+      </table>
+
+    * **Nexus Repository**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as example.registry.com.</td>
         </tr>
         <tr>
           <td>Username and Password</td>
