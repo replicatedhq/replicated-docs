@@ -1,5 +1,5 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import Output from "../partials/replicated-cli/_output.mdx"
+import Help from "../partials/replicated-cli/\_help.mdx"
+import Output from "../partials/replicated-cli/\_output.mdx"
 
 # cluster update ttl
 
@@ -28,6 +28,20 @@ replicated cluster update ttl [ID] [flags]
     <p>The updated TTL for the cluster, in hours or minutes. Must be a duration longer than the current lifespan of the cluster. <strong>Valid values:</strong> 10m through 48h. For example, <code>15h</code> or <code>120min</code>.</p>
     </td>
   </tr>
+  <tr>
+   <td><code>--id</code></td>
+   <td>string</td>
+   <td>
+   <p>id of the cluster to update TTL (when name is not provided)</p>
+   </td>
+  </tr>
+   <tr>
+   <td><code>--name</code></td>
+   <td>string</td>
+   <td>
+   <p>Name of the cluster to update TTL.</p>
+   </td>
+  </tr>
 </table>
 
 ## Example
@@ -39,6 +53,7 @@ replicated cluster ls 81cd2169
 ID          NAME                           DISTRIBUTION    VERSION       STATUS          CREATED                          EXPIRES                          TAGS
 81cd2169    gallant_fermat                 gke             1.27          running         2023-12-15 19:16:56 +0000 UTC    2023-12-15 20:21:35 +0000 UTC
 ```
+
 Update the TTL to two hours:
 
 ```bash
