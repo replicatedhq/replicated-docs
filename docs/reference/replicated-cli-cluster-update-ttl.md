@@ -1,5 +1,5 @@
-import Help from "../partials/replicated-cli/\_help.mdx"
-import Output from "../partials/replicated-cli/\_output.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
+import Output from "../partials/replicated-cli/_output.mdx"
 
 # cluster update ttl
 
@@ -12,6 +12,8 @@ For more information, see [About the Compatibility Matrix](/vendor/testing-about
 ```bash
 replicated cluster update ttl [ID] [flags]
 ```
+
+The `cluster update ttl` command first looks for the target cluster based on the value supplied for `[ID]`. If `[ID]` is not specified, the command looks for the first matching cluster with the same name as specified by the `--name` flag. If `--name` is also not provided, then the command looks for a cluster with the same ID as specified by the `--id` flag.
 
 <table>
   <tr>
@@ -32,7 +34,7 @@ replicated cluster update ttl [ID] [flags]
    <td><code>--id</code></td>
    <td>string</td>
    <td>
-   <p>id of the cluster to update TTL (when name is not provided)</p>
+   <p>ID of the cluster to update TTL (when <code>--name</code> is not provided).</p>
    </td>
   </tr>
    <tr>
@@ -62,7 +64,7 @@ ID          NAME                           DISTRIBUTION    VERSION       STATUS 
 81cd2169    gallant_fermat                 gke             1.27          running         2023-12-15 19:16:56 +0000 UTC    2023-12-15 21:21:35 +0000 UTC
 ```
 
-Update the TTL to two hours using the `name` flag. We first look for [ID]. If not specified, we look for the first matching cluster with the same name as specified by `--name`. If also `--name` is not provided, we look for `--id`.
+Update the TTL to two hours using the cluster name:
 
 ```bash
 replicated cluster update ttl --name gallant_fermat --ttl 2h
