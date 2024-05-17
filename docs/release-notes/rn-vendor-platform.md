@@ -15,6 +15,17 @@ Released on May 16, 2024
 ### Bug Fixes {#bug-fixes-v2024-05-16-3}
 * Fixes an issue that would cause embedded cluster installs to fail with error 404 when downloading public files.
 
+## v2024.05.14-2
+
+Released on May 14, 2024
+
+### New Features {#new-features-v2024-05-14-2}
+* Adds Beta support for collecting telemetry from instances running in air gap environments with no outbound internet access. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+
+### Improvements {#improvements-v2024-05-14-2}
+* Allows installations with the Helm CLI to upload a support bundle on the **Customer Reporting** page.
+* Improves mobile responsiveness of the sign up and login flow in the vendor portal.
+
 ## v2024.05.14-1
 
 Released on May 14, 2024

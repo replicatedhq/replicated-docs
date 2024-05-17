@@ -163,18 +163,20 @@ If an order is not provided, Helm extensions are installed with order 10. Number
 ## Unsupported Overrides
 
 :::important
-This feature should be used with caution by advanced users knowledgeable about k0s.
+This feature should be used with caution by advanced users who understand the risks and ramifications of changing the default configuration.
 :::
 
-Unsupported overrides allow you to override the default k0s config. This should be used with caution because changes here can disrupt or break embedded clusters.
+Unsupported overrides allow you to override embedded cluster's default configuration, including the k0s config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break embedded clusters. Any issues that are caused by unsupported overrides are not supported.
 
-Though somewhat dangerous, this section is useful if you need to make changes that are not yet otherwise exposed by embedded cluster.
+While they should be used with caution, unsupported overrides are useful if you need to make changes that are not yet otherwise exposed by embedded cluster.
 
-For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/head/configuration/#full-config-reference) in the k0s documentation.
+### Override the k0s Config
 
-If you need to use unsupported overrides, let Alex Parker know! These overrides are not supported by Replicated, and reasonable modifications to the k0s config will be productized and incorporated directly into the embedded cluster config instead.
+By default, embedded cluster uses a k0s config that is tested and known to work for embedded clusters. In some circumstances, you might want to change the k0s config.
 
-A common use case today is to adjust the default service port range to allow node ports on lower port numbers. This will likely be incorporated into the embedded cluster config in the future, but for now you can set it with unsupported overrides, as shown in the example below:
+For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/head/configuration/#configuration-file-reference) in the k0s documentation.
+
+A common use case today is to adjust the default service port range to allow node ports on lower port numbers, as shown in the example below:
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -190,3 +192,33 @@ spec:
 ```
 
 Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into embedded cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that embedded cluster includes by default.
+
+### Override the Helm Values for Built-In Extensions
+
+> Introduced in embedded cluster v1.2.0.
+
+Embedded cluster deploys built-in extensions like KOTS and OpenEBS to provide capabilities like storage and application management. These extensions are deployed with Helm, and the Helm values for each can be modified if necessary.
+
+To modify these values, you can use the `unsupportedOverrides.builtInExtensions` key of the embedded cluster config. Each chart you want to modify is an item in the array. The `name` key identifies the Helm chart that you want to modify, and the `values` key is a string where you specify your modified Helm values. Your modified values are merged into the values used by embedded cluster.
+
+Example:
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+metadata:
+  name: my-cluster-config
+spec:
+  version: 1.2.0+k8s-1.29
+  unsupportedOverrides:
+    builtInExtensions:
+    - name: openebs
+      values: |
+        key: value
+```
+
+The following are the built-in extensions available for modification:
+
+- `openebs`
+- `admin-console`
+- `velero`
+- `embedded-cluster-operator`
