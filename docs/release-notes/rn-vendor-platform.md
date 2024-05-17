@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.16-3
+
+Released on May 16, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-16-3}
+* Fixes an issue that would cause embedded cluster installs to fail with error 404 when downloading public files.
+
 ## v2024.05.14-2
 
 Released on May 14, 2024
