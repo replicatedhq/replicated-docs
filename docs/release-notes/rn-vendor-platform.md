@@ -8,6 +8,17 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.14-2
+
+Released on May 14, 2024
+
+### New Features {#new-features-v2024-05-14-2}
+* Adds Beta support for collecting telemetry from instances running in air gap environments with no outbound internet access. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+
+### Improvements {#improvements-v2024-05-14-2}
+* Allows installations with the Helm CLI to upload a support bundle on the **Customer Reporting** page.
+* Improves mobile responsiveness of the sign up and login flow in the vendor portal.
+
 ## v2024.05.14-1
 
 Released on May 14, 2024
