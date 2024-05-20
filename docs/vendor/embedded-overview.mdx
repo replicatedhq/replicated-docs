@@ -247,11 +247,33 @@ To access the cluster and use other included binaries:
      Server Version: v1.29.1+k0s
      ```
 
-1. Type exit or use Ctrl+D to exit the shell.
+1. Type `exit` or **Ctrl + D** to exit the shell.
 
      :::note
      If you encounter a typical workflow where your customers have to use the embedded cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional admin console functionality.
      :::
+
+### Troubleshoot
+
+From the shell, you can generate a support bundle for the embedded cluster to help with troubleshooting.
+
+The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the admin console and embedded cluster operator that manage install and upgrade operations.
+
+If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
+
+To generate a support bundle:
+
+1. Access the embedded cluster shell:
+     ```
+     sudo ./APP_SLUG shell
+     ```
+
+2. Generate the support bundle:
+     ```
+     kubectl support-bundle /var/lib/embedded-cluster/support/host-support-bundle.yaml --load-cluster-specs
+     ```
+
+You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
 
 ## Manage Nodes
 
