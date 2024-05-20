@@ -13,13 +13,12 @@ pagination_prev: null
 Released on May 17, 2024
 
 ### New Features {#new-features-v2024-05-17-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.10.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.1 1.28.10 1.29.5 1.27.14.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.73.2-58.5.2.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-05-10T01-41-38Z.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.29.0.
-* Updates [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.13.2 to use local-volume-provider:v0.6.4.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.1 1.29.5 1.27.14.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.7.
+* Updates [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.13.2 to use local-volume-provider:v0.6.4.
 
 ## v2024.05.03-0
 
