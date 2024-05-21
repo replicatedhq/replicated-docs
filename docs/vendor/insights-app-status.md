@@ -62,6 +62,8 @@ For applications that include the Replicated SDK, the vendor portal also display
 
 [View a larger version of this image](/images/resource-status-hover-current-state.png)
 
+Viewing these resource status details is helpful for understanding which resources are contributing to the aggregate application status. For example, when an application has an Unavailable status, that means that one or more resources are Unavailable. By viewing the resource status insights on the **Instance details** page, you can quickly understand which resource or resources are Unavailable for the purpose of troubleshooting.
+
 Granular resource status details are automatically available when the Replicated SDK is installed alongside the application. For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
 
 ## Understanding Application Status
