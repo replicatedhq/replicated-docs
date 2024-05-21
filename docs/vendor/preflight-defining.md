@@ -23,42 +23,27 @@ import TabItem from '@theme/TabItem';
 
 # Defining Preflight Checks
 
-This topic describes how to define preflight checks in Helm chart- and standard Kubernetes manifest-based applications. For more information about preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+This topic describes how to define preflight checks in Helm- and standard Kubernetes manifest-based applications. For more information about preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
 The information in this topic applies to applications that are installed with the Helm CLI or with Replicated KOTS.
 
 ## Step 1: Create the Manifest File
 
-You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
+You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource. The type of manifest file that you use depends on your application type (Helm- or standard manifest-based) and the installation methods that your application supports (Helm CLI, KOTS v1.101.0 or later, or KOTS v1.100.3 or earlier).
 
-Use the following table to determine which type of manifest file to use for defining preflight checks:
+* **Helm-Based Applications**: For Helm-based applications, see the following guidance:
 
-<table>
-  <tr>
-    <th width="25%"></th>
-    <th width="25%">Helm CLI</th>
-    <th width="25%">KOTS v1.101.0 and Later</th>
-    <th width="25%">KOTS v1.100.3 and Earlier</th>
-  </tr>
-  <tr>
-    <th>Helm Chart-Based Application</th>
-    <td><a href="#secret">Kubernetes Secret</a></td>
-    <td><a href="#secret">Kubernetes Secret</a></td>
-    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
-  </tr>
-  <tr>
-    <th>Standard Manifest-Based Application</th>
-    <td>N/A</td>
-    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
-    <td><a href="#preflight-cr">Preflight Custom Resource</a></td>
-  </tr>
-</table>  
+   * **(Recommended) Helm CLI or KOTS v1.101.0 or Later**: For Helm-based applications installed with the Helm CLI or KOTS v1.101.0 or later, define the preflight checks in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
+
+   * **KOTS v1.100.3 or Earlier**: For Helm-based applications installed with KOTS v1.100.3 or earlier, define the preflight checks in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
+
+* **Standard Manifest-Based Applications**: For standard manifest-based applications, define the preflight checks in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
 ### Kubernetes Secret {#secret}
 
-You can define preflight check specifications in a Kubernetes Secret for the following installation types:
-* Installations with the Helm CLI
-* Helm chart-based applications installed with KOTS v1.101.0 and later
+For Helm-based applications installed with the Helm CLI or KOTS v1.101.0 or later, define the preflight checks in a Kubernetes Secret in your Helm chart `templates`.
+
+You only need to define preflight checks one time in a Secret in the chart `templates` to support running preflight checks for both installations with the Helm CLI and KOTS v1.101.0 or later. For a tutorial that demonstrates how to define preflight checks in a Secret and then run the preflight checks in both Helm CLI and KOTS installations, see [Tutorial: Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup).
 
 Add the following YAML to a Kubernetes Secret in your Helm chart `templates` directory:
 
@@ -85,10 +70,10 @@ As shown above, the Secret must include the following:
 * The label `troubleshoot.sh/kind: preflight`
 * A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
-### (KOTS Only) Preflight Custom Resource {#preflight-cr}
+### Preflight Custom Resource {#preflight-cr}
 
 You can define preflight check specifications in a Preflight custom resource for the following installation types:
-* Standard manifest-based applications installed with KOTS
+* Standard manifest-based applications installed with any version of KOTS
 * Helm chart-based applications installed with KOTS v1.100.3 and earlier
 
 :::note
