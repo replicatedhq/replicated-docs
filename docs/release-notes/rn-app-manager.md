@@ -16,6 +16,46 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.109.4
+
+Released on May 21, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-109-4}
+* Fix `kubectl kots port-forward` for high-latency network connections.
+
+## 1.109.3
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-109-3}
+* Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returned `k0s` instead of `embedded-cluster` for embedded clusters.
+
+## 1.109.2
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-2}
+* Updates images to resolve CVE-2024-33599 with high severity; and CVE-2024-33600, CVE-2024-33601, CVE-2024-33602 with medium severity.
+
+## 1.109.1
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-1}
+* Displays the volume name, Pod name, and namespace of snapshotted volumes in the snapshot details page.
+
+### Bug Fixes {#bug-fixes-1-109-1}
+* Fixes an issue where the **Config** and **View files** tabs did not display as active when clicked.
+* Fixes an issue where KOTS failed to process Helm charts with required values that were configured with the v1beta2 HelmChart custom resource.
+
 ## 1.109.0
 
 Released on May 9, 2024

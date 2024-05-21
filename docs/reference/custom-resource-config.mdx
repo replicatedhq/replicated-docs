@@ -49,8 +49,6 @@ spec:
       - name: key
         title: Key
         type: textarea
-        props:
-          rows: 8
       - name: hostname
         title: Hostname
         type: text  
@@ -169,8 +167,6 @@ spec:
       - name: key
         title: Key
         type: textarea
-        props:
-          rows: 8
       - name: hostname
         title: Hostname
         type: text  
@@ -628,9 +624,7 @@ Optionally, all additional properties are available for this input type.
 ![Text field on the configuration screen](../../static/images/config-screen-text.png)
 
 ### `textarea`
-A `textarea` can specify a `props` that will map into the HTML element directly.
-Examples of available properties are `rows`, `cols` and `wrap`.
-For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tags/tag_textarea.asp).
+A `textarea` items creates a multi-line text input for when users have to enter a sizeable amount of text.
 
 ```yaml
     - name: custom_key
@@ -640,8 +634,6 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
       - name: key
         title: Key
         type: textarea
-        props:
-          rows: 8
       - name: hostname
         title: Hostname
         type: text

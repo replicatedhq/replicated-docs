@@ -437,6 +437,7 @@ Distribution returns the Kubernetes distribution detected. The possible return v
 * microk8s
 * minikube
 * oke
+* openShift
 * rke2
 
 ```yaml

@@ -1,0 +1,95 @@
+import RestoreTypes from "../partials/snapshots/_restore-types.mdx"
+import Dr from "../partials/snapshots/_limitation-dr.mdx"
+import Os from "../partials/snapshots/_limitation-os.mdx"
+import InstallMethod from "../partials/snapshots/_limitation-install-method.mdx"
+import CliRestores from "../partials/snapshots/_limitation-cli-restores.mdx"
+
+# About Backup and Restore
+
+This topic provides an introduction to the Replicated KOTS snapshots feature, including information about backing up and restoring KOTS installations with snapshots. 
+
+## Overview
+
+An important part of the lifecycle of an application is backup and restore. The snapshots feature can be used to create backups of KOTS installations and restore from backups. The KOTS admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
+
+Velero and restic are the underlying technologies for snapshots. For more information, see the [Velero documentation](https://velero.io/docs/).
+
+### Limitations and Considerations
+
+- The snapshots feature is available only for KOTS-enabled licenses with the **Allow Snapshots** feature.
+
+- Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration.
+
+- <Dr/>
+
+- <Os/>
+
+- <InstallMethod/>
+
+- <CliRestores/>
+
+- Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the **Snapshots** tab in the admin console to cleanup and remove snapshots.
+
+- Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
+
+### Velero Version Compatibility
+
+The following table lists which versions of Velero are compatible with each version of KOTS. For more information, see the [Velero documentation](https://velero.io/docs/).
+
+| KOTS version | Velero version |
+|------|-------------|
+| 1.15 to 1.20.2 | 1.2.0 |
+| 1.20.3 to 1.94.0 | 1.5.1 through 1.9.x |
+| 1.94.1 and later | 1.6.x through 1.12.x |
+
+## About Backups
+
+This section describes the types of backups that are supported with snapshots. For information about how to configure backup storage destinations for snapshots, see the [Configuring Backup Storage](/enterprise/snapshots-velero-cli-installing) section.
+
+
+### Application and Admin Console (Full) Backups
+
+Full backups (also referred to as _instance_ backups) include the KOTS admin console and all application data, including application volumes and manifest files.
+
+For clusters created with Replicated kURL, full backups also back up the Docker registry, which is required for air gapped installations.
+
+If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. To be included in full backups, each application must include a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`, which you can check for in the admin console.
+
+Full backups are recommended because they support all types of restores. For example, you can restore both the admin console and application from a full backup to a new cluster in disaster recovery scenarios. Or, you can use a full backup to restore only application data for the purpose of rolling back after deploying a new version of an application.
+
+### Application-Only (Partial) Backups
+
+Partial backups back up the application volumes and manifest files only. Partial backups do not back up the KOTS admin console.
+
+Partial backups can be useful if you need to roll back after deploying a new application version. Partial backups of the application only _cannot_ be restored to a new cluster, and are therefore not useable for disaster recovery scenarios.
+
+### Backup Storage Destinations
+
+For disaster recovery, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations in clusters created with Replicated kURL, because the default storage location on these clusters is internal.
+
+You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
+
+You initially configure backups on a supported storage provider backend using the kots CLI. If you want to change the storage destination after the initial configuration, you can use the the **Snapshots** page in the admin console, which has built-in support for the following storage destinations:
+
+- Amazon Web Services (AWS)
+- Google Cloud Provider (GCP)
+- Microsoft Azure
+- S3-Compatible
+- Network File System (NFS)
+- Host Path
+
+kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded kURL clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded kURL clusters.
+
+For information about how to configure backup storage destinations for snapshots, see the [Configuring Backup Storage](/enterprise/snapshots-velero-cli-installing) section.
+
+## About Restores {#restores}
+
+<RestoreTypes/>
+
+When you restore an application with snapshots, KOTS first deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+Then, the restore process redeploys all of the application manifests. All Pods are given an extra `initContainer` and an extra directory named `.velero`, which are used for restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
+
+When you restore the admin console only, no changes are made to the application.
+
+For information about how to restore using the admin console or the kots CLI, see [Restoring from Backups](snapshots-restoring-full).
