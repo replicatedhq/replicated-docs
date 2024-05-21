@@ -47,6 +47,10 @@ The **Current State** section displays the following event data about the status
 
     [View a larger version of this image](/images/resource-status-hover-current-state.png)
 
+    :::note
+    In order to see granular resource status, the Replicated SDK must be installed alongside your application.
+    :::
+
 * **App version**: The version label of the currently running release. You define the version label in the release properties when you promote the release. For more information about defining release properties, see [Properties](releases-about#properties) in _About Channels and Releases_.
 
    If there is no version label for the release, then the vendor portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls) in the _replicated CLI_ documentation.
