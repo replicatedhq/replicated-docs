@@ -41,9 +41,9 @@ You can define preflight checks in a Kubernetes Secret or in a Preflight custom 
 
 ### Kubernetes Secret {#secret}
 
-For Helm-based applications installed with the Helm CLI or KOTS v1.101.0 or later, define the preflight checks in a Kubernetes Secret in your Helm chart `templates`.
+For Helm-based applications installed with the Helm CLI or KOTS v1.101.0 or later, define preflight checks in a Kubernetes Secret in your Helm chart `templates`. This allows you to define the preflights spec only one time to support running preflight checks in both Helm CLI and KOTS installations. 
 
-You only need to define preflight checks one time in a Secret in the chart `templates` to support running preflight checks for both installations with the Helm CLI and KOTS v1.101.0 or later. For a tutorial that demonstrates how to define preflight checks in a Secret and then run the preflight checks in both Helm CLI and KOTS installations, see [Tutorial: Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup).
+For a tutorial that demonstrates how to define preflight checks in a Secret in chart `templates` and then run the preflight checks in both Helm CLI and KOTS installations, see [Tutorial: Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup).
 
 Add the following YAML to a Kubernetes Secret in your Helm chart `templates` directory:
 
@@ -72,15 +72,14 @@ As shown above, the Secret must include the following:
 
 ### Preflight Custom Resource {#preflight-cr}
 
-You can define preflight check specifications in a Preflight custom resource for the following installation types:
+Define preflight checks in a Preflight custom resource for the following installation types:
 * Standard manifest-based applications installed with any version of KOTS
-* Helm chart-based applications installed with KOTS v1.100.3 and earlier
+* Helm-based applications installed with KOTS v1.100.3 and earlier
+    :::note
+    For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends that you define preflight checks in a Secret in the Helm chart `templates` instead of using the Preflight custom resource. See [Create a Secret](#secret) above.
 
-:::note
-For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends that you define preflight checks in a Secret in the Helm chart templates instead of using the Preflight custom resource. See [Create a Secret](#secret) above.
-
-In KOTS v1.101.0 and later, preflights defined in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS v1.101.0 and later cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release.
-:::
+    In KOTS v1.101.0 and later, preflights defined in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS v1.101.0 and later cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release.
+    :::
 
 Add the following YAML to a new file in a release:
 
