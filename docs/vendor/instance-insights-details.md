@@ -232,7 +232,7 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>App Status</td>
     <td>
-      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. For applications that include the Replicated SDK, hover to view the statuses of the indiviudal resources deployed by the application.</p>
+      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. For applications that include the <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>, hover over the application status to view the statuses of the indiviudal resources deployed by the application.</p>
       <p>For more information, see <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
     </td>
   </tr>
