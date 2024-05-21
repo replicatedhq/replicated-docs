@@ -50,13 +50,13 @@ After you include the SDK as a dependency, the requirements for enabling status 
 
 ### KOTS Installations
 
-For applications installed with Replicated KOTS, configure one or more status informers in the Replicated Application custom resource. For more information, see [Adding Resource Status Informers](admin-console-display-app-status).
+For applications installed with Replicated KOTS, configure one or more status informers in the KOTS Application custom resource. For more information, see [Adding Resource Status Informers](admin-console-display-app-status).
 
 When Helm-based applications that include the Replicated SDK and are deployed by KOTS, the SDK inherits the status informers configured in the KOTS Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
 
 ## View Resource Status Insights {#resource-status}
 
-For applications that include the Replicated SDK, the vendor portal also displays granular resource status insights. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the indiviudal resources deployed by the application, as shown below:
+For applications that include the Replicated SDK, the vendor portal also displays granular resource status insights in addition to the aggregate application status. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the indiviudal resources deployed by the application, as shown below:
 
 <img src="/images/resource-status-hover-current-state.png" alt="resource status pop up" width="400px"/>
 
