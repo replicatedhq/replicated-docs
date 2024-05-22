@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.20-1
+
+Released on May 20, 2024
+
+### New Features {#new-features-v2024-05-20-1}
+* Adds support for IP dual-stack Kind clusters to compatibility matrix.
+
 ## v2024.05.16-3
 
 Released on May 16, 2024
