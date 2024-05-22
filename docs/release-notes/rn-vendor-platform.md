@@ -13,7 +13,7 @@ pagination_prev: null
 Released on May 20, 2024
 
 ### New Features {#new-features-v2024-05-20-1}
-* CMX: Added support for kind ip-family stack dual.
+* Adds support for IP dual-stack Kind clusters to compatibility matrix.
 
 ## v2024.05.16-3
 
