@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.05.21-0
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-0}
+* Compatibility matrix automatically sends an email notification to team admins when a team is low on credits.
+
 ## v2024.05.20-1
 
 Released on May 20, 2024
