@@ -22,21 +22,25 @@ The following diagram demonstrates how air gap telemetry is collected and stored
 
 All support bundles uploaded to the vendor portal from air gap customers contributes to a comprehensive dataset, providing parity in the telemetry for air gap and online instances. Replicated recommends that you collect support bundles from air gap customers regularly (monthly or quarterly) to improve the completeness of the dataset. The vendor portal handles any overlapping event archives idempotently, ensuring data integrity.
 
-## Requirements
+## Requirement
 
 Air gap telemetry has the following requirements:
 
-* To collect telemetry from an air gap instance, one of the following must be installed in the cluster where the instance is running:
+* To collect telemetry from air gap instances, one of the following must be installed in the cluster where the instance is running:
    
-   * The Replicated SDK installed in _air gap mode_. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+   * The Replicated SDK installed in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
    
-   * KOTS v1.92.1
-   
+   * KOTS v1.92.1 or later
+
    :::note
-   If both the SDK and KOTS v1.92.1 are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), then both collect and store instance telemetry.
+   When both the SDK and KOTS v1.92.1 or later are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), both collect and store instance telemetry. **EDIT Data is de-duplicated before being displayed in the vendor portal.**
    :::
 
-* The Replicated SDK is required to collect custom metrics from air gap instances.
+* To collect custom metrics from air gap instances, the Replicated SDK must installed in the cluster in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+
+    For more information about custom metrics, see [Configuring Custom Metrics](https://docs.replicated.com/vendor/custom-metrics).
+
+Replicated strongly recommends that all applications include the Replicated SDK because it enables access to both standard instance telemetry and custom metrics for air gap instances.
 
 ## Limitation
 
