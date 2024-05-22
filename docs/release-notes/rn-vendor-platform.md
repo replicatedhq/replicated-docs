@@ -20,6 +20,20 @@ Released on May 21, 2024
 * Disables the edit and archive channel options and displays helpful hover text on the **Channels** page table view when the user does not have permission to edit channels.
 * Fixes a bug that caused "airgap:true" or "airgap:false" customer searches to fail with error 500.
 
+## v2024.05.21-0
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-0}
+* Compatibility matrix automatically sends an email notification to team admins when a team is low on credits.
+
+## v2024.05.20-1
+
+Released on May 20, 2024
+
+### New Features {#new-features-v2024-05-20-1}
+* Adds support for IP dual-stack Kind clusters to compatibility matrix.
+
 ## v2024.05.16-3
 
 Released on May 16, 2024
