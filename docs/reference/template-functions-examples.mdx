@@ -1,5 +1,6 @@
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
 import StringComparison from "../partials/template-functions/_string-comparison.mdx"
+import NeComparison from "../partials/template-functions/_ne-comparison.mdx"
 import GoSprig from "../partials/template-functions/_go-sprig.mdx"
 import UseCases from "../partials/template-functions/_use-cases.mdx"
 
@@ -77,6 +78,12 @@ A common use case for comparing integer values with KOTS template functions is t
 A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
+
+### Not Equal To Comparison
+
+It can be useful to compare the rendered value of a KOTS template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS admin console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ Replicated embedded cluster.
+
+<NeComparison/>
 
 ### Logical AND Comparison
 

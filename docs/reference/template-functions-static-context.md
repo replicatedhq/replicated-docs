@@ -413,9 +413,15 @@ repl{{ TLSKeyFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.
 func IsKurl() bool
 ```
 IsKurl returns true if running within a kurl-based installation.
+#### Detect kURL Distributions
 ```yaml
 repl{{ IsKurl }}
 ```
+#### Detect Non-kURL Distributions
+```yaml
+repl{{ not IsKurl }}
+```
+See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
 ## Distribution
 ```go
@@ -434,15 +440,28 @@ Distribution returns the Kubernetes distribution detected. The possible return v
 * k3s
 * kind
 * kurl
+   :::note
+   [IsKurl](#iskurl) can also be used to detect kURL distributions.
+   :::
 * microk8s
 * minikube
 * oke
 * openShift
 * rke2
 
+#### Detect the Distribution
 ```yaml
 repl{{ Distribution }}
 ```
+#### Equal To Comparison
+```yaml
+repl{{ eq Distribution "gke" }}
+```
+#### Not Equal To Comparison
+```yaml
+repl{{ ne Distribution "embedded-cluster" }}
+```
+See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
 ## NodeCount
 ```go

@@ -1,6 +1,7 @@
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
 import PropertyWhen from "../partials/config/_property-when.mdx"
 import DistroCheck from "../partials/template-functions/_string-comparison.mdx"
+import NeComparison from "../partials/template-functions/_ne-comparison.mdx"
 
 # Using Conditional Statements in Configuration Fields
 
@@ -28,9 +29,15 @@ In the following example, the `when` properties use the [Distribution](/referenc
 
 <DistroCheck/>
 
-### kURL Cluster Check
+### Embedded Cluster Distribution Check
 
-It can be useful to show or hide configuration fields if the cluster was provisioned by Replicated kURL because kURL distributions often include add-ons to manage functionality such as ingress and storage. This means that kURL clusters frequently have fewer configuration options for the end user.
+It can be useful to show or hide configuration fields if the distribution of the cluster is Replicated embedded cluster because embedded cluster distributions include built-in extensions to manage functionality such as ingress and storage. This means that embedded clusters frequently have fewer configuration options for the user.
+
+<NeComparison/>
+
+### kURL Distribution Check
+
+It can be useful to show or hide configuration fields if the cluster was provisioned by Replicated kURL because kURL distributions often include add-ons to manage functionality such as ingress and storage. This means that kURL clusters frequently have fewer configuration options for the user.
 
 In the following example, the `when` property of the `not_kurl` group uses the IsKurl template function to evaluate if the cluster was provisioned by kURL. For more information about the IsKurl template function, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
 
