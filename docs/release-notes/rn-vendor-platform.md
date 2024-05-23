@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.23-2
+
+Released on May 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-23-2}
+* Adds validation to compatibility matrix addon object-store bucket prefix input.
+
 
 ## v2024.05.21-0
 
