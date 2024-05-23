@@ -39,9 +39,9 @@ As shown in the image above, the **Instance details** page includes the followin
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
-* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. Hover over the **App status** field to view the statuses of the indiviudal resources deployed by the application. For more information about enabling the **App status** field, see [Enabling and Understanding Application Status](insights-app-status).
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information about enabling application status insights and how to interpret the different statuses, see [Enabling and Understanding Application Status](insights-app-status).
 
-    The following image shows an example of the granular resource status view that is displayed on hover:
+    Additionally, for applications that include the [Replicated SDK](/vendor/replicated-sdk-overview), you can hover over the **App status** field to view the statuses of the indiviudal resources deployed by the application, as shown in the example below:
 
     <img src="/images/resource-status-hover-current-state.png" alt="resource status pop up" width="400px"/>
 
@@ -232,8 +232,8 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>App Status</td>
     <td>
-      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. Hover to view the statuses of the indiviudal resources deployed by the application.</p>
-      <p>Additional configuration is required to get app status data. See <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
+      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. For applications that include the <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>, hover over the application status to view the statuses of the indiviudal resources deployed by the application.</p>
+      <p>For more information, see <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
     </td>
   </tr>
 </table>

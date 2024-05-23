@@ -27,9 +27,9 @@ To enable status informers for your application, do one of the following, depend
 
 ### Helm Installations 
 
-To get instance status data for applications installed with Helm, include the Replicated SDK as a dependency of your application. For information about how to distribute the SDK with your application, see [About the Replicated SDK](replicated-sdk-overview).
+To get instance status data for applications installed with Helm, the Replicated SDK must be installed alongside the application. For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
 
-After you include the SDK as a dependency, the requirements for enabling status informers vary depending on how your Helm chart-based application is installed:
+After you include the SDK as a dependency, the requirements for enabling status informers vary depending on how your application is installed:
 
 * For applications installed by running `helm install` or `helm upgrade`, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. No additional configuration is required to get instance status data.
 
@@ -50,15 +50,27 @@ After you include the SDK as a dependency, the requirements for enabling status 
 
 ### KOTS Installations
 
-For applications installed with Replicated KOTS, configure one or more status informers in the Replicated Application custom resource. For more information, see [Add Status Informers](admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_.
+For applications installed with Replicated KOTS, configure one or more status informers in the KOTS Application custom resource. For more information, see [Adding Resource Status Informers](admin-console-display-app-status).
 
-When Helm chart-based applications that include the Replicated SDK are deployed by KOTS, the SDK inherits the KOTS status informers configured in the Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
+When Helm-based applications that include the Replicated SDK and are deployed by KOTS, the SDK inherits the status informers configured in the KOTS Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
+
+## View Resource Status Insights {#resource-status}
+
+For applications that include the Replicated SDK, the vendor portal also displays granular resource status insights in addition to the aggregate application status. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the indiviudal resources deployed by the application, as shown below:
+
+<img src="/images/resource-status-hover-current-state.png" alt="resource status pop up" width="400px"/>
+
+[View a larger version of this image](/images/resource-status-hover-current-state.png)
+
+Viewing these resource status details is helpful for understanding which resources are contributing to the aggregate application status. For example, when an application has an Unavailable status, that means that one or more resources are Unavailable. By viewing the resource status insights on the **Instance details** page, you can quickly understand which resource or resources are Unavailable for the purpose of troubleshooting.
+
+Granular resource status details are automatically available when the Replicated SDK is installed alongside the application. For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
 
 ## Understanding Application Status
 
 This section provides information about how Replicated interprets and aggregates the status of Kubernetes resources for your application to report an application status.
 
-### Resource Statuses
+### About Resource Statuses {#resource-statuses}
 
 Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 

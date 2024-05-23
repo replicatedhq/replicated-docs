@@ -78,11 +78,13 @@ The vendor portal uses events to display insights for each active instance in a 
 
 ## Requirements
 
-The following requirements apply to collecting telemetry for online instances:
+The following requirements apply to collecting instance telemetry:
 
 * Replicated KOTS or the Replicated SDK must be installed in the cluster where the application instance is running. 
 
 * For KOTS installations and for Helm CLI installations that use `helm template` then `kubectl apply`, additional configuration is required to get application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
+
+* To view resource status details for an instance on the **Instance details** page, the Replicated SDK must be installed in the cluster alongside the application. For more information, see [View Resource Status Insights](insights-app-status#resource-status) in _Enabling and Understanding Application Status_.
 
 * There are additional requirements for collecting telemetry from air gap instances. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
 
