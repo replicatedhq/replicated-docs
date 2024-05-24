@@ -413,7 +413,7 @@ repl{{ TLSKeyFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.
 func IsKurl() bool
 ```
 IsKurl returns true if running within a kurl-based installation.
-#### Detect kURL Distributions
+#### Detect kURL Instances
 ```yaml
 repl{{ IsKurl }}
 ```
@@ -447,7 +447,7 @@ Distribution returns the Kubernetes distribution detected. The possible return v
 * rke2
 
 :::note
-[IsKurl](#iskurl) can also be used to detect kURL distributions.
+[IsKurl](#iskurl) can also be used to detect kURL instances.
 :::
 
 #### Detect the Distribution
