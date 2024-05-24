@@ -45,6 +45,14 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
+              # use image tags only instead of tags + digest 
+              # so the airgap builder grabs single-arch images
+              image:
+                digest: ""
+                digestChroot: ""
+              admissionWebhooks:
+                image:
+                  digest: ""
   unsupportedOverrides:
     k0s: |
       config:
