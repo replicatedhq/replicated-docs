@@ -413,11 +413,11 @@ repl{{ TLSKeyFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.
 func IsKurl() bool
 ```
 IsKurl returns true if running within a kurl-based installation.
-#### Detect kURL Instances
+#### Detect kURL Installations
 ```yaml
 repl{{ IsKurl }}
 ```
-#### Detect Non-kURL Distributions
+#### Detect Non-kURL Installations
 ```yaml
 repl{{ not IsKurl }}
 ```
