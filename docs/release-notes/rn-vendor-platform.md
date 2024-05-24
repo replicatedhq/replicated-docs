@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.24-6
+
+Released on May 24, 2024
+
+### New Features {#new-features-v2024-05-24-6}
+* Added support for Sonatype Nexus registry.
+
 
 ## v2024.05.21-0
 
