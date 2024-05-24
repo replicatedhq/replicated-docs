@@ -66,8 +66,7 @@ To install Velero and configure host path storage in air gapped environments:
    kubectl kots velero configure-hostpath \
      --namespace NAME \
      --hostpath /PATH \
-     --kotsadm-registry REGISTRY_HOSTNAME \
-     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --kotsadm-registry REGISTRY_HOSTNAME[/REGISTRY_NAMESPACE] \
      --registry-username REGISTRY_USERNAME \
      --registry-password REGISTRY_PASSWORD
    ```

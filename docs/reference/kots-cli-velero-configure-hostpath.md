@@ -36,8 +36,7 @@ Using a registry for airgapped installations
 kubectl kots velero configure-hostpath \
   --hostpath /mnt/kots-sentry-snapshots \
   --namespace kots-sentry \
-  --kotsadm-registry private.registry.host \
-  --kotsadm-namespace kots-sentry \
+  --kotsadm-registry private.registry.host/kots-sentry \
   --registry-username ro-username \
   --registry-password ro-password
 ```

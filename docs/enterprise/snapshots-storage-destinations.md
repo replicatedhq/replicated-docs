@@ -158,8 +158,7 @@ kubectl kots velero configure-other-s3 \
   --bucket BUCKET \
   --access-key-id ACCESS_KEY_ID \
   --secret-access-key SECRET_ACCESS_KEY \
-  --kotsadm-registry REGISTRY_HOSTNAME \
-  --kotsadm-namespace REGISTRY_NAMESPACE \
+  --kotsadm-registry REGISTRY_HOSTNAME[/REGISTRY_NAMESPACE] \
   --registry-username REGISTRY_USERNAME \
   --registry-password REGISTRY_PASSWORD
 ```

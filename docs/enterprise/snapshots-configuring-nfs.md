@@ -69,8 +69,7 @@ To install Velero and configure NFS storage in air gapped environments:
      --namespace NAME \
      --nfs-server HOST \
      --nfs-path PATH \
-     --kotsadm-registry REGISTRY_HOSTNAME \
-     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --kotsadm-registry REGISTRY_HOSTNAME[/REGISTRY_NAMESPACE] \
      --registry-username REGISTRY_USERNAME \
      --registry-password REGISTRY_PASSWORD
    ```

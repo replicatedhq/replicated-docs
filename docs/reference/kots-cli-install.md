@@ -77,7 +77,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--kotsadm-namespace</code></td>
         <td>string</td>
-        <td>Set to override the namespace of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
+        <td>Set to override the registry namespace of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
     </tr>
     <tr>
         <td><code>--kotsadm-registry</code></td>

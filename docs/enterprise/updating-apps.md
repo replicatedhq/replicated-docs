@@ -110,8 +110,7 @@ In order to install an update from an air gap file, the following command can be
 ```bash
 kubectl kots upstream upgrade <app slug> \
   --airgap-bundle new-app-release.airgap \
-  --kotsadm-namespace <registry namespace> \
-  --kotsadm-registry <registry host> \
+  --kotsadm-registry <registry host>[/<registry namespace>] \
   --registry-username <username> \
   --registry-password <password> \
   -n <admin console namespace>
