@@ -440,14 +440,15 @@ Distribution returns the Kubernetes distribution detected. The possible return v
 * k3s
 * kind
 * kurl
-   :::note
-   [IsKurl](#iskurl) can also be used to detect kURL distributions.
-   :::
 * microk8s
 * minikube
 * oke
 * openShift
 * rke2
+
+:::note
+[IsKurl](#iskurl) can also be used to detect kURL distributions.
+:::
 
 #### Detect the Distribution
 ```yaml
