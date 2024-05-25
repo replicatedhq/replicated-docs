@@ -1,4 +1,6 @@
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
+import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
+import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 
 # Configuring Namespace Access and Memory Limit
 
