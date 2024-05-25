@@ -165,16 +165,16 @@ kubectl kots velero configure-other-s3 \
 
 Replace:
 
-- NAME with the name of the namespace where the admin console is installed and running
-- ENDPOINT with the s3 endpoint
-- REGION with the region where the bucket exists 
-- BUCKET with the name of the object storage bucket where backups should be stored
-- ACCESS_KEY_ID with the access key id to use for accessing the bucket
-- SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
-- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
-- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
-- REGISTRY_USERNAME with the username to use to authenticate with the registry
-- REGISTRY_PASSWORD with the password to use to authenticate with the registry
+- `NAME` with the name of the namespace where the admin console is installed and running
+- `ENDPOINT` with the s3 endpoint
+- `REGION` with the region where the bucket exists 
+- `BUCKET` with the name of the object storage bucket where backups should be stored
+- `ACCESS_KEY_ID` with the access key id to use for accessing the bucket
+- `SECRET_ACCESS_KEY` with the secret access key to use for accessing the bucket
+- `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
+- `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted (Optional)
+- `REGISTRY_USERNAME` with the username to use to authenticate with the registry
+- `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 

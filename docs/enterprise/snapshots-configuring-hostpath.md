@@ -75,7 +75,7 @@ To install Velero and configure host path storage in air gapped environments:
      - `NAME` with the namespace where the admin console is installed and running
      - `PATH` with the path to the directory where the backups will be stored
      - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
-     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted (Optional)
      - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
      - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
