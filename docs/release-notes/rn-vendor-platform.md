@@ -13,7 +13,7 @@ pagination_prev: null
 Released on May 28, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-05-28-0}
-* User can create GitHub support tickets with large support bundle analysis results.
+* Users can create GitHub support tickets with large support bundle analysis results.
 
 
 ## v2024.05.21-0
