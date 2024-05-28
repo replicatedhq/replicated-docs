@@ -435,8 +435,11 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
 
 ### OKE (Alpha)
 
-The compatibility matrix supports creating [Oracle OKE](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
-By default, creating OKE cluster is not enabled. If you wish to make use of OKE clusters, contact Replicated at contact@replicated.com.
+The compatibility matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
+
+:::note
+By default, creating OKE clusters is not enabled. To enable OKE clusters for compatibility matrix, contact Replicated at contact@replicated.com.
+:::
 
 <table>
   <tr>
