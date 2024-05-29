@@ -24,6 +24,6 @@ kubectl kots docker ensure-secret --dockerhub-username sentrypro --dockerhub-pas
 
 The `kots docker ensure-secret` command creates an image pull secret that KOTS can use when pulling images.
 
-KOTS then creates a new release sequence for the application to apply the image pull secret to all Kubernetes manifests that have images. After running the `kots docker ensure-secret` command, deploy this new release sequence either from the admin console or the kots CLI.
+KOTS then creates a new release sequence for the application to apply the image pull secret to all Kubernetes manifests that have images. After running the `kots docker ensure-secret` command, deploy this new release sequence either from the Admin Console or the KOTS CLI.
 
-For more information, see [docker ensure-secret](/reference/kots-cli-docker-ensure-secret) in the kots CLI documentation.
+For more information, see [docker ensure-secret](/reference/kots-cli-docker-ensure-secret) in the KOTS CLI documentation.

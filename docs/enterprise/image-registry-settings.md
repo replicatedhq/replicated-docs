@@ -2,7 +2,7 @@ import ImageRegistrySettings from "../partials/image-registry/_image-registry-se
 
 # Using Private Registries
 
-This topic describes how to configure private registry settings in the Replicated admin console.
+This topic describes how to configure private registry settings in the Replicated KOTS Admin Console.
 
 ## About Private Registries
 
@@ -16,13 +16,13 @@ Your domain must support a Docker V2 protocol. For more information, see [Privat
 
 ## Configure Private Registries in Online Clusters
 
-You configure the application to use a private registry in the admin console, unless you are using a kURL Registry add-on. You can also disable the connection or remove the registry settings if needed.
+You configure the application to use a private registry in the Admin Console, unless you are using a kURL Registry add-on. You can also disable the connection or remove the registry settings if needed.
 
 For information about changing registry settings in an air gap environment, see [Change Private Registries in Air Gap Clusters](#air-gap).
 
 To configure private registry settings in an online cluster:
 
-1. On the Registry Settings tab in the admin console, edit the fields:
+1. On the Registry Settings tab in the Admin Console, edit the fields:
     
     <img src="/images/registry-settings.png" alt="Registry Settings" width="400"></img>
 
@@ -38,11 +38,11 @@ To configure private registry settings in an online cluster:
 
 ## Change Private Registries in Air Gap Clusters {#air-gap}
 
-During air gap installations, you configure a private registry where KOTS pushes images. You can change the private registry settings at any time in the admin console.
+During air gap installations, you configure a private registry where KOTS pushes images. You can change the private registry settings at any time in the Admin Console.
 
 To change private registry settings in an air gap cluster:
 
-1. On the Registry Settings tab in the admin console, select the **Disable Pushing Images to Private Registry** checkbox, and click **Save changes**. 
+1. On the Registry Settings tab in the Admin Console, select the **Disable Pushing Images to Private Registry** checkbox, and click **Save changes**. 
 
    This is a temporary action that allows you to edit the registry namespace and hostname. If you only want to change the username or password, you do not have to disable pushing the images.
 

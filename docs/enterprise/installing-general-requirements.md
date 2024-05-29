@@ -11,7 +11,7 @@ This topic does not include any requirements specific to your software vendor. E
 
 ## Supported Browsers
 
-The following table lists the browser requirements for the Replicated admin console with the latest version of KOTS.
+The following table lists the browser requirements for the Replicated KOTS Admin Console with the latest version of KOTS.
 
 | Browser              | Support     |
 |----------------------|-------------|
@@ -39,21 +39,21 @@ To install KOTS in an existing cluster, your environment must meet the following
 
 ### Minimum System Requirements
 
-To install the admin console on an existing cluster, the cluster must meet the following requirements:
+To install the Admin Console on an existing cluster, the cluster must meet the following requirements:
 
-* **Admin console minimum requirements**: Existing clusters that have LimitRanges specified must support the following minimum requirements for the admin console:
+* **Admin console minimum requirements**: Existing clusters that have LimitRanges specified must support the following minimum requirements for the Admin Console:
 
-  * **CPU resources and memory**: The admin console pod requests 100m CPU resources and 100Mi memory.
+  * **CPU resources and memory**: The Admin Console pod requests 100m CPU resources and 100Mi memory.
 
-  * **Disk space**: The admin console requires a minimum of 5GB of disk space on the cluster for persistent storage, including:
+  * **Disk space**: The Admin Console requires a minimum of 5GB of disk space on the cluster for persistent storage, including:
 
-    * **4GB for S3-compatible object store**: The admin console requires 4GB for an S3-compatible object store to store appplication archives, support bundles, and snapshots that are configured to use a host path and NFS storage destination. By default, KOTS deploys MinIO to satisfy this object storage requirement. During deployment, MinIO is configured with a randomly generated `AccessKeyID` and `SecretAccessKey`, and only exposed as a ClusterIP on the overlay network.
+    * **4GB for S3-compatible object store**: The Admin Console requires 4GB for an S3-compatible object store to store appplication archives, support bundles, and snapshots that are configured to use a host path and NFS storage destination. By default, KOTS deploys MinIO to satisfy this object storage requirement. During deployment, MinIO is configured with a randomly generated `AccessKeyID` and `SecretAccessKey`, and only exposed as a ClusterIP on the overlay network.
 
       :::note
       You can optionally install KOTS without MinIO by passing `--with-minio=false` with the `kots install` command. This installs KOTS as a StatefulSet using a persistent volume (PV) for storage. For more information, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
       :::
 
-    * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
+    * **1GB for rqlite PersistentVolume**: The Admin Console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
 
 * **Supported operating systems**: The following are the supported operating systems for nodes:
   * Linux AMD64
@@ -68,7 +68,7 @@ To install the admin console on an existing cluster, the cluster must meet the f
 * **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
 * **Port forwarding**: To support port forwarding, Kubernetes clusters require that the SOcket CAT (socat) package is installed on each node.
 
-  If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the admin console: `unable to do port forwarding: socat not found`.
+  If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the Admin Console: `unable to do port forwarding: socat not found`.
 
   To check if the package that provides socat is installed, you can run `which socat`. If the package is installed, the `which socat` command prints the full path to the socat executable file. For example, `usr/bin/socat`.
 
@@ -308,8 +308,8 @@ For third-party services hosted at domains not owned by Replicated, the table be
 | `proxy.replicated.com` | Required&#42;| Required&#42;| <p>Private Docker images are proxied through `proxy.replicated.com`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `proxy.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p> |
 | `proxy-auth.replicated.com` | Required&#42;  | Required&#42;   | <p>To pull private images through `proxy.replicated.com`, the on-prem Docker client must authenticate with this service using a license ID. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `proxy-auth.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p>  |
 | `registry.replicated.com` | Required&#42;&#42;         | Required&#42;&#42;            | <p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p>
-| `kots.io`              | Required     | Not Required | Requests are made to this domain when installing the Replicated kots CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
-| `github.com `          | Required     | Not Required | Requests are made to this domain when installing the Replicated kots CLI. For information about retrieving GitHub IP addresses, see [About GitHub's IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation. |
+| `kots.io`              | Required     | Not Required | Requests are made to this domain when installing the Replicated KOTS CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
+| `github.com `          | Required     | Not Required | Requests are made to this domain when installing the Replicated KOTS CLI. For information about retrieving GitHub IP addresses, see [About GitHub's IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation. |
 | `k8s.kurl.sh`<br/>`s3.kurl.sh`    | Not Required | Required     | <p>kURL installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `k8s.kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L34-L39) in GitHub.</p><p> The range of IP addresses for `s3.kurl.sh` are the same as IP addresses for the `kurl.sh` domain. For the range of IP address for `kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L28-L31) in GitHub.</p> |
 | `amazonaws.com`  | Not Required    | Required        | `tar.gz` packages are downloaded from Amazon S3 during installations with kURL. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.|
 
