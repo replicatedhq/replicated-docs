@@ -48,7 +48,7 @@ After you get the ConfigValues file for your application using the `kots get con
 
    * Remove the `metadata` and `status` fields. These fields are automatically generated because the file is a Kubernetes custom resource. KOTS does not use the `metadata` or `status` fields.
 
-   * (Optional) Remove any fields that have `hidden` set to `true`. Fields with `hidden` set to `true` can be edited by users, but are hidden from the admin console Config page. For more information, see [hidden](/reference/custom-resource-config#hidden) in _Config_.
+   * (Optional) Remove any fields that have `hidden` set to `true`. Fields with `hidden` set to `true` can be edited by users, but are hidden from the Admin Console Config page. For more information, see [hidden](/reference/custom-resource-config#hidden) in _Config_.
 
    * Write comments in the file or provide supplementary documentation to describe the following:
       * The fields that are required and optional. For any required configuration fields that do not have a default value, users must provide a value in the ConfigValues file to install the application.

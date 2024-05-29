@@ -3,7 +3,7 @@
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.
 
-This tutorial explores advanced topics like workload coordination, credential management, and refactoring your application's user-facing configuration in the Replicated admin console. We'll also review best practices for integrating persistent stores like databases, queues, and caches.
+This tutorial explores advanced topics like workload coordination, credential management, and refactoring your application's user-facing configuration in the Replicated Admin Console. We'll also review best practices for integrating persistent stores like databases, queues, and caches.
 
 It is split into 5 sections:	
 
@@ -16,7 +16,7 @@ It is split into 5 sections:
 
 This guide assumes you have:
 
-* A running instance of the Replicated admin console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the admin console in an existing or embedded kURL cluster, complete one of the following getting started tutorials to package and install a sample application:
+* A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the Admin Console in an existing or embedded kURL cluster, complete one of the following getting started tutorials to package and install a sample application:
    * [UI Tutorial](tutorial-ui-setup)
    * [CLI Tutorial](tutorial-cli-setup)
 * A local git checkout of your application manifests.
@@ -89,7 +89,7 @@ For now we'll hard code the DB variable values, in the next sections we'll wire 
 ### Deploying the example application
 
  Once you've added this deployment to you application's `manifests` directory, create a release by running `replicated release create --auto` locally.
- Then head to the admin console instance and click **Check for Updates** on the Version History tab to pull the new release:
+ Then head to the Admin Console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)
 
@@ -205,7 +205,7 @@ As mentioned in the introduction, a full example of the code for this guide can 
 
 Even though the options aren't wired, let's create a new release to validate the configuration screen was modified.
 Create a release by pushing a commit to your [ci-enabled repo](tutorial-ci-cd-integration) or by running `replicated release create --auto` locally.
-Then head to the admin console instance and click **Check for Updates** on the Version History tab to pull the new release:
+Then head to the Admin Console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)
 
@@ -319,7 +319,7 @@ spec:
 
 ### Validating the embedded Database
 
-After you've added these resources, you can push a new release and update in the admin console.
+After you've added these resources, you can push a new release and update in the Admin Console.
 You should see the following in the deployment logs:
 
 ![Embedded PG Deployed](/images/guides/kots/embedded-pg-deployed.png)
@@ -525,7 +525,7 @@ spec:
           default: postgres
 ```
 
-Let's save this and create a new release. After deploying the release in the admin console, click **Config** and set the toggle to "External Postgres" to see the new fields:
+Let's save this and create a new release. After deploying the release in the Admin Console, click **Config** and set the toggle to "External Postgres" to see the new fields:
 
 In order to demonstrate that these are working, let's add some values that we know won't work, and just check to confirm that checking "External Postgres" will remove our embedded postgres instance:
 

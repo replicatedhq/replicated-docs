@@ -4,7 +4,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 Open a browser for collecting authentication details, then create and retrieve an API token to authorize the Replicated CLI. [`replicated logout`](/reference/replicated-cli-logout) removes the credentials created by `replicated login`.
 
-`replicated login` can be used instead of generating an API token and setting the `REPLICATED_API_TOKEN` environment variable. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+`replicated login` can be used instead of generating an API token and setting the `REPLICATED_API_TOKEN` environment variable. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 ## Usage
 
