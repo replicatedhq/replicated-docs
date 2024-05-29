@@ -2,7 +2,7 @@
 
 Now that you have created an application object that contains example YAML manifest files, you can create a release and promote it to the Unstable channel.
 
-By default, the vendor portal includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Channels and Releases](releases-about).
+By default, the Vendor Portal includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Channels and Releases](releases-about).
 
 To create a release:
 
@@ -116,7 +116,7 @@ To create a release:
 
 1. Click **Promote**.
 
-     In the Promote Release dialog that opens, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
+     In the **Promote Release** dialog that opens, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
 
      ![Create Application](/images/guides/kots/promote-release.png)
 
