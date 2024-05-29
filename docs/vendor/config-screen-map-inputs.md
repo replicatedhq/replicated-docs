@@ -1,14 +1,14 @@
 # Mapping User-Supplied Values
 
-This topic describes how to map the values that your users provide in the Replicated admin console configuration screen to your application.
+This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
-This topic assumes that you have already added custom fields to the admin console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
 ## Overview of Mapping Values
 
-You use the values that your users provide in the admin console configuration screen to render YAML in the manifest files for your application.
+You use the values that your users provide in the Admin Console configuration screen to render YAML in the manifest files for your application.
 
-For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
+For example, if you provide an embedded database with your application, you might add a field on the Admin Console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
 For an example of mapping database configuration options in a sample application, see [Example: Adding Database Configuration Options](tutorial-adding-db-config).
 
@@ -35,7 +35,7 @@ Follow one of these procedures to map user inputs from the configuration screen,
 
 To map user-supplied values from the configuration screen to manifest files in your application:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
+1. In the [Vendor Portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
 
 1. Open the Config custom resource manifest file that you created in the [Add Fields to the Configuration Screen](admin-console-customize-config-screen#add-fields-to-the-configuration-screen) procedure. The Config custom resource manifest file has `kind: Config`.
 
@@ -62,7 +62,7 @@ To map user-supplied values from the configuration screen to manifest files in y
 
    In the example above, the field name to map is `smtp_host`.
 
-1. In the same release in the vendor portal, open the manifest file where you want to map the value for the field that you selected.
+1. In the same release in the Vendor Portal, open the manifest file where you want to map the value for the field that you selected.
 
 1. In the manifest file, use the ConfigOption template function to map the user-supplied value in a key value pair. For example:
 
@@ -76,7 +76,7 @@ To map user-supplied values from the configuration screen to manifest files in y
 
    The following example shows mapping user-supplied TLS certificate and TLS private key files to the `tls.cert` and `tls.key` keys in a Secret custom resource manifest file.
 
-   For more information about working with TLS secrets, including a strategy for re-using the certificates uploaded for the admin console itself, see the [Configuring Cluster Ingress](packaging-ingress) example.
+   For more information about working with TLS secrets, including a strategy for re-using the certificates uploaded for the Admin Console itself, see the [Configuring Cluster Ingress](packaging-ingress) example.
 
    ```yaml
    apiVersion: v1
@@ -93,15 +93,15 @@ To map user-supplied values from the configuration screen to manifest files in y
 
 ### Map Values to a Helm Chart
 
-The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated KOTS, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
+The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated KOTS, your users provide these values through the configuration screen in the Admin Console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 
-To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a HelmChart custom resource.
+To map the values that your users provide in the Admin Console configuration screen to your Helm chart `values.yaml` file, you create a HelmChart custom resource.
 
 For a tutorial that shows how to set values in a sample Helm chart during installation with KOTS, see [Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
 
 To map user inputs from the configuration screen to the `values.yaml` file:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
+1. In the [Vendor Portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
 
 1. Open the Config custom resource manifest file that you created in the [Add Fields to the Configuration Screen](admin-console-customize-config-screen#add-fields-to-the-configuration-screen) procedure. The Config custom resource manifest file has `kind: Config`.
 

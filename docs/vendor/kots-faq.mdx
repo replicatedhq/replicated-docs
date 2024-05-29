@@ -8,7 +8,7 @@ This topic lists key terminology and frequently-asked questions (FAQs) for the R
 
 ### Air Gap
 
-_Air gap_ or _air-gapped_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise users that require high security.
+_Air gap_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise users that require high security.
 
 ### Embedded Clusters
 
@@ -42,13 +42,13 @@ For more information, see [About KOTS and kURL](../intro-kots).
 
 ### What do I have to do to enable KOTS installations for my application?
 
-Enabling KOTS installations requires that the Replicated KOTS entitlement is assigned to your vendor portal team.
+Enabling KOTS installations requires that the Replicated KOTS entitlement is assigned to your Vendor Portal team.
 
 Teams with the KOTS entitlement can create KOTS-enabled releases by configuring the custom resources required by KOTS to install the application. For a checklist of the required and optional custom resources for KOTS, see [Onboarding with KOTS](/vendor/distributing-workflow).
 
 ### How do KOTS installations work?
 
-Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS deploys the admin console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
+Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS deploys the Admin Console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
 For detailed installation steps, see [Installing in Existing Clusters](/enterprise/installing-existing-cluster).
 
@@ -56,19 +56,19 @@ For detailed installation steps, see [Installing in Existing Clusters](/enterpri
 
 In embedded cluster installations, users run an installation command to provision a cluster on a VM or bare metal server. Embedded clusters can be provisioned with Replicated embedded cluster or with Replicated kURL.
 
-KOTS deploys the admin console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
+KOTS deploys the Admin Console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
 For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
 ### What's the difference between embedded cluster and kURL?
 
-Replicated embedded cluster is a successor to Replicated kURL. Compared to kURL, the embedded cluster feature offers significantly faster installation, updates, and node joins, a redesigned admin console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
+Replicated embedded cluster is a successor to Replicated kURL. Compared to kURL, the embedded cluster feature offers significantly faster installation, updates, and node joins, a redesigned Admin Console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
 
 For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
 ### Can I use my own branding for KOTS installations?
 
-The KOTS admin console and the download portal support the use of a custom logo. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
+The KOTS Admin Console and the download portal support the use of a custom logo. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
 
 For more information, see [Customizing the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon) and [About Custom Domains](custom-domains).
 
@@ -94,12 +94,12 @@ The UI-based installation experience of KOTS can provide an easier installation 
 
 Yes. Software vendors that distribute their application as one or more Helm charts can support installations with both the Helm CLI and with KOTS from the same release.
 
-For a tutorial that demonstrates how to add the Bitnami Gitea Helm chart to a release in the Replicated vendor portal and then install with both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and Helm CLI](/vendor/tutorial-kots-helm-setup).
+For a tutorial that demonstrates how to add the Bitnami Gitea Helm chart to a release in the Replicated Vendor Portal and then install with both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and Helm CLI](/vendor/tutorial-kots-helm-setup).
 
 ### How does the Replicated SDK work with KOTS?
 
 The Replicated SDK is a Helm chart that can be installed as a small service alongside an application, or as a standalone component. The SDK can be installed using the Helm CLI or KOTS.
 
-Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for sending custom metrics from application instances. When both the SDK and KOTS are installed in a cluster alongside an application, both send instance telemetry to the vendor portal.
+Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for sending custom metrics from application instances. When both the SDK and KOTS are installed in a cluster alongside an application, both send instance telemetry to the Vendor Portal.
 
 For more information, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).

@@ -6,7 +6,7 @@ This topic describes how to use Replicated KOTS template functions to template a
 
 It is common for users to need to set custom annotations for a resource or object deployed by your application. For example, you might need to allow your users to provide annotations to apply to a Service or Ingress object in public cloud environments.
 
-For applications installed with Replicated KOTS, you can apply user-supplied annotations to resources or objects by first adding a field to the Replicated admin console **Config** page where users can enter one or more annotations. For information about how to add fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
+For applications installed with Replicated KOTS, you can apply user-supplied annotations to resources or objects by first adding a field to the Replicated Admin Console **Config** page where users can enter one or more annotations. For information about how to add fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
 
 You can then map these user-supplied values from the **Config** page to resources and objects in your release using KOTS template functions. KOTS template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. The template functions in the Config context return user-supplied values on the **Config** page.
 

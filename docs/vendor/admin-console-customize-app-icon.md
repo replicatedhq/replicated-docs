@@ -1,6 +1,6 @@
 # Customizing the Application Icon
 
-You can add a custom application icon that displays in the Replicated admin console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
+You can add a custom application icon that displays in the Replicated Admin Console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
 
 :::note
 You can also use a custom domain for the download portal. For more information, see [About Custom Domains](custom-domains).
@@ -8,11 +8,11 @@ You can also use a custom domain for the download portal. For more information, 
 
 ## Add a Custom Icon
 
-For information about how to choose an image file for your custom application icon that displays well in the admin console, see [Icon Image File Recommendations](#icon-image-file-recommendations) below.
+For information about how to choose an image file for your custom application icon that displays well in the Admin Console, see [Icon Image File Recommendations](#icon-image-file-recommendations) below.
 
 To add a custom application icon:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
+1. In the [Vendor Portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `apiVersion: kots.io/v1beta1` and `kind: Application`.
 
 1. In the preview section of the Help pane:
@@ -51,7 +51,7 @@ To add a custom application icon:
 
 ## Icon Image File Recommendations
 
-For your custom application icon to look best in the admin console, consider the following recommendations:
+For your custom application icon to look best in the Admin Console, consider the following recommendations:
 
 * Use a PNG or JPG file.
 * Use an image that is at least 250 by 250 pixels.

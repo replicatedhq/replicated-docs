@@ -100,11 +100,11 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Velero namespace access**: Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. Velero is a requirement for configuring backup and restore with snapshots. 
 
-   To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
+   To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation.
 
    For more information about snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
 
-* **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the admin console UI after KOTS is installed.
+* **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the Admin Console UI after KOTS is installed.
 
    In non-headless installations in air gap environments, KOTS does not have access to the application's `.airgap` package during installation. This means that KOTS does not have the information required to determine whether namespace-scoped access is needed, so it defaults to the more permissive, default cluster-scoped RBAC policy.
 

@@ -12,13 +12,13 @@ Including this attribute enforces compatibility checks for both new installation
 
 ### How the Admin Console Handles minKotsVersion
 
-When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, and that user checks for updates, that application version appears in the version history of the admin console. However, it is not downloaded.
+When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, and that user checks for updates, that application version appears in the version history of the Admin Console. However, it is not downloaded.
 
-The admin console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
+The Admin Console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
 
-KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating KOTS](/enterprise/updating-app-manager) and [Updating Embedded kURL Clusters](/enterprise/updating-embedded-cluster).
+KOTS cannot update itself automatically, and users cannot update KOTS from the Admin Console. For more information on updating KOTS, see [Updating KOTS](/enterprise/updating-app-manager) and [Updating Embedded kURL Clusters](/enterprise/updating-embedded-cluster).
 
-After updating KOTS to the minimum version or later, users can use the admin console or the [`kots upstream download`](/reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
+After updating KOTS to the minimum version or later, users can use the Admin Console or the [`kots upstream download`](/reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
 
 
 ## Using Target KOTS Versions
@@ -27,7 +27,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 Including `targetKotsVersion` in the Application custom resource enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version of KOTS that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
-If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
+If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [Vendor Portal](https://vendor.replicated.com).
 
 ### How the Admin Console Handles targetKotsVersion
 
@@ -35,7 +35,7 @@ Specifying a `targetKotsVersion` does not prevent an end user from upgrading to 
 
 If a new version of the application specifies a later target KOTS version than what is currently installed, users are not prevented from deploying that version of the application.
 
-If a user's admin console is running a version of KOTS that is earlier than the target version specified in a new version of the application, the admin console displays a notification in the footer, indicating that a newer supported version of KOTS is available.
+If a user's Admin Console is running a version of KOTS that is earlier than the target version specified in a new version of the application, the Admin Console displays a notification in the footer, indicating that a newer supported version of KOTS is available.
 
 ### Using Target Versions with kURL
 
