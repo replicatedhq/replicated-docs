@@ -11,21 +11,21 @@ Before you can use Compatibility Matrix, you must complete the following prerequ
 
 <Prerequisites/>
 
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
+* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
 ## Create and Manage Clusters
 
-This section explains how to use Compatibility Matrix to create and manage clusters with the replicated CLI or the vendor portal.
+This section explains how to use Compatibility Matrix to create and manage clusters with the Replicated CLI or the Vendor Portal.
 
 For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
 ### Create Clusters
 
-You can create clusters with Compatibility Matrix using the replicated CLI or the vendor portal.
+You can create clusters with Compatibility Matrix using the Replicated CLI or the Vendor Portal.
 
-#### replicated CLI
+#### Replicated CLI
 
-To create a cluster using the replicated CLI:
+To create a cluster using the Replicated CLI:
 
 1. (Optional) View the available cluster distributions, including the supported Kubernetes versions, instance types, and maximum nodes for each distribution:
 
@@ -67,7 +67,7 @@ To create a cluster using the replicated CLI:
 
 #### Vendor Portal
 
-To create a cluster using the vendor portal:
+To create a cluster using the Vendor Portal:
 
 1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
 
@@ -137,14 +137,14 @@ To create a cluster using the vendor portal:
 
 ### Prepare Clusters
 
-For applications distributed with the Replicated vendor platform, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 The `cluster prepare` command does the following:
 * Creates a cluster
 * Creates a release for your application based on either a Helm chart archive or a directory containing the application YAML files
 * Creates a temporary customer of type `test`
   :::note
-  Test customers created by the `cluster prepare` command are not saved in your vendor portal team.
+  Test customers created by the `cluster prepare` command are not saved in your Vendor Portal team.
   :::
 * Installs the release in the cluster using either the Helm CLI or Replicated KOTS
 
@@ -233,11 +233,11 @@ For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgra
 
 ### Delete Clusters
 
-You can delete clusters using the replicated CLI or the vendor portal.
+You can delete clusters using the Replicated CLI or the Vendor Portal.
 
-#### replicated CLI
+#### Replicated CLI
 
-To delete a cluster using the replicated CLI:
+To delete a cluster using the Replicated CLI:
 
 1. Get the ID of the target cluster:
 
@@ -270,7 +270,7 @@ To delete a cluster using the replicated CLI:
    In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 #### Vendor Portal
 
-To delete a cluster using the vendor portal:
+To delete a cluster using the Vendor Portal:
 
 1. Go to **Compatibility Matrix**.
 
@@ -288,7 +288,7 @@ Replicated recommends that you integrate Compatibility Matrix into your existing
 
 Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using Compatibility Matrix and distributing applications with Replicated.
 
-If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
+If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using Replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
