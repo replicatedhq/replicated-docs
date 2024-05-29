@@ -16,7 +16,7 @@ The following are Replicated's best practices and recommendations for CI/CD:
 
 * Include unique workflows for development and for releasing your application. This allows you to run tests on every commit, and then to promote releases to internal and customer-facing channels only when ready. For more information about the workflows that Replicated recommends, see [Recommended CI/CD Workflows](ci-workflows).
 
-* Integrate Replicated Compatibility Matrix into your CI/CD workflows to quickly create multiple different types of clusters where you can deploy and test your application. Supported distributions include OpenShift, GKE, EKS, and more. For more information, see [About the Compatibility Matrix](testing-about).
+* Integrate Replicated Compatibility Matrix into your CI/CD workflows to quickly create multiple different types of clusters where you can deploy and test your application. Supported distributions include OpenShift, GKE, EKS, and more. For more information, see [About Compatibility Matrix](testing-about).
 
 * If you use the GitHub Actions CI/CD platform, integrate the custom GitHub actions that Replicated maintains to replace repetitive tasks related to distributing application with Replicated or using the Compatibility Matrix. For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-workflows-github-actions).
 

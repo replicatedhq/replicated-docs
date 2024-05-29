@@ -87,7 +87,7 @@ pagination_next: null
         <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
     </li>
     <li>
-      <a href="/vendor/testing-about">About the Compatibility Matrix</a>
+      <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>

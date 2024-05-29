@@ -41,7 +41,7 @@ For more information about using the Replicated SDK, see [About the Replicated S
 
 The Replicated Compatibility Matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
 
-For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ### Release
 
