@@ -3,7 +3,7 @@ import Output from "../partials/replicated-cli/\_output.mdx"
 
 # cluster create
 
-Create clusters for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+Create clusters for compatibility testing. For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 

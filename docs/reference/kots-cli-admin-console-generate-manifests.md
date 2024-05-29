@@ -1,6 +1,6 @@
 # admin-console generate-manifests
 
-Running this command will create a directory on the workstation containing the Replicated admin console manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl, to provide additional customization of the admin console before deploying.
+Running this command will create a directory on the workstation containing the KOTS Admin Console manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl, to provide additional customization of the Admin Console before deploying.
 
 ### Limitations
 
@@ -18,10 +18,10 @@ This command supports the following flags:
 | Flag                      | Type   | Description                                                                                                                                           |
 |:--------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `--rootdir`               | string | Root directory where the YAML will be written _(default `${HOME}` or `%USERPROFILE%`)_                                                                |
-| `--namespace`             | string | Target namespace for the admin console                                                                                                                |
-| `--shared-password`       | string | Shared password to use when deploying the admin console                                                                                               |
-| `--http-proxy`            | string | Sets HTTP_PROXY environment variable in all KOTS admin console components                                                                             |
-| `--https-proxy`           | string | Sets HTTPS_PROXY environment variable in all KOTS admin console components                                                                            |
+| `--namespace`             | string | Target namespace for the Admin Console                                                                                                                |
+| `--shared-password`       | string | Shared password to use when deploying the Admin Console                                                                                               |
+| `--http-proxy`            | string | Sets HTTP_PROXY environment variable in all KOTS Admin Console components                                                                             |
+| `--https-proxy`           | string | Sets HTTPS_PROXY environment variable in all KOTS Admin Console components                                                                            |
 | `--kotsadm-namespace`       | string | Set to override the namespace of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped). |
 | `--kotsadm-registry`        | string | Set to override the registry of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped). |
 | `--no-proxy`              | string | Sets NO_PROXY environment variable in all KOTS admin console components                                                                               |

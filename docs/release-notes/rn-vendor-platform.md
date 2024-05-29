@@ -15,6 +15,20 @@ Released on May 28, 2024
 ### Bug Fixes {#bug-fixes-v2024-05-28-0}
 * Users can create GitHub support tickets with large support bundle analysis results.
 
+## v2024.05.24-6
+
+Released on May 24, 2024
+
+### New Features {#new-features-v2024-05-24-6}
+* Added support for Sonatype Nexus registry.
+
+## v2024.05.24-2
+
+Released on May 24, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-24-2}
+* Fixes a bug that caused version string for Replicated SDK chart have an invalid "v" prefix.
+
 ## v2024.05.23-2
 
 Released on May 23, 2024

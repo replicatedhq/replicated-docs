@@ -1,10 +1,10 @@
 # Step 1: Create an Application
 
-When you create an application object in the vendor portal, example NGINX manifest files are included that will be used for this tutorial.
+When you create an application object in the Replicated Vendor Portal, example NGINX manifest files are included that will be used for this tutorial.
 
-To begin, create an application object in the vendor portal:
+To begin, create an application object in the Vendor Portal:
 
-1. Log in (or create a new team) to the [vendor portal](https://vendor.replicated.com).
+1. Log in (or create a new team) to the [Vendor Portal](https://vendor.replicated.com).
 
    After signing up and activating your account, the **Create application** page opens. If you are logging in with an existing account, select **Create new app** from the application drop-down list.
 

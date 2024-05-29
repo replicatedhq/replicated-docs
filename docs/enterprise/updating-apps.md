@@ -1,27 +1,27 @@
 # Updating an Application
 
-You can update an application using the Replicated admin console or the Replicated kots CLI.
+You can update an application using the Replicated Admin Console or the Replicated KOTS CLI.
 See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
-or [Update an Application with the kots CLI](#update-an-application-with-the-kots-cli) below.
+or [Update an Application with the KOTS CLI](#update-an-application-with-the-kots-cli) below.
 
 ## Update an Application in the Admin Console
 
-You can manually update an application in the Version History tab of the admin console.
+You can manually update an application in the Version History tab of the Admin Console.
 This method works for both online and air gapped installations.
 
 For applications installed in an online environment, you can also configure the
-admin console to automatically check for and deploy new versions of an application
+Admin Console to automatically check for and deploy new versions of an application
 on a custom cadence. For more information, see
 [Configure Automatic Updates](#configure-automatic-updates) below.
 
 To manually update an application:
 
-1. In the admin console, go to the Version History tab.
+1. In the Admin Console, go to the Version History tab.
 1. Do one of the following, depending on if you are in an online or air gap environment:
    * (Online) Click **Check for updates** to manually check for new versions of the application.
    * (Air gap) Click **Upload a new version** to upload a new version of the application.
 
-   When the admin console downloads an update (for online), or when you upload an update (for air gap),
+   When the Admin Console downloads an update (for online), or when you upload an update (for air gap),
    a new upstream version displays in the list of available versions.
 
    [![New Version Available](/images/new-version-available.png)](/images/new-version-available.png)
@@ -49,17 +49,17 @@ and click **Deploy** next to the target version.
 
 ## Configure Automatic Updates
 
-For applications installed in an online environment, the admin console automatically
-checks for new versions once every 4 hours by default. After the admin console
+For applications installed in an online environment, the Admin Console automatically
+checks for new versions once every 4 hours by default. After the Admin Console
 checks for updates, it downloads any new versions of the application and displays
 them on the Version History tab.
 
-You can edit this default cadence to customize how often the admin console checks
+You can edit this default cadence to customize how often the Admin Console checks
 for and downloads new versions.
 
-You can also configure the admin console to automatically deploy new versions of
-the application after it downloads them. The admin console only deploys new versions
-automatically if preflight checks pass. By default, the admin console does not
+You can also configure the Admin Console to automatically deploy new versions of
+the application after it downloads them. The Admin Console only deploys new versions
+automatically if preflight checks pass. By default, the Admin Console does not
 automatically deploy any version of an application.
 
 You cannot configure automatic updates for applications installed in air gapped
@@ -67,7 +67,7 @@ environments.
 
 To configure automatic updates:
 
-1. In the admin console, go to the Version History tab and click **Configure automatic updates**.
+1. In the Admin Console, go to the Version History tab and click **Configure automatic updates**.
 
    The Configure automatic updates dialog opens.
 
@@ -81,22 +81,22 @@ To configure automatic updates:
 
 1. Under Automatically deploy new versions, select an option. The available options depend on whether semantic versioning is enabled for the channel.
    * **For channels that use semantic versioning**: (v1.58.0 and later) Select an option in the dropdown
-   to specify the versions that the admin console automatically deploys. For example,
+   to specify the versions that the Admin Console automatically deploys. For example,
    to automatically deploy only new patch and minor versions, select
    **Automatically deploy new patch and minor versions**.
    * **For channels that do not use semantic versioning**: (v1.67.0 and later) Optionally select **Enable automatic deployment**.
-   When this checkbox is enabled, the admin console automatically deploys each new version of the application that it downloads.
+   When this checkbox is enabled, the Admin Console automatically deploys each new version of the application that it downloads.
 
-## Update an Application with the kots CLI
+## Update an Application with the KOTS CLI
 
-The kots CLI can be used to install and deploy updates for both online and air gapped instances as well.
+The KOTS CLI can be used to install and deploy updates for both online and air gapped instances as well.
 
 ### Online Installations
 
 In order to download updates from the internet, the following command can be used:
 
 ```bash
-kubectl kots upstream upgrade <app slug> -n <admin console namespace>
+kubectl kots upstream upgrade <app slug> -n <Admin Console namespace>
 ```
 
 Adding the `--deploy` flag will also automatically deploy the latest version.
@@ -114,7 +114,7 @@ kubectl kots upstream upgrade <app slug> \
   --kotsadm-registry <registry host> \
   --registry-username <username> \
   --registry-password <password> \
-  -n <admin console namespace>
+  -n <Admin Console namespace>
 ```
 
 Adding the `--deploy` flag will also automatically deploy this version.
@@ -134,4 +134,4 @@ Replace:
 
 * `APP_SLUG` with the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-* `NAMESPACE` with the admin console namespace. Typically this value is `default`.
+* `NAMESPACE` with the Admin Console namespace. Typically this value is `default`.

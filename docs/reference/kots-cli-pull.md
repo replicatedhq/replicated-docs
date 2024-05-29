@@ -1,6 +1,6 @@
 # pull
 
-Running this command will create a directory on the workstation containing the application and Kubernetes manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl. This command is necessary when managing a application without the use of the admin console.
+Running this command will create a directory on the workstation containing the application and Kubernetes manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl. This command is necessary when managing a application without the use of the Admin Console.
 
 ### Usage
 ```bash
@@ -15,7 +15,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | Flag | Type | Description |
 |:-----|------|-------------|
 | `--downstream` | strings | the list of any downstreams to create/update |
-| `--exclude-admin-console` | bool | set to true to exclude the admin console _(only valid when `[upstream-uri]` points to a replicated app)_ |
+| `--exclude-admin-console` | bool | set to true to exclude the Admin Console _(only valid when `[upstream-uri]` points to a replicated app)_ |
 | `--exclude-kots-kinds` | bool | set to true to exclude rendering KOTS custom objects to the base directory _(default `true`)_ |
 | `-h, --help` | | help for pull |
 | `--image-namespace` | string | the namespace/org in the docker registry to push images to _(required when `--rewrite-images` is set)_ |
@@ -25,7 +25,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--registry-endpoint` | string | the endpoint of the local docker registry to use when pushing images _(required when `--rewrite-images` is set)_ |
 | `--rewrite-images` | bool | set to true to force all container images to be rewritten and pushed to a local registry |
 | `--rootdir` | string | root directory that will be used to write the yaml to _(default `${HOME}` or `%USERPROFILE%`)_ |
-| `--shared-password` | string | shared password to use when deploying the admin console |
+| `--shared-password` | string | shared password to use when deploying the Admin Console |
 | `--http-proxy` | string | sets HTTP_PROXY environment variable in all KOTS Admin Console components |
 | `--https-proxy` | string | sets HTTPS_PROXY environment variable in all KOTS Admin Console components |
 | `--no-proxy` | string | sets NO_PROXY environment variable in all KOTS Admin Console components |

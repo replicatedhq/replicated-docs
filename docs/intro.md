@@ -13,7 +13,7 @@ pagination_next: null
     </li>
     <li>
         <h3>Alpha Support for Compatibility Matrix Cloud Add-ons</h3>
-        <p>For EKS clusters created with the compatibility matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
+        <p>For EKS clusters created with Compatibility Matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
     </li>
     <li>
       <a href="/vendor/testing-cluster-addons">Learn more</a>
@@ -87,10 +87,10 @@ pagination_next: null
         <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
     </li>
     <li>
-      <a href="/vendor/testing-about">About the Compatibility Matrix</a>
+      <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
-      <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
+      <a href="/vendor/testing-how-to">Using Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>

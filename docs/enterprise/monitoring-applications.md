@@ -4,19 +4,19 @@ This topic describes monitoring applications and clusters with Prometheus. It in
 
 ## About Prometheus
 
-The Replicated admin console uses the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed.
+The Replicated KOTS Admin Console uses the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed.
 
 Prometheus uses a multi-dimensional data model with time series data and a flexible query language. Prometheus components include the main Prometheus server, which scrapes and stores time series data, and an Alertmanager for alerting on metrics.
 
 For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
-Prometheus is included by default on clusters provisioned by Replicated kURL, and no additional configuration is required to view graphs on the admin console dashboard.
+Prometheus is included by default on clusters provisioned by Replicated kURL, and no additional configuration is required to view graphs on the Admin Console dashboard.
 
 For information about how to set up Prometheus monitoring in existing clusters, see [Configure Monitoring in Existing Clusters](#configure-existing).
 
 ## About Admin Console Dashboards
 
-The admin console exposes graphs with key metrics collected by Prometheus in the Monitoring section of the dashboard. By default, the admin console includes the following graphs:
+The Admin Console exposes graphs with key metrics collected by Prometheus in the Monitoring section of the dashboard. By default, the Admin Console includes the following graphs:
 
 * Cluster disk usage
 * Pod CPU usage
@@ -24,13 +24,13 @@ The admin console exposes graphs with key metrics collected by Prometheus in the
 
 In addition to these default graphs, application developers can also expose business and application level metrics and alerts on the dashboard.
 
-The following screenshot shows an example of the Monitoring section on the admin console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
+The following screenshot shows an example of the Monitoring section on the Admin Console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
 
-![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png) 
+![Graphs on the Admin Console dashboard](/images/kotsadm-dashboard-graph.png) 
 
 ## Configure Monitoring in Existing Clusters {#configure-existing}
 
-To configure Prometheus monitoring for applications installed in an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See the following sections:
+To configure Prometheus monitoring for applications installed in an existing cluster, you must connect the Admin Console to the endpoint of an installed instance of Prometheus on the cluster. See the following sections:
 
 * [Install Prometheus](#install-prometheus)
 * [Connect to a Prometheus Endpoint](#connect-to-a-prometheus-endpoint)
@@ -60,11 +60,11 @@ To install Prometheus using the recommended Kube-Prometheus distribution:
 
 ### Connect to a Prometheus Endpoint
 
-To view graphs on the admin console dashboard, you must provide the address of the Prometheus instance that you installed on the cluster.
+To view graphs on the Admin Console dashboard, you must provide the address of the Prometheus instance that you installed on the cluster.
 
-To connect the admin console to a Prometheus endpoint:
+To connect the Admin Console to a Prometheus endpoint:
 
-1. On the admin console dashboard, under Monitoring, click **Configure Prometheus Address**.
+1. On the Admin Console dashboard, under Monitoring, click **Configure Prometheus Address**.
 1. Enter the address for the Prometheus endpoint in the text box and click **Save**.
 
    ![Configuring Prometheus](/images/kotsadm-dashboard-configureprometheus.png)

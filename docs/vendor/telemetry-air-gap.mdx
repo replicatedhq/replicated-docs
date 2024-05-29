@@ -14,7 +14,7 @@ Air gap instances run in environments without outbound internet access. This lim
 
 <AirGapTelemetry/>
 
-The following diagram demonstrates how air gap telemetry is collected and stored by the SDK in a customer environment, and then shared to the vendor portal in a support bundle:
+The following diagram demonstrates how air gap telemetry is collected and stored by the Replicated SDK in a customer environment, and then shared to the vendor portal in a support bundle:
 
 <img alt="Air gap telemetry collected by the SDK in a support bundle" src="/images/airgap-telemetry.png" width="800px"/>
 
@@ -24,11 +24,29 @@ All support bundles uploaded to the vendor portal from air gap customers contrib
 
 ## Requirement
 
-The Replicated SDK must be installed in _air gap mode_ in the environment where the instance is running for air gap telemetry to be collected. For more information, see [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+Air gap telemetry has the following requirements:
+
+* To collect telemetry from air gap instances, one of the following must be installed in the cluster where the instance is running:
+   
+   * The Replicated SDK installed in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+   
+   * KOTS v1.92.1 or later
+
+   :::note
+   When both the Replicated SDK and KOTS v1.92.1 or later are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), both collect and store instance telemetry in their own dedicated secret, subject to the size limitation noted below. In the case of any overlapping data points, the Vendor Portal will report these data points chronologically based on their timestamp.
+   :::
+
+* To collect custom metrics from air gap instances, the Replicated SDK must installed in the cluster in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+
+    For more information about custom metrics, see [Configuring Custom Metrics](https://docs.replicated.com/vendor/custom-metrics).
+
+Replicated strongly recommends that all applications include the Replicated SDK because it enables access to both standard instance telemetry and custom metrics for air gap instances.
 
 ## Limitation
 
-Telemetry data is capped at 4,000 events or 1MB; whichever limit is reached first. When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
+Telemetry data is capped at 4,000 events or 1MB per Secret; whichever limit is reached first.
+
+When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
 
 ## Collect and View Air Gap Telemetry
 

@@ -13,7 +13,7 @@ kubectl kots velero configure-other-s3 [flags]
 | Flag                   | Type   | Description                                                                                    |
 |------------------------|--------|------------------------------------------------------------------------------------------------|
 | `-h, --help`           |        | help for access-key                                                                            |
-| `-n, --namespace`      | string | the namespace of the admin console _(required)_                                                |
+| `-n, --namespace`      | string | the namespace of the Admin Console _(required)_                                                |
 | `--access-key-id`      | string | the aws access key id to use for accessing the bucket _(required)_                             |
 | `--bucket`             | string | name of the object storage bucket where backups should be stored _(required)_                  |
 | `--endpoint`           | string | the s3 endpoint (e.g. http://some-other-s3-endpoint) _(required)_                              |

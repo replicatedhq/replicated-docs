@@ -17,7 +17,7 @@ kubectl kots get config [flags]
 | `--sequence`      | int    | Retrieves the `configValues` file for the specified application sequence. **Default**: Latest (unless the `--current` flag is set).|
 | `--decrypt`       | bool   | Decrypts password items within the configuration.|
 | `-h, --help`      |        | Help for `get config`.|
-| `-n, --namespace` | string | (Required) The namespace where the admin console is running.|
+| `-n, --namespace` | string | (Required) The namespace where the Admin Console is running.|
 
 ### Example
 

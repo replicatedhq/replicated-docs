@@ -46,14 +46,14 @@ For information about image registry requirements, see [Private Registry Require
 
 ### Automated Installation
 
-You can automate application installation in online, air gap, existing cluster, and embedded cluster environments using the kots CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console.
+You can automate application installation in online, air gap, existing cluster, and embedded cluster environments using the KOTS CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated Admin Console.
 
 For more information, see [Installing with Automation](/enterprise/installing-existing-cluster-automation).
 
 ### KOTS Installations Without Object Storage
 
-The Replicated admin console requires persistent storage for state. For existing cluster installations, KOTS deploys MinIO for object storage by default. For embedded cluster installations with Replicated kURL, the object storage provider is either MinIO or Rook, depending on which add-on your software vendor included in the kURL installer specification.
+The Replicated Admin Console requires persistent storage for state. For existing cluster installations, KOTS deploys MinIO for object storage by default. For embedded cluster installations with Replicated kURL, the object storage provider is either MinIO or Rook, depending on which add-on your software vendor included in the kURL installer specification.
 
-You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the admin console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment.
+You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the Admin Console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment.
 
 For more information about how to install KOTS without object storage, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
