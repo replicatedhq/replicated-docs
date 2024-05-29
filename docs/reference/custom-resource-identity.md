@@ -54,7 +54,7 @@ If unspecified, all providers will be available.
 If true, require the identity provider configuration to be set by the customer before the app can be deployed.
 
 ## roles
-**(`id` required)** A list of roles to be mapped to identity provider groups by the customer on the Replicated admin console identity service configuration page.
+**(`id` required)** A list of roles to be mapped to identity provider groups by the customer on the Replicated Admin Console identity service configuration page.
 
 ## oauth2AlwaysShowLoginScreen
 If true, show the identity provider selection screen even if there's only one configured.

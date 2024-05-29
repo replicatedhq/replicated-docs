@@ -64,7 +64,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td>The application title. Used on the license upload and in various places in the Replicated admin console.</td>
+    <td>The application title. Used on the license upload and in various places in the Replicated Admin Console.</td>
   </tr>
   <tr>
     <th>Example</th>
@@ -81,7 +81,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td>The icon file for the application. Used on the license upload and in various places in the admin console.</td>
+    <td>The icon file for the application. Used on the license upload and in various places in the Admin Console.</td>
   </tr>
   <tr>
     <th>Example</th>
@@ -117,8 +117,8 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>Enable this flag to create a <strong>Rollback</strong> button on the admin console Version History page.</p>
-      <p>If an application is guaranteed not to introduce backwards-incompatible versions, such as through database migrations, then the <code>allowRollback</code> flag can allow end users to easily roll back to previous versions from the admin console.</p>
+      <p>Enable this flag to create a <strong>Rollback</strong> button on the Admin Console Version History page.</p>
+      <p>If an application is guaranteed not to introduce backwards-incompatible versions, such as through database migrations, then the <code>allowRollback</code> flag can allow end users to easily roll back to previous versions from the Admin Console.</p>
       <p>Rollback does not revert any state. Rather, it recovers the YAML manifests that are applied to the cluster.</p>
     </td>
   </tr>
@@ -223,7 +223,7 @@ spec:
 <tr>
     <th>Description</th>
     <td>
-      <p>Extra ports (additional to the <code>8800</code> admin console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed. For more information, see <a href="/vendor/admin-console-port-forward">Configuring Port Forwarding</a>.</p>
+      <p>Extra ports (additional to the <code>8800</code> Admin Console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed. For more information, see <a href="/vendor/admin-console-port-forward">Configuring Port Forwarding</a>.</p>
       <KurlNote/>
       <p>The <code>ports</code> key has the following fields:</p>
       <ul>
@@ -272,7 +272,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Custom graphs to include on the admin console application dashboard.For more information about how to create custom graphs, see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p><p><code>graphs</code> has the following fields:</p><ul><li><code>graphs.title</code>: The graph title.</li><li><code>graphs.query</code>: The Prometheus query.</li><li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li><li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.</li>  <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li><li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li></ul></td>
+    <td><p>Custom graphs to include on the Admin Console application dashboard.For more information about how to create custom graphs, see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p><p><code>graphs</code> has the following fields:</p><ul><li><code>graphs.title</code>: The graph title.</li><li><code>graphs.query</code>: The Prometheus query.</li><li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li><li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.</li>  <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li><li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li></ul></td>
   </tr>
   <tr>
     <th>Example</th>

@@ -19,7 +19,7 @@ curl --request GET \
      --header 'Authorization: my-token'
 ```
 
-Generate a service account or user API token in the vendor portal. The token must have `Read/Write` access to create new releases. See [Generating API Tokens](/vendor/replicated-api-tokens).
+Generate a service account or user API token in the Vendor Portal. The token must have `Read/Write` access to create new releases. See [Generating API Tokens](/vendor/replicated-api-tokens).
 
 ## Vendor API v3 Documentation
 
