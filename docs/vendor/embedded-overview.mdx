@@ -42,7 +42,7 @@ Embedded cluster has the following limitations:
 
 #### Known Issue
 
-If you use Helm extensions and a Helm chart fails to install, you can make changes to your Embedded Cluster config, promote a new release, and update to that version from the admin console to upgrade the chart. However, there will be a several minute delay before the Helm chart updates.
+If you use Helm extensions and a Helm chart fails to install, you can make changes to your Embedded Cluster config, promote a new release, and update to that version from the Admin Console to upgrade the chart. However, there will be a several minute delay before the Helm chart updates.
 
 For more information about using Helm extensions, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
 
@@ -56,9 +56,9 @@ The following features that are available in kURL are not yet available in Embed
 
 * **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
 
-* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of Embedded Cluster. No default graphs show on the admin console dashboard, and you cannot create custom graphs.
+* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of Embedded Cluster. No default graphs show on the Admin Console dashboard, and you cannot create custom graphs.
 
-* **Access the admin console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not available for Embedded Cluster installations.
+* **Access the Admin Console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not available for Embedded Cluster installations.
 
 :::note
 If you require any of these features to use Embedded Cluster, reach out to Alex Parker at alexp@replicated.com.
@@ -95,9 +95,9 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-1. Enter an admin console password when prompted.
+1. Enter an Admin Console password when prompted.
 
-     The admin console URL is printed when the installation finishes. Access the admin console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
 
 
@@ -175,20 +175,20 @@ To install your application in an embedded cluster:
     * `APP_SLUG` is the unique slug for the application.
     * `LICENSE_FILE` is the customer's license.
 
-1. Enter an admin console password when prompted.
+1. Enter an Admin Console password when prompted.
 
-     The admin console URL is printed when the installation finishes. Access the admin console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
 
 ## Update
 
 When you update an application installed in an Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the Embedded Cluster on its own.
 
-You can check for available application updates in the admin console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The admin console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
+You can check for available application updates in the Admin Console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The Admin Console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
 
 Any changes made to the Embedded Cluster config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
 
-During cluster updates, the admin console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the admin console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the admin console is available again:
+During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the Admin Console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the Admin Console is available again:
 
 <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
 
@@ -200,7 +200,7 @@ Do not downgrade the Embedded Cluster version. This is not supported but is not 
 
 ## Access the Cluster
 
-With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the admin console.
+With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
 
 Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
 
@@ -250,14 +250,14 @@ To access the cluster and use other included binaries:
 1. Type `exit` or **Ctrl + D** to exit the shell.
 
      :::note
-     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional admin console functionality.
+     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
      :::
 
 ### Troubleshoot
 
 From the shell, you can generate a support bundle for the Embedded Cluster to help with troubleshooting.
 
-The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the admin console and Embedded Cluster operator that manage install and upgrade operations.
+The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations.
 
 If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
 
@@ -281,21 +281,21 @@ The section describes managing nodes in clusters created with Embedded Cluster, 
 
 ### Add Nodes (Alpha)
 
-You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The admin console provides the join command you use to join nodes to the cluster.
+You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
 For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 To add nodes to a cluster:
 
-1. In the admin console, click **Cluster Management** at the top.
+1. In the Admin Console, click **Cluster Management** at the top.
 
-     When initially installing the application, you are brought to this page automatically after logging into the admin console.
+     When initially installing the application, you are brought to this page automatically after logging into the Admin Console.
 
 1. Click **Add node**.
 
 1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
 
-     <img alt="Add node page in the admin console" src="/images/admin-console-add-node.png" width="600px"/>
+     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
 
      [View a larger version of this image](/images/admin-console-add-node.png)
 
@@ -316,7 +316,7 @@ To add nodes to a cluster:
 
 1. Run the copied join command using the Embedded Cluster binary.
 
-1. Check the **Cluster Management** page in the admin console to see the node appear and wait for the status to change to Ready.
+1. Check the **Cluster Management** page in the Admin Console to see the node appear and wait for the status to change to Ready.
 
 1. Repeat the process for as many nodes as you would like to add.
 
