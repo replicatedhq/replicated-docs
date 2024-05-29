@@ -604,7 +604,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'replicated CLI',
+    label: 'Replicated CLI',
     items: [
       'reference/replicated-cli-installing',
       'reference/replicated-cli-api',
@@ -672,7 +672,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'kots CLI',
+    label: 'KOTS CLI',
     items: [
       'reference/kots-cli-getting-started',
       'reference/kots-cli-global-flags',
