@@ -1,17 +1,17 @@
 # Step 3: Add the Chart Archive to a Release
 
-Use the replicated CLI to add the Gitea Helm chart archive to a release in the Replicated vendor platform.
+Use the Replicated CLI to add the Gitea Helm chart archive to a release in the Replicated vendor platform.
 
 To create a release:
 
-1. Install the replicated CLI:
+1. Install the Replicated CLI:
 
    ```
    brew install replicatedhq/replicated/cli
    ```
-   For more installation options, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+   For more installation options, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-1. Authorize the replicated CLI:
+1. Authorize the Replicated CLI:
 
    ```
    replicated login
@@ -36,7 +36,7 @@ To create a release:
    ```
    In the example above, the application slug is `gitea-boxer`.
 
-1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
+1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command:
 
    **Example:**
 
@@ -61,7 +61,7 @@ To create a release:
      • SEQUENCE: 1
    ```
 
-1. Log in to the vendor portal and go to **Releases**.
+1. Log in to the Vendor Portal and go to **Releases**.
 
     The release that you created is listed under **All releases**.
 
