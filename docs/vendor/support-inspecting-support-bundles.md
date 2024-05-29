@@ -1,12 +1,12 @@
 # Inspecting Support Bundles
 
-You can use the vendor portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files. Use this information to get insights and help troubleshoot your customer issues.
+You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files. Use this information to get insights and help troubleshoot your customer issues.
 
 To inspect a support bundle:
 
-1. In the vendor portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Add support bundle > Upload a support bundle**.
+1. In the Vendor Portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Add support bundle > Upload a support bundle**.
 
-1. In the **Upload a support bundle** dialog, drag and drop or use the file selector to upload a support bundle file to the vendor portal.
+1. In the **Upload a support bundle** dialog, drag and drop or use the file selector to upload a support bundle file to the Vendor Portal.
 
    <img alt="Upload a support bundle dialog" src="/images/support-bundle-analyze.png" width="500px"/>
 

@@ -44,7 +44,7 @@ During the analyze phase, _analyzers_ use the redacted data to provide insights 
 
 For preflight checks, analyzers define the pass, fail, and warning outcomes, and can also display custom messages to the user. For example, you can define a preflight check that fails if the cluster's Kubernetes version does not meet the minimum version that your application supports.
 
-For support bundles, analyzers can be used to identify potential problems and share relevant troubleshooting guidance with users. Additionally, when a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of analyzers in support bundles is to surface known issues or hints of what might be a problem to make troubleshooting easier.
+For support bundles, analyzers can be used to identify potential problems and share relevant troubleshooting guidance with users. Additionally, when a support bundle is uploaded to the Vendor Portal, it is extracted and automatically analyzed. The goal of analyzers in support bundles is to surface known issues or hints of what might be a problem to make troubleshooting easier.
 
 For more information, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
@@ -77,13 +77,13 @@ This section describes how users can run preflight checks for KOTS and Helm CLI 
 
 #### KOTS Installations
 
-For installations with KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS admin console or in the kots CLI, depending on the installation method.
+For installations with KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS Admin Console or in the KOTS CLI, depending on the installation method.
 
-Additionally, users can access preflight checks from the admin console after installation to view their results and optionally re-run the checks.
+Additionally, users can access preflight checks from the Admin Console after installation to view their results and optionally re-run the checks.
 
-The following shows an example of the results of preflight checks displayed in the KOTS admin console during installation:
+The following shows an example of the results of preflight checks displayed in the KOTS Admin Console during installation:
 
-![Preflight results in admin console](/images/preflight-warning.png)
+![Preflight results in Admin Console](/images/preflight-warning.png)
 
 [View a larger version of this image](/images/preflight-warning.png)
 
@@ -131,6 +131,6 @@ For more information, see [Adding and Customizing Support Bundles](support-bundl
 
 Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can share their support bundles with your team by sending you the resulting `tar.gz` file.
 
-KOTS users can also generate and share support bundles from the KOTS admin console.
+KOTS users can also generate and share support bundles from the KOTS Admin Console.
 
 For more information, see [Generating Support Bundles](support-bundle-generating).
