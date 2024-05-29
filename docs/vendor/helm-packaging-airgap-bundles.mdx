@@ -11,7 +11,7 @@ This topic describes how to package and build air gap bundles for releases that 
 
 <AirGapBundle/>
 
-When building the `.airgap` bundle for a release that contains one or more Helm charts, the vendor portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key. This ensures that the `.airgap` bundle includes all images needed to successfully deploy the chart in air gap environments.
+When building the `.airgap` bundle for a release that contains one or more Helm charts, the Vendor Portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key. This ensures that the `.airgap` bundle includes all images needed to successfully deploy the chart in air gap environments.
 
 ## Configure the `builder` Key
 
@@ -63,7 +63,7 @@ spec:
         repository: my-app
         tag: "1.0.2"    
 ```
-When building the `.airgap` bundle for the release, the vendor portal uses the registry, repository, and tag values supplied in the `builder` key to template the Helm chart, rather than the default values defined in the Helm `values.yaml` file. This ensures that the image is pulled from the upstream registry using the credentials supplied in the vendor portal, without requiring any changes to the Helm chart directly.
+When building the `.airgap` bundle for the release, the Vendor Portal uses the registry, repository, and tag values supplied in the `builder` key to template the Helm chart, rather than the default values defined in the Helm `values.yaml` file. This ensures that the image is pulled from the upstream registry using the credentials supplied in the Vendor Portal, without requiring any changes to the Helm chart directly.
 
 ### Example: Include Conditional Images
 
