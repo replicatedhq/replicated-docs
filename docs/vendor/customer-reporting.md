@@ -1,6 +1,6 @@
 # Customer Reporting
 
-This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated vendor portal.
+This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated Vendor Portal.
 
 ## About the Customer Reporting Page {#reporting-page}
 
@@ -38,16 +38,16 @@ In this section, you can also view the Helm CLI installation instructions for th
 
 If the customer has one or more application instances that have reached a Ready status at least one time, then the **Time to install** section displays _License time to install_ and _Instance time to install_ metrics:
 
-* **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
-* **Instance time to install**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
+* **License time to install**: The time between when you create the customer license in the Vendor Portal, and when the application instance reaches a Ready status in the customer environment.
+* **Instance time to install**: The time between when the Vendor Portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
 A _Ready_ status indicates that all Kubernetes resources for the application are Ready. For example, a Deployment resource is considered Ready when the number of Ready replicas equals the total desired number of replicas. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
-If the customer has no application instances that have ever reported a Ready status, or if you have not configured your application to deliver status data to the vendor portal, then the **Time to install** section displays a **No Ready Instances** message.
+If the customer has no application instances that have ever reported a Ready status, or if you have not configured your application to deliver status data to the Vendor Portal, then the **Time to install** section displays a **No Ready Instances** message.
 
 If the customer has more than one application instance that has previously reported a Ready status, then the **Time to install** section displays metrics for the instance that most recently reported a Ready status for the first time.
 
-For example, Instance A reported its first Ready status at 9:00 AM today. Instance B reported its first Ready status at 8:00 AM today, moved to a Degraded status, then reported a Ready status again at 10:00 AM today. In this case, the vendor portal displays the time to install metrics for Instance A, which reported its _first_ Ready status most recently.
+For example, Instance A reported its first Ready status at 9:00 AM today. Instance B reported its first Ready status at 8:00 AM today, moved to a Degraded status, then reported a Ready status again at 10:00 AM today. In this case, the Vendor Portal displays the time to install metrics for Instance A, which reported its _first_ Ready status most recently.
 
 For more information about how to interpret the time to install metrics, see [Time to Install](instance-insights-details#time-to-install) in _Instance Details_.
 
@@ -85,5 +85,5 @@ The **Instances** section displays the following details about each active insta
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
    * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
-   * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
+   * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.

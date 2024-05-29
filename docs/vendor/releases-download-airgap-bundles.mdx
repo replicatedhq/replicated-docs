@@ -14,13 +14,13 @@ Air gap installations with KOTS require an air gap bundle with the application a
 
 ## Build and Download the Application Bundle {#air-gap-bundle}
 
-This section describes how to build and download the application `.airgap` bundle from the vendor portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
+This section describes how to build and download the application `.airgap` bundle from the Vendor Portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
 
 For information about how to download the `.airgap` bundle from the Replicated download portal, see [Download Air Gap Bundles from the Download Portal](#download-portal) below.
 
 To build and download the `.airgap` bundle for a release:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. On the target channel, click **Release history**.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Channels**. On the target channel, click **Release history**.
 
     <img alt="Release history link on a channel card" src="/images/release-history-link.png" width="400px"/>
 
@@ -75,7 +75,7 @@ export REPLICATED_APP=APP_SLUG
 curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP.tar.gz -o $REPLICATED_APP.tar.gz
 ```
 
-Where `APP_SLUG` is the unqiue slug for the application. You can find the slug on the **Application Settings** page in the [vendor portal](https://vendor.replicated.com/apps). For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+Where `APP_SLUG` is the unqiue slug for the application. You can find the slug on the **Application Settings** page in the [Vendor Portal](https://vendor.replicated.com/apps). For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
 #### Download the kURL Bundle for Other Channels
 
@@ -121,7 +121,7 @@ To download the kURL bundle for channels other than Stable:
 
 To download air gap bundles from the download portal:
 
-1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
+1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
 
     :::note
     The **Airgap Download Enabled** option must be enabled for the customer on the **Manage customer** page to download air gap bundles from the download portal.

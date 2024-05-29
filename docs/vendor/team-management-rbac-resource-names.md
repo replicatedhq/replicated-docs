@@ -286,7 +286,7 @@ Grants the holder permission to delete the service account identified by the nam
 
 ### team/support-issues/read
 
-Grants the holder Read permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Read permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 To prevent access to the collab repository for an RBAC policy, add `team/support-issues/read` to the `denied:` list in the policy. For example:
 
@@ -310,7 +310,7 @@ For more information about the Read role in GitHub, see [Permissions for each ro
 
 ### team/support-issues/write
 
-Grants the holder Write permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Write permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Write role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
@@ -318,7 +318,7 @@ For more information about the Write role in GitHub, see [Permissions for each r
 
 ### team/support-issues/triage
 
-Grants the holder Triage permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Triage permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Triage role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
@@ -326,7 +326,7 @@ For more information about the Triage role in GitHub, see [Permissions for each 
 
 ### team/support-issues/admin
 
-Grants the holder Admin permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Admin permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 

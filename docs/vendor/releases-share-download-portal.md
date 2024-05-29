@@ -28,7 +28,7 @@ To share installation files with a customer, you can send the customer their uni
 
 To get the URL and generate a password for the download portal:
 
-1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
+1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
 
 1. In the **Download portal** section, click **Generate new password**.
 
