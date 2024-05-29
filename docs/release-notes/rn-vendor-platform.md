@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.28-0
+
+Released on May 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-28-0}
+* Users can create GitHub support tickets with large support bundle analysis results.
+
 ## v2024.05.24-6
 
 Released on May 24, 2024
