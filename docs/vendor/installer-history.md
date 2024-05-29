@@ -4,7 +4,7 @@ This topic describes how to access the installation commands for all active and 
 
 ## About Using Inactive Installers
 
-Each release channel in the Replicated vendor portal saves the history of Kubernetes installers that were promoted to the channel. You can view the list of historical installers on the **Kubernetes Installer History** page for each channel. For more information, see [About the Installer History Page](#about) below.
+Each release channel in the Replicated Vendor Portal saves the history of Kubernetes installers that were promoted to the channel. You can view the list of historical installers on the **Kubernetes Installer History** page for each channel. For more information, see [About the Installer History Page](#about) below.
 
 It can be useful to access the installation commands for inactive installers to reproduce an issue that a user is experiencing for troubleshooting purposes. For example, if the user's cluster is running the inactive installer version 1.0.0, then you can install with version 1.0.0 in a test environment to troubleshoot.
 
@@ -18,7 +18,7 @@ To access the **Kubernetes Installer History** page, go to **Channels** and clic
 
 The following image shows an example **Kubernetes Installer History** page with three installers listed:
 
-![Installer History page in the vendor portal](/images/installer-history-page.png)
+![Installer History page in the Vendor Portal](/images/installer-history-page.png)
 
 [View a larger version of this image](/images/installer-history-page.png)
 

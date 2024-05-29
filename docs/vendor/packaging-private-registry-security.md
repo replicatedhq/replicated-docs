@@ -7,7 +7,7 @@ This document lists the security measures and processes in place to ensure that 
 
 The registry is deployed and managed as a multi-tenant application, but each tenant is completely isolated from data that is created and pulled by other tenants. Docker images have shared base layers, but the private registry does not share these between tenants. For example, if a tenant creates an image `FROM postgres:10.3` and pushes the image to Replicated, all of the layers are uploaded, even if other tenants have this base layer uploaded.
 
-A tenant in the private registry is a team on the Replicated [vendor portal](https://vendor.replicated.com). Licenses and customers created by the team are also granted some permissions to the registry data, as specified in the following sections. Cross-tenant access is never allowed in the private registry.
+A tenant in the private registry is a team on the Replicated [Vendor Portal](https://vendor.replicated.com). Licenses and customers created by the team are also granted some permissions to the registry data, as specified in the following sections. Cross-tenant access is never allowed in the private registry.
 
 
 ## Authentication and Authorization
@@ -17,7 +17,7 @@ The private registry supports several methods of authentication. Public access i
 
 ### Vendor Authentication
 
-All accounts with read/write access on the vendor portal have full access to all images pushed by the tenant to the registry. These users can push and pull images to and from the registry.
+All accounts with read/write access on the Vendor Portal have full access to all images pushed by the tenant to the registry. These users can push and pull images to and from the registry.
 
 
 ### End Customer Authentication
