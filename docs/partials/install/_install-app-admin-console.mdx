@@ -10,18 +10,18 @@ To install the application using the Admin Console:
       ```
       Replace `NAMESPACE` with the namespace where KOTS is installed.
 
-   * **Embedded cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
+   * **kURL cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 
-1. (Embedded Cluster Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
+1. (kURL Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
 
-1. (Embedded Cluster Only) On the HTTPS page, do one of the following:
+1. (kURL Only) On the HTTPS page, do one of the following:
 
     - To use the self-signed TLS certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Click **Skip & continue**.
     - To use a custom certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Then upload a private key and SSL certificate to secure communication between your browser and the Admin Console. Click **Upload & continue**.
 
 1. Log in to the Admin Console:
    * **Existing cluster**: Log in with the password that you created during installation.
-   * **Embedded cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
+   * **kURL**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
 
    ![Secure Console](/images/secure-console.png)
 
@@ -60,9 +60,9 @@ To install the application using the Admin Console:
    1. Click the menu in the top right corner of the Admin Console, then click **Change password**.
    1. Enter a new password in the dialog, and click **Change Password** to save.
 
-   Replicated strongly recommends that you change the password from the default provided during installation on an embedded cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
+   Replicated strongly recommends that you change the password from the default provided during installation in a kURL cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 
-1. (Embedded Cluster Only) Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements defined by the vendor or to support your usage of the application. See [Adding Nodes to Embedded Clusters](cluster-management-add-nodes).
+1. (kURL Only) Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements defined by the vendor or to support your usage of the application. See [Adding Nodes to Embedded Clusters](cluster-management-add-nodes).
    :::note
    Reach out to your application vendor for information about any node requirements.
    :::

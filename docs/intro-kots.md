@@ -31,7 +31,7 @@ KOTS is an open source project that is maintained by Replicated. For more inform
 KOTS can be used to install applications in Kubernetes clusters, including:
 * Existing clusters brought by the user
 * Online or air gapped clusters
-* Embedded clusters provisioned on VMs or bare metal servers with Replicated embedded cluster or Replicated kURL
+* Embedded clusters provisioned on VMs or bare metal servers with Replicated Embedded Cluster or Replicated kURL
 
 To install an application with KOTS, users first run an installation script to install KOTS in the target cluster and deploy the KOTS Admin Console. After KOTS is installed, users can log in to the KOTS Admin Console to upload their license file, configure the application, run preflight checks, and install and deploy the application.
 
