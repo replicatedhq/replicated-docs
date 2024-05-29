@@ -13,7 +13,7 @@ In this tutorial, you use a sample Helm chart to learn how to:
 
 ## Set Up the Environment
 
-Before you begin, ensure that you have kubectl access to a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as the [Replicated compatibility matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
+Before you begin, ensure that you have kubectl access to a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
 
 ## Next Step
 

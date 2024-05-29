@@ -2,17 +2,17 @@ import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
-This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix.
+This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix.
 
-The compatibility matrix provisions cloud-based or virtual machine (VM) clusters.
+Compatibility Matrix provisions cloud-based or virtual machine (VM) clusters.
 
 ## VM Clusters
 
-This section lists the supported VM cluster distributions for clusters created with the compatibility matrix.
+This section lists the supported VM cluster distributions for clusters created with Compatibility Matrix.
 
 ### kind
 
-The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
+Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
 
 <table>
   <tr>
@@ -55,7 +55,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
 
 ### k3s
 
-The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
+Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
 
 <table>
   <tr>
@@ -102,7 +102,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 ### RKE2 (Alpha)
 
-The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
+Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
 
 <table>
   <tr>
@@ -149,7 +149,7 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
 
 ### OpenShift OKD
 
-The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
+Compatibility Matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
 
@@ -209,7 +209,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-The compatibility matrix supports creating clusters with Replicated embedded cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+Compatibility Matrix supports creating clusters with Replicated embedded cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 <table>
   <tr>
@@ -246,7 +246,7 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
         <li>The admin console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`.</li>
         <li>A valid customer license is required for installing with embedded cluster.</li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
-        <li>Embedded clusters cannot be created from the vendor portal.</li>
+        <li>Embedded clusters cannot be created from the Vendor Portal.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
@@ -259,7 +259,7 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
 
 ### kURL
 
-The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
+Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
 
 <table>
   <tr>
@@ -306,7 +306,7 @@ This section lists the supported cloud clusters for compatibility testing.
 
 ### EKS
 
-The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
+Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
 
 <table>
   <tr>
@@ -349,7 +349,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 ### GKE
 
-The compatibility matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
+Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
 
 <table>
   <tr>
@@ -392,7 +392,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
 
 ### AKS
 
-The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
+Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
 
 <table>
   <tr>
@@ -435,10 +435,10 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
 
 ### OKE (Alpha)
 
-The compatibility matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
+Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
 
 :::note
-By default, creating OKE clusters is not enabled. To enable OKE clusters for compatibility matrix, contact Replicated at contact@replicated.com or submit a feature request.
+By default, creating OKE clusters is not enabled. To enable OKE clusters for Compatibility Matrix, contact Replicated at contact@replicated.com or submit a feature request.
 :::
 
 <table>
@@ -482,7 +482,7 @@ By default, creating OKE clusters is not enabled. To enable OKE clusters for com
 
 ## Replicated Instance Types {#types}
 
-When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.
+When creating a VM-based cluster with Compatibility Matrix, you must specify a Replicated instance type.
 
 <table>
   <tr>
@@ -519,4 +519,4 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
 
 ## Kubernetes Version Support Policy
 
-We do not maintain forks or patches of the supported distributions. When a Kubernetes version in the compatibility matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
+We do not maintain forks or patches of the supported distributions. When a Kubernetes version in Compatibility Matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.

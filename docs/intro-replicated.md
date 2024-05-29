@@ -41,7 +41,7 @@ For more information about using the Replicated SDK, see [About the Replicated S
 
 The Replicated Compatibility Matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
 
-For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ### Release
 
@@ -80,7 +80,7 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
 - Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
-- Provision customer-representative environments with the compatibility matrix to recreate and diagnose issues. See [About the Compatibility Matrix](/vendor/testing-about).
+- Provision customer-representative environments with Compatibility Matrix to recreate and diagnose issues. See [About Compatibility Matrix](/vendor/testing-about).
 - Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).
 
 ## Vendor Platform Interfaces
