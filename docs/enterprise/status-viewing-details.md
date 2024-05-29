@@ -4,14 +4,14 @@ import AggregateStatusIntro from "../partials/status-informers/_aggregate-status
 
 # Viewing Status Details
 
-This topic describes how to view the status of an application on the Replicated admin console dashboard. It also describes how Replicated KOTS collects and aggregates the application status. 
+This topic describes how to view the status of an application on the Replicated KOTS Admin Console dashboard. It also describes how Replicated KOTS collects and aggregates the application status. 
 ## View Status Details
 
-The application status displays on the dashboard of the admin console. Viewing the status details can be helpful for troubleshooting.
+The application status displays on the dashboard of the Admin Console. Viewing the status details can be helpful for troubleshooting.
 
-There are two ways to view the status details, depending on your admin console version:
+There are two ways to view the status details, depending on your Admin Console version:
 
-- (Version 1.51.0 and later) Click **Details** next to the status on the dashboard. For information about how to update the admin console to view the Details link, see [Updating KOTS](updating-app-manager).
+- (Version 1.51.0 and later) Click **Details** next to the status on the dashboard. For information about how to update the Admin Console to view the Details link, see [Updating KOTS](updating-app-manager).
 
   ![Status Details](/images/kotsadm-dashboard-appstatus.png)
 
@@ -19,7 +19,7 @@ There are two ways to view the status details, depending on your admin console v
 
 ## About Application Status
 
-To display application status on the admin console dashboard, KOTS aggregates the status of specific Kubernetes resources for the application.
+To display application status on the Admin Console dashboard, KOTS aggregates the status of specific Kubernetes resources for the application.
 
 The following resource types are supported for displaying application status:
 
@@ -32,7 +32,7 @@ The following resource types are supported for displaying application status:
 
 Applications can specify one or more of the supported Kubernetes workloads listed above. KOTS watches all specified workloads for state changes.
 
-For more information about how to interpret the application status displayed on the admin console dashboard, see [Resource Statuses](#resource-statuses) and [Aggregate Application Status](#aggregate-application-status) below. 
+For more information about how to interpret the application status displayed on the Admin Console dashboard, see [Resource Statuses](#resource-statuses) and [Aggregate Application Status](#aggregate-application-status) below. 
 
 ### Resource Statuses
 
