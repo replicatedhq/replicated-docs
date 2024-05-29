@@ -1,6 +1,6 @@
 # Managing Applications
 
-This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated vendor portal and with the replicated CLI.
+This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
 
 For information about creating and managing application with the Vendor API v3, see the [apps](https://replicated-vendor-api.readme.io/reference/createapp) section in the Vendor API v3 documentation.
 
@@ -12,7 +12,7 @@ Teams can create one or more applications. It is common to create multiple appli
 
 To create a new application:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com/). If you do not have an account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
+1. Log in to the [Vendor Portal](https://vendor.replicated.com/). If you do not have an account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 
 1. In the top left of the page, open the application drop down and click **Create new app...**.
 
@@ -36,9 +36,9 @@ To create a new application:
 
 ### Replicated CLI
 
-To create an application with the replicated CLI:
+To create an application with the Replicated CLI:
 
-1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+1. Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the following command:
 
@@ -57,13 +57,13 @@ To create an application with the replicated CLI:
 
 ## Get the Application Slug {#slug}
 
-Each application has a slug, which is used for interacting with the application using the replicated CLI. The slug is automatically generated based on the application name and cannot be changed.
+Each application has a slug, which is used for interacting with the application using the Replicated CLI. The slug is automatically generated based on the application name and cannot be changed.
 
 ### Vendor Portal 
 
-To get an application slug in the vendor portal:
+To get an application slug in the Vendor Portal:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
+1. Log in to the [Vendor Portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
 
 1. Under **Application Slug**, copy the slug.
 
@@ -73,9 +73,9 @@ To get an application slug in the vendor portal:
 
 ### Replicated CLI
 
-To get an application slug with the replicated CLI:
+To get an application slug with the Replicated CLI:
 
-1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+1. Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the following command:
 
@@ -100,9 +100,9 @@ When you delete an application, you also delete all licenses and data associated
 
 ### Vendor Portal 
 
-To delete an application in the vendor portal:
+To delete an application in the Vendor Portal:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
+1. Log in to the [Vendor Portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
 
 1. Under **Danger Zone**, click **Delete App**.
 
@@ -120,9 +120,9 @@ To delete an application in the vendor portal:
 
 ### Replicated CLI
 
-To delete an application with the replicated CLI:
+To delete an application with the Replicated CLI:
 
-1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+1. Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the following command:
 

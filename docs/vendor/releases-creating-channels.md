@@ -1,8 +1,8 @@
 # Creating and Editing Channels
 
-This topic describes how to create and edit channels using the Replicated vendor portal. For more information about channels, see [About Channels and Releases](releases-about).
+This topic describes how to create and edit channels using the Replicated Vendor Portal. For more information about channels, see [About Channels and Releases](releases-about).
 
-For information about creating channels with the replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
+For information about creating channels with the Replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
 
 For information about creating and managing channels with the Vendor API v3, see the [channels](https://replicated-vendor-api.readme.io/reference/createchannel) section in the Vendor API v3 documentation.
 
@@ -10,7 +10,7 @@ For information about creating and managing channels with the Vendor API v3, see
 
 To create a channel:
 
-1. From the Replicated [vendor portal](https://vendor.replicated.com), select **Channels** from the left menu.
+1. From the Replicated [Vendor Portal](https://vendor.replicated.com), select **Channels** from the left menu.
 1. Click **Create Channel**.
 
    The Create a new channel dialog opens. For example:
@@ -28,12 +28,12 @@ To create a channel:
 
 To edit the settings of an existing channel:
 
-1. In the vendor portal, select **Channels** from the left menu.
+1. In the Vendor Portal, select **Channels** from the left menu.
 1. Click the gear icon on the top right of the channel that you want to modify.
 
    The Channel settings dialog opens. For example:
 
-   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
+   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the Vendor Portal" width="500"/>
 
 1. Edit the fields and click **Save**.
 
@@ -51,10 +51,10 @@ You cannot archive a channel if:
 Assign customers to a different channel and set a different channel as the default before archiving.
 :::
 
-To archive a channel with the vendor portal or the replicated CLI:
+To archive a channel with the Vendor Portal or the Replicated CLI:
 
-* **Vendor portal**: In the vendor portal, go to the **Channels** page and click the trash can icon in the top right corner of the card for the channel that you want to archive.
-* **replicated CLI**:
+* **Vendor portal**: In the Vendor Portal, go to the **Channels** page and click the trash can icon in the top right corner of the card for the channel that you want to archive.
+* **Replicated CLI**:
   1. Run the following command to find the ID for the channel that you want to archive:
      ```
      replicated channel ls
@@ -67,4 +67,4 @@ To archive a channel with the vendor portal or the replicated CLI:
      ```
      Replace `CHANNEL_ID` with the channel ID that you retrieved in the previous step.
 
-     For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the replicated CLI documentation.
+     For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the Replicated CLI documentation.
