@@ -16,6 +16,25 @@ Released on May 24, 2024
 * Fixes a bug that caused version string for Replicated SDK chart have an invalid "v" prefix.
 
 
+## v2024.05.23-2
+
+Released on May 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-23-2}
+* Adds validation to compatibility matrix object-store add-on bucket prefix input.
+
+## v2024.05.21-1
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-1}
+* Adds API support for Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) to compatibility matrix.
+
+### Bug Fixes {#bug-fixes-v2024-05-21-1}
+* Fixes a bug where users could not restore password policies to default.
+* Disables the edit and archive channel options and displays helpful hover text on the **Channels** page table view when the user does not have permission to edit channels.
+* Fixes a bug that caused "airgap:true" or "airgap:false" customer searches to fail with error 500.
+
 ## v2024.05.21-0
 
 Released on May 21, 2024

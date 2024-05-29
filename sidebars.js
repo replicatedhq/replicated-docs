@@ -474,6 +474,7 @@ const sidebars = {
       'vendor/replicated-sdk-installing',
       'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
+      'vendor/replicated-sdk-slsa-validating',
     ],
   },
   {
