@@ -28,7 +28,7 @@ kubectl kots velero configure-aws-s3 access-key [flags]
 | Flag                   | Type   | Description                                                                   |
 |------------------------|--------|-------------------------------------------------------------------------------|
 | `-h, --help`           |        | help for access-key                                                           |
-| `-n, --namespace`      | string | the namespace of the admin console _(required)_                               |
+| `-n, --namespace`      | string | the namespace of the Admin Console _(required)_                               |
 | `--access-key-id`      | string | the aws access key id to use for accessing the bucket _(required)_            |
 | `--bucket`             | string | name of the object storage bucket where backups should be stored _(required)_ |
 | `--path `              | string | path to a subdirectory in the object store bucket                             |
@@ -53,7 +53,7 @@ kubectl kots velero configure-aws-s3 instance-role [flags]
 | Flag                   | Type   | Description                                                                   |
 |------------------------|--------|-------------------------------------------------------------------------------|
 | `-h, --help`           |        | help for access-key                                                           |
-| `-n, --namespace`      | string | the namespace of the admin console _(required)_                               |
+| `-n, --namespace`      | string | the namespace of the Admin Console _(required)_                               |
 | `--bucket`             | string | name of the object storage bucket where backups should be stored _(required)_ |
 | `--path `              | string | path to a subdirectory in the object store bucket                             |
 | `--region `            | string | the region where the bucket exists _(required)_                               |

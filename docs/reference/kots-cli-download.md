@@ -1,7 +1,7 @@
 # download
 
 Retrieves a copy of the application manifests from the cluster, and store them in a specific directory structure on your workstation.
-Requires a running application with the Replicated admin console.
+Requires a running application with the KOTS Admin Console.
 
 ## Usage
 ```bash

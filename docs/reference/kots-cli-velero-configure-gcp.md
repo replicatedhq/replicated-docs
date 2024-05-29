@@ -28,7 +28,7 @@ kubectl kots velero configure-gcp service-account [flags]
 | Flag                | Type   | Description                                                                   |
 |---------------------|--------|-------------------------------------------------------------------------------|
 | `-h, --help`        |        | help for access-key                                                           |
-| `-n, --namespace`   | string | the namespace of the admin console _(required)_                               |
+| `-n, --namespace`   | string | the namespace of the Admin Console _(required)_                               |
 | `--bucket`          | string | name of the object storage bucket where backups should be stored _(required)_ |
 | `--json-file`       | string | path to JSON credntials file for veloro _(required)_                          |
 | `--path `           | string | path to a subdirectory in the object store bucket                             |
@@ -51,7 +51,7 @@ kubectl kots velero configure-gcp workload-identity [flags]
 | Flag                | Type   | Description                                                                   |
 |---------------------|--------|-------------------------------------------------------------------------------|
 | `-h, --help`        |        | help for access-key                                                           |
-| `-n, --namespace`   | string | the namespace of the admin console _(required)_                               |
+| `-n, --namespace`   | string | the namespace of the Admin Console _(required)_                               |
 | `--bucket`          | string | name of the object storage bucket where backups should be stored _(required)_ |
 | `--path `           | string | path to a subdirectory in the object store bucket                             |
 | `--service-account` | string | the service account to use if using Google Cloud instance role _(required)_   |
