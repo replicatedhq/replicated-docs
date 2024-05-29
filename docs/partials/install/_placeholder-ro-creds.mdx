@@ -1,9 +1,9 @@
-* `REGISTRY_HOST` with the same hostname for the private registry where you pushed the admin console images.
+* `REGISTRY_HOST` with the same hostname for the private registry where you pushed the Admin Console images.
 
 * `RO_USERNAME` and `RO_PASSWORD` with the username and password for an account that has read-only access to the private registry.
     
     :::note
-    KOTS stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
+    KOTS stores these read-only credentials in a Kubernetes secret in the same namespace where the Admin Console is installed.
 
-    KOTS uses these credentials to pull the images. To allow KOTS to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
+    KOTS uses these credentials to pull the images. To allow KOTS to pull images, the credentials are automatically created as an imagePullSecret on all of the Admin Console Pods.
     :::
