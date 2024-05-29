@@ -136,7 +136,7 @@ pagination_next: null
         <p>Replicated KOTS</p>
     </li>
     <li>
-        <p>A kubectl plugin and in-cluster admin console that installs applications in customer-controlled environments.</p>
+        <p>A kubectl plugin and in-cluster Admin Console that installs applications in customer-controlled environments.</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
@@ -283,13 +283,13 @@ pagination_next: null
         <p>APIs, CLIs, and an SDK for interacting with the Replicated platform.</p>
     </li>
     <li>
-      <a href="/reference/replicated-cli-installing">replicated CLI</a>
+      <a href="/reference/replicated-cli-installing">Replicated CLI</a>
     </li>
     <li>
       <a href="/reference/vendor-api-using">Vendor API v3</a>
     </li>
     <li>
-      <a href="/reference/kots-cli-getting-started">kots CLI</a>
+      <a href="/reference/kots-cli-getting-started">KOTS CLI</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>
