@@ -2,13 +2,13 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 # Generating API Tokens
 
-This topic describes the available types of API tokens and how to generate them for use with the replicated CLI and Replicated Vendor API v3.
+This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
 
 ## About API Tokens
 
-The Vendor API v3 is the API that manages applications in the Replicated vendor portal. The replicated CLI is an implementation of the Vendor API v3.
+The Vendor API v3 is the API that manages applications in the Replicated vendor portal. The Replicated CLI is an implementation of the Vendor API v3.
 
-Using the replicated CLI and Vendor API V3 requires an API token for authorization. Tokens are primarily used for automated customer, channel, and release management. You create tokens in the vendor portal.
+Using the Replicated CLI and Vendor API V3 requires an API token for authorization. Tokens are primarily used for automated customer, channel, and release management. You create tokens in the vendor portal.
 
 The following types of tokens are available:
 
@@ -35,7 +35,7 @@ Revoking a user token immediately invalidates that token. When a user account is
 
 ## Generate Tokens
 
-To use the replicated CLI or the Vendor API v3, you need a User API token or a Service Account token. Existing team API tokens also continue to work.
+To use the Replicated CLI or the Vendor API v3, you need a User API token or a Service Account token. Existing team API tokens also continue to work.
 
 ### Generate a Service Account
 

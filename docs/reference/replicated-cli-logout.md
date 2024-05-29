@@ -11,7 +11,7 @@ replicated logout [flags]
 ```
 
 :::note
-If the `REPLICATED_API_TOKEN` environment variable is set, the `replicated logout` command displayed the following error: `Error: REPLICATED_API_TOKEN is set. Please unset it to logout.` For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+If the `REPLICATED_API_TOKEN` environment variable is set, the `replicated logout` command displayed the following error: `Error: REPLICATED_API_TOKEN is set. Please unset it to logout.` For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 :::
 
 <table>

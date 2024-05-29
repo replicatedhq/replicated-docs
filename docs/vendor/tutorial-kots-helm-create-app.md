@@ -11,7 +11,7 @@ To create an application:
    ```
    brew install replicatedhq/replicated/cli
    ```
-   For more installation options, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+   For more installation options, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Authorize the Replicated CLI:
 
