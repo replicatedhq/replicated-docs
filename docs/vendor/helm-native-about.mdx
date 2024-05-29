@@ -25,7 +25,7 @@ KOTS can install applications that include:
 Replicated strongly recommends that all applications are packaged as Helm charts because many enterprise users expect to be able to install an application with the Helm CLI.
 
 Deploying Helm charts with KOTS provides additional functionality not directly available with the Helm CLI, such as:
-* The KOTS admin console
+* The KOTS Admin Console
 * Backup and restore with snapshots
 * Support for air gap installations
 * Support for embedded cluster installations on VMs or bare metal servers
@@ -145,9 +145,9 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
 
   Under `base/charts/`, KOTS adds a Kustomization file named `kustomization.yaml` in the directories for each chart and subchart. KOTS uses these Kustomization files later in the deployment process to merge instructions from Kustomize to the chart resources. For more information about Kustomize, see the [Kustomize website](https://kustomize.io).
 
-  The following screenshot from the Replicated admin console shows a `base/charts/` directory for a deployed application. The `base/charts/` directory contains a Helm chart named postgresql with one subchart:
+  The following screenshot from the Replicated Admin Console shows a `base/charts/` directory for a deployed application. The `base/charts/` directory contains a Helm chart named postgresql with one subchart:
 
-  ![Base directory in the admin console](/images/native-helm-base.png)
+  ![Base directory in the Admin Console](/images/native-helm-base.png)
 
   In the screenshot above, a Kustomization file that targets the resources from the postgresql Helm chart appears in the `base/charts/postgresql/` directory:
 
@@ -163,7 +163,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
    
 1. **Writes midstream files with Kustomize instructions from KOTS**: KOTS then copies the directory structure from `base/charts/` to an `overlays/midstream/charts/` directory. The following screenshot shows an example of the midstream directory for the postgresql Helm chart: 
    
-  ![Midstream directory in the admin console UI](/images/native-helm-midstream.png)
+  ![Midstream directory in the Admin Console UI](/images/native-helm-midstream.png)
 
   As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from KOTS for all deployed resources, such as image pull secrets, image rewrites, and backup labels. For example, in the midstream Kustomization file, KOTS rewrites any private images to pull from the Replicated proxy service.
 
@@ -191,7 +191,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
 
 1. **Writes downstream files for end user Kustomize instructions**: KOTS then creates an `overlays/downstream/this-cluster/charts` directory and again copies the directory structure of `base/charts/` to this downstream directory:
 
-   ![Downstream directory in the admin console UI](/images/native-helm-downstream.png)
+   ![Downstream directory in the Admin Console UI](/images/native-helm-downstream.png)
 
    As shown in the screenshot above, each chart and subchart directory in the downstream directory also contains a Kustomization file. These downstream Kustomization files contain only a `bases` entry that references the corresponding Kustomization file from the midstream directory. For example:
 

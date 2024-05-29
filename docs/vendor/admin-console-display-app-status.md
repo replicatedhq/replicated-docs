@@ -15,13 +15,13 @@ Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missi
 
 When you one or more status informers to your application, KOTS automatically does the following:
 
-* Displays application status for your users on the dashboard of the admin console. This can help users diagnose and troubleshoot problems with their instance. The following shows an example of how an Unavailable status displays on the admin console dashboard:
+* Displays application status for your users on the dashboard of the Admin Console. This can help users diagnose and troubleshoot problems with their instance. The following shows an example of how an Unavailable status displays on the Admin Console dashboard:
 
-   <img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
+   <img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the Admin Console dashboard" width="500px"/>
 
-* Sends application status data to the vendor portal. This is useful for viewing insights on instances of your application running in customer environments, such as the current status and the average uptime. For more information, see [Instance Details](instance-insights-details).
+* Sends application status data to the Vendor Portal. This is useful for viewing insights on instances of your application running in customer environments, such as the current status and the average uptime. For more information, see [Instance Details](instance-insights-details).
 
-   The following shows an example of the vendor portal **Instance details** page with data about the status of an instance over time:
+   The following shows an example of the Vendor Portal **Instance details** page with data about the status of an instance over time:
 
    <img src="/images/instance-details.png" alt="Instance details full page" width="700px"/>
 

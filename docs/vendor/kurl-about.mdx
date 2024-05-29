@@ -14,7 +14,7 @@ The Replicated KOTS entitlement is required to install applications with KOTS an
 
 ### Kubernetes Installer Specs
 
-To provision a cluster, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. This _Kubernetes installer_ spec can be customized according to the application requirements by including add-ons. kURL provides add-ons for networking, storage, ingress, and more. kURL also provides a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS admin console.
+To provision a cluster, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. This _Kubernetes installer_ spec can be customized according to the application requirements by including add-ons. kURL provides add-ons for networking, storage, ingress, and more. kURL also provides a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS Admin Console.
 
 Installer specs can be embedded with an application by promoting the spec to the same channel as the target application release in the Replicated vendor platform. When an installer spec is promoted to a channel, all releases on the channel use the installer for installations with kURL.
 
@@ -24,7 +24,7 @@ For more information about creating Kubernetes installer specs for kURL, see [Cr
 
 To install with kURL, users run a kURL installation script on their VM or bare metal server to provision a cluster.
 
-When the KOTS add-on is included in the Kubernetes installer spec, the kURL installation script installs the kots CLI and KOTS admin console in the cluster. After the installation script completes, users can access the admin console at the URL provided in the ouput of the command to configure and deploy the application with KOTS.
+When the KOTS add-on is included in the Kubernetes installer spec, the kURL installation script installs the kots CLI and KOTS Admin Console in the cluster. After the installation script completes, users can access the Admin Console at the URL provided in the ouput of the command to configure and deploy the application with KOTS.
 
 The following shows an example of the output of the kURL installation script:
 

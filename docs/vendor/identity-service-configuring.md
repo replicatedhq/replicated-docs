@@ -17,13 +17,13 @@ Identity service has the following limitations and requirements:
 
 * Requires the identity service option is enabled in customer licenses.
 * Is available only for embedded cluster installations with the Kubernetes installer.
-* Is available only through the Replicated admin console.
+* Is available only through the Replicated Admin Console.
 
 ## Enable and Configure Identity Service
 
 Use the Identity custom resource to enable and configure the identity service for your application. For an example application that demonstrates how to configure the identity service, see the [`kots-idp-example-app`](https://github.com/replicatedhq/kots-idp-example-app) on GitHub.
 
-To begin, create a new release in the [vendor portal](https://vendor.replicated.com). Add an Identity custom resource file and customize the file for your application. For more information about the Identity custom resource, see [Identity (Beta)](/reference/custom-resource-identity) in _Reference_.
+To begin, create a new release in the [Vendor Portal](https://vendor.replicated.com). Add an Identity custom resource file and customize the file for your application. For more information about the Identity custom resource, see [Identity (Beta)](/reference/custom-resource-identity) in _Reference_.
 
 **Example:**
         
@@ -160,7 +160,7 @@ spec:
       description: Restrict access to IDP Example App
 ```
 
-Then, using the admin console, your customer has the ability to create groups and assign specific roles to each group. 
+Then, using the Admin Console, your customer has the ability to create groups and assign specific roles to each group. 
 This mapping of roles to groups is returned to your application through the `IdentityServiceRoles` template function that you configure in your Deployment manifest file under the environment variable `RESTRICTED_GROUPS`. For more information, see [`IdentityServiceRoles`](/reference/template-functions-identity-context#identityserviceroles) in _Reference_.
 
 **Example:**

@@ -1,12 +1,12 @@
 # Step 6: Install the Release with KOTS
 
-Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
+Next, get the KOTS installation command from the Unstable channel in the Vendor Portal and then install the release using the customer license that you downloaded.
 
-As part of installation, you will set Grafana login credentials on the KOTS admin console configuration page.
+As part of installation, you will set Grafana login credentials on the KOTS Admin Console configuration page.
 
 To install the release with KOTS:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
     ![KOTS Install tab on the Unstable channel card](/images/grafana-unstable-channel.png)
 
@@ -19,7 +19,7 @@ To install the release with KOTS:
     kubectl kots install $REPLICATED_APP/unstable
     ```
 
-    This installs the latest version of the kots CLI and the  admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+    This installs the latest version of the kots CLI and the  Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
 
     For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
@@ -31,9 +31,9 @@ To install the release with KOTS:
 
     1. For `Enter the namespace to deploy to`, enter `grafana`. 
 
-    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
+    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
 
-   When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+   When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the kots CLI is installed and the Admin Console is running, but the application is not yet deployed.
 
    **Example output:**
 
@@ -42,30 +42,30 @@ To install the release with KOTS:
    • Deploying Admin Console
      • Creating namespace ✓
      • Waiting for datastore to be ready ✓
-   Enter a new password for the admin console (6+ characters): ••••••••
+   Enter a new password for the Admin Console (6+ characters): ••••••••
    • Waiting for Admin Console to be ready ✓
  
    • Press Ctrl+C to exit
    • Go to http://localhost:8800 to access the Admin Console
    ```
 
-1. With the port forward running, go to `http://localhost:8800` in a browser to access the admin console.
+1. With the port forward running, go to `http://localhost:8800` in a browser to access the Admin Console.
 
-1. On the login page, enter the password that you created for the admin console.
+1. On the login page, enter the password that you created for the Admin Console.
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
 1. On the **Configure Grafana** page, enter a username and password. You will use these credentials to log in to Grafana.
 
-     ![admin console config page with username and password fields](/images/grafana-config.png)
+     ![Admin Console config page with username and password fields](/images/grafana-config.png)
 
      [View a larger version of this image](/images/grafana-config.png)
 
 1. Click **Continue**.
 
-     The admin console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
+     The Admin Console dashboard opens. The application status changes from Missing to Unavailable while the `grafana` Deployment is being created.
 
-     ![admin console dashboard showing unavailable application status](/images/grafana-unavailable.png)
+     ![Admin Console dashboard showing unavailable application status](/images/grafana-unavailable.png)
 
      [View a larger version of this image](/images/grafana-unavailable.png)
 
@@ -85,15 +85,15 @@ To install the release with KOTS:
 
    The ouput of this command displays the password that you created.
 
-1. Start the port foward again to access the admin console:
+1. Start the port foward again to access the Admin Console:
 
    ```
    kubectl kots admin-console --namespace grafana 
    ```
 
-1. Go to `http://localhost:8800` to open the admin console.   
+1. Go to `http://localhost:8800` to open the Admin Console.   
 
-   On the admin console dashboard, the application status is now displayed as Ready:
+   On the Admin Console dashboard, the application status is now displayed as Ready:
 
    ![Admin console dashboard showing ready application status](/images/grafana-ready.png)
 
@@ -124,14 +124,14 @@ To install the release with KOTS:
      • Application grafana-python has been removed
     ```
 
-1. Remove the admin console from the cluster:  
+1. Remove the Admin Console from the cluster:  
 
-   1. Delete the namespace where the admin console is installed:
+   1. Delete the namespace where the Admin Console is installed:
 
       ```
       kubectl delete namespace grafana
       ```
-   1. Delete the admin console ClusterRole and ClusterRoleBinding:  
+   1. Delete the Admin Console ClusterRole and ClusterRoleBinding:  
 
       ```
       kubectl delete clusterrole kotsadm-role
@@ -142,7 +142,7 @@ To install the release with KOTS:
 
 ## Next Step
 
-Congratulations! As part of this tutorial, you used the KOTS Config custom resource to define a configuration page in the admin console. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to override the default Grafana login credentials with a user-supplied username and password.
+Congratulations! As part of this tutorial, you used the KOTS Config custom resource to define a configuration page in the Admin Console. You also used the KOTS HelmChart custom resource and KOTS ConfigOption template function to override the default Grafana login credentials with a user-supplied username and password.
 
 To learn more about how to customize the Config custom resource to create configuration fields for your application, see [Config](/reference/custom-resource-config).
 

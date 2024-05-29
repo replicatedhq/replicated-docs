@@ -104,7 +104,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
    For more information about snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
 
-* **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the admin console UI after KOTS is installed.
+* **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the Admin Console UI after KOTS is installed.
 
    In non-headless installations in air gap environments, KOTS does not have access to the application's `.airgap` package during installation. This means that KOTS does not have the information required to determine whether namespace-scoped access is needed, so it defaults to the more permissive, default cluster-scoped RBAC policy.
 
