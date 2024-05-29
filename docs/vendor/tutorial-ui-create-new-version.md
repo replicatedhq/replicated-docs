@@ -1,14 +1,14 @@
 # Step 6: Create a New Version
 
-In this step, you edit the Replicated Config custom resource file to create a new field on the admin console **Config** page. You then promote the new release to the Unstable channel with your changes.
+In this step, you edit the Replicated Config custom resource file to create a new field on the KOTS Admin Console **Config** page. You then promote the new release to the Unstable channel with your changes.
 
 To create and promote a new version of the application:
 
-1. From the vendor portal, click **Releases** > **Create Release**.
+1. From the Vendor Portal, click **Releases** > **Create Release**.
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far.
 
-1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console **Config** page:
+1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the Admin Console **Config** page:
 
     ```yaml
     - name: more_text
@@ -92,8 +92,8 @@ To create and promote a new version of the application:
 
     1. Choose the Unstable channel in the Promote Release dialog, and click **Promote**.
 
-   Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates.
+   Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the Admin Console checks for updates.
 
 ## Next Step
 
-Continue to [Step 7: Update the Application](tutorial-ui-update-app) to return to the admin console to update the application to the new version.
+Continue to [Step 7: Update the Application](tutorial-ui-update-app) to return to the Admin Console to update the application to the new version.

@@ -433,6 +433,53 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
 </table>
 
+### OKE (Alpha)
+
+The compatibility matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
+
+:::note
+By default, creating OKE clusters is not enabled. To enable OKE clusters for compatibility matrix, contact Replicated at contact@replicated.com or submit a feature request.
+:::
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Versions</th>
+    <td>1.29.1</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16</p></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>No.</td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td><p>Provising an OKE cluster does take between 8 to 10 minutes. If needed, some timeouts in your CI pipelines might have to be adjusted.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
 ## Replicated Instance Types {#types}
 
 When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.

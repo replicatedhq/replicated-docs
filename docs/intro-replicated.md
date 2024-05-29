@@ -7,13 +7,13 @@ import Kots from "/docs/partials/kots/_kots-definition.mdx"
 
 # Introduction to Replicated
 
-This topic provides an introduction to working with the Replicated platform, including key features, supported application installation options, and platform interfaces.
+This topic provides an introduction to working with the Replicated Platform, including key features, supported application installation options, and interfaces.
 
 ## Overview
 
-Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
+The Replicated Platform is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
 
-Replicated features are designed to support ISVs in each phase of the commercial software distribution life cycle, as shown below:
+Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution life cycle, as shown below:
 
 ![software distribution life cycle wheel](/images/software-dev-lifecycle.png)
 
@@ -39,13 +39,13 @@ For more information about using the Replicated SDK, see [About the Replicated S
 
 ### Test
 
-The Replicated compatibility matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the compatibility matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
+The Replicated Compatibility Matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
 
 For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 ### Release
 
-Release channels in the Replicated vendor platform allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
+Release channels in the Replicated Vendor Portal allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
 
 For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
 
@@ -53,7 +53,7 @@ Additionally, the Replicated proxy service grants proxy access to private applic
 
 ### License
 
-Create customers in the Replicated vendor platform to handle licensing for your application in both online and air gap environments. For example:
+Create customers in the Replicated Vendor Portal to handle licensing for your application in both online and air gap environments. For example:
 * License free trials and different tiers of product plans
 * Create and manage custom license entitlements
 * Automatically restrict access to expired accounts
@@ -71,7 +71,7 @@ For more information, see the [KOTS documentation](intro-kots).
 
 ### Report
 
-When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated vendor platform. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated Vendor Portal. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
 ISVs can also set up email and Slack notifications to get alerted of important instance issues or performance trends. For more information, see [Configuring Instance Notifications](/vendor/instance-notifications-config).
 
@@ -89,7 +89,7 @@ This section describes the GUI, CLI, and API that software vendors use to intera
 
 ### Vendor Portal
 
-The Replicated vendor portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
+The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
 The following shows an example of the **Reporting** page for a customer:
 
@@ -99,7 +99,7 @@ The following shows an example of the **Reporting** page for a customer:
 
 ### replicated CLI
 
-The replicated command-line interface (CLI) is the CLI for the vendor portal. The replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
 ![terminal with replicated CLI commands](/images/replicated-cli.gif)
 

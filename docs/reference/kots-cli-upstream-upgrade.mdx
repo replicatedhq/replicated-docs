@@ -3,7 +3,7 @@ import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
 # upstream upgrade
 
 The `kots upstream upgrade` fetches the latest version of the upstream application.
-It is functionality equivalent to clicking the "Check For Updates" in the admin console.
+It is functionality equivalent to clicking the "Check For Updates" in the Admin Console.
 
 ## Usage
 ```bash
@@ -16,7 +16,7 @@ kubectl kots upstream upgrade [app-slug] [flags]
 |:-------------------------|--------|--------------------------------------------------------------------------------------------------|
 | `-h, --help`             |        | help for upstream                                                                                |
 | `--kubeconfig`           | string | the kubeconfig to use. **Default:** `$KUBECONFIG`. If unset, then `$HOME/.kube/config`         |
-| `-n, --namespace`        | string | (Required) the namespace where the admin console is running                                    |
+| `-n, --namespace`        | string | (Required) the namespace where the Admin Console is running                                    |
 | `--deploy`               | bool   | ensures the latest available release is deployed                                                 |
 | `--deploy-version-label` | string | ensures the release with the provided version label is deployed                                  |
 | `--skip-preflights`      | bool   | set to true to skip preflight checks                                                             |
