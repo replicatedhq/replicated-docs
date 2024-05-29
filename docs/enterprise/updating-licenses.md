@@ -1,6 +1,6 @@
 # Updating Licenses
 
-You can check if there are any changes on your license using the License tab on the Replicated admin console.
+You can check if there are any changes on your license using the License tab on the Replicated KOTS Admin Console.
 
 ## Update Online Licenses
 
@@ -22,9 +22,9 @@ Click **Upload license** on the right side of the license pane and select the la
 
 ## Upgrade from a Community License
 
-If you have a community license, you can change your license by uploading a new one. This allows you to upgrade from a community version of the software without having to reinstall the admin console and the application.
+If you have a community license, you can change your license by uploading a new one. This allows you to upgrade from a community version of the software without having to reinstall the Admin Console and the application.
 
 To change a community license to another license:
 
-1. In the License tab of the admin console, click **Change license**.
+1. In the License tab of the Admin Console, click **Change license**.
 1. In the dialog, upload the new license file that you received from your vendor.

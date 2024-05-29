@@ -1,8 +1,8 @@
 # Step 5: Deploy the Application
 
-After you run the installation script from the previous step, the admin console and Kubernetes are running, but the application is not deployed yet.
+After you run the installation script from the previous step, the KOTS Admin Console and Kubernetes are running, but the application is not deployed yet.
 
-This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 3: Create a Customer](tutorial-ui-create-customer), completing the application configuration settings, and running the preflight checks.
+This procedure shows you how to deploy the application by logging into the Admin Console, uploading the license file that you created as part of [Step 3: Create a Customer](tutorial-ui-create-customer), completing the application configuration settings, and running the preflight checks.
 
 To install and deploy the application:
 
@@ -14,7 +14,7 @@ To install and deploy the application:
 
 1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 
-   The admin console can pull the application YAML and containers now.
+   The Admin Console can pull the application YAML and containers now.
 
 1. On the configuration screen, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
@@ -34,7 +34,7 @@ To install and deploy the application:
 
 1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog.
 
-   The admin console dashboard opens.
+   The Admin Console dashboard opens.
 
    ![Cluster](/images/guides/kots/application-tutorial-ui.png)
 
@@ -46,7 +46,7 @@ To install and deploy the application:
 
    Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
 
-1. In your cluster, press **Ctrl + C** to exit the admin console.
+1. In your cluster, press **Ctrl + C** to exit the Admin Console.
 
 1. Run the following command to reload your shell so that you can access the cluster with kubectl:
 
@@ -58,7 +58,7 @@ To install and deploy the application:
    ```bash
    kubectl get pods --namespace NAMESPACE_NAME
    ```
-   Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+   Replace `NAMESPACE_NAME` with the namespace where the application and Admin Console are deployed. Typically this value is `default`.
 
    **Example output:**
 
@@ -76,11 +76,11 @@ To install and deploy the application:
    kubectl kots admin-console --namespace NAMESPACE_NAME
    ```
 
-   Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+   Replace `NAMESPACE_NAME` with the namespace where the application and Admin Console are deployed. Typically this value is `default`.
 
    If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 
-1. Under **Customers** in the vendor portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the **Instance details** page. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
+1. Under **Customers** in the Vendor Portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the **Instance details** page. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
 
    ![Customer instance reporting](/images/customer-instances-tutorial.png)
 

@@ -1,10 +1,10 @@
 # Accessing Your Application
 
-This topic describes the networking options for accessing applications deployed on clusters created with the Replicated compatibility matrix. It also describes how to use and manage compatibility matrix tunnels.
+This topic describes the networking options for accessing applications deployed on clusters created with Replicated Compatibility Matrix. It also describes how to use and manage Compatibility Matrix tunnels.
 
 ## Networking Options
 
-After deploying your application into compatibility matrix clusters, you will want to execute your tests using your own test runner.
+After deploying your application into Compatibility Matrix clusters, you will want to execute your tests using your own test runner.
 In order to do this, you need to access your application. 
 Compatibility matrix offers several methods to access your application.
 
@@ -13,7 +13,7 @@ For VM-based distributions, there is no default network route into the cluster, 
 
 ### Port Forwarding
 Port forwarding is a low-cost and portable mechanism to access your application. 
-Port forwarding works on all clusters supported by compatibility matrix because the connection is initiated from the client, over the Kubernetes API server port.
+Port forwarding works on all clusters supported by Compatibility Matrix because the connection is initiated from the client, over the Kubernetes API server port.
 If you have a single service or pod and are not worried about complex routing, this is a good mechanism. 
 The basic steps are to connect the port-forward, execute your tests against localhost, and then shut down the port-forward.
 
@@ -30,13 +30,13 @@ Supported ingress controllers vary based on the distribution.
 Compatibility matrix supports ingress controllers that are running as a `NodePort` service.
 
 ### Compatibility Matrix Tunnels (Alpha)
-All VM-based compatibility matrix clusters support tunneling traffic into a `NodePort` service. 
+All VM-based Compatibility Matrix clusters support tunneling traffic into a `NodePort` service. 
 When this option is used, Replicated is responsible for creating the DNS record and TLS certs.
 Replicated will route traffic from `:443` and/or `:80` into the `NodePort` service you defined. For more information about using tunnels, see [Managing Compatibility Matrix Tunnels (Alpha)](#manage-nodes) below.
 
-The following diagram shows how the traffic is routed into the service using the compatibility matrix tunnels:
+The following diagram shows how the traffic is routed into the service using Compatibility Matrix tunnels:
 
-<img src="/images/compatibility-matrix-ingress.png" alt="compatibility matrix ingress"></img>
+<img src="/images/compatibility-matrix-ingress.png" alt="Compatibility Matrix ingress"></img>
 
 [View a larger version of this image](/images/compatibility-matrix-ingress.png)
 
@@ -46,7 +46,7 @@ The following diagram shows how the traffic is routed into the service using the
 Compatibity matrix tunnels are an alpha feature.
 :::
 
-Tunnels are viewed, created, and removed using the replicated CLI, GitHub Actions, or directly with the Vendor API v3. There is no limit to the number of tunnels you can create for a cluster and multiple tunnels can connect to a single service, if desired.
+Tunnels are viewed, created, and removed using the Replicated CLI, GitHub Actions, or directly with the Vendor API v3. There is no limit to the number of tunnels you can create for a cluster and multiple tunnels can connect to a single service, if desired.
 
 ### Limitations
 
@@ -61,7 +61,7 @@ The supported protocols are HTTP and HTTPS.
 WebSockets, GRPC, and other protocols are not routed into the cluster.
 
 ### Exposing Ports
-Once you have a node port available on the cluster, you can use the replicated CLI to expose the node port to the public internet. 
+Once you have a node port available on the cluster, you can use the Replicated CLI to expose the node port to the public internet. 
 This can be used multiple times on a single cluster.
 
 Optionally, you can specify the `--wildcard` flag to expose this port with wildcard DNS and TLS certificate.
@@ -96,7 +96,7 @@ This is useful if you have a deterministic node port, but need the DNS name as a
 :::
 
 ### Viewing Ports
-To view all exposed ports, use the replicated CLI `port ls` subcommand with the cluster ID:
+To view all exposed ports, use the Replicated CLI `port ls` subcommand with the cluster ID:
 
 ```bash
 % replicated cluster port ls 1e616c55

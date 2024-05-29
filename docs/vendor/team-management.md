@@ -3,12 +3,12 @@ import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.
 
 # Managing Team Members
 
-This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Managing Collab Repository Access](team-management-github-username).
+This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Managing Collab Repository Access](team-management-github-username).
 
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
-<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="700"/>
+<img src="/images/teams-view.png" alt="View team members list in the Vendor Portal" width="700"/>
 
 [View a larger image](/images/teams-view.png)
 
@@ -27,7 +27,7 @@ To invite a new team member:
 
    The Invite team member dialog opens.
 
-   <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="500"/>
+   <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the Vendor Portal" width="500"/>
 
    [Invite team member dialog](/images/teams-invite-member.png)
 
@@ -69,10 +69,10 @@ To edit policy permissions for individual team members:
 
 1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
-   <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
+   <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the Vendor Portal" width="400"/>
 
 ## Enable Users to Auto-join Your Team
-By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
+By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the Vendor Portal.
 
 To add, edit, or delete custom RBAC policies, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
@@ -81,7 +81,7 @@ To enable users to auto-join your team:
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
 
-   <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
+   <img src="/images/teams-auto-join.png" alt="Auto join dialog in the Vendor Portal" width="600"/>
 
    [View a larger image](/images/teams-auto-join.png)
 
@@ -91,9 +91,9 @@ To enable users to auto-join your team:
 
 
 ## Remove Members and End Sessions
-As a vendor portal team admin, you can remove team members, except for the account you are currently logged in with.
+As a Vendor Portal team admin, you can remove team members, except for the account you are currently logged in with.
 
-If the team member that you remove added their GitHub username to their Account Settings page in the vendor portal to access the Replicated collab repository, then the vendor portal also automatically removes their username from the collab repository. For more information, see [Managing Collab Repository Access](team-management-github-username).
+If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Managing Collab Repository Access](team-management-github-username).
 
 SAML-created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
 
@@ -105,9 +105,9 @@ To remove a member:
 
    The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
 
-   If the member added their GitHub username to the vendor portal to access the collab repository, then the vendor portal also removes their GitHub username from the collab repository.
+   If the member added their GitHub username to the Vendor Portal to access the collab repository, then the Vendor Portal also removes their GitHub username from the collab repository.
 
-   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
+   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated Vendor Portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the Vendor Portal unless the username and password are allowed.
 
 ## Update Email Addresses
 

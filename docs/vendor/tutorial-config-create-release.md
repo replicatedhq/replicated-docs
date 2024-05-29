@@ -9,7 +9,7 @@ import Config from "../partials/getting-started/_grafana-config.mdx"
 
 Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
 
-The purpose of this step is to configure a release that supports installation with KOTS. Additionally, this step defines a user-facing application configuration page that displays in the KOTS admin console during installation where users can set their own Grafana login credentials.
+The purpose of this step is to configure a release that supports installation with KOTS. Additionally, this step defines a user-facing application configuration page that displays in the KOTS Admin Console during installation where users can set their own Grafana login credentials.
 
 To create a release:
 
@@ -41,19 +41,19 @@ To create a release:
      <Tabs>
       <TabItem value="kots-app" label="kots-app.yaml" default>
       <h5>Description</h5>
-      <p>The KOTS Application custom resource enables features in the admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
+      <p>The KOTS Application custom resource enables features in the Admin Console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>grafana</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Grafana application in a browser.</p>
       <h5>YAML</h5>
       <KotsApp/>
       </TabItem>
       <TabItem value="k8s-app" label="k8s-app.yaml">
       <h5>Description</h5>
-      <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+      <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
       <h5>YAML</h5>
       <K8sApp/>
       </TabItem>
       <TabItem value="config" label="kots-config.yaml">
       <h5>Description</h5>
-      <p>The Config custom resource specifies a user-facing configuration page in the admin console designed for collecting application configuration from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
+      <p>The Config custom resource specifies a user-facing configuration page in the Admin Console designed for collecting application configuration from users. The YAML below creates "Admin User" and "Admin Password" fields that will be shown to the user on the configuration page during installation. These fields will be used to set the login credentials for Grafana.</p>
       <h5>YAML</h5>
       <Config/>
       </TabItem>
@@ -98,11 +98,11 @@ To create a release:
      • SEQUENCE: 1
    ```
 
-1. Log in to the vendor portal and go to **Releases**.
+1. Log in to the Vendor Portal and go to **Releases**.
 
     The release that you created is listed under **All releases**.
 
-    ![Release page in the vendor portal with one release](/images/grafana-release-seq-1.png)
+    ![Release page in the Vendor Portal with one release](/images/grafana-release-seq-1.png)
 
     [View a larger version of this image](/images/grafana-release-seq-1.png)
 
@@ -110,7 +110,7 @@ To create a release:
 
     In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Grafana Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
-    ![Edit Release page in the vendor portal](/images/grafana-edit-release-seq-1.png)
+    ![Edit Release page in the Vendor Portal](/images/grafana-edit-release-seq-1.png)
 
     [View a larger version of this image](/images/grafana-edit-release-seq-1.png)
 

@@ -1,6 +1,6 @@
 # Connecting to an External Registry
 
-This topic describes how to add credentials for an external private registry using the Replicated vendor portal or replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information, see [About the Replicated Proxy Service](private-images-about).
+This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information, see [About the Replicated Proxy Service](private-images-about).
 
 For information about adding a registry with the Vendor API v3, see [Create an external registry with the specified parameters](https://replicated-vendor-api.readme.io/reference/createexternalregistry) in the Vendor API v3 documentation.
 
@@ -25,9 +25,9 @@ All applications in your team have access to the external registry that you add.
 
 ### Using the Vendor Portal
 
-To add an external registry using the vendor portal:
+To add an external registry using the Vendor Portal:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the **Images** page.
+1. Log in to the [Vendor Portal](https://vendor.replicated.com) and go to the **Images** page.
 1. Click **Add External Registry**.
 
    <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
@@ -181,17 +181,17 @@ To add an external registry using the vendor portal:
         </tr>
       </table>
 
-1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the vendor portal can access the image. For example, `api:v1.0.1` or `my-app/api:v1.01`.
+1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the Vendor Portal can access the image. For example, `api:v1.0.1` or `my-app/api:v1.01`.
 
 1. Click **Link registry**.
 
 ### Using the CLI
 
-To configure access to private images in an external registry using the replicated CLI:
+To configure access to private images in an external registry using the Replicated CLI:
 
-1. Install and configure the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+1. Install and configure the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _replicated CLI_.
+1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _Replicated CLI_.
 
    For example, to add a DockerHub registry:
 

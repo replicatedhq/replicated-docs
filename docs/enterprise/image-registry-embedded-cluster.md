@@ -41,9 +41,9 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 
 ## Restore Deleted Images
 
-Deleted images can be reloaded from air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](/reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
+Deleted images can be reloaded from air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](/reference/kots-cli-admin-console-push-images/) in the KOTS CLI documentation.
 
-The registry address and namespace can be found on the **Registry Settings** page in the Replicated admin console.
+The registry address and namespace can be found on the **Registry Settings** page in the Replicated KOTS Admin Console.
 The registry username and password can be found in the `registry-creds` secret in the default namespace.
 
 ## Limitations

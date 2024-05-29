@@ -1,20 +1,20 @@
 # Managing Releases with the CLI
 
-This topic describes how to use the replicated CLI to create and promote releases.
+This topic describes how to use the Replicated CLI to create and promote releases.
 
-For information about creating and managing releases with the vendor portal, see [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+For information about creating and managing releases with the Vendor Portal, see [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) section in the Vendor API v3 documentation.
 
 ## Prerequisites
 
-Before you create a release using the replicated CLI, complete the following prerequisites:
+Before you create a release using the Replicated CLI, complete the following prerequisites:
 
-* Install the replicated CLI and then log in to authorize the CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+* Install the Replicated CLI and then log in to authorize the CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
   
 * Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-* Set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the replicated CLI_.
+* Set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
 
   **Example**:
 
@@ -24,7 +24,7 @@ Before you create a release using the replicated CLI, complete the following pre
 
 ## Create a Release From a Local Directory {#dir}
 
-You can use the replicated CLI to create a release from a local directory that contains the release files.
+You can use the Replicated CLI to create a release from a local directory that contains the release files.
 
 To create and promote a release:
 

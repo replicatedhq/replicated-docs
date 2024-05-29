@@ -5,21 +5,21 @@ import SupportedResources from "../partials/instance-insights/_supported-resourc
 
 # Enabling and Understanding Application Status
 
-This topic describes how to configure your application so that you can view the status of application instances in the Replicated vendor portal. It also describes the meaning of the different application statuses.
+This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal. It also describes the meaning of the different application statuses.
 
 ## Overview
 
-The vendor portal displays data on the status of instances of your application that are running in customer environments, including the current state (such as Ready or Degraded), the instance uptime, and the average amount of time it takes your application to reach a Ready state during installation. For more information about viewing instance data, see [Instance Details](instance-insights-details).
+The Vendor Portal displays data on the status of instances of your application that are running in customer environments, including the current state (such as Ready or Degraded), the instance uptime, and the average amount of time it takes your application to reach a Ready state during installation. For more information about viewing instance data, see [Instance Details](instance-insights-details).
 
-To compute and display these insights, the vendor portal interprets and aggregates the state of one or more of the supported Kubernetes resources that are deployed to the cluster as part of your application.
+To compute and display these insights, the Vendor Portal interprets and aggregates the state of one or more of the supported Kubernetes resources that are deployed to the cluster as part of your application.
 
 <SupportedResources/>
 
-For more information about how instance data is sent to the vendor portal, see [About Instance and Event Data](instance-insights-event-data).
+For more information about how instance data is sent to the Vendor Portal, see [About Instance and Event Data](instance-insights-event-data).
 
 ## Enable Application Status Insights
 
-To display insights on application status, the vendor portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
+To display insights on application status, the Vendor Portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
 
 To enable status informers for your application, do one of the following, depending on the installation method:
 * [Helm Installations](#helm-installations)
@@ -56,7 +56,7 @@ When Helm-based applications that include the Replicated SDK and are deployed by
 
 ## View Resource Status Insights {#resource-status}
 
-For applications that include the Replicated SDK, the vendor portal also displays granular resource status insights in addition to the aggregate application status. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the indiviudal resources deployed by the application, as shown below:
+For applications that include the Replicated SDK, the Vendor Portal also displays granular resource status insights in addition to the aggregate application status. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the indiviudal resources deployed by the application, as shown below:
 
 <img src="/images/resource-status-hover-current-state.png" alt="resource status pop up" width="400px"/>
 

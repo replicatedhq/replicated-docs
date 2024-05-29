@@ -17,7 +17,7 @@ kubectl kots velero print-fs-instructions [flags]
 | Flag              | Type   | Description                                                         |
 | ----------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for ensure-permissions |
-| `-n, --namespace` | string | the namespace of the admin console _(required)_ |
+| `-n, --namespace` | string | the namespace of the Admin Console _(required)_ |
 
 ### Example
 

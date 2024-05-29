@@ -17,7 +17,7 @@ This command supports the following flags:
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | Help for `backup ls`.                                                  |
-| `-n, --namespace` | string | Filter by the namespace the admin console was installed in. |
+| `-n, --namespace` | string | Filter by the namespace the Admin Console was installed in. |
 
 ### Example
 

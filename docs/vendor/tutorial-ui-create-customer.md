@@ -2,13 +2,13 @@
 
 After promoting the first release, create a customer and download the license file so that you can install the application.
 
-A _customer_ is an object in the vendor portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user, and the vendor portal generates a YAML license file for the customer that you can download.
+A _customer_ is an object in the Vendor Portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user, and the Vendor Portal generates a YAML license file for the customer that you can download.
 
 When you install the application later in this tutorial, you will upload the license file that you create in this step. The license allows KOTS to create the application containers.
 
 To create a customer license and download the license file:
 
-1. From the vendor portal, select **Customers** from the left menu.
+1. From the Vendor Portal, select **Customers** from the left menu.
 
 1. Click **Create your first customer**.
 

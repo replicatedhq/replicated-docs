@@ -1,6 +1,6 @@
 # About Custom Domains
 
-This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the download portal.
+This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the Download Portal.
 
 For information about configuring and managing custom domains, see [Using Custom Domains](custom-domains-using).
 
@@ -25,7 +25,7 @@ You can configure custom domains for the following services, so that customer-fa
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
 
-- **Download portal:** The download portal can be used to share customer license files, air gap bundles, and so on. By default, the download portal uses the domain `get.replicated.com`.
+- **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`.
 
 ## Limitations
 

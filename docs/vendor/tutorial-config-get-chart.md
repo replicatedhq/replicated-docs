@@ -108,7 +108,7 @@ To get the sample Grafana chart and test installation:
 
 ## Next Step
 
-Log in to the vendor portal and create an application. See [Step 2: Create an Application](tutorial-config-create-app).
+Log in to the Vendor Portal and create an application. See [Step 2: Create an Application](tutorial-config-create-app).
 
 ## Related Topics
 

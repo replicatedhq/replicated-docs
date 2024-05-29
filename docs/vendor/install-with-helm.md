@@ -49,7 +49,7 @@ The values in the `global.replicated` field provide information about the follow
 
 Helm CLI installations do not provide access to any of the features of the Replicated KOTS installer, such as:
 * Air gap bundles for installations into air gapped environments
-* The Replicated admin console
+* The KOTS Admin Console
 * Strict preflight checks that block installation
 * Backup and restore with snapshots
 * Required releases with the **Prevent this release from being skipped during upgrades** option
@@ -58,14 +58,14 @@ Helm CLI installations do not provide access to any of the features of the Repli
 
 Before you install, complete the following prerequisites:
 
-* You must have a customer in the Replicated vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+* You must have a customer in the Replicated Vendor Portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the Vendor Portal, see [Creating a Customer](/vendor/releases-creating-customer).
 * (Recommended) To install the Replicated SDK alongside the application, declare the SDK as a dependency. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
 ## Install
 
 To install a Helm chart:
 
-1. In the vendor portal, go to **Customers** and click on the target customer.
+1. In the Vendor Portal, go to **Customers** and click on the target customer.
 
 1. Click **Helm install instructions**.
 
@@ -105,9 +105,9 @@ To install a Helm chart:
      To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
      :::
 
-1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 
+1. (Optional) In the Vendor Portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 
 
      **Example**:
 
-     ![example customer in the vendor portal with an active instance](/images/sdk-customer-active-example.png)
+     ![example customer in the Vendor Portal with an active instance](/images/sdk-customer-active-example.png)
      [View a larger version of this image](/images/sdk-customer-active-example.png)

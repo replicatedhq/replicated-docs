@@ -6,7 +6,7 @@ This topic describes using optional Helm charts in your application. It also pro
 
 By default, KOTS creates an instance of a Helm chart for every HelmChart custom resource manifest file in the upstream application manifests. However, you can configure your application so that KOTS excludes certain Helm charts based on a conditional statement. 
 
-To create this conditional statement, you add a Replicated KOTS template function to an `exclude` field in the HelmChart custom resource file. For example, you can add a template function that evaluates to `true` or `false` depending on the user's selection for a configuration field on the Replicated admin console Config page.
+To create this conditional statement, you add a Replicated KOTS template function to an `exclude` field in the HelmChart custom resource file. For example, you can add a template function that evaluates to `true` or `false` depending on the user's selection for a configuration field on the KOTS Admin Console Config page.
 KOTS renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
 
 For all optional components, Replicated recommends that you add a configuration option to allow the user to optionally enable or disable the component.
@@ -19,13 +19,13 @@ For more information about template functions, see [About Template Functions](/r
 This example uses an application that has a Postgres database.
 The community-supported Postgres Helm chart is available at https://github.com/bitnami/charts/tree/main/bitnami/postgresql.
 
-In this example, you create a configuration field on the admin console Config page that lets the user provide their own Postgres instance or use a Postgres service that is embedded with the application. Then, you configure the HelmChart custom resource in a release for an application in the Replicated vendor portal to conditionally exclude the optional Postgres component. 
+In this example, you create a configuration field on the Admin Console Config page that lets the user provide their own Postgres instance or use a Postgres service that is embedded with the application. Then, you configure the HelmChart custom resource in a release for an application in the Replicated Vendor Portal to conditionally exclude the optional Postgres component. 
 
 ### Step 1: Create the Configuration Fields
 
-To start, define the admin console Config page that gives the user a choice of "Embedded Postgres" or "External Postgres", where "External Postgres" is user-supplied.
+To start, define the Admin Console Config page that gives the user a choice of "Embedded Postgres" or "External Postgres", where "External Postgres" is user-supplied.
 
-1. Log in to the [vendor portal](https://vendor.replicated.com). Create a new application for this example, or open an existing application. Then, click **Releases > Create release** to create a new release for the application.
+1. Log in to the [Vendor Portal](https://vendor.replicated.com). Create a new application for this example, or open an existing application. Then, click **Releases > Create release** to create a new release for the application.
 
 1. In the Config custom resource manifest file in the release, add the following YAML to create the "Embedded Postgres" or "External Postgres" configuration options:
 
@@ -65,7 +65,7 @@ To start, define the admin console Config page that gives the user a choice of "
     * Uses the Replicated RandomString template function to generate a unique default password for the embedded Postgres instance at installation time
     * Creates fields for the Postgres password and connection string, if the user selects the External Postgres option
 
-    The following shows how this Config custom resource manifest file displays on the admin console Config page:
+    The following shows how this Config custom resource manifest file displays on the Admin Console Config page:
 
     ![Postgres Config Screen](/images/postgres-config-screen.gif)
 
@@ -101,7 +101,7 @@ Define a Secret for Postgres that renders differently if the user selects the Em
 
 ### Step 3: Add the Helm Chart
 
-Next, package the Helm chart and add it to the release in the vendor portal:
+Next, package the Helm chart and add it to the release in the Vendor Portal:
 
 1. Run the following commands to generate a `.tgz` package of the Helm chart:
 
@@ -110,9 +110,9 @@ Next, package the Helm chart and add it to the release in the vendor portal:
     helm fetch bitnami/postgresql
     ```
 
-1. Drag and drop the `.tgz` file into the file tree of the release. The vendor portal automatically creates a new HelmChart custom resource named `postgresql.yaml`, which references the `.tgz` file you uploaded.
+1. Drag and drop the `.tgz` file into the file tree of the release. The Vendor Portal automatically creates a new HelmChart custom resource named `postgresql.yaml`, which references the `.tgz` file you uploaded.
 
-    For more information about adding Helm charts to a release in the vendor portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information about adding Helm charts to a release in the Vendor Portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
 ### Step 4: Edit the HelmChart Custom Resource
 

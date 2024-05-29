@@ -13,7 +13,7 @@ pagination_next: null
     </li>
     <li>
         <h3>Alpha Support for Compatibility Matrix Cloud Add-ons</h3>
-        <p>For EKS clusters created with the compatibility matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
+        <p>For EKS clusters created with Compatibility Matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
     </li>
     <li>
       <a href="/vendor/testing-cluster-addons">Learn more</a>
@@ -87,10 +87,10 @@ pagination_next: null
         <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
     </li>
     <li>
-      <a href="/vendor/testing-about">About the Compatibility Matrix</a>
+      <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
-      <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
+      <a href="/vendor/testing-how-to">Using Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
@@ -136,7 +136,7 @@ pagination_next: null
         <p>Replicated KOTS</p>
     </li>
     <li>
-        <p>A kubectl plugin and in-cluster admin console that installs applications in customer-controlled environments.</p>
+        <p>A kubectl plugin and in-cluster Admin Console that installs applications in customer-controlled environments.</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
@@ -283,13 +283,13 @@ pagination_next: null
         <p>APIs, CLIs, and an SDK for interacting with the Replicated platform.</p>
     </li>
     <li>
-      <a href="/reference/replicated-cli-installing">replicated CLI</a>
+      <a href="/reference/replicated-cli-installing">Replicated CLI</a>
     </li>
     <li>
       <a href="/reference/vendor-api-using">Vendor API v3</a>
     </li>
     <li>
-      <a href="/reference/kots-cli-getting-started">kots CLI</a>
+      <a href="/reference/kots-cli-getting-started">KOTS CLI</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>
