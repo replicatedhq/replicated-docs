@@ -4,13 +4,13 @@ This topic describes how to integrate Replicated's custom GitHub actions into co
 
 ## Overview
 
-Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using the compatibility matrix, such as:
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using the Compatibility Matrix, such as:
   * Creating and removing customers, channels, and clusters
   * Promoting releases
   * Creating a matrix of clusters for testing based on the Kubernetes distributions and versions where your customers are running application instances
   * Reporting the success or failure of tests 
 
-If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
+If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using Replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
@@ -25,7 +25,7 @@ The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated
 
 ## Integrate GitHub Actions
 
-The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also describes when to use the action in a workflow and indicates the related replicated CLI command where applicable.
+The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also describes when to use the action in a workflow and indicates the related Replicated CLI command where applicable.
 
 :::note
 For an up-to-date list of the avilable custom GitHub actions, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
@@ -35,7 +35,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <th width="25%">GitHub Action</th>
     <th width="50%">When to Use</th>
-    <th width="25%">Related replicated CLI commands</th>
+    <th width="25%">Related Replicated CLI Commands</th>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel">archive-channel</a></td>
@@ -119,7 +119,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
-    <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the compatibility matrix.</td>
+    <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the Compatibility Matrix.</td>
     <td><code>release compatibility</code></td>
   </tr>
   <tr>

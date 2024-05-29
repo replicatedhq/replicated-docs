@@ -1,13 +1,13 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Using the Compatibility Matrix
+# Using Compatibility Matrix
 
-This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters.
+This topic describes how to use Replicated Compatibility Matrix to create ephemeral clusters.
 
 ## Prerequisites
 
-Before you can use the compatibility matrix, you must complete the following prerequisites:
+Before you can use Compatibility Matrix, you must complete the following prerequisites:
 
 <Prerequisites/>
 
@@ -15,13 +15,13 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 ## Create and Manage Clusters
 
-This section explains how to use the compatibility matrix to create and manage clusters with the replicated CLI or the vendor portal.
+This section explains how to use Compatibility Matrix to create and manage clusters with the replicated CLI or the vendor portal.
 
 For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
 ### Create Clusters
 
-You can create clusters with the compatibility matrix using the replicated CLI or the vendor portal.
+You can create clusters with Compatibility Matrix using the replicated CLI or the vendor portal.
 
 #### replicated CLI
 
@@ -63,7 +63,7 @@ To create a cluster using the replicated CLI:
    ```
    Where `CLUSTER_NAME` is the name of the cluster that you created.
 
-   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About the Compatibility Matrix._
+   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About Compatibility Matrix._
 
 #### Vendor Portal
 
@@ -195,7 +195,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 ### Access Clusters
 
-The compatibility matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 To access a cluster from the command line:
 
@@ -221,7 +221,7 @@ To access a cluster from the command line:
 
 ### Upgrade Clusters (kURL Only)
 
-For kURL clusters provisioned with the compatibility matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
+For kURL clusters provisioned with Compatibility Matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
 
 The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
 
@@ -280,13 +280,13 @@ To delete a cluster using the vendor portal:
 
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
-## About Using the Compatibility Matrix with CI/CD
+## About Using Compatibility Matrix with CI/CD
 
-Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
+Replicated recommends that you integrate Compatibility Matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
 
 ### Replicated GitHub Actions
 
-Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix and distributing applications with Replicated.
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using Compatibility Matrix and distributing applications with Replicated.
 
 If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
@@ -296,7 +296,7 @@ For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-wor
 
 ### Recommended Workflows
 
-Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). For example development and release workflows that integrate the compatibility matrix for testing, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). For example development and release workflows that integrate Compatibility Matrix for testing, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 ### Test Script Recommendations
 
