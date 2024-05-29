@@ -33,7 +33,7 @@ To install the release with KOTS:
 
     1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
 
-    When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the kots CLI is installed and the Admin Console is running, but the application is not yet deployed.
+    When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the KOTS CLI is installed and the Admin Console is running, but the application is not yet deployed.
 
     **Example output:**
 
@@ -141,7 +141,7 @@ Install the same release with the Helm CLI. See [Step 7: Install the Release wit
 ## Related Topics
 
 * [kots install](/reference/kots-cli-install/)
-* [Installing the kots CLI](/reference/kots-cli-getting-started/)
+* [Installing the KOTS CLI](/reference/kots-cli-getting-started/)
 * [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
 * [Customer Reporting](customer-reporting)
 * [Instance Details](instance-insights-details)

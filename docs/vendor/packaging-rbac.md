@@ -100,7 +100,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Velero namespace access**: Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. Velero is a requirement for configuring backup and restore with snapshots. 
 
-   To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
+   To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation.
 
    For more information about snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
 

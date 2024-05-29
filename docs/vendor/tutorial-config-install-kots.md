@@ -19,9 +19,9 @@ To install the release with KOTS:
     kubectl kots install $REPLICATED_APP/unstable
     ```
 
-    This installs the latest version of the kots CLI and the  Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
+    This installs the latest version of the KOTS CLI and the  Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
 
-    For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+    For additional KOTS CLI installation options, including how to install without root access, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
 
     :::note
     KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
@@ -33,7 +33,7 @@ To install the release with KOTS:
 
     1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
 
-   When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the kots CLI is installed and the Admin Console is running, but the application is not yet deployed.
+   When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the KOTS CLI is installed and the Admin Console is running, but the application is not yet deployed.
 
    **Example output:**
 
@@ -149,6 +149,6 @@ To learn more about how to customize the Config custom resource to create config
 ## Related Topics
 
 * [kots install](/reference/kots-cli-install/)
-* [Installing the kots CLI](/reference/kots-cli-getting-started/)
+* [Installing the KOTS CLI](/reference/kots-cli-getting-started/)
 * [Installing an Application](/enterprise/installing-overview)
 * [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)

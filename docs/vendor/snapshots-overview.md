@@ -12,7 +12,7 @@ Snapshots uses the Velero open source project as the backend to back up Kubernet
 
 In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
-KOTS provides the Replicated Admin Console and the Replicated kots CLI so that your users can fully manage the backup and restore process. For more information, see [Understanding Backup and Restore for Enterprise Users](#how-users).
+KOTS provides the Admin Console and the KOTS CLI so that your users can fully manage the backup and restore process. For more information, see [Understanding Backup and Restore for Enterprise Users](#how-users).
 
 ## What Data is Backed Up
 
@@ -45,7 +45,7 @@ After vendors enable backup and restore, enterprise users install Velero and con
 
 Replicated recommends advising your users to make full backups for disaster recovery purposes. Additionally, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the Admin Console.
 
-From a full backup, users restore using the kots CLI or the Admin Console as indicated in the following table:
+From a full backup, users restore using the KOTS CLI or the Admin Console as indicated in the following table:
 
 <RestoreTable/>
 
