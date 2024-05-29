@@ -33,7 +33,7 @@ Air gap telemetry has the following requirements:
    * KOTS v1.92.1 or later
 
    :::note
-   When both the Replicated SDK and KOTS v1.92.1 or later are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), both collect and store instance telemetry in their own dedicated secret, subject to the size limitation noted below.  In the case of any overlapping data points, the Vendor Portal will report these data points chronologically based on their timestamp.
+   When both the Replicated SDK and KOTS v1.92.1 or later are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), both collect and store instance telemetry in their own dedicated secret, subject to the size limitation noted below. In the case of any overlapping data points, the Vendor Portal will report these data points chronologically based on their timestamp.
    :::
 
 * To collect custom metrics from air gap instances, the Replicated SDK must installed in the cluster in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
@@ -44,7 +44,9 @@ Replicated strongly recommends that all applications include the Replicated SDK 
 
 ## Limitation
 
-Telemetry data is capped at 4,000 events or 1MB; whichever limit is reached first, per secret. When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
+Telemetry data is capped at 4,000 events or 1MB per Secret; whichever limit is reached first.
+
+When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
 
 ## Collect and View Air Gap Telemetry
 
