@@ -1,6 +1,6 @@
 # Using Custom Domains
 
-This topic describes how to use the Replicated vendor portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
@@ -12,7 +12,7 @@ Before you assign a custom domain for a registry or the download portal, you mus
 
 To add and configure a custom domain:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to **Custom Domains**. 
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Custom Domains**. 
 
 1. In the **Add custom domain** dropdown, select the target Replicated endpoint.
 
@@ -44,11 +44,11 @@ To add and configure a custom domain:
     Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers.
     :::
 
-The vendor portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.
+The Vendor Portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.
 
 ## Use Custom Domains
 
-After you configure one or more custom domains in the vendor portal, you assign a custom domain by setting it as the default for all channels and customers or by assigning it to an individual release channel.
+After you configure one or more custom domains in the Vendor Portal, you assign a custom domain by setting it as the default for all channels and customers or by assigning it to an individual release channel.
 
 ### Set a Default Domain
 
@@ -60,7 +60,7 @@ Only releases that are promoted to a channel _after_ you set a default domain us
 
 To set a custom domain as the default:
 
-1. In the vendor portal, go to **Custom Domains**.
+1. In the Vendor Portal, go to **Custom Domains**.
 
 1. Next to the target domain, click **Set as default**.
 
@@ -76,7 +76,7 @@ Assigning a domain to a release channel is useful when you need to override eith
 
 To assign a custom domain to a channel:
 
-1. In the vendor portal, go to **Channels** and click the settings icon for the target channel.
+1. In the Vendor Portal, go to **Channels** and click the settings icon for the target channel.
 
 1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
@@ -90,7 +90,7 @@ If you have configured a custom domain for one application, you can reuse the cu
 
 To reuse a custom domain for another application:
 
-1. In the vendor portal, select the application from the dropdown list.
+1. In the Vendor Portal, select the application from the dropdown list.
 
 1. Click **Custom Domains**.
 
@@ -106,7 +106,7 @@ To reuse a custom domain for another application:
 
     - Click **Set as default**. In the confirmation dialog that opens, click **Yes, set as default**.
    
-    - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
+    - Click **Not now**. You can come back later to set the domain as the default. The Vendor Portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
 
 
 ## Remove a Custom Domain
@@ -119,12 +119,12 @@ If you remove a custom domain for the download portal, it is no longer accessibl
 
 To remove a custom domain:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com) and click **Custom Domains**.
+1. Log in to the [Vendor Portal](https://vendor.replicated.com) and click **Custom Domains**.
 
 1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
     :::important
-    When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
+    When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the Vendor Portal.
     :::
 
 1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
