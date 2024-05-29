@@ -13,7 +13,7 @@ kubectl kots velero configure-hostpath [flags]
 | Flag              | Type   | Description                                                         |
 | ----------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for configure-hostpath |
-| `-n, --namespace` | string | the namespace of the admin console _(required)_ |
+| `-n, --namespace` | string | the namespace of the Admin Console _(required)_ |
 | `--hostpath` | string | a local host path on the node |
 | `--kotsadm-namespace` | string | set to override the namespace of kotsadm images. used for airgapped installations. |
 | `--kotsadm-registry`  | string | set to override the registry of kotsadm images. used for airgapped installations. |

@@ -1,7 +1,7 @@
 # admin-console push-images
 
 Pushes images from an air gap bundle to a private registry.
-The air gap bundle can be either a Replicated admin console release or an application release.
+The air gap bundle can be either a KOTS Admin Console release or an application release.
 
 ### Usage
 ```bash
@@ -12,7 +12,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                    | Type   | Description                         |
 |:------------------------|--------|-------------------------------------|
-| `-h, --help`            |        | Help for the admin-console          |
+| `-h, --help`            |        | Help for the command          |
 | `--registry-username`   | string | username for the private registry   |
 | `--registry-password`   | string | password for the private registry   |
 | `--skip-registry-check` | bool   | Set to `true` to skip the connectivity test and validation of the provided registry information. **Default:** `false` |

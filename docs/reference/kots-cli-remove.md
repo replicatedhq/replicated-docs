@@ -1,9 +1,9 @@
 # remove
 
-Remove application reference from the Replicated admin console.
+Remove application reference from the KOTS Admin Console.
 
-You can use the `kots remove` command to remove one or more installed applications from the admin console.
-By default, the deployed application is not removed from the cluster. Only the reference for the application is removed from the admin console. To completely remove the application and delete its resources from the cluster, use the `--undeploy` flag.
+You can use the `kots remove` command to remove one or more installed applications from the Admin Console.
+By default, the deployed application is not removed from the cluster. Only the reference for the application is removed from the Admin Console. To completely remove the application and delete its resources from the cluster, use the `--undeploy` flag.
 
 ### Usage
 ```bash

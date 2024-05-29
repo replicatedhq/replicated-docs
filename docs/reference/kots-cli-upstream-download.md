@@ -2,8 +2,6 @@
 
 The `kots upstream download` command retries downloading a failed update of the upstream application.
 
-> Introduced in KOTS v1.65.0
-
 ### Usage
 ```bash
 kubectl kots upstream download [app-slug] [flags]
@@ -15,7 +13,7 @@ kubectl kots upstream download [app-slug] [flags]
 |:----------------------------------|--------|--------------------------------------------------------------------------------------------------|
 | `-h, --help`                      |        | Help for `upstream download`.                                                                       |
 | `--kubeconfig`                    | string | The kubeconfig to use. **Default**: `$KUBECONFIG`. If unset, then `$HOME/.kube/config`.          |
-| `-n, --namespace`                 | string | (Required) The namespace where the admin console is running.                                    |
+| `-n, --namespace`                 | string | (Required) The namespace where the Admin Console is running.                                    |
 | `--sequence`                      | int    | (Required) The local app sequence for the version to retry downloading.                         |
 | `--skip-preflights`               | bool   | Set to `true` to skip preflight checks.                                                             |
 | `--skip-compatibility-check`      | bool   | Set to `true` to skip compatibility checks between the current kots version and the update.         |
