@@ -209,7 +209,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-Compatibility Matrix supports creating clusters with Replicated embedded cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+Compatibility Matrix supports creating clusters with Replicated Embedded Cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 <table>
   <tr>

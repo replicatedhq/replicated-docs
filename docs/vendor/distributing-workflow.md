@@ -105,7 +105,7 @@ The HelmChart custom resource is required to install Helm charts with KOTS.
 
 The following custom resources can be added to embed Kubernetes with your application to support KOTS installations in VMs or bare metal servers.
 
-You can choose to use either Replicated embedded cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
+You can choose to use either Replicated Embedded Cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
 
 <table>
   <tr>
@@ -115,7 +115,7 @@ You can choose to use either Replicated embedded cluster or Replicated kURL to e
   </tr>
   <tr>
     <td>Embedded Cluster Config (Beta)</td>
-    <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated embedded cluster.</td>
+    <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated Embedded Cluster.</td>
     <td><a href="embedded-overview">Using Embedded Cluster (Beta)</a></td>
   </tr>
   <tr>
