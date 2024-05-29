@@ -21,12 +21,12 @@ This procedure describes how to tag and push images to the Replicated registry. 
 To push images to the Replicated registry:
 
 1. Do one of the following to connect with the `registry.replicated.com` container registry:
-   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Generating API Tokens_.
-   * **Log in with a service account token:** Use `docker login registry.replicated.com` with a Replicated vendor portal service account as the password. If you have an existing team token, you can use that instead. You can use any string as the username. For more information, see [Service Accounts](replicated-api-tokens#service-accounts) in _Generating API Tokens_.
+   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your Vendor Portal email as the username and a Vendor Portal user token as the password. For more information, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Generating API Tokens_.
+   * **Log in with a service account token:** Use `docker login registry.replicated.com` with a Replicated Vendor Portal service account as the password. If you have an existing team token, you can use that instead. You can use any string as the username. For more information, see [Service Accounts](replicated-api-tokens#service-accounts) in _Generating API Tokens_.
    
       <TeamTokenNote/>
 
-   * **Log in with your credentials**: Use `docker login registry.replicated.com` with your vendor portal email and password as the credentials.
+   * **Log in with your credentials**: Use `docker login registry.replicated.com` with your Vendor Portal email and password as the credentials.
 
 1. Tag your private image with the Replicated registry hostname in the standard
 Docker format:
@@ -37,7 +37,7 @@ Docker format:
 
    Where:
    * `IMAGE_NAME` is the name of the existing private image for your application.
-   * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Application Settings** page in the vendor portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+   * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Application Settings** page in the Vendor Portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
    * `TARGET_IMAGE_NAME` is a name for the image. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
    * `TAG` is a tag for the image.
 

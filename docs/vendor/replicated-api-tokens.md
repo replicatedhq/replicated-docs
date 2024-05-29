@@ -6,9 +6,9 @@ This topic describes the available types of API tokens and how to generate them 
 
 ## About API Tokens
 
-The Vendor API v3 is the API that manages applications in the Replicated vendor portal. The Replicated CLI is an implementation of the Vendor API v3.
+The Vendor API v3 is the API that manages applications in the Replicated Vendor Portal. The Replicated CLI is an implementation of the Vendor API v3.
 
-Using the Replicated CLI and Vendor API V3 requires an API token for authorization. Tokens are primarily used for automated customer, channel, and release management. You create tokens in the vendor portal.
+Using the Replicated CLI and Vendor API V3 requires an API token for authorization. Tokens are primarily used for automated customer, channel, and release management. You create tokens in the Vendor Portal.
 
 The following types of tokens are available:
 
@@ -41,7 +41,7 @@ To use the Replicated CLI or the Vendor API v3, you need a User API token or a S
 
 To generate a service account:
 
-1. Log in to the vendor portal, and select [**Team > Service Accounts**](https://vendor.replicated.com/team/serviceaccounts).
+1. Log in to the Vendor Portal, and select [**Team > Service Accounts**](https://vendor.replicated.com/team/serviceaccounts).
 1. Select **New Service Account**. If one or more service accounts already exist, you can add another by selecting **New Service Account**.
 
 1. Edit the fields in the **New Service Account** dialog:
@@ -54,7 +54,7 @@ To generate a service account:
 
      1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
 
-       This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
+       This list includes the Vendor Portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
        Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
 
@@ -72,7 +72,7 @@ To generate a service account:
 
 To generate a user API token:
 
-1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
+1. Log in to the Vendor Portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
 1. Under **User API Tokens**, select **Create a user API token**. If one or more tokens already exist, you can add another by selecting **New user API token**.
 
    <img alt="User API Token Page" src="/images/user-token-list.png" width="600px"/>

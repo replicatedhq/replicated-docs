@@ -89,11 +89,11 @@ To create a release:
      • SEQUENCE: 1
    ```
 
-1. Log in to the vendor portal and go to **Releases**.
+1. Log in to the Vendor Portal and go to **Releases**.
 
     The release that you created is listed under **All releases**.
 
-    ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
+    ![Release page in the Vendor Portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
 
     [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
 
@@ -101,7 +101,7 @@ To create a release:
 
     In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
-    ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
+    ![Edit Release page in the Vendor Portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
     [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
