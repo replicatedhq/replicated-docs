@@ -90,7 +90,7 @@ pagination_next: null
       <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
-      <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
+      <a href="/vendor/testing-how-to">Using Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
