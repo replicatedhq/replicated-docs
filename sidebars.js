@@ -350,8 +350,8 @@ const sidebars = {
                 type: 'category',
                 label: 'Installing with kURL',
                 items: [
-                  'enterprise/installing-embedded-cluster',
-                  'enterprise/installing-embedded-airgapped',
+                  'enterprise/installing-kurl',
+                  'enterprise/installing-kurl-airgap',
                   'enterprise/cluster-management-add-nodes',
                 ],
               },
@@ -364,7 +364,7 @@ const sidebars = {
             label: 'Image Registries',
             items: [
               'enterprise/image-registry-settings',
-              'enterprise/image-registry-embedded-cluster',
+              'enterprise/image-registry-kurl',
               'enterprise/image-registry-rate-limits',
             ],
           },
@@ -375,7 +375,7 @@ const sidebars = {
             items: [
               'enterprise/updating-apps',
               'enterprise/updating-app-manager',
-              'enterprise/updating-embedded-cluster',
+              'enterprise/updating-kurl',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
             ],

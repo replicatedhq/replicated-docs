@@ -97,11 +97,11 @@ The following shows an example of the **Reporting** page for a customer:
 
 [View a larger version of this image](/images/customer-reporting-page.png)
 
-### replicated CLI
+### Replicated CLI
 
-The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-![terminal with replicated CLI commands](/images/replicated-cli.gif)
+![terminal with Replicated CLI commands](/images/replicated-cli.gif)
 
 ### Vendor API v3
 

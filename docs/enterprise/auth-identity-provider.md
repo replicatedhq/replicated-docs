@@ -10,7 +10,7 @@ The identity service has the following limitations:
 
 ## Prerequisite
 
-When you are installing the Admin Console and setting up TLS certificates on the HTTPS page, you must configure the hostname to use to access the Admin Console. The hostname is required whether you are using the identity service with either a self-signed certificate or a custom certificate. For more information about configuring the hostname field, see [Install and Deploy the Application](installing-embedded-cluster#install-app) in _Online Installation with kURL_.
+When you are installing the Admin Console and setting up TLS certificates on the HTTPS page, you must configure the hostname to use to access the Admin Console. The hostname is required whether you are using the identity service with either a self-signed certificate or a custom certificate. For more information about configuring the hostname field, see [Install and Deploy the Application](installing-kurl#install-app) in _Online Installation with kURL_.
 
 ## Configuration
 

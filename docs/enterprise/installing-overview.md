@@ -29,7 +29,7 @@ To install an application in an air gapped environment, the cluster must have ac
 
 For information about installing in air gapped environments:
 * **Existing clusters**: See [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped)
-* **Embedded clusters with kURL**: See [Air Gap Installation with kURL](installing-embedded-airgapped)
+* **Embedded clusters with kURL**: See [Air Gap Installation with kURL](installing-kurl-airgap)
 
 ### Existing Cluster Installations into Hardened Environments
 

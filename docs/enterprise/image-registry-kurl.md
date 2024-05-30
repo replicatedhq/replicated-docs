@@ -1,6 +1,6 @@
-# Image Registry for Embedded kURL Clusters
+# Image Registry for kURL Clusters
 
-This topic describes the Replicated kURL registry for embedded kURL clusters.
+This topic describes the Replicated kURL registry for kURL clusters.
 
 ## Overview
 
