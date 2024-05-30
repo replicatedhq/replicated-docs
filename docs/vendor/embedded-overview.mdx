@@ -38,19 +38,19 @@ Embedded cluster has the following limitations:
 
 * **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
-* **GitOps workflow not supported**: Embedded cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
+* **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
-#### Known Issue
+* **Cannot install behind a proxy**: Embedded Cluster cannot yet be configured to use a proxy.
 
-If you use Helm extensions and a Helm chart fails to install, you can make changes to your Embedded Cluster config, promote a new release, and update to that version from the Admin Console to upgrade the chart. However, there will be a several minute delay before the Helm chart updates.
+#### Known Issues
 
-For more information about using Helm extensions, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+The following known issues exist:
+
+* When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
 
 ### kURL Feature Parity
 
 The following features that are available in kURL are not yet available in Embedded Cluster. Unless otherwise noted, some of these features might not be available at GA:
-
-* **Air gap**: Air gap support is not yet implemented for Embedded Cluster. We intend to implement support for air gap installations in the future.
 
 * **Backup and restore with Velero**: Velero is not yet installed as part of Embedded Cluster, so backup and restore is unavailable.
 
@@ -78,7 +78,7 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.1.0+k8s-1.29
+       version: 1.3.0+k8s-1.29
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
