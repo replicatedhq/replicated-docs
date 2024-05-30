@@ -2,12 +2,19 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 # Using the Replicated Registry for KOTS Installations
 
-This topic describes how to use the Replicated private image registry for Replicated KOTS installations.
+This topic describes how to push images to the Replicated private registry.
+
 ## Overview
 
 For applications installed with KOTS, you can host private images on the Replicated registry. Hosting your images on the Replicated registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
 
-For more information about security for the Replicated registry, see [Replicated Registry Security](packaging-private-registry-security).
+Images pushed to the Replicated registry are displayed on the **Images** page in the Vendor Portal:
+
+![Replicated Private Registry section of the vendor portal Images page](/images/images-replicated-registry.png)
+
+[View a larger version of this image](/images/images-replicated-registry.png)
+
+For information about security for the Replicated registry, see [Replicated Registry Security](packaging-private-registry-security).
 
 ## Limitation
 
@@ -37,18 +44,30 @@ Docker format:
 
    Where:
    * `IMAGE_NAME` is the name of the existing private image for your application.
-   * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Application Settings** page in the Vendor Portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+   * `APPLICATION_SLUG` is the unique slug for the application. You can find the application slug on the **Application Settings** page in the Vendor Portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
    * `TARGET_IMAGE_NAME` is a name for the image. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
    * `TAG` is a tag for the image.
 
    For example:
 
-   ```
+   ```bash
    docker tag worker registry.replicated.com/myapp/worker:1.0.1
    ```
 
-1. Push your private image to the Replicated registry:
+1. Push your private image to the Replicated registry using the following format:
 
    ```
    docker push registry.replicated.com/APPLICATION_SLUG/TARGET_IMAGE_NAME:TAG
    ```
+   Where:
+   * `APPLICATION_SLUG` is the unique slug for the application.
+   * `TARGET_IMAGE_NAME` is a name for the image. Use the same name that you used when tagging the image in the previous step. 
+   * `TAG` is a tag for the image. Use the same tag that you used when tagging the image in the previous step.
+
+   For example:
+
+   ```bash
+   docker push registry.replicated.com/myapp/worker:1.0.1
+   ```    
+
+1. In the [Vendor Portal](https://vendor.replicated.com/), go to **Images** and scroll down to the **Replicated Private Registry** section to confirm that the image was pushed. 
