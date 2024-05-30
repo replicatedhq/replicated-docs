@@ -199,6 +199,18 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise/installing-app-setup"
   to="https://docs.replicated.com/enterprise/installing-existing-cluster#install-app"
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/installing-embedded-airgapped"
+  to="https://docs.replicated.com/enterprise/installing-kurl-airgap"  
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/installing-embedded-cluster"
+  to="https://docs.replicated.com/enterprise/installing-kurl"  
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/updating-embedded-cluster"
+  to="https://docs.replicated.com/enterprise/updating-kurl"  
    
 ###################################################
 # Redirects To the References Section
