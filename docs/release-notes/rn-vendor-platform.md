@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.28-3
+
+Released on May 28, 2024
+
+### New Features {#new-features-v2024-05-28-3}
+* Add support for Oracle OKE 1.29.
+
+### Bug Fixes {#bug-fixes-v2024-05-28-3}
+* Fix Compatibility Matrix available credits rounding.
+
 ## v2024.05.28-0
 
 Released on May 28, 2024
