@@ -73,7 +73,7 @@ To create a cluster using the Vendor Portal:
 
     <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
 
-    [View a larger version of this image](/images/create-a-cluster)
+    [View a larger version of this image](/images/create-a-cluster.png)
 
 1. On the **Create a cluster** page, complete the following fields:
 
