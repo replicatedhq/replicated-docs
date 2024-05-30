@@ -10,11 +10,20 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 ## Kubernetes Compatibility
 
-The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
 
 <KubernetesCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## 1.109.8
+
+Released on May 30, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-8}
+* Updates to enable high-availability support for Embedded Cluster.
 
 ## 1.109.7
 
