@@ -211,6 +211,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise/updating-embedded-cluster"
   to="https://docs.replicated.com/enterprise/updating-kurl"  
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/image-registry-embedded-cluster"
+  to="https://docs.replicated.com/enterprise/image-registry-kurl"   
    
 ###################################################
 # Redirects To the References Section
