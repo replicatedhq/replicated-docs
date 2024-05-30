@@ -8,7 +8,7 @@ Users can interact with the Replicated KOTS CLI to install and manage applicatio
 Install kubectl, the Kubernetes command-line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 :::note
-If you are using an embedded cluster created with Replicated kURL, kURL already installed both kubectl and the KOTS CLI when provisioning the cluster. For more information, see [Online Installation with kURL](/enterprise/installing-embedded-cluster) and [Air Gap Installation with kURL](/enterprise/installing-embedded-airgapped).
+If you are using a cluster created with Replicated kURL, kURL already installed both kubectl and the KOTS CLI when provisioning the cluster. For more information, see [Online Installation with kURL](/enterprise/installing-kurl) and [Air Gap Installation with kURL](/enterprise/installing-kurl-airgap).
 :::
 
 ## Install
