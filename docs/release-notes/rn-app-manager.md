@@ -24,7 +24,9 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-109-9}
 * Various updates to enable high availability support for embedded cluster.
-* Hide generate support bundle command for embedded cluster.
+
+### Bug Fixes {#bug-fixes-1-109-9}
+* An incorrect CLI command for generating support bundles is no longer shown on the Troubleshoot page in embedded clusters.
 
 ## 1.109.8
 
