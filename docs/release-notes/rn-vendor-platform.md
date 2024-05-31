@@ -13,7 +13,7 @@ pagination_prev: null
 Released on May 30, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-05-30-7}
-* CMX: Fixed incorrectly displaying "No records to display" for Cluster History, while loading data.
+* Fixes incorrectly displayed "No records to display" message, which appeared on the **Cluster History** page while loading data.
 
 ## v2024.05.28-3
 
