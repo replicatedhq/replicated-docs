@@ -6,7 +6,7 @@ Direct bundle uploads is in beta. The functionality, requirements, and limitatio
 
 For online KOTS installations with this feature enabled, customers can generate support bundles from the Admin Console UI or CLI, and provide those to you in order to assist in application troubleshooting.
 
-When enabled, your customer will see a **Send bundle to vendor** button in the Admin Console. Once this button is clicked, the support bundle will be immediately uploaded and made available in the Vendor Portal team account for this customer under the **Troubleshoot** tab. For more information on how your customer can use this feature, see [Generating Support Bundles](troubleshooting-an-app) in the KOTS documentation.
+When enabled, your customer will see a **Send bundle to vendor** button in the Admin Console. Once this button is clicked, the support bundle will be immediately uploaded and made available in the Vendor Portal team account for this customer under the **Troubleshoot** tab. For more information on how your customer can use this feature, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app) in the KOTS documentation.
 
 ### How to Enable Direct Bundle Uploads
 
