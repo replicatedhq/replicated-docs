@@ -4,7 +4,7 @@
 Direct bundle uploads is in beta. The functionality, requirements, and limitations of direct bundle uploads are subject to change.
 :::
 
-When this feature is enabled, customers using online KOTS installations can upload support bundles directly through the Admin Console UI or CLI, eliminating the need to share the generated bundle with you manually.
+When this feature is enabled, customers using online KOTS installations can upload support bundles directly through the Admin Console UI, eliminating the need to share the generated bundle with you manually.
 
 When enabled, your customers can use the **Send bundle to vendor button** in the Admin Console to upload a generated support bundle.
 
