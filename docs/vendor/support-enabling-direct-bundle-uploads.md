@@ -1,12 +1,18 @@
-# Enabling Direct Bundle Uploads (KOTS-only) (Beta)
+# Enabling Support Bundle Uploads (KOTS-only) (Beta)
 
 :::note
 Direct bundle uploads is in beta. The functionality, requirements, and limitations of direct bundle uploads are subject to change.
 :::
 
-For online KOTS installations with this feature enabled, customers can generate support bundles from the Admin Console UI or CLI, and provide those to you in order to assist in application troubleshooting.
+When this feature is enabled, customers using online KOTS installations can upload support bundles directly through the Admin Console UI or CLI, eliminating the need to share the generated bundle with you manually.
 
-When enabled, your customer will see a **Send bundle to vendor** button in the Admin Console. Once this button is clicked, the support bundle will be immediately uploaded and made available in the Vendor Portal team account for this customer under the **Troubleshoot** tab. For more information on how your customer can use this feature, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app) in the KOTS documentation.
+When enabled, your customers can use the **Send bundle to vendor button** in the Admin Console to upload a generated support bundle.
+
+<img alt="Send bundle to vendor screen" src="/images/send-bundle-to-vendor.png" width="600px"/>
+
+After clicking this button, the bundle will be immediately available under the Troubleshoot tab in the Vendor Portal team account associated with this customer.
+
+For more information on how your customer can use this feature, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app) in the KOTS documentation.
 
 ### How to Enable Direct Bundle Uploads
 
@@ -21,6 +27,6 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 
 ### Limitations
 
-- There is no notification provided when your customer sends a bundle to the Vendor Portal. You should not enable this feature for a given customer license unless you already have an existing escalation process to avoid potentially missing the directly uploaded customer support bundle.
+- You will not receive a notification when a customer sends a support bundle to the Vendor Portal. To avoid overlooking these uploads, activate this feature only if there is a reliable escalation process already in place for the customer license.
 - This feature only supports online KOTS installations. If enabled, but installed in air gap mode, the upload button will not appear.
 - There is a 500mb limit for support bundles uploaded directly via the Admin Console.
