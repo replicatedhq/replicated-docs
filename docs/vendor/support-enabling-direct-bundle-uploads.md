@@ -24,4 +24,3 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 - There is no notification provided when your customer sends a bundle to the Vendor Portal. You should not enable this feature for a given customer license unless you already have an existing escalation process to avoid potentially missing the directly uploaded customer support bundle.
 - This feature only supports online KOTS installations. If enabled, but installed in air gap mode, the upload button will not appear.
 - There is a 500mb limit for support bundles uploaded directly via the Admin Console.
-- 
