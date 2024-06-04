@@ -327,7 +327,7 @@ Resetting a node removes the cluster and your application from that node. This i
 
 If you want to completely remove a cluster, you need to reset each node individually.
 
-When resetting a node, OpenEBS PVCs on the node are deleted. If a PVC is created by your application directly and not as part of a StatefulSet, it will not be recreated automatically on a remaining node. You will need to redeploy your application for the PVC to be recreated.
+When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
 
 To reset the node of a cluster:
 
