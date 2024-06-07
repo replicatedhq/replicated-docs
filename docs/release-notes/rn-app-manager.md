@@ -26,7 +26,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 * Minor UI improvements for Airgap bundle progress bar.
 
 ### Bug Fixes {#bug-fixes-1-109-11}
-* Fixes an issue where users could not skip or ignore failing non-strict preflights and deploy from the CLI even if all strict preflights were passing when using the `--skip-preflights` flag.
+* Fixes an issue where the `--skip-preflights` flag would not work if all strict preflights passed but a non-strict preflight failed.
 
 ## 1.109.10
 
