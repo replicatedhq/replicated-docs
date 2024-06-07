@@ -204,14 +204,17 @@ The following flags can be used to install the Embedded Cluster behind a proxy s
 
 Example:
 
-```
-sudo ./APP_SLUG install --license LICENSE_FILE --http-proxy=172.31.12.157:3128 --https-proxy=172.31.12.157:3128 --no-proxy=localhost,127.0.0.1,.cluster.local,.svc,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE \
+--http-proxy=172.31.12.157:3128 \
+--https-proxy=172.31.12.157:3128 \
+--no-proxy=localhost,127.0.0.1,.cluster.local,.svc,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
 ```
 
 In the case of using the Embedded Cluster in a multinode installation, the proxy server settings will automatically be configured when joining additional nodes.
 
 Limitations:
-If the applications requires proxy settings, those will not be automatically propagaged and have to be manually configured.
+* If the applications requires proxy settings, those will not be automatically propagaged and have to be manually configured.
 
 
 ## Update
