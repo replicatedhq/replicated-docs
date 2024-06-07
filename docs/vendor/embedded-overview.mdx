@@ -179,6 +179,40 @@ To install your application in an embedded cluster:
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
+### Installing behind a proxy Server
+
+The following flags can be used to install the Embedded Cluster behind a proxy server:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <th>--http-proxy</th>
+     <td>HTTP proxy to use for the installation</td>
+  </tr>
+  <tr>
+     <th>--https-proxy</th>
+     <td>HTTPS proxy to use for the installation</td>
+  </tr>
+  <tr>
+     <th>--no-proxy</th>
+     <td>Comma separated list of hosts to bypass the proxy for</td>
+  </tr>
+</table>
+
+Example:
+
+```
+sudo ./APP_SLUG install --license LICENSE_FILE --http-proxy=172.31.12.157:3128 --https-proxy=172.31.12.157:3128 --no-proxy=localhost,127.0.0.1,.cluster.local,.svc,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
+```
+
+In the case of using the Embedded Cluster in a multinode installation, the proxy server settings will automatically be configured when joining additional nodes.
+
+Limitations:
+If the applications requires proxy settings, those will not be automatically propagaged and have to be manually configured.
+
 
 ## Update
 
