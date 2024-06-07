@@ -16,6 +16,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.109.11
+
+Released on June 7, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-109-11}
+* Minor UI improvements for Airgap bundle progress bar.
+
+### Bug Fixes {#bug-fixes-1-109-11}
+* Fixes an issue where users could not skip or ignore failing non-strict preflights and deploy from the CLI even if all strict preflights were passing when using the `--skip-preflights` flag.
+
 ## 1.109.10
 
 Released on June 6, 2024
