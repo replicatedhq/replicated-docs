@@ -212,7 +212,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE \
 ```
 
 In this example, `172.31.12.157:3128` is the location of the proxy server. For the `--no-proxy` flag, we configure the following:
-1. A set of defaults, to avoid cluster internal communication to go over the proxy: `localhost,127.0.0.1,.cluster.local,.svc`
+1. A set of defaults, to avoid cluster internal communication to go over the proxy: `localhost,127.0.0.1,.default,.local,.svc,kubernetes`
 2. Kots specific host allowing to reach the database: `kotsadm-rqlite`
 3. Host Node to Node communication: `172.31.0.0/16`
 4. Kubernetes Cluster Pod and service CIDR: `10.0.0.0/8`
