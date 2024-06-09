@@ -208,7 +208,7 @@ Example:
 sudo ./APP_SLUG install --license LICENSE_FILE \
 --http-proxy=172.31.12.157:3128 \
 --https-proxy=172.31.12.157:3128 \
---no-proxy=localhost,127.0.0.1,.cluster.local,.svc,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
+--no-proxy=localhost,127.0.0.1,.default,.local,.svc,kubernetes,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
 ```
 
 In this example, `172.31.12.157:3128` is the location of the proxy server. For the `--no-proxy` flag, we configure the following:
