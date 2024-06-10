@@ -22,8 +22,8 @@ Released on June 10, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-109-12}
-* Various updates to enable high availability support for embedded cluster.
+### Improvements {#improvements-1-109-12}
+* Updates to enable high availability support for embedded cluster.
 
 ### Bug Fixes {#bug-fixes-1-109-12}
 * Fixes an issue where airgap uploads would fail with an error indicating that is was already the current version in cases where the version labels matched. This version label check is intentional for semver-enabled channels, but was not for non-semver enabled channels.
@@ -46,7 +46,7 @@ Released on June 6, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-109-10}
+### Improvements {#improvements-1-109-10}
 * Various updates to enable high availability support for embedded cluster.
 
 ## 1.109.9
@@ -55,7 +55,7 @@ Released on May 31, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-109-9}
+### Improvements {#improvements-1-109-9}
 * Various updates to enable high availability support for embedded cluster.
 
 ### Bug Fixes {#bug-fixes-1-109-9}
