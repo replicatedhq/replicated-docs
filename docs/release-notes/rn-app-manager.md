@@ -16,6 +16,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.109.12
+
+Released on June 10, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-109-12}
+* Various updates to enable high availability support for embedded cluster.
+
+### Bug Fixes {#bug-fixes-1-109-12}
+* Fixes an issue where airgap uploads would fail with an error indicating that is was already the current version in cases where the version labels matched. This version label check is intentional for semver-enabled channels, but was not for non-semver enabled channels.
+
 ## 1.109.11
 
 Released on June 7, 2024
