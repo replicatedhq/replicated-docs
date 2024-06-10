@@ -26,7 +26,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 * Updates to enable high availability support for embedded cluster.
 
 ### Bug Fixes {#bug-fixes-1-109-12}
-* Fixes an issue where airgap uploads would fail with an error indicating that is was already the current version in cases where the version labels matched. This version label check is intentional for semver-enabled channels, but was not for non-semver enabled channels.
+* Fixes an issue where air gap uploads could incorrectly fail with an error indicating the version being uploaded matches the current version. This occurred because the version labels matched and were valid semantic versions. Comparing version labels is intentional for channels with semantic versioning enabled, but was unintentional for channels without semantic versioning enabled.
 
 ## 1.109.11
 
