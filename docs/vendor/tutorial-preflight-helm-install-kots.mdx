@@ -7,7 +7,7 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # Step 6: Run Preflights with KOTS
 
-Create a KOTS-enabled release and then install Gitea with KOTS. This purpose of this step is to see how preflight checks automatically run in the KOTS admin console during installation.
+Create a KOTS-enabled release and then install Gitea with KOTS. This purpose of this step is to see how preflight checks automatically run in the KOTS Admin Console during installation.
 
 To run preflight checks during installation with KOTS: 
 
@@ -44,13 +44,13 @@ To run preflight checks during installation with KOTS:
    </TabItem>
    <TabItem value="kots-app" label="kots-app.yaml">
    <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
     <h5>YAML</h5>
     <KotsCr/>
    </TabItem>
    <TabItem value="k8s-app" label="k8s-app.yaml">
    <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
     <h5>YAML</h5>
     <K8sCr/>
    </TabItem>
@@ -110,9 +110,9 @@ To run preflight checks during installation with KOTS:
    kubectl kots install $REPLICATED_APP/unstable
    ```
 
-   This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+   This installs the latest version of the KOTS CLI and the Replicated Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
 
-   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+   For additional KOTS CLI installation options, including how to install without root access, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
 
    :::note
    <KotsVerReq/>
@@ -122,9 +122,9 @@ To run preflight checks during installation with KOTS:
 
    1. For `Enter the namespace to deploy to`, enter `gitea`. 
 
-   1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
+   1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
 
-       When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+       When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the KOTS CLI is installed and the Admin Console is running, but the application is not yet deployed.
 
        **Example output:**
 
@@ -133,14 +133,14 @@ To run preflight checks during installation with KOTS:
        • Deploying Admin Console
          • Creating namespace ✓
          • Waiting for datastore to be ready ✓
-       Enter a new password for the admin console (6+ characters): ••••••••
+       Enter a new password for the Admin Console (6+ characters): ••••••••
        • Waiting for Admin Console to be ready ✓
 
        • Press Ctrl+C to exit
        • Go to http://localhost:8800 to access the Admin Console
        ```
 
-1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
+1. With the port forward running, in a browser, go to `http://localhost:8800` to access the Admin Console.
 
 1. On the login page, enter the password that you created.
 
@@ -154,7 +154,7 @@ To run preflight checks during installation with KOTS:
 
 1. When the preflight checks finish, click **Deploy** to deploy the application.
 
-   The admin console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
+   The Admin Console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
 
    ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
 
@@ -173,14 +173,14 @@ To run preflight checks during installation with KOTS:
    • Application gitea-boxer has been removed
    ```
 
-1. Remove the admin console from the cluster:  
+1. Remove the Admin Console from the cluster:  
 
-   1. Delete the namespace where the admin console is installed:
+   1. Delete the namespace where the Admin Console is installed:
 
       ```
       kubectl delete namespace gitea
       ```
-   1. Delete the admin console ClusterRole and ClusterRoleBinding:  
+   1. Delete the Admin Console ClusterRole and ClusterRoleBinding:  
 
       ```
       kubectl delete clusterrole kotsadm-role

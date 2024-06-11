@@ -1,12 +1,12 @@
 # Step 7: Update the Application
 
-To deploy and test this updated release, you return to the admin console using a web browser.
+To deploy and test this updated release, you return to the KOTS Admin Console using a web browser.
 
-At this point, the admin console likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every four hours, but for now, you will trigger a check manually.
+At this point, the Admin Console likely shows that your test application is up-to-date and that no updates are available. The Admin Console checks for new updates approximately every four hours, but for now, you will trigger a check manually.
 
 To update the application:
 
-1. Log in to the admin console at `https://localhost:8800` for an existing cluster or `http://[ip-address]:8800` for an embedded cluster.
+1. Log in to the Admin Console at `https://localhost:8800` for an existing cluster or `http://[ip-address]:8800` for an embedded cluster.
 
 1. On the Version history tab, click **Check for update**. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
 
@@ -18,7 +18,7 @@ To update the application:
 
 1. In the new **Another Text Example** field, enter any text. Click **Save config**.
 
-   The admin console notifies you that the configuration settings for the application have changed.
+   The Admin Console notifies you that the configuration settings for the application have changed.
 
 1. In the dialog, click **Go to updated version**.
 
@@ -26,7 +26,7 @@ To update the application:
 
 1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
 
-1. After the admin console deploys the configuration change, go to the Dashboard page and click **Open App**.
+1. After the Admin Console deploys the configuration change, go to the Dashboard page and click **Open App**.
 
    The application displays the text that you added to the field.
 
@@ -46,7 +46,7 @@ Congratulations! As part of this tutorial, you:
     - Added a preflight check
     - Added a new configuration field and used template functions to reference the field
 - Promoted a new release with your changes
-- Used the admin console to update the application to the latest version
+- Used the Admin Console to update the application to the latest version
 
 As a next step you can:
 
@@ -54,4 +54,4 @@ As a next step you can:
 
 - Continue to iterate on your sample application by integrating other KOTS features. See [Onboarding with KOTS](distributing-workflow).
 
-- Make more customizations to the fields that appear on the **Config** page in the admin console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
+- Make more customizations to the fields that appear on the **Config** page in the Admin Console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.

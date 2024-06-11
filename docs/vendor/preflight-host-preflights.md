@@ -92,7 +92,7 @@ To customize the default host preflights:
 1. Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`.
 1. Copy the default `host-preflights.yaml` specification for kURL from [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 1. Copy the default `host-preflight.yaml` specification for any and all add-ons that are included in your specification and have default host preflights. For links to the add-on YAML files, see [Finding the Add-on Host Preflight Checks](https://kurl.sh/docs/create-installer/host-preflights/#finding-the-add-on-host-preflight-checks) in the kURL documentation.
-1. Merge the copied host preflight specifications into one host preflight specification, and paste it to the `kurl.hostPreflights` field in the Installer YAML in the vendor portal.
+1. Merge the copied host preflight specifications into one host preflight specification, and paste it to the `kurl.hostPreflights` field in the Installer YAML in the Vendor Portal.
 1. Edit the defaults as needed.
 
 ### Ignore or Enforce Warnings and Failures

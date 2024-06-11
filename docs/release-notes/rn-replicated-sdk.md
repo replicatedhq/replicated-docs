@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.21
+
+Released on June 6, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-21}
+* Fixes an issue where the replicated pod logs collector could fail in environments with namespace-restricted RBAC.
+
 ## 1.0.0-beta.20
 
 Released on May 14, 2024

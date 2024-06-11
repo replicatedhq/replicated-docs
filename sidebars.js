@@ -350,8 +350,8 @@ const sidebars = {
                 type: 'category',
                 label: 'Installing with kURL',
                 items: [
-                  'enterprise/installing-embedded-cluster',
-                  'enterprise/installing-embedded-airgapped',
+                  'enterprise/installing-kurl',
+                  'enterprise/installing-kurl-airgap',
                   'enterprise/cluster-management-add-nodes',
                 ],
               },
@@ -364,7 +364,7 @@ const sidebars = {
             label: 'Image Registries',
             items: [
               'enterprise/image-registry-settings',
-              'enterprise/image-registry-embedded-cluster',
+              'enterprise/image-registry-kurl',
               'enterprise/image-registry-rate-limits',
             ],
           },
@@ -375,7 +375,7 @@ const sidebars = {
             items: [
               'enterprise/updating-apps',
               'enterprise/updating-app-manager',
-              'enterprise/updating-embedded-cluster',
+              'enterprise/updating-kurl',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
             ],
@@ -474,6 +474,7 @@ const sidebars = {
       'vendor/replicated-sdk-installing',
       'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
+      'vendor/replicated-sdk-slsa-validating',
     ],
   },
   {
@@ -538,6 +539,7 @@ const sidebars = {
           'vendor/support-host-support-bundles',
           'vendor/support-bundle-generating',
           'vendor/support-inspecting-support-bundles',
+          'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
           'vendor/support-online-support-bundle-specs',
           'vendor/support-modular-support-bundle-specs',
@@ -603,7 +605,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'replicated CLI',
+    label: 'Replicated CLI',
     items: [
       'reference/replicated-cli-installing',
       'reference/replicated-cli-api',
@@ -671,7 +673,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'kots CLI',
+    label: 'KOTS CLI',
     items: [
       'reference/kots-cli-getting-started',
       'reference/kots-cli-global-flags',

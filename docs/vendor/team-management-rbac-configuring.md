@@ -2,21 +2,21 @@ import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-r
 
 # Configuring RBAC Policies
 
-This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated vendor portal.
+This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated Vendor Portal.
 
 ## About RBAC Policies
 
 By default, every team has two policies created automatically: **Admin** and **Read Only**. These default policies are not configurable.
 
-You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the vendor portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
+You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
 
-You can also create custom RBAC policies in the vendor portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
+You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
 
 ## Configure a Custom RBAC Policy
 
 To configure a custom RBAC policy:
 
-1. From the vendor portal [Team page](https://vendor.replicated.com/team), select **RBAC** from the left menu.
+1. From the Vendor Portal [Team page](https://vendor.replicated.com/team), select **RBAC** from the left menu.
 
 1. Do _one_ of the following:
 
@@ -41,7 +41,7 @@ To configure a custom RBAC policy:
    Click **Cancel** to exit without saving changes.
    :::
 
-1. To apply RBAC policies to vendor portal team members, you can:
+1. To apply RBAC policies to Vendor Portal team members, you can:
 
     - Assign policies to existing team members
     - Specify a policy when inviting new team members
@@ -98,9 +98,9 @@ When a policy document has conflicting rules, the behavior is predictable. For m
     ```
   The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
 
-  - To get the application ID, click **Settings > Show Application ID (Advanced)** in the vendor portal.
+  - To get the application ID, click **Settings > Show Application ID (Advanced)** in the Vendor Portal.
 
-  - To get the channel ID, click **Channels** in the vendor portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
+  - To get the channel ID, click **Channels** in the Vendor Portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
 
 ## Rule Order
 
@@ -113,7 +113,7 @@ The most specific rule definition is always applied, when compared with less spe
 
 ### Rule Order Examples
 
-In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the vendor portal **Channels** page and click the **Settings** icon for the target channel.
+In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the Vendor Portal **Channels** page and click the **Settings** icon for the target channel.
 
 ```json
 {

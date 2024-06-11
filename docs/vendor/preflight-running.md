@@ -49,7 +49,7 @@ When you promote a release that contains one or more Helm charts, the Helm chart
 
 To run preflights checks from a release before installation:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps/gitea-boxer/customers), go to the **Customers** page. Click on the name of the target customer.
+1. In the [Vendor Portal](https://vendor.replicated.com/apps/gitea-boxer/customers), go to the **Customers** page. Click on the name of the target customer.
 
 1. On the landing page for the customer, click **Helm install instructions**.
 

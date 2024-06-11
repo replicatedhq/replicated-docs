@@ -7,8 +7,8 @@ import Help from "../partials/kots-cli/_help.mdx"
 
 # install
 
-Installs the application and the Replicated admin console directly to a cluster.
-The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the admin console, and sets up port forwarding to make the admin console accessible on port 8800.
+Installs the application and the KOTS Admin Console directly to a cluster.
+The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Admin Console, and sets up port forwarding to make the Admin Console accessible on port 8800.
 Alternatively, you can specify the `--port` flag to override the default port.
 
 ### Usage
@@ -52,7 +52,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--copy-proxy-env</code></td>
         <td>bool</td>
-        <td>Copy proxy environment variables from current environment into all admin console components. <strong>Default:</strong> <code>false</code></td>
+        <td>Copy proxy environment variables from current environment into all Admin Console components. <strong>Default:</strong> <code>false</code></td>
     </tr>
     <tr>
         <td><code>--disable-image-push</code></td>
@@ -68,12 +68,12 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--http-proxy</code></td>
         <td>string</td>
-        <td>Sets HTTP_PROXY environment variable in all admin console components.</td>
+        <td>Sets HTTP_PROXY environment variable in all Admin Console components.</td>
     </tr>
     <tr>
         <td><code>--https-proxy</code></td>
         <td>string</td>
-        <td>Sets HTTPS_PROXY environment variable in all admin console components.</td>
+        <td>Sets HTTPS_PROXY environment variable in all Admin Console components.</td>
     </tr>
     <KotsadmNamespace/>
     <KotsadmRegistry/>
@@ -90,7 +90,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--name</code></td>
         <td>string</td>
-        <td>Name of the application to use in the admin console.</td>
+        <td>Name of the application to use in the Admin Console.</td>
     </tr>
     <tr>
         <td><code>--no-port-forward</code></td>
@@ -100,12 +100,12 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--no-proxy</code></td>
         <td>string</td>
-        <td>Sets NO_PROXY environment variable in all admin console components.</td>
+        <td>Sets NO_PROXY environment variable in all Admin Console components.</td>
     </tr>
     <tr>
         <td><code>--port</code></td>
         <td>string</td>
-        <td>Override the local port to access the admin console. <strong>Default:</strong> 8800</td>
+        <td>Override the local port to access the Admin Console. <strong>Default:</strong> 8800</td>
     </tr>
     <tr>
         <td><code>--preflights-wait-duration</code></td>
@@ -122,7 +122,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <tr>
         <td><code>--shared-password</code></td>
         <td>string</td>
-        <td>Shared password to use when deploying the admin console.</td>
+        <td>Shared password to use when deploying the Admin Console.</td>
     </tr>
     <tr>
         <td><code>--skip-compatibility-check</code></td>

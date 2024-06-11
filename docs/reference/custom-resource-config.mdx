@@ -18,11 +18,11 @@ import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
-The Config custom resource can be provided by a vendor to specify a Config page in the Replicated admin console for collecting customer supplied values and template function rendering.
+The Config custom resource can be provided by a vendor to specify a Config page in the Replicated Admin Console for collecting customer supplied values and template function rendering.
 
-The settings that appear on the admin console Config page are specified as an array configuration _groups_ and _items_.
+The settings that appear on the Admin Console Config page are specified as an array configuration _groups_ and _items_.
 
-The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the admin console Config page.
+The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the Admin Console Config page.
 
 For more information about the properties of groups and items, see [Group Properties](#group-properties) and [Item Properties](#item-properties) below.
 
@@ -73,7 +73,7 @@ Groups have a `name`, `title`, `description` and an array of `items`.
 
 ### `description`
 
-Descriptive help text for the group that displays on the admin console Config page. Supports markdown formatting.
+Descriptive help text for the group that displays on the Admin Console Config page. Supports markdown formatting.
 
 To provide help text for individual items on the Config page, use the item `help-text` property. See [help_text](#help_text) below.
 
@@ -111,7 +111,7 @@ spec:
 
 ### `title`
 
-The title of the group that displays on the admin console Config page.
+The title of the group that displays on the Admin Console Config page.
 
 ```yaml
 spec:
@@ -129,7 +129,7 @@ spec:
 
 ### `when`
 
-The `when` property denotes groups that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+The `when` property denotes groups that are displayed on the Admin Console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
 
 <PropertyWhen/>
 
@@ -190,7 +190,7 @@ For additional examples, see [Using Conditional Statements in Configuration Fiel
 
 ### `items`
 
-Each group contains an array of items that map to input fields on the admin console Config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
+Each group contains an array of items that map to input fields on the Admin Console Config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
 
 For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
 
@@ -204,7 +204,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the admin console on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
+      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the Admin Console on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
     </td>
   </tr>
   <tr>
@@ -228,7 +228,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
     <th>Description</th>
     <td>
       <p>Defines the default value for the config item. If the user does not provide a value for the item, then the <code>default</code> value is applied.</p>
-      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the admin console.</p>
+      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the Admin Console.</p>
     </td>
   </tr>
   <tr>
@@ -251,7 +251,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Displays a helpful message below the <code>title</code> for the config item in the admin console.</p>
+      <p>Displays a helpful message below the <code>title</code> for the config item in the Admin Console.</p>
       <p>Markdown syntax is supported. For more information about markdown syntax, see <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
     </td>
   </tr>
@@ -275,7 +275,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-       <p>Hidden items are not visible in the admin console.</p>
+       <p>Hidden items are not visible in the Admin Console.</p>
        <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -298,7 +298,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the admin console.</p><p> The item <code>name</code> can be used with KOTS template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
+    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the Admin Console.</p><p> The item <code>name</code> can be used with KOTS template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -320,7 +320,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Readonly items are displayed in the admin console and users cannot edit their value.</p>
+      <p>Readonly items are displayed in the Admin Console and users cannot edit their value.</p>
       <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -343,7 +343,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Recommended tag for the config item in the admin console.</p></td>
+    <td><p>Displays a Recommended tag for the config item in the Admin Console.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -366,7 +366,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Required tag for the config item in the admin console. A required item prevents the application from starting until it has a value.</p></td>
+    <td><p>Displays a Required tag for the config item in the Admin Console. A required item prevents the application from starting until it has a value.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -387,7 +387,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The title of the config item that displays in the admin console.</p></td>
+    <td><p>The title of the config item that displays in the Admin Console.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -434,7 +434,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item in the admin console.</p>
+      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item in the Admin Console.</p>
       <p>If the config item is not readonly, then the data that you add to <code>value</code> is overwritten by any user input for the item. If the item is readonly, then the data that you add to <code>value</code> cannot be overwritten.</p>
     </td>
   </tr>
@@ -457,7 +457,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>when</code> property denotes items that are displayed on the admin console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>select_one</code> item. To conditionally show or hide <code>select_one</code> items, apply the <code>when</code> property to the <code>select_one</code> item itself.</li></ul><WhenNote/></td>
+    <td><p>The <code>when</code> property denotes items that are displayed on the Admin Console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>select_one</code> item. To conditionally show or hide <code>select_one</code> items, apply the <code>when</code> property to the <code>select_one</code> item itself.</li></ul><WhenNote/></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -585,7 +585,7 @@ The `password` type is a text field that hides the character input.
 
 ### `select_one`
 
-`select_one` items must contain nested items. The nested items are displayed as radio buttons in the admin console.
+`select_one` items must contain nested items. The nested items are displayed as radio buttons in the Admin Console.
 
 You can use the `name` field of a `select_one` item with KOTS template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
 
@@ -780,7 +780,7 @@ Repeatable items are processed in order of the template targets in the Config Sp
 
 ## Repeatable Examples
 
-In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the admin console configuration page, which is stored in the ConfigValues file.
+In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the Admin Console configuration page, which is stored in the ConfigValues file.
 
 ### Repeatable Item Example for a yamlPath
 

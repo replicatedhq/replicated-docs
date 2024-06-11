@@ -4,9 +4,9 @@ This topic describes how to enable integration mode for the Replicated SDK to de
 
 ## About Integration Mode
 
-You can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to make real changes in the Replicated vendor portal or in your environment.
+You can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to make real changes in the Replicated Vendor Portal or in your environment.
 
-To use integration mode, install the Replicated SDK as a standalone component using a valid development license created in the Replicated vendor portal. After you install in integration mode, the SDK provides default mock data for requests to the SDK API `app` endpoints. Requests to the `license` endpoints use the real data from your development license.
+To use integration mode, install the Replicated SDK as a standalone component using a valid development license created in the Replicated Vendor Portal. After you install in integration mode, the SDK provides default mock data for requests to the SDK API `app` endpoints. Requests to the `license` endpoints use the real data from your development license.
 
 To use the Replicated SDK in integration mode, complete the following procedures:
 1. [Create a Development License](#license)
@@ -20,7 +20,7 @@ For information about development licenses, see [License Types](licenses-about#l
 
 To create a development license:
 
-1. In the vendor portal, go to **Customers** and click **Create customer**.
+1. In the Vendor Portal, go to **Customers** and click **Create customer**.
 
 1. Complete the following fields:
     
@@ -32,7 +32,7 @@ To create a development license:
     
     1. For **Customer email**, add the email address that you want to use for the license.
 
-   ![create customer page in the vendor portal](/images/create-customer-development-mode.png)
+   ![create customer page in the Vendor Portal](/images/create-customer-development-mode.png)
    [View a larger version of this image](/images/create-customer-development-mode.png)
 
 1. (Optional) Add any license field values that you want to use for testing:

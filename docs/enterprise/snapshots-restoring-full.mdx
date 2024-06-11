@@ -15,7 +15,7 @@ This topic describes how to restore from full or partial backups using Replicate
 
 <RestoreTypes/>
 
-You can do any type of restore from a full backup using the kots CLI. You can also restore an application from a full or partial backup using the admin console.
+You can do any type of restore from a full backup using the KOTS CLI. You can also restore an application from a full or partial backup using the Admin Console.
 
 ## Limitations
 
@@ -30,7 +30,7 @@ For a full list of limitations and considerations related to the snapshots featu
 
 ## Restore From a Full Backup Using the CLI {#full-cli}
 
-You can use the kots CLI to restore both the admin console and the application, the admin console only, or the application only. If you need to restore the admin console, you must use the kots CLI because the admin console gets recreated and is disconnected during the restore process.
+You can use the KOTS CLI to restore both the Admin Console and the application, the Admin Console only, or the application only. If you need to restore the Admin Console, you must use the KOTS CLI because the Admin Console gets recreated and is disconnected during the restore process.
 
 :::note
 <CliRestores/>
@@ -70,7 +70,7 @@ If you are restoring to a healthy cluster, you can skip the installation and con
 
 To restore a full backup in a kURL cluster:
 
-1. (New or Unhealthy Clusters Only) Provision a cluster with kURL and install the target application in the cluster. See [Online Installation with kURL](installing-embedded-cluster).
+1. (New or Unhealthy Clusters Only) Provision a cluster with kURL and install the target application in the cluster. See [Online Installation with kURL](installing-kurl).
 
 1. (New or Unhealthy Clusters Only) In the new kURL cluster, configure a storage destination that holds the backup you want to use:
 
@@ -94,7 +94,7 @@ To restore a full backup in an air gap kURL cluster:
 
     Replace `IP` with the registry IP address.
 
-1. Use the kots CLI to configure Velero to use a storage destination. The storage backend used for backups must be accessible from the new cluster. 
+1. Use the KOTS CLI to configure Velero to use a storage destination. The storage backend used for backups must be accessible from the new cluster. 
 
     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
@@ -106,7 +106,7 @@ To restore a full backup in an air gap kURL cluster:
 
 ## Restore the Application Only Using the Admin Console {#admin-console}
 
-You can restore an application from a full or partial backup using the admin console.
+You can restore an application from a full or partial backup using the Admin Console.
 
 ### Restore an Application From a Full Backup
 
@@ -127,7 +127,7 @@ To restore an application from a full backup:
     [View a larger version of this image](/images/restore-backup-dialog.png)
 
     :::note
-    You can also get the CLI commands for full restores or admin console only restores from this dialog.
+    You can also get the CLI commands for full restores or Admin Console only restores from this dialog.
     :::     
 
 1. At the bottom of the dialog, enter the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.

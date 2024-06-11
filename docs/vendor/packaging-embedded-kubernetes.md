@@ -2,7 +2,7 @@
 
 This topic describes how to create a Kubernetes installer specification to support embedded cluster installations with Replicated kURL.
 
-For information about creating installers with the replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
+For information about creating installers with the Replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
 
 ## Overview
 
@@ -33,7 +33,7 @@ You can include a Kubernetes installer with an application release. This ensures
 
 To include the Kubernetes installer specification in a release:
 
-1. In the Replicated [vendor portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create Release** or click **Edit YAML** to edit an existing release.
+1. In the Replicated [Vendor Portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create Release** or click **Edit YAML** to edit an existing release.
 
   The YAML editor opens.
 
@@ -53,7 +53,7 @@ You can create a Kubernetes installer and promote it to the same channel as your
 
 To create a separate Kubernetes installer:
 
-1. From the [vendor portal](https://vendor.replicated.com), select your application and click **Kubernetes Installer**.
+1. From the [Vendor Portal](https://vendor.replicated.com), select your application and click **Kubernetes Installer**.
 
 1. On the **Kubernetes Installer** page, click **Create Kubernetes installer**.
 
@@ -86,7 +86,7 @@ To create a separate Kubernetes installer:
 
 Note the following requirements and guidelines for Kubernetes installers:
 
-- You must include the kURL KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
+- You must include the kURL KOTS add-on to provision the Replicated Admin Console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
 
 - To support the use of Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 

@@ -1,17 +1,17 @@
 # Submitting a Support Request
 
-You can submit a support request and a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
+You can submit a support request and a support bundle using the Replicated Vendor Portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
 :::note
 
-For KOTS, if your customer cannot generate a support bundle using the Replicated admin console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app) in the KOTS documentation.
+For KOTS, if your customer cannot generate a support bundle using the KOTS Admin Console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app) in the KOTS documentation.
 :::
 
 ### Prerequisites
 
 The following prerequisites must be met to submit support requests:
 
-* Your vendor portal account must be configured for access to support before you can submit support requests. Contact your administrator to ensure that you are added to the correct team.
+* Your Vendor Portal account must be configured for access to support before you can submit support requests. Contact your administrator to ensure that you are added to the correct team.
 
 * Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](team-management-github-username#add).
 
@@ -20,7 +20,7 @@ The following prerequisites must be met to submit support requests:
 
 To submit a support request:
 
-1. From the [vendor portal](https://vendor.replicated.com), click **Support > Submit a Support Request** or go directly to the [Support page](https://vendor.replicated.com/support).
+1. From the [Vendor Portal](https://vendor.replicated.com), click **Support > Submit a Support Request** or go directly to the [Support page](https://vendor.replicated.com/support).
 
 1. In section 1 of the Support Request form, complete the fields with information about your issue.
 

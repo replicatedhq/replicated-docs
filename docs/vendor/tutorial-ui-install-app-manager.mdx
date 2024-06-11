@@ -4,7 +4,7 @@ import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 
 Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in a cluster is to install KOTS.
 
-KOTS is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with KOTS through the admin console or through the kots CLI.
+KOTS lets your users install, manage, and upgrade your application. Users can interact with KOTS through the Admin Console or through the KOTS CLI.
 
 KOTS can be either installed in an existing Kubernetes cluster or in an _embedded cluster_ created by Replicated kURL.
 
@@ -18,11 +18,11 @@ To install KOTS in an existing cluster:
 
 1. Make sure your kubectl context is set to your cluster.
 
-1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal.
+1. Copy the **KOTS Install** command from the Unstable channel in the Vendor Portal.
 
    ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-   The script installs the latest KOTS version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
+   The script installs the latest KOTS version as a `kubectl` plugin. For more information about installing an application with the KOTS CLI, see [install](../reference/kots-cli-install/) in the KOTS CLI documentation.
 
    **Example:**
 
@@ -33,9 +33,9 @@ To install KOTS in an existing cluster:
 
 1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and press **Enter**.
 
-1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console and deploy the application.
+1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the Admin Console. You use this password in a later step to access the Admin Console and deploy the application.
 
-   When the admin console is ready, the script prints the https://localhost:8800 URL where you can access the admin console.
+   When the Admin Console is ready, the script prints the https://localhost:8800 URL where you can access the Admin Console.
 
    **Example output:**
 
@@ -69,7 +69,7 @@ To install KOTS in an embedded cluster:
 
    Replace NAME with the name of the cluster.
 
-1. Copy the **Embedded Cluster** command from the Unstable channel in the vendor portal and run it on the cluster.
+1. Copy the **Embedded Cluster** command from the Unstable channel in the Vendor Portal and run it on the cluster.
 
    ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
@@ -79,11 +79,11 @@ To install KOTS in an embedded cluster:
    curl -sSL https://kurl.sh/my-test-app-unstable | sudo bash
    ```
 
-   This script installs Docker, Kubernetes, and the admin console containers (kotsadm).
+   This script installs Docker, Kubernetes, and the Admin Console containers (kotsadm).
 
    Installation takes approximately 5-10 minutes.
 
-1. Note the connection URL and password that displays in the output. The password is not shown again. You must use these in a later step to deploy the admin console.
+1. Note the connection URL and password that displays in the output. The password is not shown again. You must use these in a later step to deploy the Admin Console.
 
    **Example output:**
 
@@ -115,8 +115,8 @@ To install KOTS in an embedded cluster:
    kurl-proxy-kotsadm-5f7fb75f47-b7jbz   1/1     Running   0          60m
    ```
 
-   At this point, Kubernetes and the admin console are running, but the application is not deployed yet.
+   At this point, Kubernetes and the Admin Console are running, but the application is not deployed yet.
 
 ## Next Step
 
-Continue to [Step 5: Deploy the Application](tutorial-ui-deploy-app) to log in to the admin console and deploy the application.
+Continue to [Step 5: Deploy the Application](tutorial-ui-deploy-app) to log in to the Admin Console and deploy the application.

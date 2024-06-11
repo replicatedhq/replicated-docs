@@ -8,6 +8,55 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.28-3
+
+Released on May 28, 2024
+
+### New Features {#new-features-v2024-05-28-3}
+* Add support for Oracle OKE 1.29.
+
+### Bug Fixes {#bug-fixes-v2024-05-28-3}
+* Fix Compatibility Matrix available credits rounding.
+
+## v2024.05.28-0
+
+Released on May 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-28-0}
+* Users can create GitHub support tickets with large support bundle analysis results.
+
+## v2024.05.24-6
+
+Released on May 24, 2024
+
+### New Features {#new-features-v2024-05-24-6}
+* Added support for Sonatype Nexus registry.
+
+## v2024.05.24-2
+
+Released on May 24, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-24-2}
+* Fixes a bug that caused version string for Replicated SDK chart have an invalid "v" prefix.
+
+## v2024.05.23-2
+
+Released on May 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-23-2}
+* Adds validation to compatibility matrix object-store add-on bucket prefix input.
+
+## v2024.05.21-1
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-1}
+* Adds API support for Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) to compatibility matrix.
+
+### Bug Fixes {#bug-fixes-v2024-05-21-1}
+* Fixes a bug where users could not restore password policies to default.
+* Disables the edit and archive channel options and displays helpful hover text on the **Channels** page table view when the user does not have permission to edit channels.
+* Fixes a bug that caused "airgap:true" or "airgap:false" customer searches to fail with error 500.
 
 ## v2024.05.21-0
 

@@ -8,9 +8,9 @@ You must configure a backup storage destination before you can create backups. T
 
 To configure snapshots for embedded clusters:
 
-1. On the Snapshots tab in the admin console, click **Check for Velero** to see whether kURL already installed Velero in the embedded cluster.
+1. On the Snapshots tab in the Admin Console, click **Check for Velero** to see whether kURL already installed Velero in the embedded cluster.
 
-1. If Velero was installed, update the default internal storage settings in the admin console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+1. If Velero was installed, update the default internal storage settings in the Admin Console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 
 1. If Velero was not installed:
 

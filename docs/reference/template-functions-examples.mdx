@@ -24,9 +24,9 @@ This section includes examples of how to use KOTS template functions to compare 
 
 Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many KOTS template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
 
-One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS admin console **Config** page only when the customer's license has a certain entitlement.
+One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS Admin Console **Config** page only when the customer's license has a certain entitlement.
 
-The following example creates a conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the admin console **Config** page. 
+The following example creates a conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the Admin Console **Config** page. 
 
 ```yaml
 # KOTS Config custom resource
@@ -69,19 +69,19 @@ Integer values can be compared using operators such as greater than, less than, 
 * KOTS [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
 * Sprig [atoi](https://masterminds.github.io/sprig/conversion.html), which is equivalent to ParseInt(s, 10, 0), converted to type integer
 
-A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS admin console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
+A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS Admin Console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
 
 <IntegerComparison/>
 
 ### String Comparison
 
-A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS admin console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
+A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS Admin Console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
 ### Not Equal To Comparison
 
-It can be useful to compare the rendered value of a KOTS template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS admin console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/vendor/embedded-overview).
+It can be useful to compare the rendered value of a KOTS template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS Admin Console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/vendor/embedded-overview).
 
 <NeComparison/>
 
@@ -89,7 +89,7 @@ It can be useful to compare the rendered value of a KOTS template function again
 
 Logical comparisons such as AND, OR, and NOT can be used with KOTS template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
-The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the admin console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the Admin Console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
 # KOTS Config custom resource
@@ -209,9 +209,9 @@ spec:
     images:
       replicated-sdk: >-
         {{repl if HasLocalRegistry -}}
-          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.20
+          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:v1.0.0-beta.21
         {{repl else -}}
-          docker.io/replicated/replicated-sdk:v1.0.0-beta.20
+          docker.io/replicated/replicated-sdk:v1.0.0-beta.21
         {{repl end}}
 ```
 
@@ -221,7 +221,7 @@ Given the example above, if the user is _not_ using a local registry, then the `
 # Helm chart values file
 
 images:
-  replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.20'
+  replicated-sdk: 'docker.io/replicated/replicated-sdk:v1.0.0-beta.21'
 ```
 
 #### Multi-Line in Secret Object
@@ -314,7 +314,7 @@ The [nindent](https://masterminds.github.io/sprig/strings.html) function can be 
 
 #### Indent Templated Helm Chart Values
 
-The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
+The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -332,7 +332,7 @@ spec:
 
 #### Indent Templated Annotations in Manifest Files
 
-The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the admin console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value four spaces.
+The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value four spaces.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -373,7 +373,7 @@ This section includes an example of using variables with KOTS template functions
 
 ### Using Variables to Generate TLS Certificates in JSON
 
-You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with KOTS template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the admin console **Config** page.
+You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with KOTS template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the Admin Console **Config** page.
 
 The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and KOTS template functions to provide the necessary parameters when calling these functions.
 

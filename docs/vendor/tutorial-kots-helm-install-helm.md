@@ -8,11 +8,11 @@ To install the release with the Helm CLI:
 
 1. Create a new customer to test the Helm CLI installation:
 
-   1. In the [vendor portal](https://vendor.replicated.com), click **Customers > Create customer**.
+   1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
 
       The **Create a new customer** page opens:
 
-      ![Customer a new customer page in the vendor portal](/images/create-customer.png)
+      ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
 
       [View a larger version of this image](/images/create-customer.png)
 
@@ -78,7 +78,7 @@ To install the release with the Helm CLI:
 
 1. After an external IP address is available for the `gitea` LoadBalancer service, follow the instructions in the output of the installation command to get the Gitea URL and then confirm that you can open the application in a browser.
 
-1. In another browser window, open the [vendor portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created for the Helm CLI installation.
+1. In another browser window, open the [Vendor Portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created for the Helm CLI installation.
 
     On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer's license and installed instances:
 
@@ -108,7 +108,7 @@ To install the release with the Helm CLI:
 
 ## Next Step
 
-Congratulations! As part of this tutorial, you created a release in the Replicated vendor platform and installed the release with both KOTS and the Helm CLI. To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding). 
+Congratulations! As part of this tutorial, you created a release in the Replicated Vendor Portal and installed the release with both KOTS and the Helm CLI. To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding). 
 
 ## Related Topics
 

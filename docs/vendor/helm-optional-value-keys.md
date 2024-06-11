@@ -22,7 +22,7 @@ You can create this mapping by adding a value under `values` or `optionalValues`
 The `values` and `optionalValues` keys also support the use of Replicated KOTS template functions. When you use KOTS template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding Helm chart `values.yaml` with the rendered values. For more information, see [About Template Functions](/reference/template-functions-about).
 
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
-* Setting Helm values based on user-supplied values from the KOTS admin console configuration page
+* Setting Helm values based on user-supplied values from the KOTS Admin Console configuration page
 * Setting values based on the user's unique license entitlements
 * Conditionally setting values when a given condition is met
 * Deleting a default value key from the `values.yaml` file that should not be included for KOTS installations
@@ -113,7 +113,7 @@ spec:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-During installation, KOTS renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file only when the user selects the `external` option for `mariadb_type` on the admin console configuration page.
+During installation, KOTS renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file only when the user selects the `external` option for `mariadb_type` on the Admin Console configuration page.
 
 ### About Recursive Merge for optionalValues {#recursive-merge}
 

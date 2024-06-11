@@ -55,7 +55,7 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 
 ### Rewrite Image Names
 
-During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy service]((private-images-about)) at `proxy.replicated.com`. Additionally, KOTS allows enterprise users to push images to their own registry.
+During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Additionally, KOTS allows enterprise users to push images to their own registry.
 
 To ensure that images are discovered in either your registry or in the enterprise user's local registry, you must configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment. You can do this using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions: 
 * **HasLocalRegistry**: Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gapped installations and optionally true for online installations.

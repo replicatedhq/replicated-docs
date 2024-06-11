@@ -6,7 +6,7 @@ import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
 # Step 4: Add the Chart Archive to a Release
 
-Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform. The purpose of this step is to configure a release that supports installation with both Replicated KOTS and with the Helm CLI.
+Next, add the Helm chart archive to a new release for the application in the Replicated Vendor Portal. The purpose of this step is to configure a release that supports installation with both Replicated KOTS and with the Helm CLI.
 
 A _release_ represents a single version of your application and contains your application files. Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available.
 
@@ -45,13 +45,13 @@ To create a release:
    </TabItem>
    <TabItem value="kots-app" label="kots-app.yaml">
    <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <p>The KOTS Application custom resource enables features in the KOTS Admin Console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
     <h5>YAML</h5>
     <KotsCr/>
    </TabItem>
    <TabItem value="k8s-app" label="k8s-app.yaml">
    <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the KOTS Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
     <h5>YAML</h5>
     <K8sCr/>
    </TabItem>
@@ -89,11 +89,11 @@ To create a release:
      • SEQUENCE: 1
    ```
 
-1. Log in to the vendor portal and go to **Releases**.
+1. Log in to the Vendor Portal and go to **Releases**.
 
     The release that you created is listed under **All releases**.
 
-    ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
+    ![Release page in the Vendor Portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
 
     [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
 
@@ -101,7 +101,7 @@ To create a release:
 
     In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
-    ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
+    ![Edit Release page in the Vendor Portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
     [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
 

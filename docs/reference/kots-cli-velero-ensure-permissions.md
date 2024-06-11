@@ -13,7 +13,7 @@ kubectl kots velero ensure-permissions [flags]
 | Flag              | Type   | Description                                                         |
 | ----------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for ensure-permissions |
-| `-n, --namespace` | string | the namespace where the admin console is running _(required)_ |
+| `-n, --namespace` | string | the namespace where the Admin Console is running _(required)_ |
 | `--velero-namespace` | string | the namespace where velero is running _(required)_ |
 
 ### Example

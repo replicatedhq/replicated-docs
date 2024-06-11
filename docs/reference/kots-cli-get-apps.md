@@ -13,7 +13,7 @@ kubectl kots get apps [flags]
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for get apps                                                   |
-| `-n, --namespace` | string | the namespace where the admin console is running _(required)_       |
+| `-n, --namespace` | string | the namespace where the Admin Console is running _(required)_       |
 
 ### Example
 

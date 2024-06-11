@@ -1,6 +1,6 @@
 # Global flags
 
-All kots CLI commands support a set of global flags to be used to connect to the cluster.
+All KOTS CLI commands support a set of global flags to be used to connect to the cluster.
 
 | Flag | Type | Description |
 |---|---|---|

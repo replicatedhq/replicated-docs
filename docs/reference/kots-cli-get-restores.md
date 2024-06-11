@@ -13,7 +13,7 @@ kubectl kots get restores [flags]
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for get restores                                               |
-| `-n, --namespace` | string | filter by the namespace in which the admin console is/was installed |
+| `-n, --namespace` | string | filter by the namespace in which the Admin Console is/was installed |
 
 ### Examples
 

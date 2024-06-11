@@ -16,7 +16,7 @@ kubectl kots get versions [app-slug] [flags]
 | Flag                      | Type   | Description                                                                                         |
 | :------------------------ | ------ | --------------------------------------------------------------------------------------------------- |
 | `-h, --help`              |        | Help for `get versions`.                                                                            |
-| `-n, --namespace`         | string | (Required) The namespace where the admin console is running.                                        |
+| `-n, --namespace`         | string | (Required) The namespace where the Admin Console is running.                                        |
 | `--current-page`          | int    | Offset, by page size, at which to start retrieving versions. **Default:** 0                         |
 | `--page-size`             | int    | Number of versions to return. **Default:** 20                                                       |
 | `--pin-latest`            | int    | When set to true, always returns the latest version at the beginning. **Default:** false            |

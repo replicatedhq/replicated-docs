@@ -2,15 +2,15 @@ import Overview from "../partials/cmx/_overview.mdx"
 import Billing from "../partials/cmx/_billing.mdx"
 import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 
-# About the Compatibility Matrix
+# About Compatibility Matrix
 
-This topic describes the Replicated compatibility matrix, including use cases, billing, limitations, and more.
+This topic describes Replicated Compatibility Matrix, including use cases, billing, limitations, and more.
 
 ## Overview
 
 <Overview/>
 
-You can use the compatibility matrix with the replicated CLI or the Replicated vendor portal. For more information about how to use the compatibility matrix, see [Using the Compatibility Matrix](testing-how-to).
+You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Using Compatibility Matrix](testing-how-to).
 
 ### Supported Clusters
 
@@ -22,11 +22,11 @@ You can use the compatibility matrix with the replicated CLI or the Replicated v
 
 ### Quotas and Capacity
 
-By default, the compatibility matrix sets quotas for the capacity that can be used concurrently by each vendor portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning both VM and cloud-based clusters.
+By default, Compatibility Matrix sets quotas for the capacity that can be used concurrently by each vendor portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning both VM and cloud-based clusters.
 
 By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
 
-VM-based cluster distributions (such as kind, OpenShift, and Replicated embedded cluster) have the following default quotas:
+VM-based cluster distributions (such as kind, OpenShift, and Replicated Embedded Cluster) have the following default quotas:
 * 32 vCPUs
 * 128 GiB memory
 * 800 GiB disk size 
@@ -39,9 +39,9 @@ You can request increased quotas at any time with no additional cost. To view yo
 
 ### Cluster Status
 
-Clusters created with the compatibility matrix can have the following statuses:
+Clusters created with Compatibility Matrix can have the following statuses:
 
-* `assigned`: The cluster resources were requested and the compatibility matrix is provisioning the cluster. You are not billed for the time that a cluster spends in the `assigned` status.
+* `assigned`: The cluster resources were requested and Compatibility Matrix is provisioning the cluster. You are not billed for the time that a cluster spends in the `assigned` status.
 
 * `running`: A working kubeconfig for the cluster is accessible. Billing begins when the cluster reaches a `running` status.
 
@@ -55,14 +55,14 @@ You can view the status of clusters using the `replicated cluster ls` command. F
 
 ### Cluster Add-ons
 
-The Replicated compatibility matrix enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
+The Replicated Compatibility Matrix enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
 This allows you to more easily provision dependencies required by your application.
 
 For more information about how to use the add-ons, see [Compatibility Matrix Cluster Add-ons](testing-cluster-addons).
 
 ## Limitations
 
-The compatibility matrix has the following limitations:
+Compatibility Matrix has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
@@ -70,8 +70,8 @@ The compatibility matrix has the following limitations:
 - There is no support for IPv6.
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
+- The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with Compatibility Matrix cannot be replaced with a different scheduler.
 - Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
 
 For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).

@@ -5,11 +5,11 @@ import NeComparison from "../partials/template-functions/_ne-comparison.mdx"
 
 # Using Conditional Statements in Configuration Fields
 
-This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
+This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated KOTS Admin Console **Config** page.
 
 ## Overview
 
-The `when` property in the Config custom resource denotes configuration groups or items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group or item is not displayed.
+The `when` property in the Config custom resource denotes configuration groups or items that are displayed on the Admin Console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group or item is not displayed.
 
 <PropertyWhen/>
 
@@ -31,7 +31,7 @@ In the following example, the `when` properties use the [Distribution](/referenc
 
 ### Embedded Cluster Distribution Check
 
-It can be useful to show or hide configuration fields if the distribution of the cluster is [Replicated embedded cluster](/vendor/embedded-overview) because you can include extensions in embedded cluster distributions to manage functionality such as ingress and storage. This means that embedded clusters frequently have fewer configuration options for the user.
+It can be useful to show or hide configuration fields if the distribution of the cluster is [Replicated Embedded Cluster](/vendor/embedded-overview) because you can include extensions in embedded cluster distributions to manage functionality such as ingress and storage. This means that embedded clusters frequently have fewer configuration options for the user.
 
 <NeComparison/>
 

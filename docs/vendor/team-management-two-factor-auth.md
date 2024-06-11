@@ -1,12 +1,12 @@
 # Managing Two-Factor Authentication
 
-This topic describes how to enable and disable Replicated two-factor authentication for individual and team accounts in the Replicated vendor portal.
+This topic describes how to enable and disable Replicated two-factor authentication for individual and team accounts in the Replicated Vendor Portal.
 
-Alternatively, you can use Google Authentication or SAML Authentication to access the vendor portal. For more information about those options, see [Managing Google Authentication](team-management-google-auth) and [Managing SAML Authentication](team-management-saml-auth).
+Alternatively, you can use Google Authentication or SAML Authentication to access the Vendor Portal. For more information about those options, see [Managing Google Authentication](team-management-google-auth) and [Managing SAML Authentication](team-management-saml-auth).
 
 ## About Two-Factor Authentication
 
-Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the vendor portal, you are asked to provide an authentication code and your password during authentication. Replicated uses the open algorithm known as the Time-based One-time Password (TOTP 7), which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
+Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the Vendor Portal, you are asked to provide an authentication code and your password during authentication. Replicated uses the open algorithm known as the Time-based One-time Password (TOTP 7), which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
 
 ## Limitation
 
@@ -18,7 +18,7 @@ If you are an administrator or if 2FA is enabled for your team, you can enable 2
 
 To enable two-factor authentication on your individual account:
 
-1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
+1. In the [Vendor Portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
      <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
 
@@ -26,21 +26,21 @@ To enable two-factor authentication on your individual account:
 
 1. In the **Two-Factor Authentication** pane, click **Turn on two-factor authentication**.
 
-     <img src="/images/vendor-portal-password-2fa.png" alt="Turn on 2FA in the vendor portal" width="600"/>
+     <img src="/images/vendor-portal-password-2fa.png" alt="Turn on 2FA in the Vendor Portal" width="600"/>
 
      [View a larger version of this image](/images/vendor-portal-password-2fa.png)
 
-1. In the **Confirm password** dialog, enter your vendor portal account password. Click **Confirm password**.
+1. In the **Confirm password** dialog, enter your Vendor Portal account password. Click **Confirm password**.
 
-1. Scan the QR code that displays using a supported two-factor authentication application on your mobile device, such as Google Authenticator. Alternatively, click **Use this text code** in the vendor portal to generate an alphanumeric code that you enter in the mobile application.
+1. Scan the QR code that displays using a supported two-factor authentication application on your mobile device, such as Google Authenticator. Alternatively, click **Use this text code** in the Vendor Portal to generate an alphanumeric code that you enter in the mobile application.
 
-     <img src="/images/vendor-portal-scan-qr.png" alt="Turn on 2FA in the vendor portal" width="400"/>
+     <img src="/images/vendor-portal-scan-qr.png" alt="Turn on 2FA in the Vendor Portal" width="400"/>
 
      [View a larger version of this image](/images/vendor-portal-scan-qr.png)
 
      Your mobile application displays an authentication code.
 
-1. Enter the authentication code in the vendor portal.
+1. Enter the authentication code in the Vendor Portal.
 
      Two-factor authentication is enabled and a list of recovery codes is displayed at the bottom of the **Two-Factor Authentication** pane.
 
@@ -53,7 +53,7 @@ To enable two-factor authentication on your individual account:
 
 To disable two-factor authentication on your individual account:
 
-1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
+1. In the [Vendor Portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
      <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="200"/>
 
@@ -61,7 +61,7 @@ To disable two-factor authentication on your individual account:
 
 1. In the **Two-Factor Authentication** pane, click **Turn off two-factor authentication**.
 
-1. In the **Confirm password** dialog, enter your vendor portal account password. Click **Confirm password**.
+1. In the **Confirm password** dialog, enter your Vendor Portal account password. Click **Confirm password**.
 
 ## Enable or Disable 2FA for a Team
 
@@ -69,9 +69,9 @@ As an administrator, you can enable and disable 2FA for teams. You must first en
 
 To enable or disable 2FA for a team:
 
-1. In the [vendor portal](https://vendor.replicated.com), select the **Team** tab, then select **Multifactor Auth**.
+1. In the [Vendor Portal](https://vendor.replicated.com), select the **Team** tab, then select **Multifactor Auth**.
 
-     <img src="/images/team-2fa-auth.png" alt="Multifactor authentication for teams in the vendor portal" width="600"/>
+     <img src="/images/team-2fa-auth.png" alt="Multifactor authentication for teams in the Vendor Portal" width="600"/>
 
      [View a larger image](/images/team-2fa-auth.png)
 

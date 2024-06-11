@@ -1,12 +1,12 @@
 # Adoption Report
 
-This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Dashboard** page.
+This topic describes the insights in the **Adoption** section on the Replicated Vendor Portal **Dashboard** page.
 
 ## About Adoption Rate
 
 The **Adoption** section on the **Dashboard** provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
 
-The vendor portal generates adoption rate data from all your customer's application instances that have checked-in during the selected time period. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
+The Vendor Portal generates adoption rate data from all your customer's application instances that have checked-in during the selected time period. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 
 The following screenshot shows an example of the **Adoption** section on the **Dashboard**:
 

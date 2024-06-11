@@ -29,11 +29,11 @@ Include the Replicated SDK as a dependency of your application Helm chart. For m
 
 ## Use Your Public Key to Verify License Field Signatures
 
-In your application, you can use your public key (available in the vendor portal) and the MD5 hash of a license field value to verify the PSS signature of the license field.
+In your application, you can use your public key (available in the Vendor Portal) and the MD5 hash of a license field value to verify the PSS signature of the license field.
 
 To use your public key to verify license field signatures:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to the **Settings** page.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Settings** page.
 
 1. Click the **Replicated SDK Signature Verification** tab.
 
@@ -44,7 +44,7 @@ To use your public key to verify license field signatures:
 
 1. (Optional) Under **Verification**, select the tab for the necessary programming language, and copy the code sample provided.
 
-1. In your application, add logic that uses the public key to verify the integrity of license field signatures. If you copied one of the code samples from the vendor portal in the previous step, paste it into your application and make any additional edits as required. 
+1. In your application, add logic that uses the public key to verify the integrity of license field signatures. If you copied one of the code samples from the Vendor Portal in the previous step, paste it into your application and make any additional edits as required. 
 
   If you are not using one of the code samples provided, consider the following requirements for verifying license field values:  
     * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints are Base64 encoded and must be decoded before they are verified.

@@ -13,7 +13,7 @@ kubectl kots get backups [flags]
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for get backups                                                |
-| `-n, --namespace` | string | filter by the namespace in which the admin console is/was installed |
+| `-n, --namespace` | string | filter by the namespace in which the Admin Console is/was installed |
 
 ### Examples
 
