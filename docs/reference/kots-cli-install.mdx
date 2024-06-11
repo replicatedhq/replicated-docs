@@ -1,4 +1,9 @@
 import StrictSecurityContext from "../partials/kots-cli/_strict-security-context.mdx"
+import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
+import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
+import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
+import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+import Help from "../partials/kots-cli/_help.mdx"
 
 # install
 
@@ -59,11 +64,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td>bool</td>
         <td>When <code>false</code>, KOTS does not attempt to create the RBAC resources necessary to manage applications. <strong>Default:</strong> <code>true</code>. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command.</td>
     </tr>
-    <tr>
-        <td><code>-h, --help</code></td>
-        <td></td>
-        <td>Help for install.</td>
-    </tr>
+    <Help/>
     <tr>
         <td><code>--http-proxy</code></td>
         <td>string</td>
@@ -74,16 +75,8 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td>string</td>
         <td>Sets HTTPS_PROXY environment variable in all Admin Console components.</td>
     </tr>
-    <tr>
-        <td><code>--kotsadm-namespace</code></td>
-        <td>string</td>
-        <td>Set to override the namespace of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
-    </tr>
-    <tr>
-        <td><code>--kotsadm-registry</code></td>
-        <td>string</td>
-        <td>Set to override the registry of kotsadm images. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
-    </tr>
+    <KotsadmNamespace/>
+    <KotsadmRegistry/>
     <tr>
         <td><code>--license-file</code></td>
         <td>string</td>
@@ -119,16 +112,8 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td>string</td>
         <td>Timeout to be used while waiting for preflights to complete. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format. For example, 10s, 2m. <strong>Default:</strong> 15m</td>
     </tr>
-    <tr>
-        <td><code>--registry-password</code></td>
-        <td>string</td>
-        <td>Password to use to authenticate with the application registry. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
-    </tr>
-    <tr>
-        <td><code>--registry-username</code></td>
-        <td>string</td>
-        <td>Username to use to authenticate with the application registry. Used for air gapped installations. For more information, see [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).</td>
-    </tr>
+    <RegistryPassword/>
+    <RegistryUsername/>
     <tr>
         <td><code>--repo</code></td>
         <td>string</td>
