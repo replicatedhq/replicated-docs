@@ -179,9 +179,9 @@ To install your application in an embedded cluster:
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-### Installing behind a Proxy Server
+### Install Behind a Proxy Server
 
-The following flags can be used to install the Embedded Cluster behind a proxy server:
+The following flags can be used with the Embedded Cluster `install` command to install behind a proxy server:
 
 <table>
   <tr>
@@ -189,20 +189,20 @@ The following flags can be used to install the Embedded Cluster behind a proxy s
     <th width="65%">Description</th>
   </tr>
   <tr>
-     <th>--http-proxy</th>
+     <td>`--http-proxy`</td>
      <td>HTTP proxy to use for the installation</td>
   </tr>
   <tr>
-     <th>--https-proxy</th>
+     <td>`--https-proxy`</td>
      <td>HTTPS proxy to use for the installation</td>
   </tr>
   <tr>
-     <th>--no-proxy</th>
+     <td>`--no-proxy`</td>
      <td>Comma separated list of hosts to bypass the proxy for</td>
   </tr>
 </table>
 
-Example:
+**Example:**
 
 ```bash
 sudo ./APP_SLUG install --license LICENSE_FILE \
@@ -211,17 +211,17 @@ sudo ./APP_SLUG install --license LICENSE_FILE \
 --no-proxy=localhost,127.0.0.1,.default,.local,.svc,kubernetes,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
 ```
 
-In this example, `172.31.12.157:3128` is the location of the proxy server. For the `--no-proxy` flag, we configure the following:
-1. A set of defaults, to avoid cluster internal communication to go over the proxy: `localhost,127.0.0.1,.default,.local,.svc,kubernetes`
-2. Kots specific host allowing to reach the database: `kotsadm-rqlite`
-3. Host Node to Node communication: `172.31.0.0/16`
-4. Kubernetes Cluster Pod and service CIDR: `10.0.0.0/8`
+In this example, `172.31.12.157:3128` is the location of the proxy server. And, the `--no-proxy` flag configures the following:
+* A set of defaults to avoid cluster internal communication to go over the proxy: `localhost,127.0.0.1,.default,.local,.svc,kubernetes`
+* KOTS-specific host allowing to reach the database: `kotsadm-rqlite`
+* Host Node-to-Node communication: `172.31.0.0/16`
+* Kubernetes Cluster Pod and service CIDR: `10.0.0.0/8`
 
-In the case of using the Embedded Cluster in a multinode installation, the proxy server settings will automatically be configured when joining additional nodes.
+When using Embedded Cluster in a multinode installation, the proxy server settings are automatically configured when joining additional nodes.
 
-Limitations:
-* If the applications requires proxy settings, those will not be automatically propagated and have to be manually configured.
-* The proxy settings can not be changed after installation or during upgrade.
+**Limitations:**
+* Proxy settings are not automatically propagated and must be manually configured.
+* Proxy settings cannot be changed after installation or during upgrade.
 
 
 ## Update
