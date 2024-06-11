@@ -165,7 +165,7 @@ kubectl kots velero configure-other-s3 \
 
 Replace:
 
-- `NAME` with the name of the namespace where the admin console is installed and running
+- `NAME` with the name of the namespace where the Admin Console is installed and running
 - `ENDPOINT` with the s3 endpoint
 - `REGION` with the region where the bucket exists 
 - `BUCKET` with the name of the object storage bucket where backups should be stored
