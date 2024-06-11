@@ -190,15 +190,15 @@ The following flags can be used with the Embedded Cluster `install` command to i
   </tr>
   <tr>
      <td>`--http-proxy`</td>
-     <td>HTTP proxy to use for the installation</td>
+     <td>Proxy server to use for HTTP</td>
   </tr>
   <tr>
      <td>`--https-proxy`</td>
-     <td>HTTPS proxy to use for the installation</td>
+     <td>Proxy server to use for HTTPS</td>
   </tr>
   <tr>
      <td>`--no-proxy`</td>
-     <td>Comma separated list of hosts to bypass the proxy for</td>
+     <td>Comma-separated list of hosts for which not to use a proxy</td>
   </tr>
 </table>
 
@@ -206,21 +206,26 @@ The following flags can be used with the Embedded Cluster `install` command to i
 
 ```bash
 sudo ./APP_SLUG install --license LICENSE_FILE \
---http-proxy=172.31.12.157:3128 \
---https-proxy=172.31.12.157:3128 \
---no-proxy=localhost,127.0.0.1,.default,.local,.svc,kubernetes,kotsadm-rqlite,172.31.0.0/16,10.0.0.0/8
+--http-proxy=HOST:PORT \
+--https-proxy=HOST:PORT \
+--no-proxy=LIST_OF_HOSTS
 ```
 
-In this example, `172.31.12.157:3128` is the location of the proxy server. And, the `--no-proxy` flag configures the following:
-* A set of defaults to avoid cluster internal communication to go over the proxy: `localhost,127.0.0.1,.default,.local,.svc,kubernetes`
-* KOTS-specific host allowing to reach the database: `kotsadm-rqlite`
-* Host Node-to-Node communication: `172.31.0.0/16`
-* Kubernetes Cluster Pod and service CIDR: `10.0.0.0/8`
+Where:
 
-When using Embedded Cluster in a multinode installation, the proxy server settings are automatically configured when joining additional nodes.
+* LICENSE_FILE is the customer's license
+* HOST:PORT is the host and port of the proxy server
+* LIST_OF_HOSTS is the list of hosts to not proxy
+
+For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+
+The following is the default list of addresses that are not proxied:
+* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
+* Communiation to the KOTS database (`kotsadm-rqlite`)
+* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
 
 **Limitations:**
-* Proxy settings are not automatically propagated and must be manually configured.
+* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
 
 
