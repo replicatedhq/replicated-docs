@@ -45,14 +45,15 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
-              # Known issue: Use image tags only and set digest to empty string 
-              # to ensure the airgap builder uses single-architecture images
+              # Known issue: Only use image tags and set digest to empty string
+              # to ensure the air gap builder uses single-architecture images
               image:
                 digest: ""
                 digestChroot: ""
               admissionWebhooks:
-                image:
-                  digest: ""
+                patch:
+                  image:
+                    digest: ""
   unsupportedOverrides:
     k0s: |
       config:
@@ -162,6 +163,15 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
+              # Known issue: Only use image tags and set digest to empty string
+              # to ensure the air gap builder uses single-architecture images
+              image:
+                digest: ""
+                digestChroot: ""
+              admissionWebhooks:
+                patch:
+                  image:
+                    digest: ""
 ```
 
 :::note
