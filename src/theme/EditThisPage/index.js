@@ -50,7 +50,7 @@ export default function EditThisPage({ editUrl }) {
             id="theme.common.provideFeedback"
             description="The link label to provide feedback in github"
           >
-            Provide feedback
+            Provide Feedback
           </Translate>
         </div>
       </a>
