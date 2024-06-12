@@ -124,7 +124,7 @@ To add an external registry using the Vendor Portal:
         <tr>
           <td>Service Account JSON Key or Token</td>         
           <td>
-          <p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p> 
+          <p>Enter the JSON Key from Google Cloud Platform assigned with the Artifact Registry Reader role, or token for the account, depending on the authentication type you selected.</p> 
           <p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p>
           </td>
         </tr>
