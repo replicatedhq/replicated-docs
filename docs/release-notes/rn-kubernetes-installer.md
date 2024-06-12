@@ -16,11 +16,10 @@ Released on June 12, 2024
 * Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.7 to use haproxy:2.9.7-alpine3.20.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.32.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.74.0-59.0.0.
-* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.2.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) versions 0.25.2 and 0.25.3.
 * Add support for RHEL 8.10 and 9.4.
 * Add support for Oracle Linux 8.10.
 * Add support for Rocky Linux 9.4.
-* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.3.
 
 ## v2024.05.17-0
 
