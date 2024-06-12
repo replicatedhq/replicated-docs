@@ -26,6 +26,7 @@ Response:
 
 ```json
 {
+  "instanceID": "8dcdb181-5cc4-458c-ad95-c0a1563cb0cb",
   "appSlug": "my-app",
   "appName": "My App",
   "appStatus": "ready",
@@ -39,7 +40,11 @@ Response:
     "helmReleaseName": "my-helm-chart",
     "helmReleaseRevision": 5,
     "helmReleaseNamespace": "my-helm-chart"
-  }
+  },
+  "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
+  "channelName": "Beta",
+  "channelSequence": 4,
+  "releaseSequence": 30
 }
 ```
 
@@ -140,11 +145,34 @@ Response:
 ```json
 {
   "licenseID": "YiIXRTjiB7R...",
+  "appSlug": "my-app",
   "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
   "channelName": "Stable",
   "customerName": "Example Customer",
   "customerEmail": "username@example.com",
-  "licenseType": "dev"
+  "licenseType": "dev",
+  "licenseSequence": 1,
+  "isAirgapSupported": false,
+  "isGitOpsSupported": false,
+  "isIdentityServiceSupported": false,
+  "isGeoaxisSupported": false,
+  "isSnapshotSupported": false,
+  "isSupportBundleUploadSupported": false,
+  "isSemverRequired": true,
+  "endpoint": "https://replicated.app",
+  "entitlements": {
+    "expires_at": {
+      "title": "Expiration",
+      "description": "License Expiration",
+      "value": "",
+      "valueType": "String"
+    },
+    "numSeats": {
+      "title": "Number of Seats",
+      "value": 10,
+      "valueType": "Integer"
+    }
+  }
 }
 ```
 
