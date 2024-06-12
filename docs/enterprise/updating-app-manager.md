@@ -1,6 +1,6 @@
 # Updating KOTS
 
-This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [App Manager (KOTS) Release Notes](/release-notes/rn-app-manager).
+This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [KOTS Release Notes](/release-notes/rn-app-manager).
 
 :::note
 Downgrading KOTS to a version earlier than what is currently deployed is not supported.
@@ -89,6 +89,10 @@ To update KOTS in an existing air gap cluster:
     * `NAMESPACE` with the namespace on your cluster where KOTS is installed.
 
     For help information, run `kubectl kots admin-console upgrade -h`.
+
+## Update KOTS in Embedded Clusters
+
+When you update an application installed with Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the cluster on its own. The Embedded Cluster config defines the version of KOTS that is installed in the cluster.
 
 ## Update KOTS in kURL Clusters
 

@@ -4,15 +4,14 @@ You can update an application using the Replicated Admin Console or the Replicat
 See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
 or [Update an Application with the KOTS CLI](#update-an-application-with-the-kots-cli) below.
 
-## Update an Application in the Admin Console
+:::note
+For applications installed with Replicated Embedded Cluster, the cluster is automatically updated when you update the application. For more information, see [Updating Embedded Clusters](update-embedded).
+:::
+
+## Update an Application with the Admin Console
 
 You can manually update an application in the Version History tab of the Admin Console.
 This method works for both online and air gapped installations.
-
-For applications installed in an online environment, you can also configure the
-Admin Console to automatically check for and deploy new versions of an application
-on a custom cadence. For more information, see
-[Configure Automatic Updates](#configure-automatic-updates) below.
 
 To manually update an application:
 
@@ -33,13 +32,13 @@ the changes between them by clicking **Diff releases** in the right corner.
    of the release column. Select the two versions to compare, and click **Diff releases**
    to show the relative changes between the two releases.
 
-   [![Diff Releases](/images/diff-releases.png)](/images/diff-releases.png)
-   [![New Changes](/images/new-changes.png)](/images/new-changes.png)
+   ![Diff Releases](/images/diff-releases.png)
+   ![New Changes](/images/new-changes.png)
 
 1. Click the **View preflight checks** logo to view or re-run the preflight checks defined by
 the application vendor.
 
-   [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
+   ![Preflight Checks](/images/preflight-checks.png)
 
 1. To update the application, return to the Version History tab
 and click **Deploy** next to the target version.
@@ -103,7 +102,7 @@ Adding the `--deploy` flag will also automatically deploy the latest version.
 
 The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
-### Air Gapped Installations on an Existing Cluster
+### Air Gapped Installations in an Existing Cluster
 
 In order to install an update from an air gap file, the following command can be used:
 

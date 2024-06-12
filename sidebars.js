@@ -164,6 +164,7 @@ const sidebars = {
       items: [
         'vendor/licenses-about',
         'vendor/releases-creating-customer',
+        'vendor/licenses-download',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
@@ -186,7 +187,11 @@ const sidebars = {
       items: [
         'intro-kots',
         'vendor/kots-faq',
-        'vendor/distributing-workflow',
+        {
+          type: 'category',
+          label: 'Packaging KOTS Releases',
+          items: [
+            'vendor/distributing-workflow',
             {
               type: 'category',
               label: 'Distributing Helm Charts with KOTS',
@@ -228,7 +233,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Admin Console and Download Portal Customization',
+              label: 'Customizing the Admin Console and Download Portal',
               items: [
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-port-forward',
@@ -238,7 +243,7 @@ const sidebars = {
             },
             {
                 type: 'category',
-                label: 'Admin Console Config Screen',
+                label: 'Configuring the Admin Console Config Screen',
                 items: [
                   'vendor/config-screen-about',
                   'vendor/admin-console-customize-config-screen',
@@ -309,17 +314,19 @@ const sidebars = {
                 'vendor/operator-defining-additional-namespaces',
               ],
             },
-            {
-              type: 'category',
-              label: 'Downloading Assets and Getting Commands for KOTS Installations',
-              items: [
-                'vendor/releases-sharing-license-install-script',
-                'vendor/licenses-download',
-                'vendor/releases-download-airgap-bundles',
-                'vendor/releases-share-download-portal',
-                'vendor/releases-configvalues',
-              ],
-            },
+          ],
+        },   
+        {
+          type: 'category',
+          label: 'Downloading Assets and Getting Commands for KOTS Releases',
+          items: [
+            'vendor/releases-sharing-license-install-script',
+            'vendor/releases-download-airgap-bundles',
+            'vendor/embedded-download-binary',
+            'vendor/releases-share-download-portal',
+            'vendor/releases-configvalues',
+          ],
+        },
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
@@ -348,12 +355,24 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with kURL',
+                label: 'Installing on VMs or Bare Metal',
                 items: [
-                  'enterprise/installing-kurl',
-                  'enterprise/installing-kurl-airgap',
-                  'enterprise/cluster-management-add-nodes',
-                ],
+                  {
+                    type: 'category',
+                    label: 'Installing with Embedded Cluster (Beta)',
+                    items: [
+                      'enterprise/installing-embedded',
+                    ],
+                  },
+                  {
+                    type: 'category',
+                    label: 'Installing with kURL',
+                    items: [
+                      'enterprise/installing-kurl',
+                      'enterprise/installing-kurl-airgap',
+                    ],
+                  },
+                ]
               },
               'enterprise/installing-existing-cluster-automation',
               'enterprise/installing-stateful-component-requirements',
@@ -375,9 +394,18 @@ const sidebars = {
             items: [
               'enterprise/updating-apps',
               'enterprise/updating-app-manager',
+              'enterprise/updating-embedded',
               'enterprise/updating-kurl',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Cluster Management',
+            items: [
+              'enterprise/cluster-management',
+              'enterprise/cluster-management-add-nodes',
             ],
           },
           {
