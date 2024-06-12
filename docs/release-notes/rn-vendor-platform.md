@@ -14,8 +14,6 @@ Released on May 30, 2024
 
 ### New Features {#new-features-v2024-05-30-5}
 * Adds Sonatype Nexus Repository to the list of providers on the **Images** page.
-
-### Bug Fixes {#bug-fixes-v2024-05-30-5}
 * Adds support for linking and proxying images from anonymous registries.
 
 ## v2024.05.28-3
