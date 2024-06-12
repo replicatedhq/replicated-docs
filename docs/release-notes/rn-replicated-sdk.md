@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.22
+
+Released on June 12, 2024
+
+### New Features {#new-features-1-0-0-beta-22}
+* Returns additional license-info and app-info details on respective SDK HTTP endpoints.
+* Support bundle spec updated to extract license, app, history, and release information via an exec collector.
+
 ## 1.0.0-beta.21
 
 Released on June 6, 2024
