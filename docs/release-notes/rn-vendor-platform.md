@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on June 12, 2024
 
-### New Features {#new-features-v2024-06-12-0}
+### Improvements {#improvements-v2024-06-12-0}
 * Improves mobile styles on the table views on the **Customers** and **Channels** pages, as well as some mobile styles on the **Releases** page.
 
 ## v2024.05.30-7
