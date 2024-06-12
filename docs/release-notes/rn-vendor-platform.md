@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.05.30-7
+
+Released on May 30, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-30-7}
+* Fixes incorrectly displayed "No records to display" message, which appeared on the **Cluster History** page while loading data.
+
 ## v2024.05.30-5
 
 Released on May 30, 2024
