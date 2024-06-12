@@ -13,6 +13,7 @@ Replicated recommends that application vendors use one the following external pr
 * GitHub Container Registry
 * Google Artifact Registry
 * Google Container Registry (Deprecated)
+* Sonatype Nexus 
 * Quay.io
 
 These registries have been tested for compatibility with KOTS.
@@ -123,7 +124,7 @@ To add an external registry using the Vendor Portal:
         <tr>
           <td>Service Account JSON Key or Token</td>         
           <td>
-          <p>Enter the JSON Key from Google Cloud Platform assigned with the Storage Object Viewer role, or token for the account, depending on the authentication type you selected.</p> 
+          <p>Enter the JSON Key from Google Cloud Platform assigned with the Artifact Registry Reader role, or token for the account, depending on the authentication type you selected.</p> 
           <p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p>
           </td>
         </tr>
@@ -157,6 +158,23 @@ To add an external registry using the Vendor Portal:
         <tr>
           <td>Hostname</td>
           <td>Enter the host name for the registry, such as quay.io.</td>
+        </tr>
+        <tr>
+          <td>Username and Password</td>
+          <td>Enter the username and password for an account that has pull access to the registry.</td>
+        </tr>
+      </table>
+
+    * **Sonatype Nexus**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Hostname</td>
+          <td>Enter the host name for the registry, such as nexus.example.net.</td>
         </tr>
         <tr>
           <td>Username and Password</td>

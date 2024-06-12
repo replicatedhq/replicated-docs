@@ -1,0 +1,69 @@
+import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
+import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
+import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
+import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+import Help from "../partials/kots-cli/_help.mdx"
+
+# velero configure-hostpath
+
+Configure snapshots to use a host path as storage destination.
+
+### Usage
+
+```bash
+kubectl kots velero configure-hostpath [flags]
+```
+
+- _Provide `[flags]` according to the table below_
+
+<table>
+     <tr>
+        <td width="30%">Flag</td>
+        <td>Type</td>
+        <td>Description</td>
+    </tr>
+    <Help/>
+    <tr>
+        <td>`-n, --namespace`</td>
+        <td>string</td>
+        <td>The namespace of the Admin Console (required)</td>
+    </tr>
+    <tr>
+        <td>`--hostpath`</td>
+        <td>string</td>
+        <td>A local host path on the node</td>
+    </tr>
+    <KotsadmNamespace/>
+    <KotsadmRegistry/>
+    <RegistryPassword/>
+    <RegistryUsername/>
+    <tr>
+        <td>`--force-reset`</td>
+        <td>bool</td>
+        <td>Bypass the reset prompt and force resetting the nfs path. (default `false`)</td>
+    </tr>
+    <tr>
+        <td>`--output`</td>
+        <td>string</td>
+        <td>Output format. Supported values: `json`</td>
+    </tr>
+</table>
+
+### Examples
+
+Basic
+
+```bash
+kubectl kots velero configure-hostpath --hostpath /mnt/kots-sentry-snapshots --namespace kots-sentry
+```
+
+Using a registry for airgapped installations
+
+```bash
+kubectl kots velero configure-hostpath \
+  --hostpath /mnt/kots-sentry-snapshots \
+  --namespace kots-sentry \
+  --kotsadm-registry private.registry.host/kots-sentry \
+  --registry-username ro-username \
+  --registry-password ro-password
+```

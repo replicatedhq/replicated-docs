@@ -539,6 +539,7 @@ const sidebars = {
           'vendor/support-host-support-bundles',
           'vendor/support-bundle-generating',
           'vendor/support-inspecting-support-bundles',
+          'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
           'vendor/support-online-support-bundle-specs',
           'vendor/support-modular-support-bundle-specs',

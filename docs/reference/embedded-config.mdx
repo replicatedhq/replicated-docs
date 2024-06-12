@@ -45,14 +45,15 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
-              # Known issue: Use image tags only and set digest to empty string 
-              # to ensure the airgap builder uses single-architecture images
+              # Known issue: Only use image tags and set digest to empty string
+              # to ensure the air gap builder uses single-architecture images
               image:
                 digest: ""
                 digestChroot: ""
               admissionWebhooks:
-                image:
-                  digest: ""
+                patch:
+                  image:
+                    digest: ""
   unsupportedOverrides:
     k0s: |
       config:
@@ -135,7 +136,7 @@ Helm extensions are updated when new versions of your application are deployed f
 
 **Limitation**: If a Helm extension is removed from the embedded cluster config, the associated Helm chart is not removed from the cluster. This is a limitation that we intend to address in the future.
 
-The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/head/helm-charts/#example).
+The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/stable/helm-charts/#example).
 
 The `version` field is required. Failing to specify a chart version will cause problems for upgrades.
 
@@ -162,6 +163,15 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
+              # Known issue: Only use image tags and set digest to empty string
+              # to ensure the air gap builder uses single-architecture images
+              image:
+                digest: ""
+                digestChroot: ""
+              admissionWebhooks:
+                patch:
+                  image:
+                    digest: ""
 ```
 
 :::note
@@ -182,7 +192,7 @@ While they should be used with caution, unsupported overrides are useful if you 
 
 By default, embedded cluster uses a k0s config that is tested and known to work for embedded clusters. In some circumstances, you might want to change the k0s config.
 
-For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/head/configuration/#configuration-file-reference) in the k0s documentation.
+For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/stable/configuration/#configuration-file-reference) in the k0s documentation.
 
 A common use case today is to adjust the default service port range to allow node ports on lower port numbers, as shown in the example below:
 
