@@ -2,7 +2,7 @@
 
 This topic describes monitoring applications and clusters with Prometheus. It includes information about how to configure Prometheus monitoring for existing clusters and how to access the dashboard using a port forward.
 
-## About Prometheus
+## Overview
 
 The Replicated KOTS Admin Console uses the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed.
 
@@ -13,6 +13,10 @@ For more information about Prometheus, see [What is Prometheus?](https://prometh
 Prometheus is included by default on clusters provisioned by Replicated kURL, and no additional configuration is required to view graphs on the Admin Console dashboard.
 
 For information about how to set up Prometheus monitoring in existing clusters, see [Configure Monitoring in Existing Clusters](#configure-existing).
+
+## Limitation
+
+Monitoring applications with Prometheus from the KOTS Admin Console is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview).
 
 ## About Admin Console Dashboards
 
