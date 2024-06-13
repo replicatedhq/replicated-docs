@@ -2,9 +2,11 @@
 
 Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. For more information, see [Application Custom Resource](/reference/custom-resource-application).
 
-## Using Minimum KOTS Versions (Beta)
+## Limitation
 
->Introduced in KOTS v1.62.0.
+Setting minimum and target versions for KOTS with the `minKotsVersion` and `targetKotsVersion` attributes is not supported for [Replicated Embedded Cluster](/vendor/embedded-overview). This is because the version of KOTS is defined in the Embedded Cluster config. For more information, see [Embedded Cluster Config](/reference/embedded-cluster-config).
+
+## Using Minimum KOTS Versions (Beta)
 
 The `minKotsVersion` attribute in the Application custom resource defines the minimum version of Replicated KOTS that is required by the application release. This can be useful when you want to get users who are lagging behind to update to a more recent KOTS version, or if your application requires functionality that was introduced in a particular KOTS version.
 
@@ -23,8 +25,6 @@ After updating KOTS to the minimum version or later, users can use the Admin Con
 
 ## Using Target KOTS Versions
 
->Introduced in KOTS v1.62.0.
-
 Including `targetKotsVersion` in the Application custom resource enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version of KOTS that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [Vendor Portal](https://vendor.replicated.com).
@@ -39,6 +39,6 @@ If a user's Admin Console is running a version of KOTS that is earlier than the 
 
 ### Using Target Versions with kURL
 
-For installations in an embedded cluster created by Replicated kURL, the version of the KOTS add-on must not be later than the target KOTS version specified in the Application custom resource. If the KOTS add-on version is later than the version specified for `targetKotsVersion`, the initial installation fails.
+For installations in a cluster created by Replicated kURL, the version of the KOTS add-on must not be later than the target KOTS version specified in the Application custom resource. If the KOTS add-on version is later than the version specified for `targetKotsVersion`, the initial installation fails.
 
 For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
