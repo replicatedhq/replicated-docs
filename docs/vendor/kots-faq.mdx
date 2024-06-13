@@ -10,17 +10,17 @@ This topic lists key terminology and frequently-asked questions (FAQs) for the R
 
 _Air gap_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise users that require high security.
 
-### Embedded Clusters
+### Embedded Kubernetes
 
-_Embedded clusters_ are Kubernetes clusters provisioned on a virtual machine (VM) or a bare metal server. Embedded clusters are built from a customized Kubernetes distribution embedded with an application and provisioned in the customer environment at the time of installation. Enterprise users that do not have an existing cluster (or do not have experience with Kubernetes) can install an application with KOTS in an embedded cluster.
+_Embedded Kubernetes_ refers to distributing Kubernetes alongside your application in order to support KOTS installations on VMs or bare metal servers. During installation, a cluster is provisioned in the customer environment where KOTS and the application are then deployed. Embedding Kubernetes with your application benefits enterprise users that do not have an existing cluster, do not have experience with Kubernetes, or otherwise prefer to install on a VM or bare metal server.
 
-Software vendors can use Replicated Embedded Cluster or Replicated kURL to create a custom Kubernetes distribution and support embedded cluster installations. For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
+Both the Replicated Embedded Cluster and Replicated kURL installers can be used to embed Kubernetes with your application. For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
 ### KOTS Custom Resources
 
 KOTS provides several Kubernetes custom resources in the `kots.io` API group. KOTS custom resources are consumed by KOTS or other kubectl plugins and are _not_ deployed to the cluster.
 
-Software vendors can configure KOTS custom resources to provide installation instructions and control the application experience.
+Software vendors can configure KOTS custom resources to provide installation instructions and control the application experience in the KOTS Admin Console.
 
 For more information, see [About Custom Resources](/reference/custom-resource-about).
 
@@ -38,7 +38,7 @@ For more information, see [About Template Functions](/reference/template-functio
 
 Replicated KOTS is an open source kubectl plugin maintained by Replicated. KOTS provides highly successful installations of Kubernetes applications into diverse environments (including on-prem and air gap environments).
 
-For more information, see [About KOTS and kURL](../intro-kots).
+For more information, see [Introduction to KOTS](../intro-kots).
 
 ### What do I have to do to enable KOTS installations for my application?
 
@@ -46,25 +46,25 @@ Enabling KOTS installations requires that the Replicated KOTS entitlement is ass
 
 Teams with the KOTS entitlement can create KOTS-enabled releases by configuring the custom resources required by KOTS to install the application. For a checklist of the required and optional custom resources for KOTS, see [Onboarding with KOTS](/vendor/distributing-workflow).
 
-### How do KOTS installations work?
+### How do KOTS installations in existing clusters work?
 
 Enterprise users installing an application with KOTS first run the `kubectl kots install` command to install KOTS in the target cluster. KOTS deploys the Admin Console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
 For detailed installation steps, see [Installing in Existing Clusters](/enterprise/installing-existing-cluster).
 
-### How do embedded cluster installations work?
+### How do KOTS installations on VMs or bare metal servers work?
 
-In embedded cluster installations, users run an installation command to provision a cluster on a VM or bare metal server. Embedded clusters can be provisioned with Replicated Embedded Cluster or with Replicated kURL.
+In installations on VMs or bare metal servers, users run an installation command that provisions a cluster on a VM or bare metal server. Clusters can be provisioned with Replicated Embedded Cluster or with Replicated kURL.
 
-KOTS deploys the Admin Console, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
+KOTS then deploys the Admin Console in the cluster, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
 
-For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
+For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
-### What's the difference between embedded cluster and kURL?
+### What's the difference between Replicated Embedded Cluster and kURL?
 
-Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL, the embedded cluster feature offers significantly faster installation, updates, and node joins, a redesigned Admin Console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
+Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster feature offers significantly faster installation, updates, and node joins, a redesigned Admin Console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
 
-For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
+For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
 ### Can I use my own branding for KOTS installations?
 
