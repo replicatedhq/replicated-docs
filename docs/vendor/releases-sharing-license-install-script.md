@@ -1,12 +1,12 @@
-# Getting the KOTS and kURL Installation Commands
+# Finding Installation Commands for a Release
 
-This topic describes how to get the Replicated KOTS and Replicated kURL installation commands for releases in the Replicated Vendor Portal.
+This topic describes where to find the installation commands for releases in the Replicated Vendor Portal.
 
 For information about getting installation commands with the Replicated CLI, see [channel inspect](/reference/replicated-cli-channel-inspect). For information about getting installation commands with the Vendor API v3, see [Get install commands for a specific channel release](https://replicated-vendor-api.readme.io/reference/getchannelreleaseinstallcommands) in the Vendor API v3 documentation.
 
-## Get Installation Commands for the Latest Release
+## Installation Commands for the Latest Release
 
-Every channel in the Vendor Portal includes an **Install** section that lists the installation commands for the latest release promoted to the channel. This includes commands for installing in existing clusters and in embedded clusters with kURL.
+Every channel in the Vendor Portal includes an **Install** section that lists the installation commands for the latest release promoted to the channel.
 
 In most cases, first time installations should use the commands in the **Install** section to install the latest release version. It is also possible to install a specific release by providing a version label with the installation command. For more information, see [Get Installation Commands for a Specific Release](#specific-release) below.
 
@@ -14,13 +14,15 @@ To get the installation commands for the latest release promoted to a channel:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Channels** page.
 
-1. For the target channel, under **Install**, click either **KOTS Install** (for existing cluster installations) or **Embedded Cluster** (for embedded cluster installations with kURL) to view the desired installation command.
+1. For the target channel, under **Install**, click one of the tabs:
+     * **KOTS Install**: Installations with KOTS in an existing cluster.
+     * **Embedded Kubernetes**: Installations with Embedded Cluster or kURL on a VM or bare metal server.
+     * **Helm Install**: Installations with the Helm CLI.
 
     <img alt="Install section of the channel card" src="/images/channel-card-install.png" width="400px"/>
-
     [View a larger version of this image](/images/channel-card-install.png)
    
-## Get Installation Commands for a Specific Release {#specific-release}
+## Installation Commands for a Specific Release {#specific-release}
 
 It is possible to install a specific release version by providing a version label with the installation command. A customer might need to install a specific release if, for example, the latest version is not compatible with their installation environment. Additionally, software vendors might need to install a certain version for the purpose of troubleshooting or testing.
 
@@ -39,3 +41,13 @@ To get the command for a specific release version:
      <img alt="Existing Cluster KOTS install Command" src="/images/existing-cluster-command.png" width="500px"/>
 
      [View a larger version of this image](/images/existing-cluster-command.png)
+
+## Helm or Embedded Cluster Installation Instructions     
+
+Installation instructions for the Helm CLI and Replicated Embedded Cluster are customer-specific. You can find installation instructions on the page for the target customer.
+
+To get customer-specific Helm or Embedded Cluster installation instructions:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Customers** page and click on the target customer.
+
+1. At the top of the page, click the **Install instructions** drop down, then click **Helm** or **Embedded cluster**. 

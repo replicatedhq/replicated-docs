@@ -1,0 +1,67 @@
+# Managing Nodes in Embedded Clusters
+
+The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes.
+
+## Add Nodes (Alpha)
+
+You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
+
+For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+
+To add nodes to a cluster:
+
+1. In the Admin Console, click **Cluster Management** at the top.
+
+     When initially installing the application, you are brought to this page automatically after logging into the Admin Console.
+
+1. Click **Add node**.
+
+1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
+
+     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+
+     [View a larger version of this image](/images/admin-console-add-node.png)
+
+1. Copy the provided join command.
+
+     **Example:**
+
+     ```
+     sudo ./APP_SLUG join 10.128.0.43:30000 bM8DO3MNvkouz9TFK3TcFanI
+     ```
+
+
+1. SSH onto the machine you want to join to the cluster. Ensure that the Embedded Cluster binary is available on that node. For more information on downloading the Embedded Cluster binary, see Installing.
+
+     :::important
+     You must join nodes with the same installer that you used for the first node. If you use a different installer from a different release of your application, the cluster will not be stable.
+     :::
+
+1. Run the copied join command using the Embedded Cluster binary.
+
+1. Check the **Cluster Management** page in the Admin Console to see the node appear and wait for the status to change to Ready.
+
+1. Repeat the process for as many nodes as you would like to add.
+
+
+## Reset a Node
+
+Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
+
+If you want to completely remove a cluster, you need to reset each node individually.
+
+When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
+
+To reset the node of a cluster:
+
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine. For more information on downloading the Embedded Cluster binary, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+
+1. Run the reset command to reset the node. The `--reboot` flag automatically reboots the machine to ensure that transient configuration is also reset.
+
+     ```
+     sudo ./APP_SLUG reset --reboot
+     ```
+
+     :::note
+     Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
+     :::

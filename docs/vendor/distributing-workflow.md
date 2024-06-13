@@ -1,8 +1,8 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
-# Onboarding with KOTS
+# How To Package KOTS Releases
 
-This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
+This topic describes how to create a release that includes the manifests that enable it to be installed with Replicated KOTS.
 
 ## Prerequisites
 
@@ -21,9 +21,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
 
 ## Add Custom Resources
 
-You can add custom resources to your releases to support installations with KOTS. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add as well as information about how to add and test custom resources.
-
-### How to Add Custom Resources
+You can add custom resources to your releases to support installations with KOTS. The custom resources are consumed by KOTS and are not deployed to the cluster.
 
 Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. You can add these custom resources to releases in any order that you prefer.
 
@@ -34,7 +32,7 @@ For more information about creating releases, see [Managing Releases with the Ve
 This section lists the required and recommended custom resources to add to your releases to enable KOTS installations for your application. The custom resources are grouped in the following categories:
 
 * [KOTS Admin Console](#admin-console)
-* [Helm Chart Installations](#helm-chart-installations)
+* [Helm Charts](#helm-chart-installations)
 * [Embedded Kubernetes](#embedded-kubernetes)
 
 #### KOTS Admin Console {#admin-console}
@@ -84,7 +82,7 @@ The following custom resources can be added to customize the Admin Console exper
   </tr>
 </table>
 
-#### Helm Chart Installations
+#### Helm Charts
 
 The HelmChart custom resource is required to install Helm charts with KOTS.
 
@@ -103,9 +101,7 @@ The HelmChart custom resource is required to install Helm charts with KOTS.
 
 #### Embedded Kubernetes
 
-The following custom resources can be added to embed Kubernetes with your application to support KOTS installations in VMs or bare metal servers.
-
-You can choose to use either Replicated Embedded Cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
+The following custom resources can be added to embed Kubernetes with your application to support KOTS installations in VMs or bare metal servers. You can choose to use either Replicated Embedded Cluster or Replicated kURL to embed Kubernetes with your application. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
 
 <table>
   <tr>
@@ -125,12 +121,12 @@ You can choose to use either Replicated Embedded Cluster or Replicated kURL to e
   </tr>
 </table>
 
-## Distribute the SDK with your Application
+## Add the Replicated SDK
 
 <SDKOverview/>
 
-## Configure Additional Replicated Features
+## Next Step: Configure Additional Replicated Features
 
-Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform.
+Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated Platform.
 
 For example, you can add custom domains for the Replicated registry and app service, configure checks in your application for custom license entitlements, collect custom metrics using the Replicated SDK API, and more.

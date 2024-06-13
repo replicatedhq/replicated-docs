@@ -155,6 +155,7 @@ const sidebars = {
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
+        'vendor/releases-sharing-license-install-script',
         'reference/linter',
       ],
     },
@@ -213,6 +214,7 @@ const sidebars = {
                   label: 'Embedded Cluster (Beta)',
                   items: [
                     'vendor/embedded-overview',
+                    'vendor/embedded-configuring',
                     'reference/embedded-config',
                   ],
                 },
@@ -318,9 +320,8 @@ const sidebars = {
         },   
         {
           type: 'category',
-          label: 'Downloading Assets and Getting Commands for KOTS Releases',
+          label: 'Downloading and Sharing Assets for KOTS Releases',
           items: [
-            'vendor/releases-sharing-license-install-script',
             'vendor/releases-download-airgap-bundles',
             'vendor/embedded-download-binary',
             'vendor/releases-share-download-portal',

@@ -15,20 +15,7 @@ Embedded cluster is in beta. If you are instead looking for information about cr
 
 <KurlComparison/>
 
-### Requirements
-
-Embedded cluster has the following requirements:
-
-* Linux operating system
-* x86-64 architecture
-* systemd
-* Embedded cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
-
-### Limitations and Known Issues
-
-This section lists the limitations and known issues for Embedded Cluster.
-
-#### Limitations
+## Limitations
 
 Embedded cluster has the following limitations:
 
@@ -42,13 +29,13 @@ Embedded cluster has the following limitations:
 
 * **Cannot install behind a proxy**: Embedded Cluster cannot yet be configured to use a proxy.
 
-#### Known Issues
+## Known Issues
 
 The following known issues exist:
 
 * When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
 
-### kURL Feature Parity
+## kURL Feature Parity
 
 The following features that are available in kURL are not yet available in Embedded Cluster. Unless otherwise noted, some of these features might not be available at GA:
 
@@ -63,85 +50,3 @@ The following features that are available in kURL are not yet available in Embed
 :::note
 If you require any of these features to use Embedded Cluster, reach out to Alex Parker at alexp@replicated.com.
 :::
-
-## Quick Start
-
-You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
-
-1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
-
-1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
-
-     Example Embedded Cluster config:
-
-     ```yaml
-     apiVersion: embeddedcluster.replicated.com/v1beta1
-     kind: Config
-     spec:
-       version: 1.3.0+k8s-1.29
-     ```
-
-1. Save the release and promote it to the channel your customer is assigned to.
-
-1. Return to the customer page where you enabled Embedded Cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
-
-     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
-
-     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
- 
-1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
-
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
-
-     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
-
-1. Enter an Admin Console password when prompted.
-
-     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
-
-## Configure Embedded Cluster
-
-To install your application with Embedded Cluster, an Embedded Cluster config must be created in a release. The Embedded Cluster config lets you define several characteristics about the cluster that will be created.
-
-For more information, see [Embedded Cluster Config](/reference/embedded-config).
-
-### Troubleshoot
-
-From the shell, you can generate a support bundle for the Embedded Cluster to help with troubleshooting.
-
-The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations.
-
-If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
-
-To generate a support bundle:
-
-1. Access the Embedded Cluster shell:
-     ```
-     sudo ./APP_SLUG shell
-     ```
-
-2. Generate the support bundle:
-     ```
-     kubectl support-bundle /var/lib/embedded-cluster/support/host-support-bundle.yaml --load-cluster-specs
-     ```
-
-You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
-
-## Additional Use Cases
-
-This section outlines some additional use cases for Embedded Cluster. These are not officially supported features from Replicated, but are ways of using Embedded Cluster that we or our customers have experimented with that might be useful to you.
-
-### NVIDIA GPU Operator
-
-The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the Embedded Cluster Helm extensions. For information about Helm extensions, see [Helm extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
-
-Using this operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
-
-```yaml
-toolkit:
-   env:
-   - name: CONTAINERD_CONFIG
-     value: /etc/k0s/containerd.d/nvidia.toml
-   - name: CONTAINERD_SOCKET
-     value: /run/k0s/containerd.sock
-```     

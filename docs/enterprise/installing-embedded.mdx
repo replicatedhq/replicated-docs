@@ -1,0 +1,28 @@
+# Online Installation with Embedded Cluster
+
+This topic describes how to install with Replicated Embedded Cluster in an online (internet-connected) environment.
+
+## Prerequisites
+
+* Download the Embedded Cluster binary and your license
+
+## Install
+
+To install an application with Embedded Cluster:
+
+1. SSH onto the machine where you will install the application.
+
+1. Ensure that the Embedded Cluster binary and the license are available in the working directory.
+
+1. Install the application:
+
+    ```
+    sudo ./APP_SLUG install --license LICENSE_FILE
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application.
+    * `LICENSE_FILE` is the customer's license.
+
+1. Enter an Admin Console password when prompted.
+
+    The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
