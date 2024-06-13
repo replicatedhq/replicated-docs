@@ -358,13 +358,7 @@ const sidebars = {
                 type: 'category',
                 label: 'Installing on VMs or Bare Metal',
                 items: [
-                  {
-                    type: 'category',
-                    label: 'Installing with Embedded Cluster (Beta)',
-                    items: [
-                      'enterprise/installing-embedded',
-                    ],
-                  },
+                  'enterprise/installing-embedded',
                   {
                     type: 'category',
                     label: 'Installing with kURL',

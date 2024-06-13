@@ -1,5 +1,6 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
+import EmbeddedClusterReqs from "../partials/embedded-cluster/_requirements.mdx"
 
 # Installation Requirements
 
@@ -251,12 +252,7 @@ After manually creating these RBAC resources, the user must include both the `--
 
 ## Embedded Cluster Requirements {#embedded-requirements}
 
-Replicated Embedded Cluster has the following requirements:
-
-* Linux operating system
-* x86-64 architecture
-* systemd
-* Embedded cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
+<EmbeddedClusterReqs/>
 
 ## kURL Requirements {#kurl-requirements}
 
