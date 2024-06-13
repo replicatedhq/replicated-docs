@@ -217,7 +217,7 @@ Where:
 
 For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
 
-The following is the default list of addresses that are not proxied:
+The following are never proxied:
 * Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
 * Communiation to the KOTS database (`kotsadm-rqlite`)
 * The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
