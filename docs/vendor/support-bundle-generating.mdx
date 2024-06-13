@@ -1,26 +1,31 @@
 import InstallPlugin from "../partials/support-bundles/_install-plugin.mdx"
 import GenerateBundle from "../partials/support-bundles/_generate-bundle.mdx"
+import GenerateBundleDefaultKots from "../partials/support-bundles/_generate-bundle-default-kots.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-embedded-cluster.mdx"
 import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
-
+import GenerateBundleAdminConsole from "../partials/support-bundles/_generate-bundle-admin-console.mdx"
 
 # Generating Support Bundles
 
-This topic describes how to use the support-bundle kubectl CLI plugin to generate support bundles.
+This topic describes how to generate support bundles. It includes procedures for Helm installations and KOTS installations.
 
-For KOTS installations, users can also generate support bundles from the KOTS Admin Console. For more information, see [Generating Support Bundles for KOTS Installations](https://docs.replicated.com/enterprise/troubleshooting-an-app).
+## Generate a Bundle Using the CLI
 
-## Prerequisite
+### Prerequisite: Install the Plugin
 
 <InstallPlugin/>
 
-## Generate a Bundle
+### Generate a Bundle
 
 <GenerateBundle/>
 
-## Generate a Bundle when a Helm Installation Fails
+### Generate a Bundle with a Default Spec
 
-If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a Replicated default specification to generate the support bundle.
+Replicated provides default support bundle specifications that you can use to generate support bundles when an installation fails or when the application does not include a support bundles spec.
+
+#### Default Spec for Helm Installations
+
+If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a default specification to generate the support bundle.
 
 Run the following command:
 
@@ -28,10 +33,18 @@ Run the following command:
 kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
 ```
 
-## Generate a Bundle for Embedded Cluster
+#### KOTS Default Spec (KOTS Only)
+
+<GenerateBundleDefaultKots/>
+
+### Generate a Bundle for Embedded Cluster (KOTS Only)
 
 <EmbeddedClusterSupportBundle/>
 
-## Generate a Host Support Bundle for kURL
+### Generate a Host Support Bundle for kURL (KOTS Only)
 
 <GenerateBundleHost/>
+
+## Generate a Bundle from the Admin Console (KOTS Only)
+
+<GenerateBundleAdminConsole/>
