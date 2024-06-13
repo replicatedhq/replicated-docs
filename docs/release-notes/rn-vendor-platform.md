@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.13-0
+
+Released on June 13, 2024
+
+### New Features {#new-features-v2024-06-13-0}
+* Adds a direct link to the **License Fields** page from the **Manage Customer** and **Create New Customer** pages if the user has no custom license fields configured under the "Custom fields" section.
+
 ## v2024.06.12-0
 
 Released on June 12, 2024
