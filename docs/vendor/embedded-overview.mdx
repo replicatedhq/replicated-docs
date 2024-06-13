@@ -135,6 +135,14 @@ To download the binary using the Replicated app service:
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
+If you need to download the binary for a particular version of your application, you can add `/VERSION_LABEL` to the end of the `curl` command in the screenshot above.
+
+Example:
+
+```
+curl https://replicated.app/embedded/gitea-mastodon/unstable/1.2.3
+```
+
      :::note
      You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
      :::
