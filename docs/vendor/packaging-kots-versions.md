@@ -4,7 +4,7 @@ This topic describes how to set minimum and target version for Replicated KOTS i
 
 ## Limitation
 
-Setting minimum and target versions for KOTS is not supported for [Replicated Embedded Cluster](/vendor/embedded-overview). This is because the version of KOTS is defined in the Embedded Cluster config. For more information, see [Embedded Cluster Config](/reference/embedded-cluster-config).
+Setting minimum and target versions for KOTS is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview). This is because the version of KOTS is defined in the Embedded Cluster config. For more information, see [Embedded Cluster Config](/reference/embedded-cluster-config).
 
 ## Using Minimum KOTS Versions (Beta)
 
