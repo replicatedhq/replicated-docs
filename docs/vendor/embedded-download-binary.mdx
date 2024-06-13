@@ -45,3 +45,19 @@ To serve the binary with the Vendor API:
      * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
 
      * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+
+## Download the Binary for a Specific Version
+
+To download the binary for a particular application release version, specify the target version label to the end of the `curl` command:
+
+```
+curl https://replicated.app/embedded/gitea-mastodon/unstable/VERSION_LABEL
+```
+
+Where `VERSION_LABEL` is the version of the target release.
+
+**Example:**
+
+```
+curl https://replicated.app/embedded/gitea-mastodon/unstable/1.2.3
+```
