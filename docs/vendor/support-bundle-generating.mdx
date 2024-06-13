@@ -1,18 +1,20 @@
 import InstallPlugin from "../partials/support-bundles/_install-plugin.mdx"
 import GenerateBundle from "../partials/support-bundles/_generate-bundle.mdx"
+import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-embedded-cluster.mdx"
+import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
 
 
 # Generating Support Bundles
 
 This topic describes how to use the support-bundle kubectl CLI plugin to generate support bundles.
 
-For KOTS installations, users can also generate support bundles from the KOTS Admin Console. For more information, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app) in the KOTS documentation.
+For KOTS installations, users can also generate support bundles from the KOTS Admin Console. For more information, see [Generating Support Bundles for KOTS Installations](https://docs.replicated.com/enterprise/troubleshooting-an-app).
 
 ## Prerequisite
 
 <InstallPlugin/>
 
-## Generate a Bundle from the CLI
+## Generate a Bundle
 
 <GenerateBundle/>
 
@@ -25,3 +27,11 @@ Run the following command:
 ```
 kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
 ```
+
+## Generate a Bundle for Embedded Cluster
+
+<EmbeddedClusterSupportBundle/>
+
+## Generate a Host Support Bundle for kURL
+
+<GenerateBundleHost/>

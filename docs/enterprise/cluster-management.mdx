@@ -1,6 +1,8 @@
-# Managing Nodes in Embedded Clusters
+import AccessCluster from "../partials/embedded-cluster/_access-cluster.mdx"
 
-The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes.
+# Managing Embedded Clusters
+
+The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes. For information about adding nodes to kURL clusters, see [Adding Nodes to kURL Clusters](/enterprise/cluster-management-add-nodes).
 
 ## Add Nodes (Alpha)
 
@@ -65,3 +67,7 @@ To reset the node of a cluster:
      :::note
      Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
      :::
+
+## Access the Cluster with the CLI
+
+<AccessCluster/>

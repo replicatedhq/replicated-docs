@@ -1,0 +1,20 @@
+From the shell, you can generate a support bundle for the Embedded Cluster to help with troubleshooting.
+
+The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations.
+
+If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
+
+To generate a support bundle:
+
+1. Access the Embedded Cluster shell:
+
+   ```bash
+   sudo ./APP_SLUG shell
+   ```
+   Where `APP_SLUG` is the unique slug for the application.
+
+2. Generate the support bundle:
+
+   ```bash
+   kubectl support-bundle /var/lib/embedded-cluster/support/host-support-bundle.yaml --load-cluster-specs
+   ```
