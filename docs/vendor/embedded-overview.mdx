@@ -40,8 +40,6 @@ Embedded cluster has the following limitations:
 
 * **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
-* **Cannot install behind a proxy**: Embedded Cluster cannot yet be configured to use a proxy.
-
 #### Known Issues
 
 The following known issues exist:
@@ -186,6 +184,55 @@ To install your application in an embedded cluster:
 1. Enter an Admin Console password when prompted.
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+
+### Install Behind a Proxy Server
+
+The following flags can be used with the Embedded Cluster `install` command to install behind a proxy server:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--http-proxy`</td>
+     <td>Proxy server to use for HTTP</td>
+  </tr>
+  <tr>
+     <td>`--https-proxy`</td>
+     <td>Proxy server to use for HTTPS</td>
+  </tr>
+  <tr>
+     <td>`--no-proxy`</td>
+     <td>Comma-separated list of hosts for which not to use a proxy</td>
+  </tr>
+</table>
+
+**Example:**
+
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE \
+--http-proxy=HOST:PORT \
+--https-proxy=HOST:PORT \
+--no-proxy=LIST_OF_HOSTS
+```
+
+Where:
+
+* LICENSE_FILE is the customer's license
+* HOST:PORT is the host and port of the proxy server
+* LIST_OF_HOSTS is the list of hosts to not proxy
+
+For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+
+The following are never proxied:
+* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
+* Communiation to the KOTS database (`kotsadm-rqlite`)
+* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
+
+**Limitations:**
+* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
+* Proxy settings cannot be changed after installation or during upgrade.
 
 
 ## Update
