@@ -1,5 +1,5 @@
 :::note
-KOTS does not automatically create port forwards for installations in embedded clusters provisioned by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated. Instead, kURL creates a NodePort service to make the Admin Console accessible on port `8800` on the node. 
+KOTS does not automatically create port forwards for installations in clusters provisioned with Replicated Embedded Cluster or Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated. Instead, Embedded Cluster or kURL creates a NodePort service to make the Admin Console accessible on port `8800` on the node. 
 
 To expose additional ports on the node, you can create additional NodePort services and then add the corresponding ports to the `ports` key. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
 :::
