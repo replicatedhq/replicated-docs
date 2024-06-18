@@ -218,12 +218,12 @@ const sidebars = {
                     'vendor/kurl-about',
                     'vendor/packaging-embedded-kubernetes',
                     'vendor/packaging-installer-storage',
-                    'vendor/kurl-nodeport-services',
                     'vendor/preflight-host-preflights',
                     'vendor/installer-history',
                     'vendor/packaging-using-tls-certs',
                   ],
                 },
+                'vendor/kurl-nodeport-services',
               ],
             },
             {
