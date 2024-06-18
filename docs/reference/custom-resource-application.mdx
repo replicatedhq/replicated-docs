@@ -393,7 +393,7 @@ spec:
   </tr>    
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No. Setting <code>targetKotsVersion</code> to a version later than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail. To avoid potential failures, do not use <code>targetKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
+    <td>No. Setting <code>targetKotsVersion</code> to a version earlier than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: <code>Error: This version of App Name requires a different version of KOTS from what you currently have installed.</code>. To avoid installation failures, do not use <code>targetKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
   </tr>
 </table>
 
@@ -414,6 +414,6 @@ spec:
   </tr>  
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No. Setting <code>minKotsVersion</code> to a version earlier than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail. To avoid potential failures, do not use <code>minKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
+    <td>No. Setting <code>minKotsVersion</code> to a version later than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: <code>Error: This version of App Name requires a different version of KOTS from what you currently have installed.</code>. To avoid installation failures, do not use <code>minKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
   </tr>  
 </table>
