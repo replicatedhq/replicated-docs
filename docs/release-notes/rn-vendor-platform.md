@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.17-1
+
+Released on June 17, 2024
+
+### New Features {#new-features-v2024-06-17-1}
+* Replicated SDK support bundles details are now visible in Troubleshoot.
+
 ## v2024.06.13-0
 
 Released on June 13, 2024
