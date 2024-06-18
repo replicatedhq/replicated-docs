@@ -32,29 +32,11 @@ Embedded cluster has the following limitations:
 
 * **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
-* **Cannot install behind a proxy**: Embedded Cluster cannot yet be configured to use a proxy.
-
 ## Known Issues
 
 The following known issues exist:
 
 * When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
-
-## kURL Feature Parity
-
-The following features that are available in kURL are not yet available in Embedded Cluster. Unless otherwise noted, some of these features might not be available at GA:
-
-* **Backup and restore with Velero**: Velero is not yet installed as part of Embedded Cluster, so backup and restore is unavailable.
-
-* **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
-
-* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of Embedded Cluster. No default graphs show on the Admin Console dashboard, and you cannot create custom graphs.
-
-* **Access the Admin Console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not available for Embedded Cluster installations.
-
-:::note
-If you require any of these features to use Embedded Cluster, reach out to Alex Parker at alexp@replicated.com.
-:::
 
 ## Related Topics
 

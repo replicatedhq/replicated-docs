@@ -3,14 +3,17 @@ import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 # Downloading Air Gap Bundles
 
 This topic describes how to download air gap bundles for your application, the Replicated KOTS admin console, and the Replicated kURL installer.
+
 ## Overview
 
 _Air gap bundles_ are required to install applications in air gap environments with Replicated KOTS. Air gap bundles include the images needed to install and run applications in an environment that has no outbound internet access.
 
-Air gap installations with KOTS require an air gap bundle with the application assets, as well as an air gap bundle for the KOTS or kURL installer depending on the installation method. The following describes the contents of each type of air gap bundle:
+Air gap installations with KOTS require an air gap bundle with the application assets, as well as an air gap bundle for the installer (KOTS or kURL).
+
+The following describes each type of air gap bundle:
 * **`.airgap`**: Assets for a specific release of the application, such as Kubernetes YAML files and Docker images.
 * **`kotsadm.tar.gz`**: Container images for the Replicated KOTS admin console. Required for existing cluster installations in air gap environments.
-* **kURL `.tar.gz`**: Open source components to run the cluster, including the container runtime, Kubernetes, the KOTS admin console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). Required for embedded cluster installations with kURL in air gap environments. 
+* **kURL `.tar.gz`**: Open source components to run the cluster, including the container runtime, Kubernetes, the KOTS admin console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). Required for installations with kURL in air gap environments. 
 
 ## Build and Download the Application Bundle {#air-gap-bundle}
 
@@ -56,7 +59,7 @@ You can also download the `kotsadm.tar.gz` air gap bundle from the Replicated do
 
 ## Download the kURL Bundle {#installer-bundle}
 
-Air gap installations in embedded clusters created with kURL require the kURL `.tar.gz` air gap bundle, which includes the components needed to run the cluster and install the application with KOTS.
+Air gap installations with kURL require the kURL `.tar.gz` air gap bundle, which includes the components needed to run the cluster and install the application with KOTS.
 
 The kURL bundle is kept separate from the `.airgap` bundle for the following reasons:
 * The kURL bundle can get quite large, so this method lets you update your application with a smaller bundle size.
@@ -143,7 +146,7 @@ To download air gap bundles from the download portal:
 
 1. On the left side of the screen, select one of the following:
      * **Bring my own cluster**: View the air gap bundles for existing cluster installations.
-     * **Embedded cluster**: View the air gap bundles for embedded cluster installations with kURL.
+     * **Embedded cluster**: View the air gap bundles for kURL installations.
 
 1. Under **Select application version**, use the dropdown to select the target application release version. The download portal automatically makes the correct air gap bundles available for download based on the selected application version.
 

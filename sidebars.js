@@ -387,17 +387,17 @@ const sidebars = {
             type: 'category',
             label: 'Updating',
             items: [
-              'enterprise/updating-apps',
               'enterprise/updating-app-manager',
               'enterprise/updating-embedded',
               'enterprise/updating-kurl',
+              'enterprise/updating-apps',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
             ],
           },
           {
             type: 'category',
-            label: 'Cluster Management',
+            label: 'Managing Clusters',
             items: [
               'enterprise/cluster-management',
               'enterprise/cluster-management-add-nodes',

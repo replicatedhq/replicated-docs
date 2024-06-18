@@ -1,16 +1,59 @@
-# Updating KOTS
+import AdminConsole from "../partials/updating/_admin-console.mdx"
 
-This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [KOTS Release Notes](/release-notes/rn-app-manager).
+# Performing Updates in Existing Clusters
+
+This topics describes how to update application and Replicated KOTS in existing cluster installations.
+
+## Update the Application
+
+You can update an application using the Replicated Admin Console or the Replicated KOTS CLI.
+See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
+or [Update an Application with the KOTS CLI](#update-an-application-with-the-kots-cli) below.
+
+### Using the Admin Console
+
+<AdminConsole/>
+
+### Using the KOTS CLI
+
+The KOTS CLI can be used to install and deploy updates for both online and air gapped instances as well.
+
+#### Online Environments
+
+In order to download updates from the internet, the following command can be used:
+
+```bash
+kubectl kots upstream upgrade <app slug> -n <Admin Console namespace>
+```
+
+Adding the `--deploy` flag will also automatically deploy the latest version.
+
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+
+#### Air Gap Environments
+
+In order to install an update from an air gap file, the following command can be used:
+
+```bash
+kubectl kots upstream upgrade <app slug> \
+  --airgap-bundle new-app-release.airgap \
+  --kotsadm-registry <registry host>[/<registry namespace>] \
+  --registry-username <username> \
+  --registry-password <password> \
+  -n <Admin Console namespace>
+```
+
+Adding the `--deploy` flag will also automatically deploy this version.
+
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+
+## Update KOTS
+
+This section describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [KOTS Release Notes](/release-notes/rn-app-manager).
 
 :::note
 Downgrading KOTS to a version earlier than what is currently deployed is not supported.
 :::
-
-## Update KOTS in Existing Clusters
-
-Updating the version of KOTS in an existing cluster requires that you first install or update the Replicated KOTS CLI.
-
-You then run the KOTS CLI `admin-console upgrade` command to update KOTS to the same version of the KOTS CLI. For example, if you use version 1.97.0 of the KOTS CLI to run the `admin-console upgrade` command, then KOTS is updated to 1.97.0.
 
 ### Online Environments
 
@@ -88,16 +131,4 @@ To update KOTS in an existing air gap cluster:
     * `RO_PASSWORD` with the password associated with the username.
     * `NAMESPACE` with the namespace on your cluster where KOTS is installed.
 
-    For help information, run `kubectl kots admin-console upgrade -h`.
-
-## Update KOTS in Embedded Clusters
-
-When you update an application installed with Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the cluster on its own. The Embedded Cluster config defines the version of KOTS that is installed in the cluster.
-
-## Update KOTS in kURL Clusters
-
-To update the version of KOTS running in clusters created with Replicated kURL, rerun the kURL installation script. The installation script uses the specification provided by the application vendor to determine if any updates are required to the version of Kubernetes running in the cluster, or to any of the kURL add-ons that the vendor included.
-
-The version of the kURL KOTS add-on provided in the kURL Installer specification determines the version of KOTS installed in your cluster. For example, if the version of KOTS running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the kURL installer specification to use 1.92.1, then you can run the installation script to update the KOTS version in your cluster to 1.92.1.
-
-For information about how to rerun the installation script to update kURL clusters, see [Updating kURL Clusters](updating-kurl).
+    For help information, run `kubectl kots admin-console upgrade -h`. 

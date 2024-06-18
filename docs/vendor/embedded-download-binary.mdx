@@ -1,18 +1,24 @@
-# Downloading the Embedded Cluster Binary
+# Downloading the Embedded Cluster CLI Binary
 
-To install your application with Embedded Cluster, you need to download an Embedded Cluster binary and a license. The binary is specific to your application release: it installs that particular version of your application using the Embedded Cluster config defined in that release.
+This topic describes how to download the binary for the Embedded Cluster CLI, which is required to install an application with Replicated Embedded Cluster.
+
+## Overview
+
+To install an application with Embedded Cluster, you need to first install the Embedded Cluster CLI. The Embedded Cluster CLI binary is specific to the application; it installs that particular version of the application using the Embedded Cluster config defined in that release.
 
 Your customers can download the binary using the Replicated app service, or you can host/serve the binary yourself using the Replicated Vendor API.
 
-## Using the Replicated App Service
+Your customers must take this binary and their license and copy them to the machine where they will install your application.
 
-For online installations, your customers can run a command to download the Embedded Cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
+## Using the Command Line
+
+For online installations, you can run a command to download the Embedded Cluster binary and license directly to the machine. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
+
+### Download the Latest Version on the Channel
 
 To download the binary using the Replicated app service:
 
-1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
-
-1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
+1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the Embedded Cluster binary and install your application:
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
@@ -30,23 +36,7 @@ To download the binary using the Replicated app service:
      You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
      :::
 
-## Using the Vendor API
-
-Some vendors already have a portal that their customers log in to to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster binary yourself using the Replicated Vendor API.
-
-To serve the binary with the Vendor API:
-
-1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
-
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
-
-     Note the following:
-
-     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
-
-     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
-
-## Download the Binary for a Specific Version
+### Download a Specific Version
 
 To download the binary for a particular application release version, specify the target version label to the end of the `curl` command:
 
@@ -61,3 +51,19 @@ Where `VERSION_LABEL` is the version of the target release.
 ```
 curl https://replicated.app/embedded/gitea-mastodon/unstable/1.2.3
 ```
+
+## Using the Vendor API
+
+Some vendors already have a portal where customers can log in to to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster binary yourself using the Replicated Vendor API.
+
+To serve the binary with the Vendor API:
+
+1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster.
+
+     Note the following:
+
+     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
+
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
