@@ -148,7 +148,7 @@ spec:
   </tr>
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
+    <td>No. <code>allowRollback</code> is not supported because Embedded Cluster does not support rolling back or downgrading.</td>
   </tr>    
 </table>
 
@@ -220,7 +220,7 @@ spec:
   </tr>    
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
 </table>
 
@@ -245,7 +245,7 @@ spec:
   </tr>    
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
 </table>
 
@@ -301,6 +301,10 @@ spec:
     <th>Supports Go templates?</th>
     <td>Yes</td>
   </tr>    
+  <tr>
+    <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
+    <td>Yes</td>
+  </tr>
 </table>
 
 ## graphs
@@ -344,10 +348,6 @@ spec:
   <tr>	
     <th>Supports Go templates?</th>	
     <td>No</td>	
-  </tr>	
-  <tr>
-    <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
   </tr>
 </table>
 
@@ -381,7 +381,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p><p>Introduced in KOTS v1.62.0.</p></td>
+    <td><p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -393,7 +393,7 @@ spec:
   </tr>    
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
+    <td>No. Setting <code>targetKotsVersion</code> to a version later than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail. To avoid potential failures, do not use <code>targetKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
   </tr>
 </table>
 
@@ -402,7 +402,7 @@ spec:
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p><p>Introduced in KOTS v1.62.0.</p></td>
+    <td><p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p></td>
   </tr>
   <tr>
     <th>Example</th>
@@ -414,6 +414,6 @@ spec:
   </tr>  
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
+    <td>No. Setting <code>minKotsVersion</code> to a version earlier than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail. To avoid potential failures, do not use <code>minKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
   </tr>  
 </table>
