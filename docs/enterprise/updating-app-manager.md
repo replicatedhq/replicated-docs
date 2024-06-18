@@ -1,51 +1,63 @@
 import AdminConsole from "../partials/updating/_admin-console.mdx"
+import AdminConsoleAirGap from "../partials/updating/_admin-console-air-gap.mdx"
 
 # Performing Updates in Existing Clusters
 
-This topics describes how to update application and Replicated KOTS in existing cluster installations.
+This topic describes how to update applications and Replicated KOTS in existing cluster installations.
 
-## Update the Application
+## Update an Application Using the Admin Console
 
-You can update an application using the Replicated Admin Console or the Replicated KOTS CLI.
-See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
-or [Update an Application with the KOTS CLI](#update-an-application-with-the-kots-cli) below.
+You can perform an application update using the KOTS Admin Console or the KOTS CLI.
 
-### Using the Admin Console
+### Online Environments
 
 <AdminConsole/>
 
-### Using the KOTS CLI
+### Air Gap Environments
 
-The KOTS CLI can be used to install and deploy updates for both online and air gapped instances as well.
+<AdminConsoleAirGap/>
 
-#### Online Environments
+## Update an Application Using the KOTS CLI
 
-In order to download updates from the internet, the following command can be used:
+### Online Environments
+
+To update an application in online environments:
 
 ```bash
-kubectl kots upstream upgrade <app slug> -n <Admin Console namespace>
+kubectl kots upstream upgrade APP_SLUG -n ADMIN_CONSOLE_NAMESPACE
 ```
 
+:::note
 Adding the `--deploy` flag will also automatically deploy the latest version.
+:::
 
-The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+### Air Gap Environments
 
-#### Air Gap Environments
+To update an application in air gap environments:
 
-In order to install an update from an air gap file, the following command can be used:
+1. Get the new `.airgap` bundle for the target application release and ensure that it is available on your local machine.
 
-```bash
-kubectl kots upstream upgrade <app slug> \
-  --airgap-bundle new-app-release.airgap \
-  --kotsadm-registry <registry host>[/<registry namespace>] \
-  --registry-username <username> \
-  --registry-password <password> \
-  -n <Admin Console namespace>
-```
+1. Run the following command to update the application:
 
+    ```bash
+    kubectl kots upstream upgrade APP_SLUG \
+      --airgap-bundle NEW_AIRGAP_BUNDLE \
+      --kotsadm-registry REGISTRY_HOST[/REGISTRY_NAMESPACE] \
+      --registry-username USERNAME \
+      --registry-password PASSWORD \
+      -n ADMIN_CONSOLE_NAMESPACE
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application. See [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+    * `NEW_AIRGAP_BUNDLE` is the `.airgap` bundle for the target release.
+    * `REGISTRY_HOST` is the hostname for the registry where 
+    * `REGISTRY_NAMESPACE` is an optional field 
+    * `USERNAME`
+    * `PASSWORD`
+
+:::note
 Adding the `--deploy` flag will also automatically deploy this version.
-
-The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+:::
 
 ## Update KOTS
 

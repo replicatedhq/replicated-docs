@@ -1,10 +1,10 @@
 # Configuring Automatic Updates
 
-This topic describes how to configure automatic updates for application installed in online (internet-connected) environments with Replicated KOTS. The information in this topic applies to installations in existing clusters or in embedded clusters created with Replicated Embedded Cluster or Replicated kURL.
+This topic describes how to configure automatic updates for application installed in online (internet-connected) environments. The information in this topic applies to Replicated KOTS installations in existing clusters or in embedded clusters created with Replicated Embedded Cluster or Replicated kURL.
 
 ## Overview
 
-For applications installed in an online environment, the Replicated KOTS Admin Console automatically checks for new versions once every 4 hours by default. After the Admin Console
+For applications installed in an online environment, the Replicated KOTS Admin Console automatically checks for new versions once every four hours by default. After the Admin Console
 checks for updates, it downloads any new versions of the application and displays
 them on the **Version History** tab.
 
