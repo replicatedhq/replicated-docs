@@ -2,15 +2,15 @@ import AdminConsole from "../partials/updating/_admin-console.mdx"
 
 # Performing Updates in Embedded Clusters
 
-This topic describes how to perform updates for installations with Replicated Embedded Cluster.
+This topic describes how to perform updates for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
 
 ## Overview
 
 When you update an application installed with Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the cluster on its own.
 
-When you deploy a new version, any changes to your application are deployed first. The Admin Console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
+When you deploy a new version, any changes to the application are deployed first. The Admin Console waits until the application is ready (as indicated by status informers) before making any changes to the cluster. For more information about status informers, see [About Resource Status Informers](/vendor/admin-console-display-app-status).
 
-During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you are viewing the Admin Console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the Admin Console is available again:
+During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you are viewing the Admin Console when the downtime occurs, you will see a message that a cluster update is in progress and that the connection will resume after the Admin Console is available again:
 
 <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
 
