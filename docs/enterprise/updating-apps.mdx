@@ -1,0 +1,46 @@
+# Configuring Automatic Updates
+
+This topic describes how to configure automatic updates for application installed in online (internet-connected) environments. The information in this topic applies to Replicated KOTS installations in existing clusters or in embedded clusters created with Replicated Embedded Cluster or Replicated kURL.
+
+## Overview
+
+For applications installed in an online environment, the Replicated KOTS Admin Console automatically checks for new versions once every four hours by default. After the Admin Console
+checks for updates, it downloads any new versions of the application and displays
+them on the **Version History** tab.
+
+You can edit this default cadence to customize how often the Admin Console checks
+for and downloads new versions.
+
+You can also configure the Admin Console to automatically deploy new versions of
+the application after it downloads them. The Admin Console only deploys new versions
+automatically if preflight checks pass. By default, the Admin Console does not
+automatically deploy any version of an application.
+
+## Limitation
+
+You cannot configure automatic updates for applications installed in air gap
+environments with no outbound internet access.
+
+## Set Up Automatic Updates
+
+To configure automatic updates:
+
+1. In the Admin Console, go to the **Version History** tab and click **Configure automatic updates**.
+
+   The **Configure automatic updates** dialog opens.
+
+1. Under **Automatically check for updates**, use the default or select a cadence (Hourly, Daily, Weekly, Never, Custom) from the dropdown list. 
+
+   To turn off automatic updates, select **Never**. 
+   
+   To define a custom cadence, select **Custom**, then enter a cron expression in the text field. For more information about cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_. Configured automatic update checks use the local server time. 
+
+   ![Configure automatic updates](/images/automatic-updates-config.png)
+
+1. Under **Automatically deploy new versions**, select an option. The available options depend on whether semantic versioning is enabled for the channel.
+   * **For channels that use semantic versioning**: (v1.58.0 and later) Select an option in the dropdown
+   to specify the versions that the Admin Console automatically deploys. For example,
+   to automatically deploy only new patch and minor versions, select
+   **Automatically deploy new patch and minor versions**.
+   * **For channels that do not use semantic versioning**: (v1.67.0 and later) Optionally select **Enable automatic deployment**.
+   When this checkbox is enabled, the Admin Console automatically deploys each new version of the application that it downloads.

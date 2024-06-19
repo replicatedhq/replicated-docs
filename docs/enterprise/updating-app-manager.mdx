@@ -1,16 +1,71 @@
-# Updating KOTS
+import AdminConsole from "../partials/updating/_admin-console.mdx"
+import AdminConsoleAirGap from "../partials/updating/_admin-console-air-gap.mdx"
 
-This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [App Manager (KOTS) Release Notes](/release-notes/rn-app-manager).
+# Performing Updates in Existing Clusters
+
+This topic describes how to update applications and Replicated KOTS in existing cluster installations.
+
+## Update an Application Using the Admin Console
+
+You can perform an application update using the KOTS Admin Console or the KOTS CLI.
+
+### Online Environments
+
+<AdminConsole/>
+
+### Air Gap Environments
+
+<AdminConsoleAirGap/>
+
+## Update an Application Using the KOTS CLI
+
+### Online Environments
+
+To update an application in online environments:
+
+```bash
+kubectl kots upstream upgrade APP_SLUG -n ADMIN_CONSOLE_NAMESPACE
+```
+
+:::note
+Adding the `--deploy` flag will also automatically deploy the latest version.
+:::
+
+### Air Gap Environments
+
+To update an application in air gap environments:
+
+1. Get the new `.airgap` bundle for the target application release and ensure that it is available on your local machine.
+
+1. Run the following command to update the application:
+
+    ```bash
+    kubectl kots upstream upgrade APP_SLUG \
+      --airgap-bundle NEW_AIRGAP_BUNDLE \
+      --kotsadm-registry REGISTRY_HOST[/REGISTRY_NAMESPACE] \
+      --registry-username USERNAME \
+      --registry-password PASSWORD \
+      -n ADMIN_CONSOLE_NAMESPACE
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application. See [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+    * `NEW_AIRGAP_BUNDLE` is the `.airgap` bundle for the target release.
+    * `REGISTRY_HOST` is the hostname for the registry where 
+    * `REGISTRY_NAMESPACE` is an optional field 
+    * `USERNAME`
+    * `PASSWORD`
+
+:::note
+Adding the `--deploy` flag will also automatically deploy this version.
+:::
+
+## Update KOTS
+
+This section describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [KOTS Release Notes](/release-notes/rn-app-manager).
 
 :::note
 Downgrading KOTS to a version earlier than what is currently deployed is not supported.
 :::
-
-## Update KOTS in Existing Clusters
-
-Updating the version of KOTS in an existing cluster requires that you first install or update the Replicated KOTS CLI.
-
-You then run the KOTS CLI `admin-console upgrade` command to update KOTS to the same version of the KOTS CLI. For example, if you use version 1.97.0 of the KOTS CLI to run the `admin-console upgrade` command, then KOTS is updated to 1.97.0.
 
 ### Online Environments
 
@@ -88,12 +143,4 @@ To update KOTS in an existing air gap cluster:
     * `RO_PASSWORD` with the password associated with the username.
     * `NAMESPACE` with the namespace on your cluster where KOTS is installed.
 
-    For help information, run `kubectl kots admin-console upgrade -h`.
-
-## Update KOTS in kURL Clusters
-
-To update the version of KOTS running in clusters created with Replicated kURL, rerun the kURL installation script. The installation script uses the specification provided by the application vendor to determine if any updates are required to the version of Kubernetes running in the cluster, or to any of the kURL add-ons that the vendor included.
-
-The version of the kURL KOTS add-on provided in the kURL Installer specification determines the version of KOTS installed in your cluster. For example, if the version of KOTS running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the kURL installer specification to use 1.92.1, then you can run the installation script to update the KOTS version in your cluster to 1.92.1.
-
-For information about how to rerun the installation script to update kURL clusters, see [Updating kURL Clusters](updating-kurl).
+    For help information, run `kubectl kots admin-console upgrade -h`. 
