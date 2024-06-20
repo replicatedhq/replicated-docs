@@ -22,8 +22,8 @@ Released on June 20, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-109-13}
-* Pushes embedded cluster images to the registry during install time.
+### Improvements {#improvements-1-109-13}
+* 
 
 ## 1.109.12
 
