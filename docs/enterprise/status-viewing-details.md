@@ -9,13 +9,9 @@ This topic describes how to view the status of an application on the Replicated 
 
 The application status displays on the dashboard of the Admin Console. Viewing the status details can be helpful for troubleshooting.
 
-There are two ways to view the status details, depending on your Admin Console version:
+To view the status details, click **Details** next to the status on the dashboard.
 
-- (Version 1.51.0 and later) Click **Details** next to the status on the dashboard. For information about how to update the Admin Console to view the Details link, see [Updating KOTS](updating-app-manager).
-
-  ![Status Details](/images/kotsadm-dashboard-appstatus.png)
-
-- (Version 1.50.2 and earlier) Review the diagnostic information in `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Generating Support Bundles](troubleshooting-an-app).
+![Status Details](/images/kotsadm-dashboard-appstatus.png)
 
 ## About Application Status
 
