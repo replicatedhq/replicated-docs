@@ -54,7 +54,7 @@ Embedded Cluster has the following limitations:
 
 * **Support bundles over 100MB**: Support bundles are stored in rqlite. Bundles over 100MB could cause rqlite to crash, causing errors in the installation.
 
-* **KOTS KubernetesVersion template function not supported**: The [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion) template function does not provide accurate Kubernetes version information for Embedded Cluster installations. This is because the KubernetesVersion template function is rendered during deployment, before any necessary Kubernetes updates are completed. Vendors can know the version of Kubernetes that is deployed in a cluster based on the version of Kubernetes that is included in the version of Embedded Cluster. 
+* **KOTS `KubernetesVersion` template function not supported**: The [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion) template function does not provide accurate Kubernetes version information for Embedded Cluster installations. This is because the `KubernetesVersion` template function is rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
 * **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
