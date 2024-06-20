@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.20-0
+
+Released on June 20, 2024
+
+### New Features {#new-features-v2024-06-20-0}
+* Adds the ability to pull public images through the proxy registry without credentials using the prefix `proxy.replicated.com/anon`. For example `docker pull proxy.replicated.com/anon/docker.io/library/mysql:latest`.
+
 ## v2024.06.17-1
 
 Released on June 17, 2024
