@@ -23,7 +23,7 @@ Released on June 20, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-109-13}
-* 
+* Changes to support Embedded Cluster.
 
 ## 1.109.12
 
