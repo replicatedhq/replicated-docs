@@ -22,43 +22,41 @@ Embedded cluster has the following requirements:
 * Linux operating system
 * x86-64 architecture
 * systemd
-* Embedded cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
+* Embedded Cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
 
 ### Limitations
 
-Embedded cluster has the following limitations:
+Embedded Cluster has the following limitations:
 
-* **Multi-node support is alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta.
+* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta.
 
 * **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
 
 * **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature.
 
-* **Monitoring applications with Prometheus not supported**: Embedded Cluster installations do not include Prometheus and therefore do not display graphs on the Admin Console dashboard for the purpose of monitoring the instance. For more information about monitoring applications with Prometheus in existing cluster or kURL installations, see [Monitoring Applications](/enterprise/monitoring-applications).
+* **Monitoring applications with Prometheus not supported**: Embedded Cluster installations do not include Prometheus to collect instance and cluster metrics. Embedded Cluster installations also do not display graphs on the Admin Console dashboard for monitoring the instance, nor support adding custom graphs to the Admin Console dashboard using the KOTS Application custom resource [`graphs`](/reference/custom-resource-application#graphs) field. For more information about monitoring applications with Prometheus in existing cluster or kURL installations, see [Monitoring Applications](/enterprise/monitoring-applications).
 
 * **Backup and restore with snapshots is not supported**: Embedded Cluster installations do not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
 
-* **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
+* **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
 
-* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
+* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
-* **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness).
+* **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
-* **Automated installations with the KOTS CLI not supported**: Users cannot do automated (headless) Embedded Cluster installations using the KOTS CLI because it is not possible to configure the application by passing the ConfigValues file with the installation command. Embedded Cluster installations require that the application is configured from the Admin Console config screen. For more information about automating existing cluster or kURL installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+* **Automated installations with the KOTS CLI not supported**: Users cannot do automated (headless) Embedded Cluster installations using the KOTS CLI because it is not possible to configure the application by passing the [ConfigValues](/vendor/releases-configvalues) file with the installation command. Embedded Cluster installations require that the application is configured from the Admin Console config screen. For more information about automating existing cluster or kURL installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
-* **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting targetKotsVersion or minKotsVersion to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
+* **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
 
-* **Support bundles over 100mb**: Support bundles are stored in rqlite. Bundles over 100mb could cause rqlite to crash, causing errors in the installation.
+* **Support bundles over 100MB**: Support bundles are stored in rqlite. Bundles over 100MB could cause rqlite to crash, causing errors in the installation.
 
-* **KOTS KubernetesVersion template function not supported**: The [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion) template function does not provide accurate Kubernetes version information for Embedded Cluster installations. This is because template functions are rendered during deployment, before any necessary Kubernetes updates are completed. Vendors can know the version of Kubernetes that is deployed in a cluster based on the version of Kubernetes that is included in the corresponding Embedded Cluster config. 
+* **KOTS KubernetesVersion template function not supported**: The [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion) template function does not provide accurate Kubernetes version information for Embedded Cluster installations. This is because the KubernetesVersion template function is rendered during deployment, before any necessary Kubernetes updates are completed. Vendors can know the version of Kubernetes that is deployed in a cluster based on the version of Kubernetes that is included in the version of Embedded Cluster. 
 
 * **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
-### Known Issues
+### Known Issue
 
-The following known issues exist:
-
-* When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
+When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
 
 ### kURL Feature Parity
 
