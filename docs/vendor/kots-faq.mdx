@@ -1,4 +1,5 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
+import EmbeddedKubernetes from "../partials/kots/_embedded-kubernetes-definition.mdx"
 
 # KOTS Terminology and FAQs
 
@@ -12,7 +13,7 @@ _Air gap_ refers to customer environments that do not have outbound internet acc
 
 ### Embedded Kubernetes
 
-_Embedded Kubernetes_ refers to distributing Kubernetes alongside your application in order to support KOTS installations on VMs or bare metal servers. During installation, a cluster is provisioned in the customer environment where KOTS and the application are then deployed. Embedding Kubernetes with your application benefits enterprise users that do not have an existing cluster, do not have experience with Kubernetes, or otherwise prefer to install on a VM or bare metal server.
+<EmbeddedKubernetes/>
 
 Both the Replicated Embedded Cluster and Replicated kURL installers can be used to embed Kubernetes with your application. For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
