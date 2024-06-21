@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.23
+
+Released on June 21, 2024
+
+### New Features {#new-features-1-0-0-beta-23}
+* Supports upserting and deleting custom metrics.
+
 ## 1.0.0-beta.22
 
 Released on June 12, 2024
