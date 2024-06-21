@@ -135,7 +135,7 @@ The following table lists the data fields that can be included in the customers 
     <tr>
         <td>customer_is_gitops_supported</td>
         <td>boolean</td>
-        <td>The feature the customer has enabled - GitOps</td>
+        <td>The feature the customer has enabled - KOTS Auto-GitOps</td>
     </tr>
     <tr>
         <td>customer_is_embedded_cluster_download_enabled</td>
@@ -300,12 +300,12 @@ The following table lists the data fields that can be included in the customers 
     <tr>
         <td>instance_is_gitops_enabled</td>
         <td>boolean</td>
-        <td>Reflects whether the end user has enabled gitops for deployments in their environment</td>
+        <td>Reflects whether the end user has enabled KOTS Auto-GitOps for deployments in their environment</td>
     </tr>
     <tr>
         <td>instance_gitops_provider</td>
         <td>string</td>
-        <td>If GitOps is enabledreflects the GitOps provider in use. For example, GitHub Enterprise.</td>
+        <td>If KOTS Auto-GitOps is enabled, reflects the GitOps provider in use. For example, GitHub Enterprise.</td>
     </tr>
     <tr>
         <td>instance_is_skip_preflights</td>
