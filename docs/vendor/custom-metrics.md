@@ -40,8 +40,6 @@ Custom metrics have the following limitations:
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-* We recommend that you keep the payload size under 100kb. 
-
 * When using the `POST` endpoint any payloads sent from an application component must contain all relevant metrics. If you want to configure multiple components to send different sets of metrics at different times, use the `PATCH` endpoint and the Replicated SDK will merge and upsert existing and new custom metrics. The set of custom metrics present in the Instance Summary API and displayed in the Vendor Portal represent the most recent payload received from any application component.
 
   For example, if a component of your application sends the following via the `POST` method:
