@@ -28,7 +28,11 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 ## Requirements
 
-To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance.
+
+The `PATCH` and `DELETE` methods described below are available in the Replicated SDK version 1.0.0-beta.23 or later.
+
+For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
 
@@ -36,55 +40,17 @@ If you have any customers running earlier versions of the SDK, Replicated recomm
 
 Custom metrics have the following limitations:
 
-* The label that is used to display metrics in the Vendor Portal cannot be customized. Metrics are sent to the Vendor Portal with the same name that is sent in the POST payload. The Vendor Portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
+* The label that is used to display metrics in the Vendor Portal cannot be customized. Metrics are sent to the Vendor Portal with the same name that is sent in the `POST` or `PATCH` payload. The Vendor Portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-* When using the `POST` endpoint any payloads sent from an application component must contain all relevant metrics. If you want to configure multiple components to send different sets of metrics at different times, use the `PATCH` endpoint and the Replicated SDK will merge and upsert existing and new custom metrics. The set of custom metrics present in the Instance Summary API and displayed in the Vendor Portal represent the most recent payload received from any application component.
-
-  For example, if a component of your application sends the following via the `POST` method:
-
-  ```json
-  {
-    "numProjects": 5,
-    "activeUsers": 10,
-  }
-  ```
-
-  Then, the component later sends the following also via the `POST` method:
-
-  ```json
-  {
-    "activeUsers": 10,
-    "usingCustomReports": false
-  }
-  ```
-
-  The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.  In order to preseve `numProjects`from the initial payload and upsert `usingCustomReports` and `activeUsers` use the `PATCH` method instead of `POST` on subsequent calls to the endpoint.
-
-  For example, if a component of your application initially sends the following via the `POST` method:
-
-  ```json
-  {
-    "numProjects": 5,
-    "activeUsers": 10,
-  }
-  ``` 
-
-  Then, the component later sends the following also via the `PATCH` method:
-  ```json
-  {
-    "usingCustomReports": false
-  }
-  ```
-
-  The instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload.
+* When using the `POST` method any existing keys that aren't included in the payload will be deleted. To create new metrics or update existing ones without sending the entire dataset, simply use the `PATCH` method.
 
 ## Configure Custom Metrics
 
-You can configure your application to POST a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.  
-Additionally, your application can upsert partial custom metrics using `PATCH` whereby new and existing key values pairs are merged and updated.  To remove
-an existing custom metric use the `DELETE` endpoint with the custom metric name. 
+You can configure your application to `POST` or `PATCH` a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.  
+
+To remove an existing custom metric use the `DELETE` endpoint with the custom metric name.
 
 The Replicated SDK provides an in-cluster API custom metrics endpoint at `http://replicated:3000/api/v1/app/custom-metrics`.
 
@@ -119,6 +85,52 @@ PATCH http://replicated:3000/api/v1/app/custom-metrics
 ```bash
 DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 ```
+
+### POST vs PATCH
+
+The `POST` method will always replace the existing data with the most recent payload received. Any existing keys not included in the most recent payload will still be accessible in the instance events API, but they will no longer appear in the instance summary.
+
+The `PATCH` method on the other hand will accept partial updates or add new custom metrics if a key:value pair that doesn't currently exist is passed.
+
+In most cases, simply using the `PATCH` method is recommended.
+
+For example, if a component of your application sends the following via the `POST` method:
+
+```json
+{
+  "numProjects": 5,
+  "activeUsers": 10,
+}
+```
+
+Then, the component later sends the following also via the `POST` method:
+
+```json
+{
+  "activeUsers": 10,
+  "usingCustomReports": false
+}
+```
+
+The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.  In order to preseve `numProjects`from the initial payload and upsert `usingCustomReports` and `activeUsers` use the `PATCH` method instead of `POST` on subsequent calls to the endpoint.
+
+For example, if a component of your application initially sends the following via the `POST` method:
+
+```json
+{
+  "numProjects": 5,
+  "activeUsers": 10,
+}
+``` 
+
+Then, the component later sends the following also via the `PATCH` method:
+```json
+{
+  "usingCustomReports": false
+}
+```
+
+The instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload.
 
 ### NodeJS Example
 
