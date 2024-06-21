@@ -13,7 +13,7 @@ pagination_prev: null
 Released on June 21, 2024
 
 ### New Features {#new-features-1-0-0-beta-23}
-* Supports upserting and deleting custom metrics.
+* Adds support for `PATCH` and `DELETE` methods on the [custom application metrics](/vendor/custom-metrics) endpoint: `/api/v1/app/custom-metrics`.
 
 ## 1.0.0-beta.22
 
