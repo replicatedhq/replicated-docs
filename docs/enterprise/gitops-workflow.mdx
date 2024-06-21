@@ -9,13 +9,13 @@ import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx
 
 The Replicated KOTS Admin Console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable the KOTS Auto-GitOps workflow instead. When using the Auto-GitOps workflow, changes from the Admin Console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
 
-If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
+If you have more than one application installed, you can selectively enable Auto-GitOps for each application.
 
 After enabling the Auto-GitOps workflow for an application, the Admin Console makes your first commit with the latest available version in the Admin Console. The latest available version is often the current version that is deployed. Subsequently, the Admin Console makes separate commits with any available updates.
 
 If you configure automatic updates for the application, any updates from your vendor are automatically committed to your Git repository. For more information about configuring automatic updates, see [Configure Automatic Updates](updating-apps#configure-automatic-updates) in _Updating an Application_.
 
-You can change your GitOps settings or disable a GitOps workflow at any time from the GitOps tab.
+You can change your GitOps settings or disable Auto-GitOps at any time from the **GitOps** tab in the Admin Console.
 
 ## Limitations
 
@@ -25,7 +25,7 @@ You can change your GitOps settings or disable a GitOps workflow at any time fro
 
 - After you have completed the installation workflow, you can enable Auto-GitOps for all subsequent application updates. It is not required that the application deploy successfully to enable Auto-GitOps. For example, if the preflight checks fail during the installation workflow and the application is not deployed, you can still enable Auto-GitOps for subsequent application updates.
 
-- When you enable Auto-GitOps, the Admin Console sends all application updates, including the version that you initially installed before GitOps was enabled, to the repository that you specify.
+- When you enable Auto-GitOps, the Admin Console sends all application updates, including the version that you initially installed before Auto-GitOps was enabled, to the repository that you specify.
 
 - If your organization has security requirements that prevent you from completing the installation workflow for the application first with the Admin Console or KOTS CLI, you cannot enable Auto-GitOps.
 
@@ -34,7 +34,7 @@ You can change your GitOps settings or disable a GitOps workflow at any time fro
 - A Git repository that you have read/write access to.
 - If the repository does not have files or folders committed yet, you must make at least one commit with any content so that the connection attempt succeeds with the SSH key when you perform the following task.
 
-## Enable GitOps
+## Enable Auto-GitOps
 
 To enable pushing updates to the Auto-GitOps workflow:
 
@@ -70,6 +70,6 @@ To enable pushing updates to the Auto-GitOps workflow:
        1. Add the SSH public key that you copied in the previous step.
        1. Enable write access for the key. This allows the Admin Console to push commits to the repository.
 
-1. On the GitOps Configuration page, click **Test connection to repository** to verify that the Admin Console can connect.
+1. On the **GitOps Configuration** page, click **Test connection to repository** to verify that the Admin Console can connect.
 
     When the Admin Console establishes a connection to the repository, a dialog displays that says GitOps is enabled.
