@@ -99,6 +99,35 @@ Response:
 
 Send custom application metrics. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics).
 
+### PATCH /app/custom-metrics
+
+Send partial custom application metrics for upserting. 
+
+```bash
+PATCH http://replicated:3000/api/v1/app/custom-metrics
+```
+Request: 
+
+```json
+{
+  "data": {
+    "numProjects": 20,
+  }
+}
+```
+
+Response: Status `200` OK
+
+### DELETE /app/custom-metrics/\{metric_name\}
+
+Delete an application custom metric. 
+
+```bash
+DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
+```
+
+Response: Status `204` No Content 
+
 ### POST /app/instance-tags
 
 Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
