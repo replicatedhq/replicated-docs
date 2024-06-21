@@ -40,9 +40,11 @@ Custom metrics have the following limitations:
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-* Any payloads sent from an application component must contain all relevant metrics. It is not recommended to configure multiple components to send different sets of metrics because Replicated does not merge sets of metrics. The set of custom metrics present in the Instance Summary API and displayed in the Vendor Portal represent the most recent payload received from any application component.
+* We recommend that you keep the payload size under 100kb. 
 
-  For example, if a component of your application sends the following:
+* When using the `POST` endpoint any payloads sent from an application component must contain all relevant metrics. If you want to configure multiple components to send different sets of metrics at different times, use the `PATCH` endpoint and the Replicated SDK will merge and upsert existing and new custom metrics. The set of custom metrics present in the Instance Summary API and displayed in the Vendor Portal represent the most recent payload received from any application component.
+
+  For example, if a component of your application sends the following via the `POST` method:
 
   ```json
   {
@@ -51,7 +53,7 @@ Custom metrics have the following limitations:
   }
   ```
 
-  Then, the component later sends the following:
+  Then, the component later sends the following also via the `POST` method:
 
   ```json
   {
@@ -60,11 +62,31 @@ Custom metrics have the following limitations:
   }
   ```
 
-  The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.
+  The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.  In order to preseve `numProjects`from the initial payload and upsert `usingCustomReports` and `activeUsers` use the `PATCH` method instead of `POST` on subsequent calls to the endpoint.
+
+  For example, if a component of your application initially sends the following via the `POST` method:
+
+  ```json
+  {
+    "numProjects": 5,
+    "activeUsers": 10,
+  }
+  ``` 
+
+  Then, the component later sends the following also via the `PATCH` method:
+  ```json
+  {
+    "usingCustomReports": false
+  }
+  ```
+
+  The instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload.
 
 ## Configure Custom Metrics
 
-You can configure your application to POST a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+You can configure your application to POST a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.  
+Additionally, your application can upsert partial custom metrics using `PATCH` whereby new and existing key values pairs are merged and updated.  To remove
+an existing custom metric use the `DELETE` endpoint with the custom metric name. 
 
 The Replicated SDK provides an in-cluster API custom metrics endpoint at `http://replicated:3000/api/v1/app/custom-metrics`.
 
@@ -81,6 +103,23 @@ POST http://replicated:3000/api/v1/app/custom-metrics
     "weekly_active_users": 10
   }
 }
+```
+
+```bash
+PATCH http://replicated:3000/api/v1/app/custom-metrics
+```
+
+```json
+{
+  "data": {
+    "num_projects": 54,
+    "num_error": 2
+  }
+}
+```
+
+```bash
+DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 ```
 
 ### NodeJS Example
