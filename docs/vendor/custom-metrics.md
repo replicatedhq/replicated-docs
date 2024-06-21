@@ -44,7 +44,7 @@ Custom metrics have the following limitations:
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-* When using the `POST` method any existing keys that aren't included in the payload will be deleted. To create new metrics or update existing ones without sending the entire dataset, simply use the `PATCH` method.
+* When using the `POST` method any existing keys that are not included in the payload will be deleted. To create new metrics or update existing ones without sending the entire dataset, simply use the `PATCH` method.
 
 ## Configure Custom Metrics
 
@@ -90,7 +90,7 @@ DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 
 The `POST` method will always replace the existing data with the most recent payload received. Any existing keys not included in the most recent payload will still be accessible in the instance events API, but they will no longer appear in the instance summary.
 
-The `PATCH` method on the other hand will accept partial updates or add new custom metrics if a key:value pair that doesn't currently exist is passed.
+The `PATCH` method will accept partial updates or add new custom metrics if a key:value pair that does not currently exist is passed.
 
 In most cases, simply using the `PATCH` method is recommended.
 
