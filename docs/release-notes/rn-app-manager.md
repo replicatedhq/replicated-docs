@@ -23,7 +23,7 @@ Released on June 21, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-109-14}
-* Fixes an issue where required releases were enforced in air gapped mode even if the license channel changed.
+* Fixes an issue where required releases were enforced in air gapped mode when changing between channels that don't have semantic versioning enabled
 
 ## 1.109.13
 
