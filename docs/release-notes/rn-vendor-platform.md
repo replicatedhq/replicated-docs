@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.24-0
+
+Released on June 24, 2024
+
+### Improvements {#improvements-v2024-06-24-0}
+* Support form product list renames **Troubleshoot** to **Support bundles and preflights**.
+
 ## v2024.06.21-2
 
 Released on June 21, 2024
