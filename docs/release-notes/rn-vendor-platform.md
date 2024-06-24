@@ -15,6 +15,20 @@ Released on June 24, 2024
 ### Bug Fixes {#bug-fixes-v2024-06-24-1}
 * Proxy Service no longer requires access to proxy-auth.replicated.com.
 
+## v2024.06.24-0
+
+Released on June 24, 2024
+
+### Improvements {#improvements-v2024-06-24-0}
+* Support form product list renames **Troubleshoot** to **Support bundles and preflights**.
+
+## v2024.06.21-2
+
+Released on June 21, 2024
+
+### New Features {#new-features-v2024-06-21-2}
+* Adds the ability to pull public images through the proxy registry without credentials using the prefix `proxy.replicated.com/anon`. For example `docker pull proxy.replicated.com/anon/docker.io/library/mysql:latest`.
+
 ## v2024.06.17-1
 
 Released on June 17, 2024
