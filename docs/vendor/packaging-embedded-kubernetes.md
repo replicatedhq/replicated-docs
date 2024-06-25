@@ -1,6 +1,6 @@
-# Creating a kURL Installer
+# Creating a Kubernetes Installer
 
-This topic describes how to create a kURL installer specification to support embedded cluster installations with Replicated kURL.
+This topic describes how to create a Kubernetes installer specification to support embedded cluster installations with Replicated kURL.
 
 For information about creating installers with the Replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
 
