@@ -1,6 +1,6 @@
-# Creating a Kubernetes Installer
+# Creating a kURL Installer
 
-This topic describes how to create a Kubernetes installer specification to support embedded cluster installations with Replicated kURL.
+This topic describes how to create a kURL installer specification to support embedded cluster installations with Replicated kURL.
 
 For information about creating installers with the Replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
 
@@ -53,9 +53,9 @@ You can create a Kubernetes installer and promote it to the same channel as your
 
 To create a separate Kubernetes installer:
 
-1. From the [Vendor Portal](https://vendor.replicated.com), select your application and click **Kubernetes Installer**.
+1. From the [Vendor Portal](https://vendor.replicated.com), select your application and click **kURL Installers**.
 
-1. On the **Kubernetes Installer** page, click **Create Kubernetes installer**.
+1. On the **kURL Installers** page, click **Create kURL installer**.
 
 1. Edit the file. For guidance on which add-ons to choose, see [Requirements and Recommendations](#requirements-and-recommendations) below.
 
@@ -78,9 +78,9 @@ To create a separate Kubernetes installer:
       </tr>
     </table>
 
-1. Click **Promote** again. The installer appears on the Kubernetes Installer page.
+1. Click **Promote** again. The installer appears on the kURL Installer page.
 
-  To make changes after promoting, create a new Kubernetes installer.
+  To make changes after promoting, create a new kURL installer.
 
 ## Requirements and Recommendations
 
