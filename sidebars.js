@@ -223,7 +223,6 @@ const sidebars = {
                     'vendor/packaging-using-tls-certs',
                   ],
                 },
-                'vendor/kurl-nodeport-services',
               ],
             },
             {
@@ -231,7 +230,6 @@ const sidebars = {
               label: 'Admin Console and Download Portal Customization',
               items: [
                 'vendor/admin-console-customize-app-icon',
-                'vendor/admin-console-port-forward',
                 'vendor/admin-console-adding-buttons-links',
                 'vendor/admin-console-prometheus-monitoring',
               ],
@@ -291,6 +289,14 @@ const sidebars = {
                       'vendor/helm-optional-charts',
                       'vendor/tutorial-adding-db-config',
                     ],
+                },
+                {
+                  type: 'category',
+                  label: 'Exposing Services',
+                  items: [
+                    'vendor/admin-console-port-forward',
+                    'vendor/kurl-nodeport-services',
+                  ],
                 },
                 'vendor/resources-annotations-templating',
                 'vendor/orchestrating-resource-deployment',

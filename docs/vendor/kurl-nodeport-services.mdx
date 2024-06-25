@@ -8,7 +8,7 @@ import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx
 
 # Exposing Services Using NodePorts
 
-This topic describes how to create a NodePort service for exposing services in installations with Replicated Embedded Cluster or Replicated kURL. 
+This topic describes how to create a NodePort service for exposing services in Replicated Embedded Cluster or Replicated kURL installations. 
 
 ## Overview
 
@@ -107,7 +107,7 @@ spec:
     role: web
 ```
 
-## Access NodePort Services
+## Link to NodePort Services from the Admin Console
 
 Users can access NodePort services by clicking a link to the service on the Admin Console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
@@ -123,17 +123,17 @@ During installations with Embedded Cluster or kURL, the Admin Console is automat
 
 If the user is not able to access the Admin Console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the Admin Console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the Admin Console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with the CLI_.
 
-## Example: NGINX Application with ClusterIP and NodePort Services
+### NGINX Application with ClusterIP and NodePort Services
 
-The following example demonstrates how to expose a basic NGINX service for both existing cluster and kURL installations.
+The following example demonstrates how to expose a basic NGINX service for both existing cluster and embedded cluster installations.
 
 To test this example:
 
 1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the Vendor Portal. Promote to the channel that you use for internal testing.
 
-   For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-   <Tabs>
+    <Tabs>
     <TabItem value="service" label="example-service.yaml" default>
     <h5>Description</h5>
     <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
@@ -163,43 +163,10 @@ To test this example:
 
 1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
-1. If there is not already a Kubernetes installer promoted to the channel, add a Kubernetes installer to the release to support embedded cluster installations with kURL. For more information, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+1. If there is not already a Kubernetes installer promoted to the channel, add a Kubernetes installer to the release to support embedded cluster installs. For more information, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
-   **Example:**
+1. Install the release into an embedded cluster on a VM and confirm that the service was exposed successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
 
-   ```yaml
-   apiVersion: cluster.kurl.sh/v1beta1
-   kind: Installer
-   metadata:
-     name: ""
-   spec:
-     containerd:
-       version: 1.6.24
-     contour:
-       version: 1.27.0
-     ekco:
-       version: 0.28.3
-     flannel:
-       version: 0.23.0
-     kotsadm:
-       version: 1.103.3
-     kubernetes:
-       version: 1.27.6
-     minio:
-       version: 2023-11-01T18-37-25Z
-     openebs:
-       isLocalPVEnabled: true
-       localPVStorageClassName: local
-       version: 3.9.0
-     prometheus:
-       version: 0.68.0-51.0.0
-     registry:
-       version: 2.8.3
-   ```
-
-1. Install the release with kURL on a VM and confirm that the service was exposed successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
-
-   :::note
-   Ensure that the VM where you install allows HTTP traffic.
-   :::
-
+    :::note
+    Ensure that the VM where you install allows HTTP traffic.
+    :::
