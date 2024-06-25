@@ -78,14 +78,54 @@ kubectl kots admin-console --namespace gitea
 
 ### Admin Console
 
+The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
+
+![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
+
+[View a larger version of this image](/images/gitea-open-app.png)
+
+## Add a Link to Port-Forwarded Services from the Admin Console
+
 Adding a link to the port-forwarded service from the Admin Console dashboard requires additional configuration.
 
 To add a link to a port-forwarded service on the Admin Console dashboard, add matching URLs to the `ports.applicationURL` field in the KOTS Application custom resource and the `descriptor.links.url` field in the Kubernetes SIG Application custom resource.
 
 For more information, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links). 
 
-The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
+### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
-![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
+This example provides a KOTS Application custom resource and Kubernetes Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
-[View a larger version of this image](/images/gitea-open-app.png)
+To test this example:
+1. Pull version 1.0.6 of the Gitea Helm chart from Bitnami:
+
+    ```
+    helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
+    ```
+
+1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the Vendor Portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing.
+
+    For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+
+    <Tabs>
+    <TabItem value="kots-app" label="kots-app.yaml" default>
+    <h5>Description</h5>
+    <p>Based on the <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/templates/svc.yaml">templates/svc.yaml</a> and <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">values.yaml</a> files in the Gitea Helm chart, the following KOTS Application custom resource adds port 3000 to the port forward tunnel and maps local port 8888. Port 3000 is the container port of the Pod where the <code>gitea</code> service runs.</p>
+    <h5>YAML</h5>
+    <GiteaKotsApp/>
+    </TabItem>
+    <TabItem value="k8s-app" label="k8s-app.yaml" default>
+    <h5>Description</h5>
+    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
+    <h5>YAML</h5>
+    <GiteaK8sApp/>
+    </TabItem>
+    <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <h5>YAML</h5>
+    <GiteaHelmChart/>
+    </TabItem>
+    </Tabs>
+
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).

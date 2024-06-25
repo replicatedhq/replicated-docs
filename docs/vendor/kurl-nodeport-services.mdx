@@ -109,9 +109,7 @@ spec:
 
 ## Link to NodePort Services from the Admin Console
 
-Users can access NodePort services by clicking a link to the service on the Admin Console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
-
-To be able to access the service, the firewall for the VM where the user installed must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+Users can access NodePort services by clicking a link to the service on the Admin Console dashboard. Additional configuration is required to add a link to the dashboard.
 
 The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
 
@@ -119,11 +117,15 @@ The following example shows an **Open App** button on the dashboard of the Admin
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-During installations with Embedded Cluster or kURL, the Admin Console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the Admin Console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
+### Add a Link to the Admin Console Dashboard
 
-If the user is not able to access the Admin Console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the Admin Console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the Admin Console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with the CLI_.
+The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in kURL clusters or Embedded Clusters, the `ports` key must be configured in order to link to NodePort services using KOTS rewriting. 
 
-### NGINX Application with ClusterIP and NodePort Services
+For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+
+To be able to access the service, the firewall for the VM where the user installed must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+
+### Example: NGINX Application with ClusterIP and NodePort Services
 
 The following example demonstrates how to expose a basic NGINX service for both existing cluster and embedded cluster installations.
 
@@ -170,3 +172,9 @@ To test this example:
     :::note
     Ensure that the VM where you install allows HTTP traffic.
     :::
+
+## Access the Service from the Admin Console
+
+During installations with Embedded Cluster or kURL, the Admin Console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the Admin Console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
+
+If the user is not able to access the Admin Console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the Admin Console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the Admin Console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with the CLI_.    
