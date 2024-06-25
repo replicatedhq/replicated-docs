@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.24-1
+
+Released on June 24, 2024
+
+### Bug Fixes {#bug-fixes-v2024-06-24-1}
+* Proxy Service no longer requires access to proxy-auth.replicated.com.
+
 ## v2024.06.24-0
 
 Released on June 24, 2024
