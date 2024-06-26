@@ -12,9 +12,11 @@ import NginxExample from "../partials/application-links/_example-nginx.mdx"
 
 This topic describes how to create a NodePort service for exposing services in Replicated Embedded Cluster or Replicated kURL installations. 
 
+For information about exposing services in existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
+
 ## Overview
 
-Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on virtual machines (VMs) or bare metal servers. This is because it cannot be verified that the ports are secure and authenticated. For more information about KOTS port forwarding for existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
+Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on virtual machines (VMs) or bare metal servers. This is because it cannot be verified that the ports are secure and authenticated.
 
 To expose the Admin Console in installations with [Embedded Cluster](/vendor/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on port 8800. Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
