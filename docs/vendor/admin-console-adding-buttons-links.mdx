@@ -35,9 +35,9 @@ KOTS uses the Kubernetes SIG Application custom resource as metadata and does no
 
 ## Add a Link
 
-To add a link to the Admin Console dashboard, include a [Kubernetes SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) custom resource in the release.
+To add a link to the Admin Console dashboard, include a [Kubernetes SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) custom resource in the release with a `spec.descriptor.links` field. The `spec.descriptor.links` field is an array of links that are displayed on the Admin Console dashboard after the application is deployed.
 
-The SIG Application resource must include a `spec.descriptor.links` field, which is an array of links that will be displayed on the dashboard after the application is deployed. Each link in the `spec.descriptor.links` array contains two fields:
+Each link in the `spec.descriptor.links` array contains two fields:
 * `description`: The link text that will appear on the Admin Console dashboard.
 * `url`: The target URL.
 
@@ -63,7 +63,7 @@ When the application is deployed, the "About Wordpress" link is displayed on the
 
 [View a larger version of this image](/images/dashboard-link-about-wordpress.png)
 
-For an example of a Kubernetes SIG Application custom resource, see [application.yaml](https://github.com/kubernetes-sigs/application/blob/master/docs/examples/wordpress/application.yaml) in the kubernetes-sigs GitHub repository.
+For an additional example of a Kubernetes SIG Application custom resource, see [application.yaml](https://github.com/kubernetes-sigs/application/blob/master/docs/examples/wordpress/application.yaml) in the kubernetes-sigs GitHub repository.
 
 ### KOTS Template Functions in URLs
 
@@ -87,10 +87,16 @@ spec:
 
 For more information about working with KOTS template functions, see [About Template Functions](/reference/template-functions-about).
 
-## Link to Services Using KOTS
+## Rewrite URLs Using KOTS
 
-When distributing an application, it is helpful to ensure that the person or process installing the application is able to easily verify that the application is running. However, differences in customer environments make it difficult to provide a consistent application URL at installation.
+KOTS includes logic that can rewrite the URL provided in the Kubernetes SIG Application custom resource. 
 
-To make it easier for users to access the deployed application, KOTS includes logic that can automatically rewrite the URL provided in the Kubernetes SIG Application custom resource.
+This allows you to add a link to an application service that can be accessed after the application is installed, before ingress or any firewalls are set up.
 
-To rewrite this URL during application deployment, KOTS first checks if the `ports.applicationURL` field matches the `descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource. Then, KOTS rewrites `localhost` to the hostname where the Admin Console is being accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
+configure the Kubernetes SIG Application and KOTS Application custom resources to 
+
+
+
+To rewrite this URL during application deployment, KOTS first checks if the `spec.ports.applicationURL` field matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource. Then, KOTS rewrites `localhost` to the hostname where the Admin Console is being accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
+
+that is either port-forwarded with KOTS (for existing cluster installations) or is a NodePort type service (for embedded installations with kURL or Embedded Cluster).

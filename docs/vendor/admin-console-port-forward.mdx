@@ -78,19 +78,21 @@ kubectl kots admin-console --namespace gitea
 
 ### Admin Console
 
+Linking to a port-forwarded service from the Admin Console dashboard requires additional configuration. See [Add a Link to Port-Forwarded Services from the Admin Console](#add-link) below.
+
 The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
 
 ![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-## Add a Link to Port-Forwarded Services from the Admin Console
+## Add a Link to Port-Forwarded Services from the Admin Console {#add-link}
 
-Adding a link to the port-forwarded service from the Admin Console dashboard requires additional configuration.
+You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a port-forwarded service from the Admin Console dashboard.
 
-To add a link to a port-forwarded service on the Admin Console dashboard, add matching URLs to the `ports.applicationURL` field in the KOTS Application custom resource and the `descriptor.links.url` field in the Kubernetes SIG Application custom resource.
+To link to a port-forwarded service, add the same URL to the `spec.ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. When the URLs provided in these fields match, KOTS will rewrite the URL during deployment to the hostname used by the browser.
 
-For more information, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links). 
+For more information, see [Rewrite URLs Using KOTS](/vendor/admin-console-adding-buttons-links) in _Adding Links to the Dashboard_. 
 
 ### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
