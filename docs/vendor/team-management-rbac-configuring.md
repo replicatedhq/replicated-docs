@@ -6,7 +6,7 @@ This topic describes how to use role-based access policies (RBAC) to grant or de
 
 ## About RBAC Policies
 
-By default, every team has two policies created automatically: **Admin** and **Read Only**. These default policies are not configurable.
+By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable.
 
 You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
 
@@ -156,7 +156,7 @@ In the following example, a policy grants access to viewing all customers, but n
 
 ### Support Engineer
 
-The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles.
+The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. If you have an Enterprise plan, you will already have this policy created.
 
 ```json
 {
@@ -180,7 +180,7 @@ The support engineer policy grants read access to release, channels, and applica
 
 ### Sales
 
-The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
+The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted. If you have an Enterprise plan, you will already have this policy created.
 
 ```json
 {
