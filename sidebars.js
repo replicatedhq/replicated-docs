@@ -269,6 +269,14 @@ const sidebars = {
             },
             {
               type: 'category',
+              label: 'Exposing Services with KOTS',
+              items: [
+                'vendor/admin-console-port-forward',
+                'vendor/kurl-nodeport-services',
+              ],
+            },
+            {
+              type: 'category',
               label: 'Managing KOTS',
               items: [
                 'vendor/packaging-kots-versions',
@@ -289,14 +297,6 @@ const sidebars = {
                       'vendor/helm-optional-charts',
                       'vendor/tutorial-adding-db-config',
                     ],
-                },
-                {
-                  type: 'category',
-                  label: 'Exposing Services',
-                  items: [
-                    'vendor/admin-console-port-forward',
-                    'vendor/kurl-nodeport-services',
-                  ],
                 },
                 'vendor/resources-annotations-templating',
                 'vendor/orchestrating-resource-deployment',
