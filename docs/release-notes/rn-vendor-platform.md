@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.26-4
+
+Released on June 26, 2024
+
+### New Features {#new-features-v2024-06-26-4}
+* Adds a new "Upcoming license expiration" section to the Dashboard page.
+
 ## v2024.06.24-1
 
 Released on June 24, 2024
