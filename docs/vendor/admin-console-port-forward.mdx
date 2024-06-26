@@ -1,18 +1,11 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
 import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
 import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
 import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
 import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import NginxKotsApp from "../partials/application-links/_nginx-kots-app.mdx"
-import NginxK8sApp from "../partials/application-links/_nginx-k8s-app.mdx"
-import NginxService from "../partials/application-links/_nginx-service.mdx"
-import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx"
-import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
-import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import LinkToService from "../partials/application-links/_link-to-service.mdx"
+import GiteaExample from "../partials/application-links/_example-gitea.mdx"
 
 # Port Forwarding Services with KOTS
 
@@ -28,19 +21,19 @@ Networking and ingress is handled differently in each cluster, and this makes it
 
 For installations into existing clusters, KOTS automatically creates a port forward tunnel and exposes the Admin Console on port 8800 where it can be accessed by users at installation.
 
-In addition to the 8800 Admin Console port, you can configure the KOTS Application custom resource to add one or more extra ports to the port forward tunnel so that users installing in exsting clusters can easily access your application at installation. For example, you can:
+In addition to the 8800 Admin Console port, you can add one or more extra ports to the port forward tunnel so that users installing in exsting clusters can easily access your application at installation. For example, you can:
 * List the primary application ports to provide one or more links directly to the application before ingress and firewalls are configured 
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
 
-## Configure Port Forwarding
+## Port Forward a Service
 
-This section describes how to configure port forwarding for existing cluster installations by adding extra ports to the `ports` key in the KOTS Application custom resource.
+To port forward a service with KOTS for existing cluster installation, configure the [`ports`](/reference/custom-resource-application#ports) key in the KOTS Application custom resource.
 
-The following example KOTS Application custom resource includes a `ports` key that allows users to access a `gitea` service at port 8888 on the local machine at installation: 
+For example: 
 
 <GiteaKotsApp/>
 
-As shown in the example above, the `ports` key has the following fields:
+As shown in the example above, the [`ports`](/reference/custom-resource-application#ports) key has the following fields:
 
 <ul>
 
@@ -79,7 +72,7 @@ kubectl kots admin-console --namespace gitea
 
 ### Admin Console
 
-Linking to a port-forwarded service from the Admin Console dashboard requires additional configuration. See [Add a Link to Port-Forwarded Services from the Admin Console](#add-link) below.
+You can optionally add a link to a port-forwarded service from the Admin Console dashboard. For more information, see [Add a Link to Port-Forwarded Services from the Admin Console](#add-link) below.
 
 The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
 
@@ -87,54 +80,14 @@ The following example shows an **Open App** button on the dashboard of the Admin
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-## Add a Link to Port-Forwarded Services from the Admin Console {#add-link}
+## Add a Link to a Port-Forwarded Service from the Admin Console {#add-link}
 
-You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a port-forwarded service from the Admin Console dashboard. For example:
+You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a port-forwarded service from the Admin Console dashboard.
 
-![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
-
-[View a larger version of this image](/images/gitea-open-app.png)
-
-### How To
-
-To add a link to a service, add the same URL to the `spec.ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. When the URLs provided in these fields match, KOTS will rewrite the URL during deployment to the hostname used by the browser.
+For more information about adding links to the Admin Console dashboard using the Kubernetes SIG Application custom resource, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
 <LinkToService/>
 
 ### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
-This example provides a KOTS Application custom resource and Kubernetes Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
-
-To test this example:
-1. Pull version 1.0.6 of the Gitea Helm chart from Bitnami:
-
-    ```
-    helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
-    ```
-
-1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the Vendor Portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing.
-
-    For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
-
-    <Tabs>
-    <TabItem value="kots-app" label="kots-app.yaml" default>
-    <h5>Description</h5>
-    <p>Based on the <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/templates/svc.yaml">templates/svc.yaml</a> and <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">values.yaml</a> files in the Gitea Helm chart, the following KOTS Application custom resource adds port 3000 to the port forward tunnel and maps local port 8888. Port 3000 is the container port of the Pod where the <code>gitea</code> service runs.</p>
-    <h5>YAML</h5>
-    <GiteaKotsApp/>
-    </TabItem>
-    <TabItem value="k8s-app" label="k8s-app.yaml" default>
-    <h5>Description</h5>
-    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
-    <h5>YAML</h5>
-    <GiteaK8sApp/>
-    </TabItem>
-    <TabItem value="helmchart" label="gitea.yaml" default>
-    <h5>Description</h5>
-    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
-    <h5>YAML</h5>
-    <GiteaHelmChart/>
-    </TabItem>
-    </Tabs>
-
-1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+<GiteaExample/>

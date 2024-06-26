@@ -1,0 +1,53 @@
+import ServicePortNote from "../custom-resource-application/_servicePort-note.mdx"
+
+To add a link to a service on the Admin Console dashboard:
+
+1. In your release, configure the [`ports`](/reference/custom-resource-application#ports) key in the KOTS Application custom resource with details for the target service:
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     ports:
+       - serviceName: my-service
+         servicePort: 9000
+         localPort: 9000
+         applicationUrl: "http://my-service"
+   ```
+
+   1. For `ports.serviceName`, add the name of the service.
+   
+   1. For `ports.servicePort`, add the `containerPort` of the Pod where the service is running.
+
+      <ServicePortNote/>
+
+   1. (Optional) For `ports.localPort` add the port to map on the local workstation. If not set, this is the same port as `servicePort`.
+
+   1. For `ports.applicationURL`, add a URL. Consider the following guidelines:
+      * Use HTTP instead of HTTPS unless TLS termination takes place in the application Pod.
+      * You can use the name of the service as the hostname for the URL. For example, `http://my-service`. KOTS rewrites the URL with the hostname in the browser during deployment.
+
+1. Configure a Kubernetes SIG Application custom resource in the release:
+
+    ```yaml
+    # app.k8s.io/v1beta1 Application Custom resource
+
+    apiVersion: app.k8s.io/v1beta1
+    kind: Application
+    metadata:
+      name: "my-application"
+    spec:
+      descriptor:
+        links:
+          - description: Open App
+            # url matches ports.applicationURL in the KOTS Application custom resource
+            url: "http://my-service"
+    ```
+
+    1. For `spec.descriptor.links.description`, add the link text that will appear on the Admin Console dashboard. For example, `Open App`.
+
+    1. For `spec.descriptor.links.url` field, add the _same_ URL that you used in the `ports.applicationURL` in the KOTS Application custom resource.
+
+1. Promote the release to the channel that you use for internal testing, then install in a development environment to test your changes.  

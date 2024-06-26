@@ -1,4 +1,6 @@
 import LinkToService from "../partials/application-links/_link-to-service.mdx"
+import NginxExample from "../partials/application-links/_example-nginx.mdx"
+import GiteaExample from "../partials/application-links/_example-gitea.mdx"
 
 # Adding Links to the Dashboard
 
@@ -86,16 +88,22 @@ For existing cluster installations, configuring the `ports` key adds the given s
 
 You can also add a link to the service that is specified in the `ports` key on the Admin Console dashboard. To do so, you configure both the `ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links` field in the Kubernetes SIG Application custom resource.
 
-### How KOTS Rewrites Links
-
 During deployment, KOTS rewrites the URL supplied in the Kubernetes SIG Application custom resource with the hostname in the browser (the hostname where the Admin Console is accessed). As part of this process, KOTS also appends the service port to the URL so that users can access the service from their browser after the application is installed.
 
 To rewrite this URL during application deployment, KOTS first checks if the `spec.ports.applicationURL` field matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource `ports` key. Finally, KOTS rewrites `localhost` to the hostname in the browser where the Admin Console is accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
 
 ### Prerequisite
 
-If you want to link to a service for installations with Replicated kURL or Replicated Embedded Cluster, first create a NodePort type service.
+To add a link to a service for installations with Replicated kURL or Replicated Embedded Cluster, first create a NodePort type service.
 
 ### How To
 
 <LinkToService/>
+
+### Example: NGINX Application with ClusterIP and NodePort Services
+
+<NginxExample/>
+
+### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
+
+<GiteaExample/>
