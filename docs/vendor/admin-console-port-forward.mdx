@@ -12,6 +12,7 @@ import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx
 import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
+import LinkToService from "../partials/application-links/_link-to-service.mdx"
 
 # Port Forwarding Services with KOTS
 
@@ -88,11 +89,17 @@ The following example shows an **Open App** button on the dashboard of the Admin
 
 ## Add a Link to Port-Forwarded Services from the Admin Console {#add-link}
 
-You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a port-forwarded service from the Admin Console dashboard.
+You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a port-forwarded service from the Admin Console dashboard. For example:
 
-To link to a port-forwarded service, add the same URL to the `spec.ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. When the URLs provided in these fields match, KOTS will rewrite the URL during deployment to the hostname used by the browser.
+![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
 
-For more information, see [Rewrite URLs Using KOTS](/vendor/admin-console-adding-buttons-links) in _Adding Links to the Dashboard_. 
+[View a larger version of this image](/images/gitea-open-app.png)
+
+### How To
+
+To add a link to a service, add the same URL to the `spec.ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. When the URLs provided in these fields match, KOTS will rewrite the URL during deployment to the hostname used by the browser.
+
+<LinkToService/>
 
 ### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 

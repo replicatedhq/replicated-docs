@@ -1,17 +1,4 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
-import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
-import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
-import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
-import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import NginxKotsApp from "../partials/application-links/_nginx-kots-app.mdx"
-import NginxK8sApp from "../partials/application-links/_nginx-k8s-app.mdx"
-import NginxService from "../partials/application-links/_nginx-service.mdx"
-import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx"
-import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
-import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
-import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
+import LinkToService from "../partials/application-links/_link-to-service.mdx"
 
 # Adding Links to the Dashboard
 
@@ -89,16 +76,26 @@ For more information about working with KOTS template functions, see [About Temp
 
 ## Add Links to Application Services Using KOTS
 
+This seciton describes how to use KOTS to add links to services from the Admin Console dashboard.
+
+### Overview
+
 You can provide a service name and a service port in the KOTS Application custom resource [`ports`](/reference/custom-resource-application#ports) key to expose services to users after an application is installed. This can make it easier for users to access your application before configuring cluster ingress.
 
 For existing cluster installations, configuring the `ports` key adds the given service to a port forward tunnel. For installations in VMs or bare metal servers with Replicated kURL or Replicated Embedded Cluster, configuring the `ports` key allows you to expose additional ports on the node to make NodePort services accessible to users.
 
 You can also add a link to the service that is specified in the `ports` key on the Admin Console dashboard. To do so, you configure both the `ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links` field in the Kubernetes SIG Application custom resource.
 
+### How KOTS Rewrites Links
+
 During deployment, KOTS rewrites the URL supplied in the Kubernetes SIG Application custom resource with the hostname in the browser (the hostname where the Admin Console is accessed). As part of this process, KOTS also appends the service port to the URL so that users can access the service from their browser after the application is installed.
 
 To rewrite this URL during application deployment, KOTS first checks if the `spec.ports.applicationURL` field matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource `ports` key. Finally, KOTS rewrites `localhost` to the hostname in the browser where the Admin Console is accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
 
-For instructions, see:
-* Port-Forwarding Services with KOTS
-* Exposing NodePort Services
+### Prerequisite
+
+If you want to link to a service for installations with Replicated kURL or Replicated Embedded Cluster, first create a NodePort type service.
+
+### How To
+
+<LinkToService/>
