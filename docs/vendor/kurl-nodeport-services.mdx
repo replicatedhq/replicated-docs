@@ -109,21 +109,31 @@ spec:
 
 ## Link to NodePort Services from the Admin Console
 
-Users can access NodePort services by clicking a link to the service on the Admin Console dashboard. Additional configuration is required to add a link to the dashboard.
-
-The following example shows an **Open App** button on the dashboard of the Admin Console for an application named Gitea:
+You can configure the Kubernetes SIG Application and KOTS Application custom resources to link to a NodePort service from the Admin Console dashboard. For example:
 
 ![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-### Add a Link to the Admin Console Dashboard
+To add a link to a NodePort service on the Admin Console dashboard:
 
-The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in kURL clusters or Embedded Clusters, the `ports` key must be configured in order to link to NodePort services using KOTS rewriting. 
+1. Configure the `ports` key in the KOTS Application custom resource:
 
-For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+   :::note
+   The KOTS Application custom resource `ports` key is designed to port forward services in existing cluster installations. Although KOTS does not port forward services in kURL clusters or Embedded Clusters, the `ports` key must be configured to add a link to NodePort services.
+   :::
 
+   1. Add the service name and service port.
+
+   1. In the `spec.ports.applicationURL` field, add a URL for the application. KOTS will rewrite this URL during deployment, so you can use the format `http://SERVICE_NAME`, where SERVICE_NAME is the name of the service.
+
+1. Add a Kubernetes SIG Application custom resource to the release, add the _same_ URL to the `spec.descriptor.links.url` field:
+
+   When the URLs provided in these fields match, KOTS will rewrite the URL during deployment to the hostname used by the browser. For more information, see [Rewrite URLs Using KOTS](/vendor/admin-console-adding-buttons-links) in _Adding Links to the Dashboard_.  
+
+:::note
 To be able to access the service, the firewall for the VM where the user installed must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+:::
 
 ### Example: NGINX Application with ClusterIP and NodePort Services
 

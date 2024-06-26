@@ -87,16 +87,18 @@ spec:
 
 For more information about working with KOTS template functions, see [About Template Functions](/reference/template-functions-about).
 
-## Rewrite URLs Using KOTS
+## Add Links to Application Services Using KOTS
 
-KOTS includes logic that can rewrite the URL provided in the Kubernetes SIG Application custom resource. 
+You can provide a service name and a service port in the KOTS Application custom resource [`ports`](/reference/custom-resource-application#ports) key to expose services to users after an application is installed. This can make it easier for users to access your application before configuring cluster ingress.
 
-This allows you to add a link to an application service that can be accessed after the application is installed, before ingress or any firewalls are set up.
+For existing cluster installations, configuring the `ports` key adds the given service to a port forward tunnel. For installations in VMs or bare metal servers with Replicated kURL or Replicated Embedded Cluster, configuring the `ports` key allows you to expose additional ports on the node to make NodePort services accessible to users.
 
-configure the Kubernetes SIG Application and KOTS Application custom resources to 
+You can also add a link to the service that is specified in the `ports` key on the Admin Console dashboard. To do so, you configure both the `ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links` field in the Kubernetes SIG Application custom resource.
 
+During deployment, KOTS rewrites the URL supplied in the Kubernetes SIG Application custom resource with the hostname in the browser (the hostname where the Admin Console is accessed). As part of this process, KOTS also appends the service port to the URL so that users can access the service from their browser after the application is installed.
 
+To rewrite this URL during application deployment, KOTS first checks if the `spec.ports.applicationURL` field matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource `ports` key. Finally, KOTS rewrites `localhost` to the hostname in the browser where the Admin Console is accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
 
-To rewrite this URL during application deployment, KOTS first checks if the `spec.ports.applicationURL` field matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the KOTS Application custom resource. Then, KOTS rewrites `localhost` to the hostname where the Admin Console is being accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
-
-that is either port-forwarded with KOTS (for existing cluster installations) or is a NodePort type service (for embedded installations with kURL or Embedded Cluster).
+For instructions, see:
+* Port-Forwarding Services with KOTS
+* Exposing NodePort Services
