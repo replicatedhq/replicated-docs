@@ -76,38 +76,38 @@ spec:
 
 For more information about working with KOTS template functions, see [About Template Functions](/reference/template-functions-about).
 
-## Add Links to Application Services Using KOTS `ports`
+## About Adding Links to Application Services Using KOTS `ports`
 
-This section desribes how to configure the `ports` key in the KOTS Application custom resource to add a link to a service on the Admin Console dashboard.
+You can configure the KOTS Application custom resource [`ports`](/reference/custom-resource-application#ports) key to expose and add links to services on the Admin Console dashboard: 
+* For existing cluster installations, the `ports` key adds the given service to the KOTS port forward tunnel so it can be easily accessed by the user after installation. 
+* For Replicated Embedded Cluster or Replicated kURL installations, unlike installations in existing clusters, the `ports` key cannot be used to port forward a service. This is because KOTS does not open the port forward tunnel in installations on VMs or bare metal servers as it cannot be verified that the ports are secure and authenticated. However, you can still add a NodePort service to the `ports` key for the purpose of adding a link to the service on the Admin Console dashboard.
 
-### Overview
+This can make it easier for the person or process installing your application to easily verify that the application is running, since it can be difficult to provide a consistent application URL at installation. For example, the cluster operator might be required to configure ingress or create firewall rules before they can open the application. 
 
-The KOTS Application custom resource [`ports`](/reference/custom-resource-application#ports) key allows you to expose services to users after an application is installed before cluster ingress is configured:
-* For existing cluster installations, configuring the `ports` key allows you to expose services through the KOTS port forward tunnel. For more information, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
-* For installations on VMs or bare metal servers with Replicated kURL or Replicated Embedded Cluster, configuring the `ports` key allows you to expose additional ports on the node to make NodePort services accessible to users. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
+Adding a link to a service using the KOTS `ports` key requires that you add the _same_ URL in the `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When these fields match, KOTS automatically rewrites this URL during deployment with the hostname in the browser (the hostname where the Admin Console is accessed) and appends the specified port.
 
-For services added to the `ports` key, you can also add a link to the service on the Admin Console dashboard. This requires that you add a URL to the `ports.applicationURL` field in the KOTS Application custom resource and the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource.
+For information about how to add links to services on the Admin Console dashboard using the `ports` key, see the following topics:
+* For existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward)
+* For Embedded Cluster or kURL installations, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services)
 
-During deployment, KOTS automatically rewrites this URL with the hostname in the browser (the hostname where the Admin Console is accessed) and appends the specified port using the following process:
-1. First, KOTS checks if the `spec.ports.applicationURL` field in the KOTS Application custom resource matches the `spec.descriptor.links.url` field in the Kubernetes SIG Application custom resource.
-1. If the URLs match, then KOTS rewrites the URL to `http://localhost:{localPort}`, adding the local port provided for the service in the `ports` key.
-1. Finally, KOTS rewrites `localhost` to the hostname in the browser where the Admin Console is accessed. For example, if the Admin Console is accessed at `gitea-admin.example.com:8800`, then the URL is rewritten to `http://gitea-admin.example.com:{localPort}`.
+{/* ### Requirement
 
+The type of service that you can add to the `ports` key depends on the application installation method:
+* For existing cluster installations, you can add ClusterIP, NodePort, or LoadBalancer services to the `ports` key
+* For Embedded Cluster or kURL installations, you can add NodePort services to the `ports` key
 
-### Prerequisite
-
-For installations on VMs or bare metal servers with Replicated kURL or Replicated Embedded Cluster, a NodePort type service is required. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
+For more information about Kubernetes service types, see [Service](https://kubernetes.io/docs/concepts/services-networking/service/) in the Kubernetes documentation.
 
 ### How To
 
-This section describes how to add a link to the Admin Console dashboard for services exposed through the KOTS Application custom resource `ports` key.
+To add a link to an application service using the `ports` key:
 
-<LinkToService/>
+<LinkToService/> */}
 
-### Example: NGINX Application with ClusterIP and NodePort Services
+{/* ### Example: NGINX Application with ClusterIP and NodePort Services
 
 <NginxExample/>
 
 ### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
-<GiteaExample/>
+<GiteaExample/> */}

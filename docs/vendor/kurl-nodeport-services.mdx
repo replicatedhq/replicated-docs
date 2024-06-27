@@ -12,7 +12,7 @@ import NginxExample from "../partials/application-links/_example-nginx.mdx"
 
 This topic describes how to create a NodePort service for exposing services in Replicated Embedded Cluster or Replicated kURL installations. 
 
-For information about exposing services in existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
+For information about exposing services in existing cluster installations through the Replicated KOTS port forward tunnel, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
 ## Overview
 
@@ -56,9 +56,9 @@ You can use the KOTS [`kots.io/when`](/vendor/packaging-include-resources#kotsio
 
 To conditionally deploy a service based on the installation method, you can use the following KOTS template functions in the `kots.io/when` annotation:
 * [IsKurl](/reference/template-functions-static-context#iskurl): Detects kURL installations. For example, `repl{{ IsKurl }}` returns true for kURL installations, and `repl{{ not IsKurl }}` returns true for non-kURL installations.
-* [Distribution](/reference/template-functions-static-context#distribution): Returns the distribution of the cluster where KOTS is running. For example, `repl{{ Distribution "embedded-cluster" }}` returns true for Embedded Cluster installations and `repl{{ ne Distribution "embedded-cluster" }}` returns true for non-Embedded Cluster installations.
+* [Distribution](/reference/template-functions-static-context#distribution): Returns the distribution of the cluster where KOTS is running. For example, `repl{{ eq Distribution "embedded-cluster" }}` returns true for Embedded Cluster installations and `repl{{ ne Distribution "embedded-cluster" }}` returns true for non-Embedded Cluster installations.
 
-For example, the following `sentry` service with `type: NodePort` includes `annotation.kots.io/when: "{{repl IsKurl}}"`. This creates a NodePort service _only_ when installing with kURL:
+For example, the following `sentry` service with `type: NodePort` includes `annotation.kots.io/when: repl{{ eq Distribution "embedded-cluster" }}`. This creates a NodePort service _only_ when installing with Embedded Cluster:
 
   ```yaml
   apiVersion: v1
@@ -69,8 +69,8 @@ For example, the following `sentry` service with `type: NodePort` includes `anno
       app: sentry
   annotations:
   # This annotation prevents the NodePort service 
-  # from being created in non-kURL clusters
-    kots.io/when: "{{repl IsKurl}}"
+  # from being created in non-Embedded Cluster clusters
+    kots.io/when: repl{{ eq Distribution "embedded-cluster" }}
   spec:
     type: NodePort
     ports:
@@ -84,7 +84,7 @@ For example, the following `sentry` service with `type: NodePort` includes `anno
       role: web
   ```
 
-Similarly, to ensure that a `sentry` service with `type: ClusterIP` is only created in existing cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
+Similarly, to ensure that a `sentry` service with `type: ClusterIP` is only created in existing cluster installations, add `annotations.kots.io/when: repl{{ ne Distribution "embedded-cluster" }}` to the ClusterIP specification:
 
 ```yaml
 apiVersion: v1
@@ -95,8 +95,8 @@ metadata:
     app: sentry
 annotations:
   # This annotation prevents the ClusterIP service 
-  # from being created in kURL clusters
-  kots.io/when: "{{repl not IsKurl}}"
+  # from being created in Embedded Cluster installations
+  kots.io/when: repl{{ ne Distribution "embedded-cluster" }}
 spec:
   type: ClusterIP
   ports:
