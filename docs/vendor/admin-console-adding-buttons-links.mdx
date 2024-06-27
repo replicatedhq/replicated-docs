@@ -1,7 +1,3 @@
-import LinkToService from "../partials/application-links/_link-to-service.mdx"
-import NginxExample from "../partials/application-links/_example-nginx.mdx"
-import GiteaExample from "../partials/application-links/_example-gitea.mdx"
-
 # Adding Links to the Dashboard
 
 This topic describes how to use the Kubernetes SIG Application custom resource to add links to the Replicated KOTS Admin Console dashboard.
@@ -89,25 +85,3 @@ Adding a link to a service using the KOTS `ports` key requires that you add the 
 For information about how to add links to services on the Admin Console dashboard using the `ports` key, see the following topics:
 * For existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward)
 * For Embedded Cluster or kURL installations, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services)
-
-{/* ### Requirement
-
-The type of service that you can add to the `ports` key depends on the application installation method:
-* For existing cluster installations, you can add ClusterIP, NodePort, or LoadBalancer services to the `ports` key
-* For Embedded Cluster or kURL installations, you can add NodePort services to the `ports` key
-
-For more information about Kubernetes service types, see [Service](https://kubernetes.io/docs/concepts/services-networking/service/) in the Kubernetes documentation.
-
-### How To
-
-To add a link to an application service using the `ports` key:
-
-<LinkToService/> */}
-
-{/* ### Example: NGINX Application with ClusterIP and NodePort Services
-
-<NginxExample/>
-
-### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
-
-<GiteaExample/> */}
