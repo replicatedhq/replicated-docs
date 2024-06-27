@@ -122,7 +122,7 @@ To update the cluster in an air gap environment:
 1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
 
    ```
-   cat install.sh -s airgap OTHER_ADVANCED_OPTIONS
+   cat install.sh | sudo bash -s airgap OTHER_ADVANCED_OPTIONS
    ```
    Replace `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
    
