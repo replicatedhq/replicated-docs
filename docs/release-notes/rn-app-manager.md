@@ -23,7 +23,7 @@ Released on June 27, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-110-0}
-* Adds the ability to specify a custom storage class for the KOTS admin console components when installing to an existing cluster.
+* Adds the ability to specify a custom storage class for the KOTS Admin Console components when installing to an existing cluster.
 
 ## 1.109.14
 
