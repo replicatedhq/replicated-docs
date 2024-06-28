@@ -9,7 +9,7 @@ import LinkToService from "../partials/application-links/_link-to-service.mdx"
 
 # Exposing Services Using NodePorts
 
-This topic describes how to create a NodePort service for exposing services in Replicated Embedded Cluster or Replicated kURL installations. 
+This topic describes how to create a NodePort service for exposing services in [Replicated Embedded Cluster](/vendor/embedded-overview) or [Replicated kURL](/vendor/kurl-about) installations. 
 
 For information about exposing services in existing cluster installations through the Replicated KOTS port forward tunnel, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
@@ -23,9 +23,11 @@ For each application service that you want to expose for Embedded Cluster or kUR
 
 ## Create a NodePort Service
 
+To expose a service in Embedded Cluster or kURL installations, the service must be included in your release as a NodePort. 
+
 Services with `type: NodePort` are able to be contacted from outside the cluster by connecting to any node using the appropriate protocol and port. This is helpful for installations on VMs or bare metal servers where users must be able access your application from their local machine rather than from inside the cluster. For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
-To expose a service in kURL or Embedded Cluster installations, the service must be included in your release as a NodePort. After creating a NodePort type service, you can then add a link to the service on the Admin Console dashboard where it can be accessed by users after the application is installed. For more information, see [Add a Link to a NodePort Service from the Admin Console](#add-link) below.
+After creating a NodePort type service, you can add a link to the service on the Admin Console dashboard where it can be accessed by users after the application is installed. For more information, see [Add a Link to a NodePort Service from the Admin Console](#add-link) below.
 
 The following shows an example of a NodePort type service:
 
@@ -51,7 +53,7 @@ The following shows an example of a NodePort type service:
 
 ### Use KOTS Annotations to Conditionally Deploy NodePort Services 
 
-You can use the KOTS [`kots.io/when`](/vendor/packaging-include-resources#kotsiowhen) annotation to conditionally deploy a service. This is useful when you want to deploy a ClusterIP or LoadBalancer service for existing cluster installations, and deploy a NodePort service for Embedded Cluster or kURL installations. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
+You can use the KOTS [`kots.io/when`](/vendor/packaging-include-resources#kotsiowhen) annotation to conditionally deploy a service. This is useful when you want to deploy a ClusterIP or LoadBalancer service for existing cluster installations, and deploy a NodePort service for Embedded Cluster or kURL installations.
 
 To conditionally deploy a service based on the installation method, you can use the following KOTS template functions in the `kots.io/when` annotation:
 * [IsKurl](/reference/template-functions-static-context#iskurl): Detects kURL installations. For example, `repl{{ IsKurl }}` returns true for kURL installations, and `repl{{ not IsKurl }}` returns true for non-kURL installations.
@@ -114,19 +116,17 @@ Configure the Kubernetes SIG Application and KOTS Application custom resources t
 
 For example:
 
-![Admin Console dashboard with Open App link](/images/gitea-open-app.png)
+<img alt="Admin Console dashboard with Open App link" src="/images/gitea-open-app.png" width="700px"/>
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-For more information about adding links to the Admin Console dashboard using the Kubernetes SIG Application custom resource, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+To add a link to a NodePort service on the Admin Console dashboard:
 
 <LinkToService/>
 
 ### About Accessing the Service from the Admin Console
 
-:::note
-To be able to access the service, the firewall for the VM where the user installed must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
-:::
+To be able to access the Admin Console and the NodePort service, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
 
 During installations with Embedded Cluster or kURL, the Admin Console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the Admin Console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
 
@@ -172,7 +172,7 @@ To test this example:
 
 1. If there is not already a Kubernetes installer promoted to the channel, add a Kubernetes installer to the release to support embedded cluster installs. For more information, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
-1. Install the release into an embedded cluster on a VM and confirm that the service was exposed successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
+1. Install the release on a VM and confirm that the service was exposed successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
 
     :::note
     Ensure that the VM where you install allows HTTP traffic.
