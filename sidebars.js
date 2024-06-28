@@ -269,7 +269,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Exposing Services with KOTS',
+              label: 'Exposing Services',
               items: [
                 'vendor/admin-console-port-forward',
                 'vendor/kurl-nodeport-services',
