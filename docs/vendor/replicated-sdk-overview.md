@@ -30,4 +30,4 @@ At startup and when serving requests, the SDK retrieves and caches the latest in
 
 If the upstream APIs are not available at startup, the SDK does not accept connections or serve requests until it is able to communicate with the upstream APIs. If communication fails, the SDK retries every 10 seconds and the SDK pod is at `0/1` ready.
 
-When serving requests, if the upstream APIs become unavailable, the SDK serves from the memory cache and sets the `X-Replicated-Served-From-Cache` header to `true`.
+When serving requests, if the upstream APIs become unavailable, the SDK serves from the memory cache and sets the `X-Replicated-Served-From-Cache` header to `true`.  Additionally, rapid sucessive requests to same SDK endpoint with the same request properties will be rate-limited returning the last cached payload and status code without reaching out to the upstream APIs. A `X-Replicated-Rate-Limited` header will set to `true`.
