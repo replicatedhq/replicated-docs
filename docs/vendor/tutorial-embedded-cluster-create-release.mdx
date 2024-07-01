@@ -46,13 +46,13 @@ To create a release:
    </TabItem>
    <TabItem value="kots-app" label="kots-app.yaml">
    <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and adds the port where the Gitea service can be accessed so that the user can open the application after installation.</p>
     <h5>YAML</h5>
     <KotsCr/>
    </TabItem>
    <TabItem value="k8s-app" label="k8s-app.yaml">
    <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
     <h5>YAML</h5>
     <K8sCr/>
    </TabItem>
