@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr.mdx"
-import KotsCr from "../partials/getting-started/_gitea-kots-app-cr.mdx"
+import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr-ec.mdx"
+import KotsCr from "../partials/getting-started/_gitea-kots-app-cr-ec.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import EcCr from "../partials/getting-started/_gitea-ec-config.mdx"
 
@@ -40,7 +40,7 @@ To create a release:
    <Tabs>
    <TabItem value="helmchart" label="gitea.yaml" default>
     <h5>Description</h5>
-    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field will set the specified Helm values during deployment with Embedded Cluster.</p>
     <h5>YAML</h5>
     <HelmChartCr/>
    </TabItem>
