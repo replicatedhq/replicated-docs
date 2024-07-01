@@ -121,7 +121,7 @@ To enable SAML enforcement:
 1. (Optional) Set a default policy for new accounts from the drop-down list.
 1. (Optional) Click **Change IdP Metadata** and follow the prompts to upload any changes to your metadata.
 
-SAML is now enabled on your account. For your team to use the SAML login option, you must enable access through your SAML identity provider’s application dashboard. For example, if you use Okta, assign the application to users or groups. When a user clicks through to use the application, they are granted access as described in [SCIM](#scim).
+SAML is now enabled on your account. For your team to use the SAML login option, you must enable access through your SAML identity provider’s dashboard. For example, if you use Okta, assign the application to users or groups. When a user clicks through to use the application, they are granted access as described in [SCIM](#scim).
 
 ## Disable SAML Enforcement
 
