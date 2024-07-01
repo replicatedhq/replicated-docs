@@ -1,10 +1,12 @@
 # Managing SAML Authentication
 
-This topic describes how to enable or disable SAML authentication.
+This topic describes how to enable or disable SAML authentication for the Replicated Vendor Portal.
 
 ## About Using SAML with the Vendor Portal
 
-After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated Vendor Portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and unprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
+After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Vendor Portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and unprovisioning accounts) through your SAML identity provider.
+
+Using SAML, everyone on your team logs in with their existing usernames and passwords through your identity provider's dashboard. Users do not need to sign up through the Vendor Portal or log in with a separate Vendor Portal account, simplifying their experience.
 
 ### Enabling SAML in Your Vendor Account
 
@@ -88,6 +90,8 @@ To configure SAML:
 
    ![SAML Authentication](/images/team-mgmt-saml-authentication.png)
 
+   [View a larger version of this image](/images/team-mgmt-saml-authentication.png)
+
 1. Browse for, or drag and drop, your XML Metadata file and x.509 public certificate from your SAML provider.
 
 1. Click **Upload Metadata & Cert**.
@@ -106,16 +110,18 @@ To enable SAML enforcement:
 
 1. Select either or both login method options in the the Manage your SAML authentication pane. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
-   **Enable SAML for team logins** - Allows members of your team to log in to the Vendor Portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured in the Vendor Portal. If you enable SAML and your team already is logging in with accounts provisioned in the Vendor Portal, they will be able to continue logging in with those accounts.
+   **Enable SAML for team logins** - Allows members of your team to log in to the Vendor Portal through your identity provider. This option does not remove, change, or restrict any other authentication that methods you have configured in the Vendor Portal. If you enable SAML and your team already is logging in with accounts provisioned in the Vendor Portal, they will be able to continue logging in with those accounts.
 
-   **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
+   **Only allow SAML logins** - Requires members of your team to log in to the Vendor Portal through your identity provider. Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
    ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
+
+   [View a larger version of this image](/images/team-mgmt-saml-manage-auth.png)
 
 1. (Optional) Set a default policy for new accounts from the drop-down list.
 1. (Optional) Click **Change IdP Metadata** and follow the prompts to upload any changes to your metadata.
 
-SAML is now enabled on your account. For your team to use the SAML login option, you must enable access through your SAML provider’s application dashboard. For example, if you use Okta, assign the application to users or groups. When a user clicks through to use the application, they are granted access as described in [SCIM](#scim).
+SAML is now enabled on your account. For your team to use the SAML login option, you must enable access through your SAML identity provider’s dashboard. For example, if you use Okta, assign the application to users or groups. When a user clicks through to use the application, they are granted access as described in [SCIM](#scim).
 
 ## Disable SAML Enforcement
 
@@ -128,3 +134,5 @@ To disable SAML enforcement:
 1. Click **Deprovision SAML** in the Manage your SAML authentication pane.
 
    ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
+
+   [View a larger version of this image](/images/team-mgmt-saml-manage-auth.png)
