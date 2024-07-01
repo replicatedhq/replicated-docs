@@ -22,45 +22,45 @@ Embedded cluster has the following requirements:
 * Linux operating system
 * x86-64 architecture
 * systemd
-* Embedded cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
+* Embedded Cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
 
-### Limitations and Known Issues
+### Limitations
 
-This section lists the limitations and known issues for Embedded Cluster.
+Embedded Cluster has the following limitations:
 
-#### Limitations
+* **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
 
-Embedded cluster has the following limitations:
+* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **Multi-node support is in alpha**: You can create multi-node embedded clusters, but this feature is in alpha. Only single-node embedded clusters are in beta.
+* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **No migration from kURL**: There is not yet a way to migrate a kURL instance to Embedded Cluster. We intend to build a migration or upgrade for kURL instances. There are many ways that this could be built, each with various tradeoffs.
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
+   :::note
+   Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
+   :::
 
-* **GitOps workflow not supported**: Embedded Cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
+* **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
 
-#### Known Issues
+* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
-The following known issues exist:
+* **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
-* When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
+* **Automated installations with the KOTS CLI not supported**: Users cannot do automated (headless) Embedded Cluster installations using the KOTS CLI because it is not possible to configure the application by passing the [ConfigValues](/vendor/releases-configvalues) file with the installation command. Embedded Cluster installations require that the application is configured from the Admin Console config screen. For more information about automating existing cluster or kURL installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
-### kURL Feature Parity
+* **Embedded Cluster release artifact not available through the Download Portal**: The binary required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the binary in order to install with Embedded Cluster. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary).
 
-The following features that are available in kURL are not yet available in Embedded Cluster. Unless otherwise noted, some of these features might not be available at GA:
+* **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
 
-* **Backup and restore with Velero**: Velero is not yet installed as part of Embedded Cluster, so backup and restore is unavailable.
+* **Support bundles over 100MB**: Support bundles are stored in rqlite. Bundles over 100MB could cause rqlite to crash, causing errors in the installation.
 
-* **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
+* **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
-* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of Embedded Cluster. No default graphs show on the Admin Console dashboard, and you cannot create custom graphs.
+* **KOTS GitOps workflow not supported**: Embedded Cluster does not support using the KOTS GitOps workflow. We do not intend to support the GitOps workflow for Embedded Cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
 
-* **Access the Admin Console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not available for Embedded Cluster installations.
+### Known Issue
 
-:::note
-If you require any of these features to use Embedded Cluster, reach out to Alex Parker at alexp@replicated.com.
-:::
+When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
 
 ## Quick Start
 
