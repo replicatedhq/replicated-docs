@@ -84,7 +84,6 @@ const sidebars = {
             'vendor/tutorial-embedded-cluster-create-release',
             'vendor/tutorial-embedded-cluster-create-customer',
             'vendor/tutorial-embedded-cluster-install',
-            'vendor/tutorial-embedded-cluster-reporting',
           ],
         },
         {
