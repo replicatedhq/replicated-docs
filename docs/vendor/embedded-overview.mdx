@@ -97,8 +97,6 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-
-
 ## Configure Embedded Cluster
 
 To install your application with Embedded Cluster, an Embedded Cluster config must be created in a release. The Embedded Cluster config lets you define several characteristics about the cluster that will be created.
@@ -234,6 +232,37 @@ The following are never proxied:
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
 
+### Host Preflight Checks
+
+During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
+* The disk containing directory has sufficient space
+* The system has at least 2G of memory and 2 CPU cores
+* The system clock is synchronized
+
+To see the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
+
+If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
+
+#### Limitations
+
+Embedded Cluster host preflight checks have the following limitations:
+
+* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
+* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
+
+#### Skip Host Preflight Checks
+
+You can skip host preflight checks by passing the `--skip-host-preflights` flag with the Embedded Cluster `install` command. For example:
+
+```bash
+sudo ./my-app install --license license.yaml --skip-host-preflights
+```
+
+When you skip host preflight checks, any application-specific preflight checks defined in a Preflight spec in the release still run.
+
+:::note
+Skipping host preflight checks is _not_ recommended for production installations.
+:::
 
 ## Update
 
