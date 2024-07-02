@@ -56,9 +56,9 @@ Embedded Cluster has the following limitations:
 
 * **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
-* **Custom domains not supported**: Embedded Cluster doesn't fully use custom domains even if they're configured. Full support for custom domains will be added.
+* **Custom domains not supported**: Embedded Cluster does not fully use custom domains even if they are configured. For more information about custom domains, see [About Custom Domains](/vendor/custom-domains). 
 
-* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead.
+* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 * **Upgrading by more than one Kubernetes minor version not supported**: Embedded Cluster does not support upgrading Kubernetes by more than one minor version at a time. The Kubernetes minor version is present in the build metadata for an Embedded Cluster version (e.g., X.Y.Z+k8s-1.28). For example, if an end-user is running X.Y.Z+k8s-1.28, they must upgrade to X.Y.Z+k8s-1.29 before they can upgrade to X.Y.Z+k8s-1.30. The Embedded Cluster version X.Y.Z can be the same or different during these upgrades. The Admin Console will not prevent end-users from attempting to upgrade by more than one Kubernetes minor version at a time, so you must manage this with your customers.
 
