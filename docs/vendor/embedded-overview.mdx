@@ -56,7 +56,7 @@ Embedded Cluster has the following limitations:
 
 * **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
-* **Custom domains not supported**: Embedded Cluster does not fully use custom domains even if they are configured. For more information about custom domains, see [About Custom Domains](/vendor/custom-domains). 
+* **Custom domains not supported**: Embedded Cluster does not support the use of custom domains, even if custom domains are configured. We intend to add support for custom domains. For more information about custom domains, see [About Custom Domains](/vendor/custom-domains). 
 
 * **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
