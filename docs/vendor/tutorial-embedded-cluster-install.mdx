@@ -95,6 +95,12 @@ To install the release with Embedded Cluster:
 
     [View a larger version of this image](/images/gitea-instance-insights-ec.png)
 
+1. (Optional) Reset the node to remove the cluster and the application from the node. This is useful for iteration and development so that you can reset a machine and reuse it instead of having to procure another machine.
+
+   ```bash
+   sudo ./$REPLICATED_APP reset --reboot
+   ```
+
 ## Next Step
 
 Congratulations! As part of this tutorial, you created a release in the Replicated Vendor Portal and installed the release with Replicated Embedded Cluster in a VM. To learn more about Embedded Cluster, see [Using Embedded Cluster](embedded-overview). To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding).
@@ -104,3 +110,4 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 * [Using Embedded Cluster](embedded-overview)
 * [Customer Reporting](/vendor/customer-reporting)
 * [Instance Details](/vendor/instance-insights-details)
+* [Reset a Node](/vendor/embedded-overview#reset-a-node)
