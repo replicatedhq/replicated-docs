@@ -241,7 +241,7 @@ During installation, Embedded Cluster automatically runs a default set of _host 
 
 To see the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
 
-If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
+If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks, see [(KOTS Only) Host Preflights for VM or Bare Metal Installations](preflight-support-bundle-about#host-preflights).
 
 #### Limitations
 
@@ -258,7 +258,7 @@ You can skip host preflight checks by passing the `--skip-host-preflights` flag 
 sudo ./my-app install --license license.yaml --skip-host-preflights
 ```
 
-When you skip host preflight checks, any application-specific preflight checks defined in a Preflight spec in the release still run.
+When you skip host preflight checks, KOTS still runs any application-specific preflight checks defined in a Preflight spec in the release.
 
 :::note
 Skipping host preflight checks is _not_ recommended for production installations.
