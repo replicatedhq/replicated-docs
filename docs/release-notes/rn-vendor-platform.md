@@ -13,7 +13,7 @@ pagination_prev: null
 Released on June 25, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-06-25-1}
-* Use the correct Embedded Cluster icon in customer page.
+* Use the correct Embedded Cluster icon on the customer page.
 * Release API now returns a 400 with a more descriptive error message when a release includes duplicate chart names.
 
 ## v2024.06.24-1
