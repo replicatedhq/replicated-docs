@@ -15,7 +15,7 @@ Released on July 2, 2024
 ### New Features {#new-features-v2024-07-02-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2 1.29.6 1.28.11 1.27.15.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.4.
-=* Remove `/var/lib/containerd` and `/var/lib/docker` as part of `tasks.sh reset`.
+* Remove `/var/lib/containerd` and `/var/lib/docker` as part of `tasks.sh reset`.
 
 ## v2024.06.12-0
 
