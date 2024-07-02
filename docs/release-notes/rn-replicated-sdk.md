@@ -8,7 +8,12 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.24
 
+Released on July 2, 2024
+
+### Improvements {#improvements-1-0-0-beta-24}
+* Adds caching and rate-limiting to the following endpoints:  `/api/v1/app/custom-metrics` and `/api/v1/app/instance-tags`
 
 ## 1.0.0-beta.23
 
