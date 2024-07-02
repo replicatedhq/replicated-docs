@@ -120,8 +120,8 @@ You can choose to use either Replicated Embedded Cluster or Replicated kURL to e
   </tr>
   <tr>
     <td>Installer</td>
-    <td>Create an Installer spec to support installations in in VMs or bare metal servers with Replicated kURL.</td>
-    <td><a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a></td>
+    <td>Create an Installer spec to support installations in VMs or bare metal servers with Replicated kURL.</td>
+    <td><a href="packaging-embedded-kubernetes">Creating a kURL Installer</a></td>
   </tr>
 </table>
 
