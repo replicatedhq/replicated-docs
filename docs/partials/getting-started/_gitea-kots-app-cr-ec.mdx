@@ -10,7 +10,7 @@ spec:
   ports:
     - serviceName: "gitea"
       servicePort: 3000
-      localPort: repl{{ if (eq Distribution "embedded-cluster") }}32000repl{{ else }}3000repl{{ end }}
+      localPort: 32000
       applicationUrl: "http://gitea"
   icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
 ```  
