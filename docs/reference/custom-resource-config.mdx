@@ -35,7 +35,6 @@ spec:
   groups:
     - name: example_group
       title: First Group
-      description: This is descriptive help text.
       items:
       - name: http_enabled
         title: HTTP Enabled
@@ -43,7 +42,6 @@ spec:
         default: "0"
     - name: example_group_2
       title: Second Group
-      description: This is descriptive help text.
       when: false
       items:
       - name: key
@@ -54,7 +52,6 @@ spec:
         type: text  
     - name: example_group_3
       title: Third Group
-      description: This is descriptive help text.
       items:
       - name: email-address
         title: Email Address
@@ -101,7 +98,6 @@ spec:
     # The name must be unique
     - name: example_group
       title: First Group
-      description: This is descriptive help text.
       items:
       - name: http_enabled
         title: HTTP Enabled
@@ -119,7 +115,6 @@ spec:
     - name: example_group
     # First Group is the heading that appears on the Config page
       title: First Group
-      description: This is descriptive help text.
       items:
       - name: http_enabled
         title: HTTP Enabled
@@ -152,7 +147,6 @@ spec:
   groups:
     - name: example_group
       title: First Group
-      description: This is descriptive help text.
       items:
       - name: http_enabled
         title: HTTP Enabled
@@ -160,7 +154,6 @@ spec:
         default: "0"
     - name: example_group_2
       title: Second Group
-      description: This is descriptive help text.
       # This group is displayed only when the `http_enabled` field is selected 
       when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
       items:
@@ -172,7 +165,6 @@ spec:
         type: text  
     - name: example_group_3
       title: Third Group
-      description: This is descriptive help text.
       items:
       - name: email-address
         title: Email Address
