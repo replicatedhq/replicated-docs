@@ -88,6 +88,10 @@ To promote a kURL installer to a channel:
 
 1. Click **Promote**. In the **Promote Installer** dialog that opens, edit the fields:
 
+    <img alt="promote installer dialog" src="/images/promote-installer.png" width="450px"/>
+
+    [View a larger version of this image](/images/promote-installer.png)
+
     <table>
       <tr>
         <th width="30%">Field</th>

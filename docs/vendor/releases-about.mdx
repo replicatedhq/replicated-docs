@@ -67,9 +67,15 @@ This section provides additional information about releases, including details a
 
 You can create the following types of releases in the Vendor Portal:
 
-* **Helm-only Releases**: A release that contains one or more Helm charts. Helm-only releases can be installed with the Helm CLI only.
+* **Helm-only Releases**: A release that contains one or more Helm charts. Helm-only releases can be installed with the Helm CLI only. For more information, see [Installing with Helm](install-with-helm).
 
-* **KOTS Releases**: A release that contains your application files as well as the manifests required to install with Replicated KOTS. The application files in KOTS releases can be Helm charts and/or Kubernetes manifests. KOTS releases that contain one or more Helm charts can be installed with KOTS or the Helm CLI.
+* **KOTS Releases**: A release that contains your application files as well as the manifests required to install the application with Replicated KOTS. The application files in KOTS releases can be Helm charts and/or Kubernetes manifests. KOTS releases that contain one or more Helm charts can be installed with KOTS or the Helm CLI. For more information, see [Introduction to KOTS](../intro-kots).
+
+The following shows the Helm-only and KOTS release options that appear in the **Create release** dropdown in the Vendor Portal:
+
+<img alt="create a release dropdown" src="/images/create-release-dropdown.png" width="450px"/>
+
+[View a larger version of this image](/images/create-release-dropdown.png)
 
 ### Promotion
 
@@ -247,13 +253,13 @@ As shown in the image above, you can do the following from the **Channels** page
 
 ### Draft Release Page
 
-For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page. 
+For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page.
 
 The following shows an example of the **Draft** page in the Vendor Portal:
 
- ![Default YAML](/images/guides/kots/default-yaml.png)
+  ![Draft release page](/images/draft-release-page.png)
 
-  [View a larger version of this image](/images/guides/kots/default-yaml.png)
+  [View a larger version of this image](/images/draft-release-page.png)
 
 You can do the following tasks on the **Draft** page:
 
