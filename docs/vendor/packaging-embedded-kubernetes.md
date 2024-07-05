@@ -18,11 +18,11 @@ There are two possible methods for creating a Kubernetes installer:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#include-a-kubernetes-installer-in-a-release-beta">Include a Kubernetes installer in an application release (Beta)</a></td>	    <td><a href="packaging-embedded-kubernetes#release">Include the installer in a release (Beta)</a></td>
+    <td><a href="packaging-embedded-kubernetes#include-a-kubernetes-installer-in-a-release-beta">Include a Kubernetes installer in an application release (Beta)</a></td>
     <td><p>The installer is included in an application release.</p><p>Couples the installer and the application in the release, making them easier to test and use together.</p><p>Helps with installing previous versions of the application because the installation command uses the installer that is associated with the application release.</p></td>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">Create a separate Kubernetes installer</a></td>	    <td><a href="packaging-embedded-kubernetes#channel">Promote the installer to a channel</a></td>
+    <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">Create a separate Kubernetes installer</a></td>
     <td><p>The installer is created and promoted to a channel separately from an application release.</p><p> The installation command uses the Kubernetes installer that is currently promoted to the channel. When you install a previous application version with the currently promoted Kubernetes installer, problems can occur because the application version might not have been tested with the current installer.</p></td>
   </tr>
 </table>
