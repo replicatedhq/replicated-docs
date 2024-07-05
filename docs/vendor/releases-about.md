@@ -238,7 +238,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
-   * In the **kURL installer** section, view the current Kubernetes installer promoted to the channel. Click **Installer history** to view the history of Kubernetes installers promoted to the channel. For more information about creating Kubernetes installers within a release or separate from a release, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers within a release or separate from a release, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel. For more information, see the [Installing an Application](/enterprise/installing-overview) section.
 

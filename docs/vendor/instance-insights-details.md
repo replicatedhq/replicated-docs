@@ -146,7 +146,7 @@ In addition to the details listed above, the **Instance Information** section al
 * Node operating systems versions
 * Total number of cluster nodes
 * Number of cluster nodes in a Ready state
-* ID of the Kubernetes installer specification
+* ID of the kURL installer specification
 
 ### Instance Uptime
 
@@ -254,7 +254,7 @@ The following tables describe the events that can be displayed in the **Instance
         <li><code>kURL</code>: The cluster is provisioned by kURL.</li>
         <li><code>Existing</code>: The cluster is <em>not</em> provisioned by kURL.</li>
       </ul>
-      <p>For more information about kURL clusters, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+      <p>For more information about kURL clusters, see <a href="packaging-embedded-kubernetes">Creating a kURL installer</a>.</p>
     </td>
   </tr> 
   <tr>
@@ -291,8 +291,8 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>New kURL Installer</td>
     <td>
-      <p>The ID of the Kubernetes installer specification that kURL used to provision the cluster. Indicates that a new Installer specification was added. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. </p>
-      <p>For more information about installer specifications for kURL, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+      <p>The ID of the kURL installer specification that kURL used to provision the cluster. Indicates that a new Installer specification was added. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. </p>
+      <p>For more information about installer specifications for kURL, see <a href="packaging-embedded-kubernetes">Creating a kURL installer</a>.</p>
       <p><strong>Note:</strong> Applies only to kURL clusters.</p>
     </td> 
   </tr>  

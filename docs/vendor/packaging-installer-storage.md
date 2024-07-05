@@ -4,7 +4,7 @@ This topic provides guidance for selecting Replicated kURL add-ons to provide hi
 
 ## Overview
 
-kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in clusters. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for Replicated KOTS is managed in the cluster.
+kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in clusters. You configure these add-ons in your kURL installer to define how data for your application and data for Replicated KOTS is managed in the cluster.
 
 The following lists the kURL add-ons for data storage:
 * **MinIO**: MinIO is an open source, S3-compatible object store. See [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
@@ -39,13 +39,13 @@ Alternatively, you can configure KOTS to be deployed without object storage. Thi
 
 ### Distributed Storage in KOTS v1.88 and Earlier
 
-KOTS v1.88 and earlier requires distributed storage. To support multi-node clusters, Kubernetes installer specifications that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. For more information, see [Rook Ceph](#rook-ceph) below.
+KOTS v1.88 and earlier requires distributed storage. To support multi-node clusters, kURL installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. For more information, see [Rook Ceph](#rook-ceph) below.
 
 ## Factors to Consider When Choosing a Storage Configuration
 
-The object store and/or PV provisioner add-ons that you choose to include in your Kubernetes installer depend on the following factors:
-* **KOTS storage requirements**: The storage requirements for the version of the KOTS add-on that you include in the specification. For example, KOTS v1.88 and earlier requires distributed storage.
-* **Other add-on storage requirements**: The storage requirements for the other add-ons that you include in the specification. For example, the Velero add-on requires object storage to deploy the default internal storage for snapshots during installation.
+The object store and/or PV provisioner add-ons that you choose to include in your kURL installer depend on the following factors:
+* **KOTS storage requirements**: The storage requirements for the version of the KOTS add-on that you include in the spec. For example, KOTS v1.88 and earlier requires distributed storage.
+* **Other add-on storage requirements**: The storage requirements for the other add-ons that you include in the spec. For example, the Velero add-on requires object storage to deploy the default internal storage for snapshots during installation.
 * **Application storage requirements**: The storage requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
 ## Supported Storage Configurations
@@ -60,11 +60,11 @@ When configured to use local PV storage instead of object storage, KOTS stores s
 
 #### Requirements
 
-To use the OpenEBS add-on without object storage, your Kubernetes installer specification must meet the following requirements:
+To use the OpenEBS add-on without object storage, your kURL installer must meet the following requirements:
 
-* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, you must set the `disableS3` field to `true` in the KOTS add-on. Setting `disableS3: true` in the KOTS add-on allows KOTS to use the local PV storage provided by OpenEBS instead of using object storage. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation. 
+* When neither the MinIO nor the Rook add-on are included in the kURL installer, you must set the `disableS3` field to `true` in the KOTS add-on. Setting `disableS3: true` in the KOTS add-on allows KOTS to use the local PV storage provided by OpenEBS instead of using object storage. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation. 
 
-* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, the Velero add-on cannot be included. This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
+* When neither the MinIO nor the Rook add-on are included in the kURL installer, the Velero add-on cannot be included. This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
 
   When the Velero add-on is not included, your users must install and configure Velero on the cluster after installation in order to use Replicated snapshots for backup and restore. For more information, see [About Backup and Restore](/enterprise/snapshots-understanding).
 
@@ -74,7 +74,7 @@ To use the OpenEBS add-on without object storage, your Kubernetes installer spec
 
 #### Example
 
-The following is an example specification that uses OpenEBS v3.3.x with Local PV for local storage and disables object storage for KOTS:
+The following is an example installer that uses OpenEBS v3.3.x with Local PV for local storage and disables object storage for KOTS:
 
 ```yaml
 apiVersion: "cluster.kurl.sh/v1beta1"
@@ -103,11 +103,11 @@ When both the MinIO and OpenEBS add-ons are included, KOTS stores support bundle
 
 To use both the OpenEBS add-on and the MinIO add-on, the KOTS add-on must use KOTS v1.89 or later.  
 
-KOTS v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
+KOTS v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, kURL installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
 #### Example
 
-The following is an example specification that uses both the OpenEBS add-on version 3.3.x and MinIO add-on version `2022-09-07T22-25-02Z`:
+The following is an example installer that uses both the OpenEBS add-on version 3.3.x and MinIO add-on version `2022-09-07T22-25-02Z`:
 
 ```yaml
 apiVersion: "cluster.kurl.sh/v1beta1"
@@ -138,7 +138,7 @@ For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommend
 
 #### Example
 
-The following is an example specification that uses the Rook add-on version 1.7.x:
+The following is an example installer that uses the Rook add-on version 1.7.x:
 
 ```yaml
 apiVersion: "cluster.kurl.sh/v1beta1"
