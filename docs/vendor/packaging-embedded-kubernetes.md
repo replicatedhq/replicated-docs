@@ -14,7 +14,7 @@ For more information about kURL, see [Introduction to kURL](kurl-about).
 
 ## Create an Installer
 
-To distribute a kURL installer alongside your application, you can include the installer as a manifest file within a given release or promote the installer to a channel:
+To distribute a kURL installer alongside your application, you can promote the installer to a channel or include the installer as a manifest file within a given release:
 
 <table>
   <tr>
