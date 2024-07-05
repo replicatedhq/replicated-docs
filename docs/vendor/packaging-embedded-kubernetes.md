@@ -23,7 +23,7 @@ To distribute a kURL installer alongside your application, you can include the i
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#channel">Promote the installer to a channel</a></td>
-    <td><p>The installer is promoted to one or more channels. All releases on the channel use the kURL installer that is currently promoted to that channel. There can be only one active kURL installer on each channel at a time.</p><p>The benefit of promoting an installer to one or more channels is that you can create a single installer within needing to add a separate installer for each release. However, because all the releases on the channel will use the same installer, problems can occur if all releases are not tested with the given installer.</p></td>
+    <td><p>The installer is promoted to one or more channels. All releases on the channel use the kURL installer that is currently promoted to that channel. There can be only one active kURL installer on each channel at a time.</p><p>The benefit of promoting an installer to one or more channels is that you can create a single installer without needing to add a separate installer for each release. However, because all the releases on the channel will use the same installer, problems can occur if all releases are not tested with the given installer.</p></td>
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#release">Include the installer in a release (Beta)</a></td>
