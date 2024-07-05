@@ -1,5 +1,4 @@
 import KurlDefinition from "../partials/kurl/_kurl-definition.mdx"
-import Installers from "../partials/kurl/_installers.mdx"
 
 # Introduction to kURL
 
@@ -13,11 +12,13 @@ The Replicated KOTS entitlement is required to install applications with KOTS an
 
 <KurlDefinition/>
 
-### kURL Installers
+### Kubernetes Installer Specs
 
-<Installers/>
+To provision a cluster, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. This _Kubernetes installer_ spec can be customized according to the application requirements by including add-ons. kURL provides add-ons for networking, storage, ingress, and more. kURL also provides a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS Admin Console.
 
-To distribute a kURL installer alongside your application, you can include the installer as a manifest file within a given release or promote the installer to a channel. For more information about creating kURL installers, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+Installer specs can be embedded with an application by promoting the spec to the same channel as the target application release in the Replicated vendor platform. When an installer spec is promoted to a channel, all releases on the channel use the installer for installations with kURL.
+
+For more information about creating Kubernetes installer specs for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
 ### kURL Installations
 
