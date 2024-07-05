@@ -16,7 +16,7 @@ When you enable the identity service for an application, the Replicated app mana
 Identity service has the following limitations and requirements:
 
 * Requires the identity service option is enabled in customer licenses.
-* Is available only for embedded cluster installations with the Kubernetes installer.
+* Is available only for embedded cluster installations with the kURL installer.
 * Is available only through the Replicated Admin Console.
 
 ## Enable and Configure Identity Service
