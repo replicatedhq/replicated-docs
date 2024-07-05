@@ -22,47 +22,14 @@ To distribute a kURL installer alongside your application, you can include the i
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#release">Include the installer in a release (Beta)</a></td>
-    <td><p>The installer is included as a manifest file in a release. This allows you to couple the installer with a particular release, making them easier to test and use together.</p></td>
+    <td><a href="packaging-embedded-kubernetes#channel">Promote the installer to a channel</a></td>
+    <td><p>The installer is promoted to one or more channels. All releases on the channel use the kURL installer that is currently promoted to that channel. There can be only one active kURL installer on each channel at a time.</p><p>The benefit of promoting an installer to one or more channels is that you can create a single installer within needing to add a separate installer for each release. However, because all the releases on the channel will use the same installer, problems can occur if all releases are not tested with the given installer.</p></td>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#channel">Promote the installer to a channel</a></td>
-    <td><p>The installer is promoted to a channel. All releases on the channel use the kURL installer that is currently promoted. There can be only one active kURL installer on each channel.</p><p>This method can cause problems because it is possible that not all releases on the channel have been tested with the active kURL installer.</p></td>
+    <td><a href="packaging-embedded-kubernetes#release">Include the installer in a release (Beta)</a></td>
+    <td><p>The installer is included as a manifest file in a release. This makes it easier to test the installer and release together. It also makes it easier to know which installer spec customers are using based on the application version that they have installed.</p></td>
   </tr>
 </table>
-
-### Include an Installer in a Release (Beta) {#release}
-
-To include the kURL installer in a release:
-
-1. In the [Vendor Portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create Release** to create a new release, or click **Edit YAML** to edit an existing release.
-
-   The YAML editor opens.
-
-1. Create a new file in the release with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`:
-
-    ```yaml
-    apiVersion: cluster.kurl.sh/v1beta1
-    kind: Installer
-    metadata:
-      name: "latest"
-    spec:
-    
-    ```
-
-1. Edit the file to customize the installer. For guidance on which add-ons to choose, see [ kURL Add-on Requirements and Recommendations](#requirements-and-recommendations) below.
-
-   You can also go to the landing page at [kurl.sh](https://kurl.sh/) to build an installer then copy the provided YAML:
-
-   <img alt="kurl.sh landing page" src="/images/kurl-build-an-installer.png" width="650px"/>
-
-   [View a larger version of this image](/images/kurl-build-an-installer.png)
-
-1. Click **Save**. This saves a draft that you can continue to edit until you promote it.
-
-1. Click **Promote**.
-
-   To make changes after promoting, create a new release.  
 
 ### Promote the Installer to a Channel {#channel}
 
@@ -110,6 +77,39 @@ To promote a kURL installer to a channel:
 1. Click **Promote** again. The installer appears on the **kURL Installers** page.
 
    To make changes after promoting, create and promote a new installer.
+
+### Include an Installer in a Release (Beta) {#release}
+
+To include the kURL installer in a release:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create Release** to create a new release, or click **Edit YAML** to edit an existing release.
+
+   The YAML editor opens.
+
+1. Create a new file in the release with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`:
+
+    ```yaml
+    apiVersion: cluster.kurl.sh/v1beta1
+    kind: Installer
+    metadata:
+      name: "latest"
+    spec:
+    
+    ```
+
+1. Edit the file to customize the installer. For guidance on which add-ons to choose, see [ kURL Add-on Requirements and Recommendations](#requirements-and-recommendations) below.
+
+   You can also go to the landing page at [kurl.sh](https://kurl.sh/) to build an installer then copy the provided YAML:
+
+   <img alt="kurl.sh landing page" src="/images/kurl-build-an-installer.png" width="650px"/>
+
+   [View a larger version of this image](/images/kurl-build-an-installer.png)
+
+1. Click **Save**. This saves a draft that you can continue to edit until you promote it.
+
+1. Click **Promote**.
+
+   To make changes after promoting, create a new release.  
 
 ## kURL Add-on Requirements and Recommendations {#requirements-and-recommendations}
 
