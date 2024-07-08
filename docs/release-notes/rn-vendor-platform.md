@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.08-0
+
+Released on July 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-07-08-0}
+* Fixed Oracle CMX Pricing. Pricing is now following oracle's cost estimator.
+
 ## v2024.06.26-4
 
 Released on June 26, 2024
