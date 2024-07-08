@@ -64,6 +64,22 @@ To create a release:
    </TabItem>
    </Tabs>
 
+1. Lint:
+
+   ```bash
+   replicated release lint --yaml-dir .
+   ```
+   ```bash
+   RULE                                  TYPE    FILENAME         LINE    MESSAGE
+   config-spec                           warn                                                                                                                                                    Missing config spec
+   preflight-spec                        warn                                                                                                                                                    Missing preflight spec
+   troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
+   nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   ```
+   :::note
+   You can ignore the warning messages for the purpose of this tutorial.
+   :::
+
 1. Create a release:
 
    ```
@@ -91,10 +107,6 @@ To create a release:
     ![Edit Release page in the Vendor Portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
     [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
-
-    :::note
-    The **Help** panel will include some warning messages that can be ignored for the purpose of this tutorial.
-    :::
 
 1. At the top of the page, click **Promote**.
 

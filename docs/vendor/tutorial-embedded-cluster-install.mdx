@@ -51,29 +51,27 @@ To install the release with Embedded Cluster:
 
     At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
 
-1. Bypass the browser TLS warning by clicking the URL provided to proceed.
+1. Bypass the browser TLS warning by clicking **Continue to setup**.
 
-1. Click **Advanced > Proceed**
+1. Click **Advanced > Proceed**.
 
 1. On the **HTTPS for the Gitea Admin Console** page, select **Self-signed** and click **Continue**.
 
-1. On the login page, enter the Admin Console password that you created during installation.
+1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
 1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
 
     The Admin Console dashboard opens.
     
-1. In the **Version** section, for version `0.1.0`, click **Deploy**. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
+1. In the **Version** section, for version `0.1.0`, click **Deploy** then **Yes, deploy**. 
 
-    ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
-
-    [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
+    The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
 
 1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser:
 
-    ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
+    ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
-    [View a larger version of this image](/images/tutorial-gitea-ready.png)
+    [View a larger version of this image](/images/gitea-ec-ready.png)
 
     <img alt="Gitea app landing page" src="/images/gitea-app.png" width="600px"/>
 
@@ -98,8 +96,9 @@ To install the release with Embedded Cluster:
 1. (Optional) Reset the node to remove the cluster and the application from the node. This is useful for iteration and development so that you can reset a machine and reuse it instead of having to procure another machine.
 
    ```bash
-   sudo ./$REPLICATED_APP reset --reboot
+   sudo ./APP_SLUG reset --reboot
    ```
+   Where `APP_SLUG` is the unique slug for the application that you created.
 
 ## Next Step
 
