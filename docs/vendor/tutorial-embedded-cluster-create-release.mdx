@@ -40,7 +40,7 @@ To create a release:
    <Tabs>
    <TabItem value="helmchart" label="gitea.yaml" default>
     <h5>Description</h5>
-    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field will set the specified Helm values during deployment with Embedded Cluster.</p>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment.</p>
     <h5>YAML</h5>
     <HelmChartCr/>
    </TabItem>
@@ -77,7 +77,7 @@ To create a release:
    nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
    :::note
-   You can ignore the warning messages for the purpose of this tutorial.
+   You can ignore any warning messages for the purpose of this tutorial.
    :::
 
 1. Create a release:
