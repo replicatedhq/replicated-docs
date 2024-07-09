@@ -10,7 +10,7 @@ Embedded cluster is in beta. If you are instead looking for information about Re
 
 ## Overview
 
-When you update an application installed with Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the cluster on its own.
+When you update an application installed with Embedded Cluster, you update both the application and the cluster infrastructure together, including Kubernetes, KOTS, Velero, and other components deployed to the cluster by Embedded Cluster. There is no need or mechanism to update the infrastructure on its own.
 
 When you deploy a new version, any changes to the application are deployed first. The Admin Console waits until the application is ready (as indicated by status informers) before making any changes to the cluster. For more information about status informers, see [About Resource Status Informers](/vendor/admin-console-display-app-status).
 
@@ -20,9 +20,9 @@ During cluster updates, the Admin Console can experience downtime and become una
 
 [View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
 
-## Update the Application and Cluster
+## Update
 
-You can update an application and the cluster at the same time from the Admin Console. You can also set up automatic updates. See [Configuring Automatic Updates](/enterprise/updating-apps).
+You can update both the application and the infrastructure at the same time from the Admin Console. You can also set up automatic updates. See [Configuring Automatic Updates](/enterprise/updating-apps).
 
 :::important
 Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.

@@ -87,9 +87,13 @@ You can manually download and install the KOTS CLI binary to install without roo
 
 Users in air gap environments can also follow this procedure to install the KOTS CLI.
 
-To manually download and install the `kots` CLI:
+To manually download and install the KOTS CLI:
 
-1. Download the KOTS CLI release for your operating system from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
+1. Download the KOTS CLI release for your operating system.
+
+   For air gap environments, download the KOTS CLI release from the download portal. See [Download Air Gap Bundles from the Download Portal](/vendor/releases-download-airgap-bundles#download-portal).
+
+   Alternatively, for online environments, you can run one of the following commands to download the latest version of the KOTS CLI from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
 
    * **MacOS (AMD and ARM)**:
 
@@ -108,10 +112,6 @@ To manually download and install the `kots` CLI:
       ```bash
       curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_arm64.tar.gz
       ```
-
-   :::note
-   For air gap environments, download the KOTS CLI release from the download portal provided by your vendor.
-   :::
 
 1. Unarchive the `.tar.gz` file that you downloaded:
 
