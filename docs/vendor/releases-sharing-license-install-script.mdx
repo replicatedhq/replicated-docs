@@ -1,0 +1,113 @@
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+
+# Getting Installation Commands for a Release
+
+This topic describes where to find the installation commands for releases in the Replicated Vendor Portal.
+
+For information about getting installation commands with the Replicated CLI, see [channel inspect](/reference/replicated-cli-channel-inspect). For information about getting installation commands with the Vendor API v3, see [Get install commands for a specific channel release](https://replicated-vendor-api.readme.io/reference/getchannelreleaseinstallcommands) in the Vendor API v3 documentation.
+
+## Get Commands for the Latest Release
+
+Every channel in the Vendor Portal includes an **Install** section with installation commands for the latest release promoted to the channel.
+
+In most cases, first time installations should use the commands in the **Install** section to install the latest release version. It is also possible to install a specific release by providing a version label with the installation command. For more information, see [Get Installation Commands for a Specific Release](#specific-release) below.
+
+To get the installation commands for the latest release:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Channels** page.
+
+1. On the target channel card, under **Install**, click the tab for the type of installation command that you want to view:
+
+    <Tabs>
+    <TabItem value="kots" label="KOTS" default> 
+    <p>View the command for installing with Replicated KOTS in existing clusters.</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-install.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-install.png)
+    </TabItem>
+    <TabItem value="embedded" label="Embedded K8s" default> 
+    <p>View the commands for installing with Replicated Embedded Cluster or Replicated kURL on VMs or bare metal servers.</p>
+    
+    <p>In the dropdown, choose **kURL** or **Embedded Cluster** to view the command for the target installer:</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-embedded-k8s.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-embedded-k8s.png)
+
+    <img alt="Install section of the channel card" src="/images/channel-card-embedded-k8s-ec.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-embedded-k8s-ec.png)
+
+    :::note
+    The Embedded Cluster installation instructions are customer-specific. Click **View customer list** to navigate to the page for the target customer. For more information, see [Get Customer-Specific Installation Instructions for Helm or Embedded Cluster](#customer-specific) below
+    :::
+    </TabItem>
+    <TabItem value="helm" label="Helm" default> 
+    <p>View the command for installing with the Helm CLI in an existing cluster.</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-helm.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-helm.png)
+
+    :::note
+    The Helm installation instructions are customer-specific. Click **View customer list** to navigate to the page for the target customer. For more information, see [Get Customer-Specific Installation Instructions for Helm or Embedded Cluster](#customer-specific) below.
+    :::
+    </TabItem>
+    </Tabs>
+   
+## Get Commands for a Specific Release {#specific-release}
+
+For KOTS installations, is possible to install a specific release version by providing a version label with the installation command. Typically, it is not necessary to specify a version label with the installation command for air gap installations because the customer can select the desired version in the Replicated Download Portal. The Download Portal will then make the correct assets available automatically. For more information, see [Download Air Gap Bundles from the Download Portal](/vendor/releases-download-airgap-bundles#download-portal).
+
+To get the command for a specific release version:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Channels** page.
+
+1. On the channel card, click **Release history**.
+
+1. For the target release version, open the dot menu and click **Install Commands**.
+
+1. In the **Install Commands** dialog, click the tab for the type of installation command that you want to view:
+
+    <Tabs>
+    <TabItem value="kots" label="KOTS" default> 
+    <p>View the command for installing with Replicated KOTS in existing clusters.</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-install.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-install.png)
+    </TabItem>
+    <TabItem value="embedded" label="Embedded K8s" default> 
+    <p>View the commands for installing with Replicated Embedded Cluster or Replicated kURL on VMs or bare metal servers.</p>
+    
+    <p>In the dropdown, choose **kURL** or **Embedded Cluster** to view the command for the target installer:</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-embedded-k8s.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-embedded-k8s.png)
+
+    <img alt="Install section of the channel card" src="/images/channel-card-embedded-k8s-ec.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-embedded-k8s-ec.png)
+
+    :::note
+    The Embedded Cluster installation instructions are customer-specific. Click **View customer list** to navigate to the page for the target customer. For more information, see [Get Customer-Specific Installation Instructions for Helm or Embedded Cluster](#customer-specific) below
+    :::
+    </TabItem>
+    <TabItem value="helm" label="Helm" default> 
+    <p>View the command for installing with the Helm CLI in an existing cluster.</p>
+
+    <img alt="Install section of the channel card" src="/images/channel-card-helm.png" width="400px"/>
+    [View a larger version of this image](/images/channel-card-helm.png)
+
+    :::note
+    The Helm installation instructions are customer-specific. Click **View customer list** to navigate to the page for the target customer. For more information, see [Get Customer-Specific Installation Instructions for Helm or Embedded Cluster](#customer-specific) below.
+    :::
+    </TabItem>
+    </Tabs>
+
+## Get Customer-Specific Installation Instructions for Helm or Embedded Cluster {#customer-specific}
+
+Installation instructions for the Helm CLI and Replicated Embedded Cluster are customer-specific. You can find installation instructions on the page for the target customer.
+
+To get customer-specific Helm or Embedded Cluster installation instructions:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Customers** page and click on the target customer.
+
+1. At the top of the page, click the **Install instructions** drop down, then click **Helm** or **Embedded cluster**.
+
+1. In the dialog that opens, copy and paste the commands provided to install.

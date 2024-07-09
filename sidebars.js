@@ -155,6 +155,7 @@ const sidebars = {
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
+        'vendor/releases-sharing-license-install-script',
         'reference/linter',
       ],
     },
@@ -164,6 +165,7 @@ const sidebars = {
       items: [
         'vendor/licenses-about',
         'vendor/releases-creating-customer',
+        'vendor/licenses-download',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
@@ -311,10 +313,8 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Downloading Assets and Getting Commands for KOTS Installations',
+              label: 'Downloading and Sharing Assets for KOTS Releases',
               items: [
-                'vendor/releases-sharing-license-install-script',
-                'vendor/licenses-download',
                 'vendor/releases-download-airgap-bundles',
                 'vendor/releases-share-download-portal',
                 'vendor/releases-configvalues',
