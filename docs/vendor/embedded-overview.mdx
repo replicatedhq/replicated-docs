@@ -4,7 +4,7 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Using Embedded Cluster (Beta)
 
-This topic describes how to use the Replicated embedded cluster to configure, install, and manage your application in an embedded Kubernetes cluster.
+This topic describes how to use the Replicated Embedded Cluster to configure, install, and manage your application in an embedded Kubernetes cluster.
 
 :::note
 Embedded cluster is in beta. If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
@@ -22,66 +22,70 @@ Embedded cluster has the following requirements:
 
 <Requirements/>
 
-### Limitations and Known Issues
+### Limitations
 
-This section lists the limitations and known issues for embedded cluster.
+Embedded Cluster has the following limitations:
 
-#### Limitations
+* **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
 
-Embedded cluster has the following limitations:
+* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **Multi-node support is in alpha**: You can create multi-node embedded clusters, but this feature is in alpha. Only single-node embedded clusters are in beta.
+* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **No migration from kURL**: There is not yet a way to migrate a kURL instance to embedded cluster. We intend to build a migration or upgrade for kURL instances. There are many ways that this could be built, each with various tradeoffs.
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
-* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
+   :::note
+   Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
+   :::
 
-* **GitOps workflow not supported**: Embedded cluster does not support using the GitOps workflow. We do not intend to support the GitOps workflow for embedded cluster in the future. If an end-user is interested in GitOps, consider the Helm install method instead.
+* **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
 
-#### Known Issue
+* **Cannot change `spec.api` and `spec.storage` after installation**: The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
-If you use Helm extensions and a Helm chart fails to install, you can make changes to your embedded cluster config, promote a new release, and update to that version from the admin console to upgrade the chart. However, there will be a several minute delay before the Helm chart updates.
+* **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
-For more information about using Helm extensions, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+* **Automated installations not supported**: Users cannot do automated (headless) Embedded Cluster installations because it is not possible to configure the application by passing the [ConfigValues](/vendor/releases-configvalues) file with the installation command. Embedded Cluster installations require that the application is configured from the Admin Console config screen. For more information about automating existing cluster or kURL installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
-### kURL Feature Parity
+* **Embedded Cluster release artifact not available through the Download Portal**: The binary required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the binary in order to install with Embedded Cluster. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary).
 
-The following features that are available in kURL are not yet available in embedded cluster. Unless otherwise noted, some of these features might not be available at GA:
+* **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
 
-* **Air gap**: Air gap support is not yet implemented for embedded cluster. We intend to implement support for air gap installations in the future.
+* **Support bundles over 100MB**: Support bundles are stored in rqlite. Bundles over 100MB could cause rqlite to crash, causing errors in the installation.
 
-* **Backup and restore with Velero**: Velero is not yet installed as part of embedded cluster, so backup and restore is unavailable.
+* **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
-* **Distributed storage with Rook**: OpenEBS is the only storage provider available today. We plan to introduce Rook as an alternative for multi-node clusters after GA.
+* **Custom domains not supported**: Embedded Cluster does not support the use of custom domains, even if custom domains are configured. We intend to add support for custom domains. For more information about custom domains, see [About Custom Domains](/vendor/custom-domains). 
 
-* **Monitoring with Prometheus**: The Prometheus stack is not deployed as part of embedded cluster. No default graphs show on the admin console dashboard, and you cannot create custom graphs.
+* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
-* **Access the admin console with an identity provider**: Identity provider is a beta feature that is exclusive to kURL. It is not available for embedded cluster installations.
+* **Upgrading by more than one Kubernetes minor version not supported**: Embedded Cluster does not support upgrading Kubernetes by more than one minor version at a time. The Kubernetes minor version is present in the build metadata for an Embedded Cluster version (e.g., X.Y.Z+k8s-1.28). For example, if an end-user is running X.Y.Z+k8s-1.28, they must upgrade to X.Y.Z+k8s-1.29 before they can upgrade to X.Y.Z+k8s-1.30. The Embedded Cluster version X.Y.Z can be the same or different during these upgrades. The Admin Console will not prevent end-users from attempting to upgrade by more than one Kubernetes minor version at a time, so you must manage this with your customers.
 
-:::note
-If you require any of these features to use embedded cluster, reach out to Alex Parker at alexp@replicated.com.
-:::
+* **Downgrading Kubernetes not supported**: Embedded Cluster does not support downgrading Kubernetes. The admin console will not prevent end-users from attempting to downgrade Kubernetes if a more recent version of your application specifies a previous Embedded Cluster version. You must ensure that you do not promote new versions with previous Embedded Cluster versions.
+
+### Known Issue
+
+When a customer instance fetches a new version of your application, the version is rendered by the currently deployed version of KOTS. If your new application version uses functionality that the currently deployed version of KOTS doesn't support, your application version will not be rendered and cannot be upgraded to. In the interim, we are limiting new functionality introduced in KOTS that could trigger this issue, and we are working on a solution.
 
 ## Quick Start
 
-You can use the following steps to get started quickly with embedded cluster. More detailed documentation is available below.
+You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
 
-1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the embedded cluster version you want to use. See the embedded cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
+1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
 
-     Example embedded cluster config:
+     Example Embedded Cluster config:
 
      ```yaml
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.29.4+ec.3
+       version: 1.3.0+k8s-1.29
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
 
-1. Return to the customer page where you enabled embedded cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the embedded cluster binary and install your application.
+1. Return to the customer page where you enabled Embedded Cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
@@ -93,33 +97,31 @@ You can use the following steps to get started quickly with embedded cluster. Mo
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-1. Enter an admin console password when prompted.
+1. Enter an Admin Console password when prompted.
 
-     The admin console URL is printed when the installation finishes. Access the admin console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
-
-
+     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
 ## Configure Embedded Cluster
 
-To install your application with embedded cluster, an embedded cluster config must be created in a release. The embedded cluster config lets you define several characteristics about the cluster that will be created.
+To install your application with Embedded Cluster, an Embedded Cluster config must be created in a release. The Embedded Cluster config lets you define several characteristics about the cluster that will be created.
 
 For more information, see [Embedded Cluster Config](/reference/embedded-config).
 
 ## Download the Embedded Cluster Binary
 
-To install your application with embedded cluster, you need to download an embedded cluster binary and a license. The binary is specific to your application release: it installs that particular version of your application using the embedded cluster config defined in that release.
+To install your application with Embedded Cluster, you need to download an Embedded Cluster binary and a license. The binary is specific to your application release: it installs that particular version of your application using the Embedded Cluster config defined in that release.
 
 Your customers can download the binary using the Replicated app service, or you can host/serve the binary yourself using the Replicated Vendor API.
 
 ### Using the Replicated App Service
 
-For online installations, your customers can run a command to download the embedded cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
+For online installations, your customers can run a command to download the Embedded Cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
 
 To download the binary using the Replicated app service:
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
 
-1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the embedded cluster binary and install your application.
+1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
@@ -133,36 +135,44 @@ To download the binary using the Replicated app service:
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-     :::note
-     You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
-     :::
+If you need to download the binary for a particular version of your application, you can add `/VERSION_LABEL` to the end of the `curl` command in the screenshot above.
+
+Example:
+
+```
+curl https://replicated.app/embedded/gitea-mastodon/unstable/1.2.3
+```
+
+:::note
+You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
+:::
 
 ### Using the Vendor API
 
-Some vendors already have a portal that their customers log in to to access documentation or download artifacts. In cases like this, you can serve the embedded cluster binary yourself using the Replicated Vendor API.
+Some vendors already have a portal that their customers log in to to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster binary yourself using the Replicated Vendor API.
 
 To serve the binary with the Vendor API:
 
 1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
 
-1. Call the [Get an embedded cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
 
      Note the following:
 
      * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
 
-     * If you do not provide any query parameters, this endpoint downloads the embedded cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
 
 
 ## Install
 
-Your customers can install your application once they have obtained the embedded cluster binary and their license and copied them to the machine where they will install your application. For more information about how to get the binary and license, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+Your customers can install your application once they have obtained the Embedded Cluster binary and their license and copied them to the machine where they will install your application. For more information about how to get the binary and license, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
 
 To install your application in an embedded cluster:
 
 1. SSH onto the machine where you will install your application.
 
-1. Ensure that the embedded cluster binary and the license are available in the working directory.
+1. Ensure that the Embedded Cluster binary and the license are available in the working directory.
 
 1. Install the application:
 
@@ -173,32 +183,112 @@ To install your application in an embedded cluster:
     * `APP_SLUG` is the unique slug for the application.
     * `LICENSE_FILE` is the customer's license.
 
-1. Enter an admin console password when prompted.
+1. Enter an Admin Console password when prompted.
 
-     The admin console URL is printed when the installation finishes. Access the admin console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
+### Install Behind a Proxy Server
+
+The following flags can be used with the Embedded Cluster `install` command to install behind a proxy server:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--http-proxy`</td>
+     <td>Proxy server to use for HTTP</td>
+  </tr>
+  <tr>
+     <td>`--https-proxy`</td>
+     <td>Proxy server to use for HTTPS</td>
+  </tr>
+  <tr>
+     <td>`--no-proxy`</td>
+     <td>Comma-separated list of hosts for which not to use a proxy</td>
+  </tr>
+</table>
+
+**Example:**
+
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE \
+  --http-proxy=HOST:PORT \
+  --https-proxy=HOST:PORT \
+  --no-proxy=LIST_OF_HOSTS
+```
+
+Where:
+
+* LICENSE_FILE is the customer's license
+* HOST:PORT is the host and port of the proxy server
+* LIST_OF_HOSTS is the list of hosts to not proxy
+
+For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+
+The following are never proxied:
+* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
+* Communiation to the KOTS database (`kotsadm-rqlite`)
+* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
+
+**Limitations:**
+* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
+* Proxy settings cannot be changed after installation or during upgrade.
+
+### Host Preflight Checks
+
+During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
+* The system has sufficient disk space
+* The system has at least 2G of memory and 2 CPU cores
+* The system clock is synchronized
+
+For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
+
+If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks for installations on VMs or bare metal servers, see [(KOTS Only) Host Preflights for VM or Bare Metal Installations](preflight-support-bundle-about#host-preflights).
+
+#### Limitations
+
+Embedded Cluster host preflight checks have the following limitations:
+
+* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
+* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
+
+#### Skip Host Preflight Checks
+
+You can skip host preflight checks by passing the `--skip-host-preflights` flag with the Embedded Cluster `install` command. For example:
+
+```bash
+sudo ./my-app install --license license.yaml --skip-host-preflights
+```
+
+When you skip host preflight checks, the Admin Console still runs any application-specific preflight checks that are defined in the release before the application is deployed.
+
+:::note
+Skipping host preflight checks is _not_ recommended for production installations.
+:::
 
 ## Update
 
-When you update an application installed in an embedded cluster, you update both the application and the cluster together. There is no need or mechanism to update the embedded cluster on its own.
+When you update an application installed in an Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the Embedded Cluster on its own.
 
-You can check for available application updates in the admin console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The admin console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
+You can check for available application updates in the Admin Console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The Admin Console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
 
-Any changes made to the embedded cluster config, including changes to the embedded cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
+Any changes made to the Embedded Cluster config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
 
-During cluster updates, the admin console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the admin console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the admin console is available again:
+During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the Admin Console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the Admin Console is available again:
 
 <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
 
 [View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
 
 :::important
-Do not downgrade the embedded cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
+Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
 :::
 
 ## Access the Cluster
 
-With embedded cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the admin console.
+With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
 
 Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
 
@@ -206,7 +296,7 @@ To access the cluster and use other included binaries:
 
 1. SSH onto a controller node.
 
-1. Use the embedded cluster shell command to start a shell with access to the cluster:
+1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
 
      ```
      sudo ./APP_SLUG shell
@@ -245,33 +335,55 @@ To access the cluster and use other included binaries:
      Server Version: v1.29.1+k0s
      ```
 
-1. Type exit or use Ctrl+D to exit the shell.
+1. Type `exit` or **Ctrl + D** to exit the shell.
 
      :::note
-     If you encounter a typical workflow where your customers have to use the embedded cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional admin console functionality.
+     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
      :::
+
+### Troubleshoot
+
+From the shell, you can generate a support bundle for the Embedded Cluster to help with troubleshooting.
+
+The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations.
+
+If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
+
+To generate a support bundle:
+
+1. Access the Embedded Cluster shell:
+     ```
+     sudo ./APP_SLUG shell
+     ```
+
+2. Generate the support bundle:
+     ```
+     kubectl support-bundle /var/lib/embedded-cluster/support/host-support-bundle.yaml --load-cluster-specs
+     ```
+
+You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
 
 ## Manage Nodes
 
-The section describes managing nodes in clusters created with embedded cluster, including how to add or reset nodes.
+The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
 
 ### Add Nodes (Alpha)
 
-You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the embedded cluster config. The admin console provides the join command you use to join nodes to the cluster.
+You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
 For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 To add nodes to a cluster:
 
-1. In the admin console, click **Cluster Management** at the top.
+1. In the Admin Console, click **Cluster Management** at the top.
 
-     When initially installing the application, you are brought to this page automatically after logging into the admin console.
+     When initially installing the application, you are brought to this page automatically after logging into the Admin Console.
 
 1. Click **Add node**.
 
 1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
 
-     <img alt="Add node page in the admin console" src="/images/admin-console-add-node.png" width="600px"/>
+     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
 
      [View a larger version of this image](/images/admin-console-add-node.png)
 
@@ -284,15 +396,15 @@ To add nodes to a cluster:
      ```
 
 
-1. SSH onto the machine you want to join to the cluster. Ensure that the embedded cluster binary is available on that node. For more information on downloading the embedded cluster binary, see Installing.
+1. SSH onto the machine you want to join to the cluster. Ensure that the Embedded Cluster binary is available on that node. For more information on downloading the Embedded Cluster binary, see Installing.
 
      :::important
      You must join nodes with the same installer that you used for the first node. If you use a different installer from a different release of your application, the cluster will not be stable.
      :::
 
-1. Run the copied join command using the embedded cluster binary.
+1. Run the copied join command using the Embedded Cluster binary.
 
-1. Check the **Cluster Management** page in the admin console to see the node appear and wait for the status to change to Ready.
+1. Check the **Cluster Management** page in the Admin Console to see the node appear and wait for the status to change to Ready.
 
 1. Repeat the process for as many nodes as you would like to add.
 
@@ -303,9 +415,11 @@ Resetting a node removes the cluster and your application from that node. This i
 
 If you want to completely remove a cluster, you need to reset each node individually.
 
+When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
+
 To reset the node of a cluster:
 
-1. SSH onto the machine. Ensure that the embedded cluster binary is still available on that machine. For more information on downloading the embedded cluster binary, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine. For more information on downloading the Embedded Cluster binary, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
 
 1. Run the reset command to reset the node. The `--reboot` flag automatically reboots the machine to ensure that transient configuration is also reset.
 
@@ -317,16 +431,15 @@ To reset the node of a cluster:
      Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
      :::
 
-
 ## Additional Use Cases
 
-This section outlines some additional use cases for embedded cluster. These are not officially supported features from Replicated, but are ways of using embedded cluster that we or our customers have experimented with that might be useful to you.
+This section outlines some additional use cases for Embedded Cluster. These are not officially supported features from Replicated, but are ways of using Embedded Cluster that we or our customers have experimented with that might be useful to you.
 
 ### NVIDIA GPU Operator
 
-The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the embedded cluster Helm extensions. For information about Helm extensions, see [Helm extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the Embedded Cluster Helm extensions. For information about Helm extensions, see [Helm extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
 
-Using this operator with embedded cluster requires configuring the containerd options in the operator as follows:
+Using this operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
 
 ```yaml
 toolkit:

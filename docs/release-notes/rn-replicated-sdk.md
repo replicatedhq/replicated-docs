@@ -8,6 +8,43 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.24
+
+Released on July 2, 2024
+
+### Improvements {#improvements-1-0-0-beta-24}
+* Adds caching and rate-limiting to the `/api/v1/app/custom-metrics` and `/api/v1/app/instance-tags` endpoints
+* Adds a ten-second default timeout to the SDK's HTTP client
+
+## 1.0.0-beta.23
+
+Released on June 21, 2024
+
+### New Features {#new-features-1-0-0-beta-23}
+* Adds support for `PATCH` and `DELETE` methods on the [custom application metrics](/vendor/custom-metrics) endpoint: `/api/v1/app/custom-metrics`.
+
+## 1.0.0-beta.22
+
+Released on June 12, 2024
+
+### Improvements {#improvements-1-0-0-beta-22}
+* The `/app/info` and `/license/info` endpoints now return additional app and license info, respectively.
+* Updates the SDK's support bundle spec to extract license, app, history, and release information with an exec collector.
+
+## 1.0.0-beta.21
+
+Released on June 6, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-21}
+* Fixes an issue where the replicated pod logs collector could fail in environments with namespace-restricted RBAC.
+
+## 1.0.0-beta.20
+
+Released on May 14, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-20}
+* Fixes an issue where the namespace fields in the support bundle spec were not quoted, which caused the linter to show schema warnings.
+
 ## 1.0.0-beta.19
 
 Released on April 26, 2024

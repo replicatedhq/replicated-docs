@@ -2,8 +2,6 @@
 
 The `kots get` command shows information about one or more resources.
 
-> Introduced in KOTS v1.28.0
-
 ### Usage
 ```bash
 kubectl kots get [resource] [flags]

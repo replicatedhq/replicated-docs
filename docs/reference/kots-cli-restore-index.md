@@ -1,6 +1,6 @@
 # restore
 
-Restore full snapshots for disaster recovery, or do a partial restore of the application only or the Replicated admin console only.
+Restore full snapshots for disaster recovery, or do a partial restore of the application only or the Replicated Admin Console only.
 
 ### Usage
 
@@ -12,8 +12,8 @@ This command supports the following flags:
 
 | Flag                        | Type   | Description                                                                                   |
 | :-------------------------- | ------ | --------------------------------------------------------------------------------------------- |
-| `--exclude-admin-console`   | bool   | Exclude restoring the admin console and only restore the applications. **Default:** false |
-| `--exclude-apps`            | bool   | Exclude restoring the applications and only restore the admin console. **Default:** false |
+| `--exclude-admin-console`   | bool   | Exclude restoring the Admin Console and only restore the applications. **Default:** false |
+| `--exclude-apps`            | bool   | Exclude restoring the applications and only restore the Admin Console. **Default:** false |
 | `--from-backup`             | string | (Required) The name of the backup to restore from. |
 | `-h, --help`                |        | Help for `restore`.                                                                              |
 | `-o, --output`              | string | The output format. Supports JSON. Defaults to plain text if not set. |

@@ -10,11 +10,159 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 ## Kubernetes Compatibility
 
-The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
 
 <KubernetesCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## 1.110.0
+
+Released on June 27, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-110-0}
+* Adds the ability to specify a custom storage class for the KOTS Admin Console components when installing to an existing cluster.
+
+## 1.109.14
+
+Released on June 21, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-109-14}
+* Fixes an issue where required releases were enforced in air gapped mode when changing between channels that didn't have semantic versioning enabled
+
+## 1.109.13
+
+Released on June 20, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-13}
+* Changes to support Embedded Cluster.
+
+## 1.109.12
+
+Released on June 10, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-12}
+* Updates to enable high availability support for embedded cluster.
+
+### Bug Fixes {#bug-fixes-1-109-12}
+* Fixes an issue where air gap uploads could incorrectly fail with an error indicating the version being uploaded matches the current version. This occurred because the version labels matched and were valid semantic versions. Comparing version labels is intentional for channels with semantic versioning enabled, but was unintentional for channels without semantic versioning enabled.
+
+## 1.109.11
+
+Released on June 7, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-11}
+* Minor UI improvements for the air gap bundle upload progress bar.
+
+### Bug Fixes {#bug-fixes-1-109-11}
+* Fixes an issue where the `--skip-preflights` flag would not work if all strict preflights passed but a non-strict preflight failed.
+
+## 1.109.10
+
+Released on June 6, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-10}
+* Various updates to enable high availability support for embedded cluster.
+
+## 1.109.9
+
+Released on May 31, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-9}
+* Various updates to enable high availability support for embedded cluster.
+
+### Bug Fixes {#bug-fixes-1-109-9}
+* An incorrect CLI command for generating support bundles is no longer shown on the Troubleshoot page in embedded clusters.
+
+## 1.109.8
+
+Released on May 30, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-8}
+* Updates to enable high-availability support for Embedded Cluster.
+
+## 1.109.7
+
+Released on May 29, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-7}
+* Updates to enable high-availability support for embedded cluster.
+
+## 1.109.6
+
+Released on May 24, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-6}
+* Updates to enable disaster recovery support for embedded cluster.
+
+## 1.109.5
+
+Released on May 23, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-5}
+* Updates to enable disaster recovery support for embedded cluster.
+
+## 1.109.4
+
+Released on May 21, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-109-4}
+* Fix `kubectl kots port-forward` for high-latency network connections.
+
+## 1.109.3
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-109-3}
+* Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returned `k0s` instead of `embedded-cluster` for embedded clusters.
+
+## 1.109.2
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-2}
+* Updates images to resolve CVE-2024-33599 with high severity; and CVE-2024-33600, CVE-2024-33601, CVE-2024-33602 with medium severity.
+
+## 1.109.1
+
+Released on May 15, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-109-1}
+* Displays the volume name, Pod name, and namespace of snapshotted volumes in the snapshot details page.
+
+### Bug Fixes {#bug-fixes-1-109-1}
+* Fixes an issue where the **Config** and **View files** tabs did not display as active when clicked.
+* Fixes an issue where KOTS failed to process Helm charts with required values that were configured with the v1beta2 HelmChart custom resource.
 
 ## 1.109.0
 

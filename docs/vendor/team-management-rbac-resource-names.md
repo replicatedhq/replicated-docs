@@ -64,19 +64,19 @@ Grants the holder permission to get an airgap bundle download URL for any releas
 
 ### kots/app/[:appId]/installer/create
 
-Grants the holder permission to create Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+Grants the holder permission to create kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
 ### kots/app/[:appId]/installer/update
 
-Grants the holder permission to update Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+Grants the holder permission to update kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
 ### kots/app/[:appId]/installer/read
 
-Grants the holder permission to view Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+Grants the holder permission to view kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
 ### kots/app/[:appId]/installer/promote
 
-Grants the holder permission to promote Kubernetes installers to a channel. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+Grants the holder permission to promote kURL installers to a channel. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
 :::note
 The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Users must be assigned both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to have permissions to view, create, and promote installers.
@@ -286,7 +286,7 @@ Grants the holder permission to delete the service account identified by the nam
 
 ### team/support-issues/read
 
-Grants the holder Read permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Read permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 To prevent access to the collab repository for an RBAC policy, add `team/support-issues/read` to the `denied:` list in the policy. For example:
 
@@ -310,7 +310,7 @@ For more information about the Read role in GitHub, see [Permissions for each ro
 
 ### team/support-issues/write
 
-Grants the holder Write permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Write permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Write role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
@@ -318,7 +318,7 @@ For more information about the Write role in GitHub, see [Permissions for each r
 
 ### team/support-issues/triage
 
-Grants the holder Triage permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Triage permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Triage role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
@@ -326,7 +326,7 @@ For more information about the Triage role in GitHub, see [Permissions for each 
 
 ### team/support-issues/admin
 
-Grants the holder Admin permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+Grants the holder Admin permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
 For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 

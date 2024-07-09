@@ -2,7 +2,7 @@
 
 You can include custom resources in releases to control the experience for applications installed with Replicated KOTS.
 
-Custom resources are consumed by KOTS, the Replicated admin console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
+Custom resources are consumed by KOTS, the Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
 
 ## KOTS Custom Resources
 
@@ -11,7 +11,7 @@ The following are custom resources in the `kots.io` API group:
 | API Group/Version | Kind | Description |
 |---------------|------|-------------|
 | kots.io/v1beta1 | [Application](custom-resource-application) | Adds additional metadata (branding, release notes and more) to an application |
-| kots.io/v1beta1 | [Config](custom-resource-config)| Defines a user-facing configuration screen in the admin console |
+| kots.io/v1beta1 | [Config](custom-resource-config)| Defines a user-facing configuration screen in the Admin Console |
 | kots.io/v1beta2 | [HelmChart](custom-resource-helmchart-v2) | Identifies an instantiation of a Helm Chart |
 | kots.io/v1beta1 | [LintConfig](custom-resource-lintconfig) | Customizes the default rule levels for the KOTS release linter |
 

@@ -8,6 +8,43 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.02-0
+
+Released on July 2, 2024
+
+### New Features {#new-features-v2024-07-02-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2 1.29.6 1.28.11 1.27.15.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.4.
+* Remove `/var/lib/containerd` and `/var/lib/docker` as part of `tasks.sh reset`.
+
+## Bug Fixes {#bug-fixes-v2024-07-02-0}
+* Fixes cluster subnets being changed on upgrade in some instances.
+
+## v2024.06.12-0
+
+Released on June 12, 2024
+
+### New Features {#new-features-v2024-06-12-0}
+* Updates [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.7 to use haproxy:2.9.7-alpine3.20.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.32.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.74.0-59.0.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) versions 0.25.2 and 0.25.3.
+* Adds support for RHEL 8.10 and 9.4.
+* Adds support for Oracle Linux 8.10.
+* Adds support for Rocky Linux 9.4.
+
+## v2024.05.17-0
+
+Released on May 17, 2024
+
+### New Features {#new-features-v2024-05-17-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.1 1.28.10 1.29.5 1.27.14.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.73.2-58.5.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-05-10T01-41-38Z.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.29.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.7.
+* Updates [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.13.2 to use local-volume-provider:v0.6.4.
+
 ## v2024.05.03-0
 
 Released on May 3, 2024

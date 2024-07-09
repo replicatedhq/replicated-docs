@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Alpha Support for Compatibility Matrix Cloud Add-ons</h3>
-        <p>For EKS clusters created with the compatibility matrix, provision S3-compatible object store buckets and AWS RDS Postgres databases using the new `object-store` and `postgres` cloud add-ons.</p>
+        <h3>Beta Support for Air Gap Telemetry</h3>
+        <p>You can now collect telemetry on instances running in air gap environments with no outbound internet access. In air gap clusters, instance telemetry is stored in a Kubernetes Secret and then is shared back to the Vendor Portal when the customer generates and sends a support bundle.</p>
     </li>
     <li>
-      <a href="/vendor/testing-cluster-addons">Learn more</a>
+      <a href="/vendor/telemetry-air-gap">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Build Air Gap Bundles for KOTS Releases with Helm Charts</h3>
-        <p>For KOTS releases that contain one or more Helm charts, the KOTS HelmChart `builder` key is required to render the chart templates when building the air gap bundle for the release.</p>
+        <h3>Access Your Application in Compatibility Matrix Clusters</h3>
+        <p>You can use networking options including port forwarding, LoadBalancer services, and ingress to access applications deployed in Compatibility Matrix clusters. For VM-based clusters, you can also use Compatibility Matrix tunnels (Alpha) to expose NodePorts. </p>
     </li>
     <li>
-      <a href="/vendor/helm-packaging-airgap-bundles">Learn more</a>
+      <a href="/vendor/testing-ingress">Learn more</a>
     </li>
   </ul>
 </section>
@@ -87,10 +87,10 @@ pagination_next: null
         <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
     </li>
     <li>
-      <a href="/vendor/testing-about">About the Compatibility Matrix</a>
+      <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
-      <a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
+      <a href="/vendor/testing-how-to">Using Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
@@ -136,7 +136,7 @@ pagination_next: null
         <p>Replicated KOTS</p>
     </li>
     <li>
-        <p>A kubectl plugin and in-cluster admin console that installs applications in customer-controlled environments.</p>
+        <p>A kubectl plugin and in-cluster Admin Console that installs applications in customer-controlled environments.</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
@@ -283,13 +283,13 @@ pagination_next: null
         <p>APIs, CLIs, and an SDK for interacting with the Replicated platform.</p>
     </li>
     <li>
-      <a href="/reference/replicated-cli-installing">replicated CLI</a>
+      <a href="/reference/replicated-cli-installing">Replicated CLI</a>
     </li>
     <li>
       <a href="/reference/vendor-api-using">Vendor API v3</a>
     </li>
     <li>
-      <a href="/reference/kots-cli-getting-started">kots CLI</a>
+      <a href="/reference/kots-cli-getting-started">KOTS CLI</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>

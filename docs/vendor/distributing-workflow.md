@@ -8,7 +8,7 @@ This topic describes how to onboard with Replicated KOTS, including prerequisite
 
 If you are new to Replicated, complete the following prerequisites before you get started with KOTS:
 
-* Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
 * Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
   * (Recommended) For Helm chart-based applications, Replicated recommends that you complete the [Replicated Quick Start](/vendor/replicated-onboarding) workflow before getting started with KOTS. The workflow in _Replicated Quick Start_ demonstrates how to add a Helm chart to a release in the vendor platform and then install with the Helm CLI.
@@ -39,7 +39,7 @@ This section lists the required and recommended custom resources to add to your 
 
 #### KOTS Admin Console {#admin-console}
 
-The following custom resources can be added to customize the admin console experience for your application and enable recommended features for KOTS.
+The following custom resources can be added to customize the Admin Console experience for your application and enable recommended features for KOTS.
 
 <table>
   <tr>
@@ -49,20 +49,20 @@ The following custom resources can be added to customize the admin console exper
   </tr>
   <tr>
     <td>KOTS Application</td>
-    <td><p>Control the KOTS admin console experience for your application.</p></td>
+    <td><p>Control the KOTS Admin Console experience for your application.</p></td>
     <td>
       <a href="/reference/custom-resource-application">Application</a>
     </td>  
   </tr>
   <tr>
     <td>Kubernetes SIG Application</td>
-    <td><p>Add links to the admin console dashboard. A common use case for the Kubernetes Application custom resource is adding a button to the dashboard that users can click to navigate to port forwarded services for your application.</p></td>
+    <td><p>Add links to the Admin Console dashboard. A common use case for the Kubernetes Application custom resource is adding a button to the dashboard that users can click to navigate to port forwarded services for your application.</p></td>
     <td><a href="/vendor/admin-console-adding-buttons-links">Adding Application Links to the Dashboard</a></td>
   </tr>
   <tr>
   <td>Config</td>
     <td>
-      <p>Create a configuration screen in the admin console to collect required and optional configuration values from your users.</p>
+      <p>Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.</p>
       <p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p>
     </td>
     <td><a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a></td>
@@ -105,7 +105,7 @@ The HelmChart custom resource is required to install Helm charts with KOTS.
 
 The following custom resources can be added to embed Kubernetes with your application to support KOTS installations in VMs or bare metal servers.
 
-You can choose to use either Replicated embedded cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
+You can choose to use either Replicated Embedded Cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
 
 <table>
   <tr>
@@ -115,13 +115,13 @@ You can choose to use either Replicated embedded cluster or Replicated kURL to e
   </tr>
   <tr>
     <td>Embedded Cluster Config (Beta)</td>
-    <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated embedded cluster.</td>
+    <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated Embedded Cluster.</td>
     <td><a href="embedded-overview">Using Embedded Cluster (Beta)</a></td>
   </tr>
   <tr>
     <td>Installer</td>
-    <td>Create an Installer spec to support installations in in VMs or bare metal servers with Replicated kURL.</td>
-    <td><a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a></td>
+    <td>Create an Installer spec to support installations in VMs or bare metal servers with Replicated kURL.</td>
+    <td><a href="packaging-embedded-kubernetes">Creating a kURL Installer</a></td>
   </tr>
 </table>
 

@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster rm
 
-Remove the test clusters. You can delete multiple clusters at a time. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+Remove the test clusters. You can delete multiple clusters at a time. For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 

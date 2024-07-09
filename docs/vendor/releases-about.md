@@ -6,7 +6,7 @@ import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.md
 
 # About Channels and Releases
 
-This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated vendor portal.
+This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated Vendor Portal.
 
 ## Overview
 
@@ -14,11 +14,11 @@ A _release_ represents a single version of your application and contains your ap
 
 Channels and releases help you distribute your application to your customers, including both SaaS and on-prem customers, without needing to manage separate code bases, deployments, or release workflows. Instead, to make a release available to your customers, you promote it to a channel where the target customers are assigned. This reduces complexity and helps ensure that all your customers have access to the same release on the same cadence. 
 
-You can manage channels and releases with the vendor portal, the replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
+You can manage channels and releases with the Vendor Portal, the Replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
 
 ## About Channels
 
-This section provides additional information about channels, including details about the default channels in the vendor portal and channel settings.
+This section provides additional information about channels, including details about the default channels in the Vendor Portal and channel settings.
 ### Defaults
 
 Replicated includes the following channels by default:
@@ -35,7 +35,7 @@ Each channel has settings. You can customize the settings for a channel to contr
 
 The following shows the **Channel Settings** dialog, accessed by clicking the settings icon on a channel:
 
-<img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
+<img src="/images/channel-settings.png" alt="Channel Settings dialog in the Vendor Portal" width="500"/>
 
 [View a larger version of this image](/images/channel-settings.png)
 
@@ -48,8 +48,8 @@ The following describes each of the channel settings:
 
   For more information about configuring custom domains and assigning default domains, see [Using Custom Domains](custom-domains-using).
 * The following channel settings apply only to applications that support KOTS:
-    * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the vendor portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel. For more information, see [Downloading Air Gap Bundles](releases-download-airgap-bundles).
-    * **Enable semantic versioning**: When enabled, the vendor portal verifies that the version label for any releases promoted to the channel uses a valid semantic version. For more information, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.
+    * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the Vendor Portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel. For more information, see [Downloading Air Gap Bundles](releases-download-airgap-bundles).
+    * **Enable semantic versioning**: When enabled, the Vendor Portal verifies that the version label for any releases promoted to the channel uses a valid semantic version. For more information, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.
     * **Enable new airgap bundle format**: When enabled, air gap bundles built for releases promoted to the channel use a format that supports image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size. For more information, see [Using Image Digests in Air Gap Installations](private-images-tags-digests#digests-air-gap) in _Using Image Tags and Digests_.
 
       :::note
@@ -94,7 +94,7 @@ To prevent KOTS or Helm CLI-only customers from accessing a release that they ca
 
 ### Properties
 
-Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
+Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the Vendor Portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
 
 The following shows an example of the release properties dialog:
 
@@ -125,9 +125,9 @@ By default, Replicated uses release sequence numbers to organize and order relea
 
 #### Release Sequences
 
-In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+In the Vendor Portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-The following graphic shows release sequence numbers in the vendor portal:
+The following graphic shows release sequence numbers in the Vendor Portal:
 
 <img alt="Release sequence numbers" src="/images/release-sequences.png" width="750px"/>
 
@@ -135,11 +135,11 @@ The following graphic shows release sequence numbers in the vendor portal:
 
 #### Instance Sequences 
 
-When a KOTS instance checks for an application update, the vendor portal returns a release identifier (a sequence number or a version label) to the instance. The Replicated admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when KOTS checks for an update.
+When a KOTS instance checks for an application update, the Vendor Portal returns a release identifier (a sequence number or a version label) to the instance. The Replicated admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the Vendor Portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when KOTS checks for an update.
 
 A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`.
 
-Note that instance sequences are only tracked by KOTS instances, and the vendor portal has no knowledge of these numbers.
+Note that instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers.
 
 The following graphic shows instance sequence numbers on the admin console dashboard:
 
@@ -149,7 +149,7 @@ The following graphic shows instance sequence numbers on the admin console dashb
 
 #### Channel Sequences
 
-When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel. You can view the channel sequence on the **Release History** page in the vendor portal, as shown in the image below:
+When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel. You can view the channel sequence on the **Release History** page in the Vendor Portal, as shown in the image below:
 
 <img alt="Channel sequence on Release History page" src="/images/release-history-channel-sequence.png" width="750px"/>
 
@@ -185,7 +185,7 @@ For information about how enterprise application users check for application upd
 
 Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:
 
-- For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
+- For applications created in the Vendor Portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
 
 - For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
 
@@ -204,15 +204,15 @@ You can enable semantic versioning on a channel that already has releases promot
 
 ## Vendor Portal Pages
 
-This section provides information about the channels and releases pages in the vendor portal.
+This section provides information about the channels and releases pages in the Vendor Portal.
 
 ### Channels Page
 
-The **Channels** page in the vendor portal includes information about each channel. From the **Channels** page, you can edit and archive your channels. You can also edit the properties of the releases promoted to each channel, and view and edit the customers assigned to each channel.
+The **Channels** page in the Vendor Portal includes information about each channel. From the **Channels** page, you can edit and archive your channels. You can also edit the properties of the releases promoted to each channel, and view and edit the customers assigned to each channel.
 
-The following shows an example of a channel in the vendor portal **Channels** page:
+The following shows an example of a channel in the Vendor Portal **Channels** page:
 
-<img src="/images/channel-card.png" alt="Channel card in the vendor portal" width="400"/>
+<img src="/images/channel-card.png" alt="Channel card in the Vendor Portal" width="400"/>
 
 [View a larger version of this image](/images/channel-card.png)
 
@@ -232,21 +232,21 @@ As shown in the image above, you can do the following from the **Channels** page
 
    The following shows an example of the **Release History** page: 
 
-   <img src="/images/channels-release-history.png" alt="Release history page in the vendor portal" width="750"/>
+   <img src="/images/channels-release-history.png" alt="Release history page in the Vendor Portal" width="750"/>
 
    [View a larger version of this image](/images/channel-card.png)
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
-   * In the **Kubernetes installer** section, view the current Kubernetes installer promoted to the channel. Click **Installer history** to view the history of Kubernetes installers promoted to the channel. For more information about creating Kubernetes installers within a release or separate from a release, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers within a release or separate from a release, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel. For more information, see the [Installing an Application](/enterprise/installing-overview) section.
 
 ### Draft Release Page
 
-For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the vendor portal to open the **Draft** page. 
+For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page. 
 
-The following shows an example of the **Draft** page in the vendor portal:
+The following shows an example of the **Draft** page in the Vendor Portal:
 
  ![Default YAML](/images/guides/kots/default-yaml.png)
 

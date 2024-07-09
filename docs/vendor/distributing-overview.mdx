@@ -10,13 +10,13 @@ import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
 # About Distributing Applications
 
-This topic provides an overview of distributing applications with Replicated. It includes information about the Replicated platform features used to distribute applications, as well as the options for packaging applications to be distributed with Replicated.
+This topic provides an overview of distributing applications with the Replicated Platform. It includes information about the Replicated Platform features used to distribute applications, as well as the options for packaging applications.
 
 ## About Distributing with Replicated
 
 <Replicated/>
 
-_Distributing_ software with Replicated refers to using Replicated features to enhance and support each phase of the commercial software distribution life cycle:
+_Distributing_ software with the Replicated Platform refers to using Replicated features to enhance and support each phase of the commercial software distribution life cycle:
 * Develop
 * Test
 * Release
@@ -27,7 +27,7 @@ _Distributing_ software with Replicated refers to using Replicated features to e
 
 For more information about how Replicated defines the commercial software distribution life cycle, see [Introduction to Replicated](../intro-replicated).
 
-The following diagram demonstrates the process of distributing an application with Replicated and then installing the application in an enterprise customer environment:
+The following diagram demonstrates the process of distributing an application with the Replicated Platform and then installing the application in an enterprise customer environment:
 
 ![replicated platform features workflow](/images/replicated-platform.png)
 
@@ -35,18 +35,18 @@ The following diagram demonstrates the process of distributing an application wi
 
 As shown in the diagram above:
 * The Replicated SDK can be distributed alongside an application to get access to an in-cluster API to more easily integrate key features.
-* The Replicated compatibility matrix can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
-* After testing, application releases can be promoted to a channel in the Replicated vendor platform to be shared with customers or internal teams.
+* Replicated Compatibility Matrix can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
+* After testing, application releases can be promoted to a channel in the Replicated Vendor Portal to be shared with customers or internal teams.
 * Customers can be assigned to channels in order to control which application releases they are able to access and install.
 * Customers' unique licenses grant proxy access to private application images through the Replicated proxy service.
 * Before installation, customers can run preflight checks to verify that their environment meets installation requirements.
 * Customers can install using any method, including the Helm CLI, Replicated KOTS, or any proprietary installation method already used by the ISV.
-* Instance data is automatically sent to the vendor platform by the Replicated SDK. If the application was installed using KOTS, then KOTS also sends instance data.
-* If any issues occur during installation or at runtime, customers can generate and send a support bundle. Support bundles can be uploaded in the vendor platform for analysis.
+* Instance data is automatically sent to the Vendor Portal by the Replicated SDK. If the application was installed using KOTS, then KOTS also sends instance data.
+* If any issues occur during installation or at runtime, customers can generate and send a support bundle. Support bundles can be uploaded in the Vendor Portal for analysis.
 
 For more information about the Replicated features depicted in this diagram, see:
 * [About the Replicated SDK](replicated-sdk-overview)
-* [About the Compatibility Matrix](testing-about)
+* [About Compatibility Matrix](testing-about)
 * [About Channels and Releases](releases-about)
 * [About Customers](licenses-about)
 * [About Installing an Application](/enterprise/installing-overview) in the KOTS documentation
@@ -75,7 +75,7 @@ For more information about installing applications distributed with Replicated u
 
 <Kots/>
 
-Deploying Helm-based applications with KOTS provides additional functionality not directly available with the Helm CLI, such as the KOTS admin console and support for air gap installations. Additionally, when you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests.
+Deploying Helm-based applications with KOTS provides additional functionality not directly available with the Helm CLI, such as the KOTS Admin Console and support for air gap installations. Additionally, when you package your application using Helm, you can support Helm CLI and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests.
 
 For more information about how to distribute and install Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 

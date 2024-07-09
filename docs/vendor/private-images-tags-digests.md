@@ -35,19 +35,19 @@ You can use image tags and image digests together in any case where both are sup
 
 For applications installed with KOTS v1.82.0 or later, you can enable a format for air gap bundles that supports the use of image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
-You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the vendor portal. The **Enable new air gap bundle format** toggle is enabled by default.
+You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the Vendor Portal. The **Enable new air gap bundle format** toggle is enabled by default.
 
 When you enable **Enable new air gap bundle format** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format.
 
-If users on a version of KOTS earlier than v1.82.0 attempt to install or upgrade an application with an air gap bundle that uses the **Enable new air gap bundle format** format, then the admin console displays an error message when they attempt to upload the bundle.
+If users on a version of KOTS earlier than v1.82.0 attempt to install or upgrade an application with an air gap bundle that uses the **Enable new air gap bundle format** format, then the Admin Console displays an error message when they attempt to upload the bundle.
 
 To enable the new air gap bundle format on a channel:
 
-1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to the Channels page and click the edit icon in the top right of the channel where you want to use the new air gap bundle format.
+1. In the Replicated [Vendor Portal](https://vendor.replicated.com/channels), go to the Channels page and click the edit icon in the top right of the channel where you want to use the new air gap bundle format.
 1. Enable the **Enable new air gap bundle format** toggle.
 1. (Recommended) To prevent users on a version of KOTS earlier than v1.82.0 from attempting to upgrade with an air gap bundle that uses the new air gap bundle format, set `minKotsVersion` to "1.82.0" in the Application custom resource manifest file.
 
-   `minKotsVersion` defines the minimum version of KOTS required by the application release. Including `minKotsVersion` displays a warning in the admin console when users attempt to install or upgrade the application if they are not on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
+   `minKotsVersion` defines the minimum version of KOTS required by the application release. Including `minKotsVersion` displays a warning in the Admin Console when users attempt to install or upgrade the application if they are not on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
 
    **Example**:
 
@@ -69,4 +69,4 @@ To enable the new air gap bundle format on a channel:
       ![Vendor portal release history page](../../static/images/airgap-download-bundle.png)
 
    1. Click **Download Airgap Bundle**.
-   1. Install or upgrade the application with version 1.82.0 or later of the admin console or the kots CLI. Upload the new air gap bundle to confirm that the installation or upgrade completes successfully.
+   1. Install or upgrade the application with version 1.82.0 or later of the Admin Console or the KOTS CLI. Upload the new air gap bundle to confirm that the installation or upgrade completes successfully.

@@ -67,7 +67,7 @@ Sub directories are supported as well, so `k8s` directory can be put anywhere in
     make release
     ```
 
-1. Verify the release in the Replicated [vendor portal](https://vendor.replicated.com).
+1. Verify the release in the Replicated [Vendor Portal](https://vendor.replicated.com).
 
 ## Helm Chart
 
@@ -144,4 +144,4 @@ This section assumes you have reviewed the [About Distributing Helm Charts with 
     make -C kots release
     ```
 
-1. Verify the release in the [vendor portal](https://vendor.replicated.com).
+1. Verify the release in the [Vendor Portal](https://vendor.replicated.com).

@@ -1,0 +1,90 @@
+import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
+import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
+import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
+import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+
+# admin-console generate-manifests
+
+Running this command will create a directory on the workstation containing the Replicated Admin Console manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl, to provide additional customization of the Admin Console before deploying.
+
+### Limitations
+
+`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
+
+To upgrade a KOTS instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
+
+### Usage
+```bash
+kubectl kots admin-console generate-manifests [flags]
+```
+
+This command supports the following flags:
+
+<table>
+    <tr>
+        <td>Flag</td>
+        <td>Type</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td><code>--rootdir</code></td>
+        <td>string</td>
+        <td>Root directory where the YAML will be written (default `${HOME}` or `%USERPROFILE%`)</td>
+    </tr>
+    <tr>
+        <td><code>--namespace</code></td>
+        <td>string</td>
+        <td>Target namespace for the Admin Console</td>
+    </tr>
+    <tr>
+        <td><code>--shared-password</code></td>
+        <td>string</td>
+        <td>Shared password to use when deploying the Admin Console</td>
+    </tr>
+    <tr>
+        <td><code>--http-proxy</code></td>
+        <td>string</td>
+        <td>Sets HTTP_PROXY environment variable in all KOTS Admin Console components</td>
+    </tr>
+    <tr>
+        <td><code>--http-proxy</code></td>
+        <td>string</td>
+        <td>Sets HTTP_PROXY environment variable in all KOTS Admin Console</td>
+    </tr>
+    <KotsadmNamespace/>
+    <KotsadmRegistry/>
+    <tr>
+        <td><code>--no-proxy</code></td>
+        <td>string</td>
+        <td>Sets NO_PROXY environment variable in all KOTS Admin Console components</td>
+    </tr>
+    <RegistryPassword/>
+    <RegistryUsername/>
+    <tr>
+        <td><code>--with-minio</code></td>
+        <td>bool</td>
+        <td>Set to true to include a local minio instance to be used for storage (default true)</td>
+    </tr>
+    <tr>
+        <td><code>--minimal-rbac</code></td>
+        <td>bool</td>
+        <td>Set to true to include a local minio instance to be used for storage (default true)</td>
+    </tr>
+    <tr>
+        <td><code>--additional-namespaces</code></td>
+        <td>string</td>
+        <td>Comma delimited list to specify additional namespace(s) managed by KOTS outside where it is to be deployed. Ignored without with <code>--minimal-rbac=true</code></td>
+    </tr>
+    <tr>
+        <td><code>--storage-class</code></td>
+        <td>string</td>
+        <td>Sets the storage class to use for the KOTS Admin Console components. <strong>Default:</strong> unset, which means the default storage class will be used</td>
+    </tr>
+</table>
+
+### Examples
+```bash
+kubectl kots admin-console generate-manifests
+kubectl kots admin-console generate-manifests --rootdir ./manifests
+kubectl kots admin-console generate-manifests --namespace kotsadm --minimal-rbac=true --additional-namespaces="app1,app3"
+```

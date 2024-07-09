@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster prepare
 
-Create a cluster and a release, then install the release in the cluster. This allows you to deploy applications to a cluster for compatibility testing without needing to promote a release to a channel or create a temporary customer. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+Create a cluster and a release, then install the release in the cluster. This allows you to deploy applications to a cluster for compatibility testing without needing to promote a release to a channel or create a temporary customer. For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 :::note
 `cluster prepare` is not recommended for production testing. For production testing, use `cluster create` instead.

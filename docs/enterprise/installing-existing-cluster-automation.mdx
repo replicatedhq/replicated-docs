@@ -15,11 +15,11 @@ import PlaceholderRoCreds from "../partials/install/_placeholder-ro-creds.mdx"
 
 # Installing with the CLI
 
-This topic describes how to use the Replicated kots CLI to install an application.
+This topic describes how to use the Replicated KOTS CLI to install an application.
 
 ## Overview
 
-You can use the kots CLI to install an application rather than using the KOTS admin console UI. In a CLI installation, you provide all the necessary artifacts to configure and install the application with the `kots install` command. For example, rather than uploading your license file in the admin console, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the admin console.
+You can use the KOTS CLI to install an application rather than using the KOTS Admin Console UI. In a CLI installation, you provide all the necessary artifacts to configure and install the application with the `kots install` command. For example, rather than uploading your license file in the Admin Console, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the Admin Console.
 
 The following shows an example of the output from the `kots install` command:
 
@@ -39,9 +39,9 @@ The following shows an example of the output from the `kots install` command:
 
 One common use case for installing with the CLI is to automate installation, such as installing applications as part of CI/CD pipelines. CLI installations are supported for _online_ environments (with outbound internet access), _air gap_ environments (without outbound internet access), existing clusters, and clusters created with Replicated kURL on a VM or bare metal server.
 
-For more information about the advanced options for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+For more information about the advanced options for the `kots install` command, see [install](/reference/kots-cli-install) in the KOTS CLI documentation.
 
-For a tutorial that demonstrates how to install a sample application using the kots CLI, see [KOTS Tutorial (CLI)](/vendor/tutorial-cli-setup).
+For a tutorial that demonstrates how to install a sample application using the KOTS CLI, see [KOTS Tutorial (CLI)](/vendor/tutorial-cli-setup).
 
 ## Prerequisite
 
@@ -57,7 +57,7 @@ The ConfigValues file is specific to the application. For more information, see 
    
 ## Install
 
-This section provides the steps for installing an application with the kots CLI in different types of environments.
+This section provides the steps for installing an application with the KOTS CLI in different types of environments.
 
 ### Existing Cluster
 
@@ -112,11 +112,11 @@ To install with kURL on a VM or bare metal server:
 
 ### Air Gap Existing Cluster 
 
-Air gap installations in existing clusters require the application `.airgap` bundle and the KOTS admin console `kotsadm.tar.gz` air gap bundle. Additionally, images for the application and the KOTS admin console must be pushed to a local private registry. For more information about downloading the necessary air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
+Air gap installations in existing clusters require the application `.airgap` bundle and the KOTS Admin Console `kotsadm.tar.gz` air gap bundle. Additionally, images for the application and the KOTS Admin Console must be pushed to a local private registry. For more information about downloading the necessary air gap bundles, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles).
 
 To install in an air gap existing cluster:
 
-1. Install the kots CLI. See [Manually Download and Install](/reference/kots-cli-getting-started#manually-download-and-install) in _Installing the kots CLI_.
+1. Install the KOTS CLI. See [Manually Download and Install](/reference/kots-cli-getting-started#manually-download-and-install) in _Installing the KOTS CLI_.
 
 1. <DownloadKotsBundle/>
 
@@ -193,13 +193,13 @@ To install in an air gap kURL cluster on a VM or bare metal server:
 
 ## (Optional) Access the Admin Console
 
-When you install an application in an existing cluster or when you provision a cluster with the kURL installer, you also install KOTS in the cluster. KOTS deploys the admin console. The admin console is a user interface where you can manage and upgrade your application instances.
+When you install an application in an existing cluster or when you provision a cluster with the kURL installer, you also install KOTS in the cluster. KOTS deploys the Admin Console. The Admin Console is a user interface where you can manage and upgrade your application instances.
 
-By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the admin console. The `--no-port-forward` flag in the `kots install` command prevents KOTS from creating a port forward to the admin console.
+By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the Admin Console. The `--no-port-forward` flag in the `kots install` command prevents KOTS from creating a port forward to the Admin Console.
 
-After you install with the `--no-port-forward` flag, you can optionally create a port forward so that you can log in to the admin console in a browser window.
+After you install with the `--no-port-forward` flag, you can optionally create a port forward so that you can log in to the Admin Console in a browser window.
 
-To access the admin console:
+To access the Admin Console:
 
 1. If you installed in a VM where you cannot open a browser window, forward a port on your local machine to `localhost:8800` on the remote VM using the SSH client:
 
@@ -219,15 +219,15 @@ To access the admin console:
    ssh -L 8800:localhost:8800 user@ip-addr
    ```
 
-1. Run the following kots CLI command to open localhost port 8800, which forwards to the admin console service:
+1. Run the following KOTS CLI command to open localhost port 8800, which forwards to the Admin Console service:
 
    ```bash
    kubectl kots admin-console --namespace NAMESPACE
    ```
-   Replace `NAMESPACE` with the namespace where the admin console was installed.
+   Replace `NAMESPACE` with the namespace where the Admin Console was installed.
 
-   For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
+   For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _KOTS CLI_ documentation.
 
 1. Open a browser window and go to `https://localhost:8800`.
 
-1. Log in to the admin console using the password that you created as part of the `kots install` command.
+1. Log in to the Admin Console using the password that you created as part of the `kots install` command.

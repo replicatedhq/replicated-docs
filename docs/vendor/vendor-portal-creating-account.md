@@ -1,10 +1,10 @@
 # Creating a Vendor Account
 
-To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the Replicated vendor portal and select **Create new app** from the Applications drop-down list.
+To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the Replicated Vendor Portal and select **Create new app** from the Applications drop-down list.
 
 To create a vendor account:
 
-1. Go to the [vendor portal](https://vendor.replicated.com), and select **Sign up**.
+1. Go to the [Vendor Portal](https://vendor.replicated.com), and select **Sign up**.
 
     The sign up page opens.
 3. Enter your email address or continue with Google authentication.
@@ -24,7 +24,7 @@ To create a vendor account:
 4. On the Create your team page, enter you first name, last name, and company name. Click **Continue** to complete the setup.
 
     :::note
-    The company name you provide is used as your team name in vendor portal.
+    The company name you provide is used as your team name in Vendor Portal.
     :::
 
      The Create application page opens.
@@ -38,9 +38,9 @@ To create a vendor account:
 
    Only use an official name for your application when you have completed testing and are ready to distribute the application to your customers.
 
-   Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the vendor portal.
+   Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the Vendor Portal.
    :::
 
 ## Next Steps
-* Invite team members to collaborate with you in vendor portal. See [Invite Members](team-management#invite-members).
+* Invite team members to collaborate with you in Vendor Portal. See [Invite Members](team-management#invite-members).
 * Learn about how to get started with Replicated. See [Replicated Quick Start](replicated-onboarding).

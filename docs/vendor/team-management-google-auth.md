@@ -1,12 +1,12 @@
 # Managing Google Authentication
 
-This topic describes the Google authentication options that you can configure to control access to the Replicated vendor portal.
+This topic describes the Google authentication options that you can configure to control access to the Replicated Vendor Portal.
 
 ## Manage Google Authentication Options
 
 As a team administrator, you can enable, disable, or require Google authentication for all accounts in the team.
 
-A core benefit of using Google authentication is that when a user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal, unless the username and password is also allowed. Requiring Google authentication is an effective way of centrally removing access to the vendor portal.
+A core benefit of using Google authentication is that when a user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated Vendor Portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the Vendor Portal, unless the username and password is also allowed. Requiring Google authentication is an effective way of centrally removing access to the Vendor Portal.
 
 To manage Google authentication settings:
 
@@ -25,14 +25,14 @@ To manage Google authentication settings:
 ## Migrating Existing Accounts
 Excluding some teams that restrict end users to use only Security Assertion Markup Language (SAML) or require two-factor authentication (2FA), existing end users can seamlessly sign into an account that exactly matches their Google Workspace (formerly GSuite) email address. However, Google authentication only matches existing user accounts, so for users who have signed up using task-based email addresses (such as name+news@domain.com), you can continue to use email/password to sign in, invite your normal email address to your team, or contact support to change your email address. For more information about task-based email addresses, see [Create task-specific email addresses](https://support.google.com/a/users/answer/9308648?hl=en) in the Google Support site.
 
-Migrated accounts maintain the same role-based access control (RBAC) permissions that were previously assigned. After signing in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using the vendor portal [account settings page](https://vendor.replicated.com/account-settings).
+Migrated accounts maintain the same role-based access control (RBAC) permissions that were previously assigned. After signing in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using the Vendor Portal [account settings page](https://vendor.replicated.com/account-settings).
 
 ## Limitations
 
 Using distribution lists for sending invitations to join a team are not supported. The invitations are sent, but are invalid and cannot be used to join a team using Google authentication.
 
 ## Compatibility with Two-Factor Authentication
-Google authentication is not entirely compatible with Replicated two-factor authentication (2FA) implementation because Google authentication bypasses account-based 2FA, relying on your Google Authentication instead. However, the vendor portal continues to enforce 2FA on all email/password-based authentication, even for the same user, if both options are enabled.
+Google authentication is not entirely compatible with Replicated two-factor authentication (2FA) implementation because Google authentication bypasses account-based 2FA, relying on your Google Authentication instead. However, the Vendor Portal continues to enforce 2FA on all email/password-based authentication, even for the same user, if both options are enabled.
 
 ## Related Topic
 

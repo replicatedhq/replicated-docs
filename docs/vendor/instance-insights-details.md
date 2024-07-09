@@ -1,9 +1,9 @@
 # Instance Details
 
-This topic describes using the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
+This topic describes using the Replicated Vendor Portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
 ## About the Instance Details Page {#about-page}
 
-The vendor portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use the insights on the **Instance details** page to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden. 
+The Vendor Portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use the insights on the **Instance details** page to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden. 
 
 For example, you can use the **Instance details** page to track the following events for each instance:
 
@@ -39,9 +39,9 @@ As shown in the image above, the **Instance details** page includes the followin
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
-* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. Hover over the **App status** field to view the statuses of the indiviudal resources deployed by the application. For more information about enabling the **App status** field, see [Enabling and Understanding Application Status](insights-app-status).
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information about enabling application status insights and how to interpret the different statuses, see [Enabling and Understanding Application Status](insights-app-status).
 
-    The following image shows an example of the granular resource status view that is displayed on hover:
+    Additionally, for applications that include the [Replicated SDK](/vendor/replicated-sdk-overview), you can hover over the **App status** field to view the statuses of the indiviudal resources deployed by the application, as shown in the example below:
 
     <img src="/images/resource-status-hover-current-state.png" alt="resource status pop up" width="400px"/>
 
@@ -49,7 +49,7 @@ The **Current State** section displays the following event data about the status
 
 * **App version**: The version label of the currently running release. You define the version label in the release properties when you promote the release. For more information about defining release properties, see [Properties](releases-about#properties) in _About Channels and Releases_.
 
-   If there is no version label for the release, then the vendor portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls) in the _replicated CLI_ documentation.
+   If there is no version label for the release, then the Vendor Portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls) in the _Replicated CLI_ documentation.
 
 * **Version age**: The absolute and relative ages of the instance:
 
@@ -67,18 +67,18 @@ The **Current State** section displays the following event data about the status
 
    For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
 
-* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal.
+* **Last check-in**: The timestamp when the instance most recently sent data to the Vendor Portal.
 
 ### Instance Insights {#insights}
 
-The **Insights** section includes the following metrics computed by the vendor portal:
+The **Insights** section includes the following metrics computed by the Vendor Portal:
 
 * [Uptime](#uptime)
 * [Time to Install](#time-to-install)
 
 #### Uptime
 
-The vendor portal computes the total uptime for the instance as the fraction of time that the instance spends with a Ready, Updating, or Degraded status. The vendor portal also provides more granular details about uptime in the **Instance Uptime** graph. See [Instance Uptime](#instance-uptime) below.
+The Vendor Portal computes the total uptime for the instance as the fraction of time that the instance spends with a Ready, Updating, or Degraded status. The Vendor Portal also provides more granular details about uptime in the **Instance Uptime** graph. See [Instance Uptime](#instance-uptime) below.
 
 High uptime indicates that the application is reliable and able to handle the demands of the customer environment. Low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime, you can better understand the performance of your application.
 
@@ -100,12 +100,12 @@ The following table lists the application statuses that are associated with an U
 </table>
 
 :::note
-The vendor portal includes time spent in a Degraded status in the total uptime for an instance because an app may still be capable of serving traffic when some subset of desired replicas are available. Further, it is possible that a Degraded state is expected during upgrade.
+The Vendor Portal includes time spent in a Degraded status in the total uptime for an instance because an app may still be capable of serving traffic when some subset of desired replicas are available. Further, it is possible that a Degraded state is expected during upgrade.
 :::
 
 #### Time to Install
 
-The vendor portal computes both _License time to install_ and _Instance time to install_ metrics to represent how quickly the customer was able to deploy the application to a Ready state in their environment.
+The Vendor Portal computes both _License time to install_ and _Instance time to install_ metrics to represent how quickly the customer was able to deploy the application to a Ready state in their environment.
 
 Replicated recommends that you use Time to Install as an indicator of the quality of the packaging, configuration, and documentation of your application.
 
@@ -113,17 +113,17 @@ If the installation process for your application is challenging, poorly document
 
 The following describes the _License time to install_ and _Instance time to install_ metrics:
 
-* **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
+* **License time to install**: The time between when you create the customer license in the Vendor Portal, and when the application instance reaches a Ready status in the customer environment.
 
-   License time to install represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application because creating the license file is generally the final step before you share the installation materials with the customer.
+   License time to install represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the Vendor Portal to represent your intent to distribute the application because creating the license file is generally the final step before you share the installation materials with the customer.
 
    License time to install includes several activities that are involved in deploying the application, including the customer receiving the necessary materials and documentation, downloading the assets, provisioning the required hardware, networking, external systems, completing the preflight checks, and finally installing, configuring, and deploying the application.
 
-* **Instance time to install**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
+* **Instance time to install**: The time between when the Vendor Portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
-   Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the vendor portal first records an event for the instance.
+   Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the Vendor Portal first records an event for the instance.
    
-   For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
+   For more information about how the Vendor Portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
    
   :::note
   Instance time to install does _not_ include any deployment attempts that a customer might have made that did not generate an event. For example, time spent by the customer discarding the server used in a failed attempt before attempting to deploy the instance again on a new server.
@@ -136,7 +136,7 @@ The **Instance Information** section displays the following details about the cl
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
 * The version of KOTS or the Replicated SDK installed in the cluster.
-* For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
+* For **First Seen**, the timestamp of the first event that the Vendor Portal generated for the instance. For more information about how the Vendor Portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
 * An optional vendor-defined name for the instance.
 * Optional vendor-defined instance tags in the form of key-value pairs. Each instance can have a maximum of 10 tags.
@@ -146,13 +146,13 @@ In addition to the details listed above, the **Instance Information** section al
 * Node operating systems versions
 * Total number of cluster nodes
 * Number of cluster nodes in a Ready state
-* ID of the Kubernetes installer specification
+* ID of the kURL installer specification
 
 ### Instance Uptime
 
 The **Instance Uptime** graph shows the percentage of a given time period that the instance was in an Up, Degraded, or Down state. 
 
-To determine if the instance is Up, Degraded, or Down, the vendor portal uses the application status. Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing. The following table lists the application statuses that are associated with each state in the **Instance Uptime** graph:
+To determine if the instance is Up, Degraded, or Down, the Vendor Portal uses the application status. Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing. The following table lists the application statuses that are associated with each state in the **Instance Uptime** graph:
 
 <table>
   <tr>
@@ -232,8 +232,8 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>App Status</td>
     <td>
-      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. Hover to view the statuses of the indiviudal resources deployed by the application.</p>
-      <p>Additional configuration is required to get app status data. See <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
+      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing. For applications that include the <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>, hover over the application status to view the statuses of the indiviudal resources deployed by the application.</p>
+      <p>For more information, see <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
     </td>
   </tr>
 </table>
@@ -254,7 +254,7 @@ The following tables describe the events that can be displayed in the **Instance
         <li><code>kURL</code>: The cluster is provisioned by kURL.</li>
         <li><code>Existing</code>: The cluster is <em>not</em> provisioned by kURL.</li>
       </ul>
-      <p>For more information about kURL clusters, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+      <p>For more information about kURL clusters, see <a href="packaging-embedded-kubernetes">Creating a kURL installer</a>.</p>
     </td>
   </tr> 
   <tr>
@@ -291,8 +291,8 @@ The following tables describe the events that can be displayed in the **Instance
   <tr>
     <td>New kURL Installer</td>
     <td>
-      <p>The ID of the Kubernetes installer specification that kURL used to provision the cluster. Indicates that a new Installer specification was added. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. </p>
-      <p>For more information about installer specifications for kURL, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+      <p>The ID of the kURL installer specification that kURL used to provision the cluster. Indicates that a new Installer specification was added. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. </p>
+      <p>For more information about installer specifications for kURL, see <a href="packaging-embedded-kubernetes">Creating a kURL installer</a>.</p>
       <p><strong>Note:</strong> Applies only to kURL clusters.</p>
     </td> 
   </tr>  
@@ -300,7 +300,7 @@ The following tables describe the events that can be displayed in the **Instance
 
 #### Custom metrics {#custom-metrics}
 
-You can filter the activity feed by any custom metrics that are configured for the application. The labels for the custom metrics vary depending on the custom key value pairs included in the data set that is sent to the vendor portal. For example, the key value pair `"num_projects": 5` is displayed as **Num Projects: 5** in the activity feed.
+You can filter the activity feed by any custom metrics that are configured for the application. The labels for the custom metrics vary depending on the custom key value pairs included in the data set that is sent to the Vendor Portal. For example, the key value pair `"num_projects": 5` is displayed as **Num Projects: 5** in the activity feed.
 
 For more information about configuring custom metrics, see [Configuring Custom Metrics](/vendor/custom-metrics).
 #### Infrastructure status {#infrastructure}
@@ -367,7 +367,7 @@ For more information about configuring custom metrics, see [Configuring Custom M
     <td>Versions Behind</td>
     <td>
       <p>The number of versions between the version that the instance is currently running and the latest version available on the channel.</p>
-      <p>Computed by the vendor portal each time it receives instance data.</p>
+      <p>Computed by the Vendor Portal each time it receives instance data.</p>
     </td>
   </tr>
 </table>

@@ -1,4 +1,5 @@
 import KurlDefinition from "../partials/kurl/_kurl-definition.mdx"
+import Installers from "../partials/kurl/_installers.mdx"
 
 # Introduction to kURL
 
@@ -12,19 +13,17 @@ The Replicated KOTS entitlement is required to install applications with KOTS an
 
 <KurlDefinition/>
 
-### Kubernetes Installer Specs
+### kURL Installers
 
-To provision a cluster, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. This _Kubernetes installer_ spec can be customized according to the application requirements by including add-ons. kURL provides add-ons for networking, storage, ingress, and more. kURL also provides a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS admin console.
+<Installers/>
 
-Installer specs can be embedded with an application by promoting the spec to the same channel as the target application release in the Replicated vendor platform. When an installer spec is promoted to a channel, all releases on the channel use the installer for installations with kURL.
-
-For more information about creating Kubernetes installer specs for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+To distribute a kURL installer alongside your application, you can promote the installer to a channel or include the installer as a manifest file within a given release. For more information about creating kURL installers, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
 
 ### kURL Installations
 
 To install with kURL, users run a kURL installation script on their VM or bare metal server to provision a cluster.
 
-When the KOTS add-on is included in the Kubernetes installer spec, the kURL installation script installs the kots CLI and KOTS admin console in the cluster. After the installation script completes, users can access the admin console at the URL provided in the ouput of the command to configure and deploy the application with KOTS.
+When the KOTS add-on is included in the kURL installer spec, the kURL installation script installs the KOTS CLI and KOTS Admin Console in the cluster. After the installation script completes, users can access the Admin Console at the URL provided in the ouput of the command to configure and deploy the application with KOTS.
 
 The following shows an example of the output of the kURL installation script:
 
@@ -42,10 +41,10 @@ kubectl kots reset-password default
 
 kURL installations are supported in online (internet-connected) and air gapped environments.
 
-For information about how to install applications with kURL, see [Online Installation with kURL](/enterprise/installing-embedded-cluster).
+For information about how to install applications with kURL, see [Online Installation with kURL](/enterprise/installing-kurl).
 
 ## About the Open Source kURL Documentation
 
 The open source documentation for the kURL project is available at [kurl.sh](https://kurl.sh/docs/introduction/).
 
-The open source kURL documentation contains additional information including kURL installation options, kURL add-ons, and procedural content such as how to add and manage nodes in kURL clusters. Software vendors can use the open source kURL documentation to find detailed reference information when creating Kubernetes installer specs or testing installation.
+The open source kURL documentation contains additional information including kURL installation options, kURL add-ons, and procedural content such as how to add and manage nodes in kURL clusters. Software vendors can use the open source kURL documentation to find detailed reference information when creating kURL installer specs or testing installation.

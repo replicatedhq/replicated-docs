@@ -62,7 +62,7 @@ The SDK requires the following minimum RBAC permissions:
   * For any Daemonset and Statefulset resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
   * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.  
 
-  The Replicated vendor portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
+  The Replicated Vendor Portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
 ### Install the SDK with Custom RBAC
 
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.

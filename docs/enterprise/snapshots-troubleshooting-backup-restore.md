@@ -170,7 +170,7 @@ To resolve this issue, do one of the following:
 
 #### Symptom
 
-In the Replicated admin console, you see an **Application failed to restore** error message that indicates the port number for a static NodePort is already in use. For example:
+In the Replicated KOTS Admin Console, you see an **Application failed to restore** error message that indicates the port number for a static NodePort is already in use. For example:
 
 ![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
 
@@ -190,7 +190,7 @@ For more infromation about the fix, see https://github.com/kubernetes/kubernetes
 
 #### Symptom
 
-In the Replicated admin console, you see at least one volume restore progress bar frozen at 0%. Example admin console display:
+In the Admin Console, you see at least one volume restore progress bar frozen at 0%. Example Admin Console display:
 
 ![Snapshot Troubleshoot Frozen Restore](/images/snapshot-troubleshoot-frozen-restore.png)
 
@@ -214,7 +214,7 @@ Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow th
 
 #### Symptom
 
-In the admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
+In the Admin Console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
 
 ![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
 

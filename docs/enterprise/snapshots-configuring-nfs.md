@@ -44,7 +44,7 @@ To install Velero and configure NFS storage in an online environment:
   ```
 
   Replace:
-    - `NAME` with the namespace where the Replicated admin console is installed and running
+    - `NAME` with the namespace where the Replicated KOTS Admin Console is installed and running
     - `PATH` with the path that is exported by the NFS server
     - `HOST` with the hostname or IP address of the NFS server
 
@@ -69,18 +69,17 @@ To install Velero and configure NFS storage in air gapped environments:
      --namespace NAME \
      --nfs-server HOST \
      --nfs-path PATH \
-     --kotsadm-registry REGISTRY_HOSTNAME \
-     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --kotsadm-registry REGISTRY_HOSTNAME[/REGISTRY_NAMESPACE] \
      --registry-username REGISTRY_USERNAME \
      --registry-password REGISTRY_PASSWORD
    ```
 
    Replace:
-     - `NAME` with the namespace where the admin console is installed and running
+     - `NAME` with the namespace where the Admin Console is installed and running
      - `HOST` with the hostname or IP address of the NFS server
      - `PATH` with the path that is exported by the NFS server
      - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
-     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted (Optional)
      - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
      - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
@@ -88,11 +87,11 @@ To install Velero and configure NFS storage in air gapped environments:
 
 ## Configure NFS Storage in the Admin Console
 
-Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure an NFS storage destination.
+Alternatively, when the Admin Console and application are already installed, you can start in the Admin Console to install Velero and configure an NFS storage destination.
 
 To install Velero and configure NFS storage for existing clusters:
 
-1. From the admin console, click **Snapshots > Settings and Schedule**.
+1. From the Admin Console, click **Snapshots > Settings and Schedule**.
 
 1. Click **Add a new storage destination**.
 
@@ -112,7 +111,7 @@ To install Velero and configure NFS storage for existing clusters:
 
    ![Snapshot Provider File System Instructions](/images/snapshot-provider-nfs-instructions.png)
 
-1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
+1. Return to the Admin Console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 
 ## Next Steps
 

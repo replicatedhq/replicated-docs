@@ -1,0 +1,47 @@
+# Installing the SDK in Air Gap Environments (Beta)
+
+This topic explains how to install the Replicated SDK in air gap environments by enabling air gap mode.
+
+## Overview
+
+The Replicated SDK has an _air gap mode_ that allows it to run in environments with no outbound internet access. When installed in air gap mode, the SDK does not attempt to connect to the internet. This avoids any failures that would occur when the SDK is unable to make outbound requests in air gap environments.
+
+Air gap mode is enabled when `isAirgap: true` is set in the values for the SDK Helm chart. For more information, see [Install the SDK in Air Gap Mode](#install) below. Allowing air gap mode to be controlled with the `isAirgap` value means that vendors and enterprise customers do not need to rely on air gap environments being automatically detected, which is unreliable and error-prone. The `isAirgap` value also allows the SDK to be installed in air gap mode even if the instance can access the internet.
+
+## Differences in Air Gap Mode
+
+Air gap mode differs from non-air gap installations of the SDK in the following ways:
+* The SDK stores instance telemetry and custom metrics in a Kubernetes Secret in the customer environment, rather than attempting to send telemetry and custom metrics back to the Replicated Vendor Portal. The telemetry and custom metrics stored in the Secret are collected whenever a support bundle is generated in the environment, and are reported when the support bundle is uploaded to the Vendor Portal. For more information about telemetry for air gap instances, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+* The SDK returns an empty array (`[]`) for any requests to check for updates using the [`/api/v1/app/updates`](/reference/replicated-sdk-apis#get-appupdates) SDK API endpoint. This is because the SDK is not able to receive updates from the Vendor Portal when running in air gap environments.
+* Instance tags cannot be updated with the [`/app/instance-tags`](/reference/replicated-sdk-apis#post-appinstance-tags) SDK API endpoint.
+
+In air gap mode, the SDK can still make requests to SDK API endpoints that do not require outbound internet access, such as the [`license`](/reference/replicated-sdk-apis#license) endpoints and the [`/app/info`](/reference/replicated-sdk-apis#get-appinfo) endpoint. However, these endpoints will return whatever values were injected into the SDK when the chart was most recently pulled. These values might not match the latest information available in the Vendor Portal because the SDK cannot receive updates when running in air gap environments.
+
+## Install the SDK in Air Gap Mode {#install}
+
+This section describes how to install the Replicated SDK in air gap mode with the Helm CLI and with Replicated KOTS.
+
+### Helm CLI
+
+When the SDK is installed with the Helm CLI, air gap mode can be enabled by passing `--set replicated.isAirgap=true` with the Helm CLI installation command.
+
+For example:
+
+```
+helm install gitea oci://registry.replicated.com/my-app/gitea --set replicated.isAirgap=true
+```
+
+For more information about Helm CLI installations with Replicated, see [Installing with Helm](/vendor/install-with-helm). For more information about setting Helm values with the `helm install` command, see [Helm Install](https://helm.sh/docs/helm/helm_install/) in the Helm documentation.
+
+:::note
+Replicated does not provide air gap bundles for applications installed with the Helm CLI. Air gap bundles are a feature of KOTS.
+:::
+
+### KOTS
+
+When the SDK is installed by KOTS in an air gap environment, KOTS automatically sets `isAirGap: true` in the SDK Helm chart values to enable air gap mode. No additional configuration is required.
+
+KOTS automatically enables air gap mode for the SDK when the user follows any of these procedures to do an air gap installation:
+* [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped)
+* [Air Gap Installation with kURL](/enterprise/installing-kurl-airgap)
+* [Air Gap Existing Cluster](/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster) or [Air Gap kURL Cluster](/enterprise/installing-existing-cluster-automation#air-gap-kurl-cluster) in _Installing with the CLI_

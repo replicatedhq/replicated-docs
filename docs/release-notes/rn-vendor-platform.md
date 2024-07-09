@@ -8,6 +8,184 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.06.26-4
+
+Released on June 26, 2024
+
+### New Features {#new-features-v2024-06-26-4}
+* Adds a new "Upcoming license expiration" section to the Dashboard page.
+
+## v2024.06.25-1
+
+Released on June 25, 2024
+
+### Bug Fixes {#bug-fixes-v2024-06-25-1}
+* Use the correct Embedded Cluster icon on the customer page.
+* Release API now returns a 400 with a more descriptive error message when a release includes duplicate chart names.
+
+## v2024.06.24-1
+
+Released on June 24, 2024
+
+### Bug Fixes {#bug-fixes-v2024-06-24-1}
+* Proxy Service no longer requires access to proxy-auth.replicated.com.
+
+## v2024.06.24-0
+
+Released on June 24, 2024
+
+### Improvements {#improvements-v2024-06-24-0}
+* Support form product list renames **Troubleshoot** to **Support bundles and preflights**.
+
+## v2024.06.21-2
+
+Released on June 21, 2024
+
+### New Features {#new-features-v2024-06-21-2}
+* Adds the ability to pull public images through the proxy registry without credentials using the prefix `proxy.replicated.com/anon`. For example `docker pull proxy.replicated.com/anon/docker.io/library/mysql:latest`.
+
+## v2024.06.17-1
+
+Released on June 17, 2024
+
+### New Features {#new-features-v2024-06-17-1}
+* Replicated SDK support bundles details are now visible in Troubleshoot.
+
+## v2024.06.13-0
+
+Released on June 13, 2024
+
+### New Features {#new-features-v2024-06-13-0}
+* Adds a direct link to the **License Fields** page from the **Manage Customer** and **Create New Customer** pages if the user has no custom license fields configured under the "Custom fields" section.
+
+## v2024.06.12-0
+
+Released on June 12, 2024
+
+### Improvements {#improvements-v2024-06-12-0}
+* Improves mobile styles on the table views on the **Customers** and **Channels** pages, as well as some mobile styles on the **Releases** page.
+
+## v2024.05.30-7
+
+Released on May 30, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-30-7}
+* Fixes incorrectly displayed "No records to display" message, which appeared on the **Cluster History** page while loading data.
+
+## v2024.05.30-5
+
+Released on May 30, 2024
+
+### New Features {#new-features-v2024-05-30-5}
+* Adds Sonatype Nexus Repository to the list of providers on the **Images** page.
+* Adds support for linking and proxying images from anonymous registries.
+
+## v2024.05.28-3
+
+Released on May 28, 2024
+
+### New Features {#new-features-v2024-05-28-3}
+* Add support for Oracle OKE 1.29.
+
+### Bug Fixes {#bug-fixes-v2024-05-28-3}
+* Fix Compatibility Matrix available credits rounding.
+
+## v2024.05.28-0
+
+Released on May 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-28-0}
+* Users can create GitHub support tickets with large support bundle analysis results.
+
+## v2024.05.24-6
+
+Released on May 24, 2024
+
+### New Features {#new-features-v2024-05-24-6}
+* Added support for Sonatype Nexus registry.
+
+## v2024.05.24-2
+
+Released on May 24, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-24-2}
+* Fixes a bug that caused version string for Replicated SDK chart have an invalid "v" prefix.
+
+## v2024.05.23-2
+
+Released on May 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-23-2}
+* Adds validation to compatibility matrix object-store add-on bucket prefix input.
+
+## v2024.05.21-1
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-1}
+* Adds API support for Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) to compatibility matrix.
+
+### Bug Fixes {#bug-fixes-v2024-05-21-1}
+* Fixes a bug where users could not restore password policies to default.
+* Disables the edit and archive channel options and displays helpful hover text on the **Channels** page table view when the user does not have permission to edit channels.
+* Fixes a bug that caused "airgap:true" or "airgap:false" customer searches to fail with error 500.
+
+## v2024.05.21-0
+
+Released on May 21, 2024
+
+### New Features {#new-features-v2024-05-21-0}
+* Compatibility matrix automatically sends an email notification to team admins when a team is low on credits.
+
+## v2024.05.20-1
+
+Released on May 20, 2024
+
+### New Features {#new-features-v2024-05-20-1}
+* Adds support for IP dual-stack Kind clusters to compatibility matrix.
+
+## v2024.05.16-3
+
+Released on May 16, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-16-3}
+* Fixes an issue that would cause embedded cluster installs to fail with error 404 when downloading public files.
+
+## v2024.05.14-2
+
+Released on May 14, 2024
+
+### New Features {#new-features-v2024-05-14-2}
+* Adds Beta support for collecting telemetry from instances running in air gap environments with no outbound internet access. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+
+### Improvements {#improvements-v2024-05-14-2}
+* Allows installations with the Helm CLI to upload a support bundle on the **Customer Reporting** page.
+* Improves mobile responsiveness of the sign up and login flow in the vendor portal.
+
+## v2024.05.14-1
+
+Released on May 14, 2024
+
+### Bug Fixes {#bug-fixes-v2024-05-14-1}
+* Fixes a bug that would cause downloaded licenses to not include custom hostname in the `endpoint` field.
+
+## v2024.05.10-1
+
+Released on May 10, 2024
+
+### New Features {#new-features-v2024-05-10-1}
+* Adds support for creating compatibility matrix ports with wildcard domains and TLS certificates.
+
+## v2024.05.10-0
+
+Released on May 10, 2024
+
+### Improvements {#improvements-v2024-05-10-0}
+* Moves release information for the bundle under "Versions Behind" on the **Support Bundle Analysis** page.
+
+### Bug Fixes {#bug-fixes-v2024-05-10-0}
+* Fixes a bug where product options are not updated correctly when changing installation type in the create a support issue modal.
+
 ## v2024.05.08-0
 
 Released on May 8, 2024

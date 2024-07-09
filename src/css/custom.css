@@ -249,7 +249,7 @@ ol ol ol {
 
 .menu__list-item > h5 {
   text-transform: uppercase;
-  margin: 1rem 0;
+  margin: 1rem 0 0 0;
 }
 
 .theme-doc-sidebar-menu.menu__list {

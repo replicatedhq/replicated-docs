@@ -30,7 +30,7 @@ For more information about working with dependencies and defining optional depen
 
 For Helm chart-based applications installed with KOTS, you can configure KOTS to exclude certain Helm charts from deployment using the HelmChart custom resource [`exclude`](/reference/custom-resource-helmchart#exclude) field. When the `exclude` field is set to a conditional statement, KOTS excludes the chart if the condition evaluates to `true`.
 
-The following example uses the `exclude` field and the ConfigOptionEquals template function to exclude a postgresql Helm chart when the `external_postgres` option is selected on the Replicated admin console **Config** page:
+The following example uses the `exclude` field and the ConfigOptionEquals template function to exclude a postgresql Helm chart when the `external_postgres` option is selected on the Replicated Admin Console **Config** page:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -63,7 +63,7 @@ The `kots.io/exclude` and `kots.io/when` annotations have the following requirem
 
 When the `kots.io/exclude: '<bool>'` annotation is present on a resource and evaluates to true, the resource is excluded from the deployment.
 
-The following example uses the `kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` when an `install_postgres` checkbox on the admin console **Config** page is disabled:
+The following example uses the `kots.io/exclude` annotation and the ConfigOptionEquals template function to exclude the postgresql `StatefulSet` when an `install_postgres` checkbox on the Admin Console **Config** page is disabled:
 
 ```yaml
 apiVersion: apps/v1
@@ -96,7 +96,7 @@ spec:
 
 When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to true, the resource is included in the deployment.
 
-The following example uses the `kots.io/when` annotation and the ConfigOptionEquals template function to include the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the admin console **Config** page is enabled:
+The following example uses the `kots.io/when` annotation and the ConfigOptionEquals template function to include the postgresql `StatefulSet` resource when the `install_postgres` checkbox on the Admin Console **Config** page is enabled:
 
 ```yaml
 apiVersion: apps/v1

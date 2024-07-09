@@ -1,6 +1,6 @@
 # Updating Storage Settings
 
-This topic describes how to update existing storage destination settings using the Replicated admin console.
+This topic describes how to update existing storage destination settings using the Replicated Admin Console.
 
 ## Prerequisite
 If you are changing from one provider to another provider, make sure that you meet the prerequisites for the storage destination. For information about prerequisites, see:
@@ -11,13 +11,13 @@ If you are changing from one provider to another provider, make sure that you me
 
 ## Update Storage Settings
 
-You can update storage destination settings for online and air gapped environments at any time using the admin console. 
+You can update storage destination settings for online and air gapped environments at any time using the Admin Console. 
 
 Additionally, if Velero was automatically installed by Replicated kURL, then Replicated recommends that you change the default internal storage because it is not sufficient for disaster recovery.
 
 To update storage destination settings:
 
-1. In the admin console, select **Snapshots** > **Settings and Schedule**.
+1. In the Admin Console, select **Snapshots** > **Settings and Schedule**.
 
 1. Under storage, you can edit the existing settings or click **Add a new storage destination** and select a storage destination type.
 
@@ -36,7 +36,7 @@ To update storage destination settings:
 
 ### AWS Fields
 
-When configuring the admin console to store backups on Amazon Web Services (AWS), the following fields are available:
+When configuring the Admin Console to store backups on Amazon Web Services (AWS), the following fields are available:
 
 | Name                         | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ When configuring the admin console to store backups on Amazon Web Services (AWS)
 
 ### GCP Fields
 
-When configuring the admin console to store backups on Google Cloud Provide (GCP), the following fields are available:
+When configuring the Admin Console to store backups on Google Cloud Provide (GCP), the following fields are available:
 
 | Name            | Description                                                                                               |
 |-----------------|-----------------------------------------------------------------------------------------------------------|
@@ -61,7 +61,7 @@ When configuring the admin console to store backups on Google Cloud Provide (GCP
 
 ### Azure Fields
 
-When configuring the admin console to store backups on Microsoft Azure, the following fields are available:
+When configuring the Admin Console to store backups on Microsoft Azure, the following fields are available:
 
 | Name                       | Description                                                                                                                                |
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -87,7 +87,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 * Ceph RADOS v12.2.7. For more information, see the [Ceph](https://docs.ceph.com/en/quincy/) documentation.
 * MinIO. For more information, see the [MinIO](https://docs.min.io/docs/minio-quickstart-guide.html) documentation.
 
-When configuring the admin console to store backups on S3-compatible storage, the following fields are available:
+When configuring the Admin Console to store backups on S3-compatible storage, the following fields are available:
 
 | Name                         | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -102,7 +102,7 @@ When configuring the admin console to store backups on S3-compatible storage, th
 
 ### NFS Fields
 
-When configuring the admin console to store backups on network file system (NFS) storage, the following fields are available:
+When configuring the Admin Console to store backups on network file system (NFS) storage, the following fields are available:
 
 | Name   | Description                                  |
 |--------|----------------------------------------------|
@@ -111,6 +111,6 @@ When configuring the admin console to store backups on network file system (NFS)
 
 ### Host Path Fields
 
-When configuring the admin console to store backups on host path storage, the following fields are available:
+When configuring the Admin Console to store backups on host path storage, the following fields are available:
 
 **Host path**: Enter the path to the directory on the node. Although the path can be local, Replicated recommends that you use an external host path.

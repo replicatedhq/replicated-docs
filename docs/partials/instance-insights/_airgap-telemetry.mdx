@@ -1,0 +1,3 @@
+For air gap instances, Replicated KOTS and the Replicated SDK collect and store instance telemetry in a Kubernetes Secret in the customer environment. The Replicated SDK also stores any custom metrics within its Secret.
+
+The telemetry and custom metrics stored in the Secret are collected when a support bundle is generated in the environment. When the support bundle is uploaded to the Vendor Portal, the telemetry and custom metrics are associated with the correct customer and instance ID, and the Vendor Portal updates the instance insights and event data accordingly. 

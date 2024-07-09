@@ -1,11 +1,12 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import Output from "../partials/replicated-cli/_output.mdx"
+import Help from "../partials/replicated-cli/\_help.mdx"
+import Output from "../partials/replicated-cli/\_output.mdx"
 
 # cluster create
 
-Create clusters for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+Create clusters for compatibility testing. For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
+
 ```bash
 replicated cluster create [flags]
 ```
@@ -38,7 +39,12 @@ replicated cluster create [flags]
     <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
-    <td>--license</td>
+    <td>--ip-family</td>
+    <td>string</td>
+    <td>IP Family to use for the cluster (ipv4|ipv6|dual). <strong>Default:</strong> ipv4</td>
+  </tr>
+  <tr>
+    <td>--license-id</td>
     <td>string</td>
     <td>A valid customer license ID. Required for Replicated embedded cluster distribution.</td>
   </tr>

@@ -1,18 +1,18 @@
-import Pool from "../partials/cmx/_openshift-pool.mdx"
+import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
-This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix.
+This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix.
 
-The compatibility matrix provisions cloud-based or virtual machine (VM) clusters.
+Compatibility Matrix provisions cloud-based or virtual machine (VM) clusters.
 
 ## VM Clusters
 
-This section lists the supported VM cluster distributions for clusters created with the compatibility matrix.
+This section lists the supported VM cluster distributions for clusters created with Compatibility Matrix.
 
 ### kind
 
-The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
+Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
 
 <table>
   <tr>
@@ -21,7 +21,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.23.17, 1.24.17, 1.25.16, 1.26.14, 1.27.11, 1.28.7, 1.29.2</td>
+    <td>1.25.16, 1.26.15, 1.27.13, 1.28.9, 1.29.4, 1.30.0</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -40,6 +40,10 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
     <td>Supports a single node.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4` or `dual`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>See <a href="testing-about#limitations">Limitations</a></td>
   </tr>
@@ -51,7 +55,7 @@ The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clu
 
 ### k3s
 
-The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
+Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
 
 <table>
   <tr>
@@ -64,7 +68,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.29.0, 1.29.1, 1.29.2</td>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.30.0, 1.30.1, 1.30.2</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -82,6 +86,10 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
   </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>  
   <tr>
     <th>Limitations</th>
     <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
@@ -94,7 +102,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 ### RKE2 (Alpha)
 
-The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
+Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
 
 <table>
   <tr>
@@ -107,7 +115,7 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.29.0, 1.29.1, 1.29.2, 1.29.3</td>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.30.0, 1.30.1</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -124,6 +132,10 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
   <tr>
     <th>Nodes</th>
     <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -137,11 +149,12 @@ The compatibility matrix supports creating [RKE2](https://docs.rke2.io/) cluster
 
 ### OpenShift OKD
 
-The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
+Compatibility Matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
-* (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
-* A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
+
+- (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
+- A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
 
 By default, kubeconfig context is set to the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
 
@@ -171,6 +184,10 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
     <td>Supports multiple nodes for versions 4.13.0-okd and later.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>
       <ul>
@@ -192,7 +209,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-The compatibility matrix supports creating clusters with Replicated embedded cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+Compatibility Matrix supports creating clusters with Replicated Embedded Cluster. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 <table>
   <tr>
@@ -219,13 +236,17 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
     <td>Supports a single node.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>
       <ul>
         <li>The admin console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`.</li>
         <li>A valid customer license is required for installing with embedded cluster.</li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
-        <li>Embedded clusters cannot be created from the vendor portal.</li>
+        <li>Embedded clusters cannot be created from the Vendor Portal.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
@@ -238,7 +259,7 @@ The compatibility matrix supports creating clusters with Replicated embedded clu
 
 ### kURL
 
-The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
+Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
 
 <table>
   <tr>
@@ -247,7 +268,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>Any kURL installer ID. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
+    <td>Any kURL installer ID. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a kURL installer</a>.</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -266,6 +287,10 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -281,7 +306,7 @@ This section lists the supported cloud clusters for compatibility testing.
 
 ### EKS
 
-The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
+Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
 
 <table>
   <tr>
@@ -309,6 +334,10 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -320,7 +349,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 ### GKE
 
-The compatibility matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
+Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
 
 <table>
   <tr>
@@ -329,7 +358,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.26, 1.27, 1.28, 1.29</td>
+    <td>1.27, 1.28, 1.29</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -348,6 +377,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>You can choose only a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -359,7 +392,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
 
 ### AKS
 
-The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
+Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
 
 <table>
   <tr>
@@ -387,6 +420,10 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
     <td>Supports multiple nodes.</td>
   </tr>
   <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td><p>You can choose only a minor version, not a patch version. The AKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
@@ -396,9 +433,56 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
 </table>
 
+### OKE (Alpha)
+
+Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
+
+:::note
+By default, creating OKE clusters is not enabled. To enable OKE clusters for Compatibility Matrix, contact Replicated at contact@replicated.com or submit a feature request.
+:::
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Versions</th>
+    <td>1.29.1</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16</p></td>
+  </tr>
+  <tr>
+    <th>Node Groups</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Node Auto Scaling</th>
+    <td>No.</td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>IP Family</th>
+    <td>Supports `ipv4`.</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td><p>Provising an OKE cluster does take between 8 to 10 minutes. If needed, some timeouts in your CI pipelines might have to be adjusted.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
 ## Replicated Instance Types {#types}
 
-When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.
+When creating a VM-based cluster with Compatibility Matrix, you must specify a Replicated instance type.
 
 <table>
   <tr>
@@ -435,4 +519,4 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
 
 ## Kubernetes Version Support Policy
 
-We do not maintain forks or patches of the supported distributions. When a Kubernetes version in the compatibility matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
+We do not maintain forks or patches of the supported distributions. When a Kubernetes version in Compatibility Matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.

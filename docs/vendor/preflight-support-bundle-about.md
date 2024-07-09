@@ -44,7 +44,7 @@ During the analyze phase, _analyzers_ use the redacted data to provide insights 
 
 For preflight checks, analyzers define the pass, fail, and warning outcomes, and can also display custom messages to the user. For example, you can define a preflight check that fails if the cluster's Kubernetes version does not meet the minimum version that your application supports.
 
-For support bundles, analyzers can be used to identify potential problems and share relevant troubleshooting guidance with users. Additionally, when a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of analyzers in support bundles is to surface known issues or hints of what might be a problem to make troubleshooting easier.
+For support bundles, analyzers can be used to identify potential problems and share relevant troubleshooting guidance with users. Additionally, when a support bundle is uploaded to the Vendor Portal, it is extracted and automatically analyzed. The goal of analyzers in support bundles is to surface known issues or hints of what might be a problem to make troubleshooting easier.
 
 For more information, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
@@ -71,19 +71,29 @@ For applications installed with KOTS, it is possible to block the deployment of 
 
 You can add required preflight checks for your application by including `strict: true` for the target analyzer in the preflight specification. For more information, see [Block Installation with Required Preflights](preflight-defining#strict) in _Defining Preflight Checks_.
 
+### (KOTS Only) Host Preflights for VM or Bare Metal Installations {#host-preflights}
+
+_Host preflight checks_ automatically run during [Replicated kURL](/vendor/kurl-about) or [Replicated Embedded Cluster](/vendor/embedded-overview) installations on a VM or bare metal server. The purpose of host preflight checks is to verify that the user's installation environment meets the requirements of the kURL or Embedded Cluster installer, such as checking the number of CPU cores in the system, available disk space, and memory usage. If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
+
+Host preflight checks are separate from any application-specific preflight checks that are defined in the release, which run in the Admin Console before the application is deployed with KOTS. Host preflight checks run automatically before kURL or Embedded Cluster provision the cluster in the environment. Both kURL and Embedded Cluster have default host preflight check specs that are specific to the requirements of the given installer. For kURL installations, it is possible to customize the default host preflight checks.
+
+For more information about kURL host preflight checks, including information about how to customize the defaults, see [Customizing Host Preflight Checks for kURL](/vendor/preflight-host-preflights).
+
+For more information about the default Embedded Cluster host preflight checks, see [Host Preflight Checks](/vendor/embedded-overview#host-preflight-checks) in _Using Embedded Cluster (Beta)_.
+
 ### Running Preflights
 
 This section describes how users can run preflight checks for KOTS and Helm CLI installations.
 
 #### KOTS Installations
 
-For installations with KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS admin console or in the kots CLI, depending on the installation method.
+For installations with KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS Admin Console or in the KOTS CLI, depending on the installation method.
 
-Additionally, users can access preflight checks from the admin console after installation to view their results and optionally re-run the checks.
+Additionally, users can access preflight checks from the Admin Console after installation to view their results and optionally re-run the checks.
 
-The following shows an example of the results of preflight checks displayed in the KOTS admin console during installation:
+The following shows an example of the results of preflight checks displayed in the KOTS Admin Console during installation:
 
-![Preflight results in admin console](/images/preflight-warning.png)
+![Preflight results in Admin Console](/images/preflight-warning.png)
 
 [View a larger version of this image](/images/preflight-warning.png)
 
@@ -131,6 +141,6 @@ For more information, see [Adding and Customizing Support Bundles](support-bundl
 
 Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can share their support bundles with your team by sending you the resulting `tar.gz` file.
 
-KOTS users can also generate and share support bundles from the KOTS admin console.
+KOTS users can also generate and share support bundles from the KOTS Admin Console.
 
 For more information, see [Generating Support Bundles](support-bundle-generating).

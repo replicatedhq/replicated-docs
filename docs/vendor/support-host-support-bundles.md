@@ -8,7 +8,7 @@ Host collectors and analyzers are configured in a manifest file that is used to 
 
 You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
 
-This information is useful when you need to debug an embedded cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
+This information is useful when you need to debug an embedded cluster that is offline, troubleshoot a kURL installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
 You create the host support bundle manifest file separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](/enterprise/troubleshooting-an-app#generate-a-host-support-bundle).
 

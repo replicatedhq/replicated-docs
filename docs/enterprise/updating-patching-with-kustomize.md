@@ -4,7 +4,7 @@ This topic describes how to use Kustomize to patch an application before deployi
 
 ## Overview
 
-Replicated KOTS uses Kustomize to let you make patches to an application outside of the options available in the KOTS admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in `kustomization.yaml` files, that describe how to transform or generate other Kubernetes objects.
+Replicated KOTS uses Kustomize to let you make patches to an application outside of the options available in the KOTS Admin Console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in `kustomization.yaml` files, that describe how to transform or generate other Kubernetes objects.
 
 These kustomizations overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
@@ -16,7 +16,7 @@ For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart cu
 
 ## About the Directory Structure
 
-You can patch an application with Kustomize from the **View files** page in the admin console. The **View files** page shows the Kubernetes manifest files for the application.
+You can patch an application with Kustomize from the **View files** page in the Admin Console. The **View files** page shows the Kubernetes manifest files for the application.
 
 The following images shows an example of the file directory on the View files page:
 
@@ -91,7 +91,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>downstream</code></td>
         <td>Yes</td>
-        <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#patch-an-application">Patch an Application</a>.</p></td>
+        <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the Admin Console is installed.</p><p>To add kustomizations, see <a href="#patch-an-application">Patch an Application</a>.</p></td>
       </tr>
       <tr>
         <td><code>midstream/charts</code></td>
@@ -139,11 +139,11 @@ The `_index.yaml` file contains metadata and details about the errors, such as w
 
 To patch the application with Kustomize so that your changes persist between updates, edit the files in the `overlays/downstream/this-cluster` directory.
 
-The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
+The Admin Console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
 To patch an application:
 
-1. On the View Files tab in the admin console, click **Need to edit these files? Click here to learn how**.
+1. On the View Files tab in the Admin Console, click **Need to edit these files? Click here to learn how**.
 
    ![edit-patches-kots-app](/images/edit-patches-kots-app.png)
 
@@ -188,7 +188,7 @@ To patch an application:
    kubectl kots upload --namespace APP_NAMESPACE --slug APP_SLUG ~/APP-SLUG
    ```
 
-1. On the Version History tab in the admin console, click **Diff** to see the new version of the application with the diff of the changes that you uploaded.
+1. On the Version History tab in the Admin Console, click **Diff** to see the new version of the application with the diff of the changes that you uploaded.
 
    ![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
 

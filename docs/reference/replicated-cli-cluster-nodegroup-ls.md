@@ -6,7 +6,7 @@ import Token from "../partials/replicated-cli/_token.mdx"
 
 List node groups for a cluster.
 
-For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 

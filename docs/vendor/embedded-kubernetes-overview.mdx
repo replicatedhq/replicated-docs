@@ -1,6 +1,7 @@
 import KurlDefinition from "../partials/kurl/_kurl-definition.mdx"
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
+import EmbeddedKubernetes from "../partials/kots/_embedded-kubernetes-definition.mdx"
 
 # About Embedded Kubernetes
 
@@ -8,13 +9,13 @@ This topic describes Replicated's embedded Kubernetes solutions, which allow sof
 
 ## Overview
 
-_Embedded Kubernetes_ refers to delivering a Kubernetes distribution alongside an application, so that both Kubernetes and the application are deployed in the customer environment. Embedding Kubernetes allows software vendors to install their Kubernetes application in non-Kubernetes customer-controlled environments, such as virtual machines (VMs) or bare metal servers. Additionally, software vendors that embed Kubernetes with their application have greater control over the charactersitics of the cluster where their application is installed. This allows vendors to deliver a cluster that meets their application's requirements, which can help reduce errors during installation. 
+<EmbeddedKubernetes/>
 
 Providing an embedded Kubernetes option for installation is also beneficial to enterprise users because it allows users to install the application without needing to also manage and interact directly with Kubernetes. This is especially important for users that lack experience with Kubernetes, or for users that can more easily provision virtual or physical harware in their environment compared to managing Kubernetes.
 
 ## Embedded Kubernetes with Replicated
 
-This section describes Replicated's embedded Kubernetes solutions: Replicated embedded cluster and Replicated kURL.
+This section describes Replicated's embedded Kubernetes solutions: Replicated Embedded Cluster and Replicated kURL.
 
 ### Embedded Cluster (Beta)
 
@@ -22,7 +23,7 @@ This section describes Replicated's embedded Kubernetes solutions: Replicated em
 
 <KurlComparison/>
 
-For more information about configuring and installing with embedded cluster, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+For more information about configuring and installing with Embedded Cluster, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
 
 ### kURL
 

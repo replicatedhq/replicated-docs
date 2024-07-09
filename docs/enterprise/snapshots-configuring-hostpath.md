@@ -43,7 +43,7 @@ To install Velero and configure host path storage in online environments:
     ```
 
     Replace:
-      - `NAME` with the namespace where the Replicated admin console is installed and running
+      - `NAME` with the namespace where the Replicated KOTS Admin Console is installed and running
       - `PATH` with the path to the directory where the backups will be stored
 
     For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
@@ -66,17 +66,16 @@ To install Velero and configure host path storage in air gapped environments:
    kubectl kots velero configure-hostpath \
      --namespace NAME \
      --hostpath /PATH \
-     --kotsadm-registry REGISTRY_HOSTNAME \
-     --kotsadm-namespace REGISTRY_NAMESPACE \
+     --kotsadm-registry REGISTRY_HOSTNAME[/REGISTRY_NAMESPACE] \
      --registry-username REGISTRY_USERNAME \
      --registry-password REGISTRY_PASSWORD
    ```
 
    Replace:
-     - `NAME` with the namespace where the admin console is installed and running
+     - `NAME` with the namespace where the Admin Console is installed and running
      - `PATH` with the path to the directory where the backups will be stored
      - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
-     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+     - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted (Optional)
      - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
      - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
@@ -84,11 +83,11 @@ To install Velero and configure host path storage in air gapped environments:
 
 ## Configure Host Path Storage in the Admin Console
 
-Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure a host path storage destination.
+Alternatively, when the Admin Console and application are already installed, you can start in the Admin Console to install Velero and configure a host path storage destination.
 
 To install Velero and configure host path storage for existing clusters:
 
-1. From the admin console, click **Snapshots > Settings and Schedule**.
+1. From the Admin Console, click **Snapshots > Settings and Schedule**.
 
 1. Click **Add a new storage destination**.
 
@@ -108,7 +107,7 @@ To install Velero and configure host path storage for existing clusters:
 
    ![Snapshot Provider File System Instructions](/images/snapshot-provider-hostpath-instructions.png)
 
-1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
+1. Return to the Admin Console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 
 
 ## Next Steps

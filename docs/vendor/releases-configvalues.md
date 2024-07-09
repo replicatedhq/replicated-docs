@@ -12,7 +12,7 @@ This topic describes how to view the ConfigValues file for an application instal
 
 ## About ConfigValues Files
 
-A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the kots CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the kots CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the KOTS CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
 ConfigValues files include the configuration fields defined in the Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
 
@@ -40,7 +40,7 @@ To get the ConfigValues file for an application:
     The output of the `kots get config` command is the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
 ## Share a Sample ConfigValues File    
 
-Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use in automated installations with the kots CLI.
+Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use in automated installations with the KOTS CLI.
 
 After you get the ConfigValues file for your application using the `kots get config` command, Replicated recommends that you do the following to edit the contents of the ConfigValues file before sharing it with users:
 
@@ -48,7 +48,7 @@ After you get the ConfigValues file for your application using the `kots get con
 
    * Remove the `metadata` and `status` fields. These fields are automatically generated because the file is a Kubernetes custom resource. KOTS does not use the `metadata` or `status` fields.
 
-   * (Optional) Remove any fields that have `hidden` set to `true`. Fields with `hidden` set to `true` can be edited by users, but are hidden from the admin console Config page. For more information, see [hidden](/reference/custom-resource-config#hidden) in _Config_.
+   * (Optional) Remove any fields that have `hidden` set to `true`. Fields with `hidden` set to `true` can be edited by users, but are hidden from the Admin Console Config page. For more information, see [hidden](/reference/custom-resource-config#hidden) in _Config_.
 
    * Write comments in the file or provide supplementary documentation to describe the following:
       * The fields that are required and optional. For any required configuration fields that do not have a default value, users must provide a value in the ConfigValues file to install the application.

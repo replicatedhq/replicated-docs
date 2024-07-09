@@ -2,11 +2,11 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # Step 6: Install the Release with KOTS
 
-Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
+Next, get the KOTS installation command from the Unstable channel in the Vendor Portal and then install the release using the customer license that you downloaded.
 
 To install the release with KOTS:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
     ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
 
@@ -19,9 +19,9 @@ To install the release with KOTS:
     kubectl kots install $REPLICATED_APP/unstable
     ```
 
-    This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
+    This installs the latest version of the KOTS CLI and the Replicated KOTS Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
 
-    For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+    For additional KOTS CLI installation options, including how to install without root access, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
 
     :::note
     <KotsVerReq/>
@@ -31,9 +31,9 @@ To install the release with KOTS:
 
     1. For `Enter the namespace to deploy to`, enter `gitea`. 
 
-    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
+    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
 
-    When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
+    When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the KOTS CLI is installed and the Admin Console is running, but the application is not yet deployed.
 
     **Example output:**
 
@@ -49,13 +49,13 @@ To install the release with KOTS:
     • Go to http://localhost:8800 to access the Admin Console
     ```
 
-1. With the port forward running, in a browser, go to `http://localhost:8800` to access the admin console.
+1. With the port forward running, in a browser, go to `http://localhost:8800` to access the Admin Console.
 
 1. On the login page, enter the password that you created.
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-    The admin console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
+    The Admin Console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
 
     ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
 
@@ -77,21 +77,21 @@ To install the release with KOTS:
        kubectl get svc gitea --namespace gitea
        ```
 
-   1. Start the port foward again to access the admin console:
+   1. Start the port foward again to access the Admin Console:
 
        ```
        kubectl kots admin-console --namespace gitea 
        ```
 
-   1. Go to `http://localhost:8800` to open the admin console.   
+   1. Go to `http://localhost:8800` to open the Admin Console.   
 
-1. On the admin console dashboard, the application status is now displayed as Ready and you can click **Open App** to view the Gitea application in a browser:
+1. On the Admin Console dashboard, the application status is now displayed as Ready and you can click **Open App** to view the Gitea application in a browser:
 
     ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
 
     [View a larger version of this image](/images/tutorial-gitea-ready.png)
 
-1. In another browser window, open the [vendor portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created.
+1. In another browser window, open the [Vendor Portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created.
 
     On the **Reporting** page for the customer, you can see details about the customer's license and installed instances:
 
@@ -118,14 +118,14 @@ To install the release with KOTS:
      • Application gitea-boxer has been removed
     ```
 
-1. Remove the admin console from the cluster:  
+1. Remove the Admin Console from the cluster:  
 
-   1. Delete the namespace where the admin console is installed:
+   1. Delete the namespace where the Admin Console is installed:
 
       ```
       kubectl delete namespace gitea
       ```
-   1. Delete the admin console ClusterRole and ClusterRoleBinding:  
+   1. Delete the Admin Console ClusterRole and ClusterRoleBinding:  
 
       ```
       kubectl delete clusterrole kotsadm-role
@@ -141,7 +141,7 @@ Install the same release with the Helm CLI. See [Step 7: Install the Release wit
 ## Related Topics
 
 * [kots install](/reference/kots-cli-install/)
-* [Installing the kots CLI](/reference/kots-cli-getting-started/)
+* [Installing the KOTS CLI](/reference/kots-cli-getting-started/)
 * [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
 * [Customer Reporting](customer-reporting)
 * [Instance Details](instance-insights-details)

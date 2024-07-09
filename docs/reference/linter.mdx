@@ -50,7 +50,7 @@ This topic describes the release linter and the linter rules.
 
 The linter runs automatically against KOTS releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
 
-To lint manifest files from the command line, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
+To lint manifest files from the command line, you can run the Replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _Replicated CLI_ section.
 
 ## Linter Rules
 
@@ -466,7 +466,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Description</th>
     <td>
-      <p>Disallows using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
+      <p>Disallows using the deprecated kURL installer <code>apiVersion</code>.</p>
       <p><code>kurl.sh/v1beta1</code> is deprecated. Use <code>cluster.kurl.sh/v1beta1</code> instead.</p>
       </td>
   </tr>
@@ -638,7 +638,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
     <th>Description</th>
     <td>
       <p>Enforces valid Replicated kURL add-on versions.</p>
-      <p>kURL add-ons included in the Kubernetes installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
+      <p>kURL add-ons included in the kURL installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
     </td>
   </tr>
   <tr>
