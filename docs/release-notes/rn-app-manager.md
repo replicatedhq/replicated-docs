@@ -23,7 +23,7 @@ Released on July 9, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-111-0}
-* Fix navigation to Troubleshoot page after pressing Troubleshoot button in the Dashboard page.
+* Fixes an issue where the Troubleshoot button on the **Resource status** modal didn't take you to the Troubleshoot page.
 
 ## 1.110.0
 
