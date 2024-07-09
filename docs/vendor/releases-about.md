@@ -179,8 +179,6 @@ Then, you enable semantic versioning on that channel. The admin console sequence
 - xyz
 - 2.0.0
 
-For information about how enterprise application users check for application updates in the admin console, see [Updating an Application](/enterprise/updating-apps).
-
 ### Semantic Versioning
 
 Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:

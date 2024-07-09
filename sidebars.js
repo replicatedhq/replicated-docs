@@ -385,9 +385,11 @@ const sidebars = {
             type: 'category',
             label: 'Updating',
             items: [
-              'enterprise/updating-apps',
               'enterprise/updating-app-manager',
+              'enterprise/updating-embedded',
+              'enterprise/updating-kurl-about',
               'enterprise/updating-kurl',
+              'enterprise/updating-apps',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
             ],
