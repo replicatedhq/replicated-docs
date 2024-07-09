@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.09-0
+
+Released on July 9, 2024
+
+### New Features {#new-features-v2024-07-09-0}
+* UI improvements for Embedded Cluster installation instructions.
+
 ## v2024.06.26-4
 
 Released on June 26, 2024
