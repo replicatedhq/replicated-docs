@@ -80,7 +80,7 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.3.0+k8s-1.29
+       version: 1.6.0+k8s-1.29
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
@@ -221,9 +221,9 @@ sudo ./APP_SLUG install --license LICENSE_FILE \
 
 Where:
 
-* LICENSE_FILE is the customer's license
-* HOST:PORT is the host and port of the proxy server
-* LIST_OF_HOSTS is the list of hosts to not proxy
+* `LICENSE_FILE` is the customer's license
+* `HOST:PORT` is the host and port of the proxy server
+* `LIST_OF_HOSTS` is the list of hosts to not proxy
 
 For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
 
@@ -231,6 +231,10 @@ The following are never proxied:
 * Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
 * Communiation to the KOTS database (`kotsadm-rqlite`)
 * The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
+
+**Requirement:**
+
+Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not.
 
 **Limitations:**
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
