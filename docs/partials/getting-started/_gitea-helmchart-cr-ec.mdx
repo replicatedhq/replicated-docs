@@ -1,0 +1,19 @@
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: gitea
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: gitea
+    chartVersion: 1.0.6
+  optionalValues:
+  - when: 'repl{{ eq Distribution "embedded-cluster" }}'
+    recursiveMerge: false
+    values:
+      service:
+        type: NodePort
+        nodePorts:
+          http: "32000"
+```        
