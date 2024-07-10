@@ -70,7 +70,7 @@ Compatibility Matrix has the following limitations:
 - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - There is no support for IPv6.
-- There is no support for airgap testing. 
+- There is no support for air gap testing. 
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
 - The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
