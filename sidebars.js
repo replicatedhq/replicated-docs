@@ -177,7 +177,6 @@ const sidebars = {
       items: [
         'vendor/licenses-about',
         'vendor/releases-creating-customer',
-        'vendor/licenses-download',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
@@ -328,6 +327,7 @@ const sidebars = {
               label: 'Downloading and Sharing Assets for KOTS Releases',
               items: [
                 'vendor/releases-download-airgap-bundles',
+                'vendor/licenses-download',
                 'vendor/releases-share-download-portal',
                 'vendor/releases-configvalues',
               ],
