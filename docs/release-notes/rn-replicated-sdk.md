@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.24
+
+Released on July 2, 2024
+
+### Improvements {#improvements-1-0-0-beta-24}
+* Adds caching and rate-limiting to the `/api/v1/app/custom-metrics` and `/api/v1/app/instance-tags` endpoints
+* Adds a ten-second default timeout to the SDK's HTTP client
+
 ## 1.0.0-beta.23
 
 Released on June 21, 2024

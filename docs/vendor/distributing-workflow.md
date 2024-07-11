@@ -27,7 +27,7 @@ You can add custom resources to your releases to support installations with KOTS
 
 Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. You can add these custom resources to releases in any order that you prefer.
 
-For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Updating Applications](/enterprise/updating-apps).
+For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
 ### Custom Resource Checklist
 
@@ -120,8 +120,8 @@ You can choose to use either Replicated Embedded Cluster or Replicated kURL to e
   </tr>
   <tr>
     <td>Installer</td>
-    <td>Create an Installer spec to support installations in in VMs or bare metal servers with Replicated kURL.</td>
-    <td><a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a></td>
+    <td>Create an Installer spec to support installations in VMs or bare metal servers with Replicated kURL.</td>
+    <td><a href="packaging-embedded-kubernetes">Creating a kURL Installer</a></td>
   </tr>
 </table>
 

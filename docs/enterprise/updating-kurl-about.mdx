@@ -1,0 +1,62 @@
+# About kURL Cluster Updates
+
+This topic provides an overview of Replicated kURL cluster updates. For information about how to perform updates in kURL clusters, see [Performing Updates in kURL Clusters](updating-kurl).
+
+## Overview
+
+The Replicated kURL installer spec specifies the kURL add-ons and the Kubernetes version that are deployed in kURL clusters. You can run the kURL installation script to apply the latest installer spec and update the cluster.
+
+## About Kubernetes Updates {#kubernetes}
+
+The version of Kubernetes running in a kURL cluster can be upgraded by one or more minor versions.
+
+The Kubernetes upgrade process in kURL clusters steps through one minor version at a time. For example, upgrades from Kubernetes 1.19.x to 1.26.x install versions 1.20.x, 1.21x, 1.22.x, 1.23.x, 1.24.x, and 1.25.x before installing 1.26.x.
+
+The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first prints a prompt: `Drain local node and apply upgrade?`. When you confirm the prompt, it drains and upgrades the local primary node where the script is running.
+
+Then, if there are any remote primary nodes to upgrade, the script drains each sequentially and prints a command that you must run on the node to upgrade. For example, the command that that script prints might look like the following: `curl -sSL https://kurl.sh/myapp/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.24.3`.
+
+The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
+
+### Air Gap Multi-Version Kubernetes Updates {#kubernetes-multi}
+
+To upgrade Kubernetes by more than one minor version in air gapped kURL clusters, you must provide a package that includes the assets required for the upgrade.
+
+When you run the installation script to upgrade, the script searches for the package in the `/var/lib/kurl/assets/` directory. The script then lists any required assets that are missing, prints a command to download the missing assets as a `.tar.gz` package, and prompts you to provide an absolute path to the package in your local directory. For example:
+
+```
+⚙  Upgrading Kubernetes from 1.23.17 to 1.26.3
+This involves upgrading from 1.23 to 1.24, 1.24 to 1.25, and 1.25 to 1.26.
+This may take some time.
+⚙  Downloading assets required for Kubernetes 1.23.17 to 1.26.3 upgrade
+The following packages are not available locally, and are required:
+   kubernetes-1.24.12.tar.gz
+   kubernetes-1.25.8.tar.gz
+
+You can download them with the following command:
+
+   curl -LO https://kurl.sh/bundle/version/v2023.04.24-0/19d41b7/packages/kubernetes-1.24.12,kubernetes-1.25.8.tar.gz
+
+Please provide the path to the file on the server.
+Absolute path to file:
+```
+
+## About Add-ons and KOTS Updates {#add-ons}
+
+If the application vendor updated any add-ons in the kURL installer spec since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after updating Kubernetes (if required).
+
+For a complete list of add-ons that can be included in the kURL installer spec, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
+
+### Containerd and Docker Add-on Updates
+
+The installation script upgrades the version of the Containerd or Docker container runtime if required by the installer spec. For example, if your cluster uses Containerd version 1.6.4 and the spec is updated to use 1.6.18, then Containerd is updated to 1.6.18 in your cluster when you run the installation script.
+
+The installation script also supports migrating from Docker to Containerd as Docker is not supported in Kubernetes versions 1.24 and later. If the install script detects a change from Docker to Containerd, it installs Containerd, loads the images found in Docker, and removes Docker.
+
+For information about the container runtime add-ons, see [Containerd Add-On](https://kurl.sh/docs/add-ons/containerd) and [Docker Add-On](https://kurl.sh/docs/add-ons/docker) in the kURL documentation.
+
+### KOTS Updates (KOTS Add-on)
+
+The version of KOTS that is installed in a kURL cluster is set by the [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm), which is defined in the kURL installer spec. 
+
+For example, if the version of KOTS running in your cluster is 1.109.0, and the KOTS add-on in the kURL installer spec is updated to 1.109.12, then the KOTS version in your cluster is updated to 1.109.12 when you update the cluster.

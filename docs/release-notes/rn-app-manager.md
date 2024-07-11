@@ -16,6 +16,24 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.111.0
+
+Released on July 9, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-111-0}
+* Fixes an issue where the Troubleshoot button on the **Resource status** modal didn't take you to the Troubleshoot page.
+
+## 1.110.0
+
+Released on June 27, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-110-0}
+* Adds the ability to specify a custom storage class for the KOTS Admin Console components when installing to an existing cluster.
+
 ## 1.109.14
 
 Released on June 21, 2024

@@ -37,7 +37,7 @@ To install an application with KOTS, users first run an installation script to i
 
 The following diagram demonstrates how a single release promoted to the Stable channel in the Replicated vendor platform can be installed using KOTS in an embedded cluster on a VM, in an air gapped cluster, and in an existing internet-connected cluster:
 
-<img alt="Embedded cluster, air gap, and existing cluster app installation workflows" src="/images/kots-installation-overview.png" width="650px"/>
+<img alt="Embedded cluster, air gap, and existing cluster app installation workflows" src="/images/kots-installation-overview.png"/>
 
 [View a larger version of this image](/images/kots-installation-overview.png)
 

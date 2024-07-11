@@ -32,6 +32,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--copy-proxy-env` | bool | copy proxy environment variables from current environment into all KOTS Admin Console components |
 | `--config-values` | string | path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues) |
 | `--with-minio` | bool | set to true to include a local minio instance to be used for storage _(default true)_ |
+| `--storage-class` | string | sets the storage class to use for the KOTS Admin Console components. _(default unset, which means the default storage class will be used)_ |
 
 ### Example
 ```bash
