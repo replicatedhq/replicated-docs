@@ -14,7 +14,7 @@ Running this command will create a directory on the workstation containing the R
 
 * To upgrade a KOTS instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
 
-* The `admin-console generate-manifests` command does not accept the [`--strict-security-context`](/reference/kots-cli-install#usage) flag, which deploys KOTS Pods and containers with a strict security context. To generate Admin Console manifests with a strict security context, add the following to the `securityContext` field in the kotsadm Deployment spec:
+* The `admin-console generate-manifests` command does not accept the [`--strict-security-context`](/reference/kots-cli-install#usage) flag, which deploys KOTS Pods and containers with a strict security context. To generate Admin Console manifests with a strict security context, add the following to the kotsadm Deployment spec:
 
     <StrictSecContext/>
 
