@@ -693,7 +693,7 @@ const sidebars = {
       'reference/kots-cli-global-flags',
       {
           type: 'category',
-          label: 'admin console',
+          label: 'admin-console',
           items: [
             'reference/kots-cli-admin-console-index',
             'reference/kots-cli-admin-console-garbage-collect-images',
