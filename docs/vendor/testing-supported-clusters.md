@@ -100,7 +100,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
 </table>
 
-### RKE2 (Alpha)
+### RKE2 (Beta)
 
 Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
 
@@ -315,7 +315,7 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.23, 1.24, 1.25, 1.26, 1.27, 1.28, 1.29</td>
+    <td>1.23, 1.24, 1.25, 1.26, 1.27, 1.28, 1.29, 1.30</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
