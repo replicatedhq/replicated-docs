@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on July 9, 2024
 
-### New Features {#new-features-v2024-07-09-0}
+### Improvements {#improvements-v2024-07-09-0}
 * UI improvements for Embedded Cluster installation instructions.
 
 ## v2024.06.26-4
