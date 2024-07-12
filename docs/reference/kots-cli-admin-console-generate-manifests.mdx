@@ -2,6 +2,7 @@ import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
 import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+import StrictSecContext from "../partials/kots-cli/_strict-sec-context-yaml.mdx"
 
 # admin-console generate-manifests
 
@@ -9,9 +10,13 @@ Running this command will create a directory on the workstation containing the R
 
 ### Limitations
 
-`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
+* `generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
 
-To upgrade a KOTS instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
+* To upgrade a KOTS instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
+
+* The `admin-console generate-manifests` command does not accept the [`--strict-security-context`](/reference/kots-cli-install#usage) flag, which deploys KOTS Pods with a security context. To generate Admin Console manifests with a security context, add the following to the Pod templates for Deployments and StatefulSets deployed by KOTS:
+
+    <StrictSecContext/>
 
 ### Usage
 ```bash
