@@ -240,6 +240,36 @@ Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
 
+### Set IP Address Ranges for Pods and Services
+
+The following flags can be used with the Embedded Cluster `install` command to allocate IP address ranges for Pods and Services:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--pod-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is 10.96.0.0/12.</td>
+  </tr>
+  <tr>
+     <td>`--service-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is 10.244.0.0/16.</td>
+  </tr>
+</table>
+
+
+**Example:**
+
+```bash
+sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
+```
+
+**Limitation:**
+
+The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
+
 ### Host Preflight Checks
 
 During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
