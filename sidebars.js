@@ -76,6 +76,18 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
+          items: [
+            'vendor/tutorial-embedded-cluster-setup',
+            'vendor/tutorial-embedded-cluster-create-app',
+            'vendor/tutorial-embedded-cluster-package-chart',
+            'vendor/tutorial-embedded-cluster-create-release',
+            'vendor/tutorial-embedded-cluster-create-customer',
+            'vendor/tutorial-embedded-cluster-install',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',
@@ -373,9 +385,11 @@ const sidebars = {
             type: 'category',
             label: 'Updating',
             items: [
-              'enterprise/updating-apps',
               'enterprise/updating-app-manager',
+              'enterprise/updating-embedded',
+              'enterprise/updating-kurl-about',
               'enterprise/updating-kurl',
+              'enterprise/updating-apps',
               'enterprise/updating-licenses',
               'enterprise/updating-tls-cert',
             ],
@@ -679,7 +693,7 @@ const sidebars = {
       'reference/kots-cli-global-flags',
       {
           type: 'category',
-          label: 'admin console',
+          label: 'admin-console',
           items: [
             'reference/kots-cli-admin-console-index',
             'reference/kots-cli-admin-console-garbage-collect-images',

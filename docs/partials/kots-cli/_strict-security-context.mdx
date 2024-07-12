@@ -1,3 +1,5 @@
+import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
+
 <tr>
   <td><code>--strict-security-context</code></td>
   <td>bool</td>
@@ -14,7 +16,11 @@
     <li>Ensures the container's root filesystem is mounted as read-only</li>
     <li>Removes all Linux capabilities from the container</li>
   </ul>
+  <p>The following shows the <code>securityContext</code> for KOTS Pods when <code>--strict-security-context</code> is set:</p>
+  <StrictSecContextYaml/>
   <p><strong>Default:</strong> <code>false</code></p>
-  <p><strong>Note:</strong> Might not work for some storage providers.</p>
+  :::note
+  Might not work for some storage providers.
+  :::
   </td>
 </tr>

@@ -1,5 +1,6 @@
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Using Embedded Cluster (Beta)
 
@@ -19,10 +20,7 @@ Embedded cluster is in beta. If you are instead looking for information about cr
 
 Embedded cluster has the following requirements:
 
-* Linux operating system
-* x86-64 architecture
-* systemd
-* Embedded Cluster is based on k0s, so all k0s system requirements apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) in the k0s documentation.
+<Requirements/>
 
 ### Limitations
 
@@ -82,7 +80,7 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
      apiVersion: embeddedcluster.replicated.com/v1beta1
      kind: Config
      spec:
-       version: 1.3.0+k8s-1.29
+       version: 1.6.0+k8s-1.29
      ```
 
 1. Save the release and promote it to the channel your customer is assigned to.
@@ -223,9 +221,9 @@ sudo ./APP_SLUG install --license LICENSE_FILE \
 
 Where:
 
-* LICENSE_FILE is the customer's license
-* HOST:PORT is the host and port of the proxy server
-* LIST_OF_HOSTS is the list of hosts to not proxy
+* `LICENSE_FILE` is the customer's license
+* `HOST:PORT` is the host and port of the proxy server
+* `LIST_OF_HOSTS` is the list of hosts to not proxy
 
 For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
 
@@ -234,9 +232,43 @@ The following are never proxied:
 * Communiation to the KOTS database (`kotsadm-rqlite`)
 * The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
 
+**Requirement:**
+
+Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub.
+
 **Limitations:**
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
+
+### Set IP Address Ranges for Pods and Services
+
+The following flags can be used with the Embedded Cluster `install` command to allocate IP address ranges for Pods and Services:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--pod-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is 10.96.0.0/12.</td>
+  </tr>
+  <tr>
+     <td>`--service-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is 10.244.0.0/16.</td>
+  </tr>
+</table>
+
+
+**Example:**
+
+```bash
+sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
+```
+
+**Limitation:**
+
+The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
 
 ### Host Preflight Checks
 

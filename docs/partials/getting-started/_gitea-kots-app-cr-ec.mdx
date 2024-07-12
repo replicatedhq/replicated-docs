@@ -1,0 +1,16 @@
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: gitea
+spec:
+  title: Gitea
+  statusInformers:
+    - deployment/gitea
+  ports:
+    - serviceName: "gitea"
+      servicePort: 3000
+      localPort: 32000
+      applicationUrl: "http://gitea"
+  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+```  
