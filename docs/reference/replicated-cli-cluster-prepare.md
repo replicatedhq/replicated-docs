@@ -170,7 +170,7 @@ replicated cluster prepare [flags]
     --shared-password password \
     --app-ready-timeout 10m \
     --yaml-dir config-validation \
-    --config-values-file conifg-values.yaml \
+    --config-values-file config-values.yaml \
     --entitlements "num_of_queues=5"
     ```
 
