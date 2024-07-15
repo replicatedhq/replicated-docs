@@ -10,16 +10,19 @@ This topic describes channels and releases, including information about the **Re
 
 ## Overview
 
-A _release_ represents a single version of your application and contains your application files (Helm charts or Kubernetes manifests). Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available. Channels also control which customers are able to install a release. For example, a customer assigned to the Stable channel can only install releases that are promoted to the Stable channel, and cannot see any releases promoted to the Beta, Unstable, or other channels. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+A _release_ represents a single version of your application. Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available.
 
-Channels and releases help you distribute your application to your customers, including both SaaS and on-prem customers, without needing to manage separate code bases, deployments, or release workflows. Instead, to make a release available to your customers, you promote it to a channel where the target customers are assigned. This reduces complexity and helps ensure that all your customers have access to the same release on the same cadence. 
+Channels also control which customers are able to install a release. You assign each customer to a channel to define the releases that the customer can access. For example, a customer assigned to the Stable channel can only install releases that are promoted to the Stable channel, and cannot see any releases promoted to other channels. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+
+Using channels and releases helps you distribute versions of your application to the right customer segments, without needing to manage different release workflows.
 
 You can manage channels and releases with the Vendor Portal, the Replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
 
 ## About Channels
 
 This section provides additional information about channels, including details about the default channels in the Vendor Portal and channel settings.
-### Defaults
+
+### Unstable, Beta, and Stable Channels
 
 Replicated includes the following channels by default:
 
@@ -60,19 +63,25 @@ The following describes each of the channel settings:
 
 This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
 
-### Application Files
+### Release Types
 
-Each release contains your application files. To support installation with the Helm CLI, the application files in a release can include one or more Helm charts. For more information about adding Helm charts to a release, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release) 
+You can create the following types of releases in the Vendor Portal:
 
-Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only, or use a combination of standard manifests and Helm charts. KOTS releases also support the use of Kubernetes Operators. For more information about creating releases to support KOTS installation, see [Onboarding with KOTS](/vendor/distributing-workflow).
+* **Helm-only Releases**: A release that contains one or more Helm charts. Helm-only releases can be installed with the Helm CLI only. For more information, see [Installing with Helm](install-with-helm).
+
+* **KOTS Releases**: A release that contains your application files as well as the manifests required to install the application with Replicated KOTS. The application files in KOTS releases can be Helm charts and/or Kubernetes manifests. KOTS releases that contain one or more Helm charts can be installed with KOTS or the Helm CLI. For more information, see [Introduction to KOTS](../intro-kots).
+
+The following shows the Helm-only and KOTS release options that appear in the **Create release** dropdown in the Vendor Portal:
+
+<img alt="create a release dropdown" src="/images/create-release-dropdown.png" width="450px"/>
+
+[View a larger version of this image](/images/create-release-dropdown.png)
 
 ### Promotion
 
 Each release is promoted to one or more channels. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any real customers assigned, such as the default Unstable channel. When the release is ready to be shared externally with customers, you can then promote to a channel that has the target customers assigned, such as the Beta or Stable channel.
 
-After being promoted to a channel, a release is immutable. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
-
-Every customer license file that you create is assigned to a channel. Each time a new release is promoted to a channel, customers assigned to that channel can update their installed application instance to the new release version. For more information about customer licenses, see [About Customers](licenses-about).
+A release cannot be edited after it is promoted to a channel. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
 
 #### Promoting KOTS-Only and Helm CLI-Only Releases {#kots-helm-releases}
 
@@ -242,11 +251,11 @@ As shown in the image above, you can do the following from the **Channels** page
 
 ### Draft Release Page
 
-For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page. 
+For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page.
 
 The following shows an example of the **Draft** page in the Vendor Portal:
 
- ![Default YAML](/images/guides/kots/default-yaml.png)
+  <img alt="Draft release page"src="/images/guides/kots/default-yaml.png" width="700px"/>
 
   [View a larger version of this image](/images/guides/kots/default-yaml.png)
 
