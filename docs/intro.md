@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Beta Support for Air Gap Telemetry</h3>
-        <p>You can now collect telemetry on instances running in air gap environments with no outbound internet access. In air gap clusters, instance telemetry is stored in a Kubernetes Secret and then is shared back to the Vendor Portal when the customer generates and sends a support bundle.</p>
+        <h3>Install Behind a Proxy with Embedded Cluster (Beta)</h3>
+        <p>End users can now provide their proxy settings with the Embedded Cluster installation command so that traffic is routed through a proxy.</p>
     </li>
     <li>
-      <a href="/vendor/telemetry-air-gap">Learn more</a>
+      <a href="/vendor/embedded-overview#install-behind-a-proxy-server">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Access Your Application in Compatibility Matrix Clusters</h3>
-        <p>You can use networking options including port forwarding, LoadBalancer services, and ingress to access applications deployed in Compatibility Matrix clusters. For VM-based clusters, you can also use Compatibility Matrix tunnels (Alpha) to expose NodePorts. </p>
+        <h3>Integrate Compatibility Matrix into CI/CD Workflows</h3>
+        <p>Integrate Compatibility Matrix into your development and release CI/CD workflows to automate the process of deploying your application to clusters for testing.</p>
     </li>
     <li>
-      <a href="/vendor/testing-ingress">Learn more</a>
+      <a href="/vendor/ci-overview">Learn more</a>
     </li>
   </ul>
 </section>
