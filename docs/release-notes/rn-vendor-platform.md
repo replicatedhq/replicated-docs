@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.15-0
+
+Released on July 15, 2024
+
+### New Features {#new-features-v2024-07-15-0}
+* Adds a dropdown to select a specific release in Embedded Cluster install instructions.
+
 ## v2024.07.09-0
 
 Released on July 9, 2024
