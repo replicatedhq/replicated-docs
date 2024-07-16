@@ -23,7 +23,7 @@ Released on July 16, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-112-1}
-* Fixes an issue where periodic reporting information weren't sent for embedded cluster.
+* Fixes an issue where reporting information weren't sent for embedded cluster in some cases.
 
 ## 1.112.0
 
