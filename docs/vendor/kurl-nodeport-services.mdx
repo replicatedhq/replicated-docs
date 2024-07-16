@@ -110,9 +110,9 @@ spec:
     role: web
 ```
 
-## Add a Link to a NodePort Service from the Admin Console {#add-link}
+## Add a Link to a NodePort Service on the Admin Console Dashboard {#add-link}
 
-Configure the Kubernetes SIG Application and KOTS Application custom resources to add a link to a NodePort service from the Admin Console dashboard. This allows users to access the service after the application is installed.
+This allows users to access the service after the application is installed.
 
 For example:
 
@@ -120,23 +120,38 @@ For example:
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-For more information about adding links on the Admin Console dashboard using the Kubernetes SIG Application custom resource, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
-
 ### Using the Kubernetes SIG Application Custom Resource
 
-### Using the KOTS Application Custom Resource `ports` Key
+If you 
 
-To add a link to a NodePort service on the Admin Console dashboard:
+For more information about adding links on the Admin Console dashboard using the Kubernetes SIG Application custom resource, see [Adding Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
-<LinkToService/>
+```yaml
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: "mlflow"
+spec:
+  descriptor:
+    version: "0.1.1"
+    description: "MLflow"
+    icon: https://mlflow.org/img/mlflow-black.svg
+    links:
+      - description: Open MLflow
+        url: 'http://{{repl ConfigOption "mlflow_ingress_host" }}'
+```
+
+### Using the KOTS Application custom Resource
+
+
 
 ### About Accessing the Service from the Admin Console
 
 To be able to access the Admin Console and the NodePort service, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
 
-During installations with Embedded Cluster or kURL, the Admin Console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the Admin Console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
+During installations with kURL, the Admin Console is automatically created and exposed on port 8800 on the node. In most cases, the user can navigate to the Admin Console URL provided in the output of the installation command at `vm-ip-address:8800` from their local workstation.
 
-If the user is not able to access the Admin Console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the Admin Console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the Admin Console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with the CLI_.  
+If the user is not able to access the Admin Console from this URL (for example, if the VM firewall does not allow inbound traffic to 8800), then they can access the Admin Console by forwarding a port on their local machine to the target port on the remote VM using the SSH client. For information about how to forward a port on a local machine to the Admin Console port on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console) in _Installing with the CLI_.  
 
 ### Example: NGINX Application with ClusterIP and NodePort Services
 

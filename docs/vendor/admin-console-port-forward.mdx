@@ -1,14 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
-import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
-import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
-import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
-import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
 import GiteaKotsApp from "../partials/getting-started/_gitea-kots-app-cr.mdx"
 import GiteaHelmChart from "../partials/getting-started/_gitea-helmchart-cr.mdx"
 import GiteaK8sApp from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
-import LinkToService from "../partials/application-links/_link-to-service.mdx"
 
 # Port Forwarding Services with KOTS
 
@@ -48,7 +43,7 @@ To port forward a service with KOTS for existing cluster installations:
 
       <ServicePortNote/>
 
-   1. For `ports.localPort` add the port to map on the local workstation.
+   1. For `ports.localPort`, add the port to map on the local workstation.
 
 1. Promote the release to the channel that you use for internal testing, then install in a development environment to test your changes.
 
