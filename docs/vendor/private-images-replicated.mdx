@@ -20,8 +20,6 @@ For information about security for the Replicated registry, see [Replicated Regi
 
 The Replicated registry has the following limitations:
 
-* The Replicated registry cannot process image layers larger than 2GB. Build your image so that each image layer is less than or equal to 2GB before pushing to the Replicated registry. This limitation does not limit the overall size of images that can be pushed to the registry. 
-
 * You cannot delete images from the Replicated registry. As a workaround, you can push a new, empty image to the registry using the same tags as the target image. Replicated does not recommend removing tags from the registry because it could break older releases of your application.
 
 * When using Docker Build to build and push images to the Replicated registry, provenance attestations are not supported. To avoid a 400 error, include the `--provenance=false` flag to disable all provenance attestations. For more information, see [docker buildx build](https://docs.docker.com/engine/reference/commandline/buildx_build/#provenance) and [Provenance Attestations](https://docs.docker.com/build/attestations/slsa-provenance/) in the Docker documentation.
