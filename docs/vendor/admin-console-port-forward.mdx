@@ -13,11 +13,9 @@ The information in this topic applies to existing cluster installations. For inf
 
 ## Overview
 
-For installations into existing clusters, KOTS automatically creates a port forward tunnel and exposes the Admin Console on port 8800 where it can be accessed by users. In addition to the 8800 Admin Console port, you can optionally add one or more extra ports to the port forward tunnel so that users installing in exsting clusters can easily access your application at installation. For example, you can:
-* List the primary application ports to provide one or more links directly to the application 
-* List the ports for internal services, such as application admin controls and other services that are not exposed to all users
+For installations into existing clusters, KOTS automatically creates a port forward tunnel and exposes the Admin Console on port 8800 where it can be accessed by users. In addition to the 8800 Admin Console port, you can optionally add one or more extra ports to the port forward tunnel.
 
-Port forwarding a service with KOTS can be useful if you want to provide users a way to access your application without requiring them to set up cluster ingress, add a load balancer, create firewall rules, and/or provide an IP address or hostname at the time of installation. This makes it easier for the person or process installing the application to verify that the application is running.
+Adding ports to the port forward tunnel allows you to port forward application services without needing to manually run the `kubectl port-forward` command. This can be particularly useful when developing and testing KOTS releases, because it provides a quicker way to access an application after installation compared to setting up cluster ingress or adding a load balancer.
 
 ## Port Forward a Service with the KOTS Application `ports` Key
 
@@ -60,7 +58,7 @@ To port forward a service with KOTS for existing cluster installations:
 
 ## Add a Link to a Port-Forwarded Service on the Admin Console Dashboard {#add-link}
 
-After you add a service to the KOTS port forward tunnel, you can configure the Kubernetes SIG Application custom resource to add a link to the port-forwarded service on the Admin Console dashboard. This allows users to access the service from the Admin Console UI.
+After you add a service to the KOTS port forward tunnel, you can configure the Kubernetes SIG Application custom resource to add a link to the port-forwarded service on the Admin Console dashboard.
 
 To add a link to a port-forwarded service on the Admin Console dashboard:
 
@@ -81,7 +79,7 @@ To add a link to a port-forwarded service on the Admin Console dashboard:
 
     Consider the following guidelines for this URL:
       * Use HTTP instead of HTTPS unless TLS termination takes place in the application Pod.
-      * You can use the name of the service as the hostname for the URL. For example, `http://my-service`. KOTS rewrites the URL with the hostname in the browser during deployment.
+      * KOTS rewrites the URL with the hostname in the browser during deployment. So, you can use any hostname for the URL, such as the name of the service. For example, `http://my-service`. 
 
 1. Add a Kubernetes SIG Application custom resource in the release. For example:
 
@@ -114,11 +112,11 @@ To add a link to a port-forwarded service on the Admin Console dashboard:
 
 ## Access Port-Forwarded Services
 
-This section describes how users can access port-forwarded services.
+This section describes how to access port-forwarded services.
 
 ### Command Line
 
-Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel.
+The [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) command opens the KOTS port forward tunnel.
 
 The `kots admin-console` command runs the equivalent of `kubectl port-forward svc/myapplication-service <local-port>:<remote-port>`, then prints a message with the URLs where the user can access the Admin Console and any port-forwarded services. For more information about the `kubectl port-forward` command, see [port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) in the Kubernetes documentation.
 
@@ -135,7 +133,7 @@ kubectl kots admin-console --namespace gitea
 
 ### Admin Console
 
-You can optionally add a link to a port-forwarded service from the Admin Console dashboard. This requires additional configuration. For more information, see [Add a Link to a Port-Forwarded Service on the Admin Console Dashboard](#add-link).
+You can optionally add a link to a port-forwarded service from the Admin Console dashboard. This requires additional configuration in a Kubernetes SIG Application custom resource. For more information, see [Add a Link to a Port-Forwarded Service on the Admin Console Dashboard](#add-link).
 
 The following example shows an **Open App** link on the dashboard of the Admin Console for an application named Gitea:
 
