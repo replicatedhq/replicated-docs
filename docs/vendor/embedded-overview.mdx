@@ -302,6 +302,16 @@ When you skip host preflight checks, the Admin Console still runs any applicatio
 Skipping host preflight checks is _not_ recommended for production installations.
 :::
 
+### Host Storage
+
+Embedded Cluster uses disk space in a few different locations:
+
+* `/var/lib/embedded-cluster` stores Embedded Cluster binaries, logs, and temporary files.
+* `/var/lib/k0s` stores the Kubernetes configuration, data, and container images.
+* `/var/openebs` stores PVC data.
+
+We do not recommend using symlinked directories for these locations.
+
 ## Update
 
 When you update an application installed in an Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the Embedded Cluster on its own.
