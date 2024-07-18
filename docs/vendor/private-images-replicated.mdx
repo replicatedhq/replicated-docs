@@ -26,7 +26,7 @@ The Replicated registry has the following limitations:
 
 ## Known Issue
 
-There is a known issue with the Replicated registry that can cause a timeout error when attempting to push large images. This results in an error message similar to the following: `received unexpected HTTP status: 524`. If you see a 524 error, build your image with smaller image layers and then push the image again. If you continue seeing a 524 error, reduce the size of the image layers again.
+There is a known issue with the Replicated registry that can cause a timeout error when attempting to push images with layers larger than approximately 2GB. This results in an error message similar to the following: `received unexpected HTTP status: 524`. If you see a 524 error, build your image with smaller image layers and then push the image again. If you continue seeing a 524 error, reduce the size of the image layers again.
 
 ## Push Images to the Replicated Registry
 
