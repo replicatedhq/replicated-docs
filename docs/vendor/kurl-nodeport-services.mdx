@@ -17,7 +17,7 @@ For information about exposing services in existing cluster installations throug
 
 Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on virtual machines (VMs) or bare metal servers. This is because it cannot be verified that the ports are secure and authenticated.
 
-To expose the Admin Console in installations with [Embedded Cluster](/vendor/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on port 8800. Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
+To expose the Admin Console in installations with [Embedded Cluster](/vendor/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on a node port (port 8800 for kURL installations and port 30000 for Embedded Cluster installations). Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
 For each application service that you want to expose for Embedded Cluster or kURL installations, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster.
 
@@ -118,23 +118,40 @@ After installation, you can provide access to NodePort services by adding a link
 
 To be able to access the Admin Console and the NodePort service, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
 
-### Link to User-Supplied IPs/Hostnames {#user-supplied}
+### Link to a URL Using User-Supplied Values {#user-supplied}
 
-If your users will supply an IP address or hostname during installation (for example, if users must set up ingress or a load balancer on the KOTS Config screen), then you can configure a Kubernetes SIG Application custom resource in your release to link to the NodePort service.
+You can add a Kubernetes SIG Application custom resource in your release to provide a link to the NodePort service.  
 
-You can use KOTS template functions to render the user-supplied IP address or hostname in the URL.
+If your users will supply an IP address or hostname during installation (for example, if users set up an ingress controller or a load balancer), you can use [KOTS template functions](/reference/template-funcions-about) to construct the URL for the link using user-supplied values.
+
+For example:
+
+```yaml
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: "gitea"
+spec:
+  descriptor:
+    links:
+      - description: Open App
+        url: 'http://{{repl ConfigOption "hostname" }}:{{repl ConfigOption "node_port"}}'
+```
+In the example above, the [ConfigOption](/reference/template-functions-config-context#configoption) template function renders a hostname and node port provided by the user on the KOTS Config screen during installation to provide access to the NodePort service.
 
 For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
 
-### Link to Ephemeral or Undetermined IPs/Hostnames Using KOTS
+### Rewrite the URL Using KOTS
 
-In most cases, you can create a link to NodePort services using the Kubernetes SIG Application custom resource and KOTS template functions to render a user-supplied IP address or hostname, as described in [Link to User-Supplied IPs/Hostnames](#user-supplied) above.
+There are some cases where it might not be possible to create a URL with user-supplied values, as described in [Link to a URL Using User-Supplied Values](#user-supplied) above. For example:
+* You do not want to require users to set up ingress or a load balancer and/or provide an IP address or hostname on the KOTS Config screen during initial installation
+* The hostname or IP address cannot be determined
 
-However, there are some cases where this might not be possible. For example:
-* You do not want to require users to set up ingress or a load balancer and/or provide the IP address/hostname through the KOTS Config screen
-* The hostname or IP address cannot be determined 
+In these cases, you can use KOTS to automatically rewrite the URL at the time of installation to:
+* Use the hostname in the browser where the Admin Console is accessed
+* Append a local port to the URL
 
-In these cases, you can use KOTS to rewrite the URL at the time of installation. This requires configuring both the Kubernetes SIG Application custom resource and the KOTS Application custom resource `ports` key. Note that typically, the KOTS `ports` key is used to port forward services in existing cluster installations. However, the `ports` key has logic that allows KOTS to dynamically rewrite URLs in the Kubernetes SIG Application custom resource during installation. This logic can be used to link to NodePort services for kURL or Embedded Cluster installations as well if the IP/hostname is undetermined or not user-supplied.
+To use KOTS to rewrite the URL in the Kubernetes SIG Application custom resource, you can configure the KOTS Application custom resource `ports` key.
 
 #### Example: NGINX Application with ClusterIP and NodePort Services
 
