@@ -14,9 +14,13 @@ The Admin Console only deploys new versions automatically if preflight checks pa
 
 For installations with Replicated Embedded Cluster, both the application and the cluster are updated together during automatic updates. For more information, see [Performing Updates in Embedded Cluster](/enterprise/updating-embedded).
 
-## Limitation
+## Limitations
 
-You cannot configure automatic updates for applications installed in air gap environments with no outbound internet access.
+Automatic updates have the following limitations:
+
+* Automatic updates are not supported for applications installed in air gap environments with no outbound internet access.
+
+* Automatically deploying new versions is not supported when KOTS is installed with minimal RBAC. This is because all preflight checks must pass for the new version to be automatically deployed, and preflight checks that require cluster-scoped access will fail in minimal RBAC environments. 
 
 ## Set Up Automatic Updates
 
