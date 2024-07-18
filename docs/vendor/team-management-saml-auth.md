@@ -26,7 +26,7 @@ Replicated supports Role Based Access Control (RBAC) in the Vendor Portal. To us
 
 ## Downloading Certificates from Supported SAML providers
 
-You must retrieve the metadata and .509 public certificate files from your SAML provider before configuring SAML in the Vendor Portal.
+You must retrieve the metadata and x.509 public certificate files from your SAML provider before configuring SAML in the Vendor Portal. The certificate file must be in PEM format.
 
 Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
 
@@ -37,7 +37,7 @@ Replicated tests several SAML providers, but the service should be compatible wi
 
 ## Configure Okta
 
-The first part of the Vendor Portal and Okta integration is configured in the Okta dashboard. This configuration lets you download the XML Metadata file and x.509 public certificate required for the SAML authentication.
+The first part of the Vendor Portal and Okta integration is configured in the Okta dashboard. This configuration lets you download the XML Metadata file and x.509 public certificate in PEM format required for the SAML authentication.
 
 This procedure outlines the basic configuration steps, recommended settings, and the specific fields to configure in Okta. For more information about using Okta, see the [Okta](https://help.okta.com/en/prod/Content/index.htm) documentation.
 
@@ -79,7 +79,7 @@ When you initially configure SAML, we do not recommend that you disable username
 
 **Prerequisite**
 
-- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#downloading-certificates-from-supported-saml-providers).
+- Download your XML Metadata file and x.509 public certificate PEM file from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#downloading-certificates-from-supported-saml-providers).
 
 To configure SAML:
 
@@ -92,7 +92,7 @@ To configure SAML:
 
    [View a larger version of this image](/images/team-mgmt-saml-authentication.png)
 
-1. Browse for, or drag and drop, your XML Metadata file and x.509 public certificate from your SAML provider.
+1. Browse for, or drag and drop, your XML Metadata file and x.509 PEM file from your SAML provider.
 
 1. Click **Upload Metadata & Cert**.
 
@@ -102,7 +102,7 @@ At this point, SAML is configured, but not enabled. The next step is to enable S
 
 ## Enable SAML Enforcement
 
-After you have uploaded the metadata and x.509 public certificate, you must enable SAML enforcement options. Replicated provides options that can be enabled or disabled at any time. You can also change the IDP metadata if needed.
+After you have uploaded the metadata and x.509 public certificate PEM file, you must enable SAML enforcement options. Replicated provides options that can be enabled or disabled at any time. You can also change the IDP metadata if needed.
 
 To enable SAML enforcement:
 
