@@ -11,13 +11,11 @@ This topic describes how to package and build air gap bundles for releases that 
 
 <AirGapBundle/>
 
-When building the `.airgap` bundle for a release that contains one or more Helm charts, the Vendor Portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key. This ensures that the `.airgap` bundle includes all images needed to successfully deploy the chart in air gap environments.
+When building the `.airgap` bundle for a release that contains one or more Helm charts, the Vendor Portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key.
 
 ## Configure the `builder` Key
 
-To build an `.airgap` bundle for a release that contains one or more Helm charts, you must configure the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in the KOTS HelmChart custom resource for each Helm chart in the release.
-
-<BuilderAirgapIntro/>
+You should configure the `builders` key if you need to change any default values in your Helm chart so that the `.airgap` bundle for the release includes all images needed to successfully deploy the chart. For example, you can change the default Helm values so that images for any conditionally-deployed components are always included in the air gap bundle. Additionally, you can use the `builders` key to set any `required` values in your Helm chart that must be set for the chart to render.
 
 The values in the `builder` key map to values in the given Helm chart's `values.yaml` file. For example, `spec.builder.postres.enabled` in the example HelmChart custom resource below would map to a `postgres.enabled` field in the `values.yaml` file for the `samplechart` chart:
 
