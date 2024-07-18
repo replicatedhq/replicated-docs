@@ -304,9 +304,13 @@ Skipping host preflight checks is _not_ recommended for production installations
 
 ### Host Storage
 
-Embedded Cluster stores data in three primary locations, all of which must be writable:
+Embedded Cluster stores data in the following primary locations, all of which must be writable:
 
-#### 1. `/var/lib/embedded-cluster`
+:::note
+Replicated does not support using symlinked directories for these locations.
+:::
+
+#### `/var/lib/embedded-cluster`
 
 - Used to store your installer
 - Includes:
@@ -315,7 +319,7 @@ Embedded Cluster stores data in three primary locations, all of which must be wr
   * Supporting binaries (e.g., kubectl and Replicated’s preflight and support-bundle plugins)
 - Should be large enough to fit at least 2 installer binaries
 
-#### 2. `/var/lib/k0s`
+#### `/var/lib/k0s`
 
 - Where the Kubernetes cluster runs
 - Includes:
@@ -324,14 +328,14 @@ Embedded Cluster stores data in three primary locations, all of which must be wr
   * Images currently in use by containerd
 - Storage requirements:
   * The total space should be sufficient to hold the following while remaining below 85% utilization:
-    1. All Pod logs
-    2. Two copies of infrastructure images included in k0s
-    3. All Pod images for your application
+    * All Pod logs
+    * Two copies of infrastructure images included in k0s
+    * All Pod images for your application
   * Kubernetes will initiate garbage collection of images when utilization reaches 85%
 - Calculation example:
   If the sum of required storage for logs, images, and components is X GB, the total allocated space should be at least X / 0.85 GB to ensure it remains below 85% utilization.
 
-#### 3. `/var/openebs`
+#### `/var/openebs`
 
 - Where PVC data is stored
 - Needs enough storage to support all volumes used in your application
@@ -341,12 +345,8 @@ Embedded Cluster stores data in three primary locations, all of which must be wr
   * Additional space needed for other application volume requirements
   * If high availability is enabled, all controller nodes will have the same requirements because data will be replicated to all controller nodes.
 
-#### 3. `/tmp`
+#### `/tmp`
 - Temporary space during installation
-
-:::note
-Replicated does not support using symlinked directories for these locations.
-:::
 
 ## Update
 
