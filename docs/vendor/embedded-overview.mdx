@@ -304,13 +304,47 @@ Skipping host preflight checks is _not_ recommended for production installations
 
 ### Host Storage
 
-Embedded Cluster uses disk space in the following locations:
+Embedded Cluster stores data in three primary locations, all of which must be writable:
 
-* `/var/lib/embedded-cluster` stores Embedded Cluster binaries, logs, and temporary files.
-* `/var/lib/k0s` stores the Kubernetes configuration, data, and container images.
-* `/var/openebs` stores PVC data.
+### 1. `/var/lib/embedded-cluster`
 
-Replicated does not recommend using symlinked directories for these locations.
+- Used to store your installer
+- Includes:
+  * Logs
+  * Temporary files
+  * Supporting binaries (e.g., kubectl and troubleshoot)
+- Should be large enough to fit at least 2 installer binaries
+
+### 2. `/var/lib/k0s`
+
+- Where the Kubernetes cluster runs
+- Includes:
+  * All Kubernetes components and binaries
+  * Pod log files
+  * Images currently in use by containerd
+- Storage requirements:
+  * The total space should be sufficient to hold the following while remaining below 85% utilization:
+    1. All pod logs
+    2. Two copies of infrastructure images included in k0s
+    3. All pod images for your application
+  * Kubernetes will initiate garbage collection of images when utilization reaches 85%
+- Calculation example:
+  If the sum of required storage for logs, images, and components is X GB, the total allocated space should be at least X / 0.85 GB to ensure it remains below 85% utilization.
+
+### 3. `/var/openebs`
+
+- Where PVC data is stored
+- Needs enough storage to support all volumes used in your application
+- For airgap installs:
+  * Registry uses a volume
+  * Requires space for two copies of your images (for registry)
+  * Additional space needed for other application volume requirements
+  * If the `--enable-ha` flag is used all control planes have the same requirements, data will be replicated to the other control planes.
+
+### 3. `/tmp`
+- Temporary space during installation
+
+**Note:** Replicated does not support using symlinked directories for these locations.
 
 ## Update
 
