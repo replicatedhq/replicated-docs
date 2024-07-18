@@ -50,11 +50,11 @@ When the application is deployed, the "About Wordpress" link is displayed on the
 
 For an additional example of a Kubernetes SIG Application custom resource, see [application.yaml](https://github.com/kubernetes-sigs/application/blob/master/docs/examples/wordpress/application.yaml) in the kubernetes-sigs GitHub repository.
 
-### KOTS Template Functions in URLs
+### Create URLs with User-Supplied Values Using KOTS Template Functions
 
 You can use KOTS template functions to template URLs in the Kubernetes SIG Application custom resource. This can be useful when all or some of the URL is a user-supplied value.
 
-For example, an application might allow users to provide their own Ingress object. In this case, the URL can be templated to render the hostname for the Ingress object that the user supplies on the Admin Console config screen.
+For example, an application might allow users to provide their own ingress controller or load balancer. In this case, the URL can be templated to render the hostname that the user provides on the Admin Console Config screen.
 
 The following example shows how to use the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function in the Kubernetes SIG Application custom resource `spec.descriptor.links.url` field to render a user-supplied hostname in the URL:
 
@@ -71,13 +71,3 @@ spec:
 ```
 
 For more information about working with KOTS template functions, see [About Template Functions](/reference/template-functions-about).
-
-## About Adding Links to Application Services Using KOTS `ports`
-
-You can configure the KOTS Application custom resource [`ports`](/reference/custom-resource-application#ports) key to add links to services on the Admin Console dashboard. This can make it easier for the person or process installing your application to easily verify that the application is running, since it can be difficult to provide a consistent application URL at installation. For example, the cluster operator might be required to configure ingress or create firewall rules before they can open the application. 
-
-To add a link to a service using the KOTS `ports` key, add the _same_ URL in the KOTS Application custom resource `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When the URLs in these fields match, KOTS automatically rewrites the URL during deployment with the hostname in the browser (the hostname where the Admin Console is accessed) and appends a specified port.
-
-For information about how to add links to services on the Admin Console dashboard using the `ports` key, see the following topics:
-* For existing cluster installations, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward)
-* For Replicated Embedded Cluster or Replicated kURL installations, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services)
