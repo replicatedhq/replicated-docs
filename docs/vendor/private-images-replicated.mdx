@@ -24,6 +24,10 @@ The Replicated registry has the following limitations:
 
 * When using Docker Build to build and push images to the Replicated registry, provenance attestations are not supported. To avoid a 400 error, include the `--provenance=false` flag to disable all provenance attestations. For more information, see [docker buildx build](https://docs.docker.com/engine/reference/commandline/buildx_build/#provenance) and [Provenance Attestations](https://docs.docker.com/build/attestations/slsa-provenance/) in the Docker documentation.
 
+## Known Issue
+
+There is a known issue with the Replicated registry that can cause a timeout error when attempting to push images with layers close to 2GB. This results in an error message similar to the following: `received unexpected HTTP status: 524`. If you see a 524 error, build your image with smaller image layers and then push the image again. If you continue seeing a 524 error, reduce the size of the image layers again.
+
 ## Push Images to the Replicated Registry
 
 This procedure describes how to tag and push images to the Replicated registry. For more information about building, tagging, and pushing Docker images, see the
