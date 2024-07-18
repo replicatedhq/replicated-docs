@@ -41,9 +41,11 @@ The KOTS template function syntax supports the following functionally equivalent
 * [`repl{{ ... }}`](#syntax-integer)
 * [`{{repl ... }}`](#syntax-string)
 
-:::note
-In both syntaxes, there must be no whitespace between `repl` and the `{{` delimiter.
-:::
+### Syntax Requirements
+
+KOTS template function syntax has the following requirements:
+* There must be no whitespace between `repl` and the `{{` delimiter.
+* KOTS template functions used in manifests consumed by KOTS must be valid YAML. This is because the YAML manifests are linted before KOTS template functions are rendered.
 
 ### `repl{{ ... }}` {#syntax-integer}
 
@@ -88,7 +90,7 @@ For more examples, see [Template Function Examples](/reference/template-function
 
 This syntax can be useful when having the delimiters outside the template function improves readability of the YAML, such as in multi-line statements or if-else statements.
 
-To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
+To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character and manifests consumed by KOTS must be valid YAML. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
 
 #### Example With Quotes
 
