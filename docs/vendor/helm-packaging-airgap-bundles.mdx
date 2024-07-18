@@ -15,9 +15,9 @@ When building the `.airgap` bundle for a release that contains one or more Helm 
 
 ## Configure the `builder` Key
 
-The purpose of the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key is to provide Helm values for rendering chart templates so that the output includes any images that must be included in the `.airgap` bundle.
+The purpose of the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key is to set Helm values for rendering chart templates so that the output includes any required images for the `.airgap` bundle.
 
-You should configure the `builders` key if you need to change any default values in your Helm chart so that the `.airgap` bundle for the release includes all images needed to successfully deploy the chart. For example, if there is a `required` field in your Helm chart that must be set for the chart to render or if you need to change the default image to a different image that is used specifically for air gap installations.
+You should configure the `builders` key if you need to change any default values in your Helm chart so that the `.airgap` bundle for the release includes all images needed to successfully deploy the chart. For example, if there is a `required` field in your Helm chart that must be set for the chart to render or if you need to change which image is used for air gap installations.
 
 The values in the `builder` key map to values in the given Helm chart's `values.yaml` file. For example, `spec.builder.postres.enabled` in the example HelmChart custom resource below would map to a `postgres.enabled` field in the `values.yaml` file for the `samplechart` chart:
 
