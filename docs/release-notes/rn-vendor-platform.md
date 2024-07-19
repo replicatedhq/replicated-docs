@@ -13,7 +13,7 @@ pagination_prev: null
 Released on July 19, 2024
 
 ### New Features {#new-features-v2024-07-19-3}
-* Enables the "Buy 00 additional credits" button on the Compatibility Matrix page for any vendor with a valid contract.
+* Enables the "Buy $500 additional credits" button on the **Compatibility Matrix** page for any vendor with a valid contract.
 
 ## v2024.07.19-0
 
