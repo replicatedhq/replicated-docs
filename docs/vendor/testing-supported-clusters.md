@@ -452,7 +452,7 @@ By default, creating OKE clusters is not enabled. To enable OKE clusters for Com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16</p></td>
+    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16, VM.Standard.A1.Flex.1 (arm), VM.Standard.A1.Flex.2 (arm), VM.Standard.A1.Flex.4 (arm), VM.Standard.A1.Flex.8 (arm), VM.Standard.A1.Flex.16 (arm)</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
