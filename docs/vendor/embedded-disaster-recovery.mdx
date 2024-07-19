@@ -1,0 +1,124 @@
+# Embedded Cluster Disaster Recovery (Alpha)
+
+This topic describes the disaster recovery feature for Embedded Cluster, including how to enable disaster recovery for your application, how to configure disaster recovery in the KOTS Admin Console, and how to restore from a backup.
+
+:::important
+Embedded Cluster disaster recovery in an Alpha feature. This feature is subject to change, including breaking changes.
+:::
+
+## Overview
+
+The Embedded Cluster disaster recovery feature allows you to support backup and restore for your customers. Embedded Cluster users can configure and take backups from the KOTS Admin Console, and restore from the command line.
+
+Disaster recovery for Embedded Cluster installations is implemented with the Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
+
+## Limitations and Known Issues
+
+* During a restore, the binary version used must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster binary for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the binary.
+
+* You can only restore from the most recent backup.
+
+* Velero is only installed during the installation process. Enabling the disaster recovery license field for customers after they have already installed will not do anything.
+
+* The same proxy settings provided during install must be provided to the restore command using `--http-proxy`, `--https-proxy`, and `--no-proxy`.
+
+* If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs.
+
+## Prerequisites
+
+* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at `alexp@replicated.com`.
+* Embedded Cluster version 1.4.1 or later
+* End-users must have S3-compatible storage for storing backups
+
+## Configure Disaster Recovery for Your Application 
+
+To enable disaster recovery:
+
+1. Apply the `replicated.com/disaster-recovery:` app label to any Kubernetes resource you want backed up.
+
+     Example HelmChart resource to set the required label on all resources:
+
+    ```yaml
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+    name: postgresql
+    spec:
+    chart:
+        name: postgresql
+        chartVersion: 15.5.0
+    values:
+        commonLabels:
+        replicated.com/disaster-recovery: app
+    ```
+
+1. You must specify which Pod volumes you want backed up. This is done with the `backup.velero.io/backup-volumes` annotation (docs).
+
+     Example Helm chart values to set the backup-volume annotation on the relevant Pod:
+
+    ```yaml
+    podAnnotations:
+    backup.velero.io/backup-volumes: backup
+    ```
+
+1. (Optional) In addition to the previous steps, you can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize your backup and restore process as needed.
+
+For example, a Postgres database might be backed up using pg_dump to extract the database into a file as part of a backup hook. It can then be restored using the file in a restore hook:
+
+```yaml
+podAnnotations:
+  backup.velero.io/backup-volumes: backup
+  pre.hook.backup.velero.io/command: '["/bin/bash", "-c", "PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U {{repl ConfigOption "postgresql_username" }} -d {{repl ConfigOption "postgresql_database" }} -h 127.0.0.1 > /scratch/backup.sql"]'
+  pre.hook.backup.velero.io/timeout: 3m
+  post.hook.restore.velero.io/command: '["/bin/bash", "-c", "[ -f \"/scratch/backup.sql\" ] && PGPASSWORD=$POSTGRES_PASSWORD psql -U {{repl ConfigOption "postgresql_username" }} -h 127.0.0.1 -d {{repl ConfigOption "postgresql_database" }} -f /scratch/backup.sql && rm -f /scratch/backup.sql;"]'
+  post.hook.restore.velero.io/wait-for-ready: 'true' # wait's for the pod to be ready before running the post-restore hook
+  ```
+
+## Enable Disaster Recovery for Your Customers
+
+To enable disaster recovery for a customer:
+
+1. In the Vendor Portal, go to the [Customers](https://vendor.replicated.com/customers) page and select the target customer.
+
+1. On the **Manage customer** page, enable the **Allow Disaster Recovery** license field.
+   
+   When your customer installs with Embedded Cluster, Velero will be deployed if the **Allow Disaster Recovery** license field is enabled.
+	
+## Configure Disaster Recovery in the Admin Console
+
+To configure disaster recovery in the Admin Console:
+
+1. After installing the application and visiting the admin console, click the Disaster Recovery tab at the top of the admin console.
+
+1. Enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region for the desired backup storage location. Click Update storage settings.
+
+1. (Optional) From this same page, configure scheduled backups and a retention policy for backups.
+
+1. Click **Backups in the Disaster Recovery** submenu. Backups can be taken from this screen.
+	
+## Restore from a Backup
+
+To restore from a backup:
+
+1. SSH onto a new machine where you want to restore from a backup.
+
+1. Download the Embedded Cluster binary for the version of the application that was included in the backup. See Download the Embedded Cluster Binary for more information. See Limitations/Known Issues for more information about the requirement that the version must match what’s in the backup.
+
+1. Run the restore command:
+
+     ```bash
+     sudo ./APP_SLUG restore
+     ```
+     Where `APP_SLUG` is the unique application slug.
+
+     You will be guided through the process of restoring from a backup. When prompted, enter the information for the backup storage location you configured in Configure Disaster Recovery in the Admin Console.
+
+1. When prompted, confirm that you want to restore from the detected backup.
+
+     After some time, the Admin console URL will be displayed. If the cluster should have multiple nodes, visit the Admin Console to get a join command and join additional nodes to the cluster. See Add Nodes for more information.
+
+1. Type continue when ready to proceed.
+
+     After some time, the restore process should complete.
+
+     If the restore command is interrupted during the restore process, you can resume by rerunning the restore command and selecting to resume the previous restore. This is useful if your SSH session is interrupted during the restore.
