@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.19-0
+
+Released on July 19, 2024
+
+### New Features {#new-features-v2024-07-19-0}
+* CMX: Added support for ARM based nodes in Oracle OKE.
+
 ## v2024.07.09-0
 
 Released on July 9, 2024
