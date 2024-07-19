@@ -1,6 +1,6 @@
 # Embedded Cluster Disaster Recovery (Alpha)
 
-This topic describes the disaster recovery feature for Embedded Cluster, including how to enable disaster recovery for your application, how to configure disaster recovery in the KOTS Admin Console, and how to restore from a backup.
+This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application, how to configure disaster recovery in the Replicated KOTS Admin Console, and how to restore from a backup.
 
 :::important
 Embedded Cluster disaster recovery in an Alpha feature. This feature is subject to change, including breaking changes.
@@ -8,7 +8,7 @@ Embedded Cluster disaster recovery in an Alpha feature. This feature is subject 
 
 ## Overview
 
-The Embedded Cluster disaster recovery feature allows you to support backup and restore for your customers. Embedded Cluster users can configure and take backups from the KOTS Admin Console, and restore from the command line.
+The Embedded Cluster disaster recovery feature allows you to support backup and restore for your customers. Embedded Cluster users can configure and take backups from the Admin Console, and restore from the command line.
 
 Disaster recovery for Embedded Cluster installations is implemented with the Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
 
@@ -88,7 +88,7 @@ To enable disaster recovery for a customer:
 
 To configure disaster recovery in the Admin Console:
 
-1. After installing the application and visiting the admin console, click the Disaster Recovery tab at the top of the admin console.
+1. After installing the application and visiting the Admin Console, click the Disaster Recovery tab at the top of the Admin Console.
 
 1. Enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region for the desired backup storage location. Click Update storage settings.
 
