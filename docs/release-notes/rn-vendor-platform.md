@@ -15,6 +15,13 @@ Released on July 9, 2024
 ### Improvements {#improvements-v2024-07-09-0}
 * UI improvements for Embedded Cluster installation instructions.
 
+## v2024.07.08-0
+
+Released on July 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-07-08-0}
+* Fixed Oracle Compatibility Matrix Pricing. Pricing is now following Oracle's cost estimator.
+
 ## v2024.06.26-4
 
 Released on June 26, 2024
