@@ -1,9 +1,13 @@
-# Embedded Cluster Disaster Recovery (Alpha)
+# Disaster Recovery for Embedded Cluster (Alpha)
 
 This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application, how to configure disaster recovery in the Replicated KOTS Admin Console, and how to restore from a backup.
 
 :::important
-Embedded Cluster disaster recovery in an Alpha feature. This feature is subject to change, including breaking changes.
+Embedded Cluster disaster recovery in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::
+
+:::note
+Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
 :::
 
 ## Overview
@@ -13,6 +17,8 @@ The Embedded Cluster disaster recovery feature allows you to support backup and 
 Disaster recovery for Embedded Cluster installations is implemented with the Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
 
 ## Limitations and Known Issues
+
+Embedded Cluster disaster recovery has the following limitations and known issues:
 
 * During a restore, the binary version used must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster binary for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the binary.
 
@@ -26,13 +32,13 @@ Disaster recovery for Embedded Cluster installations is implemented with the Vel
 
 ## Prerequisites
 
-* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at `alexp@replicated.com`.
+* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 * Embedded Cluster version 1.4.1 or later
-* End-users must have S3-compatible storage for storing backups
+* Backups must be stored in S3-compatible storage
 
 ## Configure Disaster Recovery for Your Application 
 
-To enable disaster recovery:
+To configure disaster recovery for your application:
 
 1. Apply the `replicated.com/disaster-recovery:` app label to any Kubernetes resource you want backed up.
 
@@ -42,12 +48,12 @@ To enable disaster recovery:
     apiVersion: kots.io/v1beta2
     kind: HelmChart
     metadata:
-    name: postgresql
+      name: postgresql
     spec:
-    chart:
+      chart:
         name: postgresql
         chartVersion: 15.5.0
-    values:
+      values:
         commonLabels:
         replicated.com/disaster-recovery: app
     ```
@@ -56,25 +62,28 @@ To enable disaster recovery:
 
      Example Helm chart values to set the backup-volume annotation on the relevant Pod:
 
-    ```yaml
-    podAnnotations:
-    backup.velero.io/backup-volumes: backup
-    ```
+     ```yaml
+     podAnnotations:
+       backup.velero.io/backup-volumes: backup
+     ```
 
 1. (Optional) In addition to the previous steps, you can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize your backup and restore process as needed.
 
-For example, a Postgres database might be backed up using pg_dump to extract the database into a file as part of a backup hook. It can then be restored using the file in a restore hook:
+     For example, a Postgres database might be backed up using pg_dump to extract the database into a file as part of a backup hook. It can then be restored using the file in a restore hook:
 
-```yaml
-podAnnotations:
-  backup.velero.io/backup-volumes: backup
-  pre.hook.backup.velero.io/command: '["/bin/bash", "-c", "PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U {{repl ConfigOption "postgresql_username" }} -d {{repl ConfigOption "postgresql_database" }} -h 127.0.0.1 > /scratch/backup.sql"]'
-  pre.hook.backup.velero.io/timeout: 3m
-  post.hook.restore.velero.io/command: '["/bin/bash", "-c", "[ -f \"/scratch/backup.sql\" ] && PGPASSWORD=$POSTGRES_PASSWORD psql -U {{repl ConfigOption "postgresql_username" }} -h 127.0.0.1 -d {{repl ConfigOption "postgresql_database" }} -f /scratch/backup.sql && rm -f /scratch/backup.sql;"]'
-  post.hook.restore.velero.io/wait-for-ready: 'true' # wait's for the pod to be ready before running the post-restore hook
-  ```
+     ```yaml
+     podAnnotations:
+       backup.velero.io/backup-volumes: backup
+       pre.hook.backup.velero.io/command: '["/bin/bash", "-c", "PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U {{repl ConfigOption "postgresql_username" }} -d {{repl ConfigOption "postgresql_database" }} -h 127.0.0.1 > /scratch/backup.sql"]'
+       pre.hook.backup.velero.io/timeout: 3m
+       post.hook.restore.velero.io/command: '["/bin/bash", "-c", "[ -f \"/scratch/backup.sql\" ] && PGPASSWORD=$POSTGRES_PASSWORD psql -U {{repl ConfigOption "postgresql_username" }} -h 127.0.0.1 -d {{repl ConfigOption "postgresql_database" }} -f /scratch/backup.sql && rm -f /scratch/backup.sql;"]'
+       # wait's for the pod to be ready before running the post-restore hook
+       post.hook.restore.velero.io/wait-for-ready: 'true'
+     ```
 
 ## Enable Disaster Recovery for Your Customers
+
+After configuring disaster recovery for your application, you can enable it on a per-customer basis with the **Allow Disaster Recovery** license field.
 
 To enable disaster recovery for a customer:
 
@@ -84,17 +93,25 @@ To enable disaster recovery for a customer:
    
    When your customer installs with Embedded Cluster, Velero will be deployed if the **Allow Disaster Recovery** license field is enabled.
 	
-## Configure Disaster Recovery in the Admin Console
+## Configure Backup Storage in the Admin Console
 
 To configure disaster recovery in the Admin Console:
 
-1. After installing the application and visiting the Admin Console, click the Disaster Recovery tab at the top of the Admin Console.
+1. After installing the application and visiting the Admin Console, click the **Disaster Recovery** tab at the top of the Admin Console.
 
-1. Enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region for the desired backup storage location. Click Update storage settings.
+1. For the desired backup storage locationEnter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region. Click **Update storage settings**.
+
+## Take Backups in the Admin Console
+
+After configuring backup storage, you can take backups in the Admin Console and also schedule automatic backups.
+
+To take backups in the Admin Console:
+
+1. In the Admin Console, go to the **Disaster Recovery** tab and click the **Backups in the Disaster Recovery** submenu.
+
+     Backups can be taken from this screen.
 
 1. (Optional) From this same page, configure scheduled backups and a retention policy for backups.
-
-1. Click **Backups in the Disaster Recovery** submenu. Backups can be taken from this screen.
 	
 ## Restore from a Backup
 
