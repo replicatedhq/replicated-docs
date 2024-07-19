@@ -13,7 +13,7 @@ pagination_prev: null
 Released on July 19, 2024
 
 ### New Features {#new-features-v2024-07-19-4}
-* CMX: Added support for port expose using websockets.
+* Adds Compatibility Matrix support for port expose using websockets.
 
 ## v2024.07.19-0
 
