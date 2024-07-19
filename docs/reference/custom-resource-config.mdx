@@ -615,6 +615,10 @@ Optionally, all additional properties are available for this input type.
 
 ![Text field on the configuration screen](../../static/images/config-screen-text.png)
 
+:::important
+Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
+:::
+
 ### `textarea`
 A `textarea` items creates a multi-line text input for when users have to enter a sizeable amount of text.
 
