@@ -28,9 +28,9 @@ Embedded Cluster has the following limitations:
 
 * **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
 
-* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability](#) below.
+* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters](#ha) below.
 
-* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. For more information, see [Embedded Cluster](/vendor/embedded-air-gap).
+* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. For more information, see [Installing with Embedded Cluster in Air Gap Environments](/vendor/embedded-air-gap).
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
 
@@ -484,7 +484,7 @@ To add nodes to a cluster:
 
 1. Repeat the process for as many nodes as you would like to add.
 
-### Enable High Availability for Multi-Node Clusters (Alpha)
+### Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
 
 Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
 
