@@ -1,4 +1,4 @@
-# Installing with Embedded Cluster in Air Gap Environments (Alpha)
+# Installing in Air Gap Environments with Embedded Cluster (Alpha)
 
 This topic describes how to install applications with Embedded Cluster in air gap environments with no outbound internet access.
 
@@ -36,11 +36,13 @@ Embedded Cluster installations in air gap environments have the following limita
 
 To install with Embedded Cluster in air gap environments:
 
-1. Create a release with an Embedded Cluster config and promote it to a channel.
+1. Create a release with an Embedded Cluster config and promote it to a channel. For more information, see [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases) and [Embedded Cluster Config](/reference/embedded-config).
 
 1. Build the air gap bundle for the release:
-     * If the channel has automatic air gap builds, watch for the build status to complete.
-     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually. See [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
+     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
+     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
+     
+     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
      
     :::note
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
@@ -48,7 +50,11 @@ To install with Embedded Cluster in air gap environments:
 
 1. Go to the customer page for the customer you want to use for the air gap installation. Click **Install instructions > Embedded cluster** to open the **Embedded Cluster installation instructions** dialog. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#using-the-replicated-app-service).
 
-1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint:
+    
+     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
+
+1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint. For example:
 
     ```bash
     curl https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG-CHANNEL_SLUG.tgz
@@ -61,11 +67,12 @@ To install with Embedded Cluster in air gap environments:
     * The license
     * The air gap bundle (`APP_SLUG.airgap`)
 
-1. Install the application with the installation command copied from the **Embedded Cluster installation instructions** dialog, adding `--airgap-bundle` flag to pass the air gap bundle to the installation:
+1. Install the application with the installation command copied from the **Embedded Cluster installation instructions** dialog, adding `--airgap-bundle` flag to pass the `.airgap` bundle that you downloaded to the installation:
 
     ```bash
     sudo ./APP_SLUG install --license license.yaml --airgap-bundle APP_SLUG.airgap
     ```
+    Where `APP_SLUG` is the unique application slug.
 
 ## Add Nodes to Air Gap Clusters
 
@@ -73,7 +80,7 @@ You can add nodes to an air gap cluster. This involves downloading the Embedded 
 
 ### Prerequisites
 
-The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. For more information on downloading these artifacts and untarring them, see [Install](#install) above.
+The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these artifacts on each node. For more information, see [Install](#install) above.
 
 ### Add Nodes
 
@@ -83,9 +90,7 @@ To add nodes to a cluster after successfully installing the first node:
 
 1. Click **Add node**, choose one or more node roles (if present), and copy the join command.
 
-1. SSH onto another machine you want to join to the cluster. Run the join command on this node.
-
-	**Example:**
+1. SSH onto another machine you want to join to the cluster. Run the join command on this node. For example:
 
     ```bash
     sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
@@ -103,11 +108,13 @@ Using the binary is faster and allows the user to download the air gap bundle di
 
 Before performing an upgrade in an air gap cluster with Embedded Cluster, complete the following prerequisites:
 
-1. Create another release with your changes and promote it to the same channel. This new release can include a new (and later) version of Embedded Cluster and/or changes to your application.
+1. Create a new release with your changes and promote it to the same channel. This new release can include a different (and later) version of Embedded Cluster and/or changes to your application.
 
 1. Build the air gap bundle for the release:
-     * If the channel has automatic air gap builds, watch for the build status to complete.
-     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually. See [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
+     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
+     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
+     
+     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
      
     :::note
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
@@ -119,7 +126,9 @@ After the air gap bundle is built, continue to [Upgrade from the Admin Console](
 
 To perform an upgrade with Embedded Cluster from the Admin Console:
 
-1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the new air gap bundle using the curl command copied during the install steps. Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
+1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
+
+     Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
 
 1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
 
@@ -127,21 +136,23 @@ To perform an upgrade with Embedded Cluster from the Admin Console:
 
 1. From the Admin Console dashboard or **Version history** page, click **Upload new version** and choose the `APP_SLUG.airgap` air gap bundle you just downloaded.
 
+     <img alt="upload new version" width="500px" src="/images/ec-air-gap-upgrade.png"/>
+
+     [View a larger version of this image](/images/ec-air-gap-upgrade.png)
+
 1. When the air gap bundle has been uploaded, click **Deploy** to deploy this new version.
 
 ### Upgrade from the Command Line {#upgrade-cli}
 
 To perform an upgrade from the command line:
 
-1. SSH onto a controller node in the cluster and download the new air gap bundle using the curl command copied during the install steps.
+1. SSH onto a controller node in the cluster and download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
 
      Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
 
 1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
 
-1. Use the update command to upload the air gap bundle and make this new version available in the Admin Console.
-
-	**Example:**
+1. Use the `update` command to upload the air gap bundle and make this new version available in the Admin Console. For example:
 
     ```bash
     ./APP_SLUG update --airgap-bundle APP_SLUG.airgap
