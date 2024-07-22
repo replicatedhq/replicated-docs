@@ -504,9 +504,7 @@ To create a multi-node HA cluster:
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 
-1. Run the join command and pass the `--enable-ha` flag.
-
-	Example:
+1. Run the join command and pass the `--enable-ha` flag. For example:
 
      ```bash
      sudo ./APP_SLUG join `--enable-ha` 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
@@ -523,7 +521,7 @@ To create a multi-node HA cluster:
 
 * Support bundles are now stored in rqlite instead of MinIO because MinIO is no longer deployed. We’ve successfully stored 100 MB support bundles (which is much larger than most support bundles), but bundles over 100 MB can cause rqlite to crash and restart. We are considering making support bundles ephemeral instead of storing them to address this issue, because support bundles are rarely needed long after they’re generated.
 
-* In the future, the prompt about migrating to high availability will display automatically if the cluster isn’t yet HA and you’re adding the third or more controller node. The `--enable-ha` flag serves as a feature flag during the Alpha phase.
+* The `--enable-ha` flag serves as a feature flag during the Alpha phase. In the future, the prompt about migrating to high availability will display automatically if the cluster is not yet HA and you are adding the third or more controller node. 
 
 
 ### Reset a Node
