@@ -95,32 +95,35 @@ To enable disaster recovery for a customer:
    
    When your customer installs with Embedded Cluster, Velero will be deployed if the **Allow Disaster Recovery** license field is enabled.
 	
-## Configure Backup Storage in the Admin Console
+## Configure Backup Storage and Take Backups in the Admin Console
 
-You customers need to configure backup storage from the Admin Console before they can take backups and perform restores. 
+You customers need to configure backup storage from the Admin Console before they can take backups and perform restores.
 
-To configure backup storage for disaster recovery in the Admin Console:
+To configure backup storage and take backups in the Admin Console:
 
 1. After installing the application and visiting the Admin Console, click the **Disaster Recovery** tab at the top of the Admin Console.
 
 1. For the desired S3-compatible backup storage location, enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region.
 
-    ![backup storage settings](/images/dr-backup-storage-settings.png)
+    <img alt="backup storage settings" src="/images/dr-backup-storage-settings.png" width="400px"/>
+
+    [View a larger version of this image](/images/dr-backup-storage-settings.png)
 
 1. Click **Update storage settings**.
 
-## Take Backups in the Admin Console
+1. (Optional) From this same page, configure scheduled backups and a retention policy for backups.
 
-After configuring backup storage, you can take backups in the Admin Console and also schedule automatic backups.
+    <img src="/images/dr-scheduled-backups.png" width="450px" alt="scheduled backups"/>
+	
+    [View a larger version of this image](/images/dr-scheduled-backups.png)
 
-To take backups in the Admin Console:
-
-1. In the Admin Console, go to the **Disaster Recovery** tab and click the **Backups in the Disaster Recovery** submenu.
+1. Go to the **Disaster Recovery** tab and click the **Backups** in the **Disaster Recovery** submenu.
 
      Backups can be taken from this screen.
 
-1. (Optional) From this same page, configure scheduled backups and a retention policy for backups.
-	
+     <img src="/images/dr-backups.png" alt="backups page" width="600px"/>
+     [View a larger version of this image](/images/dr-backups.png)
+
 ## Restore from a Backup
 
 To restore from a backup:
@@ -142,12 +145,20 @@ To restore from a backup:
 
      You will be guided through the process of restoring from a backup. When prompted, enter the information for the backup storage location you configured in Configure Disaster Recovery in the Admin Console.
 
+     ![Restore prompts on the command line](/images/dr-restore.png)
+
+     [View a larger version of this image](/images/dr-restore.png)
+
 1. When prompted, confirm that you want to restore from the detected backup.
+
+     ![Restore from detected backup prompt on the command line](/images/dr-restore-from-backup-confirmation.png)
+
+     [View a larger version of this image](/images/dr-restore-from-backup-confirmation.png)
 
      After some time, the Admin console URL will be displayed. If the cluster should have multiple nodes, visit the Admin Console to get a join command and join additional nodes to the cluster. See Add Nodes for more information.
 
-1. Type continue when ready to proceed.
+1. Type `continue` when ready to proceed.
 
      After some time, the restore process should complete.
 
-     If the restore command is interrupted during the restore process, you can resume by rerunning the restore command and selecting to resume the previous restore. This is useful if your SSH session is interrupted during the restore.
+     If the `restore` command is interrupted during the restore process, you can resume by rerunning the `restore` command and selecting to resume the previous restore. This is useful if your SSH session is interrupted during the restore.
