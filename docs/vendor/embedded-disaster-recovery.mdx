@@ -30,6 +30,10 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 * During a restore, the binary version used must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster binary for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the binary.
 
+   <img alt="version command" src="/images/ec-version-command.png" width="450px"/>
+
+   [View a larger version of this image](/images/ec-version-command.png)
+
 * You can only restore from the most recent backup.
 
 * Velero is only installed during the installation process. Enabling the disaster recovery license field for customers after they have already installed will not do anything.
