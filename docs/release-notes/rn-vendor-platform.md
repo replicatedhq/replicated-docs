@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on July 22, 2024
 
-### New Features {#new-features-v2024-07-22-0}
+### Improvements {#improvements-v2024-07-22-0}
 * Improves responsive styles on the CMX Create Cluster page, and on the Troubleshoot page.
 
 ## v2024.07.19-4
