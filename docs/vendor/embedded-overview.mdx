@@ -443,7 +443,7 @@ You can then use the support bundle for troubleshooting or provide it to Replica
 
 The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
 
-### Add Nodes (Alpha)
+### Add Nodes (Alpha) {#add-nodes}
 
 You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
@@ -488,15 +488,19 @@ To add nodes to a cluster:
 
 Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
 
-#### Prerequisite
+:::important
+High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::
 
-Embedded cluster version 1.4.1 or later
+#### Requirement
+
+High availability is supported with Embedded cluster version 1.4.1 or later
 
 #### Create a Multi-Node HA Cluster
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online or air gapped installation. See Install and Add Nodes (Alpha) for more information. For air gap clusters, see Embedded Cluster Air Gap (Alpha).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Air Gap Installations with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 
@@ -508,7 +512,9 @@ To create a multi-node HA cluster:
      sudo ./APP_SLUG join `--enable-ha` 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
      ```
 
-1. After the third node joins the cluster, type y in response to the prompt asking if you want to enable high availability.
+1. After the third node joins the cluster, type `y` in response to the prompt asking if you want to enable high availability.
+
+    ![high availability command line prompt](/images/embedded-cluster-ha-prompt.png)
 
 1. Wait for the migration to complete.
 

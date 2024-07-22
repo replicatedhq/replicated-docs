@@ -16,6 +16,14 @@ The Embedded Cluster disaster recovery feature allows you to support backup and 
 
 Disaster recovery for Embedded Cluster installations is implemented with the Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
 
+## Requirements
+
+Enabling disaster recovery for Embedded Cluster has the following requirements:
+
+* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+* Embedded Cluster version 1.4.1 or later
+* Backups must be stored in S3-compatible storage
+
 ## Limitations and Known Issues
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
@@ -29,12 +37,6 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 * The same proxy settings provided during install must be provided to the restore command using `--http-proxy`, `--https-proxy`, and `--no-proxy`.
 
 * If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs.
-
-## Prerequisites
-
-* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
-* Embedded Cluster version 1.4.1 or later
-* Backups must be stored in S3-compatible storage
 
 ## Configure Disaster Recovery for Your Application 
 
@@ -95,11 +97,17 @@ To enable disaster recovery for a customer:
 	
 ## Configure Backup Storage in the Admin Console
 
-To configure disaster recovery in the Admin Console:
+You customers need to configure backup storage from the Admin Console before they can take backups and perform restores. 
+
+To configure backup storage for disaster recovery in the Admin Console:
 
 1. After installing the application and visiting the Admin Console, click the **Disaster Recovery** tab at the top of the Admin Console.
 
-1. For the desired backup storage locationEnter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region. Click **Update storage settings**.
+1. For the desired S3-compatible backup storage location, enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region.
+
+    ![backup storage settings](/images/dr-backup-storage-settings.png)
+
+1. Click **Update storage settings**.
 
 ## Take Backups in the Admin Console
 
@@ -119,7 +127,11 @@ To restore from a backup:
 
 1. SSH onto a new machine where you want to restore from a backup.
 
-1. Download the Embedded Cluster binary for the version of the application that was included in the backup. See Download the Embedded Cluster Binary for more information. See Limitations/Known Issues for more information about the requirement that the version must match what’s in the backup.
+1. Download the Embedded Cluster binary for the version of the application that was included in the backup. See [Download the Embedded Cluster Binary] for more information.
+
+     :::note
+     The version of the Embedded Cluster binary must match the version that is in the backup. For more information, see [Limitations and Known Issues](#limitations-and-known-issues).
+     :::
 
 1. Run the restore command:
 
