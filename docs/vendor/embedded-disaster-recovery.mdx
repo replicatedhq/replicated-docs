@@ -61,10 +61,10 @@ To configure disaster recovery for your application:
         chartVersion: 15.5.0
       values:
         commonLabels:
-        replicated.com/disaster-recovery: app
+          replicated.com/disaster-recovery: app
     ```
 
-1. You must specify which Pod volumes you want backed up. This is done with the `backup.velero.io/backup-volumes` annotation (docs).
+1. You must specify which Pod volumes you want backed up. This is done with the `backup.velero.io/backup-volumes` annotation. For more information, see [File System Backup](https://velero.io/docs/v1.14/file-system-backup/) in the Velero documentation.
 
      Example Helm chart values to set the backup-volume annotation on the relevant Pod:
 
