@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.22-2
+
+Released on July 22, 2024
+
+### Bug Fixes {#bug-fixes-v2024-07-22-2}
+* Fixes a bug where customer channels are not being updated when using Replicated CLI.
+
 ## v2024.07.19-4
 
 Released on July 19, 2024
