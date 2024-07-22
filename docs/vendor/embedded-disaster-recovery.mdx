@@ -66,7 +66,7 @@ To configure disaster recovery for your application:
 
 1. You must specify which Pod volumes you want backed up. This is done with the `backup.velero.io/backup-volumes` annotation. For more information, see [File System Backup](https://velero.io/docs/v1.14/file-system-backup/) in the Velero documentation.
 
-     Example Helm chart values to set the backup-volume annotation on the relevant Pod:
+     Example Helm chart values to set the backup-volumes annotation on the relevant Pod:
 
      ```yaml
      podAnnotations:
