@@ -57,8 +57,8 @@ Compatibility Matrix tunnels have the following limitations:
 ### Supported Protocols
 
 A tunnel can support one or more protocols.
-The supported protocols are HTTP and HTTPS.
-WebSockets, GRPC, and other protocols are not routed into the cluster.
+The supported protocols are HTTP, HTTPS, WS and WSS.
+GRPC and other protocols are not routed into the cluster.
 
 ### Exposing Ports
 Once you have a node port available on the cluster, you can use the Replicated CLI to expose the node port to the public internet. 
