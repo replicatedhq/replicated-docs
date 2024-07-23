@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.07.23-1
+
+Released on July 23, 2024
+
+### New Features {#new-features-v2024-07-23-1}
+* CMX: It is now possible to know the cost of a cluster upfront using the `--dry-run` flag.
+
 ## v2024.07.19-4
 
 Released on July 19, 2024
