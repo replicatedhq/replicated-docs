@@ -68,7 +68,7 @@ To port forward a service with KOTS for existing cluster installations:
 
 After you add a service to the KOTS port forward tunnel, you can configure the Kubernetes SIG Application custom resource to add a link to the port-forwarded service on the Admin Console dashboard.
 
-To add a link to a port-forwarded service, add the _same_ URL in the KOTS Application custom resource `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When the URLs in these fields match, KOTS automatically rewrites the URL during deployment with the hostname in the browser (the hostname where the Admin Console is accessed) and appends the specified local port.
+To add a link to a port-forwarded service, add the _same_ URL in the KOTS Application custom resource `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When the URLs in these fields match, KOTS automatically rewrites the URL during deployment with the hostname in the browser (the hostname where the Admin Console is accessed) and appends the specified local port. For more information, see [Automatically Rewrite URLs Using KOTS](#kots-rewrite) in _Adding Links to the Dashboard_.
 
 To add a link to a port-forwarded service on the Admin Console dashboard:
 
@@ -151,6 +151,10 @@ The following example shows an **Open App** link on the dashboard of the Admin C
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
+## Examples
+
+This section provides examples of how to configure the `ports` key to port-forward a service in existing cluster installations and add links to services on the Admin Console dashboard. 
+
 ## Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
 This example uses a KOTS Application custom resource and a Kubernetes SIG Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations, and add a link to the port-forwarded service on the Admin Console dashboard. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
@@ -188,9 +192,9 @@ To test this example:
 
 1. Install the release to confirm that the service was port-forwarded successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
-## Example: NGINX Application with ClusterIP and NodePort Services
+### Example: NGINX Application with ClusterIP and NodePort Services
 
-The following example demonstrates how to expose a basic NGINX service for both existing cluster and kURL installations, including adding a link to the service on the Admin Console dashboard.
+The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster installations, and also how to add a link to a NodePort service for kURL installations.
 
 To test this example:
 
