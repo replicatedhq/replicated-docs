@@ -1,12 +1,3 @@
-import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import NginxKotsApp from "../partials/application-links/_nginx-kots-app.mdx"
-import NginxK8sApp from "../partials/application-links/_nginx-k8s-app.mdx"
-import NginxService from "../partials/application-links/_nginx-service.mdx"
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx"
-import LinkToService from "../partials/application-links/_link-to-service.mdx"
-
 # Exposing Services Using NodePorts
 
 This topic describes how to create a NodePort service for exposing services in [Replicated Embedded Cluster](/vendor/embedded-overview) or [Replicated kURL](/vendor/kurl-about) installations. 
@@ -110,91 +101,12 @@ spec:
     role: web
 ```
 
-## About Accessing NodePort Services
+## About Linking to NodePort Services
 
-After installation, you can provide access to NodePort services by adding a link to the service on the Admin Console dashboard. Additional configuration is required to add a link to the dashboard.
+After installation, you can provide access to NodePort services by adding a link to the service on the Admin Console dashboard. You can add a Kubernetes SIG Application custom resource in your release to provide a link to the NodePort service.
 
-### VM Firewall Requirements
-
+:::note
 To be able to access the Admin Console and the NodePort service, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
-
-### Link to a URL Using User-Supplied Values {#user-supplied}
-
-You can add a Kubernetes SIG Application custom resource in your release to provide a link to the NodePort service.  
-
-If your users will supply an IP address or hostname during installation (for example, if users set up an ingress controller or a load balancer), you can use [KOTS template functions](/reference/template-funcions-about) to construct the URL for the link using user-supplied values.
-
-For example:
-
-```yaml
-apiVersion: app.k8s.io/v1beta1
-kind: Application
-metadata:
-  name: "gitea"
-spec:
-  descriptor:
-    links:
-      - description: Open App
-        url: 'http://{{repl ConfigOption "hostname" }}:{{repl ConfigOption "node_port"}}'
-```
-In the example above, the [ConfigOption](/reference/template-functions-config-context#configoption) template function renders a hostname and node port provided by the user on the KOTS Config screen during installation to provide access to the NodePort service.
+:::
 
 For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
-
-### Rewrite the URL Using KOTS
-
-There are some cases where it might not be possible to create a URL with user-supplied values, as described in [Link to a URL Using User-Supplied Values](#user-supplied) above. For example:
-* You do not want to require users to set up ingress or a load balancer and/or provide an IP address or hostname on the KOTS Config screen during initial installation
-* The hostname or IP address cannot be determined
-
-In these cases, you can use KOTS to automatically rewrite the URL at the time of installation to:
-* Use the hostname in the browser where the Admin Console is accessed
-* Append a local port to the URL
-
-To use KOTS to rewrite the URL in the Kubernetes SIG Application custom resource, you can configure the KOTS Application custom resource `ports` key.
-
-#### Example: NGINX Application with ClusterIP and NodePort Services
-
-The following example demonstrates how to expose a basic NGINX service for both existing cluster and kURL installations, including adding a link to the service on the Admin Console dashboard.
-
-To test this example:
-
-1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the Vendor Portal. Promote to the channel that you use for internal testing. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
-
-    <Tabs>
-    <TabItem value="service" label="example-service.yaml" default>
-    <h5>Description</h5>
-    <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
-    <p>As shown below, both the ClusterIP and NodePort <code>nginx</code> services are exposed on port 80.</p>
-    <h5>YAML</h5>
-    <NginxService/>
-    </TabItem>
-    <TabItem value="deployment" label="example-deployment.yaml" default>
-    <h5>Description</h5>
-    <p>A basic Deployment specification for the NGINX application.</p>
-    <h5>YAML</h5>
-    <NginxDeployment/>
-    </TabItem>
-    <TabItem value="kots-app" label="kots-app.yaml" default>
-    <h5>Description</h5>
-    <p>The KOTS Application custom resource below adds port 80 to the KOTS port forward tunnel and maps port 8888 on the local machine. The specification also includes <code>applicationUrl: "http://nginx"</code> so that a link to the service can be added to the Admin Console dashboard.</p>
-    <h5>YAML</h5>
-    <NginxKotsApp/>
-    </TabItem>
-    <TabItem value="k8s-app" label="k8s-app.yaml" default>
-    <h5>Description</h5>
-    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
-    <h5>YAML</h5>
-    <NginxK8sApp/>
-    </TabItem>
-    </Tabs>
-
-1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
-
-1. If there is not already a kURL installer promoted to the channel, add a kURL installer to the release to support kURL installs. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
-
-1. Install the release on a VM and confirm that the service was exposed successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
-
-    :::note
-    Ensure that the VM where you install allows HTTP traffic.
-    :::
