@@ -6,9 +6,12 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
-<!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.0.0-beta.25
 
+Released on July 3, 2024
 
+### Bug Fixes {#bug-fixes-1-0-0-beta-25}
+* bugfixes and refactoring of tests
 
 ## 1.0.0-beta.24
 
