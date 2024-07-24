@@ -13,7 +13,7 @@ pagination_prev: null
 Released on July 24, 2024
 
 ### New Features {#new-features-v2024-07-24-0}
-* Adds an "Estimate cluster cost" button on the Create Cluster page for Compatibility Matrix.
+* Adds an "Estimate cluster cost" button on the **Create a cluster** page for Compatibility Matrix.
 
 ### Bug Fixes {#bug-fixes-v2024-07-24-0}
 * Fixes inconsistent lint results when editing KOTS releases.
