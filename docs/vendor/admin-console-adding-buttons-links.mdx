@@ -94,8 +94,8 @@ When providing a link to your application on the Admin Console dashboard, there 
 
 In these cases, it is possible to use the KOTS Application custom resource `ports` key to automatically rewrite URLs provided in the Kubernetes SIG Application custom resource at the time of installation. This includes automatically rewriting the URL to use the hostname in the browser where the Admin Console is being accessed and appending a local port.
 
-For examples of how to configure the KOTS `ports` key to link to port-forwarded services in existing cluster installations or how to link to NodePort services in installations on VMs or bare metal servers, see [Examples](admin-console-port-forward#examples) in _Port Forwarding Services with KOTS_.
+For more information about configuring the `ports` key, inclduing examples, see [Port Forwarding Services with KOTS](admin-console-port-forward).
 
 :::note
-Using KOTS to automatically rewrite URLs is particularly useful when you are developing and testing KOTS releases for your application, as it provides an easier way to access the application after installation. However, for production releases, it is more common to have the user provide an IP address or hostname during installation as described in [Create URLs with User-Supplied Values Using KOTS Template Functions](#url-template) above.
+Using KOTS to automatically rewrite URLs is particularly useful when you are developing and testing KOTS releases for your application, as it provides an easier way to access the application after installation. However, for production releases, it is more common to have the user provide an IP address or hostname during installation as described in [Create URLs with User-Supplied Values Using KOTS Template Functions](#url-template).
 :::

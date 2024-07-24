@@ -10,7 +10,7 @@ Instead, to expose the Admin Console in installations with [Embedded Cluster](/v
 
 For installations on VMs or bare metal servers where your application must be accessible from the user's local machine rather than from inside the cluster, you can expose application services as NodePorts to provide quick access to the application after installation.
 
-## About NodePort Services
+## Add a NodePort Service
 
 Services with `type: NodePort` are able to be contacted from outside the cluster by connecting to any node using the appropriate protocol and port. For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
@@ -38,7 +38,7 @@ spec:
 
 After configuring a NodePort service for your application, you can add a link to the service on the Admin Console dashboard where it can be accessed by users after the application is installed. For more information, see [Add a Link to a NodePort Service from the Admin Console](#add-link) below.  
 
-## Use KOTS Annotations to Conditionally Deploy NodePort Services 
+### Use KOTS Annotations to Conditionally Deploy NodePort Services 
 
 You can use the KOTS [`kots.io/when`](/vendor/packaging-include-resources#kotsiowhen) annotation to conditionally deploy a service. This is useful when you want to deploy a ClusterIP or LoadBalancer service for existing cluster installations, and deploy a NodePort service for Embedded Cluster or kURL installations.
 
@@ -97,10 +97,20 @@ spec:
     role: web
 ```
 
-## About Linking to NodePort Services {#add-link}
+## About Adding Links to NodePort Services on the Admin Console Dashboard {#add-link}
 
-After installation, you can provide access to NodePort services by adding a link to the service on the Admin Console dashboard. This is done by configuring the Kubernetes SIG Application custom resource. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
+This section describes providing access to NodePort services after installation by adding a link to the service on the Admin Console dashboard.
 
-:::note
-To be able to access the Admin Console and the NodePort service, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
-:::
+### Add a Link in the Kubernetes SIG Application Custom Resource
+
+After installation, you can provide a link to a NodePort service on the Admin Console dashboard by configuring the `links` array in the Kubernetes SIG Application custom resource. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
+
+### Automatically Rewrite URLs Using KOTS
+
+Although the primary purpose of the KOTS Application custom resource `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time.
+
+For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
+
+### Firewall Requirements
+
+To be able to access the Admin Console and the NodePort service, the firewall for the VM must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.

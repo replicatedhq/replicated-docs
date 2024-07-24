@@ -155,7 +155,7 @@ The following example shows an **Open App** link on the dashboard of the Admin C
 
 This section provides examples of how to configure the `ports` key to port-forward a service in existing cluster installations and add links to services on the Admin Console dashboard. 
 
-## Example: Bitnami Gitea Helm Chart with LoadBalancer Service
+### Example: Bitnami Gitea Helm Chart with LoadBalancer Service
 
 This example uses a KOTS Application custom resource and a Kubernetes SIG Application custom resource to configure port forwarding for the Bitnami Gitea Helm chart in existing cluster installations, and add a link to the port-forwarded service on the Admin Console dashboard. To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
@@ -178,7 +178,7 @@ To test this example:
     </TabItem>
     <TabItem value="k8s-app" label="k8s-app.yaml" default>
     <h5>Description</h5>
-    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
+    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
     <h5>YAML</h5>
     <GiteaK8sApp/>
     </TabItem>
@@ -194,7 +194,9 @@ To test this example:
 
 ### Example: NGINX Application with ClusterIP and NodePort Services
 
-The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster installations, and also how to add a link to a NodePort service for kURL installations.
+The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster installations.
+
+It also shows how to use the `ports` key to add a link to a NodePort service for kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time.
 
 To test this example:
 
