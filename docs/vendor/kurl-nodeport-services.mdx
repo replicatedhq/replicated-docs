@@ -105,6 +105,12 @@ This section describes providing access to NodePort services after installation.
 
 You can provide a link to a NodePort service on the Admin Console dashboard by configuring the `links` array in the Kubernetes SIG Application custom resource. This provides users with an easy way to access the application after installation. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
 
+For example:
+
+<img alt="Admin Console dashboard with Open App link" src="/images/gitea-open-app.png" width="700px"/>
+
+[View a larger version of this image](/images/gitea-open-app.png)
+
 Additionally, although the primary purpose of the KOTS Application custom resource `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment to use the hostname in the browser. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time. For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
 
 ### VM Firewall Requirements
