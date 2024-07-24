@@ -178,7 +178,7 @@ To test this example:
     </TabItem>
     <TabItem value="k8s-app" label="k8s-app.yaml" default>
     <h5>Description</h5>
-    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
+    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service from the Admin Console dashboard. It also triggers KOTS to rewrite the URL to use the hostname in the browser and append the specified port. The label to be used for the link in the Admin Console is "Open App".</p>
     <h5>YAML</h5>
     <GiteaK8sApp/>
     </TabItem>
@@ -224,7 +224,7 @@ To test this example:
     </TabItem>
     <TabItem value="k8s-app" label="k8s-app.yaml" default>
     <h5>Description</h5>
-    <p>Using the value of <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the Kubernetes Application custom resource below adds a link to the port-forwarded service from the Admin Console dashboard. The label to be used for the link in the Admin Console is "Open App".</p>
+    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service from the Admin Console dashboard. It also triggers KOTS to rewrite the URL to use the hostname in the browser and append the specified port. The label to be used for the link in the Admin Console is "Open App".</p>
     <h5>YAML</h5>
     <NginxK8sApp/>
     </TabItem>

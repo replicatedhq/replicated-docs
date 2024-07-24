@@ -8,7 +8,7 @@ For installations into existing clusters, KOTS automatically creates a port forw
 
 Instead, to expose the Admin Console in installations with [Embedded Cluster](/vendor/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on a node port (port 8800 for kURL installations and port 30000 for Embedded Cluster installations). Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
-For installations on VMs or bare metal servers where your application must be accessible from the user's local machine rather than from inside the cluster, you can expose application services as NodePorts to provide quick access to the application after installation.
+For installations on VMs or bare metal servers where your application must be accessible from the user's local machine rather than from inside the cluster, you can expose application services as NodePorts to provide access to the application after installation.
 
 ## Add a NodePort Service
 
@@ -36,7 +36,7 @@ spec:
     role: web
 ```
 
-After configuring a NodePort service for your application, you can add a link to the service on the Admin Console dashboard where it can be accessed by users after the application is installed. For more information, see [Add a Link to a NodePort Service from the Admin Console](#add-link) below.  
+After configuring a NodePort service for your application, you can add a link to the service on the Admin Console dashboard where it can be accessed by users after the application is installed. For more information, see [About Accessing NodePort Services](#about-accessing-nodeport-services) below.  
 
 ### Use KOTS Annotations to Conditionally Deploy NodePort Services 
 
@@ -97,20 +97,16 @@ spec:
     role: web
 ```
 
-## About Adding Links to NodePort Services on the Admin Console Dashboard {#add-link}
+## About Accessing NodePort Services 
 
-This section describes providing access to NodePort services after installation by adding a link to the service on the Admin Console dashboard.
+This section describes providing access to NodePort services after installation.
 
-### Add a Link in the Kubernetes SIG Application Custom Resource
+### Add a Link on the Admin Console Dashboard {#add-link} 
 
-After installation, you can provide a link to a NodePort service on the Admin Console dashboard by configuring the `links` array in the Kubernetes SIG Application custom resource. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
+You can provide a link to a NodePort service on the Admin Console dashboard by configuring the `links` array in the Kubernetes SIG Application custom resource. This provides users with an easy way to access the application after installation. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
 
-### Automatically Rewrite URLs Using KOTS
+Additionally, although the primary purpose of the KOTS Application custom resource `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment to use the hostname in the browser. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time. For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
 
-Although the primary purpose of the KOTS Application custom resource `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time.
+### VM Firewall Requirements
 
-For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
-
-### Firewall Requirements
-
-To be able to access the Admin Console and the NodePort service, the firewall for the VM must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+To be able to access the Admin Console and any NodePort services for your application, the firewall for the VM must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
