@@ -13,7 +13,7 @@ pagination_prev: null
 Released on July 23, 2024
 
 ### New Features {#new-features-v2024-07-23-1}
-* CMX: It is now possible to know the cost of a cluster upfront using the `--dry-run` flag.
+* Adds the `--dry-run` flag for Compatibility Matrix, which shows the estimated cost of a cluster before you create the cluster.
 
 ## v2024.07.19-4
 
