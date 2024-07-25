@@ -315,7 +315,8 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.23, 1.24, 1.25, 1.26, 1.27, 1.28, 1.29, 1.30</td>
+    <td><p></p>1.28, 1.29, 1.30</p><p>Extended Support Versions: 1.23, 1.24, 1.25, 1.26, 1.27</p>
+    </td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
