@@ -56,8 +56,8 @@ For example, the following `sentry` service with `type: NodePort` includes `anno
     labels:
       app: sentry
   annotations:
-  # This annotation prevents the NodePort service 
-  # from being created in non-Embedded Cluster clusters
+  # This annotation ensures that the NodePort service
+  # is only created in Embedded Cluster installations
     kots.io/when: repl{{ eq Distribution "embedded-cluster" }}
   spec:
     type: NodePort
@@ -82,8 +82,8 @@ metadata:
   labels:
     app: sentry
 annotations:
-  # This annotation prevents the ClusterIP service 
-  # from being created in Embedded Cluster installations
+  # This annotation ensures that the ClusterIP service 
+  # is only created in existing cluster installations
   kots.io/when: repl{{ ne Distribution "embedded-cluster" }}
 spec:
   type: ClusterIP
