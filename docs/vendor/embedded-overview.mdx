@@ -28,15 +28,11 @@ Embedded Cluster has the following limitations:
 
 * **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
 
-* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
-* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. For more information, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
 
-* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
-
-   :::note
-   Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
-   :::
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery)
 
 * **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
 
@@ -113,6 +109,8 @@ To install your application with Embedded Cluster, you need to download an Embed
 
 Your customers can download the binary using the Replicated app service, or you can host/serve the binary yourself using the Replicated Vendor API.
 
+For information about downloading the Embedded Cluster binary for air gap installations, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
+
 ### Using the Replicated App Service
 
 For online installations, your customers can run a command to download the Embedded Cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
@@ -167,6 +165,8 @@ To serve the binary with the Vendor API:
 ## Install
 
 Your customers can install your application once they have obtained the Embedded Cluster binary and their license and copied them to the machine where they will install your application. For more information about how to get the binary and license, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+
+For information about installing in air gap environments, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
 
 To install your application in an embedded cluster:
 
@@ -447,7 +447,7 @@ You can then use the support bundle for troubleshooting or provide it to Replica
 
 The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
 
-### Add Nodes (Alpha)
+### Add Nodes (Alpha) {#add-nodes}
 
 You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
@@ -487,6 +487,45 @@ To add nodes to a cluster:
 1. Check the **Cluster Management** page in the Admin Console to see the node appear and wait for the status to change to Ready.
 
 1. Repeat the process for as many nodes as you would like to add.
+
+### Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
+
+Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
+
+:::important
+High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::
+
+#### Requirement
+
+High availability is supported with Embedded cluster version 1.4.1 or later
+
+#### Create a Multi-Node HA Cluster
+
+To create a multi-node HA cluster:
+
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
+
+1. SSH onto a third node that you want to join to the cluster as a controller.
+
+1. Run the join command and pass the `--enable-ha` flag. For example:
+
+     ```bash
+     sudo ./APP_SLUG join `--enable-ha` 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
+     ```
+
+1. After the third node joins the cluster, type `y` in response to the prompt asking if you want to enable high availability.
+
+    ![high availability command line prompt](/images/embedded-cluster-ha-prompt.png)
+    [View a larger version of this image](/images/embedded-cluster-ha-prompt.png)
+
+1. Wait for the migration to complete.
+
+#### Limitations and Known Issues
+
+* Support bundles are now stored in rqlite instead of MinIO because MinIO is no longer deployed. We’ve successfully stored 100 MB support bundles (which is much larger than most support bundles), but bundles over 100 MB can cause rqlite to crash and restart. We are considering making support bundles ephemeral instead of storing them to address this issue, because support bundles are rarely needed long after they’re generated.
+
+* The `--enable-ha` flag serves as a feature flag during the Alpha phase. In the future, the prompt about migrating to high availability will display automatically if the cluster is not yet HA and you are adding the third or more controller node. 
 
 
 ### Reset a Node

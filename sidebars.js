@@ -222,6 +222,8 @@ const sidebars = {
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
+                    'enterprise/installing-embedded-air-gap',
+                    'vendor/embedded-disaster-recovery',
                   ],
                 },
                 {
