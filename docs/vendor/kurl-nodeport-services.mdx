@@ -101,6 +101,10 @@ spec:
 
 This section describes providing access to NodePort services after installation.
 
+### VM Firewall Requirements
+
+To be able to access the Admin Console and any NodePort services for your application, the firewall for the VM where the user installs must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
+
 ### Add a Link on the Admin Console Dashboard {#add-link} 
 
 You can provide a link to a NodePort service on the Admin Console dashboard by configuring the `links` array in the Kubernetes SIG Application custom resource. This provides users with an easy way to access the application after installation. For more information, see [Adding Links to the Dashboard](admin-console-adding-buttons-links).
@@ -110,9 +114,3 @@ For example:
 <img alt="Admin Console dashboard with Open App link" src="/images/gitea-open-app.png" width="700px"/>
 
 [View a larger version of this image](/images/gitea-open-app.png)
-
-Additionally, although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser (where the Admin Console is being accessed). For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
-
-### VM Firewall Requirements
-
-To be able to access the Admin Console and any NodePort services for your application, the firewall for the VM must allow HTTP traffic and allow inbound traffic to the port where the service is exposed from their workstation. Users can consult their cloud provider's documentation for more information about updating firewall rules.
