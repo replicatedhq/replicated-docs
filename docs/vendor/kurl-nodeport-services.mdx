@@ -111,7 +111,7 @@ For example:
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-Additionally, although the primary purpose of the KOTS Application custom resource `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment to use the hostname in the browser. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time. For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
+Additionally, although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser (where the Admin Console is being accessed). For an example, see [Example: NGINX Application with ClusterIP and NodePort Services](/vendor/admin-console-port-forward#example-nginx-application-with-clusterip-and-nodeport-services) in _Port Forwarding Services with KOTS_.
 
 ### VM Firewall Requirements
 

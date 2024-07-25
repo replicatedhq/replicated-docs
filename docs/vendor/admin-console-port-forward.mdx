@@ -65,9 +65,9 @@ To port forward a service with KOTS for existing cluster installations:
 
 ## Add a Link to a Port-Forwarded Service on the Admin Console Dashboard {#add-link}
 
-After you add a service to the KOTS port forward tunnel, you can configure the Kubernetes SIG Application custom resource to add a link to the port-forwarded service on the Admin Console dashboard.
+After you add a service to the KOTS port forward tunnel, you can also optionally add a link to the port-forwarded service on the Admin Console dashboard.
 
-To add a link to a port-forwarded service, add the _same_ URL in the KOTS Application custom resource `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When the URLs in these fields match, KOTS automatically rewrites the URL during deployment with the hostname in the browser (the hostname where the Admin Console is accessed) and appends the specified `localPort`. For more information, see [Automatically Rewrite URLs Using KOTS](#kots-rewrite) in _Adding Links to the Dashboard_.
+To add a link to a port-forwarded service, add the _same_ URL in the KOTS Application custom resource `ports.applicationURL` and Kubernetes SIG Application custom resource `spec.descriptor.links.url` fields. When the URLs in these fields match, KOTS adds a link on the Admin Console dashboard where the given service can be accessed. This process automatically links to the hostname in the browser (where the Admin Console is being accessed) and appends the specified `localPort`.
 
 To add a link to a port-forwarded service on the Admin Console dashboard:
 
@@ -195,7 +195,7 @@ To test this example:
 
 The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster installations.
 
-It also shows how to use the `ports` key to add a link to a NodePort service for kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to configure the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations are automatically rewritten during deployment. This can be useful when developing and testing releases for your application because it is easier to access the application after installation compared to needing to provide a hostname or IP address for the link ahead of time.
+It also shows how to use the `ports` key to add a link to a NodePort service for kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to use the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser.
 
 To test this example:
 
@@ -223,7 +223,7 @@ To test this example:
     </TabItem>
     <TabItem value="k8s-app" label="k8s-app.yaml" default>
     <h5>Description</h5>
-    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service from the Admin Console dashboard. It also triggers KOTS to rewrite the URL to use the hostname in the browser and append the specified `localPort`. The label to be used for the link in the Admin Console is "Open App".</p>
+    <p>The Kubernetes Application custom resource lists the same URL as the `ports.applicationUrl` field in the KOTS Application custom resource (`"http://nginx"`). This adds a link to the port-forwarded service on the Admin Console dashboard that uses the hostname in the browser and appends the specified `localPort`. The label to be used for the link in the Admin Console is "Open App".</p>
     <h5>YAML</h5>
     <NginxK8sApp/>
     </TabItem>

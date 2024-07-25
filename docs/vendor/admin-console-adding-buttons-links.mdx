@@ -84,18 +84,3 @@ The following examples show how to use the KOTS [ConfigOption](/reference/templa
     ```        
 
 For more information about working with KOTS template functions, see [About Template Functions](/reference/template-functions-about).
-
-### Automatically Rewrite URLs Using KOTS {#kots-rewrite}
-
-When providing a link to your application on the Admin Console dashboard, there are some cases where it might not be possible to construct the URL ahead of installation. For example:
-* You do not want to require users to set up an ingress controller or a load balancer, or otherwise provide an IP address or hostname on the KOTS Config screen during initial installation
-* The hostname or IP address in the installation environment cannot be determined
-* You want to add a link to a port-forwarded service in existing cluster installations
-
-In these cases, it is possible to use the KOTS Application custom resource `ports` key to automatically rewrite URLs provided in the Kubernetes SIG Application custom resource at the time of installation. This includes automatically rewriting the URL to use the hostname in the browser where the Admin Console is being accessed and appending a local port.
-
-For more information about configuring the `ports` key, inclduing examples, see [Port Forwarding Services with KOTS](admin-console-port-forward).
-
-:::note
-Using KOTS to automatically rewrite URLs is particularly useful when you are developing and testing KOTS releases for your application, as it provides an easier way to access the application after installation. However, for production releases, it is more common to have the user provide an IP address or hostname during installation as described in [Create URLs with User-Supplied Values Using KOTS Template Functions](#url-template).
-:::
