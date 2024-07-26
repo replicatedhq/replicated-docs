@@ -89,9 +89,9 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
  
 1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
 
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-latest.png" width="550px"/>
 
-     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
+     [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
 1. Enter an Admin Console password when prompted.
 
@@ -119,27 +119,23 @@ To download the binary using the Replicated app service:
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
 
-1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**. An **Embedded cluster installation instructions** dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
+1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-1. On a VM, run the first two commands displayed on the **Embedded cluster installation instructions** dialog to download the binary and license and extract them.
+     An **Embedded cluster installation instructions** dialog is displayed with instructions on how to download the Embedded Cluster binary and install your application.
 
-     The following shows an example of the **Embedded cluster installation instructions** dialog:
+1. (Optional) In the **Select a version** dropdown, select a version label to download the release artifacts for a specific version of your application.
+
+     For example:
 
      <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-If you need to download the binary for a particular version of your application, you can add `/VERSION_LABEL` to the end of the `curl` command in the screenshot above.
-
-Example:
-
-```
-curl https://replicated.app/embedded/gitea-mastodon/unstable/1.2.3
-```
+1. On a VM, run the first two commands in the **Embedded cluster installation instructions** dialog to download the binary and license and extract them.
 
 :::note
 You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
