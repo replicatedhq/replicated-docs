@@ -22,9 +22,6 @@ Released on July 26, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-112-2}
-* Adds Velero 1.14 support for Embedded Cluster.
-
 ### Bug Fixes {#bug-fixes-1-112-2}
 * Fixes an issue in embedded cluster upgrades where rendering Helm charts that utilize Helm capabilities could fail.
 
