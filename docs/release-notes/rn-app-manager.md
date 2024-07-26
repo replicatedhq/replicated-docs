@@ -23,7 +23,7 @@ Released on July 26, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-112-2}
-* Fixes an issue in embedded cluster upgrades where rendering Helm charts that utilize Helm capabilities could fail.
+* Fixes an issue in Embedded Cluster upgrades where rendering Helm charts that utilize Helm capabilities could fail.
 
 ## 1.112.1
 
