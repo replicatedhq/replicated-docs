@@ -9,6 +9,7 @@ pagination_prev: null
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
 
+
 ## v2024.07.24-0
 
 Released on July 24, 2024
@@ -18,6 +19,20 @@ Released on July 24, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-07-24-0}
 * Fixes inconsistent lint results when editing KOTS releases.
+
+## v2024.07.23-1
+
+Released on July 23, 2024
+
+### New Features {#new-features-v2024-07-23-1}
+* Adds the `--dry-run` flag for Compatibility Matrix, which shows the estimated cost of a cluster before you create the cluster.
+
+## v2024.07.22-2
+
+Released on July 22, 2024
+
+### Bug Fixes {#bug-fixes-v2024-07-22-2}
+* Fixes a bug where customer channels were not being updated when using the Replicated CLI.
 
 ## v2024.07.22-0
 
