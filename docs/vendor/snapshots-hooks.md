@@ -26,7 +26,7 @@ The following example demonstrates how to include Velero backup and restore hook
 The use case for this example is an application packaged with a Helm chart that includes a Postgres database. A description of key fields from the YAML follows the example.
 
 ```yaml
-apiVersion: kots.io/v1beta1
+apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
   name: postgresql
@@ -59,9 +59,6 @@ spec:
         postgresqlUsername: username
         postgresqlPassword: "repl{{ ConfigOption `embedded_postgres_password` }}"
         postgresqlDatabase: dbname
-
-  builder: {}
-
 ```
 
 The following describes key fields from the example above:
