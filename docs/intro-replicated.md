@@ -5,7 +5,7 @@ pagination_prev: null
 import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
 import Kots from "/docs/partials/kots/_kots-definition.mdx"
 
-# Introduction to Replicated
+# Introduction to the Commercial Software Distribution Life Cycle
 
 This topic provides an introduction to working with the Replicated Platform, including key features, supported application installation options, and interfaces.
 

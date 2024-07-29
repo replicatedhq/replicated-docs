@@ -34,8 +34,33 @@ const sidebars = {
 
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
-    'intro-replicated',
-    'vendor/replicated-onboarding',
+    {
+      type: 'category',
+      label: 'Quick Starts',
+      items: [
+         'vendor/quick-start-embedded',
+         'vendor/quick-start-helm',
+      ],
+    },
+    
+    {
+      type: 'category',
+      label: 'Concepts',
+      items: [
+        'intro-replicated',
+        'vendor/distributing-overview',
+        'intro-kots',
+        'vendor/kots-faq',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Onboarding',
+      items: [
+        'vendor/distributing-workflow',
+        'vendor/replicated-onboarding',
+      ],
+    },
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -46,20 +71,20 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'Labs',
-      items:
-      [
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
-      ],
-
-    },
-    {
-      type: 'category',
-      label: 'Tutorials',
+      label: 'Getting Started Tutorials',
       items: [
+        {
+          type: 'category',
+          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
+          items: [
+            'vendor/tutorial-embedded-cluster-setup',
+            'vendor/tutorial-embedded-cluster-create-app',
+            'vendor/tutorial-embedded-cluster-package-chart',
+            'vendor/tutorial-embedded-cluster-create-release',
+            'vendor/tutorial-embedded-cluster-create-customer',
+            'vendor/tutorial-embedded-cluster-install',
+          ],
+        },
         {
           type: 'category',
           label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
@@ -76,19 +101,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'KOTS Tutorial (UI)',
+          label: 'Installing with KOTS in an Existing Cluster (UI)',
           items: [
             'vendor/tutorial-ui-setup',
             'vendor/tutorial-ui-create-app',
@@ -102,7 +115,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'KOTS Tutorial (CLI)',
+          label: 'Installing with KOTS in an Existing Cluster (CLI)',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',
@@ -118,7 +131,17 @@ const sidebars = {
         },
       ],
     },
-    'vendor/distributing-overview',
+    {
+      type: 'category',
+      label: 'Labs',
+      items:
+      [
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
+      ],
+    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
@@ -195,11 +218,12 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distributing and Installing with KOTS',
+      label: 'KOTS and Embedded Cluster',
       items: [
-        'intro-kots',
-        'vendor/kots-faq',
-        'vendor/distributing-workflow',
+        {
+          type: 'category',
+          label: 'Packaging KOTS Releases',
+          items: [
             {
               type: 'category',
               label: 'Distributing Helm Charts with KOTS',
@@ -213,7 +237,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Distributing Embedded Kubernetes',
+              label: 'Embedding Kubernetes With Your Application',
               items: [
                 'vendor/embedded-kubernetes-overview',
                 {
@@ -241,15 +265,6 @@ const sidebars = {
               ],
             },
             {
-              type: 'category',
-              label: 'Admin Console and Download Portal Customization',
-              items: [
-                'vendor/admin-console-customize-app-icon',
-                'vendor/admin-console-adding-buttons-links',
-                'vendor/admin-console-prometheus-monitoring',
-              ],
-            },
-            {
                 type: 'category',
                 label: 'Admin Console Config Screen',
                 items: [
@@ -270,6 +285,15 @@ const sidebars = {
                       'vendor/tutorial-config-install-kots',
                     ],
                   },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Admin Console and Download Portal Customization',
+              items: [
+                'vendor/admin-console-customize-app-icon',
+                'vendor/admin-console-adding-buttons-links',
+                'vendor/admin-console-prometheus-monitoring',
               ],
             },
             {
@@ -332,6 +356,31 @@ const sidebars = {
             },
             {
               type: 'category',
+              label: 'KOTS Custom Resources',
+              items: [
+                'reference/custom-resource-about',
+                'reference/custom-resource-application',
+                'reference/custom-resource-config',
+                'reference/custom-resource-helmchart-v2',
+                'reference/custom-resource-helmchart',
+                'reference/custom-resource-lintconfig',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'KOTS Template Functions',
+              items: [
+                'reference/template-functions-about',
+                'reference/template-functions-examples',
+                'reference/template-functions-config-context',
+                'reference/template-functions-identity-context',
+                'reference/template-functions-kurl-context',
+                'reference/template-functions-license-context',
+                'reference/template-functions-static-context',
+              ],
+            },
+            {
+              type: 'category',
               label: 'Downloading and Sharing Assets for KOTS Releases',
               items: [
                 'vendor/releases-download-airgap-bundles',
@@ -339,7 +388,9 @@ const sidebars = {
                 'vendor/releases-share-download-portal',
                 'vendor/releases-configvalues',
               ],
-            },
+            }, 
+          ],
+        },   
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
@@ -460,34 +511,15 @@ const sidebars = {
           },
         ],
       },
-      {
-        type: 'category',
-        label: 'KOTS Custom Resources',
-        items: [
-          'reference/custom-resource-about',
-          'reference/custom-resource-application',
-          'reference/custom-resource-config',
-          'reference/custom-resource-helmchart-v2',
-          'reference/custom-resource-helmchart',
-          'reference/custom-resource-lintconfig',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'KOTS Template Functions',
-        items: [
-          'reference/template-functions-about',
-          'reference/template-functions-examples',
-          'reference/template-functions-config-context',
-          'reference/template-functions-identity-context',
-          'reference/template-functions-kurl-context',
-          'reference/template-functions-license-context',
-          'reference/template-functions-static-context',
-        ],
-      },
     ],
   },
-  'vendor/install-with-helm',
+  {
+    type: 'category',
+    label: 'Helm CLI Installations',
+    items: [
+      'vendor/install-with-helm',
+    ],
+  },
   {
     type: 'category',
     label: 'Replicated SDK (Beta)',

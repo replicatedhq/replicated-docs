@@ -1,0 +1,100 @@
+---
+pagination_next: null
+---
+
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
+
+# Embedded Cluster Quick Start
+
+Welcome! This topic provides an onboarding workflow to help you get started with the Replicated Embedded Cluster installer. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
+
+## Objectives
+
+The goals of this topic are to introduce new Replicated users to the following common tasks so that they can successfully onboard their application to the Replicated Platform:
+* Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
+* Testing and iterating on releases by installing in a development environment
+* Integrating key Replicated features and functionality with an application
+
+## Prerequisites
+
+Before you begin, complete the following prerequisites:
+
+* This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
+
+  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to create a new `replicated-onboarding` folder with a basic NGINX deployment:
+  ```bash
+  helm create replicated-onboarding
+  ``` 
+  For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
+  
+  Alternatively, more advanced users can also use one of the following open source Helm charts:
+    * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
+
+       ```
+       helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
+       ```
+
+    * [MediaWiki](https://github.com/bitnami/charts/tree/main/bitnami/mediawiki) 
+
+       ```
+       helm pull --untar oci://registry-1.docker.io/bitnamicharts/mediawiki
+       ```
+
+    * [WordPress](https://github.com/bitnami/charts/tree/main/bitnami/wordpress)
+
+       ```
+       helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
+       ``` 
+
+  :::note
+  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
+  ::: 
+
+* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
+
+## Quick Start Workflow
+
+To get started with Embedded Cluster:
+
+1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+
+1. Create a new application:
+
+   1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
+
+   1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
+
+1. Create a release for the application:
+
+   1. In the Vendor Portal, click **Releases > Create release**.
+   
+      :::note
+      If a drop down is displayed, click **Create Helm-only release**.
+      :::
+   
+   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
+
+      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
+
+   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
+
+      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
+
+       The following describes the steps in the dialog:
+
+       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+          <DependencyYaml/>
+
+          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+
+       1. Update dependencies and package the chart as a `.tgz` file:
+
+           <HelmPackage/>
+   
+       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
+
+       
