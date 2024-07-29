@@ -59,9 +59,6 @@ spec:
         postgresqlUsername: username
         postgresqlPassword: "repl{{ ConfigOption `embedded_postgres_password` }}"
         postgresqlDatabase: dbname
-
-  builder: {}
-
 ```
 
 The following describes key fields from the example above:
