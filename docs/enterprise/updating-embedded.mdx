@@ -14,12 +14,6 @@ When you update an application installed with Embedded Cluster, you update both 
 
 When you deploy a new version, any changes to the application are deployed first. The Admin Console waits until the application is ready (as indicated by status informers) before making any changes to the cluster. For more information about status informers, see [About Resource Status Informers](/vendor/admin-console-display-app-status).
 
-During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you are viewing the Admin Console when the downtime occurs, you will see a message that a cluster update is in progress and that the connection will resume after the Admin Console is available again:
-
-<img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
-
-[View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
-
 ## Update
 
 You can update both the application and the infrastructure at the same time from the Admin Console. You can also set up automatic updates. See [Configuring Automatic Updates](/enterprise/updating-apps).
@@ -28,4 +22,42 @@ You can update both the application and the infrastructure at the same time from
 Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
 :::
 
-<AdminConsole/>
+To perform an update with Embedded Cluster:
+
+1. In the Admin Console, go to the **Version history** tab.
+
+   If there is a new version available, it appears in the **Available Updates** section:
+
+   ![Version history page](/images/ec-upgrade-version-history.png)
+
+   [View a larger version of this image](/images/ec-upgrade-version-history.png)
+
+1. Click **Deploy** next to the new version. The Embedded Cluster upgrade wizard opens.
+
+1. On the **Config** screen, make any necessary changes to the configuration fields for the application. Click **Next**.
+
+    ![Config screen in the upgrade wizard](/images/ec-upgrade-wizard-config.png)
+
+    [View a larger version of this image](/images/ec-upgrade-wizard-config.png)
+
+    :::note
+    Any changes you make on the **Config** screen of the upgrade wizard are set when you deploy the new version.
+    :::
+
+1. On the **Preflight** screen, view the results of the preflight checks.
+
+   ![Preflight screen in the upgrade wizard](/images/ec-upgrade-wizard-preflights.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-preflights.png)
+
+1. On the **Confirm** screen, click **Deploy**.
+
+   ![Confirmation screen in the upgrade wizard](/images/ec-upgrade-wizard-confirm.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)
+
+   During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you are viewing the Admin Console when the downtime occurs, you will see a message that a cluster update is in progress and that the connection will resume after the Admin Console is available again:
+
+   <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
+
+   [View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
