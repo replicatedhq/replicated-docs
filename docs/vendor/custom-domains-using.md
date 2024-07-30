@@ -26,11 +26,11 @@ To add and configure a custom domain:
 
 1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
 
-1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
 
-1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
 
