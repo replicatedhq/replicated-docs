@@ -11,7 +11,7 @@ pagination_prev: null
 Released on July 3, 2024
 
 ### Bug Fixes {#bug-fixes-1-0-0-beta-25}
-* bugfixes and refactoring of tests
+* Various bug fixes and refactoring of tests.
 
 ## 1.0.0-beta.24
 
