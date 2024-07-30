@@ -16,6 +16,8 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+
 ## 1.112.2
 
 Released on July 26, 2024
