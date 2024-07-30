@@ -12,6 +12,8 @@ When you update an application installed with Embedded Cluster, you update both 
 
 When you deploy a new version, any changes to the application are deployed first. The Admin Console waits until the application is ready (as indicated by status informers) before making any changes to the cluster. For more information about status informers, see [About Resource Status Informers](/vendor/insights-app-status).
 
+Any changes made to the Embedded Cluster Config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
+
 When performing an upgrade with Embedded Cluster, the user is able to change the application config before deploying the new version. Additionally, the user's license is synced automatically. 
 
 ## Update
