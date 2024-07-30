@@ -394,7 +394,7 @@ const sidebars = {
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
-          label: 'Installing and Managing Applications with KOTS',
+          label: 'Installing and Managing Applications',
           items: [
           {
             type: 'category',

@@ -1,136 +1,161 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 
-# Embedded Cluster Onboarding Checklist
+# KOTS and Embedded Cluster Onboarding 
 
 This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
 
+## Overview
+
+### Onboarding Best Practices and Recommendations
+
+The following are some best practices and recommendations for successfully onboarding with Replicated:
+
+* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
+
+* Try creating and managing releases with both the Vendor Portal and the Replicated CLI. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+
+* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
+
+### Get Help from the Community
+
+The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated Platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
+
+Before posting in the community site, use the search to find existing knowledge base articles related to your question. If you are not able to find an existing article that addresses your question, create a new topic or add a reply to an existing topic so that a member of the Replicated community or team can respond.
+
+To search and participate in the Replicated community, see https://community.replicated.com/.
+
 ## Prerequisites
 
-If you are new to Replicated, complete the following prerequisites before you get started with KOTS:
+If you are new to Replicated, complete the following prerequisites before you get started with KOTS and Embedded Cluster:
 
 * Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-* Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete the [Replicated Quick Start](/vendor/replicated-onboarding) workflow before getting started with KOTS. The workflow in _Replicated Quick Start_ demonstrates how to add a Helm chart to a release in the vendor platform and then install with the Helm CLI.
-  
-     :::note
-     Packaging your application with Helm is recommended because it allows you to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
-     :::
+* Complete a basic quick start workflow to create an application and then promote and install initial releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases.
 
-  * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
+* Add the Replicated SDK to your Helm chart as a dependency.
 
-## Add Custom Resources
+## Onboard
 
-You can add custom resources to your releases to support installations with KOTS. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the custom resources to add as well as information about how to add and test custom resources.
-
-### How to Add Custom Resources
-
-Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. You can add these custom resources to releases in any order that you prefer.
+The custom resources are consumed by KOTS and are not deployed to the cluster.
 
 For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
-### Custom Resource Checklist
+### Step 0: Connect Your Image Registry and Enable the Proxy Service
 
-This section lists the required and recommended custom resources to add to your releases to enable KOTS installations for your application. The custom resources are grouped in the following categories:
+[Connecting to an External Registry](/vendor/packaging-private-images)
 
-* [KOTS Admin Console](#admin-console)
-* [Helm Chart Installations](#helm-chart-installations)
-* [Embedded Kubernetes](#embedded-kubernetes)
+### Step 1: Configure KOTS HelmChart
 
-#### KOTS Admin Console {#admin-console}
+The HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions for KOTS about how to deploy a given Helm chart.
+
+For more information, see <a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a>.
+
+### Step 2: Add Embedded Cluster Config
+
+Add the Embedded Cluster Config to your application to support installations on VMs or bare metal servers. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
+
+Create an Embedded Cluster Config to support installations on VMs or bare metal servers with Replicated Embedded Cluster.
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  version: 1.8.0+k8s-1.29
+```  
+
+### Step 3: Customize the KOTS Admin Console {#admin-console}
 
 The following custom resources can be added to customize the Admin Console experience for your application and enable recommended features for KOTS.
 
-<table>
-  <tr>
-    <th width="25%">Custom Resource</th>
-    <th width="50%">Description</th>
-    <th width="25%">How To</th>
-  </tr>
-  <tr>
-    <td>KOTS Application</td>
-    <td><p>Control the KOTS Admin Console experience for your application.</p></td>
-    <td>
-      <a href="/reference/custom-resource-application">Application</a>
-    </td>  
-  </tr>
-  <tr>
-    <td>Kubernetes SIG Application</td>
-    <td><p>Add links to the Admin Console dashboard. A common use case for the Kubernetes Application custom resource is adding a button to the dashboard that users can click to navigate to port forwarded services for your application.</p></td>
-    <td><a href="/vendor/admin-console-adding-buttons-links">Adding Application Links to the Dashboard</a></td>
-  </tr>
-  <tr>
-  <td>Config</td>
-    <td>
-      <p>Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.</p>
-      <p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p>
-    </td>
-    <td><a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a></td>
-  </tr>
-  <tr>
-    <td>Preflight</td>
-    <td><p>Define preflight checks to test for system compliance during installation and upgrade to reduce the number of support escalations.</p></td>
-    <td><a href="/vendor/preflight-defining">Defining Preflight Checks</a></td>
-  </tr>
-  <tr>
-    <td>SupportBundle</td>
-    <td><p>Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p></td>
-    <td><a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a></td>
-  </tr>
-  <tr>
-    <td>Backup</td>
-    <td>Enable snapshots with Velero so that end users can back up and restore their application data.</td>
-    <td><a href="snapshots-configuring-backups">Configuring Backup and Restore</a></td>
-  </tr>
-</table>
+#### Add Application Name, Icon, and Status Informers
 
-#### Helm Chart Installations
+<a href="/reference/custom-resource-application">Application</a>
 
-The HelmChart custom resource is required to install Helm charts with KOTS.
+Example:
 
-<table>
-  <tr>
-    <th width="25%">Custom Resource</th>
-    <th width="50%">Description</th>
-    <th width="25%">How To</th>
-  </tr>
-  <tr>
-    <td>HelmChart</td>
-    <td><p>Provides instructions for KOTS about how to deploy a given Helm chart.</p></td>
-    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
-  </tr>
-</table>
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: gitea
+spec:
+  title: Gitea
+  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+  statusInformers:
+    - deployment/gitea
+```
 
-#### Embedded Kubernetes
+#### Add Application Links to the Dashboard
 
-The following custom resources can be added to embed Kubernetes with your application to support KOTS installations in VMs or bare metal servers.
+<a href="/vendor/admin-console-adding-buttons-links">Adding Application Links to the Dashboard</a>
 
-You can choose to use either Replicated Embedded Cluster or Replicated kURL to embed Kubernetes. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
+```yaml
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: "gitea"
+spec:
+  descriptor:
+    links:
+      - description: Open App
+        url: ""
+```  
 
-<table>
-  <tr>
-    <th width="25%">Custom Resource</th>
-    <th width="50%">Description</th>
-    <th width="25%">How To</th>
-  </tr>
-  <tr>
-    <td>Embedded Cluster Config (Beta)</td>
-    <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated Embedded Cluster.</td>
-    <td><a href="embedded-overview">Using Embedded Cluster (Beta)</a></td>
-  </tr>
-  <tr>
-    <td>Installer</td>
-    <td>Create an Installer spec to support installations in VMs or bare metal servers with Replicated kURL.</td>
-    <td><a href="packaging-embedded-kubernetes">Creating a kURL Installer</a></td>
-  </tr>
-</table>
+### Step 4: Set Up the Admin Console Config Screen
 
-## Distribute the SDK with your Application
+Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.
 
-<SDKOverview/>
+See:
 
-## Configure Additional Replicated Features
+* <a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>
+* Setting Helm Values with KOTS
+*       
 
-Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform.
+### Step 5: Configure Preflight Checks and Support Bundles
 
-For example, you can add custom domains for the Replicated registry and app service, configure checks in your application for custom license entitlements, collect custom metrics using the Replicated SDK API, and more.
+The Troubleshoot open-source project provides _preflight checks_ and _support bundles_.
+
+#### Preflight Checks
+
+Define preflight checks to test for system compliance during installation and upgrade to reduce the number of support escalations.
+
+<a href="/vendor/preflight-defining">Defining Preflight Checks</a>
+
+#### Support Bundles
+
+Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.
+
+<a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+
+### Step 6: Configure Backup and Restore
+
+Enable snapshots with Velero so that end users can back up and restore their application data.
+
+* Snapshots for existing cluster KOTS installs. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
+* Disaster recovery feature for Embedded Cluster installs
+
+### Step 7: Add Custom Domains
+
+### Step 8: Customize Customer Licenses
+
+* Add custom entitlements
+* Add entitlement checks
+* License field signature validation
+
+### Summary
+
+## Next Steps
+
+### Customize Your Release Channels
+
+### Set Up the Replicated CLI
+
+### Configure Advanced Features
+
+* Custom metrics
+* SDK API 
+* 
+
+### Integrate with CI/CD and Compatibility Matrix
+
+Compatibility Matrix
