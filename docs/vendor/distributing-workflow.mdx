@@ -24,15 +24,15 @@ Before posting in the community site, use the search to find existing knowledge 
 
 To search and participate in the Replicated community, see https://community.replicated.com/.
 
-## Prerequisites
+## Before You Begin
 
 If you are new to Replicated, complete the following prerequisites before you get started with KOTS and Embedded Cluster:
 
 * Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-* Complete a basic quick start workflow to create an application and then promote and install initial releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases.
+* Install the Replicated CLI.
 
-* Add the Replicated SDK to your Helm chart as a dependency.
+* Complete a basic quick start workflow to create an application and then promote and install initial releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases.
 
 ## Onboard
 
@@ -40,17 +40,29 @@ The custom resources are consumed by KOTS and are not deployed to the cluster.
 
 For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
-### Step 0: Connect Your Image Registry and Enable the Proxy Service
+### Step 0: Package Your Helm Chart with the Replicated SDK
+
+Add the Replicated SDK to your Helm chart as a dependency.
+
+If you have more than one Helm chart, only add the SDK to the main Helm chart. Don't add the SDK to more than one Helm chart.
+
+#### About the SDK
+
+<SDKOverview/>
+
+### Step 1: Connect Your Image Registry and Enable the Proxy Service
 
 [Connecting to an External Registry](/vendor/packaging-private-images)
 
-### Step 1: Configure KOTS HelmChart
+[Using the Proxy Service with Helm Installations](/vendor/helm-image-registry)
+
+### Step 2: Configure KOTS HelmChart
 
 The HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions for KOTS about how to deploy a given Helm chart.
 
 For more information, see <a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a>.
 
-### Step 2: Add Embedded Cluster Config
+### Step 3: Add Embedded Cluster Config
 
 Add the Embedded Cluster Config to your application to support installations on VMs or bare metal servers. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
 
@@ -63,7 +75,7 @@ spec:
   version: 1.8.0+k8s-1.29
 ```  
 
-### Step 3: Customize the KOTS Admin Console {#admin-console}
+### Step 4: Customize the KOTS Admin Console {#admin-console}
 
 The following custom resources can be added to customize the Admin Console experience for your application and enable recommended features for KOTS.
 
@@ -87,7 +99,9 @@ spec:
 
 #### Add Application Links to the Dashboard
 
-<a href="/vendor/admin-console-adding-buttons-links">Adding Application Links to the Dashboard</a>
+Replicated recommends that every application include a Kubernetes SIG Application custom resource to add application links to the Admin Console dashboard.
+
+For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
 ```yaml
 apiVersion: app.k8s.io/v1beta1
@@ -101,7 +115,7 @@ spec:
         url: ""
 ```  
 
-### Step 4: Set Up the Admin Console Config Screen
+### Step 5: Set Up the Admin Console Config Screen
 
 Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.
 
@@ -111,7 +125,7 @@ See:
 * Setting Helm Values with KOTS
 *       
 
-### Step 5: Configure Preflight Checks and Support Bundles
+### Step 6: Configure Preflight Checks and Support Bundles
 
 The Troubleshoot open-source project provides _preflight checks_ and _support bundles_.
 
@@ -127,28 +141,26 @@ Enable customers to quickly collect and analyze troubleshooting data from their 
 
 <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
 
-### Step 6: Configure Backup and Restore
+### Step 7: Configure Backup and Restore
 
 Enable snapshots with Velero so that end users can back up and restore their application data.
 
 * Snapshots for existing cluster KOTS installs. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
 * Disaster recovery feature for Embedded Cluster installs
 
-### Step 7: Add Custom Domains
+### Step 8: Add Custom Domains
 
-### Step 8: Customize Customer Licenses
+### Step 9: Customize Customer Licenses
+
+Add custom license entitlements, and use the SDK API to check entitlements in the customer environment.
 
 * Add custom entitlements
 * Add entitlement checks
 * License field signature validation
 
-### Summary
-
 ## Next Steps
 
-### Customize Your Release Channels
-
-### Set Up the Replicated CLI
+### Customize Release Channels
 
 ### Configure Advanced Features
 
