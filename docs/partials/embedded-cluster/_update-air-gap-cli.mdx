@@ -1,8 +1,16 @@
-1. SSH onto a controller node in the cluster and download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
+1. SSH onto a controller node in the cluster and download the air gap bundle for the new version using the same curl command that you used to install. For example:
 
-     Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
+   ```bash
+    curl https://replicated.app/embedded/APP_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG.tgz
+   ```
 
-1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
+   For more information, see [Install](/enterprise/installing-embedded-air-gap#install).
+
+1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present. For example:
+
+   ```bash
+   tar -xvzf APP_SLUG.tgz
+   ```
 
 1. Use the `update` command to upload the air gap bundle and make this new version available in the Admin Console. For example:
 
@@ -10,4 +18,32 @@
     ./APP_SLUG update --airgap-bundle APP_SLUG.airgap
     ```
 
-1. When the air gap bundle has been uploaded, visit the Admin Console and click **Deploy** to deploy this new version.
+1. When the air gap bundle has been uploaded, open a browser on the same machine and go to the Admin Console.
+
+1. From the Admin Console **Version history** page, click **Deploy** next to the new version.
+
+   ![Version history page](/images/ec-upgrade-version-history.png)
+
+   [View a larger version of this image](/images/ec-upgrade-version-history.png)Click **Deploy** next to the new version.
+
+1. On the **Config** screen of the upgrade wizard, make any necessary changes to the configuration for the application. Click **Next**.
+
+    ![Config screen in the upgrade wizard](/images/ec-upgrade-wizard-config.png)
+
+    [View a larger version of this image](/images/ec-upgrade-wizard-config.png)
+
+    :::note
+    Any changes made on the **Config** screen of the upgrade wizard are not set until the new version is deployed.
+    :::
+
+1. On the **Preflight** screen, view the results of the preflight checks.
+
+   ![Preflight screen in the upgrade wizard](/images/ec-upgrade-wizard-preflights.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-preflights.png)
+
+1. On the **Confirm** screen, click **Deploy**.
+
+   ![Confirmation screen in the upgrade wizard](/images/ec-upgrade-wizard-confirm.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)
