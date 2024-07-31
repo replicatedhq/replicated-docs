@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.112.4
+
+Released on July 31, 2024
+
+Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-112-4}
+* Reruns preflight checks when user updates config in Embedded Cluster upgrade.
+
 ## 1.112.3
 
 Released on July 30, 2024
