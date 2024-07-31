@@ -3,21 +3,18 @@
    ```bash
     curl https://replicated.app/embedded/APP_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG.tgz
    ```
-   Where:
-   * `APP_SLUG` is the unique slug for the application
-   * `CHANNEL_SLUG` is the unique slug for the channel where the target release was promoted
-
    For more information, see [Install](/enterprise/installing-embedded-air-gap#install).
 
-1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present. For example:
+1. Untar the tarball. For example:
 
    ```bash
    tar -xvzf APP_SLUG.tgz
    ```
+   Ensure that the `.airgap` air gap bundle is present.
 
 1. On the same machine, use a browser to access the Admin Console.
 
-1. From the Admin Console **Version history** page, click **Upload new version** and choose the `APP_SLUG.airgap` air gap bundle you downloaded.
+1. From the Admin Console dashboard or **Version history** page, click **Upload new version** and choose the `.airgap` air gap bundle you downloaded.
 
      <img alt="upload new version" width="500px" src="/images/ec-air-gap-upgrade.png"/>
 

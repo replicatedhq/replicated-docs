@@ -21,7 +21,7 @@ Any changes made to the Embedded Cluster Config, including changes to the Embedd
 
 When performing an upgrade with Embedded Cluster, the user is able to change the application config before deploying the new version. Additionally, the user's license is synced automatically. Users can also make config changes and sync their license outside of performing an update.
 
-## Update
+## Update in Online Clusters
 
 <DoNotDowngrade/>
 
@@ -59,24 +59,28 @@ To perform an update with Embedded Cluster:
 
    [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)
 
-   During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. When viewing the Admin Console when the downtime occurs, the user sees a message that a cluster update is in progress and that the connection will resume after the Admin Console is available again:
+   During updates, the Admin Console is unavailable. A modal is displayed with a message that the update is in progress.
+   
+   :::note
+   KOTS can experience downtime during an update, such as in single-node installations. If downtime occurs, refreshing the page results in a connection error. Users can refresh the page again after the update is complete to access the Admin Console.
+   :::
 
-   <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
+## Update in Air Gap Clusters (Alpha) 
 
-   [View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
-
-## Perform Updates in Air Gap Clusters (Alpha)   
+:::important
+Embedded Cluster installations in air gap environments in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::
 
 <DoNotDowngrade/>
 
 <UpdateAirGapOverview/>
 
-### From the Admin Console
+### Udpate From the Command Line
+
+<UpdateAirGapCli/>
+
+### Update From the Admin Console
 
 To perform an update with Embedded Cluster in an air gap environment:
 
 <UpdateAirGapAdm/>
-
-### From the Command Line
-
-<UpdateAirGapCli/>
