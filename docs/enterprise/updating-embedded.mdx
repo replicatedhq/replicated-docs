@@ -1,6 +1,11 @@
+import UpdateAirGapAdm from "../partials/embedded-cluster/_update-air-gap-admin-console.mdx"
+import UpdateAirGapCli from "../partials/embedded-cluster/_update-air-gap-cli.mdx"
+import UpdateAirGapOverview from "../partials/embedded-cluster/_update-air-gap-overview.mdx"
+import DoNotDowngrade from "../partials/embedded-cluster/_warning-do-not-downgrade.mdx"
+
 # Performing Updates in Embedded Clusters (Beta)
 
-This topic describes how to perform updates for [Replicated Embedded Cluster](/vendor/embedded-overview) installations. For information about how to set up automatic updates, see [Configuring Automatic Updates](/enterprise/updating-apps).
+This topic describes how to perform updates for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
 
 :::note
 Embedded cluster is in beta. If you are instead looking for information about Replicated kURL, see [Performing Updates in kURL Clusters](updating-kurl).
@@ -10,17 +15,15 @@ Embedded cluster is in beta. If you are instead looking for information about Re
 
 When you update an application installed with Embedded Cluster, you update both the application and the cluster infrastructure together, including Kubernetes, KOTS, and other components running in the cluster. There is no need or mechanism to update the infrastructure on its own.
 
-When you deploy a new version, any changes to the application are deployed first. The Admin Console waits until the application is ready (as indicated by status informers) before making any changes to the cluster. For more information about status informers, see [About Resource Status Informers](/vendor/insights-app-status).
+When you deploy a new version, any changes to the cluster are deployed first. The Admin Console waits until the cluster is ready before updatng the application.
 
 Any changes made to the Embedded Cluster Config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
 
-When performing an upgrade with Embedded Cluster, the user is able to change the application config before deploying the new version. Additionally, the user's license is synced automatically. 
+When performing an upgrade with Embedded Cluster, the user is able to change the application config before deploying the new version. Additionally, the user's license is synced automatically. Users can also make config changes and sync their license outside of performing an update.
 
 ## Update
 
-:::important
-Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
-:::
+<DoNotDowngrade/>
 
 To perform an update with Embedded Cluster:
 
@@ -61,3 +64,19 @@ To perform an update with Embedded Cluster:
    <img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
 
    [View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
+
+## Perform Updates in Air Gap Clusters (Alpha)   
+
+<DoNotDowngrade/>
+
+<UpdateAirGapOverview/>
+
+### From the Admin Console
+
+To perform an update with Embedded Cluster in an air gap environment:
+
+<UpdateAirGapAdm/>
+
+### From the Command Line
+
+<UpdateAirGapCli/>

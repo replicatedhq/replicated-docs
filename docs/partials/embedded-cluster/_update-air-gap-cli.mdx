@@ -1,0 +1,13 @@
+1. SSH onto a controller node in the cluster and download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
+
+     Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
+
+1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
+
+1. Use the `update` command to upload the air gap bundle and make this new version available in the Admin Console. For example:
+
+    ```bash
+    ./APP_SLUG update --airgap-bundle APP_SLUG.airgap
+    ```
+
+1. When the air gap bundle has been uploaded, visit the Admin Console and click **Deploy** to deploy this new version.
