@@ -8,6 +8,7 @@ pagination_prev: null
 New features and improvements that have been added to Replicated are documented on a per component basis in the corresponding release notes section. Component updates may be released at any time following a continuous delivery model.
 
 To view the component release notes, see the following:
+* [Embedded Cluster Release Notes](rn-embedded-cluster)
 * [KOTS Release Notes](rn-app-manager)
 * [kURL Release Notes](rn-kubernetes-installer)
 * [Replicated SDK Release Notes](rn-replicated-sdk)
