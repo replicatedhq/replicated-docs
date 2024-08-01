@@ -1,7 +1,7 @@
 1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the air gap bundle for the new version using the same curl command that you used to install. For example:
 
    ```bash
-    curl https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG-CHANNEL_SLUG.tgz
+    curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
    ```
    For more information, see [Install](/enterprise/installing-embedded-air-gap#install).
 
