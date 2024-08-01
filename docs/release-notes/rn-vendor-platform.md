@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.01-0
+
+Released on August 1, 2024
+
+### New Features {#new-features-v2024-08-01-0}
+* Updates the Embedded Cluster install instructions to include relevant flags for showing server errors if the release download fails.
+
 
 
 ## v2024.07.24-0
