@@ -1,38 +1,31 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
+import BestPractices from "../partials/onboarding/_best-practices.mdx"
+import Community from "../partials/onboarding/_community.mdx"
+import Prerequisites from "../partials/onboarding/_prerequisites.mdx"
+import PackageSdk from "../partials/onboarding/_package-sdk.mdx"
+import PreflightSupportBundle from "../partials/onboarding/_preflight-support-bundle.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
-This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
+This topic describes how to onboard applications that will support installation with Replicated KOTS, Replicated Embedded Cluster, and/or the Helm CLI.
 
-## Overview
-
-### Onboarding Best Practices and Recommendations
-
-The following are some best practices and recommendations for successfully onboarding with Replicated:
-
-* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
-
-* Try creating and managing releases with both the Vendor Portal and the Replicated CLI. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
-
-* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
-
-### Get Help from the Community
-
-The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated Platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
-
-Before posting in the community site, use the search to find existing knowledge base articles related to your question. If you are not able to find an existing article that addresses your question, create a new topic or add a reply to an existing topic so that a member of the Replicated community or team can respond.
-
-To search and participate in the Replicated community, see https://community.replicated.com/.
+If your application will support Helm CLI installations only, see [Helm CLI-Only Onboarding](/vendor/replicated-onboarding).
 
 ## Before You Begin
 
-If you are new to Replicated, complete the following prerequisites before you get started with KOTS and Embedded Cluster:
+This section includes guidance and prerequisites to review before you begin onboarding your application.
 
-* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+### Best Practices and Recommendations
 
-* Install the Replicated CLI.
+<BestPractices/>
 
-* Complete a basic quick start workflow to create an application and then promote and install initial releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases.
+### Getting Help from the Community
+
+<Community/>
+
+### Prerequisites
+
+<Prerequisites/>
 
 ## Onboard
 
@@ -42,13 +35,7 @@ For more information about creating releases, see [Managing Releases with the Ve
 
 ### Step 0: Package Your Helm Chart with the Replicated SDK
 
-Add the Replicated SDK to your Helm chart as a dependency.
-
-If you have more than one Helm chart, only add the SDK to the main Helm chart. Don't add the SDK to more than one Helm chart.
-
-#### About the SDK
-
-<SDKOverview/>
+<PackageSdk/>
 
 ### Step 1: Connect Your Image Registry and Enable the Proxy Service
 
@@ -127,19 +114,7 @@ See:
 
 ### Step 6: Configure Preflight Checks and Support Bundles
 
-The Troubleshoot open-source project provides _preflight checks_ and _support bundles_.
-
-#### Preflight Checks
-
-Define preflight checks to test for system compliance during installation and upgrade to reduce the number of support escalations.
-
-<a href="/vendor/preflight-defining">Defining Preflight Checks</a>
-
-#### Support Bundles
-
-Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.
-
-<a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+<PreflightSupportBundle/>
 
 ### Step 7: Configure Backup and Restore
 
