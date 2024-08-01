@@ -1,6 +1,7 @@
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 
 # Using Embedded Cluster (Beta)
 
@@ -41,6 +42,8 @@ Embedded Cluster has the following limitations:
 * **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
 * **Automated installations not supported**: Users cannot do automated (headless) Embedded Cluster installations because it is not possible to configure the application by passing the [ConfigValues](/vendor/releases-configvalues) file with the installation command. Embedded Cluster installations require that the application is configured from the Admin Console config screen. For more information about automating existing cluster or kURL installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+
+* **Automatic updates not supported**: Configuring automatic updates from the Admin Console so that new versions are automatically deployed is not supported for Embedded Cluster installations. For more information, see [Configuring Automatic Updates](/enterprise/updating-apps).
 
 * **Embedded Cluster release artifact not available through the Download Portal**: The binary required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the binary in order to install with Embedded Cluster. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary).
 
@@ -346,17 +349,9 @@ Replicated does not support using symlinked directories for these locations.
 
 ## Update
 
-When you update an application installed in an Embedded Cluster, you update both the application and the cluster together. There is no need or mechanism to update the Embedded Cluster on its own.
+<UpdateOverview/>
 
-You can check for available application updates in the Admin Console, or use automatic updates, to retrieve newly available versions. When you deploy a new version, any changes to your application are deployed first. The Admin Console waits until your application is ready, as indicated by status informers, before making any changes to the cluster.
-
-Any changes made to the Embedded Cluster config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
-
-During cluster updates, the Admin Console can experience downtime and become unavailable if the Kubernetes version is updated. If you’re already viewing the Admin Console when the downtime occurs, you will see a message informing you that a cluster update is in progress and that the connection will resume once the Admin Console is available again:
-
-<img alt="Embedded cluster update in progress modal" src="/images/embedded-cluster-update-in-progress.png" width="400px"/>
-
-[View a larger version of this image](/images/embedded-cluster-update-in-progress.png)
+For more information about updating, see [Performing Updates with Embedded Cluster (Beta)](/enterprise/updating-embedded).
 
 :::important
 Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.

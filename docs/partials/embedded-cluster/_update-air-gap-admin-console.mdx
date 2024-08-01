@@ -1,0 +1,41 @@
+1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the air gap bundle for the new version using the same curl command that you used to install. For example:
+
+   ```bash
+    curl https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG-CHANNEL_SLUG.tgz
+   ```
+   For more information, see [Install](/enterprise/installing-embedded-air-gap#install).
+
+1. Untar the tarball. For example:
+
+   ```bash
+   tar -xvzf APP_SLUG-CHANNEL_SLUG.tgz
+   ```
+   Ensure that the `.airgap` air gap bundle is present.
+
+1. On the same machine, use a browser to access the Admin Console.
+
+1. On the **Version history** page, click **Upload new version** and choose the `.airgap` air gap bundle you downloaded.
+
+1. When the air gap bundle has been uploaded, click **Deploy** next to the new version.
+
+1. On the **Config** screen of the upgrade wizard, make any necessary changes to the configuration for the application. Click **Next**.
+
+    ![Config screen in the upgrade wizard](/images/ec-upgrade-wizard-config.png)
+
+    [View a larger version of this image](/images/ec-upgrade-wizard-config.png)
+
+    :::note
+    Any changes made on the **Config** screen of the upgrade wizard are not set until the new version is deployed.
+    :::
+
+1. On the **Preflight** screen, view the results of the preflight checks.
+
+   ![Preflight screen in the upgrade wizard](/images/ec-upgrade-wizard-preflights.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-preflights.png)
+
+1. On the **Confirm** screen, click **Deploy**.
+
+   ![Confirmation screen in the upgrade wizard](/images/ec-upgrade-wizard-confirm.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)

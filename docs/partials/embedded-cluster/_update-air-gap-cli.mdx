@@ -1,0 +1,50 @@
+1. SSH onto a controller node in the cluster and download the air gap bundle for the new version using the same curl command that you used to install. For example:
+
+   ```bash
+    curl https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
+   ```
+
+   For more information, see [Install](/enterprise/installing-embedded-air-gap#install).
+
+1. Untar the tarball. For example:
+
+   ```bash
+   tar -xvzf APP_SLUG-CHANNEL_SLUG.tgz
+   ```
+   Ensure that the `.airgap` air gap bundle is present.
+
+1. Use the `update` command to upload the air gap bundle and make this new version available in the Admin Console. For example:
+
+    ```bash
+    ./APP_SLUG update --airgap-bundle APP_SLUG.airgap
+    ```
+
+1. When the air gap bundle has been uploaded, open a browser on the same machine and go to the Admin Console.
+
+1. On the **Version history** page, click **Deploy** next to the new version.
+
+   ![Version history page](/images/ec-upgrade-version-history.png)
+
+   [View a larger version of this image](/images/ec-upgrade-version-history.png)
+
+1. On the **Config** screen of the upgrade wizard, make any necessary changes to the configuration for the application. Click **Next**.
+
+    ![Config screen in the upgrade wizard](/images/ec-upgrade-wizard-config.png)
+
+    [View a larger version of this image](/images/ec-upgrade-wizard-config.png)
+
+    :::note
+    Any changes made on the **Config** screen of the upgrade wizard are not set until the new version is deployed.
+    :::
+
+1. On the **Preflight** screen, view the results of the preflight checks.
+
+   ![Preflight screen in the upgrade wizard](/images/ec-upgrade-wizard-preflights.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-preflights.png)
+
+1. On the **Confirm** screen, click **Deploy**.
+
+   ![Confirmation screen in the upgrade wizard](/images/ec-upgrade-wizard-confirm.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)

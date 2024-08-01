@@ -1,3 +1,8 @@
+import UpdateAirGapAdm from "../partials/embedded-cluster/_update-air-gap-admin-console.mdx"
+import UpdateAirGapCli from "../partials/embedded-cluster/_update-air-gap-cli.mdx"
+import UpdateAirGapOverview from "../partials/embedded-cluster/_update-air-gap-overview.mdx"
+import DoNotDowngrade from "../partials/embedded-cluster/_warning-do-not-downgrade.mdx"
+
 # Installing in Air Gap Environments with Embedded Cluster (Alpha)
 
 This topic describes how to install applications with Embedded Cluster in air gap environments with no outbound internet access.
@@ -97,11 +102,11 @@ To add nodes to a cluster after successfully installing the first node:
 
 1. When you have finished adding all nodes, return to the Admin Console and click **Continue**.
 
-## Upgrade Air Gap Clusters
+## Perform Updates in Air Gap Clusters
 
-To upgrade an installation, new air gap bundles can be uploaded to the Admin Console from the browser or with the Embedded Cluster binary from the command line.
+<DoNotDowngrade/>
 
-Using the binary is faster and allows the user to download the air gap bundle directly to the machine where the Embedded Cluster is running. Using the browser is slower because the user must download the air gap bundle to a machine with a browser, then upload that bundle to the Admin Console, and then the Admin Console can process it. But this is a reasonable method if your air gap bundles are not too large and your customers are more comfortable with a guided approach in the Admin Console.
+<UpdateAirGapOverview/>
 
 ### Prerequisites
 
@@ -119,42 +124,16 @@ Before performing an upgrade in an air gap cluster with Embedded Cluster, comple
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
     :::
 
-After the air gap bundle is built, continue to [Upgrade from the Admin Console](#upgrade-ui) or [Upgrade from the Command Line](#upgrade-cli) to download the bundle and upgrade.    
+After the air gap bundle is built, continue to [Upload the New Version From the Command Line](#upgrade-cli) or [Upload the New Version From the Admin Console](#upgrade-ui) to download the bundle and upgrade.    
 
-### Upgrade from the Admin Console {#upgrade-ui}
+### Upload the New Version From the Command Line {#upgrade-cli}
 
-To perform an upgrade with Embedded Cluster from the Admin Console:
+To update by uploading the air gap bundle for the new version from the command line:
 
-1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
+<UpdateAirGapCli/>
 
-     Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
+### Upload the New Version From the Admin Console {#upgrade-ui}
 
-1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
+To update by uploading the air gap bundle for the new version from the Admin Console:
 
-1. On the same machine, use a browser to access the Admin Console.
-
-1. From the Admin Console dashboard or **Version history** page, click **Upload new version** and choose the `APP_SLUG.airgap` air gap bundle you just downloaded.
-
-     <img alt="upload new version" width="500px" src="/images/ec-air-gap-upgrade.png"/>
-
-     [View a larger version of this image](/images/ec-air-gap-upgrade.png)
-
-1. When the air gap bundle has been uploaded, click **Deploy** to deploy this new version.
-
-### Upgrade from the Command Line {#upgrade-cli}
-
-To perform an upgrade from the command line:
-
-1. SSH onto a controller node in the cluster and download the new air gap bundle using the curl command copied during the install steps. For more information, see [Install](#install) above.
-
-     Because this command downloads the latest release on the channel, it will download the bundle for your newly promoted release.
-
-1. Untar the tarball and ensure that the `APP_SLUG.airgap` air gap bundle is present.
-
-1. Use the `update` command to upload the air gap bundle and make this new version available in the Admin Console. For example:
-
-    ```bash
-    ./APP_SLUG update --airgap-bundle APP_SLUG.airgap
-    ```
-
-1. When the air gap bundle has been uploaded, visit the Admin Console and click **Deploy** to deploy this new version.
+<UpdateAirGapAdm/>
