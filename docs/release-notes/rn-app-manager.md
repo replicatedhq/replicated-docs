@@ -23,8 +23,8 @@ Released on July 31, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-112-4}
-* Fixes an issue in Embedded Cluster upgrades where preflights did not rerun when the config is re-edited.
-* Fixes an issue that caused k8s minor version parsing errors to be logged repeatedly.
+* Fixes an issue in Embedded Cluster upgrades where preflights did not rerun when the config was re-edited.
+* Fixes an issue that caused K8s minor version parsing errors to be logged repeatedly.
 
 ## 1.112.3
 
