@@ -61,7 +61,7 @@ To install with Embedded Cluster in air gap environments:
 1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint. For example:
 
     ```bash
-    curl https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o 	APP_SLUG-CHANNEL_SLUG.tgz
+    curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
     ```
 
 1. Run the modified curl command on your air gapped VM to download the air gap installation artifacts.
