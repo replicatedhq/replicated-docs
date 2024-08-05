@@ -4,6 +4,15 @@ pagination_next: null
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
+import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr-ec.mdx"
+import KotsCr from "../partials/getting-started/_gitea-kots-app-cr-ec.mdx"
+import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
+import EcCr from "../partials/getting-started/_gitea-ec-config.mdx"
+
+
 
 # Embedded Cluster Quick Start
 
@@ -17,42 +26,9 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 Understanding these tasks will help you when you begin the process of onboarding your application to the Replicated Platform.
 
-## Prerequisites
+## Set Up the Environment
 
 Before you begin, complete the following prerequisites:
-
-* This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
-
-  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to create a new `replicated-onboarding` folder with a basic NGINX deployment:
-  ```bash
-  helm create replicated-onboarding
-  ``` 
-  For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
-  
-  Alternatively, more advanced users can also use one of the following open source Helm charts:
-    * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
-       ```
-
-    * [MediaWiki](https://github.com/bitnami/charts/tree/main/bitnami/mediawiki) 
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/mediawiki
-       ```
-
-    * [WordPress](https://github.com/bitnami/charts/tree/main/bitnami/wordpress)
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
-       ``` 
-
-  :::note
-  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
-  ::: 
-
-* Install the Replicated CLI.
 
 * Prepare your development environment by ensuring you have access to a VM where you can test the installation and upgrade processes for Embedded Cluster.
 
@@ -62,13 +38,64 @@ To get started with KOTS and Embedded Cluster:
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-1. Create a new application:
+1. Create an application:
 
-   1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
+   1. On your local machine, install the Replicated CLI:
 
-   1. In the **Name your application** field, enter a name. For example, "Wordpress Test" or "MediaWiki Onboarding".
+   ```
+   brew install replicatedhq/replicated/cli
+   ```
+   For more installation options, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-1. Package the Helm chart with the SDK:
+   1. Authorize the Replicated CLI:
+
+      ```
+      replicated login
+      ```
+      In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+
+   1. Create an application named `Gitea`:
+
+      ```
+      replicated app create Gitea
+      ```
+
+   1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command:
+
+      1. Get the slug for the application that you created:
+
+         ```
+         replicated app ls
+         ```
+         **Example output**:
+         ```
+         ID                             NAME            SLUG           SCHEDULER
+         2WthxUIfGT13RlrsUx9HR7So8bR    Gitea           gitea-kite     kots
+         ```
+         In the example above, the application slug is `gitea-kite`.
+
+      1. Set the `REPLICATED_APP` environment variable to the application slug.
+
+         **Example:**
+
+         ```
+         export REPLICATED_APP=gitea-kite
+         ```
+
+1. Get the sample Helm chart and add the Replicated SDK as a dependency:
+
+   1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
+
+      ```
+      helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
+      ```
+      For more information about this chart, see the [bitnami/gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea) repository in GitHub.
+
+   1. Change to the new `gitea` directory that was created:
+      
+      ```
+      cd gitea
+      ```
 
    1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
@@ -76,13 +103,94 @@ To get started with KOTS and Embedded Cluster:
 
       The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-   1. Update dependencies and package the chart as a `.tgz` file:
+   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
       <HelmPackage/>
 
+      <UnauthorizedError/>
+
 1. Create a release:
 
-1. Create a customer so that you can install the release:
+   1. In the `gitea` directory, create a subdirectory named `manifests`:
+
+   ```
+   mkdir manifests
+   ```
+
+   You will add the files required to support installation with Replicated KOTS to this subdirectory.
+
+1. Move the Helm chart archive that you created to `manifests`:
+
+   ```
+   mv gitea-1.0.6.tgz manifests
+   ```
+
+1. In `manifests`, create the YAML manifests required by KOTS and Embedded Cluster:
+   ```
+   cd manifests
+   ```
+   ```
+   touch gitea.yaml kots-app.yaml k8s-app.yaml embedded-cluster.yaml
+   ```
+
+1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
+
+   <Tabs>
+   <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment.</p>
+    <h5>YAML</h5>
+    <HelmChartCr/>
+   </TabItem>
+   <TabItem value="kots-app" label="kots-app.yaml">
+   <h5>Description</h5>
+    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and adds the port where the Gitea service can be accessed so that the user can open the application after installation.</p>
+    <h5>YAML</h5>
+    <KotsCr/>
+   </TabItem>
+   <TabItem value="k8s-app" label="k8s-app.yaml">
+   <h5>Description</h5>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
+    <h5>YAML</h5>
+    <K8sCr/>
+   </TabItem>
+   <TabItem value="ec" label="embedded-cluster.yaml">
+   <h5>Description</h5>
+    <p>To install your application with Embedded Cluster, an Embedded Cluster Config must be present in the release. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster.</p>
+    <h5>YAML</h5>
+    <EcCr/>
+   </TabItem>
+   </Tabs>
+
+1. Lint:
+
+   ```bash
+   replicated release lint --yaml-dir .
+   ```
+   ```bash
+   RULE                                  TYPE    FILENAME         LINE    MESSAGE
+   config-spec                           warn                                                                                                                                                    Missing config spec
+   preflight-spec                        warn                                                                                                                                                    Missing preflight spec
+   troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
+   nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   ```
+   :::note
+   You can ignore any warning messages for the purpose of this quick start.
+   :::
+
+1. Create the release and promote it to the Unstable channel:
+
+   ```
+   replicated release create --yaml-dir .
+   ```
+   **Example output**:
+   ```
+   • Reading manifests from . ✓
+   • Creating Release ✓
+     • SEQUENCE: 1
+   ```
+
+1. Create a customer so that you can install the release on your VM:
 
     1. Click **Customer > Create customer**.
 
@@ -92,13 +200,13 @@ To get started with KOTS and Embedded Cluster:
 
     1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
 
-    1. Click **Save Changes**.
+    1. Enable the Embedded Cluster license option.
 
-    For more information, see Creating and Managing Customers.
+    1. Click **Save Changes**.
 
 1. Install the application with Embedded Cluster:
      
-    1. On the page for the customer that you created, click **Install instructions > Helm**.
+    1. On the page for the customer that you created, click **Install instructions > Embedded Cluster**.
 
       ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
 
