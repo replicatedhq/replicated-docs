@@ -16,7 +16,9 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Embedded Cluster Quick Start
 
-Welcome! This topic provides a quick start workflow to help new users get started with the Replicated Embedded Cluster installer.
+Welcome! This topic provides a quick start workflow to help new users get started with the Replicated Platform.
+
+This quick start applies to users that will distribute their application with the Replicated KOTS and Replicated Embedded Cluster installers.
 
 ## Objectives
 
@@ -317,15 +319,21 @@ To get started with Embedded Cluster:
 
     ```bash
     helm package . --dependency-update
-    ```   
+    ```  
 
-   1. Add the chart archive to a new release:  
+   1. Move the chart archive to the `manifests` directory:
 
       ```bash
-      replicated release create --yaml-dir .
+      mv gitea-1.0.6.tgz manifests
+      ``` 
+
+   1. Create and promote a new release:  
+
+      ```bash
+      replicated release create --yaml-dir manifests --promote Unstable
       ```
 
-1. Update the application instance in your development environment to the new version:
+1. In your VM, update the application instance to the new version that you just promoted:
 
    1. In the Admin Console, go to the **Version history** tab.
 
@@ -334,8 +342,6 @@ To get started with Embedded Cluster:
    1. Click **Deploy** next to the target version.
 
    1. Follow the steps in the wizard to deploy the new version.
-
-      During updates, the Admin Console is unavailable. A modal is displayed with a message that the update is in progress.
 
 ## Next Steps
 
