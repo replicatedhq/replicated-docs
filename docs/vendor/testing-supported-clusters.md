@@ -401,7 +401,7 @@ Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/e
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.27, 1.28, 1.29, 1.30</td>
+    <td>1.28, 1.29, 1.30</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
