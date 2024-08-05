@@ -58,3 +58,7 @@ To configure a host support bundle manifest file:
                   message: The system has at least 8G of memory.
     ```
 1. Share the SupportBundle custom resource file with your customers to run on their hosts.
+
+:::important
+Do not store support bundles on public shares, as they may still contain information that could be used to infer private data about the installation, even if some values are redacted.
+:::
