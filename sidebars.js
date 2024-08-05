@@ -34,23 +34,14 @@ const sidebars = {
 
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    'intro-replicated',
+    'vendor/distributing-overview',
     {
       type: 'category',
       label: 'Quick Starts',
       items: [
          'vendor/quick-start-embedded',
          'vendor/quick-start-helm',
-      ],
-    },
-    
-    {
-      type: 'category',
-      label: 'Concepts',
-      items: [
-        'intro-replicated',
-        'vendor/distributing-overview',
-        'intro-kots',
-        'vendor/kots-faq',
       ],
     },
     {
@@ -71,7 +62,7 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'Getting Started Tutorials',
+      label: 'Tutorials',
       items: [
         {
           type: 'category',
@@ -220,6 +211,8 @@ const sidebars = {
       type: 'category',
       label: 'KOTS and Embedded Cluster',
       items: [
+        'intro-kots',
+        'vendor/kots-faq',
         {
           type: 'category',
           label: 'Packaging KOTS Releases',

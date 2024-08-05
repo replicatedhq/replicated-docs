@@ -7,14 +7,15 @@ import HelmPackage from "../partials/helm/_helm-package.mdx"
 
 # Embedded Cluster Quick Start
 
-Welcome! This topic provides an onboarding workflow to help you get started with the Replicated Embedded Cluster installer. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
+Welcome! This topic provides a quick start workflow to help you get started with Replicated KOTS and the Replicated Embedded Cluster installer.
 
 ## Objectives
 
-The goals of this topic are to introduce new Replicated users to the following common tasks so that they can successfully onboard their application to the Replicated Platform:
+The goals of this quick start are to introduce new Replicated users to the following common tasks:
 * Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
 * Testing and iterating on releases by installing in a development environment
-* Integrating key Replicated features and functionality with an application
+
+Understanding these tasks will help you when you begin the process of onboarding your application to the Replicated Platform.
 
 ## Prerequisites
 
@@ -51,11 +52,13 @@ Before you begin, complete the following prerequisites:
   If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
   ::: 
 
-* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
+* Install the Replicated CLI.
+
+* Prepare your development environment by ensuring you have access to a VM where you can test the installation and upgrade processes for Embedded Cluster.
 
 ## Quick Start Workflow
 
-To get started with Embedded Cluster:
+To get started with KOTS and Embedded Cluster:
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
@@ -63,38 +66,44 @@ To get started with Embedded Cluster:
 
    1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
 
-   1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
+   1. In the **Name your application** field, enter a name. For example, "Wordpress Test" or "MediaWiki Onboarding".
 
-1. Create a release for the application:
+1. Package the Helm chart with the SDK:
 
-   1. In the Vendor Portal, click **Releases > Create release**.
-   
-      :::note
-      If a drop down is displayed, click **Create Helm-only release**.
-      :::
-   
-   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
+   1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
-      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
+      <DependencyYaml/>
 
-   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
+      The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
+   1. Update dependencies and package the chart as a `.tgz` file:
 
-       The following describes the steps in the dialog:
+      <HelmPackage/>
 
-       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+1. Create a release:
 
-          <DependencyYaml/>
+1. Create a customer so that you can install the release:
 
-          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+    1. Click **Customer > Create customer**.
 
-       1. Update dependencies and package the chart as a `.tgz` file:
+    1. For **Customer name**, add a name.
 
-           <HelmPackage/>
-   
-       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
+    1. For **Channel**, select Unstable. This allows the customer to install releases promoted to the Unstable channel.
 
-       
+    1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
+
+    1. Click **Save Changes**.
+
+    For more information, see Creating and Managing Customers.
+
+1. Install the application with Embedded Cluster:
+     
+    1. On the page for the customer that you created, click **Install instructions > Helm**.
+
+      ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
+
+      [View a larger image](/images/customer-install-instructions-dropdown.png)
+
+1. Create a new release:
+
+1. Perform an update in the Admin Console:
