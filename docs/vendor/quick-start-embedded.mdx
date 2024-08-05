@@ -16,14 +16,14 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Embedded Cluster Quick Start
 
-Welcome! This topic provides a quick start workflow to help you get started with the Replicated KOTS and Replicated Embedded Cluster installers.
+Welcome! This topic provides a quick start workflow to help new users get started with the Replicated Embedded Cluster installer.
 
 ## Objectives
 
 The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
 * Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
-* Testing and iterating on releases by installing in a development environment
-* Installing and updating applications with Replicated Embedded Cluster
+* Using Replicated Embedded Cluster to install and update applications
+* Testing and iterating on releases in a development environment
 
 ## Set Up the Environment
 
@@ -33,7 +33,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
 ## Quick Start
 
-To get started with KOTS and Embedded Cluster:
+To get started with Embedded Cluster:
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
@@ -271,9 +271,71 @@ To get started with KOTS and Embedded Cluster:
 
       [View a larger version of this image](/images/gitea-app.png)  
 
-1. Create a new release and then perform an update in the Admin Console:
+1. Create a new release that adds preflight checks to the application:
 
-   1. In the `gitea` directory of your local filesystem, 
+   1. In your local filesystem, go to the `gitea/templates` directory.
+
+   1. In the `gitea/templates` directory, create a `gitea-preflights.yaml` file:
+
+      ```
+      touch templates/gitea-preflights.yaml
+      ```
+
+   1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a preflight check specification: 
+
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        labels:
+          troubleshoot.sh/kind: preflight
+        name: "{{ .Release.Name }}-preflight-config"
+      stringData:
+        preflight.yaml: |
+          apiVersion: troubleshoot.sh/v1beta2
+          kind: Preflight
+          metadata:
+            name: preflight-sample
+          spec:
+            analyzers:
+              - clusterVersion:
+                  outcomes:
+                    - fail:
+                        when: "< 1.25.0"
+                        message: The application requires Kubernetes 1.25.0 or later, and recommends 1.28.0.
+                        uri: https://www.kubernetes.io
+                    - warn:
+                        when: "< 1.28.0"
+                        message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.28.0 or later.
+                        uri: https://kubernetes.io
+                    - pass:
+                        message: Your cluster meets the recommended and required versions of Kubernetes.
+      ```
+      The YAML above defines a preflight check that fails if the target cluster is running a version of Kubernetes earlier than 1.23.0. The preflight check also includes a message to the user that describes the failure and lists the required Kubernetes version. The `troubleshoot.sh/kind: preflight` label is required to run preflight checks defined in Secrets.
+
+   1. Update dependencies and package the chart to a `.tgz` chart archive:
+
+    ```bash
+    helm package . --dependency-update
+    ```   
+
+   1. Add the chart archive to a new release:  
+
+      ```bash
+      replicated release create --yaml-dir .
+      ```
+
+1. Update the application instance in your development environment to the new version:
+
+   1. In the Admin Console, go to the **Version history** tab.
+
+      All versions available for upgrade are listed in the **Available Updates** section.
+
+   1. Click **Deploy** next to the target version.
+
+   1. Follow the steps in the wizard to deploy the new version.
+
+      During updates, the Admin Console is unavailable. A modal is displayed with a message that the update is in progress.
 
 ## Next Steps
 
