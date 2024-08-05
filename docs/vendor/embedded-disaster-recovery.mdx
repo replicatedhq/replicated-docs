@@ -42,6 +42,8 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 * If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs.
 
+* Restores do not work if a prefix is specified for the S3 bucket in the backup settings.
+
 ## Configure Disaster Recovery for Your Application 
 
 To configure disaster recovery for your application:
