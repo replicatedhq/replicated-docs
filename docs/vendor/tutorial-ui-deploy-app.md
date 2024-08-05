@@ -6,11 +6,7 @@ This procedure shows you how to deploy the application by logging into the Admin
 
 To install and deploy the application:
 
-1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (embedded clusters) and the password from [Step 4: Install KOTS](tutorial-ui-install-app-manager).
-
-1. (Embedded Clusters Only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
-
-1. (Embedded Clusters Only) On the HTTPS page, click **Skip & continue** to use the self-signed TLS certificate and omit the hostname.
+1. In a browser, enter the URL `http://localhost:8800`.
 
 1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 

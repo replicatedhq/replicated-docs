@@ -16,29 +16,21 @@ For a tutorial that demonstrates how to use the Replicated CLI to create and pro
 
 ## Set Up the Environment
 
-As part of this tutorial, you install a sample application into an existing Kubernetes cluster or into an _embedded cluster_ provisioned by Replicated kURL. kURL creates the cluster on an existing virtual machine (VM).
+As part of this tutorial, you will install a sample application into a Kubernetes cluster. Before you begin, do the following to set up your environment:
 
-Before you begin this tutorial, ensure that you have one of the following environments set up:
-
-- A Kubernetes cluster that you can access with the kubectl command-line tool. Your cluster must meet the minimum system requirements described in [Existing Cluster Requirements](/enterprise/installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
-
-   You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE), Amazon Web Services (AWS), or minikube. 
+* Create a Kubernetes cluster that meets the minimum system requirements described in [Existing Cluster Requirements](/enterprise/installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_. You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE), Amazon Web Services (AWS), or minikube.
 
    **Example:**
 
-    For example, to create a cluster in GKE, run the following command in the gcloud CLI:
+   For example, to create a cluster in GKE, run the following command in the gcloud CLI:
 
-    ```
-    gcloud container clusters create NAME --preemptible --no-enable-ip-alias
-    ```
-    Replace `NAME` with any name you want to use for the cluster.
+   ```
+   gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+   ```
+   Where `NAME` is any name for the cluster.
 
-    For information about installing and configuring the kubectl command-line tool, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) and [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
-
-
-- A VM where kURL can create a cluster. The kURL script installs and configures the kubectl command-line tool for you.
-
-    <VMRequirements/>
+* Install kubectl, the Kubernetes command line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+* Configure kubectl command line access to the cluster that you created. See [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 ## Related Topics
 

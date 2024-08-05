@@ -1,20 +1,10 @@
-import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
-
 # Step 4: Install KOTS
 
 Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in a cluster is to install KOTS.
 
 KOTS lets your users install, manage, and upgrade your application. Users can interact with KOTS through the Admin Console or through the KOTS CLI.
 
-KOTS can be either installed in an existing Kubernetes cluster or in a cluster created by Replicated kURL.
-
-Choose either installation option:
-* [Install in an Existing Cluster](#existing)
-* [Install in an Embedded Cluster](#embedded)
-
-## Install in an Existing Cluster {#existing}
-
-To install KOTS in an existing cluster:
+To install KOTS:
 
 1. Make sure your kubectl context is set to your cluster.
 
@@ -50,72 +40,6 @@ To install KOTS in an existing cluster:
      • Press Ctrl+C to exit
      • Go to http://localhost:8800 to access the Admin Console
    ```
-
-1. Go to the [Next step](#next-step) section.
-
-## Install with kURL {#embedded}
-
-You can run the kURL installation script on a VM or bare metal server to create the embedded cluster and install KOTS.
-
-To install in a kURL cluster:
-
-1. Use SSH to authenticate to the VM that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
-
-   **Example:**
-
-   ```bash
-   gcloud compute ssh NAME
-   ```
-
-   Replace NAME with the name of the cluster.
-
-1. Copy the **Embedded Cluster** command from the Unstable channel in the Vendor Portal and run it on the cluster.
-
-   ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
-
-   **Example:**
-
-   ```bash
-   curl -sSL https://kurl.sh/my-test-app-unstable | sudo bash
-   ```
-
-   This script installs Docker, Kubernetes, and the Admin Console containers (kotsadm).
-
-   Installation takes approximately 5-10 minutes.
-
-1. Note the connection URL and password that displays in the output. The password is not shown again. You must use these in a later step to deploy the Admin Console.
-
-   **Example output:**
-
-   ```bash
-   Kotsadm: http://[ip-address]:8800
-   Login with password (will not be shown again): [password]
-   ```
-
-1. Reload your shell to access the cluster with `kubectl`:
-
-   ```bash
-   bash -l
-   ```
-
-1. Run a `kubectl` command to test that `kubectl` is working.
-
-   **Example:**
-
-   ```bash
-   kubectl get pods
-   ```
-
-   **Example output:**
-
-   ```
-   NAME                                  READY   STATUS    RESTARTS   AGE
-   kotsadm-79dcb4dc7d-2xh85              1/1     Running   0          60m
-   kotsadm-postgres-0                    1/1     Running   0          60m
-   kurl-proxy-kotsadm-5f7fb75f47-b7jbz   1/1     Running   0          60m
-   ```
-
-   At this point, Kubernetes and the Admin Console are running, but the application is not deployed yet.
 
 ## Next Step
 
