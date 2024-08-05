@@ -11,41 +11,40 @@ import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr-ec.mdx"
 import KotsCr from "../partials/getting-started/_gitea-kots-app-cr-ec.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import EcCr from "../partials/getting-started/_gitea-ec-config.mdx"
-
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 
 # Embedded Cluster Quick Start
 
-Welcome! This topic provides a quick start workflow to help you get started with Replicated KOTS and the Replicated Embedded Cluster installer.
+Welcome! This topic provides a quick start workflow to help you get started with the Replicated KOTS and Replicated Embedded Cluster installers.
 
 ## Objectives
 
-The goals of this quick start are to introduce new Replicated users to the following common tasks:
+The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
 * Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
 * Testing and iterating on releases by installing in a development environment
-
-Understanding these tasks will help you when you begin the process of onboarding your application to the Replicated Platform.
+* Installing and updating applications with Replicated Embedded Cluster
 
 ## Set Up the Environment
 
-Before you begin, complete the following prerequisites:
+Before you begin, ensure that you have access to a VM that meets the requirements for Embedded Cluster:
 
-* Prepare your development environment by ensuring you have access to a VM where you can test the installation and upgrade processes for Embedded Cluster.
+<Requirements/>
 
-## Quick Start Workflow
+## Quick Start
 
 To get started with KOTS and Embedded Cluster:
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-1. Create an application:
+1. Create an application using the Replicated CLI:
 
    1. On your local machine, install the Replicated CLI:
 
-   ```
-   brew install replicatedhq/replicated/cli
-   ```
-   For more installation options, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+      ```
+      brew install replicatedhq/replicated/cli
+      ```
+      For more installation options, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
    1. Authorize the Replicated CLI:
 
@@ -82,7 +81,7 @@ To get started with KOTS and Embedded Cluster:
          export REPLICATED_APP=gitea-kite
          ```
 
-1. Get the sample Helm chart and add the Replicated SDK as a dependency:
+1. Get the sample Bitnami Gitea Helm chart and add the Replicated SDK as a dependency:
 
    1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
 
@@ -109,100 +108,108 @@ To get started with KOTS and Embedded Cluster:
 
       <UnauthorizedError/>
 
-1. Create a release:
+1. Add the chart archive to a release:
 
    1. In the `gitea` directory, create a subdirectory named `manifests`:
 
-   ```
-   mkdir manifests
-   ```
+      ```
+      mkdir manifests
+      ```
 
-   You will add the files required to support installation with Replicated KOTS to this subdirectory.
+      You will add the files required to support installation with Replicated KOTS to this subdirectory.
 
-1. Move the Helm chart archive that you created to `manifests`:
+   1. Move the Helm chart archive that you created to `manifests`:
 
-   ```
-   mv gitea-1.0.6.tgz manifests
-   ```
+      ```
+      mv gitea-1.0.6.tgz manifests
+      ```
 
-1. In `manifests`, create the YAML manifests required by KOTS and Embedded Cluster:
-   ```
-   cd manifests
-   ```
-   ```
-   touch gitea.yaml kots-app.yaml k8s-app.yaml embedded-cluster.yaml
-   ```
+   1. In `manifests`, create the YAML manifests required by KOTS and Embedded Cluster:
+      ```
+      cd manifests
+      ```
+      ```
+      touch gitea.yaml kots-app.yaml k8s-app.yaml embedded-cluster.yaml
+      ```
 
-1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
+   1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
 
-   <Tabs>
-   <TabItem value="helmchart" label="gitea.yaml" default>
-    <h5>Description</h5>
-    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment.</p>
-    <h5>YAML</h5>
-    <HelmChartCr/>
-   </TabItem>
-   <TabItem value="kots-app" label="kots-app.yaml">
-   <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and adds the port where the Gitea service can be accessed so that the user can open the application after installation.</p>
-    <h5>YAML</h5>
-    <KotsCr/>
-   </TabItem>
-   <TabItem value="k8s-app" label="k8s-app.yaml">
-   <h5>Description</h5>
-    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
-    <h5>YAML</h5>
-    <K8sCr/>
-   </TabItem>
-   <TabItem value="ec" label="embedded-cluster.yaml">
-   <h5>Description</h5>
-    <p>To install your application with Embedded Cluster, an Embedded Cluster Config must be present in the release. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster.</p>
-    <h5>YAML</h5>
-    <EcCr/>
-   </TabItem>
-   </Tabs>
+      <Tabs>
+      <TabItem value="helmchart" label="gitea.yaml" default>
+      <h5>Description</h5>
+      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment.</p>
+      <h5>YAML</h5>
+      <HelmChartCr/>
+      </TabItem>
+      <TabItem value="kots-app" label="kots-app.yaml">
+      <h5>Description</h5>
+      <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and adds the port where the Gitea service can be accessed so that the user can open the application after installation.</p>
+      <h5>YAML</h5>
+      <KotsCr/>
+      </TabItem>
+      <TabItem value="k8s-app" label="k8s-app.yaml">
+      <h5>Description</h5>
+      <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
+      <h5>YAML</h5>
+      <K8sCr/>
+      </TabItem>
+      <TabItem value="ec" label="embedded-cluster.yaml">
+      <h5>Description</h5>
+      <p>To install your application with Embedded Cluster, an Embedded Cluster Config must be present in the release. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster.</p>
+      <h5>YAML</h5>
+      <EcCr/>
+      </TabItem>
+      </Tabs>
 
-1. Lint:
+   1. Lint:
 
-   ```bash
-   replicated release lint --yaml-dir .
-   ```
-   ```bash
-   RULE                                  TYPE    FILENAME         LINE    MESSAGE
-   config-spec                           warn                                                                                                                                                    Missing config spec
-   preflight-spec                        warn                                                                                                                                                    Missing preflight spec
-   troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
-   nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-   ```
-   :::note
-   You can ignore any warning messages for the purpose of this quick start.
-   :::
+      ```bash
+      replicated release lint --yaml-dir .
+      ```
+      ```bash
+      RULE                                  TYPE    FILENAME         LINE    MESSAGE
+      config-spec                           warn                                                                                                                                                    Missing config spec
+      preflight-spec                        warn                                                                                                                                                    Missing preflight spec
+      troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
+      nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+      ```
+      :::note
+      You can ignore any warning messages for the purpose of this quick start.
+      :::
 
-1. Create the release and promote it to the Unstable channel:
+   1. Create the release and promote it to the Unstable channel:
 
-   ```
-   replicated release create --yaml-dir .
-   ```
-   **Example output**:
-   ```
-   • Reading manifests from . ✓
-   • Creating Release ✓
-     • SEQUENCE: 1
-   ```
+      ```
+      replicated release create --yaml-dir .
+      ```
+      **Example output**:
+      ```
+      • Reading manifests from . ✓
+      • Creating Release ✓
+      • SEQUENCE: 1
+      ```
 
-1. Create a customer so that you can install the release on your VM:
+1. Create a customer so that you can install the release on your development environment with Embedded Cluster:
 
-    1. Click **Customer > Create customer**.
+   1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
 
-    1. For **Customer name**, add a name.
+      The **Create a new customer** page opens:
 
-    1. For **Channel**, select Unstable. This allows the customer to install releases promoted to the Unstable channel.
+      ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
 
-    1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
+      [View a larger version of this image](/images/create-customer.png)
 
-    1. Enable the Embedded Cluster license option.
+   1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
 
-    1. Click **Save Changes**.
+   1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+   1. For **License type**, select **Development**.
+
+   1. For **License options**, enable the following entitlements:
+      * **KOTS Install Enabled**
+      * **Embedded Cluster Enabled (Beta)**
+
+   1. Click **Save Changes**.
 
 1. Install the application with Embedded Cluster:
      
@@ -212,6 +219,62 @@ To get started with KOTS and Embedded Cluster:
 
       [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-1. Create a new release:
+    1. On the command line, SSH onto your Linux VM.
 
-1. Perform an update in the Admin Console:
+   1. Run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the release artifacts, and install.
+
+   1. When prompted, enter a password for accessing the KOTS Admin Console.
+
+      The installation command takes a few minutes to complete.
+
+      **Example output:**
+
+      ```bash
+      ✔  Host files materialized
+      ? Enter an Admin Console password: ********
+      ? Confirm password: ********
+      ✔  Node installation finished
+      ✔  Storage is ready!
+      ✔  Embedded Cluster Operator is ready!
+      ✔  Admin Console is ready!
+      ✔  Finished!
+      Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
+      ```
+
+      At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
+
+   1. Go to the URL provided in the output to log in to the Admin Console.
+   
+   1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+
+   1. Click **Advanced > Proceed**.
+
+   1. On the **HTTPS for the Gitea Admin Console** page, select **Self-signed** and click **Continue**.
+
+   1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
+
+   1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
+
+      The Admin Console dashboard opens.
+      
+   1. In the **Version** section, for version `0.1.0`, click **Deploy** then **Yes, Deploy**. 
+
+      The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
+
+   1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser:
+
+      ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+
+      [View a larger version of this image](/images/gitea-ec-ready.png)
+
+      <img alt="Gitea app landing page" src="/images/gitea-app.png" width="600px"/>
+
+      [View a larger version of this image](/images/gitea-app.png)  
+
+1. Create a new release and then perform an update in the Admin Console:
+
+   1. In the `gitea` directory of your local filesystem, 
+
+## Next Steps
+
+Now that you are familiar with the workflow of creating and installing releases, you can begin onboarding your own application to the Replicated Platform.
