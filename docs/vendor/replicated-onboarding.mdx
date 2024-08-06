@@ -8,7 +8,12 @@ import BestPractices from "../partials/onboarding/_best-practices.mdx"
 import Community from "../partials/onboarding/_community.mdx"
 import Prerequisites from "../partials/onboarding/_prerequisites.mdx"
 import PackageSdk from "../partials/onboarding/_package-sdk.mdx"
-import PreflightSupportBundle from "../partials/onboarding/_preflight-support-bundle.mdx"
+import Preflights from "../partials/onboarding/_preflights.mdx"
+import SupportBundles from "../partials/onboarding/_support-bundles.mdx"
+import CiCd from "../partials/onboarding/_ci-cd.mdx"
+import CustomMetrics from "../partials/onboarding/_custom-metrics.mdx"
+import CustomChannels from "../partials/onboarding/_custom-channels.mdx"
+import CustomDomains from "../partials/onboarding/_custom-domains.mdx"
 
 # Helm CLI-Only Onboarding
 
@@ -38,15 +43,19 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <PackageSdk/>
 
-### Step 1: Connect Your Image Registry and Enable the Proxy Service
+### Step 0: Connect Your Image Registry
+
+### Step 0: Enable the Proxy Service
 
 <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
 
-### Step 2: Add Preflight Checks and Support Bundles
+### Step 0: Add Preflight Checks and Support Bundles
 
-<PreflightSupportBundle/>
+<Preflights/>
 
-### Step 3: Customize Customer Licenses
+<SupportBundles/>
+
+### Step 0: Customize Customer Licenses
 
 Add custom license entitlements, and use the SDK API to check entitlements in the customer environment.
 
@@ -70,41 +79,20 @@ Add custom license entitlements, and use the SDK API to check entitlements in th
 <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p>
 <a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a>
 
-### Step 4: Add Custom Domains
+### Step 0: Add Custom Domains
 
-<p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
-<p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
-<a href="/vendor/custom-domains-using">Using Custom Domains</a>
+<CustomDomains/>
 
 ## Next Steps
 
 ### Customize Release Channels
 
-### Configure Advanced Features
+<CustomChannels/>
 
-* Custom metrics:
+### Custom Metrics
 
-  <p>Use the SDK API to send custom metrics that measure instances of your application running in online or air gap environments.</p>
-  <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-  <p><strong>Estimated time:</strong> 30 minutes to create mock data and test the endpoints locally with integration mode, plus more time to integrate with your application</p>
-  <a href="/vendor/custom-metrics">Configuring Custom Metrics</a>
-
-* SDK API (update checks)
-
-  <p>Use the SDK API to allow your users to easily check for available updates from your application..</p>
-  <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-  <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate with your application</p>
-
-<a href="/reference/replicated-sdk-apis#support-update-checks-in-your-application">Support Update Checks in Your Application</a>
-
-<a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a>
+<CustomMetrics/>
 
 ### Integrate with CI/CD and Compatibility Matrix
 
-<p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated Compatibility Matrix, installing releases in test environments, and more.</p>
-<p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using Replicated CLI commands or Replicated GitHub Actions.</p>
-<ul>
-<li><a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a></li>
-<li><a href="/vendor/ci-workflows">About Integrating with CI/CD</a></li>
-<li><a href="/vendor/testing-how-to">Using Compatibility Matrix</a></li>
-</ul>
+<CiCd/>

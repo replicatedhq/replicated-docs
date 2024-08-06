@@ -3,8 +3,13 @@ import BestPractices from "../partials/onboarding/_best-practices.mdx"
 import Community from "../partials/onboarding/_community.mdx"
 import Prerequisites from "../partials/onboarding/_prerequisites.mdx"
 import PackageSdk from "../partials/onboarding/_package-sdk.mdx"
-import PreflightSupportBundle from "../partials/onboarding/_preflight-support-bundle.mdx"
+import Preflights from "../partials/onboarding/_preflights.mdx"
+import SupportBundles from "../partials/onboarding/_support-bundles.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import CiCd from "../partials/onboarding/_ci-cd.mdx"
+import CustomMetrics from "../partials/onboarding/_custom-metrics.mdx"
+import CustomChannels from "../partials/onboarding/_custom-channels.mdx"
+import CustomDomains from "../partials/onboarding/_custom-domains.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -33,10 +38,6 @@ This section includes guidance and prerequisites to review before you begin onbo
 <Community/>
 
 ## Onboard
-
-### Overview
-
-
 
 ### Task 0: Create An Application
 
@@ -90,11 +91,11 @@ To create and install the initial release for your application:
 
    1. Install in an existing cluster with KOTS:
 
-### Task 2: Customize the KOTS Admin Console {#admin-console}
+### Task 0: Customize the KOTS Admin Console {#admin-console}
 
 After successfully installing your initial release, add the KOTS Application custom resource and the Kubernetes SIG Application custom resource in order to customize the Admin Console experience for your application.
 
-#### Task 2a: Add Application Name, Icon, and Status Informers
+#### Task 0a: Add Application Name, Icon, and Status Informers
 
 To Add Application Name, Icon, and Status Informers:
 
@@ -119,7 +120,7 @@ To Add Application Name, Icon, and Status Informers:
 
 1. Install the release to test your changes.
 
-#### Task 2b: Add Application Links to the Dashboard
+#### Task 0b: Add Application Links to the Dashboard
 
 1. In a new release, configure the Kubernetes SIG Application custom resource to add one or more links to your application on the Admin Console dashboard.
 
@@ -141,22 +142,65 @@ To Add Application Name, Icon, and Status Informers:
 
 1. Install the release to test your changes.
 
-### Task 3: Set Up the Admin Console Config Screen
+### Task 0: Set Up the Admin Console Config Screen and Map to Helm Values
+
+The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
 
 To set up the Admin Console Config screen for your application:
 
-1. In a new release, add the KOTS Config custom resource. The KOTS Config custom resource allows you to configure the KOTS Admin Console config screen to collect required and optional configuration values from your users.
+1. In a new release, add the KOTS Config custom resource. Include groups and items in the KOTS Config custom resource based on the values that you need to collect from users.
+
+    **Example:**
+
+    ```yaml
+    apiVersion: kots.io/v1beta1
+    kind: Config
+    metadata:
+      name: my-application
+    spec:
+      groups:
+        - name: example_group
+          title: Example Group
+          items:
+            - name: example_item
+              title: Example Item
+              type: text
+              default: "Hello World"
+    ```
 
     For more information, see:
-    * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen)     
+    * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen) 
+    * [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional)  
+    * [Config](/reference/custom-resource-config)  
 
-1. Install the release to test your changes.
+1. Install the release so that you can see the config screen in the Admin Console.
 
-1. Continue to create and test new releases until you are ready to move on to the next task.
+1. In a new release, configure the `values` key in the KOTS HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values.
 
-### Task 4: Configure Preflight Checks and Support Bundles
+   For more information, see:
+   * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs).
+   * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
+   * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
-<PreflightSupportBundle/>
+1. Install the new release to test your changes.
+
+1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
+
+### Task 0: Add Preflight Checks and Support Bundles
+
+Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
+
+Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
+* **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
+* **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
+
+#### Task 0a: Define Preflights 
+
+<Preflights/>
+
+#### Task 0b: Add the Default Support Bundle Spec
+
+<SupportBundles/>
 
 ### Task 0: Add Support for Air Gap
 
@@ -169,9 +213,7 @@ For information, see:
 
 ### Task 0: Add Custom Domains
 
-Replicated recommends that you use custom domains to alias Replicated endpoints. Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
-
-For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+<CustomDomains/>
 
 ### Task 0: Add Custom License Entitlements
 
@@ -191,13 +233,13 @@ After completing the main onboarding steps, Replicated recommends that you also 
 
 ### Support Helm CLI Installations
 
-For more information, see [Installing with Helm](/vendor/install-with-helm).
+To support Helm CLI installations:
 
-To enable the proxy service for Helm installations, you must create a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service.
+1. In your Helm chart, enable the proxy service for Helm CLI installations by creating a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service. For more information, see [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry).
 
-During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the required pull secret.
+1. Package your Helm chart and add the archive to a new release.
 
-[Using the Proxy Service with Helm Installations](/vendor/helm-image-registry)
+1. Install the release in a cluster to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 ### Configure Backup and Restore
 
@@ -230,23 +272,12 @@ For more information, see [(Optional) Customize the Specification](/vendor/suppo
 
 ### Add Custom Metrics
 
-In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
-
-For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
+<CustomMetrics/>
 
 ### Integrate with CI/CD
 
-Replicated recommends that teams integrate the Replicated Platform into their existing develeopment and production CI/CD workflows. This can be useful for automating the processes of creating new releases, promoting releases, and testing releases with the Replicated Compatibility Matrix.
-
-For more information, see:
-* [About Integrating with CI/CD](/vendor/ci-overview)
-* [About Compatibility Matrix](/vendor/testing-about)
-* [Recommended CI/CD Workflows](/vendor/ci-workflows)
+<CiCd/>
 
 ### Customize Release Channels
 
-By default, the Vendor Portal includes Unstable, Beta, and Stable channels. You can customize the channels in the Vendor Portal based on your application needs.
-
-For more information, see:
-* [About Channels and Releases](releases-about-releases)
-* [Creating and Editing Channels](/vendor/releases-creating-channels)
+<CustomChannels/>
