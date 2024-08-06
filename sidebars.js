@@ -506,13 +506,7 @@ const sidebars = {
       },
     ],
   },
-  {
-    type: 'category',
-    label: 'Helm CLI Installations',
-    items: [
-      'vendor/install-with-helm',
-    ],
-  },
+  'vendor/install-with-helm',
   {
     type: 'category',
     label: 'Replicated SDK (Beta)',

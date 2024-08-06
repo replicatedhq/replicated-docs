@@ -20,6 +20,10 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <Prerequisites/>
 
+* Ensure that you have kubectl access to a cluster.
+
+* Ensure that you have access to a VM that meets the requirements for Embedded Cluster.
+
 ### Best Practices and Recommendations
 
 <BestPractices/>
@@ -30,133 +34,219 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 ## Onboard
 
-### Step 0: Create An Application
+### Overview
+
+
+
+### Task 0: Create An Application
 
 Create an application in the Vendor Portal. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
 
-### Step 0: Connect Your Image Registry
+### Task 0: Connect Your Image Registry
 
 Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy service in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
 
 For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
 
-### Step 1: Create the Initial Release
+### Task 0: Create and Install the Initial Release
 
 As part of the initial release for your application, you will add your Helm chart archive, KOTS HelmChart custom resource, and Embedded Cluster Config to the release.
 
-#### Step 1a: Package Your Helm Chart with the Replicated SDK
+To create and install the initial release for your application:
 
-<PackageSdk/>
+1. <PackageSdk/>
 
-<DependencyYaml/>
+   <DependencyYaml/>   
 
-#### Step 1b: Configure the KOTS HelmChart Custom Resource
+1. Configure the KOTS HelmChart Custom Resource:
 
-The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions to KOTS about how to deploy the given Helm chart.
+    The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions to KOTS about how to deploy the given Helm chart.
 
-To configure the KOTS HelmChart Custom Resource, complete the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+    To configure the KOTS HelmChart Custom Resource, complete the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
-:::note
-If your application is deployed as multiple Helm charts, add a separate HelmChart custom resource for each chart.
-:::
+    :::note
+    If your application is deployed as multiple Helm charts, add a separate HelmChart custom resource for each chart.
+    :::
 
-#### Step 1c: Add the Embedded Cluster Config
+1. Configure the Embedded Cluster Config:
 
-Create an Embedded Cluster Config to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer.
+    Create an Embedded Cluster Config to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer.
 
-```yaml
-apiVersion: embeddedcluster.replicated.com/v1beta1
-kind: Config
-spec:
-  version: 1.8.0+k8s-1.29
-```
-See the Embedded Cluster GitHub repo to find the latest version.
+    ```yaml
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      version: 1.8.0+k8s-1.29
+    ```
+    See the Embedded Cluster GitHub repo to find the latest version.
 
-For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+    For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-### Step 2: Customize the KOTS Admin Console {#admin-console}
+1. Promote the release to the Unstable channel.
 
-The following custom resources can be added to customize the Admin Console experience for your application and enable recommended features for KOTS.
+1. Install the release:
 
-#### Step 2a: Add Application Name, Icon, and Status Informers
+   1. Install with Embedded Cluster in a VM:
 
-For more information, see [Application](/reference/custom-resource-application).
+   1. Install in an existing cluster with KOTS:
 
-Example:
+### Task 2: Customize the KOTS Admin Console {#admin-console}
 
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: gitea
-spec:
-  title: Gitea
-  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
-  statusInformers:
-    - deployment/gitea
-```
+After successfully installing your initial release, add the KOTS Application custom resource and the Kubernetes SIG Application custom resource in order to customize the Admin Console experience for your application.
 
-#### Step 2b: Add Application Links to the Dashboard
+#### Task 2a: Add Application Name, Icon, and Status Informers
 
-Replicated recommends that every application include a Kubernetes SIG Application custom resource to add application links to the Admin Console dashboard.
+To Add Application Name, Icon, and Status Informers:
 
-For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+1. In a new release, add the KOTS Application custom resource to add an application name, icon, and status informers.
 
-```yaml
-apiVersion: app.k8s.io/v1beta1
-kind: Application
-metadata:
-  name: "gitea"
-spec:
-  descriptor:
-    links:
-      - description: Open App
-        url: ""
-```  
+   **Example:**
 
-### Step 3: Set Up the Admin Console Config Screen
+    ```yaml
+    apiVersion: kots.io/v1beta1
+    kind: Application
+    metadata:
+      name: gitea
+    spec:
+      title: Gitea
+      icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+      statusInformers:
+        - deployment/gitea
+    ```
+    For more information, see:
+    * [Application](/reference/custom-resource-application)
+    * [Enabling and Understanding Application Status](/vendor/insights-app-status)
 
-Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.
+1. Install the release to test your changes.
 
-<a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>     
+#### Task 2b: Add Application Links to the Dashboard
 
-### Step 4: Configure Preflight Checks and Support Bundles
+1. In a new release, configure the Kubernetes SIG Application custom resource to add one or more links to your application on the Admin Console dashboard.
+
+    **Example:**
+
+    ```yaml
+    apiVersion: app.k8s.io/v1beta1
+    kind: Application
+    metadata:
+      name: "gitea"
+    spec:
+      descriptor:
+        links:
+          - description: Open App
+            url: ""
+    ``` 
+
+    For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+
+1. Install the release to test your changes.
+
+### Task 3: Set Up the Admin Console Config Screen
+
+To set up the Admin Console Config screen for your application:
+
+1. In a new release, add the KOTS Config custom resource. The KOTS Config custom resource allows you to configure the KOTS Admin Console config screen to collect required and optional configuration values from your users.
+
+    For more information, see:
+    * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen)     
+
+1. Install the release to test your changes.
+
+1. Continue to create and test new releases until you are ready to move on to the next task.
+
+### Task 4: Configure Preflight Checks and Support Bundles
 
 <PreflightSupportBundle/>
 
-### Step 5: Configure Backup and Restore
+### Task 0: Add Support for Air Gap
 
-Enable snapshots with Velero so that end users can back up and restore their application data.
+KOTS and Embedded Cluster both support installations in _air gap_ environments with no outbound internet access.
 
-* Snapshots for existing cluster KOTS installs. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
-* Disaster recovery feature for Embedded Cluster installs
+For information, see:
+* [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles)
+* [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles)
+* [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap)
 
-### Step 6: Add Custom Domains
+### Task 0: Add Custom Domains
 
-You can use custom domains to alias Replicated endpoints by creating Canonical Name (CNAME) records for your domains.
-
-Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
+Replicated recommends that you use custom domains to alias Replicated endpoints. Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
 
 For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
-### Step 9: Customize Customer Licenses
+### Task 0: Add Custom License Entitlements
 
-Add custom license entitlements, and use the SDK API to check entitlements in the customer environment.
+You can add custom license entitlements for your application in the Vendor Portal.
 
-* Add custom entitlements
-* Add entitlement checks
-* License field signature validation
+Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
 
-## Next Steps
+For more information, see:
+* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
+* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
+* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
+* [Creating and Managing Customers](/vendor/releases-creating-customer)
+
+## Next Tasks
+
+After completing the main onboarding steps, Replicated recommends that you also complete the following 
+
+### Support Helm CLI Installations
+
+For more information, see [Installing with Helm](/vendor/install-with-helm).
+
+To enable the proxy service for Helm installations, you must create a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service.
+
+During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the required pull secret.
+
+[Using the Proxy Service with Helm Installations](/vendor/helm-image-registry)
+
+### Configure Backup and Restore
+
+Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
+
+#### Configure Disaster Recovery for Embedded Cluster Installations
+
+Disaster recovery feature for Embedded Cluster installs
+
+[Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
+
+1. Install the release to test your changes.
+
+#### Configure Snapshots for Existing Cluster KOTS Installations
+
+To Configure Snapshots for Existing Cluster KOTS Installations:
+
+1. [Configuring Backup and Restore](snapshots-configuring-backups)
+
+1. Install the release to test your changes. 
+
+### Customize the Default Support Bundle Spec
+
+You can optionally customize the support bundles for your application by:
+
+* Adding collectors and analyzers
+* Editing or excluding the default `clusterInfo` and `clusterResources` collectors
+
+For more information, see [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
+
+### Add Custom Metrics
+
+In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
+
+For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
+
+### Integrate with CI/CD
+
+Replicated recommends that teams integrate the Replicated Platform into their existing develeopment and production CI/CD workflows. This can be useful for automating the processes of creating new releases, promoting releases, and testing releases with the Replicated Compatibility Matrix.
+
+For more information, see:
+* [About Integrating with CI/CD](/vendor/ci-overview)
+* [About Compatibility Matrix](/vendor/testing-about)
+* [Recommended CI/CD Workflows](/vendor/ci-workflows)
 
 ### Customize Release Channels
 
-### Configure Advanced Features
+By default, the Vendor Portal includes Unstable, Beta, and Stable channels. You can customize the channels in the Vendor Portal based on your application needs.
 
-* Custom metrics
-* SDK API 
-* 
-
-### Integrate with CI/CD and Compatibility Matrix
-
-Compatibility Matrix
+For more information, see:
+* [About Channels and Releases](releases-about-releases)
+* [Creating and Editing Channels](/vendor/releases-creating-channels)
