@@ -1,0 +1,31 @@
+Enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.
+
+To add the default support bundle spec:
+
+1. In your Helm chart `templates` directory, add the following YAML a Kubernetes Secret:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: support-bundle
+      name: example
+    stringData:
+      support-bundle-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+          name: support-bundle
+        spec:
+          collectors: []
+          analyzers: []
+    ```
+   
+   For more information, see <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>.
+
+1. Package your Helm chart and add the chart archive to a new release.
+
+1. Install the release to test your changes. See [Generating Support Bundles](/vendor/support-bundle-generating).
+
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also do this step later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.

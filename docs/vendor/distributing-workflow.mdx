@@ -49,7 +49,7 @@ Add credentials for your image registry to the Vendor Portal. This will allow yo
 
 For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
 
-### Task 0: Create and Install the Initial Release
+### Task 0: Create and Install the Initial Release {#first-release}
 
 As part of the initial release for your application, you will add your Helm chart archive, KOTS HelmChart custom resource, and Embedded Cluster Config to the release.
 
@@ -202,14 +202,27 @@ Preflight checks and support bundles analyze data from customer environments to 
 
 <SupportBundles/>
 
-### Task 0: Add Support for Air Gap
+### Task 0: Add Support for Air Gap Installations
 
-KOTS and Embedded Cluster both support installations in _air gap_ environments with no outbound internet access.
+KOTS and Embedded Cluster both support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images. 
 
-For information, see:
-* [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles)
-* [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles)
-* [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+To add support for air gap installations:
+
+1. In the KOTS HelmChart custom resource, configure the `builder` key. The Vendor Portal uses the values provided in the `builder` key to build the `.airgap` bundle for the release. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+
+    :::note
+    If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
+    :::
+
+1. If you have not done so already as part of [Task 0: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites images for air gap installations. See [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+
+1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations.
+
+1. Download the air gap bundle for Embedded Cluster installations, then install with Embedded Cluster on a VM. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+1. Download the `.airgap` bundle for the release and the KOTS air gap bundle. You can download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles).
+
+1. Install in an existing cluster. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
 ### Task 0: Add Custom Domains
 
