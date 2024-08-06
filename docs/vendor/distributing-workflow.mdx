@@ -10,6 +10,7 @@ import CiCd from "../partials/onboarding/_ci-cd.mdx"
 import CustomMetrics from "../partials/onboarding/_custom-metrics.mdx"
 import CustomChannels from "../partials/onboarding/_custom-channels.mdx"
 import CustomDomains from "../partials/onboarding/_custom-domains.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -39,19 +40,19 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 ## Onboard
 
-### Task 0: Create An Application
+### Task 1: Create An Application
 
 Create an application in the Vendor Portal. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
 
-### Task 0: Connect Your Image Registry
+### Task 2: Connect Your Image Registry
 
 Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy service in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
 
 For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
 
-### Task 0: Create and Install the Initial Release {#first-release}
+### Task 3: Create and Install the Initial Release {#first-release}
 
-As part of the initial release for your application, you will add your Helm chart archive, KOTS HelmChart custom resource, and Embedded Cluster Config to the release.
+As part of the initial release for your application, you will add your Helm chart archive, KOTS HelmChart custom resource, and Embedded Cluster Config to the release. These are the minimum files required to install a Helm chart with Embedded Cluster.
 
 To create and install the initial release for your application:
 
@@ -59,19 +60,20 @@ To create and install the initial release for your application:
 
    <DependencyYaml/>   
 
-1. Configure the KOTS HelmChart Custom Resource:
 
-    The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions to KOTS about how to deploy the given Helm chart.
+1. Update dependencies and package the chart as a `.tgz` file:
 
-    To configure the KOTS HelmChart Custom Resource, complete the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+    <HelmPackage/>
+
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. In the release, add and configure the KOTS HelmChart Custom Resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using). The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions to KOTS about how to deploy the given Helm chart.
 
     :::note
-    If your application is deployed as multiple Helm charts, add a separate HelmChart custom resource for each chart.
+    If your application is deployed as multiple Helm charts, add a separate `.tgz` chart archive and HelmChart custom resource for each chart.
     :::
 
-1. Configure the Embedded Cluster Config:
-
-    Create an Embedded Cluster Config to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer.
+1. Add the following default Embedded Cluster Config to the release to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer:
 
     ```yaml
     apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -79,25 +81,27 @@ To create and install the initial release for your application:
     spec:
       version: 1.8.0+k8s-1.29
     ```
-    See the Embedded Cluster GitHub repo to find the latest version.
-
+    See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
+    
     For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-1. Promote the release to the Unstable channel.
+1. Promote the release to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
 1. Install the release:
 
-   1. Install with Embedded Cluster in a VM:
+   1. Install with Embedded Cluster on a VM. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary) and [Install](/vendor/embedded-overview#install) in _Using Embedded Cluster_.
 
-   1. Install in an existing cluster with KOTS:
+   1. Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
-### Task 0: Customize the KOTS Admin Console {#admin-console}
+After successfully installing the initial release both on a VM and in an existing cluster, go to the next task. You will continue to iterate on this release throughout the rest of the onboarding process.
 
-After successfully installing your initial release, add the KOTS Application custom resource and the Kubernetes SIG Application custom resource in order to customize the Admin Console experience for your application.
+### Task 4: Customize the KOTS Admin Console {#admin-console}
 
-#### Task 0a: Add Application Name, Icon, and Status Informers
+The KOTS Application custom resource and the Kubernetes SIG Application custom resource can be configured to customize the Admin Console experience for your application.
 
-To Add Application Name, Icon, and Status Informers:
+#### Task 4a: Add Application Name, Icon, and Status Informers
+
+To add an application name, icon, and status informers:
 
 1. In a new release, add the KOTS Application custom resource to add an application name, icon, and status informers.
 
@@ -118,9 +122,9 @@ To Add Application Name, Icon, and Status Informers:
     * [Application](/reference/custom-resource-application)
     * [Enabling and Understanding Application Status](/vendor/insights-app-status)
 
-1. Install the release to test your changes.
+1. Install the release to test your changes. See [Performing Udpates in Embedded Clusters](/enterprise/updating-embedded) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
-#### Task 0b: Add Application Links to the Dashboard
+#### Task 4b: Add Application Links to the Dashboard
 
 1. In a new release, configure the Kubernetes SIG Application custom resource to add one or more links to your application on the Admin Console dashboard.
 
@@ -140,9 +144,9 @@ To Add Application Name, Icon, and Status Informers:
 
     For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
-1. Install the release to test your changes.
+1. Install the release to test your changes. See [Performing Udpates in Embedded Clusters](/enterprise/updating-embedded) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
-### Task 0: Set Up the Admin Console Config Screen and Map to Helm Values
+### Task 5: Set Up the Admin Console Config Screen and Map to Helm Values
 
 The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
 
@@ -186,7 +190,7 @@ To set up the Admin Console Config screen for your application:
 
 1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
 
-### Task 0: Add Preflight Checks and Support Bundles
+### Task 6: Add Preflight Checks and Support Bundles
 
 Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
 
@@ -194,15 +198,54 @@ Preflight checks and support bundles analyze data from customer environments to 
 * **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
 * **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
 
-#### Task 0a: Define Preflights 
+#### Task 6a: Define Preflights 
 
 <Preflights/>
 
-#### Task 0b: Add the Default Support Bundle Spec
+#### Task 6b: Add the Default Support Bundle Spec
 
 <SupportBundles/>
 
-### Task 0: Add Support for Air Gap Installations
+### Task 7: Add Custom Domains
+
+<CustomDomains/>
+
+### Task 8: Add Custom License Entitlements
+
+You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
+
+After you add custom entitlements, you can also add logic to your application to query license entitlements both before deployment and at runtime.
+
+For more information, see:
+* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
+* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
+* [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
+* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
+* [Creating and Managing Customers](/vendor/releases-creating-customer)
+
+## Next Steps
+
+Congratulations! After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. 
+
+### Test Helm CLI Installations
+
+Helm charts distributed with Replicated can be installed with the KOTS and Embedded Cluster installers, or with the Helm CLI. It is not necessary to create separate releases for each installation method. 
+
+Before you begin, Replicated recommends that you complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and the Helm CLI in an existing cluster.
+
+To support Helm CLI installations:
+
+1. In your Helm chart, enable the proxy service for Helm CLI installations by creating a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service. For more information, see [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry).
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+    <HelmPackage/>
+
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. Install the release in a cluster to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+
+### Add Support for Air Gap Installations
 
 KOTS and Embedded Cluster both support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images. 
 
@@ -224,59 +267,17 @@ To add support for air gap installations:
 
 1. Install in an existing cluster. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
-### Task 0: Add Custom Domains
-
-<CustomDomains/>
-
-### Task 0: Add Custom License Entitlements
-
-You can add custom license entitlements for your application in the Vendor Portal.
-
-Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
-
-For more information, see:
-* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
-* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
-* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
-* [Creating and Managing Customers](/vendor/releases-creating-customer)
-
-## Next Tasks
-
-After completing the main onboarding steps, Replicated recommends that you also complete the following 
-
-### Support Helm CLI Installations
-
-To support Helm CLI installations:
-
-1. In your Helm chart, enable the proxy service for Helm CLI installations by creating a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service. For more information, see [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry).
-
-1. Package your Helm chart and add the archive to a new release.
-
-1. Install the release in a cluster to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
-
 ### Configure Backup and Restore
 
 Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
 
-#### Configure Disaster Recovery for Embedded Cluster Installations
+To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
 
-Disaster recovery feature for Embedded Cluster installs
-
-[Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
-
-1. Install the release to test your changes.
-
-#### Configure Snapshots for Existing Cluster KOTS Installations
-
-To Configure Snapshots for Existing Cluster KOTS Installations:
-
-1. [Configuring Backup and Restore](snapshots-configuring-backups)
-
-1. Install the release to test your changes. 
+To configure the snapshots feature for existing cluster KOTS installations, see [Configuring Backup and Restore](snapshots-configuring-backups).
 
 ### Customize the Default Support Bundle Spec
 
-You can optionally customize the support bundles for your application by:
+You can optionally customize the support bundle spec for your application by:
 
 * Adding collectors and analyzers
 * Editing or excluding the default `clusterInfo` and `clusterResources` collectors
