@@ -1,16 +1,20 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
-import BestPractices from "../partials/onboarding/_best-practices.mdx"
-import Community from "../partials/onboarding/_community.mdx"
-import Prerequisites from "../partials/onboarding/_prerequisites.mdx"
-import PackageSdk from "../partials/onboarding/_package-sdk.mdx"
-import Preflights from "../partials/onboarding/_preflights.mdx"
-import SupportBundles from "../partials/onboarding/_support-bundles.mdx"
+import BestPractices from "../partials/getting-started/_best-practices.mdx"
+import Community from "../partials/getting-started/_community.mdx"
+import Prerequisites from "../partials/getting-started/_prerequisites.mdx"
+import PackageSdk from "../partials/getting-started/_package-sdk.mdx"
+import Preflights from "../partials/getting-started/_preflights.mdx"
+import SupportBundles from "../partials/getting-started/_support-bundles.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
-import CiCd from "../partials/onboarding/_ci-cd.mdx"
-import CustomMetrics from "../partials/onboarding/_custom-metrics.mdx"
-import CustomChannels from "../partials/onboarding/_custom-channels.mdx"
-import CustomDomains from "../partials/onboarding/_custom-domains.mdx"
+import CiCd from "../partials/getting-started/_ci-cd.mdx"
+import CustomMetrics from "../partials/getting-started/_custom-metrics.mdx"
+import CustomChannels from "../partials/getting-started/_custom-channels.mdx"
+import CustomDomains from "../partials/getting-started/_custom-domains.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
+import TestYourChanges from "../partials/getting-started/_test-your-changes.mdx"
+import EmbeddedConfig from "../partials/embedded-cluster/_default-config.mdx"
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import Cluster from "../partials/getting-started/_setup-cluster.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -26,9 +30,11 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <Prerequisites/>
 
-* Ensure that you have kubectl access to a cluster.
+* <Cluster/>
 
-* Ensure that you have access to a VM that meets the requirements for Embedded Cluster.
+* Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
+
+  <Requirements/>
 
 ### Best Practices and Recommendations
 
@@ -60,7 +66,6 @@ To create and install the initial release for your application:
 
    <DependencyYaml/>   
 
-
 1. Update dependencies and package the chart as a `.tgz` file:
 
     <HelmPackage/>
@@ -75,13 +80,7 @@ To create and install the initial release for your application:
 
 1. Add the following default Embedded Cluster Config to the release to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer:
 
-    ```yaml
-    apiVersion: embeddedcluster.replicated.com/v1beta1
-    kind: Config
-    spec:
-      version: 1.8.0+k8s-1.29
-    ```
-    See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
+    <EmbeddedConfig/>
     
     For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
@@ -122,7 +121,7 @@ To add an application name, icon, and status informers:
     * [Application](/reference/custom-resource-application)
     * [Enabling and Understanding Application Status](/vendor/insights-app-status)
 
-1. Install the release to test your changes. See [Performing Udpates in Embedded Clusters](/enterprise/updating-embedded) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
+1. <TestYourChanges/>
 
 #### Task 4b: Add Application Links to the Dashboard
 
@@ -144,7 +143,7 @@ To add an application name, icon, and status informers:
 
     For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
-1. Install the release to test your changes. See [Performing Udpates in Embedded Clusters](/enterprise/updating-embedded) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
+1. <TestYourChanges/>
 
 ### Task 5: Set Up the Admin Console Config Screen and Map to Helm Values
 
@@ -177,7 +176,7 @@ To set up the Admin Console Config screen for your application:
     * [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional)  
     * [Config](/reference/custom-resource-config)  
 
-1. Install the release so that you can see the config screen in the Admin Console.
+1. <TestYourChanges/>
 
 1. In a new release, configure the `values` key in the KOTS HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values.
 
@@ -186,7 +185,7 @@ To set up the Admin Console Config screen for your application:
    * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
    * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
-1. Install the new release to test your changes.
+1. <TestYourChanges/>
 
 1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
 
@@ -206,11 +205,11 @@ Preflight checks and support bundles analyze data from customer environments to 
 
 <SupportBundles/>
 
-### Task 7: Add Custom Domains
+### Task 7: Alias Replicated Endpoints with Custom Domains
 
 <CustomDomains/>
 
-### Task 8: Add Custom License Entitlements
+### Task 8: Add and Query Custom License Entitlements
 
 You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
 
@@ -225,7 +224,7 @@ For more information, see:
 
 ## Next Steps
 
-Congratulations! After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. 
+After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order.
 
 ### Test Helm CLI Installations
 
@@ -243,7 +242,7 @@ To support Helm CLI installations:
 
 1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-1. Install the release in a cluster to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+1. Install the release with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 ### Add Support for Air Gap Installations
 
@@ -271,9 +270,9 @@ To add support for air gap installations:
 
 Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
 
-To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
-
-To configure the snapshots feature for existing cluster KOTS installations, see [Configuring Backup and Restore](snapshots-configuring-backups).
+There are different steps to configure backup and restore for Embedded Cluster and for existing cluster installations with KOTS:
+* To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
+* To configure the snapshots feature for existing cluster KOTS installations, see [Configuring Backup and Restore](snapshots-configuring-backups).
 
 ### Customize the Default Support Bundle Spec
 

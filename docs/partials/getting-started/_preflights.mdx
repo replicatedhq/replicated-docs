@@ -1,0 +1,20 @@
+import HelmPackage from "../helm/_helm-package.mdx"
+import TestYourChanges from "../getting-started/_test-your-changes.mdx"
+
+To define preflight checks:
+
+1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see:
+    * [Defining Preflight Checks](/vendor/preflight-defining)
+    * [Tutorial: Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup)
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+   <HelmPackage/>
+
+1. Add the `.tgz` file to a new release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. <TestYourChanges/>
+
+    Preflight checks run automatically during installation.
+
+1. Continue to create and test new releases with additional preflight checks until you are ready to move on to the next task.

@@ -1,0 +1,38 @@
+import HelmPackage from "../helm/_helm-package.mdx"
+import TestYourChanges from "../getting-started/_test-your-changes.mdx"
+
+To add the default support bundle spec:
+
+1. In your Helm chart `templates` directory, add the following YAML a Kubernetes Secret:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: support-bundle
+      name: example
+    stringData:
+      support-bundle-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+          name: support-bundle
+        spec:
+          collectors: []
+          analyzers: []
+    ```
+   
+   For more information, see <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>.
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+   <HelmPackage/>
+
+1. Add the `.tgz` file to a new release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. <TestYourChanges/>
+
+   For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can do this step later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
