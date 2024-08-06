@@ -1,3 +1,1 @@
-Add the Replicated SDK to your Helm chart as a dependency.
-
-If you have more than one Helm chart, only add the SDK to the main Helm chart. Don't add the SDK to more than one Helm chart.
+In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).

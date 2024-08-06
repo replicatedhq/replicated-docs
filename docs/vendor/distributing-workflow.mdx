@@ -4,6 +4,7 @@ import Community from "../partials/onboarding/_community.mdx"
 import Prerequisites from "../partials/onboarding/_prerequisites.mdx"
 import PackageSdk from "../partials/onboarding/_package-sdk.mdx"
 import PreflightSupportBundle from "../partials/onboarding/_preflight-support-bundle.mdx"
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -15,6 +16,10 @@ If your application will support Helm CLI installations only, see [Helm CLI-Only
 
 This section includes guidance and prerequisites to review before you begin onboarding your application.
 
+### Prerequisites
+
+<Prerequisites/>
+
 ### Best Practices and Recommendations
 
 <BestPractices/>
@@ -23,52 +28,59 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <Community/>
 
-### Prerequisites
-
-<Prerequisites/>
-
 ## Onboard
 
-The custom resources are consumed by KOTS and are not deployed to the cluster.
+### Step 0: Create An Application
 
-For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
+Create an application in the Vendor Portal. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
 
-### Step 0: Package Your Helm Chart with the Replicated SDK
+### Step 0: Connect Your Image Registry
+
+Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy service in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
+
+For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
+
+### Step 1: Create the Initial Release
+
+As part of the initial release for your application, you will add your Helm chart archive, KOTS HelmChart custom resource, and Embedded Cluster Config to the release.
+
+#### Step 1a: Package Your Helm Chart with the Replicated SDK
 
 <PackageSdk/>
 
-### Step 1: Connect Your Image Registry and Enable the Proxy Service
+<DependencyYaml/>
 
-[Connecting to an External Registry](/vendor/packaging-private-images)
+#### Step 1b: Configure the KOTS HelmChart Custom Resource
 
-[Using the Proxy Service with Helm Installations](/vendor/helm-image-registry)
+The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions to KOTS about how to deploy the given Helm chart.
 
-### Step 2: Configure KOTS HelmChart
+To configure the KOTS HelmChart Custom Resource, complete the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
-The HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. It provides instructions for KOTS about how to deploy a given Helm chart.
+:::note
+If your application is deployed as multiple Helm charts, add a separate HelmChart custom resource for each chart.
+:::
 
-For more information, see <a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a>.
+#### Step 1c: Add the Embedded Cluster Config
 
-### Step 3: Add Embedded Cluster Config
-
-Add the Embedded Cluster Config to your application to support installations on VMs or bare metal servers. For more information, see [About Embedded Kubernetes](/vendor/embedded-kubernetes-overview).
-
-Create an Embedded Cluster Config to support installations on VMs or bare metal servers with Replicated Embedded Cluster.
+Create an Embedded Cluster Config to support installations on VMs or bare metal servers with the Replicated Embedded Cluster installer.
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
   version: 1.8.0+k8s-1.29
-```  
+```
+See the Embedded Cluster GitHub repo to find the latest version.
 
-### Step 4: Customize the KOTS Admin Console {#admin-console}
+For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+
+### Step 2: Customize the KOTS Admin Console {#admin-console}
 
 The following custom resources can be added to customize the Admin Console experience for your application and enable recommended features for KOTS.
 
-#### Add Application Name, Icon, and Status Informers
+#### Step 2a: Add Application Name, Icon, and Status Informers
 
-<a href="/reference/custom-resource-application">Application</a>
+For more information, see [Application](/reference/custom-resource-application).
 
 Example:
 
@@ -84,7 +96,7 @@ spec:
     - deployment/gitea
 ```
 
-#### Add Application Links to the Dashboard
+#### Step 2b: Add Application Links to the Dashboard
 
 Replicated recommends that every application include a Kubernetes SIG Application custom resource to add application links to the Admin Console dashboard.
 
@@ -102,28 +114,30 @@ spec:
         url: ""
 ```  
 
-### Step 5: Set Up the Admin Console Config Screen
+### Step 3: Set Up the Admin Console Config Screen
 
 Create a configuration screen in the Admin Console to collect required and optional configuration values from your users.
 
-See:
+<a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>     
 
-* <a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>
-* Setting Helm Values with KOTS
-*       
-
-### Step 6: Configure Preflight Checks and Support Bundles
+### Step 4: Configure Preflight Checks and Support Bundles
 
 <PreflightSupportBundle/>
 
-### Step 7: Configure Backup and Restore
+### Step 5: Configure Backup and Restore
 
 Enable snapshots with Velero so that end users can back up and restore their application data.
 
 * Snapshots for existing cluster KOTS installs. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
 * Disaster recovery feature for Embedded Cluster installs
 
-### Step 8: Add Custom Domains
+### Step 6: Add Custom Domains
+
+You can use custom domains to alias Replicated endpoints by creating Canonical Name (CNAME) records for your domains.
+
+Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
+
+For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
 ### Step 9: Customize Customer Licenses
 
