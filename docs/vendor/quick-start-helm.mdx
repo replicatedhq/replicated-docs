@@ -4,30 +4,39 @@ pagination_next: null
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
+import Welcome from "../partials/getting-started/_quick-start-welcome.mdx"
+import Objectives from "../partials/getting-started/_quick-start-objectives.mdx"
+import Intro from "../partials/getting-started/_quick-start-intro.mdx"
 
 # Helm CLI-Only Quick Start
 
-Welcome! This topic provides a quick start workflow to help new users get started with the Replicated Platform.
+<Welcome/>
 
-This quick start applies to applications that will support installation with Replicated KOTS, Replicated Embedded Cluster, and/or the Helm CLI. If your application will support Helm CLI installations only,
+This quick start applies to applications that will support installation with the Helm CLI only. If your application will also support installation with the Replicated KOTS and Replicated Embedded Cluster installers, see [KOTS and Embedded Cluster Quick Start](quick-start-embedded).
 
 ## Objectives
 
-The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
-* Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
-* Testing and iterating on releases in a development environment
+<Objectives/>
+
+* Installing releases using the Helm CLI
 
 ## Set Up the Environment
 
-Before you begin, ensure that you have kubectl access to a cluster where you can develop against the Helm chart.
+Before you begin, do the following to set up your environment:
 
-Replicated recommends that you confirm that you can successfully install the Gitea chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
+* Ensure that you have kubectl access to a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
+
+* Install the Helm CLI. To install the Helm CLI using Homebrew, run: 
+
+   ```
+   brew install helm
+   ```
+
+   For more information, including alternative installation options, see [Install Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
 
 ## Quick Start Workflow
 
-This workflow provides steps for using the Replicated Platform to create releases for a Helm chart-based application, then using the Helm CLI to install in a development environment.
-
-You will repeat these same basic steps to create and test releases throughout the onboarding process to test Replicated features. You will also repeat these steps after onboarding whenever you need to integrate new Replicated features with your application. 
+<Intro/>
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
@@ -79,9 +88,9 @@ You will repeat these same basic steps to create and test releases throughout th
 
    1. Click **Promote**.
 
-     :::note
-     You can ignore any error messages in the **Promote Release** dialog.
-     ::: 
+      :::note
+      You can ignore any error messages in the **Promote Release** dialog.
+      ::: 
 
 1. Create a customer so that you can install the release in your cluster:
 

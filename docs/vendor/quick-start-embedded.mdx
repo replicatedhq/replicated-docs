@@ -12,20 +12,21 @@ import KotsCr from "../partials/getting-started/_gitea-kots-app-cr-ec.mdx"
 import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 import EcCr from "../partials/getting-started/_gitea-ec-config.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import Welcome from "../partials/getting-started/_quick-start-welcome.mdx"
+import Objectives from "../partials/getting-started/_quick-start-objectives.mdx"
+import Intro from "../partials/getting-started/_quick-start-intro.mdx"
 
+# KOTS and Embedded Cluster Quick Start
 
-# Embedded Cluster Quick Start
+<Welcome/>
 
-Welcome! This topic provides a quick start workflow to help new users get started with the Replicated Platform.
-
-This quick start applies to users that will distribute their application with the Replicated KOTS and Replicated Embedded Cluster installers.
+This quick start applies to applications that will be installed with the Replicated KOTS and Replicated Embedded Cluster installers. If your application will support Helm CLI installations only, see [Helm CLI-Only Quick Start](quick-start-helm).
 
 ## Objectives
 
-The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
-* Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
-* Using Replicated Embedded Cluster to install and update applications
-* Testing and iterating on releases in a development environment
+<Objectives/>
+
+* Installing releases on a VM with Embedded Cluster
 
 ## Set Up the Environment
 
@@ -35,7 +36,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
 ## Quick Start
 
-To get started with Embedded Cluster:
+<Intro/>
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
@@ -168,6 +169,7 @@ To get started with Embedded Cluster:
       ```bash
       replicated release lint --yaml-dir .
       ```
+      **Example output:**
       ```bash
       RULE                                  TYPE    FILENAME         LINE    MESSAGE
       config-spec                           warn                                                                                                                                                    Missing config spec
@@ -217,11 +219,11 @@ To get started with Embedded Cluster:
      
     1. On the page for the customer that you created, click **Install instructions > Embedded Cluster**.
 
-      ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
+       ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
 
-      [View a larger image](/images/customer-install-instructions-dropdown.png)
+       [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-    1. On the command line, SSH onto your Linux VM.
+    1. On the command line, SSH onto your VM.
 
    1. Run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the release artifacts, and install.
 
@@ -271,7 +273,13 @@ To get started with Embedded Cluster:
 
       <img alt="Gitea app landing page" src="/images/gitea-app.png" width="600px"/>
 
-      [View a larger version of this image](/images/gitea-app.png)  
+      [View a larger version of this image](/images/gitea-app.png) 
+
+   1. After you install, in the Vendor Portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
+   
+      This instance telemetry is automatically collected and sent back to the Vendor Portal by both KOTS and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+   1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).    
 
 1. Create a new release that adds preflight checks to the application:
 
@@ -317,9 +325,9 @@ To get started with Embedded Cluster:
 
    1. Update dependencies and package the chart to a `.tgz` chart archive:
 
-    ```bash
-    helm package . --dependency-update
-    ```  
+      ```bash
+      helm package . --dependency-update
+      ```  
 
    1. Move the chart archive to the `manifests` directory:
 
@@ -327,13 +335,13 @@ To get started with Embedded Cluster:
       mv gitea-1.0.6.tgz manifests
       ``` 
 
-   1. Create and promote a new release:  
+   1. Create and promote the new release:  
 
       ```bash
       replicated release create --yaml-dir manifests --promote Unstable
       ```
 
-1. In your VM, update the application instance to the new version that you just promoted:
+1. Update the application instance to the new version that you just promoted:
 
    1. In the Admin Console, go to the **Version history** tab.
 
@@ -345,4 +353,6 @@ To get started with Embedded Cluster:
 
 ## Next Steps
 
-Now that you are familiar with the workflow of creating and installing releases, you can begin onboarding your own application to the Replicated Platform.
+Now that you are familiar with the workflow of creating, installing, and updating releases, you can begin onboarding your own application to the Replicated Platform.
+
+For more information, see [KOTS and Embedded Cluster Onboarding](distributing-workflow).
