@@ -14,6 +14,13 @@ import CiCd from "../partials/getting-started/_ci-cd.mdx"
 import CustomMetrics from "../partials/getting-started/_custom-metrics.mdx"
 import CustomChannels from "../partials/getting-started/_custom-channels.mdx"
 import CustomDomains from "../partials/getting-started/_custom-domains.mdx"
+import ImageRegistry from "../partials/getting-started/_connect-image-registry.mdx"
+import EnableProxyService from "../partials/getting-started/_enable-proxy-service.mdx"
+import Cluster from "../partials/getting-started/_setup-cluster.mdx"
+import CustomizeSupportBundles from "../partials/getting-started/_customize-support-bundles.mdx"
+import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
+import CreateApp from "../partials/getting-started/_create-app.mdx"
+
 
 # Helm CLI-Only Onboarding
 
@@ -25,6 +32,12 @@ If your application will also support KOTS and Embedded Cluster installations in
 
 This section includes guidance and prerequisites to review before you begin onboarding your application.
 
+### Prerequisites
+
+<Prerequisites/>
+
+* <Cluster/>
+
 ### Best Practices and Recommendations
 
 <BestPractices/>
@@ -33,29 +46,49 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <Community/>
 
-### Prerequisites
-
-<Prerequisites/>
-
 ## Onboarding
 
-### Step 0: Package Your Helm Chart with the Replicated SDK
+### Task 0: Create an Application
 
-<PackageSdk/>
+<CreateApp/>
 
-### Step 0: Connect Your Image Registry
+### Task 0: Connect Your Image Registry
 
-### Step 0: Enable the Proxy Service
+<ImageRegistry/>
 
-<a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
+### Task 0: Package Your Helm Chart with the Replicated SDK
 
-### Step 0: Add Preflight Checks and Support Bundles
+To package a Helm chart with the Replicated SDK as a dependency:
+
+1. <PackageSdk/>
+
+   <DependencyYaml/>   
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+    <HelmPackage/>
+
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+### Task 0: Enable the Proxy Service
+
+To enable the proxy service for Helm CLI installations:
+
+<EnableProxyService/>
+
+### Task 0: Add Preflight Checks and Support Bundles
+
+<AboutPreflightsSupportBundles/>
+
+#### Task 0a: Define Preflight Checks
 
 <Preflights/>
 
+#### Task 0b: Add the Default Support Bundle Spec
+
 <SupportBundles/>
 
-### Step 0: Customize Customer Licenses
+### Task 0: Customize Customer Licenses
 
 Add custom license entitlements, and use the SDK API to check entitlements in the customer environment.
 
@@ -79,20 +112,26 @@ Add custom license entitlements, and use the SDK API to check entitlements in th
 <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p>
 <a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a>
 
-### Step 0: Add Custom Domains
+### Task 0: Add Custom Domains
 
 <CustomDomains/>
 
 ## Next Steps
 
-### Customize Release Channels
+After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order.
 
-<CustomChannels/>
+### Customize the Default Support Bundle Spec
 
-### Custom Metrics
+<CustomizeSupportBundles/>
+
+### Add Custom Metrics
 
 <CustomMetrics/>
 
 ### Integrate with CI/CD and Compatibility Matrix
 
 <CiCd/>
+
+### Customize Release Channels
+
+<CustomChannels/>

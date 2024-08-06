@@ -15,6 +15,11 @@ import TestYourChanges from "../partials/getting-started/_test-your-changes.mdx"
 import EmbeddedConfig from "../partials/embedded-cluster/_default-config.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import Cluster from "../partials/getting-started/_setup-cluster.mdx"
+import ImageRegistry from "../partials/getting-started/_connect-image-registry.mdx"
+import CustomizeSupportBundles from "../partials/getting-started/_customize-support-bundles.mdx"
+import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
+import CustomEntitlements from "../partials/getting-started/_add-license-entitlements.mdx"
+import CreateApp from "../partials/getting-started/_create-app.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -48,13 +53,11 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 ### Task 1: Create An Application
 
-Create an application in the Vendor Portal. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
+<CreateApp/>
 
 ### Task 2: Connect Your Image Registry
 
-Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy service in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
-
-For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
+<ImageRegistry/>
 
 ### Task 3: Create and Install the Initial Release {#first-release}
 
@@ -191,11 +194,7 @@ To set up the Admin Console Config screen for your application:
 
 ### Task 6: Add Preflight Checks and Support Bundles
 
-Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
-
-Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
-* **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
-* **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
+<AboutPreflightsSupportBundles/>
 
 #### Task 6a: Define Preflights 
 
@@ -211,9 +210,7 @@ Preflight checks and support bundles analyze data from customer environments to 
 
 ### Task 8: Add and Query Custom License Entitlements
 
-You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
-
-After you add custom entitlements, you can also add logic to your application to query license entitlements both before deployment and at runtime.
+<CustomEntitlements/>
 
 For more information, see:
 * [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
@@ -276,12 +273,7 @@ There are different steps to configure backup and restore for Embedded Cluster a
 
 ### Customize the Default Support Bundle Spec
 
-You can optionally customize the support bundle spec for your application by:
-
-* Adding collectors and analyzers
-* Editing or excluding the default `clusterInfo` and `clusterResources` collectors
-
-For more information, see [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
+<CustomizeSupportBundles/>
 
 ### Add Custom Metrics
 

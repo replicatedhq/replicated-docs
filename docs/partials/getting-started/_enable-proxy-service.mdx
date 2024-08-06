@@ -1,0 +1,11 @@
+import HelmPackage from "../helm/_helm-package.mdx"
+
+1. In your Helm chart, enable the proxy service for Helm CLI installations by creating a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service. For more information, see [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry).
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+    <HelmPackage/>
+
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. Install the release with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
