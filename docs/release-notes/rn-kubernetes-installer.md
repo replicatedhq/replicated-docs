@@ -23,7 +23,7 @@ Released on August 7, 2024
 * Updates crictl in [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) to version 1.30.2.
 
 ### Removals {#removals-v2024-08-07-0}
-* Removes all [Docker add-on](https://kurl.sh/docs/add-ons/docker) versions.
+* Removes all [Docker add-on](https://kurl.sh/docs/add-ons/docker) versions. As discussed in our deprecation of Docker in March of 2023, please switch to the [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) instead.
 * Removes [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 1.6.0, 1.12.0, 2.6.0, and 2.12.9.
 * Removes [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.33.0, 0.44.1, 0.46.0, 0.46.0-14.9.0, 0.47.0-15.2.0, 0.47.0-15.2.1, 0.47.0-16.0.1, 0.48.0-16.1.2, 0.48.0-16.10.0, 0.48.0-16.12.1, 0.49.0-17.0.0, 0.49.0-17.1.1, and 0.49.0-17.1.3.
 
