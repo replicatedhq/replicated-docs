@@ -20,7 +20,7 @@ Released on August 7, 2024
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.75.2-61.6.0.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.1.0.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.30.0.
-* Updates crictl in [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2.
+* Updates crictl in [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) to version 1.30.2.
 
 ### Removals {#removals-v2024-08-07-0}
 * Removes all [Docker add-on](https://kurl.sh/docs/add-ons/docker) versions.
