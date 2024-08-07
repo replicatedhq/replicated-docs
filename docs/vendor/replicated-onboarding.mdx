@@ -20,6 +20,7 @@ import Cluster from "../partials/getting-started/_setup-cluster.mdx"
 import CustomizeSupportBundles from "../partials/getting-started/_customize-support-bundles.mdx"
 import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
+import CustomEntitlements from "../partials/getting-started/_add-license-entitlements.mdx"
 
 
 # Helm CLI-Only Onboarding
@@ -56,19 +57,11 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <ImageRegistry/>
 
-### Task 0: Package Your Helm Chart with the Replicated SDK
+### Task 0: Add the Replicated SDK as a Dependency
 
-To package a Helm chart with the Replicated SDK as a dependency:
+<PackageSdk/>
 
-1. <PackageSdk/>
-
-   <DependencyYaml/>   
-
-1. Update dependencies and package the chart as a `.tgz` file:
-
-    <HelmPackage/>
-
-1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+<DependencyYaml/>
 
 ### Task 0: Enable the Proxy Service
 
@@ -78,7 +71,7 @@ To enable the proxy service for Helm CLI installations:
 
 <EnableProxyService/>
 
-### Task 0: Add Custom Domains
+### Task 0: Add a Custom Domain for the Proxy Service
 
 <CustomDomains/>
 
@@ -94,17 +87,16 @@ To enable the proxy service for Helm CLI installations:
 
 <SupportBundles/>
 
-### Task 0: Customize Customer Licenses
+### Task 8: Add and Query Custom License Entitlements
 
+<CustomEntitlements/>
 
-
-<a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a>
-
-To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.
-
-<a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a>
-<a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
-<a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a>
+For more information, see:
+* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
+* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
+* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
+* [Creating and Managing Customers](/vendor/releases-creating-customer)
+* [Developing Against the SDK API](/vendor/replicated-sdk-development)
 
 ## Next Steps
 

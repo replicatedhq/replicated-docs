@@ -20,6 +20,7 @@ import CustomizeSupportBundles from "../partials/getting-started/_customize-supp
 import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
 import CustomEntitlements from "../partials/getting-started/_add-license-entitlements.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
+import EnableProxyService from "../partials/getting-started/_enable-proxy-service.mdx"
 
 # KOTS and Embedded Cluster Onboarding 
 
@@ -218,6 +219,7 @@ For more information, see:
 * [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
 * [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
 * [Creating and Managing Customers](/vendor/releases-creating-customer)
+* [Developing Against the SDK API](/vendor/replicated-sdk-development)
 
 ## Next Steps
 
@@ -227,19 +229,13 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 
 Helm charts distributed with Replicated can be installed with the KOTS and Embedded Cluster installers, or with the Helm CLI. It is not necessary to create separate releases for each installation method. 
 
-Before you begin, Replicated recommends that you complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and the Helm CLI in an existing cluster.
+:::note
+Before you test Helm CLI installations for your application, Replicated recommends that you complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and the Helm CLI in an existing cluster.
+:::
 
 To support Helm CLI installations:
 
-1. In your Helm chart, enable the proxy service for Helm CLI installations by creating a Secret with `type: kubernetes.io/dockerconfigjson` to authenticate with the proxy service. For more information, see [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry).
-
-1. Update dependencies and package the chart as a `.tgz` file:
-
-    <HelmPackage/>
-
-1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
-
-1. Install the release with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+<EnableProxyService/>
 
 ### Add Support for Air Gap Installations
 
