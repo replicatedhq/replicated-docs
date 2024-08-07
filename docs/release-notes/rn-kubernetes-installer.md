@@ -13,19 +13,19 @@ pagination_prev: null
 Released on August 7, 2024
 
 ### New Features {#new-features-v2024-08-07-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.3 1.29.7 1.28.12 1.27.16.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.30.3, 1.29.7, 1.28.12, and 1.27.16.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.5.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.14.0.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.75.2-61.6.0.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.1.0.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.30.0.
-* Updates crictl in  [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2.
+* Updates crictl in [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2.
 
 ### Removals {#removals-v2024-08-07-0}
-* REMOVES all [Docker add-on](https://kurl.sh/docs/add-ons/docker) versions.
-* REMOVES [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 1.6.0, 1.12.0, 2.6.0 and 2.12.9.
-* REMOVES [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.33.0, 0.44.1, 0.46.0, 0.46.0-14.9.0, 0.47.0-15.2.0, 0.47.0-15.2.1, 0.47.0-16.0.1, 0.48.0-16.1.2, 0.48.0-16.10.0, 0.48.0-16.12.1, 0.49.0-17.0.0, 0.49.0-17.1.1 and 0.49.0-17.1.3.
+* Removes all [Docker add-on](https://kurl.sh/docs/add-ons/docker) versions.
+* Removes [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 1.6.0, 1.12.0, 2.6.0, and 2.12.9.
+* Removes [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.33.0, 0.44.1, 0.46.0, 0.46.0-14.9.0, 0.47.0-15.2.0, 0.47.0-15.2.1, 0.47.0-16.0.1, 0.48.0-16.1.2, 0.48.0-16.10.0, 0.48.0-16.12.1, 0.49.0-17.0.0, 0.49.0-17.1.1, and 0.49.0-17.1.3.
 
 ## v2024.07.02-0
 
