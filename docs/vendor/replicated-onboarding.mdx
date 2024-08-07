@@ -72,9 +72,15 @@ To package a Helm chart with the Replicated SDK as a dependency:
 
 ### Task 0: Enable the Proxy Service
 
+The Replicated proxy service allows you to grant proxy access to your application images without sharing registry credentials with your users.
+
 To enable the proxy service for Helm CLI installations:
 
 <EnableProxyService/>
+
+### Task 0: Add Custom Domains
+
+<CustomDomains/>
 
 ### Task 0: Add Preflight Checks and Support Bundles
 
@@ -90,31 +96,15 @@ To enable the proxy service for Helm CLI installations:
 
 ### Task 0: Customize Customer Licenses
 
-Add custom license entitlements, and use the SDK API to check entitlements in the customer environment.
 
-* Add custom entitlements
-* Add entitlement checks
-* License field signature validation
 
 <a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a>
 
-<p>Use the SDK API to add checks for customer license entitlements during runtime.</p>
-<p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-<p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
+To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.
 
-<ul>
-<li><a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a></li>
-<li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
-<li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
-</ul>  
-
-<p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
-<p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p>
-<a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a>
-
-### Task 0: Add Custom Domains
-
-<CustomDomains/>
+<a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a>
+<a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
+<a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a>
 
 ## Next Steps
 

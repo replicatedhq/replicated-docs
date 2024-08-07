@@ -4,7 +4,6 @@ pagination_next: null
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
-import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr-ec.mdx"
@@ -27,9 +26,7 @@ This quick start applies to applications that will be installed with the Replica
 
 <Objectives/>
 
-* Installing releases on a VM with Embedded Cluster
-
-* Using the KOTS Admin Console
+* Installing and updating applications on a VM with Embedded Cluster
 
 ## Set Up the Environment
 
@@ -112,9 +109,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
       <HelmPackage/>
 
-      <UnauthorizedError/>
-
-1. Add the chart archive to a release:
+1. Add the chart archive to a release in the Vendor Portal:
 
    1. In the `gitea` directory, create a subdirectory named `manifests`:
 
@@ -122,7 +117,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       mkdir manifests
       ```
 
-      You will add the files required to support installation with Replicated KOTS to this subdirectory.
+      You will add the files required to support installation with Replicated KOTS and Replicated Embedded Cluster to this subdirectory.
 
    1. Move the Helm chart archive that you created to `manifests`:
 
@@ -143,7 +138,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       <Tabs>
       <TabItem value="helmchart" label="gitea.yaml" default>
       <h5>Description</h5>
-      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment.</p>
+      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment for the purpose of this quick start.</p>
       <h5>YAML</h5>
       <HelmChartCr/>
       </TabItem>
@@ -167,7 +162,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       </TabItem>
       </Tabs>
 
-   1. Lint:
+   1. Lint the YAML files:
 
       ```bash
       replicated release lint --yaml-dir .
@@ -187,7 +182,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
    1. Create the release and promote it to the Unstable channel:
 
       ```
-      replicated release create --yaml-dir .
+      replicated release create --yaml-dir . --promote Unstable
       ```
       **Example output**:
       ```
@@ -196,7 +191,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       • SEQUENCE: 1
       ```
 
-1. Create a customer so that you can install the release on your development environment with Embedded Cluster:
+1. Create a customer so that you can install the release in your VM with Embedded Cluster:
 
    1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
 
@@ -229,6 +224,10 @@ Before you begin, ensure that you have access to a VM that meets the requirement
     1. On the command line, SSH onto your VM.
 
    1. Run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the release artifacts, and install.
+
+      <img width="500px" src="/images/embedded-cluster-install-dialog.png" alt="embedded cluster install instructions dialog"/>
+
+      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
    1. When prompted, enter a password for accessing the KOTS Admin Console.
 
@@ -294,7 +293,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       touch templates/gitea-preflights.yaml
       ```
 
-   1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a preflight check specification: 
+   1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a preflight spec: 
 
       ```yaml
       apiVersion: v1
@@ -344,18 +343,46 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       replicated release create --yaml-dir manifests --promote Unstable
       ```
 
-1. Update the application instance to the new version that you just promoted:
+1. On your VM, update the application instance to the new version that you just promoted:
 
    1. In the Admin Console, go to the **Version history** tab.
 
       All versions available for upgrade are listed in the **Available Updates** section.
 
-   1. Click **Deploy** next to the target version.
+   1. Click **Deploy** next to the new version.
 
-   1. Follow the steps in the wizard to deploy the new version.
+   1. Follow the steps in the Embedded Cluster update wizard to deploy the new version.
 
 ## Next Steps
 
+Congratulations! As part of this quick start, you:
+* Added the Replicated SDK to a Helm chart
+* Created a release with a Helm chart that supports installations with KOTS and Embedded Cluster
+* Installed the release on a VM with Embedded Cluster
+* Viewed telemetry for the installed instance in the Vendor Portal
+* Created a new release to add preflight checks to the application
+* Updated the application from the Admin Console
+
 <NextSteps/>
 
-For more information, see [KOTS and Embedded Cluster Onboarding](distributing-workflow).
+To get started, see [KOTS and Embedded Cluster Onboarding](distributing-workflow).
+
+## Related Topics
+
+For more information about the Replicated Platform features mentioned in this quick start, see:
+
+* [About Distributing Helm Charts with KOTS](/vendor/helm-native-about)
+* [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about)
+* [About the Replicated SDK](/vendor/replicated-sdk-overview)
+* [Introduction to KOTS](/intro-kots)
+* [Managing Releases with the CLI](/vendor/releases-creating-cli)
+* [Packaging a Helm Chart for a Release](/vendor/helm-install-release)
+* [Using Embedded Cluster](/vendor/embedded-overview)
+
+## Related Tutorials
+
+For additional tutorials related to this quick start, see:
+
+* [Deploying a Helm Chart on a VM with Embedded Cluster](/vendor/tutorial-embedded-cluster-setup)
+* [Adding Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup)
+* [Deploying a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup)
