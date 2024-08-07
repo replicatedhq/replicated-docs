@@ -45,8 +45,9 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
-              # Known issue: Only use image tags and set digest to empty string
-              # to ensure the air gap builder uses single-architecture images
+              # Known issue: Only use image tags for multi-architecture images.
+              # Set digest to empty string to ensure the air gap builder uses
+              # single-architecture images.
               image:
                 digest: ""
                 digestChroot: ""
@@ -163,8 +164,9 @@ spec:
                 nodePorts:
                   http: "80"
                   https: "443"
-              # Known issue: Only use image tags and set digest to empty string
-              # to ensure the air gap builder uses single-architecture images
+              # Known issue: Only use image tags for multi-architecture images.
+              # Set digest to empty string to ensure the air gap builder uses
+              # single-architecture images.
               image:
                 digest: ""
                 digestChroot: ""
@@ -210,6 +212,8 @@ spec:
 ```
 
 Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into embedded cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that embedded cluster includes by default.
+
+**Limitation:** The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
 ### Override the Helm Values for Built-In Extensions
 
