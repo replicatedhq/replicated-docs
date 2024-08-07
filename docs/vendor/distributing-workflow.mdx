@@ -153,6 +153,10 @@ To add an application name, icon, and status informers:
 
 The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
 
+:::note
+Before you begin this task, Replicated recommends that you complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console config screen to a Helm chart.
+:::
+
 To set up the Admin Console Config screen for your application:
 
 1. In a new release, add the KOTS Config custom resource. Include groups and items in the KOTS Config custom resource based on the values that you need to collect from users.

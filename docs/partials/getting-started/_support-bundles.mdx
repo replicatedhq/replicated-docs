@@ -1,7 +1,7 @@
 import HelmPackage from "../helm/_helm-package.mdx"
 import TestYourChanges from "../getting-started/_test-your-changes.mdx"
 
-To add the default support bundle spec:
+To add the default support bundle spec to your application:
 
 1. In your Helm chart `templates` directory, add the following YAML a Kubernetes Secret:
 
@@ -31,8 +31,6 @@ To add the default support bundle spec:
 
 1. Add the `.tgz` file to a new release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-1. <TestYourChanges/>
-
-   For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+1. Install the release to test your changes. For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 
 1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can do this step later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
