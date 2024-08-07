@@ -27,8 +27,6 @@ Air gap installations are supported with Embedded cluster version 1.3.0 or later
 
 Embedded Cluster installations in air gap environments have the following limitations and known issues:
 
-* This iteration of air gap installations is not highly available. If the original node is deleted, all registry and KOTS data will be lost. Multi-node HA will be added later for online and air gap installations.
-
 * If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
 
 * Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
