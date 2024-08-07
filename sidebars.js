@@ -25,6 +25,7 @@ const sidebars = {
       label: 'Release Notes',
       items: [
         'release-notes/rn-whats-new',
+        'release-notes/rn-embedded-cluster',
         'release-notes/rn-app-manager',
         'release-notes/rn-kubernetes-installer',
         'release-notes/rn-replicated-sdk',

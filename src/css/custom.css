@@ -387,3 +387,7 @@ h3[id^="known-issues"] a {
   opacity: .5;
   text-decoration: none;
 }
+
+td#center {
+  text-align: center;
+} 
