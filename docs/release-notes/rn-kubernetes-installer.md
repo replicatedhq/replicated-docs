@@ -8,6 +8,25 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.07-0
+
+Released on August 7, 2024
+
+### New Features {#new-features-v2024-08-07-0}
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.14.0.
+* Updates crictl in  [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.2.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.5.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.3 1.29.7 1.28.12 1.27.16.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Updates [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.14.0 to use local-volume-provider:v0.6.7.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.75.2-61.6.0.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.1.0.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.30.0.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+
 ## v2024.07.02-0
 
 Released on July 2, 2024
