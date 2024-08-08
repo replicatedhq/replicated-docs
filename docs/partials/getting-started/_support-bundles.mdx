@@ -1,5 +1,6 @@
 import HelmPackage from "../helm/_helm-package.mdx"
 import TestYourChanges from "../getting-started/_test-your-changes.mdx"
+import CreateRelease from "../getting-started/_create-promote-release.mdx"
 
 To add the default support bundle spec to your application:
 
@@ -29,7 +30,9 @@ To add the default support bundle spec to your application:
 
    <HelmPackage/>
 
-1. Add the `.tgz` file to a new release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Move the `.tgz` file to the `manifests` directory.
+
+1. <CreateRelease/>
 
 1. Install the release to test your changes. For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 

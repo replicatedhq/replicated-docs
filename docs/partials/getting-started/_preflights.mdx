@@ -1,4 +1,5 @@
 import HelmPackage from "../helm/_helm-package.mdx"
+import CreateRelease from "../getting-started/_create-promote-release.mdx"
 
 :::note
 Before you begin this task, Replicated recommends that you complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
@@ -7,12 +8,17 @@ Before you begin this task, Replicated recommends that you complete the [Add Pre
 To define preflight checks for your application:
 
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
+     :::note
+     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
+     :::
 
 1. Update dependencies and package the chart as a `.tgz` file:
 
    <HelmPackage/>
 
-1. Add the `.tgz` file to a new release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Move the `.tgz` file to the `manifests` directory.
+
+1. <CreateRelease/>
 
 1. Install the release to test your changes.
 
