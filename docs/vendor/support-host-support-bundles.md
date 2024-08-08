@@ -2,23 +2,25 @@ import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-hos
 
 # Configuring kURL Host Support Bundles
 
-This topic describes how to configure a host support bundle spec for Replicated kURL installations.
+This topic describes how to configure a host support bundle spec for Replicated kURL installations. For information about generating host support bundles for Replicated Embedded Cluster installations. see [Generate a Bundle for Embedded Cluster](/vendor/support-bundle-generating) in _Generating Support Bundles_.
 
 ## Overview
 
 Host support bundles can be used to collect information directly from the host where a kURL cluster is running, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
 
 Host bundles for kURL are useful when:
-- The kURL cluster that is offline
+- The kURL cluster is offline
 - The kURL installer failed before the control plane was initialized
 - The Admin Console is not working
 - You want to debug host-specific performance and configuration problems even when the cluster is running
 
-Replicated also provides a default support bundle spec to collect host-level information for installations with the Replicated Embedded Cluster installer. For more information, see [Generate a Bundle for Embedded Cluster](/vendor/support-bundle-generating). 
+You can create a YAML spec to allow users to generate host support bundles for kURL installations. For information, see [Create a Host Support Bundle Spec](#create-a-host-support-bundle-spec) below.
+
+Replicated also provides a default support bundle spec to collect host-level information for installations with the Embedded Cluster installer. For more information, see [Generate a Bundle for Embedded Cluster](/vendor/support-bundle-generating) in _Generating Support Bundles_. 
 
 ## Create a Host Support Bundle Spec
 
-You create a host support bundle spec in a YAML manifest that is separate from your application release and share the file with customers to run on their hosts. This spec is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
+To allow users to generate host support bundles for kURL installations, create a host support bundle spec in a YAML manifest that is separate from your application release and then share the file with customers to run on their hosts. This spec is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
 
 To configure a host support bundle spec for kURL:
 
