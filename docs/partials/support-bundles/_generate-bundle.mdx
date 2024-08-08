@@ -1,7 +1,9 @@
-Support bundles can be generated from the CLI using the `kubectl support-bundle` command:
+If the application includes one or more custom support bundle specs, you can run the following command to generate a bundle:
 
 ```bash
 kubectl support-bundle --load-cluster-specs
 ```
 
-The `--load-cluster-specs` flag automatically discovers all support bundle specifications that are defined in Secrets or ConfigMaps in the cluster. For a complete list of options with the `kubectl support-bundle` command, run `kubectl support-bundle --help`. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) in the Troubleshoot documentation.
+The `--load-cluster-specs` flag automatically discovers all support bundle specs that are defined in Secrets or ConfigMaps in the cluster.
+
+For a complete list of options with the `kubectl support-bundle` command, run `kubectl support-bundle --help`. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) in the Troubleshoot documentation.

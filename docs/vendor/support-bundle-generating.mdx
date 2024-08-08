@@ -23,9 +23,9 @@ A support bundle can be generated with the support-bundle CLI in Helm CLI or KOT
 
 ### Generate a Bundle from the Default Spec for Helm Installations
 
-If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a default spec to generate the support bundle.
+If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a default spec to generate the bundle. This is useful if the application does not have a support bundle spec included.
 
-Run the following command:
+To generate a support bundle from the default spec for Helm installations, the following command:
 
 ```
 kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
