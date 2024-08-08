@@ -36,22 +36,6 @@ const sidebars = {
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/distributing-overview',
-    {
-      type: 'category',
-      label: 'Quick Starts',
-      items: [
-         'vendor/quick-start-embedded',
-         'vendor/quick-start-helm',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Onboarding',
-      items: [
-        'vendor/distributing-workflow',
-        'vendor/replicated-onboarding',
-      ],
-    },
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -131,6 +115,22 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Starting with Embedded Cluster',
+      items: [
+         'vendor/quick-start-embedded',
+         'vendor/distributing-workflow',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Starting with Helm-Only',
+      items: [
+         'vendor/quick-start-helm',
+         'vendor/replicated-onboarding',
       ],
     },
     // PRODUCT DOCS
