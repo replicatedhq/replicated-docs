@@ -60,11 +60,11 @@ To get started with onboarding, first create a new application. This will be the
 
 <CreateApp/>
 
-### Task 0: Connect Your Image Registry
+### Task 2: Connect Your Image Registry
 
 <ImageRegistry/>
 
-### Task 0: Add the Replicated SDK and Package your Chart
+### Task 3: Add the Replicated SDK and Package your Chart
 
 Next, add the Replicated SDK as a dependency of your Helm chart then package the chart as a `.tgz` archive.
 
@@ -86,7 +86,7 @@ To package your Helm chart with the Replicated SDK:
 
 1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive. Do not declare the SDK in more than one chart.
 
-### Task 0: Create and Install the Initial Release {#first-release}
+### Task 4: Create and Install the Initial Release {#first-release}
 
 The initial release for your application will include the minimum files required to install a Helm chart with Embedded Cluster:
 * The Helm chart `.tgz` archive
@@ -127,7 +127,7 @@ To create the initial release for your application:
 
 After successfully installing the initial release both on a VM and in an existing cluster, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then upgrading to the new version in your development environment.
 
-### Task 0: Customize the KOTS Admin Console {#admin-console}
+### Task 5: Customize the KOTS Admin Console {#admin-console}
 
 Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console, and the status informers will be used to display the application status on the Admin Console dashboard.
 
@@ -159,7 +159,7 @@ To configure the KOTS Application custom resource:
 
 1. <TestYourChanges/>
 
-### Task 0: Set Up the Admin Console Config Screen and Map to Helm Values
+### Task 6: Set Up the Admin Console Config Screen and Map to Helm Values
 
 The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
 
@@ -213,7 +213,7 @@ To set up the Admin Console Config screen for your application:
 
 1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
 
-### Task 0: Define Preflight Checks
+### Task 7: Define Preflight Checks
 
 In the next two tasks, you will add specs for _preflight checks_ and _support bundles_.
 
@@ -221,11 +221,11 @@ In the next two tasks, you will add specs for _preflight checks_ and _support bu
 
 <Preflights/>
 
-### Task 0: Add a Basic Support Bundle Spec
+### Task 8: Add a Basic Support Bundle Spec
 
 <SupportBundles/>
 
-### Task 0: Alias Replicated Endpoints with Custom Domains
+### Task 9: Alias Replicated Endpoints with Custom Domains
 
 <CustomDomains/>
 
@@ -267,7 +267,7 @@ To add support for air gap installations:
 
 1. Install in an existing cluster. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
-### Add Application Links to the Dashboard
+### Add Application Links to the Admin Console Dashboard
 
 You can add the Kubernetes SIG Application custom resource in order to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
 

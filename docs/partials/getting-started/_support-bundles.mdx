@@ -4,7 +4,7 @@ import CreateRelease from "../getting-started/_create-promote-release.mdx"
 
 To add the default support bundle spec to your application:
 
-1. In your Helm chart `templates` directory, add the following YAML a Kubernetes Secret:
+1. In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret to enable the default support bundle spec for your application:
 
     ```yaml
     apiVersion: v1
@@ -24,7 +24,35 @@ To add the default support bundle spec to your application:
           analyzers: []
     ```
    
-   For more information, see <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>.
+1. (Recommended) At a minimum, Replicated recommends that you also add the `logs` collector to your support bundle spec. This collects logs from running Pods in the cluster.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: example
+     labels:
+       troubleshoot.sh/kind: support-bundle
+   stringData: 
+     support-bundle-spec: |-
+       apiVersion: troubleshoot.sh/v1beta2
+       kind: SupportBundle
+       metadata:
+         name: example
+       spec:
+         collectors:
+           - logs:
+               selector:
+                 - app.kubernetes.io/name=myapp
+               namespace: {{ .Release.Namespace }}
+               limits:
+                 maxAge: 720h
+                 maxLines: 10000
+   ```
+
+   For more information, see:
+   * <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+   * [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
 
 1. Update dependencies and package the chart as a `.tgz` file:
 
