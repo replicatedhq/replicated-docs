@@ -34,7 +34,7 @@ To configure a host support bundle spec for kURL:
 
     The following example shows host collectors and analyzers for the number of CPUs and the amount of memory.
 
-    ```
+    ```yaml
     apiVersion: troubleshoot.sh/v1beta2
     kind: SupportBundle
     metadata:
@@ -61,7 +61,8 @@ To configure a host support bundle spec for kURL:
               - pass:
                   message: The system has at least 8G of memory.
     ```
-1. Share the SupportBundle custom resource file with your customers to run on their hosts.
+
+1. Share the file with your customers to run on their hosts.
 
 :::important
 Do not store support bundles on public shares, as they may still contain information that could be used to infer private data about the installation, even if some values are redacted.
