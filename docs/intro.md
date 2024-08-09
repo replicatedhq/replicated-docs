@@ -43,19 +43,83 @@ pagination_next: null
         <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
     </li>
     <li>
-      <a href="intro-replicated">Introduction to Replicated</a>
+      <a href="intro-replicated">Introduction to the Commercial Software Distribution Life Cycle</a>
     </li>
     <li>
-      <a href="/vendor/distributing-overview">About Distributing Applications with Replicated</a>
+      <a href="/vendor/quick-start-embedded">Embedded Cluster Quick Start</a>
     </li>
     <li>
-      <a href="/vendor/replicated-onboarding">Replicated Quick Start</a>
+      <a href="/vendor/quick-start-helm">Helm CLI-Only Quick Start</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-kots-helm-setup">Tutorials</a>
+      <a href="/vendor/tutorial-kots-helm-setup">Getting Started Tutorials</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting Started Lab in Instruqt</a>
+    </li>
+  </ul>
+</section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/admin.png" alt="kots icon"></img>
+        <p>Replicated KOTS</p>
+    </li>
+    <li>
+        <p>A kubectl plugin and in-cluster Admin Console that installs applications in customer-controlled environments.</p>
+    </li>
+    <li>
+      <a href="intro-kots">Introduction to KOTS</a>
+    </li>
+    <li>
+      <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
+    </li>
+    <li>
+      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
+    </li>
+    <li>
+      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
+        <p>Embedded Cluster</p>
+    </li>
+    <li>
+        <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
+    </li>
+    <li>
+      <a href="/vendor/embedded-kubernetes-overview">About Embedded Kubernetes</a>
+    </li>
+    <li>
+      <a href="/vendor/embedded-overview">Using Embedded Cluster (Beta)</a>
+    </li>
+  </ul>
+</section>
+<section class="tile__container">
+  <ul>
+    <li class="tile__header">
+        <img src="images/icons/helm-logo.png" alt="helm logo" id="helm"></img>
+        <p>Helm Charts</p>
+    </li>
+    <li>
+        <p>Distribute Helm charts with Replicated.</p>
+    </li>
+    <li>
+      <a href="/vendor/distributing-overview#about-packaging-applications">About Packaging Applications with Helm</a>
+    </li>
+    <li>
+      <a href="/vendor/install-with-helm">Installing with Helm</a>
+    </li>
+    <li>
+      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
+    </li>
+    <li>
+      <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>
+    </li>
+    <li>
+      <a href="/vendor/replicated-sdk-overview">About the Replicated SDK</a>
     </li>
   </ul>
 </section>
@@ -84,7 +148,7 @@ pagination_next: null
         <p>Compatibility Matrix</p>
     </li>
     <li>
-        <p>Rapidly create Kubernetes clusters, including OpenShift.</p>
+        <p>Rapidly create Kubernetes clusters.</p>
     </li>
     <li>
       <a href="/vendor/testing-about">About Compatibility Matrix</a>
@@ -100,73 +164,6 @@ pagination_next: null
     </li>
     <li>
       <a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a>
-    </li>
-  </ul>
-  </section>
-<section class="tile__container">
-  <ul>
-    <li class="tile__header">
-        <img src="images/icons/helm-logo.png" alt="helm logo" id="helm"></img>
-        <p>Helm Charts</p>
-    </li>
-    <li>
-        <p>Distribute Helm charts with Replicated.</p>
-    </li>
-    <li>
-      <a href="/vendor/distributing-overview#about-packaging-applications">About Packaging Applications with Helm</a>
-    </li>
-    <li>
-      <a href="/vendor/install-with-helm">Installing with Helm</a>
-    </li>
-    <li>
-      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
-    </li>
-    <li>
-      <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>
-    </li>
-    <li>
-      <a href="/vendor/replicated-sdk-overview">About the Replicated SDK</a>
-    </li>
-  </ul>
-    </section>
-<section class="tile__container">
-  <ul>
-    <li class="tile__header">
-        <img src="images/icons/admin.png" alt="kots icon"></img>
-        <p>Replicated KOTS</p>
-    </li>
-    <li>
-        <p>A kubectl plugin and in-cluster Admin Console that installs applications in customer-controlled environments.</p>
-    </li>
-    <li>
-      <a href="intro-kots">Introduction to KOTS</a>
-    </li>
-    <li>
-      <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
-    </li>
-    <li>
-      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
-    </li>
-    <li>
-      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
-    </li>
-  </ul>
-  <ul>
-    <li class="tile__header">
-        <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
-        <p>Embedded Kubernetes</p>
-    </li>
-    <li>
-        <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
-    </li>
-    <li>
-      <a href="/vendor/embedded-kubernetes-overview">About Embedded Kubernetes</a>
-    </li>
-    <li>
-      <a href="/vendor/kurl-about">Introduction to kURL</a>
-    </li>
-    <li>
-      <a href="/vendor/embedded-overview">Using Embedded Cluster (Beta)</a>
     </li>
   </ul>
 </section>

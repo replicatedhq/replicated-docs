@@ -1,0 +1,185 @@
+---
+pagination_next: null
+---
+
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
+import Welcome from "../partials/getting-started/_quick-start-welcome.mdx"
+import Objectives from "../partials/getting-started/_quick-start-objectives.mdx"
+import Intro from "../partials/getting-started/_quick-start-intro.mdx"
+import NextSteps from "../partials/getting-started/_quick-start-next-steps.mdx"
+
+# Helm-Only Quick Start
+
+<Welcome/>
+
+This quick start applies to applications that will support installation with the Helm CLI only. If your application will also support installation with the Replicated KOTS and Replicated Embedded Cluster installers, see [KOTS and Embedded Cluster Quick Start](quick-start-embedded).
+
+## Objectives
+
+<Objectives/>
+
+* Installing releases using the Helm CLI
+
+## Set Up the Environment
+
+Before you begin, do the following to set up your environment:
+
+* Ensure that you have kubectl access to a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
+
+* Install the Helm CLI. To install the Helm CLI using Homebrew, run: 
+
+   ```
+   brew install helm
+   ```
+
+   For more information, including alternative installation options, see [Install Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
+
+## Quick Start Workflow
+
+<Intro/>
+
+1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+
+1. Create a new application:
+
+   1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
+
+   1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
+
+1. Create a release for the application:
+
+   1. In the Vendor Portal, click **Releases > Create release**.
+   
+      :::note
+      If a drop down is displayed, click **Create Helm-only release**.
+      :::
+   
+   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
+
+      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
+
+   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
+
+      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
+      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
+
+       The following describes the steps in the dialog:
+
+       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+          <DependencyYaml/>
+
+          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+
+       1. Update dependencies and package the chart as a `.tgz` file:
+
+           <HelmPackage/>
+   
+       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
+
+   1. On the release page, click **Promote**.
+
+   1. In the dialog, for **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
+
+      <img alt="Promote release dialog" src= "/images/release-promote.png" width="500px"/>
+
+      [View a larger image](/images/release-promote.png)
+
+   1. Click **Promote**.
+
+      :::note
+      You can ignore any error messages in the **Promote Release** dialog.
+      ::: 
+
+1. Create a customer so that you can install the release in your cluster:
+
+   1. Click **Customer > Create customer**.
+
+   1. For **Customer name**, add a name.
+
+   1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
+
+   1. Click **Save Changes**.
+
+   For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+
+1. Install the application:
+   1. On the page for the customer that you created, click **Install instructions > Helm**.
+
+      ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
+
+      [View a larger image](/images/customer-install-instructions-dropdown.png)
+
+   1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the Helm chart. Skip the step to run preflight checks.
+
+      <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
+     
+      [View a larger image](/images/helm-install-instructions-no-preflights.png)
+
+      :::note
+      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
+      ::: 
+
+   1. After you install, in the Vendor Portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
+
+      **Example**: 
+
+      ![Customers page with one customer that has an active isntance](/images/onboarding-view-telemetry.png)
+      
+      [View a larger image](/images/onboarding-view-telemetry.png)
+   
+      This instance telemetry is automatically collected and sent back to the Vendor Portal when the Replicated SDK is installed alongside the application. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+   1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
+
+1. Create a new release in the Vendor Portal and then upgrade the instance in the cluster:
+
+   1. Make a small change in the chart, such as incrementing the semantic version in the `Chart.yaml` to a new version. Then, package the chart again.
+
+   1. In the Vendor Portal, create a new release (**Releases > Create release**). Drag and drop the new chart `.tgz` and then promote the new release to the Unstable channel. 
+
+   1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is  the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
+
+      **Example**:
+
+      ```
+      helm upgrade wordpress oci://registry.replicated.com/my-app/unstable/wordpress
+      ```
+
+      See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
+
+   1. After the upgrade completes, return to the **Instance details** page in the Vendor Portal and confirm that you can see the new application version.
+
+      **Example**:
+
+      ![Instance details page](/images/onboarding-instance-details-new-version.png)
+
+      [View a larger version](/images/onboarding-instance-details-new-version.png)
+
+## Next Steps
+
+Congratulations! As part of this quick start, you:
+* Added the Replicated SDK to a Helm chart
+* Created a release with a Helm chart in the Vendor Portal
+* Installed the release in a cluster with the Helm CLI
+* Viewed telemetry for the installed instance in the Vendor Portal
+* Created a new release for the application
+* Updated the application in the cluster
+
+<NextSteps/>
+
+To get started, see [Helm CLI-Only Onboarding](replicated-onboarding).
+
+## Related Topics
+
+For more information about the Replicated Platform features mentioned in this quick start, see:
+
+* [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about)
+* [About the Replicated SDK](/vendor/replicated-sdk-overview)
+* [Installing with Helm](/vendor/install-with-helm)
+* [Managing Releases with the CLI](/vendor/releases-creating-cli)
+* [Packaging a Helm Chart for a Release](/vendor/helm-install-release)

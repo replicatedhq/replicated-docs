@@ -269,7 +269,11 @@ spec:
   {{- end }}
 ```
 
-### Add Backup Labels for Snapshots
+### Add Backup Labels for 
+
+:::note
+The snapshots feature for backup and restore is supported for existing cluster installations with KOTS only. Snapshots is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview).
+:::
 
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
