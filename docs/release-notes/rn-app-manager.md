@@ -23,13 +23,10 @@ Released on August 9, 2024
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-113-0}
-* Add's support for at install time license update checks for online installs.
-* Add's support for multi-channel licenses.
+* Adds support for multi-channel licenses.
 
 ### Bug Fixes {#bug-fixes-1-113-0}
-* Improve UI of Preflight Results page.
-* Fix error when clicking continue in Cluster Management.
-* Improve UX for license installation process.
+* Fixes an issue in Embedded Cluster where going back to the initial Cluster Management page then clicking continue did not work.
 
 ## 1.112.4
 
