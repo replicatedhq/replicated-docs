@@ -26,7 +26,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 * Adds support for multi-channel licenses.
 
 ### Bug Fixes {#bug-fixes-1-113-0}
-* Fixes an issue in Embedded Cluster where going back to the initial Cluster Management page then clicking continue did not work.
+* Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
 
 ## 1.112.4
 
