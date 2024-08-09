@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.09-5
+
+Released on August 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-09-5}
+* Fixes an issue that may cause anonymous image pulls from proxy.replicated.com to fail to resume when interrupted.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024
