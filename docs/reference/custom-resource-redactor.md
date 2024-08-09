@@ -1,14 +1,16 @@
 # Redactor (KOTS-Only)
 
-Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, database connection strings, and URLs that contain usernames and passwords.
+This topic describes the Redactor custom resource. The information in this topic applies to Replicated KOTS installations only.
 
-The default redactors can be disabled using the command line only. Replicated recommends leaving the redactors enabled.
+## Overview
 
-For Replicated KOTS, you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+Preflight checks and support bundles include built-in redactors. These built-in redactors use regular expressions to identify and hide potentially sensitive data before it is analyzed. For example, the built-in redactors hide values that match common patterns for data sources, passwords, and user IDs that can be found in standard database connection strings. They also hide environment variables with names that begin with words like token, password, or user. To view the complete list of regex patterns for the built-in redactors, see [`redact.go`](https://github.com/replicatedhq/troubleshoot/blob/main/pkg/redact/redact.go#L204) in the open-source Troubleshoot GitHub repo.
+
+For KOTS installations, you can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Defining Custom Redactors
 
-You can add custom redactors to KOTS using the following basic Redactor custom resource manifest file (`kind: Redactor`):
+You can add custom redactors for KOTS installations using the following basic Redactor custom resource manifest file (`kind: Redactor`):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
