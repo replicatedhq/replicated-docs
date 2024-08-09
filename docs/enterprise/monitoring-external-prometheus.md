@@ -1,10 +1,10 @@
 # Consuming Prometheus Metrics Externally
 
-This topic describes how to consume Prometheus metrics in embedded clusters created by Replicated kURL from a monitoring service that is outside the cluster.
+This topic describes how to consume Prometheus metrics in Replicated kURL clusters from a monitoring service that is outside the cluster.
 
 ## About the Prometheus NodePort Service
 
-By default, Prometheus is included in embedded kURL clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
+By default, Prometheus is included in kURL clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
 
 For more information about NodePort services, see [Type NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in _Services_ in the Kubernetes documentation.  
 
@@ -23,11 +23,11 @@ As shown in the example above, port 9090 on the `prometheus-k8s` service maps to
 
 ## Prerequisite
 
-Before you can consume Prometheus metrics in embedded kURL clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
+Before you can consume Prometheus metrics in kURL clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
 
 ## Consume Metrics from External Services
 
-You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by embedded kURL clusters.
+You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by kURL clusters.
 
 To consume Prometheus metrics from an external service:
 
