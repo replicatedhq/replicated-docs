@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.09-0
+
+Released on August 9, 2024
+
+### New Features {#new-features-v2024-08-09-0}
+* CMX: The cluster usage endpoint now also includes channel_id, channel_sequence and version_label.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024
