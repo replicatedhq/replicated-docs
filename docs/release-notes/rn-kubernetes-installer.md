@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.12-0
+
+Released on August 12, 2024
+
+### New Features {#new-features-v2024-08-12-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-03T04-33-23Z.
+
 ## v2024.08.07-0
 
 Released on August 7, 2024
