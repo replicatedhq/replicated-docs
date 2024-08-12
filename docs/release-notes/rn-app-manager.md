@@ -23,7 +23,8 @@ Released on August 12, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-114-0}
-* Adds support for `dropdown` and `radio` config item types. Deprecates the `select_one` config item type.
+* Adds support for the `dropdown` config item type, which creates a dropdown on the config screen.
+* Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional.
 
 ## 1.113.0
 
