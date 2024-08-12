@@ -41,7 +41,7 @@ To start, define the Admin Console Config page that gives the user a choice of "
           description: Database Options
           items:
             - name: postgres_type
-              type: select_one
+              type: radio
               title: Postgres
               default: embedded_postgres
               items:
@@ -61,7 +61,7 @@ To start, define the Admin Console Config page that gives the user a choice of "
     ```
 
     The YAML above does the following:
-    * Creates a `select_one` field with "Embedded Postgres" or "External Postgres" options
+    * Creates a field with "Embedded Postgres" or "External Postgres" radio buttons
     * Uses the Replicated RandomString template function to generate a unique default password for the embedded Postgres instance at installation time
     * Creates fields for the Postgres password and connection string, if the user selects the External Postgres option
 
