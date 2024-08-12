@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.114.0
+
+Released on August 12, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-114-0}
+* Add dropdown and radio config item types.
+
 ## 1.113.0
 
 Released on August 9, 2024
