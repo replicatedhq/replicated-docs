@@ -12,12 +12,12 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 <Kots/>
 
-KOTS communicates securely with the Replicated vendor platform to synchronize customer licenses, check for available application updates, send instance data, share customer-generated support bundles, and more.
+KOTS communicates securely with the Replicated Vendor Portal to synchronize customer licenses, check for available application updates, send instance data, share customer-generated support bundles, and more.
 
 Installing an application with KOTS provides access to feautures such as:
 
 * Support for air gap installations
-* Support for installations on VMs or bare metal servers
+* Support for installations on VMs or bare metal servers, when using Replicated Embedded Cluster or Replicated kURL
 * The KOTS Admin Console, which provides a user interface where customers can install and manage their application instances
 * Instance telemetry automatically sent to the vendor portal for instances running in customer environments
 * Strict preflight checks that block installation if environment requirements are not met
@@ -29,13 +29,13 @@ KOTS is an open source project that is maintained by Replicated. For more inform
 ## About Installing with KOTS
 
 KOTS can be used to install applications in Kubernetes clusters, including:
+* Clusters provisioned on VMs or bare metal servers with Replicated Embedded Cluster or Replicated kURL
 * Existing clusters brought by the user
-* Online or air gapped clusters
-* Embedded clusters provisioned on VMs or bare metal servers with Replicated Embedded Cluster or Replicated kURL
+* Online or air gap clusters
 
-To install an application with KOTS, users first run an installation script to install KOTS in the target cluster and deploy the KOTS Admin Console. After KOTS is installed, users can log in to the KOTS Admin Console to upload their license file, configure the application, run preflight checks, and install and deploy the application.
+To install an application with KOTS, users first run an installation script that installs KOTS in the target cluster and deploys the KOTS Admin Console. After KOTS is installed, users can log in to the KOTS Admin Console to upload their license file, configure the application, run preflight checks, and install and deploy the application.
 
-The following diagram demonstrates how a single release promoted to the Stable channel in the Replicated vendor platform can be installed using KOTS in an embedded cluster on a VM, in an air gapped cluster, and in an existing internet-connected cluster:
+The following diagram demonstrates how a single release promoted to the Stable channel in the Vendor Portal can be installed using KOTS on a VM, in an air gap cluster, and in an existing internet-connected cluster:
 
 <img alt="Embedded cluster, air gap, and existing cluster app installation workflows" src="/images/kots-installation-overview.png"/>
 
@@ -43,8 +43,8 @@ The following diagram demonstrates how a single release promoted to the Stable c
 
 As shown in the diagram above: 
 * For installations in existing internet-connected clusters, users run a command to install KOTS in their cluster.
-* For embedded cluster installations on VMs or bare metal servers, users run an installation script that both provisions a cluster in their environment and installs KOTS in the cluster.
-* For installations in air gapped clusters, users download air gap bundles for KOTS and the application from the Replicated download portal and then provide the bundles during installation.
+* For installations on VMs or bare metal servers, users run an installation script that both provisions a cluster in their environment and installs KOTS in the cluster.
+* For installations in air gap clusters, users download air gap bundles for KOTS and the application from the Replicated Download Portal and then provide the bundles during installation.
 
 All users must provide a license file to install with KOTS. After KOTS is installed in the cluster, users can access the KOTS Admin Console to provide their license file and deploy the application.
 
@@ -66,7 +66,7 @@ The following shows an example of the Admin Console dashboard for an application
 
 ### KOTS CLI
 
-The kots command-line interface (CLI) is a kubectl plugin. Customers can run commands with the KOTS CLI to install and manage their application instances with KOTS programmatically.
+The KOTS command-line interface (CLI) is a kubectl plugin. Customers can run commands with the KOTS CLI to install and manage their application instances with KOTS programmatically.
 
 For information about getting started with the KOTS CLI, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
 

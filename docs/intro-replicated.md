@@ -3,7 +3,6 @@ pagination_prev: null
 ---
 
 import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
-import Kots from "/docs/partials/kots/_kots-definition.mdx"
 
 # Introduction to Replicated
 
@@ -63,11 +62,11 @@ For more information about working with customers and custom license fields, see
 
 ### Install
 
-Applications distributed with Replicated can be installed using the Helm CLI or the Replicated KOTS installer. The Helm CLI supports installation of Helm charts and KOTS supports installation of Helm charts and Kubernetes manifests.
+Applications distributed with the Replicated Platform can support multiple different installation methods from the same application release.
 
-<Kots/>
-
-For more information, see the [KOTS documentation](intro-kots).
+The primary recommended installation methods include:
+* **Replicated Embedded Cluster**: With Embedded Cluster, ISVs can deliver Kubernetes and their application together as a single appliance, allowing customers to install on VMs or bare metal servers. Embedded Cluster uses Replicated KOTS to install the application and supports installation in online and air gap environments. For more information, see [Using Emebdded Cluster](/vendor/embedded-overview).
+* **Helm CLI**: ISVs can also support Helm installations, optionally enhanced with Replciated features like the Replicated SDK and the Replicated proxy servive. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 ### Report
 
