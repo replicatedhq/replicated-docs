@@ -1,16 +1,20 @@
 # Installing with Embedded Cluster
 
-This topic describes how to install an application in an online environments with the Embedded Cluster installer.
+This topic describes how to install an application in online environments with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Prerequisites
 
 * Ensure that your installation environments meets the Embedded Cluster requirements.
 
+* The target application release must include an Embedded Cluster Config.
+
+* Ensure that you have a customer in the Vendor Portal with the **Embedded Cluster Enabled** license field enabled.
+
 ## Install
 
 To install an application with Embedded Cluster:
 
-1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Customers** and click on the target customer. Click **Install instructions > Embedded cluster** to open the **Embedded Cluster installation instructions** dialog.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
@@ -28,9 +32,11 @@ To install an application with Embedded Cluster:
 
 1. SSH onto the machine where you will install.
 
-1. Run the first two commands in the **Embedded cluster installation instructions** dialog to download the binary and license and extract them. Ensure that the Embedded Cluster binary and the license are available in the working directory.
+1. Run the first command in the **Embedded cluster install instructions** dialog to download the release artifacts as a `.tgz`. This include the Embedded Cluster binary and the customer's license file.
 
-1. Install the application:
+1. Run the second command to extract the `.tgz`.
+
+1. Run the third command to install the release:
 
     ```
     sudo ./APP_SLUG install --license LICENSE_FILE
@@ -39,15 +45,42 @@ To install an application with Embedded Cluster:
     * `APP_SLUG` is the unique slug for the application.
     * `LICENSE_FILE` is the customer's license.
 
-1. Enter an Admin Console password when prompted.
+1. When prompted, enter a password for accessing the KOTS Admin Console.
 
-     The Admin Console URL is printed when the installation finishes.
+     The installation command takes a few minutes to complete.
 
-1. Go to the URL provided to access the Admin Console.
+1. When the installation command completes, go to the URL provided in the output.
+     
+    **Example output:** 
 
-1. Log in with the password you created during installation.
+    ```bash
+    ✔  Host files materialized
+    ? Enter an Admin Console password: ********
+    ? Confirm password: ********
+    ✔  Node installation finished
+    ✔  Storage is ready!
+    ✔  Embedded Cluster Operator is ready!
+    ✔  Admin Console is ready!
+    ✔  Finished!
+    Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
+    ```
+    At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
 
-1. 
+1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+
+1. Click **Advanced > Proceed**.
+
+1. On the HTTPS page, select **Self-signed** and click **Continue**.
+
+1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
+
+1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
+
+     The Admin Console dashboard opens.
+
+1. In the **Version** section, for version 0.1.0, click **Deploy** then **Yes, Deploy**.
+
+     The application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready.
 
 ## Install Behind a Proxy Server
 
