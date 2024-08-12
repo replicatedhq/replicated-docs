@@ -360,6 +360,13 @@ const sidebars = {
               },
               {
                 type: 'category',
+                label: 'Installing with Embedded Cluster',
+                items: [
+                  'enterprise/installing-embedded',
+                ],
+              },
+              {
+                type: 'category',
                 label: 'Installing in Existing Clusters',
                 items: [
                   'enterprise/installing-existing-cluster',
