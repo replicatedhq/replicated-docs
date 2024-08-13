@@ -3,14 +3,80 @@ pagination_prev: null
 ---
 
 import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
+import Replicated from "/docs/partials/getting-started/_replicated-definition.mdx"
+import Helm from "/docs/partials/helm/_helm-definition.mdx"
+import Kots from "/docs/partials/kots/_kots-definition.mdx"
+import KotsEntitlement from "/docs/partials/kots/_kots-entitlement-note.mdx"
+import SDKOverview from "/docs/partials/replicated-sdk/_overview.mdx"
 
 # Introduction to Replicated
 
 This topic provides an introduction to working with the Replicated Platform, including key features, supported application installation options, and interfaces.
 
-## Overview
+This topic provides an overview of distributing applications with the Replicated Platform. It includes information about the Replicated Platform features used to distribute applications, as well as the options for packaging applications.
 
-The Replicated Platform is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern enterprise software into complex, customer-controlled environments, including on-prem and air gap.
+## About the Replicated Platform
+
+<Replicated/>
+
+### About Distributing Applications with Replicated
+
+The following diagram demonstrates distributing an application with the Replicated Platform and then installing the application in a customer environment:
+
+![replicated platform features workflow](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
+As shown in the diagram above:
+* The Replicated SDK can be distributed alongside an application to get access to an in-cluster API to more easily integrate key features.
+* Replicated Compatibility Matrix can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
+* After testing, application releases can be promoted to a channel in the Replicated Vendor Portal to be shared with customers or internal teams.
+* Customers can be assigned to channels in order to control which application releases they are able to access and install.
+* Customers' unique licenses grant proxy access to private application images through the Replicated proxy service.
+* Before installation, customers can run preflight checks to verify that their environment meets installation requirements.
+* Customers can install using any method, including Helm or Replicated Embedded Cluster.
+* Instance data is automatically sent to the Vendor Portal by the Replicated SDK. If the application was installed using KOTS, then KOTS also sends instance data.
+* If any issues occur during installation or at runtime, customers can generate and send a support bundle. Support bundles can be uploaded in the Vendor Portal for analysis.
+
+For more information about the Replicated features depicted in this diagram, see:
+* [About the Replicated SDK](/vendor/replicated-sdk-overview)
+* [About Compatibility Matrix](/vendor/testing-about)
+* [About Channels and Releases](/vendor/releases-about)
+* [About Customers](/vendor/licenses-about)
+* [Introduction to KOTS](kots-intro)
+* [Installing with Helm](/vendor/install-with-helm)
+* [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about)
+* [About Instance and Event Data](/vendor/instance-insights-event-data)
+
+### Platform Interfaces
+
+This section describes the GUI, CLI, and API that software vendors use to manage applications with the Replicated Platform.
+
+#### Vendor Portal
+
+The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
+
+The following shows an example of the **Reporting** page for a customer:
+
+![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
+
+[View a larger version of this image](/images/customer-reporting-page.png)
+
+#### Replicated CLI
+
+The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+
+![terminal with Replicated CLI commands](/images/replicated-cli.gif)
+
+#### Vendor API v3
+
+<ApiAbout/>
+
+For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
+
+![landing page of the vendor api documentation site](/images/vendor-api-docs.png)
+
+## About the Commercial Software Distribution Life Cycle {#life-cycle}
 
 Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution life cycle, as shown below:
 
@@ -68,6 +134,7 @@ The primary recommended installation methods include:
 * **Replicated Embedded Cluster**: With Embedded Cluster, Kubernetes and the application are delivered together as a single appliance, allowing customers to install on VMs or bare metal servers. Embedded Cluster uses Replicated KOTS to install the application and supports installation in online and air gap environments. For more information, see [Using Emebdded Cluster](/vendor/embedded-overview).
 * **Helm**: Helm installations can be enhanced with Replicated components like the Replicated SDK, which provides instance telemetry and other features through an in-cluster API, and the Replicated proxy service, which provides proxy access to private images. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
+KOTS also supports online and air gap installations in existing clusters. For more information, see [Introduction to KOTS](kots-intro).
 ### Report
 
 When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated Vendor Portal. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
@@ -82,30 +149,26 @@ Support teams can use Replicated features to more quickly diagnose and resolve a
 - Provision customer-representative environments with Compatibility Matrix to recreate and diagnose issues. See [About Compatibility Matrix](/vendor/testing-about).
 - Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).
 
-## Vendor Platform Interfaces
+## About Packaging Applications with Replicated
 
-This section describes the GUI, CLI, and API that software vendors use to interact with the vendor platform.
+Replicated strongly recommends that all applications are packaged using Helm because many enterprise users expect to be able to install an application with Helm. 
 
-### Vendor Portal
+<Helm/>
 
-The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
+Helm-based applications distributed with Replicated can be installed with Helm or with the Replicated KOTS and Replicated Embedded Cluster installers.
 
-The following shows an example of the **Reporting** page for a customer:
+### Packaging KOTS and Embedded Cluster Releases
 
-![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
+<Kots/>
 
-[View a larger version of this image](/images/customer-reporting-page.png)
+Deploying Helm-based applications with KOTS provides additional functionality not directly available with Helm, such as the KOTS Admin Console and support for air gap installations. Additionally, when you package your application using Helm, you can support Helm and KOTS installations from the same release without having to maintain separate sets of Helm charts and application manifests.
 
-### Replicated CLI
+For more information about how to distribute and install Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+<KotsEntitlement/>
 
-![terminal with Replicated CLI commands](/images/replicated-cli.gif)
+### Packaging Helm-Only Releases
 
-### Vendor API v3
+Helm-based applications distributed with the Replicated platform can be installed with Helm. This allows you to support Helm installations for customers that prefer it, while also having access to Replicated features such as tools for licensing, releasing, and supporting applications.
 
-<ApiAbout/>
-
-For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
-
-![landing page of the vendor api documentation site](/images/vendor-api-docs.png)
+For more information about installing applications distributed with Replicated using the Helm CLI, see [Installing with Helm](install-with-helm).
