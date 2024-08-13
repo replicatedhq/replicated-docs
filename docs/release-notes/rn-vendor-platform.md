@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.06-0
+
+Released on August 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-06-0}
+* Fixes a bug that caused /require-2fa page to render blank.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024
