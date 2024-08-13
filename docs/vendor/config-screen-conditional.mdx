@@ -131,7 +131,7 @@ spec:
     items:
     - name: db_type
       title: Database Type
-      type: select_one
+      type: radio
       default: external
       items:
       - name: external
@@ -178,7 +178,7 @@ spec:
       title: Ingress Type
       help_text: | 
         Select how traffic will ingress to the appliction.
-      type: select_one
+      type: radio
       items:
       - name: ingress_controller
         title: Ingress Controller
@@ -201,7 +201,7 @@ spec:
       when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "ingress_controller") }}'
     - name: ingress_tls_type
       title: Ingress TLS Type
-      type: select_one
+      type: radio
       items:
       - name: self_signed
         title: Self Signed (Generate Self Signed Certificate)
