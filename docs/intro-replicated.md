@@ -66,7 +66,7 @@ Applications distributed with the Replicated Platform can support multiple diffe
 
 The primary recommended installation methods include:
 * **Replicated Embedded Cluster**: With Embedded Cluster, ISVs can deliver Kubernetes and their application together as a single appliance, allowing customers to install on VMs or bare metal servers. Embedded Cluster uses Replicated KOTS to install the application and supports installation in online and air gap environments. For more information, see [Using Emebdded Cluster](/vendor/embedded-overview).
-* **Helm CLI**: ISVs can also support Helm installations, optionally enhanced with Replciated features like the Replicated SDK and the Replicated proxy servive. For more information, see [Installing with Helm](/vendor/install-with-helm).
+* **Helm CLI**: ISVs can also support Helm installations, enhanced with Replicated features like the Replicated SDK and the Replicated proxy service. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 ### Report
 
