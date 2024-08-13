@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.13-1
+
+Released on August 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-13-1}
+* The Proxy Registry will now include scope in the WWW-Authenticate auth challenge response header. This fixes support for the Registry Proxy as a Sonatype Nexus Docker proxy.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024
