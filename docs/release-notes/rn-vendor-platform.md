@@ -13,13 +13,13 @@ pagination_prev: null
 Released on August 13, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-08-13-1}
-* The Proxy Registry will now include scope in the WWW-Authenticate auth challenge response header. This fixes support for the Registry Proxy as a Sonatype Nexus Docker proxy.
+* The Proxy Registry now includes scope in the WWW-Authenticate auth challenge response header. This fixes support for the Registry Proxy as a Sonatype Nexus Docker proxy.
 
 ## v2024.08.12-0
 
 Released on August 12, 2024
 
-### New Features {#new-features-v2024-08-12-0}
+### Improvements {#improvements-v2024-08-12-0}
 * Streamlines design of the rows on the **Customers** page hybrid view, as well as the customer info header on the **Manage Customer** and **Customer Reporting** pages.
 
 ## v2024.08.09-5
