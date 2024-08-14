@@ -63,6 +63,11 @@ const config = {
         '/js/activecampaign.js',
       async: true,
     },
+    {
+      src:
+        '/js/visitoranalytics.js',
+      async: true,
+    },
   ],
   
   themeConfig:

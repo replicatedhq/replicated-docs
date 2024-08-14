@@ -15,6 +15,20 @@ Released on August 9, 2024
 ### Bug Fixes {#bug-fixes-v2024-08-09-5}
 * Fixes an issue that may cause anonymous image pulls from proxy.replicated.com to fail to resume when interrupted.
 
+## v2024.08.09-0
+
+Released on August 9, 2024
+
+### New Features {#new-features-v2024-08-09-0}
+* The Compatibility Matrix cluster usage endpoint now also includes channel_id, channel_sequence and version_label.
+
+## v2024.08.06-0
+
+Released on August 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-06-0}
+* Fixes a bug that caused /require-2fa page to render blank.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024

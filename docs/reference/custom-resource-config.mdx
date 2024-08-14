@@ -512,6 +512,35 @@ The `bool` input type should use a "0" or "1" to set the value
 
 ![Boolean selector on the configuration screen](../../static/images/config-screen-bool.png)
 
+### `dropdown`
+
+> Introduced in KOTS v1.114.0
+
+The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the Admin Console config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
+
+To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    title: My Example Config
+    items:
+    - name: version
+      title: Version
+      default: version_latest
+      type: dropdown
+      items:
+      - name: version_latest
+        title: latest
+      - name: version_123
+        title: 1.2.3
+      - name: version_124
+        title: 1.2.4
+      - name: version_125
+        title: 1.2.5    
+```
+
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
 Only the contents of the file, not the name, are captured.
@@ -575,7 +604,36 @@ The `password` type is a text field that hides the character input.
 
 ![Password text field on the configuration screen](../../static/images/config-screen-password.png)
 
-### `select_one`
+### `radio`
+
+> Introduced in KOTS v1.114.0
+
+The `radio` item type includes one or more nested items that are displayed as radio buttons on the Admin Console config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
+
+To set a default value for `radio` items, set the `default` field to the name of the target nested item.
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    title: My Example Config
+    items:
+    - name: authentication_type
+      title: Authentication Type
+      default: authentication_type_anonymous
+      type: radio
+      items:
+      - name: authentication_type_anonymous
+        title: Anonymous
+      - name: authentication_type_password
+        title: Password
+```
+
+### `select_one` (Deprecated)
+
+:::important
+The `select_one` item type is deprecated and is not recommended for use. To display config items with multiple options, use the [`radio`](#radio) or [`dropdown`](#dropdown) item types instead.
+:::
 
 `select_one` items must contain nested items. The nested items are displayed as radio buttons in the Admin Console.
 
