@@ -20,13 +20,39 @@ import NextSteps from "../partials/getting-started/_quick-start-next-steps.mdx"
 
 <Welcome/>
 
-This quick start applies to applications that will be installed with the Replicated KOTS and Replicated Embedded Cluster installers. If your application will support Helm CLI installations only, see [Helm CLI-Only Quick Start](quick-start-helm).
+This quick start applies to applications that will be installed with Replicated Embedded Cluster. If your application will support Helm installations only, see [Helm-Only Quick Start](quick-start-helm).
 
-## Objectives
+## Introduction
+
+#### Objectives
 
 <Objectives/>
 
 * Installing and updating applications on a VM with Embedded Cluster
+
+#### Key Terminology
+
+The following are some key Replicated Platform terms that are helpful to know before getting started:
+
+* **KOTS**: Replicated KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments.
+
+* **Admin Console**: The Admin Console is the user interface for installing and managing applications with KOTS.
+
+* **Embedded Cluster**: Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application. Each version of Embedded Cluster includes a specific version of Replicated KOTS, which provides the Admin Console.
+
+* **Replicated SDK**: The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides access to telemetry and custom metrics on instances of your application running in customer environments as well as an in-cluster API.
+
+* **Vendor Portal**: The user interface for interacting with the Replicated Platform. 
+
+* **Replicated CLI**: The CLI for interacting with the Replicated Platform.
+
+* **Customer**: In the Vendor Portal, a customer represents a single licensed user of your software.
+
+* **Release**: A release represents a single version of your application. Releases contain the files (Helm charts and YAML manifests) that will be distributed to your customers. For example, an Embedded Cluster release includes the application Helm chart, the Embedded Cluster Config, and a KOTS manifest that describes the Helm chart.
+
+* **Channel**: Each release is promoted to one or more channels, which are used to control which customers can access the release. For example, vendors might keep separate channels for internal-only, experimental, beta, and generally available (GA) releases. Customers and internal users can access the releases promoted to the channel where they are assigned.
+
+* **Application**: Within a Vendor Portal team, an application is the top-level container that groups a set of customers, releases, and channels. It is common for teams to create multiple different applications for testing purposes.
 
 ## Set Up the Environment
 
