@@ -24,7 +24,7 @@ To add the default support bundle spec to your application:
           analyzers: []
     ```
    
-1. (Recommended) At a minimum, Replicated recommends that you also add the `logs` collector to your support bundle spec. This collects logs from running Pods in the cluster.
+1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
 
    ```yaml
    apiVersion: v1
@@ -53,6 +53,8 @@ To add the default support bundle spec to your application:
    For more information, see:
    * <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
    * [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
+
+1. (Recommended) Ensure that any preflight checks that you added are also include in your support bundle spec. This ensures that support bundles collect at least the same information collected when running preflight checks. 
 
 1. Update dependencies and package the chart as a `.tgz` file:
 
