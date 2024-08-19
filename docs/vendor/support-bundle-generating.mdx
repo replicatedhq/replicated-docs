@@ -7,46 +7,32 @@ import GenerateBundleAdminConsole from "../partials/support-bundles/_generate-bu
 
 # Generating Support Bundles
 
-This topic describes how to generate support bundles. It includes procedures for Helm CLI installations and Replicated KOTS installations.
+This topic describes how to generate support bundles in existing clusters using the kubectl support-bundle plugin.
 
-## Generate a Bundle Using the CLI
+## Overview
 
-A support bundle can be generated with the support-bundle CLI in Helm CLI or KOTS installations.
+You can use the open-source support-bundle kubectl plugin to generate support bundles for an application. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) in the Troubleshoot documentation.
 
-### Prerequisite: Install the support-bundle Plugin
+## Prerequisite: Install the support-bundle Plugin
 
 <InstallPlugin/>
 
-### Generate a Bundle from a Custom Spec
+## Generate a Bundle
 
 <GenerateBundle/>
 
-### Generate a Bundle from the Default Spec for Helm Installations
+## Generate a Bundle when a Helm Installation Fails
 
-If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a default spec to generate the bundle. This is useful if the application does not have a support bundle spec included.
+If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a Replicated default specification to generate the support bundle.
 
-To generate a support bundle from the default spec for Helm installations, the following command:
+Run the following command:
 
-```
+```bash
 kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
 ```
 
-### Generate a Bundle from the Default Spec for KOTS (KOTS Only)
+## Related Topics
 
-Replicated provides a default support bundle spec for KOTS that you can use to generate support bundles when an installation fails or when the application does not include a spec.
-
-<GenerateBundleDefaultKots/>
-
-### Generate a Bundle for Embedded Cluster (KOTS Only)
-
-<EmbeddedClusterSupportBundle/>
-
-### Generate a Host Bundle for kURL (KOTS Only)
-
-Host support bundles can be used to collect information directly from the host where a kURL cluster is running, such as CPU, memory, available block devices, and the operating system.
-
-<GenerateBundleHost/>
-
-## Generate a Bundle from the Admin Console (KOTS Only)
-
-<GenerateBundleAdminConsole/>
+* [Generating Embedded Cluster Support Bundles (Beta)](/vendor/support-bundle-embedded)
+* [Configuring and Generating kURL Host Support Bundles](/vendor/support-host-support-bundles)
+* [Generating Support Bundles for KOTS Installations](/enterprise/troubleshooting-an-app)
