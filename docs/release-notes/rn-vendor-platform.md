@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.19-1
+
+Released on August 19, 2024
+
+### New Features {#new-features-v2024-08-19-1}
+* Update Embedded Cluster install instructions to use custom domain when applicable.
+
 ## v2024.08.13-1
 
 Released on August 13, 2024
