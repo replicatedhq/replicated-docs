@@ -11,30 +11,28 @@ To generate a support bundle:
 
      The output looks similar to the following:
 
-     ```bash
-            __4___
-        _  \ \ \ \   Welcome to APP_SLUG debug shell.
-        <'\ /_/_/_/   This terminal is now configured to access your cluster.
-        ((____!___/) Type 'exit' (or CTRL+d) to exit.
-        \0\0\0\0\/  Happy hacking.
-        ~~~~~~~~~~~
-        root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/k0s/pki/admin.conf"
-        root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
-        root@alex-ec-2:/home/alex# source <(kubectl completion bash)
-        root@alex-ec-2:/home/alex# source /etc/bash_completion
+    ```bash
+        __4___
+    _  \ \ \ \   Welcome to APP_SLUG debug shell.
+    <'\ /_/_/_/   This terminal is now configured to access your cluster.
+    ((____!___/) Type 'exit' (or CTRL+d) to exit.
+    \0\0\0\0\/  Happy hacking.
+    ~~~~~~~~~~~
+    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/k0s/pki/admin.conf"
+    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
+    root@alex-ec-2:/home/alex# source /etc/bash_completion
     ```
 
-    The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
+     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and the preflight and support-bundle plugins is added to PATH.
 
-    :::note
-    The shell command cannot be run on non-controller nodes.
-    :::
+     :::note
+     The shell command cannot be run on non-controller nodes.
+     :::
 
-2. Generate the support bundle:
+2. Generate the support bundle using the default Embedded Cluster spec and the `--load-cluster-specs` flag:
 
    ```bash
    kubectl support-bundle  --load-cluster-specs /var/lib/embedded-cluster/support/host-support-bundle.yaml
    ```
-   :::note
-   The `--load-cluster-specs` flag automatically discovers all support bundle specs that are defined in Secrets or ConfigMaps in the cluster. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) in the Troubleshoot documentation.
-   :::
+   

@@ -119,7 +119,7 @@ This section provides an overview of support bundles, including how support bund
 
 Support bundles collect and analyze troubleshooting data from customer environments, helping both users and support teams diagnose problems with application deployments.
 
-Support bundles can collect a variety of important troubleshooting data from customer environments, such as:
+Support bundles can collect a variety of important cluster-level data from customer environments, such as:
 * Pod logs
 * Node resources and status
 * The status of replicas in a Deployment
