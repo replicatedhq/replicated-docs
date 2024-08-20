@@ -191,12 +191,18 @@ Before you begin, do the following to set up your environment:
    1. In the Vendor Portal, open the **Helm Install Instructions** for the customer again.
 
       The **Helm Install Instructions** dialog now includes steps for installing the preflight plugin and running preflight checks.
+
+      <img alt="Helm install instructions with preflight commands" src="/images/helm-install-instructions-preflights.png" width="550px"/>
+
+      [View a larger version of this command](/images/helm-install-instructions-preflights.png)
    
-   1. Log in to the registry.
+   1. Run the first command to log in to the registry.
    
-   1. Install the preflight plugin.
+   1. Run the second command to install the preflight plugin.
    
-   1. Run preflight checks.
+   1. Run the third command to run preflight checks.
+
+      The results of the preflight checks are displayed in the CLI.
 
    1. Instead of running the install command, use Helm to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is the same as the `helm install` command, replacing `install` with `upgrade`:
 
@@ -207,12 +213,6 @@ Before you begin, do the following to set up your environment:
       See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
 
    1. After the upgrade completes, return to the **Instance details** page in the Vendor Portal and confirm that you can see the new application version.
-
-      **Example**:
-
-      ![Instance details page](/images/onboarding-instance-details-new-version.png)
-
-      [View a larger version](/images/onboarding-instance-details-new-version.png)
 
 1. Uninstall the Helm chart and the Replicated SDK from your cluster:
 
