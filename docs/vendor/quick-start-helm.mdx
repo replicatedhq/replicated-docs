@@ -8,6 +8,8 @@ import Welcome from "../partials/getting-started/_quick-start-welcome.mdx"
 import Objectives from "../partials/getting-started/_quick-start-objectives.mdx"
 import Intro from "../partials/getting-started/_quick-start-intro.mdx"
 import NextSteps from "../partials/getting-started/_quick-start-next-steps.mdx"
+import CreateAccount from "../partials/getting-started/_quick-start-create-account.mdx"
+import CreateApp from "../partials/getting-started/_quick-start-create-app.mdx"
 
 # Helm-Only Quick Start
 
@@ -19,7 +21,7 @@ This quick start applies to applications that will support installation with the
 
 <Objectives/>
 
-* Installing releases using the Helm CLI
+* Installing and updating releases using the Helm CLI
 
 ## Set Up the Environment
 
@@ -35,71 +37,60 @@ Before you begin, do the following to set up your environment:
 
    For more information, including alternative installation options, see [Install Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
 
-## Quick Start Workflow
+## Quick Start
 
 <Intro/>
 
-1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+1. <CreateAccount/>
 
-1. Create a new application:
+1. <CreateApp/>
 
-   1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
+1. Get the sample Bitnami Gitea Helm chart and add the Replicated SDK as a dependency:
 
-   1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
+   1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
 
-1. Create a release for the application:
+      ```
+      helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
+      ```
+      For more information about this chart, see the [bitnami/gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea) repository in GitHub.
 
-   1. In the Vendor Portal, click **Releases > Create release**.
+   1. Change to the new `gitea` directory that was created:
+      
+      ```bash
+      cd gitea
+      ```
+
+   1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+      <DependencyYaml/>
+
+      The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
+
+      <HelmPackage/>
+
+1. Add the chart archive to a release and promote the release to the Unstable channel:
    
-      :::note
-      If a drop down is displayed, click **Create Helm-only release**.
-      :::
-   
-   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
-
-      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
-
-   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
-
-      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
-
-       The following describes the steps in the dialog:
-
-       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
-
-          <DependencyYaml/>
-
-          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
-
-       1. Update dependencies and package the chart as a `.tgz` file:
-
-           <HelmPackage/>
-   
-       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
-
-   1. On the release page, click **Promote**.
-
-   1. In the dialog, for **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
-
-      <img alt="Promote release dialog" src= "/images/release-promote.png" width="500px"/>
-
-      [View a larger image](/images/release-promote.png)
-
-   1. Click **Promote**.
-
-      :::note
-      You can ignore any error messages in the **Promote Release** dialog.
-      ::: 
+     ```bash
+     replicated release create --chart=gitea-1.0.6.tgz --promote=Unstable
+     ```
 
 1. Create a customer so that you can install the release in your cluster:
 
-   1. Click **Customer > Create customer**.
+   1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
 
-   1. For **Customer name**, add a name.
+      The **Create a new customer** page opens:
+
+      ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+
+      [View a larger version of this image](/images/create-customer.png)
+
+   1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
 
    1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+   1. For **License type**, select **Development**.
 
    1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
 
@@ -114,14 +105,14 @@ Before you begin, do the following to set up your environment:
 
       [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-   1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the Helm chart. Skip the step to run preflight checks.
+   1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the chart in your cluster. Skip the step to run preflight checks.
 
       <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
      
       [View a larger image](/images/helm-install-instructions-no-preflights.png)
 
       :::note
-      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
+      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later.
       ::: 
 
    1. After you install, in the Vendor Portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
@@ -136,13 +127,15 @@ Before you begin, do the following to set up your environment:
 
    1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
 
-1. Create a new release in the Vendor Portal and then upgrade the instance in the cluster:
+1. <Preflights/>
 
-   1. Make a small change in the chart, such as incrementing the semantic version in the `Chart.yaml` to a new version. Then, package the chart again.
+   1. Create and promote a new release:
 
-   1. In the Vendor Portal, create a new release (**Releases > Create release**). Drag and drop the new chart `.tgz` and then promote the new release to the Unstable channel. 
+      ```bash
+      replicated release create --chart-archive= --promote Unstable
+      ```
 
-   1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is  the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
+   1. In your cluster, use Helm to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
 
       **Example**:
 
@@ -160,6 +153,18 @@ Before you begin, do the following to set up your environment:
 
       [View a larger version](/images/onboarding-instance-details-new-version.png)
 
+1. Uninstall the Helm chart and the Replicated SDK from your cluster:
+
+   ```
+   helm uninstall gitea
+   ```
+
+1. Delete the `gitea` namespace:
+
+   ```bash
+   kubectl delete namespace gitea
+   ````
+
 ## Next Steps
 
 Congratulations! As part of this quick start, you:
@@ -172,7 +177,7 @@ Congratulations! As part of this quick start, you:
 
 <NextSteps/>
 
-To get started, see [Helm CLI-Only Onboarding](replicated-onboarding).
+To get started, see [Helm-Only Onboarding](replicated-onboarding).
 
 ## Related Topics
 

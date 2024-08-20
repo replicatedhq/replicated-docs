@@ -22,6 +22,7 @@ import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
 import CustomEntitlements from "../partials/getting-started/_add-license-entitlements.mdx"
 import Intro from "../partials/getting-started/_onboard-intro.mdx"
+import UpdateChecks from "../partials/getting-started/_sdk-api-update-checks.mdx"
 
 
 # Helm-Only Onboarding
@@ -121,12 +122,4 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 
 ### Add Update Checks to Your Application Using the Replicated SDK API
 
-The Replicated SDK provides an in-cluster API that can be used to integrate Replicated functionality with your application.
-
-The Replicated SDK API `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. You can use the `api/v1/app/updates` endpoint to allow users to easily check for available updates for your application.
-
-To do so, you can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to make real changes in the Vendor Portal or in your environment.
-
-For more information, see:
-* [Support Update Checks in your Application](/reference/replicated-sdk-apis#support-update-checks-in-your-application) in _Replicated SDK API_
-* [Developing Against the SDK API](/vendor/replicated-sdk-development)
+<UpdateChecks/>
