@@ -2,4 +2,8 @@ To create an application:
 
 1. Create a new application using the Replicated CLI or the Vendor Portal. For the application name, use an official name for your application. You will not be able to modify the name. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
 
-1. Set the `REPLICATED_APP` environment variable to the application that you created.
+1. Set the `REPLICATED_APP` environment variable to the unique slug of the application that you created. See [Set Environment Variables](/reference/replicated-cli-installing#replicated_app) in _Installing the Replicated CLI_. For example:
+
+   ```bash
+   export REPLICATED_APP=my-app
+   ```

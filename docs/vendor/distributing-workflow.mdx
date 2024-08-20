@@ -54,6 +54,8 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 ## Onboard
 
+Complete the tasks in this section to onboard your application. When you are done, you can continue to [Next Steps](#next-steps) to add more features.
+
 ### Task 1: Create An Application
 
 To get started with onboarding, first create a new application. This will be the official Vendor Portal application used by your team to create and promote both internal and customer-facing releases.
@@ -84,18 +86,20 @@ To package your Helm chart with the Replicated SDK:
 
     <UnauthorizedError/>
 
-1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive. Do not declare the SDK in more than one chart.
+1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command. Do not declare the SDK in more than one chart.
 
 ### Task 4: Create and Install the Initial Release {#first-release}
 
-The initial release for your application will include the minimum files required to install a Helm chart with Embedded Cluster:
+After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with Embedded Cluster:
 * The Helm chart `.tgz` archive
-* [KOTS HelmChart](/reference/custom-resource-helmchart-v2) custom resource
-* [Embedded Cluster Config](/reference/embedded-config) manifest
+* [KOTS HelmChart custom resource](/reference/custom-resource-helmchart-v2)
+* [Embedded Cluster Config](/reference/embedded-config)
 
-To create the initial release for your application:
+If you have multiple charts, you will add each chart archive to the release, plus a corresponding KOTS HelmChart custom resource for each archive.
 
-1. In your local Helm chart directory, create a subdirectory named `manifests` where you will add the files for the release.
+To create the first release for your application:
+
+1. In the local directory for your Helm chart, create a subdirectory named `manifests` where you will add the files for the release.
 
 1. In the `manifests` directory:
 
@@ -107,11 +111,11 @@ To create the initial release for your application:
     
       For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-   1. Create a `[CHART_NAME].yaml` file (for example, `gitea.yaml`). In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+   1. Create a new YAML file. In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
    
-      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. As part of configuring the KOTS HelmChart custom resource, you will learn how to rewrite image names and add image pull secrets to enable the Replicated proxy service.
+      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. As part of configuring the KOTS HelmChart custom resource, you will rewrite image names and add image pull secrets to enable the Replicated proxy service.
 
-   1. If your application is deployed as multiple Helm charts, add a separate HelmChart custom resource for each Helm chart archive in the release.
+   1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
 1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
@@ -119,7 +123,7 @@ To create the initial release for your application:
     replicated release create --yaml-dir . --promote Unstable
     ```
 
-1. Install the release in your development environment:
+1. Install the release in your development environment to test:
 
    1. Install with Embedded Cluster on a VM. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary) and [Install](/vendor/embedded-overview#install) in _Using Embedded Cluster_.
 
@@ -129,13 +133,13 @@ After successfully installing the initial release both on a VM and in an existin
 
 ### Task 5: Customize the KOTS Admin Console {#admin-console}
 
-Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console, and the status informers will be used to display the application status on the Admin Console dashboard.
+Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console and the Replicated Download Portal. The status informers will be used to display the application status on the Admin Console dashboard.
 
 To configure the KOTS Application custom resource:
 
 1. In your `manifests` directory, create a new `kots-app.yaml` file.
 
-1. In the `kots-app.yaml` file, add the [KOTS Application](/reference/custom-resource-application) custom resource YAML and configure the `title`, `icon`, and `statusInformers` fields.
+1. In the `kots-app.yaml` file, add the [KOTS Application](/reference/custom-resource-application) custom resource YAML and set the `title`, `icon`, and `statusInformers` fields.
 
    **Example:**
 
@@ -203,8 +207,8 @@ To set up the Admin Console Config screen for your application:
 1. In `manifests`, open the KOTS HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values.
 
    For more information, see:
-   * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs).
-   * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
+   * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs)
+   * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup)
    * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
 1. <CreateRelease/>
@@ -241,17 +245,17 @@ Existing KOTS releases that include one or more Helm charts can be installed wit
 Before you test Helm installations for your application, you can complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and Helm.
 :::
 
-To support Helm CLI installations:
+To support and test Helm installations:
 
 <EnableProxyService/>
 
 ### Add Support for Air Gap Installations
 
-KOTS supports installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images.
+KOTS and Embedded Cluster support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images.
 
 You can use the Vendor Portal to build and download the air gap bundles needed to install in an air gap existing cluster with KOTS or in an air gap VM or bare metal server with Embedded Cluster.
 
-To add support for air gap installations, complete the following tasks:
+To add support for air gap installations:
 
 1. If there are any images that need to be included in the `.airgap` bundle that are _not_ defined in your application Pod specs, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
@@ -261,13 +265,13 @@ To add support for air gap installations, complete the following tasks:
     If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
     :::
 
-1. If you have not done so already as part of [Task 0: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites images for air gap installations. See [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. See [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
 
 1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Creating and Managing Customers](/vendor/releases-creating-customer).
 
-1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on a VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
 ### Add Application Links to the Admin Console Dashboard
 
@@ -275,7 +279,7 @@ You can add the Kubernetes SIG Application custom resource in order to add a lin
 
 For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
-### Refactor the Preflight and Support Bundles Specs
+### Update the Preflight and Support Bundles Specs
 
 <CustomizeSupportBundles/>
 

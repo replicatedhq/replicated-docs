@@ -1,5 +1,11 @@
 By default, the Vendor Portal includes Unstable, Beta, and Stable channels. You can customize the channels in the Vendor Portal based on your application needs.
 
+Consider the following recommendations:
+* Use the Stable channel for your primary release cadence. Releases should be promoted to the Stable channel only as frequently as your average customer can consume new releases. Typically, this is no more than monthly. However, this cadence varies depending on the customer base.
+* If you have a SaaS product, you might want to create an "Edge" channel where you promote the latest SaaS releases.
+* You can consider a “Long Term Support” channel where you promote new releases less frequently and support those releases for longer.
+* It can be useful to create channels for each feature branch so that internal teams reviewing a PR can easily get the installation artifacts as well as review the code. You can automate channel creation as part of a pipeline or Makefile.
+
 For more information, see:
 * [About Channels and Releases](releases-about-releases)
 * [Creating and Editing Channels](/vendor/releases-creating-channels)
