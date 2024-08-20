@@ -10,6 +10,8 @@ import Intro from "../partials/getting-started/_quick-start-intro.mdx"
 import NextSteps from "../partials/getting-started/_quick-start-next-steps.mdx"
 import CreateAccount from "../partials/getting-started/_quick-start-create-account.mdx"
 import CreateApp from "../partials/getting-started/_quick-start-create-app.mdx"
+import Preflights from "../partials/getting-started/_quick-start-preflights.mdx"
+import InstanceInsights from "../partials/getting-started/_quick-start-instance-insights.mdx"
 
 # Helm-Only Quick Start
 
@@ -75,6 +77,18 @@ Before you begin, do the following to set up your environment:
      ```bash
      replicated release create --chart=gitea-1.0.6.tgz --promote=Unstable
      ```
+     **Example output**:
+     ```bash
+     You are creating a release that will only be installable with the helm CLI.
+     For more information, see
+     https://docs.replicated.com/vendor/helm-install#about-helm-installations-with-replicated
+
+     • Reading chart from gitea-1.0.6.tgz ✓
+     • Creating Release ✓
+       • SEQUENCE: 1
+     • Promoting ✓
+       • Channel 2kvspHtBIWqsNORGJw4KDv3L8eI successfully set to release 1
+     ```
 
 1. Create a customer so that you can install the release in your cluster:
 
@@ -99,33 +113,19 @@ Before you begin, do the following to set up your environment:
    For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 1. Install the application:
-   1. On the page for the customer that you created, click **Install instructions > Helm**.
+   1. On the page for the customer that you created, click **Helm Install Instructions**.
 
-      ![Customer install instructions dropdown](/images/customer-install-instructions-dropdown.png)
-
-      [View a larger image](/images/customer-install-instructions-dropdown.png)
-
-   1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the chart in your cluster. Skip the step to run preflight checks.
+   1. Run the commands in the **Helm install instructions** dialog to log in to the Replicated registry and install the chart in your cluster. Skip the steps to run preflight checks and install the Replicated SDK in integration mode.
 
       <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
      
       [View a larger image](/images/helm-install-instructions-no-preflights.png)
 
       :::note
-      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later.
+      Ignore the **No preflight checks found** warning. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later.
       ::: 
 
-   1. After you install, in the Vendor Portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
-
-      **Example**: 
-
-      ![Customers page with one customer that has an active isntance](/images/onboarding-view-telemetry.png)
-      
-      [View a larger image](/images/onboarding-view-telemetry.png)
-   
-      This instance telemetry is automatically collected and sent back to the Vendor Portal when the Replicated SDK is installed alongside the application. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
-
-   1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
+   <InstanceInsights/>
 
 1. <Preflights/>
 
