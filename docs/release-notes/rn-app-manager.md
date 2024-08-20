@@ -16,6 +16,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.115.0
+
+Released on August 20, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-115-0}
+* Display node join command on initial install in the Cluster Management page.
+* Add check for updates button for newly available versions.
+
 ## 1.114.0
 
 Released on August 12, 2024
