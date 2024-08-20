@@ -249,13 +249,20 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).    
 
-1. <Preflights/>  
+1. <Preflights/>
 
    1. Move the chart archive to the `manifests` directory:
 
       ```bash
-      mv gitea-1.0.6.tgz manifests
+      mv gitea-1.0.7.tgz manifests
       ``` 
+
+   1. In the KOTS HelmChart custom resource, update the `chartVersion`:
+
+      ```yaml
+      # KOTS HelmChart
+      chartVersion: 1.0.7
+      ```   
 
    1. Create and promote the new release:  
 

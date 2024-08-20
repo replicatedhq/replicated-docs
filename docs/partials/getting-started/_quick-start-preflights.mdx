@@ -45,6 +45,13 @@ Create a new release that adds preflight checks to the application:
       ```
       The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
+   1. In the `Chart.yaml` file, increment the version to 1.0.7:
+
+      ```yaml
+      # Chart.yaml
+      version: 1.0.7
+      ```
+   
    1. Update dependencies and package the chart to a `.tgz` chart archive:
 
       ```bash
