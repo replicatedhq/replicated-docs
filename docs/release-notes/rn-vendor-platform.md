@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.20-5
+
+Released on August 20, 2024
+
+### New Features {#new-features-v2024-08-20-5}
+* Support dropdown and radio input types in Config preview.
+
 ## v2024.08.13-1
 
 Released on August 13, 2024
