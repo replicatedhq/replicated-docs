@@ -21,13 +21,14 @@ import CustomizeSupportBundles from "../partials/getting-started/_customize-supp
 import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
 import CustomEntitlements from "../partials/getting-started/_add-license-entitlements.mdx"
+import Intro from "../partials/getting-started/_onboard-intro.mdx"
 
 
 # Helm-Only Onboarding
 
-This topic describes how to onboard applications that will support Helm CLI installations only.
+This topic describes how to onboard applications that will support Helm installations only.
 
-If your application will also support KOTS and Embedded Cluster installations in addition to Helm CLI installations, see [KOTS and Embedded Cluster Onboarding](distributing-workflow). 
+If your application will also support KOTS and Embedded Cluster installations in addition to Helm installations, see [KOTS and Embedded Cluster Onboarding](distributing-workflow). 
 
 ## Before You Begin
 
@@ -47,43 +48,43 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 <Community/>
 
-## Onboarding
+## Onboard
 
-### Task 0: Create an Application
+<Intro/>
+
+### Task 1: Create an Application
 
 <CreateApp/>
 
-### Task 0: Connect Your Image Registry
+### Task 2: Connect Your Image Registry
 
 <ImageRegistry/>
 
-### Task 0: Add the Replicated SDK and Package Your Chart
+### Task 3: Add the Replicated SDK and Package Your Chart
 
 <PackageSdk/>
 
 <DependencyYaml/>
 
-### Task 0: Enable the Proxy Service and Add Your Helm Chart to a Release
+### Task 4: Enable the Proxy Service and Add Your Helm Chart to a Release
 
 The Replicated proxy service allows you to grant proxy access to your application images without sharing registry credentials with your users.
 
-To enable the proxy service for Helm CLI installations:
+To enable the proxy service for Helm installations:
 
 <EnableProxyService/>
 
-### Task 0: Add a Custom Domain for the Proxy Service
+### Task 5: Add a Custom Domain for the Proxy Service
 
 <CustomDomains/>
 
-### Task 0: Add Preflight Checks and Support Bundles
+### Task 6: Add Preflight Checks and Support Bundles
 
 <AboutPreflightsSupportBundles/>
 
-#### Task 0a: Define Preflight Checks
-
 <Preflights/>
 
-#### Task 0b: Add the Default Support Bundle Spec
+#### Task 7: Add the Default Support Bundle Spec
 
 <SupportBundles/>
 
@@ -102,7 +103,7 @@ For more information, see:
 
 After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order.
 
-### Refactor the Preflight and Support Bundle Specs
+### Update the Preflight and Support Bundle Specs
 
 <CustomizeSupportBundles/>
 
@@ -117,3 +118,15 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 ### Customize Release Channels
 
 <CustomChannels/>
+
+### Add Update Checks to Your Application Using the Replicated SDK API
+
+The Replicated SDK provides an in-cluster API that can be used to integrate Replicated functionality with your application.
+
+The Replicated SDK API `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. You can use the `api/v1/app/updates` endpoint to allow users to easily check for available updates for your application.
+
+To do so, you can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to make real changes in the Vendor Portal or in your environment.
+
+For more information, see:
+* [Support Update Checks in your Application](/reference/replicated-sdk-apis#support-update-checks-in-your-application) in _Replicated SDK API_
+* [Developing Against the SDK API](/vendor/replicated-sdk-development)
