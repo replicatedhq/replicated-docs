@@ -113,8 +113,21 @@ Before you begin, do the following to set up your environment:
    For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 1. Install the application:
-   1. On the page for the customer that you created, click **Helm Install Instructions**.
 
+   1. Create a `gitea` namespace for the installation:
+
+      ```
+      kubectl create namespace gitea
+      ```
+
+   1. Update the current kubectl context to target the new `gitea` namespace. This ensures that the chart is installed in the `gitea` namespace without requiring you to set the `--namespace` flag with the `helm install` command:
+
+      ```
+      kubectl config set-context --namespace=gitea --current
+      ```
+
+   1. In the Vendor Portal, on the page for the customer that you created, click **Helm Install Instructions**.
+   
    1. Run the commands in the **Helm install instructions** dialog to log in to the Replicated registry and install the chart in your cluster. Skip the steps to run preflight checks and install the Replicated SDK in integration mode.
 
       <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
@@ -125,6 +138,32 @@ Before you begin, do the following to set up your environment:
       Ignore the **No preflight checks found** warning. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later.
       ::: 
 
+   1. After the installation command completes, you can see that both the `gitea` Deployment and the Replicated SDK `replicated` Deployment were created:
+
+      ```
+      kubectl get deploy
+      ```
+      **Example output:**
+      ```
+      NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+      gitea        0/1     1            0           35s
+      replicated   1/1     1            1           35s
+      ```   
+
+   1. Watch the `gitea` LoadBalancer service until an external IP is available:
+
+      ```
+      kubectl get svc gitea --watch
+      ```
+
+   1. After an external IP address is available for the `gitea` LoadBalancer service, confirm that you can open the application in a browser by going to `http://SERVICE_IP`, where `SERVICE_IP` is the external IP address for the `gitea` LoadBalancer service.
+
+       <img alt="Gitea app landing page" src="/images/gitea-app.png" width="600px"/>
+ 
+       [View a larger version of this image](/images/gitea-app.png)   
+
+1. View instance insights for the installation:
+
    <InstanceInsights/>
 
 1. <Preflights/>
@@ -132,15 +171,37 @@ Before you begin, do the following to set up your environment:
    1. Create and promote a new release:
 
       ```bash
-      replicated release create --chart-archive= --promote Unstable
+      replicated release create --chart=gitea-1.0.6.tgz --promote Unstable
+      ```
+      **Example output**:
+      ```bash
+      You are creating a release that will only be installable with the helm CLI.
+      For more information, see
+      https://docs.replicated.com/vendor/helm-install#about-helm-installations-with-replicated
+
+      • Reading chart from gitea-1.0.6.tgz ✓
+      • Creating Release ✓
+        • SEQUENCE: 2
+      • Promoting ✓
+        • Channel 2kvspHtBIWqsNORGJw4KDv3L8eI successfully set to release 2
       ```
 
-   1. In your cluster, use Helm to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
+1. Upgrade to the new version:
 
-      **Example**:
+   1. In the Vendor Portal, open the **Helm Install Instructions** for the customer again.
+
+      The **Helm Install Instructions** dialog now includes steps for installing the preflight plugin and running preflight checks.
+   
+   1. Log in to the registry.
+   
+   1. Install the preflight plugin.
+   
+   1. Run preflight checks.
+
+   1. Instead of running the install command, use Helm to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is the same as the `helm install` command, replacing `install` with `upgrade`:
 
       ```
-      helm upgrade wordpress oci://registry.replicated.com/my-app/unstable/wordpress
+      helm upgrade gitea oci://registry.replicated.com/gitea/unstable/gitea
       ```
 
       See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
