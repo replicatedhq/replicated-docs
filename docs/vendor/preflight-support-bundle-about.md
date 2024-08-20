@@ -135,9 +135,9 @@ Support bundles then use the data collected to provide insights to users on pote
 
 For installations on VMs or bare metal servers with [Replicated Embedded Cluster](/vendor/embedded-overview) or [Replicated kURL](/vendor/kurl-about), it is possible to generate a support bundle that includes host-level information to help troubleshoot failures related to host configuration like DNS, networking, or storage problems.
 
-For Embedded Cluster installations, a default spec can be used to generate support bundles that include cluster- and host-level information. See [Generating Embedded Cluster Support Bundles](/vendor/support-bundle-embedded).
+For Embedded Cluster installations, a default spec can be used to generate support bundles that include cluster- and host-level information. See [Generating Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
-For kURL installations, vendors can customize a host support bundle spec for their application. See [Customizing and Generating kURL Host Support Bundles](/vendor/support-host-support-bundles).
+For kURL installations, vendors can customize a host support bundle spec for their application. See [Generating Host Bundles for kURL](/vendor/support-host-support-bundles).
 
 ### Customizing Support Bundles
 
