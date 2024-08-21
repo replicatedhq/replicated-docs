@@ -14,7 +14,7 @@ pagination_prev: null
 Released on August 20, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-08-20-4}
-* Fixes a bug that caused Embedded Cluster downloads to not be shown in the Download Portal.
+* Fixes a bug that caused Embedded Cluster installation artifacts to not be shown in the Download Portal.
 
 ## v2024.08.19-1
 
