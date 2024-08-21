@@ -38,13 +38,15 @@ Embedded Cluster installations in air gap environments have the following limita
 
 ## Prerequisites
 
+Before you install, complete the following prerequisites:
+
 <Prerequisites/>
 
 ## Install
 
 To install with Embedded Cluster in air gap environments:
 
-1. Build the air gap bundle for the release:
+1. In the [Vendor Portal](https://vendor.replicated.com), go the target channel to build the air gap bundle for the release:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
      
@@ -102,39 +104,3 @@ To add nodes to a cluster after successfully installing the first node:
     ```
 
 1. When you have finished adding all nodes, return to the Admin Console and click **Continue**.
-
-## Perform Updates in Air Gap Clusters
-
-<DoNotDowngrade/>
-
-<UpdateAirGapOverview/>
-
-### Prerequisites
-
-Before performing an upgrade in an air gap cluster with Embedded Cluster, complete the following prerequisites:
-
-1. Create a new release with your changes and promote it to the same channel. This new release can include a different (and later) version of Embedded Cluster and/or changes to your application.
-
-1. Build the air gap bundle for the release:
-     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
-     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
-     
-     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
-     
-    :::note
-    Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
-    :::
-
-After the air gap bundle is built, continue to [Upload the New Version From the Command Line](#upgrade-cli) or [Upload the New Version From the Admin Console](#upgrade-ui) to download the bundle and upgrade.    
-
-### Upload the New Version From the Command Line {#upgrade-cli}
-
-To update by uploading the air gap bundle for the new version from the command line:
-
-<UpdateAirGapCli/>
-
-### Upload the New Version From the Admin Console {#upgrade-ui}
-
-To update by uploading the air gap bundle for the new version from the Admin Console:
-
-<UpdateAirGapAdm/>

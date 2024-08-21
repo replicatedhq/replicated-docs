@@ -2,9 +2,11 @@ import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
 # Online Installation with Embedded Cluster
 
-This topic describes how to install an application in online environments with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Prerequisites
+
+Before you install, complete the following prerequisites:
 
 <Prerequisites/>
 
@@ -18,9 +20,9 @@ To install an application with Embedded Cluster:
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-     An **Embedded cluster installation instructions** dialog is displayed with instructions on how to download the Embedded Cluster binary and install your application.
+     An **Embedded cluster installation instructions** dialog is displayed.
 
-1. (Optional) In the **Select a version** dropdown, select a version label to download the release artifacts for a specific version of your application.
+1. (Optional) In the **Embedded cluster installation instructions** dialog, under **Select a version**, select a specific version to install.
 
      For example:
 
@@ -30,7 +32,7 @@ To install an application with Embedded Cluster:
 
 1. SSH onto the machine where you will install.
 
-1. Run the first command in the **Embedded cluster install instructions** dialog to download the installation artifacts as a `.tgz`. This include the Embedded Cluster binary and the customer's license file.
+1. Run the first command in the **Embedded cluster install instructions** dialog to download the installation artifacts as a `.tgz`. This includes the Embedded Cluster binary and the customer's license file.
 
 1. Run the second command to extract the `.tgz`.
 
@@ -47,7 +49,7 @@ To install an application with Embedded Cluster:
 
      The installation command takes a few minutes to complete.
 
-1. When the installation command completes, go to the URL provided in the output.
+1. When the installation command completes, go to the URL provided in the output to access the Admin Console.
      
     **Example output:** 
 
@@ -55,11 +57,13 @@ To install an application with Embedded Cluster:
     ✔  Host files materialized
     ? Enter an Admin Console password: ********
     ? Confirm password: ********
-    ✔  Node installation finished
+    ✔  Host files materialized!
+    ✔  Running host preflights
+    ✔  Node installation finished!
     ✔  Storage is ready!
     ✔  Embedded Cluster Operator is ready!
     ✔  Admin Console is ready!
-    ✔  Finished!
+    ✔  Additional components are ready!
     Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
     ```
     At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
@@ -76,9 +80,13 @@ To install an application with Embedded Cluster:
 
      The Admin Console dashboard opens.
 
-1. In the **Version** section, for version 0.1.0, click **Deploy** then **Yes, Deploy**.
+1. In the **Version** section of the dashboard, next to the target version, click **Deploy** then **Yes, Deploy**.
 
-     The application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready.
+     The application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
+
+     ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+
+     [View a larger version of this image](/images/gitea-ec-ready.png)
 
 ## Install Behind a Proxy Server
 
