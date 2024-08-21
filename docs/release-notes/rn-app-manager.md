@@ -54,9 +54,11 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Known Issue {#known-issues-1-113-0}
 
-In KOTS 1.113.0 and later, you might see the error: `"failed to verify and update license: requested channel not found in latest license"` if the channel slug in your `kots install` command does not match the license's assigned channel. This could break any existing automation that omits the channel slug from the `kots install` command.
+In KOTS 1.113.0 and later, the error `"failed to verify and update license: requested channel not found in latest license"` will occur if the `kots install` command omits the channel slug and the license does not include access to the `stable` channel.
 
-Previously, omitting the channel slug during installation would default to the `stable` channel, causing your application to pull details from `stable` regardless of the licensed channel. This could lead to mismatches in deployed application settings, such as logos and minimal RBAC configurations.
+For instance, `kots install app` will fail if the license only permits access to the `beta` channel, requiring the installation command to be `kots install app/beta` instead.
+
+Previously, omitting the channel slug defaulted to the `stable` channel. This would pull application details from `stable`, potentially causing mismatches in deployment settings such as logos and minimal RBAC configurations.
 
 **Solution**: To avoid this error, ensure that the channel slug in your `kots install` command matches your licensed channel. You can find the correct command in the Vendor Portal installation instructions or by using the `replicated channel inspect CHANNEL_ID` command in the Replicated CLI.
 
