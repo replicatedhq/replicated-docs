@@ -8,12 +8,21 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.08.19-1
 
 Released on August 19, 2024
 
 ### New Features {#new-features-v2024-08-19-1}
 * Update Embedded Cluster install instructions to use custom domain when applicable.
+
+## v2024.08.15-2
+
+Released on August 15, 2024
+
+### New Features {#new-features-v2024-08-15-2}
+* Adds a PATCH method for `/v3/customer/:customerId` path that allows updating a customer without having to resend the entire customer object.
+
 
 ## v2024.08.13-1
 
