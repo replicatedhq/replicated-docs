@@ -39,7 +39,7 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 ## 1.113.0
 
 :::important
-In KOTS 1.113.0 and later, you might see the error: `"failed to verify and update license: requested channel not found in latest license"` if the channel slug in your `kots install` command does not match the license's assigned channel. You can resolve this error by ensuring that the channel slug in the `kots install` command matches the channel where the license is assigned. For more information, see [Known Issue](#known-issues-1-113-0) below.
+In KOTS 1.113.0 and later, you might see the error: `"failed to verify and update license: requested channel not found in latest license"` if the channel slug in your `kots install` command does not match the license's assigned channel. You can resolve this error by ensuring that the channel slug in the `kots install` command matches the channel where the license is assigned. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 :::
 
 Released on August 9, 2024
@@ -52,7 +52,7 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 ### Bug Fixes {#bug-fixes-1-113-0}
 * Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
 
-### Known Issue {#known-issues-1-113-0}
+### Breaking Change {#breaking-changes-1-113-0}
 
 In KOTS 1.113.0 and later, the error `"failed to verify and update license: requested channel not found in latest license"` will occur if the `kots install` command omits the channel slug and the license does not include access to the `stable` channel.
 
