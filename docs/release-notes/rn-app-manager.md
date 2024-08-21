@@ -39,7 +39,7 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 ## 1.113.0
 
 :::important
-In KOTS 1.113.0 and later, you might see the error: `"failed to verify and update license: requested channel not found in latest license"` if the channel slug in your `kots install` command does not match the license's assigned channel. You can resolve this error by ensuring that the channel slug in the `kots install` command matches the channel where the license is assigned. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
+In KOTS 1.113.0 and later, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 :::
 
 Released on August 9, 2024
@@ -47,22 +47,24 @@ Released on August 9, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-113-0}
-* Adds support for multi-channel licenses.
+* Adds support for multi-channel licenses. This allows each license to be assigned to more than one channel.
+
+   With the introduction of multi-channel licenses, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 
 ### Bug Fixes {#bug-fixes-1-113-0}
 * Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
 
 ### Breaking Change {#breaking-changes-1-113-0}
 
-In KOTS 1.113.0 and later, the error `"failed to verify and update license: requested channel not found in latest license"` will occur if the `kots install` command omits the channel slug and the license does not include access to the `stable` channel.
+In KOTS 1.113.0 and later, the following error will occur during installation if the `kots install` command lacks a channel slug _and_ the license does not have access to the Stable channel: `"failed to verify and update license: requested channel not found in latest license"`. This can break any existing automation that includes a `kots install` command without a channel slug.
 
-For instance, `kots install app` will fail if the license only permits access to the `beta` channel, requiring the installation command to be `kots install app/beta` instead.
+This error occurs because, when the channel slug is omitted from the `kots install` command (for example, `kots install app`), KOTS defaults to installing the latest release from the Stable channel. And, with the introduction of multi-channel licenses in KOTS 1.113.0, only licenses with access to a channel can download releases from that channel. This means that only licenses with access to the Stable channel can install without specifying the channel slug in the `kots install` command.
 
-Previously, omitting the channel slug defaulted to the `stable` channel. This would pull application details from `stable`, potentially causing mismatches in deployment settings such as logos and minimal RBAC configurations.
+Previously, any license regardless of its assigned channel could install from the Stable channel by excluding the channel slug from the `kots install` command. This could cause users to unintenionally install a release from the Stable channel, leading to mismatches in deployment settings such as icons and minimal RBAC configurations.
 
-**Solution**: To avoid this error, ensure that the channel slug in your `kots install` command matches your licensed channel. You can find the correct command in the Vendor Portal installation instructions or by using the `replicated channel inspect CHANNEL_ID` command in the Replicated CLI.
+**Solution:** To install a release from a channel other than Stable, specify the channel slug in the `kots install` command (for example, `kots install app/beta`). Also, ensure that the license has access to the specified channel. Refer to the Vendor Portal installation instructions or use the `replicated channel inspect CHANNEL_ID` command in the Replicated CLI for the correct commands.
 
-If updating the command is not possible, you can revert to KOTS 1.112.0 or later temporarily.
+If you cannot update your KOTS installation command immediately, temporarily revert to KOTS 1.112.4 or earlier.
 
 ## 1.112.4
 
