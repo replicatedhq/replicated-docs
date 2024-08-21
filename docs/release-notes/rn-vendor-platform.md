@@ -15,6 +15,27 @@ Released on August 20, 2024
 ### New Features {#new-features-v2024-08-20-5}
 * Support dropdown and radio input types in Config preview.
 
+## v2024.08.20-4
+
+Released on August 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-20-4}
+* Fixes a bug that caused Embedded Cluster installation artifacts to not be shown in the Download Portal.
+
+## v2024.08.19-1
+
+Released on August 19, 2024
+
+### New Features {#new-features-v2024-08-19-1}
+* Update Embedded Cluster install instructions to use custom domain when applicable.
+
+## v2024.08.15-2
+
+Released on August 15, 2024
+
+### New Features {#new-features-v2024-08-15-2}
+* Adds a PATCH method for `/v3/customer/:customerId` path that allows updating a customer without having to resend the entire customer object.
+
 ## v2024.08.13-1
 
 Released on August 13, 2024
