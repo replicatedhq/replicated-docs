@@ -222,7 +222,6 @@ const sidebars = {
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
-                    'enterprise/installing-embedded-air-gap',
                     'vendor/embedded-disaster-recovery',
                   ],
                 },
@@ -363,6 +362,7 @@ const sidebars = {
                 label: 'Installing with Embedded Cluster',
                 items: [
                   'enterprise/installing-embedded',
+                  'enterprise/installing-embedded-air-gap',
                 ],
               },
               {

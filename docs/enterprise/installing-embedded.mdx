@@ -1,14 +1,12 @@
-# Installing with Embedded Cluster
+import Prerequisites from "../partials/install/_ec-prereqs.mdx"
+
+# Online Installation with Embedded Cluster
 
 This topic describes how to install an application in online environments with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Prerequisites
 
-* Ensure that your installation environments meets the Embedded Cluster requirements.
-
-* The target application release must include an Embedded Cluster Config.
-
-* Ensure that you have a customer in the Vendor Portal with the **Embedded Cluster Enabled** license field enabled.
+<Prerequisites/>
 
 ## Install
 
@@ -26,19 +24,19 @@ To install an application with Embedded Cluster:
 
      For example:
 
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
 1. SSH onto the machine where you will install.
 
-1. Run the first command in the **Embedded cluster install instructions** dialog to download the release artifacts as a `.tgz`. This include the Embedded Cluster binary and the customer's license file.
+1. Run the first command in the **Embedded cluster install instructions** dialog to download the installation artifacts as a `.tgz`. This include the Embedded Cluster binary and the customer's license file.
 
 1. Run the second command to extract the `.tgz`.
 
 1. Run the third command to install the release:
 
-    ```
+    ```bash
     sudo ./APP_SLUG install --license LICENSE_FILE
     ```
     Where:
@@ -105,7 +103,14 @@ The following flags can be used with the Embedded Cluster `install` command to i
   </tr>
 </table>
 
-**Example:**
+For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+
+The following are never proxied:
+* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
+* Communiation to the KOTS database (`kotsadm-rqlite`)
+* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
+
+### Example
 
 ```bash
 sudo ./APP_SLUG install --license LICENSE_FILE \
@@ -120,18 +125,12 @@ Where:
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy
 
-For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
-
-The following are never proxied:
-* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
-* Communiation to the KOTS database (`kotsadm-rqlite`)
-* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
-
-**Requirement:**
+### Requirement
 
 Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub.
 
-**Limitations:**
+### Limitations
+
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
 
