@@ -8,6 +8,12 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.20-5
+
+Released on August 20, 2024
+
+### New Features {#new-features-v2024-08-20-5}
+* Adds support for the [`dropdown`](/reference/custom-resource-config#dropdown) and [`radio`](/reference/custom-resource-config#radio) Config item types in the Config preview.
 
 ## v2024.08.20-4
 
