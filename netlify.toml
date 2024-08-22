@@ -124,11 +124,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-overview"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
@@ -170,7 +170,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/support-bundle-helm-customizing"
-  to="https://docs.replicated.com/vendor/support-bundle-customizing"                               
+  to="https://docs.replicated.com/vendor/support-bundle-customizing"   
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/intro-replicated"                                
 
 ###################################################
 # Redirects To the Enterprise Section

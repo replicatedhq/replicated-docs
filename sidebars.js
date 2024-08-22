@@ -118,7 +118,6 @@ const sidebars = {
         },
       ],
     },
-    'vendor/distributing-overview',
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
