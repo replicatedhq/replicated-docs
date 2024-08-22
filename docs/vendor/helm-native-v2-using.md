@@ -269,7 +269,7 @@ spec:
   {{- end }}
 ```
 
-### Add Backup Labels for 
+### Add Backup Labels for Snapshots
 
 :::note
 The snapshots feature for backup and restore is supported for existing cluster installations with KOTS only. Snapshots is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview).
