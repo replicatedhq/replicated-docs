@@ -200,6 +200,10 @@ const sidebars = {
         'intro-kots',
         'vendor/kots-faq',
         'vendor/distributing-workflow',
+        {
+          type: 'category',
+          label: 'Packaging KOTS Releases',
+          items: [
             {
               type: 'category',
               label: 'Distributing Helm Charts with KOTS',
@@ -339,10 +343,12 @@ const sidebars = {
                 'vendor/releases-configvalues',
               ],
             },
+          ],
+        },   
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
-          label: 'Installing and Managing Applications with KOTS',
+          label: 'Installing and Managing Applications',
           items: [
           {
             type: 'category',
@@ -359,7 +365,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with Embedded Cluster',
+                label: 'Installing with Embedded Cluster (Beta)',
                 items: [
                   'enterprise/installing-embedded',
                   'enterprise/installing-embedded-air-gap',

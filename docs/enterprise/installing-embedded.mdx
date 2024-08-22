@@ -1,8 +1,8 @@
 import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
-# Online Installation with Embedded Cluster
+# Online Installation with Embedded Cluster (Beta)
 
-This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Air Gap Installation with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
 
 ## Prerequisites
 
@@ -14,27 +14,28 @@ Before you install, complete the following prerequisites:
 
 To install an application with Embedded Cluster:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), go to **Customers** and click on the target customer. Click **Install instructions > Embedded cluster** to open the **Embedded Cluster installation instructions** dialog.
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Customers** and click on the target customer. Click **Install instructions > Embedded cluster**.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-     An **Embedded cluster installation instructions** dialog is displayed.
-
-1. (Optional) In the **Embedded cluster installation instructions** dialog, under **Select a version**, select a specific version to install.
-
-     For example:
+     The **Embedded cluster install instructions** dialog is displayed.
 
      <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
+1. (Optional) In the **Embedded cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
+
 1. SSH onto the machine where you will install.
 
-1. Run the first command in the **Embedded cluster install instructions** dialog to download the installation artifacts as a `.tgz`. This includes the Embedded Cluster binary and the customer's license file.
+1. Run the first command in the **Embedded cluster install instructions** dialog to download the installation artifacts as a `.tgz`.
 
-1. Run the second command to extract the `.tgz`.
+1. Run the second command to extract the `.tgz`. The will produce the following files:
+
+    * The installer
+    * The license
 
 1. Run the third command to install the release:
 
@@ -43,11 +44,11 @@ To install an application with Embedded Cluster:
     ```
     Where:
     * `APP_SLUG` is the unique slug for the application.
-    * `LICENSE_FILE` is the customer's license.
+    * `LICENSE_FILE` is the customer license.
 
 1. When prompted, enter a password for accessing the KOTS Admin Console.
 
-     The installation command takes a few minutes to complete.
+     The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](/vendor/embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
 
 1. When the installation command completes, go to the URL provided in the output to access the Admin Console.
      
@@ -58,7 +59,7 @@ To install an application with Embedded Cluster:
     ? Enter an Admin Console password: ********
     ? Confirm password: ********
     ✔  Host files materialized!
-    ✔  Running host preflights
+    ✔  Host preflights succeeded!
     ✔  Node installation finished!
     ✔  Storage is ready!
     ✔  Embedded Cluster Operator is ready!
@@ -78,15 +79,25 @@ To install an application with Embedded Cluster:
 
 1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
 
-     The Admin Console dashboard opens.
+1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
 
-1. In the **Version** section of the dashboard, next to the target version, click **Deploy** then **Yes, Deploy**.
+1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
 
-     The application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
+    :::note
+    Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+    :::
 
-     ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+The Admin Console dashboard opens.
 
-     [View a larger version of this image](/images/gitea-ec-ready.png)
+On the Admin Console dashboard, the application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
+
+![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+
+[View a larger version of this image](/images/gitea-ec-ready.png)
+
+:::note
+If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
+:::
 
 ## Install Behind a Proxy Server
 
@@ -139,7 +150,7 @@ Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29
 
 ### Limitations
 
-* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
+* Proxy settings are not automatically propagated to the containers for [Helm extensions](/reference/embedded-config#helm-extensions). Instead, for any of your Helm extensions that make requests to the internet, the given Helm charts must be manually configured to pull images through the proxy. This is typically done through Helm values.
 * Proxy settings cannot be changed after installation or during upgrade.
 
 ### Set IP Address Ranges for Pods and Services
@@ -161,13 +172,12 @@ The following flags can be used with the Embedded Cluster `install` command to a
   </tr>
 </table>
 
-
-**Example:**
+#### Example
 
 ```bash
 sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
 ```
 
-**Limitation:**
+#### Limitation
 
 The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
