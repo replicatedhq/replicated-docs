@@ -1,17 +1,13 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
-import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
-import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
-import KotsAbout from "../partials/install/_kots-about.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
-import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
 
 # Air Gap Installation with kURL
@@ -42,13 +38,9 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Cluster {#air-gap}
+## Install {#air-gap}
 
-<ProvisionClusterIntro/>
-
-<KotsAbout/>
-
-To provision a cluster with kURL:
+To install an application with kURL:
 
 1. <ExtractKurlBundle/>
 
@@ -69,14 +61,6 @@ To provision a cluster with kURL:
 1. <HAStep/>
 
 1. <LoginPassword/>
-
-1. <ContinueToInstall/>
-
-## Install and Deploy the Application {#install-app} 
-
-<AppInstallIntroAirGap/>
-  
-To install the application using the Admin Console:
 
 1. Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 
