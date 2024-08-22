@@ -8,6 +8,69 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.20-5
+
+Released on August 20, 2024
+
+### New Features {#new-features-v2024-08-20-5}
+* Adds support for the [`dropdown`](/reference/custom-resource-config#dropdown) and [`radio`](/reference/custom-resource-config#radio) Config item types in the Config preview.
+
+## v2024.08.20-4
+
+Released on August 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-20-4}
+* Fixes a bug that caused Embedded Cluster installation artifacts to not be shown in the Download Portal.
+
+## v2024.08.19-1
+
+Released on August 19, 2024
+
+### New Features {#new-features-v2024-08-19-1}
+* Update Embedded Cluster install instructions to use custom domain when applicable.
+
+## v2024.08.15-2
+
+Released on August 15, 2024
+
+### New Features {#new-features-v2024-08-15-2}
+* Adds a PATCH method for `/v3/customer/:customerId` path that allows updating a customer without having to resend the entire customer object.
+
+## v2024.08.13-1
+
+Released on August 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-13-1}
+* The Proxy Registry now includes scope in the WWW-Authenticate auth challenge response header. This fixes support for the Registry Proxy as a Sonatype Nexus Docker proxy.
+
+## v2024.08.12-0
+
+Released on August 12, 2024
+
+### Improvements {#improvements-v2024-08-12-0}
+* Streamlines design of the rows on the **Customers** page hybrid view, as well as the customer info header on the **Manage Customer** and **Customer Reporting** pages.
+
+## v2024.08.09-5
+
+Released on August 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-09-5}
+* Fixes an issue that could cause anonymous image pulls from proxy.replicated.com to fail to resume when interrupted.
+
+## v2024.08.09-0
+
+Released on August 9, 2024
+
+### New Features {#new-features-v2024-08-09-0}
+* The Compatibility Matrix cluster usage endpoint now also includes channel_id, channel_sequence and version_label.
+
+## v2024.08.06-0
+
+Released on August 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-06-0}
+* Fixes a bug that caused /require-2fa page to render blank.
+
 ## v2024.08.01-0
 
 Released on August 1, 2024

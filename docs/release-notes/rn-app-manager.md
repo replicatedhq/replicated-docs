@@ -16,6 +16,35 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.115.1
+
+Released on August 22, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-115-1}
+* Fixes an issue where the default `nodeMetrics` analyzer did not run.
+
+## 1.115.0
+
+Released on August 20, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-115-0}
+* Displays guidance on the **Nodes** page and easier access to the node join command during initial install of Embedded Cluster.
+* Adds back the check for updates button on the **Version history** page, so you can check for updates without refreshing the page.
+
+## 1.114.0
+
+Released on August 12, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-114-0}
+* Adds support for the `dropdown` config item type, which creates a dropdown on the config screen. See [dropdown](/reference/custom-resource-config#dropdown) in _Config_.
+* Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional. See [radio](/reference/custom-resource-config#radio) in _Config_.
+
 ## 1.113.0
 
 Released on August 9, 2024
