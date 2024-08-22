@@ -57,6 +57,8 @@ Embedded Cluster has the following limitations:
 
 * **Downgrading Kubernetes not supported**: Embedded Cluster does not support downgrading Kubernetes. The admin console will not prevent end-users from attempting to downgrade Kubernetes if a more recent version of your application specifies a previous Embedded Cluster version. You must ensure that you do not promote new versions with previous Embedded Cluster versions.
 
+* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
+
 ## Quick Start
 
 You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
