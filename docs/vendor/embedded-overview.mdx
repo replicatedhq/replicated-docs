@@ -124,17 +124,15 @@ For more information about how to install with Embedded Cluster, see:
 * [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
 * [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap)
 
-### (Optional) Serve Installation Artifacts Using the Vendor API
+### (Optional) Serve Installation Assets Using the Vendor API
 
-To install with Embedded Cluster, you need to download an Embedded Cluster binary and a license. Your customers can download these installation artifacts using the Replicated app service by running a curl command. Alternatively, you can host/serve the binary yourself using the Replicated Vendor API.
+To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
 
-Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation artifacts yourself using the Replicated Vendor API.
-
-To serve the binary with the Vendor API:
+To serve Embedded Cluster installation assets with the Vendor API:
 
 1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
 
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
 
      Note the following:
 

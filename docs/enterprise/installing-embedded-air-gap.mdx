@@ -16,7 +16,7 @@ Embedded Cluster installations in air gap environments in an Alpha feature. This
 
 When an air gap bundle is built for a release containing an Embedded Cluster Config, both an application air gap bundle and an Embedded Cluster air gap bundle are built. The application air gap bundle can be used for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. The Embedded Cluster air gap bundle is used for air gap installations with Embedded Cluster.
 
-The Embedded Cluster air gap bundle not only contains the artifacts normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the artifacts needed to install the infrastructure (Embedded Cluster/k0s and [Helm extensions](/reference/embedded-config#helm-extensions)).
+The Embedded Cluster air gap bundle not only contains the assets normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [Helm extensions](/reference/embedded-config#helm-extensions)).
 
 During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
 
@@ -78,7 +78,7 @@ To install with Embedded Cluster in an air gap environment:
     curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
     ```
 
-1. Run the modified curl command on your air gap VM to download the air gap installation artifacts.
+1. Run the modified curl command on your air gap VM to download the air gap installation assets.
 
 1. After the download completes, untar it following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
     * The installer
@@ -147,11 +147,11 @@ On the Admin Console dashboard, the application status changes from Missing to U
 
 ## Add Nodes to Air Gap Clusters
 
-You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster artifacts to each node, copying a join command from the Admin Console, and running the join command on each node.
+You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster assets to each node, copying a join command from the Admin Console, and running the join command on each node.
 
 ### Prerequisites
 
-The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these artifacts on each node. For more information, see [Install](#install) above.
+The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these assets on each node. For more information, see [Install](#install) above.
 
 ### Add Nodes
 
