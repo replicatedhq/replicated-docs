@@ -63,7 +63,7 @@ spec:
                     digest: ""
   unsupportedOverrides:
     k0s: |
-      Config:
+      config:
         spec:
           api:
             extraArgs:
@@ -141,7 +141,7 @@ If you need to install Helm charts before your application and as part of the Em
 
 Helm extensions are updated when new versions of your application are deployed from the Admin Console. So, for example, you can change the values for a Helm extension from one release to another, and those changes will be applied to the cluster when the new release is deployed.
 
-The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s Configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/stable/helm-charts/#example).
+The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/stable/helm-charts/#example).
 
 ### Limitation
 
@@ -191,18 +191,18 @@ spec:
 ## unsupportedOverrides
 
 :::important
-This feature should be used with caution by advanced users who understand the risks and ramifications of changing the default Configuration.
+This feature should be used with caution by advanced users who understand the risks and ramifications of changing the default configuration.
 :::
 
-Unsupported overrides allow you to override Embedded Cluster's default Configuration, including the k0s Config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break Embedded Clusters. Any issues that are caused by unsupported overrides are not supported.
+Unsupported overrides allow you to override Embedded Cluster's default configuration, including the k0s config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break Embedded Clusters. Any issues that are caused by unsupported overrides are not supported.
 
 While they should be used with caution, unsupported overrides are useful if you need to make changes that are not otherwise exposed by Embedded Cluster.
 
 ### Override the k0s Config
 
-By default, Embedded Cluster uses a k0s Config that is tested and known to work for Embedded Clusters. In some circumstances, you might want to change the k0s Config.
+By default, Embedded Cluster uses a k0s config that is tested and known to work for Embedded Clusters. In some circumstances, you might want to change the k0s config.
 
-For more information on the k0s Config, see [Configuration options](https://docs.k0sproject.io/stable/Configuration/#Configuration-file-reference) in the k0s documentation.
+For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/stable/configuration/#configuration-file-reference) in the k0s documentation.
 
 A common use case today is to adjust the default service port range to allow node ports on lower port numbers, as shown in the example below:
 
@@ -212,7 +212,7 @@ kind: Config
 spec:
   unsupportedOverrides:
     k0s: |
-      Config:
+      config:
         spec:
           api:
             extraArgs:
@@ -223,7 +223,7 @@ spec:
 
 * The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
-* Overrides overwrite the corresponding fields in the k0s Configuration. They are not merged into Embedded Cluster’s default Configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that Embedded Cluster includes by default.
+* Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into Embedded Cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that Embedded Cluster includes by default.
 
 ### Override the Helm Values for Built-In Extensions
 

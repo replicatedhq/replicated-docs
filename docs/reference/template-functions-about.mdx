@@ -28,8 +28,6 @@ You can use KOTS template functions in Kubernetes manifest files for application
 
 * KOTS template functions are not directly supported in Helm charts. For more information, see [Helm Charts](#helm-charts) below.
 
-* KOTS template functions do not support arbitrary string templating because the manifests consumed by KOTS must be valid YAML. For more information, see [Syntax](#syntax) below. 
-
 ### Helm Charts
 
 KOTS template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by KOTS template functions to Helm chart values. This allows you to use KOTS template functions with Helm charts without making changes to those Helm charts.
