@@ -228,7 +228,7 @@ The following are never proxied:
 Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub.
 
 **Limitations:**
-* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
+* Proxy settings are not automatically propagated to the containers for your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured (typically via Helm values). The images for your Helm extensions will be pulled through the specified proxy.
 * Proxy settings cannot be changed after installation or during upgrade.
 
 ### Set IP Address Ranges for Pods and Services
