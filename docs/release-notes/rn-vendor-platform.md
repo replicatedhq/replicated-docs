@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.22-1
+
+Released on August 22, 2024
+
+### New Features {#new-features-v2024-08-22-1}
+* Streamlines design of the rows on the **Customers** page hybrid view, as well as the customer info header on the **Manage Customer** and **Customer Reporting** pages.
+
 ## v2024.08.20-5
 
 Released on August 20, 2024
