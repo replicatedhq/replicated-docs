@@ -43,13 +43,13 @@ pagination_next: null
         <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
     </li>
     <li>
-      <a href="intro-replicated">Introduction to the Commercial Software Distribution Life Cycle</a>
+      <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
       <a href="/vendor/quick-start-embedded">Embedded Cluster Quick Start</a>
     </li>
     <li>
-      <a href="/vendor/quick-start-helm">Helm CLI-Only Quick Start</a>
+      <a href="/vendor/quick-start-helm">Helm-Only Quick Start</a>
     </li>
     <li>
       <a href="/vendor/tutorial-kots-helm-setup">Getting Started Tutorials</a>
