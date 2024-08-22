@@ -87,6 +87,10 @@ To install an application with Embedded Cluster:
     Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
     :::
 
+    :::note
+    If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
+    :::
+
 The Admin Console dashboard opens.
 
 On the Admin Console dashboard, the application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
@@ -94,10 +98,6 @@ On the Admin Console dashboard, the application status changes from Missing to U
 ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
 [View a larger version of this image](/images/gitea-ec-ready.png)
-
-:::note
-If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
-:::
 
 ## Install Behind a Proxy Server
 
