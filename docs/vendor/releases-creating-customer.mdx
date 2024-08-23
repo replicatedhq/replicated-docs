@@ -26,11 +26,13 @@ To create a customer:
 
 1. For **Customer email**, enter the email address for the customer. The customer email address is required for Helm installations. This email address is never used send emails to customers.
 
-1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+1. For **Assigned channel**, assign the customer to one or more channels. The channel assignments for a customer is determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_. Consider the following guidelines for assigning channels:
+   
+   * You can select channels that have at least one release.
+   
+   * <ChangeChannel/>
 
-   :::note
-   <ChangeChannel/>
-   :::
+   * The Vendor Portal prevents you from assigning KOTS and Helm-only customers to channels with releases that those customers are not able to install. For more information, see [Promoting KOTS-Only and Helm-Only Releases](/vendor/releases-about#kots-helm-releases).
 
 1. For **Custom ID**, you can enter a custom ID for the customer. Setting a custom ID allows you to easily tie this Replicated customer record to your own internal customer data systems during data exports. We suggest setting an alphanumeric value such as your Salesforce ID, Hubspot ID, etc for that customer. Replicated does not require the custom ID to be unique. The custom ID is for vendor data reconciliation purposes, and is not used by Replicated for any functionality purposes.
 

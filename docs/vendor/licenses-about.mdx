@@ -81,7 +81,7 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ## About Customer Channel Assignment {#channel-assignment}
 
-This section provides information about managing the channel a customer is assigned, including changing the assigned channel and manaing channel assignments for customers with or without the KOTS entitlement. For information about how to assign a customer to a channel, see [Create a Customer](releases-creating-customer#create-a-customer) in _Creating and Managing Customers_.
+This section provides information about managing the channel or channels a customer is assigned, including changing the assigned channel and manaing channel assignments for customers with or without the KOTS entitlement. For information about how to assign a customer to a channel, see [Create a Customer](releases-creating-customer#create-a-customer) in _Creating and Managing Customers_.
 
 ### Changing Channel Assignment
 
@@ -95,7 +95,7 @@ For more information about how to mark a release as required, see [Properties](r
 
 <KotsEntitlement/>
 
-To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following channel assignment rules:
+To prevent KOTS or Helm-only customers from accessing a release that they cannot install, Replicated enforces the following channel assignment rules:
 * A KOTS customer can be assigned to a channel only when the head release contains the required KOTS manifests.
 
   <img width="400px" alt="KOTS customer blocked from channel assignment" src="/images/channel-assignment-helm-only.png"/>
