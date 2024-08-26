@@ -18,7 +18,7 @@ Released on August 26, 2024
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-17T01-24-54Z.
 
 ### Bug Fixes {#bug-fixes-v2024-08-26-0}
-* Fixes an issue where [Flannel](https://kurl.sh/docs/add-ons/flannel) <0.24.2 installation failed on instances with VMware NICs.
+* Fixes an issue where [Flannel](https://kurl.sh/docs/add-ons/flannel) versions older than 0.24.2 failed to install on instances with VMware NICs.
 
 ## v2024.08.12-0
 
