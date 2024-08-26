@@ -16,6 +16,25 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.115.1
+
+Released on August 22, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-115-1}
+* Fixes an issue where the default `nodeMetrics` analyzer did not run.
+
+## 1.115.0
+
+Released on August 20, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-115-0}
+* Displays guidance on the **Nodes** page and easier access to the node join command during initial install of Embedded Cluster.
+* Adds back the check for updates button on the **Version history** page, so you can check for updates without refreshing the page.
+
 ## 1.114.0
 
 Released on August 12, 2024
@@ -28,15 +47,35 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ## 1.113.0
 
+:::important
+In KOTS 1.113.0 and later, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
+:::
+
 Released on August 9, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-113-0}
-* Adds support for multi-channel licenses.
+* Adds support for multi-channel licenses. This allows each license to be assigned to more than one channel.
+
+   With the introduction of multi-channel licenses, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 
 ### Bug Fixes {#bug-fixes-1-113-0}
 * Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
+
+### Breaking Change {#breaking-changes-1-113-0}
+
+In KOTS 1.113.0 and later, the following error will occur during installation if the `kots install` command lacks a channel slug _and_ the license does not have access to the Stable channel: `"failed to verify and update license: requested channel not found in latest license"`. This can break existing automation and documentation that includes a `kots install` command without a channel slug.
+
+This error occurs because, when the channel slug is omitted from the `kots install` command (for example, `kots install app`), KOTS defaults to pulling metadata like the application icon and minimal RBAC configurations from the Stable channel. With the introduction of multi-channel licenses in KOTS 1.113.0, only licenses with access to a channel can pull metadata and download releases from that channel. This means that only licenses with access to the Stable channel can install without specifying the channel slug in the `kots install` command.
+
+Previously, any license regardless of its assigned channel could install by excluding the channel slug from the `kots install` command. This could cause mismatches in deployment settings such as icons and minimal RBAC configurations because KOTS would pull metadata from the Stable channel and then install the release from the channel where the license was assigned.
+
+**Solution:** To install a release from a channel other than Stable, specify the channel slug in the `kots install` command (for example, `kots install app/beta`). Also, ensure that the license has access to the specified channel. Refer to the Vendor Portal installation instructions or use the `replicated channel inspect CHANNEL_ID` command in the Replicated CLI for the correct commands.
+
+To avoid breaking changes, update automation that uses the `kots install` command accordingly. Also, update documentation as needed so that the documented installation commands include the channel slug.
+
+If you cannot update your KOTS installation command immediately, temporarily revert to KOTS 1.112.4 or earlier.
 
 ## 1.112.4
 

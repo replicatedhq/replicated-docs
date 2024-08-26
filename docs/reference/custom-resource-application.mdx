@@ -274,7 +274,7 @@ spec:
   </tr>
   <tr>
     <th>Supports Go templates?</th>
-    <td>No</td>
+    <td><p>Go templates are supported in the `serviceName` and `applicationUrl` fields only.</p><p>Using Go templates in the `localPort` or `servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.</p></td>
   </tr>    
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>

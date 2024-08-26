@@ -21,7 +21,7 @@ Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) cluster
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.25.16, 1.26.15, 1.27.13, 1.28.9, 1.29.4, 1.30.0</td>
+    <td>1.25.16, 1.26.15, 1.27.16, 1.28.13, 1.29.8, 1.30.4, 1.31.0</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -243,8 +243,8 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
     <th>Limitations</th>
     <td>
       <ul>
-        <li>The admin console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`.</li>
-        <li>A valid customer license is required for installing with embedded cluster.</li>
+        <li>The Admin Console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
+        <li>A valid customer license is required for installing with Embedded Cluster.</li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
         <li>Embedded clusters cannot be created from the Vendor Portal.</li>
       </ul>
