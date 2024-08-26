@@ -200,7 +200,8 @@ The following flags can be used with the Embedded Cluster `install` command to i
   <tr>
      <td>`--no-proxy`</td>
      <td>
-       <p>Comma-separated list of hosts for which not to use a proxy</p>
+       <p>Comma-separated list of hosts for which not to use a proxy.</p>
+       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, pass the list of IP addresses for all nodes in the cluster, typically in CIDR notation.</p>
        <p>The following are never proxied:</p>
        <ul>
          <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)</li>
@@ -224,15 +225,11 @@ Where:
 
 * `LICENSE_FILE` is the customer's license
 * `HOST:PORT` is the host and port of the proxy server
-* `LIST_OF_HOSTS` is the list of hosts to not proxy
-
-#### Install Behind a Proxy in Multi-Node Clusters
-
-For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+* `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
 #### Requirement
 
-Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub.
+Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see [Embedded Cluster Release Notes](/release-notes/rn-embedded).
 
 #### Limitations
 
