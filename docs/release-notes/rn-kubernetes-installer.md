@@ -13,8 +13,8 @@ pagination_prev: null
 Released on August 26, 2024
 
 ### New Features {#new-features-v2024-08-26-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.0 1.30.4 1.29.8 1.28.13 1.27.16.
-* Adds support for CentOS 9 Stream.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.16, 1.28.13, 1.29.8, 1.30.4, and 1.31.0.
+* Adds support for CentOS Stream 9.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-17T01-24-54Z.
 
 ### Bug Fixes {#bug-fixes-v2024-08-26-0}
