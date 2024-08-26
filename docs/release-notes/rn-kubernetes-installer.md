@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.26-0
+
+Released on August 26, 2024
+
+### New Features {#new-features-v2024-08-26-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.30.4 1.29.8 1.28.13 1.27.16.
+* Add support for CentOS 9 Stream.
+* Added Amazon Linux 2023 support.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.0.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-17T01-24-54Z.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+
 ## v2024.08.12-0
 
 Released on August 12, 2024
