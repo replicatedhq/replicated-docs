@@ -233,7 +233,10 @@ Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29
 
 #### Limitations
 
-* Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
+* If any of your Helm extensions make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy.
+    
+    Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.
+
 * Proxy settings cannot be changed after installation or during upgrade.
 
 ### Set IP Address Ranges for Pods and Services
