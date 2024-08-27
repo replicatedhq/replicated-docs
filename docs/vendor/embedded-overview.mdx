@@ -199,11 +199,20 @@ The following flags can be used with the Embedded Cluster `install` command to i
   </tr>
   <tr>
      <td>`--no-proxy`</td>
-     <td>Comma-separated list of hosts for which not to use a proxy</td>
+     <td>
+       <p>Comma-separated list of hosts for which not to use a proxy.</p>
+       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation).</p>
+       <p>The following are never proxied:</p>
+       <ul>
+         <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)</li>
+         <li>Communiation to the KOTS database (`kotsadm-rqlite`)</li>
+         <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.96.0.0/12` and the Service CIDR `10.244.0.0/16`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
+       </ul>
+     </td>
   </tr>
 </table>
 
-**Example:**
+#### Example
 
 ```bash
 sudo ./APP_SLUG install --license LICENSE_FILE \
@@ -216,20 +225,14 @@ Where:
 
 * `LICENSE_FILE` is the customer's license
 * `HOST:PORT` is the host and port of the proxy server
-* `LIST_OF_HOSTS` is the list of hosts to not proxy
+* `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
-For multi-node clusters, the proxy settings are automatically configured when joining additional nodes. When deploying the first node of a multi-node cluster, you should pass the node IP addresses (typically in CIDR notation) to `--no-proxy`.
+#### Requirement
 
-The following are never proxied:
-* Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)
-* Communiation to the KOTS database (`kotsadm-rqlite`)
-* The CIDR used for assigning IPs to Kubernetes Pods and Services (`10.0.0.0/8`)
+Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
 
-**Requirement:**
+#### Limitations
 
-Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see the [embedded-cluster](https://github.com/replicatedhq/embedded-cluster/releases) repository in GitHub.
-
-**Limitations:**
 * Proxy settings are not automatically propagated to your [Helm extensions](/reference/embedded-config#helm-extensions) and must be manually configured.
 * Proxy settings cannot be changed after installation or during upgrade.
 
@@ -244,11 +247,11 @@ The following flags can be used with the Embedded Cluster `install` command to a
   </tr>
   <tr>
      <td>`--pod-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is 10.96.0.0/12.</td>
+     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is `10.96.0.0/12`.</td>
   </tr>
   <tr>
      <td>`--service-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is 10.244.0.0/16.</td>
+     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is `10.244.0.0/16`.</td>
   </tr>
 </table>
 
