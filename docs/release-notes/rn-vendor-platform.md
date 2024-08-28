@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.28-0
+
+Released on August 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-28-0}
+* Click docs link will open a new window.
+
 ## v2024.08.20-5
 
 Released on August 20, 2024
