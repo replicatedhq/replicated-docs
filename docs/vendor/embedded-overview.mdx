@@ -15,6 +15,16 @@ Embedded cluster is in beta. If you are instead looking for information about cr
 
 <EmbeddedCluster/>
 
+The following diagram demonstrates how Kubernetes and an application are installed into a customer environment using Embedded Cluster: 
+
+![Embedded Cluster installs an app in a customer environment](/images/embedded-cluster-install.png)
+
+[View a larger version of this image](/images/embedded-cluster-install.png)
+
+As shown in the diagram above, Embedded Cluster uses a Config included in the application release to generate the necessary installation artifacts for the installer and the application. Users can download the installation artifacts from the Replicated App Service on the command line, then run the Embedded Cluster installation command to install Kubernetes and the KOTS Admin Console. Users then access the Admin Console to add nodes to the cluster if needed, and finally to configure and install the application.
+
+### Comparison to kURL
+
 <KurlComparison/>
 
 ### Requirements
