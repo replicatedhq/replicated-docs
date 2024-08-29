@@ -2,6 +2,7 @@ import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
+import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 
 # Using Embedded Cluster (Beta)
 
@@ -414,23 +415,15 @@ To access the cluster and use other included binaries:
 
 ### Troubleshoot
 
-From the shell, you can generate a support bundle for the Embedded Cluster to help with troubleshooting.
+From the shell, you can generate a support bundle for Replicated Embedded Cluster installations to help with troubleshooting.
 
-The support bundle collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems. It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations.
+The default support bundle spec for Embedded Cluster collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems.
 
-If the cluster hasn't installed successfully and cluster-level information is not available, it will be excluded from the bundle.
+It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, it will be excluded from the bundle.
 
-To generate a support bundle:
+When generating the default host bundle for Embedded Cluster installations, you can also use the `--load-cluster-specs` flag to automatically discover all support bundle specs that are defined in Secrets or ConfigMaps in the cluster. This ensures that any application-specific specs are included in the bundle. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-1. Access the Embedded Cluster shell:
-     ```
-     sudo ./APP_SLUG shell
-     ```
-
-2. Generate the support bundle:
-     ```
-     kubectl support-bundle /var/lib/embedded-cluster/support/host-support-bundle.yaml --load-cluster-specs
-     ```
+<EmbeddedClusterSupportBundle/>
 
 You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
 
