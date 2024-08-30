@@ -1,47 +1,26 @@
-# Adding and Customizing Support Bundles
+# Creating Support Bundle Specs
 
-This topic describes how to add a default support bundle specification to a release for your application. It also describes how to optionally customize the default support bundle specification based on your application's needs. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+This topic describes how to add a default support bundle spec to a release for your application. It also describes how to customize the default support bundle spec based on your application's needs. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-The information in this topic applies to Helm chart- and standard manifest-based application installed with the Helm CLI or with Replicated KOTS.
+The information in this topic applies to Helm chart- and standard manifest-based application installed with Helm or with Replicated KOTS.
 
-## Add the Specification to a Manifest File
+## Step 1: Add the Default Spec to a Manifest File
 
-This section describes how to add an empty support bundle specification to a manifest file. An empty support bundle specification includes the following collectors by default:
-* [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
-* [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
+You can add the support bundle spec to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
 
-You do not need manually include the `clusterInfo` or `clusterResources` collectors in the specification.
+Use the following guidance to determine which type of manifest file to use for creating a support bundle spec:
 
-After you create this empty support bundle specification, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle specification by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) below.
+* **Helm-Based Applications**: For Helm-based applications, see the following guidance:
 
-You can add the support bundle specification to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm chart- or standard manifest-based) and installation method (Helm CLI or KOTS).
+   * **(Recommended) Helm CLI or KOTS v1.94.2 and Later**: For Helm-based applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
 
-Use the following table to determine which type of manifest file to use for creating a support bundle specification:
+   * **KOTS v1.94.1 and Earlier**: For Helm-based applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
-<table>
-  <tr>
-    <th width="25%"></th>
-    <th width="25%">Helm CLI</th>
-    <th width="25%">KOTS v1.94.2 and Later</th>
-    <th width="25%">KOTS v1.94.1 and Earlier</th>
-  </tr>
-  <tr>
-    <th>Helm Chart-Based Application</th>
-    <td><a href="#kubernetes-secret">Kubernetes Secret</a></td>
-    <td><a href="#kubernetes-secret">Kubernetes Secret</a></td>
-    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
-  </tr>
-  <tr>
-    <th>Standard Manifest-Based Application</th>
-    <td>N/A</td>
-    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
-    <td><a href="#kots-only-supportbundle-custom-resource">SupportBundle Custom Resource</a></td>
-  </tr>
-</table>  
+* **Standard Manifest-Based Applications**: For standard manifest-based applications, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
 ### Kubernetes Secret
 
-You can define support bundle specifications in a Kubernetes Secret for the following installation types:
+You can define support bundle specs in a Kubernetes Secret for the following installation types:
 * Installations with the Helm CLI
 * Helm chart-based applications installed with KOTS v1.94.2 and later
 
@@ -70,9 +49,17 @@ As shown above, the Secret must include the following:
 * The label `troubleshoot.sh/kind: support-bundle`
 * A `stringData` field with a key named `support-bundle-spec`  
 
-### (KOTS Only) SupportBundle Custom Resource
+This empty support bundle spec includes the following collectors by default:
+* [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
+* [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
 
-You can define support bundle specifications in a SupportBundle custom resource for the following installation types:
+You do not need manually include the `clusterInfo` or `clusterResources` collectors in the spec.
+
+After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the spec](/vendor/support-bundle-customizing#optional-customize-the-spec) below.
+
+### SupportBundle Custom Resource
+
+You can define support bundle specs in a SupportBundle custom resource for the following installation types:
 * Standard manifest-based applications installed with KOTS
 * Helm chart-based applications installed with KOTS v1.94.1 and earlier
 
@@ -89,19 +76,27 @@ spec:
 ```
 For more information about the SupportBundle custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
-## Customize the Specification
+This empty support bundle spec includes the following collectors by default:
+* [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/)
+* [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
+
+You do not need manually include the `clusterInfo` or `clusterResources` collectors in the spec.
+
+After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the spec](/vendor/support-bundle-customizing#optional-customize-the-spec) below.
+
+## Step 2: Customize the Spec
 
 You can customize the support bundles for your application by:
 * Adding collectors and analyzers
 * Editing or excluding the default `clusterInfo` and `clusterResources` collectors
 
-For examples of collectors and analyzers defined in Kubernetes Secrets and Preflight custom resources, see [Example Specifications](#example-specifications) below. 
+For examples of collectors and analyzers defined in Kubernetes Secrets and Preflight custom resources, see [Example specs](#example-specs) below. 
 
 ### Add Collectors
 
 Collectors gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define.
 
-In addition to the default `clusterInfo` and `clusterResources` collectors, the Troubleshoot open source project includes several collectors that you can include in the specification to gather more information from the installation environment. To view all the available collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
+In addition to the default `clusterInfo` and `clusterResources` collectors, the Troubleshoot open source project includes several collectors that you can include in the spec to gather more information from the installation environment. To view all the available collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
 
 The following are some recommended collectors:
 
@@ -116,7 +111,7 @@ The following are some recommended collectors:
 
 Analyzers use the data from the collectors to generate output for the support bundle. Good analyzers clearly identify failure modes and provide troubleshooting guidance for the user. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log and provides a description of the error to the user.
 
-The Troubleshoot open source project includes several analyzers that you can include in the specification. To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
+The Troubleshoot open source project includes several analyzers that you can include in the spec. To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
 The following are some recommended analyzers:
 
@@ -174,7 +169,7 @@ For more information, see [Namespace](/reference/template-functions-static-conte
 
 Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can optionally exclude them. 
 
-The following example shows how to exclude both the clusterInfo and clusterResources collectors from your support bundle specification:
+The following example shows how to exclude both the clusterInfo and clusterResources collectors from your support bundle spec:
 
 ```yaml
 spec:

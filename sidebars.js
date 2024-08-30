@@ -568,12 +568,11 @@ const sidebars = {
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
           'vendor/support-online-support-bundle-specs',
-          'vendor/support-modular-support-bundle-specs',
         ],
       },
       {
         type: 'category',
-        label: 'Using Helm Templating in Preflights and Support Bundles',
+        label: 'Using Helm Templating',
         items: [
           'vendor/preflight-support-bundle-modular',
           'vendor/preflight-sb-helm-templates-about',

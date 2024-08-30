@@ -1,4 +1,4 @@
-# Templating Shared Collectors and Analyzers with Helm
+# Defining Shared Collectors and Analyzers with Helm Templating
 
 This topic describes how to use Helm templating to share collectors and analyzers between your preflight and support bundles specs.
 
@@ -8,26 +8,38 @@ Preflight checks and support bundles are both defined in YAML specs that include
 
 An application’s preflight and support bundle specs will share many of the same collectors and analyzers. To avoid having to copy and paste collectors and analyzers between both specs, you can instead use Helm templating to define and include shared collectors and analyzers in your preflights and support bundles.
 
-## Use Helm Templating to Share Collectors and Analyzers 
+## Define Shared Collectors and Analyzers
 
-One way to achieve this modular approach is adding the following files in your Helm chart templates directory:
+This procedure demonstrates how to use Helm _defined templates_, which are globally-accessible templates inside a `{{ define }}` directive to define shared collectors and analyzers. For more information, see Names of Defined Templates, in the Helm documentation.
+
+In this procedure, you will create the following in your Helm templates directory:
 * Template that defines the shared collectors and analyzers
 * Template with the support bundle spec that includes the shared collectors and analyzers, as well as any collectors and analyzers that should be included in support bundles only
 * Template with the preflight spec that includes the shared collectors and analyzers, as well as any collectors and analyzers that should be included in preflight checks only
 * Kubernetes Secret that pulls in the support bundle spec
 * Kubernetes Secret that pulls in the preflight spec
 
-To do this, you can use Helm defined templates, which are globally-accessible templates inside a `{{ define }}` directive. For more information, see Names of Defined Templates, in the Helm documentation.
+1. Create the Shared Collectors and Analyzers Templates: Create a YAML file in your Helm templates that includes the collectors and analyzers that should be shared between your preflights and support bundles.
 
-### Create Shared Collectors and Analyzers Templates
+1. Next, create the support bundle spec in another defined template in a new YAML file.
 
-Create a YAML file in your Helm templates that includes the collectors and analyzers that should be shared between your preflights and support bundles.
+    Defining the support bundle spec in this way allows you to pull in the shared collectors and analyzers, as well as add any collectors and analyzers that you want to be used only for support bundles (and not preflights). This avoids clutter in the Kubernetes Secret where you’ll include both the support bundle and preflight specs in the last step.
 
-#### Example
+    In the example below, the support bundle spec (apiVersion: troubleshoot.sh/v1beta2 and kind: SupportBundle) is created within a defined template named troubleshoot.supportBundle.
+
+    This support bundle spec pulls in the shared collectors and analyzers defined in the previous step using the include function. Note that nindent is used with the include function to ensure the rendered YAML has the correct spacing.
+
+1. Create the preflight spec (apiVersion: troubleshoot.sh/v1beta2 and kind: Preflight) in a new YAML file within a defined template.
+
+1. Finally, add the specs to Kubernetes Secrets. This allows the preflight and support-bundle kubectl plugins to discover the specs in the cluster so that end users can run preflights and generate support bundles.
+
+    In the example below, the “troubleshoot.preflights” and “troubleshoot.supportBundle” templates are included in two different Secrets as string data. When these Secrets are templated, the collectors and analyzers defined in each spec (including the shared collectors and analyzers) are rendered.
+
+## Example
 
 The example below creates two defined templates: 
-troubleshoot.collectors.shared
-troubleshoot.analyzers.shared
+* troubleshoot.collectors.shared
+* troubleshoot.analyzers.shared
 
 In this example, the shared collectors template includes the clusterInfo, clusterResources, and registryImages collectors. The shared analyzers template includes several analyzers such as nodeResources, clusterVersion, and registryImages.
 

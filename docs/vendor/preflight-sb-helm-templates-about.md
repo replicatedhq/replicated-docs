@@ -1,4 +1,4 @@
-# Templating Values in Preflight and Support Bundles Specs with Helm
+# Templating Values in Preflights and Support Bundles with Helm
 
 This topic provides an overview of using Helm templating in your specs for preflight checks and support bundles.
 
@@ -11,7 +11,9 @@ Helm templates can be useful when you need to:
 - Run preflight checks based on certain conditions being true or false, such as the customer wants to use an external database.
 - Pull in user-specific information from the values.yaml file, such as the version a customer is using for an external database.
 
-## Conditionally Including Collectors and Analyzers
+## Examples
+
+### Conditionally Including Collectors and Analyzers
 
 You can use Helm templating to include or exclude collectors and analyzers in your preflight and support bundle specs based on a given condition.
 
@@ -31,26 +33,6 @@ spec:
         uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
   {{ end }}
   analyzers:
-    - nodeResources:
-        checkName: Node Count Check
-        outcomes:
-          - fail:
-              when: 'count() > {{ .Values.global.maxNodeCount }}'
-              message: "The cluster has more than {{ .Values.global.maxNodeCount }} nodes."
-          - pass:
-              message: You have the correct number of nodes.
-    - clusterVersion:
-        outcomes:
-          - fail:
-              when: "< 1.22.0"
-              message: The application requires at least Kubernetes 1.22.0, and recommends 1.23.0.
-              uri: https://kubernetes.io
-          - warn:
-              when: "< 1.23.0"
-              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.23.0 or later.
-              uri: https://kubernetes.io
-          - pass:
-              message: Your cluster meets the recommended and required versions of Kubernetes.
     {{ if eq .Values.global.mariadb.enabled false }}
     - mysql:
         checkName: Must be MySQL 8.x or later
@@ -81,7 +63,7 @@ stringData:
   preflight.yaml: |
 {{- include "preflight.spec"  . | indent 4 }}
 ```
-## Including Helm Values
+### Including Helm Values
 
 This specification also takes the MySQL connection string information from the `values.yaml` file, indicated by the template `'{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'` in the `uri` field.
 
@@ -121,7 +103,7 @@ stringData:
 {{- include "preflight.spec"  . | indent 4 }}
 ```
 
-## Templating Messages {#troubleshoot}
+### Templating Messages {#troubleshoot}
 
 You can also use Helm templates with the Troubleshoot template functions to automatically add the Pod name and namespace to a message when a `clusterPodStatuses` analyzer fails. For more information about the Troubleshoot template function, see [Cluster Pod Statuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/) in the Troubleshoot documentation.
 
