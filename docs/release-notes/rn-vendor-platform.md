@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.30-0
+
+Released on August 30, 2024
+
+### New Features {#new-features-v2024-08-30-0}
+* CMX: After uploading a support bundle, if instance insights detects k8s distro/version combination, these will be preloaded when creating a CMX cluster.
+
 ## v2024.08.20-5
 
 Released on August 20, 2024
