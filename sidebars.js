@@ -538,6 +538,7 @@ const sidebars = {
         label: 'Preflight Checks',
         items: [
             'vendor/preflight-defining',
+            'vendor/preflight-examples',
             'vendor/preflight-running',
             {
             type: 'category',
@@ -559,6 +560,7 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
+          'vendor/support-bundle-examples',
           'vendor/support-bundle-generating',
           'vendor/support-bundle-embedded',
           'vendor/support-host-support-bundles',
@@ -569,7 +571,14 @@ const sidebars = {
           'vendor/support-modular-support-bundle-specs',
         ],
       },
-      'vendor/preflight-sb-helm-templates-about',
+      {
+        type: 'category',
+        label: 'Using Helm Templating in Preflights and Support Bundles',
+        items: [
+          'vendor/preflight-support-bundle-modular',
+          'vendor/preflight-sb-helm-templates-about',
+        ]
+      },
       {
         type: 'category',
         label: 'Troubleshoot Custom Resources',

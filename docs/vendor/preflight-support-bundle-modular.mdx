@@ -1,0 +1,235 @@
+# Templating Shared Collectors and Analyzers with Helm
+
+This topic describes how to use Helm templating to share collectors and analyzers between your preflight and support bundles specs.
+
+## Overview
+
+Preflight checks and support bundles are both defined in YAML specs that include _collectors_ and _analyzers_. Collectors determine what information is gathered from the customer environment and analyzers then use this data to provide output to users, usually in the form of troubleshooting suggestions. For more information, see [About Preflights and Support Bundles](preflight-support-bundle-about).
+
+An application’s preflight and support bundle specs will share many of the same collectors and analyzers. To avoid having to copy and paste collectors and analyzers between both specs, you can instead use Helm templating to define and include shared collectors and analyzers in your preflights and support bundles.
+
+## Use Helm Templating to Share Collectors and Analyzers 
+
+One way to achieve this modular approach is adding the following files in your Helm chart templates directory:
+* Template that defines the shared collectors and analyzers
+* Template with the support bundle spec that includes the shared collectors and analyzers, as well as any collectors and analyzers that should be included in support bundles only
+* Template with the preflight spec that includes the shared collectors and analyzers, as well as any collectors and analyzers that should be included in preflight checks only
+* Kubernetes Secret that pulls in the support bundle spec
+* Kubernetes Secret that pulls in the preflight spec
+
+To do this, you can use Helm defined templates, which are globally-accessible templates inside a `{{ define }}` directive. For more information, see Names of Defined Templates, in the Helm documentation.
+
+### Create Shared Collectors and Analyzers Templates
+
+Create a YAML file in your Helm templates that includes the collectors and analyzers that should be shared between your preflights and support bundles.
+
+#### Example
+
+The example below creates two defined templates: 
+troubleshoot.collectors.shared
+troubleshoot.analyzers.shared
+
+In this example, the shared collectors template includes the clusterInfo, clusterResources, and registryImages collectors. The shared analyzers template includes several analyzers such as nodeResources, clusterVersion, and registryImages.
+
+You can include any collectors and analyzers that you want to share between your preflight and support bundle specs, though Replicated recommends that you always include the clusterInfo and clusterResources collectors. 
+
+```yaml
+{{- define "troubleshoot.collectors.shared" -}}
+- clusterInfo: {}
+- clusterResources: {}
+- registryImages:
+    images:
+      - replicated/replicated-sdk:v1.0.0-beta.11
+{{- end -}}
+
+{{- define "troubleshoot.analyzers.shared" -}}
+- clusterVersion:
+    checkName: Is this cluster running a supported Kubernetes verison
+    outcomes:
+      - fail:
+          when: "< 1.19.0"
+          message: This {{ include "common.names.name" . | title }} Helm chart is only supported on Kubernetes 1.19 or later
+          uri: https://www.kubernetes.io
+      - warn:
+          when: "< 1.24.0"
+          message: |
+            You can run {{ include "common.names.name" . | title }} on your current cluster version, but your cluster is no longer supported 
+            by the Kubernetes community. If you have extended support available from your Kubernetes
+            vendor you can ignore this warning.
+          uri: https://kubernetes.io
+      - pass:
+          message: |
+            Your current Kubernetes version is able to run {{ include "common.names.name" . | title }} using this Helm chart and is a
+            version currently supported by the Kubernets community.
+- containerRuntime:
+    checkName: Does this Kubernetes cluster use a supported container runtime
+    outcomes:
+      - pass:
+          when: "== containerd"
+          message: You are running the ContainerD runtime that is supported by this chart.
+      - fail:
+          message: |
+            The Helm chart requires the ContainerD container runtime, which is not the runtime
+            configured in your clusster.
+- distribution:
+    checkName: Are we installing into a supported Kubernetes distribution
+    outcomes:
+      - warn:
+          when: "== docker-desktop"
+          message: | 
+            You are able to run {{ include "common.names.name" . | title }} in Docker Desktop, but we recommend using a different
+            Kubernetes distribution for your production installation.
+      - warn:
+          when: "== microk8s"
+          message: | 
+            You are able to run {{ include "common.names.name" . | title }} in MicroK8s, but we recommend using a different
+            Kubernetes distribution for your production installation.
+      - warn:
+          when: "== minikube"
+          message: | 
+            You are able to run {{ include "common.names.name" . | title }} in Minikube, but we recommend using a different
+            Kubernetes distribution for your production installation.
+      - pass:
+          when: "== eks"
+          message: Amazon EKS is a suppored Kubernetes distribution to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          when: "== gke"
+          message: Google Kubernetes Engine is a suppored Kubernetes distribution to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          when: "== aks"
+          message: Azure Kubernetes Services is a supported Kubernetes distributiion to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          when: "== tanzu"
+          message: VMware Tanzu is a supported Kubernetes distribution to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          when: "== kurl"
+          message: The Replicated embedded Kubernetes distribution is supported to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          when: "== digitalocean"
+          message: DigitalOcean is a supported Kubernetes distribution to run {{ include "common.names.name" . | title }} in production
+      - pass:
+          message: We are unable to detect the Kubernetes distribution you are running but you should give it a try
+- nodeResources:
+    checkName: Are sufficient CPU resources available in the cluster
+    outcomes:
+      - fail:
+          when: "sum(cpuAllocatable) < 250m"
+          message: Your cluster currently has too few CPU resources available to install {{ include "common.names.name" . | title }}
+      - pass:
+          message: Your cluster has sufficient CPU resources available to install {{ include "common.names.name" . | title }}
+- nodeResources:
+    checkName: Is sufficient memory available in the cluster
+    outcomes:
+      - fail:
+          when: "min(memoryAllocatable) < 256Mi" 
+          message: Your cluster currently has too little memory available to install {{ include "common.names.name" . | title }}
+      - pass:
+          message: Your cluster has sufficient memory available to install {{ include "common.names.name" . | title }}
+- registryImages:
+    name: Registry Images
+    outcomes:
+      - fail:
+        when: "missing > 0"
+        message: Images are missing from registry
+      - warn:
+          when: "errors > 0"
+          message: Failed to check if images are present in registry
+      - pass:
+          message: All images are present in registry
+{{- end -}}
+```
+### Create the Support Bundle spec
+
+Next, create the support bundle spec in another defined template in a new YAML file.
+
+Defining the support bundle spec in this way allows you to pull in the shared collectors and analyzers, as well as add any collectors and analyzers that you want to be used only for support bundles (and not preflights). This avoids clutter in the Kubernetes Secret where you’ll include both the support bundle and preflight specs in the last step.
+
+In the example below, the support bundle spec (apiVersion: troubleshoot.sh/v1beta2 and kind: SupportBundle) is created within a defined template named troubleshoot.supportBundle.
+
+This support bundle spec pulls in the shared collectors and analyzers defined in the previous step using the include function. Note that nindent is used with the include function to ensure the rendered YAML has the correct spacing.
+
+This spec also adds the logs collector (which is recommended for all support bundles) and the deploymentStatus analyzer.
+
+```yaml
+{{- define "troubleshoot.supportBundle" -}}
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: {{ include "common.names.name" . }}-support-bundle
+spec:
+  collectors: {{- include "troubleshoot.collectors.shared" .  | nindent 4 }}
+    - logs:
+        name: app/replicated/logs
+        selectors: 
+          - app.kubernetes.io/name=replicated
+          - app.kubernetes.io/={{ .Release.Name }}
+        limits:
+          maxAge: 720h
+    - logs:
+        name: app/{{ include "common.names.name" . }}/logs
+        selectors: {{- include "common.labels.matchLabels" . | nindent 10 }}
+        limits:
+          maxAge: 720h
+  analyzers: {{- include "troubleshoot.analyzers.shared" .  | nindent 4 }}
+    - deploymentStatus:
+        name: replicated
+        outcomes:
+          - fail:
+              when: "absent" # note that the "absent" failure state must be listed first if used.
+              message: The replicated deployment is not present.
+          - fail:
+              when: "< 1"
+              message: The replicated deployment does not have any ready replicas.
+          - warn:
+              when: "< 1"
+              message: The replicated deployment has less than the required number of replicas.
+          - warn:
+              when: "= 1"
+              message: The replicated deployment has only a single ready replica.
+          - pass:
+              message: There are multiple replicas of the replicated deployment ready.
+{{- end -}}
+```
+
+### Create the Preflights Spec
+
+Similar to above, create the preflight spec (apiVersion: troubleshoot.sh/v1beta2 and kind: Preflight) in a new YAML file within a defined template. The example below names the defined template `troubleshoot.preflights`:
+
+```yaml
+{{- define "troubleshoot.preflights" -}}
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: {{ include "common.names.name" . }}-preflight
+spec:
+  collectors: {{- include "troubleshoot.collectors.shared" .  | nindent 4 }}
+  analyzers: {{- include "troubleshoot.analyzers.shared" .  | nindent 4 }}
+{{- end -}}
+```
+In this case, the preflight spec only pulls in the shared collectors and analyzers and doesn’t add any additional ones. It is less likely that you’ll have any collectors and analyzers that are unique to preflights and excluded from your support bundles.
+
+### Create Kubernetes Secrets
+
+Finally, add the specs to Kubernetes Secrets. This allows the preflight and support-bundle kubectl plugins to discover the specs in the cluster so that end users can run preflights and generate support bundles.
+
+In the example below, the “troubleshoot.preflights” and “troubleshoot.supportBundle” templates are included in two different Secrets as string data. When these Secrets are templated, the collectors and analyzers defined in each spec (including the shared collectors and analyzers) are rendered.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "common.names.name" . }}-preflight
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    troubleshoot.sh/kind: preflight
+stringData:
+  preflight.yaml: |- {{- include "troubleshoot.preflights" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "common.names.name" . }}-support-bundle
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    troubleshoot.sh/kind: support-bundle
+stringData:
+  support-bundle-spec: |- {{- include "troubleshoot.supportBundle" . | nindent 4 }}
+```
