@@ -13,8 +13,8 @@ Released on August 30, 2024
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">1.11.0+k8s-1.29</td>
-    <td id="center">1.11.0+k8s-1.28</td>
+    <td id="center">1.11.1+k8s-1.29</td>
+    <td id="center">1.11.1+k8s-1.28</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
