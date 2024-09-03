@@ -8,6 +8,28 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.03-0
+
+Released on September 3, 2024
+
+### New Features {#new-features-v2024-09-03-0}
+* Adds support for Amazon Linux 2023 and Ubuntu 24.04.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.76.0-62.3.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.6.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-26T15-33-07Z.
+
+## v2024.08.26-0
+
+Released on August 26, 2024
+
+### New Features {#new-features-v2024-08-26-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.16, 1.28.13, 1.29.8, 1.30.4, and 1.31.0.
+* Adds support for CentOS Stream 9.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-17T01-24-54Z.
+
+### Bug Fixes {#bug-fixes-v2024-08-26-0}
+* Fixes an issue where [Flannel](https://kurl.sh/docs/add-ons/flannel) versions older than 0.24.2 failed to install on instances with VMware NICs.
+
 ## v2024.08.12-0
 
 Released on August 12, 2024

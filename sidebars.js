@@ -572,8 +572,9 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
-          'vendor/support-host-support-bundles',
           'vendor/support-bundle-generating',
+          'vendor/support-bundle-embedded',
+          'vendor/support-host-support-bundles',
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
