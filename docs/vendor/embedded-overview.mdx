@@ -216,7 +216,7 @@ The following flags can be used with the Embedded Cluster `install` command to i
        <p>The following are never proxied:</p>
        <ul>
          <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)</li>
-         <li>Communiation to the KOTS database (`kotsadm-rqlite`)</li>
+         <li>Communication to the KOTS database (`kotsadm-rqlite`)</li>
          <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.96.0.0/12` and the Service CIDR `10.244.0.0/16`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
        </ul>
      </td>
