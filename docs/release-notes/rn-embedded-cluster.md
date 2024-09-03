@@ -27,7 +27,7 @@ Released on August 30, 2024
   </tr>
 </table>
 
-### Improvements {#improvements-1-11-0}
+### Improvements {#improvements-1-11-1}
 
 * Adds a host preflight check to ensure that disk performance is sufficient for etcd. Specifically, the P99 write latency must be less than 10 ms.
 
