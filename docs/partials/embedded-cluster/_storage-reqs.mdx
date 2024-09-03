@@ -1,7 +1,7 @@
 Embedded Cluster stores data in the following primary locations, all of which must be writable:
 
 :::note
-Replicated does not support using symlinked directories for these locations.
+Replicated does not support using symlinked directories for these locations. Instead, Replicated recommends bind mounts, which provide greater consistency across different applications, preserve the original directory permissions and ownership, and have less overhead compared to symlinks. For more information, see [Relocating data directories with bind mounts](https://community.replicated.com/t/relocating-data-directories-with-bind-mounts/1435) in Replicated Community.
 :::
 
 #### `/var/lib/embedded-cluster`
