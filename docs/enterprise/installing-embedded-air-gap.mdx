@@ -32,7 +32,7 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
 
-* Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always set as the image pull policy**, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
+* Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
 
 * On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
 
@@ -156,6 +156,10 @@ You can add nodes to an air gap cluster. This involves downloading the Embedded 
 ### Prerequisites
 
 The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these assets on each node. For more information, see [Install](#install) above.
+
+:::note
+The binary and air gap bundles on each additional node must be the same version as what is currently installed. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog. For more information, see [Install](#install) above.
+:::
 
 ### Add Nodes
 
