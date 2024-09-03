@@ -56,19 +56,19 @@ To install with Embedded Cluster in an air gap environment:
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
     :::
 
-1. Go to **Customers** and click on the target customer. Click **Install instructions > Embedded cluster**.
+1. Go to **Customers** and click on the target customer. Click **Install instructions > Embedded Cluster**.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-     The **Embedded cluster install instructions** dialog is displayed.
+     The **Embedded Cluster install instructions** dialog is displayed.
 
      <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-1. (Optional) In the **Embedded cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
+1. (Optional) In the **Embedded Cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
 
 1. SSH onto the machine where you will install.
 
@@ -78,9 +78,11 @@ To install with Embedded Cluster in an air gap environment:
     curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
     ```
 
-1. Run the modified curl command on your air gap VM to download the air gap installation assets.
+1. On a machine with internet access, run the modified curl command to download the air gap installation assets as a `.tgz`.
 
-1. After the download completes, untar it following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
+1. Move the downloaded `.tgz` to the air gap VM where you will install. 
+
+1. On your air gap VM, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
     * The installer
     * The license
     * The air gap bundle (`APP_SLUG.airgap`)
@@ -119,7 +121,9 @@ To install with Embedded Cluster in an air gap environment:
 
 1. Click **Advanced > Proceed**.
 
-1. On the HTTPS page, select **Self-signed** and click **Continue**.
+1. On the HTTPS page, upload your own private key and certificacte or select **Self-signed**.
+
+    By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
 1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
@@ -139,7 +143,7 @@ To install with Embedded Cluster in an air gap environment:
 
 The Admin Console dashboard opens.
 
-On the Admin Console dashboard, the application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
+On the Admin Console dashboard, the application status changes from Missing to Unavailable while the application is being installed. When the installation is complete, the status changes to Ready. For example:
 
 ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 

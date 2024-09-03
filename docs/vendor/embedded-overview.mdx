@@ -100,19 +100,27 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-## Configure Embedded Cluster
+## About Configuring Embedded Cluster
 
-To install your application with Embedded Cluster, an Embedded Cluster config must be created in a release. The Embedded Cluster config lets you define several characteristics about the cluster that will be created.
+To install an application with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
 
 For more information, see [Embedded Cluster Config](/reference/embedded-config).
 
-## Install
+## About Installing with Embedded Cluster
 
-Embedded Cluster supports installations in both online (internet-connected) environments and air gap environments with no outbound internet access. For online installations, Embedded Cluster also supports installing behind a proxy server.
+This section provides an overview of installing applications with Embedded Cluster.
 
-:::important
-Embedded Cluster installations in air gap environments in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
-:::
+### Installation Options
+
+Embedded Cluster supports installations in online (internet-connected) environments and has alpha support for installing in air gap environments with no outbound internet access.
+
+For online installations, Embedded Cluster also supports installing behind a proxy server.
+
+For more information about how to install with Embedded Cluster, see:
+* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
+* [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap)
+
+### Customer-Specific Installation Instructions
 
 To install with Embedded Cluster, you can follow the customer-specific instructions provided on the **Customer** page in the Vendor Portal. For example:
 
@@ -120,25 +128,7 @@ To install with Embedded Cluster, you can follow the customer-specific instructi
 
 [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-For more information about how to install with Embedded Cluster, see:
-* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
-* [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap)
-
-### (Optional) Serve Installation Assets Using the Vendor API
-
-To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
-
-To serve Embedded Cluster installation assets with the Vendor API:
-
-1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
-
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
-
-     Note the following:
-
-     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
-
-     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+For more information, see [Finding Installation Commands for a Release](/vendor/releases-sharing-license-install-script).
 
 ### About Host Preflight Checks
 
@@ -172,15 +162,27 @@ When you skip host preflight checks, the Admin Console still runs any applicatio
 Skipping host preflight checks is _not_ recommended for production installations.
 :::
 
-## Update
+## (Optional) Serve Installation Assets Using the Vendor API
+
+To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
+
+To serve Embedded Cluster installation assets with the Vendor API:
+
+1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+
+     Note the following:
+
+     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
+
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+
+## About Performing Updates with Embedded Cluster
 
 <UpdateOverview/>
 
 For more information about updating, see [Performing Updates with Embedded Cluster (Beta)](/enterprise/updating-embedded).
-
-:::important
-Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
-:::
 
 ## Access the Cluster
 
