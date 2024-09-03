@@ -16,7 +16,7 @@ pagination_next: null
         <p>End users can now provide their proxy settings with the Embedded Cluster installation command so that traffic is routed through a proxy.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-overview#install-behind-a-proxy-server">Learn more</a>
+      <a href="/enterprise/installing-embedded#proxy">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
