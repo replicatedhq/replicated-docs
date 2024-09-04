@@ -6,7 +6,7 @@ import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
 # Air Gap Installation with Embedded Cluster (Beta)
 
-This topic describes how to install applications with Embedded Cluster in air gap environments with no outbound internet access.
+This topic describes how to install applications with Embedded Cluster in a virtual machine (VM) or bare metal server with no outbound internet access.
 
 :::note
 Embedded Cluster installations in air gap environments is a beta feature. This feature is subject to change. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
@@ -80,9 +80,9 @@ To install with Embedded Cluster in an air gap environment:
 
 1. On a machine with internet access, run the modified curl command to download the air gap installation assets as a `.tgz`.
 
-1. Move the downloaded `.tgz` to the air gapped VM where you will install. 
+1. Move the downloaded `.tgz` to the air gapped machine where you will install. 
 
-1. On your air gapped VM, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
+1. On your air gapped machine, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
     * The installer
     * The license
     * The air gap bundle (`APP_SLUG.airgap`)
@@ -127,7 +127,7 @@ To install with Embedded Cluster in an air gap environment:
 
 1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
-1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
+1. On the **Nodes** page, you can view details about the machine where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
 
 1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
 
