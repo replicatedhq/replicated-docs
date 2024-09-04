@@ -2,6 +2,7 @@ import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
+import EmbeddedClusterStorageReqs from "../partials/embedded-cluster/_storage-reqs.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 
 # Using Embedded Cluster (Beta)
@@ -30,9 +31,13 @@ As shown in the diagram above, the Embedded Cluster Config is included in the ap
 
 ### Requirements
 
-Embedded cluster has the following requirements:
+#### System Requirements
 
 <Requirements/>
+
+#### Host Storage Requirements
+
+<EmbeddedClusterStorageReqs/>
 
 ### Limitations
 
@@ -42,7 +47,7 @@ Embedded Cluster has the following limitations:
 
 * **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
-* **Air gap support is in alpha**: Support for air gap installations with Embedded Cluster is an alpha feature. For more information, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
+* **Air gap support is in beta**: Support for air gap installations with Embedded Cluster is a beta feature. For more information, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery)
 
@@ -105,182 +110,35 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-## Configure Embedded Cluster
+## About Configuring Embedded Cluster
 
-To install your application with Embedded Cluster, an Embedded Cluster config must be created in a release. The Embedded Cluster config lets you define several characteristics about the cluster that will be created.
+To install an application with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
 
 For more information, see [Embedded Cluster Config](/reference/embedded-config).
 
-## Download the Embedded Cluster Binary
+## About Installing with Embedded Cluster
 
-To install your application with Embedded Cluster, you need to download an Embedded Cluster binary and a license. The binary is specific to your application release: it installs that particular version of your application using the Embedded Cluster config defined in that release.
+This section provides an overview of installing applications with Embedded Cluster.
 
-Your customers can download the binary using the Replicated app service, or you can host/serve the binary yourself using the Replicated Vendor API.
+### Installation Options
 
-For information about downloading the Embedded Cluster binary for air gap installations, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
+Embedded Cluster supports installations in online (internet-connected) environments and has alpha support for installing in air gap environments with no outbound internet access.
 
-### Using the Replicated App Service
+For online installations, Embedded Cluster also supports installing behind a proxy server.
 
-For online installations, your customers can run a command to download the Embedded Cluster binary and their license directly to the machine where they will install your application. The command to download the binary and license is easily available on the customer page in the vendor portal. You can copy this and share it with your customers.
+For more information about how to install with Embedded Cluster, see:
+* [Online Installation wtih Embedded Cluster (Beta)](/enterprise/installing-embedded)
+* [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap)
 
-To download the binary using the Replicated app service:
+### Customer-Specific Installation Instructions
 
-1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
+To install with Embedded Cluster, you can follow the customer-specific instructions provided on the **Customer** page in the Vendor Portal. For example:
 
-1. At the top right of the customer page, click **Install instructions** and choose **Embedded cluster**.
+<img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
 
-     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+[View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
-
-     An **Embedded cluster installation instructions** dialog is displayed with instructions on how to download the Embedded Cluster binary and install your application.
-
-1. (Optional) In the **Select a version** dropdown, select a version label to download the release artifacts for a specific version of your application.
-
-     For example:
-
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="550px"/>
-
-     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
-
-1. On a VM, run the first two commands in the **Embedded cluster installation instructions** dialog to download the binary and license and extract them.
-
-:::note
-You can configure a custom domain for the `replicated.app` endpoint so that your customers can download the binary from your own domain instead of from `replicated.app`. For more information, see [About Custom Domains](/vendor/custom-domains).
-:::
-
-### Using the Vendor API
-
-Some vendors already have a portal where their customers log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster binary yourself using the Replicated Vendor API.
-
-To serve the binary with the Vendor API:
-
-1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
-
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the artifacts needed to install your application in an embedded cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
-
-     Note the following:
-
-     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
-
-     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
-
-
-## Install
-
-Your customers can install your application once they have obtained the Embedded Cluster binary and their license and copied them to the machine where they will install your application. For more information about how to get the binary and license, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
-
-For information about installing in air gap environments, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
-
-To install your application in an embedded cluster:
-
-1. SSH onto the machine where you will install your application.
-
-1. Ensure that the Embedded Cluster binary and the license are available in the working directory.
-
-1. Install the application:
-
-    ```
-    sudo ./APP_SLUG install --license LICENSE_FILE
-    ```
-    Where:
-    * `APP_SLUG` is the unique slug for the application.
-    * `LICENSE_FILE` is the customer's license.
-
-1. Enter an Admin Console password when prompted.
-
-     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
-
-### Install Behind a Proxy Server
-
-The following flags can be used with the Embedded Cluster `install` command to install behind a proxy server:
-
-<table>
-  <tr>
-    <th width="35%">Flag</th>
-    <th width="65%">Description</th>
-  </tr>
-  <tr>
-     <td>`--http-proxy`</td>
-     <td>Proxy server to use for HTTP</td>
-  </tr>
-  <tr>
-     <td>`--https-proxy`</td>
-     <td>Proxy server to use for HTTPS</td>
-  </tr>
-  <tr>
-     <td>`--no-proxy`</td>
-     <td>
-       <p>Comma-separated list of hosts for which not to use a proxy.</p>
-       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation).</p>
-       <p>The following are never proxied:</p>
-       <ul>
-         <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)</li>
-         <li>Communication to the KOTS database (`kotsadm-rqlite`)</li>
-         <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.96.0.0/12` and the Service CIDR `10.244.0.0/16`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
-       </ul>
-     </td>
-  </tr>
-</table>
-
-#### Example
-
-```bash
-sudo ./APP_SLUG install --license LICENSE_FILE \
-  --http-proxy=HOST:PORT \
-  --https-proxy=HOST:PORT \
-  --no-proxy=LIST_OF_HOSTS
-```
-
-Where:
-
-* `LICENSE_FILE` is the customer's license
-* `HOST:PORT` is the host and port of the proxy server
-* `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
-
-#### Requirement
-
-Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
-
-#### Limitations
-
-* If any of your Helm extensions make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy.
-    
-    Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.
-
-* Proxy settings cannot be changed after installation or during upgrade.
-
-### Set IP Address Ranges for Pods and Services
-
-The following flags can be used with the Embedded Cluster `install` command to allocate IP address ranges for Pods and Services:
-
-<table>
-  <tr>
-    <th width="35%">Flag</th>
-    <th width="65%">Description</th>
-  </tr>
-  <tr>
-     <td>`--pod-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is `10.96.0.0/12`.</td>
-  </tr>
-  <tr>
-     <td>`--service-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is `10.244.0.0/16`.</td>
-  </tr>
-</table>
-
-
-**Example:**
-
-```bash
-sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
-```
-
-**Limitation:**
-
-The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
-
-### Host Preflight Checks
+### About Host Preflight Checks
 
 During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
 * The system has sufficient disk space
@@ -312,61 +170,27 @@ When you skip host preflight checks, the Admin Console still runs any applicatio
 Skipping host preflight checks is _not_ recommended for production installations.
 :::
 
-### Host Storage
+## (Optional) Serve Installation Assets Using the Vendor API
 
-Embedded Cluster stores data in the following primary locations, all of which must be writable:
+To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
 
-:::note
-Replicated does not support using symlinked directories for these locations.
-:::
+To serve Embedded Cluster installation assets with the Vendor API:
 
-#### `/var/lib/embedded-cluster`
+1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
 
-- Used to store your installer
-- Includes:
-  * Logs
-  * Temporary files
-  * Supporting binaries (for example, kubectl and Replicated’s preflight and support-bundle plugins)
-- Should be large enough to fit at least 2 installer binaries
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
 
-#### `/var/lib/k0s`
+     Note the following:
 
-- Where the Kubernetes cluster runs
-- Includes:
-  * All Kubernetes components and binaries
-  * Pod log files
-  * Images currently in use by containerd
-- Storage requirements:
-  * The total space should be sufficient to hold the following while remaining below 85% utilization:
-    * All Pod logs
-    * Two copies of infrastructure images included in k0s
-    * All Pod images for your application
-  * Kubernetes will initiate garbage collection of images when utilization reaches 85%
-- Calculation example:
-  If the sum of required storage for logs, images, and components is X GB, the total allocated space should be at least X / 0.85 GB to ensure it remains below 85% utilization.
+     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
 
-#### `/var/openebs`
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
 
-- Where PVC data is stored
-- Needs enough storage to support all volumes used in your application
-- For airgap installs:
-  * Registry uses a volume
-  * Requires space for two copies of your images (for registry)
-  * Additional space needed for other application volume requirements
-  * If high availability is enabled, all controller nodes will have the same requirements because data will be replicated to all controller nodes.
-
-#### `/tmp`
-- Temporary space during installation
-
-## Update
+## About Performing Updates with Embedded Cluster
 
 <UpdateOverview/>
 
 For more information about updating, see [Performing Updates with Embedded Cluster (Beta)](/enterprise/updating-embedded).
-
-:::important
-Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
-:::
 
 ## Access the Cluster
 
@@ -498,7 +322,7 @@ High availability is supported with Embedded cluster version 1.4.1 or later
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Installing in Air Gap Environments with Embedded Cluster (Alpha)](/enterprise/installing-embedded-air-gap).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 

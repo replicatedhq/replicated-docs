@@ -1,12 +1,14 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
+import EmbeddedClusterRequirements from "../partials/embedded-cluster/_requirements.mdx"
+import EmbeddedClusterStorageReqs from "../partials/embedded-cluster/_storage-reqs.mdx"
 
 # Installation Requirements
 
-This topic describes the requirements for installing applications with the Replicated KOTS and Replicated kURL installers.
+This topic describes the requirements for installing applications with Replicated KOTS. It includes requirements for installing KOTS in existing clusters and in clusters created with Replicated Embedded Cluster or Replicated kURL.
 
 :::note
-This topic does not include any requirements specific to your software vendor. Ensure that you meet any additional requirements for the application defined by your software vendor.
+This topic does not include any requirements specific to the application. Ensure that you meet any additional requirements for the application before installing.
 :::
 
 ## Supported Browsers
@@ -31,7 +33,6 @@ Kubernetes versions 1.25 and earlier are end-of-life (EOL). For more information
 Replicated recommends using a version of KOTS that is compatible with Kubernetes 1.26 and higher.
 
 <KubernetesCompatibility/>
-
 
 ## Existing Cluster Requirements
 
@@ -249,9 +250,21 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
 :::
 
+## Embedded Cluster Requirements
+
+To install with the Embedded Cluster installer, your environment must meet the following requirements.
+
+### System Requirements
+
+<EmbeddedClusterRequirements/>
+
+### Host Storage Requirements
+
+<EmbeddedClusterStorageReqs/>
+
 ## kURL Requirements {#kurl-requirements}
 
-To install KOTS in an embedded cluster created by kURL, your environment must meet the following requirements.
+To install with kURL, your environment must meet the following requirements.
 
 ### Minimum System Requirements
 
@@ -285,9 +298,17 @@ You must meet the additional kURL system requirements when applicable:
 
 ## Private Registry Requirements
 
-A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation. For air gap installations in kURL clusters, the kURL installer automatically uses the registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
+This section describes the requirements for using a private image regsitry for KOTS installations.
+
+### About Using a Private Registry
+
+A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation.
+
+For air gap installations in kURL clusters, the kURL installer automatically uses the registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 Private registry settings can be changed at any time. For more information, see [Using Private Registries](image-registry-settings).
+
+### Compatible Registries
 
 KOTS has been tested for compatibility with the following registries:
 

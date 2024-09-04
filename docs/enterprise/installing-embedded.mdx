@@ -1,0 +1,191 @@
+import Prerequisites from "../partials/install/_ec-prereqs.mdx"
+
+# Online Installation with Embedded Cluster (Beta)
+
+This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
+
+## Prerequisites
+
+Before you install, complete the following prerequisites:
+
+<Prerequisites/>
+
+## Install
+
+To install an application with Embedded Cluster:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Customers** and click on the target customer. Click **Install instructions > Embedded Cluster**.
+
+     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+
+     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
+
+     The **Embedded Cluster install instructions** dialog is displayed.
+
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
+
+     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
+
+1. (Optional) In the **Embedded Cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
+
+1. SSH onto the machine where you will install.
+
+1. Run the first command in the **Embedded Cluster install instructions** dialog to download the installation assets as a `.tgz`.
+
+1. Run the second command to extract the `.tgz`. The will produce the following files:
+
+    * The installer
+    * The license
+
+1. Run the third command to install the release:
+
+    ```bash
+    sudo ./APP_SLUG install --license LICENSE_FILE
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application.
+    * `LICENSE_FILE` is the customer license.
+
+1. When prompted, enter a password for accessing the KOTS Admin Console.
+
+     The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](/vendor/embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
+
+1. When the installation command completes, go to the URL provided in the output to access the Admin Console.
+     
+    **Example output:** 
+
+    ```bash
+    ✔  Host files materialized
+    ? Enter an Admin Console password: ********
+    ? Confirm password: ********
+    ✔  Host files materialized!
+    ✔  Host preflights succeeded!
+    ✔  Node installation finished!
+    ✔  Storage is ready!
+    ✔  Embedded Cluster Operator is ready!
+    ✔  Admin Console is ready!
+    ✔  Additional components are ready!
+    Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
+    ```
+    At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
+
+1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+
+1. Click **Advanced > Proceed**.
+
+1. On the HTTPS page, upload your own private key and certificacte or select **Self-signed**.
+
+    By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
+
+1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
+
+1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
+
+1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
+
+1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
+
+    :::note
+    Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+    :::
+
+    :::note
+    If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
+    :::
+
+The Admin Console dashboard opens.
+
+On the Admin Console dashboard, the application status changes from Missing to Unavailable while the application is being installed. When the installation is complete, the status changes to Ready. For example:
+
+![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+
+[View a larger version of this image](/images/gitea-ec-ready.png)
+
+## Install Behind a Proxy Server {#proxy}
+
+The following flags can be used with the Embedded Cluster `install` command to install behind a proxy server:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--http-proxy`</td>
+     <td>Proxy server to use for HTTP</td>
+  </tr>
+  <tr>
+     <td>`--https-proxy`</td>
+     <td>Proxy server to use for HTTPS</td>
+  </tr>
+  <tr>
+     <td>`--no-proxy`</td>
+     <td>
+       <p>Comma-separated list of hosts for which not to use a proxy.</p>
+       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation).</p>
+       <p>The following are never proxied:</p>
+       <ul>
+         <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.default`, `.local`, `.svc`, `kubernetes`)</li>
+         <li>Communiation to the KOTS database (`kotsadm-rqlite`)</li>
+         <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.96.0.0/12` and the Service CIDR `10.244.0.0/16`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
+       </ul>
+     </td>
+  </tr>
+</table>
+
+#### Example
+
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE \
+  --http-proxy=HOST:PORT \
+  --https-proxy=HOST:PORT \
+  --no-proxy=LIST_OF_HOSTS
+```
+
+Where:
+
+* `LICENSE_FILE` is the customer's license
+* `HOST:PORT` is the host and port of the proxy server
+* `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
+
+#### Requirement
+
+Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later. For example, Embedded Cluster 1.6.0+k8s-1.29 supports installing behind a proxy, and 1.6.0+k8s-1.28 does not. For the latest version information, see [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
+
+#### Limitations
+
+* If any of your Helm extensions make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy.
+    
+    Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.
+
+* Proxy settings cannot be changed after installation or during upgrade.
+
+### Set IP Address Ranges for Pods and Services
+
+The following flags can be used with the Embedded Cluster `install` command to allocate IP address ranges for Pods and Services:
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--pod-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is `10.96.0.0/12`.</td>
+  </tr>
+  <tr>
+     <td>`--service-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is `10.244.0.0/16`.</td>
+  </tr>
+</table>
+
+
+#### Example
+
+```bash
+sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
+```
+
+#### Limitation
+
+The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
