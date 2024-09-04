@@ -570,7 +570,7 @@ const sidebars = {
           'vendor/support-online-support-bundle-specs',
         ],
       },
-      'vendor/preflight-support-bundle-modular',
+      'vendor/preflight-support-bundle-shared',
       'vendor/preflight-sb-helm-templates-about',
       {
         type: 'category',

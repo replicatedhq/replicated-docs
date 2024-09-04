@@ -1,0 +1,3 @@
+An application’s preflight and support bundle specs will share many of the same collectors and analyzers. For Helm applications, to avoid having to copy and paste collectors and analyzers between both specs, you can instead use Helm templating to define and include shared collectors and analyzers.
+
+Shared collectors and analyzers can be defined using Helm _defined templates_, which are globally-accessible templates inside a `{{ define }}` directive. These defined templates can then be included in your preflight and support bundle specs using the Helm `include` template function. 

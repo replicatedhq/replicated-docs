@@ -1,3 +1,5 @@
+import Shared from "../partials/support-bundles/_shared-collectors-analyzers.mdx"
+
 # Defining Preflight Checks
 
 This topic describes how to define preflight checks in Helm- and standard Kubernetes manifest-based applications. For more information about preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
@@ -115,5 +117,8 @@ For applications installed with KOTS, you can set any preflight analyzer to `str
 Strict preflight analyzers are ignored if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
 :::
 
-### Define Shared Collectors and Analyzers
+### (Recommended) Define Shared Collectors and Analyzers with Helm
 
+<Shared/>
+
+For more information, see [Defining Shared Collectors and Analyzers with Helm Templating](preflight-support-bundle-shared).

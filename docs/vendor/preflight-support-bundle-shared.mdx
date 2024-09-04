@@ -1,3 +1,5 @@
+import Overview from "../partials/support-bundles/_shared-collectors-analyzers.mdx"
+
 # Defining Shared Collectors and Analyzers with Helm Templating
 
 This topic describes how to use Helm templating to share collectors and analyzers between your preflight and support bundles specs. The information in this topic applies to preflight checks and support bundles that are defined in Kubernetes Secrets.
@@ -6,9 +8,7 @@ This topic describes how to use Helm templating to share collectors and analyzer
 
 Preflight checks and support bundles are both defined in YAML specs that include _collectors_ and _analyzers_. Collectors determine what information is gathered from the customer environment and analyzers then use this data to provide output to users, usually in the form of troubleshooting suggestions. For more information, see [About Preflights and Support Bundles](preflight-support-bundle-about).
 
-An application’s preflight and support bundle specs will share many of the same collectors and analyzers. To avoid having to copy and paste collectors and analyzers between both specs, you can instead use Helm templating to define and include shared collectors and analyzers.
-
-Shared collectors and analyzers can be defined using Helm _defined templates_, which are globally-accessible templates inside a `{{ define }}` directive. These defined templates can then be included in your preflight and support bundle specs using the Helm `include` template function. 
+<Overview/>
 
 For more information about the `define` template functions, see [Names of Defined Templates](https://helm.sh/docs/chart_best_practices/templates/#names-of-defined-templates) in the Helm documentation. For more information about the `include` template function, see [Using the 'include' Function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-include-function) in the Helm documentation.
 
@@ -18,7 +18,7 @@ Consider the following recommendations before creating shared collectors and ana
 
 * Your support bundles should include all of the same collectors and analyzers that are in your preflight checks. This ensures that support bundles include all the necessary troubleshooting information, including any failures in preflight checks.
 
-* In addition to your shared collectors and analyzers, you will also likely need to define other collectors and analyzers that are included in support bundles only. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation. Conversely, you should not have any collectors and analyzers that are included in preflight checks only.
+* In addition to your shared collectors and analyzers, you will also likely need to define other collectors and analyzers that are included in support bundles only. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation. Conversely, you should not have any collectors and analyzers that are only included in preflight checks.
 
 * When using the Helm `include` template function in your preflight and support bundle specs, use [`nindent`](https://helm.sh/docs/chart_template_guide/function_list/#nindent) to ensure the rendered YAML has the correct spacing.
 
@@ -182,4 +182,4 @@ To include shared collectors and analyzers in preflight and support bundle specs
       support-bundle-spec: |- {{- include "troubleshoot.supportBundle" . | nindent 4 }}
     ```
 
-1. Package your Helm chart to a `.tgz` chart archive and add the archive to a new release to test your changes.    
+1. Package your Helm chart to a `.tgz` chart archive and add the archive to a new release to test your changes. For more information, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release).   
