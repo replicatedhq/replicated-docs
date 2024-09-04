@@ -20,6 +20,8 @@ Consider the following recommendations before creating shared collectors and ana
 
 * In addition to your shared collectors and analyzers, you will also likely need to define other collectors and analyzers that are included in support bundles only. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation. Conversely, you should not have any collectors and analyzers that are only included in preflight checks.
 
+* If your application is deployed as multiple Helm charts, define your shared collectors and analyzers in the parent chart's templates. Defined templates created in the parent chart can be accessed by subcharts. This allows you to include the shared collectors and analyzers in any other support bundle specs that are created in subcharts.
+
 * When using the Helm `include` template function in your preflight and support bundle specs, use [`nindent`](https://helm.sh/docs/chart_template_guide/function_list/#nindent) to ensure the rendered YAML has the correct spacing.
 
 ## Include Shared Collectors and Analyzers in Preflights and Support Bundles 
