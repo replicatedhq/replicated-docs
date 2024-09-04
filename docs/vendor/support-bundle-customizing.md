@@ -1,4 +1,4 @@
-# Creating Support Bundle Specs
+# Adding and Customizing Support Bundles
 
 This topic describes how to add a default support bundle spec to a release for your application. It also describes how to customize the default support bundle spec based on your application's needs. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
@@ -179,3 +179,6 @@ spec:
     - clusterResources:
         exclude: true
 ```
+
+### Define Shared Collectors and Analyzers
+
