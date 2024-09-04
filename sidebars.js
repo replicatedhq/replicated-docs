@@ -570,14 +570,8 @@ const sidebars = {
           'vendor/support-online-support-bundle-specs',
         ],
       },
-      {
-        type: 'category',
-        label: 'Using Helm Templating',
-        items: [
-          'vendor/preflight-support-bundle-modular',
-          'vendor/preflight-sb-helm-templates-about',
-        ]
-      },
+      'vendor/preflight-support-bundle-modular',
+      'vendor/preflight-sb-helm-templates-about',
       {
         type: 'category',
         label: 'Troubleshoot Custom Resources',
