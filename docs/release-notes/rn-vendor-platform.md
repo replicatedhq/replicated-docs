@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.28-0
+
+Released on August 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-28-0}
+* Click docs link will open a new window to related documentation in the Compatbility Matrix versions available modal.
+
 ## v2024.08.23-2
 
 Released on August 23, 2024
