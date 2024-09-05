@@ -1,9 +1,9 @@
-For existing clusters, do a first-time installation or upgrade the support-bundle plugin (a kubectl plugin) before you generate a support bundle using the CLI. The plugin is required to generate a support bundle.
+The support-bundle plugin (a kubectl plugin) is required to generate support bundles from the command line.
 
 You can install the support-bundle plugin using krew or install it manually from the release archives.
 
 :::note
-If your application was installed using a Replicated kURL script, then `kubectl` and the `support-bundle` plugin is already present on all of the control plane nodes. You can skip this prerequisite.
+For Replicated Embedded Cluster and Replicated kURL installations, the support-bundle plugin is automatically installed on all of the control plane nodes. You can skip this prerequisite.
 :::
 
 #### Install or Upgrade using krew
@@ -30,7 +30,7 @@ To install the support-bundle plugin using krew, do one of the following:
 
 #### Install Manually
 
-If you do not want to install the plugin using krew or want an easier way to install the plugin in an air gapped environment, you can install the plugin manually from the release archives.
+If you do not want to install the plugin using krew or want an easier way to install the plugin in an air gap environment, you can install the plugin manually from the release archives.
 
 To install the support-bundle plugin manually:
 

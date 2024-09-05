@@ -6,6 +6,31 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+## 1.11.1
+
+Released on August 30, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.11.1+k8s-1.29</td>
+    <td id="center">1.11.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.7</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.114.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-11-1}
+
+* Adds a host preflight check to ensure that disk performance is sufficient for etcd. Specifically, the P99 write latency must be less than 10 ms.
+
 ## 1.11.0
 
 Released on August 23, 2024
