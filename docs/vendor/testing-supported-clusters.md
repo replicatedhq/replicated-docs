@@ -447,7 +447,7 @@ By default, creating OKE clusters is not enabled. To enable OKE clusters for Com
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.29.1</td>
+    <td>1.29.1, 1.30.1</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
