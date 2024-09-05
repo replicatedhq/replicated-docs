@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.04-0
+
+Released on September 4, 2024
+
+### New Features {#new-features-v2024-09-04-0}
+* Comaptibility Matrix: Added capability to create ws and wss tunnels from the web UI.
+
 ## v2024.08.30-0
 
 Released on August 30, 2024
