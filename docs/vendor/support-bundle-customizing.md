@@ -12,11 +12,11 @@ You can add the support bundle spec to a Kubernetes Secret or a SupportBundle cu
 
 Use the following guidance to determine which type of manifest file to use for creating a support bundle spec:
 
-* **Helm-Based Applications**: For Helm-based applications, see the following guidance:
+* **Helm-Based Applications**: For Helm applications, see the following guidance:
 
-   * **(Recommended) Helm CLI or KOTS v1.94.2 and Later**: For Helm-based applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
+   * **(Recommended) Helm CLI or KOTS v1.94.2 and Later**: For Helm applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
 
-   * **KOTS v1.94.1 and Earlier**: For Helm-based applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
+   * **KOTS v1.94.1 and Earlier**: For Helm applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
 * **Standard Manifest-Based Applications**: For standard manifest-based applications, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
@@ -24,7 +24,7 @@ Use the following guidance to determine which type of manifest file to use for c
 
 You can define support bundle specs in a Kubernetes Secret for the following installation types:
 * Installations with the Helm CLI
-* Helm chart-based applications installed with KOTS v1.94.2 and later
+* Helm applications installed with KOTS v1.94.2 and later
 
 In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret:   
 
@@ -56,6 +56,10 @@ This empty support bundle spec includes the following collectors by default:
 * [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/)
 
 You do not need manually include the `clusterInfo` or `clusterResources` collectors in the spec.
+
+:::note
+If your application is deployed as multiple Helm charts, Replicated recommends that you create separate support bundle specs for each subchart. This allows you to make specs that are specific to different components of your application. When a support bundle is generated, all the specs are combined to provide a single bundle.
+:::
 
 After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the spec](/vendor/support-bundle-customizing#optional-customize-the-spec) below.
 
