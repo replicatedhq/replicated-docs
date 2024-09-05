@@ -16,6 +16,21 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.115.2
+
+Released on September 5, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-115-2}
+* Available updates are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. This was removed in a previous version.
+* When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
+* Improves messaging when the requested channel slug is not allowed by the provided license.
+
+### Bug Fixes {#bug-fixes-1-115-2}
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK.
+* Hides a banner on the **View Files** page in Embedded Cluster that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
+
 ## 1.115.1
 
 Released on August 22, 2024
