@@ -16,6 +16,22 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.115.2
+
+Released on September 5, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-115-2}
+* Hide commands to download application archive in Embedded Cluster View files page.
+* Show available updates in Dashboard for Embedded Cluster.
+* Show join command during restore in Embedded Cluster.
+* Improved messaging when requested channel slug not allowed by license.
+* When `--http-proxy`, `--https-proxy`, and `--no-proxy` flags are used with `kots install` command, the same values will be configured in the `replicated` deployment.
+
+### Bug Fixes {#bug-fixes-1-115-2}
+* Improve styles for the loader in the upgrade service.
+
 ## 1.115.1
 
 Released on August 22, 2024
