@@ -13,7 +13,7 @@ pagination_prev: null
 Released on September 4, 2024
 
 ### New Features {#new-features-v2024-09-04-0}
-* CMX: Added capability to create ws and wss tunnels from the web UI.
+* Comaptibility Matrix: Added capability to create ws and wss tunnels from the web UI.
 
 ## v2024.08.20-5
 
