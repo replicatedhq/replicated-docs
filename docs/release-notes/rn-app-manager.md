@@ -22,15 +22,15 @@ Released on September 5, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-115-2}
-* Hide commands to download application archive in Embedded Cluster View files page.
-* Show available updates in Dashboard for Embedded Cluster.
-* Show join command during restore in Embedded Cluster.
+### Improvements {#improvements-1-115-2}
+* Hide commands to download / upload the application archive from the View Files page for Embedded Cluster.
+* Show available updates in the Dashboard page for Embedded Cluster.
+* Show the join command during a restore operation in the Admin Console for Embedded Cluster.
 * Improved messaging when requested channel slug not allowed by license.
-* When `--http-proxy`, `--https-proxy`, and `--no-proxy` flags are used with `kots install` command, the same values will be configured in the `replicated` deployment.
 
 ### Bug Fixes {#bug-fixes-1-115-2}
-* Improve styles for the loader in the upgrade service.
+* Fixes an issue where the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags used with the `kots install` command did not propagate to the Replicated SDK.
+* Improve styles for the loader in the upgrade modal for Embedded Cluster.
 
 ## 1.115.1
 
