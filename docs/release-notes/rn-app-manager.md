@@ -23,14 +23,13 @@ Released on September 5, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-115-2}
-* Hide commands to download / upload the application archive from the View Files page for Embedded Cluster.
-* Show available updates in the Dashboard page for Embedded Cluster.
-* Show the join command during a restore operation in the Admin Console for Embedded Cluster.
-* Improved messaging when requested channel slug not allowed by license.
+* Available updates are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. This was removed in a previous version.
+* When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
+* Improves messaging when the requested channel slug is not allowed by the provided license.
 
 ### Bug Fixes {#bug-fixes-1-115-2}
-* Fixes an issue where the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags used with the `kots install` command did not propagate to the Replicated SDK.
-* Improve styles for the loader in the upgrade modal for Embedded Cluster.
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK.
+* Hides a banner on the **View Files** page in Embedded Cluster that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
 
 ## 1.115.1
 
