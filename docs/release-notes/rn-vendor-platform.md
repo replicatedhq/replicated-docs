@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.23-2
+
+Released on August 23, 2024
+
+### New Features {#new-features-v2024-08-23-2}
+* Adds new `channels` column to customers csv export containing basic channels json blob.
+* Adds new `customer_channels` object to customer instances csv exports containing basic channels json blob.
+* Adds `channels` object to customer instances json export.
+
 ## v2024.08.20-5
 
 Released on August 20, 2024
