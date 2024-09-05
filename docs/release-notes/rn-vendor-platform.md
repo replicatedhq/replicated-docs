@@ -13,7 +13,7 @@ pagination_prev: null
 Released on August 28, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-08-28-0}
-* Click docs link will open a new window.
+* Click docs link will open a new window to related documentation in the Compatbility Matrix versions available modal.
 
 ## v2024.08.20-5
 
