@@ -191,3 +191,7 @@ spec:
 <Shared/>
 
 For more information, see [Defining Shared Collectors and Analyzers with Helm Templating](preflight-support-bundle-shared).
+
+### Examples
+
+For common examples of collectors and analyzers used in support bundle specs, see [Examples of Support Bundle Specs](/vendor/support-bundle-examples).

@@ -22,11 +22,17 @@ Consider the following recommendations before creating shared collectors and ana
 
 * When using the Helm `include` template function in your preflight and support bundle specs, use [`nindent`](https://helm.sh/docs/chart_template_guide/function_list/#nindent) to ensure the rendered YAML has the correct spacing.
 
+* The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation. You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
+
 ## Include Shared Collectors and Analyzers in Preflights and Support Bundles 
 
 To include shared collectors and analyzers in preflight and support bundle specs:
 
 1. In your Helm chart `templates` directory, define the shared collectors and analyzers that you want to include using Helm defined templates.
+
+   :::note
+   The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation. You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
+   :::
 
    **Example**:
    
