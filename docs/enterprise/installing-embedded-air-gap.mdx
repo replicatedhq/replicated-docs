@@ -2,28 +2,29 @@ import UpdateAirGapAdm from "../partials/embedded-cluster/_update-air-gap-admin-
 import UpdateAirGapCli from "../partials/embedded-cluster/_update-air-gap-cli.mdx"
 import UpdateAirGapOverview from "../partials/embedded-cluster/_update-air-gap-overview.mdx"
 import DoNotDowngrade from "../partials/embedded-cluster/_warning-do-not-downgrade.mdx"
+import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
-# Installing in Air Gap Environments with Embedded Cluster (Alpha)
+# Air Gap Installation with Embedded Cluster (Beta)
 
-This topic describes how to install applications with Embedded Cluster in air gap environments with no outbound internet access.
+This topic describes how to install applications with Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access.
 
-:::important
-Embedded Cluster installations in air gap environments in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::note
+Embedded Cluster installations in air gap environments is a beta feature. This feature is subject to change. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 :::
 
 ## Overview
 
-When an air gap bundle is built for a release containing an Embedded Cluster config, both an application air gap bundle and an Embedded Cluster air gap bundle are built, so it is possible do an air gap installation with KOTS/kURL or with Embedded Cluster.
+When an air gap bundle is built for a release containing an Embedded Cluster Config, both an application air gap bundle and an Embedded Cluster air gap bundle are built. The application air gap bundle can be used for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. The Embedded Cluster air gap bundle is used for air gap installations with Embedded Cluster.
 
-The Embedded Cluster air gap bundle not only contains the artifacts normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the artifacts needed to install the infrastructure (Embedded Cluster/k0s and [Helm extensions](/reference/embedded-config#helm-extensions)).
+The Embedded Cluster air gap bundle not only contains the assets normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [Helm extensions](/reference/embedded-config#helm-extensions)).
 
 During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
 
-## Requirement
+### Requirement
 
-Air gap installations are supported with Embedded cluster version 1.3.0 or later.
+Air gap installations are supported with Embedded Cluster version 1.3.0 or later.
 
-## Limitations and Known Issues
+### Limitations and Known Issues
 
 Embedded Cluster installations in air gap environments have the following limitations and known issues:
 
@@ -31,17 +32,21 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
 
-* Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always set as the image pull policy**, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
+* Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
 
 * On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
 
+## Prerequisites
+
+Before you install, complete the following prerequisites:
+
+<Prerequisites/>
+
 ## Install
 
-To install with Embedded Cluster in air gap environments:
+To install with Embedded Cluster in an air gap environment:
 
-1. Create a release with an Embedded Cluster config and promote it to a channel. For more information, see [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases) and [Embedded Cluster Config](/reference/embedded-config).
-
-1. Build the air gap bundle for the release:
+1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the target release was promoted to build the air gap bundle. Do one of the following:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
      
@@ -51,20 +56,33 @@ To install with Embedded Cluster in air gap environments:
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
     :::
 
-1. Go to the customer page for the customer you want to use for the air gap installation. Click **Install instructions > Embedded cluster** to open the **Embedded Cluster installation instructions** dialog. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#using-the-replicated-app-service) in _Using Embedded Cluster_.
-    
+1. Go to **Customers** and click on the target customer. Click **Install instructions > Embedded Cluster**.
+
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint. For example:
+     The **Embedded Cluster install instructions** dialog is displayed.
+
+     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
+
+     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
+
+1. (Optional) In the **Embedded Cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
+
+1. SSH onto the machine where you will install.
+
+1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint:
 
     ```bash
     curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
     ```
 
-1. Run the modified curl command on your air gapped VM to download the air gap installation artifacts.
+1. On a machine with internet access, run the modified curl command to download the air gap installation assets as a `.tgz`.
 
-1. After the download completes, untar it following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
+1. Move the downloaded `.tgz` to the air gapped machine where you will install. 
+
+1. On your air gapped machine, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
     * The installer
     * The license
     * The air gap bundle (`APP_SLUG.airgap`)
@@ -76,13 +94,72 @@ To install with Embedded Cluster in air gap environments:
     ```
     Where `APP_SLUG` is the unique application slug.
 
+1. When prompted, enter a password for accessing the KOTS Admin Console.
+
+     The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](/vendor/embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
+
+1. When the installation command completes, go to the URL provided in the output to access the Admin Console.
+     
+    **Example output:** 
+
+    ```bash
+    ✔  Host files materialized
+    ? Enter an Admin Console password: ********
+    ? Confirm password: ********
+    ✔  Host files materialized!
+    ✔  Host preflights succeeded!
+    ✔  Node installation finished!
+    ✔  Storage is ready!
+    ✔  Embedded Cluster Operator is ready!
+    ✔  Admin Console is ready!
+    ✔  Additional components are ready!
+    Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
+    ```
+    At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
+
+1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+
+1. Click **Advanced > Proceed**.
+
+1. On the HTTPS page, upload your own private key and certificacte or select **Self-signed**.
+
+    By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
+
+1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
+
+1. On the **Nodes** page, you can view details about the machine where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
+
+1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
+
+1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
+
+    :::note
+    Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+    :::
+
+    :::note
+    If the application does not include preflight checks, you need to click **Deploy** then **Yes, Deploy** next to the target version on the Admin Console dashboard to install.
+    :::  
+
+The Admin Console dashboard opens.
+
+On the Admin Console dashboard, the application status changes from Missing to Unavailable while the application is being installed. When the installation is complete, the status changes to Ready. For example:
+
+![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+
+[View a larger version of this image](/images/gitea-ec-ready.png) 
+
 ## Add Nodes to Air Gap Clusters
 
-You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster artifacts to each node, copying a join command from the Admin Console, and running the join command on each node.
+You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster assets to each node, copying a join command from the Admin Console, and running the join command on each node.
 
 ### Prerequisites
 
-The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these artifacts on each node. For more information about how to download and untar the artifacts, see [Install](#install) above.
+The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these assets on each node. For more information, see [Install](#install) above.
+
+:::note
+The binary and air gap bundles on each additional node must be the same version as what is currently installed. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog. For more information, see [Install](#install) above.
+:::
 
 ### Add Nodes
 
@@ -99,39 +176,3 @@ To add nodes to a cluster after successfully installing the first node:
     ```
 
 1. When you have finished adding all nodes, return to the Admin Console and click **Continue**.
-
-## Perform Updates in Air Gap Clusters
-
-<DoNotDowngrade/>
-
-<UpdateAirGapOverview/>
-
-### Prerequisites
-
-Before performing an upgrade in an air gap cluster with Embedded Cluster, complete the following prerequisites:
-
-1. Create a new release with your changes and promote it to the same channel. This new release can include a different (and later) version of Embedded Cluster and/or changes to your application.
-
-1. Build the air gap bundle for the release:
-     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
-     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
-     
-     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
-     
-    :::note
-    Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
-    :::
-
-After the air gap bundle is built, continue to [Upload the New Version From the Command Line](#upgrade-cli) or [Upload the New Version From the Admin Console](#upgrade-ui) to download the bundle and upgrade.    
-
-### Upload the New Version From the Command Line {#upgrade-cli}
-
-To update by uploading the air gap bundle for the new version from the command line:
-
-<UpdateAirGapCli/>
-
-### Upload the New Version From the Admin Console {#upgrade-ui}
-
-To update by uploading the air gap bundle for the new version from the Admin Console:
-
-<UpdateAirGapAdm/>

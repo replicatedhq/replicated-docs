@@ -15,6 +15,29 @@ Released on September 4, 2024
 ### New Features {#new-features-v2024-09-04-0}
 * Comaptibility Matrix: Added capability to create ws and wss tunnels from the web UI.
 
+## v2024.08.30-0
+
+Released on August 30, 2024
+
+### New Features {#new-features-v2024-08-30-0}
+* After uploading a support bundle, if instance insights detects a Kubernetes distribution/version combination, the distribution and version will be preloaded when creating a cluster with Compatibility Matrix.
+
+## v2024.08.28-0
+
+Released on August 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-28-0}
+* Click docs link will open a new window to related documentation in the Compatbility Matrix versions available modal.
+
+## v2024.08.23-2
+
+Released on August 23, 2024
+
+### New Features {#new-features-v2024-08-23-2}
+* Adds new `channels` column to customers csv export containing basic channels json blob.
+* Adds new `customer_channels` object to customer instances csv exports containing basic channels json blob.
+* Adds `channels` object to customer instances json export.
+
 ## v2024.08.20-5
 
 Released on August 20, 2024
