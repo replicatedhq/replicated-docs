@@ -10,7 +10,7 @@ The schema supports a `uri:` field that, when set, causes the support bundle gen
 
 You update collectors and analyzers in the online specification to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. The URI link option is particularly useful for customers that do not update their application routinely.
 
-If you are using a modular approach to designing support bundles, you can use multiple online specs. Each specification supports one URI link. For more information about modular specs, see [About Modular Support Bundles](support-modular-support-bundle-specs).
+If you are using a modular approach to designing support bundles, you can use multiple online specs. Each specification supports one URI link. For more information about modular specs, see [About Creating Modular Support Bundle Specs](support-modular-support-bundle-specs).
 
 ## Example: URI Linking to a Source Repository
 

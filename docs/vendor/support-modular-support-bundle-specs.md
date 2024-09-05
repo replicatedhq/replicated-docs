@@ -1,4 +1,4 @@
-# About Creating Modular Specifications
+# About Creating Modular Support Bundle Specs
 
 This topic describes how to use a modular approach to creatng preflight checks and support bundle specs.
 
