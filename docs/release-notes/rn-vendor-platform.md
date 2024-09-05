@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.08.30-0
+
+Released on August 30, 2024
+
+### New Features {#new-features-v2024-08-30-0}
+* After uploading a support bundle, if instance insights detects a Kubernetes distribution/version combination, the distribution and version will be preloaded when creating a cluster with Compatibility Matrix.
+
 ## v2024.08.28-0
 
 Released on August 28, 2024
