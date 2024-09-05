@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Install Behind a Proxy with Embedded Cluster (Beta)</h3>
-        <p>End users can now provide their proxy settings with the Embedded Cluster installation command so that traffic is routed through a proxy.</p>
+        <h3>Embedded Cluster Runs Host Preflight Checks (Beta)</h3>
+        <p>A default set of host preflight checks verify that the installation environment meets the requirements for Embedded Cluster and provide clear feedback to users.</p>
     </li>
     <li>
-      <a href="/enterprise/installing-embedded#proxy">Learn more</a>
+      <a href="/vendor/embedded-overview#about-host-preflight-checks">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Integrate Compatibility Matrix into CI/CD Workflows</h3>
-        <p>Integrate Compatibility Matrix into your development and release CI/CD workflows to automate the process of deploying your application to clusters for testing.</p>
+        <h3>Configure Custom RBAC Policies</h3>
+        <p>Add custom RBAC policies to control which team members can perform actions like promoting to a specific channel, creating new license fields, and more.</p>
     </li>
     <li>
-      <a href="/vendor/ci-overview">Learn more</a>
+      <a href="/vendor/team-management-rbac-configuring">Learn more</a>
     </li>
   </ul>
 </section>
