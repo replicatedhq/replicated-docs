@@ -1,7 +1,13 @@
-After adding basic specs, you can continue to add to the preflights and support bundles for your application by adding additional collectors and analyzers.
+After adding basic specs for preflights and support bundles, you can continue to add more collectors and analyzers as needed.
 
-At a minimum, Replicated recommends that your support bundle spec includes all of the collectors and analyzers that are included in your preflight checks.
+Consider the following recommendations and best practices:
 
-For more information, see:
-* [Defining Preflight Checks](/vendor/preflight-defining)
-* [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_
+* Revisit your preflight and support bundle specs when new support issues arise that are not covered by your existing specs.
+
+* Your support bundles should include all of the same collectors and analyzers that are in your preflight checks. This ensures that support bundles include all the necessary troubleshooting information, including any failures in preflight checks.
+
+* Your support bundles will most likely need to include other collectors and analyzers that are not in your preflight checks. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation.
+
+The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
+
+You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).

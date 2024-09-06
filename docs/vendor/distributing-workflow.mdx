@@ -231,7 +231,7 @@ In the next two tasks, you will add specs for _preflight checks_ and _support bu
 
 <SupportBundles/>
 
-### Task 9: Alias Replicated Endpoints with Custom Domains
+### Task 9: Alias Replicated Endpoints with Your Own Domains
 
 <CustomDomains/>
 
@@ -259,9 +259,9 @@ You can use the Vendor Portal to build and download the air gap bundles needed t
 
 To add support for air gap installations:
 
-1. If there are any images that need to be included in the `.airgap` bundle that are _not_ defined in your application Pod specs, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
+1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
-1. In the KOTS HelmChart custom resource, configure the `builder` key. The Vendor Portal uses the values provided in the `builder` key to build the `.airgap` bundle for the release. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+1. If you have any Helm values that determine whether or not an application image is included in an installation, then configure the `builder` key in the KOTS HelmChart custom resource to enable those values. The Vendor Portal uses the values provided in the `builder` key to build the `.airgap` bundle for the release. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
     :::note
     If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
@@ -273,7 +273,7 @@ To add support for air gap installations:
 
 1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
 ### Add Application Links to the Admin Console Dashboard
 
@@ -316,7 +316,3 @@ There are different steps to configure backup and restore for Embedded Cluster a
 ### Customize Release Channels
 
 <CustomChannels/>
-
-### Add Update Checks to Your Application Using the Replicated SDK API
-
-<UpdateChecks/>
