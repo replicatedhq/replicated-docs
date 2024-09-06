@@ -182,7 +182,7 @@ spec:
       items:
         - name: postgres_type
           help_text: Would you like to use an embedded postgres instance, or connect to an external instance that you manage?
-          type: select_one
+          type: radio
           title: Postgres
           default: embedded_postgres
           items:
@@ -486,7 +486,7 @@ spec:
       items:
         - name: postgres_type
           help_text: Would you like to use an embedded postgres instance, or connect to an external instance that you manage?
-          type: select_one
+          type: radio
           title: Postgres
           default: embedded_postgres
           items:

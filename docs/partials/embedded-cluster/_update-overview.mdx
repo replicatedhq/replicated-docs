@@ -1,0 +1,7 @@
+When you update an application installed with Embedded Cluster, you update both the application and the cluster infrastructure together, including Kubernetes, KOTS, and other components running in the cluster. There is no need or mechanism to update the infrastructure on its own.
+
+When you deploy a new version, any changes to the cluster are deployed first. The Admin Console waits until the cluster is ready before updatng the application.
+
+Any changes made to the Embedded Cluster Config, including changes to the Embedded Cluster version, Helm extensions, and unsupported overrides, trigger a cluster update.
+
+When performing an upgrade with Embedded Cluster, the user is able to change the application config before deploying the new version. Additionally, the user's license is synced automatically. Users can also make config changes and sync their license outside of performing an update. This requires deploying a new version to apply the config change or license sync.

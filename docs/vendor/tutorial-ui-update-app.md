@@ -6,7 +6,7 @@ At this point, the Admin Console likely shows that your test application is up-t
 
 To update the application:
 
-1. Log in to the Admin Console at `https://localhost:8800` for an existing cluster or `http://[ip-address]:8800` for an embedded cluster.
+1. Log in to the Admin Console at `https://localhost:8800`.
 
 1. On the Version history tab, click **Check for update**. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
 

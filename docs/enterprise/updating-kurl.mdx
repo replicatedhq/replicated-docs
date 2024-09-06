@@ -21,7 +21,7 @@ For kURL installations, you can update an application from the Admin Console. Yo
 
 ## Update the kURL Cluster
 
-You can rerun the kURL installation script to update a kURL cluster. For more information about kURL cluster udpates, see [About kURL Cluster Updates](/enterprise/updating-kurl-about).
+After updating the kURL installer spec, you can rerun the kURL installation script to update a kURL cluster. For more information about kURL cluster udpates, see [About kURL Cluster Updates](/enterprise/updating-kurl-about).
 
 :::important
 The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
@@ -31,13 +31,15 @@ The Kubernetes scheduler automatically reschedules Pods to other nodes during ma
 
 To update the kURL cluster in an online environment:
 
+1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+
 1. Run the kURL installation script on any primary node in the cluster:
 
-   ```
+   ```bash
    curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ADVANCED_OPTIONS
    ```
    Replace:
-   * `APP_SLUG` with the unique slug for the application from your application vendor.
+   * `APP_SLUG` with the unique slug for the application.
    * `ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
       
      To use no advanced installation options, remove `-s ADVANCED_OPTIONS` from the command.
@@ -54,28 +56,30 @@ For air gap installations, you must load images on each node in the cluster befo
 
 To update the kURL cluster in an air gap environment:
 
-1. On each node in the cluster, download the kURL `.tar.gz` bundle provided by your software vendor and extract the contents:
+1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+
+1. On each node in the cluster, download the kURL `.tar.gz` air gap bundle for the updated spec. See [Download the kURL Bundle](/vendor/releases-download-airgap-bundles#installer-bundle) in _Downloading Air Gap Bundles_.
+
+   Then, extract the contents:
 
    ```bash
    tar -xvzf FILENAME.tar.gz
    ```
-   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
-
-   For more information, see [Download the kURL Bundle](/vendor/releases-download-airgap-bundles#installer-bundle) in _Downloading Air Gap Bundles_.
+   Replace `FILENAME` with the name of the downloaded kURL `.tar.gz` air gap bundle.
 
 1. Run the following KURL script to ensure all required images are available:
 
-   ```
+   ```bash
    cat tasks.sh | sudo bash -s load-images
    ```
 
    :::note
-   The kURL installation script that you run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
+   The kURL installation script that you will run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
    :::
 
 1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
 
-   ```
+   ```bash
    cat install.sh | sudo bash -s airgap OTHER_ADVANCED_OPTIONS
    ```
    Replace `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.

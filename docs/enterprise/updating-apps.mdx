@@ -1,6 +1,6 @@
 # Configuring Automatic Updates
 
-This topic describes how to configure automatic updates for applications installed in online (internet-connected) environments. The information in this topic applies to Replicated KOTS installations in existing clusters, Replicated Embedded Cluster installations, and Replicated kURL installations.
+This topic describes how to configure automatic updates for applications installed in online (internet-connected) environments.
 
 ## Overview
 
@@ -12,11 +12,11 @@ You can also configure the Admin Console to automatically deploy new versions of
 
 The Admin Console only deploys new versions automatically if preflight checks pass. By default, the Admin Console does not automatically deploy any version of an application.
 
-For installations with Replicated Embedded Cluster, both the application and the cluster are updated together during automatic updates. For more information, see [Performing Updates in Embedded Cluster](/enterprise/updating-embedded).
-
 ## Limitations
 
 Automatic updates have the following limitations:
+
+* Automatic updates are not supported for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
 
 * Automatic updates are not supported for applications installed in air gap environments with no outbound internet access.
 

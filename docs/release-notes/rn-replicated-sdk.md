@@ -6,7 +6,19 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
-<!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.0.0-beta.26
+
+Released on July 31, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-26}
+* Fixes an issue that caused k8s minor version parsing errors to be logged repeatedly.
+
+## 1.0.0-beta.25
+
+Released on July 3, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-25}
+* Various bug fixes and refactoring of tests.
 
 ## 1.0.0-beta.24
 
