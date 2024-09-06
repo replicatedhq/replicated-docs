@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.06-0
+
+Released on September 6, 2024
+
+### New Features {#new-features-v2024-09-06-0}
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+
 ## v2024.09.03-0
 
 Released on September 3, 2024
