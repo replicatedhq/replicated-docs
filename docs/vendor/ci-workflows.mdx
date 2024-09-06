@@ -14,6 +14,14 @@ For each step, the corresponding Replicated CLI command is provided. Additionall
 How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
 :::
 
+## About Creating RBAC Policies for CI/CD
+
+Replicated recommends using custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy using the [`kots/app/[]/channel/[]/promote`](/vendor/team-management-rbac-resource-names#kotsappchannelpromote) resource that blocks the ability to promote releases to your production channel. This allows for using CI/CD for the purpose of testing, without accidentally releasing to customers.
+
+For more information about creating custom RBAC policies in the Vendor Portal, including examples, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
+
+For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
+
 ## Development Workflow
 
 In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. Additionally, for applications managed in the Replicated vendor portal, a release is created and promoted to a channel in the Replicated Vendor Portal where it can be shared with internal teams.
