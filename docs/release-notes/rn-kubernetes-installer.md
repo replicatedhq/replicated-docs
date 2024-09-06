@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on September 6, 2024
 
-### New Features {#new-features-v2024-09-06-0}
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+### Improvements {#improvements-v2024-09-06-0}
+* Improves preflight checks for Amazon Linux 2023 and Ubuntu 24.04.
 
 ## v2024.09.03-0
 
