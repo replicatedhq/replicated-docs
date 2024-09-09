@@ -43,28 +43,23 @@ Built-in fields are reserved field names. You can specify the values for these f
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
-## About License Handling
+## About Licenses Updates
 
-This section describes the default behavior for handling license updates and expiration.
+### Updating Licenses
 
-### Updating and Replacing Licenses
+You can make changes to a customer in the Vendor Portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
-You can make changes to a customer in the Vendor Portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+You can also update licenses to make changes to a customer's entitlements, such as changing a license field's value, adding new fields, or removing fields.
+
+The Replicated SDK polls the Vendor Portal for any license updates every four hours. Any changes to the license (such as changes to a license field value, new fields, or removed fields) are reflected. The user does not need to take any action to apply the updated license.
+
+For KOTS installations, users can sync their license from the Admin Console. Applying any changes to the license requires that the user deploys a new version. For more information about how licenses can be updated from the Admin Console, see [Updating Licenses](/enterprise/updating-licenses).
+
+### Replacing Licenses
 
 Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license. When you update the license in the Vendor Portal, the customer does not need to reinstall to get the updates.
 
 Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
-
-### License Expiration Handling {#expiration}
-
-The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
-
-Replicated enforces the following logic when a license expires:
-* By default, instances with expired licenses continue to run.
-   To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
-* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
-* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
-* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
 ### Synchronizing Licenses with KOTS
 
@@ -78,6 +73,17 @@ For online instances, license updates are pulled from the Vendor Portal when:
 For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
 
 For more information, see [Updating Licenses](/enterprise/updating-licenses).
+
+## License Expiration Handling {#expiration}
+
+The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
+
+Replicated enforces the following logic when a license expires:
+* By default, instances with expired licenses continue to run.
+   To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
+* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
+* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
+* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
 ## About Customer Channel Assignment {#channel-assignment}
 
