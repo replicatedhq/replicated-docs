@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.05-3
+
+Released on September 5, 2024
+
+### New Features {#new-features-v2024-09-05-3}
+* Compatibility Matrix: Adds support for EKS EC2 instance types m5 and c5.
+
 ## v2024.09.04-0
 
 Released on September 4, 2024
