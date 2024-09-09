@@ -58,24 +58,26 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 
 ## Rewrite Image Names
 
-During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated recommends that any public images are also proxied through the Replicated proxy service to reduce to total number of endpoints that your users are required to allowlist. Enterprise users can also push images to their own registry.
+During installation and upgrade with KOTS, any application images in your private registry must be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated also recommends that any public application images are proxied through the proxy service to reduce the total number of endpoints that your users are required to add to an allowlist.
 
-To ensure that images are discovered in either your registry or in your user's registry, configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment.
+Additionally, your users can push images to their own registry. This is common especially for installations in air gap environments.
+
+To ensure that all application images can be discovered, you need to configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment.
 
 ### About the KOTS Registry Template Functions
 
-You can use the following KOTS template functions to rewrite image names: 
+You will use the following KOTS template functions in the HelmChart custom resource to rewrite image names: 
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gapped installations and optionally true for online installations.
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured.
-* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured.
-
-These template functions can be used to conditionally rewrite images names in your Helm chart so that KOTS uses the host and namespace of your user's registry only if they configured one.
-
-For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. The registry namespace is the path between the registry and the image name. For example, `my.registry.com/namespace/image:tag`.
 
 ### Rewrite Private Image Names {#local-proxy-example}
 
-The following example shows a field in the `values` key that rewrites the registry domain to `proxy.replicated.com` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the image on `proxy.replicated.com` or in the user's local registry:
+To rewrite names of private images, use the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to conditionally update the registry hostname and namespace for the image depending on if the end user configured their own registry.
+
+#### Example
+
+The following example shows how to configure fields in the HelmChart `values` key that rewrite the registry domain and namespace for an image on `proxy.replicated.com` or in the end user's own registry:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -85,10 +87,13 @@ kind: HelmChart
 metadata:
   name: samplechart
 spec:
-  ...
   values:
     image:
+      # If the user configured a registry, use that registry's hostname
+      # Else, use proxy.replicated.com
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      # If the user configured a registry, use the registry namespace provided
+      # Else, use the image's namespace at proxy.replicated.com
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
 ```
@@ -104,7 +109,7 @@ image:
   tag: v1.0.1
 ```
 
-During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
+During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
 
 ```yaml
 apiVersion: v1
@@ -119,11 +124,11 @@ spec:
 
 ### Rewrite Public Image Names {#local-public-example}
 
-For any public images, use `proxy.replicated.com/anonymous/<image>`.
+For any public images, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/anonymous/<image>`. This allows the public image to be accessed through the Replicated proxy service at `proxy.replicated.com`. Replicated recommends proxying both public and private images through the proxy service because it reduces the total number of endpoints that your users need to add to an allowlist. 
+
+#### Example
 
 So, if your image is `registry.k8s.io/metrics-server/metrics-server:v0.7.0`, you would use `proxy.replicated.com/anonymous/registry.k8s.io/metrics-server/metrics-server:v0.7.0`.
-
-The following example shows a field in the `values` key that rewrites the registry domain to `proxy.replicated.com` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -133,11 +138,10 @@ kind: HelmChart
 metadata:
   name: samplechart
 spec:
-  ...
   values:
     image: 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}' 
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "anonymous" }}/metrics-server'
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "anonymous" }}/registry.k8s.io/metrics-server'
       tag: v1.0.1
 ```
 
