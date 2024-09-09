@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.09-0
+
+Released on September 9, 2024
+
+### New Features {#new-features-v2024-09-09-0}
+* Adds support for setting custom passwords for Customer's Download Portal.
+
 ## v2024.09.05-3
 
 Released on September 5, 2024
