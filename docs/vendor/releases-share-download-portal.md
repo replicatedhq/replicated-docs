@@ -30,18 +30,21 @@ To get the URL and generate a password for the download portal:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
 
-1. In the **Download portal** section, click **Generate new password**.
+1. In the **Download portal** section, click **Manage customer password**.
 
-1. Save the password that appears in the pop-up window. Your customer uses
-this password to log in to the download portal.
+1. In the pop-up window, enter a password or click the **Generate** button.
 
-1. Click **Copy URL** to copy the URL to the download portal to your clipboard. This is the URL where your customer can access the download portal.
+1. Click the **Copy** button to copy the password to your clipboard. Once the password is saved, it cannot be retrieved again.
+
+1. Click the **Save** button to save the password.
+
+1. The password that your customer uses to log in to the download portal is now in your clipboard. If you lose it, you can generate a new password.
+
+1. Click **Visit download portal** to log in to the download portal
+and preview your customer's experience.
 
    :::note
    By default, the download portal uses the domain `get.replicated.com`. You can optionally use a custom domain for the download portal. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
    :::
-
-1. (Optional) Click **Visit download portal** to log in to the download portal
-and preview your customer's experience.
 
 1. Send the URL and password for the download portal to your customer.
