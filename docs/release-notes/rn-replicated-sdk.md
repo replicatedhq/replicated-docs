@@ -6,6 +6,13 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
+## 1.0.0-beta.27
+
+Released on Augusrt 16, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-27}
+* Fixes an issue that caused Embedded Cluster distributions to not be reported.
+
 ## 1.0.0-beta.26
 
 Released on July 31, 2024
