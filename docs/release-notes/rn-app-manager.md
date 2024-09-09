@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.116.0
+
+Released on September 9, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-116-0}
+* Adds the ability to specify additional annotations (`--additional-annotations`) and labels (`--additional-labels`) that will be applied to kotsadm pods.
+
 ## 1.115.2
 
 Released on September 5, 2024
