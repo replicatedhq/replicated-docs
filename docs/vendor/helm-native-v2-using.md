@@ -58,11 +58,11 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 
 ## Rewrite Image Names
 
-During installation and upgrade with KOTS, any application images in your private registry must be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated also recommends that any public application images are accessed through the proxy service to reduce the total number of endpoints that your users are required to add to an allowlist.
+During installation and upgrade with KOTS, any application images in your private registry must be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated also recommends that any public images used by your application are accessed through the proxy service to reduce the total number of endpoints that your users are required to add to an allowlist.
 
 Additionally, your users can push images to their own registry. This is required for installations in air gap environments.
 
-To ensure that your application images can be discovered, you need to configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment.
+To ensure that images can be discovered, you need to configure the HelmChart custom resource so that image names are rewritten in your Helm chart values during deployment.
 
 You will use the following KOTS template functions in the HelmChart custom resource to rewrite image names: 
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gap installations and optionally true for online installations. You can use HasLocalRegistry to conditionally rewrite images depending on if your user configured a local registry or not.
@@ -73,11 +73,11 @@ You will use the following KOTS template functions in the HelmChart custom resou
 
 For any private images, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/proxy/<app-slug>/<image>`, where `<app-slug>` is the unique application slug in the Vendor Portal and `<image>` is the path to the image in the registry.
 
-For example, if the private image is `registry.k8s.io/quay.io/my-org/nginx:v1.0.1`, then the image name should be rewritten to `proxy.replicated.com/proxy/my-app/quay.io/my-org/nginx:v1.0.1`.
+For example, if the private image is `quay.io/my-org/nginx:v1.0.1`, then the image name should be rewritten to `proxy.replicated.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
 
 #### Example
 
-The following example shows how to configure the HelmChart `values` key to rewrite the registry hostname and namespace for a private image.
+The following example shows how to configure the KOTS HelmChart `values` key to rewrite the registry hostname and namespace for a private image.
 
 This example uses [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to conditionally update the registry hostname and namespace for the image depending on if the user configured a local registry. It also uses [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to render the user-supplied hostname and namespace for the image on the local registry, if one was configured.
 
@@ -140,7 +140,7 @@ Replicated recommends proxying both public and private images through the proxy 
 
 #### Example
 
-The following example shows how to configure fields in the HelmChart `values` key that rewrite the registry domain and namespace for a public image.
+The following example shows how to configure fields in the KOTS HelmChart `values` key that rewrite the registry domain and namespace for a public image.
 
 This example uses [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to conditionally update the registry hostname and namespace for the image depending on if the user configured a local registry. It also uses [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to render the user-supplied hostname and namespace for the image on the local registry, if one was configured.
 
