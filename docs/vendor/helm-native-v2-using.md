@@ -52,13 +52,13 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 * Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
 * Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
    :::note
-   Snapshots is not supported for installations with Replicated Embedded Cluster.
+   Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
    :::
 * Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#local-registries).
 
 ## Rewrite Image Names
 
-During installation and upgrade with KOTS, any application images in your private registry must be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated also recommends that any public images used by your application are accessed through the proxy service to reduce the total number of endpoints that your users are required to add to an allowlist.
+During installation and upgrade with KOTS, any application images in your private registry are accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Replicated also recommends that any public images used by your application are accessed through the proxy service to reduce the total number of endpoints that your users are required to add to an allowlist.
 
 Additionally, your users can push images to their own registry. This is required for installations in air gap environments.
 
