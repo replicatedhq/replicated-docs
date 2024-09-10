@@ -133,7 +133,7 @@ For any public images, configure the HelmChart custom resource so that image nam
 For example, if the public image is `registry.k8s.io/metrics-server/metrics-server:v0.7.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/registry.k8s.io/metrics-server/metrics-server:v0.7.0`.
 #### Example
 
-The following example shows how to configure fields in the KOTS HelmChart `values` key that rewrite the registry domain and namespace for a public image.
+The following example shows how to configure fields in the KOTS HelmChart `values` key to rewrite the registry domain and namespace for a public image.
 
 This example uses [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to conditionally update the registry hostname and namespace for the image depending on if the user configured a local registry. It also uses [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to render the user-supplied hostname and namespace for the image on the local registry, if one was configured.
 
