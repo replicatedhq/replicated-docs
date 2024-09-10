@@ -131,13 +131,6 @@ spec:
 For any public images, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/anonymous/<image>`, where `<image>` is the path to the image in the public registry.
 
 For example, if the public image is `registry.k8s.io/metrics-server/metrics-server:v0.7.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/registry.k8s.io/metrics-server/metrics-server:v0.7.0`.
-
-This allows the public image to be accessed through the Replicated proxy service at `proxy.replicated.com`.
-
-:::note
-Replicated recommends proxying both public and private images through the proxy service because it reduces the total number of endpoints that your users need to add to an allowlist. 
-:::
-
 #### Example
 
 The following example shows how to configure fields in the KOTS HelmChart `values` key that rewrite the registry domain and namespace for a public image.
@@ -170,7 +163,7 @@ The `spec.values.image.registry` and `spec.values.image.repository` fields in th
 
 image:
   registry: registry.k8s.io
-  repository: registry.k8s.io/metrics-server/metrics-server
+  repository: metrics-server/metrics-server
   tag: v0.7.0
 ```
 
