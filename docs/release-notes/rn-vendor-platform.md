@@ -13,7 +13,7 @@ pagination_prev: null
 Released on September 9, 2024
 
 ### New Features {#new-features-v2024-09-09-0}
-* Adds support for setting custom passwords for Customer's Download Portal.
+* Adds support for setting custom passwords for the customer's Download Portal. See [Sharing Assets Through the Download Portal](/vendor/releases-share-download-portal).
 
 ## v2024.09.05-3
 
