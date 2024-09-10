@@ -303,6 +303,10 @@ spec:
 
 ## Add Backup Labels for Snapshots
 
+:::note
+Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+:::
+
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
 * `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
