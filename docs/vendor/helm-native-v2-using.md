@@ -130,7 +130,7 @@ spec:
 
 For any public images, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/anonymous/<image>`, where `<image>` is the path to the image in the public registry.
 
-For example, if the public image is `registry.k8s.io/metrics-server/metrics-server:v0.7.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/registry.k8s.io/metrics-server/metrics-server:v0.7.0`.
+For example, if the public image is `ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`.
 #### Example
 
 The following example shows how to configure fields in the KOTS HelmChart `values` key to rewrite the registry domain and namespace for a public image.
@@ -152,8 +152,8 @@ spec:
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}' 
       # If the user configured a registry, use the registry namespace provided
       # Else, use "anonymous" 
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "anonymous/registry.k8s.io/metrics-server" }}/metrics-server'
-      tag: v1.0.1
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "anonymous/ghcr.io/cloudnative-pg" }}/cloudnative-pg'
+      tag: catalog-1.24.0
 ```
 
 The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource above correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown below:
@@ -162,9 +162,9 @@ The `spec.values.image.registry` and `spec.values.image.repository` fields in th
 # Helm chart values.yaml file
 
 image:
-  registry: registry.k8s.io
-  repository: metrics-server/metrics-server
-  tag: v0.7.0
+  registry: ghcr.io
+  repository: cloudnative-pg/cloudnative-pg
+  tag: catalog-1.24.0
 ```
 
 During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource.
@@ -174,8 +174,6 @@ Any templates in the Helm chart that access the `image.registry` and `image.repo
 ```yaml
 apiVersion: v1
 kind: Pod
-metadata:
-  name: mariadb
 spec:
   containers:
   - name: 
