@@ -11,7 +11,7 @@ pagination_prev: null
 Released on Augusrt 16, 2024
 
 ### Bug Fixes {#bug-fixes-1-0-0-beta-27}
-* Fixes an issue that caused Embedded Cluster distributions to not be reported.
+* Fixes an issue that caused k0s to be reported as the distribution for Embedded Clusters.
 
 ## 1.0.0-beta.26
 
