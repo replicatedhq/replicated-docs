@@ -85,11 +85,9 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Getting License Updates with the SDK
 
-The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment.
+The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For Helm installations that include the SDK, it is not necessary for customers to manually sync their license with the latest or deploy a new version to update their license.
 
-By default, the SDK polls the Vendor Portal for updates every four hours by default. 
-
-For Helm installations that include the SDK, this means that licenses are automatically updated in customer environments when you make changes to the license in the Vendor Portal. It is not necessary for customers to manually sync their license with the latest or deploy a new version to update their license.
+For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
 ### Replacing Licenses
 
