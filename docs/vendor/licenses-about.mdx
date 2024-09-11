@@ -43,26 +43,6 @@ Built-in fields are reserved field names. You can specify the values for these f
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
-## About Editing Customer Licenses
-
-This section describes the default behavior for handling license updates and expiration.
-
-### Editing License Details and Entitlements
-
-You can make changes to a customer in the Vendor Portal to edit their license details, such as the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes.
-
-You can also add, remove, and edit license options and custom fields. 
-
-When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates.
-
-For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
-
-### Replacing Licenses
-
-Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
-
-Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license.
-
 ## License Expiration Handling {#expiration}
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
@@ -74,9 +54,19 @@ Replicated enforces the following logic when a license expires:
 * Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
 * (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
-## About Updating Licenses in Customer Environments
+## About Updating Licenses
 
 This section describes how changes to licenses are updated in customer environments.
+
+## Editing License Details and Entitlements
+
+You can make changes to a customer in the Vendor Portal to edit their license details, such as the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes.
+
+You can also add, remove, and edit license options and custom fields. 
+
+When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates.
+
+For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
 ### Updating Licenses with KOTS
 
@@ -98,6 +88,12 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 The Replicated SDK polls the Vendor Portal for license updates every four hours by default. 
 
 For Helm installations that include the SDK, this means that licenses are automatically updated in customer environments when you make changes to the license in the Vendor Portal. It is not necessary for customers to manually sync their license with the latest or deploy a new version to update their license.
+
+### Replacing Licenses
+
+Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
+
+Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license.
 
 ## About Customer Channel Assignment {#channel-assignment}
 
