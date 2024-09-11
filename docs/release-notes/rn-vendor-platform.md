@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.11-2
+
+Released on September 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-11-2}
+* Compatibility Matrix: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
+* Compatibility Matrix: Improves styles of the Edit Tags modal on the Cluster History page.
+
 ## v2024.09.09-0
 
 Released on September 9, 2024
