@@ -330,6 +330,20 @@ ParseUint returns the unsigned integer value represented by the string with opti
 '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
+
+## PrivateCACert
+
+> Introduced in KOTS v1.117.0
+
+```go
+func PrivateCACert() string
+```
+
+This function returns the name of a ConfigMap containing additional CA certificates provided by the end user.
+This allows accessing the internet through enterprise-grade proxies that replace TLS certificates in order to inspect traffic.
+
+This function returns the empty string if no ConfigMap exists or if a ConfigMap exists but has no entries.
+
 ## TLSCert
 
 **Deprecation Notice**: This function has been superseded in Replicated KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
@@ -671,16 +685,3 @@ The following describes working with values returned by the Lookup function:
     ```
 
 * When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.
-
-## PrivateCACert
-
-> Introduced in KOTS v1.117.0
-
-```go
-func PrivateCACert() string
-```
-
-This function returns the name of a configmap containing additional CA certificates provided by the end user.
-This allows accessing the internet through enterprise-grade proxies that replace TLS certificates in order to inspect traffic.
-
-This will return the empty string if no configmap exists. The configmap may also have no entries even if it does exist.
