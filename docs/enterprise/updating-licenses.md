@@ -14,7 +14,7 @@ To update licenses in online environments:
 
    [View a larger version of this image](/images/online-license-tab.png)
 
-   When the license is updated, KOTS makes a new version available that includes the license changes and a dialog is displayed:
+   When the license is updated, KOTS makes a new version available that includes the license changes:
 
    ![License updated successfully](/images/kots-license-update-message.png)
 
@@ -26,7 +26,7 @@ To update licenses in online environments:
 
 1. In the dialog, click **Go to new version** to navigate to the **Version history** page.
 
-1. On the **Version history** page, next to the new version labeled **License Change**, click **Deploy** then **Yes, Deploy**.
+1. On the **Version history** page, next to the new version labeled **License Change**, click **Deploy** then **Yes, deploy**.
 
     ![Deploy license change](/images/kots-deploy-license-change.png)
 
@@ -40,12 +40,41 @@ To update licenses in online environments:
 
 ## Update Air Gap Licenses
 
-Click **Upload license** on the right side of the license pane and select the latest license from your machine.
+To update licenses in air gap environments:
 
-![Airgap License](/images/airgap-license-tab.png)
+1. Download the new license. Ensure that it is available on the air gapped machine where KOTS and the application are installed. 
 
-- A **License is already up to date** note appears if no changes are detected.
-- A **License uploaded successfully** note appears when the changes are successfully applied.
+1. In the Admin Console, go to the **License** tab.
+
+1. Click **Upload license** and select the new license from your machine.
+
+   ![Airgap License](/images/airgap-license-tab.png)
+
+   [View a larger version of this image](/images/airgap-license-tab.png)
+
+   When the license is updated, KOTS makes a new version available that includes the license changes:
+
+   ![License updated successfully](/images/kots-airgap-license-update-message.png)
+
+   [View a larger version of this image](/images/kots-airgap-license-update-message.png)
+
+   :::note
+   If no changes are detected, a **License is already up to date** message appears.
+   :::
+
+1. In the dialog, click **Go to new version** to navigate to the **Version history** page.
+
+1. On the **Version history** page, next to the new version labeled **License Change**, click **Deploy** then **Yes, deploy**.
+
+    ![Deploy license change](/images/kots-deploy-license-change.png)
+
+    [View a larger version of this image](/images/kots-deploy-license-change.png)
+
+    The version with the license change is then displayed as the currently deployed version, as shown belowå: 
+
+    ![Currently deployed version](/images/kots-license-change-currently-deployed.png)
+
+    [View a larger version of this image](/images/kots-license-change-currently-deployed.png)
 
 ## Upgrade from a Community License
 

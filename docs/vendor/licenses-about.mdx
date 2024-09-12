@@ -43,17 +43,6 @@ Built-in fields are reserved field names. You can specify the values for these f
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
-## About License Expiration Handling {#expiration}
-
-The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
-
-Replicated enforces the following logic when a license expires:
-* By default, instances with expired licenses continue to run.
-   To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
-* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
-* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
-* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
-
 ## About Updating Licenses
 
 This section includes information about making changes to customer licenses, including editing license details in the Vendor Portal as well as updating or replacing licenses in customer installations.
@@ -94,6 +83,17 @@ For information about how to use the SDK API to query license entitlements at ru
 Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
 
 Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license.
+
+## About License Expiration Handling {#expiration}
+
+The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
+
+Replicated enforces the following logic when a license expires:
+* By default, instances with expired licenses continue to run.
+   To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
+* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
+* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
+* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
 ## About Customer Channel Assignment {#channel-assignment}
 
