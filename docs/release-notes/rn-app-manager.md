@@ -23,7 +23,7 @@ Released on September 12, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Bug Fixes {#bug-fixes-1-116-1}
-* KOTS will now use the fully qualified .svc.cluster.local address when making requests to kotsadm-rqlite and kotsadm-minio services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
 
 ## 1.116.0
 
