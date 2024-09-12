@@ -14,6 +14,7 @@ Released on September 11, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-09-11-2}
 * Compatibility Matrix: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
+* Compatibility Matrix: Fixes an issue where you could not purchase more usage credits if you had a zero credit balance.
 
 ### Improvements {#improvements-v2024-09-11-2}
 * Compatibility Matrix: Improves styles of the Edit Tags modal on the Cluster History page.
