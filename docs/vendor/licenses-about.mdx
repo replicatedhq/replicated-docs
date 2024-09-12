@@ -49,24 +49,27 @@ This section includes information about making changes to customer licenses, inc
 
 ### Editing License Details and Entitlements
 
-You can make changes to a customer in the Vendor Portal to edit their license details, such as the license type or the customer name, at any time. You can also add, remove, and edit license options and custom fields. The license ID, which is the unique identifier for the customer, never changes.
+You can make changes to a customer in the Vendor Portal to edit their license details, such as the license type or customer name, at any time. You can also add, remove, and edit license options and custom fields. The license ID, which is the unique identifier for the customer, never changes.
 
-When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates. For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates.
+
+For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
 ### License Updates with KOTS
 
-When you edit customer licenses for an application installed with KOTS, your customers can use the KOTS Admin Console to sync their license with the latest from the Vendor Portal, then deploy a new version that includes the license changes. Deploying a new version with the license changes ensures that any license fields that you have templated in your release using [KOTS template functions](/reference/template-functions-about) are rendered with the latest license details from the Vendor Portal.
+When you edit customer licenses for an application installed with KOTS, your customers can use the KOTS Admin Console to get the latest license details from the Vendor Portal, then deploy a new version that includes the license changes. Deploying a new version with the license changes ensures that any license fields that you have templated in your release using [KOTS template functions](/reference/template-functions-about) are rendered with the latest license details.
 
-For online instances, license updates are pulled from the Vendor Portal when:
+For online instances, KOTS pulls license details from the Vendor Portal when:
+* A customer clicks **Sync license** in the Admin Console.
 * An automatic or manual update check is performed by KOTS.
-* A customer selects **Sync license** in the Admin Console.
+* An update is performed with Replicated Embedded Cluster. See [Performing Updates with Embedded Cluster](/enterprise/updating-embedded).
 * An application status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
 
 For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Air Gap License Updates with KOTS
 
-For air gap installations, customers must upload a regenerated license file to the Admin Console every time the license is modified in order to deploy the license changes.
+To update licenses in air gap installations, customers need to upload the regenerated license file to the Admin Console.
 
 After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their Download Portal to downlaod the new license.
 
@@ -103,9 +106,9 @@ This section provides information about managing the channel a customer is assig
 
 <ChangeChannel/>
 
-For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the Replicated admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the KOTS Admin Console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
-For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
+For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the Admin Console, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Assigning KOTS and Helm-Only Customers
 
@@ -181,7 +184,7 @@ From the **Manage customer** page, you can view and edit the customer's license 
 
 ### Support Bundles Page
 
-The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers with the **Support Bundle Upload Enabled** entitlement can provide support bundles through the Replicated admin console, or you can upload support bundles manually in the Vendor Portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
+The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers with the **Support Bundle Upload Enabled** entitlement can provide support bundles through the KOTS Admin Console, or you can upload support bundles manually in the Vendor Portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
 
 The following shows an example of the **Support bundles** page:
 
