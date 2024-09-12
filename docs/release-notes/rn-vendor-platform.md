@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.12-3
+
+Released on September 12, 2024
+
+### New Features {#new-features-v2024-09-12-3}
+* Adding new shapes for CMX in OKE.
+
 ## v2024.09.11-2
 
 Released on September 11, 2024
