@@ -342,7 +342,11 @@ func PrivateCACert() string
 This function returns the name of a ConfigMap containing additional CA certificates provided by the end user.
 This allows accessing the internet through enterprise-grade proxies that replace TLS certificates in order to inspect traffic.
 
-This function returns the empty string if no ConfigMap exists or if a ConfigMap exists but has no entries.
+::note
+This function will return the name of the ConfigMap even if the ConfigMap has no entries.
+:::
+
+If no ConfigMap exists, this function returns the empty string.
 
 ## TLSCert
 
