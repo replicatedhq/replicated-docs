@@ -45,7 +45,7 @@ You can also create custom license fields to define entitlements specific to the
 
 ## About Updating Licenses
 
-This section includes information about making changes to customer licenses, including editing license details in the Vendor Portal as well as updating or replacing licenses in customer installations.
+This section includes information about making changes to customer licenses, including editing license details in the Vendor Portal as well as how customers can update or replace licenses.
 
 ### Editing License Details and Entitlements
 
@@ -53,7 +53,7 @@ You can make changes to a customer in the Vendor Portal to edit their license de
 
 When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates. For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
-### Updating Licenses with KOTS
+### License Updates with KOTS
 
 When you edit customer licenses for an application installed with KOTS, your customers can use the KOTS Admin Console to sync their license with the latest from the Vendor Portal, then deploy a new version that includes the license changes. Deploying a new version with the license changes ensures that any license fields that you have templated in your release are rendered with the latest license details from the Vendor Portal.
 
@@ -64,17 +64,17 @@ For online instances, license updates are pulled from the Vendor Portal when:
 
 For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
-### Updating Air Gap Licenses with KOTS
+### Air Gap License Updates with KOTS
 
 For air gap installations, customers must upload a regenerated license file to the Admin Console every time the license is modified in order to deploy the license changes.
 
-After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their Download Portal to downlaod the new license. Then, they can upload the license in the Admin Console.
+After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their Download Portal to downlaod the new license.
 
 For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
-### Getting License Updates with the SDK
+### Retrieving License Details with the SDK API
 
-The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For Helm installations that include the SDK, it is not necessary for customers to manually sync their license with the latest or deploy a new version to update their license.
+The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. It is not necessary for customers to update their license and then deploy a new version to apply the license changes.
 
 For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
