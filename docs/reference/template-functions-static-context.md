@@ -671,3 +671,16 @@ The following describes working with values returned by the Lookup function:
     ```
 
 * When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.
+
+## PrivateCACert
+
+> Introduced in KOTS v1.117.0
+
+```go
+func PrivateCACert() string
+```
+
+This function returns the name of a configmap containing additional CA certificates provided by the end user.
+This allows accessing the internet through enterprise-grade proxies that replace TLS certificates in order to inspect traffic.
+
+This will return the empty string if no configmap exists. The configmap may also have no entries even if it does exist.
