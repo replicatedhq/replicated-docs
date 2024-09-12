@@ -13,10 +13,10 @@ pagination_prev: null
 Released on September 11, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-09-11-2}
-* CMX: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
+* Compatibility Matrix: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
 
 ### Improvements {#improvements-v2024-09-11-2}
-* CMX: Improves styles of the Edit Tags modal on the Cluster History page.
+* Compatibility Matrix: Improves styles of the Edit Tags modal on the Cluster History page.
 
 ## v2024.09.09-0
 
