@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.13-0
+
+Released on September 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-13-0}
+* The correct error status code is now returned when downloading an Embedded Cluster release fails.
+
 ## v2024.09.11-2
 
 Released on September 11, 2024
