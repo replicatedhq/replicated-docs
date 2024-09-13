@@ -5,7 +5,9 @@
 Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
-## Base64Encode
+## Encoding Functions
+
+### Base64Encode
 ```go
 func Base64Encode(stringToEncode string) string
 ```
@@ -14,7 +16,7 @@ Returns a Base64 encoded string.
 '{{repl ConfigOption "name" | Base64Encode }}'
 ```
 
-## Base64Decode
+### Base64Decode
 ```go
 func Base64Decode(stringToDecode string) string
 ```
@@ -35,15 +37,6 @@ The size must be a integer or floating point number.
 ## KubeSeal
 ```go
 func KubeSeal(certData string, namespace string, name string, value string) string
-```
-
-## Namespace
-```go
-func Namespace() string
-```
-Namespace returns the Kubernetes namespace that the application belongs to.
-```yaml
-'{{repl Namespace}}'
 ```
 
 ## Date Functions
@@ -217,6 +210,8 @@ Trim returns a string with all leading and trailing strings contained in the opt
 '{{repl Trim (ConfigOption "str_value") "." }}'
 ```
 
+## Encoding Functions
+
 ### UrlEncode
 ```go
 func UrlEncode(stringToEncode string) string
@@ -296,8 +291,8 @@ If both operands are integers, the result will be an integer.
 ```yaml
 '{{repl Sub (ConfigOption "maximum_users") 1}}'
 ```
-
-## ParseBool
+## Type Conversion Functions
+### ParseBool
 ```go
 func ParseBool(str string) bool
 ```
@@ -306,7 +301,7 @@ ParseBool returns the boolean value represented by the string.
 '{{repl ConfigOption "str_value" | ParseBool }}'
 ```
 
-## ParseFloat
+### ParseFloat
 ```go
 func ParseFloat(str string) float64
 ```
@@ -315,7 +310,7 @@ ParseFloat returns the float value represented by the string.
 '{{repl ConfigOption "str_value" | ParseFloat }}'
 ```
 
-## ParseInt
+### ParseInt
 ```go
 func ParseInt(str string, args ...int) int64
 ```
@@ -324,7 +319,7 @@ ParseInt returns the integer value represented by the string with optional base 
 '{{repl ConfigOption "str_value" | ParseInt }}'
 ```
 
-## ParseUint
+### ParseUint
 ```go
 func ParseUint(str string, args ...int) uint64
 ```
@@ -410,6 +405,16 @@ repl{{KotsVersion | semverCompare ">= 1.19"}}
 This returns `true` if the KOTS version is greater than or equal to `1.19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## Namespace
+```go
+func Namespace() string
+```
+Namespace returns the Kubernetes namespace that the application belongs to.
+```yaml
+'{{repl Namespace}}'
+```
+
 ### NodeCount
 ```go
 func NodeCount() int
