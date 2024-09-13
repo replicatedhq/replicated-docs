@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.13-1
+
+Released on September 13, 2024
+
+### New Features {#new-features-v2024-09-13-1}
+* CMX: Support for Embedded Cluster multinode.
+
 ## v2024.09.11-2
 
 Released on September 11, 2024
