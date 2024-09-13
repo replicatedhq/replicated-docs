@@ -28,7 +28,7 @@ Released on September 11, 2024
 </table>
 
 
-### Improvements {#improvements-1-11-1}
+### Improvements {#improvements-1-12-0}
 
 * Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console. The check for updates button is now also shown on the **Version history** page. These were removed in a previous version.
 * The **Nodes** page displays guidance and easier access to the node join command during initial install.
