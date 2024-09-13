@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.15.0",
-    "@docusaurus/core": "3.1.1",
-    "@docusaurus/preset-classic": "3.1.1",
+    "search-insights": "2.17.2",
+    "@docusaurus/core": "3.5.2",
+    "@docusaurus/preset-classic": "3.5.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.0",
     "docusaurus": "^1.14.7",
     "prism-react-renderer": "^2.3.0",
+    "@types/react": "18.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loadable": "^5.5.0",
@@ -30,8 +32,8 @@
     "caniuse-lite": "^1.0.30001584"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.1.1",
-    "@docusaurus/types": "3.1.1",
+    "@docusaurus/module-type-aliases": "3.5.2",
+    "@docusaurus/types": "3.5.2",
     "typescript": "~5.2.2"
   },
   "browserslist": {
