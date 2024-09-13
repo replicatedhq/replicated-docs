@@ -13,7 +13,7 @@ pagination_prev: null
 Released on September 12, 2024
 
 ### New Features {#new-features-v2024-09-12-3}
-* Adding new shapes for CMX in OKE.
+* Compatibility Matrix: Adds new instance shapes for OKE (Oracle) distribution.
 
 ## v2024.09.11-2
 
