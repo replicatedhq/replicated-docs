@@ -46,8 +46,9 @@ Namespace returns the Kubernetes namespace that the application belongs to.
 '{{repl Namespace}}'
 ```
 
+## Date Functions
 
-## Now
+### Now
 ```go
 func Now() string
 ```
@@ -56,7 +57,7 @@ Returns the current timestamp as an RFC3339 formatted string.
 '{{repl Now }}'
 ```
 
-## NowFmt
+### NowFmt
 ```go
 func NowFmt(format string) string
 ```
@@ -66,7 +67,9 @@ For information about Go time formatting guidelines, see [Constants](https://gol
 '{{repl NowFmt "20060102" }}'
 ```
 
-## RandomString
+## String Functions
+
+### RandomString
 ```go
 func RandomString(length uint64, providedCharset ...string) string
 ```
@@ -162,7 +165,7 @@ The following table describes the behavior of the RandomString template function
   </tr>
 </table>
 
-## Split
+### Split
 ```go
 func Split(s string, sep string) []string
 ```
@@ -178,7 +181,7 @@ Assuming the `github_url` param is set to `https://github.mycorp.internal:3131`,
 '{{repl index (Split (index (Split (ConfigOption "github_url") "/") 2) ":") 0}}'
 ```
 
-## ToLower
+### ToLower
 ```go
 func ToLower(stringToAlter string) string
 ```
@@ -187,7 +190,7 @@ Returns the string, in lowercase.
 '{{repl ConfigOption "company_name" | ToLower }}'
 ```
 
-## ToUpper
+### ToUpper
 ```go
 func ToUpper(stringToAlter string) string
 ```
@@ -196,7 +199,7 @@ Returns the string, in uppercase.
 '{{repl ConfigOption "company_name" | ToUpper }}'
 ```
 
-## TrimSpace
+### TrimSpace
 ```go
 func TrimSpace(s string) string
 ```
@@ -205,7 +208,7 @@ Trim returns a string with all leading and trailing spaces removed.
 '{{repl ConfigOption "str_value" | TrimSpace }}'
 ```
 
-## Trim
+### Trim
 ```go
 func Trim(s string, args ...string) string
 ```
@@ -214,7 +217,7 @@ Trim returns a string with all leading and trailing strings contained in the opt
 '{{repl Trim (ConfigOption "str_value") "." }}'
 ```
 
-## UrlEncode
+### UrlEncode
 ```go
 func UrlEncode(stringToEncode string) string
 ```
@@ -224,7 +227,7 @@ Equivalent to the `QueryEscape` function within the golang `net/url` library. Fo
 '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-## UrlPathEscape
+### UrlPathEscape
 ```go
 func UrlPathEscape(stringToEncode string) string
 ```
@@ -234,8 +237,7 @@ Equivalent to the `PathEscape` function within the golang `net/url` library. For
 '{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
 ```
 
-## Mathematic Functions
-
+## Math Functions
 ### Add
 ```go
 func Add(x interface{}, y interface{}) interface{}
@@ -333,21 +335,6 @@ ParseUint returns the unsigned integer value represented by the string with opti
 
 ## Cluster Information
 
-### IsKurl
-```go
-func IsKurl() bool
-```
-IsKurl returns true if running within a kurl-based installation.
-#### Detect kURL Installations
-```yaml
-repl{{ IsKurl }}
-```
-#### Detect Non-kURL Installations
-```yaml
-repl{{ not IsKurl }}
-```
-See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
-
 ### Distribution
 ```go
 func Distribution() string
@@ -389,41 +376,20 @@ repl{{ ne Distribution "embedded-cluster" }}
 ```
 See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
-## NodeCount
+### IsKurl
 ```go
-func NodeCount() int
+func IsKurl() bool
 ```
-NodeCount returns the number of nodes detected within the Kubernetes cluster.
+IsKurl returns true if running within a kurl-based installation.
+#### Detect kURL Installations
 ```yaml
-repl{{ NodeCount }}
+repl{{ IsKurl }}
 ```
-
-## HTTPSProxy
-```go
-func HTTPSProxy() string
-```
-HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+#### Detect Non-kURL Installations
 ```yaml
-repl{{ HTTPSProxy }}
+repl{{ not IsKurl }}
 ```
-
-## HTTPProxy
-```go
-func HTTPProxy() string
-```
-HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
-```yaml
-repl{{ HTTPProxy }}
-```
-
-## NoProxy
-```go
-func NoProxy() string
-```
-NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
-```yaml
-repl{{ NoProxy }}
-```
+See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
 ## KotsVersion
 ```go
@@ -444,6 +410,39 @@ repl{{KotsVersion | semverCompare ">= 1.19"}}
 This returns `true` if the KOTS version is greater than or equal to `1.19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+### NodeCount
+```go
+func NodeCount() int
+```
+NodeCount returns the number of nodes detected within the Kubernetes cluster.
+```yaml
+repl{{ NodeCount }}
+```
+## HTTPSProxy
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+```yaml
+repl{{ HTTPSProxy }}
+```
+## HTTPProxy
+```go
+func HTTPProxy() string
+```
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
+```yaml
+repl{{ HTTPProxy }}
+```
+
+## NoProxy
+```go
+func NoProxy() string
+```
+NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
+```yaml
+repl{{ NoProxy }}
+```
 
 ## YamlEscape
 ```go
