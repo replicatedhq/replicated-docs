@@ -1,108 +1,9 @@
 # Static Context
 
-## Mastermind Sprig
+## About Mastermind Sprig
 
 Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
-
-## Namespace
-```go
-func Namespace() string
-```
-Namespace returns the Kubernetes namespace that the application belongs to.
-```yaml
-'{{repl Namespace}}'
-```
-
-## KubeSeal
-```go
-func KubeSeal(certData string, namespace string, name string, value string) string
-```
-
-## HumanSize
-```go
-func HumanSize(size interface{}) string
-```
-HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB").
-The size must be a integer or floating point number.
-```yaml
-'{{repl ConfigOption "min_size_bytes" | HumanSize }}'
-```
-
-## Now
-```go
-func Now() string
-```
-Returns the current timestamp as an RFC3339 formatted string.
-```yaml
-'{{repl Now }}'
-```
-
-## NowFmt
-```go
-func NowFmt(format string) string
-```
-Returns the current timestamp as a formatted string.
-For information about Go time formatting guidelines, see [Constants](https://golang.org/pkg/time/#pkg-constants) in the Go documentation.
-```yaml
-'{{repl NowFmt "20060102" }}'
-```
-
-## ToLower
-```go
-func ToLower(stringToAlter string) string
-```
-Returns the string, in lowercase.
-```yaml
-'{{repl ConfigOption "company_name" | ToLower }}'
-```
-
-## ToUpper
-```go
-func ToUpper(stringToAlter string) string
-```
-Returns the string, in uppercase.
-```yaml
-'{{repl ConfigOption "company_name" | ToUpper }}'
-```
-
-## TrimSpace
-```go
-func TrimSpace(s string) string
-```
-Trim returns a string with all leading and trailing spaces removed.
-```yaml
-'{{repl ConfigOption "str_value" | TrimSpace }}'
-```
-
-## Trim
-```go
-func Trim(s string, args ...string) string
-```
-Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
-```yaml
-'{{repl Trim (ConfigOption "str_value") "." }}'
-```
-
-## UrlEncode
-```go
-func UrlEncode(stringToEncode string) string
-```
-Returns the string, url encoded.
-Equivalent to the `QueryEscape` function within the golang `net/url` library. For more information, see [func QueryEscape](https://godoc.org/net/url#QueryEscape) in the Go documentation.
-```yaml
-'{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
-```
-
-## UrlPathEscape
-```go
-func UrlPathEscape(stringToEncode string) string
-```
-Returns the string, url *path* encoded.
-Equivalent to the `PathEscape` function within the golang `net/url` library. For more information, see [func PathEscape](https://godoc.org/net/url#PathEscape) in the Go documentation.
-```yaml
-'{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
-```
 
 ## Base64Encode
 ```go
@@ -122,20 +23,47 @@ Returns decoded string from a Base64 stored value.
 '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
 
-## Split
+## HumanSize
 ```go
-func Split(s string, sep string) []string
+func HumanSize(size interface{}) string
 ```
-Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
+HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB").
+The size must be a integer or floating point number.
 ```yaml
-'{{repl Split "A,B,C" "," }}'
+'{{repl ConfigOption "min_size_bytes" | HumanSize }}'
+```
+## KubeSeal
+```go
+func KubeSeal(certData string, namespace string, name string, value string) string
 ```
 
-Combining `Split` and `index`:
-Assuming the `github_url` param is set to `https://github.mycorp.internal:3131`, the following would set
-`GITHUB_HOSTNAME` to `github.mycorp.internal`.
+## Namespace
+```go
+func Namespace() string
+```
+Namespace returns the Kubernetes namespace that the application belongs to.
 ```yaml
-'{{repl index (Split (index (Split (ConfigOption "github_url") "/") 2) ":") 0}}'
+'{{repl Namespace}}'
+```
+
+
+## Now
+```go
+func Now() string
+```
+Returns the current timestamp as an RFC3339 formatted string.
+```yaml
+'{{repl Now }}'
+```
+
+## NowFmt
+```go
+func NowFmt(format string) string
+```
+Returns the current timestamp as a formatted string.
+For information about Go time formatting guidelines, see [Constants](https://golang.org/pkg/time/#pkg-constants) in the Go documentation.
+```yaml
+'{{repl NowFmt "20060102" }}'
 ```
 
 ## RandomString
@@ -158,7 +86,6 @@ The following example generates a 64-character random string that contains `a`s 
 ```yaml
 '{{repl RandomString 64 "[ab]" }}'
 ```
-
 #### Generating Persistent and Ephemeral Strings
 
 When you assign the RandomString template function to a `value` key in the Config custom resource, you can use the `hidden` and `readonly` properties to control the behavior of the RandomString function each time it is called. The RandomString template function is called each time the user deploys a change to the configuration settings for the application.
@@ -235,7 +162,81 @@ The following table describes the behavior of the RandomString template function
   </tr>
 </table>
 
-## Add
+## Split
+```go
+func Split(s string, sep string) []string
+```
+Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
+```yaml
+'{{repl Split "A,B,C" "," }}'
+```
+
+Combining `Split` and `index`:
+Assuming the `github_url` param is set to `https://github.mycorp.internal:3131`, the following would set
+`GITHUB_HOSTNAME` to `github.mycorp.internal`.
+```yaml
+'{{repl index (Split (index (Split (ConfigOption "github_url") "/") 2) ":") 0}}'
+```
+
+## ToLower
+```go
+func ToLower(stringToAlter string) string
+```
+Returns the string, in lowercase.
+```yaml
+'{{repl ConfigOption "company_name" | ToLower }}'
+```
+
+## ToUpper
+```go
+func ToUpper(stringToAlter string) string
+```
+Returns the string, in uppercase.
+```yaml
+'{{repl ConfigOption "company_name" | ToUpper }}'
+```
+
+## TrimSpace
+```go
+func TrimSpace(s string) string
+```
+Trim returns a string with all leading and trailing spaces removed.
+```yaml
+'{{repl ConfigOption "str_value" | TrimSpace }}'
+```
+
+## Trim
+```go
+func Trim(s string, args ...string) string
+```
+Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
+```yaml
+'{{repl Trim (ConfigOption "str_value") "." }}'
+```
+
+## UrlEncode
+```go
+func UrlEncode(stringToEncode string) string
+```
+Returns the string, url encoded.
+Equivalent to the `QueryEscape` function within the golang `net/url` library. For more information, see [func QueryEscape](https://godoc.org/net/url#QueryEscape) in the Go documentation.
+```yaml
+'{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
+```
+
+## UrlPathEscape
+```go
+func UrlPathEscape(stringToEncode string) string
+```
+Returns the string, url *path* encoded.
+Equivalent to the `PathEscape` function within the golang `net/url` library. For more information, see [func PathEscape](https://godoc.org/net/url#PathEscape) in the Go documentation.
+```yaml
+'{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
+```
+
+## Mathematic Functions
+
+### Add
 ```go
 func Add(x interface{}, y interface{}) interface{}
 ```
@@ -248,20 +249,20 @@ If both operands are integers, the result will be an integer.
 '{{repl Add (ConfigOption "maximum_users") 1}}'
 ```
 
-## Sub
+### Div
 ```go
-func Sub(x interface{}, y interface{}) interface{}
+func Div(x interface{}, y interface{}) interface{}
 ```
-Subtracts y from x.
+Divides x by y.
 
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
-If both operands are integers, the result will be an integer.
+If both operands are integers, the result will be an integer and will be rounded down.
 ```yaml
-'{{repl Sub (ConfigOption "maximum_users") 1}}'
+'{{repl Div (ConfigOption "maximum_users") 2.0}}'
 ```
 
-## Mult
+### Mult
 ```go
 func Mult(x interface{}, y interface{}) interface{}
 ```
@@ -281,17 +282,17 @@ If a template function returns a string, the value must be converted to an integ
 '{{repl Mult (ConfigOption "session_cookie_age" | ParseInt) 86400}}'
 ```
 
-## Div
+### Sub
 ```go
-func Div(x interface{}, y interface{}) interface{}
+func Sub(x interface{}, y interface{}) interface{}
 ```
-Divides x by y.
+Subtracts y from x.
 
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
-If both operands are integers, the result will be an integer and will be rounded down.
+If both operands are integers, the result will be an integer.
 ```yaml
-'{{repl Div (ConfigOption "maximum_users") 2.0}}'
+'{{repl Sub (ConfigOption "maximum_users") 1}}'
 ```
 
 ## ParseBool
@@ -330,7 +331,9 @@ ParseUint returns the unsigned integer value represented by the string with opti
 '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
-## IsKurl
+## Cluster Information
+
+### IsKurl
 ```go
 func IsKurl() bool
 ```
@@ -345,7 +348,7 @@ repl{{ not IsKurl }}
 ```
 See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
-## Distribution
+### Distribution
 ```go
 func Distribution() string
 ```
@@ -399,7 +402,7 @@ repl{{ NodeCount }}
 ```go
 func HTTPSProxy() string
 ```
-HTTPSProxy returns the address of the proxy that the Replicated admin console is configured to use.
+HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
 ```yaml
 repl{{ HTTPSProxy }}
 ```
@@ -408,7 +411,7 @@ repl{{ HTTPSProxy }}
 ```go
 func HTTPProxy() string
 ```
-HTTPProxy returns the address of the proxy that the admin console is configured to use.
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
 ```yaml
 repl{{ HTTPProxy }}
 ```
