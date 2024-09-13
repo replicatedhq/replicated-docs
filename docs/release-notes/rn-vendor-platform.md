@@ -13,7 +13,7 @@ pagination_prev: null
 Released on September 13, 2024
 
 ### New Features {#new-features-v2024-09-13-1}
-* CMX: Support for Embedded Cluster multinode.
+* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
 
 ## v2024.09.11-2
 
