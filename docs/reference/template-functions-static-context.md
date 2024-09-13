@@ -330,6 +330,23 @@ ParseUint returns the unsigned integer value represented by the string with opti
 '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
+
+## PrivateCACert
+
+> Introduced in KOTS v1.117.0
+
+```go
+func PrivateCACert() string
+```
+
+PrivateCACert returns the name of a ConfigMap created by KOTS that contains private CA certificates provided by the end user. For example, for Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command.
+
+You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
+
+:::note
+This function will return the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, this function returns the empty string.
+:::
+
 ## TLSCert
 
 **Deprecation Notice**: This function has been superseded in Replicated KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
