@@ -24,6 +24,7 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-117-0}
 * Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
+* Adds a new template function `PrivateCACert` that returns the name of a ConfigMap containing additional CA certificates provided by the end user.
 
 ### Bug Fixes {#bug-fixes-1-117-0}
 * Fixes an issue where `dropdown` Config items did not respect the `when` property.
