@@ -339,7 +339,7 @@ ParseUint returns the unsigned integer value represented by the string with opti
 func PrivateCACert() string
 ```
 
-PrivateCACert returns the name of a ConfigMap created by KOTS that contains private CA certificates provided by the end user. For example, for Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command.
+PrivateCACert returns the name of a ConfigMap that contains private CA certificates provided by the end user. For Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command. For KOTS installations, the user provides the ConfigMap using the `--private-ca-configmap` flag for the `install` command.
 
 You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
 
