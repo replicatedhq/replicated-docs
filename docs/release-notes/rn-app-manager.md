@@ -23,10 +23,10 @@ Released on September 13, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-117-0}
-* Adds a new flag `--private-ca-configmap` to the `install` and `generate-manifests` commands. The provided configmap's contents will be used as additional certificate authority certificates.
+* Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
 
 ### Bug Fixes {#bug-fixes-1-117-0}
-* Fixes the 'when' logic for dropdown items in config.
+* Fixes an issue where `dropdown` Config items did not respect the `when` property.
 
 ## 1.116.1
 
