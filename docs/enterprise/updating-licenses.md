@@ -14,15 +14,15 @@ To update licenses in online environments:
 
    [View a larger version of this image](/images/online-license-tab.png)
 
+   :::note
+   If no changes are detected, a **License is already up to date** message appears.
+   :::
+
    When the license is updated, KOTS makes a new version available that includes the license changes:
 
    ![License updated successfully](/images/kots-license-update-message.png)
 
    [View a larger version of this image](/images/kots-license-update-message.png)
-
-   :::note
-   If no changes are detected, a **License is already up to date** message appears.
-   :::
 
 1. In the dialog, click **Go to new version** to navigate to the **Version history** page.
 
@@ -32,7 +32,7 @@ To update licenses in online environments:
 
     [View a larger version of this image](/images/kots-deploy-license-change.png)
 
-    The version with the license change is then displayed as the currently deployed version, as shown belowå: 
+    The version with the license change is then displayed as the currently deployed version, as shown below: 
 
     ![Currently deployed version](/images/kots-license-change-currently-deployed.png)
 
@@ -52,15 +52,15 @@ To update licenses in air gap environments:
 
    [View a larger version of this image](/images/airgap-license-tab.png)
 
+   :::note
+   If no changes are detected, a **License is already up to date** message appears.
+   :::
+
    When the license is updated, KOTS makes a new version available that includes the license changes:
 
    ![License updated successfully](/images/kots-airgap-license-update-message.png)
 
    [View a larger version of this image](/images/kots-airgap-license-update-message.png)
-
-   :::note
-   If no changes are detected, a **License is already up to date** message appears.
-   :::
 
 1. In the dialog, click **Go to new version** to navigate to the **Version history** page.
 
@@ -70,7 +70,7 @@ To update licenses in air gap environments:
 
     [View a larger version of this image](/images/kots-deploy-license-change.png)
 
-    The version with the license change is then displayed as the currently deployed version, as shown belowå: 
+    The version with the license change is then displayed as the currently deployed version, as shown below: 
 
     ![Currently deployed version](/images/kots-license-change-currently-deployed.png)
 
