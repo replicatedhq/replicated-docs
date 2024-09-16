@@ -291,6 +291,7 @@ Equivalent to the `QueryEscape` function within the golang `net/url` library. Fo
 ```
 
 ### UrlPathEscape
+
 ```go
 func UrlPathEscape(stringToEncode string) string
 ```

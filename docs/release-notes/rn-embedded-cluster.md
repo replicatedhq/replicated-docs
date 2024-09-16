@@ -6,6 +6,40 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+## 1.12.0
+
+Released on September 11, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.0+k8s-1.29</td>
+    <td id="center">1.12.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.0</td>
+  </tr>
+</table>
+
+
+### Improvements {#improvements-1-12-0}
+
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console. The check for updates button is now also shown on the **Version history** page. These were removed in a previous version.
+* The **Nodes** page displays guidance and easier access to the node join command during initial install.
+* When nodes need to be added to the cluster during a restore operation, the `join` command is more clearly shown in the Admin Console.
+* Hides a banner on the **View Files** page that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+
+### Bug Fixes {#bug-fixes-1-12-0}
+
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the kots install command were not propagated to the Replicated SDK.
+
 ## 1.11.1
 
 Released on August 30, 2024

@@ -16,6 +16,19 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.0
+
+Released on September 13, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-117-0}
+* Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user.
+
+### Bug Fixes {#bug-fixes-1-117-0}
+* Fixes an issue where `dropdown` Config items did not respect the `when` property.
+
 ## 1.116.1
 
 Released on September 12, 2024
@@ -41,7 +54,7 @@ Released on September 5, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-115-2}
-* Available updates are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. This was removed in a previous version.
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. These were removed in a previous version.
 * When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
 * Improves messaging when the requested channel slug is not allowed by the provided license.
 
@@ -65,7 +78,7 @@ Released on August 20, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-115-0}
-* Displays guidance on the **Nodes** page and easier access to the node join command during initial install of Embedded Cluster.
+* The **Nodes** page displays guidance and easier access to the node join command during initial install of Embedded Cluster.
 * Adds back the check for updates button on the **Version history** page in Embedded Cluster, so you can check for updates without refreshing the page.
 
 ## 1.114.0
