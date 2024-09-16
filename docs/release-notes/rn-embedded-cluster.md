@@ -23,7 +23,7 @@ Released on September 13, 2024
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.116.0</td>
+    <td id="center" colspan="2">1.116.1</td>
   </tr>
 </table>
 
@@ -34,6 +34,7 @@ Released on September 13, 2024
 ### Bug Fixes {#bug-fixes-1-12-1}
 
 * Removes unnecessary values that were previously added to the no proxy list automatically.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` service to simplify HTTP proxy configuration.
 
 ## 1.12.0
 
