@@ -79,6 +79,8 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that any changes to customer licenses are reflected in real time in the customer environment, without the customer needing to perform a license update.
 
+In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [License Updates with KOTS](#license-updates-with-kots) above. However, any logic in your application that uses the SDK API will update the user's license information in real time without the customer needing to deploy a license update in the Admin Console.
+
 For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
 ### Replacing Licenses
