@@ -6,6 +6,35 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+## 1.12.1
+
+Released on September 13, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.1+k8s-1.29</td>
+    <td id="center">1.12.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-12-1}
+
+* Adds the ability to provide additional trusted certificate authority certificates with the `install` command's `--private-ca` flag. This is useful when Embedded Cluster is installed behind an enterprise proxy that intercepts traffic and issues its own certificates.
+
+### Bug Fixes {#bug-fixes-1-12-1}
+
+* Removes unnecessary values that were previously added to the no proxy list automatically.
+
 ## 1.12.0
 
 Released on September 11, 2024
@@ -26,7 +55,6 @@ Released on September 11, 2024
     <td id="center" colspan="2">1.116.0</td>
   </tr>
 </table>
-
 
 ### Improvements {#improvements-1-12-0}
 
