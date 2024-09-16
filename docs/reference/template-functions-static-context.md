@@ -5,7 +5,7 @@
 Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
-## Cluster Details Functions
+## Cluster Information Functions
 
 ### Distribution
 ```go
@@ -62,71 +62,6 @@ repl{{ IsKurl }}
 repl{{ not IsKurl }}
 ```
 See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
-
-### KotsVersion
-```go
-func KotsVersion() string
-```
-
-KotsVersion returns the current version of KOTS.
-
-```yaml
-repl{{ KotsVersion }}
-```
-
-You can compare the KOTS version as follows:
-```yaml
-repl{{KotsVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if the KOTS version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
-
-### Namespace
-```go
-func Namespace() string
-```
-Namespace returns the Kubernetes namespace that the application belongs to.
-```yaml
-'{{repl Namespace}}'
-```
-
-### NodeCount
-```go
-func NodeCount() int
-```
-NodeCount returns the number of nodes detected within the Kubernetes cluster.
-```yaml
-repl{{ NodeCount }}
-```
-
-## Proxy Functions
-### HTTPSProxy
-```go
-func HTTPSProxy() string
-```
-HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
-```yaml
-repl{{ HTTPSProxy }}
-```
-### HTTPProxy
-```go
-func HTTPProxy() string
-```
-HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
-```yaml
-repl{{ HTTPProxy }}
-```
-
-### NoProxy
-```go
-func NoProxy() string
-```
-NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
-```yaml
-repl{{ NoProxy }}
-```
 
 ### KubernetesVersion
 
@@ -192,6 +127,24 @@ repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
 ```
 
 This returns `true` if the Kubernetes minor version is greater than `19`.
+
+### Namespace
+```go
+func Namespace() string
+```
+Namespace returns the Kubernetes namespace that the application belongs to.
+```yaml
+'{{repl Namespace}}'
+```
+
+### NodeCount
+```go
+func NodeCount() int
+```
+NodeCount returns the number of nodes detected within the Kubernetes cluster.
+```yaml
+repl{{ NodeCount }}
+```
 
 ### Lookup
 
@@ -407,7 +360,52 @@ If both operands are integers, the result will be an integer.
 ```yaml
 '{{repl Sub (ConfigOption "maximum_users") 1}}'
 ```
+## KOTS Functions
+### KotsVersion
+```go
+func KotsVersion() string
+```
 
+KotsVersion returns the current version of KOTS.
+
+```yaml
+repl{{ KotsVersion }}
+```
+
+You can compare the KOTS version as follows:
+```yaml
+repl{{KotsVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if the KOTS version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+### HTTPSProxy
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+```yaml
+repl{{ HTTPSProxy }}
+```
+### HTTPProxy
+```go
+func HTTPProxy() string
+```
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
+```yaml
+repl{{ HTTPProxy }}
+```
+
+### NoProxy
+```go
+func NoProxy() string
+```
+NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
+```yaml
+repl{{ NoProxy }}
+```
 ## String Functions
 
 ### RandomString
