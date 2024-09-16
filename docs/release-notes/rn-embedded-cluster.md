@@ -8,7 +8,7 @@ pagination_prev: null
 
 ## 1.12.1
 
-Released on September 14, 2024
+Released on September 13, 2024
 
 <table>
   <tr>
