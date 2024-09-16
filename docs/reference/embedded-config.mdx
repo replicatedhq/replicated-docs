@@ -130,7 +130,7 @@ spec:
 
 ## extensions
 
-If you need to install Helm charts before your application and as part of the Embedded Cluster itself, you can do this with Helm extensions. One situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
+If you need to install Helm charts before your application and as part of the Embedded Cluster itself, you can do this with Helm extensions. One situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not include one.
 
 Helm extensions are updated when new versions of your application are deployed from the Admin Console. So, for example, you can change the values for a Helm extension from one release to another, and those changes will be applied to the cluster when the new release is deployed.
 
@@ -145,6 +145,8 @@ If a Helm extension is removed from the Embedded Cluster Config, the associated 
 * The `version` field is required. Failing to specify a chart version will cause problems for upgrades.
 
 * If you need to install multiple charts in a particular order, set the `order` field to a value greater than or equal to 10. Numbers below 10 are reserved for use by Embedded Cluster to deploy things like a storage provider and the Admin Console. If an `order` is not provided, Helm extensions are installed with order 10. 
+
+* The default range available for NodePorts is `80-32767`.
 
 ### Example
 
