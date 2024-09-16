@@ -229,11 +229,11 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports a single node.</td>
+    <td>Supports multiple nodes (alpha).</td>
   </tr>
   <tr>
     <th>IP Family</th>

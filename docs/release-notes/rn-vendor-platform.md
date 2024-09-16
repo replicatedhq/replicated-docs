@@ -8,12 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.09.12-3
 
 Released on September 12, 2024
 
 ### New Features {#new-features-v2024-09-12-3}
 * Compatibility Matrix: Adds new instance shapes for OKE (Oracle) distribution.
+
+## v2024.09.13-1
+
+Released on September 13, 2024
+
+### New Features {#new-features-v2024-09-13-1}
+* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
 
 ## v2024.09.11-2
 
