@@ -341,7 +341,7 @@ The size must be a integer or floating point number.
 '{{repl ConfigOption "min_size_bytes" | HumanSize }}'
 ```
 
-## Proxy Information Functions
+## Proxy Functions
 
 ### HTTPProxy
 
