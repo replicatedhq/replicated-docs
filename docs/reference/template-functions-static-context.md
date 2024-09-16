@@ -5,6 +5,24 @@
 Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
+## Certificate Functions
+
+### PrivateCACert
+
+>Introduced in KOTS v1.117.0
+
+```yaml
+func PrivateCACert() string
+```
+
+PrivateCACert returns the name of a ConfigMap that contains private CA certificates provided by the end user. For Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command. For KOTS installations, the user provides the ConfigMap using the `--private-ca-configmap` flag for the `install` command.
+
+You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
+
+:::note
+This function will return the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, this function returns the empty string.
+:::
+
 ## Cluster Information Functions
 
 ### Distribution
