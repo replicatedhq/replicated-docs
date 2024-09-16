@@ -379,7 +379,29 @@ If both operands are integers, the result will be an integer.
 '{{repl Sub (ConfigOption "maximum_users") 1}}'
 ```
 ## KOTS Functions
+
+### HTTPProxy
+
+```go
+func HTTPProxy() string
+```
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
+```yaml
+repl{{ HTTPProxy }}
+```
+
+### HTTPSProxy
+
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+```yaml
+repl{{ HTTPSProxy }}
+```
+
 ### KotsVersion
+
 ```go
 func KotsVersion() string
 ```
@@ -399,24 +421,8 @@ This returns `true` if the KOTS version is greater than or equal to `1.19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
-### HTTPSProxy
-```go
-func HTTPSProxy() string
-```
-HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
-```yaml
-repl{{ HTTPSProxy }}
-```
-### HTTPProxy
-```go
-func HTTPProxy() string
-```
-HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
-```yaml
-repl{{ HTTPProxy }}
-```
-
 ### NoProxy
+
 ```go
 func NoProxy() string
 ```
@@ -424,6 +430,7 @@ NoProxy returns the comma-separated list of no-proxy addresses that the admin co
 ```yaml
 repl{{ NoProxy }}
 ```
+
 ## String Functions
 
 ### RandomString
