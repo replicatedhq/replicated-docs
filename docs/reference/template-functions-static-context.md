@@ -81,6 +81,27 @@ repl{{ not IsKurl }}
 ```
 See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
+### KotsVersion
+
+```go
+func KotsVersion() string
+```
+
+KotsVersion returns the current version of KOTS.
+
+```yaml
+repl{{ KotsVersion }}
+```
+
+You can compare the KOTS version as follows:
+```yaml
+repl{{KotsVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if the KOTS version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
 ### KubernetesMajorVersion
 
 > Introduced in KOTS v1.92.0
@@ -301,7 +322,7 @@ Equivalent to the `PathEscape` function within the golang `net/url` library. For
 '{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
 ```
 
-## Encrypting Functions
+## Encryption Functions
 
 ### KubeSeal
 ```go
@@ -320,7 +341,7 @@ The size must be a integer or floating point number.
 '{{repl ConfigOption "min_size_bytes" | HumanSize }}'
 ```
 
-## KOTS Functions
+## Proxy Information Functions
 
 ### HTTPProxy
 
@@ -337,38 +358,17 @@ repl{{ HTTPProxy }}
 ```go
 func HTTPSProxy() string
 ```
-HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+HTTPSProxy returns the address of the proxy that the Admin Console is configured to use.
 ```yaml
 repl{{ HTTPSProxy }}
 ```
-
-### KotsVersion
-
-```go
-func KotsVersion() string
-```
-
-KotsVersion returns the current version of KOTS.
-
-```yaml
-repl{{ KotsVersion }}
-```
-
-You can compare the KOTS version as follows:
-```yaml
-repl{{KotsVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if the KOTS version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
 ### NoProxy
 
 ```go
 func NoProxy() string
 ```
-NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
+NoProxy returns the comma-separated list of no-proxy addresses that the Admin Console is configured to use.
 ```yaml
 repl{{ NoProxy }}
 ```
@@ -434,6 +434,42 @@ If both operands are integers, the result will be an integer.
 ```
 
 ## String Functions
+
+### ParseBool
+```go
+func ParseBool(str string) bool
+```
+ParseBool returns the boolean value represented by the string.
+```yaml
+'{{repl ConfigOption "str_value" | ParseBool }}'
+```
+
+### ParseFloat
+```go
+func ParseFloat(str string) float64
+```
+ParseFloat returns the float value represented by the string.
+```yaml
+'{{repl ConfigOption "str_value" | ParseFloat }}'
+```
+
+### ParseInt
+```go
+func ParseInt(str string, args ...int) int64
+```
+ParseInt returns the integer value represented by the string with optional base (default 10).
+```yaml
+'{{repl ConfigOption "str_value" | ParseInt }}'
+```
+
+### ParseUint
+```go
+func ParseUint(str string, args ...int) uint64
+```
+ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
+```yaml
+'{{repl ConfigOption "str_value" | ParseUint }}'
+```
 
 ### RandomString
 ```go
@@ -593,41 +629,4 @@ This can be useful when dealing with user-uploaded files that may include null b
 
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
-```
-
-## Type Conversion Functions
-### ParseBool
-```go
-func ParseBool(str string) bool
-```
-ParseBool returns the boolean value represented by the string.
-```yaml
-'{{repl ConfigOption "str_value" | ParseBool }}'
-```
-
-### ParseFloat
-```go
-func ParseFloat(str string) float64
-```
-ParseFloat returns the float value represented by the string.
-```yaml
-'{{repl ConfigOption "str_value" | ParseFloat }}'
-```
-
-### ParseInt
-```go
-func ParseInt(str string, args ...int) int64
-```
-ParseInt returns the integer value represented by the string with optional base (default 10).
-```yaml
-'{{repl ConfigOption "str_value" | ParseInt }}'
-```
-
-### ParseUint
-```go
-func ParseUint(str string, args ...int) uint64
-```
-ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
-```yaml
-'{{repl ConfigOption "str_value" | ParseUint }}'
 ```
