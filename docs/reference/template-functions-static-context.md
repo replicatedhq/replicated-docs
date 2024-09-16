@@ -81,29 +81,6 @@ repl{{ not IsKurl }}
 ```
 See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
 
-### KubernetesVersion
-
-> Introduced in KOTS v1.92.0
-
-```go
-func KubernetesVersion() string
-```
-
-KubernetesVersion returns the Kubernetes server version.
-
-```yaml
-repl{{ KubernetesVersion }}
-```
-
-You can compare the Kubernetes version as follows:
-```yaml
-repl{{KubernetesVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
-
 ### KubernetesMajorVersion
 
 > Introduced in KOTS v1.92.0
@@ -145,6 +122,29 @@ repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
 ```
 
 This returns `true` if the Kubernetes minor version is greater than `19`.
+
+### KubernetesVersion
+
+> Introduced in KOTS v1.92.0
+
+```go
+func KubernetesVersion() string
+```
+
+KubernetesVersion returns the Kubernetes server version.
+
+```yaml
+repl{{ KubernetesVersion }}
+```
+
+You can compare the Kubernetes version as follows:
+```yaml
+repl{{KubernetesVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
 ### Namespace
 ```go
@@ -262,15 +262,6 @@ For information about Go time formatting guidelines, see [Constants](https://gol
 
 ## Encoding Functions
 
-### Base64Encode
-```go
-func Base64Encode(stringToEncode string) string
-```
-Returns a Base64 encoded string.
-```yaml
-'{{repl ConfigOption "name" | Base64Encode }}'
-```
-
 ### Base64Decode
 ```go
 func Base64Decode(stringToDecode string) string
@@ -278,6 +269,15 @@ func Base64Decode(stringToDecode string) string
 Returns decoded string from a Base64 stored value.
 ```yaml
 '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
+```
+
+### Base64Encode
+```go
+func Base64Encode(stringToEncode string) string
+```
+Returns a Base64 encoded string.
+```yaml
+'{{repl ConfigOption "name" | Base64Encode }}'
 ```
 
 ### UrlEncode
@@ -318,6 +318,59 @@ HumanSize returns a human-readable approximation of a size in bytes capped at 4 
 The size must be a integer or floating point number.
 ```yaml
 '{{repl ConfigOption "min_size_bytes" | HumanSize }}'
+```
+
+## KOTS Functions
+
+### HTTPProxy
+
+```go
+func HTTPProxy() string
+```
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
+```yaml
+repl{{ HTTPProxy }}
+```
+
+### HTTPSProxy
+
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
+```yaml
+repl{{ HTTPSProxy }}
+```
+
+### KotsVersion
+
+```go
+func KotsVersion() string
+```
+
+KotsVersion returns the current version of KOTS.
+
+```yaml
+repl{{ KotsVersion }}
+```
+
+You can compare the KOTS version as follows:
+```yaml
+repl{{KotsVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if the KOTS version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+### NoProxy
+
+```go
+func NoProxy() string
+```
+NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
+```yaml
+repl{{ NoProxy }}
 ```
 
 ## Math Functions
@@ -378,58 +431,6 @@ If at least one of the operands is a floating point number, the result will be a
 If both operands are integers, the result will be an integer.
 ```yaml
 '{{repl Sub (ConfigOption "maximum_users") 1}}'
-```
-## KOTS Functions
-
-### HTTPProxy
-
-```go
-func HTTPProxy() string
-```
-HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
-```yaml
-repl{{ HTTPProxy }}
-```
-
-### HTTPSProxy
-
-```go
-func HTTPSProxy() string
-```
-HTTPSProxy returns the address of the proxy that the KOTS Admin Console is configured to use.
-```yaml
-repl{{ HTTPSProxy }}
-```
-
-### KotsVersion
-
-```go
-func KotsVersion() string
-```
-
-KotsVersion returns the current version of KOTS.
-
-```yaml
-repl{{ KotsVersion }}
-```
-
-You can compare the KOTS version as follows:
-```yaml
-repl{{KotsVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if the KOTS version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
-
-### NoProxy
-
-```go
-func NoProxy() string
-```
-NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
-```yaml
-repl{{ NoProxy }}
 ```
 
 ## String Functions
@@ -564,15 +565,6 @@ Returns the string, in uppercase.
 '{{repl ConfigOption "company_name" | ToUpper }}'
 ```
 
-### TrimSpace
-```go
-func TrimSpace(s string) string
-```
-Trim returns a string with all leading and trailing spaces removed.
-```yaml
-'{{repl ConfigOption "str_value" | TrimSpace }}'
-```
-
 ### Trim
 ```go
 func Trim(s string, args ...string) string
@@ -580,6 +572,15 @@ func Trim(s string, args ...string) string
 Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
 ```yaml
 '{{repl Trim (ConfigOption "str_value") "." }}'
+```
+
+### TrimSpace
+```go
+func TrimSpace(s string) string
+```
+Trim returns a string with all leading and trailing spaces removed.
+```yaml
+'{{repl ConfigOption "str_value" | TrimSpace }}'
 ```
 
 ### YamlEscape
