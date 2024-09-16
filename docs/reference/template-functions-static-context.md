@@ -302,7 +302,7 @@ Equivalent to the `PathEscape` function within the golang `net/url` library. For
 
 ## Encrypting Functions
 
-## KubeSeal
+### KubeSeal
 ```go
 func KubeSeal(certData string, namespace string, name string, value string) string
 ```
