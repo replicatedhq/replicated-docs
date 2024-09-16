@@ -8,7 +8,7 @@ This topic describes how to use role-based access policies (RBAC) to grant or de
 
 By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable.
 
-You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
+You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels. Or, you can grant only certain users permission to promote releases to your production channels. 
 
 You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
 
@@ -111,7 +111,7 @@ If `denied` is left empty, it is implied as a `**/*` rule, unless `**/*` rule is
 ### Defining Precedence Using Rule Specificity
 The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of asterisks (`**` and `*`) in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
 
-### Rule Order Examples
+### Example: No Access To Stable Channel
 
 In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the Vendor Portal **Channels** page and click the **Settings** icon for the target channel.
 
@@ -130,6 +130,8 @@ In the following example, a policy grants access to promote releases to any chan
   }
 }
 ```
+
+### Example: View Customers Only
 
 In the following example, a policy grants access to viewing all customers, but not to creating releases, promoting releases, or creating new customers.
 
@@ -154,9 +156,15 @@ In the following example, a policy grants access to viewing all customers, but n
 
 ## Role-based Policy Examples
 
+This section includes examples of RBAC policies designed for specific roles at a company.
+
 ### Support Engineer
 
-The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. If you have an Enterprise plan, you will already have this policy created.
+The support engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
+
+:::note
+If you have an Enterprise plan, you will already have this policy created.
+:::
 
 ```json
 {
@@ -180,7 +188,11 @@ The support engineer policy grants read access to release, channels, and applica
 
 ### Sales
 
-The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted. If you have an Enterprise plan, you will already have this policy created.
+The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
+
+:::note
+If you have an Enterprise plan, you will already have this policy created.
+:::
 
 ```json
 {

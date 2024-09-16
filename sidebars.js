@@ -201,6 +201,10 @@ const sidebars = {
         'intro-kots',
         'vendor/kots-faq',
         'vendor/distributing-workflow',
+        {
+          type: 'category',
+          label: 'Packaging KOTS Releases',
+          items: [
             {
               type: 'category',
               label: 'Distributing Helm Charts with KOTS',
@@ -223,7 +227,6 @@ const sidebars = {
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
-                    'enterprise/installing-embedded-air-gap',
                     'vendor/embedded-disaster-recovery',
                   ],
                 },
@@ -341,10 +344,12 @@ const sidebars = {
                 'vendor/releases-configvalues',
               ],
             },
+          ],
+        },   
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
-          label: 'Installing and Managing Applications with KOTS',
+          label: 'Installing and Managing Applications',
           items: [
           {
             type: 'category',
@@ -357,6 +362,14 @@ const sidebars = {
                   'enterprise/installing-overview',
                   'enterprise/installing-general-requirements',
                   'enterprise/sbom-validating',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Installing with Embedded Cluster (Beta)',
+                items: [
+                  'enterprise/installing-embedded',
+                  'enterprise/installing-embedded-air-gap',
                 ],
               },
               {
@@ -559,8 +572,9 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
-          'vendor/support-host-support-bundles',
           'vendor/support-bundle-generating',
+          'vendor/support-bundle-embedded',
+          'vendor/support-host-support-bundles',
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',

@@ -68,7 +68,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.30.0, 1.30.1, 1.30.2</td>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.28.13, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.29.8, 1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.31.0</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -115,7 +115,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.30.0, 1.30.1, 1.30.2</td>
+    <td>1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.30.0, 1.30.1, 1.30.2, 1.30.3</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -229,11 +229,11 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports a single node.</td>
+    <td>Supports multiple nodes (alpha).</td>
   </tr>
   <tr>
     <th>IP Family</th>
@@ -246,7 +246,6 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
         <li>The Admin Console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
         <li>A valid customer license is required for installing with Embedded Cluster.</li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
-        <li>Embedded clusters cannot be created from the Vendor Portal.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
     </td>
@@ -319,7 +318,9 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large (arm), m7g.xlarge (arm), m7g.2xlarge (arm), m7g.4xlarge (arm), m7g.8xlarge (arm), g4dn.xlarge (gpu), g4dn.2xlarge (gpu), g4dn.4xlarge (gpu), g4dn.8xlarge (gpu), g4dn.12xlarge (gpu), g4dn.16xlarge (gpu)</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m5.large, m5.xlarge, m5.2xlarge,
+			m5.4xlarge, m5.8xlarge, m7g.large (arm), m7g.xlarge (arm), m7g.2xlarge (arm), m7g.4xlarge (arm), m7g.8xlarge (arm), c5.large, c5.xlarge, c5.2xlarge, c5.4xlarge,
+			c5.9xlarge, g4dn.xlarge (gpu), g4dn.2xlarge (gpu), g4dn.4xlarge (gpu), g4dn.8xlarge (gpu), g4dn.12xlarge (gpu), g4dn.16xlarge (gpu)</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
@@ -358,7 +359,7 @@ Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.27, 1.28, 1.29, 1.30</td>
+    <td>1.28, 1.29, 1.30</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -448,11 +449,11 @@ By default, creating OKE clusters is not enabled. To enable OKE clusters for Com
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.29.1</td>
+    <td>1.29.1, 1.30.1</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16, VM.Standard.A1.Flex.1 (arm), VM.Standard.A1.Flex.2 (arm), VM.Standard.A1.Flex.4 (arm), VM.Standard.A1.Flex.8 (arm), VM.Standard.A1.Flex.16 (arm)</p></td>
+    <td><p>VM.Standard2.1, VM.Standard2.2, VM.Standard2.4, VM.Standard2.8, VM.Standard2.16, VM.Standard3.Flex.1, VM.Standard3.Flex.2, VM.Standard3.Flex.4, VM.Standard3.Flex.8, VM.Standard3.Flex.16, VM.Standard.A1.Flex.1 (arm), VM.Standard.A1.Flex.2 (arm), VM.Standard.A1.Flex.4 (arm), VM.Standard.A1.Flex.8 (arm), VM.Standard.A1.Flex.16 (arm)</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>

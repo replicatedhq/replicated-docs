@@ -336,7 +336,7 @@ h3[id^="bug-fixes"] {
 }
 
 h3[id^="breaking-changes"] {
-  background-color: #E65DAD;
+  background-color: #d34a54;
   /* background-color: #D64399; */
   border-radius: 7px!important;
   color: #fff;
