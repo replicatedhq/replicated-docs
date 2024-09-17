@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.17-0
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-0}
+* Fixes updating the custom domain override on channels in the Vendor Portal.
+
 
 ## v2024.09.13-0
 
