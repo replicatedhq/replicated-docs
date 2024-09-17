@@ -16,6 +16,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.1
+
+Released on September 17, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-117-1}
+* Fixes an issue where the values provided to the --http-proxy, --https-proxy, and --no-proxy flags for the kots install command were not propagated to the Replicated SDK when running an automated install.
+
+### Bug Fixes {#bug-fixes-1-117-1}
+* Fixes an issue where upgrading the application in Embedded Cluster failed if the version label contained special characters like `+`.
+
 ## 1.117.0
 
 Released on September 13, 2024
