@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.17-1
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-1}
+* Added a PATCH method for updating channels.
+
 
 ## v2024.09.13-0
 
