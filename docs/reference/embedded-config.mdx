@@ -146,7 +146,7 @@ If a Helm extension is removed from the Embedded Cluster Config, the associated 
 
 * If you need to install multiple charts in a particular order, set the `order` field to a value greater than or equal to 10. Numbers below 10 are reserved for use by Embedded Cluster to deploy things like a storage provider and the Admin Console. If an `order` is not provided, Helm extensions are installed with order 10. 
 
-* The default service node port range is `80-32767`. For any node port services you include in your Helm extensions, use ports within this range.
+* The default service node port range is `80-32767`. Use ports within this range for any node port services you include in your Helm extensions.
 
 ### Example
 
