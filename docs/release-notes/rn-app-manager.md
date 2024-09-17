@@ -16,11 +16,20 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.1
+
+Released on September 17, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-117-1}
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK when running an automated install.
+
 ## 1.117.0
 
 Released on September 13, 2024
 
-Support for Kubernetes: 1.28, 1.29, and 1.30
+Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-117-0}
 * Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
