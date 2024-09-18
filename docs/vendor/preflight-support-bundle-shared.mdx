@@ -1,0 +1,191 @@
+import Overview from "../partials/support-bundles/_shared-collectors-analyzers.mdx"
+
+# Defining Shared Collectors and Analyzers with Helm Templating
+
+This topic describes how to use Helm templating to share collectors and analyzers between your preflight and support bundles specs. The information in this topic applies to preflight checks and support bundles that are defined in Kubernetes Secrets.
+
+## Overview
+
+Preflight checks and support bundles are both defined in YAML specs that include _collectors_ and _analyzers_. Collectors determine what information is gathered from the customer environment and analyzers then use this data to provide output to users, usually in the form of troubleshooting suggestions. For more information, see [About Preflights and Support Bundles](preflight-support-bundle-about).
+
+<Overview/>
+
+For more information about the `define` template functions, see [Names of Defined Templates](https://helm.sh/docs/chart_best_practices/templates/#names-of-defined-templates) in the Helm documentation. For more information about the `include` template function, see [Using the 'include' Function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-include-function) in the Helm documentation.
+
+## Recommendations
+
+Consider the following recommendations before creating shared collectors and analyzers:
+
+* Your support bundles should include all of the same collectors and analyzers that are in your preflight checks. This ensures that support bundles include all the necessary troubleshooting information, including any failures in preflight checks.
+
+* In addition to your shared collectors and analyzers, you will also likely need to define other collectors and analyzers that are included in support bundles only. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation. Conversely, you should not have any collectors and analyzers that are only included in preflight checks.
+
+* When using the Helm `include` template function in your preflight and support bundle specs, use [`nindent`](https://helm.sh/docs/chart_template_guide/function_list/#nindent) to ensure the rendered YAML has the correct spacing.
+
+* The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation. You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
+
+## Include Shared Collectors and Analyzers in Preflights and Support Bundles 
+
+To include shared collectors and analyzers in preflight and support bundle specs:
+
+1. In your Helm chart `templates` directory, define the shared collectors and analyzers that you want to include using Helm defined templates.
+
+   :::note
+   The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation. You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
+   :::
+
+   **Example**:
+   
+   The example below creates two defined templates: `"troubleshoot.collectors.shared"` and `"troubleshoot.analyzers.shared"`.
+
+   ```yaml
+   # Defines the shared collectors
+   {{- define "troubleshoot.collectors.shared" -}}
+   - clusterInfo: {}
+   - clusterResources: {}
+   - registryImages:
+       images:
+         - replicated/replicated-sdk:v1.0.0-beta.11
+   {{- end -}}
+   
+   # Defines the shared analyzers
+   {{- define "troubleshoot.analyzers.shared" -}}
+   - registryImages:
+       name: Registry Images
+       outcomes:
+         - fail:
+           when: "missing > 0"
+           message: Images are missing from registry
+         - warn:
+             when: "errors > 0"
+             message: Failed to check if images are present in registry
+         - pass:
+             message: All images are present in registry
+   - clusterVersion:
+       checkName: Is this cluster running a supported Kubernetes verison
+       outcomes:
+         - fail:
+             when: "< 1.19.0"
+             message: This {{ include "common.names.name" . | title }} Helm chart is only supported on Kubernetes 1.19 or later
+             uri: https://www.kubernetes.io
+         - warn:
+             when: "< 1.24.0"
+             message: |
+               You can run {{ include "common.names.name" . | title }} on your current cluster version, but your cluster is no longer supported 
+               by the Kubernetes community. If you have extended support available from your Kubernetes
+               vendor you can ignore this warning.
+             uri: https://kubernetes.io
+         - pass:
+             message: |
+               Your current Kubernetes version is able to run {{ include "common.names.name" . | title }} using this Helm chart and is a
+               version currently supported by the Kubernets community.
+    {{- end -}}                    
+    ```
+
+1. In a new YAML file in the `templates` directory, create a defined template with the support bundle spec (`apiVersion: troubleshoot.sh/v1beta2` and `kind: SupportBundle`).
+
+   **Example**:
+    
+   ```yaml
+   {{- define "troubleshoot.supportBundle" -}}
+   apiVersion: troubleshoot.sh/v1beta2
+   kind: SupportBundle
+   metadata:
+     name: {{ include "common.names.name" . }}-support-bundle
+   spec:
+   {{- end -}}
+   ```
+
+1. In the support bundle spec, use the Helm `include` template to include the shared collectors and analyzers that you defined. Also, add any additional collectors and analyzers that you want to include only in support bundles (and not in preflight checks).
+
+   **Example**:
+    
+   ```yaml
+   {{- define "troubleshoot.supportBundle" -}}
+   apiVersion: troubleshoot.sh/v1beta2
+   kind: SupportBundle
+   metadata:
+     name: {{ include "common.names.name" . }}-support-bundle
+   spec:
+     # Use {{ include }} to include the shared collectors
+     # Use nindent to ensure correct YAML spacing
+     collectors: {{- include "troubleshoot.collectors.shared" .  | nindent 4 }}
+     # Add any collectors that are only included in support bundles
+       - logs:
+           name: app/replicated/logs
+           selectors: 
+             - app.kubernetes.io/name=replicated
+             - app.kubernetes.io/={{ .Release.Name }}
+           limits:
+             maxAge: 720h
+       - logs:
+           name: app/{{ include "common.names.name" . }}/logs
+           selectors: {{- include "common.labels.matchLabels" . | nindent 10 }}
+           limits:
+             maxAge: 720h
+     # Use {{ include }} to include the shared analyzers    
+     analyzers: {{- include "troubleshoot.analyzers.shared" .  | nindent 4 }}
+     # Add any analyzers that are only included in support bundles
+       - deploymentStatus:
+           name: replicated
+           outcomes:
+             - fail:
+                 when: "absent" # Note that the "absent" failure state must be listed first if used.
+                 message: The replicated deployment is not present.
+             - fail:
+                 when: "< 1"
+                 message: The replicated deployment does not have any ready replicas.
+             - warn:
+                 when: "< 1"
+                 message: The replicated deployment has less than the required number of replicas.
+             - warn:
+                 when: "= 1"
+                 message: The replicated deployment has only a single ready replica.
+             - pass:
+                 message: There are multiple replicas of the replicated deployment ready.
+   {{- end -}}
+   ```
+
+1. In a new YAML file in the `templates` directory, create a defined template with the preflight spec (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`). In the spec, use the Helm `include` template to include the shared collectors and analyzers that you defined.
+
+   **Example**:
+
+   ```yaml
+   {{- define "troubleshoot.preflights" -}}
+   apiVersion: troubleshoot.sh/v1beta2
+   kind: Preflight
+   metadata:
+     name: {{ include "common.names.name" . }}-preflight
+   spec:
+     collectors: {{- include "troubleshoot.collectors.shared" .  | nindent 4 }}
+     analyzers: {{- include "troubleshoot.analyzers.shared" .  | nindent 4 }}
+   {{- end -}}
+   ```
+
+1. Finally, include the preflight and support bundle specs in Kubernetes Secrets. This allows the specs to be discovered when users run preflight checks and generate support bundles.
+
+    **Example:**
+
+    In the example below, the `"troubleshoot.preflights"` and `"troubleshoot.supportBundle"` templates are included in two different Secrets as string data.
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: {{ include "common.names.name" . }}-preflight
+      labels: {{- include "common.labels.standard" . | nindent 4 }}
+        troubleshoot.sh/kind: preflight
+    stringData:
+      preflight.yaml: |- {{- include "troubleshoot.preflights" . | nindent 4 }}
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: {{ include "common.names.name" . }}-support-bundle
+      labels: {{- include "common.labels.standard" . | nindent 4 }}
+        troubleshoot.sh/kind: support-bundle
+    stringData:
+      support-bundle-spec: |- {{- include "troubleshoot.supportBundle" . | nindent 4 }}
+    ```
+
+1. Package your Helm chart to a `.tgz` chart archive and add the archive to a new release to test your changes. For more information, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release).   

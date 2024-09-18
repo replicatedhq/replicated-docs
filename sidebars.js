@@ -551,6 +551,7 @@ const sidebars = {
         label: 'Preflight Checks',
         items: [
             'vendor/preflight-defining',
+            'vendor/preflight-examples',
             'vendor/preflight-running',
             {
             type: 'category',
@@ -572,16 +573,18 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
+          'vendor/support-bundle-examples',
           'vendor/support-bundle-generating',
           'vendor/support-bundle-embedded',
           'vendor/support-host-support-bundles',
           'vendor/support-inspecting-support-bundles',
+          'vendor/support-modular-support-bundle-specs',
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
           'vendor/support-online-support-bundle-specs',
-          'vendor/support-modular-support-bundle-specs',
         ],
       },
+      'vendor/preflight-support-bundle-shared',
       'vendor/preflight-sb-helm-templates-about',
       {
         type: 'category',
