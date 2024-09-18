@@ -14,11 +14,11 @@ Use the following guidance to determine which type of manifest file to use for c
 
    * **(Recommended) Helm or KOTS v1.94.2 and Later**: For Helm applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
 
-   * **KOTS v1.94.1 and Earlier**: For Helm applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
+   * **KOTS v1.94.1 and Earlier**: For Helm applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [SupportBundle Custom Resource](#sb-cr).
 
-* **Kubernetes Manifest-Based Applications**: For Kubernetes manifest-based applications, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
+* **Kubernetes Manifest-Based Applications**: For Kubernetes manifest-based applications, create the support bundle spec in a Preflight custom resource. See [SupportBundle Custom Resource](#sb-cr).
 
-### Kubernetes Secret
+### Kubernetes Secret {#secret}
 
 You can define support bundle specs in a Kubernetes Secret for the following installation types:
 * Installations with Helm
@@ -59,9 +59,9 @@ You do not need manually include the `clusterInfo` or `clusterResources` collect
 If your application is deployed as multiple Helm charts, Replicated recommends that you create separate support bundle specs for each subchart. This allows you to make specs that are specific to different components of your application. When a support bundle is generated, all the specs are combined to provide a single bundle.
 :::
 
-After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the spec](/vendor/support-bundle-customizing#optional-customize-the-spec) below.
+After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [Step 2: Customize the spec](/vendor/support-bundle-customizing#customize-the-spec) below.
 
-### SupportBundle Custom Resource
+### SupportBundle Custom Resource {#sb-cr}
 
 You can define support bundle specs in a SupportBundle custom resource for the following installation types:
 * Kubernetes manifest-based applications installed with KOTS
@@ -86,15 +86,13 @@ This empty support bundle spec includes the following collectors by default:
 
 You do not need manually include the `clusterInfo` or `clusterResources` collectors in the spec.
 
-After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can also optionally customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [(Optional) Customize the spec](/vendor/support-bundle-customizing#optional-customize-the-spec) below.
+After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [Step 2: Customize the spec](/vendor/support-bundle-customizing#customize-the-spec) below.
 
-## Step 2: Customize the Spec
+## Step 2: Customize the Spec {#customize-the-spec}
 
 You can customize the support bundles for your application by:
 * Adding collectors and analyzers
 * Editing or excluding the default `clusterInfo` and `clusterResources` collectors
-
-For examples of collectors and analyzers defined in Kubernetes Secrets and Preflight custom resources, see [Example specs](#example-specs) below. 
 
 ### Add Collectors
 
