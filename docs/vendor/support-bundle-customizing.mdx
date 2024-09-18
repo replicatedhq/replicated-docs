@@ -6,13 +6,13 @@ The information in this topic applies to Helm applications and Kubernetes manife
 
 ## Step 1: Add the Default Spec to a Manifest File
 
-You can add the support bundle spec to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm or manifest-based) and installation method (Helm CLI or KOTS).
+You can add the support bundle spec to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm or manifest-based) and installation method (Helm or KOTS).
 
 Use the following guidance to determine which type of manifest file to use for creating a support bundle spec:
 
 * **Helm Applications**: For Helm applications, see the following guidance:
 
-   * **(Recommended) Helm CLI or KOTS v1.94.2 and Later**: For Helm applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
+   * **(Recommended) Helm or KOTS v1.94.2 and Later**: For Helm applications installed with Helm or KOTS v1.94.2 or later, create the support bundle spec in a Kubernetes Secret in your Helm chart `templates`. See [Kubernetes Secret](#secret).
 
    * **KOTS v1.94.1 and Earlier**: For Helm applications installed with KOTS v1.94.1 or earlier, create the support bundle spec in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
@@ -21,7 +21,7 @@ Use the following guidance to determine which type of manifest file to use for c
 ### Kubernetes Secret
 
 You can define support bundle specs in a Kubernetes Secret for the following installation types:
-* Installations with the Helm CLI
+* Installations with Helm
 * Helm applications installed with KOTS v1.94.2 and later
 
 In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret:   
