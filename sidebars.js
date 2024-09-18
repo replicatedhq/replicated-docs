@@ -237,7 +237,6 @@ const sidebars = {
                     'vendor/kurl-about',
                     'vendor/packaging-embedded-kubernetes',
                     'vendor/packaging-installer-storage',
-                    'vendor/preflight-host-preflights',
                     'vendor/installer-history',
                     'vendor/packaging-using-tls-certs',
                   ],
@@ -551,7 +550,9 @@ const sidebars = {
         label: 'Preflight Checks',
         items: [
             'vendor/preflight-defining',
+            'vendor/preflight-examples',
             'vendor/preflight-running',
+            'vendor/preflight-host-preflights',
             {
             type: 'category',
             label: 'Tutorial: Add Preflight Checks to a Helm Chart',
@@ -572,6 +573,7 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
+          'vendor/support-bundle-examples',
           'vendor/support-bundle-generating',
           'vendor/support-bundle-embedded',
           'vendor/support-host-support-bundles',
