@@ -13,7 +13,7 @@ pagination_prev: null
 Released on September 18, 2024
 
 ### Improvements {#improvements-v2024-09-18-2}
-* CMX: Improved error handling when creating clusters for embedded cluster.
+* Compatibility Matrix: Improved error handling when creating clusters for Embedded Cluster.
 
 ## v2024.09.17-1
 
