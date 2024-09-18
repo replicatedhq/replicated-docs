@@ -6,6 +6,36 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+## 1.13.0
+
+Released on September 17, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.0+k8s-1.29</td>
+    <td id="center">1.13.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-13-0}
+
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `-install` command.
+
+### Bug Fixes {#bug-fixes-1-13-0}
+
+* Fixes an issue where user-provided proxy configuration was removed during upgrades. This fix only applies to Embedded Clusters installed with this version or later. Users on older versions that upgrade to this version will still lose their proxy configuration.
+* Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
+
 ## 1.12.1
 
 Released on September 13, 2024
