@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on September 18, 2024
 
-### New Features {#new-features-v2024-09-18-2}
+### Improvements {#improvements-v2024-09-18-2}
 * CMX: Improved error handling when creating clusters for embedded cluster.
 
 ## v2024.09.17-1
