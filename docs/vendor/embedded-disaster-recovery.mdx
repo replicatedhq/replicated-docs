@@ -28,7 +28,7 @@ Enabling disaster recovery for Embedded Cluster has the following requirements:
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
 
-* During a restore, the binary version used must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster binary for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the binary, where `APP_SLUG` is the unique application slug. For example:
+* During a restore, the version of the Embedded Cluster installation assets must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster installation assets for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the installation assets, where `APP_SLUG` is the unique application slug. For example:
 
    <img alt="version command" src="/images/ec-version-command.png" width="450px"/>
 
@@ -129,10 +129,10 @@ To restore from a backup:
 
 1. SSH onto a new machine where you want to restore from a backup.
 
-1. Download the Embedded Cluster binary for the version of the application that was included in the backup. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary).
+1. Download the Embedded Cluster installation assets for the version of the application that was included in the backup. You can find the command for downloading Embedded Cluster installation assets in the **Embedded Cluster install instructions dialog** for the customer. For more information, [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
      :::note
-     The version of the Embedded Cluster binary must match the version that is in the backup. For more information, see [Limitations and Known Issues](#limitations-and-known-issues).
+     The version of the Embedded Cluster installation assets must match the version that is in the backup. For more information, see [Limitations and Known Issues](#limitations-and-known-issues).
      :::
 
 1. Run the restore command:
