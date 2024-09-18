@@ -29,7 +29,7 @@ Released on September 17, 2024
 
 ### New Features {#new-features-1-13-0}
 
-* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `-install` command.
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `install` command.
 
 ### Bug Fixes {#bug-fixes-1-13-0}
 
