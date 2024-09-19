@@ -51,8 +51,6 @@ This section includes information about making changes to customer licenses, inc
 
 You can make changes to a customer in the Vendor Portal to edit their license details, such as the license type or customer name, at any time. You can also add, remove, and edit license options and custom fields. The license ID, which is the unique identifier for the customer, never changes.
 
-When you make changes to a license in the Vendor Portal, the customer does not need to reinstall to get the updates.
-
 For more information about how to edit licenses, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
 ### License Updates with KOTS
@@ -69,7 +67,7 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Air Gap License Updates with KOTS
 
-To update licenses in air gap installations, customers need to upload the regenerated license file to the Admin Console.
+To update licenses in air gap installations, customers need to upload the updated license file to the Admin Console.
 
 After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their Download Portal to downlaod the new license.
 
@@ -77,9 +75,9 @@ For more information, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Retrieving License Details with the SDK API
 
-The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that retrieves up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that any changes to customer licenses are reflected in real time in the customer environment, without the customer needing to perform a license update.
+The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that can be used to retrieve up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that you can add logic to your application to get the latest license information without the customer needing to perform a license update. The SDK API polls the Vendor Portal for updated data every four hours.
 
-In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [License Updates with KOTS](#license-updates-with-kots) above. However, any logic in your application that uses the SDK API will update the user's license information in real time without the customer needing to deploy a license update in the Admin Console.
+In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [License Updates with KOTS](#license-updates-with-kots) above. However, any logic in your application that uses the SDK API will update the user's license information without the customer needing to deploy a license update in the Admin Console.
 
 For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
