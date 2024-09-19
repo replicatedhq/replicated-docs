@@ -63,6 +63,12 @@ The following describes each of the channel settings:
 
 This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
 
+### Release Files
+
+A release contains your application files as well as the manifests required to install the application with the Replicated installers ([Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated KOTS](../intro-kots)). 
+
+The application files in releases can be Helm charts and/or Kubernetes manifests. However, Replicated strongly recommends that all applications are packaged with Helm. Releases for Helm applications can be installed with Embedded Cluster and KOTS, or with the Helm CLI. For more information, see [About Packaging Applications](/vendor/distributing-overview#about-packaging-applications).
+
 ### Release Promotion
 
 Each release is promoted to one or more channels. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any real customers assigned, such as the default Unstable channel. When the release is ready to be shared externally with customers, you can then promote to a channel that has the target customers assigned, such as the Beta or Stable channel.
