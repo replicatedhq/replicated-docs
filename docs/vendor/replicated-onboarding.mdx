@@ -7,17 +7,7 @@ import HelmPackage from "../partials/helm/_helm-package.mdx"
 
 # Replicated Quick Start
 
-Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with the Replicated Platform. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
-
-## Objectives
-
-The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
-
-* Working with _applications_, _channels_, _releases_, and _customers_ in the Replicated Vendor Portal
-
-* Working with the Replicated CLI
-
-* Installing and updating releases using Helm
+Welcome! This topic provides an quick start workflow and an onboarding checklist to help you get started with the Replicated Platform. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
 
 ## Set Up the Environment
 
@@ -35,7 +25,9 @@ Before you begin, do the following to set up your environment:
 
 ## Quick Start
 
-This workflow shows how to create, install, and update releases for a sample Helm chart in the Replicated Platform. You will repeat these same basic steps to create and test releases throughout the onboarding process to integrate Replicated features with your own application.
+This workflow shows how to create, install, and update releases for a sample [Bitnami Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea) Helm chart using the Replicated Platform. You will repeat these same basic steps to create and test releases throughout the onboarding process to integrate Replicated features with your own application.
+
+To get started with Replicated:
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
@@ -111,7 +103,7 @@ This workflow shows how to create, install, and update releases for a sample Hel
 1. Add the chart archive to a release and promote the release to the Unstable channel:
    
      ```bash
-     replicated release create --chart=gitea-1.0.6.tgz --promote=Unstable
+     replicated release create --yaml-dir . --promote=Unstable
      ```
      **Example output**:
      ```bash
