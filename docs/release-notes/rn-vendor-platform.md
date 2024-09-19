@@ -269,7 +269,7 @@ Released on June 25, 2024
 Released on June 24, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-06-24-1}
-* Proxy Service no longer requires access to proxy-auth.replicated.com.
+* Replicated proxy registry no longer requires access to proxy-auth.replicated.com.
 
 ## v2024.06.24-0
 
