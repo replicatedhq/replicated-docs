@@ -42,11 +42,11 @@ To update licenses in online environments:
 
 To update licenses in air gap environments:
 
-1. Download the new license. Ensure that it is available on the air gapped machine where KOTS and the application are installed. 
+1. Download the new license. Ensure that it is available on the machine where you can access a browser. 
 
 1. In the Admin Console, go to the **License** tab.
 
-1. Click **Upload license** and select the new license from your machine.
+1. Click **Upload license** and select the new license.
 
    ![Airgap License](/images/airgap-license-tab.png)
 
