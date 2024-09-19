@@ -189,11 +189,11 @@ A common use case for the `LocalImageName` function is to ensure that a Kubernet
 
 * If there is a private registry configured in the customer's environment, such as in air gapped environments, rewrite `remoteImageName` to reference the private registry locally. For example, rewrite `elasticsearch:7.6.0` as `registry.somebigbank.com/my-app/elasticsearch:7.6.0`.
 
-* If there is no private registry configured in the customer's environment, but the image must be proxied, rewrite `remoteImageName` so that the image can be pulled through the proxy service. For example, rewrite `"quay.io/orgname/private-image:v1.2.3"` as `proxy.replicated.com/proxy/app-name/quay.io/orgname/private-image:v1.2.3`.
+* If there is no private registry configured in the customer's environment, but the image must be proxied, rewrite `remoteImageName` so that the image can be pulled through the proxy registry. For example, rewrite `"quay.io/orgname/private-image:v1.2.3"` as `proxy.replicated.com/proxy/app-name/quay.io/orgname/private-image:v1.2.3`.
 
 * If there is no private registry configured in the customer's environment and the image does not need to be proxied, return `remoteImageName` without changes.
 
-For more information about the Replicated proxy service, see [About the Proxy Service](/vendor/private-images-about).
+For more information about the Replicated proxy registry, see [About the Proxy Registry](/vendor/private-images-about).
 
 ## LocalRegistryImagePullSecret
 

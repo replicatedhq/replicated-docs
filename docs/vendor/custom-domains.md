@@ -1,6 +1,6 @@
 # About Custom Domains
 
-This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the Download Portal.
+This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy registry, Replicated app service, and the Download Portal.
 
 For information about configuring and managing custom domains, see [Using Custom Domains](custom-domains-using).
 
@@ -21,7 +21,7 @@ You can configure custom domains for the following services, so that customer-fa
 
 - **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`.
 
-- **Proxy service:** Images can be proxied from external private registries using the Replicated proxy service. By default, the proxy service uses the domain `proxy.replicated.com`.
+- **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`.
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
 

@@ -165,7 +165,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
    
   ![Midstream directory in the Admin Console UI](/images/native-helm-midstream.png)
 
-  As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from KOTS for all deployed resources, such as image pull secrets, image rewrites, and backup labels. For example, in the midstream Kustomization file, KOTS rewrites any private images to pull from the Replicated proxy service.
+  As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from KOTS for all deployed resources, such as image pull secrets, image rewrites, and backup labels. For example, in the midstream Kustomization file, KOTS rewrites any private images to pull from the Replicated proxy registry.
 
   The following shows an example of a midstream Kustomization file for the postgresql Helm chart:
 

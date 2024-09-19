@@ -43,7 +43,7 @@ For requirements, recommendations, and examples of common use cases for the `bui
 
 ### Example: Set the Image Registry for Air Gap Installations
 
-For air gap installations, if the [Replicated proxy service](/vendor/private-images-about) domain `proxy.replicated.com` is used as the default image name for any images, you need to rewrite the image to the upstream image name so that it can be processed and included in the air gap bundle. You can use the `builder` key to do this by hardcoding the upstream location of the image (image registry, repository, and tag), as shown in the example below:
+For air gap installations, if the [Replicated proxy registry](/vendor/private-images-about) domain `proxy.replicated.com` is used as the default image name for any images, you need to rewrite the image to the upstream image name so that it can be processed and included in the air gap bundle. You can use the `builder` key to do this by hardcoding the upstream location of the image (image registry, repository, and tag), as shown in the example below:
 
 ```yaml
 apiVersion: kots.io/v1beta2

@@ -95,7 +95,7 @@ Replicated enforces the following logic when a license expires:
 * By default, instances with expired licenses continue to run.
    To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 * Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
-* Expired licenses cannot pull application images through the proxy service or from the Replicated registry.
+* Expired licenses cannot pull application images through the Replicated proxy registry or from the Replicated registry.
 * (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
 
 ## About Customer Channel Assignment {#channel-assignment}

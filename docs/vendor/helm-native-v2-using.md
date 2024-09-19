@@ -55,14 +55,14 @@ To support installations with the `kots.io/v1beta2` HelmChart custom resource, d
 
 ### Rewrite Image Names
 
-During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`. Additionally, KOTS allows enterprise users to push images to their own registry.
+During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy registry](private-images-about) at `proxy.replicated.com`. Additionally, KOTS allows enterprise users to push images to their own registry.
 
 To ensure that images are discovered in either your registry or in the enterprise user's local registry, you must configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment. You can do this using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions: 
 * **HasLocalRegistry**: Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gapped installations and optionally true for online installations.
 * **LocalRegistryHost**: Returns the host of the local registry that the user configured.
 * **LocalRegistryNamespace**: Returns the namespace of the local registry that the user configured.
 
-These template functions can be used to conditionally rewrite images names so that KOTS uses the host and namespace of the enterprise user's local registry _only_ when a local registry is configured. For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`. For examples, see [Example: Rewrite image names to a local registry or the proxy service](#local-proxy-example) or [Example: Rewrite images names to a local registry or the vendor's public registry](#local-public-example) below. 
+These template functions can be used to conditionally rewrite images names so that KOTS uses the host and namespace of the enterprise user's local registry _only_ when a local registry is configured. For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`. For examples, see [Example: Rewrite private image names](#local-proxy-example) or [Example: Rewrite public images names](#local-public-example) below. 
 
 #### Example: Rewrite private image names {#local-proxy-example}
 
@@ -156,7 +156,7 @@ spec:
 
 Kubernetes requires a Secret of type `kubernetes.io/dockerconfigjson` to authenticate with a registry and pull a private image. When you reference a private image in a Pod definition, you also provide the name of the Secret in a `imagePullSecrets` key in the Pod definition. For more information, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
 
-During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image through the Replicated proxy service or in the Replicated registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
+During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image through the Replicated proxy registry or in the Replicated registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
 
 You can inject the name of this pull secret into a field in the HelmChart custom resource using the Replicated ImagePullSecretName template function. During installation, KOTS sets the value of the corresponding field in your Helm chart `values.yaml` file with the rendered value of the ImagePullSecretName template function. 
 
