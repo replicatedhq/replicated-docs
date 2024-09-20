@@ -6,6 +6,31 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+## 1.13.1
+
+Released on September 20, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.1+k8s-1.29</td>
+    <td id="center">1.13.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.1</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-1-13-0}
+
+* Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
+
 ## 1.13.0
 
 Released on September 17, 2024
