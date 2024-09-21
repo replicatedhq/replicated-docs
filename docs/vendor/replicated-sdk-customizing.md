@@ -110,6 +110,22 @@ replicated:
     value: my-value-2  
 ```
 
+## Custom Certificate Authority
+
+When installing the Replicated SDK behind a proxy server that terminates TLS and injects a custom certificate, you must provide the CA to the SDK. This can be done by storing the CA in a ConfigMap prior to installation and setting `privateCAConfigmap` key to the name of the ConfigMap.
+
+To store the CA in a ConfigMap:
+
+1. Create a ConfigMap with the name of `private-ca` and the CA as the data value:
+   ```bash
+   kubectl create configmap -n <NAMESPACE> private-ca --from-file=ca.crt=./ca.crt
+   ```
+1. Add the name of the config map to the values file:
+   ```yaml
+   replicated:
+     privateCAConfigmap: private-ca
+   ```
+
 ## Add Tolerations
 
 The Replicated SDK provides a `replicated.tolerations` value that allows users to add custom tolerations to the deployment. For more information about tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/).
