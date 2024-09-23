@@ -49,9 +49,6 @@ pagination_next: null
       <a href="/vendor/quick-start-embedded">Embedded Cluster Quick Start</a>
     </li>
     <li>
-      <a href="/vendor/quick-start-helm">Helm-Only Quick Start</a>
-    </li>
-    <li>
       <a href="/vendor/tutorial-kots-helm-setup">Getting Started Tutorials</a>
     </li>
     <li>

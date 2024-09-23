@@ -42,5 +42,5 @@ To create a vendor account:
    :::
 
 ## Next Steps
-* Invite team members to collaborate with you in Vendor Portal. See [Invite Members](team-management#invite-members).
-* Learn about how to get started with Replicated. See [Replicated Quick Start](replicated-onboarding).
+
+Invite team members to collaborate with you in Vendor Portal. See [Invite Members](team-management#invite-members).

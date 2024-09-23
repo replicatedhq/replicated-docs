@@ -183,7 +183,7 @@ const config = {
               },
               {
                 label: 'Replicated Quick Start',
-                to: 'vendor/replicated-onboarding',
+                to: 'vendor/distributing-workflow',
               },
             ],
           },
