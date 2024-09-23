@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.3
+
+Released on September 23, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-117-3}
+* Store collected bundle data in /tmp/last-preflight-result of last run preflight in Admin Console.
+* Adds support for configuring Replicated SDK with additional [Certificate Authority](https://docs.replicated.com/reference/template-functions-static-context#privatecacert) value as the one specified using the `--private-ca-configmap` command line parameter.
+
 ## 1.117.2
 
 Released on September 20, 2024
