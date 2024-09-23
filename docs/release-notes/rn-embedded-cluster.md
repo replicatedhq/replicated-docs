@@ -6,6 +6,128 @@ pagination_prev: null
 
 # Embedded Cluster Release Notes
 
+This topic contains release notes for the [Replicated Embedded Cluster](/vendor/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
+Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
+
+## 1.13.1
+
+Released on September 20, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.1+k8s-1.29</td>
+    <td id="center">1.13.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.1</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-1-13-0}
+
+* Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
+
+## 1.13.0
+
+Released on September 17, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.0+k8s-1.29</td>
+    <td id="center">1.13.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-13-0}
+
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `install` command.
+
+### Bug Fixes {#bug-fixes-1-13-0}
+
+* Fixes an issue where user-provided proxy configuration was removed during upgrades. This fix only applies to Embedded Clusters installed with this version or later. Users on older versions that upgrade to this version will still lose their proxy configuration.
+* Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
+
+## 1.12.1
+
+Released on September 13, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.1+k8s-1.29</td>
+    <td id="center">1.12.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-12-1}
+
+* Adds the ability to provide additional trusted certificate authority certificates with the `install` command's `--private-ca` flag. This is useful when Embedded Cluster is installed behind an enterprise proxy that intercepts traffic and issues its own certificates.
+
+### Bug Fixes {#bug-fixes-1-12-1}
+
+* Removes unnecessary values that were previously added to the no proxy list automatically.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` service to simplify HTTP proxy configuration.
+
+## 1.12.0
+
+Released on September 11, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.0+k8s-1.29</td>
+    <td id="center">1.12.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-12-0}
+
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console. The check for updates button is now also shown on the **Version history** page. These were removed in a previous version.
+* The **Nodes** page displays guidance and easier access to the node join command during initial install.
+* When nodes need to be added to the cluster during a restore operation, the `join` command is more clearly shown in the Admin Console.
+* Hides a banner on the **View Files** page that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+
+### Bug Fixes {#bug-fixes-1-12-0}
+
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the kots install command were not propagated to the Replicated SDK.
+
 ## 1.11.1
 
 Released on August 30, 2024

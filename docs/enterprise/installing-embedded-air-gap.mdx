@@ -16,7 +16,7 @@ Embedded Cluster installations in air gap environments is a beta feature. This f
 
 When an air gap bundle is built for a release containing an Embedded Cluster Config, both an application air gap bundle and an Embedded Cluster air gap bundle are built. The application air gap bundle can be used for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. The Embedded Cluster air gap bundle is used for air gap installations with Embedded Cluster.
 
-The Embedded Cluster air gap bundle not only contains the assets normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [Helm extensions](/reference/embedded-config#helm-extensions)).
+The Embedded Cluster air gap bundle not only contains the assets normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [extensions](/reference/embedded-config#extensions).
 
 During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
 
@@ -30,7 +30,7 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
 
-* Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [Helm Extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+* Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
 
 * Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
 

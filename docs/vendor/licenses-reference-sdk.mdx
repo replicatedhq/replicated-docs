@@ -6,7 +6,7 @@ This topic describes how to query license entitlements at runtime using the Repl
 
 The Replicated SDK retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more. For more information about distributing the SDK with your application, see [About the Replicated SDK](replicated-sdk-overview).
 
-After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license that was used to install:
+After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
 * `/api/v1/license/fields`: List all the fields in the license.  
 * `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.

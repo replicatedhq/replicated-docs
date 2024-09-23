@@ -87,6 +87,13 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <th>End of Replicated Support</th>
   </tr>  
   <tr>
+    <td>1.31</td>
+    <td>N/A</td>
+    <td>1.117.0 and later</td>
+    <td>v2024.08.26-0 and later</td>
+    <td>2025-10-28</td>
+  </tr>
+  <tr>
     <td>1.30</td>
     <td>N/A</td>
     <td>1.109.1 and later</td>
@@ -95,23 +102,23 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
   </tr>
   <tr>
     <td>1.29</td>
-    <td>1.0.0</td>
+    <td>1.0.0 and later</td>
     <td>1.105.2 and later</td>
     <td>v2024.01.02-0 and later</td>
     <td>2025-02-28</td>
   </tr>
   <tr>
     <td>1.28</td>
-    <td>1.0.0</td>
+    <td>1.0.0 and later</td>
     <td>1.102.1 and later</td>
     <td>v2023.08.23-0 and later</td>
     <td>2024-10-28</td>
   </tr>
 </table>
 
-Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS or kURL, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
+Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS, kURL or Embedded Cluster, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
 
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified August 14, 2024.
+Last modified September 18, 2024.

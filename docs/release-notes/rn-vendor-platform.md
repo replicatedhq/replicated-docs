@@ -6,7 +6,77 @@ pagination_prev: null
 
 # Vendor Platform Release Notes
 
+This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## v2024.09.18-2
+
+Released on September 18, 2024
+
+### Improvements {#improvements-v2024-09-18-2}
+* Compatibility Matrix: Improved error handling when creating clusters for Embedded Cluster.
+
+## v2024.09.17-1
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-1}
+* Adds a PATCH method for updating channels.
+
+## v2024.09.17-0
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-0}
+* Fixes updating the custom domain override on channels in the Vendor Portal.
+
+## v2024.09.13-0
+
+Released on September 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-13-0}
+* The correct error status code is now returned when downloading an Embedded Cluster release fails.
+
+
+## v2024.09.12-3
+
+Released on September 12, 2024
+
+### New Features {#new-features-v2024-09-12-3}
+* Compatibility Matrix: Adds new instance shapes for OKE (Oracle) distribution.
+
+## v2024.09.13-1
+
+Released on September 13, 2024
+
+### New Features {#new-features-v2024-09-13-1}
+* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
+
+## v2024.09.11-2
+
+Released on September 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-11-2}
+* Compatibility Matrix: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
+* Compatibility Matrix: Fixes an issue where you could not purchase more usage credits if you had a zero credit balance.
+
+### Improvements {#improvements-v2024-09-11-2}
+* Compatibility Matrix: Improves styles of the Edit Tags modal on the Cluster History page.
+
+## v2024.09.09-0
+
+Released on September 9, 2024
+
+### New Features {#new-features-v2024-09-09-0}
+* Adds support for setting custom passwords for the customer's Download Portal. See [Sharing Assets Through the Download Portal](/vendor/releases-share-download-portal).
+
+## v2024.09.05-3
+
+Released on September 5, 2024
+
+### New Features {#new-features-v2024-09-05-3}
+* Compatibility Matrix: Adds support for EKS EC2 instance types m5 and c5.
 
 ## v2024.09.04-0
 
@@ -201,7 +271,7 @@ Released on June 25, 2024
 Released on June 24, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-06-24-1}
-* Proxy Service no longer requires access to proxy-auth.replicated.com.
+* Replicated proxy registry no longer requires access to proxy-auth.replicated.com.
 
 ## v2024.06.24-0
 

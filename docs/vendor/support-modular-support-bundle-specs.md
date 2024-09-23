@@ -1,11 +1,12 @@
-# About Modular Specifications
+# About Creating Modular Support Bundle Specs
 
-Preflight and support bundle specifications can be designed using a modular approach. This helps teams develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts.
+This topic describes how to use a modular approach to creating support bundle specs.
 
-<!--You can create separate YAML files or use a combination of YAML files, URLs, and Kubernetes Secrets or ConfigMaps. -->
+## Overview
 
-For support bundles, customers can use the support-bundle CLI to generate a merged support bundle archive from multiple resources. For more information, see [Example: Support Bundle Specifications by Component](#component) below.
+Support bundle specifications can be designed using a modular approach. This refers to creating multiple different specs that are scoped to individual components or microservices, rather than creating a single, large spec. For example, for applications that are deployed as multiple Helm charts, vendors can create a separate support bundle spec in the `templates` directory in the parent chart as well as in each subchart. 
 
+This modular approach helps teams develop specs that are easier to maintain and helps teams to avoid merge conflicts that are more likely to occur when making to changes to a large spec. When generating support bundles for an application that includes multiple modular specs, the specs are merged so that only one support bundle archive is generated.
 
 ## Example: Support Bundle Specifications by Component {#component}
 

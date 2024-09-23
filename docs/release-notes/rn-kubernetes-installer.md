@@ -6,6 +6,8 @@ pagination_prev: null
 
 # kURL Release Notes
 
+This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
 ## v2024.09.06-0
@@ -73,7 +75,7 @@ Released on July 2, 2024
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.4.
 * Remove `/var/lib/containerd` and `/var/lib/docker` as part of `tasks.sh reset`.
 
-## Bug Fixes {#bug-fixes-v2024-07-02-0}
+### Bug Fixes {#bug-fixes-v2024-07-02-0}
 * Fixes cluster subnets being changed on upgrade in some instances.
 
 ## v2024.06.12-0

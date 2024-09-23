@@ -6,6 +6,22 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
+This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
+
+## 1.0.0-beta.28
+
+Released on September 20, 2024
+
+### New Features {#new-features-1-0-0-beta-23}
+* Adds support for custom Certificate Authorities using the [privateCAConfigmap](/vendor/replicated-sdk-customizing#custom-certificate-authority) key.
+
+## 1.0.0-beta.27
+
+Released on August 16, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-27}
+* Fixes an issue that caused k0s to be reported as the distribution for Embedded Clusters.
+
 ## 1.0.0-beta.26
 
 Released on July 31, 2024

@@ -1,11 +1,173 @@
 # Static Context
 
-## Mastermind Sprig
+## About Mastermind Sprig
 
 Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
-## Namespace
+## Certificate Functions
+
+### PrivateCACert
+
+>Introduced in KOTS v1.117.0
+
+```yaml
+func PrivateCACert() string
+```
+
+PrivateCACert returns the name of a ConfigMap that contains private CA certificates provided by the end user. For Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command. For KOTS installations, the user provides the ConfigMap using the `--private-ca-configmap` flag for the `install` command.
+
+You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
+
+:::note
+This function will return the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, this function returns the empty string.
+:::
+
+## Cluster Information Functions
+
+### Distribution
+```go
+func Distribution() string
+```
+Distribution returns the Kubernetes distribution detected. The possible return values are:
+
+* aks
+* digitalOcean
+* dockerDesktop
+* eks
+* embedded-cluster
+* gke
+* ibm
+* k0s
+* k3s
+* kind
+* kurl
+* microk8s
+* minikube
+* oke
+* openShift
+* rke2
+
+:::note
+[IsKurl](#iskurl) can also be used to detect kURL instances.
+:::
+
+#### Detect the Distribution
+```yaml
+repl{{ Distribution }}
+```
+#### Equal To Comparison
+```yaml
+repl{{ eq Distribution "gke" }}
+```
+#### Not Equal To Comparison
+```yaml
+repl{{ ne Distribution "embedded-cluster" }}
+```
+See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
+
+### IsKurl
+```go
+func IsKurl() bool
+```
+IsKurl returns true if running within a kurl-based installation.
+#### Detect kURL Installations
+```yaml
+repl{{ IsKurl }}
+```
+#### Detect Non-kURL Installations
+```yaml
+repl{{ not IsKurl }}
+```
+See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
+
+### KotsVersion
+
+```go
+func KotsVersion() string
+```
+
+KotsVersion returns the current version of KOTS.
+
+```yaml
+repl{{ KotsVersion }}
+```
+
+You can compare the KOTS version as follows:
+```yaml
+repl{{KotsVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if the KOTS version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+### KubernetesMajorVersion
+
+> Introduced in KOTS v1.92.0
+
+```go
+func KubernetesMajorVersion() string
+```
+
+KubernetesMajorVersion returns the Kubernetes server *major* version.
+
+```yaml
+repl{{ KubernetesMajorVersion }}
+```
+
+You can compare the Kubernetes major version as follows:
+```yaml
+repl{{lt (KubernetesMajorVersion | ParseInt) 2 }}
+```
+
+This returns `true` if the Kubernetes major version is less than `2`.
+
+### KubernetesMinorVersion
+
+> Introduced in KOTS v1.92.0
+
+```go
+func KubernetesMinorVersion() string
+```
+
+KubernetesMinorVersion returns the Kubernetes server *minor* version.
+
+```yaml
+repl{{ KubernetesMinorVersion }}
+```
+
+You can compare the Kubernetes minor version as follows:
+```yaml
+repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
+```
+
+This returns `true` if the Kubernetes minor version is greater than `19`.
+
+### KubernetesVersion
+
+> Introduced in KOTS v1.92.0
+
+```go
+func KubernetesVersion() string
+```
+
+KubernetesVersion returns the Kubernetes server version.
+
+```yaml
+repl{{ KubernetesVersion }}
+```
+
+You can compare the Kubernetes version as follows:
+```yaml
+repl{{KubernetesVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+### Namespace
 ```go
 func Namespace() string
 ```
@@ -14,22 +176,93 @@ Namespace returns the Kubernetes namespace that the application belongs to.
 '{{repl Namespace}}'
 ```
 
-## KubeSeal
+### NodeCount
 ```go
-func KubeSeal(certData string, namespace string, name string, value string) string
+func NodeCount() int
 ```
-
-## HumanSize
-```go
-func HumanSize(size interface{}) string
-```
-HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB").
-The size must be a integer or floating point number.
+NodeCount returns the number of nodes detected within the Kubernetes cluster.
 ```yaml
-'{{repl ConfigOption "min_size_bytes" | HumanSize }}'
+repl{{ NodeCount }}
 ```
 
-## Now
+### Lookup
+
+> Introduced in KOTS v1.103.0
+
+```go
+func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
+```
+
+Lookup searches resources in a running cluster and returns a resource or resource list.
+
+Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
+
+```yaml
+repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
+```
+
+Both `NAME` and `NAMESPACE` are optional and can be passed as an empty string ("").
+
+The following combination of parameters are possible:
+
+<table>
+  <tr>
+    <th>Behavior</th>
+    <th>Lookup function</th>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pod mypod -n mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "mypod" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pods -n mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pods --all-namespaces</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "" "" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get namespace mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "mynamespace" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get namespaces</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "" &#125;&#125;</code></td>
+  </tr>
+</table>
+
+The following describes working with values returned by the Lookup function:
+
+* When Lookup finds an object, it returns a dictionary with the key value pairs from the object. This dictionary can be navigated to extract specific values. For example, the following returns the annotations for the `mynamespace` object:
+
+    ```
+    repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
+    ```
+
+* When Lookup returns a list of objects, it is possible to access the object list through the `items` field. For example:
+
+    ```
+    services: |
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
+
+    For an array value type, omit the `|`. For example:
+
+    ```
+    services:
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
+
+* When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.
+
+## Date Functions
+
+### Now
 ```go
 func Now() string
 ```
@@ -38,7 +271,7 @@ Returns the current timestamp as an RFC3339 formatted string.
 '{{repl Now }}'
 ```
 
-## NowFmt
+### NowFmt
 ```go
 func NowFmt(format string) string
 ```
@@ -48,43 +281,27 @@ For information about Go time formatting guidelines, see [Constants](https://gol
 '{{repl NowFmt "20060102" }}'
 ```
 
-## ToLower
+## Encoding Functions
+
+### Base64Decode
 ```go
-func ToLower(stringToAlter string) string
+func Base64Decode(stringToDecode string) string
 ```
-Returns the string, in lowercase.
+Returns decoded string from a Base64 stored value.
 ```yaml
-'{{repl ConfigOption "company_name" | ToLower }}'
+'{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
 
-## ToUpper
+### Base64Encode
 ```go
-func ToUpper(stringToAlter string) string
+func Base64Encode(stringToEncode string) string
 ```
-Returns the string, in uppercase.
+Returns a Base64 encoded string.
 ```yaml
-'{{repl ConfigOption "company_name" | ToUpper }}'
+'{{repl ConfigOption "name" | Base64Encode }}'
 ```
 
-## TrimSpace
-```go
-func TrimSpace(s string) string
-```
-Trim returns a string with all leading and trailing spaces removed.
-```yaml
-'{{repl ConfigOption "str_value" | TrimSpace }}'
-```
-
-## Trim
-```go
-func Trim(s string, args ...string) string
-```
-Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
-```yaml
-'{{repl Trim (ConfigOption "str_value") "." }}'
-```
-
-## UrlEncode
+### UrlEncode
 ```go
 func UrlEncode(stringToEncode string) string
 ```
@@ -94,7 +311,8 @@ Equivalent to the `QueryEscape` function within the golang `net/url` library. Fo
 '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-## UrlPathEscape
+### UrlPathEscape
+
 ```go
 func UrlPathEscape(stringToEncode string) string
 ```
@@ -104,41 +322,156 @@ Equivalent to the `PathEscape` function within the golang `net/url` library. For
 '{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
 ```
 
-## Base64Encode
+## Encryption Functions
+
+### KubeSeal
 ```go
-func Base64Encode(stringToEncode string) string
-```
-Returns a Base64 encoded string.
-```yaml
-'{{repl ConfigOption "name" | Base64Encode }}'
+func KubeSeal(certData string, namespace string, name string, value string) string
 ```
 
-## Base64Decode
+## Integer and Float Functions
+
+### HumanSize
 ```go
-func Base64Decode(stringToDecode string) string
+func HumanSize(size interface{}) string
 ```
-Returns decoded string from a Base64 stored value.
+HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB").
+The size must be a integer or floating point number.
 ```yaml
-'{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
+'{{repl ConfigOption "min_size_bytes" | HumanSize }}'
 ```
 
-## Split
+## Proxy Functions
+
+### HTTPProxy
+
 ```go
-func Split(s string, sep string) []string
+func HTTPProxy() string
 ```
-Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
+HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
 ```yaml
-'{{repl Split "A,B,C" "," }}'
+repl{{ HTTPProxy }}
 ```
 
-Combining `Split` and `index`:
-Assuming the `github_url` param is set to `https://github.mycorp.internal:3131`, the following would set
-`GITHUB_HOSTNAME` to `github.mycorp.internal`.
+### HTTPSProxy
+
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the Admin Console is configured to use.
 ```yaml
-'{{repl index (Split (index (Split (ConfigOption "github_url") "/") 2) ":") 0}}'
+repl{{ HTTPSProxy }}
 ```
 
-## RandomString
+### NoProxy
+
+```go
+func NoProxy() string
+```
+NoProxy returns the comma-separated list of no-proxy addresses that the Admin Console is configured to use.
+```yaml
+repl{{ NoProxy }}
+```
+
+## Math Functions
+### Add
+```go
+func Add(x interface{}, y interface{}) interface{}
+```
+Adds x and y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yaml
+'{{repl Add (ConfigOption "maximum_users") 1}}'
+```
+
+### Div
+```go
+func Div(x interface{}, y interface{}) interface{}
+```
+Divides x by y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer and will be rounded down.
+```yaml
+'{{repl Div (ConfigOption "maximum_users") 2.0}}'
+```
+
+### Mult
+```go
+func Mult(x interface{}, y interface{}) interface{}
+```
+Multiplies x and y.
+
+Both operands must be either an integer or a floating point number.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yaml
+'{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
+```
+
+If a template function returns a string, the value must be converted to an integer or a floating point number first:
+```yaml
+'{{repl Mult (ConfigOption "session_cookie_age" | ParseInt) 86400}}'
+```
+
+### Sub
+```go
+func Sub(x interface{}, y interface{}) interface{}
+```
+Subtracts y from x.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yaml
+'{{repl Sub (ConfigOption "maximum_users") 1}}'
+```
+
+## String Functions
+
+### ParseBool
+```go
+func ParseBool(str string) bool
+```
+ParseBool returns the boolean value represented by the string.
+```yaml
+'{{repl ConfigOption "str_value" | ParseBool }}'
+```
+
+### ParseFloat
+```go
+func ParseFloat(str string) float64
+```
+ParseFloat returns the float value represented by the string.
+```yaml
+'{{repl ConfigOption "str_value" | ParseFloat }}'
+```
+
+### ParseInt
+```go
+func ParseInt(str string, args ...int) int64
+```
+ParseInt returns the integer value represented by the string with optional base (default 10).
+```yaml
+'{{repl ConfigOption "str_value" | ParseInt }}'
+```
+
+### ParseUint
+```go
+func ParseUint(str string, args ...int) uint64
+```
+ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
+```yaml
+'{{repl ConfigOption "str_value" | ParseUint }}'
+```
+
+### RandomString
 ```go
 func RandomString(length uint64, providedCharset ...string) string
 ```
@@ -158,7 +491,6 @@ The following example generates a 64-character random string that contains `a`s 
 ```yaml
 '{{repl RandomString 64 "[ab]" }}'
 ```
-
 #### Generating Persistent and Ephemeral Strings
 
 When you assign the RandomString template function to a `value` key in the Config custom resource, you can use the `hidden` and `readonly` properties to control the behavior of the RandomString function each time it is called. The RandomString template function is called each time the user deploys a change to the configuration settings for the application.
@@ -235,292 +567,59 @@ The following table describes the behavior of the RandomString template function
   </tr>
 </table>
 
-## Add
+### Split
 ```go
-func Add(x interface{}, y interface{}) interface{}
+func Split(s string, sep string) []string
 ```
-Adds x and y.
-
-If at least one of the operands is a floating point number, the result will be a floating point number.
-
-If both operands are integers, the result will be an integer.
+Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
 ```yaml
-'{{repl Add (ConfigOption "maximum_users") 1}}'
+'{{repl Split "A,B,C" "," }}'
 ```
 
-## Sub
+Combining `Split` and `index`:
+Assuming the `github_url` param is set to `https://github.mycorp.internal:3131`, the following would set
+`GITHUB_HOSTNAME` to `github.mycorp.internal`.
+```yaml
+'{{repl index (Split (index (Split (ConfigOption "github_url") "/") 2) ":") 0}}'
+```
+
+### ToLower
 ```go
-func Sub(x interface{}, y interface{}) interface{}
+func ToLower(stringToAlter string) string
 ```
-Subtracts y from x.
-
-If at least one of the operands is a floating point number, the result will be a floating point number.
-
-If both operands are integers, the result will be an integer.
+Returns the string, in lowercase.
 ```yaml
-'{{repl Sub (ConfigOption "maximum_users") 1}}'
+'{{repl ConfigOption "company_name" | ToLower }}'
 ```
 
-## Mult
+### ToUpper
 ```go
-func Mult(x interface{}, y interface{}) interface{}
+func ToUpper(stringToAlter string) string
 ```
-Multiplies x and y.
-
-Both operands must be either an integer or a floating point number.
-
-If at least one of the operands is a floating point number, the result will be a floating point number.
-
-If both operands are integers, the result will be an integer.
+Returns the string, in uppercase.
 ```yaml
-'{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
+'{{repl ConfigOption "company_name" | ToUpper }}'
 ```
 
-If a template function returns a string, the value must be converted to an integer or a floating point number first:
-```yaml
-'{{repl Mult (ConfigOption "session_cookie_age" | ParseInt) 86400}}'
-```
-
-## Div
+### Trim
 ```go
-func Div(x interface{}, y interface{}) interface{}
+func Trim(s string, args ...string) string
 ```
-Divides x by y.
-
-If at least one of the operands is a floating point number, the result will be a floating point number.
-
-If both operands are integers, the result will be an integer and will be rounded down.
+Trim returns a string with all leading and trailing strings contained in the optional args removed (default space).
 ```yaml
-'{{repl Div (ConfigOption "maximum_users") 2.0}}'
+'{{repl Trim (ConfigOption "str_value") "." }}'
 ```
 
-## ParseBool
+### TrimSpace
 ```go
-func ParseBool(str string) bool
+func TrimSpace(s string) string
 ```
-ParseBool returns the boolean value represented by the string.
+Trim returns a string with all leading and trailing spaces removed.
 ```yaml
-'{{repl ConfigOption "str_value" | ParseBool }}'
+'{{repl ConfigOption "str_value" | TrimSpace }}'
 ```
 
-## ParseFloat
-```go
-func ParseFloat(str string) float64
-```
-ParseFloat returns the float value represented by the string.
-```yaml
-'{{repl ConfigOption "str_value" | ParseFloat }}'
-```
-
-## ParseInt
-```go
-func ParseInt(str string, args ...int) int64
-```
-ParseInt returns the integer value represented by the string with optional base (default 10).
-```yaml
-'{{repl ConfigOption "str_value" | ParseInt }}'
-```
-
-## ParseUint
-```go
-func ParseUint(str string, args ...int) uint64
-```
-ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
-```yaml
-'{{repl ConfigOption "str_value" | ParseUint }}'
-```
-
-## TLSCert
-
-**Deprecation Notice**: This function has been superseded in Replicated KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
-
-```go
-func TLSCert(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
-```
-TLSCert generates and returns a self-signed certificate identified by `certName`.
-The first parameter can be used in the `TLSKey` function to retrieve the matching key.
-
-TLSCert takes the following parameters
-- Unique name that identifies the certificate.
-This is a not a part of the returned certificate.
-- Subject’s common name (cn)
-- Optional list of IPs; may be `()`
-- Optional list of alternate DNS names; may be `()`
-- Cert validity duration in days
-```yaml
-repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
-```
-
-## TLSKey
-
-**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
-
-```go
-func TLSKey(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
-```
-TLSKey returns the key that matches the certificate identified by `certName`.
-The rest of the arguments are the same as in `TLSCert` and, if specified, must have the same values.
-If they are omitted and the certificate with this name does not exist, the function will return an empty string.
-```yaml
-repl{{ TLSKey "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
-```
-
-## TLSCACert
-
-**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
-
-
-```go
-func TLSCACert(caName string, daysValid int) string
-```
-TLSCACert generates and returns a CA certificate that can be used as a CA to sign other certificates.
-
-TLSCACert takes the following parameters
-- Subject’s common name (cn)
-- Cert validity duration in days
-```yaml
-repl{{ TLSCACert "foo.com" 365 }}
-```
-
-## TLSCertFromCA
-
-**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
-
-```go
-func TLSCertFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
-```
-TLSCertFromCA generates and returns a certificate signed by the CA identified by `caName`.
-The rest of the arguments are the same as in `TLSCert`.
-```yaml
-repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
-```
-
-## TLSKeyFromCA
-
-**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Using Variables to Generate TLS Certificates in JSON](template-functions-examples#using-variables-to-generate-tls-certificates-in-json). For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
-
-```go
-func TLSKeyFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
-```
-TLSKeyFromCA generates and returns a key that matches the certificate returned by `TLSCertFromCA`.
-The arguments are the same as in `TLSCertFromCA` and their values must match.
-```yaml
-repl{{ TLSKeyFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
-```
-
-## IsKurl
-```go
-func IsKurl() bool
-```
-IsKurl returns true if running within a kurl-based installation.
-#### Detect kURL Installations
-```yaml
-repl{{ IsKurl }}
-```
-#### Detect Non-kURL Installations
-```yaml
-repl{{ not IsKurl }}
-```
-See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
-
-## Distribution
-```go
-func Distribution() string
-```
-Distribution returns the Kubernetes distribution detected. The possible return values are:
-
-* aks
-* digitalOcean
-* dockerDesktop
-* eks
-* embedded-cluster
-* gke
-* ibm
-* k0s
-* k3s
-* kind
-* kurl
-* microk8s
-* minikube
-* oke
-* openShift
-* rke2
-
-:::note
-[IsKurl](#iskurl) can also be used to detect kURL instances.
-:::
-
-#### Detect the Distribution
-```yaml
-repl{{ Distribution }}
-```
-#### Equal To Comparison
-```yaml
-repl{{ eq Distribution "gke" }}
-```
-#### Not Equal To Comparison
-```yaml
-repl{{ ne Distribution "embedded-cluster" }}
-```
-See [Functions](https://pkg.go.dev/text/template#hdr-Functions) in the Go documentation.
-
-## NodeCount
-```go
-func NodeCount() int
-```
-NodeCount returns the number of nodes detected within the Kubernetes cluster.
-```yaml
-repl{{ NodeCount }}
-```
-
-## HTTPSProxy
-```go
-func HTTPSProxy() string
-```
-HTTPSProxy returns the address of the proxy that the Replicated admin console is configured to use.
-```yaml
-repl{{ HTTPSProxy }}
-```
-
-## HTTPProxy
-```go
-func HTTPProxy() string
-```
-HTTPProxy returns the address of the proxy that the admin console is configured to use.
-```yaml
-repl{{ HTTPProxy }}
-```
-
-## NoProxy
-```go
-func NoProxy() string
-```
-NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
-```yaml
-repl{{ NoProxy }}
-```
-
-## KotsVersion
-```go
-func KotsVersion() string
-```
-
-KotsVersion returns the current version of KOTS.
-
-```yaml
-repl{{ KotsVersion }}
-```
-
-You can compare the KOTS version as follows:
-```yaml
-repl{{KotsVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if the KOTS version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
-
-## YamlEscape
+### YamlEscape
 ```go
 func YamlEscape(input string) string
 ```
@@ -531,143 +630,3 @@ This can be useful when dealing with user-uploaded files that may include null b
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ```
-
-## KubernetesVersion
-
-> Introduced in KOTS v1.92.0
-
-```go
-func KubernetesVersion() string
-```
-
-KubernetesVersion returns the Kubernetes server version.
-
-```yaml
-repl{{ KubernetesVersion }}
-```
-
-You can compare the Kubernetes version as follows:
-```yaml
-repl{{KubernetesVersion | semverCompare ">= 1.19"}}
-```
-
-This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
-
-## KubernetesMajorVersion
-
-> Introduced in KOTS v1.92.0
-
-```go
-func KubernetesMajorVersion() string
-```
-
-KubernetesMajorVersion returns the Kubernetes server *major* version.
-
-```yaml
-repl{{ KubernetesMajorVersion }}
-```
-
-You can compare the Kubernetes major version as follows:
-```yaml
-repl{{lt (KubernetesMajorVersion | ParseInt) 2 }}
-```
-
-This returns `true` if the Kubernetes major version is less than `2`.
-
-## KubernetesMinorVersion
-
-> Introduced in KOTS v1.92.0
-
-```go
-func KubernetesMinorVersion() string
-```
-
-KubernetesMinorVersion returns the Kubernetes server *minor* version.
-
-```yaml
-repl{{ KubernetesMinorVersion }}
-```
-
-You can compare the Kubernetes minor version as follows:
-```yaml
-repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
-```
-
-This returns `true` if the Kubernetes minor version is greater than `19`.
-
-## Lookup
-
-> Introduced in KOTS v1.103.0
-
-```go
-func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
-```
-
-Lookup searches resources in a running cluster and returns a resource or resource list.
-
-Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
-
-```yaml
-repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
-```
-
-Both `NAME` and `NAMESPACE` are optional and can be passed as an empty string ("").
-
-The following combination of parameters are possible:
-
-<table>
-  <tr>
-    <th>Behavior</th>
-    <th>Lookup function</th>
-  </tr>
-  <tr>
-    <td style={{ fontSize: 14 }}><code>kubectl get pod mypod -n mynamespace</code></td>
-    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "mypod" &#125;&#125;</code></td>
-  </tr>
-  <tr>
-    <td style={{ fontSize: 14 }}><code>kubectl get pods -n mynamespace</code></td>
-    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "" &#125;&#125;</code></td>
-  </tr>
-  <tr>
-    <td style={{ fontSize: 14 }}><code>kubectl get pods --all-namespaces</code></td>
-    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "" "" &#125;&#125;</code></td>
-  </tr>
-  <tr>
-    <td style={{ fontSize: 14 }}><code>kubectl get namespace mynamespace</code></td>
-    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "mynamespace" &#125;&#125;</code></td>
-  </tr>
-  <tr>
-    <td style={{ fontSize: 14 }}><code>kubectl get namespaces</code></td>
-    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "" &#125;&#125;</code></td>
-  </tr>
-</table>
-
-The following describes working with values returned by the Lookup function:
-
-* When Lookup finds an object, it returns a dictionary with the key value pairs from the object. This dictionary can be navigated to extract specific values. For example, the following returns the annotations for the `mynamespace` object:
-
-    ```
-    repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
-    ```
-
-* When Lookup returns a list of objects, it is possible to access the object list through the `items` field. For example:
-
-    ```
-    services: |
-      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
-      - repl{{ $service.metadata.name }}
-      repl{{- end }}
-    ```
-
-    For an array value type, omit the `|`. For example:
-
-    ```
-    services:
-      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
-      - repl{{ $service.metadata.name }}
-      repl{{- end }}
-    ```
-
-* When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.

@@ -4,6 +4,7 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import EmbeddedClusterStorageReqs from "../partials/embedded-cluster/_storage-reqs.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 
 # Using Embedded Cluster (Beta)
 
@@ -43,13 +44,11 @@ As shown in the diagram above, the Embedded Cluster Config is included in the ap
 
 Embedded Cluster has the following limitations:
 
-* **No migration from kURL**: There is not a supported path to migrate an existing kURL instance to Embedded Cluster.
+* **No automated migration from kURL**: There is no automated migration from an existing kURL instance to Embedded Cluster. For a manual migration procedure, reach out to Alex Parker at alexp@replicated.com.
 
 * **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
-* **Air gap support is in beta**: Support for air gap installations with Embedded Cluster is a beta feature. For more information, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
-
-* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery)
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
 * **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
 
@@ -59,7 +58,7 @@ Embedded Cluster has the following limitations:
 
 * **Automatic updates not supported**: Configuring automatic updates from the Admin Console so that new versions are automatically deployed is not supported for Embedded Cluster installations. For more information, see [Configuring Automatic Updates](/enterprise/updating-apps).
 
-* **Embedded Cluster release artifact not available through the Download Portal**: The binary required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the binary in order to install with Embedded Cluster. For more information, see [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary).
+* **Embedded Cluster installation assets not available through the Download Portal**: The assets required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the installation assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
 * **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
 
@@ -81,20 +80,15 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
 
-1. Create a new release that includes your application. In that release, create an embedded cluster config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
+1. Create a new release that includes your application. In that release, create an Embedded Cluster Config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
 
-     Example Embedded Cluster config:
+     Example Embedded Cluster Config:
 
-     ```yaml
-     apiVersion: embeddedcluster.replicated.com/v1beta1
-     kind: Config
-     spec:
-       version: 1.9.1+k8s-1.29
-     ```
+     <EcConfig/>
 
-1. Save the release and promote it to the channel your customer is assigned to.
+1. Save the release and promote it to the channel the customer is assigned to.
 
-1. Return to the customer page where you enabled Embedded Cluster. At the top right, click **Install instructions** and choose **Embedded cluster**. A dialog appears with instructions on how to download the Embedded Cluster binary and install your application.
+1. Return to the customer page where you enabled Embedded Cluster. At the top right, click **Install instructions** and choose **Embedded Cluster**. A dialog appears with instructions on how to download the Embedded Cluster installation assets and install your application.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
@@ -108,7 +102,7 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
 1. Enter an Admin Console password when prompted.
 
-     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. You’ll have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. During the installation process in the Admin Console, you have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
 ## About Configuring Embedded Cluster
 
@@ -147,7 +141,7 @@ During installation, Embedded Cluster automatically runs a default set of _host 
 
 For Embedded Cluster requirements, see [Requirements](#requirements). For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
 
-If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks for installations on VMs or bare metal servers, see [(KOTS Only) Host Preflights for VM or Bare Metal Installations](preflight-support-bundle-about#host-preflights).
+If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks for installations on VMs or bare metal servers, see [About Host Preflights](preflight-support-bundle-about#host-preflights).
 
 #### Limitations
 
@@ -294,7 +288,7 @@ To add nodes to a cluster:
      ```
 
 
-1. SSH onto the machine you want to join to the cluster. Ensure that the Embedded Cluster binary is available on that node. For more information on downloading the Embedded Cluster binary, see Installing.
+1. SSH onto the machine you want to join to the cluster. Ensure that the Embedded Cluster binary is available on that node. For more information about downloading Embedded Cluster installation assets, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
      :::important
      You must join nodes with the same installer that you used for the first node. If you use a different installer from a different release of your application, the cluster will not be stable.
@@ -356,7 +350,7 @@ When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created a
 
 To reset the node of a cluster:
 
-1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine. For more information on downloading the Embedded Cluster binary, see [Download the Embedded Cluster Binary](#download-the-embedded-cluster-binary) above.
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine. For more information about downloading Embedded Cluster installation assets, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
 1. Run the reset command to reset the node. The `--reboot` flag automatically reboots the machine to ensure that transient configuration is also reset.
 
@@ -374,7 +368,7 @@ This section outlines some additional use cases for Embedded Cluster. These are 
 
 ### NVIDIA GPU Operator
 
-The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the Embedded Cluster Helm extensions. For information about Helm extensions, see [Helm extensions](/reference/embedded-config#helm-extensions) in _Embedded Cluster Config_.
+The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the Embedded Cluster Helm extensions. For information about Helm extensions, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
 
 Using this operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
 

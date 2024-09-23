@@ -1,0 +1,192 @@
+import HttpSecret from "../partials/preflights/_http-requests-secret.mdx"
+import HttpCr from "../partials/preflights/_http-requests-cr.mdx"
+import MySqlSecret from "../partials/preflights/_mysql-secret.mdx"
+import MySqlCr from "../partials/preflights/_mysql-cr.mdx"
+import K8sVersionSecret from "../partials/preflights/_k8s-version-secret.mdx"
+import K8sVersionCr from "../partials/preflights/_k8s-version-cr.mdx"
+import K8sDistroSecret from "../partials/preflights/_k8s-distro-secret.mdx"
+import K8sDistroCr from "../partials/preflights/_k8s-distro-cr.mdx"
+import NodeReqSecret from "../partials/preflights/_node-req-secret.mdx"
+import NodeReqCr from "../partials/preflights/_node-req-cr.mdx"
+import NodeCountSecret from "../partials/preflights/_node-count-secret.mdx"
+import NodeCountCr from "../partials/preflights/_node-count-cr.mdx"
+import NodeMemSecret from "../partials/preflights/_node-mem-secret.mdx"
+import NodeMemCr from "../partials/preflights/_node-mem-cr.mdx"
+import NodeStorageClassSecret from "../partials/preflights/_node-storage-secret.mdx"
+import NodeStorageClassCr from "../partials/preflights/_node-storage-cr.mdx"
+import NodeEphemStorageSecret from "../partials/preflights/_node-ephem-storage-secret.mdx"
+import NodeEphemStorageCr from "../partials/preflights/_node-ephem-storage-cr.mdx"
+import NodeCpuSecret from "../partials/preflights/_node-cpu-secret.mdx"
+import NodeCpuCr from "../partials/preflights/_node-cpu-cr.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Example Preflight Specs
+
+This section includes common examples of preflight check specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
+
+## Check HTTP or HTTPS Requests from the Cluster
+
+The examples below use the `http` collector and the `textAnalyze` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
+
+For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <HttpSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <HttpCr/>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing pass message" src="/images/preflight-http-pass.png"/>
+    <a href="/images/preflight-http-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Kubernetes Version
+
+The examples below use the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+
+For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <K8sVersionSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <K8sVersionCr/>
+    <p>The following shows how the <code>warn</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing warning message" src="/images/preflight-k8s-version-warn.png"/>
+    <a href="/images/preflight-k8s-version-warn.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Kubernetes Distribution
+
+The examples below use the `distribution` analyzer to check the Kubernetes distribution of the cluster. The `distribution` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+
+For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Distribution](https://troubleshoot.sh/docs/analyze/distribution/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <K8sDistroSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <K8sDistroCr/>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing pass message" src="/images/preflight-k8s-distro.png"/>
+    <a href="/images/preflight-k8s-distro.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check MySQL Version Using Template Functions
+
+The examples below use the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
+
+For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Analyze > MySQL](https://troubleshoot.sh/docs/analyze/mysql/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <p>This example uses Helm template functions to render the credentials and connection details for the MySQL server that were supplied by the user. Additionally, it uses Helm template functions to create a conditional statement so that the MySQL collector and analyzer are included in the preflight checks only when MySQL is deployed, as indicated by a <code>.Values.global.mysql.enabled</code> field evaluating to true.</p>
+    <p>For more information about using Helm template functions to access values from the values file, see <a href="https://helm.sh/docs/chart_template_guide/values_files/">Values Files</a>.</p>
+    <MySqlSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <p>This example uses KOTS template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated Admin Console <strong>Config</strong> page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see <a href="/reference/template-functions-about">About Template Functions</a>.</p>
+    <p>This example also uses an analyzer with <code>strict: true</code>, which prevents installation from continuing if the preflight check fails.</p>
+    <MySqlCr/>
+    <p>The following shows how a <code>fail</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade when <code>strict: true</code> is set for the analyzer:</p>
+    <img alt="Strict preflight checks in Admin Console showing fail message" src="/images/preflight-mysql-fail-strict.png"/>
+    <a href="/images/preflight-mysql-fail-strict.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Node Memory
+
+The examples below use the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeMemSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeMemCr/>
+    <p>The following shows how a <code>warn</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing warn message" src="/images/preflight-node-memory-warn.png"/>
+    <a href="/images/preflight-node-memory-warn.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Node Storage Class Availability
+
+The examples below use the `storageClass` analyzer to check that a required storage class is available in the nodes in the cluster. The `storageClass` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeStorageClassSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeStorageClassCr/>
+    <p>The following shows how a <code>fail</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing fail message" src="/images/preflight-storageclass-fail.png"/>
+    <a href="/images/preflight-storageclass-fail.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Node Ephemeral Storage
+
+The examples below use the `nodeResources` analyzer to check the ephemeral storage available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeEphemStorageSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeEphemStorageCr/>
+    <p>The following shows how a <code>pass</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing pass message" src="/images/preflight-ephemeral-storage-pass.png"/>
+    <a href="/images/preflight-ephemeral-storage-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Requirements Are Met By At Least One Node
+
+The examples below use the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeReqSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeReqCr/>
+    <p>The following shows how the <code>fail</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing fail message" src="/images/preflight-node-filters-faill.png"/>
+    <a href="/images/preflight-node-filters-faill.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>
+
+## Check Total CPU Cores Across Nodes
+
+The examples below use the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+<Tabs>
+  <TabItem value="secret" label="Kubernetes Secret" default>
+    <NodeCpuSecret/>
+  </TabItem>
+  <TabItem value="custom-resource" label="Preflight Custom Resource">
+    <NodeCpuCr/>
+    <p>The following shows how the <code>pass</code> outcome for this preflight check is displayed in the Admin Console during KOTS installation or upgrade:</p>
+    <img alt="Preflight checks in Admin Console showing fail message" src="/images/preflight-cpu-pass.png"/>
+    <a href="/images/preflight-cpu-pass.png">View a larger version of this image</a>
+  </TabItem>
+</Tabs>

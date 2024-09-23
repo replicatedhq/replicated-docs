@@ -8,6 +8,8 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # KOTS Release Notes
 
+This topic contains release notes for the [Replicated KOTS](../intro-kots) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 ## Kubernetes Compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
@@ -16,6 +18,55 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.2
+
+Released on September 20, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-117-2}
+* Improvements to support specifying ports in Embedded Cluster.
+
+## 1.117.1
+
+Released on September 17, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-117-1}
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK when running an automated install.
+
+## 1.117.0
+
+Released on September 13, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-117-0}
+* Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user.
+
+### Bug Fixes {#bug-fixes-1-117-0}
+* Fixes an issue where `dropdown` Config items did not respect the `when` property.
+
+## 1.116.1
+
+Released on September 12, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-116-1}
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+
+## 1.116.0
+
+Released on September 9, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-116-0}
+* Adds the ability to specify additional annotations (`--additional-annotations`) and labels (`--additional-labels`) that will be applied to kotsadm pods.
+
 ## 1.115.2
 
 Released on September 5, 2024
@@ -23,7 +74,7 @@ Released on September 5, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-115-2}
-* Available updates are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. This was removed in a previous version.
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. These were removed in a previous version.
 * When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
 * Improves messaging when the requested channel slug is not allowed by the provided license.
 
@@ -47,7 +98,7 @@ Released on August 20, 2024
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### Improvements {#improvements-1-115-0}
-* Displays guidance on the **Nodes** page and easier access to the node join command during initial install of Embedded Cluster.
+* The **Nodes** page displays guidance and easier access to the node join command during initial install of Embedded Cluster.
 * Adds back the check for updates button on the **Version history** page in Embedded Cluster, so you can check for updates without refreshing the page.
 
 ## 1.114.0
@@ -869,7 +920,7 @@ Released on June 2, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Improvements {#improvements-1-100-1}
-* Updates the way custom domains for the Replicated registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
+* Updates the way custom domains for the Replicated registry and proxy registry are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
 * Updates the rqlite/rqlite image to 7.19.0 to resolve CVE-2023-1255 with medium severity.
 
 ## 1.100.0

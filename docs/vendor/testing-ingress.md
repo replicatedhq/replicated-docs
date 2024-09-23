@@ -46,7 +46,7 @@ The following diagram shows how the traffic is routed into the service using Com
 Compatibity matrix tunnels are a beta feature.
 :::
 
-Tunnels are viewed, created, and removed using the Replicated CLI, GitHub Actions, or directly with the Vendor API v3. There is no limit to the number of tunnels you can create for a cluster and multiple tunnels can connect to a single service, if desired.
+Tunnels are viewed, created, and removed using the Compatibility Matrix UI within Vendor Portal, the Replicated CLI, GitHub Actions, or directly with the Vendor API v3. There is no limit to the number of tunnels you can create for a cluster and multiple tunnels can connect to a single service, if desired.
 
 ### Limitations
 
