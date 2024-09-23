@@ -8,6 +8,8 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # KOTS Release Notes
 
+This topic contains release notes for the [Replicated KOTS](../intro-kots) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 ## Kubernetes Compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of KOTS:

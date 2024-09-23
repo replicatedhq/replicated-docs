@@ -6,6 +6,8 @@ pagination_prev: null
 
 # kURL Release Notes
 
+This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
 ## v2024.09.06-0

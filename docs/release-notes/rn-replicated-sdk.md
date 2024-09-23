@@ -6,6 +6,8 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
+This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
+
 ## 1.0.0-beta.28
 
 Released on September 20, 2024
