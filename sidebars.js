@@ -126,14 +126,6 @@ const sidebars = {
          'vendor/distributing-workflow',
       ],
     },
-    {
-      type: 'category',
-      label: 'Starting with Helm-Only',
-      items: [
-         'vendor/quick-start-helm',
-         'vendor/replicated-onboarding',
-      ],
-    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
