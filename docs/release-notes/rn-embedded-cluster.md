@@ -8,7 +8,7 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated Embedded Cluster](/vendor/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
-Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are compatible with each version of Embedded Cluster.
+Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
 ## 1.13.1
 
