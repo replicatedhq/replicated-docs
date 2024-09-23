@@ -37,6 +37,8 @@ const sidebars = {
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/distributing-overview',
+    'vendor/quick-start-embedded',
+    'vendor/distributing-workflow',
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -118,14 +120,6 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
     },
-    {
-      type: 'category',
-      label: 'Starting with Embedded Cluster',
-      items: [
-         'vendor/quick-start-embedded',
-         'vendor/distributing-workflow',
-      ],
-    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
@@ -202,7 +196,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'KOTS and Embedded Cluster',
+      label: 'Distributing and Installing with KOTS',
       items: [
         'intro-kots',
         'vendor/kots-faq',
@@ -223,7 +217,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Embedding Kubernetes With Your Application',
+              label: 'Distributing Embedded Kubernetes',
               items: [
                 'vendor/embedded-kubernetes-overview',
                 {
