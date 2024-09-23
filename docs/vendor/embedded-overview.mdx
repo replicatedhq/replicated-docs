@@ -4,6 +4,7 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import EmbeddedClusterStorageReqs from "../partials/embedded-cluster/_storage-reqs.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 
 # Using Embedded Cluster (Beta)
 
@@ -83,12 +84,7 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      Example Embedded Cluster Config:
 
-     ```yaml
-     apiVersion: embeddedcluster.replicated.com/v1beta1
-     kind: Config
-     spec:
-       version: 1.12.1+k8s-1.29
-     ```
+     <EcConfig/>
 
 1. Save the release and promote it to the channel the customer is assigned to.
 
