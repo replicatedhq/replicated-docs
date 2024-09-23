@@ -46,7 +46,10 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/quick-start-embedded">Embedded Cluster Quick Start</a>
+      <a href="/vendor/quick-start-embedded">Quick Start</a>
+    </li>
+    <li>
+      <a href="/vendor/distributing-workflow">Replicated Onboarding</a>
     </li>
     <li>
       <a href="/vendor/tutorial-kots-helm-setup">Getting Started Tutorials</a>
