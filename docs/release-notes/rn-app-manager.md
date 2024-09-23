@@ -25,8 +25,7 @@ Released on September 23, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-117-3}
-* Store collected bundle data in /tmp/last-preflight-result of last run preflight in Admin Console.
-* Adds support for configuring Replicated SDK with additional [Certificate Authority](https://docs.replicated.com/reference/template-functions-static-context#privatecacert) value as the one specified using the `--private-ca-configmap` command line parameter.
+* If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca-configmap` flag for the `kots install` command.
 
 ## 1.117.2
 
