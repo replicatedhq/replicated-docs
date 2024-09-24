@@ -148,7 +148,7 @@ To create the first release for your application:
 
    1. Install with Embedded Cluster on a VM. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary) and [Install](/vendor/embedded-overview#install) in _Using Embedded Cluster_.
    
-   1. Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+   1. (Optional) Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
 After successfully installing the initial release both on a VM and in an existing cluster, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then upgrading to the new version in your development environment.
 
@@ -186,10 +186,10 @@ To configure the KOTS Application custom resource:
 
 ### Task 6: Set Up the Admin Console Config Screen and Map to Helm Values
 
-The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
+The KOTS Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
 
 :::note
-Before you begin this task, you can complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console config screen to a Helm chart.
+Before you begin this task, you can complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console Config screen to a Helm chart.
 :::
 
 To set up the Admin Console Config screen for your application:
@@ -249,7 +249,7 @@ Preflight checks and support bundles analyze data from customer environments to 
 * **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
 
 :::note
-Before you begin this task, Replicated recommends that you complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
+Before you begin this task, you can complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
 :::
 
 To define preflight checks for your application:
@@ -267,7 +267,7 @@ To define preflight checks for your application:
 
 1. <CreateRelease/>
 
-1. Install the release to test your changes.
+1. <TestYourChanges/>
 
     Preflight checks run automatically during installation.
 
@@ -296,6 +296,9 @@ To add the default support bundle spec to your application:
           collectors: []
           analyzers: []
     ```
+    :::note
+    If your application is installed as multiple Helm charts, you can optionally create separate support bundle specs in each chart. The specs are automatically merged a support bundle is generated. Alternatively, continue with a single support bundle spec and then optionally revisit how you organize your support bundle specs after you finish onboarding.
+    :::
    
 1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
 
@@ -337,9 +340,11 @@ To add the default support bundle spec to your application:
 
 1. <CreateRelease/>
 
-1. Install the release to test your changes. For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+1. <TestYourChanges/>
 
-1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can do this step later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
+   For information about how to generate support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
 
 ### Task 9: Alias Replicated Endpoints with Your Own Domains
 
@@ -349,7 +354,7 @@ For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
 ## Next Steps
 
-After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order.
+After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
 
 ### Add Support for Helm Installations
 
@@ -369,11 +374,11 @@ To support and test Helm installations:
 
 1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-1. Install the release with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+1. Install the release in a cluster with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 ### Add Support for Air Gap Installations
 
-KOTS and Embedded Cluster support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images.
+KOTS and Embedded Cluster support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images for the installers and for your application.
 
 You can use the Vendor Portal to build and download the air gap bundles needed to install in an air gap existing cluster with KOTS or in an air gap VM or bare metal server with Embedded Cluster.
 
@@ -387,17 +392,29 @@ To add support for air gap installations:
     If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
     :::
 
-1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. See [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image on the user's own local registry.
+
+   For more information, see [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+
+1. Create and promote a new release with your changes. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
+     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
+     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
+     
+     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
 
 1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
 ### Add Application Links to the Admin Console Dashboard
 
-You can add the Kubernetes SIG Application custom resource in order to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
+You can add the Kubernetes SIG Application custom resource to your release to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
+
+You can also configure the Kubernetes SIG Application resource add links to other resources like documentation or dashboards.
 
 For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
@@ -412,6 +429,8 @@ Consider the following recommendations and best practices:
 * Your support bundles should include all of the same collectors and analyzers that are in your preflight checks. This ensures that support bundles include all the necessary troubleshooting information, including any failures in preflight checks.
 
 * Your support bundles will most likely need to include other collectors and analyzers that are not in your preflight checks. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation.
+
+* If your application is installed as multiple Helm charts, you can optionally add separate support bundle specs in each chart. This can make it easier to keep the specs up-to-date and to avoid merge conflicts that can be caused when multiple team members contribute to a single, large support bundle spec. When an application has multiple support bundle specs, the specs are automatically merged when generating a support bundle so that only a single support bundle archive is provided to the user.
 
 The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
