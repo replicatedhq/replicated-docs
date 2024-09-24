@@ -10,6 +10,39 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.14.0
+
+Released on September 24, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.0+k8s-1.29</td>
+    <td id="center">1.14.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### New Features {#bug-fixes-1-14-0}
+
+* Introduces the `--admin-console-port` and `--local-artifact-mirror-port` flags to the `install` command so the ports for the Admin Console (default 30000) and the local artifact mirror (default 50000) can be chosen.
+* Introduces the `--local-artifact-mirror-port` flag to the `restore` command so the port used for the local artifact mirror can be selected during the restore. If no port is provided, the port in use when the backup was taken will be used.
+* Introduces the `--network-interface` flag to the `install` command so a network interface can be selected. If a network interface is not provided, the first valid, non-local network interface is used.
+
+### Improvements {#improvements-1-14-0}
+
+* When joining nodes to an Embedded Cluster, the correct network interface is chosen based on the node IP address in the join command.
+* If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca` flag for the `install` command.
+
+
 ## 1.13.1
 
 Released on September 20, 2024
@@ -31,7 +64,7 @@ Released on September 20, 2024
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-1-13-0}
+### Bug Fixes {#bug-fixes-1-13-1}
 
 * Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
 
