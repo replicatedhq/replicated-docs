@@ -46,16 +46,13 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/distributing-overview">About Distributing Applications with Replicated</a>
+      <a href="/vendor/quick-start">Replicated Quick Start</a>
     </li>
     <li>
-      <a href="/vendor/replicated-onboarding">Replicated Quick Start</a>
+      <a href="/vendor/replicated-onboarding">Replicated Onboarding</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-kots-helm-setup">Tutorials</a>
-    </li>
-    <li>
-      <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting Started Lab in Instruqt</a>
+      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorials</a>
     </li>
   </ul>
 </section>
@@ -145,28 +142,25 @@ pagination_next: null
       <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
     </li>
     <li>
-      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
-    </li>
-    <li>
       <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
     </li>
   </ul>
   <ul>
     <li class="tile__header">
         <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
-        <p>Embedded Kubernetes</p>
+        <p>Embedded Cluster (Beta)</p>
     </li>
     <li>
         <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-kubernetes-overview">About Embedded Kubernetes</a>
-    </li>
-    <li>
-      <a href="/vendor/kurl-about">Introduction to kURL</a>
-    </li>
-    <li>
       <a href="/vendor/embedded-overview">Using Embedded Cluster (Beta)</a>
+    </li>
+    <li>
+      <a href="/enterprise/installing-embedded">Installing with Embedded Cluster (Beta)</a>
+    </li>
+    <li>
+      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster (Beta)</a>
     </li>
   </ul>
 </section>
