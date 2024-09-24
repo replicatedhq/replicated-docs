@@ -36,27 +36,10 @@ const sidebars = {
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
+    'vendor/distributing-overview',
+    'vendor/kots-faq',
+    'vendor/quick-start',
     'vendor/replicated-onboarding',
-    // {
-    //   type: 'category',
-    //   label: 'Planning',
-    //   items: [
-    //     'vendor/planning-questionnaire',
-    //     'vendor/namespaces',
-    //   ],
-    // },
-    {
-      type: 'category',
-      label: 'Labs',
-      items:
-      [
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
-      ],
-
-    },
     {
       type: 'category',
       label: 'Tutorials',
@@ -119,7 +102,17 @@ const sidebars = {
         },
       ],
     },
-    'vendor/distributing-overview',
+    {
+      type: 'category',
+      label: 'Labs',
+      items:
+      [
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
+      ],
+    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
@@ -199,8 +192,6 @@ const sidebars = {
       label: 'Distributing and Installing with KOTS',
       items: [
         'intro-kots',
-        'vendor/kots-faq',
-        'vendor/distributing-workflow',
         {
           type: 'category',
           label: 'Packaging KOTS Releases',

@@ -1,361 +1,450 @@
----
-pagination_next: null
----
-
+import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
+import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import EmbeddedConfig from "../partials/embedded-cluster/_default-config.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
+import TestYourChanges from "../partials/getting-started/_test-your-changes.mdx"
+import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 
-# Replicated Quick Start
+# Replicated Onboarding 
 
-Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with the Replicated Platform. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
+This topic describes how to onboard applications to support installation with both the Replicated Embedded Cluster installer and the Helm CLI.
 
-The goals of this topic are to introduce new Replicated users to the following common tasks so that they can successfully onboard their application to the Replicated Platform:
-* Working with applications, channels, releases, and customers in the Replicated Vendor Portal and Replicated CLI
-* Testing and iterating on releases by installing in a development environment
-* Integrating key Replicated features and functionality with an application
+## Before You Begin
 
-## Best Practices and Recommendations
+This section includes guidance and prerequisites to review before you begin onboarding your application.
 
-The following are Replicated's best practices and recommendations for successfully onboarding:
+### Prerequisites
 
-* If you are relatively new to Kubernetes or Helm, start with a basic tutorial. For example, see [10 Helm Tutorials to Start your Kubernetes Journey](https://jfrog.com/blog/10-helm-tutorials-to-start-your-kubernetes-journey/) or [Tutorials](https://kubernetes.io/docs/tutorials/) in the Kubernetes documentation.
+* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+
+* Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
+
+* Complete a basic quick start workflow to create an application with a sample Helm chart and then promote and install releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases in the Replicated Platform. See [Replicated Quick Start](/vendor/quick-start-embedded).
+
+* Ensure that you have kubectl access to a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
+
+* Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
+
+  <Requirements/>
+
+### Best Practices and Recommendations
+
+The following are some best practices and recommendations for successfully onboarding with Replicated:
 
 * When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
 
-* Try creating and managing releases with both the Vendor Portal and the Replicated CLI. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+* Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will help later on when integrating Replicated workflows into your CI/CD pipelines. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
 * Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
 
-* Replicated also offers labs in Instruqt that provide a hands-on introduction to working with Replicated features, without needing your own sample application or development environment. To complete one or more labs before you begin the onboarding workflow, see:
-  * [Distributing Your Application with Replicated](https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN): Learn how to quickly get value from the Replicated Platform for your application.
-  * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure your customer is installing into a supported environment.
-  * [Closing the Support Information Gap](https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca): Learn how to use support bundles to close the information gap between your customers and your support team.
-
-## Prerequisites
-
-Before you begin, complete the following prerequisites:
-
-* This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
-
-  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to create a new `replicated-onboarding` folder with a basic NGINX deployment:
-  ```bash
-  helm create replicated-onboarding
-  ``` 
-  For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
-  
-  Alternatively, more advanced users can also use one of the following open source Helm charts:
-    * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
-       ```
-
-    * [MediaWiki](https://github.com/bitnami/charts/tree/main/bitnami/mediawiki) 
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/mediawiki
-       ```
-
-    * [WordPress](https://github.com/bitnami/charts/tree/main/bitnami/wordpress)
-
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
-       ``` 
-
-  :::note
-  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
-  ::: 
-
-* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
-
-## Workflow
-
-This onboarding workflow provides steps for using the Replicated Platform to create releases for a Helm chart-based application, then using the Helm CLI to install in a development environment.
-
-You will repeat these same basic steps to create and test releases throughout the onboarding process to test Replicated features. You will also repeat these steps after onboarding whenever you need to integrate new Replicated features with your application.
-
-To begin onboarding to the Replicated Platform with a Helm chart: 
-
-1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
-
-1. Create a new application:
-
-   1. In the [Vendor Portal](https://vendor.replicated.com/), from the application drop down, click **Create new app..**.
-
-   1. In the **Name your application** field, enter a name based on the Helm chart that you will use for onboarding. For example, "Wordpress Test" or "MediaWiki Onboarding".
-
-1. Create a release for the application:
-
-   1. In the Vendor Portal, click **Releases > Create release**.
-   
-      :::note
-      If a drop down is displayed, click **Create Helm-only release**.
-      :::
-   
-   1. In the **Add the Replicated SDK to your Helm chart** dialog, click **Yes, I have a Helm chart for my app that I'd like to use**, and then click **Next**.
-
-      <img alt="Add the SDK dialog" src="/images/do-you-have-a-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/do-you-have-a-helm-chart-modal.png)
-
-   1. Follow the steps in the dialog to add the Replicated SDK, package the chart to a `.tgz`, and then upload the `.tgz`:
-
-      <img alt="Upload Helm chart dialog" src="/images/upload-helm-chart-modal.png" width="500px"/>
-      [View a larger version of this image](/images/upload-helm-chart-modal.png)   
-
-       The following describes the steps in the dialog:
-
-       1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
-
-          <DependencyYaml/>
-
-          The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
-
-       1. Update dependencies and package the chart as a `.tgz` file:
-
-           <HelmPackage/>
-   
-       1. Under **Upload your Helm chart**, drag and drop the Helm chart `.tgz` file that you created. Click **Upload chart**.
-
-   1. On the release page, click **Promote**.
-
-   1. In the dialog, for **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
-
-      <img alt="Promote release dialog" src= "/images/release-promote.png" width="500px"/>
-
-      [View a larger image](/images/release-promote.png)
-
-   1. Click **Promote**.
-
-     :::note
-     You can ignore any error messages in the **Promote Release** dialog.
-     ::: 
-
-1. Create a customer so that you can install the release in your cluster:
-
-   1. Click **Customer > Create customer**.
-
-   1. For **Customer name**, add a name.
-
-   1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
-
-   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
-
-   1. Click **Save Changes**.
-
-   For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
-
-1. Install the application:
-   1. On the **Customers** page for the customer that you created, click **Helm install instructions**.
-
-      ![Helm install instructions button](/images/helm-install-button.png)
-
-      [View a larger image](/images/helm-install-button.png)
-
-   1. Run the commands in the **Helm install instructions** dialog to log in to the registry and install the Helm chart. Skip the step to run preflight checks.
-
-      <img alt="Helm install instructions dialog" src="/images/helm-install-instructions-no-preflights.png" width="500px"/>
-     
-      [View a larger image](/images/helm-install-instructions-no-preflights.png)
-
-      :::note
-      Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
-      ::: 
-
-   1. After you install, in the Vendor Portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
-
-      **Example**: 
-
-      ![Customers page with one customer that has an active isntance](/images/onboarding-view-telemetry.png)
-      
-      [View a larger image](/images/onboarding-view-telemetry.png)
-   
-      This instance telemetry is automatically collected and sent back to the Vendor Portal when the Replicated SDK is installed alongside the application. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
-
-   1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).
-
-1. Create a new release in the Vendor Portal and then upgrade the instance in the cluster:
-
-   1. Make a small change in the chart, such as incrementing the semantic version in the `Chart.yaml` to a new version. Then, package the chart again.
-
-   1. In the Vendor Portal, create a new release (**Releases > Create release**). Drag and drop the new chart `.tgz` and then promote the new release to the Unstable channel. 
-
-   1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is  the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
-
-      **Example**:
-
-      ```
-      helm upgrade wordpress oci://registry.replicated.com/my-app/unstable/wordpress
-      ```
-
-      See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
-
-   1. After the upgrade completes, return to the **Instance details** page in the Vendor Portal and confirm that you can see the new application version.
-
-      **Example**:
-
-      ![Instance details page](/images/onboarding-instance-details-new-version.png)
-
-      [View a larger version](/images/onboarding-instance-details-new-version.png)
-
-1. Now that you are familiar with the workflow of creating and installing releases, repeat step 8 to integrate and test new Replicated features with the application. Integrate one feature at a time by creating a release and then upgrading in a development environment to test. For the list of recommended features to integrate, see [Features Checklist](#features-checklist) below.
-
-1. (Recommended) Finish setting up your Vendor Portal account and team:
-
-   1. If you are an admin, invite and manage team members. See [Invite Members](/vendor/team-management#invite-members) in _Managing Team Members_.
-
-   1. Set up Slack or email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases. See [Configuring Instance Notifications](/vendor/instance-notifications-config).
-
-## Features Checklist
-
-This section provides a checklist of key Replicated features to integrate with your application to fully onboard onto the Replicated Platform. These features are provided in a suggested order, though you can configure and test the features in any order.
-
-<table>
-  <tr>
-    <th width="20%">Feature</th>
-    <th width="50%">Description</th>
-    <th width="30%">How to</th>
-  </tr>
-    <tr>
-    <td>Proxy registry</td>
-    <td>
-      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy registry allows you to pull your images so that you can test your deployment.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy registry</p>
-    </td>
-    <td>
-      <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
-    </td>
-  </tr>
-  <tr>
-    <td>Preflight checks</td>
-    <td>
-      <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
-    </td>
-    <td>
-      <ul>
-      <li><a href="/vendor/preflight-defining">Defining Preflight Checks</a></li>
-      <li><a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>Support bundles</td>
-    <td>
-      <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
-    </td>
-    <td>
-      <ul>
-      <li><a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a></li>
-      <li><a href="/vendor/support-bundle-generating">Generating Support Bundles</a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>Custom license entitlements</td>
-    <td>
-      <p>Configure custom license fields that are specific to a customer, such as limiting the number of active users permitted.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to create and test each entitlement</p>
-    </td>
-    <td>
-      <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
-    </td>
-  </tr>
-  <tr>
-  <td>Pre-installation license entitlement checks</td>
-    <td>
-      <p>Add checks for customer license entitlements before installation.</p>
-      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
-    </td>
-    <td><a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a></td>
-  </tr>
-  <tr>
-  <td>Runtime license entitlement checks with the SDK API</td>
-    <td>
-      <p>Use the SDK API to add checks for customer license entitlements during runtime.</p>
-      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
-    </td>
-    <td>
-    <ul>
-      <li><a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a></li>
-      <li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
-      <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>License field signature validation</td>
-    <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
-    <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
-    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a></td>
-  </tr>
-  <tr>
-    <td>Custom metrics with the SDK API</td>
-    <td>
-      <p>Use the SDK API to send custom metrics that measure instances of your application running in online or air gap environments.</p>
-      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to create mock data and test the endpoints locally with integration mode, plus more time to integrate with your application</p>
-    </td>
-    <td>
-      <a href="/vendor/custom-metrics">Configuring Custom Metrics</a>
-    </td>
-  </tr>
-  <tr>
-    <td>Custom domains</td>
-    <td>
-      <p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
-      <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
-    </td>
-    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a></td>
-  </tr>
-  <tr>
-    <td>Integrate with CI/CD</td>
-    <td>
-      <p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated Compatibility Matrix, installing releases in test environments, and more.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using Replicated CLI commands or Replicated GitHub Actions.</p>
-    </td>
-    <td>
-     <ul>
-      <li><a href="/vendor/ci-workflows">Recommended CI/CD Workflows</a></li>
-      <li><a href="/vendor/ci-workflows">About Integrating with CI/CD</a></li>
-      <li><a href="/vendor/testing-how-to">Using Compatibility Matrix</a></li>
-     </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>Application update checks with the SDK API</td>
-    <td>
-      <p>Use the SDK API to allow your users to easily check for available updates from your application..</p>
-      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate with your application</p>
-    </td>
-    <td>
-     <ul>
-      <li><a href="/reference/replicated-sdk-apis#support-update-checks-in-your-application">Support Update Checks in Your Application</a></li>
-      <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>Replicated KOTS</td>
-    <td>
-      <p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
-    </td>
-    <td>
-      <ul>
-        <li><a href="/vendor/tutorial-kots-helm-setup">Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI</a></li>
-        <li><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-## Get Help from the Community
+### Getting Help from the Community
 
 The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated Platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
 
 Before posting in the community site, use the search to find existing knowledge base articles related to your question. If you are not able to find an existing article that addresses your question, create a new topic or add a reply to an existing topic so that a member of the Replicated community or team can respond.
 
 To search and participate in the Replicated community, see https://community.replicated.com/.
+
+## Onboard
+
+Complete the tasks in this section to onboard your application. When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
+
+### Task 1: Create An Application
+
+To get started with onboarding, first create a new application. This will be the official Vendor Portal application used by your team to create and promote both internal and customer-facing releases.
+
+To create an application:
+
+1. Create a new application using the Replicated CLI or the Vendor Portal. For the application name, use an official name for your application. You will not be able to modify the name. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
+
+1. Set the `REPLICATED_APP` environment variable to the unique slug of the application that you created. See [Set Environment Variables](/reference/replicated-cli-installing#replicated_app) in _Installing the Replicated CLI_. For example:
+
+   ```bash
+   export REPLICATED_APP=my-app
+   ```
+
+### Task 2: Connect Your Image Registry
+
+Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy service in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
+
+For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
+
+### Task 3: Add the Replicated SDK and Package your Chart
+
+Next, add the Replicated SDK as a dependency of your Helm chart then package the chart as a `.tgz` archive.
+
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+To package your Helm chart with the Replicated SDK:
+
+1. Go to the local directory where your Helm chart is.
+
+1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
+
+   <DependencyYaml/>   
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+    <HelmPackage/>
+
+    <UnauthorizedError/>
+
+1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command. Do not declare the SDK in more than one chart.
+
+### Task 4: Create and Install the Initial Release {#first-release}
+
+After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with Embedded Cluster:
+* The Helm chart `.tgz` archive
+* [KOTS HelmChart custom resource](/reference/custom-resource-helmchart-v2)
+* [Embedded Cluster Config](/reference/embedded-config)
+
+If you have multiple charts, you will add each chart archive to the release, plus a corresponding KOTS HelmChart custom resource for each archive.
+
+To create the first release for your application:
+
+1. In the local directory for your Helm chart, create a subdirectory named `manifests` where you will add the files for the release.
+
+1. In the `manifests` directory:
+
+   1. Move the `.tgz` chart archive that you packaged. If your application is deployed as multiple Helm charts, move each `.tgz` archive to `manifests`.
+
+   1. Create an `embedded-cluster.yaml` file with the following default Embedded Cluster Config:
+
+      <EmbeddedConfig/>
+    
+      For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+
+   1. Create a new YAML file. In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+   
+      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. As part of configuring the KOTS HelmChart custom resource, you will rewrite image names and add image pull secrets to enable the Replicated proxy service.
+
+   1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
+
+1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+    ```bash
+    replicated release create --yaml-dir . --promote Unstable
+    ```
+
+1. Install the release in your development environment to test:
+
+   1. Install with Embedded Cluster on a VM. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary) and [Install](/vendor/embedded-overview#install) in _Using Embedded Cluster_.
+
+   1. Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+
+After successfully installing the initial release both on a VM and in an existing cluster, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then upgrading to the new version in your development environment.
+
+### Task 5: Customize the KOTS Admin Console {#admin-console}
+
+Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console and the Replicated Download Portal. The status informers will be used to display the application status on the Admin Console dashboard.
+
+To configure the KOTS Application custom resource:
+
+1. In your `manifests` directory, create a new `kots-app.yaml` file.
+
+1. In the `kots-app.yaml` file, add the [KOTS Application](/reference/custom-resource-application) custom resource YAML and set the `title`, `icon`, and `statusInformers` fields.
+
+   **Example:**
+
+    ```yaml
+    apiVersion: kots.io/v1beta1
+    kind: Application
+    metadata:
+      name: gitea
+    spec:
+      title: Gitea
+      icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+      statusInformers:
+        - deployment/gitea
+    ```
+    For more information, see:
+    * [Customizing the Application Icon](/vendor/admin-console-customize-app-icon)
+    * [Enabling and Understanding Application Status](/vendor/insights-app-status)
+    * [Application](/reference/custom-resource-application)
+
+1. <CreateRelease/>
+
+1. <TestYourChanges/>
+
+### Task 6: Set Up the Admin Console Config Screen and Map to Helm Values
+
+The KOTS Admin Console config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the config screen can be mapped to your Helm values.
+
+:::note
+Before you begin this task, you can complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console config screen to a Helm chart.
+:::
+
+To set up the Admin Console Config screen for your application:
+
+1. In your `manifests` directory, create a new file named `kots-config.yaml`.
+
+1. In `kots-config.yaml`, add the KOTS Config custom resource. Configure the KOTS Config custom resource based on the values that you need to collect from users.
+
+    **Example:**
+
+    ```yaml
+    apiVersion: kots.io/v1beta1
+    kind: Config
+    metadata:
+      name: my-application
+    spec:
+      groups:
+        - name: example_group
+          title: Example Group
+          items:
+            - name: example_item
+              title: Example Item
+              type: text
+              default: "Hello World"
+    ```
+
+    For more information, see:
+    * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen) 
+    * [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional)  
+    * [Config](/reference/custom-resource-config)  
+
+1. <CreateRelease/>
+
+1. <TestYourChanges/>
+
+1. In `manifests`, open the KOTS HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values.
+
+   For more information, see:
+   * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs)
+   * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup)
+   * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
+
+1. <CreateRelease/>
+
+1. <TestYourChanges/>
+
+1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
+
+### Task 7: Define Preflight Checks
+
+In the next two tasks, you will add specs for _preflight checks_ and _support bundles_.
+
+<AboutPreflightsSupportBundles/>
+
+:::note
+Before you begin this task, Replicated recommends that you complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
+:::
+
+To define preflight checks for your application:
+
+1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
+     :::note
+     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
+     :::
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+   <HelmPackage/>
+
+1. Move the `.tgz` file to the `manifests` directory.
+
+1. <CreateRelease/>
+
+1. Install the release to test your changes.
+
+    Preflight checks run automatically during installation.
+
+1. Continue to create and test new releases with additional preflight checks until you are ready to move on to the next task.
+
+### Task 8: Add a Support Bundle Spec
+
+To add the default support bundle spec to your application:
+
+1. In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret to enable the default support bundle spec for your application:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: support-bundle
+      name: example
+    stringData:
+      support-bundle-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+          name: support-bundle
+        spec:
+          collectors: []
+          analyzers: []
+    ```
+   
+1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: example
+     labels:
+       troubleshoot.sh/kind: support-bundle
+   stringData: 
+     support-bundle-spec: |-
+       apiVersion: troubleshoot.sh/v1beta2
+       kind: SupportBundle
+       metadata:
+         name: example
+       spec:
+         collectors:
+           - logs:
+               selector:
+                 - app.kubernetes.io/name=myapp
+               namespace: {{ .Release.Namespace }}
+               limits:
+                 maxAge: 720h
+                 maxLines: 10000
+   ```
+
+   For more information, see:
+   * <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+   * [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
+
+1. (Recommended) Ensure that any preflight checks that you added are also include in your support bundle spec. This ensures that support bundles collect at least the same information collected when running preflight checks. 
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+   <HelmPackage/>
+
+1. Move the `.tgz` file to the `manifests` directory.
+
+1. <CreateRelease/>
+
+1. Install the release to test your changes. For information about how to create support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can do this step later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
+
+### Task 9: Alias Replicated Endpoints with Your Own Domains
+
+Replicated recommends that you use custom domains to alias Replicated endpoints. Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
+
+For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+
+## Next Steps
+
+After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order.
+
+### Add Support for Helm Installations
+
+Existing KOTS releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method. To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy service.  
+
+:::note
+Before you test Helm installations for your application, you can complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and Helm.
+:::
+
+To support and test Helm installations:
+
+1. Follow the steps in [Using the Proxy Service with Helm Installations](/vendor/helm-image-registry) to authenticate with the Replicated proxy service by creating a Secret with `type: kubernetes.io/dockerconfigjson` in your Helm chart.
+
+1. Update dependencies and package the chart as a `.tgz` file:
+
+    <HelmPackage/>
+
+1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. Install the release with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+
+### Add Support for Air Gap Installations
+
+KOTS and Embedded Cluster support installations in _air gap_ environments with no outbound internet access. Users can install in air gap environments by providing air gap bundles that contain the required images.
+
+You can use the Vendor Portal to build and download the air gap bundles needed to install in an air gap existing cluster with KOTS or in an air gap VM or bare metal server with Embedded Cluster.
+
+To add support for air gap installations:
+
+1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
+
+1. If you have any Helm values that determine whether or not an application image is included in an installation, then configure the `builder` key in the KOTS HelmChart custom resource to enable those values. The Vendor Portal uses the values provided in the `builder` key to build the `.airgap` bundle for the release. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+
+    :::note
+    If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
+    :::
+
+1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. See [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+
+1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Creating and Managing Customers](/vendor/releases-creating-customer).
+
+1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+1. Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+
+### Add Application Links to the Admin Console Dashboard
+
+You can add the Kubernetes SIG Application custom resource in order to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
+
+For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+
+### Update the Preflight and Support Bundles Specs
+
+After adding basic specs for preflights and support bundles, you can continue to add more collectors and analyzers as needed.
+
+Consider the following recommendations and best practices:
+
+* Revisit your preflight and support bundle specs when new support issues arise that are not covered by your existing specs.
+
+* Your support bundles should include all of the same collectors and analyzers that are in your preflight checks. This ensures that support bundles include all the necessary troubleshooting information, including any failures in preflight checks.
+
+* Your support bundles will most likely need to include other collectors and analyzers that are not in your preflight checks. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation.
+
+The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
+
+You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
+
+### Add and Query Custom License Entitlements
+
+You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
+
+After you add custom entitlements, you can also add logic to your application to query license entitlements both before deployment and at runtime.
+
+For more information, see:
+* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
+* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
+* [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
+* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
+* [Creating and Managing Customers](/vendor/releases-creating-customer)
+* [Developing Against the SDK API](/vendor/replicated-sdk-development)
+
+### Configure Backup and Restore
+
+Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
+
+There are different steps to configure backup and restore for Embedded Cluster and for existing cluster installations with KOTS:
+* To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
+* To configure the snapshots feature for existing cluster KOTS installations, see [Configuring Backup and Restore](snapshots-configuring-backups).
+
+### Add Custom Metrics
+
+In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
+
+For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
+
+### Integrate with CI/CD
+
+Replicated recommends that teams integrate the Replicated Platform into their existing develeopment and production CI/CD workflows. This can be useful for automating the processes of creating new releases, promoting releases, and testing releases with the Replicated Compatibility Matrix.
+
+For more information, see:
+* [About Integrating with CI/CD](/vendor/ci-overview)
+* [About Compatibility Matrix](/vendor/testing-about)
+* [Recommended CI/CD Workflows](/vendor/ci-workflows)
+
+### Customize Release Channels
+
+By default, the Vendor Portal includes Unstable, Beta, and Stable channels. You can customize the channels in the Vendor Portal based on your application needs.
+
+Consider the following recommendations:
+* Use the Stable channel for your primary release cadence. Releases should be promoted to the Stable channel only as frequently as your average customer can consume new releases. Typically, this is no more than monthly. However, this cadence varies depending on the customer base.
+* If you have a SaaS product, you might want to create an "Edge" channel where you promote the latest SaaS releases.
+* You can consider a “Long Term Support” channel where you promote new releases less frequently and support those releases for longer.
+* It can be useful to create channels for each feature branch so that internal teams reviewing a PR can easily get the installation artifacts as well as review the code. You can automate channel creation as part of a pipeline or Makefile.
+
+For more information, see:
+* [About Channels and Releases](releases-about-releases)
+* [Creating and Editing Channels](/vendor/releases-creating-channels)
