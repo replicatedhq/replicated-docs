@@ -52,6 +52,4 @@ As a next step you can:
 
 - Learn how to use the CLI to perform these steps and manage your release YAML in a git repository. See the [CLI Tutorial](tutorial-cli-setup).
 
-- Continue to iterate on your sample application by integrating other KOTS features. See [Onboarding with KOTS](distributing-workflow).
-
 - Make more customizations to the fields that appear on the **Config** page in the Admin Console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
