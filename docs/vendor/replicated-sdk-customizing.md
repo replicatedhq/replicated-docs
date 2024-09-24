@@ -97,6 +97,10 @@ replicated:
     value: ENV_VAR_VALUE
 ```
 
+:::note
+If HTTP_PROXY, HTTPS_PROXY, and NO_PROXY variables are configured with the [kots install](/enterprise/installing-existing-cluster-automation) command, these variables will also be set automatically in Replicated SDK.
+:::
+
 **Example**:
 
 ```yaml
@@ -125,6 +129,10 @@ To store the CA in a ConfigMap:
    replicated:
      privateCAConfigmap: private-ca
    ```
+
+:::note
+If `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in Replicated SDK automatically.
+:::
 
 ## Add Tolerations
 
