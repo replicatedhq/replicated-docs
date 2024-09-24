@@ -22,6 +22,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--license-file` | string | path to a license file _(required when `[upstream-uri]` points to a replicated app)_ |
 | `--local-path` | string | specify a local-path to pull a locally available replicated app _(only valid when `[upstream-uri]` points to a replicated app)_ |
 | `-n, --namespace` | string | namespace to render the upstream to in the base _(default `"default"`)_ |
+| `--private-ca-configmap` | string | name of a ConfigMap containing private CAs to add to the kotsadm deployment.
 | `--registry-endpoint` | string | the endpoint of the local docker registry to use when pushing images _(required when `--rewrite-images` is set)_ |
 | `--rewrite-images` | bool | set to true to force all container images to be rewritten and pushed to a local registry |
 | `--rootdir` | string | root directory that will be used to write the yaml to _(default `${HOME}` or `%USERPROFILE%`)_ |
