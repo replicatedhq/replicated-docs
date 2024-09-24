@@ -202,8 +202,4 @@ For example:
 install --admin-console-port=20000 --local-artifact-mirror-port=40000
 ```
 
-The default Embedded Cluster host preflights check for the default ports (or the supplied ports), so users will be alerted if they need to choose new port(s).
-
-### Limtiation
-
-On restore, the Admin Console port will be used from the backup. That can't be changed. For LAM, the port from the backup will be used unless the user specifies a new port with the `restore` command. For example, `restore --local-artifact-mirror-port=50000`.
+The default Embedded Cluster host preflight checks will verify either the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).
