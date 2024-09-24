@@ -131,7 +131,7 @@ To store the CA in a ConfigMap:
    ```
 
 :::note
-If `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in Replicated SDK automatically.
+If the `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in the Replicated SDK automatically.
 :::
 
 ## Add Tolerations
