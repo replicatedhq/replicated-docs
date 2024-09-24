@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.18-3
+
+Released on September 18, 2024
+
+### New Features {#new-features-v2024-09-18-3}
+* Removes the "Helm-only" release option from the releases page.
+
 ## v2024.09.18-2
 
 Released on September 18, 2024
