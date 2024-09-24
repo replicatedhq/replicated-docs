@@ -1,4 +1,3 @@
-import AboutPreflightsSupportBundles from "../partials/preflights/_overview.mdx"
 import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import EcCr from "../partials/embedded-cluster/_ec-config.mdx"
@@ -227,7 +226,11 @@ To set up the Admin Console Config screen for your application:
 
 In the next two tasks, you will add specs for _preflight checks_ and _support bundles_.
 
-<AboutPreflightsSupportBundles/>
+Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
+
+Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
+* **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
+* **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
 
 :::note
 Before you begin this task, Replicated recommends that you complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
