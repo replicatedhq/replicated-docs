@@ -35,9 +35,15 @@ const sidebars = {
 
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
-    'intro-replicated',
-    'vendor/distributing-overview',
-    'vendor/kots-faq',
+    {
+      type: 'category',
+      label: 'Concepts',
+      items:[
+        'intro-replicated',
+        'vendor/distributing-overview',
+        'vendor/kots-faq',
+      ],
+    },
     'vendor/quick-start',
     'vendor/replicated-onboarding',
     {
