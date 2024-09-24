@@ -98,7 +98,7 @@ replicated:
 ```
 
 :::note
-If HTTP_PROXY, HTTPS_PROXY, and NO_PROXY variables are configured with the [kots install](/enterprise/installing-existing-cluster-automation) command, these variables will also be set automatically in Replicated SDK.
+If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with the [kots install](/enterprise/installing-existing-cluster-automation) command, these variables will also be set automatically in the Replicated SDK.
 :::
 
 **Example**:
