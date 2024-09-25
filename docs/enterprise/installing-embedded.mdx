@@ -192,9 +192,9 @@ The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterpr
 
 ## Relocate Admin Console and LAM Ports
 
-By default, the Admin Console and Local Artifact Mirror (LAM) run on ports 30000 and 50000, respectively. If these ports are occupied, you can relocate them.
+By default, the Admin Console and Local Artifact Mirror (LAM) run on ports 30000 and 50000, respectively. If these ports are occupied, you can select different ports.
 
-To relocate the Admin Console and LAM ports during installation with Embedded Cluster, use the `--admin-console-port` and `--local-artifact-mirror` flags with the Embedded Cluster `install` command.
+To relocate the Admin Console and LAM ports during installation with Embedded Cluster, use the `--admin-console-port` and `--local-artifact-mirror-port` flags with the Embedded Cluster `install` command.
 
 For example:
 
@@ -202,7 +202,7 @@ For example:
 install --admin-console-port=20000 --local-artifact-mirror-port=40000
 ```
 
-The default Embedded Cluster host preflight checks verify the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).
+The Embedded Cluster host preflight checks verify the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).
 
 ### Limitation
 

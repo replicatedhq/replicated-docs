@@ -146,7 +146,7 @@ To restore from a backup:
 
        * If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs. For more information, see [Set IP Address Ranges for Pods and Services](/enterprise/installing-embedded#set-ip-address-ranges-for-pods-and-services).
 
-       * If the `--local-artifact-mirror` flag was used during install to relocate the LAM port, specify a new port with the `restore` command. For example, `restore --local-artifact-mirror-port=50000`. Otherwise, the port from the backup will be used. Note that the `--admin-console-port` flag is not supported during restores. For more information, see [Relocate Admin Console and LAM Ports](/enterprise/installing-embedded#relocate-admin-console-and-lam-ports).
+       * If the `--local-artifact-mirror-port` flag was used during install to relocate the LAM port, specify a new port with the `restore` command. For example, `restore --local-artifact-mirror-port=50000`. Otherwise, the port from the backup will be used. Note that the `--admin-console-port` flag is not supported during restores. For more information, see [Relocate Admin Console and LAM Ports](/enterprise/installing-embedded#relocate-admin-console-and-lam-ports).
 
      You will be guided through the process of restoring from a backup.
      
