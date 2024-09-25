@@ -15,8 +15,13 @@ The following are Replicated's best practices and recommendations for successful
 * When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
 
     For information about how to install, see:
-
+    * [Installing with Embedded Cluster](/enterprise/installing-embedded)
+    * [Installing with Helm](/vendor/install-with-helm)
+    * [Installing with KOTS in Existing Clusters](/enterprise/installing-existing-cluster)
+    
     For information about how to perform updates, see:
+    * [Performing Updates in Embedded Clusters](/enterprise/updating-embedded)
+    * [Performing Updates in Existing Clusters](/enterprise/updating-app-manager)
 
 * Create and manage releases with the Replicated CLI. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
@@ -37,14 +42,16 @@ To search and participate in the Replicated community, see https://community.rep
 
 ## Prerequisites
 
-* Create a Vendor Portal account.
+* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 
-* Create an application in the Vendor Portal.
+* Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-* Install the Replicated CLI. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+* Create an application in the Vendor Portal. This will be the official Vendor Portal application used by your team to create and promote both internal and customer-facing releases. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
+
+* Ensure that you have development environments available to test installation and upgrades with Replicated KOTS, Replicated Embedded Cluster, and Helm. For more information about the installation requirements for the Replicated installers, see [Installation Requirements](/enterprise/installing-general-requirements).
 
 * Complete a getting started tutorial to get familiar with the process of creating, installing, and iterating on releases in the Replicated Platform using a sample Helm chart. You will use this same basic workflow throughout the onboarding process to integrate and test new features with your own application.
-   * [Tutorial: ](/vendor/tutorial-embedded-setup)
+   * [Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster](/vendor/tutorial-embedded-cluster-setup)
    * [Tutorial: Deploy a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup)
 
 ## Onboarding Checklist
@@ -57,29 +64,37 @@ This checklist includes key Replicated Platform features to integrate with your 
     <th width="50%">Description</th>
     <th width="30%">How to</th>
   </tr>
-    <tr>
+  <tr>
+    <td>Replicated SDK</td>
+    <td>
+      <p>Add the Replicated SDK as a dependency of your Helm chart. The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments.</p>
+    </td>
+    <td><a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a></td>
+  </tr>
+  <tr>
+    <td>Replicated proxy registry</td>
+    <td>
+      <p>Connect your image registry to allow customer licenses to grant proxy access to your application's private images using the Replicated proxy registry.</p>
+      <p>To support the use of the proxy registry in Helm installations, there is an additional step to add a Kubernetes Secret to your Helm chart.</p>
+    </td>
+    <td>
+      <ul>
+        <li><a href="/vendor/packaging-private-images">Connecting to an External Regsitry</a></li>
+        <li><a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td>Replicated KOTS and Replicated Embedded Cluster</td>
     <td>
-      <p>Add custom resources to your release to support KOTS and Embedded Cluster installations.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
+      <p>Add custom resources to a release to support installations with the Replicated KOTS and Replicated Embedded Cluster installers.</p>
     </td>
     <td><a href="/vendor/distributing-workflow">Onboarding with KOTS</a></td>
-  </tr>
-    <tr>
-    <td>Proxy registry</td>
-    <td>
-      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy registry allows you to pull your images so that you can test your deployment.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy registry</p>
-    </td>
-    <td>
-      <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
-    </td>
   </tr>
   <tr>
     <td>Preflight checks</td>
     <td>
       <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
@@ -92,7 +107,6 @@ This checklist includes key Replicated Platform features to integrate with your 
     <td>Support bundles</td>
     <td>
       <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
@@ -102,68 +116,49 @@ This checklist includes key Replicated Platform features to integrate with your 
     </td>
   </tr>
   <tr>
+  <td>License entitlement checks</td>
+    <td>
+      <p>Add checks for customer license entitlements before installation and during runtime.</p>
+    </td>
+    <td> 
+      <ul>
+        <li><a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a></li>
+        <li><a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a></li>
+        <li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
+        <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Alias Replicated endpoints</td>
+    <td>
+      <p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
+    </td>
+    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a></td>
+  </tr>
+    <tr>
     <td>Custom license entitlements</td>
     <td>
       <p>Configure custom license fields that are specific to a customer, such as limiting the number of active users permitted.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to create and test each entitlement</p>
     </td>
     <td>
       <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
     </td>
   </tr>
   <tr>
-  <td>Pre-installation license entitlement checks</td>
-    <td>
-      <p>Add checks for customer license entitlements before installation.</p>
-      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
-    </td>
-    <td><a href="/vendor/licenses-reference-helm">Checking Entitlements in Helm Charts Before Deployment</a></td>
-  </tr>
-  <tr>
-  <td>Runtime license entitlement checks with the SDK API</td>
-    <td>
-      <p>Use the SDK API to add checks for customer license entitlements during runtime.</p>
-      <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 1 hour to integrate pre-installation license checks into your application, plus more time to test and iterate</p>
-    </td>
-    <td>
-    <ul>
-      <li><a href="/vendor/licenses-reference-sdk">Querying Entitlements with the Replicated SDK API</a></li>
-      <li><a href="/reference/replicated-sdk-apis">Replicated SDK API</a></li>
-      <li><a href="/vendor/replicated-sdk-development">Developing Against the SDK API</a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>License field signature validation</td>
-    <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
-    <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
-    <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures with the Replicated SDK API</a></td>
-  </tr>
-  <tr>
-    <td>Custom metrics with the SDK API</td>
+    <td>Custom metrics</td>
     <td>
       <p>Use the SDK API to send custom metrics that measure instances of your application running in online or air gap environments.</p>
       <p>To get started, use the SDK in integration mode to develop locally without needing to make real changes in the Vendor Portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 30 minutes to create mock data and test the endpoints locally with integration mode, plus more time to integrate with your application</p>
     </td>
     <td>
       <a href="/vendor/custom-metrics">Configuring Custom Metrics</a>
     </td>
   </tr>
   <tr>
-    <td>Custom domains</td>
-    <td>
-      <p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
-      <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
-    </td>
-    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a></td>
-  </tr>
-  <tr>
     <td>Integrate with CI/CD</td>
     <td>
       <p>Update your existing development and release CI/CD pipelines to automatically complete tasks such as creating and promoting releases, provisioning clusters to test installation with the Replicated Compatibility Matrix, installing releases in test environments, and more.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to configure your CI pipeline using Replicated CLI commands or Replicated GitHub Actions.</p>
     </td>
     <td>
      <ul>

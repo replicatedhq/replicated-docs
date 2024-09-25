@@ -2,7 +2,6 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
-import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Channels and Releases
 
@@ -65,9 +64,9 @@ This section provides additional information about releases, including details a
 
 ### Release Files
 
-A release contains your application files as well as the manifests required to install the application with Replicated KOTS and Replicated Embedded Cluster. 
+A release contains your application files as well as the manifests required to install the application with the Replicated installers ([Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated KOTS](../intro-kots)). 
 
-The application files in KOTS releases can be Helm charts and/or Kubernetes manifests. KOTS releases that contain one or more Helm charts can be installed with KOTS or the Helm CLI. For more information, see [Introduction to KOTS](../intro-kots).
+The application files in releases can be Helm charts and/or Kubernetes manifests. Replicated strongly recommends that all applications are packaged with Helm. For more information, see [About Packaging Applications](/vendor/distributing-overview#about-packaging-applications).
 
 ### Promotion
 
