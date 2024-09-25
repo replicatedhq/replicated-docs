@@ -190,11 +190,11 @@ sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
 
 The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
 
-## Relocate Admin Console and LAM Ports
+## Change Admin Console and LAM Ports {#adm-lam-ports}
 
 By default, the Admin Console and Local Artifact Mirror (LAM) run on ports 30000 and 50000, respectively. If these ports are occupied, you can select different ports.
 
-To relocate the Admin Console and LAM ports during installation with Embedded Cluster, use the `--admin-console-port` and `--local-artifact-mirror-port` flags with the Embedded Cluster `install` command.
+To choose different ports for the Admin Console and LAM during installation with Embedded Cluster, use the `--admin-console-port` and `--local-artifact-mirror-port` flags with the Embedded Cluster `install` command.
 
 For example:
 
@@ -206,4 +206,4 @@ The Embedded Cluster host preflight checks verify the default ports or the user-
 
 ### Limitation
 
-It is not possible to relocate the Admin Console port during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
