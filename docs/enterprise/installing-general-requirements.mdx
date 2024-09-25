@@ -264,24 +264,28 @@ To install with the Embedded Cluster installer, your environment must meet the f
 
 ### Port Requirements
 
-The following ports need to be accessible from servers performing installations with Embedded Cluster:
+Embedded Cluster requires that the following ports are available:
 
-* 2379/TCP (listening on localhost)
+* 2379/TCP &#42;
 * 2380/TCP
 * 4789/UDP
 * 6443/TCP
 * 7443/TCP
 * 9091/TCP
-* 9099/TCP (listening on localhost)
+* 9099/TCP &#42;
 * 9443/TCP
-* 10248/TCP (listening on localhost)
+* 10248/TCP &#42;
 * 10249/TCP
 * 10250/TCP
 * 10256/TCP
-* 10257/TCP (listening on localhost)
-* 10259/TCP (listening on localhost)
+* 10257/TCP &#42;
+* 10259/TCP &#42;
 * 30000/TCP
-* 50000/TCP (listening on localhost). Required only for air gap installations.
+* 50000/TCP &#42; &#42;&#42; 
+
+&#42; These ports are used only by processes running on the same node. Ensure that there are no other processes using them. It is not necessary to create firewall openings for these ports. 
+
+&#42;&#42; Required for air gap installations only. 
 
 ## kURL Requirements {#kurl-requirements}
 
