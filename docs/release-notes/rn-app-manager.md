@@ -501,7 +501,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Adds the ability to update the config values for any app version using the admin console.
 
 ### Improvements {#improvements-1-108-0}
-* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ### Bug Fixes {#bug-fixes-1-108-0}
 * Fixes an issue where the license upload page flashed briefly before being redirected to the login page.

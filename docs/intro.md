@@ -12,7 +12,7 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Embedded Cluster Runs Host Preflight Checks (Beta)</h3>
+        <h3>Embedded Cluster Runs Host Preflight Checks</h3>
         <p>A default set of host preflight checks verify that the installation environment meets the requirements for Embedded Cluster and provide clear feedback to users.</p>
     </li>
     <li>

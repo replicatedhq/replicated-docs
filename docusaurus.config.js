@@ -113,7 +113,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'vendor/embedded-overview',
-                label: 'Embedded Cluster (Beta)',
+                label: 'Embedded Cluster',
               },
               {
                 type: 'doc',

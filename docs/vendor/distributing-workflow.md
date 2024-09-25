@@ -114,9 +114,9 @@ You can choose to use either Replicated Embedded Cluster or Replicated kURL to e
     <th width="25%">How To</th>
   </tr>
   <tr>
-    <td>Embedded Cluster Config (Beta)</td>
+    <td>Embedded Cluster Config</td>
     <td>Create an embedded cluster config to support installations in VMs or bare metal servers with Replicated Embedded Cluster.</td>
-    <td><a href="embedded-overview">Using Embedded Cluster (Beta)</a></td>
+    <td><a href="embedded-overview">Using Embedded Cluster</a></td>
   </tr>
   <tr>
     <td>Installer</td>
