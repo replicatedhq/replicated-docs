@@ -11,10 +11,6 @@ Create a new release using a collection of application manifest files and/or one
 replicated release create --yaml-dir YAML_DIR [flags]
 ```
 
-```bash
-replicated release create --chart HELM_CHART [flags]
-```
-
 :::note
 Additional flags returned by `--help` that are not supported by Replicated are omitted from the table below.
 :::
@@ -30,11 +26,6 @@ Additional flags returned by `--help` that are not supported by Replicated are o
   <td>path</td>
   <td><p>The local directory containing multiple YAML manifest files for a release. <strong>(Required)</strong></p><p><ChartYamlDirReqs/></p></td>
 </tr>
-  <tr>
-    <td><code>--chart</code></td>
-    <td>string</td>
-    <td><p>The path to the Helm chart for a release.<strong>(Required)</strong></p><p><ChartYamlDirReqs/></p></td>
-  </tr>
   <tr>
     <td><code>--promote</code></td>
     <td>string</td>
@@ -71,16 +62,6 @@ Additional flags returned by `--help` that are not supported by Replicated are o
 replicated release create --yaml-dir ./manifests
 
   • Reading manifests from ./manifests ✓
-  • Creating Release ✓
-    • SEQUENCE: 58
-```
-
-### `--chart`
-
-```bash
-replicated release create --chart=my-chart-1.0.0.tgz
-
-  • Reading chart from my-chart-1.0.0.tgz ✓
   • Creating Release ✓
     • SEQUENCE: 58
 ```
