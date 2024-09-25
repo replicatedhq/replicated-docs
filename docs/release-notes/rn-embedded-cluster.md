@@ -97,7 +97,7 @@ Released on September 17, 2024
 
 ### Bug Fixes {#bug-fixes-1-13-0}
 
-* Fixes an issue where user-provided proxy configuration was removed during upgrades. This fix only applies to Embedded Clusters installed with this version or later. Users on older versions that upgrade to this version will still lose their proxy configuration.
+* Fixes an issue where user-provided proxy configuration was removed during upgrades.
 * Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
 
 ## 1.12.1
