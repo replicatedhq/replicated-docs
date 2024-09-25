@@ -21,7 +21,6 @@
     "@mdx-js/react": "^3.0.0",
     "@types/node": "18.15.11",
     "@types/react": "18.3.5",
-    "caniuse-lite": "^1.0.30001584",
     "clsx": "^2.1.0",
     "loader-utils": "3.2.1",
     "prism-react-renderer": "^2.3.0",
