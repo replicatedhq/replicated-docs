@@ -39,7 +39,9 @@ Released on September 24, 2024
 
 ### Improvements {#improvements-1-14-0}
 
+* When a proxy server is configured, the default network interface's subnet will automatically be added to the no-proxy list if the node's IP address isn't already included.
 * When joining nodes to an Embedded Cluster, the correct network interface is chosen based on the node IP address in the join command.
+* The static IP addresses for replicated.app and proxy.replicated.com are now included in the failure messages for the preflight checks that verify connectivity to those endpoints, making it easier for end users to allowlist those endpoints.
 * If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca` flag for the `install` command.
 
 
