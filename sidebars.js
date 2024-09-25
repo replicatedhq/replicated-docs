@@ -77,7 +77,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
+          label: 'Deploy a Helm Chart on a VM with Embedded Cluster',
           items: [
             'vendor/tutorial-embedded-cluster-setup',
             'vendor/tutorial-embedded-cluster-create-app',
@@ -223,7 +223,7 @@ const sidebars = {
                 'vendor/embedded-kubernetes-overview',
                 {
                   type: 'category',
-                  label: 'Embedded Cluster (Beta)',
+                  label: 'Embedded Cluster',
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
@@ -365,7 +365,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with Embedded Cluster (Beta)',
+                label: 'Installing with Embedded Cluster',
                 items: [
                   'enterprise/installing-embedded',
                   'enterprise/installing-embedded-air-gap',

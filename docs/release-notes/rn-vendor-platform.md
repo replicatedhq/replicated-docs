@@ -798,7 +798,7 @@ Released on March 7, 2024
 Released on March 7, 2024
 
 ### New Features {#new-features-v2024-03-07-0}
-* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ## v2024.03.06-3
 
@@ -819,7 +819,7 @@ Released on February 29, 2024
 Released on February 29, 2024
 
 ### New Features {#new-features-v2024-02-29-0}
-* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 
 ## v2024.02.27-1
