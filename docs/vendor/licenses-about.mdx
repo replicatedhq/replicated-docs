@@ -95,7 +95,7 @@ Replicated enforces the following logic when a license expires:
    To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 * Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
 * Expired licenses cannot pull application images through the Replicated proxy registry or from the Replicated registry.
-* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
+* KOTS prevents instances with expired licenses from receiving updates.
 
 ## About Customer Channel Assignment {#channel-assignment}
 
@@ -127,7 +127,7 @@ From the **Customers** page, you can do the following:
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* (KOTS Only) Download the license file for each customer.
+* Download the license file for each customer.
 
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
 

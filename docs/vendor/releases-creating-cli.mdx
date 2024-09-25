@@ -47,7 +47,7 @@ To create and promote a release:
        mv wordpress-1.3.5.tgz manifests
        ```
 
-   1. (KOTS Only) In the same directory that contains the release files, add a HelmChart custom resource for each Helm chart in the release. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+   1. In the same directory that contains the release files, add a HelmChart custom resource for each Helm chart in the release. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 1. Lint the application manifest files and ensure that there are no errors in the YAML:
  
@@ -111,27 +111,3 @@ To create and promote a release:
     ```
     replicated release ls
     ```
-
-## Create a Release With One Helm Chart Only
-
-For applications that contain only one Helm chart, you can use the `--chart` flag to create a release.
-
-To create a release that contains one Helm chart:
-
-1. Package the chart as a `.tgz` file. See [Packaging a Helm Chart for a Release](/vendor/helm-install-release).
-
-1. Create and promote the release:
-   
-   ```bash
-   replicated release create --chart=CHART_ARCHIVE --promote=CHANNEL
-   ```
-
-   Where:
-   * `CHART_ARCHIVE` is the Helm chart `.tgz` file. For example, `--chart=my-chart-1.0.0.tgz`.
-   * `CHANNEL` is the channel ID or case sensitive name of the channel.
-
-1. Verify that the release was promoted to the target channel:
-
-    ```
-    replicated release ls
-    ```   
