@@ -10,6 +10,17 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.25-1
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-1}
+* Adds persistent sessions in the Customer Portal.
+* Embedded Cluster is now generally available.
+
+### Bug Fixes {#bug-fixes-v2024-09-25-1}
+* Fixes an issue that caused registry proxy authentication requests to be  redirected to proxy.replicated.com instead of the custom hostname when one is configured.
+
 ## v2024.09.18-3
 
 Released on September 18, 2024
