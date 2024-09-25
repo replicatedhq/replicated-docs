@@ -158,6 +158,22 @@ In the following example, a policy grants access to viewing all customers, but n
 
 This section includes examples of RBAC policies designed for specific roles at a company.
 
+### Admin 
+
+The Admin policy grants read/write permissions to all resources on the team. 
+
+:::note
+This policy is automatically created for all plans.
+:::
+
+### Read Only
+
+The Read Only policy grants read permission to all resources on the team except for API tokens.
+
+:::note
+This policy is automatically created for all plans.
+:::
+
 ### Support Engineer
 
 The support engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
