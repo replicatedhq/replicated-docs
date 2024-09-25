@@ -6,11 +6,117 @@ This topic describes how to use role-based access policies (RBAC) to grant or de
 
 ## About RBAC Policies
 
-By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable.
+By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable. For more information, see [Default RBAC Policies](#default-rbac) below.
 
 You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels. Or, you can grant only certain users permission to promote releases to your production channels. 
 
 You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
+
+## Default RBAC Policies {#default-rbac}
+
+This section describes the default RBAC policies that are included for Vendor Portal teams, depending on the team's Replicated pricing plan.
+
+### Admin 
+
+The Admin policy grants read/write permissions to all resources on the team. 
+
+:::note
+This policy is automatically created for all plans.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Admin",
+    "resources": {
+      "allowed": [
+        "**/*"
+      ],
+      "denied": []
+    }
+  }
+}
+```
+
+### Read Only
+
+The Read Only policy grants read permission to all resources on the team except for API tokens.
+
+:::note
+This policy is automatically created for all plans.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Read Only",
+    "resources": {
+      "allowed": [
+        "**/list",
+        "**/read"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
+
+### Support Engineer
+
+The Support Engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
+
+:::note
+This policy is automatically created for teams with the Enterprise plan only.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Support Engineer",
+    "resources": {
+      "allowed": [
+        "**/read",
+        "**/list",
+        "kots/app/*/license/**",
+        "team/support-issues/read",
+        "team/support-issues/write"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
+
+### Sales
+
+The Sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
+
+:::note
+This policy is automatically created for teams with the Enterprise plan only.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Sales",
+    "resources": {
+      "allowed": [
+        "kots/app/*/read",
+        "kots/app/*/channel/*/read",
+        "kots/app/*/licensefields/read",
+        "kots/app/*/license/**"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
 
 ## Configure a Custom RBAC Policy
 
@@ -76,7 +182,7 @@ Resource names are hierarchical, and support wildcards and globs. For a complete
 
 When a policy document has conflicting rules, the behavior is predictable. For more information about conflicting rules, see [Rule Order](#rule-order).
 
-### Policy Definition Example
+### Example: View Specific Application and Channel
 
   The following policy definition example limits any user with this role to viewing a specific application and a specific channel for that application:
 
@@ -145,81 +251,6 @@ In the following example, a policy grants access to viewing all customers, but n
         "kots/app/*/license/*/list",
         "kots/app/*/read",
         "kots/app/*/list"
-      ],
-      "denied": [
-        "**/*"
-      ]
-    }
-  }
-}
-```
-
-## Role-based Policy Examples
-
-This section includes examples of RBAC policies designed for specific roles at a company.
-
-### Admin 
-
-The Admin policy grants read/write permissions to all resources on the team. 
-
-:::note
-This policy is automatically created for all plans.
-:::
-
-### Read Only
-
-The Read Only policy grants read permission to all resources on the team except for API tokens.
-
-:::note
-This policy is automatically created for all plans.
-:::
-
-### Support Engineer
-
-The support engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
-
-:::note
-If you have an Enterprise plan, you will already have this policy created.
-:::
-
-```json
-{
-  "v1": {
-    "name": "Support Engineer",
-    "resources": {
-      "allowed": [
-        "**/read",
-        "**/list",
-        "kots/app/*/license/**",
-        "team/support-issues/read",
-        "team/support-issues/write"
-      ],
-      "denied": [
-        "**/*"
-      ]
-    }
-  }
-}
-```
-
-### Sales
-
-The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
-
-:::note
-If you have an Enterprise plan, you will already have this policy created.
-:::
-
-```json
-{
-  "v1": {
-    "name": "Sales",
-    "resources": {
-      "allowed": [
-        "kots/app/*/read",
-        "kots/app/*/channel/*/read",
-        "kots/app/*/licensefields/read",
-        "kots/app/*/license/**"
       ],
       "denied": [
         "**/*"
