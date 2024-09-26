@@ -17,6 +17,13 @@ Released on September 26, 2024
 ### New Features {#new-features-v2024-09-26-2}
 * Compatibility Matrix: Alpha support for creating clusters of ubuntu servers (20.04).
 
+## v2024.09.25-2
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-2}
+* Adds ability to remove a node group in the Compatibility Matrix Create Cluster page and modal.
+
 ## v2024.09.25-1
 
 Released on September 25, 2024
