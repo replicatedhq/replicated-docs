@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on September 26, 2024
 
 ### New Features {#new-features-v2024-09-26-2}
-* CMX: Alpha support for creating clusters of ubuntu servers (20.04).
+* Compatibility Matrix: Alpha support for creating clusters of ubuntu servers (20.04).
 
 ## v2024.09.25-1
 
