@@ -10,6 +10,32 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.14.2
+
+Released on September 26, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.2+k8s-1.29</td>
+    <td id="center">1.14.2+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-14-2}
+
+* Preflight checks for the Admin Console and local artifact mirror ports now take into consideration ports specified by the user with the `--admin-console-port` and `--local-artifact-mirror-port` flags.
+* Improves the display of preflight failures so they're more readable.
+
 ## 1.14.1
 
 Released on September 26, 2024
