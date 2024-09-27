@@ -19,13 +19,13 @@ The TXT records can be removed after the verification is complete.
 
 You can configure custom domains for the following services, so that customer-facing URLs reflect your company's brand:
 
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`.
+- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`. We suggest using a CNAME such as `registry.{your app name}.com`. 
 
-- **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`.
+- **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`. We suggest using a CNAME such as `proxy.{your app name}.com`. 
 
-- **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
+- **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`. We suggest using a CNAME such as `updates.{your app name}.com`. 
 
-- **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`.
+- **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. We suggest using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
 ## Limitations
 
