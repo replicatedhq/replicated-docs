@@ -17,6 +17,13 @@ Released on September 27, 2024
 ### Bug Fixes {#bug-fixes-v2024-09-27-1}
 * Fixes a bug in Customer Portal that would result in "Unauthorized"  message when downloading Embedded Cluster installer.
 
+## v2024.09.26-4
+
+Released on September 26, 2024
+
+### Improvements {#improvements-v2024-09-26-4}
+* Improves styles in order to make it more obvious that license ID is required when creating a cluster using Embedded Cluster on the Compatibility Matrix Create Cluster page and modal.
+
 ## v2024.09.26-2
 
 Released on September 26, 2024
