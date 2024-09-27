@@ -10,6 +10,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.27-4
+
+Released on September 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-27-4}
+* Fixes a bug where you could not disabled the Embedded Cluster license entitlement once it was enabled.
+* Fixes a bug that would show an error when estimating the cost of a Compatibility Matrix cluster, even when the request was successful.
+
 ## v2024.09.27-1
 
 Released on September 27, 2024
