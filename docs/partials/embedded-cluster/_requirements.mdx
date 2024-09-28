@@ -9,3 +9,29 @@
   * The filesystem at `/tmp` has 5Gi or more of total space
 * (Online installations only) Access to replicated.app and proxy.replicated.com or your custom domain for each
 * Embedded Cluster is based on k0s, so all k0s system requirements and external runtime dependencies apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) and [External runtime dependencies](https://docs.k0sproject.io/stable/external-runtime-deps/) in the k0s documentation.
+* Additional directories and files created by the Embedded Cluster include:
+  * /etc/cni
+  * /etc/k0s
+  * /opt/cni
+  * /opt/containerd
+  * /run/calico
+  * /run/containerd
+  * /run/k0s
+  * /sys/fs/cgroup/kubepods
+  * /sys/fs/cgroup/system.slice/containerd.service
+  * /sys/fs/cgroup/system.slice/containerd.service
+  * /sys/fs/cgroup/system.slice/k0scontroller.service
+  * /sys/fs/cgroup/system.slice/k0scontroller.service
+  * /tmp
+  * /usr/libexec/k0s
+  * /var/lib/calico
+  * /var/lib/cni
+  * /var/lib/containers
+  * /var/lib/embedded-cluster
+  * /var/lib/k0s
+  * /var/lib/kubelet
+  * /var/log/calico
+  * /var/log/containers
+  * /var/log/pods
+  * /var/openebs
+  * /usr/local/bin/k0s
