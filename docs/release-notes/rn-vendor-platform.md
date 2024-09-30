@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.30-2
+
+Released on September 30, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-30-2}
+* Fixes a bug that could cause release notes to not be shown on the [Channel History](/vendor/releases-about#properties) page.
+
 ## v2024.09.27-4
 
 Released on September 27, 2024
