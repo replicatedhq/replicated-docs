@@ -51,7 +51,7 @@ Embedded Cluster has the following limitations:
 
 * **No automated migration from kURL**: There is no automated migration from an existing kURL instance to Embedded Cluster. For a manual migration procedure, reach out to Alex Parker at alexp@replicated.com.
 
-* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
+* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Add Nodes (Beta)](#add-nodes) and [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
@@ -121,7 +121,7 @@ This section provides an overview of installing applications with Embedded Clust
 
 ### Installation Options
 
-Embedded Cluster supports installations in online (internet-connected) environments and has alpha support for installing in air gap environments with no outbound internet access.
+Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
 
 For online installations, Embedded Cluster also supports installing behind a proxy server.
 
@@ -264,7 +264,7 @@ You can then use the support bundle for troubleshooting or provide it to Replica
 
 The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
 
-### Add Nodes (Alpha) {#add-nodes}
+### Add Nodes (Beta) {#add-nodes}
 
 You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
