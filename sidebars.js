@@ -89,20 +89,6 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'KOTS Tutorial (UI)',
-          items: [
-            'vendor/tutorial-ui-setup',
-            'vendor/tutorial-ui-create-app',
-            'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer',
-            'vendor/tutorial-ui-install-app-manager',
-            'vendor/tutorial-ui-deploy-app',
-            'vendor/tutorial-ui-create-new-version',
-            'vendor/tutorial-ui-update-app',
-          ],
-        },
-        {
-          type: 'category',
           label: 'KOTS Tutorial (CLI)',
           items: [
             'vendor/tutorial-cli-setup',
