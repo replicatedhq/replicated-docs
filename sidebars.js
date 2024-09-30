@@ -63,7 +63,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
+          label: 'Install a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',
@@ -77,7 +77,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Deploy a Helm Chart on a VM with Embedded Cluster',
+          label: 'Install a Helm Chart on a VM with Embedded Cluster',
           items: [
             'vendor/tutorial-embedded-cluster-setup',
             'vendor/tutorial-embedded-cluster-create-app',
@@ -89,7 +89,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'KOTS Tutorial (CLI)',
+          label: 'Install with KOTS in an Existing Cluster',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',

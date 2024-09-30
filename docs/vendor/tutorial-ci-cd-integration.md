@@ -8,7 +8,7 @@ For a similar workflow that uses GitHub Actions, see [Replicated Kubernetes Star
 
 ## Environment Variables
 
-This section will assume you already have the App slug and API token from the [CLI Tutorial](tutorial-cli-setup).
+This section will assume you already have the App slug and API token from the [Install with KOTS in an Existing Cluster](tutorial-cli-setup) tutorial.
 
 - Configure the following 2 environment variables in your CI/CD configuration.
 
