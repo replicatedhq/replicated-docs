@@ -1,12 +1,12 @@
-# Redactor (KOTS-Only)
+# Redactor
 
-This topic describes the Redactor custom resource. The information in this topic applies to Replicated KOTS installations only.
+This topic describes the Redactor custom resource.
 
 ## Overview
 
 Preflight checks and support bundles include built-in redactors. These built-in redactors use regular expressions to identify and hide potentially sensitive data before it is analyzed. For example, the built-in redactors hide values that match common patterns for data sources, passwords, and user IDs that can be found in standard database connection strings. They also hide environment variables with names that begin with words like token, password, or user. To view the complete list of regex patterns for the built-in redactors, see [`redact.go`](https://github.com/replicatedhq/troubleshoot/blob/main/pkg/redact/redact.go#L204) in the open-source Troubleshoot GitHub repo.
 
-For KOTS installations, you can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+For Replicated KOTS installations, you can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Defining Custom Redactors
 
