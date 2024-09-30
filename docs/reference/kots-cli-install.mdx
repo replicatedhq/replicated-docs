@@ -30,6 +30,16 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td>Description</td>
     </tr>
     <tr>
+        <td><code>--additional-annotations</code></td>
+        <td>bool</td>
+        <td>Additional annotations to add to kotsadm pods.</td>
+    </tr>
+    <tr>
+        <td><code>--additional-labels</code></td>
+        <td>bool</td>
+        <td>Additional labels to add to kotsadm pods.</td>
+    </tr>
+    <tr>
         <td><code>--airgap</code></td>
         <td>bool</td>
         <td>Set to <code>true</code> to run install in air gapped mode. Setting <code>--airgap-bundle</code> implies <code>--airgap=true</code>. <strong>Default:</strong> <code>false</code>. For more information, see <a href="/enterprise/installing-existing-cluster-airgapped">Air Gap Installation in Existing Clusters</a>.</td>
@@ -106,6 +116,11 @@ This command supports all [global flags](kots-cli-global-flags) and also:
         <td><code>--port</code></td>
         <td>string</td>
         <td>Override the local port to access the Admin Console. <strong>Default:</strong> 8800</td>
+    </tr>
+    <tr>
+        <td><code>--private-ca-configmap</code></td>
+        <td>string</td>
+        <td>Name of a ConfigMap containing private CAs to add to the kotsadm deployment.</td>
     </tr>
     <tr>
         <td><code>--preflights-wait-duration</code></td>

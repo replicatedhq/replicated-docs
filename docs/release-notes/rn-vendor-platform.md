@@ -10,6 +10,59 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.09.27-4
+
+Released on September 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-27-4}
+* Fixes a bug where you could not disable the Embedded Cluster license entitlement once it was enabled.
+* Fixes a bug that would show an error when estimating the cost of a Compatibility Matrix cluster, even when the request was successful.
+
+## v2024.09.27-1
+
+Released on September 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-27-1}
+* Fixes a bug in Customer Portal that would result in "Unauthorized"  message when downloading Embedded Cluster installer.
+
+## v2024.09.26-4
+
+Released on September 26, 2024
+
+### Improvements {#improvements-v2024-09-26-4}
+* Improves styles in order to make it more obvious that license ID is required when creating a cluster using Embedded Cluster on the Compatibility Matrix Create Cluster page and modal.
+
+## v2024.09.26-2
+
+Released on September 26, 2024
+
+### New Features {#new-features-v2024-09-26-2}
+* Compatibility Matrix: Alpha support for creating clusters of ubuntu servers (20.04).
+
+## v2024.09.25-2
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-2}
+* Adds ability to remove a node group in the Compatibility Matrix Create Cluster page and modal.
+
+## v2024.09.25-1
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-1}
+* Adds persistent sessions in the Customer Portal.
+
+### Bug Fixes {#bug-fixes-v2024-09-25-1}
+* Fixes an issue that caused registry proxy authentication requests to be redirected to proxy.replicated.com instead of the custom hostname when one is configured.
+
+## v2024.09.18-3
+
+Released on September 18, 2024
+
+### New Features {#new-features-v2024-09-18-3}
+* Removes the "Helm-only" release option from the releases page.
+
 ## v2024.09.18-2
 
 Released on September 18, 2024
@@ -791,7 +844,7 @@ Released on March 7, 2024
 Released on March 7, 2024
 
 ### New Features {#new-features-v2024-03-07-0}
-* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ## v2024.03.06-3
 
@@ -812,7 +865,7 @@ Released on February 29, 2024
 Released on February 29, 2024
 
 ### New Features {#new-features-v2024-02-29-0}
-* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 
 ## v2024.02.27-1

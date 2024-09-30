@@ -5,13 +5,14 @@ import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import EmbeddedClusterStorageReqs from "../partials/embedded-cluster/_storage-reqs.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
+import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
 
-# Using Embedded Cluster (Beta)
+# Using Embedded Cluster
 
 This topic describes how to use the Replicated Embedded Cluster to configure, install, and manage your application in an embedded Kubernetes cluster.
 
 :::note
-Embedded cluster is in beta. If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
+If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
 :::
 
 ## Overview
@@ -40,13 +41,17 @@ As shown in the diagram above, the Embedded Cluster Config is included in the ap
 
 <EmbeddedClusterStorageReqs/>
 
+#### Port Requirements
+
+<EmbeddedClusterPortRequirements/>
+
 ### Limitations
 
 Embedded Cluster has the following limitations:
 
 * **No automated migration from kURL**: There is no automated migration from an existing kURL instance to Embedded Cluster. For a manual migration procedure, reach out to Alex Parker at alexp@replicated.com.
 
-* **Multi-node support is in alpha**: Support for multi-node embedded clusters is in alpha. Only single-node embedded clusters are in beta. For more information, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
+* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Add Nodes (Beta)](#add-nodes) and [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
@@ -78,7 +83,7 @@ Embedded Cluster has the following limitations:
 
 You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
 
-1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled (Beta)** license option. Save the customer.
+1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled** license option. Save the customer.
 
 1. Create a new release that includes your application. In that release, create an Embedded Cluster Config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
 
@@ -116,13 +121,13 @@ This section provides an overview of installing applications with Embedded Clust
 
 ### Installation Options
 
-Embedded Cluster supports installations in online (internet-connected) environments and has alpha support for installing in air gap environments with no outbound internet access.
+Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
 
 For online installations, Embedded Cluster also supports installing behind a proxy server.
 
 For more information about how to install with Embedded Cluster, see:
-* [Online Installation wtih Embedded Cluster (Beta)](/enterprise/installing-embedded)
-* [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap)
+* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
+* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
 
 ### Customer-Specific Installation Instructions
 
@@ -184,7 +189,7 @@ To serve Embedded Cluster installation assets with the Vendor API:
 
 <UpdateOverview/>
 
-For more information about updating, see [Performing Updates with Embedded Cluster (Beta)](/enterprise/updating-embedded).
+For more information about updating, see [Performing Updates with Embedded Cluster](/enterprise/updating-embedded).
 
 ## Access the Cluster
 
@@ -259,7 +264,7 @@ You can then use the support bundle for troubleshooting or provide it to Replica
 
 The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
 
-### Add Nodes (Alpha) {#add-nodes}
+### Add Nodes (Beta) {#add-nodes}
 
 You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
 
@@ -316,7 +321,7 @@ High availability is supported with Embedded cluster version 1.4.1 or later
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 

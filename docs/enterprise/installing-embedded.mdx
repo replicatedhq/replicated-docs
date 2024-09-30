@@ -1,8 +1,8 @@
 import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
-# Online Installation with Embedded Cluster (Beta)
+# Online Installation with Embedded Cluster
 
-This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Air Gap Installation with Embedded Cluster (Beta)](/enterprise/installing-embedded-air-gap).
+This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer. For information about air gap installations with Embedded Cluster, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Prerequisites
 
@@ -189,3 +189,21 @@ sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
 #### Limitation
 
 The `--pod-cidr` and `--service-cidr` flags are not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.
+
+## Change Admin Console and LAM Ports {#adm-lam-ports}
+
+By default, the Admin Console and Local Artifact Mirror (LAM) run on ports 30000 and 50000, respectively. If these ports are occupied, you can select different ports.
+
+To choose different ports for the Admin Console and LAM during installation with Embedded Cluster, use the `--admin-console-port` and `--local-artifact-mirror-port` flags with the Embedded Cluster `install` command.
+
+For example:
+
+```bash
+install --admin-console-port=20000 --local-artifact-mirror-port=40000
+```
+
+The Embedded Cluster host preflight checks verify the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).
+
+### Limitation
+
+It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).

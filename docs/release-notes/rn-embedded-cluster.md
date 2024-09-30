@@ -10,6 +10,101 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.14.2
+
+Released on September 26, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.2+k8s-1.29</td>
+    <td id="center">1.14.2+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-14-2}
+
+* Preflight checks for the Admin Console and local artifact mirror ports now take into consideration ports specified by the user with the `--admin-console-port` and `--local-artifact-mirror-port` flags.
+* Improves the display of preflight failures so they're more readable.
+
+## 1.14.1
+
+Released on September 26, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.1+k8s-1.29</td>
+    <td id="center">1.14.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-14-1}
+
+* Adds host preflight checks to ensure that the required ports are open and available. For more information, see [Port Requirements](/vendor/embedded-overview#port-requirements).
+
+### Improvements {#improvements-1-14-1}
+
+* Adds the `--network-interface` flag for the `join` command so a network interface can optionally be selected when joining nodes. If this flag is not provided, the first valid, non-local network interface is used.
+* The `reset` command now automatically reboots the machine, and the optional `--reboot` flag is no longer available. A reboot is required to reset iptables.
+
+### Bug Fixes {#bug-fixes-1-14-1}
+
+* Fixes an issue where nodes could fail to join with the error "unable to get network interface for address."
+
+## 1.14.0
+
+Released on September 24, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.0+k8s-1.29</td>
+    <td id="center">1.14.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-14-0}
+
+* Introduces the `--admin-console-port` and `--local-artifact-mirror-port` flags to the `install` command so the ports for the Admin Console (default 30000) and the local artifact mirror (default 50000) can be chosen.
+* Introduces the `--local-artifact-mirror-port` flag to the `restore` command so the port used for the local artifact mirror can be selected during the restore. If no port is provided, the port in use when the backup was taken will be used.
+* Introduces the `--network-interface` flag to the `install` command so a network interface can be selected. If a network interface is not provided, the first valid, non-local network interface is used.
+
+### Improvements {#improvements-1-14-0}
+
+* When a proxy server is configured, the default network interface's subnet will automatically be added to the no-proxy list if the node's IP address isn't already included.
+* When joining nodes to an Embedded Cluster, the correct network interface is chosen based on the node IP address in the join command.
+* The static IP addresses for replicated.app and proxy.replicated.com are now included in the failure messages for the preflight checks that verify connectivity to those endpoints, making it easier for end users to allowlist those endpoints.
+* If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca` flag for the `install` command.
+
+
 ## 1.13.1
 
 Released on September 20, 2024
@@ -31,7 +126,7 @@ Released on September 20, 2024
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-1-13-0}
+### Bug Fixes {#bug-fixes-1-13-1}
 
 * Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
 
@@ -62,7 +157,7 @@ Released on September 17, 2024
 
 ### Bug Fixes {#bug-fixes-1-13-0}
 
-* Fixes an issue where user-provided proxy configuration was removed during upgrades. This fix only applies to Embedded Clusters installed with this version or later. Users on older versions that upgrade to this version will still lose their proxy configuration.
+* Fixes an issue where user-provided proxy configuration was removed during upgrades.
 * Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
 
 ## 1.12.1
