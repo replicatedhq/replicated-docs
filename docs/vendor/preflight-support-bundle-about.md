@@ -59,31 +59,31 @@ Preflight checks let you define requirements for the cluster where your applicat
 
 Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
-### Defining Preflights
+### About Host Preflights {#host-preflights}
 
-To add preflight checks for your application, create a preflight YAML specification that defines the collectors and analyzers that you want to include.
+_Host preflight checks_ automatically run during [Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated kURL](/vendor/kurl-about) installations on a VM or bare metal server. The purpose of host preflight checks is to verify that the user's installation environment meets the requirements of the Embedded Cluster or kURL installer, such as checking the number of CPU cores in the system, available disk space, and memory usage. If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
 
-For information about how to add preflight checks to your application, including examples, see [Defining Preflight Checks](preflight-defining).
+Host preflight checks are separate from any application-specific preflight checks that are defined in the release, which run in the Admin Console before the application is deployed with KOTS. Both Embedded Cluster and kURL have default host preflight checks that are specific to the requirements of the given installer. For kURL installations, it is possible to customize the default host preflight checks.
 
-### (KOTS Only) Blocking Installation with Required Preflights
-
-For applications installed with KOTS, it is possible to block the deployment of a release if a preflight check fails. This is helpful when it is necessary to prevent an installation or upgrade from continuing unless a given requirement is met.
-
-You can add required preflight checks for your application by including `strict: true` for the target analyzer in the preflight specification. For more information, see [Block Installation with Required Preflights](preflight-defining#strict) in _Defining Preflight Checks_.
-
-### (KOTS Only) Host Preflights for VM or Bare Metal Installations {#host-preflights}
-
-_Host preflight checks_ automatically run during [Replicated kURL](/vendor/kurl-about) or [Replicated Embedded Cluster](/vendor/embedded-overview) installations on a VM or bare metal server. The purpose of host preflight checks is to verify that the user's installation environment meets the requirements of the kURL or Embedded Cluster installer, such as checking the number of CPU cores in the system, available disk space, and memory usage. If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
-
-Host preflight checks are separate from any application-specific preflight checks that are defined in the release, which run in the Admin Console before the application is deployed with KOTS. Host preflight checks run automatically before kURL or Embedded Cluster provision the cluster in the environment. Both kURL and Embedded Cluster have default host preflight check specs that are specific to the requirements of the given installer. For kURL installations, it is possible to customize the default host preflight checks.
+For more information about the default Embedded Cluster host preflight checks, see [Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks) in _Using Embedded Cluster_.
 
 For more information about kURL host preflight checks, including information about how to customize the defaults, see [Customizing Host Preflight Checks for kURL](/vendor/preflight-host-preflights).
 
-For more information about the default Embedded Cluster host preflight checks, see [Host Preflight Checks](/vendor/embedded-overview#host-preflight-checks) in _Using Embedded Cluster (Beta)_.
+### Defining Preflights
+
+To add preflight checks for your application, create a Preflight YAML specification that defines the collectors and analyzers that you want to include.
+
+For information about how to add preflight checks to your application, including examples, see [Defining Preflight Checks](preflight-defining).
+
+### Blocking Installation with Required (Strict) Preflights
+
+For applications installed with KOTS, it is possible to block the deployment of a release if a preflight check fails. This is helpful when it is necessary to prevent an installation or upgrade from continuing unless a given requirement is met.
+
+You can add required preflight checks for an application by including `strict: true` for the target analyzer in the preflight specification. For more information, see [Block Installation with Required Preflights](preflight-defining#strict) in _Defining Preflight Checks_.
 
 ### Running Preflights
 
-This section describes how users can run preflight checks for KOTS and Helm CLI installations.
+This section describes how users can run preflight checks for KOTS and Helm installations.
 
 #### KOTS Installations
 
@@ -91,7 +91,7 @@ For installations with KOTS, preflight checks run automatically as part of the i
 
 Additionally, users can access preflight checks from the Admin Console after installation to view their results and optionally re-run the checks.
 
-The following shows an example of the results of preflight checks displayed in the KOTS Admin Console during installation:
+The following shows an example of the results of preflight checks displayed in the Admin Console during installation:
 
 ![Preflight results in Admin Console](/images/preflight-warning.png)
 
@@ -99,11 +99,11 @@ The following shows an example of the results of preflight checks displayed in t
 
 For more information about the KOTS installation process, see [About Installing an Application](/enterprise/installing-overview).
 
-#### Helm CLI Installations
+#### Helm Installations
 
-For installations of Helm-based applications with the Helm CLI, the preflight kubectl plugin is required to run preflight checks. The preflight plugin is a client-side utility that adds a single binary to the path. For more information, see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+For installations with Helm, the preflight kubectl plugin is required to run preflight checks. The preflight plugin is a client-side utility that adds a single binary to the path. For more information, see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
-Your customers can use the preflight plugin to optionally run preflight checks before they run `helm install`. The results of the preflight checks are then displayed through the CLI, as shown in the example below:
+Users can optionally run preflight checks before they run `helm install`. The results of the preflight checks are then displayed through the CLI, as shown in the example below:
 
 ![Save output dialog](/images/helm-preflight-save-output.png)
 
@@ -119,7 +119,7 @@ This section provides an overview of support bundles, including how support bund
 
 Support bundles collect and analyze troubleshooting data from customer environments, helping both users and support teams diagnose problems with application deployments.
 
-Support bundles can collect a variety of important troubleshooting data from customer environments, such as:
+Support bundles can collect a variety of important cluster-level data from customer environments, such as:
 * Pod logs
 * Node resources and status
 * The status of replicas in a Deployment
@@ -130,6 +130,14 @@ Support bundles can collect a variety of important troubleshooting data from cus
 Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response.
 
 Support bundles then use the data collected to provide insights to users on potential problems or suggested troubleshooting steps. The troubleshooting data collected and analyzed by support bundles not only helps users to self-resolve issues with their application deployment, but also helps reduce the amount of time required by support teams to resolve requests by ensuring they have access to all the information they need up front.
+
+### About Host Support Bundles
+
+For installations on VMs or bare metal servers with [Replicated Embedded Cluster](/vendor/embedded-overview) or [Replicated kURL](/vendor/kurl-about), it is possible to generate a support bundle that includes host-level information to help troubleshoot failures related to host configuration like DNS, networking, or storage problems.
+
+For Embedded Cluster installations, a default spec can be used to generate support bundles that include cluster- and host-level information. See [Generating Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
+
+For kURL installations, vendors can customize a host support bundle spec for their application. See [Generating Host Bundles for kURL](/vendor/support-host-support-bundles).
 
 ### Customizing Support Bundles
 

@@ -1,6 +1,6 @@
 # Using Custom Domains
 
-This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the download portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
@@ -113,7 +113,7 @@ To reuse a custom domain for another application:
 
 You can remove a custom domain at any time, but you should plan the transition so that you do not break any existing installations or documentation.
 
-Removing a custom domain for the Replicated registry, proxy service, or Replicated app service will break existing installations that use the custom domain. Existing installations need to be upgraded to a version that does not use the custom domain before it can be removed safely.
+Removing a custom domain for the Replicated registry, proxy registry, or Replicated app service will break existing installations that use the custom domain. Existing installations need to be upgraded to a version that does not use the custom domain before it can be removed safely.
 
 If you remove a custom domain for the download portal, it is no longer accessible using the custom URL. You will need to point customers to an updated URL.
 

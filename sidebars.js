@@ -25,6 +25,7 @@ const sidebars = {
       label: 'Release Notes',
       items: [
         'release-notes/rn-whats-new',
+        'release-notes/rn-embedded-cluster',
         'release-notes/rn-app-manager',
         'release-notes/rn-kubernetes-installer',
         'release-notes/rn-replicated-sdk',
@@ -62,7 +63,19 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
+          label: 'Install a Helm Chart on a VM with Embedded Cluster',
+          items: [
+            'vendor/tutorial-embedded-cluster-setup',
+            'vendor/tutorial-embedded-cluster-create-app',
+            'vendor/tutorial-embedded-cluster-package-chart',
+            'vendor/tutorial-embedded-cluster-create-release',
+            'vendor/tutorial-embedded-cluster-create-customer',
+            'vendor/tutorial-embedded-cluster-install',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Install a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',
@@ -76,33 +89,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Deploy a Helm Chart on a VM with Embedded Cluster (Beta)',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'KOTS Tutorial (UI)',
-          items: [
-            'vendor/tutorial-ui-setup',
-            'vendor/tutorial-ui-create-app',
-            'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer',
-            'vendor/tutorial-ui-install-app-manager',
-            'vendor/tutorial-ui-deploy-app',
-            'vendor/tutorial-ui-create-new-version',
-            'vendor/tutorial-ui-update-app',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'KOTS Tutorial (CLI)',
+          label: 'Install with KOTS in an Existing Cluster',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',
@@ -199,6 +186,10 @@ const sidebars = {
         'intro-kots',
         'vendor/kots-faq',
         'vendor/distributing-workflow',
+        {
+          type: 'category',
+          label: 'Packaging KOTS Releases',
+          items: [
             {
               type: 'category',
               label: 'Distributing Helm Charts with KOTS',
@@ -217,11 +208,10 @@ const sidebars = {
                 'vendor/embedded-kubernetes-overview',
                 {
                   type: 'category',
-                  label: 'Embedded Cluster (Beta)',
+                  label: 'Embedded Cluster',
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
-                    'enterprise/installing-embedded-air-gap',
                     'vendor/embedded-disaster-recovery',
                   ],
                 },
@@ -232,7 +222,6 @@ const sidebars = {
                     'vendor/kurl-about',
                     'vendor/packaging-embedded-kubernetes',
                     'vendor/packaging-installer-storage',
-                    'vendor/preflight-host-preflights',
                     'vendor/installer-history',
                     'vendor/packaging-using-tls-certs',
                   ],
@@ -339,10 +328,12 @@ const sidebars = {
                 'vendor/releases-configvalues',
               ],
             },
+          ],
+        },   
         // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
-          label: 'Installing and Managing Applications with KOTS',
+          label: 'Installing and Managing Applications',
           items: [
           {
             type: 'category',
@@ -355,6 +346,14 @@ const sidebars = {
                   'enterprise/installing-overview',
                   'enterprise/installing-general-requirements',
                   'enterprise/sbom-validating',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Installing with Embedded Cluster',
+                items: [
+                  'enterprise/installing-embedded',
+                  'enterprise/installing-embedded-air-gap',
                 ],
               },
               {
@@ -484,6 +483,7 @@ const sidebars = {
           'reference/template-functions-static-context',
         ],
       },
+      'reference/cron-expressions',
     ],
   },
   'vendor/install-with-helm',
@@ -536,7 +536,9 @@ const sidebars = {
         label: 'Preflight Checks',
         items: [
             'vendor/preflight-defining',
+            'vendor/preflight-examples',
             'vendor/preflight-running',
+            'vendor/preflight-host-preflights',
             {
             type: 'category',
             label: 'Tutorial: Add Preflight Checks to a Helm Chart',
@@ -557,8 +559,10 @@ const sidebars = {
         label: 'Support Bundles',
         items: [
           'vendor/support-bundle-customizing',
-          'vendor/support-host-support-bundles',
+          'vendor/support-bundle-examples',
           'vendor/support-bundle-generating',
+          'vendor/support-bundle-embedded',
+          'vendor/support-host-support-bundles',
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',

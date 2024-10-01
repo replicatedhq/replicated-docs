@@ -1,22 +1,28 @@
-# Configuring Host Support Bundles
+import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
 
-This topic describes how to configure host collectors and analyzers to help customers generate host support bundles to troubleshoot _embedded clusters_ created by Replicated kURL.
+# Generating Host Bundles for kURL
 
-## About Host Support Bundles
+This topic describes how to configure a host support bundle spec for Replicated kURL installations. For information about generating host support bundles for Replicated Embedded Cluster installations, see [Generating Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
-Host collectors and analyzers are configured in a manifest file that is used to generate host support bundles. Host support bundles collect information from hosts that is not available from in-cluster collectors. Host support bundles are available only for embedded clusters. These host support bundles gather information directly from the host they are run on and do not have Kubernetes as a dependency.
+## Overview
 
-You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
+Host support bundles can be used to collect information directly from the host where a kURL cluster is running, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
 
-This information is useful when you need to debug an embedded cluster that is offline, troubleshoot a kURL installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
+Host bundles for kURL are useful when:
+- The kURL cluster is offline
+- The kURL installer failed before the control plane was initialized
+- The Admin Console is not working
+- You want to debug host-specific performance and configuration problems even when the cluster is running
 
-You create the host support bundle manifest file separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](/enterprise/troubleshooting-an-app#generate-a-host-support-bundle).
+You can create a YAML spec to allow users to generate host support bundles for kURL installations. For information, see [Create a Host Support Bundle Spec](#create-a-host-support-bundle-spec) below.
 
-## Configure a Host Support Bundle Manifest File
+Replicated also provides a default support bundle spec to collect host-level information for installations with the Embedded Cluster installer. For more information, see [Generating Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
-Configure a SupportBundle custom resource to specify host collectors and analyzers to gather information from a host.
+## Create a Host Support Bundle Spec
 
-To configure a host support bundle manifest file:
+To allow users to generate host support bundles for kURL installations, create a host support bundle spec in a YAML manifest that is separate from your application release and then share the file with customers to run on their hosts. This spec is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
+
+To configure a host support bundle spec for kURL:
 
 1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`).
 
@@ -30,7 +36,7 @@ To configure a host support bundle manifest file:
 
     The following example shows host collectors and analyzers for the number of CPUs and the amount of memory.
 
-    ```
+    ```yaml
     apiVersion: troubleshoot.sh/v1beta2
     kind: SupportBundle
     metadata:
@@ -57,8 +63,13 @@ To configure a host support bundle manifest file:
               - pass:
                   message: The system has at least 8G of memory.
     ```
-1. Share the SupportBundle custom resource file with your customers to run on their hosts.
+
+1. Share the file with your customers to run on their hosts.
 
 :::important
 Do not store support bundles on public shares, as they may still contain information that could be used to infer private data about the installation, even if some values are redacted.
 :::
+
+## Generate a Host Bundle for kURL
+
+<GenerateBundleHost/>

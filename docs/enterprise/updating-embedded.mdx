@@ -4,17 +4,25 @@ import UpdateAirGapOverview from "../partials/embedded-cluster/_update-air-gap-o
 import DoNotDowngrade from "../partials/embedded-cluster/_warning-do-not-downgrade.mdx"
 import Overview from "../partials/embedded-cluster/_update-overview.mdx"
 
-# Performing Updates in Embedded Clusters (Beta)
+# Performing Updates in Embedded Clusters
 
 This topic describes how to perform updates for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
 
 :::note
-Embedded cluster is in beta. If you are instead looking for information about Replicated kURL, see [Performing Updates in kURL Clusters](updating-kurl).
+If you are instead looking for information about Replicated kURL, see [Performing Updates in kURL Clusters](updating-kurl).
 :::
 
 ## Overview
 
 <Overview/>
+
+The following diagram demonstrates how updates are performed with Embedded Cluster in online (internet-connected) environments: 
+
+![Embedded Cluster updates Kubernetes and an app in a customer environment](/images/embedded-cluster-update.png)
+
+[View a larger version of this image](/images/embedded-cluster-update.png)
+
+As shown in the diagram above, users check for available updates from the KOTS Admin Console. When deploying the new version, both the application and the cluster infrastructure are updated as needed.   
 
 ## Update in Online Clusters
 
@@ -60,11 +68,7 @@ To perform an update with Embedded Cluster:
    KOTS can experience downtime during an update, such as in single-node installations. If downtime occurs, refreshing the page results in a connection error. Users can refresh the page again after the update is complete to access the Admin Console.
    :::
 
-## Update in Air Gap Clusters (Alpha) 
-
-:::important
-Embedded Cluster installations in air gap environments in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
-:::
+## Update in Air Gap Clusters
 
 <DoNotDowngrade/>
 

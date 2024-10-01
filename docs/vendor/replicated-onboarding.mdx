@@ -63,7 +63,7 @@ Before you begin, complete the following prerequisites:
        ``` 
 
   :::note
-  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
+  If you do not intend to distribute a Helm application with Replicated, see [Install with KOTS in an Existing Cluster](tutorial-cli-setup) to follow an onboarding workflow that uses a sample application with Kubernetes manifests and demonstrates installing with Replicated KOTS.
   ::: 
 
 * You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
@@ -216,10 +216,10 @@ This section provides a checklist of key Replicated features to integrate with y
     <th width="30%">How to</th>
   </tr>
     <tr>
-    <td>Proxy service</td>
+    <td>Proxy registry</td>
     <td>
-      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy service allows you to pull your images so that you can test your deployment.</p>
-      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy service</p>
+      <p>Allow customer licenses to grant proxy access to your application's private images. Configuring the proxy registry allows you to pull your images so that you can test your deployment.</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy registry</p>
     </td>
     <td>
       <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>

@@ -63,6 +63,11 @@ const config = {
         '/js/activecampaign.js',
       async: true,
     },
+    {
+      src:
+        '/js/visitoranalytics.js',
+      async: true,
+    },
   ],
   
   themeConfig:
@@ -108,7 +113,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'vendor/embedded-overview',
-                label: 'Embedded Cluster (Beta)',
+                label: 'Embedded Cluster',
               },
               {
                 type: 'doc',
@@ -123,7 +128,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'vendor/private-images-about',
-                label: 'Replicated Proxy Service',
+                label: 'Replicated Proxy Registry',
               },
               {
                 type: 'doc',
@@ -145,12 +150,12 @@ const config = {
               {
                 type: 'doc',
                 docId: 'reference/kots-cli-getting-started',
-                label: 'kots CLI',
+                label: 'KOTS CLI',
               },
               {
                 type: 'doc',
                 docId: 'reference/replicated-cli-installing',
-                label: 'replicated CLI',
+                label: 'Replicated CLI',
               },
               {
                 type: 'doc',

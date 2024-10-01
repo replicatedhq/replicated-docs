@@ -97,6 +97,10 @@ replicated:
     value: ENV_VAR_VALUE
 ```
 
+:::note
+If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with the [kots install](/enterprise/installing-existing-cluster-automation) command, these variables will also be set automatically in the Replicated SDK.
+:::
+
 **Example**:
 
 ```yaml
@@ -109,6 +113,26 @@ replicated:
   - name: MY_ENV_VAR_2
     value: my-value-2  
 ```
+
+## Custom Certificate Authority
+
+When installing the Replicated SDK behind a proxy server that terminates TLS and injects a custom certificate, you must provide the CA to the SDK. This can be done by storing the CA in a ConfigMap prior to installation and setting `privateCAConfigmap` key to the name of the ConfigMap.
+
+To store the CA in a ConfigMap:
+
+1. Create a ConfigMap with the name of `private-ca` and the CA as the data value:
+   ```bash
+   kubectl create configmap -n <NAMESPACE> private-ca --from-file=ca.crt=./ca.crt
+   ```
+1. Add the name of the config map to the values file:
+   ```yaml
+   replicated:
+     privateCAConfigmap: private-ca
+   ```
+
+:::note
+If the `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in the Replicated SDK automatically.
+:::
 
 ## Add Tolerations
 

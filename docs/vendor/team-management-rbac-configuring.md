@@ -6,11 +6,117 @@ This topic describes how to use role-based access policies (RBAC) to grant or de
 
 ## About RBAC Policies
 
-By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable.
+By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable. For more information, see [Default RBAC Policies](#default-rbac) below.
 
-You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
+You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels. Or, you can grant only certain users permission to promote releases to your production channels. 
 
 You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
+
+## Default RBAC Policies {#default-rbac}
+
+This section describes the default RBAC policies that are included for Vendor Portal teams, depending on the team's Replicated pricing plan.
+
+### Admin 
+
+The Admin policy grants read/write permissions to all resources on the team. 
+
+:::note
+This policy is automatically created for all plans.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Admin",
+    "resources": {
+      "allowed": [
+        "**/*"
+      ],
+      "denied": []
+    }
+  }
+}
+```
+
+### Read Only
+
+The Read Only policy grants read permission to all resources on the team except for API tokens.
+
+:::note
+This policy is automatically created for all plans.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Read Only",
+    "resources": {
+      "allowed": [
+        "**/list",
+        "**/read"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
+
+### Support Engineer
+
+The Support Engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
+
+:::note
+This policy is automatically created for teams with the Enterprise plan only.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Support Engineer",
+    "resources": {
+      "allowed": [
+        "**/read",
+        "**/list",
+        "kots/app/*/license/**",
+        "team/support-issues/read",
+        "team/support-issues/write"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
+
+### Sales
+
+The Sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
+
+:::note
+This policy is automatically created for teams with the Enterprise plan only.
+:::
+
+```json
+{
+  "v1": {
+    "name": "Sales",
+    "resources": {
+      "allowed": [
+        "kots/app/*/read",
+        "kots/app/*/channel/*/read",
+        "kots/app/*/licensefields/read",
+        "kots/app/*/license/**"
+      ],
+      "denied": [
+        "**/*"
+      ]
+    }
+  }
+}
+```
 
 ## Configure a Custom RBAC Policy
 
@@ -31,8 +137,8 @@ To configure a custom RBAC policy:
 
     ![Create RBAC Policy](/images/policy-create.png) 
 
-    - For more information and examples of policy definition, see [Policy Definition](#policy-definition) and [Role-based Policy Examples](#role-based-policy-examples).
-    - For more information and examples of rule order, see [Rule Order](#rule-order).
+    - For more information, see [Policy Definition](#policy-definition).
+    - For more information about and examples of rule order, see [Rule Order](#rule-order).
     - For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
 1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
@@ -76,7 +182,7 @@ Resource names are hierarchical, and support wildcards and globs. For a complete
 
 When a policy document has conflicting rules, the behavior is predictable. For more information about conflicting rules, see [Rule Order](#rule-order).
 
-### Policy Definition Example
+### Example: View Specific Application and Channel
 
   The following policy definition example limits any user with this role to viewing a specific application and a specific channel for that application:
 
@@ -111,7 +217,7 @@ If `denied` is left empty, it is implied as a `**/*` rule, unless `**/*` rule is
 ### Defining Precedence Using Rule Specificity
 The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of asterisks (`**` and `*`) in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
 
-### Rule Order Examples
+### Example: No Access To Stable Channel
 
 In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the Vendor Portal **Channels** page and click the **Settings** icon for the target channel.
 
@@ -131,6 +237,8 @@ In the following example, a policy grants access to promote releases to any chan
 }
 ```
 
+### Example: View Customers Only
+
 In the following example, a policy grants access to viewing all customers, but not to creating releases, promoting releases, or creating new customers.
 
 ```json
@@ -143,55 +251,6 @@ In the following example, a policy grants access to viewing all customers, but n
         "kots/app/*/license/*/list",
         "kots/app/*/read",
         "kots/app/*/list"
-      ],
-      "denied": [
-        "**/*"
-      ]
-    }
-  }
-}
-```
-
-## Role-based Policy Examples
-
-### Support Engineer
-
-The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. If you have an Enterprise plan, you will already have this policy created.
-
-```json
-{
-  "v1": {
-    "name": "Support Engineer",
-    "resources": {
-      "allowed": [
-        "**/read",
-        "**/list",
-        "kots/app/*/license/**",
-        "team/support-issues/read",
-        "team/support-issues/write"
-      ],
-      "denied": [
-        "**/*"
-      ]
-    }
-  }
-}
-```
-
-### Sales
-
-The sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted. If you have an Enterprise plan, you will already have this policy created.
-
-```json
-{
-  "v1": {
-    "name": "Sales",
-    "resources": {
-      "allowed": [
-        "kots/app/*/read",
-        "kots/app/*/channel/*/read",
-        "kots/app/*/licensefields/read",
-        "kots/app/*/license/**"
       ],
       "denied": [
         "**/*"

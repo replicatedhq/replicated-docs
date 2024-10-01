@@ -6,7 +6,50 @@ pagination_prev: null
 
 # kURL Release Notes
 
+This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## v2024.09.26-0
+
+Released on September 26, 2024
+
+### New Features {#new-features-v2024-09-26-0}
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.57.2.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.76.1-62.6.0.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.1 1.30.5 1.29.9 1.28.14 1.27.16.
+
+### Bug Fixes {#bug-fixes-v2024-09-26-0}
+* Fixes master CIS benchmark checks 1.1.13 and 1.1.14 for /etc/kubernetes/super-admin.conf file permissions.
+
+## v2024.09.06-0
+
+Released on September 6, 2024
+
+### Improvements {#improvements-v2024-09-06-0}
+* Improves preflight checks for Amazon Linux 2023 and Ubuntu 24.04.
+
+## v2024.09.03-0
+
+Released on September 3, 2024
+
+### New Features {#new-features-v2024-09-03-0}
+* Adds support for Amazon Linux 2023 and Ubuntu 24.04.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.76.0-62.3.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.6.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-26T15-33-07Z.
+
+## v2024.08.26-0
+
+Released on August 26, 2024
+
+### New Features {#new-features-v2024-08-26-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.16, 1.28.13, 1.29.8, 1.30.4, and 1.31.0.
+* Adds support for CentOS Stream 9.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-08-17T01-24-54Z.
+
+### Bug Fixes {#bug-fixes-v2024-08-26-0}
+* Fixes an issue where [Flannel](https://kurl.sh/docs/add-ons/flannel) versions older than 0.24.2 failed to install on instances with VMware NICs.
 
 ## v2024.08.12-0
 
@@ -44,7 +87,7 @@ Released on July 2, 2024
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.4.
 * Remove `/var/lib/containerd` and `/var/lib/docker` as part of `tasks.sh reset`.
 
-## Bug Fixes {#bug-fixes-v2024-07-02-0}
+### Bug Fixes {#bug-fixes-v2024-07-02-0}
 * Fixes cluster subnets being changed on upgrade in some instances.
 
 ## v2024.06.12-0

@@ -38,10 +38,6 @@ We are going to use the default NGINX deployment to create our application and t
 
 In this section, we cover at a high level the steps to create a new application and install it on a VM.
 
-For more detailed information about how to create and install an application, follow one of the following getting started tutorials:
-* [UI Tutorial](tutorial-ui-setup)
-* [CLI Tutorial](tutorial-cli-setup)
-
 To create our sample application follow these steps:
 
 * Create a new application in the Replicated [vendor portal](https://vendor.replicated.com) and call it 'MySampleECRApp'.
@@ -235,7 +231,9 @@ We will need the AWS Access Key ID and AWS Secret Key in the next section as the
 
 First, we must link Replicated with the registry. To do this, click on **Add External Registry** from the *Images* tab.
 
-![vendor-web-new-registry](/images/guides/kots/priv-reg-ecr-link-new.png)
+<img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
+
+[View a larger version of this image](/images/add-external-registry.png)
 
 The values for the fields are:
 

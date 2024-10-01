@@ -36,7 +36,7 @@ Additionally, for applications packaged as Helm charts, you can support Helm CLI
 
 [View a larger version of this image](/images/helm-kots-install-options.png)
 
-For a tutorial that demonstrates how to add a sample Helm chart to a release and then install the release using both KOTS and the Helm CLI, see [Deploy a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup).
+For a tutorial that demonstrates how to add a sample Helm chart to a release and then install the release using both KOTS and the Helm CLI, see [Install a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup).
 
 ## How KOTS Deploys Helm Charts
 
@@ -165,7 +165,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
    
   ![Midstream directory in the Admin Console UI](/images/native-helm-midstream.png)
 
-  As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from KOTS for all deployed resources, such as image pull secrets, image rewrites, and backup labels. For example, in the midstream Kustomization file, KOTS rewrites any private images to pull from the Replicated proxy service.
+  As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from KOTS for all deployed resources, such as image pull secrets, image rewrites, and backup labels. For example, in the midstream Kustomization file, KOTS rewrites any private images to pull from the Replicated proxy registry.
 
   The following shows an example of a midstream Kustomization file for the postgresql Helm chart:
 

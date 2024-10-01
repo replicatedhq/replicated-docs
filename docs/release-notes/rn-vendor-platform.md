@@ -6,7 +6,237 @@ pagination_prev: null
 
 # Vendor Platform Release Notes
 
+This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## v2024.10.01-0
+
+Released on October 1, 2024
+
+### New Features {#new-features-v2024-10-01-0}
+* Compatibility Matrix: Adds API support for VM create, versions, update ttl, ls.
+
+## v2024.09.30-2
+
+Released on September 30, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-30-2}
+* Fixes a bug that could cause release notes to not be shown on the [Channel History](/vendor/releases-about#properties) page.
+
+## v2024.09.27-4
+
+Released on September 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-27-4}
+* Fixes a bug where you could not disable the Embedded Cluster license entitlement once it was enabled.
+* Fixes a bug that would show an error when estimating the cost of a Compatibility Matrix cluster, even when the request was successful.
+
+## v2024.09.27-1
+
+Released on September 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-27-1}
+* Fixes a bug in Customer Portal that would result in "Unauthorized"  message when downloading Embedded Cluster installer.
+
+## v2024.09.26-4
+
+Released on September 26, 2024
+
+### Improvements {#improvements-v2024-09-26-4}
+* Improves styles in order to make it more obvious that license ID is required when creating a cluster using Embedded Cluster on the Compatibility Matrix Create Cluster page and modal.
+
+## v2024.09.26-2
+
+Released on September 26, 2024
+
+### New Features {#new-features-v2024-09-26-2}
+* Compatibility Matrix: Alpha support for creating clusters of ubuntu servers (20.04).
+
+## v2024.09.25-2
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-2}
+* Adds ability to remove a node group in the Compatibility Matrix Create Cluster page and modal.
+
+## v2024.09.25-1
+
+Released on September 25, 2024
+
+### New Features {#new-features-v2024-09-25-1}
+* Adds persistent sessions in the Customer Portal.
+
+### Bug Fixes {#bug-fixes-v2024-09-25-1}
+* Fixes an issue that caused registry proxy authentication requests to be redirected to proxy.replicated.com instead of the custom hostname when one is configured.
+
+## v2024.09.18-3
+
+Released on September 18, 2024
+
+### New Features {#new-features-v2024-09-18-3}
+* Removes the "Helm-only" release option from the releases page.
+
+## v2024.09.18-2
+
+Released on September 18, 2024
+
+### Improvements {#improvements-v2024-09-18-2}
+* Compatibility Matrix: Improved error handling when creating clusters for Embedded Cluster.
+
+## v2024.09.17-1
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-1}
+* Adds a PATCH method for updating channels.
+
+## v2024.09.17-0
+
+Released on September 17, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-17-0}
+* Fixes updating the custom domain override on channels in the Vendor Portal.
+
+## v2024.09.13-0
+
+Released on September 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-13-0}
+* The correct error status code is now returned when downloading an Embedded Cluster release fails.
+
+
+## v2024.09.12-3
+
+Released on September 12, 2024
+
+### New Features {#new-features-v2024-09-12-3}
+* Compatibility Matrix: Adds new instance shapes for OKE (Oracle) distribution.
+
+## v2024.09.13-1
+
+Released on September 13, 2024
+
+### New Features {#new-features-v2024-09-13-1}
+* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
+
+## v2024.09.11-2
+
+Released on September 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-09-11-2}
+* Compatibility Matrix: Fixes the "Update TTL" section of the Edit Cluster page and disallows setting a lower TTL than one that was previously configured.
+* Compatibility Matrix: Fixes an issue where you could not purchase more usage credits if you had a zero credit balance.
+
+### Improvements {#improvements-v2024-09-11-2}
+* Compatibility Matrix: Improves styles of the Edit Tags modal on the Cluster History page.
+
+## v2024.09.09-0
+
+Released on September 9, 2024
+
+### New Features {#new-features-v2024-09-09-0}
+* Adds support for setting custom passwords for the customer's Download Portal. See [Sharing Assets Through the Download Portal](/vendor/releases-share-download-portal).
+
+## v2024.09.05-3
+
+Released on September 5, 2024
+
+### New Features {#new-features-v2024-09-05-3}
+* Compatibility Matrix: Adds support for EKS EC2 instance types m5 and c5.
+
+## v2024.09.04-0
+
+Released on September 4, 2024
+
+### New Features {#new-features-v2024-09-04-0}
+* Comaptibility Matrix: Added capability to create ws and wss tunnels from the web UI.
+
+## v2024.08.30-0
+
+Released on August 30, 2024
+
+### New Features {#new-features-v2024-08-30-0}
+* After uploading a support bundle, if instance insights detects a Kubernetes distribution/version combination, the distribution and version will be preloaded when creating a cluster with Compatibility Matrix.
+
+## v2024.08.28-0
+
+Released on August 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-28-0}
+* Click docs link will open a new window to related documentation in the Compatbility Matrix versions available modal.
+
+## v2024.08.23-2
+
+Released on August 23, 2024
+
+### New Features {#new-features-v2024-08-23-2}
+* Adds new `channels` column to customers csv export containing basic channels json blob.
+* Adds new `customer_channels` object to customer instances csv exports containing basic channels json blob.
+* Adds `channels` object to customer instances json export.
+
+## v2024.08.20-5
+
+Released on August 20, 2024
+
+### New Features {#new-features-v2024-08-20-5}
+* Adds support for the [`dropdown`](/reference/custom-resource-config#dropdown) and [`radio`](/reference/custom-resource-config#radio) Config item types in the Config preview.
+
+## v2024.08.20-4
+
+Released on August 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-20-4}
+* Fixes a bug that caused Embedded Cluster installation artifacts to not be shown in the Download Portal.
+
+## v2024.08.19-1
+
+Released on August 19, 2024
+
+### New Features {#new-features-v2024-08-19-1}
+* Update Embedded Cluster install instructions to use custom domain when applicable.
+
+## v2024.08.15-2
+
+Released on August 15, 2024
+
+### New Features {#new-features-v2024-08-15-2}
+* Adds a PATCH method for `/v3/customer/:customerId` path that allows updating a customer without having to resend the entire customer object.
+
+## v2024.08.13-1
+
+Released on August 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-13-1}
+* The Proxy Registry now includes scope in the WWW-Authenticate auth challenge response header. This fixes support for the Registry Proxy as a Sonatype Nexus Docker proxy.
+
+## v2024.08.12-0
+
+Released on August 12, 2024
+
+### Improvements {#improvements-v2024-08-12-0}
+* Streamlines design of the rows on the **Customers** page hybrid view, as well as the customer info header on the **Manage Customer** and **Customer Reporting** pages.
+
+## v2024.08.09-5
+
+Released on August 9, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-09-5}
+* Fixes an issue that could cause anonymous image pulls from proxy.replicated.com to fail to resume when interrupted.
+
+## v2024.08.09-0
+
+Released on August 9, 2024
+
+### New Features {#new-features-v2024-08-09-0}
+* The Compatibility Matrix cluster usage endpoint now also includes channel_id, channel_sequence and version_label.
+
+## v2024.08.06-0
+
+Released on August 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-08-06-0}
+* Fixes a bug that caused /require-2fa page to render blank.
 
 ## v2024.08.01-0
 
@@ -108,7 +338,7 @@ Released on June 25, 2024
 Released on June 24, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-06-24-1}
-* Proxy Service no longer requires access to proxy-auth.replicated.com.
+* Replicated proxy registry no longer requires access to proxy-auth.replicated.com.
 
 ## v2024.06.24-0
 
@@ -628,7 +858,7 @@ Released on March 7, 2024
 Released on March 7, 2024
 
 ### New Features {#new-features-v2024-03-07-0}
-* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ## v2024.03.06-3
 
@@ -649,7 +879,7 @@ Released on February 29, 2024
 Released on February 29, 2024
 
 ### New Features {#new-features-v2024-02-29-0}
-* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 
 ## v2024.02.27-1

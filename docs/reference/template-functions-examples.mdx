@@ -39,9 +39,9 @@ spec:
   - name: example_group
     title: Example Config
     items:
-    - name: select_one_example
+    - name: radio_example
       title: Select One
-      type: select_one
+      type: radio
       items:
       - name: option_one
         title: Option One
@@ -52,7 +52,7 @@ spec:
       type: text
       # Display this item only when the customer enables the option_one config field *and*
       # has the feature-1 entitlement in their license
-      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "select_one_example" "option_one")}}  
+      when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "radio_example" "option_one")}}  
 ```
 
 This example uses the following KOTS template functions:
@@ -102,9 +102,9 @@ spec:
   - name: example_group
     title: Example Config
     items:
-    - name: select_one_example
+    - name: radio_example
       title: Select One Example
-      type: select_one
+      type: radio
       items:
       - name: option_one
         title: Option One
@@ -118,7 +118,7 @@ spec:
       title: Conditional Item
       type: text
       # Display this item only when *both* specified config options are enabled
-      when: repl{{ and (ConfigOptionEquals "select_one_example" "option_one") (ConfigOptionEquals "boolean_example" "1")}}
+      when: repl{{ and (ConfigOptionEquals "radio_example" "option_one") (ConfigOptionEquals "boolean_example" "1")}}
 ```
 
 As shown below, when both `Option One` and `Boolean Example` are selected, the conditional statement evaluates to true and the `Conditional Item` field is displayed:

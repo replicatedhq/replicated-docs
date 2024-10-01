@@ -1,14 +1,10 @@
-import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
 import IntroExisting from "../partials/install/_intro-existing.mdx"
-import KotsAbout from "../partials/install/_kots-about.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import DownloadKotsBundle from "../partials/install/_download-kotsadm-bundle.mdx"
 import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
-import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
-import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 import InstallKotsCliAirGap from "../partials/install/_install-kots-cli-airgap.mdx"
 import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
@@ -45,13 +41,9 @@ Complete the following prerequisites:
 
 * <DownloadKotsBundle/>
 
-## Install KOTS {#air-gap}
+## Install {#air-gap}
 
-This procedure describes how to install KOTS in your existing cluster using the `kotsadm.tar.gz` air gap bundle.
-
-<KotsAbout/>
-
-To install KOTS:
+To install KOTS and an application in an air gap existing cluster:
 
 1. <InstallKotsCliAirGap/>
 
@@ -75,10 +67,39 @@ To install KOTS:
 
 1. <InstallCommandPrompts/>
 
-1. <ContinueToInstall/>    
+1. Access the Admin Console on port 8800. If the port forward is active, go to [http://localhost:8800](http://localhost:8800) to access the Admin Console.
 
-## Install and Deploy the Application {#install-app}    
+    If you need to reopen the port forward to the Admin Console, run the following command:
 
-<AppInstallIntroAirGap/>
+    ```shell
+    kubectl kots admin-console -n NAMESPACE
+    ```
+    Replace `NAMESPACE` with the namespace where KOTS is installed.
 
-<InstallApp/>
+1. Log in with the password that you created during installation.
+
+1. Upload your license file.
+
+1. Upload the `.airgap` application air gap bundle.
+
+1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
+
+1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
+
+    :::note
+    Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+    :::
+    
+1. (Minimal RBAC Only) If you are installing with minimal role-based access control (RBAC), KOTS recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a kubectl CLI preflight command displays that lets you manually run the preflight checks. The Admin Console then automatically displays the results of the preflight checks. Click **Deploy**.
+
+    ![kubectl CLI preflight command](/images/kubectl-preflight-command.png)
+
+    [View a larger version of this image](/images/kubectl-preflight-command.png)
+
+The Admin Console dashboard opens.
+
+On the Admin Console dashboard, the application status changes from Missing to Unavailable while the Deployment is being created. When the installation is complete, the status changes to Ready. For example:
+
+![Admin Console dashboard](/images/kotsadm-dashboard-graph.png)
+
+[View a larger version of this image](/images/kotsadm-dashboard-graph.png)

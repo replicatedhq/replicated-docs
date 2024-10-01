@@ -1,0 +1,38 @@
+To generate a support bundle:
+
+1. SSH onto a controller node.
+
+1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
+
+     ```bash
+     sudo ./APP_SLUG shell
+     ```
+     Where `APP_SLUG` is the unique slug for the application.
+
+     The output looks similar to the following:
+
+    ```bash
+        __4___
+    _  \ \ \ \   Welcome to APP_SLUG debug shell.
+    <'\ /_/_/_/   This terminal is now configured to access your cluster.
+    ((____!___/) Type 'exit' (or CTRL+d) to exit.
+    \0\0\0\0\/  Happy hacking.
+    ~~~~~~~~~~~
+    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/k0s/pki/admin.conf"
+    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
+    root@alex-ec-2:/home/alex# source /etc/bash_completion
+    ```
+
+     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and the preflight and support-bundle plugins is added to PATH.
+
+     :::note
+     The shell command cannot be run on non-controller nodes.
+     :::
+
+2. Generate the support bundle using the default Embedded Cluster spec and the `--load-cluster-specs` flag:
+
+   ```bash
+   kubectl support-bundle  --load-cluster-specs /var/lib/embedded-cluster/support/host-support-bundle.yaml
+   ```
+   

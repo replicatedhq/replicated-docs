@@ -8,6 +8,8 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # KOTS Release Notes
 
+This topic contains release notes for the [Replicated KOTS](../intro-kots) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
 ## Kubernetes Compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
@@ -16,17 +18,139 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.117.3
+
+Released on September 23, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-117-3}
+* If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca-configmap` flag for the `kots install` command.
+
+## 1.117.2
+
+Released on September 20, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-117-2}
+* Improvements to support specifying ports in Embedded Cluster.
+
+## 1.117.1
+
+Released on September 17, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-117-1}
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK when running an automated install.
+
+## 1.117.0
+
+Released on September 13, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-117-0}
+* Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user.
+
+### Bug Fixes {#bug-fixes-1-117-0}
+* Fixes an issue where `dropdown` Config items did not respect the `when` property.
+
+## 1.116.1
+
+Released on September 12, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-116-1}
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+
+## 1.116.0
+
+Released on September 9, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-116-0}
+* Adds the ability to specify additional annotations (`--additional-annotations`) and labels (`--additional-labels`) that will be applied to kotsadm pods.
+
+## 1.115.2
+
+Released on September 5, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-115-2}
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console for Embedded Cluster. These were removed in a previous version.
+* When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
+* Improves messaging when the requested channel slug is not allowed by the provided license.
+
+### Bug Fixes {#bug-fixes-1-115-2}
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK.
+* Hides a banner on the **View Files** page in Embedded Cluster that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
+
+## 1.115.1
+
+Released on August 22, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Bug Fixes {#bug-fixes-1-115-1}
+* Fixes an issue where the default `nodeMetrics` analyzer did not run.
+
+## 1.115.0
+
+Released on August 20, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### Improvements {#improvements-1-115-0}
+* The **Nodes** page displays guidance and easier access to the node join command during initial install of Embedded Cluster.
+* Adds back the check for updates button on the **Version history** page in Embedded Cluster, so you can check for updates without refreshing the page.
+
+## 1.114.0
+
+Released on August 12, 2024
+
+Support for Kubernetes: 1.28, 1.29, and 1.30
+
+### New Features {#new-features-1-114-0}
+* Adds support for the `dropdown` config item type, which creates a dropdown on the config screen. See [dropdown](/reference/custom-resource-config#dropdown) in _Config_.
+* Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional. See [radio](/reference/custom-resource-config#radio) in _Config_.
+
 ## 1.113.0
+
+:::important
+In KOTS 1.113.0 and later, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
+:::
 
 Released on August 9, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
 ### New Features {#new-features-1-113-0}
-* Adds support for multi-channel licenses.
+* Adds support for multi-channel licenses. This allows each license to be assigned to more than one channel.
+
+   With the introduction of multi-channel licenses, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 
 ### Bug Fixes {#bug-fixes-1-113-0}
 * Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
+
+### Breaking Change {#breaking-changes-1-113-0}
+
+In KOTS 1.113.0 and later, the following error will occur during installation if the `kots install` command lacks a channel slug _and_ the license does not have access to the Stable channel: `"failed to verify and update license: requested channel not found in latest license"`. This can break existing automation and documentation that includes a `kots install` command without a channel slug.
+
+This error occurs because, when the channel slug is omitted from the `kots install` command (for example, `kots install app`), KOTS defaults to pulling metadata like the application icon and minimal RBAC configurations from the Stable channel. With the introduction of multi-channel licenses in KOTS 1.113.0, only licenses with access to a channel can pull metadata and download releases from that channel. This means that only licenses with access to the Stable channel can install without specifying the channel slug in the `kots install` command.
+
+Previously, any license regardless of its assigned channel could install by excluding the channel slug from the `kots install` command. This could cause mismatches in deployment settings such as icons and minimal RBAC configurations because KOTS would pull metadata from the Stable channel and then install the release from the channel where the license was assigned.
+
+**Solution:** To install a release from a channel other than Stable, specify the channel slug in the `kots install` command (for example, `kots install app/beta`). Also, ensure that the license has access to the specified channel. Refer to the Vendor Portal installation instructions or use the `replicated channel inspect CHANNEL_ID` command in the Replicated CLI for the correct commands.
+
+To avoid breaking changes, update automation that uses the `kots install` command accordingly. Also, update documentation as needed so that the documented installation commands include the channel slug.
+
+If you cannot update your KOTS installation command immediately, temporarily revert to KOTS 1.112.4 or earlier.
 
 ## 1.112.4
 
@@ -377,7 +501,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Adds the ability to update the config values for any app version using the admin console.
 
 ### Improvements {#improvements-1-108-0}
-* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster (Beta)](/vendor/embedded-overview).
+* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ### Bug Fixes {#bug-fixes-1-108-0}
 * Fixes an issue where the license upload page flashed briefly before being redirected to the login page.
@@ -805,7 +929,7 @@ Released on June 2, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Improvements {#improvements-1-100-1}
-* Updates the way custom domains for the Replicated registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
+* Updates the way custom domains for the Replicated registry and proxy registry are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
 * Updates the rqlite/rqlite image to 7.19.0 to resolve CVE-2023-1255 with medium severity.
 
 ## 1.100.0
