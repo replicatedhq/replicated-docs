@@ -56,47 +56,55 @@ For more information about the Replicated features depicted in this diagram, see
 
 ## Replicated Platform Features
 
-The following are some key Replicated Platform terms that are helpful to know before getting started:
+The following describes the key features of the Replicated Platform.
 
 ### Compatibility Matrix
 
-Compatibility Matrix quickly provisions clusters with support for various Kubernetes distributions and versions. You can use Compatibility Matrix to get kubectl access to running clusters within minutes or less. See [About Compatibility Matrix](/vendor/testing-about).
+Replicated Compatibility Matrix can be used to get kubectl access to running clusters within minutes or less. Compatibility Matrix supports various Kubernetes distributions and versions and can be interacted with through the Vendor Portal or the Replicated CLI.
+
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 ### Embedded Cluster
 
-Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application. Each version of Embedded Cluster includes a specific version of Replicated KOTS, which provides the Admin Console. See [Using Embedded Cluster](/vendor/embedded-overview).
+Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together as a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application.
+
+Additionally, each version of Embedded Cluster includes a specific version of the Replicated KOTS installer. KOTS is used to install the application and also provides the Admin Console.
+
+For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
 ### KOTS and the Admin Console
 
-KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments. See [Introduction to KOTS](intro-kots).
+KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments.
 
-The Admin Console is the user interface for installing and managing applications with KOTS.
+The Admin Console is the user interface for installing and managing applications with KOTS. KOTS also provides a CLI that can be used to programmatically install and manage applications.
+
+For more information, see [Introduction to KOTS](intro-kots).
 
 ### Proxy Registry
 
+The Replicated proxy registry grants proxy access to an application's images using the customer's unique license. This means that customers can get access application images during installation without the vendor needing to provide registry credentials.
+
+For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+
 ### Replicated SDK
 
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides access to telemetry and custom metrics on instances of your application running in customer environments as well as an in-cluster API. See [About the Replicated SDK](/vendor/replicated-sdk-overview).
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides an in-cluster API that can be used to communicate with the Vendor Portal. For example, the SDK API can return details about the customer's license or report telemetry on the application instance back to the Vendor Portal.
+
+For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 ### Vendor Portal
 
 The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
-* **Replicated CLI**: The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+The Vendor Portal can also be interacted with programmatically using the following developer tools:
 
-* **Vendor API v3**: The Vendor API is the API for the Vendor Portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files.
+* **Replicated CLI**: The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-* **Customer**: In the Vendor Portal, a customer represents a single licensed user of your software. See [About Customers](licenses-about).
-
-* **Release**: A release represents a single version of your application. Releases contain the files (Helm charts and YAML manifests) that will be distributed to your customers. For example, an Embedded Cluster release includes the application Helm chart, the Embedded Cluster Config, and a KOTS manifest that describes the Helm chart. See [About Channels and Releases](releases-about).
-
-* **Channel**: Each release is promoted to one or more channels, which are used to control which customers can access the release. For example, vendors might keep separate channels for internal-only, experimental, beta, and generally available (GA) releases. Customers and internal users can access the releases promoted to the channel where they are assigned. See [About Channels and Releases](releases-about).
-
-* **Application**: Within a Vendor Portal team, an application is the top-level container that groups a set of customers, releases, and channels. It is common for teams to create multiple different applications for testing purposes.
+* **Vendor API v3**: The Vendor API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files. For more information, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 ## About the Commercial Software Distribution Lifecycle {#life-cycle}
 
-Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution lifecycle, as shown below:
+Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution lifecycle shown below:
 
 ![software distribution lifecycle wheel](/images/software-dev-lifecycle.png)
 
