@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 1, 2024
 
 ### New Features {#new-features-v2024-10-01-0}
-* CMX: API support for VM create, versions, update ttl, ls.
+* Compatibility Matrix: Adds API support for VM create, versions, update ttl, ls.
 
 ## v2024.09.30-2
 
