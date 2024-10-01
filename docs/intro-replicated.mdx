@@ -11,30 +11,29 @@ import SDKOverview from "/docs/partials/replicated-sdk/_overview.mdx"
 
 # Introduction to Replicated
 
-This topic provides an introduction to working with the Replicated Platform, including key features, supported application installation options, and interfaces.
-
-This topic provides an overview of distributing applications with the Replicated Platform. It includes information about the Replicated Platform features used to distribute applications, as well as the options for packaging applications.
+This topic provides an introduction to the Replicated Platform, including a platform overview and a list of key features. It also describes the Commercial Software Distribution Lifecycle and how Replicated features can be used in each phase of the lifecycle.
 
 ## About the Replicated Platform
 
 <Replicated/>
 
-The following diagram demonstrates distributing an application with the Replicated Platform and then installing the application in a customer environment:
+The following diagram demonstrates the process of using the Replicated Platform to distribute an application, install the application in a customer environment, and support the application after installation:
 
 ![replicated platform features workflow](/images/replicated-platform.png)
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-As shown in the diagram above:
-* The Replicated SDK can be distributed alongside an application to get access to an in-cluster API to more easily integrate key features.
-* Replicated Compatibility Matrix can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
-* After testing, application releases can be promoted to a channel in the Replicated Vendor Portal to be shared with customers or internal teams.
-* Customers can be assigned to channels in order to control which application releases they are able to access and install.
-* Customers' unique licenses grant proxy access to private application images through the Replicated proxy registry.
-* Before installation, customers can run preflight checks to verify that their environment meets installation requirements.
-* Customers can install using any method, including Helm or Replicated Embedded Cluster.
-* Instance data is automatically sent to the Vendor Portal by the Replicated SDK. If the application was installed using KOTS, then KOTS also sends instance data.
-* If any issues occur during installation or at runtime, customers can generate and send a support bundle. Support bundles can be uploaded in the Vendor Portal for analysis.
+The diagram above first shows an application that is packaged with the Replicated SDK. When installed alongside an application, the Replicated SDK provides an in-cluster API that can be used to interact with the Replicated Vendor Portal. For example, the SDK API can return details about the customer's license or report telemetry on the application instance back to the Vendor Portal.
+
+When an application is ready to be shared with customers or internal teams, it can be added to a release in the Vendor Portal. The diagram above shows how this process of creating releases can be automated as part of continuous integration and continuous delivery (CI/CD) workflows. The CI/CD workflow depicted in the diagram shows Replicated Compatibility Matrix being used to automatically provision clusters where the application release is installed and tested.
+
+The CI/CD workflow in the diagram then pushes application images to the vendor's image registry and publishes a release in the Vendor Portal to the "Stable" channel. Customers and internal teams can be assigned to different channels in the Vendor Portal in order to control which application releases they are able to access and install.
+
+Next, the diagram shows how an enterprise customer named "Big Bank" uses the license they were issued to install the application release in their environment. Vendors can create and manage licenses in the Vendor Portal.
+
+The installation process depicted in the diagram shows the license being used to access application images through the Replicated proxy registry. It also shows preflight checks running before installation to verify that the environment meets the requirements for the application and the installer.
+
+Finally, the diagram shows how data from the installed application instance is automatically sent to the Vendor Portal by the Replicated SDK API and the KOTS Admin Console. Additionally, the diagram shows tooling from the open source Troubelshoot project being used to generate support bundles and send those bundles back to the Vendor Portal. Support bundles include logs and other important diagnostic data that can be used by the vendor's support team for the purpose of troubleshooting issues.
 
 For more information about the Replicated features depicted in this diagram, see:
 * [About the Replicated SDK](replicated-sdk-overview)
@@ -47,7 +46,7 @@ For more information about the Replicated features depicted in this diagram, see
 * [About Instance and Event Data](instance-insights-event-data)
 
 
-## Key Products and Features
+## Replicated Platform Features
 
 The following are some key Replicated Platform terms that are helpful to know before getting started:
 
