@@ -63,6 +63,18 @@ const sidebars = {
       items: [
         {
           type: 'category',
+          label: 'Install a Helm Chart on a VM with Embedded Cluster',
+          items: [
+            'vendor/tutorial-embedded-cluster-setup',
+            'vendor/tutorial-embedded-cluster-create-app',
+            'vendor/tutorial-embedded-cluster-package-chart',
+            'vendor/tutorial-embedded-cluster-create-release',
+            'vendor/tutorial-embedded-cluster-create-customer',
+            'vendor/tutorial-embedded-cluster-install',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Install a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
@@ -73,18 +85,6 @@ const sidebars = {
             'vendor/tutorial-kots-helm-create-customer',
             'vendor/tutorial-kots-helm-install-kots',
             'vendor/tutorial-kots-helm-install-helm',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install a Helm Chart on a VM with Embedded Cluster',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
           ],
         },
         {
