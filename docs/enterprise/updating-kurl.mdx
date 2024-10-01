@@ -7,6 +7,8 @@ import AdminConsoleAirGap from "../partials/updating/_admin-console-air-gap.mdx"
 
 This topic describes how to perform updates in Replicated kURL installations. It includes procedures for updating an application, as well as for updating the versions of Kubernetes, Replicated KOTS, and add-ons in a kURL cluster.
 
+For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Managing Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
+
 ## Update an Application
 
 For kURL installations, you can update an application from the Admin Console. You can also set up automatic updates. See [Configuring Automatic Updates](/enterprise/updating-apps).
@@ -22,6 +24,8 @@ For kURL installations, you can update an application from the Admin Console. Yo
 ## Update the kURL Cluster
 
 After updating the kURL installer spec, you can rerun the kURL installation script to update a kURL cluster. For more information about kURL cluster udpates, see [About kURL Cluster Updates](/enterprise/updating-kurl-about).
+
+For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Managing Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
 
 :::important
 The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
