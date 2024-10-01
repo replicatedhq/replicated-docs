@@ -235,7 +235,9 @@ We will need the AWS Access Key ID and AWS Secret Key in the next section as the
 
 First, we must link Replicated with the registry. To do this, click on **Add External Registry** from the *Images* tab.
 
-![vendor-web-new-registry](/images/guides/kots/priv-reg-ecr-link-new.png)
+<img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
+
+[View a larger version of this image](/images/add-external-registry.png)
 
 The values for the fields are:
 
