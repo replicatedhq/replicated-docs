@@ -26,8 +26,8 @@ The following diagram demonstrates distributing an application with the Replicat
 [View a larger version of this image](/images/replicated-platform.png)
 
 As shown in the diagram above:
-* The Replicated SDK can be distributed alongside an application to get access to an in-cluster API to more easily integrate key features.
-* Replicated Compatibility Matrix can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
+* The [Replicated SDK](replicated-sdk-overview) can be distributed alongside an application to get access to an in-cluster API to more easily integrate key features.
+* Replicated [Compatibility Matrix](testing-about) can be used to quickly generate Kubernetes clusters for running application tests as part of continuous integration and continuous delivery (CI/CD) workflows.
 * After testing, application releases can be promoted to a channel in the Replicated Vendor Portal to be shared with customers or internal teams.
 * Customers can be assigned to channels in order to control which application releases they are able to access and install.
 * Customers' unique licenses grant proxy access to private application images through the Replicated proxy service.
@@ -47,23 +47,33 @@ For more information about the Replicated features depicted in this diagram, see
 * [About Instance and Event Data](instance-insights-event-data)
 
 
-## Replicated Terminology
+## Key Products and Features
 
 The following are some key Replicated Platform terms that are helpful to know before getting started:
 
-* **Replicated KOTS**: Replicated KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments. See [Introduction to KOTS](intro-kots).
+### Compatibility Matrix
 
-* **Admin Console**: The Admin Console is the user interface for installing and managing applications with KOTS.
+Compatibility Matrix quickly provisions clusters with support for various Kubernetes distributions and versions. You can use Compatibility Matrix to get kubectl access to running clusters within minutes or less. See [About Compatibility Matrix](/vendor/testing-about).
 
-* **Replicated Embedded Cluster**: Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application. Each version of Embedded Cluster includes a specific version of Replicated KOTS, which provides the Admin Console. See [Using Embedded Cluster](/vendor/embedded-overview).
+### Embedded Cluster
 
-* **Air gap**: _Air gap_ refers to customer environments that do not have outbound internet access. Air gap environments are common for enterprise users that require high security.
+Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application. Each version of Embedded Cluster includes a specific version of Replicated KOTS, which provides the Admin Console. See [Using Embedded Cluster](/vendor/embedded-overview).
 
-* **Preflight Checks**: Preflight checks are conformance tests that verify the installation environment meets the requirements for the application. Preflight checks are provided by the open source Troubleshoot project, which is maintained by Replicated. See [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
+### KOTS and the Admin Console
 
-* **Support Bundles**: Support bundles information from the installation environment for the purpose of providing troubleshooting information to users. Support bundles can also be shared with ISVs or with Replicated for additional troubleshooting help. Preflight checks are provided by the open source Troubleshoot project, which is maintained by Replicated. See [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
+KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments. See [Introduction to KOTS](intro-kots).
 
-* **Vendor Portal**: The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
+The Admin Console is the user interface for installing and managing applications with KOTS.
+
+### Proxy Registry
+
+### Replicated SDK
+
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides access to telemetry and custom metrics on instances of your application running in customer environments as well as an in-cluster API. See [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+### Vendor Portal
+
+The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
 * **Replicated CLI**: The Replicated command-line interface (CLI) is the CLI for the Vendor Portal. The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
@@ -77,26 +87,22 @@ The following are some key Replicated Platform terms that are helpful to know be
 
 * **Application**: Within a Vendor Portal team, an application is the top-level container that groups a set of customers, releases, and channels. It is common for teams to create multiple different applications for testing purposes.
 
-* **Replicated SDK**: The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides access to telemetry and custom metrics on instances of your application running in customer environments as well as an in-cluster API. See [About the Replicated SDK](/vendor/replicated-sdk-overview).
+## About the Commercial Software Distribution Lifecycle {#life-cycle}
 
-* **Replicated Compatibility Matrix**: Replicated Compatibility Matrix quickly provisions clusters with support for various Kubernetes distributions and versions. You can use Compatibility Matrix to get kubectl access to running clusters within minutes or less. See [About Compatibility Matrix](/vendor/testing-about).
+Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution lifecycle, as shown below:
 
-## About the Commercial Software Distribution Life Cycle {#life-cycle}
-
-Replicated Platform features are designed to support ISVs in each phase of the commercial software distribution life cycle, as shown below:
-
-![software distribution life cycle wheel](/images/software-dev-lifecycle.png)
+![software distribution lifecycle wheel](/images/software-dev-lifecycle.png)
 
 [View a larger version of this image](/images/software-dev-lifecycle.png)
 
-The following describes the phases of the software distribution life cycle:
+The following describes the phases of the software distribution lifecycle:
 
 * **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams can quickly iterate on new features.
 * **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
-* **[Release](#release)**: Use a single, automated release process to share new releases with both on-prem and SaaS customers.
+* **[Release](#release)**: Use channels to share releases with external and internal users, publish release artifacts securely, and use consistent versioning.
 * **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
-* **[Report](#report)**: Make more informed prioritization decisions by collecting adoption and performance data for application instances running in customer environments.
+* **[Report](#report)**: Make more informed prioritization decisions by collecting usage and performance metadata for application instances running in customer environments.
 * **[Support](#support)**: Diagnose and resolve support issues quickly.
 
 For more information about the Replicated features that support each of these phases, see the sections below.
@@ -119,15 +125,15 @@ Release channels in the Replicated Vendor Portal allow ISVs to make different ap
 
 For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
 
-Additionally, the Replicated proxy service grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Service](/vendor/private-images-about).
+Additionally, the Replicated proxy registry grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 
 ### License
 
 Create customers in the Replicated Vendor Portal to handle licensing for your application in both online and air gap environments. For example:
 * License free trials and different tiers of product plans
 * Create and manage custom license entitlements
-* Automatically restrict access to expired accounts
 * Verify license entitlements both before installation and during runtime
+* Measure and report usage
 
 For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
 
@@ -140,6 +146,7 @@ The primary recommended installation methods include:
 * **Helm**: Helm installations can be enhanced with Replicated components like the Replicated SDK, which provides instance telemetry and other features through an in-cluster API, and the Replicated proxy service, which provides proxy access to private images. For more information, see [Installing with Helm](/vendor/install-with-helm).
 
 KOTS also supports online and air gap installations in existing clusters. For more information, see [Introduction to KOTS](kots-intro).
+
 ### Report
 
 When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated Vendor Portal. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
