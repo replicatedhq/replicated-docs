@@ -36,7 +36,7 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/reference"
-  to = "https://docs.replicated.com/reference/cron-expressions"
+  to = "https://docs.replicated.com/reference/kots-cli-getting-started"
 
 [[redirects]]
   from = "https://docs.replicated.com/release-notes"
