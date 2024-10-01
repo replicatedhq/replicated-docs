@@ -498,6 +498,7 @@ const sidebars = {
           'reference/template-functions-static-context',
         ],
       },
+      'reference/cron-expressions',
     ],
   },
   'vendor/install-with-helm',
