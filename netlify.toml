@@ -55,7 +55,7 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/tutorial-installing-without-existing-cluster"
-  to = "https://docs.replicated.com/vendor/tutorial-cli-setup"
+  to = "https://docs.replicated.com/vendor/tutorial-embedded-cluster-setup"
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/helm-mapping-example"
