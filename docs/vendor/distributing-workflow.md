@@ -17,7 +17,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
      Packaging your application with Helm is recommended because it allows you to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
      :::
 
-  * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
+  * Alternatively, if you do _not_ intend to distribute a Helm application with Replicated, see [Install with KOTS in an Existing Cluster](tutorial-cli-setup) for a workflow that uses a sample application with Kubernetes manifests.
 
 ## Add Custom Resources
 
