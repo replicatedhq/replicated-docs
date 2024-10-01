@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.01-0
+
+Released on October 1, 2024
+
+### New Features {#new-features-v2024-10-01-0}
+* CMX: API support for VM create, versions, update ttl, ls.
+
 ## v2024.09.30-2
 
 Released on September 30, 2024
