@@ -1,5 +1,6 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import EmbeddedKubernetes from "../partials/kots/_embedded-kubernetes-definition.mdx"
+import Helm from "../partials/helm/_helm-definition.mdx"
 
 # Replicated FAQs
 
@@ -7,47 +8,74 @@ This topic lists frequently-asked questions (FAQs) for the Replicated Platform.
 
 ## Platform FAQs
 
-### If I distribute my application with Replicated, can my customers still install with the Helm CLI?
+### What application packaging options are supported for applications distributed with Replicated?
 
-Yes.
+Replicated strongly recommends that all applications are packaged using Helm because many enterprise customers expect to be able to install an application with Helm in their own cluster.
+
+<Helm/>
+
+For vendors that do not want to use Helm, applications distributed with Replicated can be packaged as Kubernetes manifest files. Applications packaged as Kubernetes manifests can be installed with the Replicated installers (Replicated Embedded Cluster and Replicated KOTS).
+
+### What are the different installation options for applications distributed with Replicated?
+
+The following can be used to install applications distributed with Replicated:
+* **Replicated Embedded Cluster**: Emebdded Cluster supports installation on VMs or bare metal servers in online (internet-connected) or air gap environments
+* **Helm**: Applications packaged with Helm can be installed in internet-connected clusters using the Helm CLI 
+* **Replicated KOTS**: KOTS supports installation in online or air gap clusters. 
+
+It is not necessary to create and manage separate release directories for each type of installation; a single release in the Replicated Vendor Portal can be configured to support installation with the Helm CLI and Replicated installers.
+
+For a tutorial that demonstrates how to add the Bitnami Gitea Helm chart to a release in the Replicated Vendor Portal and then install with both KOTS and the Helm CLI, see [Install a Helm Chart with KOTS and Helm CLI](/vendor/tutorial-kots-helm-setup).
 
 ## Compatibility Matrix FAQs
 
 ### What types of clusters can I create with Compatibility Matrix?
 
+Compatibility Matrix supports a variety of VM and cloud distributions, including Red Hat OpenShift, Replicated Embedded Cluster, and Oracle Container Engine for Kubernetes (OKE). For a complete list, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+
 ### How does billing work?
 
-### How do I buy more credits?
+Clusters created with Compatibility Matrix are billed by the minute. Per-minute billing begins when the cluster reaches a running status and ends when the cluster is deleted. For more information, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+
+### How do I buy credits?
+
+To create clusters with Compatibility Matrix, you must have credits in your Vendor Portal account. If you have a contract, you can purchase credits by logging in to the Vendor Portal and going to **[Compatibility Matrix > Buy additional credits](https://vendor.replicated.com/compatibility-matrix)**. Otherwise, to request credits, log in to the Vendor Portal and go to **[Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix)**.
+
+### How do I add Comaptibility Matrix to my CI/CD pipelines?
+
+You can use Replicated CLI commands to integrate Compatibility Matrix into your CI/CD development and production workflows. This allows you to programmatically create multiple different types of clusters where you can deploy and test your application before releasing.
+
+For more information, see [About Integrating with CI/CD](/vendor/ci-overview).
 
 ## KOTS and Embedded Cluster FAQs
 
-### What is the difference between the KOTS and Embedded Cluster installers?
-
-### What do I have to do to enable Embedded Cluster installations for my application?
-
-Enabling Embedded Cluster installations requires that the Replicated KOTS entitlement is assigned to your Vendor Portal team.
-
-Teams with the KOTS entitlement can create KOTS-enabled releases by configuring the custom resources required by KOTS to install the application. You also need to add the Embedded Cluster Config.
-
-For a checklist of the required and optional custom resources for KOTS, see [Onboarding with KOTS](/vendor/distributing-workflow).
+### What is the Admin Console?
 
 ### How do Embedded Cluster installations on VMs or bare metal servers work?
 
-In installations on VMs or bare metal servers, users run an installation command that provisions a cluster on a VM or bare metal server.
+Users run an Embedded Cluster installation command on their VM or bare metal server that provisions a cluster. Embedded Cluster also installs KOTS in the cluster, which deploys the Admin Console.
 
-KOTS then deploys the Admin Console in the cluster, where users can log in to provide their license file, define application-specific configuration values, run preflight checks, and install the application.
+Users log in to the Admin Console to provide application-specific configuration values, optionally join more nodes to the cluster, run preflight checks, and finally install the application.
 
-For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+For more information, see [Installing with Embedded Cluster](/enterprise/installing-embedded).
 
-### What's the difference between Replicated Embedded Cluster and kURL?
+### What's the difference between Embedded Cluster and kURL?
 
 Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster feature offers significantly faster installation, updates, and node joins, a redesigned Admin Console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
 
 For more information, see [Using Embedded Cluster](/vendor/embedded-overview) or [Introduction to kURL](/vendor/kurl-about).
 
-### Can I use my own branding for KOTS installations?
+### What do I have to do to enable Embedded Cluster installations for my application?
 
-The KOTS Admin Console and the Customer Portal support the use of a custom logo. Additionally, software vendors can use custom domains for Replicated services to avoid exposing the default Replicated domains to enterprise users.
+Enabling Embedded Cluster installations requires that the Replicated KOTS entitlement is assigned to your Vendor Portal team.
+
+Releases that support installation with Embedded Cluster include the Embedded Cluster Config, as well as the manifests required by the KOTS installer to define the Admin Console experience and install the application.
+
+For more information, see [Onboarding with KOTS](/vendor/distributing-workflow).
+
+### Can I use my own branding for Embedded Cluster and KOTS installations?
+
+The KOTS Admin Console and the Replicated Customer Portal support the use of a custom logo. Additionally, software vendors can use custom domains to alias the endpoints for Replicated services.
 
 For more information, see [Customizing the Admin Console and Customer Portal](/vendor/admin-console-customize-app-icon) and [About Custom Domains](custom-domains).
 
@@ -55,7 +83,7 @@ For more information, see [Customizing the Admin Console and Customer Portal](/v
 
 Yes. Software vendors can use KOTS to generate air gap bundles for installation into air gap environments. KOTS also provides customer-specific download portals where air gap bundles and license files can be shared with enterprise users.
 
-Air gap installations are supported for existing and embedded clusters. 
+Air gap installations are supported for existing and embedded clusters.
 
 ### Can I deploy Helm charts with KOTS?
 
@@ -63,17 +91,15 @@ Yes. An application deployed with KOTS can use one or more Helm charts, can incl
 
 For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-### What are the use cases for installing applications with Embedded Cluster versus Helm?
+## Replicated SDK FAQs
 
-Helm is a popular package manager for Kubernetes applications. Many enterprise users that have experience with Kubernetes and Helm will expect to be able to install an application with the Helm CLI. 
+### Is the SDK supported in air gap environments?
 
-The UI-based installation experience of KOTS can provide an easier installation experience for enterprise users that do not have experience with Kubernetes or Helm. Additionally, KOTS provides support for installations into air gap environments, which is not directly supported by Helm.
+Yes. The SDK can be installed in air gap mode to run in environments with no outbound internet access.
 
-### Can I support both Helm CLI and KOTS installations for my application?
+### How should I develop against the SDK?
 
-Yes. Software vendors that distribute their application as one or more Helm charts can support installations with both the Helm CLI and with KOTS from the same release.
-
-For a tutorial that demonstrates how to add the Bitnami Gitea Helm chart to a release in the Replicated Vendor Portal and then install with both KOTS and the Helm CLI, see [Install a Helm Chart with KOTS and Helm CLI](/vendor/tutorial-kots-helm-setup).
+You can install the SDK in development mode to quickly integrate and test when developing against the SDK API.
 
 ### How does the Replicated SDK work with KOTS?
 
@@ -82,8 +108,6 @@ The Replicated SDK is a Helm chart that can be installed as a small service alon
 Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for sending custom metrics from application instances. When both the SDK and KOTS are installed in a cluster alongside an application, both send instance telemetry to the Vendor Portal.
 
 For more information, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
-
-## Replicated SDK FAQs
 
 ## Vendor Portal FAQs
 
