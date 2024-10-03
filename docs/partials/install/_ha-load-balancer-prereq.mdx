@@ -1,6 +1,9 @@
-- If you are installing in high availability mode:
-  - (Optional) If you are going to use the internal load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer`.
-  - For an external load balancer, ensure that your load balancer is:
+* If you are installing in high availability (HA) mode, a load balancer is required:
+
+  * If the kURL Installer spec includes the EKCO add-on, you do not need to provide your own external load balancer. If you are going to use the internal load balancer, you can optionally preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer` with the kURL install command. Otherwise, you are prompted after running the kURL install command to specify that you want to use the internal load balancer.
+  
+  * To use an external load balancer, ensure that your load balancer is:
     - A TCP forwarding external load balancer.
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
-    - (Optional) Preconfigured by passing the `load-balancer-address=HOST:PORT` flag.
+    
+    If you are going to use an external load balancer, you can optionally preconfigured it by passing the `load-balancer-address=HOST:PORT` flag with the kURL install command. Otherwise, you are prompted after running the kURL install command to provide the address for the load balancer.
