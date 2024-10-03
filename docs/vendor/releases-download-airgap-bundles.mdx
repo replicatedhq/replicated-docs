@@ -8,14 +8,34 @@ This topic describes how to build and download air gap bundles. It includes info
 
 _Air gap bundles_ are required to install applications in air gap environments. Air gap bundles contain the images needed to install and run applications in an environment that has no outbound internet access.
 
-Air gap installations require an air gap bundle with the application assets, as well as an air gap bundle that contains the Replicated installer assets.
+### Air Gap Bundle Requirements
 
-The following describes each type of air gap bundle:
-* **`.airgap`**: Assets for a specific release of the application, such as Kubernetes YAML files and Docker images.
-* **`kotsadm.tar.gz`**: Required for existing cluster installations with KOTS. Contains the container images for the Replicated KOTS Admin Console. 
-* **kURL `.tar.gz`**: Required for installations with the Replicated kURL installer. Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). 
+The air gap bundles required for installation vary depending on the installation type:
 
-## Build and Download the Application Bundle {#air-gap-bundle}
+#### Replicated Embedded Cluster
+
+Installations with Embedded Cluster require a single Embedded Cluster air gap bundle. The Embedded Cluster air gap bundle contains:
+* All the assets contained in the `.airgap` bundle for the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
+* An `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and any [extensions](/reference/embedded-config#extensions))
+* Container images for the KOTS Admin Console
+
+#### Replicated KOTS in Existing Cluster
+
+Installations with KOTS in an existing cluster require the following air gap bundles:
+* **Application `.airgap` bundle**:  Assets required to install a specific release of the application (`airgap.yaml`, `app.tar.gz`, and an images directory)
+* **KOTS Admin Console `kotsadm.tar.gz` bundle**: Contains the container images for the Replicated KOTS Admin Console. 
+
+#### Replicated kURL
+
+Installations with kURL require the following air gap bundles:
+* **Application `.airgap` bundle**: Assets required to install a specific release of the application (`airgap.yaml`, `app.tar.gz`, and an images directory)
+* **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). 
+
+## Download the Embedded Cluster Bundle
+
+For installations with Embedded Cluster, 
+
+## Build the Application Release Bundle in the Vendor Portal {#air-gap-bundle}
 
 This section describes how to build and download the application `.airgap` bundle from the Vendor Portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
 
@@ -42,6 +62,10 @@ To build and download the `.airgap` bundle for a release:
 
 1. After the `.airgap` bundle is built, click **Download Bundle**.
 
+   :::note
+   Downloading the `.airgap` bundle is not necessary for Embedded Cluster installations. The bundle is downloaded during installation using the Replicated app service.
+   ::: 
+
 1. (Optional) View the contents of the downloaded bundle: 
 
      ```bash
@@ -51,7 +75,7 @@ To build and download the `.airgap` bundle for a release:
 
 ## Download the KOTS Admin Console Bundle
 
-Air gap installations in existing clusters require the `kotsadm.tar.gz` air gap bundle, which includes the images for the KOTS admin console. The version of the `kotsadm.tar.gz` air gap bundle used must be compatible with the version of the application `.airgap` bundle.
+Air gap installations with KOTS in existing clusters require the `kotsadm.tar.gz` air gap bundle, which includes the images for the KOTS admin console. The version of the `kotsadm.tar.gz` air gap bundle used must be compatible with the version of the application `.airgap` bundle.
 
 The `kotsadm.tar.gz` air gap bundle for each version of KOTS is available for download on the [Releases](https://github.com/replicatedhq/kots/releases) page in the kots repository in GitHub.
 
@@ -118,7 +142,7 @@ To download the kURL bundle for channels other than Stable:
     
 1. In the output of the command, copy the `curl` command with the air gap URL.
 
-## Download Air Gap Bundles from the Download Portal {#download-portal}
+## Download Bundles from the Download Portal {#download-portal}
 
 <DownloadPortal/>
 
