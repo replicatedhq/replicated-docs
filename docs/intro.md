@@ -46,9 +46,6 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/distributing-overview">About Distributing Applications with Replicated</a>
-    </li>
-    <li>
       <a href="/vendor/replicated-onboarding">Replicated Quick Start</a>
     </li>
     <li>

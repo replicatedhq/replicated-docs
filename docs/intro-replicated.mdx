@@ -1,0 +1,180 @@
+---
+pagination_prev: null
+---
+
+import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
+import Replicated from "/docs/partials/getting-started/_replicated-definition.mdx"
+import Helm from "/docs/partials/helm/_helm-definition.mdx"
+import Kots from "/docs/partials/kots/_kots-definition.mdx"
+import KotsEntitlement from "/docs/partials/kots/_kots-entitlement-note.mdx"
+import SDKOverview from "/docs/partials/replicated-sdk/_overview.mdx"
+import CSDL from "/docs/partials/getting-started/_csdl-overview.mdx"
+
+# Introduction to Replicated
+
+This topic provides an introduction to the Replicated Platform, including a platform overview and a list of key features. It also describes the Commercial Software Distribution Lifecycle and how Replicated features can be used in each phase of the lifecycle.
+
+## About the Replicated Platform
+
+<Replicated/>
+
+The following diagram demonstrates the process of using the Replicated Platform to distribute an application, install the application in a customer environment, and support the application after installation:
+
+![replicated platform features workflow](/images/replicated-platform.png)
+
+[View a larger version of this image](/images/replicated-platform.png)
+
+The diagram above first shows an application that is packaged with the **Replicated SDK**. When installed alongside an application, the Replicated SDK provides an in-cluster API that can be used to interact with the Replicated Vendor Portal. For example, the SDK API can return details about the customer's license or report telemetry on the application instance back to the Vendor Portal.
+
+When an application is ready to be shared with customers or internal teams, it can be added to a release in the **Vendor Portal**. The diagram above shows how this process of creating releases can be automated as part of continuous integration and continuous delivery (CI/CD) workflows. The CI/CD workflow depicted in the diagram shows **Replicated Compatibility Matrix** being used to automatically provision clusters where the application release is installed and tested.
+
+The CI/CD workflow in the diagram then pushes application images to the vendor's image registry and publishes a **release** in the Vendor Portal to the **"Stable" channel**. Customers and internal teams are assigned to channels in the Vendor Portal to control which application releases they are able to access and install.
+
+Next, the diagram shows how an enterprise **customer** named "Big Bank" uses the license they were issued to install the application release in their environment. Vendors create and manage licenses and entitlements in the Vendor Portal.
+
+The installation process depicted in the diagram shows the license being used to access application images through the **Replicated proxy registry**. It also shows **preflight checks** running before installation to verify that the environment meets the requirements for the application and the installer.
+
+This diagram depicts the application being installed with the **Replicated Embedded Cluster** installer. With Embedded Cluster, Kubernetes is distributed alongside the application. This allows a Kubernetes application to be installed on a VM or bare metal server. Embedded Cluster installations first provision a cluster, then use the **Replicated KOTS** installer to install the application in the cluster. KOTS also provide an **Admin Console** UI for the customer to manage the application and the cluster.
+
+The diagram shows the following present in the cluster after installation:
+* The application
+* The Replicated SDK
+* The KOTS Admin Console
+* Tooling from the open source **Troubleshoot** project, which is maintained by Replicated
+
+Finally, the diagram shows how **instance data** and telemetry is automatically sent to the Vendor Portal by the Replicated SDK API and the Admin Console. Additionally, the diagram shows Troubleshoot tooling being used to generate **support bundles** and send those bundles back to the Vendor Portal. Support bundles include logs and other important diagnostic data that can be used by the vendor's support team for the purpose of troubleshooting issues.
+
+For more information about the Replicated features depicted in this diagram, see:
+* [About the Replicated SDK](replicated-sdk-overview)
+* [About Compatibility Matrix](testing-about)
+* [About Channels and Releases](releases-about)
+* [About Customers](licenses-about)
+* [Using Embedded Cluster](/vendor/embedded-overview)
+* [Installing with Embedded Cluster](/enterprise/installing-embedded)
+* [About Preflight Checks and Support Bundles](preflight-support-bundle-about)
+* [About Instance and Event Data](instance-insights-event-data)
+
+
+## Replicated Platform Features
+
+The following describes the key features of the Replicated Platform.
+
+### Compatibility Matrix
+
+Replicated Compatibility Matrix can be used to get kubectl access to running clusters within minutes or less. Compatibility Matrix supports various Kubernetes distributions and versions and can be interacted with through the Vendor Portal or the Replicated CLI.
+
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
+
+### Embedded Cluster
+
+Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together as a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ alongside the application.
+
+Additionally, each version of Embedded Cluster includes a specific version of the Replicated KOTS installer. KOTS is used to install the application and also provides the Admin Console.
+
+For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+
+### KOTS and the Admin Console
+
+KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments.
+
+The Admin Console is the user interface for installing and managing applications with KOTS. KOTS also provides a CLI that can be used to programmatically install and manage applications.
+
+For more information, see [Introduction to KOTS](intro-kots).
+
+### Proxy Registry
+
+The Replicated proxy registry grants proxy access to an application's images using the customer's unique license. This means that customers can get access application images during installation without the vendor needing to provide registry credentials.
+
+For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+
+### Replicated SDK
+
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. It provides an in-cluster API that can be used to communicate with the Vendor Portal. For example, the SDK API can return details about the customer's license or report telemetry on the application instance back to the Vendor Portal.
+
+For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+### Vendor Portal
+
+The Replicated Vendor Portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
+
+The Vendor Portal can also be interacted with programmatically using the following developer tools:
+
+* **Replicated CLI**: The Replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+
+* **Vendor API v3**: The Vendor API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files. For more information, see [Using the Vendor API v3](/reference/vendor-api-using).
+
+## About the Commercial Software Distribution Lifecycle {#life-cycle}
+
+Replicated Platform features are designed to support ISVs in each phase of the Commercial Software Distribution Lifecycle shown below:
+
+![software distribution lifecycle wheel](/images/software-dev-lifecycle.png)
+
+[View a larger version of this image](/images/software-dev-lifecycle.png)
+
+<CSDL/>
+
+The following describes the phases of the software distribution lifecycle:
+
+* **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams can quickly iterate on new features.
+* **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
+* **[Release](#release)**: Use channels to share releases with external and internal users, publish release artifacts securely, and use consistent versioning.
+* **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
+* **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
+* **[Report](#report)**: Make more informed prioritization decisions by collecting usage and performance metadata for application instances running in customer environments.
+* **[Support](#support)**: Diagnose and resolve support issues quickly.
+
+For more information about the Replicated features that support each of these phases, see the sections below.
+
+### Develop
+
+The Replicated SDK exposes an in-cluster API that can be developed against to quickly integrate and test core functionality with an application. For example, when the SDK is installed alongside an application in a customer environment, the in-cluster API can be used to send custom metrics from the instance to the Replicated vendor platform. 
+
+For more information about using the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+### Test
+
+The Replicated Compatibility Matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
+
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
+
+### Release
+
+Release channels in the Replicated Vendor Portal allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
+
+For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
+
+Additionally, the Replicated proxy registry grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+
+### License
+
+Create customers in the Replicated Vendor Portal to handle licensing for your application in both online and air gap environments. For example:
+* License free trials and different tiers of product plans
+* Create and manage custom license entitlements
+* Verify license entitlements both before installation and during runtime
+* Measure and report usage
+
+For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
+
+### Install
+
+Applications distributed with the Replicated Platform can support multiple different installation methods from the same application release.
+
+The primary recommended installation methods include:
+* **Replicated Embedded Cluster**: With Embedded Cluster, Kubernetes and the application are delivered together as a single appliance, allowing customers to install on VMs or bare metal servers. Embedded Cluster uses Replicated KOTS to install the application and supports installation in online and air gap environments. For more information, see [Using Emebdded Cluster](/vendor/embedded-overview).
+* **Helm**: Helm installations can be enhanced with Replicated components like the Replicated SDK, which provides instance telemetry and other features through an in-cluster API, and the Replicated proxy registry, which provides proxy access to private images. For more information, see [Installing with Helm](/vendor/install-with-helm).
+
+KOTS also supports online and air gap installations in existing clusters. For more information, see [Introduction to KOTS](kots-intro).
+
+### Report
+
+When installed alongside an application, the Replicated SDK and Replicated KOTS automatically send instance data from the customer environment to the Replicated Vendor Portal. This instance data includes health and status indicators, adoption metrics, and performance metrics. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+ISVs can also set up email and Slack notifications to get alerted of important instance issues or performance trends. For more information, see [Configuring Instance Notifications](/vendor/instance-notifications-config).
+
+### Support
+
+Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
+
+- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+- Provision customer-representative environments with Compatibility Matrix to recreate and diagnose issues. See [About Compatibility Matrix](/vendor/testing-about).
+- Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).
