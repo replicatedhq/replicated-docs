@@ -46,7 +46,7 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/distributing-overview">About Distributing Applications with Replicated</a>
+      <a href="/vendor/kots-faq">Replicated FAQs</a>
     </li>
     <li>
       <a href="/vendor/replicated-onboarding">Replicated Quick Start</a>
@@ -140,9 +140,6 @@ pagination_next: null
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
-    </li>
-    <li>
-      <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
     </li>
     <li>
       <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
