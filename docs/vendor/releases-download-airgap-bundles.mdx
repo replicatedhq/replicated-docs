@@ -8,7 +8,7 @@ This topic describes how to build and download air gap bundles. It includes info
 
 _Air gap bundles_ are required to install applications in air gap environments. Air gap bundles contain the images needed to install and run applications in an environment that has no outbound internet access.
 
-### Air Gap Bundle Requirements
+### Required Air Gap Bundles
 
 The air gap bundles required for installation vary depending on the installation type:
 
@@ -18,6 +18,10 @@ Installations with Embedded Cluster require a single Embedded Cluster air gap bu
 * All the assets contained in the `.airgap` bundle for the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
 * An `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and any [extensions](/reference/embedded-config#extensions))
 * Container images for the KOTS Admin Console
+
+:::note
+While Embedded Cluster does not require users to supply a separate `.airgap` bundle for the specific application release, the `.airgap` bundle for the release must be built in the Vendor Portal before installation.
+:::
 
 #### Replicated KOTS in Existing Cluster
 
@@ -33,7 +37,11 @@ Installations with kURL require the following air gap bundles:
 
 ## Download the Embedded Cluster Bundle
 
-For installations with Embedded Cluster, 
+For installations with Embedded Cluster, the Embedded Cluster air gap bundle is downloaded as part of the installation process.
+
+```bash
+curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
+```
 
 ## Build the Application Release Bundle in the Vendor Portal {#air-gap-bundle}
 
