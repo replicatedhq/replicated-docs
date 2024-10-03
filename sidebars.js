@@ -36,6 +36,7 @@ const sidebars = {
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
+    'vendor/kots-faq',
     'vendor/replicated-onboarding',
     // {
     //   type: 'category',
@@ -186,7 +187,6 @@ const sidebars = {
       label: 'Distributing and Installing with KOTS',
       items: [
         'intro-kots',
-        'vendor/kots-faq',
         'vendor/distributing-workflow',
         {
           type: 'category',
