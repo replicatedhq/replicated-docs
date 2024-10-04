@@ -1,5 +1,15 @@
 Embedded Cluster stores data in the following primary locations, all of which must be writable:
 
+The default location of the data directory can be modified by the user at install time by passing the `--data-dir` flag to the `install` command.
+This directory cannot be changed after the cluster is installed.
+
+For example:
+
+```bash
+sudo ./APP_SLUG install --data-dir /data/embedded-cluster --license license.yaml --airgap-bundle APP_SLUG.airgap
+```
+Where `APP_SLUG` is the unique application slug.
+
 :::note
 Replicated does not support using symlinked directories for these locations. Instead, Replicated recommends bind mounts, which provide greater consistency across different applications, preserve the original directory permissions and ownership, and have less overhead compared to symlinks. For more information, see [Relocating data directories with bind mounts](https://community.replicated.com/t/relocating-data-directories-with-bind-mounts/1435) in Replicated Community.
 :::
@@ -8,12 +18,11 @@ Replicated does not support using symlinked directories for these locations. Ins
 
 - Used to store your installer
 - Includes:
-  * Logs
   * Temporary files
   * Supporting binaries (for example, kubectl and Replicated’s preflight and support-bundle plugins)
 - Should be large enough to fit at least 2 installer binaries
 
-#### `/var/lib/k0s`
+#### `/var/lib/embedded-cluster/k0s`
 
 - Where the Kubernetes cluster runs
 - Includes:
@@ -29,7 +38,7 @@ Replicated does not support using symlinked directories for these locations. Ins
 - Calculation example:
   If the sum of required storage for logs, images, and components is X GB, the total allocated space should be at least X / 0.85 GB to ensure it remains below 85% utilization.
 
-#### `/var/openebs`
+#### `/var/lib/embedded-cluster/openebs-local`
 
 - Where PVC data is stored
 - Needs enough storage to support all volumes used in your application
@@ -65,5 +74,6 @@ In addition to the primary directories above, Embedded Cluster creates directori
 - /var/lib/kubelet
 - /var/log/calico
 - /var/log/containers
+- /var/log/embedded-cluster
 - /var/log/pods
 - /usr/local/bin/k0s
