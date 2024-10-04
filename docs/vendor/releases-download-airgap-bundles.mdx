@@ -6,7 +6,7 @@ This topic describes how to build and download air gap bundles for installations
 
 ## About Air Gap Bundles
 
-_Air gap bundles_ are required to install applications in air gap environments. Air gap bundles contain the images needed to install and run applications in an environment that has no outbound internet access.
+_Air gap bundles_ are required to install applications in air gap environments. Air gap bundles contain the assets needed to install and run applications in an environment that has no outbound internet access.
 
 The air gap bundles required for installation vary depending on the Replicated installer that is used:
 
@@ -24,23 +24,27 @@ The air gap bundles required for installation vary depending on the Replicated i
     * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
     * **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons).
     
-      :::note
-      The kURL bundle is kept separate from the `.airgap` bundle for the following reasons:
+      <details>
+      <summary>Why is the kURL bundle separate from the `.airgap` bundle?</summary>
+
         * The kURL bundle can get quite large, so this method lets you update your application with a smaller bundle size.
         * Whereas air gap bundles for an application often need to be rebuilt with each new release, kURL air gap bundles only need to be built when the underlying cluster components or add-ons must be updated.
-      :::  
+      </details>  
 
-## Download the Embedded Cluster Bundle
+## Download the Embedded Cluster Bundle {#ec-bundle}
 
 This section describes how to download the air gap bundle for installations with Embedded Cluster using the Replicated app service. Downloading the Embedded Cluster air gap bundle is done as part of installation. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 To download the Embedded Cluster air gap bundle:
 
-1. Build the `.airgap` bundle for the target release on the channel **Release history** page. For more information, see [Build the Application Release Bundle in the Vendor Portal](#air-gap-bundle) below.
+1. Build the `.airgap` bundle for the target release on the channel's **Release history** page. For more information, see [Build the Application Release Bundle in the Vendor Portal](#air-gap-bundle) below.
 
-   :::note
-   Building the `.airgap` bundle is required because, if you attempt to download the Embedded Cluster air gap bundle without first bulding the `.airgap` bundle for the release, the API will return the Embedded Cluster tarball without the `.airgap` bundle. For more information, see [Limitations and Known Issues](/enterprise/installing-embedded-air-gap#limitations-and-known-issues) in _Air Gap Installation with Embedded Cluster_.
-   ::: 
+   <details>
+      <summary>Why do I need to build the `.airgap` bundle if it is not required for Embedded Cluster air gap installations?</summary>
+
+      Building the `.airgap` bundle is required because, if you attempt to download the Embedded Cluster air gap bundle without first bulding the `.airgap` bundle for the release, the API will return the Embedded Cluster tarball without the `.airgap` bundle. For more information, see [Limitations and Known Issues](/enterprise/installing-embedded-air-gap#limitations-and-known-issues) in _Air Gap Installation with Embedded Cluster_.
+
+      </details>
 
 1. Run the following command to download the Embedded Cluster air gap bundle using the Replicated app service:
 
@@ -160,7 +164,7 @@ To download the kURL bundle for channels other than Stable:
 <DownloadPortal/>
 
 :::note
-Air gap bundles for Embedded Cluster are not available in the Download Portal.
+Air gap bundles for Embedded Cluster are not available in the Download Portal. See [Download the Embedded Cluster Bundle](#ec-bundle) above.
 :::
 
 To download air gap bundles from the Download Portal:
