@@ -1,7 +1,7 @@
-- If you are installing in high availability (HA) mode, a load balancer is required. You can use the kURL internal load balancer provided with the [Embedded kURL Cluster Operator (EKCO) Add-On](https://kurl.sh/docs/add-ons/ekco) or bring your own external load balancer. An external load balancer might be preferred when clients outside the cluster need access to the cluster's Kubernetes API.
+- If you are installing in high availability (HA) mode, a load balancer is required. You can use the kURL internal load balancer if the [Embedded kURL Cluster Operator (EKCO) Add-On](https://kurl.sh/docs/add-ons/ekco) is included in the kURL Installer spec. Or, you can bring your own external load balancer. An external load balancer might be preferred when clients outside the cluster need access to the cluster's Kubernetes API.
 
   To install in HA mode, complete the following prerequisites:
-  - (Optional) If you are going to use the kURL EKCO load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer` with the install command. Otherwise, you are prompted to indicate that you are using the internal load balancer during installation. For more information about the EKCO Add-on, see [EKCO Add-On](https://kurl.sh/docs/add-ons/ekco) in the open source kURL documentation.
+  - (Optional) If you are going to use the internal EKCO load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer` with the kURL install command. Otherwise, you are prompted for load balancer details during installation. For more information about the EKCO Add-on, see [EKCO Add-On](https://kurl.sh/docs/add-ons/ekco) in the open source kURL documentation.
   - To use an external load balancer, ensure that the load balancer meets the following requirements:
     - Must be a TCP forwarding load balancer
     - Must be configured to distribute traffic to all healthy control plane nodes in its target list
@@ -9,4 +9,4 @@
     
     For more information about how to create a load balancer for kube-apirserver, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
   
-    You can optionally preconfigure the external loader by passing the `load-balancer-address=HOST:PORT` flag with the kURL install command. Otherwise, you are prompted to provide the load balancer address after running the install command.
+    You can optionally preconfigure the external loader by passing the `load-balancer-address=HOST:PORT` flag with the kURL install command. Otherwise, you are prompted to provide the load balancer address during installation.
