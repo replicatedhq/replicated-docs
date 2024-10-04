@@ -12,16 +12,16 @@ The air gap bundles required for installation vary depending on the Replicated i
 
 * **Replicated Embedded Cluster**: Installations with Embedded Cluster require a single Embedded Cluster air gap bundle. The Embedded Cluster air gap bundle contains:
 
-    * All the assets contained in the `.airgap` bundle for the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
+    * All the assets contained in the `.airgap` bundle for the given application release (application images, manifests, and dependencies)
     * An `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and any [extensions](/reference/embedded-config#extensions))
     * Container images for the KOTS Admin Console
 
 * **Replicated KOTS in Existing Cluster**: Installations with KOTS in an existing cluster require the following air gap bundles:
-    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
+    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies)
     * **KOTS Admin Console `kotsadm.tar.gz` bundle**: Contains the container images for the Replicated KOTS Admin Console. 
 
 * **Replicated kURL**: Installations with kURL require the following air gap bundles:
-    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
+    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies)
     * **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons).
     
       <details>
