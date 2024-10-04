@@ -2,13 +2,13 @@ import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 
 # Downloading Air Gap Bundles
 
-This topic describes how to build and download air gap bundles. It includes information about building and downloading bundles for application releases from the Replicated Vendor Portal. It also describes using the Replicated Download Portal to download air gap bundles.
+This topic describes how to build and download air gap bundles for installations with the Replicated Embedded Cluster, KOTS, and kURL installers.
 
 ## About Air Gap Bundles
 
 _Air gap bundles_ are required to install applications in air gap environments. Air gap bundles contain the images needed to install and run applications in an environment that has no outbound internet access.
 
-The air gap bundles required for installation vary depending on the installation type:
+The air gap bundles required for installation vary depending on the Replicated installer that is used:
 
 * **Replicated Embedded Cluster**: Installations with Embedded Cluster require a single Embedded Cluster air gap bundle. The Embedded Cluster air gap bundle contains:
 
@@ -17,11 +17,11 @@ The air gap bundles required for installation vary depending on the installation
     * Container images for the KOTS Admin Console
 
 * **Replicated KOTS in Existing Cluster**: Installations with KOTS in an existing cluster require the following air gap bundles:
-    * **Application `.airgap` bundle**:  Assets required to install a specific release of the application (`airgap.yaml`, `app.tar.gz`, and an images directory)
+    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
     * **KOTS Admin Console `kotsadm.tar.gz` bundle**: Contains the container images for the Replicated KOTS Admin Console. 
 
 * **Replicated kURL**: Installations with kURL require the following air gap bundles:
-    * **Application `.airgap` bundle**: Assets required to install a specific release of the application (`airgap.yaml`, `app.tar.gz`, and an images directory)
+    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (`airgap.yaml`, `app.tar.gz`, and an images directory)
     * **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons). 
 
 ## Download the Embedded Cluster Bundle
