@@ -12,16 +12,15 @@ The air gap bundles required for installation vary depending on the Replicated i
 
 * **Replicated Embedded Cluster**: Installations with Embedded Cluster require a single Embedded Cluster air gap bundle. The Embedded Cluster air gap bundle contains:
 
-    * All the assets contained in the `.airgap` bundle for the given application release (application images, manifests, and dependencies)
     * An `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and any [extensions](/reference/embedded-config#extensions))
-    * Container images for the KOTS Admin Console
+    * All the assets contained in the air gap bundle for the given application release (application images, manifests, and dependencies)
 
 * **Replicated KOTS in Existing Cluster**: Installations with KOTS in an existing cluster require the following air gap bundles:
-    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies)
-    * **KOTS Admin Console `kotsadm.tar.gz` bundle**: Contains the container images for the Replicated KOTS Admin Console. 
+    * **Application release air gap bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies).
+    * **KOTS Admin Console bundle**: Contains the container images for the Replicated KOTS Admin Console. 
 
 * **Replicated kURL**: Installations with kURL require the following air gap bundles:
-    * **Application release `.airgap` bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies)
+    * **Application release air gap bundle**: Contains the assets required to install the given application release (application images, manifests, and dependencies)
     * **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons).
     
       <details>
@@ -37,12 +36,12 @@ This section describes how to download the air gap bundle for installations with
 
 To download the Embedded Cluster air gap bundle:
 
-1. Build the `.airgap` bundle for the target release on the channel's **Release history** page. For more information, see [Build the Application Release Bundle in the Vendor Portal](#air-gap-bundle) below.
+1. Build the air gap bundle for the target release on the channel's **Release history** page. For more information, see [Build the Application Release Bundle in the Vendor Portal](#air-gap-bundle) below.
 
    <details>
-      <summary>Why do I need to build the `.airgap` bundle if it is not required for Embedded Cluster air gap installations?</summary>
+      <summary>Why do I need to build the release air gap bundle if it is not required for Embedded Cluster air gap installations?</summary>
 
-      Building the `.airgap` bundle is required because, if you attempt to download the Embedded Cluster air gap bundle without first bulding the `.airgap` bundle for the release, the API will return the Embedded Cluster tarball without the `.airgap` bundle. For more information, see [Limitations and Known Issues](/enterprise/installing-embedded-air-gap#limitations-and-known-issues) in _Air Gap Installation with Embedded Cluster_.
+      Building the bundle for the release is required because, if you attempt to download the Embedded Cluster air gap bundle without first bulding the release bundle, the API will return the Embedded Cluster tarball without including an `.airgap` bundle. For more information, see [Limitations and Known Issues](/enterprise/installing-embedded-air-gap#limitations-and-known-issues) in _Air Gap Installation with Embedded Cluster_.
 
       </details>
 
@@ -56,13 +55,20 @@ To download the Embedded Cluster air gap bundle:
     * `CHANNEL_SLUG` is the slug for the channel where the release is promoted
     * `LICENSE_ID` is the customer's license ID
 
+    This will produce three files:
+    * The installer
+    * The license
+    * The air gap bundle (`APP_SLUG.airgap`)
+
 ## Build the Application Release Bundle in the Vendor Portal {#air-gap-bundle}
 
-This section describes how to build and download the application `.airgap` bundle from the Vendor Portal. For information about building and downloading `.airgap` bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
+This section describes how to build and download the air gap bundle for the application release from the Vendor Portal.
 
-For information about how to download the `.airgap` bundle from the Replicated download portal, see [Download Air Gap Bundles from the Download Portal](#download-portal) below.
+For information about building and downloading air gap bundles with the Vendor API v3, see [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild) and [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) in the Vendor API v3 documentation.
 
-To build and download the `.airgap` bundle for a release:
+For information about how to download the air gap bundle from the Replicated Download Portal, see [Download Air Gap Bundles from the Download Portal](#download-portal) below.
+
+To build and download the air gap bundle for a release:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to **Channels**. On the target channel, click **Release history**.
 
@@ -70,10 +76,10 @@ To build and download the `.airgap` bundle for a release:
 
     [View a larger version of this image](/images/release-history-link.png)
 
-1. On the **Release history** page, click **Build** to build the `.airgap` bundle.
+1. On the **Release history** page, click **Build** to build the air gap bundle.
 
     :::note
-    By default, the Stable and Beta channels automatically build `.airgap` bundles on new releases.
+    By default, the Stable and Beta channels automatically build air gap bundles on new releases.
     To edit this functionality on any channel, enable or disable the **Automatically create airgap builds for all releases in this channel** toggle in the channel settings.
     :::
 
@@ -81,14 +87,14 @@ To build and download the `.airgap` bundle for a release:
 
     [View a larger version of this image](/images/release-history-build-airgap-bundle.png)
 
-1. (Optional) After the `.airgap` bundle is built, click **Download Bundle**.
+1. (Optional) After the bundle is built, click **Download Bundle**. The bundle is named `APP_SLUG.airgap`.
 
-1. (Optional) View the contents of the downloaded bundle: 
+1. (Optional) View the contents of the bundle: 
 
      ```bash
-     tar -zxvf AIRGAP_BUNDLE
+     tar -zxvf `APP_SLUG.airgap`
      ```
-     Where `AIRGAP_BUNDLE` is the filename for the `.airgap` bundle that you downloaded.
+     Where `APP_SLUG.airgap` is the filename of the bundle that you downloaded.
 
 ## Download the KOTS Admin Console Bundle
 
