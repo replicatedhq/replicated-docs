@@ -24,7 +24,7 @@ The air gap bundles required for installation vary depending on the Replicated i
     * **kURL bundle**: Contains the open source components to run the cluster, including the container runtime, Kubernetes, the KOTS Admin Console, the kURL image registry and a number of other [kURL add-ons](https://kurl.sh/add-ons).
     
       <details>
-      <summary>Why is the kURL bundle separate from the `.airgap` bundle?</summary>
+      <summary>Why is the kURL bundle separate from the air gap bundle for the release?</summary>
 
         * The kURL bundle can get quite large, so this method lets you update your application with a smaller bundle size.
         * Whereas air gap bundles for an application often need to be rebuilt with each new release, kURL air gap bundles only need to be built when the underlying cluster components or add-ons must be updated.
