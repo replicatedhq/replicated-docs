@@ -16,9 +16,7 @@ It is split into 5 sections:
 
 This guide assumes you have:
 
-* A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the Admin Console in an existing or embedded kURL cluster, complete one of the following getting started tutorials to package and install a sample application:
-   * [UI Tutorial](tutorial-ui-setup)
-   * [CLI Tutorial](tutorial-cli-setup)
+* A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the Admin Console in an existing or embedded kURL cluster, complete the [Install with KOTS in an Existing Cluster](tutorial-cli-setup) tutorial to package and install a sample application.
 * A local git checkout of your application manifests.
 
 ### Accompanying Code Examples

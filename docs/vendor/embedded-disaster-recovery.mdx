@@ -38,11 +38,7 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 * Velero is only installed during the installation process. Enabling the disaster recovery license field for customers after they have already installed will not do anything.
 
-* The same proxy settings provided during install must be provided to the restore command using `--http-proxy`, `--https-proxy`, and `--no-proxy`.
-
-* If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs.
-
-* Restores do not work if a prefix is specified for the S3 bucket in the backup settings.
+* If the `--admin-console-port` flag was used during install to change the port for the Admin Console, note that during a restore the Admin Console port will be used from the backup and cannot be changed. For more information, see [Change the Admin Console and LAM Ports](/enterprise/installing-embedded#adm-lam-ports).
 
 ## Configure Disaster Recovery for Your Application 
 
@@ -142,7 +138,17 @@ To restore from a backup:
      ```
      Where `APP_SLUG` is the unique application slug.
 
-     You will be guided through the process of restoring from a backup. When prompted, enter the information for the backup storage location.
+     Note the following requirements and guidance for the `restore` command:
+
+       * If the installation is behind a proxy, the same proxy settings provided during install must be provided to the restore command using `--http-proxy`, `--https-proxy`, and `--no-proxy`. For more information, see [Install Behind a Proxy](/enterprise/installing-embedded#proxy).
+
+       * If the `--pod-cidr` and `--service-cidr` flags were used during install to the set IP address ranges for Pods and Services, these flags must be provided with the same CIDRs during the restore. If these flags are not provided or are provided with different CIDRs, the restore will fail with an error message telling you to rerun with the appropriate flags and values. However, it will take some time before that error occurs. For more information, see [Set IP Address Ranges for Pods and Services](/enterprise/installing-embedded#set-ip-address-ranges-for-pods-and-services).
+
+       * If the `--local-artifact-mirror-port` flag was used during install to change the port for the Local Artifact Mirror (LAM), you can optionally use the `--local-artifact-mirror-port` flag to choose a different LAM port during restore. For example, `restore --local-artifact-mirror-port=50000`. If no LAM port is provided during restore, the LAM port that was supplied during installation will be used. For more information, see [Change Admin Console and LAM Ports](/enterprise/installing-embedded#adm-lam-ports).
+
+     You will be guided through the process of restoring from a backup.
+     
+1. When prompted, enter the information for the backup storage location.
 
      ![Restore prompts on the command line](/images/dr-restore.png)
      [View a larger version of this image](/images/dr-restore.png)

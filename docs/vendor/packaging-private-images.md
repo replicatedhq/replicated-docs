@@ -33,6 +33,8 @@ To add an external registry using the Vendor Portal:
 
    <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
 
+   [View a larger version of this image](/images/add-external-registry.png)
+
 1. In the **Provider** drop-down, select your registry provider. 
 
 1. Complete the fields in the dialog, depending on the provider that you chose:

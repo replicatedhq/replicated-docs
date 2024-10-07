@@ -41,3 +41,29 @@ Replicated does not support using symlinked directories for these locations. Ins
 
 #### `/tmp`
 - Temporary space during installation
+
+#### Additional Directories and Files
+
+In addition to the primary directories above, Embedded Cluster creates directories and files in the following locations:
+
+- /etc/cni
+- /etc/k0s
+- /opt/cni
+- /opt/containerd
+- /run/calico
+- /run/containerd
+- /run/k0s
+- /sys/fs/cgroup/kubepods
+- /sys/fs/cgroup/system.slice/containerd.service
+- /sys/fs/cgroup/system.slice/containerd.service
+- /sys/fs/cgroup/system.slice/k0scontroller.service
+- /sys/fs/cgroup/system.slice/k0scontroller.service
+- /usr/libexec/k0s
+- /var/lib/calico
+- /var/lib/cni
+- /var/lib/containers
+- /var/lib/kubelet
+- /var/log/calico
+- /var/log/containers
+- /var/log/pods
+- /usr/local/bin/k0s

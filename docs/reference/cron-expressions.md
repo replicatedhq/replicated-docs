@@ -1,6 +1,8 @@
 # Cron Expressions
 
-This topic describes the supported cron expressions that youc an use to schedule automatic application update checks and automatic backups in the Replicated admin console. For more information, see [Configuring Automatic Updates](/enterprise/updating-apps) and [Schedule Automatic Backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Creating and Scheduling Backups_.
+This topic describes the supported cron expressions that you can use to schedule automatic application update checks and automatic backups in the KOTS Admin Console.
+
+For more information, see [Configuring Automatic Updates](/enterprise/updating-apps) and [Schedule Automatic Backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Creating and Scheduling Backups_.
 
 ## Syntax
 
@@ -122,7 +124,7 @@ You can use one of the following predefined schedule values instead of a cron ex
     </tr>
     <tr>
       <td>@default</td>
-      <td><p>Selects the default schedule option (every 4 hours). Begins when the admin console starts up.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
+      <td><p>Selects the default schedule option (every 4 hours). Begins when the Admin Console starts up.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
       <td>0 * * * *</td>
     </tr>
 </table>
@@ -135,7 +137,7 @@ You can also schedule the job to operate at fixed intervals, starting at the tim
 @every DURATION
 ```
 
-Replace `DURATION` with a string that is accepted by time.ParseDuration, with the exception of seconds. Seconds are not supported by Replicated KOTS. For more information about duration strings, see [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration) in the Go Time documentation.
+Replace `DURATION` with a string that is accepted by time.ParseDuration, with the exception of seconds. Seconds are not supported by KOTS. For more information about duration strings, see [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration) in the Go Time documentation.
 
 As with standard cron expressions, the interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there are 6 minutes of idle time between each run.
 
