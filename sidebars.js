@@ -37,7 +37,7 @@ const sidebars = {
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/kots-faq',
-    'vendor/replicated-onboarding',
+    // 'vendor/replicated-onboarding',
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -107,87 +107,175 @@ const sidebars = {
         },
       ],
     },
-    'vendor/distributing-overview',
+    // WORKFLOWS
+    {type: 'html', value: '<h5>WORKFLOWS</h5>', defaultStyle: true},
+    'vendor/replicated-onboarding',
+    {
+      type: 'category',
+      label: 'Supporting Helm CLI Installations',
+      items: [
+        'vendor/install-with-helm',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Supporting Air Gap Installations',
+      items: [
+        'vendor/helm-packaging-airgap-bundles',
+        'vendor/packaging-air-gap',
+        'vendor/releases-download-airgap-bundles',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Integrating with CI/CD',
+      items: [
+        'vendor/ci-overview',
+        'vendor/ci-workflows',
+        'vendor/ci-workflows-github-actions',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Vendor Portal Teams and Accounts',
+      label: 'Vendor Portal',
       items: [
-        'vendor/vendor-portal-creating-account',
-        'vendor/team-management',
-        'vendor/team-management-github-username',
         {
-            type: 'category',
-            label: 'Configuring Role-based Access Control',
-            items: [
-              'vendor/team-management-rbac-configuring',
-              'vendor/team-management-rbac-resource-names',
+          type: 'category',
+          label: 'Vendor Portal Teams and Accounts',
+          items: [
+            'vendor/vendor-portal-creating-account',
+            'vendor/team-management',
+            'vendor/team-management-github-username',
+            {
+                type: 'category',
+                label: 'Configuring Role-based Access Control',
+                items: [
+                  'vendor/team-management-rbac-configuring',
+                  'vendor/team-management-rbac-resource-names',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Configuring Authentication',
+              items: [
+                'vendor/team-management-two-factor-auth',
+                'vendor/team-management-google-auth',
+                'vendor/team-management-saml-auth',
+              ],
+            },
+            'vendor/team-management-slack-config',
+            'vendor/replicated-api-tokens',
+    
           ],
         },
         {
           type: 'category',
-          label: 'Configuring Authentication',
+          label: 'Applications',
           items: [
-            'vendor/team-management-two-factor-auth',
-            'vendor/team-management-google-auth',
-            'vendor/team-management-saml-auth',
+            'vendor/vendor-portal-manage-app',
+            'vendor/vendor-portal-application-settings',
           ],
         },
-        'vendor/team-management-slack-config',
-        'vendor/replicated-api-tokens',
-
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Applications',
-      items: [
-        'vendor/vendor-portal-manage-app',
-        'vendor/vendor-portal-application-settings',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Channels and Releases',
-      items: [
-        'vendor/releases-about',
-        'vendor/releases-creating-channels',
-        'vendor/releases-creating-releases',
-        'vendor/releases-creating-cli',
-        'vendor/helm-install-release',
-        'vendor/releases-sharing-license-install-script',
-        'reference/linter',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Customer Licenses',
-      items: [
-        'vendor/licenses-about',
-        'vendor/releases-creating-customer',
-        'vendor/licenses-adding-custom-fields',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-about-types',
         {
           type: 'category',
-          label: 'Querying License Entitlements',
+          label: 'Channels and Releases',
           items: [
-            'vendor/licenses-reference-sdk',
-            'vendor/licenses-reference-helm',
-            'vendor/licenses-referencing-fields',
-            'vendor/licenses-reference-kots-runtime',
-            'vendor/licenses-verify-fields-sdk-api',
-          ]
+            'vendor/releases-about',
+            'vendor/releases-creating-channels',
+            'vendor/releases-creating-releases',
+            'vendor/releases-creating-cli',
+            'vendor/helm-install-release',
+            'vendor/releases-sharing-license-install-script',
+            'reference/linter',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Customer Licenses',
+          items: [
+            'vendor/licenses-about',
+            'vendor/releases-creating-customer',
+            'vendor/licenses-adding-custom-fields',
+            'vendor/licenses-using-builtin-fields',
+            'vendor/licenses-about-types',
+            'vendor/licenses-download',
+            {
+              type: 'category',
+              label: 'Querying License Entitlements',
+              items: [
+                'vendor/licenses-reference-sdk',
+                'vendor/licenses-reference-helm',
+                'vendor/licenses-referencing-fields',
+                'vendor/licenses-reference-kots-runtime',
+                'vendor/licenses-verify-fields-sdk-api',
+              ]
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Domains',
+          items: [
+            'vendor/custom-domains',
+            'vendor/custom-domains-using',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Insights and Telemetry',
+          items: [
+              'vendor/instance-insights-event-data',
+              'vendor/insights-app-status',
+              'vendor/telemetry-air-gap',
+              'vendor/customer-adoption',
+              'vendor/customer-reporting',
+              'vendor/instance-insights-details',
+              'vendor/instance-notifications-config',
+              'vendor/custom-metrics',
+              'vendor/instance-data-export',
+            ],
         },
       ],
     },
     {
       type: 'category',
-      label: 'Distributing and Installing with KOTS',
+      label: 'Embedded Cluster',
+      items: [
+        'vendor/embedded-overview',
+        'reference/embedded-config',
+        'vendor/embedded-disaster-recovery',
+      ],
+    },
+    // {
+    //   type: 'category',
+    //   label: 'Embedded Cluster',
+    //   items: [
+    //     'vendor/embedded-kubernetes-overview',
+    //     'vendor/embedded-overview',
+    //     'reference/embedded-config',
+    //     'vendor/embedded-disaster-recovery',
+    //     {
+    //       type: 'category',
+    //       label: 'kURL',
+    //       items: [
+    //         'vendor/kurl-about',
+    //         'vendor/packaging-embedded-kubernetes',
+    //         'vendor/packaging-installer-storage',
+    //         'vendor/installer-history',
+    //         'vendor/packaging-using-tls-certs',
+    //       ],
+    //     },
+    //   ],
+    // },
+    {
+      type: 'category',
+      label: 'KOTS',
       items: [
         'intro-kots',
-        'vendor/distributing-workflow',
+        // 'vendor/distributing-workflow',
         {
           type: 'category',
           label: 'Packaging KOTS Releases',
@@ -198,38 +286,38 @@ const sidebars = {
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
-                'vendor/helm-packaging-airgap-bundles',
+                // 'vendor/helm-packaging-airgap-bundles',
                 'vendor/helm-optional-value-keys',
                 'vendor/helm-v2-migrate',
               ],
             },
-            {
-              type: 'category',
-              label: 'Distributing Embedded Kubernetes',
-              items: [
-                'vendor/embedded-kubernetes-overview',
-                {
-                  type: 'category',
-                  label: 'Embedded Cluster',
-                  items: [
-                    'vendor/embedded-overview',
-                    'reference/embedded-config',
-                    'vendor/embedded-disaster-recovery',
-                  ],
-                },
-                {
-                  type: 'category',
-                  label: 'kURL',
-                  items: [
-                    'vendor/kurl-about',
-                    'vendor/packaging-embedded-kubernetes',
-                    'vendor/packaging-installer-storage',
-                    'vendor/installer-history',
-                    'vendor/packaging-using-tls-certs',
-                  ],
-                },
-              ],
-            },
+            // {
+            //   type: 'category',
+            //   label: 'Distributing Embedded Kubernetes',
+            //   items: [
+            //     'vendor/embedded-kubernetes-overview',
+            //     {
+            //       type: 'category',
+            //       label: 'Embedded Cluster',
+            //       items: [
+            //         'vendor/embedded-overview',
+            //         'reference/embedded-config',
+            //         'vendor/embedded-disaster-recovery',
+            //       ],
+            //     },
+            //     {
+            //       type: 'category',
+            //       label: 'kURL',
+            //       items: [
+            //         'vendor/kurl-about',
+            //         'vendor/packaging-embedded-kubernetes',
+            //         'vendor/packaging-installer-storage',
+            //         'vendor/installer-history',
+            //         'vendor/packaging-using-tls-certs',
+            //       ],
+            //     },
+            //   ],
+            // },
             {
               type: 'category',
               label: 'Admin Console and Download Portal Customization',
@@ -320,19 +408,18 @@ const sidebars = {
                 'vendor/operator-defining-additional-namespaces',
               ],
             },
-            {
-              type: 'category',
-              label: 'Downloading and Sharing Assets for KOTS Releases',
-              items: [
-                'vendor/releases-download-airgap-bundles',
-                'vendor/licenses-download',
-                'vendor/releases-share-download-portal',
-                'vendor/releases-configvalues',
-              ],
-            },
+            // {
+            //   type: 'category',
+            //   label: 'Downloading and Sharing Assets for KOTS Releases',
+            //   items: [
+            //     'vendor/releases-download-airgap-bundles',
+            //     'vendor/licenses-download',
+            //     'vendor/releases-share-download-portal',
+            //     'vendor/releases-configvalues',
+            //   ],
+            // },
           ],
         },   
-        // KOTS ENTERPRISE USER DOCS
         {
           type: 'category',
           label: 'Installing and Managing Applications',
@@ -488,21 +575,27 @@ const sidebars = {
       'reference/cron-expressions',
     ],
   },
-  'vendor/install-with-helm',
   {
     type: 'category',
-    label: 'Replicated SDK (Beta)',
+    label: 'kURL (Legacy)',
     items: [
-      'vendor/replicated-sdk-overview',
-      'vendor/replicated-sdk-installing',
-      'vendor/replicated-sdk-airgap',
-      'vendor/replicated-sdk-customizing',
-      'vendor/replicated-sdk-slsa-validating',
+      'vendor/kurl-about',
+      'vendor/packaging-embedded-kubernetes',
+      'vendor/packaging-installer-storage',
+      'vendor/installer-history',
+      'vendor/packaging-using-tls-certs',
     ],
   },
   {
     type: 'category',
-    label: 'Proxying Private Images',
+    label: 'Download Portal',
+    items: [
+      'vendor/releases-share-download-portal',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Replicated Proxy Registry',
     items: [
       'vendor/private-images-about',
       'vendor/packaging-private-images',
@@ -522,12 +615,35 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Using Custom Domains',
+    label: 'Replicated SDK (Beta)',
     items: [
-      'vendor/custom-domains',
-      'vendor/custom-domains-using',
+      'vendor/replicated-sdk-overview',
+      'vendor/replicated-sdk-installing',
+      'vendor/replicated-sdk-airgap',
+      'vendor/replicated-sdk-customizing',
+      'vendor/replicated-sdk-slsa-validating',
     ],
   },
+  // {
+  //   type: 'category',
+  //   label: 'Proxying Private Images',
+  //   items: [
+  //     'vendor/private-images-about',
+  //     'vendor/packaging-private-images',
+  //     'vendor/helm-image-registry',
+  //     'vendor/private-images-kots',
+  //     'vendor/private-images-tags-digests',
+  //     {
+  //       type: 'category',
+  //       label: 'Replicated Private Registry',
+  //       items: [
+  //         'vendor/private-images-replicated',
+  //         'vendor/packaging-private-registry-security',
+  //       ],
+  //     },
+  //     'vendor/tutorial-ecr-private-images',
+  //   ],
+  // },
   {
     type: 'category',
     label: 'Preflight Checks and Support Bundles',
@@ -585,7 +701,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Testing with Compatibility Matrix',
+    label: 'Compatibility Matrix',
     items: [
       'vendor/testing-about',
       'vendor/testing-supported-clusters',
@@ -594,31 +710,31 @@ const sidebars = {
       'vendor/testing-ingress',
     ],
   },
-  {
-    type: 'category',
-    label: 'Integrating with CI/CD',
-    items: [
-      'vendor/ci-overview',
-      'vendor/ci-workflows',
-      'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Insights and Telemetry',
-    items: [
-        'vendor/instance-insights-event-data',
-        'vendor/insights-app-status',
-        'vendor/telemetry-air-gap',
-        'vendor/customer-adoption',
-        'vendor/customer-reporting',
-        'vendor/instance-insights-details',
-        'vendor/instance-notifications-config',
-        'vendor/custom-metrics',
-        'vendor/instance-data-export',
-      ],
-  },
+  // {
+  //   type: 'category',
+  //   label: 'Integrating with CI/CD',
+  //   items: [
+  //     'vendor/ci-overview',
+  //     'vendor/ci-workflows',
+  //     'vendor/ci-workflows-github-actions',
+  //     'vendor/tutorial-ci-cd-integration',
+  //   ],
+  // },
+  // {
+  //   type: 'category',
+  //   label: 'Insights and Telemetry',
+  //   items: [
+  //       'vendor/instance-insights-event-data',
+  //       'vendor/insights-app-status',
+  //       'vendor/telemetry-air-gap',
+  //       'vendor/customer-adoption',
+  //       'vendor/customer-reporting',
+  //       'vendor/instance-insights-details',
+  //       'vendor/instance-notifications-config',
+  //       'vendor/custom-metrics',
+  //       'vendor/instance-data-export',
+  //     ],
+  // },
 
   // DEVELOPER TOOLS
   {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
