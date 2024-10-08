@@ -110,11 +110,11 @@ The following fields are supported on all optional analyzers for preflights and 
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) A condition based on the runtime available configuration can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for KOTS and the optional KOTS Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
+    <td>(Optional) (KOTS Only) A condition based on the runtime available configuration can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for KOTS and the optional KOTS Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
   </tr>
   <tr>
     <td><code>strict</code></td>
-    <td>(Optional) An analyzer can be set to <code>strict: true</code> so that <code>fail</code> outcomes for that analyzer prevent the release from being deployed by KOTS until the vendor-specified requirements are met. When <code>exclude: true</code> is also specified, <code>exclude</code> overrides <code>strict</code> and the analyzer is not executed.</td>
+    <td>(Optional) (KOTS Only) An analyzer can be set to <code>strict: true</code> so that <code>fail</code> outcomes for that analyzer prevent the release from being deployed by KOTS until the vendor-specified requirements are met. When <code>exclude: true</code> is also specified, <code>exclude</code> overrides <code>strict</code> and the analyzer is not executed.</td>
   </tr>
 </table>
 

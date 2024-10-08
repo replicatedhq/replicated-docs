@@ -80,7 +80,7 @@ The **Instances** section displays the following details about each active insta
    * The Kubernetes version running in the cluster.
    * Whether the instance is installed in a Replicated kURL cluster.
    * (kURL Clusters Only) The number of nodes ready in the cluster.
-   * The KOTS version running in the cluster.
+   * (KOTS Only) The KOTS version running in the cluster.
    * The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:

@@ -1,6 +1,10 @@
-# Redactor
+# Redactor (KOTS Only)
 
-This topic describes the Redactor custom resource.
+This topic describes how to define redactors with the Redactor custom resource.
+
+:::note
+Custom redactors defined with the Redactor resource apply only to installations with Replicated KOTS.
+:::
 
 ## Overview
 
