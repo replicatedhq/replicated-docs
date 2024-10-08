@@ -1,8 +1,10 @@
 import IntroExisting from "../partials/install/_intro-existing.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import BuildAirGapBundle from "../partials/install/_build-airgap-bundle.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+import AirGapLicense from "../partials/install/_airgap-license-download.mdx"
 import DownloadKotsBundle from "../partials/install/_download-kotsadm-bundle.mdx"
 import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
 import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
@@ -17,16 +19,6 @@ import KotsVersionMatch from "../partials/install/_kots-airgap-version-match.mdx
 
 <IntroAirGap/>
 
-## About Private Registries
-
-Air gapped networks must have a Docker image registry that is available inside the network. KOTS rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
-
-A single application expects to use a single namespace in the Docker image registry. The namespace name can be any valid URL-safe string, supplied at installation time. A registry typically expects the namespace to exist before any images can be pushed into it.
-
-:::note
-ECR does not use namespaces.
-:::
-
 ## Prerequisites
 
 Complete the following prerequisites:
@@ -35,15 +27,25 @@ Complete the following prerequisites:
 
 * Ensure that there is a compatible Docker image registry available inside the network. For more information about Docker registry compatibility, see [Private Registry Requirements](/enterprise/installing-general-requirements#private-registry-requirements).
 
-<AirGapBundle/>
+    KOTS rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
 
-<LicenseFile/>
+    A single application expects to use a single namespace in the Docker image registry. The namespace name can be any valid URL-safe string, supplied at installation time. A registry typically expects the namespace to exist before any images can be pushed into it.
 
-* <DownloadKotsBundle/>
+    :::note
+    Amazon Elastic Container Registry (ECR) does not use namespaces.
+    :::
 
 ## Install {#air-gap}
 
-To install KOTS and an application in an air gap existing cluster:
+To install in an air gap cluster with KOTS:
+
+1. <AirGapLicense/>
+
+1. <BuildAirGapBundle/>
+
+1. <AirGapBundle/>
+
+1. <DownloadKotsBundle/> 
 
 1. <InstallKotsCliAirGap/>
 

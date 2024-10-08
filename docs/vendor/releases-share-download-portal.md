@@ -22,6 +22,10 @@ The following is an example of the download portal for an air gap customer insta
 
 [View a larger version of this image](/images/download-portal-kurl.png)
 
+### Limitation
+
+Air gap bundles for the Replicated Embedded Cluster installer are not available in the Download Portal.
+
 ## Get the Customer-Specific Download Portal URL and Password
 
 To share installation files with a customer, you can send the customer their unique link and password for the download portal.
@@ -48,3 +52,33 @@ and preview your customer's experience.
    :::
 
 1. Send the URL and password for the Download Portal to your customer.
+
+## Download Assets from the Download Portal {#download-portal}
+
+To download release assets from the Download Portal:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
+
+1. (Optional) On the **Manage customer** page, enable the **Airgap Download Enabled** option. This makes air gap bundles available in the Download Portal.
+
+1. In the **Download portal** section, generate or create a password. Copy the password to your clipboard and click **Save**.
+
+     <img alt="download portal link" src="/images/download-portal-link.png" width="650px"/>
+
+     [View a larger version of this image](/images/download-portal-link.png)
+
+1. Click **Visit download portal** and log in.
+
+     The following is an example of the download portal for an air gap customer:
+
+     ![download portal for existing cluster air gap installs](/images/download-portal-existing-cluster.png)
+
+     [View a larger version of this image](/images/download-portal-existing-cluster.png)
+
+1. On the left side of the screen, select one of the following:
+     * **Bring my own cluster**: View the air gap bundles for existing cluster installations with KOTS.
+     * **Embedded cluster**: View the air gap bundles for kURL installations.
+
+1. Under **Select application version**, use the dropdown to select the target application release version. The download portal automatically makes the correct air gap bundles available for download based on the selected application version.
+
+1. Click the download button to download each asset.
