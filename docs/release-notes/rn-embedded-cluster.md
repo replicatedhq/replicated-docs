@@ -277,7 +277,7 @@ Released on August 23, 2024
 
 ### Bug Fixes {#bug-fixes-1-11-0}
 
-* Fixes several issues that caused node resets to fail. Single-node clusters are no longer drained before being reset. Resets will no longer fail with the error `unable to get installation` if the installation failed early on. And node resets will now work if bind mounts are used for `/var/lib/embedded-cluster`, `/var/lib/embedded-cluster/k0s`, and `/var/lib/embedded-cluster/openebs-local`.
+* Fixes several issues that caused node resets to fail. Single-node clusters are no longer drained before being reset. Resets will no longer fail with the error `unable to get installation` if the installation failed early on. And node resets will now work if bind mounts are used for `/var/lib/embedded-cluster`, `/var/lib/k0s`, and `/var/openebs`.
 * Fixes an issue where preflight checks for `modprobe`, `mount`, and `unmount` in `PATH` did not use absolute paths.
 * Fixes an issue where restoring did not work with S3-compatible object stores other than AWS S3.
 
