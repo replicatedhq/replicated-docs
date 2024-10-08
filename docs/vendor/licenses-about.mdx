@@ -1,5 +1,4 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
-import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Customers
 
@@ -96,7 +95,7 @@ Replicated enforces the following logic when a license expires:
    To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 * Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
 * Expired licenses cannot pull application images through the Replicated proxy registry or from the Replicated registry.
-* (KOTS Only) KOTS prevents instances with expired licenses from receiving updates.
+* In Replicated KOTS installations, KOTS prevents instances with expired licenses from receiving updates.
 
 ## About Customer Channel Assignment {#channel-assignment}
 
@@ -109,23 +108,6 @@ This section provides information about managing the channel a customer is assig
 For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the KOTS Admin Console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
 For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the Admin Console, see [Updating Licenses](/enterprise/updating-licenses).
-
-### Assigning KOTS and Helm-Only Customers
-
-<KotsEntitlement/>
-
-To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following channel assignment rules:
-* A KOTS customer can be assigned to a channel only when the head release contains the required KOTS manifests.
-
-  <img width="400px" alt="KOTS customer blocked from channel assignment" src="/images/channel-assignment-helm-only.png"/>
-
-  [View a larger version of this image](/images/channel-assignment-helm-only.png) 
-
-* A Helm CLI-only customer can be assigned to a channel only when the head release contains at least one Helm chart.
-
-  <img width="400px" alt="Helm customer blocked from channel assignment" src="/images/channel-assignment-kots-only.png"/>
-  
-  [View a larger version of this image](/images/channel-assignment-kots-only.png)
 
 ## About the Customers Page
 
@@ -145,7 +127,7 @@ From the **Customers** page, you can do the following:
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* (KOTS Only) Download the license file for each customer.
+* Download the license file for each customer.
 
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
 
