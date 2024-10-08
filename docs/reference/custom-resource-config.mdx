@@ -510,7 +510,9 @@ The `bool` input type should use a "0" or "1" to set the value
         default: "0"
 ```
 
-![Boolean selector on the configuration screen](../../static/images/config-screen-bool.png)
+![Boolean selector on the configuration screen](/images/config-screen-bool.png)
+
+[View a larger version of this image](/images/config-screen-bool.png)
 
 ### `dropdown`
 
@@ -541,6 +543,14 @@ spec:
         title: 1.2.5    
 ```
 
+![Dropdown item type on config screen](/images/config-screen-dropdown.png)
+
+[View a larger version of this image](/images/config-screen-dropdown.png)
+
+![Dropdown item type expanded](/images/config-screen-dropdown-open.png)
+
+[View a larger version of this image](/images/config-screen-dropdown-open.png)
+
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
 Only the contents of the file, not the name, are captured.
@@ -558,7 +568,9 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-![File input field on the configuration screen](../../static/images/config-screen-file.png)
+![File input field on the configuration screen](/images/config-screen-file.png)
+
+[View a larger version of this image](/images/config-screen-file.png)
 
 ### `heading`
 The `heading` type allows you to display a group heading as a sub-element within a group.
@@ -575,7 +587,9 @@ This is useful when you would like to use a config group to group items together
       ...
 ```
 
-![Heading on the configuration screen](../../static/images/config-screen-heading.png)
+![Heading on the configuration screen](/images/config-screen-heading.png)
+
+[View a larger versio of this image](/images/config-screen-heading.png)
 
 ### `label`
 The `label` type allows you to display an input label.
@@ -590,7 +604,9 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](../../static/images/config-screen-label.png)
+![Email address label on the configuration screen](/images/config-screen-label.png)
+
+[View a larger version of this image](/images/config-screen-label.png)
 
 ### `password`
 The `password` type is a text field that hides the character input.
@@ -602,7 +618,9 @@ The `password` type is a text field that hides the character input.
       value: '{{repl RandomString 10}}'
 ```
 
-![Password text field on the configuration screen](../../static/images/config-screen-password.png)
+![Password text field on the configuration screen](/images/config-screen-password.png)
+
+[View a larger version of this image](/images/config-screen-password.png)
 
 ### `radio`
 
@@ -671,7 +689,7 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-![Text field on the configuration screen](../../static/images/config-screen-text.png)
+![Text field on the configuration screen](/images/config-screen-text.png)
 
 :::important
 Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
@@ -692,7 +710,7 @@ A `textarea` items creates a multi-line text input for when users have to enter 
         title: Hostname
         type: text
 ```
-![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
+![Text area field on the configuration screen](/images/config-screen-textarea.png)
 
 ## Item Validation
 
@@ -714,9 +732,9 @@ For applications installed with KOTS v1.98.0 or later, a `regex` can be used to 
 
 <RegexValidationExample/>
 
-![Password validation error](../../static/images/regex_password_validation_error.png)
+![Password validation error](/images/regex_password_validation_error.png)
 
-![File validation error only when uploaded](../../static/images/regex_file_validation_error.png)
+![File validation error only when uploaded](/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
