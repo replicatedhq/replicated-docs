@@ -58,23 +58,17 @@ To install with Embedded Cluster in an air gap environment:
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
 
-     The **Embedded Cluster install instructions** dialog is displayed.
+1. In the **Embedded Cluster install instructions** dialog, enable the **Install in an air gap environment** checkbox.
 
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
+    <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-airgap.png" width="500px"/>
 
-     [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
+    [View a larger version of this image](/images/embedded-cluster-install-dialog-airgap.png)
 
-1. (Optional) In the **Embedded Cluster install instructions** dialog, under **Select a version**, select a specific application version to install. By default, the latest version is selected.
+1. (Optional) For **Select a version**, select a specific application version to install. By default, the latest version is selected.
 
 1. SSH onto the machine where you will install.
 
-1. Modify the curl command provided in the first step in the **Embedded Cluster installation instructions** dialog by adding the `?airgap=true` query parameter to the end of the `replicated.app` endpoint:
-
-    ```bash
-    curl -f https://replicated.app/embedded/APP_SLUG/CHANNEL_SLUG?airgap=true -H "Authorization: LICENSE_ID" -o APP_SLUG-CHANNEL_SLUG.tgz
-    ```
-
-1. On a machine with internet access, run the modified curl command to download the air gap installation assets as a `.tgz`.
+1. On a machine with internet access, run the curl command to download the air gap installation assets as a `.tgz`.
 
 1. Move the downloaded `.tgz` to the air gapped machine where you will install. 
 

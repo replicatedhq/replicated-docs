@@ -4,13 +4,17 @@ import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx
 
 Built-in fields are reserved field names. The following table describes each built-in license field that you can define for a customer.
 
+:::note
+License fields labeled "KOTS Only" in the table below apply only to Replicated KOTS installations.
+:::
+
 | License field         | Description           |
 |------------------------|------------------------|
 | `appSlug` | Application slug value. This value never changes. |
 | `channelID` | Current channel ID from which releases will be downloaded. When channel changes, the latest release of that will be downloaded on the next update check. |
 | `channelName` | Current channel name from which releases will be downloaded. When channel changes, the latest release of that will be downloaded on the next update check. |
 | `customerName` | The name of the customer. |
-| `endpoint` | (KOTS Only) The endpoint that the Replicated Admin Console uses to synchronize license and download updates. This is typically `https://replicated.app`. |
+| `endpoint` | (KOTS Only) The endpoint that the KOTS Admin Console uses to synchronize license and download updates. This is typically `https://replicated.app`. |
 | `entitlements` | The `entitlements` property includes the `expires_at` field and any custom entitlements for the license. For more information about adding custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).|
 | `expires_at` | <p>Defines the expiration date for the license. The date is encoded in ISO 8601 format (`2026-01-23T00:00:00Z`) and is set to midnight UTC on the date selected. If a license does not expire, this field is missing.</p><p>By default, instances with an expired license continue to run. Additionally, instances installed with KOTS that have an expired license do not receive updates. For more information about the default behavior when a license expires, see [License Expiration Handling](licenses-about#expiration) in _About Customers_.</p>|
 | `isAirgapSupported` | (KOTS Only) If a license supports air gapped installations, then this field is set to `true`. If air gapped is not supported, this field is missing. When you enable this feature, the `.rli` file will have license meta data embedded in it, and must be re-downloaded. |

@@ -21,22 +21,9 @@ To create and promote a release in the Vendor Portal:
 
    [View a larger version of this image](/images/release-create-new.png)
 
-1. If a drop down is displayed, select one of the following options:
-   * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
-   * **Create KOTS release**: Create a release that supports installations with Replicated KOTS. KOTS releases can contain Kubernetes manifests and one or more Helm charts. KOTS releases that contain Helm charts can also be installed with the Helm CLI.
-
-   If no drop down is displayed, continue to the next step.  
-
-1. Add your files to the release:
-   * **Helm-only**: For Helm-only releases, follow the steps in the **Add the Replicated SDK to your Helm Chart**  dialog to package your chart and upload a `.tgz` chart archive.
+1. Add your files to the release. You can do this by dragging and dropping files to the file directory in the YAML editor or clicking the plus icon to add a new, untitled YAML file.
    
-     <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
-
-     [View a larger version of this image](/images/upload-helm-chart-modal.png)
-
-   * **KOTS**: For KOTS releases, drag and drop your release files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
-   
-     For any Helm charts that you add, in the **Select Installation Method** dialog, select the version of the HelmChart custom resource that KOTS will use to install the chart. kots.io/v1beta2 is recommended. For more information about the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+1. For any Helm charts that you add to the release, in the **Select Installation Method** dialog, select the version of the HelmChart custom resource that KOTS will use to install the chart. kots.io/v1beta2 is recommended. For more information about the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
      <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="550px"/>
 
@@ -69,7 +56,7 @@ To create and promote a release in the Vendor Portal:
     <tr>
       <td>Requirements</td>
       <td>
-        (KOTS Only) Select the <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required for KOTS installations. This option does not apply to installations with Helm.
+        Select the <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required for KOTS installations. This option does not apply to installations with Helm.
       </td>
     </tr>
     <tr>

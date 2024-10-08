@@ -46,7 +46,7 @@ pagination_next: null
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
-      <a href="/vendor/quick-start">Replicated Quick Start</a>
+      <a href="/vendor/kots-faq">Replicated FAQs</a>
     </li>
     <li>
       <a href="/vendor/replicated-onboarding">Replicated Onboarding</a>
@@ -139,7 +139,11 @@ pagination_next: null
       <a href="intro-kots">Introduction to KOTS</a>
     </li>
     <li>
+<<<<<<< HEAD
       <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
+=======
+      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
+>>>>>>> main
     </li>
     <li>
       <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>

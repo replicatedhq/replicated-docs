@@ -35,13 +35,27 @@ const sidebars = {
 
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    'intro-replicated',
+    'vendor/kots-faq',
+    'vendor/replicated-onboarding',
+    // {
+    //   type: 'category',
+    //   label: 'Planning',
+    //   items: [
+    //     'vendor/planning-questionnaire',
+    //     'vendor/namespaces',
+    //   ],
+    // },
     {
       type: 'category',
-      label: 'Concepts',
-      items:[
-        'intro-replicated',
-        'vendor/distributing-overview',
-        'vendor/kots-faq',
+      label: 'Labs',
+      items:
+      [
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/delivering-as-an-appliance?token=em_lUZdcv0LrF6alIa3', label: 'Delivering Your Application as a Kubernetes Appliance'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
     },
     'vendor/quick-start',
@@ -52,7 +66,11 @@ const sidebars = {
       items: [
         {
           type: 'category',
+<<<<<<< HEAD
           label: 'Deploy a Helm Chart on a VM with Embedded Cluster',
+=======
+          label: 'Install a Helm Chart on a VM with Embedded Cluster',
+>>>>>>> main
           items: [
             'vendor/tutorial-embedded-cluster-setup',
             'vendor/tutorial-embedded-cluster-create-app',
@@ -64,7 +82,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Deploy a Helm Chart with KOTS and the Helm CLI',
+          label: 'Install a Helm Chart with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-kots-helm-setup',
             'vendor/tutorial-kots-helm-get-chart',
@@ -78,21 +96,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'KOTS Tutorial (UI)',
-          items: [
-            'vendor/tutorial-ui-setup',
-            'vendor/tutorial-ui-create-app',
-            'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer',
-            'vendor/tutorial-ui-install-app-manager',
-            'vendor/tutorial-ui-deploy-app',
-            'vendor/tutorial-ui-create-new-version',
-            'vendor/tutorial-ui-update-app',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'KOTS Tutorial (CLI)',
+          label: 'Install with KOTS in an Existing Cluster',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',
@@ -495,6 +499,7 @@ const sidebars = {
           'reference/template-functions-static-context',
         ],
       },
+      'reference/cron-expressions',
     ],
   },
   'vendor/install-with-helm',

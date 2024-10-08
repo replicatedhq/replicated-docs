@@ -81,7 +81,7 @@ The **Instances** section displays the following details about each active insta
    * Whether the instance is installed in a Replicated kURL cluster.
    * (kURL Clusters Only) The number of nodes ready in the cluster.
    * (KOTS Only) The KOTS version running in the cluster.
-   * (Replicated SDK Only) The Replicated SDK version running in the cluster.
+   * The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
    * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
