@@ -10,14 +10,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
 
 * Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
 
-* Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
-  * (Recommended) For Helm chart-based applications, Replicated recommends that you complete the [Replicated Quick Start](/vendor/replicated-onboarding) workflow before getting started with KOTS. The workflow in _Replicated Quick Start_ demonstrates how to add a Helm chart to a release in the vendor platform and then install with the Helm CLI.
-  
-     :::note
-     Packaging your application with Helm is recommended because it allows you to support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
-     :::
-
-  * Alternatively, if you do _not_ intend to distribute a Helm application with Replicated, see [Install with KOTS in an Existing Cluster](tutorial-cli-setup) for a workflow that uses a sample application with Kubernetes manifests.
+* Review [Replicated Onboarding](/vendor/replicated-onboarding) for more information about onboarding an application to the Replicated Platform before you get started with KOTS.
 
 ## Add Custom Resources
 
@@ -131,6 +124,6 @@ You can choose to use either Replicated Embedded Cluster or Replicated kURL to e
 
 ## Configure Additional Replicated Features
 
-Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Replicated Quick Start_ for a list of features to integrate with your application to fully onboard onto the Replicated platform.
+See [Replicated Onboarding](/vendor/replicated-onboarding) for a list of features to integrate with your application to fully onboard onto the Replicated platform.
 
 For example, you can add custom domains for the Replicated registry and app service, configure checks in your application for custom license entitlements, collect custom metrics using the Replicated SDK API, and more.

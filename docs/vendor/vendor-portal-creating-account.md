@@ -41,6 +41,6 @@ To create a vendor account:
    Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the Vendor Portal.
    :::
 
-## Next Steps
-* Invite team members to collaborate with you in Vendor Portal. See [Invite Members](team-management#invite-members).
-* Learn about how to get started with Replicated. See [Replicated Quick Start](replicated-onboarding).
+## Next Step
+
+Invite team members to collaborate with you in Vendor Portal. See [Invite Members](team-management#invite-members).
