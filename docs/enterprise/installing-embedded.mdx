@@ -209,3 +209,19 @@ The Embedded Cluster host preflight checks verify the default ports or the user-
 ### Limitation
 
 It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+## Change the Default Data Directory
+
+The default location of the data directory can be modified by the user at install time by passing the `--data-dir` flag to the `install` command.
+This directory cannot be changed after the cluster is installed.
+
+For example:
+
+```bash
+sudo ./APP_SLUG install --data-dir /data/embedded-cluster --license license.yaml --airgap-bundle APP_SLUG.airgap
+```
+Where `APP_SLUG` is the unique application slug.
+
+:::note
+Replicated does not support using symlinked directories for these locations. Instead, Replicated recommends bind mounts, which provide greater consistency across different applications, preserve the original directory permissions and ownership, and have less overhead compared to symlinks. For more information, see [Relocating data directories with bind mounts](https://community.replicated.com/t/relocating-data-directories-with-bind-mounts/1435) in Replicated Community.
+:::
