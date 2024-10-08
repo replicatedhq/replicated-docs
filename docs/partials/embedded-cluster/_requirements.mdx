@@ -1,10 +1,17 @@
 * Linux operating system
+
 * x86-64 architecture
+
 * systemd
+
 * At least 2GB of memory and 2 CPU cores
-* Disk space requirements:
-  * The filesystem at `/var/lib/embedded-cluster` has 40Gi or more of total space
-  * The filesystem at `/var/lib/embedded-cluster/k0s` has 40Gi or more of total space and must be no more than 80% full
-  * The filesystem at `/var/lib/embedded-cluster/openebs-local` has 5Gi or more of total space
+
+* The filesystem at `/var/lib/embedded-cluster` has 40Gi or more of total space and must be less than 80% full
+
+   :::note
+   The directory used for data storage can be changed by passing the `--data-dir` flag with the Embedded Cluster install command. For more information, see [Change the Default Data Directory](/enterprise/installing-embedded#data-dir) in _Installing with Embedded Cluster_.
+   :::
+
 * (Online installations only) Access to replicated.app and proxy.replicated.com or your custom domain for each
+
 * Embedded Cluster is based on k0s, so all k0s system requirements and external runtime dependencies apply. See [System requirements](https://docs.k0sproject.io/stable/system-requirements/) and [External runtime dependencies](https://docs.k0sproject.io/stable/external-runtime-deps/) in the k0s documentation.
