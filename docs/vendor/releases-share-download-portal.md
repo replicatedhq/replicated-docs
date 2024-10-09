@@ -45,7 +45,7 @@ To log in to the Download Portal and download release assets:
 
 1. In the pop-up window, enter a password or click **Generate**.
 
-   ![download portal password pop-up](/images/download-portal-password-popup.png)
+   <img alt="download portal password pop-up" src="/images/download-portal-password-popup.png" width="450px"/>
 
    [View a larger version of this image](/images/download-portal-password-popup.png)
 
