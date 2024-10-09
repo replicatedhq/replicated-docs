@@ -249,7 +249,6 @@ const sidebars = {
                   'vendor/admin-console-customize-config-screen',
                   'vendor/config-screen-map-inputs',
                   'vendor/config-screen-conditional',
-                  'vendor/releases-configvalues',
                   {
                     type: 'category',
                     label: 'Tutorial: Set Helm Chart Values with KOTS',
@@ -353,7 +352,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing in Existing Clusters',
+                label: 'Installing in Existing Clusters with KOTS',
                 items: [
                   'enterprise/installing-existing-cluster',
                   'enterprise/installing-existing-cluster-airgapped',
@@ -368,7 +367,15 @@ const sidebars = {
                   'enterprise/cluster-management-add-nodes',
                 ],
               },
-              'enterprise/installing-existing-cluster-automation',
+              {
+                type: 'category',
+                label: 'Installing with the KOTS CLI',
+                items: [
+                  'enterprise/installing-existing-cluster-automation',
+                  'vendor/releases-configvalues',
+                ],
+              },
+              
               'enterprise/installing-stateful-component-requirements',
             ],
           },
