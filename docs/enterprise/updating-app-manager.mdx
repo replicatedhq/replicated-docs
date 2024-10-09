@@ -1,6 +1,7 @@
 import AdminConsole from "../partials/updating/_admin-console.mdx"
 import AdminConsoleAirGap from "../partials/updating/_admin-console-air-gap.mdx"
 import PushKotsImages from "../partials/install/_push-kotsadm-images.mdx"
+import BuildAirGapBundle from "../partials/install/_build-airgap-bundle.mdx"
 
 # Performing Updates in Existing Clusters
 
@@ -43,7 +44,11 @@ Add the `--deploy` flag to automatically deploy this version.
 
 To update an application in air gap environments:
 
-1. Get the new `.airgap` bundle for the target application release and ensure that it is available on your local machine.
+1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the target release is promoted to build and download the new `.airgap` bundle:
+   
+   <BuildAirGapBundle/>
+
+1. Ensure that you can access the downloaded bundle from the environment where the Admin Console is running.
 
 1. Run the following command to update the application:
 
@@ -57,7 +62,7 @@ To update an application in air gap environments:
     ```
     Replace:
     * `APP_SLUG` with the unique slug for the application. See [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
-    * `NEW_AIRGAP_BUNDLE` with the `.airgap` bundle for the target application version. See [Download Air Gap Bundles from the Download Portal](/vendor/releases-download-airgap-bundles#download-portal).
+    * `NEW_AIRGAP_BUNDLE` with the `.airgap` bundle for the target application version.
     * `REGISTRY_HOST` with the private registry that contains the Admin Console images.
     * `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted (Optional). 
     * `RO_USERNAME` and `RO_PASSWORD` with the username and password for an account that has read-only access to the private registry.
