@@ -157,6 +157,7 @@ const sidebars = {
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
         'vendor/releases-sharing-license-install-script',
+        'vendor/releases-share-download-portal',
         'reference/linter',
       ],
     },
@@ -248,6 +249,7 @@ const sidebars = {
                   'vendor/admin-console-customize-config-screen',
                   'vendor/config-screen-map-inputs',
                   'vendor/config-screen-conditional',
+                  'vendor/releases-configvalues',
                   {
                     type: 'category',
                     label: 'Tutorial: Set Helm Chart Values with KOTS',
@@ -319,14 +321,6 @@ const sidebars = {
                 'vendor/operator-defining-additional-images',
                 'vendor/operator-referencing-images',
                 'vendor/operator-defining-additional-namespaces',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Downloading and Sharing Assets for KOTS Releases',
-              items: [
-                'vendor/releases-share-download-portal',
-                'vendor/releases-configvalues',
               ],
             },
           ],

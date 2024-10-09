@@ -1,6 +1,6 @@
 import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 
-# Sharing Assets Through the Download Portal
+# Downloading Release Assets from the Download Portal
 
 This topic describes how to share customer license files, air gap bundles, and other assets with customers through the Replicated download portal.
 
@@ -32,9 +32,9 @@ To share installation files with a customer, you can send the customer their uni
 
 To get the URL and generate a password for the download portal:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the target customer.
+1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
 
-1. In the **Download portal** section, click **Manage customer password**.
+1. (Optional) On the **Manage customer** page, enable the **Airgap Download Enabled** option. This makes air gap bundles available in the Download Portal.
 
 1. In the pop-up window, enter a password or click **Generate**.
 
@@ -47,6 +47,12 @@ To get the URL and generate a password for the download portal:
 1. Click **Visit download portal** to log in to the Download Portal
 and preview your customer's experience.
 
+    The following is an example of the download portal for an air gap customer:
+
+    ![download portal for existing cluster air gap installs](/images/download-portal-existing-cluster.png)
+
+    [View a larger version of this image](/images/download-portal-existing-cluster.png)
+
    :::note
    By default, the Download Portal uses the domain `get.replicated.com`. You can optionally use a custom domain for the Download Portal. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
    :::
@@ -55,25 +61,10 @@ and preview your customer's experience.
 
 ## Download Assets from the Download Portal {#download-portal}
 
+Users can download release assets, including air gap bundles and their licenses, from the Download Portal.
+
 To download release assets from the Download Portal:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
-
-1. (Optional) On the **Manage customer** page, enable the **Airgap Download Enabled** option. This makes air gap bundles available in the Download Portal.
-
-1. In the **Download portal** section, generate or create a password. Copy the password to your clipboard and click **Save**.
-
-     <img alt="download portal link" src="/images/download-portal-link.png" width="650px"/>
-
-     [View a larger version of this image](/images/download-portal-link.png)
-
-1. Click **Visit download portal** and log in.
-
-     The following is an example of the download portal for an air gap customer:
-
-     ![download portal for existing cluster air gap installs](/images/download-portal-existing-cluster.png)
-
-     [View a larger version of this image](/images/download-portal-existing-cluster.png)
 
 1. On the left side of the screen, select one of the following:
      * **Bring my own cluster**: View the air gap bundles for existing cluster installations with KOTS.

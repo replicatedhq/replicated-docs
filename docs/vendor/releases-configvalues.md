@@ -6,7 +6,7 @@ import SelectOneExample from "../partials/configValues/_selectOneExample.mdx"
 import TextExample from "../partials/configValues/_textExample.mdx"
 import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
-# Sharing a ConfigValues File
+# Generating a ConfigValues File
 
 This topic describes how to view the ConfigValues file for an application installed with Replicated KOTS and prepare the ConfigValues file to be shared with your users.
 
