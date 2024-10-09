@@ -66,11 +66,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-<<<<<<< HEAD
-          label: 'Deploy a Helm Chart on a VM with Embedded Cluster',
-=======
           label: 'Install a Helm Chart on a VM with Embedded Cluster',
->>>>>>> main
           items: [
             'vendor/tutorial-embedded-cluster-setup',
             'vendor/tutorial-embedded-cluster-create-app',

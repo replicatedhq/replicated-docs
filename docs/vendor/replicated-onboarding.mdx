@@ -25,9 +25,9 @@ The following are some best practices and recommendations for successfully onboa
 
 * These onboarding tasks assume that you will test the installation of each release on a VM with the Replicated Embedded Cluster installer _and_ in a cluster with the Replicated KOTS installer. If you do not intend to offer existing cluster installations with KOTS (for example, if you intend to support only Embedded Cluster and Helm installations for your users), then can choose to test with Embedded Cluster only.
 
-* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
+* Ask for help from the Replicated community. For more information, see [Getting Help from the Community](#community) below.
 
-### Getting Help from the Community
+### Getting Help from the Community {#community}
 
 The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated Platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
 
@@ -41,7 +41,7 @@ To search and participate in the Replicated community, see https://community.rep
 
 * Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
 
-* Complete a basic quick start workflow to create an application with a sample Helm chart and then promote and install releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases in the Replicated Platform. See [Replicated Quick Start](/vendor/quick-start-embedded).
+* Complete a basic quick start workflow to create an application with a sample Helm chart and then promote and install releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases in the Replicated Platform. See [Replicated Quick Start](/vendor/quick-start).
 
 * Ensure that you have access to a VM that meets the requirements for the Replicated Embedded Cluster installer. You will use this VM to test installation with Embedded Cluster.
 
@@ -146,7 +146,7 @@ To create the first release for your application:
 
 1. Install the release in your development environment to test:
 
-   1. Install with Embedded Cluster on a VM. See [Download the Embedded Cluster Binary](/vendor/embedded-overview#download-the-embedded-cluster-binary) and [Install](/vendor/embedded-overview#install) in _Using Embedded Cluster_.
+   1. Install with Embedded Cluster on a VM. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
    
    1. (Optional) Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
@@ -344,7 +344,7 @@ To add the default support bundle spec to your application:
 
    For information about how to generate support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 
-1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [(Optional) Customize the Specification](/vendor/support-bundle-customizing#optional-customize-the-specification) in _Adding and Customizing Support Bundles_.
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [Step 2: Customize the Spec](/vendor/support-bundle-customizing#customize-the-spec) in _Adding and Customizing Support Bundles_.
 
 ### Task 9: Alias Replicated Endpoints with Your Own Domains
 
@@ -484,5 +484,5 @@ Consider the following recommendations:
 * It can be useful to create channels for each feature branch so that internal teams reviewing a PR can easily get the installation artifacts as well as review the code. You can automate channel creation as part of a pipeline or Makefile.
 
 For more information, see:
-* [About Channels and Releases](releases-about-releases)
+* [About Channels and Releases](/vendor/releases-about)
 * [Creating and Editing Channels](/vendor/releases-creating-channels)

@@ -139,13 +139,6 @@ pagination_next: null
       <a href="intro-kots">Introduction to KOTS</a>
     </li>
     <li>
-<<<<<<< HEAD
-      <a href="/vendor/kots-faq">KOTS Terminology and FAQs</a>
-=======
-      <a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
->>>>>>> main
-    </li>
-    <li>
       <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
     </li>
   </ul>
