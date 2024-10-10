@@ -1,10 +1,10 @@
 import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 
-# Downloading Release Assets from the Download Portal
+# Downloading Assets from the Download Portal
 
 This topic describes how to download customer license files, air gap bundles, and other assets from the Replicated Download Portal.
 
-For information about downloading release assets with the Vendor API v3, see the following pages in the Vendor API v3 documentation:
+For information about downloading air gap bundles and licenses with the Vendor API v3, see the following pages in the Vendor API v3 documentation:
 * [Download a customer license file as YAML](https://replicated-vendor-api.readme.io/reference/downloadlicense)
 * [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild)
 * [Get airgap bundle download URL for the active release on the channel](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl)
@@ -23,11 +23,11 @@ The following is an example of the Download Portal for an air gap customer insta
 
 ## Limitation
 
-Release assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
+Installation assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
 
 ## Download Assets from the Download Portal
 
-To log in to the Download Portal and download release assets:
+To log in to the Download Portal and download assets:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
 
@@ -67,7 +67,7 @@ and preview your customer's experience.
      * **Embedded cluster**:  View the downloadable assets for Replicated kURL installations.
 
      :::note
-     Release assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
+     Installation assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
      :::
 
      The following is an example of the Download Portal for an air gap customer:
