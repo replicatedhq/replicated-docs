@@ -137,12 +137,22 @@ To create the first release for your application:
    1. Create an `embedded-cluster.yaml` file with the following default Embedded Cluster Config:
 
       <EcCr/>
+
+      <details>
+      <summary>What is the Embedded Cluster Config?</summary>
+      
+      The Embedded Cluster Config is required to install with Embedded Cluster.
+      </details>
     
       For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
    1. Create a new YAML file. In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
    
+      <details>
+      <summary>What is the KOTS HelmChart custom resource?</summary>
+      
       The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. As part of configuring the KOTS HelmChart custom resource, you will rewrite image names and add image pull secrets to allow your application images to be accessed through the Replicated proxy registry.
+      </details>
 
    1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
