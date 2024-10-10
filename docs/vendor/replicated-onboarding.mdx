@@ -123,7 +123,7 @@ After packaging your Helm chart, you can create a release. The initial release f
 If you have multiple charts, you will add each chart archive to the release, plus a corresponding KOTS HelmChart custom resource for each archive.
 
 :::note
-Configuring the KOTS HelmChart custom resource includes several tasks, and includes the use of KOTS template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
+Configuring the KOTS HelmChart custom resource includes several tasks, and involves the use of KOTS template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
 :::
 
 To create the first release for your application:
@@ -210,8 +210,10 @@ To configure the KOTS Application custom resource:
 
 The KOTS Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
 
-:::note
 Before you begin this task, you can complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console Config screen to a Helm chart.
+
+:::note
+Setting up the Admin Console config screen can include the use of various types of input fields, conditional statements, and KOTS template functions. Depending on your application's configuration options, Replicated recommends that you allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
 :::
 
 To set up the Admin Console Config screen for your application:
@@ -241,7 +243,21 @@ To set up the Admin Console Config screen for your application:
     For more information, see:
     * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen) 
     * [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional)  
-    * [Config](/reference/custom-resource-config)  
+    * [Config](/reference/custom-resource-config)
+
+    <br/>
+
+    <details>
+    <summary>Can I view a preview of the Admin Console config screen before installing the release?</summary>
+
+     The Vendor Portal includes a **Config preview** pane on the **Edit release** page that allows you to preview the Admin Console config screen without having to install the release.
+
+     To view the preview, click **Config preview** in the pane on the right side of the **Edit release** page. For example:
+
+     ![Config preview](/images/config-preview.png)
+
+     [View a larger version of this image](/images/config-preview.png)
+    </details>  
 
 1. <CreateRelease/>
 
@@ -323,6 +339,8 @@ To add the default support bundle spec to your application:
     :::
    
 1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
+
+   For example:
 
    ```yaml
    apiVersion: v1
@@ -431,6 +449,10 @@ To add support for air gap installations:
 1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+
+### Add Roles for Multi-Node Clusters for Embedded Cluster Installations
+
+The Embedded Cluster Config supports roles for multi-node clusters.
 
 ### Add Application Links to the Admin Console Dashboard
 

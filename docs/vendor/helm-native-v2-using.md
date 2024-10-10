@@ -243,7 +243,7 @@ spec:
 The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
 :::
 
-The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
+The snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
 * `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
 
