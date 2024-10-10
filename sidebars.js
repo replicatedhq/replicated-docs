@@ -157,6 +157,7 @@ const sidebars = {
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
         'vendor/releases-sharing-license-install-script',
+        'vendor/releases-share-download-portal',
         'reference/linter',
       ],
     },
@@ -169,6 +170,7 @@ const sidebars = {
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
+        'vendor/licenses-download',
         {
           type: 'category',
           label: 'Querying License Entitlements',
@@ -320,16 +322,6 @@ const sidebars = {
                 'vendor/operator-defining-additional-namespaces',
               ],
             },
-            {
-              type: 'category',
-              label: 'Downloading and Sharing Assets for KOTS Releases',
-              items: [
-                'vendor/releases-download-airgap-bundles',
-                'vendor/licenses-download',
-                'vendor/releases-share-download-portal',
-                'vendor/releases-configvalues',
-              ],
-            },
           ],
         },   
         // KOTS ENTERPRISE USER DOCS
@@ -360,7 +352,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing in Existing Clusters',
+                label: 'Installing in Existing Clusters with KOTS',
                 items: [
                   'enterprise/installing-existing-cluster',
                   'enterprise/installing-existing-cluster-airgapped',
@@ -375,7 +367,15 @@ const sidebars = {
                   'enterprise/cluster-management-add-nodes',
                 ],
               },
-              'enterprise/installing-existing-cluster-automation',
+              {
+                type: 'category',
+                label: 'Installing with the KOTS CLI',
+                items: [
+                  'enterprise/installing-existing-cluster-automation',
+                  'vendor/releases-configvalues',
+                ],
+              },
+              
               'enterprise/installing-stateful-component-requirements',
             ],
           },

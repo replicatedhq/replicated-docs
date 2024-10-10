@@ -3,10 +3,14 @@ import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
-import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import AirGapLicense from "../partials/install/_airgap-license-download.mdx"
+import BuildAirGapBundle from "../partials/install/_airgap-bundle-build.mdx"
+import DownloadAirGapBundle from "../partials/install/_airgap-bundle-download.mdx"
+import ViewAirGapBundle from "../partials/install/_airgap-bundle-view-contents.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
+import DownloadKurlBundle from "../partials/install/_download-kurl-bundle.mdx"
 import ExtractKurlBundle from "../partials/install/_extract-kurl-bundle.mdx"
 
 # Air Gap Installation with kURL
@@ -23,21 +27,42 @@ Complete the following prerequisites:
 
 <PrereqsEmbeddedCluster/>
 
-<AirGapBundle/>
-
-<LicenseFile/>
-
-* Download the `.tar.gz` air gap bundle for the kURL installer. Ensure that you can access the downloaded bundle from the environment where you will install the application. See [Download the kURL Bundle](/vendor/releases-download-airgap-bundles#installer-bundle) in _Downloading Air Gap Bundles_.
-
 <HaLoadBalancerPrereq/>
 
 ## Install {#air-gap}
 
 To install an application with kURL:
 
+1. Download the customer license:
+
+   <AirGapLicense/>
+
+1. Go the channel where the target release was promoted to build and download the air gap bundle for the release:
+
+   <BuildAirGapBundle/>
+
+1. <DownloadAirGapBundle/>
+
+1. <ViewAirGapBundle/>
+
+1. Download the `.tar.gz` air gap bundle for the kURL installer, which includes the components needed to run the kURL cluster and install the application with KOTS. kURL air gap bundles can be downloaded from the channel where the given release is promoted:
+
+    * To download the kURL air gap bundle for the Stable channel:
+   
+      <DownloadKurlBundle/>
+
+    * To download the kURL bundle for channels other than Stable:
+
+        ```bash
+        replicated channel inspect CHANNEL
+        ```
+        Replace `CHANNEL` with the exact name of the target channel, which can include uppercase letters or special characters, such as `Unstable` or `my-custom-channel`.
+
+        In the output of this command, copy the curl command with the air gap URL.
+
 1. <ExtractKurlBundle/>
 
-1. Run one of the following commands to create the cluster and install KOTS in air gap mode: 
+1. Run one of the following commands to install in air gap mode: 
 
     - For a regular installation, run:
 
@@ -68,7 +93,7 @@ To install an application with kURL:
 
 1. Upload your license file.
 
-1. Upload the `.airgap` application air gap bundle.
+1. Upload the `.airgap` bundle for the release that you downloaded in an earlier step.
 
 1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
 

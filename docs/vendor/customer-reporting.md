@@ -54,11 +54,10 @@ For more information about how to interpret the time to install metrics, see [Ti
 ### Download Portal
 
 From the **Download portal** section, you can:
-* Copy the URL of the download portal for the customer.
-* Generate a new password for the download portal. The customer uses this password to log in.
-* Access the unique download portal for the customer.
+* Manage the password for the Download Portal
+* Access the unique Download Portal URL for the customer
 
-You can use the download portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Sharing Assets through the Download Portal](releases-share-download-portal).
+You can use the Download Portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Downloading Assets from the Download Portal](releases-share-download-portal).
 
 ### Instances
 

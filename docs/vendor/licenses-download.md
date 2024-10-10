@@ -1,3 +1,5 @@
+import AirGapLicenseDownload from "../partials/install/_airgap-license-download.mdx"
+
 # Downloading Customer Licenses
 
 This topic describes how to download a license file from the Replicated Vendor Portal.
@@ -23,18 +25,4 @@ The **Airgap Download Enabled** license option allows KOTS to install an applica
 
 To enable the air gap entitlement and download the license:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Customers** page.
-
-1. Click on the name of the target customer and go to the **Manage customer** tab.
-
-1. Under **License options**, enable the **Airgap Download Enabled** option. Click **Save Changes**.
-
-     ![Airgap Download Enabled option](/images/airgap-download-enabled.png)
-
-     [View a larger version of this image](/images/airgap-download-enabled.png)
-
-1. At the top of the screen, click **Download license** to download the air gap enabled license.
-
-     ![Download air gap license](/images/download-airgap-license.png)
-
-     [View a larger version of this image](/images/download-airgap-license.png)
+<AirGapLicenseDownload/>
