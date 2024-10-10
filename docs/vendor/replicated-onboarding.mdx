@@ -193,7 +193,8 @@ To configure the KOTS Application custom resource:
       name: gitea
     spec:
       title: Gitea
-      icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+      # Base64 encoded image string
+      icon: fyJINrigNkt5VsRiub9nXICdsYyVd2NcVvA3ScE5t2rb5JuEeyZnAhmLt9NK63vX1O
       statusInformers:
         - deployment/gitea
     ```
@@ -201,6 +202,17 @@ To configure the KOTS Application custom resource:
     * [Customizing the Application Icon](/vendor/admin-console-customize-app-icon)
     * [Enabling and Understanding Application Status](/vendor/insights-app-status)
     * [Application](/reference/custom-resource-application)
+    <br/>
+    <details>
+    <summary>Can I preview the icon before installing the release?</summary>
+
+     Yes. The Vendor Portal includes a **Application icon preview** in the **Help** pane on the **Edit release** page.
+
+     ![Icon preview](/images/icon-preview.png)
+
+     [View a larger version of this image](/images/icon-preview.png)
+
+    </details>  
 
 1. <CreateRelease/>
 
@@ -248,11 +260,11 @@ To set up the Admin Console Config screen for your application:
     <br/>
 
     <details>
-    <summary>Can I view a preview of the Admin Console config screen before installing the release?</summary>
+    <summary>Can I preview the Admin Console config screen before installing the release?</summary>
 
-     The Vendor Portal includes a **Config preview** pane on the **Edit release** page that allows you to preview the Admin Console config screen without having to install the release.
+     Yes. The Vendor Portal includes a **Config preview** in the **Help** pane on the **Edit release** page.
 
-     To view the preview, click **Config preview** in the pane on the right side of the **Edit release** page. For example:
+     For example:
 
      ![Config preview](/images/config-preview.png)
 
