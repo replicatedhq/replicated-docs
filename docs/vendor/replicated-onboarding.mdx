@@ -392,6 +392,14 @@ Your customers are exposed to several Replicated domains by default. Replicated 
 
 For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
+### Task 10: Configure Required Helm Extensions for Embedded Cluster Installations
+
+The Embedded Cluster Config supports [extensions](/reference/embedded-config#extensions), which allow you to provide Helm charts that are deployed before your application.
+
+Extensions might be necessary if your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself. For example, one situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
+
+For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
+
 ## Next Steps
 
 After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
@@ -450,9 +458,11 @@ To add support for air gap installations:
 
 1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
-### Add Roles for Multi-Node Clusters for Embedded Cluster Installations
+### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
 
-The Embedded Cluster Config supports roles for multi-node clusters.
+The Embedded Cluster Config supports roles for multi-node clusters. One or more roles can be selected and assigned to a node when it is joined to the cluster. Node roles can be used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes.
+
+For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 ### Add Application Links to the Admin Console Dashboard
 
@@ -530,3 +540,9 @@ Consider the following recommendations:
 For more information, see:
 * [About Channels and Releases](/vendor/releases-about)
 * [Creating and Editing Channels](/vendor/releases-creating-channels)
+
+### Write Your Documentation
+
+Before distributing your application to customers, ensure that your documentation is up-to-date. In particular, be sure to update the installation documentation to include the procedures and requirements for installing with Embedded Cluster, Helm, and/or with KOTS in an existing cluster. 
+
+For guidance on how to get started with documentation for applications distributed with Replicated, including key considerations, examples, and templates, see [Writing Great Documentation for On-Prem Software Distributed with Replicated](https://www.replicated.com/blog/writing-great-documentation-for-on-prem-software-distributed-with-replicated) in the Replicated blog.
