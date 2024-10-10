@@ -292,7 +292,7 @@ To set up the Admin Console Config screen for your application:
 
 In the next two tasks, you will add specs for _preflight checks_ and _support bundles_.
 
-Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
+Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/) documentation.
 
 Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
 * **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
@@ -446,11 +446,19 @@ To add support for air gap installations:
 
 1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
-1. If you have any Helm values that determine whether or not an application image is included in an installation, then configure the `builder` key in the KOTS HelmChart custom resource to enable those values. The Vendor Portal uses the values provided in the `builder` key to build the `.airgap` bundle for the release. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+1. In the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
     :::note
-    If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
-    :::
+    If the default values in your Helm chart already enable all the images needed to successfully deploy, then you do not need to configure the `builder` key.
+    ::: 
+
+   <details>
+   <summary>How do I know if I need to configure the `builder` key?</summary>
+   
+   When building an air gap bundle, the Vendor Portal templates the Helm charts in a release with `helm template` in order to detect the images that need to be included in the bundle. Images yielded by `helm template` are included in the bundle for the release.
+
+   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
+   </details>
 
 1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
 
