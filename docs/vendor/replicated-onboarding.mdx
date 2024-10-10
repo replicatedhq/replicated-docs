@@ -469,14 +469,12 @@ To add support for air gap installations:
 1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
-     
-     For more information, see [Downloading Air Gap Bundles](/vendor/releases-download-airgap-bundles#air-gap-bundle).
 
 1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Creating and Managing Customers](/vendor/releases-creating-customer).
 
-1. Download the Embedded Cluster release artifacts for air gap installations, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. See [Building Air Gap Bundles](/vendor/releases-download-airgap-bundles). Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
 
 ### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
 
