@@ -81,3 +81,7 @@ and preview your customer's experience.
 1. Click the download button to download each asset.   
 
 1. To share installation files with a customer, send the customer their unique link and password for the Download Portal.
+
+## Download Portal Sessions
+
+Sessions in the Replicated Download Portal are valid for 72 hours, after which your customer will have to log in again.
