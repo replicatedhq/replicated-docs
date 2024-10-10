@@ -47,17 +47,15 @@ For a tutorial that demonstrates how to install a sample application using the K
 
 [Replicated Embedded Cluster](/vendor/embedded-overview) does not support automated, or _headless_, installations with the KOTS CLI. 
 
-## Prerequisites
+## Prerequisite
 
-* Create a ConfigValues YAML file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment. 
+Create a ConfigValues YAML file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment. 
 
-    A ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field. The ConfigValues file is specific to the application. For more information, see [Sharing a ConfigValues File](/vendor/releases-configvalues).
+A ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field. The ConfigValues file is specific to the application. For more information, see [Sharing a ConfigValues File](/vendor/releases-configvalues).
 
-    **Example:**
+**Example:**
 
-    <ConfigValuesExample/>   
-
-* (Air Gap Only) For air gap installations, ensure that the **Airgap Download Enabled** option is enabled for the license that will be used to install.
+<ConfigValuesExample/>
    
 ## Install
 
@@ -65,7 +63,7 @@ This section provides the steps for installing an application with the KOTS CLI 
 
 ### Existing Cluster
 
-To install in an existing cluster:
+To install with KOTS in an existing cluster:
 
 1. <InstallKotsCli/>
 
@@ -116,9 +114,9 @@ To install with kURL on a VM or bare metal server:
 
 ### Air Gap Existing Cluster
 
-To install in an air gap existing cluster:
+To install with KOTS in an air gap existing cluster:
 
-1. Install the KOTS CLI. See [Manually Download and Install](/reference/kots-cli-getting-started#manually-download-and-install) in _Installing the KOTS CLI_.
+1. <InstallKotsCliAirGap/>
 
 1. <DownloadKotsBundle/>
 
