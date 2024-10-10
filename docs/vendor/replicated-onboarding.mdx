@@ -73,13 +73,13 @@ To create an application:
 
 ### Task 2: Connect Your Image Registry
 
-Add credentials for your image registry to the Vendor Portal. This will allow you to enable the Replicated proxy registry in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
+Add credentials for your image registry to the Vendor Portal. This will allow you to use the Replicated proxy registry in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
 
 For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
 
 ### Task 3: Add the Replicated SDK and Package your Chart
 
-Next, add the Replicated SDK as a dependency of your Helm chart then package the chart as a `.tgz` archive.
+Next, add the Replicated SDK as a dependency of your Helm chart and package the chart as a `.tgz` archive.
 
 The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
@@ -134,7 +134,7 @@ To create the first release for your application:
 
    1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If there any values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+   1. If there values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
    
       This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
 
@@ -249,7 +249,7 @@ Preflight checks and support bundles analyze data from customer environments to 
 * **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
 
 :::note
-Before you begin this task, you can complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret, then run the preflight checks before installation.
+Before you begin this task, you can complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret and run the preflight checks before installation.
 :::
 
 To define preflight checks for your application:
@@ -297,7 +297,7 @@ To add the default support bundle spec to your application:
           analyzers: []
     ```
     :::note
-    If your application is installed as multiple Helm charts, you can optionally create separate support bundle specs in each chart. The specs are automatically merged a support bundle is generated. Alternatively, continue with a single support bundle spec and then optionally revisit how you organize your support bundle specs after you finish onboarding.
+    If your application is installed as multiple Helm charts, you can optionally create separate support bundle specs in each chart. The specs are automatically merged when a support bundle is generated. Alternatively, continue with a single support bundle spec and then optionally revisit how you organize your support bundle specs after you finish onboarding.
     :::
    
 1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
@@ -348,7 +348,7 @@ To add the default support bundle spec to your application:
 
 ### Task 9: Alias Replicated Endpoints with Your Own Domains
 
-Replicated recommends that you use custom domains to alias Replicated endpoints. Replicated domains are external to your domain and can require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
+Your customers are exposed to several Replicated domains by default. Replicated recommends you use custom domains to unify the customer's experience with your brand and simplify security reviews.
 
 For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
@@ -392,7 +392,7 @@ To add support for air gap installations:
     If the default values in your Helm chart already enable all the images needed to successfully deploy the chart, then you do not need to configure the `builder` key.
     :::
 
-1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image on the user's own local registry.
+1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
 
    For more information, see [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
 
@@ -430,7 +430,7 @@ Consider the following recommendations and best practices:
 
 * Your support bundles will most likely need to include other collectors and analyzers that are not in your preflight checks. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation.
 
-* If your application is installed as multiple Helm charts, you can optionally add separate support bundle specs in each chart. This can make it easier to keep the specs up-to-date and to avoid merge conflicts that can be caused when multiple team members contribute to a single, large support bundle spec. When an application has multiple support bundle specs, the specs are automatically merged when generating a support bundle so that only a single support bundle archive is provided to the user.
+* If your application is installed as multiple Helm charts, you can optionally add separate support bundle specs in each chart. This can make it easier to keep the specs up-to-date and to avoid merge conflicts that can be caused when multiple team members contribute to a single, large support bundle spec. When an application has multiple support bundle specs, the specs are automatically merged when generating a support bundle so that only a single support bundle is provided to the user.
 
 The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
@@ -460,7 +460,7 @@ There are different steps to configure backup and restore for Embedded Cluster a
 
 ### Add Custom Metrics
 
-In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
+In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
 
 For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
 
