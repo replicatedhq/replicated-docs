@@ -209,3 +209,24 @@ The Embedded Cluster host preflight checks verify the default ports or the user-
 ### Limitation
 
 It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+## Change the Default Data Directory {#data-dir}
+
+The default location of the data directory for Embedded Cluster is `/var/lib/embedded-cluster`.
+
+This directory can be modified by the user by passing the `--data-dir` flag to the `install` command.
+
+For example:
+
+```bash
+sudo ./APP_SLUG install --data-dir /data/embedded-cluster --license license.yaml --airgap-bundle APP_SLUG.airgap
+```
+Where `APP_SLUG` is the unique application slug.
+
+### Limtiations
+
+* The data directory for Embedded Cluster cannot be changed after the cluster is installed.
+
+* If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+
+* Replicated does not support using symlinked directories for the Embedded Cluster data directory. Use the `--data-dir` flag instead of symlinking `/var/lib/embedded-cluster`.
