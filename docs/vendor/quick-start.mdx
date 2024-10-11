@@ -185,7 +185,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
 1. Create a customer so that you can install the release on your VM with Embedded Cluster:
 
-   1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
+   1. In the [Vendor Portal](https://vendor.replicated.com), select the Gitea application and then click **Customers > Create customer**.
 
       The **Create a new customer** page opens:
 
@@ -213,13 +213,11 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
        [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-    1. In the **Embedded cluster install instructions** dialog, for the **Select a version** dropdown, select **latest**.
-
     1. On the command line, SSH onto your VM and run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation artifacts, and install.
 
-       <img width="500px" src="/images/embedded-cluster-install-dialog.png" alt="embedded cluster install instructions dialog"/>
+       <img width="500px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
-       [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
+       [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
    1. When prompted, enter a password for accessing the Admin Console.
 
@@ -256,11 +254,13 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
       The Admin Console dashboard opens.
       
-   1. In the **Version** section, for version `0.1.0`, click **Deploy** then **Yes, Deploy**. 
+   1. In the **Version** section, next to the new version, click **Deploy** and then **Yes, Deploy**. 
 
       The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
 
-   1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser:
+   1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser.
+   
+      For example:
 
       ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
