@@ -482,6 +482,27 @@ The Embedded Cluster Config supports roles for multi-node clusters. One or more 
 
 For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
+### Add and Map License Entitlements
+
+You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
+* Limit the number of active users permitted
+* Limit the number of nodes a customer is permitted on their cluster
+* Identify a customer on a "Premium" plan that has access to additional features or functionality not available with your base plan
+
+For more information about how to create and assign custom entitlements in the Vendor Portal, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields) and [Creating and Managing Customers](/vendor/releases-creating-customer).
+
+#### Map Entitlements to Helm Values
+
+You can map license entitlements to your Helm values using KOTS template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Using KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
+
+#### Query Entitlements Before Installation and at Runtime
+
+You can add logic to your application to query license entitlements both before deployment and at runtime. For example, you might want to add preflight checks that verify a user's entitlements before installing. Or, you can expose additional product functionality dynamically at runtime based on a customer's entitlements.
+
+For more information, see:
+* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
+* [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
+
 ### Add Application Links to the Admin Console Dashboard
 
 You can add the Kubernetes SIG Application custom resource to your release to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
@@ -507,23 +528,6 @@ Consider the following recommendations and best practices:
 The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All Collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
 You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
-
-### Add Custom License Entitlements and Map to your Helm Chart
-
-You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
-* Limit the number of active users permitted
-* Limit the number of nodes a customer is permitted on their cluster
-* Identify a customer on a "Premium" plan that has access to additional features or functionality not available with your base plan
-
-After you add custom entitlements, you can also add logic to your application to query license entitlements both before deployment and at runtime.
-
-For more information, see:
-* [Managing Custom License Fields](/vendor/licenses-adding-custom-fields)
-* [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
-* [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
-* [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api)
-* [Creating and Managing Customers](/vendor/releases-creating-customer)
-* [Developing Against the SDK API](/vendor/replicated-sdk-development)
 
 ### Configure Backup and Restore
 
