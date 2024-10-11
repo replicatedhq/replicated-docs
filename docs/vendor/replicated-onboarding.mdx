@@ -156,9 +156,13 @@ To create the first release for your application:
 
    1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If there values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
    
       This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
+
+   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
+
+      For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.   
 
 1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
@@ -398,19 +402,15 @@ To add the default support bundle spec to your application:
 
 1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [Step 2: Customize the Spec](/vendor/support-bundle-customizing#customize-the-spec) in _Adding and Customizing Support Bundles_.
 
-### Task 9: Alias Replicated Endpoints with Your Own Domains
+### Task 10: Map License Fields to Your Helm Chart
+
+
+
+### Task 11: Alias Replicated Endpoints with Your Own Domains
 
 Your customers are exposed to several Replicated domains by default. Replicated recommends you use custom domains to unify the customer's experience with your brand and simplify security reviews.
 
 For more information, see [Using Custom Domains](/vendor/custom-domains-using).
-
-### Task 10: Configure Required Helm Extensions for Embedded Cluster Installations
-
-The Embedded Cluster Config supports [extensions](/reference/embedded-config#extensions), which allow you to provide Helm charts that are deployed before your application.
-
-Extensions might be necessary if your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself. For example, one situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
-
-For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
 
 ## Next Steps
 
