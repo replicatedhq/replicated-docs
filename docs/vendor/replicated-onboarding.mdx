@@ -444,7 +444,7 @@ You can use the Vendor Portal to build and download the air gap bundles needed t
 
 To add support for air gap installations:
 
-1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release. See [Define Additional Images](/vendor/operator-defining-additional-images).
+1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release. One common use case for this is applications that use Kubernetes Operators, which might have images listed in objects created by the Operator and not in the Helm chart. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
 1. In the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
