@@ -160,7 +160,7 @@ To create the first release for your application:
    
       This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
 
-   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
+   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
 
       For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.   
 
@@ -402,11 +402,7 @@ To add the default support bundle spec to your application:
 
 1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [Step 2: Customize the Spec](/vendor/support-bundle-customizing#customize-the-spec) in _Adding and Customizing Support Bundles_.
 
-### Task 10: Map License Fields to Your Helm Chart
-
-
-
-### Task 11: Alias Replicated Endpoints with Your Own Domains
+### Task 9: Alias Replicated Endpoints with Your Own Domains
 
 Your customers are exposed to several Replicated domains by default. Replicated recommends you use custom domains to unify the customer's experience with your brand and simplify security reviews.
 
@@ -508,9 +504,12 @@ The documentation for the open-source Troubleshoot project includes the full lis
 
 You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
 
-### Add and Query Custom License Entitlements
+### Add Custom License Entitlements and Map to your Helm Chart
 
-You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
+You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
+* Limit the number of active users permitted
+* Limit the number of nodes a customer is permitted on their cluster
+* Identify a customer on a "Premium" plan that has access to additional features or functionality not available with your base plan
 
 After you add custom entitlements, you can also add logic to your application to query license entitlements both before deployment and at runtime.
 
