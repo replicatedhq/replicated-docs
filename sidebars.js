@@ -109,6 +109,7 @@ const sidebars = {
     },
     // WORKFLOWS
     {type: 'html', value: '<h5>WORKFLOWS</h5>', defaultStyle: true},
+    'vendor/quick-start',
     'vendor/replicated-onboarding',
     {
       type: 'category',
@@ -134,6 +135,13 @@ const sidebars = {
         'vendor/ci-workflows',
         'vendor/ci-workflows-github-actions',
         'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Security Workflows',
+      items: [
+        'enterprise/sbom-validating',
       ],
     },
     // PRODUCT DOCS
@@ -240,15 +248,6 @@ const sidebars = {
         },
       ],
     },
-    {
-      type: 'category',
-      label: 'Embedded Cluster',
-      items: [
-        'vendor/embedded-overview',
-        'reference/embedded-config',
-        'vendor/embedded-disaster-recovery',
-      ],
-    },
     // {
     //   type: 'category',
     //   label: 'Embedded Cluster',
@@ -352,7 +351,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Backup and Restore',
+              label: 'Configuring Backup and Restore with Snapshots',
               items: [
                 'vendor/snapshots-overview',
                 'vendor/snapshots-configuring-backups',
@@ -420,92 +419,76 @@ const sidebars = {
             // },
           ],
         },   
-        {
-          type: 'category',
-          label: 'Installing and Managing Applications',
-          items: [
+        // {
+        //   type: 'category',
+        //   label: 'Installing and Managing Applications',
+        //   items: [
           {
             type: 'category',
-            label: 'Installing',
+            label: 'Installing with KOTS in Existing Clusters',
             items: [
-              {
-                type: 'category',
-                label: 'Preparing to Install',
-                items: [
-                  'enterprise/installing-overview',
+              // {
+              //   type: 'category',
+              //   label: 'Preparing to Install',
+              //   items: [
+                  // 'enterprise/installing-overview', TO DELETE
                   'enterprise/installing-general-requirements',
-                  'enterprise/sbom-validating',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Installing with Embedded Cluster',
-                items: [
-                  'enterprise/installing-embedded',
-                  'enterprise/installing-embedded-air-gap',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Installing in Existing Clusters',
-                items: [
+                  // 'enterprise/sbom-validating',
+              //   ],
+              // },
+              // {
+              //   type: 'category',
+              //   label: 'Installing with Embedded Cluster',
+              //   items: [
+              //     'enterprise/installing-embedded',
+              //     'enterprise/installing-embedded-air-gap',
+              //   ],
+              // },
+              // {
+              //   type: 'category',
+              //   label: 'Installing in Existing Clusters',
+              //   items: [
                   'enterprise/installing-existing-cluster',
                   'enterprise/installing-existing-cluster-airgapped',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Installing with kURL',
-                items: [
-                  'enterprise/installing-kurl',
-                  'enterprise/installing-kurl-airgap',
-                  'enterprise/cluster-management-add-nodes',
-                ],
-              },
+              //   ],
+              // },
+              // {
+              //   type: 'category',
+              //   label: 'Installing with kURL',
+              //   items: [
+              //     'enterprise/installing-kurl',
+              //     'enterprise/installing-kurl-airgap',
+              //     'enterprise/cluster-management-add-nodes',
+              //   ],
+              // },
               'enterprise/installing-existing-cluster-automation',
               'enterprise/installing-stateful-component-requirements',
             ],
           },
           {
             type: 'category',
-            label: 'Image Registries',
+            label: 'Using a Private Image Registry',
             items: [
               'enterprise/image-registry-settings',
-              'enterprise/image-registry-kurl',
+              // 'enterprise/image-registry-kurl',
               'enterprise/image-registry-rate-limits',
             ],
           },
           'enterprise/updating-patching-with-kustomize',
           {
             type: 'category',
-            label: 'Updating',
+            label: 'Performing Updates',
             items: [
               'enterprise/updating-app-manager',
-              'enterprise/updating-embedded',
-              'enterprise/updating-kurl-about',
-              'enterprise/updating-kurl',
+              // 'enterprise/updating-embedded',
+              // 'enterprise/updating-kurl-about',
+              // 'enterprise/updating-kurl',
               'enterprise/updating-apps',
-              'enterprise/updating-licenses',
-              'enterprise/updating-tls-cert',
+              // 'enterprise/updating-licenses',
+              // 'enterprise/updating-tls-cert',
             ],
           },
-          {
-            type: 'category',
-            label: 'Using a GitOps Workflow',
-            items: [
-              'enterprise/gitops-workflow',
-              'enterprise/gitops-managing-secrets',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Managing Admin Console User Access',
-            items: [
-              'enterprise/auth-changing-passwords',
-              'enterprise/auth-identity-provider',
-              'enterprise/auth-configuring-rbac',
-            ],
-          },
+          'enterprise/updating-licenses',
           {
             type: 'category',
             label: 'Monitoring Applications',
@@ -516,7 +499,7 @@ const sidebars = {
           },
           {
             type: 'category',
-            label: 'Backup and Restore',
+            label: 'Performing Backup and Restore with Snapshots',
             items: [
               'enterprise/snapshots-understanding',
               {
@@ -538,13 +521,30 @@ const sidebars = {
           },
           {
             type: 'category',
-            label: 'Troubleshooting',
+            label: 'Using a GitOps Workflow (Deprecated)',
             items: [
-              'enterprise/status-viewing-details',
-              'enterprise/troubleshooting-an-app',
-              'enterprise/delete-admin-console',
+              'enterprise/gitops-workflow',
+              'enterprise/gitops-managing-secrets',
             ],
           },
+      //   ],
+      // },
+      {
+        type: 'category',
+        label: 'Managing Admin Console User Access',
+        items: [
+          'enterprise/auth-changing-passwords',
+          'enterprise/auth-identity-provider',
+          'enterprise/auth-configuring-rbac',
+        ],
+      },
+      {
+        type: 'category',
+        label: 'Troubleshooting KOTS Installations',
+        items: [
+          'enterprise/status-viewing-details',
+          'enterprise/troubleshooting-an-app',
+          'enterprise/delete-admin-console',
         ],
       },
       {
@@ -577,6 +577,25 @@ const sidebars = {
   },
   {
     type: 'category',
+    label: 'Embedded Cluster',
+    items: [
+      'vendor/embedded-overview',
+      'reference/embedded-config',
+      'vendor/embedded-disaster-recovery',
+      {
+        type: 'category',
+        label: 'Installing with Embedded Cluster',
+        items: [
+          'enterprise/installing-embedded-requirements',
+          'enterprise/installing-embedded',
+          'enterprise/installing-embedded-air-gap',
+        ],
+      },
+      'enterprise/updating-embedded',
+    ],
+  },
+  {
+    type: 'category',
     label: 'kURL (Legacy)',
     items: [
       'vendor/kurl-about',
@@ -584,6 +603,25 @@ const sidebars = {
       'vendor/packaging-installer-storage',
       'vendor/installer-history',
       'vendor/packaging-using-tls-certs',
+      {
+        type: 'category',
+        label: 'Installing with kURL',
+        items: [
+          'enterprise/installing-kurl',
+          'enterprise/installing-kurl-airgap',
+          'enterprise/cluster-management-add-nodes',
+        ],
+      },
+      'enterprise/image-registry-kurl',
+      {
+        type: 'category',
+        label: 'Performing Updates with kURL',
+        items: [
+          'enterprise/updating-kurl-about',
+          'enterprise/updating-kurl',
+        ],
+      },
+      'enterprise/updating-tls-cert',
     ],
   },
   {
