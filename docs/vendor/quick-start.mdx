@@ -62,27 +62,14 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       replicated app create Gitea
       ```
 
-   1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command:
+   1. Set the `REPLICATED_APP` environment variable to the application that you created:
 
-      1. Get the slug for the application that you created:
+      ```bash
+      export REPLICATED_APP=APP_SLUG
+      ```
+      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command. For example, `export REPLICATED_APP=gitea-kite`.
 
-         ```bash
-         replicated app ls
-         ```
-         **Example output**:
-         ```bash
-         ID                             NAME            SLUG           SCHEDULER
-         2WthxUIfGT13RlrsUx9HR7So8bR    Gitea           gitea-kite     kots
-         ```
-         In the example above, the application slug is `gitea-kite`.
-
-      1. Set the `REPLICATED_APP` environment variable to the application slug.
-
-         **Example:**
-
-         ```bash
-         export REPLICATED_APP=gitea-kite
-         ```
+      This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
 
 1. Get the sample Bitnami Gitea Helm chart and add the Replicated SDK as a dependency:
 
@@ -107,7 +94,10 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
-      <HelmPackage/>
+      ```bash
+      helm package -u .
+      ```
+      Where `-u` or `--dependency-update` is an option for the helm package command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
 
 1. Add the chart archive to a release:
 
