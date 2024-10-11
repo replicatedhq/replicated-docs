@@ -414,7 +414,11 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 
 ### Add Support for Helm Installations
 
-Existing KOTS releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method. To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy registry.  
+Existing KOTS releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
+
+To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy registry.  
+
+This is the same secret that is passed to KOTS in the HelmChart custom resource using `'{{repl ImagePullSecretName }}'`, which you did as part of [Task 4: Create and Install the Initial Release](#first-release). So, whereas this Secret is created automatically for KOTS and Embedded Cluster installations, you need to create it and add it to your Helm chart for Helm installations.
 
 :::note
 Before you test Helm installations for your application, you can complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and Helm.
