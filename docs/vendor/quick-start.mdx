@@ -341,10 +341,10 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       mv gitea-1.0.7.tgz manifests
       ``` 
 
-   1. In the `manifests` directory, open the KOTS HelmChart custom resource and update the `chartVersion`:
+   1. In the `manifests` directory, open the KOTS HelmChart custom resource (`gitea.yaml`) and update the `chartVersion`:
 
       ```yaml
-      # KOTS HelmChart
+      # gitea.yaml KOTS HelmChart
       chartVersion: 1.0.7
       ```   
 
@@ -385,7 +385,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 1. Reset and reboot the VM to remove the installation:
 
    ```bash
-   sudo ./APP_SLUG reset --reboot
+   sudo ./APP_SLUG reset
    ```
    Where `APP_SLUG` is the unique slug for the application.
    
