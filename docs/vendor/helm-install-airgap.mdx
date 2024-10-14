@@ -46,25 +46,33 @@ To install with Helm in an air gap environment:
 
      [View a larger version of this image](/images/download-helm.png)
 
-1. In the **App version** dropdown, select the target application version to install.
+1. On the **Install** tab, in the **App version** dropdown, select the target application version to install.
 
-1. On the **Install** tab, run the first command to authenticate into the Replicated proxy registry with the customer's credentials (the `license_id`).
+1. Run the first command to authenticate into the Replicated proxy registry with the customer's credentials (the `license_id`).
 
-1. Under **Get the list of images**, for each image in the list, run the corresponding `docker` `pull`, `tag`, and `push` commands provided.
+1. Under **Get the list of images**, run the command provided to generate the list of images needed to install.
+
+1. For **(Optional) Specify registry URI**, provide the URI for an internal image registry where you want to push images. If a registry URI is provided, Replicatd automatically updates the commands for tagging and pushing images with the URI.    
+
+1. For **Pull, tag, and push each image to your private registry**, copy and paste the docker commands provided to pull, tag, and push each image to your internal registry.
 
     :::note
-    If customers provided their own registry URI, Replicatd pre-configures these commands. Otherwise, customers need to manually replace the image names in the `tag` and `push` commands.
+    If you did not provide a URI in the previous step, ensure that you manually replace the image names in the `tag` and `push` commands with the target registry URI.
     :::
 
-1. Run the next command to authenticate into the OCI registry that contains your Helm chart, and then install the `preflight` plugin. 
+1. Run the command to authenticate into the OCI registry that contains your Helm chart.
 
-1. Get the default `values.yaml` and edit it as required. Customers will edit the Helm values to meet their environment's configuration needs. 
+1. Run the command to install the `preflight` plugin. This allows you to run preflight checks before installing to ensure that the installation environment meets the requirements for the application.
+
+1. For **Determine install method**, select one of the options depending on your ability to access the internet and the cluster from your workstation.
+
+1. Run the `helm show values` command to download the default `values.yaml`. Then, edit the values as required. 
 
     :::note
     Replicated recommends that vendors provide detailed documentation that describes the values that customers need to configure. 
     :::
 
-1. Finally, specify how to access the cluster and then use the corresponding commands and edited `values.yaml` to run preflight checks and install the chart.
+1. Finally, use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
 
 ## Perform Updates
 
