@@ -488,7 +488,15 @@ const sidebars = {
       'reference/cron-expressions',
     ],
   },
-  'vendor/install-with-helm',
+  {
+    type: 'category',
+    label: 'Installing with Helm',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+    ],
+  },
   {
     type: 'category',
     label: 'Replicated SDK (Beta)',
