@@ -1,6 +1,6 @@
 import Prerequisites from "../partials/helm/_helm-install-prereqs.mdx"
 
-# Installing and Updating with Helm in an Air Gap Environment (Alpha)
+# Installing and Updating with Helm in Air Gap Environments (Alpha)
 
 :::note
 Air gap Helm installations are an Alpha feature. If you are interested in trying Helm air gap installations and providing feedback, please reach out to your account rep to enable this feature.
@@ -74,19 +74,17 @@ This section describes the processes of performing manual and automatic updates 
 
 The manual update instructions provided in the Download Portal are similar to the installation instructions.
 
-However, the first step prompts the customer to select their current version an the target version to install.
-
-This step takes [required releases](/vendor/releases-about#properties) into consideration, thereby guiding the customer to the versions that are upgradable from their current version. 
+However, the first step prompts the customer to select their current version an the target version to install. This step takes [required releases](/vendor/releases-about#properties) into consideration, thereby guiding the customer to the versions that are upgradable from their current version. 
 
 The additional steps are consistent with installation process until the `preflight` and `install` commands where customers provide the existing values from the cluster with the `helm get values` and `--reuse-values` commands.
 
-Should you introduce new images, or other values, you should call this out at the top of your release notes so that customers know they will need to make additional edits to the `values.yaml` before installing. 
+If the new version introduces new images or other values, Replicated recommends that you explain this at the top of your release notes so that customers know they will need to make additional edits to the `values.yaml` before installing. 
 
 ### Automate Updates
 
-The automate update instructions rely on a few new API endpoints that your customers can automate against. 
+The instructions in the Download Portal for automating updates use API endpoints that your customers can automate against. 
 
-The instructions in the Download Portal provide customers with example commands that can be put into a script that they run periodically (as in, nightly or weekly) using GitHub Actions, Jenkins etc.
+The instructions in the Download Portal provide customers with example commands that can be put into a script that they run periodically (nightly, weekly) using GitHub Actions, Jenkins, or other platforms.
 
 This method assumes that the customer has already done a successful manual installation, including the configuration of the appropriate `values`.
 
