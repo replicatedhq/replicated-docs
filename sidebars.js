@@ -113,13 +113,6 @@ const sidebars = {
     'vendor/replicated-onboarding',
     {
       type: 'category',
-      label: 'Supporting Helm CLI Installations',
-      items: [
-        'vendor/install-with-helm',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Supporting Air Gap Installations',
       items: [
         'vendor/helm-packaging-airgap-bundles',
@@ -133,6 +126,7 @@ const sidebars = {
       items: [
         'vendor/ci-overview',
         'vendor/ci-workflows',
+        'enterprise/installing-existing-cluster-automation',
         'vendor/ci-workflows-github-actions',
         'vendor/tutorial-ci-cd-integration',
       ],
@@ -461,72 +455,77 @@ const sidebars = {
               //     'enterprise/cluster-management-add-nodes',
               //   ],
               // },
-              'enterprise/installing-existing-cluster-automation',
               'enterprise/installing-stateful-component-requirements',
             ],
           },
           {
             type: 'category',
-            label: 'Using a Private Image Registry',
+            label: 'Managing KOTS Installations',
             items: [
-              'enterprise/image-registry-settings',
-              // 'enterprise/image-registry-kurl',
-              'enterprise/image-registry-rate-limits',
-            ],
-          },
-          'enterprise/updating-patching-with-kustomize',
-          {
-            type: 'category',
-            label: 'Performing Updates',
-            items: [
-              'enterprise/updating-app-manager',
-              // 'enterprise/updating-embedded',
-              // 'enterprise/updating-kurl-about',
-              // 'enterprise/updating-kurl',
-              'enterprise/updating-apps',
-              // 'enterprise/updating-licenses',
-              // 'enterprise/updating-tls-cert',
-            ],
-          },
-          'enterprise/updating-licenses',
-          {
-            type: 'category',
-            label: 'Monitoring Applications',
-            items: [
-              'enterprise/monitoring-applications',
-              'enterprise/monitoring-external-prometheus',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Performing Backup and Restore with Snapshots',
-            items: [
-              'enterprise/snapshots-understanding',
               {
                 type: 'category',
-                label: 'Configuring Backup Storage',
+                label: 'Using a Private Image Registry',
                 items: [
-                  'enterprise/snapshots-velero-cli-installing',
-                  'enterprise/snapshots-configuring-hostpath',
-                  'enterprise/snapshots-configuring-nfs',
-                  'enterprise/snapshots-storage-destinations',
-                  'enterprise/snapshots-velero-installing-config',
+                  'enterprise/image-registry-settings',
+                  // 'enterprise/image-registry-kurl',
+                  'enterprise/image-registry-rate-limits',
                 ],
               },
-              'enterprise/snapshots-creating',
-              'enterprise/snapshots-restoring-full',
-              'enterprise/snapshots-updating-with-admin-console',
-              'enterprise/snapshots-troubleshooting-backup-restore',
+              {
+                type: 'category',
+                label: 'Performing Updates',
+                items: [
+                  'enterprise/updating-app-manager',
+                  // 'enterprise/updating-embedded',
+                  // 'enterprise/updating-kurl-about',
+                  // 'enterprise/updating-kurl',
+                  'enterprise/updating-apps',
+                  // 'enterprise/updating-licenses',
+                  // 'enterprise/updating-tls-cert',
+                ],
+              },
+              'enterprise/updating-licenses',
+              'enterprise/updating-patching-with-kustomize',
+              {
+                type: 'category',
+                label: 'Monitoring Applications',
+                items: [
+                  'enterprise/monitoring-applications',
+                  'enterprise/monitoring-external-prometheus',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Performing Backup and Restore with Snapshots',
+                items: [
+                  'enterprise/snapshots-understanding',
+                  {
+                    type: 'category',
+                    label: 'Configuring Backup Storage',
+                    items: [
+                      'enterprise/snapshots-velero-cli-installing',
+                      'enterprise/snapshots-configuring-hostpath',
+                      'enterprise/snapshots-configuring-nfs',
+                      'enterprise/snapshots-storage-destinations',
+                      'enterprise/snapshots-velero-installing-config',
+                    ],
+                  },
+                  'enterprise/snapshots-creating',
+                  'enterprise/snapshots-restoring-full',
+                  'enterprise/snapshots-updating-with-admin-console',
+                  'enterprise/snapshots-troubleshooting-backup-restore',
+                ],
+              },
+              {
+                type: 'category',
+                label: 'Using a GitOps Workflow (Deprecated)',
+                items: [
+                  'enterprise/gitops-workflow',
+                  'enterprise/gitops-managing-secrets',
+                ],
+              },
             ],
-          },
-          {
-            type: 'category',
-            label: 'Using a GitOps Workflow (Deprecated)',
-            items: [
-              'enterprise/gitops-workflow',
-              'enterprise/gitops-managing-secrets',
-            ],
-          },
+          }, 
       //   ],
       // },
       {
@@ -596,6 +595,13 @@ const sidebars = {
   },
   {
     type: 'category',
+    label: 'Helm CLI Installations',
+    items: [
+      'vendor/install-with-helm',
+    ],
+  },
+  {
+    type: 'category',
     label: 'kURL (Legacy)',
     items: [
       'vendor/kurl-about',
@@ -607,6 +613,7 @@ const sidebars = {
         type: 'category',
         label: 'Installing with kURL',
         items: [
+          'enterprise/installing-kurl-requirements',
           'enterprise/installing-kurl',
           'enterprise/installing-kurl-airgap',
           'enterprise/cluster-management-add-nodes',
