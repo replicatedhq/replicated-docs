@@ -100,4 +100,4 @@ After logging into the registry, the customer exports their current version and 
 
 With the list of images the provided `bash` script will automate the process of pulling updated images from the repository, tagging them with a name for an internal registry, and then pushing the newly tagged images to their internal registry. 
 
-Unless the customer has set up the `values` to preserve the updated tag (potentially by using the `latest` tag), they'll need to edit the `values.yaml` to reference the new image tags. From there, they should now be able to login to the OCI registry and perform the commands to install the updated chart.
+Unless the customer has set up the `values` to preserve the updated tag (for example, by using the `latest` tag), they need to edit the `values.yaml` to reference the new image tags. After doing so, they can log in to the OCI registry and perform the commands to install the updated chart.
