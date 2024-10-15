@@ -18,6 +18,17 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.118.0
+
+Released on October 15, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-118-0}
+* Improves the flexibility of configuring the [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) collector in support bundle specs by limiting KOTS's default collection to its own namespace.
+
+### Bug Fixes {#bug-fixes-1-118-0}
+* Fixes an issue where you could not upgrade Embedded Cluster instances if the new version didn't include config and preflight checks.
 
 ## 1.117.5
 
