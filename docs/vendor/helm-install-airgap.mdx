@@ -84,7 +84,7 @@ The manual update instructions provided in the Download Portal are similar to th
 
 However, the first step prompts the customer to select their current version an the target version to install. This step takes [required releases](/vendor/releases-about#properties) into consideration, thereby guiding the customer to the versions that are upgradable from their current version. 
 
-The additional steps are consistent with installation process until the `preflight` and `install` commands where customers provide the existing values from the cluster with the `helm get values` and `--reuse-values` commands.
+The additional steps are consistent with installation process until the `preflight` and `install` commands where customers provide the existing values from the cluster with the `helm get values` command. Your customer will then need to edit the `values.yaml` to reference the new image tags.
 
 If the new version introduces new images or other values, Replicated recommends that you explain this at the top of your release notes so that customers know they will need to make additional edits to the `values.yaml` before installing. 
 
@@ -100,4 +100,4 @@ After logging into the registry, the customer exports their current version and 
 
 With the list of images the provided `bash` script will automate the process of pulling updated images from the repository, tagging them with a name for an internal registry, and then pushing the newly tagged images to their internal registry. 
 
-With the assumption that the customer has set up the `values` to preserve the updated tag, they should now be able to login to the OCI registry and perform the commands to install the updated chart.
+Unless the customer has set up the `values` to preserve the updated tag (potentially by using the `latest` tag), they'll need to edit the `values.yaml` to reference the new image tags. From there, they should now be able to login to the OCI registry and perform the commands to install the updated chart.
