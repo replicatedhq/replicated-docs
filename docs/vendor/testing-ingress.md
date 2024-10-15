@@ -65,7 +65,7 @@ Once you have a node port available on the cluster, you can use the Replicated C
 This can be used multiple times on a single cluster.
 
 Optionally, you can specify the `--wildcard` flag to expose this port with wildcard DNS and TLS certificate.
-This feature adds extra time to provision the port so should only be used if necessary.
+This feature adds extra time to provision the port, so it should only be used if necessary.
 
 ```bash
 replicated cluster port expose \
