@@ -12,61 +12,43 @@ For more information about the HelmChart custom resource, including the unique r
 
 After you complete the tasks in this topic to configure the `kots.io/v1beta2` HelmChart custom resource, you can migrate any existing installations that were deployed with `kots.io/v1beta1` with `useHelmInstall: true` to use `kots.io/v1beta2` instead. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
 
-## HelmChart v1 and v2 Differences
-
-The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
-
-<table>
-  <tr>
-    <th>HelmChart v1beta2</th>
-    <th>HelmChart v1beta1</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>apiVersion: kots.io/v1beta2</code></td>
-    <td><code>apiVersion: kots.io/v1beta1</code></td>
-    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
-  </tr>
-  <tr>
-    <td><code>releaseName</code></td>
-    <td><code>chart.releaseName</code></td>
-    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>helmVersion</code></td>
-    <td><code>helmVersion</code> field is removed</td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>useHelmInstall</code></td>
-    <td><code>useHelmInstall</code> field is removed</td>
-  </tr>
-</table>
-
 ## Workflow
 
 To support installations with the `kots.io/v1beta2` HelmChart custom resource, do the following:
-* Rewrite image names so that images can be located in your private registry or in the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).
-* Inject a KOTS-generated image pull secret that grants access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
-* Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
-* Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
-* Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#local-registries).
+1. Rewrite image names so that images can be located in your private registry or in the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).
+1. Inject a KOTS-generated image pull secret that grants access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
+1. Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
+1. Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
+   :::note
+   Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+   :::
+1. Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#local-registries).
 
-### Rewrite Image Names
+## Task 1: Rewrite Image Names
 
-During installation or upgrade with KOTS, any application images in the software vendor's private registry are accessed through the [Replicated proxy registry](private-images-about) at `proxy.replicated.com`. Additionally, KOTS allows enterprise users to push images to their own registry.
+Configure the KOTS HelmChart custom resource `values` key so that application image names are rewritten in your Helm chart values during deployment. This allows the images to be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`, your customer's registry, or the built-in registry used in Embedded Cluster or kURL installations.
 
-To ensure that images are discovered in either your registry or in the enterprise user's local registry, you must configure the HelmChart custom resource so that image names are rewritten in your Helm chart during deployment. You can do this using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions: 
-* **HasLocalRegistry**: Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gapped installations and optionally true for online installations.
-* **LocalRegistryHost**: Returns the host of the local registry that the user configured.
-* **LocalRegistryNamespace**: Returns the namespace of the local registry that the user configured.
+During installation or upgrade with KOTS, application images are accessed from one of the following locations:
+* The [Replicated proxy registry](private-images-about) at `proxy.replicated.com`
+* The enterprise user's registry
+* The built-in registry for Replicated Embedded Cluster or kURL installations
 
-These template functions can be used to conditionally rewrite images names so that KOTS uses the host and namespace of the enterprise user's local registry _only_ when a local registry is configured. For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`. For examples, see [Example: Rewrite private image names](#local-proxy-example) or [Example: Rewrite public images names](#local-public-example) below. 
+You will use the following KOTS template functions in the HelmChart custom resource to rewrite image names: 
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gap installations and optionally true for online installations. You can use HasLocalRegistry to conditionally rewrite images depending on if your user configured a local registry or not.
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured.
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. The registry namespace is the path between the registry and the image name. For example, `my.registry.com/namespace/image:tag`.
 
-#### Example: Rewrite private image names {#local-proxy-example}
+### Rewrite Private Image Names {#local-proxy-example}
 
-The following example shows a field in the `values` key that rewrites the registry domain to `proxy.replicated.com` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the image on `proxy.replicated.com` or in the user's local registry:
+For any private images, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/proxy/<app-slug>/<image>`, where `<app-slug>` is the unique application slug in the Vendor Portal and `<image>` is the path to the image in the registry.
+
+For example, if the private image is `quay.io/my-org/nginx:v1.0.1`, then the image name should be rewritten to `proxy.replicated.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
+
+#### Example
+
+The following example shows how to configure the KOTS HelmChart `values` key to rewrite the registry hostname and namespace for a private image.
+
+This example uses [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to conditionally update the registry hostname and namespace for the image depending on if the user configured a local registry. It also uses [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to render the user-supplied hostname and namespace for the image on the local registry, if one was configured.
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -79,12 +61,17 @@ spec:
   ...
   values:
     image:
+    # If the user configured a registry, use that registry's hostname
+    # Else, use proxy.replicated.com 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      # If the user configured a registry, use the registry namespace they provided
+      # Else if Embedded Cluster/kURL install, use the buit-in Embedded Cluster/kURL registry
+      # Else use the image's namespace at proxy.replicated.com
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
 ```
 
-The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown in the example below:
+The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource above correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown below:
 
 ```yaml
 # Helm chart values.yaml file
@@ -95,7 +82,9 @@ image:
   tag: v1.0.1
 ```
 
-During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
+During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource.
+
+Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
 
 ```yaml
 apiVersion: v1
@@ -108,7 +97,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-#### Example: Rewrite public image names {#local-public-example}
+### Rewrite Public Image Names {#local-public-example}
 
 The following example shows a field in the `values` key that rewrites the registry domain to `docker.io` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
 
@@ -152,7 +141,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-### Inject Image Pull Secrets
+## Task 2: Inject Image Pull Secrets
 
 Kubernetes requires a Secret of type `kubernetes.io/dockerconfigjson` to authenticate with a registry and pull a private image. When you reference a private image in a Pod definition, you also provide the name of the Secret in a `imagePullSecrets` key in the Pod definition. For more information, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
 
@@ -160,7 +149,7 @@ During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret
 
 You can inject the name of this pull secret into a field in the HelmChart custom resource using the Replicated ImagePullSecretName template function. During installation, KOTS sets the value of the corresponding field in your Helm chart `values.yaml` file with the rendered value of the ImagePullSecretName template function. 
 
-**Example**
+#### Example
 
 The following example shows a `spec.values.image.pullSecrets` array in the HelmChart custom resource that uses the ImagePullSecretName template function to inject the name of the KOTS-generated pull secret:
 
@@ -192,7 +181,9 @@ image:
   - name: my-org-secret
 ```
 
-During installation, KOTS renders the ImagePullSecretName template function and adds the rendered pull secret name to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
+During installation, KOTS renders the ImagePullSecretName template function and adds the rendered pull secret name to the `image.pullSecrets` array in the Helm chart `values.yaml` file.
+
+Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
 
 ```yaml
 apiVersion: v1
@@ -209,7 +200,7 @@ spec:
   {{- end }}
 ```
 
-### Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
+## Task 3: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
 Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
@@ -219,7 +210,7 @@ You can do this by adding the `<app-slug>-kotsadm-dockerhub` pull secret to a fi
 
 For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
 
-**Example**
+#### Example
 
 The following Helm chart `values.yaml` file includes `image.registry`, `image.repository`, and `image.pullSecrets` for a rate-limited Docker Hub image:
 
@@ -269,7 +260,11 @@ spec:
   {{- end }}
 ```
 
-### Add Backup Labels for Snapshots
+## Task 4: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only)
+
+:::note
+Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+:::
 
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
@@ -281,7 +276,7 @@ To support backup and restore with snapshots, add the `kots.io/backup: velero` a
 
 The fields that you create under the `optionalValues` key must map to fields in your Helm chart `values.yaml` file. For more information about working with the `optionalValues` key, see [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
-**Example**
+#### Example
 
 The following example shows how to add backup labels for snapshots in the `optionalValues` key of the HelmChart custom resource:
 
@@ -308,14 +303,42 @@ spec:
           kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
 
-### Support Local Image Registries for Online Installations {#local-registries}
+## Task 5: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air gapped environments. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped (disconnected) environments. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
 To support the use of local registries for online installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
 
 For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-:::note
-If you already configured the `builder` key previously to support air gap installations, then you can use the same configuration in your HelmChart custom resource to support the use of local registries for online installations. No additional configuration is required.
-:::
+## HelmChart v1 and v2 Differences
+
+The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
+
+<table>
+  <tr>
+    <th>HelmChart v1beta2</th>
+    <th>HelmChart v1beta1</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>apiVersion: kots.io/v1beta2</code></td>
+    <td><code>apiVersion: kots.io/v1beta1</code></td>
+    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
+  </tr>
+  <tr>
+    <td><code>releaseName</code></td>
+    <td><code>chart.releaseName</code></td>
+    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>helmVersion</code></td>
+    <td><code>helmVersion</code> field is removed</td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>useHelmInstall</code></td>
+    <td><code>useHelmInstall</code> field is removed</td>
+  </tr>
+</table>
