@@ -8,6 +8,16 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.0.0-beta.30
+
+Released on October 16, 2024
+
+### Improvements {#improvements-1-0-0-beta-24}
+* This release addresses CVE-2024-41110.
+
+### New Features {#new-features-1-0-0-beta-23}
+* Adds support for custom Certificate Authorities using the [privateCASecret](/vendor/replicated-sdk-customizing#custom-certificate-authority) key.
+
 ## 1.0.0-beta.29
 
 Released on October 9, 2024
