@@ -21,9 +21,11 @@ The following is an example of the Download Portal for an air gap customer insta
 
 [View a larger version of this image](/images/download-portal-existing-cluster.png)
 
-## Limitation
+## Limitations
 
-Installation assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
+* Installation assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
+
+* Sessions in the Download Portal are valid for 72 hours. After the session expires, your customer must log in again. The Download Portal session length is not configurable.
 
 ## Download Assets from the Download Portal
 
