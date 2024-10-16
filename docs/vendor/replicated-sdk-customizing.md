@@ -116,13 +116,15 @@ replicated:
 
 ## Custom Certificate Authority
 
-When installing the Replicated SDK behind a proxy server that terminates TLS and injects a custom certificate, you must provide the CA to the SDK. This can be done by storing the CA in a ConfigMap prior to installation and setting `privateCAConfigmap` key to the name of the ConfigMap.
+When installing the Replicated SDK behind a proxy server that terminates TLS and injects a custom certificate, you must provide the CA to the SDK. This can be done by storing the CA in a ConfigMap or a Secret prior to installation and providing appropriate values during installation.
 
-To store the CA in a ConfigMap:
+### Using a ConfigMap
 
-1. Create a ConfigMap with the name of `private-ca` and the CA as the data value:
+To use a CA stored in a ConfigMap:
+
+1. Create a ConfigMap and the CA as the data value. Note that name of the ConfigMap and data key can be anything.
    ```bash
-   kubectl create configmap -n <NAMESPACE> private-ca --from-file=ca.crt=./ca.crt
+   kubectl -n <NAMESPACE> create configmap private-ca --from-file=ca.crt=./ca.crt
    ```
 1. Add the name of the config map to the values file:
    ```yaml
@@ -133,6 +135,22 @@ To store the CA in a ConfigMap:
 :::note
 If the `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in the Replicated SDK automatically.
 :::
+
+### Using a Secret
+
+To use a CA stored in a Secret:
+
+1. Create a Secret and the CA as a data value. Note that the name of the Secret and the key can be anything.
+   ```bash
+   kubectl -n <NAMESPACE> create secret generic private-ca --from-file=ca.crt=./ca.crt
+   ```
+1. Add the name of the secret and the key to the values file:
+   ```yaml
+   replicated:
+     privateCASecret:
+       name: private-ca
+       key: ca.crt
+   ```
 
 ## Add Tolerations
 
