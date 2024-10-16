@@ -7,9 +7,18 @@ Replicated will provide support for products per our terms and services until th
     <th width="30%">Product Phase</th>
     <th width="70%">Definition</th>
   </tr>
+    <tr>
+    <td>Alpha</td>
+    <td>A product, or a feature within a product, that is exploratory/experimental. It is typically not publicly documented, and access is limited to customers providing early feedback. While most alpha features will move forward, some may be deprecated based on assessment learnings. Products that are GA themself may have certain alpha features for a limited time as new capabilities are introduced to that product.</td>
+  </tr>
+   </tr>
+    <tr>
+    <td>Beta</td>
+    <td><p>A product, or a feature within a product, that has not yet met Replicated’s definition of GA. Products that are GA themself may have certain Beta features for a limited time as new capabilities are introduced to that product.</p><p>A product/feature may be labeled Beta for one or more of the following reasons: remaining gaps in intended functionality, outstanding needs around testing, documentation, or sales enablement, or still in-progress customer value validation efforts. Documentation for these features/products are published as part of the official documentation with Beta labeling, and many are already production ready depending on their development lifecycle phase.</p><p>Please contact Replicated if you have specific questions about why a product/feature is currently labeled Beta.</p></td>
+  </tr>
   <tr>
     <td>“GA” - General Availability</td>
-    <td>A product starts the General Availability phase when it is available for purchase from Replicated.</td>
+    <td>A product, or a feature within a product, that has been validated as both production ready and value additive by a percentage of Replicated customers. For high-level products, the GA phase is typically when they become available for purchase from Replicated.</td>
   </tr>
   <tr>
     <td>“LA” - Limited Availability</td>
@@ -121,4 +130,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified September 18, 2024.
+Last modified October 16, 2024.
