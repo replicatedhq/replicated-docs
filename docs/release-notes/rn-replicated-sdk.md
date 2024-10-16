@@ -12,10 +12,10 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 
 Released on October 16, 2024
 
-### New Features {#new-features-1-0-0-beta-23}
+### New Features {#new-features-1-0-0-beta-30}
 * Adds support for custom Certificate Authorities using the [privateCASecret](/vendor/replicated-sdk-customizing#custom-certificate-authority) key.
 
-### Improvements {#improvements-1-0-0-beta-24}
+### Improvements {#improvements-1-0-0-beta-30}
 * This release addresses CVE-2024-41110. 
 
 ## 1.0.0-beta.29
