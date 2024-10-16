@@ -17,7 +17,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>“GA” - General Availability</td>
-    <td>A product, or a feature within a product, that has been validated as both production ready and value additive by a percentage of Replicated customers. For high-level products, the GA phase is typically when they become available for purchase from Replicated.</td>
+    <td>A product or feature that has been validated as both production-ready and value-additive by a percentage of Replicated customers. Products in the GA phase are typically those that are available for purchase from Replicated.</td>
   </tr>
   <tr>
     <td>“LA” - Limited Availability</td>
