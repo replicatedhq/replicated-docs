@@ -21,11 +21,20 @@ Do the following to configure the `kots.io/v1beta2` HelmChart custom resource:
 Configure the KOTS HelmChart custom resource `values` key so that KOTS can rewrite application image names in your Helm values during deployment. This allows images to be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`, your customer's local registry, or the built-in registry used in Replicated Embedded Cluster or Replicated kURL installations.
 
 You will use the following KOTS template functions to rewrite image names: 
-* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local registry. HasLocalRegistry is always true for air gap installations and optionally true for online installations. HasLocalRegistry is also true in installations with Replicated Embedded Cluster or Replicated kURL.
-* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for Embedded Cluster or kURL installations, LocalRegistryHost returns the host of the built-in registry used by Embedded Cluster or kURL.
-* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. The registry namespace is the path between the registry and the image name. For example, `my.registry.com/namespace/image:tag`. Alternatively, for Embedded Cluster or kURL installations, LocalRegistryNamespace returns the namespace of the built-in registry used by Embedded Cluster or kURL.
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is true in the following situations:
+   * Air gap installations
+   * Online installations if the user pushed images to their own registry
+   * Installations with Replicated Embedded Cluster or Replicated kURL where the built-in registry is used
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, LocalRegistryHost returns the host of the built-in registry used by Embedded Cluster or kURL.
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, LocalRegistryNamespace returns the namespace of the built-in registry used by Embedded Cluster or kURL.
 
-### Rewrite Private Image Names {#local-proxy-example}
+    <details>
+    <summary>What is the registry namespace?</summary>
+    
+    The registry namespace is the path between the registry and the image name. For example, `my.registry.com/namespace/image:tag`.
+    </details>
+
+### Task 1a: Rewrite Private Image Names {#local-proxy-example}
 
 For any private images used by your application, configure the HelmChart custom resource so that image names are rewritten to `proxy.replicated.com/proxy/<app-slug>/<image>`, where:
 * `<app-slug>` is the unique application slug in the Vendor Portal
@@ -86,7 +95,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-### Rewrite Public Image Names {#local-public-example}
+### Task 1b: Rewrite Public Image Names {#local-public-example}
 
 The following example shows a field in the `values` key that rewrites the registry domain to `docker.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
 
