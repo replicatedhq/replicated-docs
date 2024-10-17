@@ -16,7 +16,7 @@ Do the following to configure the `kots.io/v1beta2` HelmChart custom resource:
    Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
    :::
 
-## Task 1: Rewrite Image Names
+## Task 1: Rewrite Image Names {#rewrite-image-names}
 
 Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites the names for both private and public images in your Helm values during deployment. This allows images to be accessed at one of the following locations:
 * The [Replicated proxy registry](private-images-about) at `proxy.replicated.com`
@@ -35,7 +35,7 @@ You will use the following KOTS template functions to conditionally rewrite imag
     The registry namespace is the path between the registry and the image name. For example, `my.registry.com/namespace/image:tag`.
     </details>
 
-### Task 1a: Rewrite Private Image Names {#local-proxy-example}
+### Task 1a: Rewrite Private Image Names
 
 For any private images used by your application, configure the HelmChart custom resource so that image names are conditionally rewritten to either the location of the image in the Replicated proxy registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
 
@@ -97,7 +97,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-### Task 1b: Rewrite Public Image Names {#local-public-example}
+### Task 1b: Rewrite Public Image Names
 
 For any public images used by your application, configure the HelmChart custom resource so that image names are conditionally rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
 
@@ -143,7 +143,7 @@ spec:
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 ```
 
-## Task 2: Inject Image Pull Secrets
+## Task 2: Inject Image Pull Secrets {#inject-image-pull-secrets}
 
 Kubernetes requires a Secret of type `kubernetes.io/dockerconfigjson` to authenticate with a registry and pull a private image. When you reference a private image in a Pod definition, you also provide the name of the Secret in a `imagePullSecrets` key in the Pod definition. For more information, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
 
@@ -268,7 +268,7 @@ Local image registries are required for KOTS installations in air-gapped environ
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-## Task 4: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only)
+## Task 5: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only) {#add-backup-labels-for-snapshots}
 
 :::note
 The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
