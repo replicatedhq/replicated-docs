@@ -43,11 +43,11 @@ For any private images used by your application, configure the HelmChart custom 
 
 For example, if the private image is `quay.io/my-org/nginx:v1.0.1`, then the image name should be rewritten to `proxy.replicated.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
 
+Additionally, use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions along with a ternary operator to conditionally render the registry hostname and namespace if a local registry is used (such as in air gap installations). See the example below for more information.
+
 #### Example
 
-The following example shows how to configure the KOTS HelmChart `values` key to rewrite the registry hostname and namespace for a private image.
-
-This example uses [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to conditionally update the registry hostname and namespace for the image. It also uses [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to render the user-supplied hostname and namespace for the image on the local registry, if one was configured.
+The following HelmChart custom resource uses KOTS template functions to conditionally rewrite an image registry and repository depending on if a local registry is used:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -61,10 +61,11 @@ spec:
   values:
     image:
     # If the user configured a registry, use that registry's hostname
-    # Else, use proxy.replicated.com 
+    # If air gap Embedded Cluster/kURL install, use the buit-in registry's hostname
+    # Else use proxy.replicated.com 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
       # If the user configured a registry, use the registry namespace they provided
-      # Else if Embedded Cluster/kURL install, use the buit-in Embedded Cluster/kURL registry
+      # If air gap Embedded Cluster/kURL install, use the buit-in registry's hostname
       # Else use the image's namespace at proxy.replicated.com
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
@@ -98,7 +99,11 @@ spec:
 
 ### Task 1b: Rewrite Public Image Names {#local-public-example}
 
-The following example shows a field in the `values` key that rewrites the registry domain to `docker.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
+For any private images used by your application, configure the HelmChart custom resource so that image names
+
+#### Example
+
+The following HelmChart custom resource includes a field in the `values` key that rewrites the registry domain to `docker.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the local registry:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
