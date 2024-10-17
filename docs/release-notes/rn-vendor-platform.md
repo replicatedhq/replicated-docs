@@ -10,6 +10,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.17-1
+
+Released on October 17, 2024
+
+### New Features {#new-features-v2024-10-17-1}
+* Makes the wording and styling consistent on the Helm and Embedded Cluster install instructions modals.
+* Present to users a modal to update their github username when creating support cases or feature requests.
+
 ## v2024.10.01-0
 
 Released on October 1, 2024
