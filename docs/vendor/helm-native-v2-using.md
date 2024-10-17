@@ -18,15 +18,16 @@ Do the following to configure the `kots.io/v1beta2` HelmChart custom resource:
 
 ## Task 1: Rewrite Image Names
 
-Configure the KOTS HelmChart custom resource `values` key so that KOTS can rewrite application image names in your Helm values during deployment. This allows images to be accessed through the [Replicated proxy service](private-images-about) at `proxy.replicated.com`, your customer's local registry, or the built-in registry used in Replicated Embedded Cluster or Replicated kURL installations.
+Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites the names for both private and public images in your Helm values during deployment. This allows images to be accessed at one of the following locations:
+* The [Replicated proxy registry](private-images-about) at `proxy.replicated.com`
+* A public image registry
+* Your customer's local registry
+* The built-in registry used in Replicated Embedded Cluster or Replicated kURL installations in air-gapped environments
 
-You will use the following KOTS template functions to rewrite image names: 
-* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is true in the following situations:
-   * Air gap installations
-   * Online installations if the user pushed images to their own registry
-   * Installations with Replicated Embedded Cluster or Replicated kURL where the built-in registry is used
-* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, LocalRegistryHost returns the host of the built-in registry used by Embedded Cluster or kURL.
-* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, LocalRegistryNamespace returns the namespace of the built-in registry used by Embedded Cluster or kURL.
+You will use the following KOTS template functions to conditionally rewrite image names depending on where the given image should be accessed: 
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user pushed images to their own registry.
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryHost returns the host of the built-in registry.
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
 
     <details>
     <summary>What is the registry namespace?</summary>
