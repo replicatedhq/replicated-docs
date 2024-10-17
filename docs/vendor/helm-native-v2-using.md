@@ -2,7 +2,7 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Configuring the HelmChart Custom Resource v2
 
-This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2`. Complete the workflow in this topic to support Helm chart installations with Replicated KOTS.
+This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2`  to support Helm chart installations with Replicated KOTS.
 
 ## Workflow
 
@@ -262,6 +262,12 @@ spec:
   {{- end }}
 ```
 
+## Task 4: Support the Use of Local Image Registries {#local-registries}
+
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+
+To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
 ## Task 4: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only)
 
 :::note
@@ -304,14 +310,6 @@ spec:
           kots.io/backup: velero
           kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
-
-## Task 5: Support the Use of Local Image Registries {#local-registries}
-
-Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
-
-To support the use of local registries for online installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
-
-For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Additional Information
 
