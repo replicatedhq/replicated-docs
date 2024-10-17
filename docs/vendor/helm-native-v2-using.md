@@ -263,10 +263,10 @@ spec:
 ## Task 4: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only)
 
 :::note
-Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
 :::
 
-The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
+The snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
 * `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
 
@@ -305,7 +305,7 @@ spec:
 
 ## Task 5: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air-gapped (disconnected) environments. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
 To support the use of local registries for online installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
 
