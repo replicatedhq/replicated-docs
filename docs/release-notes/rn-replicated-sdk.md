@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.0.0-beta.31
+
+Released on October 17, 2024
+
+### New Features {#new-features-1-0-0-beta-31}
+* Adds support for specifying ClusterRole using the [clusterRole](/vendor/replicated-sdk-customizing#custom-clusterrole) key.
+
 ## 1.0.0-beta.30
 
 Released on October 16, 2024
