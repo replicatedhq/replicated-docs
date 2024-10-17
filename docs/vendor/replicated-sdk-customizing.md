@@ -84,11 +84,11 @@ To install the SDK with custom RBAC:
 
 #### Custom ClusterRole
 
-To use the SDK with an existing ClusterRole, provide the name for a custom ClusterRole object during installation. When a cluster role is provided, the SDK uses the RBAC permissions granted to the cluster role and does not create the default RoleBinding, but ClusterRoleBinding instead as well as a ServiceAccount object.
+To use the SDK with an existing ClusterRole, provide the name for a custom ClusterRole object during installation. When a cluster role is provided, the SDK uses the RBAC permissions granted to the cluster role and does not create the default RoleBinding. Instead, the SDK creates a ClusterRoleBinding as well as a ServiceAccount object.
 
-To install the SDK with custom RBAC:
+To install the SDK with a custom ClusterRole:
 
-1. Create custom ClusterRole object. The ClusterRole must meet at least the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above. However it can also provide additional permissions that may be used by the SDK, such as listing cluster Nodes.
+1. Create a custom ClusterRole object. The ClusterRole must meet at least the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above. However, it can also provide additional permissions that can be used by the SDK, such as listing cluster Nodes.
 1. During installation, provide the name of the cluster role that you created by including `--set replicated.clusterRole=CUSTOM_CLUSTERROLE_NAME`.
 
   **Example**:
