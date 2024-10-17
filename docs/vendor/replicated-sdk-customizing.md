@@ -65,6 +65,8 @@ The SDK requires the following minimum RBAC permissions:
   The Replicated Vendor Portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
 ### Install the SDK with Custom RBAC
 
+#### Custom ServiceAccount
+
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.
 
 To install the SDK with custom RBAC:
@@ -79,6 +81,23 @@ To install the SDK with custom RBAC:
   ```
 
  For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).  
+
+#### Custom ClusterRole
+
+To use the SDK with an existing ClusterRole, provide the name for a custom ClusterRole object during installation. When a cluster role is provided, the SDK uses the RBAC permissions granted to the cluster role and does not create the default RoleBinding. Instead, the SDK creates a ClusterRoleBinding as well as a ServiceAccount object.
+
+To install the SDK with a custom ClusterRole:
+
+1. Create a custom ClusterRole object. The ClusterRole must meet at least the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above. However, it can also provide additional permissions that can be used by the SDK, such as listing cluster Nodes.
+1. During installation, provide the name of the cluster role that you created by including `--set replicated.clusterRole=CUSTOM_CLUSTERROLE_NAME`.
+
+  **Example**:
+
+  ```
+  helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
+  ```
+
+ For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).
 
 ## Set Environment Variables {#env-var}
 
