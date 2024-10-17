@@ -29,7 +29,7 @@ To create a new application:
    :::important
    If you intend to use the application for testing purposes, Replicated recommends that you use a temporary name such as `My Application Demo` or `My Application Test`.
 
-   You are not able to restore or modify previously-used application names or application slugs. Only use an official name for your application when you have completed testing and are ready to distribute the application to your customers.
+   You are not able to restore or modify previously-used application names or application slugs.
    :::
 
 1. Click **Create application**.
