@@ -17,6 +17,13 @@ Released on October 16, 2024
 ### New Features {#new-features-v2024-10-16-0}
 * Capitalize "Embedded Cluster" in the support workflow.
 
+## v2024.10.10-5
+
+Released on October 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-10-5}
+* Adds the "Copy URL" button for the Download Portal link back into the Download Portal section of the **Customer Reporting** page.
+
 ## v2024.10.01-0
 
 Released on October 1, 2024
