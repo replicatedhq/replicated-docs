@@ -13,7 +13,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>Beta</td>
-    <td><p>A product or feature that is typically production-ready, but has not met Replicated’s definition of GA for one or more of the following reasons:</p><ul><li>Remaining gaps in intended functionality</li><li>Outstanding needs around testing</li><li>Gaps in documentation or sales enablement</li><li>In-progress customer value validation efforts</li></ul><p>Documentation for beta products and features is published on the Replicated Documentation site with a "(Beta)" label.</p><p>Please contact your Replicated account representative if you have questions about why a product or feature is beta.</p></td>
+    <td><p>A product or feature that is typically production-ready, but has not met Replicated’s definition of GA for one or more of the following reasons:</p><ul><li>Remaining gaps in intended functionality</li><li>Outstanding needs around testing</li><li>Gaps in documentation or sales enablement</li><li>In-progress customer value validation efforts</li></ul><p>Documentation for beta products and features is published on the Replicated Documentation site with a "(Beta)" label. Beta products or features follow the same build and test processes required for GA.</p><p>Please contact your Replicated account representative if you have questions about why a product or feature is beta.</p></td>
   </tr>
   <tr>
     <td>“GA” - General Availability</td>
@@ -129,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified October 16, 2024.
+Last modified October 17, 2024.
