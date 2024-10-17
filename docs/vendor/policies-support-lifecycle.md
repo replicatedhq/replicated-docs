@@ -9,7 +9,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>Alpha</td>
-    <td>A product or feature that is exploratory or experimental. Typically, access to alpha features is limited to customers providing early feedback. While most alpha features progress to beta and general availability (GA), some are deprecated based on assessment learnings.</td>
+    <td>A product or feature that is exploratory or experimental. Typically, access to alpha features and their documentation is limited to customers providing early feedback. While most alpha features progress to beta and general availability (GA), some are deprecated based on assessment learnings.</td>
   </tr>
   <tr>
     <td>Beta</td>
