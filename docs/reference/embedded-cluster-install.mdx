@@ -1,4 +1,4 @@
-# Install Command Options
+# Embedded Cluster Install Command Options
 
 This topic describes the options available with the Embedded Cluster install command. For more information about how to install with Embedded Cluster, see [Installing with Embedded Cluster](/enterprise/installing-embedded).
 
@@ -18,6 +18,10 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
     <th width="65%">Description</th>
   </tr>
   <tr>
+     <td>`--admin-console-port`</td>
+     <td></td>
+  </tr>
+  <tr>
      <td>`--airgap-bundle`</td>
      <td>The Embedded Cluster air gap bundle used for installations in air-gapped environments with no outbound internet access. For information about how to install in an air-gapped environment with Embedded Cluster, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).</td>
   </tr>
@@ -25,7 +29,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--data-dir`</td>
      <td>
         <p>The data directory used by Embedded Cluster. **Default**: `/var/lib/embedded-cluster`.</p>
-        <p>Limitations:</p>
+        <p>**Limitations:**</p>
         <ul>
             <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
             <li>If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</li>
@@ -42,6 +46,10 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>Proxy server to use for HTTPS</td>
   </tr>
   <tr>
+     <td>`--local-artifact-mirror-port`</td>
+     <td></td>
+  </tr>
+  <tr>
      <td>`--no-proxy`</td>
      <td>
        <p>Comma-separated list of hosts for which not to use a proxy.</p>
@@ -56,11 +64,17 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   </tr>
   <tr>
      <td>`--pod-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. **Default:** By default, the Pod CIDR is `10.244.0.0/16`.</td>
+     <td>
+        <p>The range of IP addresses that can be assigned to Pods, in CIDR notation. **Default:** By default, the Pod CIDR is `10.244.0.0/16`.</p>
+        <p>The `--pod-cidr` flag is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
+     </td>
   </tr>
   <tr>
      <td>`--service-cidr`</td>
-     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. **Default:** By default, the Service CIDR is `10.96.0.0/12`.</td>
+     <td>
+        <p>The range of IP addresses that can be assigned to Services, in CIDR notation. **Default:** By default, the Service CIDR is `10.96.0.0/12`.</p>
+        <p>The `--service-cidr` flags is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
+     </td>
   </tr>
 </table>
 
