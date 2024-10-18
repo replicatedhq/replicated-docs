@@ -2,24 +2,24 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Configuring the HelmChart Custom Resource v2
 
-This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2`  to support Helm chart installations with Replicated KOTS.
+This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with Replicated KOTS.
 
 ## Workflow
 
-Do the following to configure the `kots.io/v1beta2` HelmChart custom resource:
+To support Helm chart installations with the KOTS `kots.io/v1beta2` HelmChart custom resource, do the following:
 1. Rewrite image names to use the Replicated proxy registry. See [Rewrite Image Names](#rewrite-image-names).
 1. Inject a KOTS-generated image pull secret that grants proxy access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
 1. Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
 1. Configure the `builder` key to allow your users to push images to their own local registries. See [Support Local Image Registries](#local-registries).
 1. (KOTS Existing Cluster Instalaltions Only) Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
    :::note
-   Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+   Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring disaster recovery for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
    :::
 
 ## Task 1: Rewrite Image Names {#rewrite-image-names}
 
 Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites the names for both private and public images in your Helm values during deployment. This allows images to be accessed at one of the following locations:
-* The [Replicated proxy registry](private-images-about) at `proxy.replicated.com`
+* The [Replicated proxy registry](private-images-about) (`proxy.replicated.com`)
 * A public image registry
 * Your customer's local registry
 * The built-in registry used in Replicated Embedded Cluster or Replicated kURL installations in air-gapped environments
@@ -37,13 +37,15 @@ You will use the following KOTS template functions to conditionally rewrite imag
 
 ### Task 1a: Rewrite Private Image Names
 
-For any private images used by your application, configure the HelmChart custom resource so that image names are conditionally rewritten to either the location of the image in the Replicated proxy registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
+For any private images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the Replicated proxy registry (for online installations) or to the local registry in the user's installation environment (for air gap installations or online installations where images were pushed to a local registry).
 
-To rewrite images to the proxy registry, use the format `proxy.replicated.com/proxy/<app-slug>/<image>`, where:
+To rewrite image names to the location of the image in the proxy registry, use the format `proxy.replicated.com/proxy/<app-slug>/<image>`, where:
 * `<app-slug>` is the unique application slug in the Vendor Portal
 * `<image>` is the path to the image in your registry
 
 For example, if the private image is `quay.io/my-org/nginx:v1.0.1`, then the image name should be rewritten to `proxy.replicated.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
+
+For more information, see the example below. 
 
 #### Example
 
@@ -99,11 +101,13 @@ spec:
 
 ### Task 1b: Rewrite Public Image Names
 
-For any public images used by your application, configure the HelmChart custom resource so that image names are conditionally rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
+For any public images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
+
+For example, if the public image is `ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`.
 
 #### Example
 
-The following HelmChart custom resource includes a field in the `values` key that rewrites the registry domain to `docker.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the local registry:
+The following HelmChart custom resource includes a field in the `values` key that rewrites the registry domain to `ghcr.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `ghcr.io` or in the local registry:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -116,9 +120,13 @@ spec:
   ...
   values:
     image: 
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "docker.io" }}' 
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "bitnami" }}/mariadb'
-      tag: v1.0.1
+      # If a local registry is used, use that registry's hostname
+      # Else, use the public registry host (ghcr.io) 
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "ghcr.io" }}' 
+      # If the user configured a registry, use the registry namespace provided
+      # Else, use the path to the image in the public registry 
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "cloudnative-pg" }}/cloudnative-pg'
+      tag: catalog-1.24.0
 ```
 
 The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown in the example below:
