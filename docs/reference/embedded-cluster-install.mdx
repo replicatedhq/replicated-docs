@@ -19,7 +19,11 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   </tr>
   <tr>
      <td>`--admin-console-port`</td>
-     <td></td>
+     <td>
+        <p>Port to run the KOTS Admin Console on. **Default**: By default, the Admin Console runs on port 30000.</p>
+        <p>The Embedded Cluster host preflight checks verify the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).</p>
+        <p>**Limitation:** It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).</p>
+      </td>
   </tr>
   <tr>
      <td>`--airgap-bundle`</td>
@@ -47,7 +51,10 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   </tr>
   <tr>
      <td>`--local-artifact-mirror-port`</td>
-     <td></td>
+     <td>
+        <p>Port to run the Local Artifact Mirror (LAM) on. **Default**: By default, the LAM runs on port 50000.</p>
+        <p>The Embedded Cluster host preflight checks verify the default ports or the user-supplied ports, so users will be alerted before installation if they need to choose new port(s). For more information about the host preflight checks for Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks).</p>
+     </td>
   </tr>
   <tr>
      <td>`--no-proxy`</td>
