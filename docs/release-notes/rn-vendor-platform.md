@@ -18,6 +18,20 @@ Released on October 17, 2024
 * Makes the wording and styling consistent on the Helm and Embedded Cluster install instructions modals.
 * Presents users a new step to update their GitHub username when creating support cases or feature requests.
 
+## v2024.10.16-0
+
+Released on October 16, 2024
+
+### Improvements {#improvements-v2024-10-16-0}
+* Capitalize "Embedded Cluster" in the support workflow.
+
+## v2024.10.10-5
+
+Released on October 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-10-5}
+* Adds the "Copy URL" button for the Download Portal link back into the Download Portal section of the **Customer Reporting** page.
+
 ## v2024.10.01-0
 
 Released on October 1, 2024

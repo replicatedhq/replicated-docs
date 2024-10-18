@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.119.0
+
+Released on October 18, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-119-0}
+* Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
+* If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
+
 ## 1.118.0
 
 Released on October 15, 2024
