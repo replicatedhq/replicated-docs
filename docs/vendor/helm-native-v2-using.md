@@ -18,7 +18,7 @@ To support Helm chart installations with the KOTS `kots.io/v1beta2` HelmChart cu
 
 ## Task 1: Rewrite Image Names {#rewrite-image-names}
 
-Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites the names for both private and public images in your Helm values during deployment. This allows images to be accessed at one of the following locations:
+Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites the names for both private and public images in your Helm values during deployment. This allows images to be accessed at one of the following locations, depending on where they were pushed:
 * The [Replicated proxy registry](private-images-about) (`proxy.replicated.com`)
 * A public image registry
 * Your customer's local registry
@@ -103,11 +103,11 @@ spec:
 
 For any public images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
 
-For example, if the public image is `ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`, then the image name should be rewritten to `proxy.replicated.com/anonymous/ghcr.io/cloudnative-pg/cloudnative-pg:catalog-1.24.0`.
+For more information, see the example below.
 
 #### Example
 
-The following HelmChart custom resource includes a field in the `values` key that rewrites the registry domain to `ghcr.io` unless a local registry is used. Similarly, it shows a field that rewrites the image repository to the path of the public image on `ghcr.io` or in the local registry:
+The following HelmChart custom resource uses the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to conditionally rewrite an image registry and repository depending on if a local registry is used:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
