@@ -73,19 +73,37 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--pod-cidr`</td>
      <td>
         <p>The range of IP addresses that can be assigned to Pods, in CIDR notation. **Default:** By default, the Pod CIDR is `10.244.0.0/16`.</p>
-        <p>The `--pod-cidr` flag is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
+        <p>**Limitation:** The `--pod-cidr` flag is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
      </td>
   </tr>
   <tr>
      <td>`--service-cidr`</td>
      <td>
         <p>The range of IP addresses that can be assigned to Services, in CIDR notation. **Default:** By default, the Service CIDR is `10.96.0.0/12`.</p>
-        <p>The `--service-cidr` flags is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
+        <p>**Limitation:** The `--service-cidr` flags is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
      </td>
   </tr>
 </table>
 
 ## Examples
+
+### Air Gap Install
+
+```bash
+sudo ./myapp install --license license.yaml --airgap-bundle myapp.airgap
+```
+
+### Change the Admin Console and LAM Ports
+
+```bash
+install --admin-console-port=20000 --local-artifact-mirror-port=40000
+```
+
+### Change the Data Directory
+
+```bash
+sudo ./my-app install --license license.yaml --data-dir /data/embedded-cluster
+```
 
 ### Install Behind a Proxy
 
@@ -100,26 +118,8 @@ Where:
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
-### Change the Admin Console and LAM Ports
-
-```bash
-install --admin-console-port=20000 --local-artifact-mirror-port=40000
-```
-
 ### Set IP Address Range for Pods
 
 ```bash
 sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
-```
-
-### Change the Default Data Directory
-
-```bash
-sudo ./my-app install --license license.yaml --data-dir /data/embedded-cluster
-```
-
-### Air Gap Install
-
-```bash
-sudo ./myapp install --license license.yaml --airgap-bundle myapp.airgap
 ```
