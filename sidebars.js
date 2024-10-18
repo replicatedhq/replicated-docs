@@ -348,6 +348,7 @@ const sidebars = {
                 items: [
                   'enterprise/installing-embedded',
                   'enterprise/installing-embedded-air-gap',
+                  'reference/embedded-cluster-install',
                 ],
               },
               {

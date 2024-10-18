@@ -1,0 +1,91 @@
+# Install Command Options
+
+This topic describes the options available with the Embedded Cluster install command. For more information about how to install with Embedded Cluster, see [Installing with Embedded Cluster](/enterprise/installing-embedded).
+
+## Usage
+
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE [flags]
+```
+* `APP_SLUG` is the unique application slug
+* `LICENSE_FILE` is the customer's license
+
+## Flags
+
+<table>
+  <tr>
+    <th width="35%">Flag</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>`--data-dir`</td>
+     <td>
+        <p>The data directory to use to store Embedded Cluster assets. **Default**: `/var/lib/embedded-cluster`.</p>
+        <p>Limitations:</p>
+        <ul>
+            <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
+            <li>If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</li>
+            <li>Replicated does not support using symlinks for the Embedded Cluster data directory. Use the `--data-dir` flag instead of symlinking `/var/lib/embedded-cluster`.</li>
+        </ul>
+     </td>
+  </tr>
+  <tr>
+     <td>`--http-proxy`</td>
+     <td>Proxy server to use for HTTP</td>
+  </tr>
+  <tr>
+     <td>`--https-proxy`</td>
+     <td>Proxy server to use for HTTPS</td>
+  </tr>
+  <tr>
+     <td>`--no-proxy`</td>
+     <td>
+       <p>Comma-separated list of hosts for which not to use a proxy.</p>
+       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation).</p>
+       <p>The following are never proxied:</p>
+       <ul>
+         <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.cluster.local`, `.svc`)</li>
+         <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.244.0.0/16` and the Service CIDR `10.96.0.0/12`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
+       </ul>
+       <p>To ensure your app's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--pod-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Pods, in CIDR notation. By default, the Pod CIDR is `10.244.0.0/16`.</td>
+  </tr>
+  <tr>
+     <td>`--service-cidr`</td>
+     <td>The range of IP addresses that can be assigned to Services, in CIDR notation. By default, the Service CIDR is `10.96.0.0/12`.</td>
+  </tr>
+</table>
+
+## Examples
+
+### Install Behind a Proxy
+
+```bash
+sudo ./APP_SLUG install --license LICENSE_FILE \
+  --http-proxy=HOST:PORT \
+  --https-proxy=HOST:PORT \
+  --no-proxy=LIST_OF_HOSTS
+```
+Where:
+
+* `HOST:PORT` is the host and port of the proxy server
+* `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
+
+### Change the Admin Console and LAM Ports
+
+```bash
+install --admin-console-port=20000 --local-artifact-mirror-port=40000
+```
+
+### Set IP Address Range for Pods
+
+```bash
+sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
+```
+
+### Change the Default Data Directory
+
