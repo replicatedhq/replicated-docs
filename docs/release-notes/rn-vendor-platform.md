@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.16-0
+
+Released on October 16, 2024
+
+### Improvements {#improvements-v2024-10-16-0}
+* Capitalize "Embedded Cluster" in the support workflow.
+
 ## v2024.10.10-5
 
 Released on October 10, 2024
