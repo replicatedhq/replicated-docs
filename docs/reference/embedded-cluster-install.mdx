@@ -1,3 +1,7 @@
+import ProxyLimitations from "../partials/embedded-cluster/_proxy-install-limitations.mdx"
+import ProxyRequirements from "../partials/embedded-cluster/_proxy-install-reqs.mdx"
+
+
 # Embedded Cluster Install Command Options
 
 This topic describes the options available with the Embedded Cluster install command. For more information about how to install with Embedded Cluster, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded).
@@ -44,30 +48,22 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--http-proxy`</td>
      <td>
         <p>Proxy server to use for HTTP.</p>
-        <p>**Requirement**: Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.</p>
-        <p>**Limitations:**</p>
-        <ul>
-            <li>If any of your [Helm extensions](/reference/embedded-config#extensions) make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy. Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.</li>
-            <li>Proxy settings cannot be changed after installation or during upgrade.</li>
-        </ul>    
+        <ProxyRequirements/>
+        <ProxyLimitations/>   
      </td>
   </tr>
   <tr>
      <td>`--https-proxy`</td>
      <td>
         <p>Proxy server to use for HTTPS.</p>
-        <p>**Requirement**: Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.</p>
-        <p>**Limitations:**</p>
-        <ul>
-            <li>If any of your [Helm extensions](/reference/embedded-config#extensions) make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy. Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.</li>
-            <li>Proxy settings cannot be changed after installation or during upgrade.</li>
-        </ul>  
+        <ProxyRequirements/>
+        <ProxyLimitations/>
      </td>
   </tr>
   <tr>
      <td>`--license`</td>
      <td>
-        <p>License file.</p>
+        <p>The license file to use for installation. Must have the **Embedded Cluster Enabled** license field enabled. See [Creating and Managing Customers](/vendor/releases-creating-customer).</p>
      </td>
   </tr>
   <tr>
@@ -87,12 +83,8 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
          <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.244.0.0/16` and the Service CIDR `10.96.0.0/12`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
        </ul>
        <p>To ensure your app's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
-       <p>**Requirement**: Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.</p>
-       <p>**Limitations:**</p>
-        <ul>
-            <li>If any of your [Helm extensions](/reference/embedded-config#extensions) make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy. Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.</li>
-            <li>Proxy settings cannot be changed after installation or during upgrade.</li>
-        </ul>  
+       <ProxyRequirements/>
+       <ProxyLimitations/>
      </td>
   </tr>
   <tr>
