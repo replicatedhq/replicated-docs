@@ -76,7 +76,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
          <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.cluster.local`, `.svc`)</li>
          <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.244.0.0/16` and the Service CIDR `10.96.0.0/12`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
        </ul>
-       <p>To ensure your app's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
+       <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
        <ProxyRequirements/>
        <ProxyLimitations/>
      </td>
