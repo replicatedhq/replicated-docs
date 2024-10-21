@@ -267,7 +267,7 @@ Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>Any kURL installer ID. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a kURL installer</a>.</td>
+    <td>Any promoted kURL installer. For an installer version other than "latest", the installer version ID for previously released installers can be found on the kURL Installer history page under Channels.</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
