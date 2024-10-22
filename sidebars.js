@@ -37,6 +37,7 @@ const sidebars = {
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/kots-faq',
+    'vendor/quick-start',
     // 'vendor/replicated-onboarding',
     // {
     //   type: 'category',
@@ -109,7 +110,6 @@ const sidebars = {
     },
     // WORKFLOWS
     {type: 'html', value: '<h5>WORKFLOWS</h5>', defaultStyle: true},
-    'vendor/quick-start',
     'vendor/replicated-onboarding',
     {
       type: 'category',
@@ -123,6 +123,7 @@ const sidebars = {
         'vendor/packaging-air-gap-excluding-minio',
       ],
     },
+    'vendor/install-with-helm',
     {
       type: 'category',
       label: 'Integrating with CI/CD',
@@ -278,12 +279,38 @@ const sidebars = {
     // },
     {
       type: 'category',
+      label: 'Embedded Cluster',
+      items: [
+        'vendor/embedded-overview',
+        {
+          type: 'category',
+          label: 'Installing with Embedded Cluster',
+          items: [
+            'enterprise/installing-embedded-requirements',
+            'enterprise/installing-embedded',
+            'enterprise/installing-embedded-air-gap',
+          ],
+        },
+        'enterprise/updating-embedded',
+        'reference/embedded-config',
+        'vendor/embedded-disaster-recovery',
+        {
+          type: 'category',
+          label: 'Embedded Cluster CLI Reference',
+          items: [
+            'reference/embedded-cluster-install',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'KOTS Admin Console',
       items: [
         'intro-kots',
         {
           type: 'category',
-          label: 'Installing with KOTS',
+          label: 'Installing with KOTS in Existing Clusters',
           items: [
             // {
             //   type: 'category',
@@ -338,7 +365,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Distributing Helm Charts with KOTS',
+          label: 'Configuring the KOTS HelmChart Custom Resource',
           items: [
             'vendor/helm-native-about',
             'vendor/helm-native-v2-using',
@@ -624,40 +651,18 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Embedded Cluster',
-    items: [
-      'vendor/embedded-overview',
-      'reference/embedded-config',
-      'vendor/embedded-disaster-recovery',
-      {
-        type: 'category',
-        label: 'Installing with Embedded Cluster',
-        items: [
-          'enterprise/installing-embedded-requirements',
-          'enterprise/installing-embedded',
-          'enterprise/installing-embedded-air-gap',
-        ],
-      },
-      'enterprise/updating-embedded',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Helm CLI Installations',
-    items: [
-      'vendor/install-with-helm',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'kURL (Legacy)',
+    label: 'kURL',
     items: [
       'vendor/kurl-about',
-      'vendor/packaging-embedded-kubernetes',
-      'vendor/packaging-installer-storage',
-      'vendor/installer-history',
-      'vendor/packaging-using-tls-certs',
-      'vendor/kurl-nodeport-services',
+      {
+        type: 'category',
+        label: 'Configuring kURL',
+        items: [
+          'vendor/packaging-embedded-kubernetes',
+          'vendor/packaging-installer-storage',
+          'vendor/kurl-nodeport-services',
+        ],
+      },
       {
         type: 'category',
         label: 'Installing with kURL',
@@ -668,7 +673,7 @@ const sidebars = {
           'enterprise/cluster-management-add-nodes',
         ],
       },
-      'enterprise/image-registry-kurl',
+      // 'vendor/packaging-using-tls-certs',
       {
         type: 'category',
         label: 'Performing Updates with kURL',
@@ -677,12 +682,14 @@ const sidebars = {
           'enterprise/updating-kurl',
         ],
       },
+      'enterprise/image-registry-kurl',
       'enterprise/updating-tls-cert',
+      'vendor/installer-history',
     ],
   },
   {
     type: 'category',
-    label: 'Download Portal',
+    label: 'Enterprise Portal',
     items: [
       'vendor/releases-share-download-portal',
     ],
@@ -698,7 +705,7 @@ const sidebars = {
       'vendor/private-images-tags-digests',
       {
         type: 'category',
-        label: 'Replicated Private Registry',
+        label: 'About the Replicated Private Registry',
         items: [
           'vendor/private-images-replicated',
           'vendor/packaging-private-registry-security',
@@ -783,14 +790,14 @@ const sidebars = {
         ],
       },
       'vendor/preflight-sb-helm-templates-about',
-      {
-        type: 'category',
-        label: 'Troubleshoot Custom Resources',
-        items: [
+      // {
+      //   type: 'category',
+      //   label: 'Troubleshoot Custom Resources',
+      //   items: [
           'reference/custom-resource-preflight',
           'reference/custom-resource-redactor',
-        ],
-      },
+      //   ],
+      // },
     ],
   },
   {

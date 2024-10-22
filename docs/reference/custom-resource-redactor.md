@@ -1,4 +1,4 @@
-# Redactor (KOTS-Only)
+# Configuring Custom Redactors (KOTS Only)
 
 This topic describes the Redactor custom resource. The information in this topic applies to Replicated KOTS installations only.
 
