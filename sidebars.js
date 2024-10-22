@@ -113,17 +113,6 @@ const sidebars = {
     'vendor/replicated-onboarding',
     {
       type: 'category',
-      label: 'Distributing Helm Charts with Replicated',
-      items: [
-        'vendor/helm-native-about',
-        'vendor/helm-native-v2-using',
-        // 'vendor/helm-packaging-airgap-bundles',
-        'vendor/helm-optional-value-keys',
-        'vendor/helm-v2-migrate',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Supporting Air Gap Installations',
       items: [
         'vendor/helm-packaging-airgap-bundles',
@@ -131,6 +120,7 @@ const sidebars = {
         // 'vendor/releases-download-airgap-bundles',
         'vendor/operator-defining-additional-images',
         'vendor/operator-defining-additional-namespaces',
+        'vendor/packaging-air-gap-excluding-minio',
       ],
     },
     {
@@ -288,12 +278,12 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'KOTS',
+      label: 'KOTS Admin Console',
       items: [
         'intro-kots',
         {
           type: 'category',
-          label: 'Installing with KOTS in Existing Clusters',
+          label: 'Installing with KOTS',
           items: [
             // {
             //   type: 'category',
@@ -341,8 +331,20 @@ const sidebars = {
             // 'enterprise/updating-kurl-about',
             // 'enterprise/updating-kurl',
             'enterprise/updating-apps',
+            'enterprise/updating-licenses',
             // 'enterprise/updating-licenses',
             // 'enterprise/updating-tls-cert',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Distributing Helm Charts with KOTS',
+          items: [
+            'vendor/helm-native-about',
+            'vendor/helm-native-v2-using',
+            // 'vendor/helm-packaging-airgap-bundles',
+            'vendor/helm-optional-value-keys',
+            'vendor/helm-v2-migrate',
           ],
         },
         // 'vendor/distributing-workflow',
@@ -413,7 +415,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Customizing the Admin Console and Download Portal',
+              label: 'Customizing the Admin Console',
               items: [
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-adding-buttons-links',
@@ -452,7 +454,6 @@ const sidebars = {
                 },
               ],
             },
-            'vendor/admin-console-port-forward',
             // {
             //   type: 'category',
             //   label: 'Exposing Services',
@@ -475,6 +476,7 @@ const sidebars = {
                       'vendor/tutorial-adding-db-config',
                     ],
                 },
+                'vendor/admin-console-port-forward',
                 'vendor/resources-annotations-templating',
                 'vendor/orchestrating-resource-deployment',
                 'vendor/database-config-adding-options',
@@ -510,7 +512,7 @@ const sidebars = {
           items: [
             'vendor/packaging-kots-versions',
             'vendor/packaging-rbac',
-            'vendor/packaging-air-gap-excluding-minio',
+            // 'vendor/admin-console-port-forward',
           ],
         },  
         // {
@@ -522,6 +524,7 @@ const sidebars = {
           //   type: 'category',
           //   label: 'Managing KOTS Installations',
           //   items: [
+              'enterprise/updating-patching-with-kustomize',
               {
                 type: 'category',
                 label: 'Using a Private Image Registry for KOTS Installations',
@@ -531,8 +534,6 @@ const sidebars = {
                   'enterprise/image-registry-rate-limits',
                 ],
               },
-              'enterprise/updating-licenses',
-              'enterprise/updating-patching-with-kustomize',
               {
                 type: 'category',
                 label: 'Monitoring Application Instances in the Admin Console',
