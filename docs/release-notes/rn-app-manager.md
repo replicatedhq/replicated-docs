@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.119.1
+
+Released on October 22, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-119-1}
+* Fixes an issue that causes proxy settings to be removed on `kotsadm admin-console upgrade`.
+* Fixes an issue that causes `--strict-security-context` to be removed on `kotsadm admin-console upgrade`.
+
 ## 1.119.0
 
 Released on October 18, 2024
