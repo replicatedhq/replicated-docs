@@ -13,7 +13,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 ## 1.15.0 - Removed
 
 :::important
-Embedded Cluster 1.15.0 has been removed and is not available for use.
+Embedded Cluster 1.15.0 has been removed and is not available for use because of issues with upgrades. It continues to work for anyone already using it.
 :::
 
 Released on October 10, 2024
