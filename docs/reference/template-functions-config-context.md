@@ -164,8 +164,9 @@ This will always return everything before the image name and tag.
 func LocalRegistryHost() string
 ```
 
-Returns the local registry host that's configured.
-This will include port if one is specified.
+Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Replicated Embedded Cluster or Replicated kURL, LocalRegistryHost returns the host of the built-in registry.
+
+Includes the port if one is specified.
 
 ## LocalRegistryNamespace
 
@@ -173,7 +174,7 @@ This will include port if one is specified.
 func LocalRegistryNamespace() string
 ```
 
-Returns the local registry namespace that's configured.
+Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
 
 ## LocalImageName
 
@@ -257,4 +258,4 @@ func HasLocalRegistry() bool
 ```
 
 Returns true if the environment is configured to rewrite images to a local registry.
-This is true for air gapped installations, and optionally true for online installations.
+HasLocalRegistry is always true for air gap installations. HasLocalRegistry is true in online installations if the user pushed images to a local registry.
