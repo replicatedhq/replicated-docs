@@ -74,7 +74,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
        <p>The following are never proxied:</p>
        <ul>
          <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.cluster.local`, `.svc`)</li>
-         <li>The CIDRs used for assigning IPs to Kubernetes Pods and Services. By default, the Pod CIDR is `10.244.0.0/16` and the Service CIDR `10.96.0.0/12`. For information about how to change these defaults, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
+         <li>The CIDR used for assigning IPs to Kubernetes Pods and Services. By default, the CIDR is `10.244.0.0/16`. For information about how to change this default, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
        </ul>
        <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
        <ProxyRequirements/>
@@ -82,17 +82,9 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
-     <td>`--pod-cidr`</td>
+     <td>`--cidr`</td>
      <td>
-        <p>The range of IP addresses that can be assigned to Pods, in CIDR notation. **Default:** By default, the Pod CIDR is `10.244.0.0/16`.</p>
-        <p>**Limitation:** The `--pod-cidr` flag is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
-     </td>
-  </tr>
-  <tr>
-     <td>`--service-cidr`</td>
-     <td>
-        <p>The range of IP addresses that can be assigned to Services, in CIDR notation. **Default:** By default, the Service CIDR is `10.96.0.0/12`.</p>
-        <p>**Limitation:** The `--service-cidr` flags is not supported on Red Hat Enterprise Linux (RHEL) 9 operating systems.</p>
+        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR is `10.244.0.0/16`.</p>
      </td>
   </tr>
 </table>
@@ -130,8 +122,8 @@ Where:
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
-### Set IP Address Range for Pods
+### Set IP Address Range for Pods and Services
 
 ```bash
-sudo ./my-app install --license license.yaml --pod-cidr 172.16.136.0/16
+sudo ./my-app install --license license.yaml --cidr 172.16.136.0/16
 ```
