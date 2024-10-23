@@ -10,6 +10,44 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.15.0 - Removed
+
+:::important
+Embedded Cluster 1.15.0 has been removed and is not available for use because of issues with upgrades. It continues to work for anyone already using it.
+:::
+
+Released on October 10, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.15.0+k8s-1.29</td>
+    <td id="center">1.15.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.9</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.5</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-15-0}
+* Adds the `--data-dir` flag to the `install` command so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`.
+
+### Improvements {#improvements-1-15-0}
+* Adds a preflight check to ensure the CPU supports x86-64-v2.
+* Adds a preflight check to ensure the data directory (`/var/lib/embedded-cluster` by default) is not symlinked.
+* Adds the `--data-dir` flag to the `restore` command. When restoring a backup that used a non-default data directory (i.e., the `--data-dir` flag was provided at install time), the same data directory must be provided when restoring.
+* For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. We will only document and preflight for `/var/lib/embedded-cluster` now.
+* The Admin Console password must be at least six characters.
+
+### Bug Fixes {#bug-fixes-1-15-0}
+* Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+
 ## 1.14.2
 
 Released on September 26, 2024
