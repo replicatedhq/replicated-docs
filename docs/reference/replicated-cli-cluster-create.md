@@ -71,7 +71,7 @@ replicated cluster create [flags]
   <tr>
     <td>--nodegroup</td>
     <td>string</td>
-    <td>Node group to create (name=?,instance-type=?,nodes=?,min-nodes=?,max-nodes=?,disk=? format, can be specified multiple times). For each nodegroup, at least one of the following flags must be specified: name, instance-type, nodes, min-nodes, max-nodes or disk.</td>
+    <td>Node group to create (name=?,instance-type=?,nodes=?,min-nodes=?,max-nodes=?,disk=? format, can be specified multiple times). For each nodegroup, at least one flag must be specified. The flags min-nodes and max-nodes are mutually dependent.</td>
   </tr>
   <Output/>
   <tr>
