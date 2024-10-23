@@ -18,7 +18,7 @@ This topic provides an introduction to the Replicated Platform, including a plat
 
 <Replicated/>
 
-The Replicated Platform features are designed to support ISVs during each phase of the Commercial Software Distribution Lifecycle. For more information, see [About the Commercial Software Distribution Lifecycle](intro-lifecycle).
+The Replicated Platform features are designed to support ISVs during each phase of the Commercial Software Distribution Lifecycle. For more information, see [Commercial Software Distribution Lifecycle](#csdl) below.
 
 The following diagram demonstrates the process of using the Replicated Platform to distribute an application, install the application in a customer environment, and support the application after installation:
 
@@ -26,30 +26,13 @@ The following diagram demonstrates the process of using the Replicated Platform 
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The diagram above shows an application that is packaged with the [**Replicated SDK**](replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix**](testing-about), then added to a new release in the **Vendor Portal** using a CI/CD pipeline.
+The diagram above shows an application that is packaged with the [**Replicated SDK**](replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix**](testing-about), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
 
-The application is then installed by a customer ("Big Bank") in a VM. To install, the customer downloads their license, which grants proxy access to the application images through the **Replicated proxy registry**. They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
+The application is then installed by a customer ("Big Bank") in a VM. To install, the customer downloads their license, which grants proxy access to the application images through the [**Replicated proxy registry**](/vendor/private-images-about). They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
 
-Embedded Cluster runs **preflight checks** to verify that the environment meets the requirements, provisions a cluster, and uses **Replicated KOTS** to deploy the application. KOTS also provide an **Admin Console** UI where the customer can manage the application and the cluster.
+Embedded Cluster runs [**preflight checks**](preflight-support-bundle-about) to verify that the environment meets the installation requirements, provisions a cluster on the VM, and uses [**Replicated KOTS**](intro-kots) to deploy the application. KOTS provides an [**Admin Console**](intro-kots#kots-admin-console) where the customer can manage the application and the cluster.
 
-After installing, the following are present in cluster after installation:
-* The application
-* The Replicated SDK
-* The KOTS Admin Console
-* Tooling from the open source **Troubleshoot** project, which is maintained by Replicated
-
-Finally, the diagram shows how **instance data** and telemetry is automatically sent to the Vendor Portal by the Replicated SDK API and the Admin Console. Additionally, the diagram shows Troubleshoot tooling being used to generate **support bundles** and send those bundles back to the Vendor Portal. Support bundles include logs and other important diagnostic data that can be used by the vendor's support team for the purpose of troubleshooting issues.
-
-For more information about the Replicated features depicted in this diagram, see:
-* [About the Replicated SDK](replicated-sdk-overview)
-* [About Compatibility Matrix](testing-about)
-* [About Channels and Releases](releases-about)
-* [About Customers](licenses-about)
-* [Using Embedded Cluster](/vendor/embedded-overview)
-* [Installing with Embedded Cluster](/enterprise/installing-embedded)
-* [About Preflight Checks and Support Bundles](preflight-support-bundle-about)
-* [About Instance and Event Data](instance-insights-event-data)
-
+Finally, the diagram shows how [**instance data**](instance-insights-event-data) is automatically sent from the customer environment to the Vendor Portal by the Replicated SDK API and the KOTS Admin Console. Additionally, tooling from the open source [**Troubleshoot**](https://troubleshoot.sh/docs/collect/) project is used to generate and send [**support bundles**](preflight-support-bundle-about), which include logs and other important diagnostic data.
 
 ## Replicated Platform Features
 
@@ -99,7 +82,7 @@ The Vendor Portal can also be interacted with programmatically using the followi
 
 * **Vendor API v3**: The Vendor API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files. For more information, see [Using the Vendor API v3](/reference/vendor-api-using).
 
-## Commercial Software Distribution Lifecycle
+## Commercial Software Distribution Lifecycle {#csdl}
 
 Replicated Platform features are designed to support ISVs in each phase of the Commercial Software Distribution Lifecycle shown below:
 
@@ -158,8 +141,6 @@ Applications distributed with the Replicated Platform can support multiple diffe
 The primary recommended installation methods include:
 * **Replicated Embedded Cluster**: With Embedded Cluster, Kubernetes and the application are delivered together as a single appliance, allowing customers to install on VMs or bare metal servers. Embedded Cluster uses Replicated KOTS to install the application and supports installation in online and air gap environments. For more information, see [Using Emebdded Cluster](/vendor/embedded-overview).
 * **Helm**: Helm installations can be enhanced with Replicated components like the Replicated SDK, which provides instance telemetry and other features through an in-cluster API, and the Replicated proxy registry, which provides proxy access to private images. For more information, see [Installing with Helm](/vendor/install-with-helm).
-
-KOTS also supports online and air gap installations in existing clusters. For more information, see [Introduction to KOTS](kots-intro).
 
 ### Report
 
