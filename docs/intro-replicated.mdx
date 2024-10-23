@@ -18,25 +18,21 @@ This topic provides an introduction to the Replicated Platform, including a plat
 
 <Replicated/>
 
+The Replicated Platform features are designed to support ISVs during each phase of the Commercial Software Distribution Lifecycle. For more information, see [About the Commercial Software Distribution Lifecycle](intro-lifecycle).
+
 The following diagram demonstrates the process of using the Replicated Platform to distribute an application, install the application in a customer environment, and support the application after installation:
 
 ![replicated platform features workflow](/images/replicated-platform.png)
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The diagram above first shows an application that is packaged with the **Replicated SDK**. When installed alongside an application, the Replicated SDK provides an in-cluster API that can be used to interact with the Replicated Vendor Portal. For example, the SDK API can return details about the customer's license or report telemetry on the application instance back to the Vendor Portal.
+The diagram above shows an application that is packaged with the [**Replicated SDK**](replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix**](testing-about), then added to a new release in the **Vendor Portal** using a CI/CD pipeline.
 
-When an application is ready to be shared with customers or internal teams, it can be added to a release in the **Vendor Portal**. The diagram above shows how this process of creating releases can be automated as part of continuous integration and continuous delivery (CI/CD) workflows. The CI/CD workflow depicted in the diagram shows **Replicated Compatibility Matrix** being used to automatically provision clusters where the application release is installed and tested.
+The application is then installed by a customer ("Big Bank") in a VM. To install, the customer downloads their license, which grants proxy access to the application images through the **Replicated proxy registry**. They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
 
-The CI/CD workflow in the diagram then pushes application images to the vendor's image registry and publishes a **release** in the Vendor Portal to the **"Stable" channel**. Customers and internal teams are assigned to channels in the Vendor Portal to control which application releases they are able to access and install.
+Embedded Cluster runs **preflight checks** to verify that the environment meets the requirements, provisions a cluster, and uses **Replicated KOTS** to deploy the application. KOTS also provide an **Admin Console** UI where the customer can manage the application and the cluster.
 
-Next, the diagram shows how an enterprise **customer** named "Big Bank" uses the license they were issued to install the application release in their environment. Vendors create and manage licenses and entitlements in the Vendor Portal.
-
-The installation process depicted in the diagram shows the license being used to access application images through the **Replicated proxy registry**. It also shows **preflight checks** running before installation to verify that the environment meets the requirements for the application and the installer.
-
-This diagram depicts the application being installed with the **Replicated Embedded Cluster** installer. With Embedded Cluster, Kubernetes is distributed alongside the application. This allows a Kubernetes application to be installed on a VM or bare metal server. Embedded Cluster installations first provision a cluster, then use the **Replicated KOTS** installer to install the application in the cluster. KOTS also provide an **Admin Console** UI for the customer to manage the application and the cluster.
-
-The diagram shows the following present in the cluster after installation:
+After installing, the following are present in cluster after installation:
 * The application
 * The Replicated SDK
 * The KOTS Admin Console
@@ -73,7 +69,7 @@ Additionally, each version of Embedded Cluster includes a specific version of th
 
 For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-### KOTS and the Admin Console
+### KOTS (Admin Console)
 
 KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments.
 
@@ -103,7 +99,7 @@ The Vendor Portal can also be interacted with programmatically using the followi
 
 * **Vendor API v3**: The Vendor API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files. For more information, see [Using the Vendor API v3](/reference/vendor-api-using).
 
-## About the Commercial Software Distribution Lifecycle {#life-cycle}
+## Commercial Software Distribution Lifecycle
 
 Replicated Platform features are designed to support ISVs in each phase of the Commercial Software Distribution Lifecycle shown below:
 
