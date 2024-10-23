@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.23-3
+
+Released on October 23, 2024
+
+### New Features {#new-features-v2024-10-23-3}
+* CMX: OKE available in beta.
+
 ## v2024.10.17-1
 
 Released on October 17, 2024
