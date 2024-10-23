@@ -70,11 +70,11 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--no-proxy`</td>
      <td>
        <p>Comma-separated list of hosts for which not to use a proxy.</p>
-       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation).</p>
+       <p>For single-node installations, pass the IP address of the node where you are installing. For multi-node installations, when deploying the first node, pass the list of IP addresses for all nodes in the cluster (typically in CIDR notation). The default network interface's subnet will automatically be added to the no-proxy list if the node's IP address isn't already included.</p>
        <p>The following are never proxied:</p>
        <ul>
          <li>Internal cluster communication (`localhost`, `127.0.0.1`, `.cluster.local`, `.svc`)</li>
-         <li>The CIDR used for assigning IPs to Kubernetes Pods and Services. By default, the CIDR is `10.244.0.0/16`. For information about how to change this default, see [Set IP Address Ranges for Pods and Services](#set-ip-address-ranges-for-pods-and-services).</li>
+         <li>The CIDR block used for assigning IPs to Kubernetes Pods and Services. By default, the CIDR block is `10.244.0.0/16`. For information about how to change this default, see [Set IP Address Range for Pods and Services](#set-ip-address-range-for-pods-and-services).</li>
        </ul>
        <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
        <ProxyRequirements/>
@@ -84,7 +84,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   <tr>
      <td>`--cidr`</td>
      <td>
-        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR is `10.244.0.0/16`.</p>
+        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
      </td>
   </tr>
 </table>
