@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.23-6
+
+Released on October 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-23-6}
+* CMX: Fix bug where min node count could be specified without specifying max node count.
+
 ## v2024.10.23-3
 
 Released on October 23, 2024
