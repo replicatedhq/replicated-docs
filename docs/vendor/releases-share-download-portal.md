@@ -66,7 +66,7 @@ and preview your customer's experience.
 
 1. In the Download Portal, on the left side of the screen, select one of the following:
      * **Bring my own cluster**: View the downloadable assets for existing cluster installations with KOTS.
-     * **Embedded cluster**:  View the downloadable assets for Replicated kURL installations.
+     * **Embedded Kubernetes**:  View the downloadable assets for Replicated kURL installations.
 
      :::note
      Installation assets for [Replicated Embedded Cluster](/vendor/embedded-overview) are not available for download in the Download Portal.
