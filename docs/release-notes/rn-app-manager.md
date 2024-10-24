@@ -25,6 +25,7 @@ Released on October 22, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-119-1}
+
 * Fixes an issue where proxy settings was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
 * Fixes an issue where `--strict-security-context` was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
 
