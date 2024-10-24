@@ -51,14 +51,13 @@ Released on October 23, 2024
 * Improves the reliability of waiting for the Kubernetes server to start.
 * Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
 * Requires that the Admin Console password is at least six characters.
-* Removes the `--data-dir` flag from the `shell` and `reset` commands.
 
 ### Bug Fixes {#bug-fixes-1-16-0}
 * Fixes an issue that could occur when resetting a worker node that used a custom data directory.
 * Fixes an issue where k0s images were not updated within the cluster when k0s was upgraded.
 * Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
 * Fixes an issue where the application could not be upgraded to a version that did not have a configuration file or preflights.
-* Fixes an issue where support bundle configurations in included remote URIs in air gap environments.
+* Fixes an issue where support bundle configurations included remote URIs in air gap environments.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
 
 ## 1.15.0 - Removed
