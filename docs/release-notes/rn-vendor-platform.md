@@ -10,6 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.23-6
+
+Released on October 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-23-6}
+* Compatibility Matrix: Fixes a bug where the `--min-nodes` count could be specified without specifying `--max-nodes` count.
+
+## v2024.10.23-3
+
+Released on October 23, 2024
+
+### New Features {#new-features-v2024-10-23-3}
+* Compatibility Matrix: Oracle Kubernetes Engine (OKE) now available in Beta.
+
 ## v2024.10.17-1
 
 Released on October 17, 2024
