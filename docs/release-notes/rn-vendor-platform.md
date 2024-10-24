@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.24-2
+
+Released on October 24, 2024
+
+### New Features {#new-features-v2024-10-24-2}
+* Renames "Embedded cluster" to "Embedded Kubernetes" and "Bring my own cluster" to "Bring my own Kubernetes" in the Download Portal side bar.
+
 ## v2024.10.23-6
 
 Released on October 23, 2024
