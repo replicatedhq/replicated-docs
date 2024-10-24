@@ -10,6 +10,56 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+
+## 1.16.0
+
+Released on October 23, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.16.0+k8s-1.30</td>
+    <td id="center">1.16.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.119.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-16-0}
+* Adds support for Kubernetes 1.30.
+* Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+* Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
+* Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+   :::note
+   The `--pod-cidr` and `--service-cidr` flags are hidden, but still functional. Replicated recommends that you update any automation that uses the `--pod-cidr` and 
+   `--service-cidr` flags to use the `--cidr` flag instead.
+   :::
+* Adds the following preflight checks:
+  * Verify that the CIDR range used for the cluster does not overlap with existing routes.
+  * Verify the CPU supports x86-64-v2.
+  * Verify the data directory (`/var/lib/embedded-cluster` by default) is not symlinked.
+
+### Improvements {#improvements-1-16-0}
+* For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. With this change, Embedded Cluster now only documents and includes preflight checks for `/var/lib/embedded-cluster`.
+* Improves the reliability of waiting for the Kubernetes server to start.
+* Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
+* Requires that the Admin Console password is at least six characters.
+
+### Bug Fixes {#bug-fixes-1-16-0}
+* Fixes an issue that could occur when resetting a worker node that used a custom data directory.
+* Fixes an issue where k0s images were not updated within the cluster when k0s was upgraded.
+* Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
+* Fixes an issue where the application could not be upgraded to a version that did not have a configuration file or preflights.
+* Fixes an issue where support bundle configurations included remote URIs in air gap environments.
+* Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+
 ## 1.15.0 - Removed
 
 :::important
