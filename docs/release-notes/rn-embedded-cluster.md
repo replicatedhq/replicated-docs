@@ -10,6 +10,47 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+
+## 1.16.0
+
+Released on October 23, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.16.0+k8s-1.30</td>
+    <td id="center">1.16.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.119.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-16-0}
+* _All features of the Embedded Cluster 1.15.0 release are now available in the Embedded Cluster 1.16.0 release._
+* Adds support for Kubernetes 1.30.
+* Adds a new command to the Embedded Cluster binary, `admin-console reset-password`, which allows resetting the password for the Admin Console.
+* Adds a new flag, `--cidr`, that replaces the `--pod-cidr` and `--service-cidr` flags. The specified CIDR range will be split and used for the Pod and Service CIDRs.
+* Adds a new preflight check to verify that the CIDR range used for the cluster does not overlap with existing routes.
+
+### Improvements {#improvements-1-16-0}
+* Improves the reliability of waiting for the Kubernetes server to start.
+* Removes the `--data-dir` flag from the `shell` and `reset` commands.
+* Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
+
+### Bug Fixes {#bug-fixes-1-16-0}
+* Fixes an issue when resetting a worker node that used a custom data directory.
+* Fixes an issue where k0s images were not being updated within the cluster when k0s was upgraded.
+* Fixes an issue where upgrading a pre-1.15 cluster with a worker node would fail.
+* Fixes an issue where the application could not be upgraded to a version that did not have a configuration file or preflights.
+* Fixes an issue where support bundle configurations in included remote URIs in Air Gap environments.
+
 ## 1.15.0 - Removed
 
 :::important
