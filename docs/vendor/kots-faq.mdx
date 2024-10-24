@@ -123,6 +123,16 @@ Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL,
 
 For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
+### What are air gap installations?
+
+_Air gap_ refers to a computer or network that does not have outbound internet access. Air-gapped environments are common for enterprises that require high security, such as government agencies or financial institutions.
+
+Traditionally, air-gapped systems are physically isolated from the network. For example, an air-gapped server might be stored in a separate location away from network-connected servers. Physical access to the air-gapped server might also be restricted.
+
+It is also possible to use _virtual_ or _logical_ air gaps, in which security controls such as firewalls, role-based access control (RBAC), and encryption are used to logically isolate a device from a network. In this way, network access is still restricted, but there is not a phyiscal air gap that disconnects the device from the network.
+
+For applications distributed with Replicated, air gap installations are those that use _air gap bundles_. Air gap bundles contain the images required to install the given application. In an air gap installation, users download the required air gap bundles on an internet-connected device, and then transfer the bundles to their air-gapped machine to install. 
+
 ### How do I enable Embedded Cluster and KOTS installations for my application?
 
 Releases that support installation with KOTS include the manifests required by KOTS to define the Admin Console experience and install the application.
