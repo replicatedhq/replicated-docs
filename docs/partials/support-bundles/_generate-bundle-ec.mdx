@@ -1,16 +1,22 @@
 Depending on the version of Embedded Cluster the procedure to generate a support bundle is different, please follow the instructions below.
 
-#### For versions XXX and above
+#### For versions XXX or higher
 
-1. SSH onto a controller node.
+To generate a comprehensive support bundle that includes all cluster-level information:
 
-1. Use the Embedded Cluster `support-bundle` command to generate the support bundle:
+1. Access a controller node via SSH.
+
+1. Run the embedded-cluster `support-bundle` command to create the support bundle:
 
    ```bash
    sudo ./APP_SLUG support-bundle
    ```
 
-   Where `APP_SLUG` is the unique slug for the application.
+   Here, `APP_SLUG` refers to the unique identifier for the application (slug).
+
+:::note
+While the `support-bundle` command can also be executed on worker nodes, it will only capture information specific to the individual node and will not include all cluster-wide details.
+:::
 
 #### For versions prior to XXX
 
