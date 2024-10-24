@@ -201,7 +201,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. For **License options**, enable the following entitlements:
       * **KOTS Install Enabled**
-      * **Embedded Cluster Enabled (Beta)**
+      * **Embedded Cluster Enabled**
 
    1. Click **Save Changes**.
 
@@ -339,23 +339,29 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
       ```bash
       mv gitea-1.0.7.tgz manifests
-      ``` 
+      ```
 
    1. In the `manifests` directory, open the KOTS HelmChart custom resource (`gitea.yaml`) and update the `chartVersion`:
 
       ```yaml
       # gitea.yaml KOTS HelmChart
       chartVersion: 1.0.7
-      ```   
+      ```  
 
-   1. Create and promote the new release:  
+   1. Remove the chart archive for version 1.0.6:
+
+      ```
+      rm gitea-1.0.6.tgz
+      ```        
+
+   1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
 
       ```bash
-      replicated release create --yaml-dir manifests --promote Unstable
+      replicated release create --yaml-dir . --promote Unstable --version 0.0.2
       ```
       **Example output**:
       ```bash
-        • Reading manifests from manifests ✓
+        • Reading manifests from . ✓
         • Creating Release ✓
           • SEQUENCE: 2
         • Promoting ✓
@@ -366,21 +372,23 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. In the Admin Console, go to the **Version history** tab.
 
-   1. Click **Check for update**.
+      The new version is displayed automatically.
 
-   1. Click **Deploy** next to the new version. Then, **Yes, Deploy**.
+   1. Click **Deploy** next to the new version.
 
-      The preflight check that you added runs automatically during deployment.
+      The Embedded Cluster upgrade wizard opens.
 
-   1. Next to the newly deployed version, click the **View preflight checks** icon to see the result of the "Slack Accessible" preflight check that you added:
+   1. In the Embedded Cluster upgrade wizard, on the **Preflight checks** screen, note that the "Slack Accessible" preflight check that you added was successful. Click **Next: Confirm and deploy**.   
 
-      ![View preflights icon](/images/quick-start-ec-view-preflight.png)
-     
-      [View a larger version of this image](/images/quick-start-ec-view-preflight.png)
+      ![preflight page of the embedded cluster upgrade wizard](/images/quick-start-ec-upgrade-wizard-preflight.png)
 
-      ![Pass result for Slack Accessible preflight check](/images/quick-start-ec-slack-preflight.png)
-     
-      [View a larger version of this image](/images/quick-start-ec-slack-preflight.png)
+      [View a larger version of this image](/images/quick-start-ec-upgrade-wizard-preflight.png)
+
+      :::note
+      The **Config** screen in the upgrade wizard is bypassed because the release does not contain a KOTS Config custom resource. The KOTS Config custom resource is used to set up the Config screen in the KOTS Admin Console.
+      :::   
+
+   1. On the **Confirm and Deploy** page, click **Deploy**.
 
 1. Reset and reboot the VM to remove the installation:
 
