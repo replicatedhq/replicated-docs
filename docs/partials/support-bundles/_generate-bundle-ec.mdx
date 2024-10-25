@@ -11,7 +11,7 @@ To generate a support bundle:
 1. SSH onto a controller node.
 
    :::note
-   You can SSH onto a worker node to generate a support bundle that contains information specific to that node. When run on a worker node, the `support-bundle` command does not capture cluster-wide information.
+   You can SSH onto a worker node to generate a support bundle that contains information specific to that node. However, when run on a worker node, the `support-bundle` command does not capture cluster-wide information.
    :::
 
 1. Run the following command:
@@ -27,6 +27,8 @@ To generate a support bundle:
 For Embedded Cluster versions earlier than XXX, you can generate a support bundle from the shell using the kubectl support-bundle plugin.
 
 To generate a bundle with the support-bundle plugin, you pass the default Embedded Cluster spec to collect both cluster- and host-level information. You also pass the `--load-cluster-specs` flag, which discovers all support bundle specs that are defined in Secrets or ConfigMaps in the cluster. This ensures that any application-specific specs are also included in the bundle. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+
+To generate a bundle:
 
 1. SSH onto a controller node.
 

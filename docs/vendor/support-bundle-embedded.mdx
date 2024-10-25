@@ -1,4 +1,5 @@
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
 
 # Generating Support Bundles for Embedded Cluster
 
@@ -8,9 +9,7 @@ For information about generating host support bundles for Replicated kURL instal
 
 ## Overview
 
-The default support bundle spec for Embedded Cluster collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems.
-
-It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, it will be excluded from the bundle.
+<SupportBundleIntro/>
 
 ## Generate a Support Bundle
 
