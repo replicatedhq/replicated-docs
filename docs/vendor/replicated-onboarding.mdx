@@ -284,6 +284,7 @@ To set up the Admin Console Config screen for your application:
    For more information, see:
    * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs)
    * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup)
+   * [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys)
    * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
 1. <CreateRelease/>
@@ -308,7 +309,7 @@ Before you begin this task, you can complete the [Add Preflight Checks to a Helm
 
 To define preflight checks for your application:
 
-1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
+1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Defining Preflight Checks](/vendor/preflight-defining). For examples, see [Example Preflight Specs](/vendor/preflight-examples).
      :::note
      If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
      :::
@@ -356,7 +357,7 @@ To add the default support bundle spec to your application:
    
 1. (Recommended) At a minimum, Replicated recommends that all support bundle specs include the `logs` collector. This collects logs from running Pods in the cluster.
 
-   For example:
+   **Example:**
 
    ```yaml
    apiVersion: v1
@@ -383,7 +384,8 @@ To add the default support bundle spec to your application:
    ```
 
    For more information, see:
-   * <a href="/vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+   * [Adding and Customizing Support Bundles](/vendor/support-bundle-customizing)
+   * [Example Support Bundle Specs](/vendor/support-bundle-examples)
    * [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
 
 1. (Recommended) Ensure that any preflight checks that you added are also include in your support bundle spec. This ensures that support bundles collect at least the same information collected when running preflight checks. 
@@ -400,7 +402,7 @@ To add the default support bundle spec to your application:
 
    For information about how to generate support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 
-1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers. You can also choose to do this later. See [Step 2: Customize the Spec](/vendor/support-bundle-customizing#customize-the-spec) in _Adding and Customizing Support Bundles_.
+1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers.
 
 ### Task 9: Alias Replicated Endpoints with Your Own Domains
 
