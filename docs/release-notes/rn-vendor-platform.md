@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.25-3
+
+Released on October 25, 2024
+
+### New Features {#new-features-v2024-10-25-3}
+* Add GitHub issue url to feature request confirmation modal.
+
 ## v2024.10.24-2
 
 Released on October 24, 2024
