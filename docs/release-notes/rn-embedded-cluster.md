@@ -33,7 +33,7 @@ Released on October 23, 2024
 </table>
 
 ### New Features {#new-features-1-16-0}
-* Adds support for Kubernetes 1.30.
+* Adds support for Kubernetes 1.30 and removes support for 1.28.
 * Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 * Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
 * Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
@@ -51,14 +51,17 @@ Released on October 23, 2024
 * Improves the reliability of waiting for the Kubernetes server to start.
 * Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
 * Requires that the Admin Console password is at least six characters.
+* Improves the flexibility of configuring the Cluster Resources collector in support bundle specs by limiting KOTS's default collection to its own namespace.
 
 ### Bug Fixes {#bug-fixes-1-16-0}
 * Fixes an issue that could occur when resetting a worker node that used a custom data directory.
 * Fixes an issue where k0s images were not updated within the cluster when k0s was upgraded.
 * Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
-* Fixes an issue where the application could not be upgraded to a version that did not have a configuration file or preflights.
-* Fixes an issue where support bundle configurations included remote URIs in air gap environments.
+* Fixes an issue that prevented you from upgrading to an application version that didn't have Config and preflights.
+* Fixes an issue where the Admin Console could reach out the internet when generating a support bundle in air gap environments.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+* Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
+* If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
 
 ## 1.15.0 - Removed
 
