@@ -12,38 +12,6 @@ For more information about the HelmChart custom resource, including the unique r
 
 After you complete the tasks in this topic to configure the `kots.io/v1beta2` HelmChart custom resource, you can migrate any existing installations that were deployed with `kots.io/v1beta1` with `useHelmInstall: true` to use `kots.io/v1beta2` instead. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
 
-## HelmChart v1 and v2 Differences
-
-The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
-
-<table>
-  <tr>
-    <th>HelmChart v1beta2</th>
-    <th>HelmChart v1beta1</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>apiVersion: kots.io/v1beta2</code></td>
-    <td><code>apiVersion: kots.io/v1beta1</code></td>
-    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
-  </tr>
-  <tr>
-    <td><code>releaseName</code></td>
-    <td><code>chart.releaseName</code></td>
-    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>helmVersion</code></td>
-    <td><code>helmVersion</code> field is removed</td>
-  </tr>
-  <tr>
-    <td>N/A</td>
-    <td><code>useHelmInstall</code></td>
-    <td><code>useHelmInstall</code> field is removed</td>
-  </tr>
-</table>
-
 ## Workflow
 
 To support installations with the `kots.io/v1beta2` HelmChart custom resource, do the following:
@@ -271,7 +239,11 @@ spec:
 
 ### Add Backup Labels for Snapshots
 
-The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
+:::note
+The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+:::
+
+The snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
 * `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
 
@@ -308,14 +280,42 @@ spec:
           kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
 
-### Support Local Image Registries for Online Installations {#local-registries}
+### Support Local Image Registries {#local-registries}
 
 Local image registries are required for KOTS installations in air gapped environments. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
-To support the use of local registries for online installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
+To support the use of local registries with version `kots.io/v1beta2` of the HelmChart custom resource, provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
 
-For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+For more information about how to configure the `builder` key, see [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles) and [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-:::note
-If you already configured the `builder` key previously to support air gap installations, then you can use the same configuration in your HelmChart custom resource to support the use of local registries for online installations. No additional configuration is required.
-:::
+## HelmChart v1 and v2 Differences
+
+The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
+
+<table>
+  <tr>
+    <th>HelmChart v1beta2</th>
+    <th>HelmChart v1beta1</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>apiVersion: kots.io/v1beta2</code></td>
+    <td><code>apiVersion: kots.io/v1beta1</code></td>
+    <td><code>apiVersion</code> is updated to <code>kots.io/v1beta2</code></td>
+  </tr>
+  <tr>
+    <td><code>releaseName</code></td>
+    <td><code>chart.releaseName</code></td>
+    <td><code>releaseName</code> is a top level field under <code>spec</code></td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>helmVersion</code></td>
+    <td><code>helmVersion</code> field is removed</td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>useHelmInstall</code></td>
+    <td><code>useHelmInstall</code> field is removed</td>
+  </tr>
+</table>

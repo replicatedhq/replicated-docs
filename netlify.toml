@@ -174,7 +174,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/support-bundle-helm-customizing"
-  to="https://docs.replicated.com/vendor/support-bundle-customizing"                               
+  to="https://docs.replicated.com/vendor/support-bundle-customizing"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/distributing-workflow"
+  to="https://docs.replicated.com/vendor/replicated-onboarding"                                   
 
 ###################################################
 # Redirects To the Enterprise Section

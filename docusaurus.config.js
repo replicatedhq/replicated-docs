@@ -198,7 +198,7 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Replicated Quick Start',
+                label: 'Replicated Onboarding',
                 to: 'vendor/replicated-onboarding',
               },
             ],
