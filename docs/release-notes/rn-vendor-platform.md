@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.10.25-8
+
+Released on October 25, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-25-8}
+* Fixes a bug where users could not create a new customer when there are required license fields.
+
 ## v2024.10.24-2
 
 Released on October 24, 2024
