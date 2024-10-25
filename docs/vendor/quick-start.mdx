@@ -115,7 +115,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       mv gitea-1.0.6.tgz manifests
       ```
 
-   1. In `manifests`, create the YAML manifests required to install the chart with Embedded Cluster:
+   1. In `manifests`, create the following YAML files:
       ```
       cd manifests
       ```
@@ -140,7 +140,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       </TabItem>
       <TabItem value="k8s-app" label="k8s-app.yaml">
       <h5>Description</h5>
-      <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
+      <p>The Kubernetes SIG Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
       <h5>YAML</h5>
       <K8sCr/>
       </TabItem>
@@ -213,7 +213,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
        [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-    1. On the command line, SSH onto your VM and run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation artifacts, and install.
+    1. On the command line, SSH onto your VM and run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
 
        <img width="500px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
@@ -270,11 +270,11 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
       [View a larger version of this image](/images/gitea-app.png) 
 
-   1. Return to the Vendor Portal and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
-   
-      This instance telemetry is automatically collected and sent back to the Vendor Portal by both KOTS and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+1. Return to the Vendor Portal and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
 
-   1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).    
+   This instance telemetry is automatically collected and sent back to the Vendor Portal by both KOTS and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).    
 
 1. Create a new release that adds preflight checks to the application:
 
@@ -332,7 +332,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
    1. Update dependencies and package the chart to a `.tgz` chart archive:
 
       ```bash
-      helm package . --dependency-update
+      helm package -u .
       ```
 
    1. Move the chart archive to the `manifests` directory:
@@ -348,13 +348,13 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       chartVersion: 1.0.7
       ```  
 
-   1. Remove the chart archive for version 1.0.6:
+   1. Remove the chart archive for version 1.0.6 of the Gitea chart from the `manifests` directory:
 
       ```
       rm gitea-1.0.6.tgz
       ```        
 
-   1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
+   1. From the `manifests` directory, create and promote a new release, setting the version label of the release to `0.0.2`:  
 
       ```bash
       replicated release create --yaml-dir . --promote Unstable --version 0.0.2
@@ -385,7 +385,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       [View a larger version of this image](/images/quick-start-ec-upgrade-wizard-preflight.png)
 
       :::note
-      The **Config** screen in the upgrade wizard is bypassed because the release does not contain a KOTS Config custom resource. The KOTS Config custom resource is used to set up the Config screen in the KOTS Admin Console.
+      The **Config** screen in the upgrade wizard is bypassed because this release does not contain a KOTS Config custom resource. The KOTS Config custom resource is used to set up the Config screen in the KOTS Admin Console.
       :::   
 
    1. On the **Confirm and Deploy** page, click **Deploy**.
