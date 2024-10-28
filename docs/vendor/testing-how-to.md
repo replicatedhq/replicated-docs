@@ -212,7 +212,7 @@ To access a cluster from the command line:
    ```bash
    replicated cluster shell CLUSTER_ID
    ``` 
-   Where CLUSTER_ID is the unique ID for the running cluster that you want to access.
+   Where `CLUSTER_ID` is the unique ID for the running cluster that you want to access.
 
    For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
 
