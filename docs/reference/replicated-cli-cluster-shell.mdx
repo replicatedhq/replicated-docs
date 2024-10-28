@@ -1,0 +1,46 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+
+# cluster shell
+
+Opens a new shell session with the kubeconfig configured for the specified cluster. This allows you to have immediate kubectl access to the cluster within the shell environment.
+
+You can either specify the cluster ID directly or provide the cluster name to resolve the corresponding cluster ID. The shell will inherit your existing environment and add the necessary kubeconfig context for interacting with the Kubernetes cluster.
+
+Once inside the shell, you can use 'kubectl' to interact with the cluster. To exit the shell, press Ctrl-D or type 'exit'. When the shell closes, the kubeconfig will be reset back to your default configuration.
+
+## Usage
+
+```bash
+replicated cluster shell [ID] [flags]
+```
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+  <tr>
+    <td>--id</td>
+    <td>string</td>
+    <td>ID of the cluster to have kubectl access to (when name is not provided)</td>
+  </tr>
+  <tr>
+    <td>--name</td>
+    <td>string</td>
+    <td>Name of the cluster to have kubectl access to.</td>
+  </tr>
+</table>
+
+## Examples
+
+```bash
+# Open a shell for a cluster by ID
+replicated cluster shell 89be02de
+```
+
+```bash
+# Open a shell for a cluster by name
+replicated cluster shell --name "My Cluster"
+```
