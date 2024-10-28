@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 28, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-10-28-3}
-* Fixes a bug that could cause the Customer Email field to be required.
+* Fixes a bug that could cause the **Customer Email** field to be required.
 
 ## v2024.10.25-3
 
