@@ -206,18 +206,22 @@ To access a cluster from the command line:
    ```
    In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
-1. Run the following command to download the kubeconfig for the cluster and update Kubernetes context:
+1. Run the following command to open a new shell session with the kubeconfig configured for the specified cluster:
 
    ```bash
-   replicated cluster kubeconfig CLUSTER_ID
-   ```
-   When the command completes, a `Updated kubernetes context` message is displayed. For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+   replicated cluster shell CLUSTER_ID
+   ``` 
+   Where CLUSTER_ID is the unique ID for the cluster.
+
+   For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
 
 1. Verify that you can interact with the cluster through kubectl by running a command. For example:
 
    ```bash
    kubectl get ns
    ```
+
+1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
 
 ### Upgrade Clusters (kURL Only)
 
