@@ -1,0 +1,22 @@
+1. Get the join command from the Admin Console:
+
+   1. In the Admin Console, click **Cluster Management** at the top.
+
+   1. Click **Add node**, choose one or more node roles (if present), and copy the join command.
+
+1. SSH onto the machine you want to join to the cluster.
+
+1. On the machine, download and untar the Embedded Cluster installation assets (including the Embedded Cluster binary and air gap bundle). You can use the same `curl` command that you ran during installation to download the assets.
+
+    :::note
+    The binary and air gap bundles on each node must be the same Embedded Cluster version as what is installed in the cluster. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog.
+    :::
+
+1. Run the air gap join command that you copied.
+
+    **For example:**
+
+    ```bash
+    sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
+    ```
+    Where `APP_SLUG` is the unique application slug.

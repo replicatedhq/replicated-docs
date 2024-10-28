@@ -1,0 +1,38 @@
+1. Get the join command from the Admin Console:
+
+   1. In the Admin Console, click **Cluster Management** at the top.
+
+   1. Click **Add node**.
+   
+   1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command is displayed.
+
+     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+
+     [View a larger version of this image](/images/admin-console-add-node.png)
+     
+    1. Copy the join command.
+
+1. SSH onto the machine you want to join to the cluster.
+
+1. On the machine, download and untar the Embedded Cluster installation assets. You can use the same `curl` command that you ran during installation to download the assets.
+
+    :::note
+    The binary on each node must be the same Embedded Cluster version as what is installed in the cluster. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog.
+    :::
+
+1. Run the join command that you copied.
+
+    **For example:**
+
+    ```bash
+    sudo ./APP_SLUG join 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
+    ```
+    Where `APP_SLUG` is the unique application slug.
+
+1. In the Admin Console, click **Cluster Management** at the top.
+
+     When initially installing the application, you are brought to this page automatically after logging into the Admin Console.
+
+1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
+
+1. Repeat the process each node you want to add.

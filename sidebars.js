@@ -214,6 +214,7 @@ const sidebars = {
                   items: [
                     'vendor/embedded-overview',
                     'reference/embedded-config',
+                    'enterprise/embedded-manage-nodes',
                     'vendor/embedded-disaster-recovery',
                   ],
                 },

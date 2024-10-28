@@ -143,32 +143,7 @@ On the Admin Console dashboard, the application status changes from Missing to U
 
 ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
-[View a larger version of this image](/images/gitea-ec-ready.png) 
+[View a larger version of this image](/images/gitea-ec-ready.png)
 
-## Add Nodes to Air Gap Clusters
+## Add Nodes (Beta)
 
-You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster assets to each node, copying a join command from the Admin Console, and running the join command on each node.
-
-### Prerequisites
-
-The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these assets on each node. For more information, see [Install](#install) above.
-
-:::note
-The binary and air gap bundles on each additional node must be the same version as what is currently installed. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog. For more information, see [Install](#install) above.
-:::
-
-### Add Nodes
-
-To add nodes to a cluster after successfully installing the first node:
-
-1. Click the link in the install output to access the Admin Console. Proceed through the setup steps until you reach the **Nodes** page.
-
-1. Click **Add node**, choose one or more node roles (if present), and copy the join command.
-
-1. SSH onto another machine you want to join to the cluster. Run the join command on this node. For example:
-
-    ```bash
-    sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
-    ```
-
-1. When you have finished adding all nodes, return to the Admin Console and click **Continue**.
