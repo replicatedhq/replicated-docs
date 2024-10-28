@@ -661,6 +661,7 @@ const sidebars = {
       'reference/replicated-cli-cluster-port-ls',
       'reference/replicated-cli-cluster-port-rm',
       'reference/replicated-cli-cluster-rm',
+      'reference/replicated-cli-cluster-shell',
       'reference/replicated-cli-cluster-update-ttl',
       'reference/replicated-cli-cluster-upgrade',
       'reference/replicated-cli-cluster-versions',
