@@ -1,76 +1,27 @@
+import JoinNode from "../partials/embedded-cluster/_add-nodes.mdx"
+import JoinNodeAirGap from "../partials/embedded-cluster/_add-nodes-air-gap.mdx"
+
 # Adding and Managing Nodes with Embedded Cluster 
 
 The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes and enable high-availability for multi-node clusters.
 
 ## Add Nodes (Beta) {#add-nodes}
 
-You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster config. The Admin Console provides the join command you use to join nodes to the cluster.
+You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. The Admin Console provides the join command you use to join nodes to the cluster.
 
 For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 To add nodes to a cluster:
 
-1. In the Admin Console, click **Cluster Management** at the top.
-
-     When initially installing the application, you are brought to this page automatically after logging into the Admin Console.
-
-1. Click **Add node**.
-
-1. In the **Add a Node** dialog, select one or more roles for this node. If no custom roles are defined, the role selection will not appear and only the join command will show.
-
-     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
-
-     [View a larger version of this image](/images/admin-console-add-node.png)
-
-1. Copy the provided join command.
-
-     **Example:**
-
-     ```
-     sudo ./APP_SLUG join 10.128.0.43:30000 bM8DO3MNvkouz9TFK3TcFanI
-     ```
-
-1. SSH onto the machine you want to join to the cluster.
-
-     :::important
-     You must join nodes with the same installer that you used for the first node. If you use a different installer from a different release of your application, the cluster will not be stable.
-     :::
-
-1. Run the join command on the node.
-
-1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
-
-1. Repeat the process for as many nodes as you would like to add.
+<JoinNode/>
 
 ## Add Nodes to Air Gap Clusters (Beta) {#add-nodes-air-gap}
 
 You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster assets to each node, copying a join command from the Admin Console, and running the join command on each node.
 
-### Prerequisite
-
-The Embedded Cluster binary and the air gap bundle must be present on each node you want to join to the cluster. Use the same commands as you did during installation to download and untar these assets on each node. For more information, see [Install](#install) above.
-
-:::note
-The binary and air gap bundles on each additional node must be the same version as what is currently installed. To download a specific version of these assets, you can select a version in the **Embedded Cluster install instructions** dialog. For more information, see [Install](#install) above.
-:::
-
-### Procedure
-
 To add nodes to an air gap cluster after successfully installing the first node:
 
-1. In the Admin Console, click **Cluster Management** at the top.
-
-     When initially installing an application, you are brought to this page automatically after logging into the Admin Console.
-
-1. Click **Add node**, choose one or more node roles (if present), and copy the join command.
-
-1. SSH onto another machine you want to join to the cluster. Run the air gap join command on the node.
-
-    **For example:**
-
-    ```bash
-    sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
-    ```
+<JoinNodeAirGap/>
 
 ## Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
 
@@ -124,7 +75,7 @@ When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created a
 
 To reset a node:
 
-1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine. For more information about downloading Embedded Cluster installation assets, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
 
 1. Run the reset command to reset the node. The `--reboot` flag automatically reboots the machine to ensure that transient configuration is also reset.
 
