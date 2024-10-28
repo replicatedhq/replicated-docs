@@ -193,6 +193,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
     ```
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
+
 ### Access Clusters
 
 Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
@@ -206,12 +207,12 @@ To access a cluster from the command line:
    ```
    In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
-1. Run the following command to open a new shell session with the kubeconfig configured for the specified cluster:
+1. Run the following command to open a new shell session with the kubeconfig configured for the cluster:
 
    ```bash
    replicated cluster shell CLUSTER_ID
    ``` 
-   Where CLUSTER_ID is the unique ID for the cluster.
+   Where CLUSTER_ID is the unique ID for the running cluster that you want to access.
 
    For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
 
