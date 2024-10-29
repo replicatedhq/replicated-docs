@@ -50,7 +50,7 @@ Embedded Cluster has the following limitations:
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
-* **Rollbacks not supported**: The [`allowRollback`](/reference/custom-resource-application#allowrollback) field in the KOTS Application custom resource is not supported for Embedded Cluster installations. In Embedded Cluster installations, the application and the cluster are installed and updated together as a single appliance. Because of this, users cannot roll back (downgrade) the application to an earlier version.
+* **Partial rollback support**: Rollbacks for Embedded Cluster installations are only supported to a version which there is no change to the [Embedded Cluster Config](https://docs.replicated.com/reference/embedded-config) spec from the currently installed version.
 
 * **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
