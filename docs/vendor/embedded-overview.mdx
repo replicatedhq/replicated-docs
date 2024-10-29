@@ -168,21 +168,23 @@ Skipping host preflight checks is _not_ recommended for production installations
 
 This section describes managing nodes in clusters created with Embedded Cluster.
 
-### Managing Nodes
+### Ading Nodes
 
-Users can add and manage nodes with Embedded Cluster from the Admin Console.
+Users can add nodes to a cluster with Embedded Cluster from the Admin Console. The Admin Console provides the join command used to add nodes to the cluster.
 
 For more information, see [Adding and Managing Nodes with Embedded Cluster](/enterprise/embedded-manage-nodes).
+
+### Defining Node Roles
+
+You can define node roles in the Embedded Cluster Config. In multi-node clusters, roles are used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes. Users can then select and assign one or more roles to a node when it is joined to the cluster.
+
+For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 ### High Availability for Multi-Node Clusters (Alpha)
 
 Multi-node clusters are not highly available by default. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
 
 For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha) in _Adding and Managing Nodes with Embedded Cluster_.
-
-### Defining Custom Node Roles
-
-You can define custom node roles in the Embedded Cluster Config to support installations in multi-node clusters.
 
 ## (Optional) Serve Installation Assets Using the Vendor API
 
