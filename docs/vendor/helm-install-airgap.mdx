@@ -101,3 +101,19 @@ After logging into the registry, the customer exports their current version and 
 With the list of images the provided `bash` script will automate the process of pulling updated images from the repository, tagging them with a name for an internal registry, and then pushing the newly tagged images to their internal registry. 
 
 Unless the customer has set up the `values` to preserve the updated tag (for example, by using the `latest` tag), they need to edit the `values.yaml` to reference the new image tags. After doing so, they can log in to the OCI registry and perform the commands to install the updated chart.
+
+## Pull through registry proxies and mirrors
+
+The Replicated proxy registry supports additional functionality that can help streamline the air gap installation and update process for customers. For authenticated users, the Replicated proxy registry exposes standard catalog and tag listing endpoints that can be used to generate a list of images required for installation. These endpoints will list images for the last 10 releases.
+
+### Integration with Harbor
+
+[Harbor](https://goharbor.io) is a popular open-source container registry that supports both pull through proxy caching and repository mirroring (via pull based replication rules). Customers can use Harbor to cache images on demand and set up replication rules to proactively mirror images. 
+
+The first step is simply adding the Replicated proxy registry with the customer's credentials (the `license_id`) as a standard Docker Registry ([Harbor - Configure Proxy Cache](https://goharbor.io/docs/2.11.0/administration/configure-proxy-cache/)). That alone will allow the customer to pull images through harbor on demand and utilize Harbor's caching, security, and other features.
+
+The second optional step is to set up a **pull based** replication rule in Harbor to mirror the images that are required for installation or update automatically ([Harbor - Creating a replication rule](https://goharbor.io/docs/2.11.0/administration/configuring-replication/create-replication-rules/)). This will periodically (or when manually triggered) pull images from the Replicated proxy registry and store them in Harbor.
+
+### Integration with Artifactory
+
+Artifactory support's a pull through caching mode for Docker registries but does not support Docker registry mirroring or replication. For information on setting up a pull through cache with Artifactory, see [Artifactory - Remote Repository](https://jfrog.com/help/r/jfrog-artifactory-documentation/configure-a-remote-repository).
