@@ -8,6 +8,10 @@ You can add nodes to create a multi-node cluster in online (internet-connected) 
 
 When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
+:::note
+Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
+:::
+
 To add nodes to a cluster:
 
 1. Get the join command from the Admin Console:
@@ -105,11 +109,12 @@ To reset a node:
 
 1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
 
-1. Run the reset command to reset the node. The `--reboot` flag automatically reboots the machine to ensure that transient configuration is also reset.
+1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
 
     ```
-    sudo ./APP_SLUG reset --reboot
+    sudo ./APP_SLUG reset
     ```
+    Where `APP_SLUG` is the unique slug for the application.
 
     :::note
     Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
