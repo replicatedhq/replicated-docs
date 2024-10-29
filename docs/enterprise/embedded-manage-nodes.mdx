@@ -1,6 +1,3 @@
-import JoinNode from "../partials/embedded-cluster/_add-nodes.mdx"
-import JoinNodeAirGap from "../partials/embedded-cluster/_add-nodes-air-gap.mdx"
-
 # Adding and Managing Nodes with Embedded Cluster 
 
 The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes and enable high-availability for multi-node clusters.
@@ -13,7 +10,40 @@ For more information about defining node roles, see [Roles](/reference/embedded-
 
 To add nodes to a cluster:
 
-<JoinNode/>
+1. Get the join command from the Admin Console:
+
+   1. In the Admin Console, click **Cluster Management** at the top.
+
+   1. Click **Add node**.
+   
+   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
+
+       <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+
+       [View a larger version of this image](/images/admin-console-add-node.png)
+     
+    1. Copy the join command.
+
+1. SSH onto the machine you want to join to the cluster.
+
+1. On the machine, download and untar the Embedded Cluster installation assets. You can use the same `curl` command that you ran during installation to download the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+
+    :::note
+    The Embedded Cluster assets on each node must be the same version. To download a specific version, you can select a version in the **Embedded Cluster install instructions** dialog.
+    :::
+
+1. Run the join command that you copied.
+
+    **Example:**
+
+    ```bash
+    sudo ./APP_SLUG join 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
+    ```
+    Where `APP_SLUG` is the unique application slug.
+
+1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
+
+1. Repeat these steps for each node you want to add.
 
 ## Add Nodes to Air Gap Clusters (Beta) {#add-nodes-air-gap}
 
@@ -21,7 +51,40 @@ You can add nodes to an air gap cluster. This involves downloading the Embedded 
 
 To add nodes to an air gap cluster after successfully installing the first node:
 
-<JoinNodeAirGap/>
+1. Get the join command from the Admin Console:
+
+   1. In the Admin Console, click **Cluster Management** at the top.
+
+   1. Click **Add node**.
+   
+   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
+
+       <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+
+       [View a larger version of this image](/images/admin-console-add-node.png)
+     
+    1. Copy the join command.
+
+1. SSH onto the machine you want to join to the cluster.
+
+1. On the machine, download and untar the Embedded Cluster installation assets (including the Embedded Cluster binary and air gap bundle). You can use the same `curl` command that you ran during installation to download the assets. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+    :::note
+    The Embedded Cluster assets on each node must be the same version. To download a specific version, you can select a version in the **Embedded Cluster install instructions** dialog.
+    :::
+
+1. Run the air gap join command that you copied.
+
+    **Example:**
+
+    ```bash
+    sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
+    ```
+    Where `APP_SLUG` is the unique application slug.
+
+1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
+
+1. Repeat these steps for each node you want to add.    
 
 ## Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
 
