@@ -33,6 +33,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>The Embedded Cluster air gap bundle used for installations in air-gapped environments with no outbound internet access. For information about how to install in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).</td>
   </tr>
   <tr>
+     <td>`--cidr`</td>
+     <td>
+        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--data-dir`</td>
      <td>
         <p>The data directory used by Embedded Cluster. **Default**: `/var/lib/embedded-cluster`</p>
@@ -79,12 +85,6 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
        <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
        <ProxyRequirements/>
        <ProxyLimitations/>
-     </td>
-  </tr>
-  <tr>
-     <td>`--cidr`</td>
-     <td>
-        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
      </td>
   </tr>
 </table>
