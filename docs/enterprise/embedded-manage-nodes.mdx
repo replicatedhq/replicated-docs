@@ -2,11 +2,11 @@
 
 The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes and enable high-availability for multi-node clusters.
 
-## Add Nodes (Beta) {#add-nodes}
+## Add Nodes to a Cluster (Beta) {#add-nodes}
 
-You can add nodes and create a multi-node cluster. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. The Admin Console provides the join command you use to join nodes to the cluster.
+You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped environments. The Admin Console provides the join command that you use to join nodes to the cluster.
 
-For more information about defining node roles, see [Roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 To add nodes to a cluster:
 
@@ -16,7 +16,7 @@ To add nodes to a cluster:
 
    1. Click **Add node**.
    
-   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
+   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
        <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
 
@@ -26,10 +26,12 @@ To add nodes to a cluster:
 
 1. SSH onto the machine you want to join to the cluster.
 
-1. On the machine, download and untar the Embedded Cluster installation assets. You can use the same `curl` command that you ran during installation to download the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+1. On the machine, download and untar the Embedded Cluster installation assets. For air gap installations, ensure that the air gap bundle is included in the assets that you download.
 
-    :::note
-    The Embedded Cluster assets on each node must be the same version. To download a specific version, you can select a version in the **Embedded Cluster install instructions** dialog.
+    You can use the same commands that you ran during installation to download and untar the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+    :::important
+    The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
     :::
 
 1. Run the join command that you copied.
@@ -39,48 +41,11 @@ To add nodes to a cluster:
     ```bash
     sudo ./APP_SLUG join 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
     ```
-    Where `APP_SLUG` is the unique application slug.
-
-1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
-
-1. Repeat these steps for each node you want to add.
-
-## Add Nodes to Air Gap Clusters (Beta) {#add-nodes-air-gap}
-
-You can add nodes to an air gap cluster. This involves downloading the Embedded Cluster assets to each node, copying a join command from the Admin Console, and running the join command on each node.
-
-To add nodes to an air gap cluster after successfully installing the first node:
-
-1. Get the join command from the Admin Console:
-
-   1. In the Admin Console, click **Cluster Management** at the top.
-
-   1. Click **Add node**.
-   
-   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
-
-       <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
-
-       [View a larger version of this image](/images/admin-console-add-node.png)
-     
-    1. Copy the join command.
-
-1. SSH onto the machine you want to join to the cluster.
-
-1. On the machine, download and untar the Embedded Cluster installation assets (including the Embedded Cluster binary and air gap bundle). You can use the same `curl` command that you ran during installation to download the assets. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
-
-    :::note
-    The Embedded Cluster assets on each node must be the same version. To download a specific version, you can select a version in the **Embedded Cluster install instructions** dialog.
-    :::
-
-1. Run the air gap join command that you copied.
-
-    **Example:**
+    **Air Gap Example:**
 
     ```bash
     sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
     ```
-    Where `APP_SLUG` is the unique application slug.
 
 1. In the Admin Console, on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
 
@@ -110,11 +75,11 @@ High availability has the following limitations:
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For online clusters, see [Add Nodes (Alpha)](#add-nodes) above. For air gap clusters, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 
-1. Run the join command and pass the `--enable-ha` flag. For example:
+1. Run the join command provided in the Admin Console **Cluster Management** tab and pass the `--enable-ha` flag. For example:
 
      ```bash
      sudo ./APP_SLUG join `--enable-ha` 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
