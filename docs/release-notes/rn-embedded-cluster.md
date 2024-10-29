@@ -59,6 +59,7 @@ Released on October 23, 2024
 * Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
 * Fixes an issue that prevented you from upgrading to an application version that didn't have Config and preflights.
 * Fixes an issue where the Admin Console could reach out the internet when generating a support bundle in air gap environments.
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
 * Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
 * If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
@@ -99,6 +100,7 @@ Released on October 10, 2024
 * The Admin Console password must be at least six characters.
 
 ### Bug Fixes {#bug-fixes-1-15-0}
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
 
 ## 1.14.2
