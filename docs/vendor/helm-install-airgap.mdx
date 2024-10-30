@@ -72,7 +72,7 @@ To install with Helm in an air gap environment:
     Replicated recommends that vendors provide detailed documentation that describes the values that customers need to configure. 
     :::
 
-1. Finally, use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
+1. Use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
 
 ## Perform Updates
 
@@ -101,3 +101,7 @@ After logging into the registry, the customer exports their current version and 
 With the list of images the provided `bash` script will automate the process of pulling updated images from the repository, tagging them with a name for an internal registry, and then pushing the newly tagged images to their internal registry. 
 
 Unless the customer has set up the `values` to preserve the updated tag (for example, by using the `latest` tag), they need to edit the `values.yaml` to reference the new image tags. After doing so, they can log in to the OCI registry and perform the commands to install the updated chart.
+
+## Use a Harbor or Artifactory Registry Proxy
+
+You can integrate the Replicated proxy registry with an existing Harbor or jFrog Artifactory instance to proxy and cache images on demand. For more information, see [Using a Registry Proxy for Helm Air Gap Installations (Alpha)](using-third-party-registry-proxy).
