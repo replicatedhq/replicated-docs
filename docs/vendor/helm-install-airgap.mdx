@@ -72,7 +72,7 @@ To install with Helm in an air gap environment:
     Replicated recommends that vendors provide detailed documentation that describes the values that customers need to configure. 
     :::
 
-1. Finally, use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
+1. Use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
 
 ## Perform Updates
 
@@ -102,43 +102,6 @@ With the list of images the provided `bash` script will automate the process of 
 
 Unless the customer has set up the `values` to preserve the updated tag (for example, by using the `latest` tag), they need to edit the `values.yaml` to reference the new image tags. After doing so, they can log in to the OCI registry and perform the commands to install the updated chart.
 
-## Using a Pull-Through Proxy  
+## Use a Harbor or Artifactory Registry Proxy
 
-For authenticated users, the [Replicated proxy registry](/vendor/private-images-about) exposes standard catalog and tag listing endpoints that are used during Helm installations in air-gapped environments to generate the list of images required for installation. These endpoints are provided in the Helm air gap installation instructions in the Replicated Download Portal. For example, an `'updates.wp-e.10/my-app/1.2.3/images'` endpoint would return images for version 1.2.3 of an application from the proxy registry. 
-
-Users can optionally connect the Replicated proxy registry with [Harbor](https://goharbor.io) or Artifactory in order to use these endpoints to cache images. Integrating with Harbor also allows users to set up replicated rules for mirroring.
-
-### Limitations
-
-Connecting the Replicated proxy registry with Harbor and Artifactory has the following limitations:
-
-* Neither the catalog or tags listing endpoints respect pagination requests yet but harbor requests 1000 items at a time. (Documented in "Harbor _catalog use": https://docs.google.com/document/d/1Ece7PaFOV12EVhMWFMHkrVZLDHFQfWUv4rWzi_wRjAM/edit#heading=h.wxiwuxpqb3pw)
-* Only authenticated users can perform catalog calls or list tags
-* Artifactory does not support Docker registry mirroring or replication.
-
-### Integrate With Harbor
-
-[Harbor](https://goharbor.io) is a popular open-source container registry that supports both pull-through proxy caching and repository mirroring through pull based replication rules. Users can add the Replicated proxy registry to Harbor in order to cache images on demand and set up replication rules to proactively mirror images. It also allows customers use Harbor's caching, security, and other features.
-
-To connect the Replicated proxy registry with Harbor:
-
-1. Log in to Harbor and create a new registry endpoint. You will configure this endpoint to connect to the Replicated proxy registry.
-
-1. Enter the following details for the registry endpoint:
-
-    * For the provider field, choose Docker Registry
-    * For the URL field, enter `https://proxy.replicated.com` or the custom domain that you configured for the proxy registry. For more information about configuring custom domains in the Vendor Portal, see [Using Custom Domains](/vendor/custom-domains-using). 
-    * For the access ID, enter the email address associated with the customer in the Vendor Portal.
-    * For the access secret, enter the customer's license ID. You can find the license ID in the Vendor Portal by going to **Customers > [Customer Name]**.
-
-1. Verify your configuration by testing the connection and then save the endpoint.  
-
-After connecting the Replicated proxy registry with Harbor, users can set up a proxy cache. For more information, see [Configure Proxy Cache](https://goharbor.io/docs/2.11.0/administration/configure-proxy-cache/)
-
-Users can also optionally set up a **pull based** replication rule in Harbor to mirror images proactively. This periodically (or when manually triggered) pulls images from the Replicated proxy registry to store them in Harbor. For more information, see [Creating a replication rule](https://goharbor.io/docs/2.11.0/administration/configuring-replication/create-replication-rules/)in the Harbor documentation.
-
-### Integrate With Artifactory
-
-Artifactory supports a pull-through caching mode for Docker registries.
-
-For information about how to configure a pull through cache with Artifactory, see [Remote Repository](https://jfrog.com/help/r/jfrog-artifactory-documentation/configure-a-remote-repository) in the Artifactory documentation.
+You can integrate the Replicated proxy registry with an existing Harbor or jFrog Artifactory instance to proxy and cache images on demand. For more information, see [Using a Registry Proxy for Helm Air Gap Installations (Alpha)](helm-install-airgap-registry-proxy).
