@@ -86,7 +86,7 @@ To create a multi-node HA cluster:
 1. Run the join command provided in the Admin Console **Cluster Management** tab and pass the `--enable-ha` flag. For example:
 
      ```bash
-     sudo ./APP_SLUG join `--enable-ha` 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
+     sudo ./APP_SLUG join --enable-ha 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
      ```
 
 1. After the third node joins the cluster, type `y` in response to the prompt asking if you want to enable high availability.
