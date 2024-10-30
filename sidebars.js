@@ -494,7 +494,7 @@ const sidebars = {
       'vendor/helm-install-overview',
       'vendor/install-with-helm',
       'vendor/helm-install-airgap',
-      'vendor/helm-install-airgap-registry-proxy',
+      'vendor/using-third-party-registry-proxy',
     ],
   },
   {
