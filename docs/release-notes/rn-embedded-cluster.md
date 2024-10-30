@@ -11,6 +11,39 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
 
+## 1.17.0
+
+Released on October 31, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.17.0+k8s-1.30</td>
+    <td id="center">1.17.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-17-0}
+* Adds partial rollback support allowing for rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config.
+* Adds support for running host Troubleshoot collectors when collecting a support bundle from the Admin Console...
+
+### Improvements {#improvements-1-17-0}
+* Improves the initial installation workflow...
+* Enable goldpinger collector and analyzer...
+* Something about MITM preflight checks...
+
+### Bug Fixes {#bug-fixes-1-17-0}
+* Fixes a panic when a preflight warning is displayed in the terminal during the initial installation.
+
 ## 1.16.0
 
 Released on October 23, 2024
