@@ -25,8 +25,7 @@ Released on October 30, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-120-0}
-* Added a guided installation UI for unboxing the Embedded Cluster.
-* Adds support for rollbacks in Embedded Cluster installations for versions where the embeddedcluster.replicated.com/v1beta1.Config has not changed between versions.
+* Various new features to support Replicated Embedded Cluster.
 
 ## 1.119.1
 
