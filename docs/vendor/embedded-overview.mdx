@@ -180,21 +180,21 @@ When you skip host preflight checks, the Admin Console still runs any applicatio
 Skipping host preflight checks is _not_ recommended for production installations.
 :::
 
-## About Managing Nodes with Embedded Cluster
+## About Managing Multi-Node Clusters with Embedded Cluster
 
-This section describes managing nodes in clusters created with Embedded Cluster.
+This section describes managing nodes in multi-node clusters created with Embedded Cluster.
+
+### Defining Node Roles for Multi-Node Clusters
+
+You can define node roles in the Embedded Cluster Config. In multi-node clusters, roles are used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes. Users can then select and assign one or more roles to a node when it is joined to the cluster.
+
+For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 ### Adding Nodes
 
 Users can add nodes to a cluster with Embedded Cluster from the Admin Console. The Admin Console provides the join command used to add nodes to the cluster.
 
 For more information, see [Adding and Managing Nodes with Embedded Cluster](/enterprise/embedded-manage-nodes).
-
-### Defining Node Roles
-
-You can define node roles in the Embedded Cluster Config. In multi-node clusters, roles are used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes. Users can then select and assign one or more roles to a node when it is joined to the cluster.
-
-For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 ### High Availability for Multi-Node Clusters (Alpha)
 
