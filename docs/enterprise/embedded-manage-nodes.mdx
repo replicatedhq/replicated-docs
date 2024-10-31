@@ -20,7 +20,7 @@ To add nodes to a cluster:
 
 1. Do one of the following to get the join command from the Admin Console:
 
-   1. If you have not yet installed the application, follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console.
+   1. If you have not yet installed the application, follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join command.
 
    1. Otherwise, log in to the Admin Console. Update the instance to the new release that you promoted that defines the `roles` key in the Embedded Cluster Config. For more information, see [Performing Updates in Embedded Clusters](/enterprise/updating-embedded). Then, go to **Cluster Management > Add node** at the top of the page.
 
@@ -28,13 +28,11 @@ To add nodes to a cluster:
 
       [View a larger version of this image](/images/admin-console-add-node.png)
    
-1. Either on the Admin Console **Nodes** screen or in the **Add a Node** dialog, select one or more roles for the new node that you will join.
+1. Either on the Admin Console **Nodes** screen or in the **Add a Node** dialog, select one or more roles for the new node that you will join. Copy the join command.
 
      :::note
      If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
      :::
-
-1. Copy the join command.
 
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
