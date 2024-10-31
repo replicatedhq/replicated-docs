@@ -119,7 +119,7 @@ sudo ./myapp install --license license.yaml --airgap-bundle myapp.airgap
 ### Change the Admin Console and LAM Ports
 
 ```bash
-sudo ./myapp install --admin-console-port=20000 --local-artifact-mirror-port=40000
+sudo ./myapp install --license license.yaml --admin-console-port=20000 --local-artifact-mirror-port=40000
 ```
 
 ### Change the Data Directory
@@ -131,7 +131,7 @@ sudo ./my-app install --license license.yaml --data-dir /data/embedded-cluster
 ### Install Behind a Proxy
 
 ```bash
-sudo ./APP_SLUG install --license LICENSE_FILE \
+sudo ./APP_SLUG install --license license.yaml \
   --http-proxy=HOST:PORT \
   --https-proxy=HOST:PORT \
   --no-proxy=LIST_OF_HOSTS
@@ -144,20 +144,19 @@ Where:
 ### Install Behind an MITM Proxy
 
 ```bash
-sudo ./APP_SLUG install --license license.yaml \
-  --private-ca /path/to/private-ca-bundle
-```
-
-### Set IP Address Range for Pods and Services
-
-```bash
-sudo ./my-app install --license license.yaml --cidr 172.16.136.0/16
+sudo ./APP_SLUG install --license license.yaml --private-ca /path/to/private-ca-bundle
 ```
 
 ### Set Admin Console Password
 
 ```bash
 sudo ./my-app install --license license.yaml --admin-console-password password
+```
+
+### Set IP Address Range for Pods and Services
+
+```bash
+sudo ./my-app install --license license.yaml --cidr 172.16.136.0/16
 ```
 
 ### Use a Specific Network Interface
