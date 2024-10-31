@@ -6,13 +6,15 @@ The topic describes managing nodes in clusters created with Replicated Embedded 
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped environments. The Admin Console provides the join command that you use to join nodes to the cluster.
 
+In most cases, users will add nodes to a cluster during installation. It is also possible to join nodes after installing. For information about joining nodes during installation, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
 :::note
 Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 :::
 
 To add nodes to a cluster:
 
-1. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+1. In the Embedded Cluster Config, configure the `roles` key to define node roles. Node roles determine which nodes run the Kubernetes control plane and allow you to assign application workloads to particular nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. 
 
 1. Get the join command from the Admin Console:
 
@@ -28,7 +30,7 @@ To add nodes to a cluster:
      
     1. Copy the join command.
 
-1. Download and untar the Embedded Cluster installation assets. For air gap installations, ensure that the air gap bundle is included in the assets that you download and that the installation assets .
+1. Download and untar the Embedded Cluster installation assets. Ensure that the assets are available on the machine that you will join to the cluster.
 
     You can use the same commands that you ran during installation to download and untar the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
@@ -36,7 +38,7 @@ To add nodes to a cluster:
     The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
     :::
 
-1. SSH onto the machine that you want to join to the cluster and then run the join command that you copied.
+1. SSH onto the machine to join to the cluster and then run the join command that you copied.
 
     **Example:**
 
