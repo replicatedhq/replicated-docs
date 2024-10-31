@@ -46,7 +46,7 @@ Embedded Cluster has the following limitations:
 
 * **No automated migration from kURL**: There is no automated migration from an existing kURL instance to Embedded Cluster. For a manual migration procedure, reach out to Alex Parker at alexp@replicated.com.
 
-* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Add Nodes (Beta)](#add-nodes) and [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
+* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
@@ -194,13 +194,13 @@ For more information, see [roles](/reference/embedded-config#roles) in _Embedded
 
 Users can add nodes to a cluster with Embedded Cluster from the Admin Console. The Admin Console provides the join command used to add nodes to the cluster.
 
-For more information, see [Adding and Managing Nodes with Embedded Cluster](/enterprise/embedded-manage-nodes).
+For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 ### High Availability for Multi-Node Clusters (Alpha)
 
 Multi-node clusters are not highly available by default. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
 
-For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha) in _Adding and Managing Nodes with Embedded Cluster_.
+For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
 
 ## About Performing Updates with Embedded Cluster
 
@@ -263,7 +263,7 @@ To access the cluster and use other included binaries:
      If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
      :::
 
-### Troubleshoot
+## Troubleshoot
 
 From the shell, you can generate a support bundle for Replicated Embedded Cluster installations to help with troubleshooting.
 
@@ -276,6 +276,29 @@ When generating the default host bundle for Embedded Cluster installations, you 
 <EmbeddedClusterSupportBundle/>
 
 You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
+
+## Reset a Node
+
+Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
+
+If you want to completely remove a cluster, you need to reset each node individually.
+
+When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
+
+To reset a node:
+
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
+
+1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
+
+    ```
+    sudo ./APP_SLUG reset
+    ```
+    Where `APP_SLUG` is the unique slug for the application.
+
+    :::note
+    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
+    :::
 
 ## Additional Use Cases
 
