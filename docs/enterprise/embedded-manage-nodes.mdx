@@ -1,4 +1,4 @@
-# Adding and Managing Nodes with Embedded Cluster 
+# Managing Multi-Node Clusters with Embedded Cluster 
 
 The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add or reset nodes and enable high-availability for multi-node clusters.
 
@@ -6,13 +6,13 @@ The topic describes managing nodes in clusters created with Replicated Embedded 
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped environments. The Admin Console provides the join command that you use to join nodes to the cluster.
 
-When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
-
 :::note
 Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 :::
 
 To add nodes to a cluster:
+
+1. When adding nodes, you select one or more roles for that node, depending on which roles are defined in the Embedded Cluster Config. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 1. Get the join command from the Admin Console:
 
@@ -28,9 +28,7 @@ To add nodes to a cluster:
      
     1. Copy the join command.
 
-1. SSH onto the machine you want to join to the cluster.
-
-1. On the machine, download and untar the Embedded Cluster installation assets. For air gap installations, ensure that the air gap bundle is included in the assets that you download.
+1. Download and untar the Embedded Cluster installation assets. For air gap installations, ensure that the air gap bundle is included in the assets that you download and that the installation assets .
 
     You can use the same commands that you ran during installation to download and untar the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
@@ -38,7 +36,7 @@ To add nodes to a cluster:
     The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
     :::
 
-1. Run the join command that you copied.
+1. SSH onto the machine that you want to join to the cluster and then run the join command that you copied.
 
     **Example:**
 
@@ -73,7 +71,7 @@ High availability has the following limitations:
 
 * The `--enable-ha` flag serves as a feature flag during the Alpha phase. In the future, the prompt about migrating to high availability will display automatically if the cluster is not yet HA and you are adding the third or more controller node. 
 
-* Support bundles are now stored in rqlite instead of MinIO because MinIO is no longer deployed. We’ve successfully stored 100 MB support bundles (which is much larger than most support bundles), but bundles over 100 MB can cause rqlite to crash and restart. We are considering making support bundles ephemeral instead of storing them to address this issue, because support bundles are rarely needed long after they’re generated.
+* HA multi-node clusters use rqlite to store support bundles up to 100 MB in size. Bundles over 100 MB can cause rqlite to crash and restart.
 
 ### Create a Multi-Node HA Cluster
 
