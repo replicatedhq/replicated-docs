@@ -22,6 +22,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
     <th width="65%">Description</th>
   </tr>
   <tr>
+     <td>`--admin-console-password`</td>
+     <td>
+        <p>Set the password for the Admin Console. The password must be at least six characters in length.</p>
+      </td>
+  </tr>
+  <tr>
      <td>`--admin-console-port`</td>
      <td>
         <p>Port on which to run the KOTS Admin Console. **Default**: By default, the Admin Console runs on port 30000.</p>
@@ -73,6 +79,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
+     <td>`--network-interface`</td>
+     <td>
+        <p>The network interface to bind to for the Kubernetes API. If a network interface is not provided, the first valid, non-local network interface is used. Use `--network-interface` for multi-node clusters where node communication should happen on a particular network.</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--no-proxy`</td>
      <td>
        <p>Comma-separated list of hosts for which not to use a proxy.</p>
@@ -85,6 +97,13 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
        <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
        <ProxyRequirements/>
        <ProxyLimitations/>
+     </td>
+  </tr>
+  <tr>
+     <td>`--private-ca`</td>
+     <td>
+        <p>The name of a ConfigMap that contains the trusted certificate authority (CA) certificates used by a Man-In-The-Middle (MITM) proxy that intercepts traffic and issues its own certificates. Providing the CA certificates with `--private-ca` ensures that the private CA is trusted by the installation.</p>
+        <p><strong>Note:</strong> The KOTS [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function returns the ConfigMap containing the private CA certificates supplied with the `--private-ca` flag. You can use this template function to mount the specified ConfigMap so your containers can access the internet through proxies that issue their own TLS certificates in order to inspect traffic.</p>
      </td>
   </tr>
 </table>
@@ -121,6 +140,14 @@ Where:
 
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
+
+### Install Behind an MITM Proxy
+
+```bash
+sudo ./APP_SLUG install --license license.yaml \
+  --private-ca PRIVATE_CA_CONFIGMAP
+```
+Where `PRIVATE_CA_CONFIGMAP` is 
 
 ### Set IP Address Range for Pods and Services
 
