@@ -2,4 +2,4 @@ Embedded Cluster includes a default support bundle spec that collects both host-
 
 The host-level information provided is useful for troubleshooting failures related to host configuration like DNS, networking, or storage problems. Cluster-level information includes details about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, then it is excluded from the bundle.
 
-In addition to the host- and cluster-level details provided by the default Embedded Cluster spec, support bundles generated for Embedded Cluster installations also include app-level details provided by application-specific specs.
+In addition to the host- and cluster-level details provided by the default Embedded Cluster spec, support bundles generated for Embedded Cluster installations also include app-level details provided by any custom support bundle specs that you included in the application release.
