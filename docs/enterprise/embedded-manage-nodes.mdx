@@ -14,31 +14,39 @@ Multi-node clusters are not highly available by default. For information about e
 
 To add nodes to a cluster:
 
-1. In the Embedded Cluster Config, configure the `roles` key to define node roles. Node roles determine which nodes run the Kubernetes control plane and allow you to assign application workloads to particular nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. 
+1. In the Embedded Cluster Config, configure the `roles` key to define node roles. Node roles determine which nodes run the Kubernetes control plane and allow you to assign application workloads to particular nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
-1. Get the join command from the Admin Console:
+1. Do one of the following to get the join command from the Admin Console:
 
-   1. In the Admin Console, click **Cluster Management** at the top.
+   1. If you have not yet installed the application, follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen displays as part of the installation flow in the Admin Console.
 
-   1. Click **Add node**.
+   1. Otherwise, log in to the Admin Console. Update the instance to the new release that you promoted that defines the `roles` key in the Embedded Cluster Config. For more information, see [Performing Updates in Embedded Clusters](/enterprise/updating-embedded). Then, go to **Cluster Management > Add node** at the top of the page.
    
-   1. In the **Add a Node** dialog, select one or more roles for the new node that you will join. If no roles are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed. For more information about defining node roles, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+1. Either on the Admin Console **Nodes** screen or in the **Add a Node** dialog, select one or more roles for the new node that you will join.
 
-       <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+     :::note
+     If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
+     :::
 
-       [View a larger version of this image](/images/admin-console-add-node.png)
-     
-    1. Copy the join command.
+     The following shows an example of the **Add a node** dialog:
 
-1. Download and untar the Embedded Cluster installation assets. Ensure that the assets are available on the machine that you will join to the cluster.
+     <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
 
-    You can use the same commands that you ran during installation to download and untar the assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+     [View a larger version of this image](/images/admin-console-add-node.png)
+
+1. Copy the join command.
+
+1. Do one of the following to download and untar the Embedded Cluster installation assets on the machine that you will join to the cluster:
+
+    * **For online (internet-connected) installations**: SSH onto the machine that you will join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the machine. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+
+    * **For air gap installations with limited or no outbound internet access**: On a machine that has internet access, download the Embedded Cluster installation assets (including the air gap bundle) using the same command that you ran during installation. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). Then, move to downloaded assets to the air-gapped machine that you will join and untar. 
 
     :::important
     The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
     :::
 
-1. SSH onto the machine to join to the cluster and then run the join command that you copied.
+1. On the machine that you will join to the cluster, run the join command that you copied.
 
     **Example:**
 
