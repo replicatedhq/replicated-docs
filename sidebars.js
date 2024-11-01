@@ -168,6 +168,7 @@ const sidebars = {
         'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-install-types',
         'vendor/licenses-about-types',
         'vendor/licenses-download',
         {
