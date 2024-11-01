@@ -144,7 +144,10 @@ Where:
 ### Install Behind an MITM Proxy
 
 ```bash
-sudo ./APP_SLUG install --license license.yaml --private-ca /path/to/private-ca-bundle
+sudo ./APP_SLUG install --license license.yaml --private-ca /path/to/private-ca-bundle \
+  --http-proxy=HOST:PORT \
+  --https-proxy=HOST:PORT \
+  --no-proxy=LIST_OF_HOSTS
 ```
 
 ### Set Admin Console Password
