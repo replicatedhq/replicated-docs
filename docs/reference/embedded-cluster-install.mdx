@@ -22,6 +22,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
     <th width="65%">Description</th>
   </tr>
   <tr>
+     <td>`--admin-console-password`</td>
+     <td>
+        <p>Set the password for the Admin Console. The password must be at least six characters in length. If not set, the user is prompted to provide an Admin Console password.</p>
+      </td>
+  </tr>
+  <tr>
      <td>`--admin-console-port`</td>
      <td>
         <p>Port on which to run the KOTS Admin Console. **Default**: By default, the Admin Console runs on port 30000.</p>
@@ -31,6 +37,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   <tr>
      <td>`--airgap-bundle`</td>
      <td>The Embedded Cluster air gap bundle used for installations in air-gapped environments with no outbound internet access. For information about how to install in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).</td>
+  </tr>
+  <tr>
+     <td>`--cidr`</td>
+     <td>
+        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
+     </td>
   </tr>
   <tr>
      <td>`--data-dir`</td>
@@ -67,6 +79,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
+     <td>`--network-interface`</td>
+     <td>
+        <p>The name of the network interface to bind to for the Kubernetes API. A common use case of `--network-interface` is for multi-node clusters where node communication should happen on a particular network. **Default**: If a network interface is not provided, the first valid, non-local network interface is used.</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--no-proxy`</td>
      <td>
        <p>Comma-separated list of hosts for which not to use a proxy.</p>
@@ -82,9 +100,10 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
-     <td>`--cidr`</td>
+     <td>`--private-ca`</td>
      <td>
-        <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
+        <p>The path to trusted certificate authority (CA) certificates. Using the `--private-ca` flag ensures that the CA is trusted by the installation. KOTS writes the CA certificates provided with the `--private-ca` flag to a ConfigMap in the cluster.</p>
+        <p>The KOTS [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function returns the ConfigMap containing the private CA certificates supplied with the `--private-ca` flag. You can use this template function to mount the ConfigMap so your containers trust the CA too.</p>
      </td>
   </tr>
 </table>
@@ -100,7 +119,7 @@ sudo ./myapp install --license license.yaml --airgap-bundle myapp.airgap
 ### Change the Admin Console and LAM Ports
 
 ```bash
-sudo ./myapp install --admin-console-port=20000 --local-artifact-mirror-port=40000
+sudo ./myapp install --license license.yaml --admin-console-port=20000 --local-artifact-mirror-port=40000
 ```
 
 ### Change the Data Directory
@@ -112,7 +131,7 @@ sudo ./my-app install --license license.yaml --data-dir /data/embedded-cluster
 ### Install Behind a Proxy
 
 ```bash
-sudo ./APP_SLUG install --license LICENSE_FILE \
+sudo ./APP_SLUG install --license license.yaml \
   --http-proxy=HOST:PORT \
   --https-proxy=HOST:PORT \
   --no-proxy=LIST_OF_HOSTS
@@ -122,8 +141,29 @@ Where:
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
+### Install Behind an MITM Proxy
+
+```bash
+sudo ./APP_SLUG install --license license.yaml --private-ca /path/to/private-ca-bundle \
+  --http-proxy=http://10.128.0.0:3300 \
+  --https-proxy=http://10.128.0.0:3300 \
+  --no-proxy=123.89.46.4,10.96.0.0/16,*.example.com
+```
+
+### Set Admin Console Password
+
+```bash
+sudo ./my-app install --license license.yaml --admin-console-password password
+```
+
 ### Set IP Address Range for Pods and Services
 
 ```bash
 sudo ./my-app install --license license.yaml --cidr 172.16.136.0/16
+```
+
+### Use a Specific Network Interface
+
+```bash
+sudo ./my-app install --license license.yaml --network-interface eno167777
 ```
