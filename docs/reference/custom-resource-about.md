@@ -23,6 +23,7 @@ The following are custom resources in API groups other than `kots.io` that can b
 |---------------|------|-------------|
 | app.k8s.io/v1beta1 | [SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) | Defines metadata about the application |
 | cluster.kurl.sh/v1beta1 | [Installer](https://kurl.sh/docs/create-installer/) | Defines a Replicated kURL distribution |
+| embeddedcluster.replicated.com/v1beta1 | [Config](/reference/embedded-config) | Defines a Replicated Embedded Cluster distribution |
 | troubleshoot.replicated.com/v1beta2 | [Preflight](custom-resource-preflight) | Defines the data to collect and analyze for custom preflight checks |
 | troubleshoot.replicated.com/v1beta2 | [Redactor](https://troubleshoot.sh/reference/redactors/overview/) | Defines custom redactors that apply to support bundles and preflight checks |
 | troubleshoot.sh/v1beta2 | [Support Bundle](custom-resource-preflight) | Defines the data to collect and analyze for a support bundle |
