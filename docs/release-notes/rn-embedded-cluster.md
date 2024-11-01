@@ -33,17 +33,19 @@ Released on October 31, 2024
 </table>
 
 ### New Features {#new-features-1-17-0}
-* Adds partial rollback support allowing for rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config.
+* Adds partial rollback support where you can roll back from one version to another as long as the Embedded Cluster Config doesn't change between the two.
 * Adds support for running host Troubleshoot collectors when collecting a support bundle from the Admin Console...
+* Introduces a new landing page and guided installation workflow when visiting the Admin Console for the first time.
 
 ### Improvements {#improvements-1-17-0}
-* Improves the initial installation workflow...
+* Removes unused infrastructure images from the data directory on upgrades to free up storage space.
+* Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
 * Enable goldpinger collector and analyzer...
-* Something about MITM preflight checks...
-* Removes unused images archive from the data directory on upgrades to prevent it from using unnecessary disk space.
+* The preflights that check connectivity to replicated.app and proxy.replicated.com now use any privates CAs provided at install time with `--private-ca`, in case a man-in-the-middle proxy is in use.
 
 ### Bug Fixes {#bug-fixes-1-17-0}
-* Fixes a panic when a preflight warning is displayed in the terminal during the initial installation.
+* Fixes a panic that occurred when prompted to proceed after preflight warnings.
+* Fixes an issue where `troubleshoot.sh/v1beta2` was erroneously printed to the screen during installation.
 
 ## 1.16.0
 
