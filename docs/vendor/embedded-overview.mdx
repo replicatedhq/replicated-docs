@@ -75,6 +75,8 @@ Embedded Cluster has the following limitations:
 
 * **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
 
+* **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that required higher levels of privilege. If you application installs a policy enforcement engine such as Gatekeeper or Kyverno it should not enforce policy in the namespaces used by the embedded cluster.
+
 ## Quick Start
 
 You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
