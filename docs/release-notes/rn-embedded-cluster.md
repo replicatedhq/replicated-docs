@@ -34,7 +34,6 @@ Released on October 31, 2024
 
 ### New Features {#new-features-1-17-0}
 * Adds partial rollback support where you can roll back from one version to another as long as the Embedded Cluster Config doesn't change between the two.
-* Adds support for running host Troubleshoot collectors when collecting a support bundle from the Admin Console...
 * Introduces a new landing page and guided installation workflow when visiting the Admin Console for the first time.
 
 ### Improvements {#improvements-1-17-0}
