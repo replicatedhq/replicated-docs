@@ -39,7 +39,7 @@ Released on October 31, 2024
 ### Improvements {#improvements-1-17-0}
 * Removes unused infrastructure images from the data directory on upgrades to free up storage space.
 * Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
-* Enable goldpinger collector and analyzer...
+* The default support bundle will now collect information on connectivity between pods and nodes to help resolve networking issues more quickly.
 * The preflights that check connectivity to replicated.app and proxy.replicated.com now use any privates CAs provided at install time with `--private-ca`, in case a man-in-the-middle proxy is in use.
 
 ### Bug Fixes {#bug-fixes-1-17-0}
