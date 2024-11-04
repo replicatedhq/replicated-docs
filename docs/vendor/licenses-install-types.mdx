@@ -17,42 +17,95 @@ The following shows an example of the **Install types** field in a license:
 [View a larger version of this image](/images/license-install-types.png)
 
 The installation types that are enabled or disabled for a license determine the following:
-* The Replicated installers (Replicated KOTS, Replicated Embedded Cluster, Replicated kURL) that the customer's license entitles them to use 
+* The Replicated installers ([Replicated KOTS](../intro-kots), [Replicated Embedded Cluster](/vendor/embedded-cluster-overview), [Replicated kURL](/vendor/intro-kurl)) that the customer's license entitles them to use 
 * The installation assets and/or instructions provided in the Replicated Download Portal for the customer
 * The customer's KOTS Admin Console experience
 
 Setting the supported installation types on a per-customer basis gives you greater control over the installation method used by each customer. It also allows you to provide a more curated Download Portal experience, in that customers will only see the installation assets and instructions that are relevant to them.
 
-### About Available Install Types
+## Understanding Installation Types {#install-types}
 
-The **Available install types** license field provides the following options:
-* **Existing Cluster (Helm CLI):** Show instructions in the Download Portal for installing with Helm CLI. Requires that the latest release promoted to the channel where the customer is assigned contains a Helm chart.
-* **Existing Cluster (KOTS install):** Allow the customer to install with Replicated KOTS in an existing cluster. This field has the following requirements:
-     * Your Vendor Portal team must have the KOTS entitlement
-     * The latest release promoted to the channel where the customer is assigned must contain KOTS custom resources
-* **kURL Embedded Cluster (first generation product):** Allow the customer to install with Replicated kURL. This field has the following requirements:
-     * Your Vendor Portal team must have the KOTS/kURL entitlement
-     * A kURL installer spec must be promoted to the channel where the customer is assigned
-* **Embedded Cluster (current generation product):** Allow the customer to install with Replicated Embedded Cluster. This field has the following requirements:
-     * Your Vendor Portal team must have the Embedded Cluster entitlement
-     * The latest release promoted to the channel where the customer is assigned must contain an Embedded Cluster Config custom resource 
+In the customer license, under **Install types**, the **Available install types** field allows you to enable and disable different installation methods for the customer.
 
-### About Additional Install Options
+You can enable one or more installation types for a license.
+
+The following describes each installation type available, as well as the requirements for enabling each type:
+
+<table>
+     <tr>
+          <th width="30%">Install Type</th>
+          <th>Description</th>
+          <th>Requirements</th>
+     </tr>
+     <tr>
+          <th>Existing Cluster (Helm CLI)</th>
+          <td><p>The customer does not have access to the Replicated installers.</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
+          <td>The latest release promoted to the channel where the customer is assigned must contain at least one Helm chart.</td>
+     </tr>
+     <tr>
+          <th>Existing Cluster (KOTS install)</th>
+          <td>Allows the customer to install with Replicated KOTS in an existing cluster.</td>
+          <td>
+            <ul>
+              <li>Your Vendor Portal team must have the KOTS entitlement</li>
+              <li>The latest release promoted to the channel where the customer is assigned must contain KOTS custom resources</li>
+            </ul> 
+          </td>   
+     </tr>
+     <tr>
+        <th>kURL Embedded Cluster (first generation product)</th>
+        <td>
+          <p>Allows the customer to install with Replicated kURL on a VM or bare metal server.</p>
+          <p><strong>Note:</strong> For new installations, enable Replicated Embedded Cluster (current generation product) instead of Replicated kURL (first generation product).</p>
+        </td>
+          <td>
+            <ul>
+              <li>Your Vendor Portal team must have the KOTS/kURL entitlement</li>
+              <li>A kURL installer spec must be promoted to the channel where the customer is assigned. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a kURL Installer</a>.</li>
+            </ul>
+          </td>     
+     </tr>
+     <tr>
+       <th>Embedded Cluster (current generation product)</th>
+       <td>Allows the customer to install with Replicated Embedded Cluster on a VM or bare metal server.</td>
+       <td>
+          <ul>
+              <li>Your Vendor Portal team must have the Embedded Cluster entitlement</li>
+              <li>The latest release promoted to the channel where the customer is assigned must contain an Embedded Cluster Config custom resource. For more information, see <a href="/reference/embedded-config">Embedded Cluster Config</a>.</li>
+            </ul> 
+       </td>   
+     </tr>
+</table>
+
+## Understanding Additional Install Options {#install-options}
 
 After enabling installation types in the **Available install types** field, you can also enable the following options in the **Additional install options** field:
 
-* **Helm CLI Air Gap Instructions (Helm CLI only):** When enabled, a customer will see instructions on the Download Portal on how to pull Helm installable images into their local repository. **Helm CLI Air Gap Instructions** is enabled by default when you select the **Existing Cluster (Helm CLI)** install type.
+<table>
+     <tr>
+          <th width="30%">Install Type</th>
+          <th>Description</th>
+          <th>Requirements</th>
+     </tr>
+     <tr>
+          <th>Helm CLI Air Gap Instructions (Helm CLI only)</th>
+          <td><p>When enabled, a customer will see instructions on the Download Portal on how to pull Helm installable images into their local repository.</p><p><strong>Helm CLI Air Gap Instructions</strong> is enabled by default when you select the <strong>Existing Cluster (Helm CLI)</strong> install type.</p></td>
+          <td>The <strong>Existing Cluster (Helm CLI)</strong> install type must be enabled</td>
+     </tr>
+     <tr>
+       <th>Air Gap Installation Option (Replicated Installers only)</th>
+       <td><p>When enabled, new installations with this license have an option in their Download Portal to install from an air gap package or do a traditional online installation.</p></td>
+       <td>
+          <p>At least one of the following Replicated install types must be enabled:</p>
+          <ul>
+           <li>Existing Cluster (KOTS install)</li>
+           <li>kURL Embedded Cluster (first generation product)</li>
+           <li>Embedded Cluster (current generation product)</li>
+         </ul>
+       </td>
+     </tr>
+</table>
 
-* **Air Gap Installation Option (Replicated Installers only):** When enabled, new installations with this license will have an option to install from an air gap package or from a traditional online installation. Selecting this controls whether a customer sees this option in their Download Portal.
-
-### How Install Types Determine the Download Portal Experience
-
-Helm CLI Install + Helm Airgap = show the helm airgap install instructions
-Existing Cluster (KOTS install) + Airgap = show existing cluster airgap instructions
-kURL + Air Gap = show kURL air gap instructions 
-Embedded Cluster + Airgap=False = Show online install instructions only
-Embedded Cluster + Airgap=True = Show instructions on air gap environment installation
-
-## About Migrating Existing Licenses to Include Install Types
+## About Migrating Existing Licenses to Use Install Types
 
 By default, when an existing license is migrated to include the **Install types** field, the Vendor Portal automatically enables installation types so that the customer does not experience any errors in their deployment...
