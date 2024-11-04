@@ -2,6 +2,7 @@ import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import KurlComparison from "../partials/embedded-cluster/_kurl-comparison.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
+import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
@@ -241,20 +242,6 @@ To access the cluster and use other included binaries:
      If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
      :::
 
-### Troubleshoot
-
-From the shell, you can generate a support bundle for Replicated Embedded Cluster installations to help with troubleshooting.
-
-The default support bundle spec for Embedded Cluster collects host-level information to troubleshoot failures related to host configuration like DNS, networking, or storage problems.
-
-It also collects cluster-level information about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, it will be excluded from the bundle.
-
-When generating the default host bundle for Embedded Cluster installations, you can also use the `--load-cluster-specs` flag to automatically discover all support bundle specs that are defined in Secrets or ConfigMaps in the cluster. This ensures that any application-specific specs are included in the bundle. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
-
-<EmbeddedClusterSupportBundle/>
-
-You can then use the support bundle for troubleshooting or provide it to Replicated for assistance.
-
 ## Manage Nodes
 
 The section describes managing nodes in clusters created with Embedded Cluster, including how to add or reset nodes.
@@ -380,3 +367,9 @@ toolkit:
    - name: CONTAINERD_SOCKET
      value: /run/k0s/containerd.sock
 ```     
+
+## Troubleshoot with Support Bundles
+
+<SupportBundleIntro/>
+
+<EmbeddedClusterSupportBundle/>
