@@ -25,7 +25,7 @@ Released on November 4, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-120-1}
-* Fixes an issue where generating support bundles failed in air gapped installations.
+* Fixes an issue where generating support bundles failed in air gapped and minimal RBAC installations.
 
 ## 1.120.0
 
