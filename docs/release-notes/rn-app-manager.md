@@ -25,8 +25,8 @@ Released on November 4, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-120-1}
-* Fixes an issue where generating support bundles failed in air gapped and minimal RBAC installations.
-* Fixes an issue where pushing images from the air gap bundle could time out due to the host's environment variables interfering with the internal / temporary registry used by the KOTS CLI.
+* Fixes an issue where generating support bundles failed in air gap and minimal RBAC installations.
+* Fixes an issue where pushing images from an air gap bundle could time out due to the host's environment variables interfering with the temporary registry used by the KOTS CLI.
 
 ## 1.120.0
 
