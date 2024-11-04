@@ -11,6 +11,14 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
 
+* Introduces a new landing page and guided installation workflow for the Admin Console.
+
+### Improvements {#improvements-1-17-0}
+* Removes unused infrastructure images from the data directory on upgrades to free up storage space.
+* Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
+* Support bundles will now include information on connectivity between Pods and nodes to help resolve networking issues more quickly.
+* The preflight checks for connectivity to replicated.app and proxy.replicated.com now use any privates CAs provided with `--private-ca`, in case a man-in-the-middle proxy is in use.
+
 ## 1.17.0
 
 Released on October 31, 2024
@@ -34,13 +42,13 @@ Released on October 31, 2024
 
 ### New Features {#new-features-1-17-0}
 * Adds partial rollback support where you can roll back from one version to another as long as the Embedded Cluster Config doesn't change between the two.
-* Introduces a new landing page and guided installation workflow when visiting the Admin Console for the first time.
+* Introduces a new landing page and guided installation workflow for the Admin Console.
 
 ### Improvements {#improvements-1-17-0}
 * Removes unused infrastructure images from the data directory on upgrades to free up storage space.
 * Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
-* The default support bundle now collects information on connectivity between pods and nodes to help resolve networking issues more quickly.
-* The preflights that check connectivity to replicated.app and proxy.replicated.com now use any private CAs provided at install time with `--private-ca`, in case a man-in-the-middle proxy is in use.
+* Support bundles now include information on connectivity between Pods and nodes to help resolve networking issues more quickly.
+* The preflight check for connectivity to replicated.app and proxy.replicated.com now use any private CAs provided with `--private-ca`, in case a man-in-the-middle proxy is in use.
 
 ### Bug Fixes {#bug-fixes-1-17-0}
 * Fixes a panic that occurred when prompted to proceed after preflight warnings.
