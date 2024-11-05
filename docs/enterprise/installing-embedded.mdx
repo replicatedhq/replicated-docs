@@ -89,11 +89,9 @@ To install an application with Embedded Cluster:
 
 1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
 
-1. On the **Validate the environment & deploy** screen, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
+1. On the **Validate the environment & deploy** screen, address any warnings or failures identified by the preflight checks and then click **Deploy**.
 
-    :::note
-    Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
-    :::
+    The preflight checks on the **Validate the environment & deploy** screen are  application-specific and run automatically. Preflight checks are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
     :::note
     If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
