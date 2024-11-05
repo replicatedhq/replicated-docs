@@ -75,21 +75,21 @@ To install an application with Embedded Cluster:
     ```
     At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
 
-1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+1. On the Admin Console landing page, click **Start**.
 
-1. Click **Advanced > Proceed**.
+1. On the **Secure the Admin Console** screen, click **Continue**. In your browser, click **Advanced > Proceed** to bypass the TLS warning.
 
-1. On the HTTPS page, upload your own private key and certificacte or select **Self-signed**.
+1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificacte.
 
     By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
 1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
-1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes before deploying the application. Click **Continue**.
+1. On the **Configure the cluster** screen, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes to the cluster before deploying the application. Click **Continue**.
 
 1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
 
-1. On the **Preflight checks** page, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
+1. On the **Validate the environment & deploy** screen, the application-specific preflight checks run automatically. Preflight checks  are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application. Click **Deploy**.
 
     :::note
     Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
