@@ -25,8 +25,7 @@ Released on November 5, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-120-2}
-* Fixes an issue where updating the app in Embedded Cluster failed if the new app version contained a required config item without a default or value.
-* Fixes an issue where generating a support bundle could hang in air gap kURL environments.
+* Fixes an issue where generating a support bundle in air gap kURL environments took a really long time.
 
 ## 1.120.1
 
