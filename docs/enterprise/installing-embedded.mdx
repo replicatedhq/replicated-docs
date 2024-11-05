@@ -85,17 +85,13 @@ To install an application with Embedded Cluster:
 
 1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
-1. On the **Configure the cluster** screen, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Optionally, add nodes to the cluster before deploying the application. Click **Continue**.
+1. On the **Configure the cluster** screen, optionally add nodes to the cluster before deploying the application. Click **Continue**.
 
-1. On the config screen, complete the fields for the application configuration options and then click **Continue**.
+1. On the **Configure [App Name]** screen, complete the fields for the application configuration options. Click **Continue**.
 
-1. On the **Validate the environment & deploy** screen, address any warnings or failures identified by the preflight checks and then click **Deploy**.
+1. On the **Validate the environment & deploy [App Name]** screen, address any warnings or failures identified by the preflight checks and then click **Deploy**.
 
-    The preflight checks on the **Validate the environment & deploy** screen are  application-specific and run automatically. Preflight checks are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
-
-    :::note
-    If the application does not include preflight checks, next to the target version on the dashboard, click **Deploy** then **Yes, Deploy** to install the application.
-    :::
+    Preflight checks are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 The Admin Console dashboard opens.
 
