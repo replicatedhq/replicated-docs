@@ -56,24 +56,24 @@ To install an application with Embedded Cluster:
 
      The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](/vendor/embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
 
-1. When the installation command completes, go to the URL provided in the output to access the Admin Console.
-     
-    **Example output:** 
+      **Example output:**
 
-    ```bash
-    ✔  Host files materialized
-    ? Enter an Admin Console password: ********
-    ? Confirm password: ********
-    ✔  Host files materialized!
-    ✔  Host preflights succeeded!
-    ✔  Node installation finished!
-    ✔  Storage is ready!
-    ✔  Embedded Cluster Operator is ready!
-    ✔  Admin Console is ready!
-    ✔  Additional components are ready!
-    Visit the admin console to configure and install gitea-kite: http://104.155.145.60:30000
-    ```
-    At this point, the cluster is provisioned and the KOTS Admin Console is deployed, but the application is not yet installed.
+      ```bash
+      ? Enter an Admin Console password: ********
+      ? Confirm password: ********
+      ✔  Host files materialized!
+      ✔  Running host preflights
+      ✔  Node installation finished!
+      ✔  Storage is ready!
+      ✔  Embedded Cluster Operator is ready!
+      ✔  Admin Console is ready!
+      ✔  Additional components are ready!
+      Visit the Admin Console to configure and install gitea-kite: http://104.155.145.60:30000
+      ```
+
+      At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
+
+1. Go to the URL provided in the output to access to the Admin Console.
 
 1. On the Admin Console landing page, click **Start**.
 
