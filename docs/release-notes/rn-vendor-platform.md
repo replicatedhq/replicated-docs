@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.06-1
+
+Released on November 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-06-1}
+* Fixes a bug in the Helm Install Instructions modal when entering an email address.
+
 
 ## v2024.10.28-3
 
