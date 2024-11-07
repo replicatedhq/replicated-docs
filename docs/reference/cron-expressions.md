@@ -33,7 +33,7 @@ The following table lists the required cron fields and supported values:
     <tr>
       <td>Day-of-month</td>
       <td>1 through 31</td>
-      <td>, - * ? L W </td>
+      <td>, - * ? </td>
     </tr>
     <tr>
       <td>Month</td>
@@ -43,11 +43,13 @@ The following table lists the required cron fields and supported values:
     <tr>
       <td>Day-of-week</td>
       <td>1 through 7 or SUN through SAT</td>
-      <td>, - * ? L</td>
+      <td>, - * ?</td>
     </tr>
   </table>
 
 ## Special Characters
+
+Replicated uses the cron v3 Go library. For more information about usage, see [cron](https://pkg.go.dev/github.com/robfig/cron/v3). 
 
 The following table describes the supported special characters:
 
@@ -71,14 +73,6 @@ The following table describes the supported special characters:
     <tr>
       <td>Question mark (?)</td>
       <td> Specifies that one or another value can be used. For example, enter <code>5</code> for Day-of-the-month and <code>?</code> for Day-of-the-week to check for updates on the 5th day of the month, regardless of which day of the week it is.</td>
-    </tr>
-    <tr>
-      <td>L</td>
-      <td>Specifies the last day of the month or week respectively for the Day-of-month or Day-of-week fields.</td>
-    </tr>
-    <tr>
-      <td>W</td>
-      <td>Specifies the "N-th" occurrence or given day in the month. For example, the second Friday of the month is specified as <code>6#2</code>.</td>
     </tr>
 </table>
 
@@ -149,18 +143,6 @@ The following examples show valid cron expressions to schedule checking for upda
 
     ```
     30 11 * * *
-    ```
-
-- At 6:00 PM on the fourth Monday of every month:
-
-    ```
-    0 18 ? * 2#4
-    ```
-
-- At midnight on the last day of every month:
-
-    ```
-    0 0 L * ?
     ```
 
 - After 1 hour and 45 minutes, and then every interval following that:
