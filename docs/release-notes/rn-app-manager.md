@@ -24,11 +24,8 @@ Released on November 7, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-120-3}
-* Updates the instructions that inform users how to proceed with a self-signed certificate using different browsers when installing with the Admin Console.
-
-### Bug Fixes {#bug-fixes-1-120-3}
-* Users can now copy the command when validating certificate. Fixes the error message in Config page.
+### Improvements {#improvements-1-120-3}
+* Various updates for Embedded Cluster.
 
 ## 1.120.2
 
