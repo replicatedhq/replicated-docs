@@ -15,7 +15,7 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on November 7, 2024
 
 ### New Features {#new-features-v2024-11-07-0}
-* Adds support for discovering the EC2 instance public ip address via AWS IMDSv2 API.
+* Adds support for discovering the EC2 instance public IP address using AWS IMDSv2.
 * Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to include runc v1.2.1.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-10-29T16-01-48Z.
