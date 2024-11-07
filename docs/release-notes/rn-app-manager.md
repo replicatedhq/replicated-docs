@@ -18,6 +18,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.120.3
+
+Released on November 7, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-120-3}
+* Updates the instructions that inform users how to proceed with a self-signed certificate using different browsers when installing with the Admin Console.
+
+### Bug Fixes {#bug-fixes-1-120-3}
+* Users can now copy the command when validating certificate. Fixes the error message in Config page.
+
 ## 1.120.2
 
 Released on November 5, 2024
