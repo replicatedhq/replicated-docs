@@ -168,4 +168,3 @@ The following examples show valid cron expressions to schedule checking for upda
   ```
   @every 1h45m
   ```
-  
