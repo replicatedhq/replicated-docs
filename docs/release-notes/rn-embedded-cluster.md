@@ -10,9 +10,44 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.18.0
+
+Released on November 8, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.18.0+k8s-1.30</td>
+    <td id="center">1.18.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-18-0}
+* Adds support for automating installations with the `--config-values` flag to the install command.
+* Adds support for discovering the AWS EC2 instance public IP address via the IMDSv2 API.
+
+### Improvements {#improvements-1-18-0}
+* Updates the instructions that inform users how to proceed with a self-signed certificate using different browsers when installing with the Admin Console.
+
+### Bug Fixes {#bug-fixes-1-18-0}
+* Fixes an issue that causes registry logs to be missing from the support bundle.
+* Fixes an issue when installing in Azure that caused the install command to output the instance private address rather than the public one in the link to the Admin Console.
+* Fixes an issue where updating the app failed if the new app version contained a required config item without a default or value.
+* Fixes an issue that prevents the copy button from working in when validating a certificate on the config page.
+* Fixes an error message when visiting the Config page.
+
 ## 1.17.0
 
-Released on October 31, 2024
+Released on November 4, 2024
 
 <table>
   <tr>
