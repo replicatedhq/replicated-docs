@@ -149,7 +149,7 @@ The following examples show valid cron expressions to schedule checking for upda
 
     ```
     30 11 * * *
-        ```
+    ```
 
 - At 6:00 PM on the fourth Monday of every month:
 
