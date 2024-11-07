@@ -149,4 +149,22 @@ The following examples show valid cron expressions to schedule checking for upda
 
     ```
     30 11 * * *
-    `
+        ```
+
+- At 6:00 PM on the fourth Monday of every month:
+
+    ```
+    0 18 ? * 2#4
+    ```
+
+- At midnight on the last day of every month:
+
+    ```
+    0 0 L * ?
+    ```
+
+- After 1 hour and 45 minutes, and then every interval following that:
+
+  ```
+  @every 1h45m
+  ```
