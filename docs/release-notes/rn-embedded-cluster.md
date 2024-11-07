@@ -27,7 +27,7 @@ Released on November 8, 2024
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.120.1</td>
+    <td id="center" colspan="2">1.120.3</td>
   </tr>
 </table>
 
