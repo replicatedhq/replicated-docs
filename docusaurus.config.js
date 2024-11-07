@@ -50,16 +50,6 @@ const config = {
   scripts: [
     {
       src:
-        '/js/qualified.js',
-      async: false,
-    },
-    {
-      src:
-        'https://js.qualified.com/qualified.js?token=Fj948QvXpLAwjfVs',
-      async: true,
-    },
-    {
-      src:
         '/js/activecampaign.js',
       async: true,
     },
@@ -208,7 +198,7 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Replicated Quick Start',
+                label: 'Replicated Onboarding',
                 to: 'vendor/replicated-onboarding',
               },
             ],

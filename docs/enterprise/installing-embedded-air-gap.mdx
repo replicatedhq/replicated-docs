@@ -50,13 +50,17 @@ To install with Embedded Cluster in an air gap environment:
     Errors in building either the application air gap bundle or the Embedded Cluster infrastructure will be shown if present.
     :::
 
-1. Go to **Customers** and click on the target customer. Click **Install instructions > Embedded Cluster**.
+1. Go to **Customers** and click on the target customer. 
+
+1. On the **Manage customer** tab, under **License options**, enable the **Airgap Download Enabled** license field.
+
+1. At the top of the page, click **Install instructions > Embedded Cluster**.
 
      ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
 
      [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
-
-1. In the **Embedded Cluster install instructions** dialog, enable the **Install in an air gap environment** checkbox.
+    
+1. In the **Embedded Cluster install instructions** dialog, verify that the **Install in an air gap environment** checkbox is enabled.
 
     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-airgap.png" width="500px"/>
 
@@ -68,19 +72,23 @@ To install with Embedded Cluster in an air gap environment:
 
 1. On a machine with internet access, run the curl command to download the air gap installation assets as a `.tgz`.
 
-1. Move the downloaded `.tgz` to the air gapped machine where you will install. 
+1. Move the downloaded `.tgz` to the air-gapped machine where you will install. 
 
-1. On your air gapped machine, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
+1. On your air-gapped machine, untar the `.tgz` following the instructions provided in the **Embedded Cluster installation instructions** dialog. This will produce three files:
     * The installer
     * The license
     * The air gap bundle (`APP_SLUG.airgap`)
 
-1. Install the application with the installation command copied from the **Embedded Cluster installation instructions** dialog, adding `--airgap-bundle` flag to pass the `.airgap` bundle that you downloaded to the installation:
+1. Install the application with the installation command copied from the **Embedded Cluster installation instructions** dialog:
 
     ```bash
     sudo ./APP_SLUG install --license license.yaml --airgap-bundle APP_SLUG.airgap
     ```
     Where `APP_SLUG` is the unique application slug.
+    
+    :::note
+    Embedded Cluster supports installation options such as installing behind a proxy and changing the data directory used by Embedded Cluster. For the list of flags supported with the Embedded Cluster `install` command, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+    :::
 
 1. When prompted, enter a password for accessing the KOTS Admin Console.
 

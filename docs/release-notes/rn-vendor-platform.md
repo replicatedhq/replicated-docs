@@ -10,6 +10,71 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.10.28-3
+
+Released on October 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-28-3}
+* Fixes a bug that could cause the **Customer Email** field to be required.
+
+## v2024.10.25-8
+
+Released on October 25, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-25-8}
+* Fixes a bug where users could not create a new customer when there are required license fields.
+
+## v2024.10.25-3
+
+Released on October 25, 2024
+
+### Improvements {#improvements-v2024-10-25-3}
+* Add GitHub issue URL to feature request confirmation modal.
+
+## v2024.10.24-2
+
+Released on October 24, 2024
+
+### Improvements {#improvements-v2024-10-24-2}
+* Renames "Embedded cluster" to "Embedded Kubernetes" and "Bring my own cluster" to "Bring my own Kubernetes" in the Download Portal side bar.
+
+## v2024.10.23-6
+
+Released on October 23, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-23-6}
+* Compatibility Matrix: Fixes a bug where the `--min-nodes` count could be specified without specifying `--max-nodes` count.
+
+## v2024.10.23-3
+
+Released on October 23, 2024
+
+### New Features {#new-features-v2024-10-23-3}
+* Compatibility Matrix: Oracle Kubernetes Engine (OKE) now available in Beta.
+
+## v2024.10.17-1
+
+Released on October 17, 2024
+
+### Improvements {#improvements-v2024-10-17-1}
+* Makes the wording and styling consistent on the Helm and Embedded Cluster install instructions modals.
+* Presents users a new step to update their GitHub username when creating support cases or feature requests.
+
+## v2024.10.16-0
+
+Released on October 16, 2024
+
+### Improvements {#improvements-v2024-10-16-0}
+* Capitalize "Embedded Cluster" in the support workflow.
+
+## v2024.10.10-5
+
+Released on October 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-10-5}
+* Adds the "Copy URL" button for the Download Portal link back into the Download Portal section of the **Customer Reporting** page.
+
 ## v2024.10.01-0
 
 Released on October 1, 2024

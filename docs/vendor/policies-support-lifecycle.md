@@ -8,8 +8,16 @@ Replicated will provide support for products per our terms and services until th
     <th width="70%">Definition</th>
   </tr>
   <tr>
+    <td>Alpha</td>
+    <td>A product or feature that is exploratory or experimental. Typically, access to alpha features and their documentation is limited to customers providing early feedback. While most alpha features progress to beta and general availability (GA), some are deprecated based on assessment learnings.</td>
+  </tr>
+  <tr>
+    <td>Beta</td>
+    <td><p>A product or feature that is typically production-ready, but has not met Replicated’s definition of GA for one or more of the following reasons:</p><ul><li>Remaining gaps in intended functionality</li><li>Outstanding needs around testing</li><li>Gaps in documentation or sales enablement</li><li>In-progress customer value validation efforts</li></ul><p>Documentation for beta products and features is published on the Replicated Documentation site with a "(Beta)" label. Beta products or features follow the same build and test processes required for GA.</p><p>Please contact your Replicated account representative if you have questions about why a product or feature is beta.</p></td>
+  </tr>
+  <tr>
     <td>“GA” - General Availability</td>
-    <td>A product starts the General Availability phase when it is available for purchase from Replicated.</td>
+    <td>A product or feature that has been validated as both production-ready and value-additive by a percentage of Replicated customers. Products in the GA phase are typically those that are available for purchase from Replicated.</td>
   </tr>
   <tr>
     <td>“LA” - Limited Availability</td>
@@ -121,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified September 18, 2024.
+Last modified October 17, 2024.
