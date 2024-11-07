@@ -32,18 +32,18 @@ Released on November 8, 2024
 </table>
 
 ### New Features {#new-features-1-18-0}
-* Adds support for automating installations with the `--config-values` flag to the install command.
-* Adds support for discovering the AWS EC2 instance public IP address via the IMDSv2 API.
+* Adds support for passing ConfigValues using the `--config-values` flag for the `install` command. This also enables automated installations of both Embedded Cluster and the application.
 
 ### Improvements {#improvements-1-18-0}
-* Updates the instructions that inform users how to proceed with a self-signed certificate using different browsers when installing with the Admin Console.
+* When the Admin Console URL is printed at the end of the `install` command, it will now use the public IP address instead of the private IP address for AWS EC2 instances that use IMDSv2.
+* During setup of the Admin Console when a self-signed certificate is used, the instructions are updated to better inform users how to ignore the warning on different browsers.
 
 ### Bug Fixes {#bug-fixes-1-18-0}
-* Fixes an issue that causes registry logs to be missing from the support bundle.
-* Fixes an issue when installing in Azure that caused the install command to output the instance private address rather than the public one in the link to the Admin Console.
-* Fixes an issue where updating the app failed if the new app version contained a required config item without a default or value.
-* Fixes an issue that prevents the copy button from working in when validating a certificate on the config page.
-* Fixes an error message when visiting the Config page.
+* Fixes an issue where registry logs weren't included in support bundles.
+* Fixes an issue when installing on Azure that caused the Admin Console URL shown at the end of the `install` command to use the private IP address rather than the public IP address.
+* Fixes an issue that prevented you from updating an application if the new version contained a required config item without a `default` or `value` set.
+* The copy button now works for the command to validate the authenticity of the self-signed certificate during Admin Console setup.
+* Fixes an issue where the **Config** page showed an error and wouldn't load.
 
 ## 1.17.0
 
