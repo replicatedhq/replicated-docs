@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.01-1
+
+Released on November 1, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-01-1}
+* Fix default license install options when creating new license.
+
 
 ## v2024.10.28-3
 
