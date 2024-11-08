@@ -10,6 +10,13 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.08-0
+
+Released on November 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-08-0}
+* Fixes an issue where the public-address flag provided to the install script is ignored and not included in the api server cert sans.
+
 ## v2024.11.07-0
 
 Released on November 7, 2024
