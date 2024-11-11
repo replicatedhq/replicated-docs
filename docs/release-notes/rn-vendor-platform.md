@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 11, 2024
 
 ### New Features {#new-features-v2024-11-11-0}
-* CMX: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
+* Compatibility Matrix: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
 
 ### Bug Fixes {#bug-fixes-v2024-11-11-0}
 * Fix exception raised when submitting a support case without a GitHub username.
