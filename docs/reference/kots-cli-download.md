@@ -14,14 +14,16 @@ kubectl kots download [app-slug] [flags]
 This command supports all [global flags](kots-cli-global-flags) and also:
 
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `--decrypt-password-values` | bool | decrypt password values to plaintext |
-| `--dest` | string | the directory to store the application in _(defaults to current working dir)_ |
-| `-h, --help` | | help for download |
-| `-n, --namespace` | string | the namespace to download from _(default `"default"`)_ |
-| `--overwrite` | | overwrite any local files, if present |
-| `-o, --output` | string | output format (currently supported: json) _(defaults to plain text if not set)_ |
+| Flag                        | Type   | Description                                                                                                           |
+|:----------------------------|--------|-----------------------------------------------------------------------------------------------------------------------|
+| `--decrypt-password-values` | bool   | decrypt password values to plaintext                                                                                  |
+| `--dest`                    | string | the directory to store the application in _(defaults to current working dir)_                                         |
+| `--current`                 | bool   | set to true to download the archive of the currently deployed app version                                             |
+| `--sequence`                | int    | sequence of the app version to download the archive for (defaults to the latest version unless --current flag is set) |
+| `-h, --help`                |        | help for download                                                                                                     |
+| `-n, --namespace`           | string | the namespace to download from _(default `"default"`)_                                                                |
+| `--overwrite`               |        | overwrite any local files, if present                                                                                 |
+| `-o, --output`              | string | output format (currently supported: json) _(defaults to plain text if not set)_                                       |
 
 ## Example
 ```bash
