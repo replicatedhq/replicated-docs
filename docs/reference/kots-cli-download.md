@@ -18,7 +18,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 |:----------------------------|--------|-----------------------------------------------------------------------------------------------------------------------|
 | `--decrypt-password-values` | bool   | decrypt password values to plaintext                                                                                  |
 | `--dest`                    | string | the directory to store the application in _(defaults to current working dir)_                                         |
-| `--current`                 | bool   | set to true to download the archive of the currently deployed app version                                             |
+| `--current`                 | bool   | download the archive of the currently deployed app version                                                            |
 | `--sequence`                | int    | sequence of the app version to download the archive for (defaults to the latest version unless --current flag is set) |
 | `-h, --help`                |        | help for download                                                                                                     |
 | `-n, --namespace`           | string | the namespace to download from _(default `"default"`)_                                                                |
