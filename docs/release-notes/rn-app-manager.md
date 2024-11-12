@@ -25,7 +25,7 @@ Released on November 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-121-0}
-* Adds the ability to download the application archive of any version including the currently deployed one.
+* Adds the ability to download the application archive for any version, including the currently deployed version, by using the `--sequence` and `--current` flags for the `kots download` command.
 
 ## 1.120.3
 
