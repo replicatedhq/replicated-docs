@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.12-2
+
+Released on November 12, 2024
+
+### New Features {#new-features-v2024-11-12-2}
+* Updates the styles and removes irrelevant content for errored clusters on the Compatibility Matrix Clusters page.
+
 ## v2024.11.06-1
 
 Released on November 6, 2024
