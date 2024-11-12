@@ -49,7 +49,7 @@ The following table lists the required cron fields and supported values:
 
 ## Special Characters
 
-Replicated uses the cron v3 Go library. For more information about usage, see [cron](https://pkg.go.dev/github.com/robfig/cron/v3). 
+Replicated uses an external cron Go library. For more information about it's usage, see [cron](https://pkg.go.dev/github.com/robfig/cron/v3). 
 
 The following table describes the supported special characters:
 
