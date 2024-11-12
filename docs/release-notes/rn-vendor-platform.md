@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.12-4
+
+Released on November 12, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-12-4}
+* Fix a bug on the Customer page to show Embedded Cluster Install Instructions when EC install type is enabled.
+
 ## v2024.11.06-1
 
 Released on November 6, 2024
