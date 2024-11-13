@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 13, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-11-13-0}
-* Fixes a bug that could cause the "this team cannot create customers with kurl install enabled" error when updating an existing customer.
+* Fixes a bug that could cause an error message similar to the following to display when attempting to update an existing customer: "This team cannot create customers with kurl install enabled".
 
 ## v2024.11.12-4
 
