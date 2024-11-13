@@ -25,7 +25,7 @@ Configure the KOTS HelmChart custom resource `values` key so that KOTS rewrites 
 * The built-in registry used in Replicated Embedded Cluster or Replicated kURL installations in air-gapped environments
 
 You will use the following KOTS template functions to conditionally rewrite image names depending on where the given image should be accessed: 
-* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user pushed images to their own registry.
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user configured a local private registry.
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryHost returns the host of the built-in registry.
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
 
@@ -37,7 +37,7 @@ You will use the following KOTS template functions to conditionally rewrite imag
 
 ### Task 1a: Rewrite Private Image Names
 
-For any private images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the Replicated proxy registry (for online installations) or to the local registry in the user's installation environment (for air gap installations or online installations where images were pushed to a local registry).
+For any private images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the Replicated proxy registry (for online installations) or to the local registry in the user's installation environment (for air gap installations or online installations where the user configured a local registry).
 
 To rewrite image names to the location of the image in the proxy registry, use the format `proxy.replicated.com/proxy/<app-slug>/<image>`, where:
 * `<app-slug>` is the unique application slug in the Vendor Portal
@@ -62,12 +62,10 @@ spec:
   ...
   values:
     image:
-    # If the user configured a registry, use that registry's hostname
-    # If air gap Embedded Cluster/kURL install, use the buit-in registry's hostname
+    # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry's hostname
     # Else use proxy.replicated.com 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-      # If the user configured a registry, use the registry namespace they provided
-      # If air gap Embedded Cluster/kURL install, use the buit-in registry's hostname
+      # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry namespace
       # Else use the image's namespace at proxy.replicated.com
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
       tag: v1.0.1
@@ -101,7 +99,7 @@ spec:
 
 ### Task 1b: Rewrite Public Image Names
 
-For any public images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where images were pushed to a local registry).
+For any public images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the location of the image in the public registry (for online installations) or the local registry (for air gap installations or online installations where the user configured a local registry.
 
 For more information, see the example below.
 
@@ -123,7 +121,7 @@ spec:
       # If a local registry is used, use that registry's hostname
       # Else, use the public registry host (ghcr.io) 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "ghcr.io" }}' 
-      # If the user configured a registry, use the registry namespace provided
+      # If a local registry is used, use the registry namespace provided
       # Else, use the path to the image in the public registry 
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "cloudnative-pg" }}/cloudnative-pg'
       tag: catalog-1.24.0
@@ -272,7 +270,7 @@ spec:
 
 ## Task 4: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally push images to a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
