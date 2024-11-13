@@ -79,11 +79,11 @@ Roles are not updated or changed after a node is added. If you need to change a 
 
 ### controller
 
-Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated workloads. For this reason, nodes with the controller role are considered "controller workers".
+Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated KOTS workloads. For this reason, nodes with the controller role are considered "controller workers".
 
 All clusters require at least one node with the controller role because a cluster needs a control plane. The first node in a cluster always has the controller role.
 
-For multi-node clusters with high availability, at least three controller nodes are required. If you use more than three controller nodes, it is recommended to always use an odd number of nodes. Using an odd number of nodes ensures that the cluster can make decisions by allowing for quorum calculations and also avoiding split-brain scenarios. For more information about highly-available clusters, see [Options for Highly Available Topology](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/) in the Kubernetes documentation.
+For multi-node clusters with high availability, at least three controller nodes are required. If you use more than three controller nodes, it is recommended to always use an odd number of nodes. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts. For more information about highly-available clusters, see [Options for Highly Available Topology](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/) in the Kubernetes documentation.
 
 By default, the controller role is named “controller.” You can customize the name of the controller role with the `spec.roles.controller.name` field, as shown below:
 
@@ -98,7 +98,7 @@ spec:
 
 ### custom
 
-You can optionally define custom roles for any non-controller, or _worker_, nodes in the cluster. Worker nodes can run any workloads that are deployed to the cluster by Embedded Cluster, such as application or Replicated workloads. Unlike controller nodes, worker nodes cannot run the Kubernetes control plane.
+You can optionally define custom roles for any non-controller, or _worker_, nodes in the cluster. Worker nodes can run any workloads that are deployed to the cluster by Embedded Cluster, such as application or Replicated KOTS workloads. Unlike controller nodes, worker nodes cannot run the Kubernetes control plane.
 
 Custom roles are particularly useful when combined with [labels](#labels) for the purpose of assigning specific workloads to nodes.
 
