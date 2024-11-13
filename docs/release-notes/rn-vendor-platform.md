@@ -11,6 +11,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
 
+## v2024.11.12-4
+
+Released on November 12, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-12-4}
+* Fixes a bug on the **Customer** page that caused the **Embedded Cluster Install Instructions** to be hidden when the Embedded Cluster install type was enabled for the license.
+
 ## v2024.11.12-2
 
 Released on November 12, 2024
@@ -28,7 +35,6 @@ Released on November 11, 2024
 ### Bug Fixes {#bug-fixes-v2024-11-11-0}
 * Fixes exception raised when submitting a support case without a GitHub username.
 * When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an air gap bundle does not exist and `airgap=true` is set in the URL.
-
 
 ## v2024.11.06-1
 
