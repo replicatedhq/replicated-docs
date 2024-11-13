@@ -1,4 +1,4 @@
-# Compatibility Matrix Cluster Add-ons (Beta)
+# Compatibility Matrix Cluster Add-ons (Alpha)
 
 This topic describes the supported cluster add-ons for Replicated Compatibility Matrix.
 

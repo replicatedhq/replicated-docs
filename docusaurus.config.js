@@ -50,16 +50,6 @@ const config = {
   scripts: [
     {
       src:
-        '/js/qualified.js',
-      async: false,
-    },
-    {
-      src:
-        'https://js.qualified.com/qualified.js?token=Fj948QvXpLAwjfVs',
-      async: true,
-    },
-    {
-      src:
         '/js/activecampaign.js',
       async: true,
     },
@@ -95,10 +85,36 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
+            type: 'dropdown',
             label: 'Release Notes',
             position: 'left',
-            docId: 'release-notes/rn-whats-new'
+            items: [
+              {
+                type: 'doc',
+                docId: 'release-notes/rn-embedded-cluster',
+                label: 'Embedded Cluster',
+              },
+              {
+                type: 'doc',
+                docId: 'release-notes/rn-app-manager',
+                label: 'KOTS',
+              },
+              {
+                type: 'doc',
+                docId: 'release-notes/rn-kubernetes-installer',
+                label: 'kURL',
+              },
+              {
+                type: 'doc',
+                docId: 'release-notes/rn-replicated-sdk',
+                label: 'Replicated SDK',
+              },
+              {
+                type: 'doc',
+                docId: 'release-notes/rn-vendor-platform',
+                label: 'Vendor Platform',
+              },
+            ],  
           },
           {
             type: 'dropdown',
@@ -182,7 +198,7 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Replicated Quick Start',
+                label: 'Replicated Onboarding',
                 to: 'vendor/replicated-onboarding',
               },
             ],

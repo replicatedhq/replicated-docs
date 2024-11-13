@@ -8,6 +8,30 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.0.0-beta.31
+
+Released on October 17, 2024
+
+### New Features {#new-features-1-0-0-beta-31}
+* Adds support for specifying ClusterRole using the [clusterRole](/vendor/replicated-sdk-customizing#custom-clusterrole) key.
+
+## 1.0.0-beta.30
+
+Released on October 16, 2024
+
+### New Features {#new-features-1-0-0-beta-30}
+* Adds support for custom Certificate Authorities using the [privateCASecret](/vendor/replicated-sdk-customizing#custom-certificate-authority) key.
+
+### Improvements {#improvements-1-0-0-beta-30}
+* This release addresses CVE-2024-41110. 
+
+## 1.0.0-beta.29
+
+Released on October 9, 2024
+
+### New Features {#new-features-1-0-0-beta-23}
+* Adds support for setting individual image name component values instead of the entire image: registry, repository, and tag.
+
 ## 1.0.0-beta.28
 
 Released on September 20, 2024

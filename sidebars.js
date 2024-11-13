@@ -36,6 +36,8 @@ const sidebars = {
     //GET STARTED
     {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
+    'vendor/kots-faq',
+    'vendor/quick-start',
     'vendor/replicated-onboarding',
     // {
     //   type: 'category',
@@ -45,18 +47,6 @@ const sidebars = {
     //     'vendor/namespaces',
     //   ],
     // },
-    {
-      type: 'category',
-      label: 'Labs',
-      items:
-      [
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
-        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
-      ],
-
-    },
     {
       type: 'category',
       label: 'Tutorials',
@@ -103,6 +93,18 @@ const sidebars = {
             'vendor/tutorial-cli-update-app',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Labs',
+      items:
+      [
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN', label: 'Distributing Your Application with Replicated'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/delivering-as-an-appliance?token=em_lUZdcv0LrF6alIa3', label: 'Delivering Your Application as a Kubernetes Appliance'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
+        {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
     },
     // PRODUCT DOCS
@@ -154,6 +156,7 @@ const sidebars = {
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
         'vendor/releases-sharing-license-install-script',
+        'vendor/releases-share-download-portal',
         'reference/linter',
       ],
     },
@@ -166,6 +169,7 @@ const sidebars = {
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-about-types',
+        'vendor/licenses-download',
         {
           type: 'category',
           label: 'Querying License Entitlements',
@@ -184,8 +188,6 @@ const sidebars = {
       label: 'Distributing and Installing with KOTS',
       items: [
         'intro-kots',
-        'vendor/kots-faq',
-        'vendor/distributing-workflow',
         {
           type: 'category',
           label: 'Packaging KOTS Releases',
@@ -318,16 +320,6 @@ const sidebars = {
                 'vendor/operator-defining-additional-namespaces',
               ],
             },
-            {
-              type: 'category',
-              label: 'Downloading and Sharing Assets for KOTS Releases',
-              items: [
-                'vendor/releases-download-airgap-bundles',
-                'vendor/licenses-download',
-                'vendor/releases-share-download-portal',
-                'vendor/releases-configvalues',
-              ],
-            },
           ],
         },   
         // KOTS ENTERPRISE USER DOCS
@@ -354,11 +346,12 @@ const sidebars = {
                 items: [
                   'enterprise/installing-embedded',
                   'enterprise/installing-embedded-air-gap',
+                  'reference/embedded-cluster-install',
                 ],
               },
               {
                 type: 'category',
-                label: 'Installing in Existing Clusters',
+                label: 'Installing in Existing Clusters with KOTS',
                 items: [
                   'enterprise/installing-existing-cluster',
                   'enterprise/installing-existing-cluster-airgapped',
@@ -373,7 +366,15 @@ const sidebars = {
                   'enterprise/cluster-management-add-nodes',
                 ],
               },
-              'enterprise/installing-existing-cluster-automation',
+              {
+                type: 'category',
+                label: 'Installing with the KOTS CLI',
+                items: [
+                  'enterprise/installing-existing-cluster-automation',
+                  'vendor/releases-configvalues',
+                ],
+              },
+              
               'enterprise/installing-stateful-component-requirements',
             ],
           },
@@ -486,7 +487,16 @@ const sidebars = {
       'reference/cron-expressions',
     ],
   },
-  'vendor/install-with-helm',
+  {
+    type: 'category',
+    label: 'Installing with Helm',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+      'vendor/using-third-party-registry-proxy',
+    ],
+  },
   {
     type: 'category',
     label: 'Replicated SDK (Beta)',
@@ -652,6 +662,7 @@ const sidebars = {
       'reference/replicated-cli-cluster-port-ls',
       'reference/replicated-cli-cluster-port-rm',
       'reference/replicated-cli-cluster-rm',
+      'reference/replicated-cli-cluster-shell',
       'reference/replicated-cli-cluster-update-ttl',
       'reference/replicated-cli-cluster-upgrade',
       'reference/replicated-cli-cluster-versions',

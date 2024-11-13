@@ -61,6 +61,10 @@
   from = "https://docs.replicated.com/vendor/helm-mapping-example"
   to = "https://docs.replicated.com/vendor/tutorial-config-setup"
 
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/releases-download-airgap-bundles"
+  to = "https://docs.replicated.com/vendor/releases-share-download-portal"  
+
 ###################################################
 # Redirects To the Vendor Section
 ###################################################
@@ -175,6 +179,10 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/distributing-overview"
   to="https://docs.replicated.com/intro-replicated"                                
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/distributing-workflow"
+  to="https://docs.replicated.com/vendor/replicated-onboarding"                                   
 
 ###################################################
 # Redirects To the Enterprise Section

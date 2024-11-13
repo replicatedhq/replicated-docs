@@ -10,6 +10,35 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.08-0
+
+Released on November 8, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-08-0}
+* Fixes an issue where the public-address flag provided to the install script is ignored and not included in the api server cert sans.
+
+## v2024.11.07-0
+
+Released on November 7, 2024
+
+### New Features {#new-features-v2024-11-07-0}
+* Adds support for discovering the EC2 instance public IP address using AWS IMDSv2.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to include runc v1.2.1.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-10-29T16-01-48Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.77.2-65.8.0.
+
+## v2024.10.24-0
+
+Released on October 24, 2024
+
+### New Features {#new-features-v2024-10-24-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.25.7.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.2 1.30.6 1.29.10 1.28.15 1.27.16.
+
+### Bug Fixes {#bug-fixes-v2024-10-24-0}
+* Fixes an issue that could cause the Velero add-on to fail to install on Ubuntu 22.04.
+
 ## v2024.09.26-0
 
 Released on September 26, 2024

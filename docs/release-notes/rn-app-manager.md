@@ -18,6 +18,103 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.121.0
+
+Released on November 12, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-121-0}
+* Adds the ability to download the application archive for any version, including the currently deployed version, by using the `--sequence` and `--current` flags for the `kots download` command.
+
+## 1.120.3
+
+Released on November 7, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-120-3}
+* Various updates for Embedded Cluster.
+
+## 1.120.2
+
+Released on November 5, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-120-2}
+* Fixes an issue where generating a support bundle in air gap kURL environments took a really long time.
+
+## 1.120.1
+
+Released on November 4, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-120-1}
+* Fixes an issue where generating support bundles failed in air gap and minimal RBAC installations.
+* Fixes an issue where pushing images from an air gap bundle could time out due to the host's environment variables interfering with the temporary registry used by the KOTS CLI.
+
+## 1.120.0
+
+Released on October 30, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-120-0}
+* Various new features to support Replicated Embedded Cluster.
+
+## 1.119.1
+
+Released on October 22, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-119-1}
+
+* Fixes an issue where proxy settings was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
+* Fixes an issue where `--strict-security-context` was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
+
+## 1.119.0
+
+Released on October 18, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-119-0}
+* Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
+* If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
+
+## 1.118.0
+
+Released on October 15, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-118-0}
+* Improves the flexibility of configuring the [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) collector in support bundle specs by limiting KOTS's default collection to its own namespace.
+
+### Bug Fixes {#bug-fixes-1-118-0}
+* Fixes an issue where you could not upgrade Embedded Cluster instances if the new version didn't include config and preflight checks.
+
+## 1.117.5
+
+Released on October 8, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-117-5}
+* Adds support for specifying an alternative data directory in Embedded Cluster.
+
+## 1.117.4
+
+Released on October 8, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-117-4}
+* Various improvements for surfacing errors in Embedded Cluster upgrades.
+
 ## 1.117.3
 
 Released on September 23, 2024

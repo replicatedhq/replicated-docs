@@ -108,7 +108,7 @@ To install the release with the Helm CLI:
 
 ## Next Step
 
-Congratulations! As part of this tutorial, you created a release in the Replicated Vendor Portal and installed the release with both KOTS and the Helm CLI. To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding). 
+Congratulations! As part of this tutorial, you created a release in the Replicated Vendor Portal and installed the release with both KOTS and the Helm CLI.
 
 ## Related Topics
 

@@ -2,7 +2,6 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
-import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Channels and Releases
 
@@ -51,7 +50,7 @@ The following describes each of the channel settings:
 
   For more information about configuring custom domains and assigning default domains, see [Using Custom Domains](custom-domains-using).
 * The following channel settings apply only to applications that support KOTS:
-    * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the Vendor Portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel. For more information, see [Downloading Air Gap Bundles](releases-download-airgap-bundles).
+    * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the Vendor Portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel.
     * **Enable semantic versioning**: When enabled, the Vendor Portal verifies that the version label for any releases promoted to the channel uses a valid semantic version. For more information, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.
     * **Enable new airgap bundle format**: When enabled, air gap bundles built for releases promoted to the channel use a format that supports image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size. For more information, see [Using Image Digests in Air Gap Installations](private-images-tags-digests#digests-air-gap) in _Using Image Tags and Digests_.
 
@@ -63,43 +62,17 @@ The following describes each of the channel settings:
 
 This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
 
-### Release Types
+### Release Files
 
-You can create the following types of releases in the Vendor Portal:
+A release contains your application files as well as the manifests required to install the application with the Replicated installers ([Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated KOTS](../intro-kots)). 
 
-* **Helm-only Releases**: A release that contains one or more Helm charts. Helm-only releases can be installed with the Helm CLI only. For more information, see [Installing with Helm](install-with-helm).
-
-* **KOTS Releases**: A release that contains your application files as well as the manifests required to install the application with Replicated KOTS. The application files in KOTS releases can be Helm charts and/or Kubernetes manifests. KOTS releases that contain one or more Helm charts can be installed with KOTS or the Helm CLI. For more information, see [Introduction to KOTS](../intro-kots).
-
-The following shows the Helm-only and KOTS release options that appear in the **Create release** dropdown in the Vendor Portal:
-
-<img alt="create a release dropdown" src="/images/create-release-dropdown.png" width="450px"/>
-
-[View a larger version of this image](/images/create-release-dropdown.png)
+The application files in releases can be Helm charts and/or Kubernetes manifests. Replicated strongly recommends that all applications are packaged with Helm. For more information, see [About Packaging Applications](/vendor/distributing-overview#about-packaging-applications).
 
 ### Promotion
 
 Each release is promoted to one or more channels. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any real customers assigned, such as the default Unstable channel. When the release is ready to be shared externally with customers, you can then promote to a channel that has the target customers assigned, such as the Beta or Stable channel.
 
 A release cannot be edited after it is promoted to a channel. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
-
-#### Promoting KOTS-Only and Helm CLI-Only Releases {#kots-helm-releases}
-
-<KotsEntitlement/>
-
-To prevent KOTS or Helm CLI-only customers from accessing a release that they cannot install, Replicated enforces the following release promotion rules:
-
-* A release must contain the required KOTS manifests to be promoted to a channel where one or more KOTS customers are assigned.
-
-  <img width="400px" alt="Release without the required manifests blocked from promotion" src="/images/release-promotion-kots-customers.png"/>
-  
-  [View a larger version of this image](/images/release-promotion-kots-customers.png)
-
-* A release must contain at least one Helm chart to be promoted to a channel where one or more Helm CLI-only customers are assigned.
-
-  <img width="400px" src="/images/release-promotion-helm-customers.png" alt="Release with no helm charts blocked from being promoted"/>
-  
-  [View a larger version of this image](/images/release-promotion-helm-customers.png)
 
 ### Properties
 
@@ -115,12 +88,11 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Version label**: The version label for the release. Version labels have the following requirements:
 
-  * For releases that support installation with KOTS, if semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning).
+  * If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning).
 
-  * For releases that support installation with Helm only:
-    <VersionLabelReqsHelm/>
+  <VersionLabelReqsHelm/>
 
-* **Requirements**: For releases distributed with Replicated KOTS, you can select **Prevent this release from being skipped during upgrades** to mark the release as required.
+* **Requirements**: Select **Prevent this release from being skipped during upgrades** to mark the release as required.
 
   <RequiredReleasesDescription/> 
 

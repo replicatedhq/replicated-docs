@@ -91,9 +91,7 @@ To manually download and install the KOTS CLI:
 
 1. Download the KOTS CLI release for your operating system.
 
-   To download the KOTS CLI release from the download portal, see [Download Air Gap Bundles from the Download Portal](/vendor/releases-download-airgap-bundles#download-portal).
-
-   Alternatively, you can run one of the following commands to download the latest version of the KOTS CLI from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
+   You can run one of the following commands to download the latest version of the KOTS CLI from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
 
    * **MacOS (AMD and ARM)**:
 
