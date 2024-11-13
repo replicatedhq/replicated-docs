@@ -4,7 +4,7 @@ Use KOTS template functions to write the `optionalValues.when` conditional state
 
 ```yaml
 optionalValues:
-  - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+  - when: repl{{ ConfigOptionEquals "postgres_type" "external_postgres"}}
 ```
 
 For more information about using KOTS template functions, see [About Template Functions](/reference/template-functions-about).
