@@ -17,6 +17,13 @@ Released on November 13, 2024
 ### Bug Fixes {#bug-fixes-v2024-11-13-0}
 * Fixes a bug that could cause the "this team cannot create customers with kurl install enabled" error when updating an existing customer.
 
+## v2024.11.12-4
+
+Released on November 12, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-12-4}
+* Fixes a bug on the **Customer** page that caused the **Embedded Cluster Install Instructions** to be hidden when the Embedded Cluster install type was enabled for the license.
+
 ## v2024.11.12-2
 
 Released on November 12, 2024
