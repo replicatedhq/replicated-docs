@@ -18,8 +18,8 @@ Released on November 11, 2024
 * Compatibility Matrix: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
 
 ### Bug Fixes {#bug-fixes-v2024-11-11-0}
-* Fix exception raised when submitting a support case without a GitHub username.
-* When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an airgap bundle does not exist and airgap=true is set in the url.
+* Fixes exception raised when submitting a support case without a GitHub username.
+* When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an air gap bundle does not exist and `airgap=true` is set in the URL.
 
 ## v2024.11.06-1
 
