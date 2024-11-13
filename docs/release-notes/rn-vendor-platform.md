@@ -17,6 +17,24 @@ Released on November 13, 2024
 ### Bug Fixes {#bug-fixes-v2024-11-13-0}
 * Fixes a bug that could cause the "this team cannot create customers with kurl install enabled" error when updating an existing customer.
 
+## v2024.11.12-2
+
+Released on November 12, 2024
+
+### Improvements {#improvements-v2024-11-12-2}
+* Updates the styles and removes irrelevant content for errored clusters on the Compatibility Matrix Clusters page.
+
+## v2024.11.11-0
+
+Released on November 11, 2024
+
+### Improvements {#improvements-v2024-11-11-0}
+* Compatibility Matrix: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
+
+### Bug Fixes {#bug-fixes-v2024-11-11-0}
+* Fixes exception raised when submitting a support case without a GitHub username.
+* When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an air gap bundle does not exist and `airgap=true` is set in the URL.
+
 ## v2024.11.06-1
 
 Released on November 6, 2024
