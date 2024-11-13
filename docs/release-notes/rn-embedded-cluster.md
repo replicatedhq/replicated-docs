@@ -10,9 +10,44 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.18.0
+
+Released on November 8, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.18.0+k8s-1.30</td>
+    <td id="center">1.18.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-18-0}
+* Adds support for passing ConfigValues using the `--config-values` flag for the `install` command. This also enables automated installations of both Embedded Cluster and the application.
+
+### Improvements {#improvements-1-18-0}
+* When the Admin Console URL is printed at the end of the `install` command, it will now use the public IP address instead of the private IP address for AWS EC2 instances that use IMDSv2.
+* During setup of the Admin Console when a self-signed certificate is used, the instructions are updated to better inform users how to ignore the warning on different browsers.
+
+### Bug Fixes {#bug-fixes-1-18-0}
+* Fixes an issue where registry logs weren't included in support bundles.
+* Fixes an issue when installing on Azure that caused the Admin Console URL shown at the end of the `install` command to use the private IP address rather than the public IP address.
+* Fixes an issue that prevented you from updating an application if the new version contained a required config item without a `default` or `value` set.
+* The copy button now works for the command to validate the authenticity of the self-signed certificate during Admin Console setup.
+* Fixes an issue where the **Config** page showed an error and wouldn't load.
+
 ## 1.17.0
 
-Released on October 31, 2024
+Released on November 4, 2024
 
 <table>
   <tr>

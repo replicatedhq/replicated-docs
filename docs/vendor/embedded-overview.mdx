@@ -77,6 +77,8 @@ Embedded Cluster has the following limitations:
 
 * **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that require higher levels of privilege. If your application installs a policy enforcement engine such as Gatekeeper or Kyverno, ensure that its policies are not enforced in the namespaces used by Embedded Cluster.
 
+* **Installing on STIG- and CIS-hardened OS images is not supported**: Embedded Cluster isn't tested on these images, and issues have arisen when trying to install on them.
+
 ## Quick Start
 
 You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
