@@ -10,6 +10,17 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.11-0
+
+Released on November 11, 2024
+
+### New Features {#new-features-v2024-11-11-0}
+* Compatibility Matrix: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
+
+### Bug Fixes {#bug-fixes-v2024-11-11-0}
+* Fixes exception raised when submitting a support case without a GitHub username.
+* When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an air gap bundle does not exist and `airgap=true` is set in the URL.
+
 ## v2024.11.06-1
 
 Released on November 6, 2024
