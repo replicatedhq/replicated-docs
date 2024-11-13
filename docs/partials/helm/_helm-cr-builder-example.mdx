@@ -40,7 +40,7 @@ spec:
     chartVersion: 3.1.7
   values:
     postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+      enabled: repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres"}}
   builder:
     postgresql:
       enabled: true
