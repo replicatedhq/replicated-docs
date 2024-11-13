@@ -242,19 +242,21 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. Go to the URL provided in the output to access to the Admin Console.
    
-   1. Bypass the browser TLS warning by clicking **Continue to Setup**.
+   1. On the Admin Console landing page, click **Start**.
 
-   1. Click **Advanced > Proceed**.
+   1. On the **Secure the Admin Console** screen, review the instructions and click **Continue**. In your browser, follow the instructions that were provided on the **Secure the Admin Console** screen to bypass the warning.
 
-   1. On the **HTTPS for the Gitea Admin Console** page, select **Self-signed** and click **Continue**.
+   1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificacte.
 
-   1. On the login page, enter the Admin Console password that you created during installation and click **Log In**.
+       By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
-   1. On the **Nodes** page, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
+   1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
 
-      The Admin Console dashboard opens.
-      
-   1. In the **Version** section, next to the new version, click **Deploy** and then **Yes, Deploy**. 
+   1. On the **Configure the cluster** screen, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
+
+       The Admin Console dashboard opens.
+
+   1. On the Admin Console dashboard, next to the version, click **Deploy** and then **Yes, Deploy**. 
 
       The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
 
