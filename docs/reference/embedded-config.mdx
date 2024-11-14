@@ -73,7 +73,7 @@ For a full list of versions, see the Embedded Cluster [releases page](https://gi
 
 You can optionally define node roles in the Embedded Cluster Config. If nodes roles are defined, users access the Admin Console to assign one or more roles to a node when it is joined to the cluster. For more information about assigning roles to nodes, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
-For multi-node clusters, roles can be useful when combined with [labels](#labels) for the purpose of assigning specific application workloads to nodes. For example, if your application has graphics processing unit (GPU) workloads, you might choose to define a role that is assigned to the node where those workloads run. Or, you could assign a role to a node that is dedicated to running a specific application workoad that is resource-intensive.
+For multi-node clusters, roles can be useful when combined with [labels](#labels) for the purpose of assigning specific application workloads to nodes. For example, if your application has graphics processing unit (GPU) workloads, you might choose to define a role that is assigned to the node where those workloads run. Or, you could assign a role to a worker node that is dedicated to running a specific application workoad that is resource-intensive.
 
 If you do not define node roles, all nodes added to the cluster are assigned the controller role. Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated KOTS workloads.
 
@@ -83,7 +83,7 @@ Embedded Cluster supports defining _controller_ and _custom_ roles. For more inf
 
 Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated KOTS workloads. For this reason, nodes with the controller role are considered _controller workers_.
 
-Defining one or more controller roles can be useful in highly-available clusters with three or more controller nodes if you need to assign a specific workload to one of the nodes. For more information about high availability with Embedded Cluster, see [Managing Multi-Node Clusters with Emebdded Cluster](/enterprise/embedded-manage-nodes).
+Defining one or more controller roles can be useful in highly-available clusters with three or more controller nodes if you want to assign a specific workload to one of the nodes. For more information about high availability with Embedded Cluster, see [Managing Multi-Node Clusters with Emebdded Cluster](/enterprise/embedded-manage-nodes).
 
 By default, the controller role is named “controller.” You can customize the name of the controller role with the `spec.roles.controller.name` field, as shown below:
 
@@ -99,6 +99,8 @@ spec:
 ### custom
 
 Custom roles can be assigned to any non-controller, or _worker_, nodes in the cluster. Worker nodes can run any workloads that are deployed to the cluster by Embedded Cluster, such as application or Replicated KOTS workloads. Unlike controller nodes, worker nodes do not run the Kubernetes control plane.
+
+Creating custom roles for worker nodes (as opposed to creating controller roles) can be useful if you need to have one or more worker nodes in your cluster that are dedicated to only running a specific application workload.
 
 Custom roles are defined with the `spec.roles.custom` array, as shown in the example below:
 
