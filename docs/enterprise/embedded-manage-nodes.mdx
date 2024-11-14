@@ -16,19 +16,25 @@ Multi-node clusters are not highly available by default. For information about e
 
 To add nodes to a cluster:
 
-1. In the Embedded Cluster Config, configure the `roles` key to define node roles. Node roles determine which nodes run the Kubernetes control plane and allow you to assign application workloads to particular nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
+1. (Optional) In the Embedded Cluster Config, configure the `roles` key to define custom node roles. Custom node roles can be useful if you want to assign certain workloads to run on specific nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following to get the join command from the Admin Console:
 
-   1. If you have not yet installed the application, follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join command.
+   1. To add nodes during the application installation process, follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join command.
 
-   1. Otherwise, log in to the Admin Console. Update the instance to the new release that you promoted that defines the `roles` key in the Embedded Cluster Config. For more information, see [Performing Updates in Embedded Clusters](/enterprise/updating-embedded). Then, go to **Cluster Management > Add node** at the top of the page.
+   1. Otherwise, if you have already installed the application:
 
-      <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+         1. Log in to the Admin Console.
+         
+         1. If you promoted a new release that defines the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Performing Updates in Embedded Clusters](/enterprise/updating-embedded).
+         
+         1. Go to **Cluster Management > Add node** at the top of the page.
 
-      [View a larger version of this image](/images/admin-console-add-node.png)
+            <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
+
+            [View a larger version of this image](/images/admin-console-add-node.png)
    
-1. Either on the Admin Console **Nodes** screen or in the **Add a Node** dialog, select one or more roles for the new node that you will join. Copy the join command.
+1. Either on the Admin Console **Nodes** screen that is displayed during installation or in the **Add a Node** dialog, select one or more roles for the new node that you will join. Copy the join command.
 
      :::note
      If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
