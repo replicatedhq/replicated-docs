@@ -79,17 +79,33 @@ Multi-node clusters are not highly available by default. The first node of the c
 High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 :::
 
-### Requirement
+### Requirements
 
-High availability is supported with Embedded Cluster 1.4.1 or later.
+High availability has the following requirements:
+
+* High availability is supported with Embedded Cluster 1.4.1 or later.
+
+* High availability is supported only for clusters where at least three controller nodes are present.
 
 ### Limitations
 
 High availability has the following limitations:
 
+* High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+
 * The `--enable-ha` flag serves as a feature flag during the Alpha phase. In the future, the prompt about migrating to high availability will display automatically if the cluster is not yet HA and you are adding the third or more controller node. 
 
 * HA multi-node clusters use rqlite to store support bundles up to 100 MB in size. Bundles over 100 MB can cause rqlite to crash and restart.
+
+### Best Practices for High Availability
+
+Consider the following best practices and recommendations for highly-available clusters:
+
+* At least three _controller_ nodes that run the Kubernetes control plane are required for high availability. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes.
+
+     By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes, which run the control plane and can also run other workloads. If you plan to use three nodes in cluster and you choose to define node roles in the Embedded Cluster Config, consider defining `controller` roles, which can be assigned to controller nodes, rather than `custom` nodes, which can be assigned to worker nodes. For more information about defining roles for controller and worker nodes, see [roles](/reference/embedded-config#roles) in _Emebdded Cluster Config_.
+
+* Always use an odd number of nodes in the cluster. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
 ### Create a Multi-Node HA Cluster
 
@@ -111,14 +127,3 @@ To create a multi-node HA cluster:
     [View a larger version of this image](/images/embedded-cluster-ha-prompt.png)
 
 1. Wait for the migration to complete.
-
-### Best Practices for High Availability
-
-All clusters require at least one node with the controller role because a cluster needs a control plane. The first node in a cluster always has the controller role.
-
-For multi-node clusters with high availability, at least three controller nodes are required.
-
-If you use more than three controller nodes, it is recommended to always use an odd number of nodes. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
-
-## Defining Custom Node Roles for Multi-Node Clusters
-

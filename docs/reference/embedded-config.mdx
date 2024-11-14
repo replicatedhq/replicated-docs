@@ -77,6 +77,8 @@ For multi-node clusters, roles can be useful if you need to assign application w
 
 If you do not define node roles, all nodes added to the cluster are controller nodes. Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated KOTS workloads.
 
+Embedded Cluster supports defining _controller_ and _custom_ node roles. Controller roles can be assigned to controller nodes. Custom roles can be assigned to worker nodes. For more information, see the sections below.
+
 ### controller
 
 Controller nodes run the Kubernetes control plane and can also run other workloads, such as application or Replicated KOTS workloads. For this reason, nodes with the controller role are considered _controller workers_.
