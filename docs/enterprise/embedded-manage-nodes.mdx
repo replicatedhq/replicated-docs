@@ -2,13 +2,17 @@
 
 The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add nodes and enable high-availability for multi-node clusters.
 
-## Limitation
+## Limitations
 
-Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available.
+Multi-node clusters with Embedded Cluster have the following limitations:
+
+* Support for multi-node clusters with Emebdded Cluster is Beta. Only single-node embedded clusters are Generally Available (GA).
+
+* High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
-You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped environments. The Admin Console provides the join command that you use to join nodes to the cluster.
+You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped (limited or no outbound internet access) environments. The Admin Console provides the join command that you use to join nodes to the cluster.
 
 :::note
 Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
@@ -81,7 +85,7 @@ High availability for Embedded Cluster in an Alpha feature. This feature is subj
 
 ### Requirements
 
-High availability has the following requirements:
+Enabling high availability has the following requirements:
 
 * High availability is supported with Embedded Cluster 1.4.1 or later.
 
@@ -89,7 +93,7 @@ High availability has the following requirements:
 
 ### Limitations
 
-High availability has the following limitations:
+Enabling high availability has the following limitations:
 
 * High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 
@@ -101,9 +105,7 @@ High availability has the following limitations:
 
 Consider the following best practices and recommendations for highly-available clusters:
 
-* At least three _controller_ nodes that run the Kubernetes control plane are required for high availability. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes.
-
-     By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes, which run the control plane and can also run other workloads. If you plan to use three nodes in cluster and you choose to define node roles in the Embedded Cluster Config, consider defining `controller` roles, which can be assigned to controller nodes, rather than `custom` nodes, which can be assigned to worker nodes. For more information about defining roles for controller and worker nodes, see [roles](/reference/embedded-config#roles) in _Emebdded Cluster Config_.
+* At least three _controller_ nodes that run the Kubernetes control plane are required for high availability. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes.
 
 * Always use an odd number of nodes in the cluster. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
