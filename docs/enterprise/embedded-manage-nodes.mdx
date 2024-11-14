@@ -40,6 +40,10 @@ To add nodes to a cluster:
      If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
      :::
 
+     :::note
+     Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+     :::
+
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
     * **For online (internet-connected) installations**: SSH onto the machine that you will join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the machine. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
@@ -107,3 +111,14 @@ To create a multi-node HA cluster:
     [View a larger version of this image](/images/embedded-cluster-ha-prompt.png)
 
 1. Wait for the migration to complete.
+
+### Best Practices for High Availability
+
+All clusters require at least one node with the controller role because a cluster needs a control plane. The first node in a cluster always has the controller role.
+
+For multi-node clusters with high availability, at least three controller nodes are required.
+
+If you use more than three controller nodes, it is recommended to always use an odd number of nodes. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
+
+## Defining Custom Node Roles for Multi-Node Clusters
+
