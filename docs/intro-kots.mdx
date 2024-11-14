@@ -16,7 +16,7 @@ KOTS communicates securely with the Replicated Vendor Portal to synchronize cust
 
 Installing an application with KOTS provides access to feautures such as:
 
-* Support for air gap installations
+* Support for air gap installations in environments with limited or no outbound internet access
 * Support for installations on VMs or bare metal servers, when using Replicated Embedded Cluster or Replicated kURL
 * The KOTS Admin Console, which provides a user interface where customers can install and manage their application instances
 * Instance telemetry automatically sent to the Vendor Portal for instances running in customer environments
@@ -31,7 +31,7 @@ KOTS is an open source project that is maintained by Replicated. For more inform
 KOTS can be used to install Kubernetes applications and Helm charts in the following environments:
 * Clusters provisioned on VMs or bare metal servers with Replicated Embedded Cluster or Replicated kURL
 * Existing clusters brought by the user
-* Online (internet-connected) or air-gapped (disconnected) clusters
+* Online (internet-connected) or air-gapped (disconnected) environments
 
 To install an application with KOTS, users first run an installation script that installs KOTS in the target cluster and deploys the KOTS Admin Console. After KOTS is installed, users can log in to the KOTS Admin Console to upload their license file, configure the application, run preflight checks, and install and deploy the application.
 
@@ -44,9 +44,9 @@ The following diagram demonstrates how a single release promoted to the Stable c
 As shown in the diagram above: 
 * For installations in existing online (internet-connected) clusters, users run a command to install KOTS in their cluster.
 * For installations on VMs or bare metal servers, users run an Embedded Cluster or kURL installation script that both provisions a cluster in their environment and installs KOTS in the cluster.
-* For installations in air-gapped clusters with no outbound internet access, users download air gap bundles for KOTS and the application from the Replicated Download Portal and then provide the bundles during installation.
+* For installations in air-gapped clusters, users download air gap bundles for KOTS and the application from the Replicated Download Portal and then provide the bundles during installation.
 
-All users must provide a license file to install with KOTS. After KOTS is installed in the cluster, users can access the KOTS Admin Console to provide their license file and deploy the application.
+All users must have a valid license file to install with KOTS. After KOTS is installed in the cluster, users can access the KOTS Admin Console to provide their license and deploy the application.
 
 For more information about how to install applications with KOTS, see the [Installing an Application](/enterprise/installing-overview) section.
 
