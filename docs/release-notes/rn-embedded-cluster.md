@@ -36,6 +36,7 @@ Released on November 14, 2024
 
 ### Improvements {#improvements-1-19-0}
 * Automatically configure system parameters for `ip_forward`, `arp_filter` and `arp_ignore`
+* Warn if an online installation is attempted on air gap
 
 ## 1.18.0
 
