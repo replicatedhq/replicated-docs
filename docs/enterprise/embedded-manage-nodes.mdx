@@ -41,7 +41,7 @@ To add nodes to a cluster:
 1. Either on the Admin Console **Nodes** screen that is displayed during installation or in the **Add a Node** dialog, select one or more roles for the new node that you will join. Copy the join command.
 
      :::note
-     If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, the role selection will not appear and only the join command is displayed.
+     If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, all new nodes joined to the cluster are controller nodes by default.
      :::
 
      :::note
@@ -77,7 +77,7 @@ To add nodes to a cluster:
 
 ## Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
 
-Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. After three controller nodes are present in the cluster, high availability (HA) can be enabled.
+Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
 
 :::important
 High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
