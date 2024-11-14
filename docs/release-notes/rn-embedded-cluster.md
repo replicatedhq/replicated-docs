@@ -10,6 +10,33 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.19.0
+
+Released on November 14, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.19.0+k8s-1.30</td>
+    <td id="center">1.19.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.121.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-19-0}
+* Add preflight checks for the `arp_ignore` and `arp_filter` kernel parameters
+
+### Improvements {#improvements-1-19-0}
+* Automatically configure system parameters for `ip_forward`, `arp_filter` and `arp_ignore`
+
 ## 1.18.0
 
 Released on November 8, 2024
