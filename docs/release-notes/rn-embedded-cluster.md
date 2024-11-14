@@ -33,7 +33,7 @@ Released on November 14, 2024
 
 ### New Features {#new-features-1-19-0}
 * Adds preflight checks to ensure that the following kernel parameters are set: `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`.
-* The following kernel parameters will written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
+* The following kernel parameters will be written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
 
 ### Improvements {#improvements-1-19-0}
 * If a user downloads an air gap bundle but attempts to install without it, the user will be instructed how to pass the air gap bundle to `install`. They will then be asked if they want to continue with an online installation anyway.
