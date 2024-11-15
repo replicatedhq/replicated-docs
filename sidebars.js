@@ -32,13 +32,12 @@ const sidebars = {
         'release-notes/rn-vendor-platform',
       ],
     },
-
+    
     //GET STARTED
-    {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    // {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/kots-faq',
     'vendor/quick-start',
-    'vendor/replicated-onboarding',
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -107,83 +106,132 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
     },
+    // WORKFLOWS
+    {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
+    'vendor/replicated-onboarding',
+    {
+      type: 'category',
+      label: 'Integrating with CI/CD',
+      items: [
+        'vendor/ci-overview',
+        'vendor/ci-workflows',
+        'vendor/ci-workflows-github-actions',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Security Workflows',
+      items: [
+        'enterprise/sbom-validating',
+      ],
+    },
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Vendor Portal Teams and Accounts',
+      label: 'Vendor Portal',
       items: [
-        'vendor/vendor-portal-creating-account',
-        'vendor/team-management',
-        'vendor/team-management-github-username',
         {
-            type: 'category',
-            label: 'Configuring Role-based Access Control',
-            items: [
-              'vendor/team-management-rbac-configuring',
-              'vendor/team-management-rbac-resource-names',
+          type: 'category',
+          label: 'Vendor Portal Teams and Accounts',
+          items: [
+            'vendor/vendor-portal-creating-account',
+            'vendor/team-management',
+            'vendor/team-management-github-username',
+            {
+                type: 'category',
+                label: 'Configuring Role-based Access Control',
+                items: [
+                  'vendor/team-management-rbac-configuring',
+                  'vendor/team-management-rbac-resource-names',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Configuring Authentication',
+              items: [
+                'vendor/team-management-two-factor-auth',
+                'vendor/team-management-google-auth',
+                'vendor/team-management-saml-auth',
+              ],
+            },
+            'vendor/team-management-slack-config',
+            'vendor/replicated-api-tokens',
           ],
         },
         {
           type: 'category',
-          label: 'Configuring Authentication',
+          label: 'Applications',
           items: [
-            'vendor/team-management-two-factor-auth',
-            'vendor/team-management-google-auth',
-            'vendor/team-management-saml-auth',
+            'vendor/vendor-portal-manage-app',
+            'vendor/vendor-portal-application-settings',
           ],
         },
-        'vendor/team-management-slack-config',
-        'vendor/replicated-api-tokens',
-
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Applications',
-      items: [
-        'vendor/vendor-portal-manage-app',
-        'vendor/vendor-portal-application-settings',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Channels and Releases',
-      items: [
-        'vendor/releases-about',
-        'vendor/releases-creating-channels',
-        'vendor/releases-creating-releases',
-        'vendor/releases-creating-cli',
-        'vendor/helm-install-release',
-        'vendor/releases-sharing-license-install-script',
-        'vendor/releases-share-download-portal',
-        'reference/linter',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Customer Licenses',
-      items: [
-        'vendor/licenses-about',
-        'vendor/releases-creating-customer',
-        'vendor/licenses-adding-custom-fields',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-install-types',
-        'vendor/licenses-about-types',
-        'vendor/licenses-download',
         {
           type: 'category',
-          label: 'Querying License Entitlements',
+          label: 'Channels and Releases',
           items: [
-            'vendor/licenses-reference-sdk',
-            'vendor/licenses-reference-helm',
-            'vendor/licenses-referencing-fields',
-            'vendor/licenses-reference-kots-runtime',
-            'vendor/licenses-verify-fields-sdk-api',
-          ]
+            'vendor/releases-about',
+            'vendor/releases-creating-channels',
+            'vendor/releases-creating-releases',
+            'vendor/releases-creating-cli',
+            'vendor/helm-install-release',
+            'vendor/releases-sharing-license-install-script',
+            'vendor/releases-share-download-portal',
+            'reference/linter',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Customer Licenses',
+          items: [
+            'vendor/licenses-about',
+            'vendor/releases-creating-customer',
+            'vendor/licenses-adding-custom-fields',
+            'vendor/licenses-using-builtin-fields',
+            'vendor/licenses-install-types',
+            'vendor/licenses-about-types',
+            'vendor/licenses-download',
+            {
+              type: 'category',
+              label: 'Querying License Entitlements',
+              items: [
+                'vendor/licenses-reference-sdk',
+                'vendor/licenses-reference-helm',
+                'vendor/licenses-referencing-fields',
+                'vendor/licenses-reference-kots-runtime',
+                'vendor/licenses-verify-fields-sdk-api',
+              ]
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Domains',
+          items: [
+            'vendor/custom-domains',
+            'vendor/custom-domains-using',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Insights and Telemetry',
+          items: [
+              'vendor/instance-insights-event-data',
+              'vendor/insights-app-status',
+              'vendor/telemetry-air-gap',
+              'vendor/customer-adoption',
+              'vendor/customer-reporting',
+              'vendor/instance-insights-details',
+              'vendor/instance-notifications-config',
+              'vendor/custom-metrics',
+              'vendor/instance-data-export',
+            ],
         },
       ],
     },
+    
     {
       type: 'category',
       label: 'Distributing and Installing with KOTS',
@@ -531,14 +579,6 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Using Custom Domains',
-    items: [
-      'vendor/custom-domains',
-      'vendor/custom-domains-using',
-    ],
-  },
-  {
-    type: 'category',
     label: 'Preflight Checks and Support Bundles',
     items: [
       'vendor/preflight-support-bundle-about',
@@ -602,31 +642,6 @@ const sidebars = {
       'vendor/testing-how-to',
       'vendor/testing-ingress',
     ],
-  },
-  {
-    type: 'category',
-    label: 'Integrating with CI/CD',
-    items: [
-      'vendor/ci-overview',
-      'vendor/ci-workflows',
-      'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Insights and Telemetry',
-    items: [
-        'vendor/instance-insights-event-data',
-        'vendor/insights-app-status',
-        'vendor/telemetry-air-gap',
-        'vendor/customer-adoption',
-        'vendor/customer-reporting',
-        'vendor/instance-insights-details',
-        'vendor/instance-notifications-config',
-        'vendor/custom-metrics',
-        'vendor/instance-data-export',
-      ],
   },
 
   // DEVELOPER TOOLS
