@@ -13,7 +13,7 @@ pagination_next: null
     </li>
     <li>
         <h3>Steps for Helm Air Gap Installs and Upgrades in Download Portal (Alpha)</h3>
-        <p>Teams can request the Helm air gap Alpha feature to make detailed install and upgrade instructions for using Helm to install in air-gapped environments available in the Download Portal.</p>
+        <p>Teams can request the Helm air gap Alpha feature to make detailed instructions for using Helm to install and upgrade in air-gapped environments available in the Download Portal.</p>
     </li>
     <li>
       <a href="/vendor/helm-install-airgap">Learn more</a>
