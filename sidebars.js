@@ -351,6 +351,40 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Installing with KOTS',
+          items: [
+            {
+              type: 'category',
+              label: 'Preparing to Install',
+              items: [
+                'enterprise/installing-overview',
+                'enterprise/installing-general-requirements',
+              ],
+            },
+            
+            {
+              type: 'category',
+              label: 'Installing in Existing Clusters with KOTS',
+              items: [
+                'enterprise/installing-existing-cluster',
+                'enterprise/installing-existing-cluster-airgapped',
+              ],
+            },
+            
+            'enterprise/installing-stateful-component-requirements',
+            {
+              type: 'category',
+              label: 'Performing Updates with KOTS',
+              items: [
+                'enterprise/updating-app-manager',
+                'enterprise/updating-embedded',
+                'enterprise/updating-kurl-about',
+                'enterprise/updating-kurl',
+                'enterprise/updating-apps',
+              ],
+            },
+        {
+          type: 'category',
           label: 'KOTS Custom Resources',
           items: [
             'reference/custom-resource-about',
@@ -359,17 +393,6 @@ const sidebars = {
             'reference/custom-resource-helmchart-v2',
             'reference/custom-resource-helmchart',
             'reference/custom-resource-lintconfig',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Performing Updates with KOTS',
-          items: [
-            'enterprise/updating-app-manager',
-            'enterprise/updating-embedded',
-            'enterprise/updating-kurl-about',
-            'enterprise/updating-kurl',
-            'enterprise/updating-apps',
           ],
         },
         'enterprise/updating-licenses',
@@ -455,31 +478,6 @@ const sidebars = {
           type: 'category',
           label: 'Installing and Managing Applications',
           items: [
-          {
-            type: 'category',
-            label: 'Installing',
-            items: [
-              {
-                type: 'category',
-                label: 'Preparing to Install',
-                items: [
-                  'enterprise/installing-overview',
-                  'enterprise/installing-general-requirements',
-                ],
-              },
-              
-              {
-                type: 'category',
-                label: 'Installing in Existing Clusters with KOTS',
-                items: [
-                  'enterprise/installing-existing-cluster',
-                  'enterprise/installing-existing-cluster-airgapped',
-                ],
-              },
-              
-              'enterprise/installing-stateful-component-requirements',
-            ],
-          },
           {
             type: 'category',
             label: 'Using Image Registries',
