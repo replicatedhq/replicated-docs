@@ -91,7 +91,7 @@ Enabling high availability has the following requirements:
 
 * High availability is supported with Embedded Cluster 1.4.1 or later.
 
-* High availability is supported only for clusters where at least three controller nodes are present.
+* High availability is supported only for clusters where at least three nodes with the `controller` role are present.
 
 ### Limitations
 
@@ -105,11 +105,13 @@ Enabling high availability has the following limitations:
 
 ### Best Practices for High Availability
 
-Consider the following best practices and recommendations for highly-available clusters:
+Consider the following best practices and recommendations for creating highly-available clusters:
 
 * At least three _controller_ nodes that run the Kubernetes control plane are required for high availability. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes.
 
-* Always use an odd number of nodes in the cluster. Using an odd number of nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
+* Always use an odd number of controller nodes in the cluster. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
+
+* You can have any number of _worker_ nodes in the cluster. Worker nodes do not run the Kubernetes control plane, but run other workloads such as application or Replicated KOTS workloads.
 
 ### Create a Multi-Node HA Cluster
 
