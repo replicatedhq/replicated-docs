@@ -73,11 +73,9 @@ For a full list of versions, see the Embedded Cluster [releases page](https://gi
 
 You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
-If the `roles` key is configured, users assign one or more roles to a node when it is joined to the cluster. For more information about how to assign node roles in the Admin Console, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+If the `roles` key is configured, users select one or more roles to assign to a node when it is joined to the cluster. For more information about how to assign node roles in the Admin Console, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
-
-Embedded Cluster supports defining _controller_ and _custom_ roles. For more information, see the sections below.
 
 ### controller
 

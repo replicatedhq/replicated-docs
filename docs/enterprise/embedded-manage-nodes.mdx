@@ -20,7 +20,7 @@ Multi-node clusters are not highly available by default. For information about e
 
 To add nodes to a cluster:
 
-1. (Optional) In the Embedded Cluster Config, configure the `roles` key to define node roles. Defining node roles can be useful if you want to assign certain workloads to run on specific nodes. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
+1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following to get the join command from the Admin Console:
 
@@ -30,7 +30,7 @@ To add nodes to a cluster:
 
          1. Log in to the Admin Console.
          
-         1. If you promoted a new release that defines the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Performing Updates in Embedded Clusters](/enterprise/updating-embedded).
+         1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Performing Updates in Embedded Clusters](/enterprise/updating-embedded).
          
          1. Go to **Cluster Management > Add node** at the top of the page.
 
@@ -40,13 +40,13 @@ To add nodes to a cluster:
    
 1. Either on the Admin Console **Nodes** screen that is displayed during installation or in the **Add a Node** dialog, select one or more roles for the new node that you will join. Copy the join command.
 
-     :::note
-     If no [roles](/reference/embedded-config#roles) are defined in the Embedded Cluster Config, all new nodes joined to the cluster are controller nodes by default.
-     :::
+     Note the following:
 
-     :::note
-     Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
-     :::
+     * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default.
+
+     * Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+
+     * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about HA clusters, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
