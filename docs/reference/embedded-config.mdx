@@ -77,16 +77,14 @@ If the `roles` key is configured, users assign one or more roles to a node when 
 
 If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
-Customizing node roles can be useful if you want to assign application workloads to specific nodes in multi-node clusters. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu` label to any node that is assigned the role. This allows you to then schedule the GPU workloads on nodes labled `gpu`.
-
 Embedded Cluster supports defining _controller_ and _custom_ roles. For more information, see the sections below.
 
 ### controller
 
 By default, all nodes joined to a cluster are assigned the `controller` role.
 
-You can custoimze the `controller` role in the following ways:
-* Change the `name` assigned to controller nodes. By default, controller nodes are named “controller”. Replicated recommends that you change the default name if you plan to create additional `custom` roles.
+You can customize the `controller` role in the following ways:
+* Change the `name` assigned to controller nodes. By default, controller nodes are named “controller”. Replicated recommends that you change the default name for the `controller` role if you plan to create additional `custom` roles. In this case, both the name of the `controller` role and the names of any `custom` roles are displayed to the user when they join a node.
 * Add one or more `labels` to be assigned to all controller nodes. See [labels](#labels).
 
 #### Example
@@ -99,16 +97,16 @@ spec:
     controller:
       name: management
       labels:
-        management: "true" # Label applied to all nodes with controller role
+        management: "true" # Label applied to "management" nodes
 ```      
 
 ### custom
 
-Custom roles can be assigned to any non-controller, or _worker_, nodes in the cluster. Worker nodes can run any workloads that are deployed to the cluster by Embedded Cluster, such as application or Replicated KOTS workloads. Unlike controller nodes, worker nodes do not run the Kubernetes control plane.
+You can add `custom` roles that users can assign to any node in the cluster. Each `custom` role that you add must have a `name` and can also have one or more `labels`. See [labels](#labels).
 
-Creating custom roles for worker nodes (as opposed to creating controller roles) can be useful if you need to have one or more worker nodes in your cluster that are dedicated to only running a specific application workload.
+Adding `custom` node roles is useful if you need to assign application workloads to specific nodes in multi-node clusters. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu` label to any node that is assigned the role. This allows you to then schedule the GPU workloads on nodes labled `gpu`. 
 
-Custom roles are defined with the `spec.roles.custom` array, as shown in the example below:
+#### Example
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -117,13 +115,15 @@ spec:
   roles:
     custom:
     - name: app
+      labels:
+        app: "true" # Label applied to "app" nodes
 ```
 
 ### labels
 
-Roles can have associated Kubernetes labels that are applied to any node in the cluster that is assigned that role. Labels are useful for tasks like assigning workloads to nodes.
+You can define Kubernetes labels for the default `controller` role and any `custom` roles that you add. When `labels` are defined, Embedded Cluster applies the label to any node in the cluster that is assigned the given role. Labels are useful for tasks like assigning workloads to nodes.
 
-Labels can be defined for the controller role and any custom roles, as shown in the example below:
+#### Example
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -135,9 +135,12 @@ spec:
       labels:
         management: "true" # Label applied to "management" nodes
     custom:
-    - name: app
+    - name: db
       labels:
-        app: "true" # Label applied to "app" nodes
+        db: "true" # Label applied to "db" nodes
+    - name: gpu
+      labels:
+        gpu: "true" # Label applied to "gpu" nodes    
 ```
 
 ## extensions
