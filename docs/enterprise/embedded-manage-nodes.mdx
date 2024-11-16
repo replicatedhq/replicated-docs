@@ -48,6 +48,8 @@ To add nodes to a cluster:
 
      * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about HA clusters, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
+     * If a node is only assigned one or more `custom` roles and is not assigned the `controller` role, then it is considered a _worker_ node because it does not run the Kubernetes control plane.
+
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
     * **For online (internet-connected) installations**: SSH onto the machine that you will join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the machine. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
