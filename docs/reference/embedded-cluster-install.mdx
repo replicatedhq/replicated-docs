@@ -42,12 +42,14 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--cidr`</td>
      <td>
         <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
+        <p>**Requirement**: Embedded Cluster 1.16.0 or later.</p>
      </td>
   </tr>
   <tr>
      <td>`--data-dir`</td>
      <td>
         <p>The data directory used by Embedded Cluster. **Default**: `/var/lib/embedded-cluster`</p>
+        <p>**Requirement**: Embedded Cluster 1.16.0 or later.</p>
         <p>**Limitations:**</p>
         <ul>
             <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
