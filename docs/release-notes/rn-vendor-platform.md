@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 18, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-11-18-0}
-* Fixes bug where Helm install instructions would not show on the Customer pages.
+* Fixes bug where Helm install instructions would not show on the Customer pages if KOTS install was not enabled.
 
 ## v2024.11.13-0
 
