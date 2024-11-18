@@ -65,9 +65,9 @@ To get the ConfigValues file for a release:
     
 ## Share a Sample ConfigValues File    
 
-Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use in automated installations with the KOTS CLI.
+If your users will perform automated or headless installations from the command line, you can share an example of an accurate ConfigValues file that they can edit.
 
-After you get the ConfigValues file for your application using the `kots get config` command, Replicated recommends that you do the following to edit the contents of the ConfigValues file before sharing it with users:
+Before sharing a sample ConfigValues with users, Replicated recommends that you edit the sample file in the following ways:
 
    * Remove any configuration fields that have `readonly` set to `true`. Users cannot edit read only fields. For more information, see [readonly](/reference/custom-resource-config#readonly) in _Config_.
 
