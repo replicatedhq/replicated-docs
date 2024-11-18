@@ -73,7 +73,12 @@ For a full list of versions, see the Embedded Cluster [releases page](https://gi
 
 You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
-If the `roles` key is configured, users select one or more roles to assign to a node when it is joined to the cluster. A single node can be assigned the `controller` role, one or more `custom` roles, or both the `controller` role _and_ one or more `custom` roles. For more information about how to assign node roles in the Admin Console, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+If the `roles` key is configured, users select one or more roles to assign to a node when it is joined to the cluster. A single node can be assigned:
+* The `controller` role, which designates nodes that run the Kubernetes control plane
+* One or more `custom` roles
+* Both the `controller` role _and_ one or more `custom` roles
+
+For more information about how to assign node roles in the Admin Console, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
@@ -84,7 +89,7 @@ For more information, see the sections below.
 By default, all nodes joined to a cluster are assigned the `controller` role.
 
 You can customize the `controller` role in the following ways:
-* Change the `name` assigned to controller nodes. By default, controller nodes are named “controller”. Replicated recommends that you change the default name for the `controller` role if you plan to create additional `custom` roles. In this case, both the name of the `controller` role and the names of any `custom` roles are displayed to the user when they join a node.
+* Change the `name` that is assigned to controller nodes. By default, controller nodes are named “controller”. If you plan to create any `custom` roles, Replicated recommends that you change the default name for the `controller` role to a term that is easy to understand, such as "management". This is because, when you add `custom` roles, both the name of the `controller` role and the names of any `custom` roles are displayed to the user when they join a node. 
 * Add one or more `labels` to be assigned to all controller nodes. See [labels](#labels).
 
 #### Example
@@ -104,7 +109,7 @@ spec:
 
 You can add `custom` roles that users can assign to one or more nodes in the cluster. Each `custom` role that you add must have a `name` and can also have one or more `labels`. See [labels](#labels).
 
-Adding `custom` node roles is useful if you need to assign application workloads to specific nodes in multi-node clusters. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu` label to any node that is assigned the role. This allows you to then schedule the GPU workloads on nodes labled `gpu`.
+Adding `custom` node roles is useful if you need to assign application workloads to specific nodes in multi-node clusters. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu=true` label to any node that is assigned the role. This allows you to then schedule GPU workloads on nodes labled `gpu=true`. Or, if your application includes any resource-intensive workloads (such as a database) that must be run on dedicated nodes, you could create a `custom` role that adds a `db=true` label to the node. This way, the database workload could be assigned to a certain node or nodes.
 
 #### Example
 
