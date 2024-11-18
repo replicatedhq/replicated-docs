@@ -42,7 +42,7 @@ To add nodes to a cluster:
 
      Note the following:
 
-     * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default.
+     * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
      * Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
