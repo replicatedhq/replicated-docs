@@ -8,26 +8,42 @@ import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
 # Generating a ConfigValues File
 
-This topic describes how to generate the ConfigValues file for an application and prepare the ConfigValues file to be shared with your users.
+This topic describes how to generate the ConfigValues file for an application. It also includes recommendations for how to prepare a sample ConfigValues file to be shared with your users.
 
 ## Overview
 
-The ConfigValues file defines the configuration values for an application. ConfigValues files include the configuration fields defined in the KOTS Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
+The KOTS ConfigValues file includes the fields that are defined in the KOTS Config custom resource for an application release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
 
 <ConfigValuesExample/>
 
-
-ConfigValues files allow you to pass the configuration values for an application during automated installations from the command line, rather than providing the configuartion values through the Admin Console UI. For example,
+ConfigValues files allow you to pass the configuration values for an application during installation from the command line, rather than providing the configuartion values through the Admin Console UI. This supports automated or _headless_ installations, such as when installing an application as part of CI/CD pipelines. 
 
 For more information about performing automated installations from the command line, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
 ## Get the ConfigValues File
 
-When installing an application, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file.
+During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file by running the `kubectl kots get config` command.
 
-To get the ConfigValues file for an application:
+To get the ConfigValues file for a release:
 
-1. Install the target release for the application in a development environment. For more information, see [About Installing an Application](/enterprise/installing-overview).
+1. Install the target release in a development environment. You can either install the release with Replicated Embedded Cluster or install in an existing cluster with KOTS. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+
+1. If you installed with Embedded Cluster, do the following to get kubectl access to the cluster and install the KOTS CLI:
+
+   1. Use the Embedded Cluster `shell` command to start a shell with access to the cluster:
+
+       ```bash
+       sudo ./APP_SLUG shell
+       ```
+       Where `APP_SLUG` is the unique slug of the application you installed.
+
+       For more information, see [Access the Cluster](/vendor/embedded-overview#access-the-cluster) in _Using Embedded Cluster_.
+
+   1. Install the KOTS CLI in the cluster. See [Installing the KOTS CLI](/reference/kots-cli-getting-started).
+
+      :::note
+      The version of the KOTS CLI that you install must be the same version of KOTS that was installed by Embedded Cluster.
+      :::
 
 1. View the generated ConfigValues file for the installed instance:
 

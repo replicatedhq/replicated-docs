@@ -39,19 +39,20 @@ A ConfigValues file includes the names of the configuration fields for the appli
 
 To install with Embedded Cluster in an online environment:
 
-1. Download the Embedded Cluster installation assets for the target release:
+1. Download and untar the Embedded Cluster installation assets for the target release.
 
-1. Untar the downloaded assets.
-
-1. Run the following command:
+1. Install:
 
     ```bash
-    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE --config-values PATH_TO_CONFIGVALUES
+    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
+    --config-values PATH_TO_CONFIGVALUES \
+    --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
 
     Replace:
     * `APP_SLUG` with the unique slug for the application.
     * `LICENSE_FILE` with the customer license.
+    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file. See [Generating a ConfigValues File](/vendor/releases-configvalues).
 
 
