@@ -22,55 +22,46 @@ For more information about installing from the command line, see [Installing wit
 
 ## Get the ConfigValues File
 
-During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file by running the `kubectl kots get config` command.
+During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file in the Admin Console **View files** tab or from the command line by running the `kubectl kots get config` command.
 
 To get the ConfigValues file for a release:
 
 1. Install the target release in a development environment. You can either install the release with Replicated Embedded Cluster or install in an existing cluster with KOTS. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
-1. If you installed with Embedded Cluster, do the following to get kubectl access to the cluster and install the KOTS CLI:
+1. Depending on the installer that you used, do one of the following to get the ConfigValues for the installed instance:
 
-   1. Use the Embedded Cluster `shell` command to start a shell with access to the cluster:
+   * **For Embedded Cluster installations**: In the Admin Console, go to the **View files** tab. In the filetree, go to **upstream > userdata** and open **config.yaml**, as shown in the image below: 
+
+       ![ConfigValues file in the Admin Console View Files tab](/images/admin-console-view-files-configvalues.png)
+
+       [View a larger version of this image](/images/admin-console-view-files-configvalues.png)
+
+   * **For KOTS installations in an existing cluster**: Run the `kubectl kots get config` command to view the generated ConfigValues file:
+
+       ```
+       kubectl kots get config --namespace APP_NAMESPACE --decrypt 
+       ```
+       Where:
+       * `APP_NAMESPACE` is the cluster namespace where KOTS is running.
+       * The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
+
+       The output of the `kots get config` command shows the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
+
+       **Example**:
 
        ```bash
-       sudo ./APP_SLUG shell
+       kubectl kots get config --namespace namespace --decrypt
        ```
-       Where `APP_SLUG` is the unique slug of the application you installed.
-
-       For more information, see [Access the Cluster](/vendor/embedded-overview#access-the-cluster) in _Using Embedded Cluster_.
-
-   1. Install the KOTS CLI in the cluster. See [Installing the KOTS CLI](/reference/kots-cli-getting-started).
-
-      :::note
-      The version of the KOTS CLI that you install must be the same version of KOTS that was installed by Embedded Cluster.
-      :::
-
-1. View the generated ConfigValues file for the installed instance:
-
-    ```
-    kubectl kots get config --namespace APP_NAMESPACE --decrypt 
-    ```
-    Where:
-    * `APP_NAMESPACE` is the cluster namespace where KOTS is running. For Embedded Cluster installations, the namespace is `kotsadm`. 
-    * The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
-
-    The output of the `kots get config` command shows the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
-
-    **Example**:
-
-    ```bash
-    kubectl kots get config --namespace kotsadm --decrypt
-    ```
-    ```bash
-    apiVersion: kots.io/v1beta1
-    kind: ConfigValues
-    metadata:
-      creationTimestamp: null
-    spec:
-      values:
-        example_item:
-          value: hello world
-    ```
+       ```bash
+       apiVersion: kots.io/v1beta1
+       kind: ConfigValues
+       metadata:
+         creationTimestamp: null
+       spec:
+         values:
+           example_item:
+             value: hello world
+       ```
     
 ## Share a Sample ConfigValues File    
 
