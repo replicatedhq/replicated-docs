@@ -50,13 +50,27 @@ To get the ConfigValues file for a release:
     ```
     kubectl kots get config --namespace APP_NAMESPACE --decrypt 
     ```
-    Where `APP_NAMESPACE` is the cluster namespace where the application is installed.
-    
-    :::note
-    The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
-    :::
+    Where:
+    * `APP_NAMESPACE` is the cluster namespace where KOTS is running. For Embedded Cluster installations, the namespace is `kotsadm`. 
+    * The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
 
-    The output of the `kots get config` command is the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
+    The output of the `kots get config` command shows the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
+
+    **Example**:
+
+    ```bash
+    kubectl kots get config --namespace kotsadm --decrypt
+    ```
+    ```bash
+    apiVersion: kots.io/v1beta1
+    kind: ConfigValues
+    metadata:
+      creationTimestamp: null
+    spec:
+      values:
+        example_item:
+          value: hello world
+    ```
     
 ## Share a Sample ConfigValues File    
 
