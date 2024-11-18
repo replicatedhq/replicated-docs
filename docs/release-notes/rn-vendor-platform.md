@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.18-0
+
+Released on November 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-18-0}
+* Fixes bug where Helm install instructions would not show on the Customer pages.
+
 ## v2024.11.13-0
 
 Released on November 13, 2024
