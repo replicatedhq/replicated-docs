@@ -105,13 +105,13 @@ Enabling high availability has the following limitations:
 
 ### Best Practices for High Availability
 
-Consider the following best practices and recommendations for creating highly-available clusters:
+Consider the following best practices and recommendations for creating HA clusters:
 
-* At least three _controller_ nodes that run the Kubernetes control plane are required for high availability. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes.
+* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the `controller` node role, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
-* Always use an odd number of controller nodes in the cluster. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
+* Always use an odd number of controller nodes in HA clusters. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
-* You can have any number of _worker_ nodes in the cluster. Worker nodes do not run the Kubernetes control plane, but run other workloads such as application or Replicated KOTS workloads.
+* You can have any number of _worker_ nodes in HA clusters. Worker nodes do not run the Kubernetes control plane, but can run workloads such as application or Replicated KOTS workloads.
 
 ### Create a Multi-Node HA Cluster
 
