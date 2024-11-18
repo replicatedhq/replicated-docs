@@ -145,7 +145,7 @@ Released on October 23, 2024
 
 ### Improvements {#improvements-1-16-0}
 * For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. With this change, Embedded Cluster now only documents and includes preflight checks for `/var/lib/embedded-cluster`.
-* Adds the `support-bundle` command to make it easier to generate support bundles.
+* Adds the `support-bundle` command to make it easier to generate support bundles. For more information, see [Generating Support Bundles for Embedded Cluster](/vendor/support-bundle-embedded)
 * Improves the reliability of waiting for the Kubernetes server to start.
 * Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
 * Requires that the Admin Console password is at least six characters.
