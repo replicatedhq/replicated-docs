@@ -369,7 +369,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with the KOTS CLI',
+                label: 'Performing Headless Installations with the CLI',
                 items: [
                   'enterprise/installing-existing-cluster-automation',
                   'vendor/releases-configvalues',

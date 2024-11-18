@@ -15,41 +15,17 @@ import PlaceholderRoCreds from "../partials/install/_placeholder-ro-creds.mdx"
 
 # Installing with the CLI
 
-This topic describes how to use the Replicated KOTS CLI to install an application.
+This topic describes how to install an application with Replicated KOTS, Replicated Embedded Cluster, or Replicated kURL from the command line.
 
 ## Overview
 
-You can use the KOTS CLI to install an application rather than using the KOTS Admin Console UI. In a CLI installation, you provide all the necessary artifacts to configure and install the application with the `kots install` command. For example, rather than uploading your license file in the Admin Console, you provide your license file with the `kots install` command using the `--license-file` flag. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the Admin Console.
+You can use the command line to install an application with Replicated KOTS, Replicated Embedded Cluster, or Replicated kURL. A common use case for installing with the CLI is to automate installation, such as installing applications as part of CI/CD pipelines.
 
-The following shows an example of the output from the `kots install` command:
-
-```bash
-• Deploying Admin Console
- • Creating namespace ✓
- • Waiting for datastore to be ready ✓
-• Waiting for Admin Console to be ready ✓
-• Waiting for installation to complete ✓
-• Waiting for preflight checks to complete ✓
-
-• Press Ctrl+C to exit
-• Go to http://localhost:8800 to access the Admin Console
-
-• Go to http://localhost:8888 to access the application
-```
-
-One common use case for installing with the CLI is to automate installation, such as installing applications as part of CI/CD pipelines. CLI installations are supported for _online_ environments (with outbound internet access), _air gap_ environments (without outbound internet access), existing clusters, and clusters created with Replicated kURL on a VM or bare metal server.
-
-For more information about the advanced options for the `kots install` command, see [install](/reference/kots-cli-install) in the KOTS CLI documentation.
-
-For a tutorial that demonstrates how to install a sample application using the KOTS CLI, see [Install with KOTS in an Existing Cluster](/vendor/tutorial-cli-setup).
-
-## Limitation
-
-[Replicated Embedded Cluster](/vendor/embedded-overview) does not support automated, or _headless_, installations with the KOTS CLI. 
+In a CLI installation, you provide all the necessary assets, such as the license file or the application config values, with the installation command rather than through the Admin Console UI. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the Admin Console.
 
 ## Prerequisite
 
-Create a ConfigValues YAML file to define the configuration settings for the application. For air gap environments, ensure that you can access the ConfigValues file that you create from your installation environment. 
+Create a ConfigValues YAML file to define the configuration settings for the application. For air-gapped environments, ensure that the ConfigValues file can be accessed from the installation environment. 
 
 A ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field. The ConfigValues file is specific to the application. For more information, see [Generating a ConfigValues File](/vendor/releases-configvalues).
 
@@ -59,9 +35,27 @@ A ConfigValues file includes the names of the configuration fields for the appli
    
 ## Install
 
-This section provides the steps for installing an application with the KOTS CLI in different types of environments.
+### Embedded Cluster
 
-### Existing Cluster
+To install with Embedded Cluster in an online environment:
+
+1. Download the Embedded Cluster installation assets for the target release:
+
+1. Untar the downloaded assets.
+
+1. Run the following command:
+
+    ```bash
+    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE --config-values PATH_TO_CONFIGVALUES
+    ```
+
+    Replace:
+    * `APP_SLUG` with the unique slug for the application.
+    * `LICENSE_FILE` with the customer license.
+    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file. See [Generating a ConfigValues File](/vendor/releases-configvalues).
+
+
+### KOTS in an Existing Cluster
 
 To install with KOTS in an existing cluster:
 
@@ -83,7 +77,23 @@ To install with KOTS in an existing cluster:
 
     <PlaceholderNamespaceExisting/>
 
-### kURL Cluster
+    The following shows an example of the output from the kots install command:
+
+    ```bash
+    • Deploying Admin Console
+      • Creating namespace ✓
+      • Waiting for datastore to be ready ✓
+    • Waiting for Admin Console to be ready ✓
+    • Waiting for installation to complete ✓
+    • Waiting for preflight checks to complete ✓
+
+    • Press Ctrl+C to exit
+    • Go to http://localhost:8800 to access the Admin Console
+
+    • Go to http://localhost:8888 to access the application
+    ```
+
+### kURL
 
 <IntroEmbedded/>
 
@@ -112,9 +122,33 @@ To install with kURL on a VM or bare metal server:
 
     <PlaceholderNamespaceEmbedded/>
 
-### Air Gap Existing Cluster
+## Install in an Air-Gapped Environment  
 
-To install with KOTS in an air gap existing cluster:
+### Embedded Cluster
+
+To install with Embedded Cluster in an air-gapped environment:
+
+1. On a machine with internet access, run the curl command to download the air gap installation assets as a `.tgz`.
+
+1. Move the downloaded `.tgz` to the air-gapped machine where you will install.
+
+1. Run the following command:
+
+    ```bash
+    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
+    --config-values PATH_TO_CONFIGVALUES \
+    --airgap-bundle PATH_TO_AIRGAP_BUNDLE
+    ```
+
+    Replace:
+    * `APP_SLUG` with the unique slug for the application.
+    * `LICENSE_FILE` with the customer license.
+    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file. See [Generating a ConfigValues File](/vendor/releases-configvalues).
+    * `PATH_TO_AIRGAP_BUNDLE` with the path to the Embedded Cluster `.airgap` bundle for the release.
+
+### KOTS in an Existing Cluster
+
+To install with KOTS in an air-gapped existing cluster:
 
 1. <InstallKotsCliAirGap/>
 
@@ -149,11 +183,11 @@ To install with KOTS in an air gap existing cluster:
       
       <PlaceholderRoCreds/>
 
-### Air Gap kURL Cluster
+### kURL
 
 <IntroEmbedded/>
 
-To install in an air gap kURL cluster on a VM or bare metal server:
+To install in an air-gapped kURL cluster:
 
 1. Download the kURL `.tar.gz` air gap bundle:
 
