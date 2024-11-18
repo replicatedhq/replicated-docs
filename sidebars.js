@@ -369,7 +369,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Performing Headless Installations with the CLI',
+                label: 'Installing with the CLI',
                 items: [
                   'enterprise/installing-existing-cluster-automation',
                   'vendor/releases-configvalues',

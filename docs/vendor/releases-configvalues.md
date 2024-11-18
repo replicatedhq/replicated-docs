@@ -8,15 +8,18 @@ import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
 # Generating a ConfigValues File
 
-This topic describes how to view the ConfigValues file for an application installed with Replicated KOTS and prepare the ConfigValues file to be shared with your users.
+This topic describes how to generate the ConfigValues file for an application and prepare the ConfigValues file to be shared with your users.
 
-## About ConfigValues Files
+## Overview
 
-A ConfigValues file defines the user-supplied configuration values for an application installed with KOTS. Enterprise users can provide a ConfigValues file to configure an application during automated installations with the KOTS CLI. During installation, KOTS reads the values in the ConfigValues file to configure the application. For more information about automated installations with the KOTS CLI, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
-
-ConfigValues files include the configuration fields defined in the Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
+The ConfigValues file defines the configuration values for an application. ConfigValues files include the configuration fields defined in the KOTS Config custom resource for the release, along with the user-supplied and default values for each field. The following is an example of a ConfigValues file:
 
 <ConfigValuesExample/>
+
+
+ConfigValues files allow you to pass the configuration values for an application during automated installations from the command line, rather than providing the configuartion values through the Admin Console UI. For example,
+
+For more information about performing automated installations from the command line, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
 ## Get the ConfigValues File
 
@@ -38,6 +41,7 @@ To get the ConfigValues file for an application:
     :::
 
     The output of the `kots get config` command is the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).
+    
 ## Share a Sample ConfigValues File    
 
 Replicated recommends that you share an example of an accurate ConfigValues file with your users that they can edit for use in automated installations with the KOTS CLI.
