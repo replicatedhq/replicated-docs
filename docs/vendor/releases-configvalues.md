@@ -90,4 +90,4 @@ Before sharing a sample ConfigValues with users, Replicated recommends that you 
           <tr><td><code>textarea</code></td><td><p>Plain text in the <code>value</code> field.</p><TextAreaExample/></td></tr>
         </table>
   
-    For more information about each configuration field type in the Config custom resource, see [Config](/reference/custom-resource-config).
+        For more information about each configuration field type in the Config custom resource, see [Config](/reference/custom-resource-config).
