@@ -46,9 +46,9 @@ To add nodes to a cluster:
 
      * Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
-     * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about HA clusters, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
+     * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about creating HA clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
-     * If a node is only assigned one or more `custom` roles and is not assigned the `controller` role, then it is considered a _worker_ node because it does not run the Kubernetes control plane.
+     * To add non-controller or _worker_ nodes that do not run the Kubernetes control plane, select one or more `custom` roles for the node and deselect the `controller` role.
 
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
