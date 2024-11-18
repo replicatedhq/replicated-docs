@@ -8,7 +8,7 @@ import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
 # Generating a ConfigValues File
 
-This topic describes how to generate the ConfigValues file for an application. It also includes recommendations for how to prepare a sample ConfigValues file to be shared with your users.
+This topic describes how to generate the Replicated KOTS ConfigValues file for an application release. It also includes recommendations for how to prepare a sample ConfigValues file to be shared with your users.
 
 ## Overview
 
@@ -16,9 +16,9 @@ The KOTS ConfigValues file includes the fields that are defined in the KOTS Conf
 
 <ConfigValuesExample/>
 
-ConfigValues files allow you to pass the configuration values for an application during installation from the command line, rather than providing the configuartion values through the Admin Console UI. This supports automated or _headless_ installations, such as when installing an application as part of CI/CD pipelines. 
+The ConfigValues file allows you to pass the configuration values for an application from the command line with the install command, rather than through the Admin Console UI. This supports automated or _headless_ installations, such as when installing an application as part of CI/CD pipelines. 
 
-For more information about performing automated installations from the command line, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+For more information about installing from the command line, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
 
 ## Get the ConfigValues File
 

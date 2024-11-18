@@ -21,7 +21,7 @@ This topic describes how to install an application with Replicated KOTS, Replica
 
 You can use the command line to install an application with Replicated KOTS, Replicated Embedded Cluster, or Replicated kURL. A common use case for installing with the CLI is to automate installation, such as performing headless installations as part of CI/CD pipelines.
 
-To install with the CLI, you provide all the necessary assets, such as the license file and the application config values, with the installation command rather than through the Admin Console UI. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the Admin Console.
+To install with the CLI, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the Admin Console UI. Additionally, any preflight checks defined for the application automatically run from the CLI rather than being displayed in the Admin Console.
 
 ## Prerequisite
 
@@ -39,14 +39,14 @@ A ConfigValues file includes the names of the configuration fields for the appli
 
 To install with Embedded Cluster in an online environment:
 
-1. Download and untar the Embedded Cluster installation assets for the target release.
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster installation assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
-1. Install:
+1. Run the following command to install:
 
     ```bash
     sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
-    --config-values PATH_TO_CONFIGVALUES \
-    --admin-console-password ADMIN_CONSOLE_PASSWORD
+      --config-values PATH_TO_CONFIGVALUES \
+      --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
 
     Replace:
@@ -123,28 +123,28 @@ To install with kURL on a VM or bare metal server:
 
     <PlaceholderNamespaceEmbedded/>
 
-## Install in an Air-Gapped Environment  
+## Air Gap Install  
 
 ### Embedded Cluster
 
 To install with Embedded Cluster in an air-gapped environment:
 
-1. On a machine with internet access, run the curl command to download the air gap installation assets as a `.tgz`.
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster air gap installation assets. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. Move the downloaded `.tgz` to the air-gapped machine where you will install.
-
-1. Run the following command:
+1. Ensure that the Embedded Cluster installation assets are available on the air-gapped machine, then run the following command to install:
 
     ```bash
     sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
-    --config-values PATH_TO_CONFIGVALUES \
-    --airgap-bundle PATH_TO_AIRGAP_BUNDLE
+      --config-values PATH_TO_CONFIGVALUES \
+      --admin-console-password ADMIN_CONSOLE_PASSWORD \
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE
     ```
 
     Replace:
     * `APP_SLUG` with the unique slug for the application.
     * `LICENSE_FILE` with the customer license.
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file. See [Generating a ConfigValues File](/vendor/releases-configvalues).
+    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
     * `PATH_TO_AIRGAP_BUNDLE` with the path to the Embedded Cluster `.airgap` bundle for the release.
 
 ### KOTS in an Existing Cluster
