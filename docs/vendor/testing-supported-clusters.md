@@ -267,7 +267,7 @@ Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>Any promoted kURL installer. Version is optional. For an installer version other than "latest", you can find the ID for previously promoted installers on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
+    <td>Any promoted kURL installer. Version is optional. For an installer version other than "latest", you can find the specific Installer ID for a previously promoted installer under the relevant **Install Command** (ID after kurl.sh/) on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
