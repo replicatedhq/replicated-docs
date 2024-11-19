@@ -369,7 +369,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with the CLI',
+                label: 'Installing from the Command Line',
                 items: [
                   'enterprise/installing-existing-cluster-automation',
                   'vendor/releases-configvalues',

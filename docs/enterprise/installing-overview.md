@@ -48,7 +48,7 @@ For information about image registry requirements, see [Private Registry Require
 
 You can automate application installation in online, air gap, existing cluster, and embedded cluster environments using the KOTS CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated Admin Console.
 
-For more information, see [Installing with Automation](/enterprise/installing-existing-cluster-automation).
+For more information, see [Installing from the Command Line](/enterprise/installing-existing-cluster-automation).
 
 ### KOTS Installations Without Object Storage
 

@@ -18,7 +18,7 @@ The KOTS ConfigValues file includes the fields that are defined in the KOTS Conf
 
 The ConfigValues file allows you to pass the configuration values for an application from the command line with the install command, rather than through the Admin Console UI. This supports automated or _headless_ installations, such as when installing an application as part of CI/CD pipelines. 
 
-For more information about installing from the command line, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+For more information about installing from the command line, see [Installing from the Command Line](/enterprise/installing-existing-cluster-automation).
 
 ## Get the ConfigValues File
 
