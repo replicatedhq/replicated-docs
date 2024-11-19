@@ -229,6 +229,19 @@ const config = {
               },
             ],
           },
+          {
+            title: 'Open Source Docs',
+            items: [
+              {
+                label: 'kURL',
+                to: 'https://kurl.sh/docs/introduction/',
+              },
+              {
+                label: 'Troubleshoot',
+                to: 'https://troubleshoot.sh/docs/collect/',
+              },
+            ],
+          },
         ],
         copyright: `© ${new Date().getFullYear()} Replicated, Inc. All Rights Reserved.`,
       },

@@ -33,18 +33,30 @@ const sidebars = {
       ],
     },
     
-    //GET STARTED
-    // {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
-    {
-      type: 'category',
-      label: 'Concepts',
-      items: [
+    // GET STARTED
+    {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    // {
+    //   type: 'category',
+    //   label: 'Concepts',
+    //   items: [
         'intro-replicated',
         'vendor/kots-faq',
-        'vendor/embedded-kubernetes-overview',
-      ],
-    },
+        // 'vendor/embedded-kubernetes-overview',
+    //   ],
+    // },
+    
+    // {
+    //   type: 'category',
+    //   label: 'Planning',
+    //   items: [
+    //     'vendor/planning-questionnaire',
+    //     'vendor/namespaces',
+    //   ],
+    // },
+    
+    
     'vendor/quick-start',
+    'vendor/replicated-onboarding',
     {
       type: 'category',
       label: 'Tutorials',
@@ -103,54 +115,6 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG', label: 'Avoiding Installation Pitfalls'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca', label: 'Closing the Support Information Gap'},
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
-      ],
-    },
-    
-    // {
-    //   type: 'category',
-    //   label: 'Planning',
-    //   items: [
-    //     'vendor/planning-questionnaire',
-    //     'vendor/namespaces',
-    //   ],
-    // },
-    
-    // WORKFLOWS
-    {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
-    'vendor/replicated-onboarding',
-    {
-      type: 'category',
-      label: 'Integrating with CI/CD',
-      items: [
-        'vendor/ci-overview',
-        'vendor/ci-workflows',
-        'vendor/ci-workflows-github-actions',
-        'vendor/tutorial-ci-cd-integration',
-        {
-          type: 'category',
-          label: 'Automating Installation with the KOTS CLI',
-          items: [
-            'enterprise/installing-existing-cluster-automation',
-            'vendor/releases-configvalues',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Security Workflows',
-      items: [
-        'enterprise/sbom-validating',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Packaging Kubernetes Operators',
-      items: [
-        'vendor/operator-packaging-about',
-        'vendor/operator-defining-additional-images',
-        'vendor/operator-referencing-images',
-        'vendor/operator-defining-additional-namespaces',
       ],
     },
 
@@ -267,150 +231,210 @@ const sidebars = {
         'intro-kots',
         {
           type: 'category',
-          label: 'Distributing Helm Charts with KOTS',
+          label: 'Packaging KOTS Releases',
           items: [
-            'vendor/helm-native-about',
-            'vendor/helm-native-v2-using',
-            'vendor/helm-packaging-airgap-bundles',
-            'vendor/helm-optional-value-keys',
-            'vendor/helm-v2-migrate',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Admin Console and Download Portal Customization',
-          items: [
-            'vendor/admin-console-customize-app-icon',
-            'vendor/admin-console-adding-buttons-links',
-            'vendor/admin-console-prometheus-monitoring',
-            'vendor/admin-console-port-forward',
-          ],
-        },
-        {
-            type: 'category',
-            label: 'Admin Console Config Screen',
-            items: [
-              'vendor/config-screen-about',
-              'vendor/admin-console-customize-config-screen',
-              'vendor/config-screen-map-inputs',
-              'vendor/config-screen-conditional',
-              {
+            {
+              type: 'category',
+              label: 'Distributing Helm Charts with KOTS',
+              items: [
+                'vendor/helm-native-about',
+                'vendor/helm-native-v2-using',
+                'vendor/helm-packaging-airgap-bundles',
+                'vendor/helm-optional-value-keys',
+                'vendor/helm-v2-migrate',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Admin Console and Download Portal Customization',
+              items: [
+                'vendor/admin-console-customize-app-icon',
+                'vendor/admin-console-adding-buttons-links',
+                'vendor/admin-console-prometheus-monitoring',
+                'vendor/admin-console-port-forward',
+              ],
+            },
+            {
                 type: 'category',
-                label: 'Tutorial: Set Helm Chart Values with KOTS',
+                label: 'Admin Console Config Screen',
                 items: [
-                  'vendor/tutorial-config-setup',
-                  'vendor/tutorial-config-get-chart',
-                  'vendor/tutorial-config-create-app',
-                  'vendor/tutorial-config-package-chart',
-                  'vendor/tutorial-config-create-release',
-                  'vendor/tutorial-config-create-customer',
-                  'vendor/tutorial-config-install-kots',
-                ],
-              },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Managing Application Resources and Objects',
-          items: [
-            'vendor/admin-console-display-app-status',
-            {
-              type: 'category',
-                label: 'Conditionally Deploying Resources',
-                items: [
-                  'vendor/packaging-include-resources',
-                  'vendor/helm-optional-charts',
-                  'vendor/tutorial-adding-db-config',
-                ],
-            },
-            'vendor/resources-annotations-templating',
-            'vendor/orchestrating-resource-deployment',
-            'vendor/database-config-adding-options',
-            'vendor/packaging-cleaning-up-jobs',
-            'vendor/packaging-ingress',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Managing KOTS in Deployments',
-          items: [
-            'vendor/packaging-kots-versions',
-            'vendor/packaging-rbac',
-            'vendor/packaging-air-gap-excluding-minio',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Configuring Backup and Restore with Snapshots',
-          items: [
-            'vendor/snapshots-overview',
-            'vendor/snapshots-configuring-backups',
-            'vendor/snapshots-hooks',
-            'reference/custom-resource-backup',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Installing with KOTS',
-          items: [
-            {
-              type: 'category',
-              label: 'Preparing to Install',
-              items: [
-                'enterprise/installing-overview',
-                'enterprise/installing-general-requirements',
+                  'vendor/config-screen-about',
+                  'vendor/admin-console-customize-config-screen',
+                  'vendor/config-screen-map-inputs',
+                  'vendor/config-screen-conditional',
+                  {
+                    type: 'category',
+                    label: 'Tutorial: Set Helm Chart Values with KOTS',
+                    items: [
+                      'vendor/tutorial-config-setup',
+                      'vendor/tutorial-config-get-chart',
+                      'vendor/tutorial-config-create-app',
+                      'vendor/tutorial-config-package-chart',
+                      'vendor/tutorial-config-create-release',
+                      'vendor/tutorial-config-create-customer',
+                      'vendor/tutorial-config-install-kots',
+                    ],
+                  },
               ],
             },
-            
             {
               type: 'category',
-              label: 'Installing in Existing Clusters with KOTS',
+              label: 'Managing Resources and Objects',
               items: [
-                'enterprise/installing-existing-cluster',
-                'enterprise/installing-existing-cluster-airgapped',
+                'vendor/admin-console-display-app-status',
+                {
+                  type: 'category',
+                    label: 'Conditionally Deploying Resources',
+                    items: [
+                      'vendor/packaging-include-resources',
+                      'vendor/helm-optional-charts',
+                      'vendor/tutorial-adding-db-config',
+                    ],
+                },
+                'vendor/resources-annotations-templating',
+                'vendor/orchestrating-resource-deployment',
+                'vendor/database-config-adding-options',
+                'vendor/packaging-cleaning-up-jobs',
+                'vendor/packaging-ingress',
               ],
             },
-            
+            'vendor/packaging-using-tls-certs',
+            {
+              type: 'category',
+              label: 'Managing KOTS',
+              items: [
+                'vendor/packaging-kots-versions',
+                'vendor/packaging-rbac',
+                'vendor/packaging-air-gap-excluding-minio',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Configuring Backup and Restore with Snapshots',
+              items: [
+                'vendor/snapshots-overview',
+                'vendor/snapshots-configuring-backups',
+                'vendor/snapshots-hooks',
+                'reference/custom-resource-backup',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Distributing Kubernetes Operators with KOTS',
+              items: [
+                'vendor/operator-packaging-about',
+                'vendor/operator-defining-additional-images',
+                'vendor/operator-referencing-images',
+                'vendor/operator-defining-additional-namespaces',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'KOTS Custom Resources',
+              items: [
+                'reference/custom-resource-about',
+                'reference/custom-resource-application',
+                'reference/custom-resource-config',
+                'reference/custom-resource-helmchart-v2',
+                'reference/custom-resource-helmchart',
+                'reference/custom-resource-lintconfig',
+              ],
+            },  
+            {
+              type: 'category',
+              label: 'KOTS Template Functions',
+              items: [
+                'reference/template-functions-about',
+                'reference/template-functions-examples',
+                'reference/template-functions-config-context',
+                'reference/template-functions-identity-context',
+                'reference/template-functions-kurl-context',
+                'reference/template-functions-license-context',
+                'reference/template-functions-static-context',
+              ],
+            },
+            'reference/cron-expressions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Installing in Existing Clusters with KOTS',
+          items: [
+            'enterprise/installing-overview',
+            'enterprise/installing-general-requirements',         
+            'enterprise/installing-existing-cluster',
+            'enterprise/installing-existing-cluster-airgapped',
             'enterprise/installing-stateful-component-requirements',
-            {
-              type: 'category',
-              label: 'Performing Updates with KOTS',
-              items: [
-                'enterprise/updating-app-manager',
-                'enterprise/updating-embedded',
-                'enterprise/updating-kurl-about',
-                'enterprise/updating-kurl',
-                'enterprise/updating-apps',
-              ],
-            },
+            'enterprise/updating-patching-with-kustomize',
+          ],
+        },
         {
           type: 'category',
-          label: 'KOTS Custom Resources',
+          label: 'Performing Updates with KOTS',
           items: [
-            'reference/custom-resource-about',
-            'reference/custom-resource-application',
-            'reference/custom-resource-config',
-            'reference/custom-resource-helmchart-v2',
-            'reference/custom-resource-helmchart',
-            'reference/custom-resource-lintconfig',
+            'enterprise/updating-app-manager',
+            'enterprise/updating-apps',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Configuring Local Image Registries',
+          items: [
+            'enterprise/image-registry-settings',
+            'enterprise/image-registry-rate-limits',
           ],
         },
         'enterprise/updating-licenses',
-        'enterprise/updating-tls-cert',
         {
           type: 'category',
-          label: 'KOTS Template Functions',
+          label: 'Performing Backup and Restore with Snapshots',
           items: [
-            'reference/template-functions-about',
-            'reference/template-functions-examples',
-            'reference/template-functions-config-context',
-            'reference/template-functions-identity-context',
-            'reference/template-functions-kurl-context',
-            'reference/template-functions-license-context',
-            'reference/template-functions-static-context',
+            'enterprise/snapshots-understanding',
+            {
+              type: 'category',
+              label: 'Configuring Backup Storage',
+              items: [
+                'enterprise/snapshots-velero-cli-installing',
+                'enterprise/snapshots-configuring-hostpath',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-velero-installing-config',
+              ],
+            },
+            'enterprise/snapshots-creating',
+            'enterprise/snapshots-restoring-full',
+            'enterprise/snapshots-updating-with-admin-console',
+            'enterprise/snapshots-troubleshooting-backup-restore',
           ],
         },
-        'reference/cron-expressions',
+        {
+          type: 'category',
+          label: 'Managing Admin Console User Access',
+          items: [
+            'enterprise/auth-changing-passwords',
+            'enterprise/auth-identity-provider',
+            'enterprise/auth-configuring-rbac',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Using a GitOps Workflow (Deprecated)',
+          items: [
+            'enterprise/gitops-workflow',
+            'enterprise/gitops-managing-secrets',
+          ],
+        },  
+        {
+          type: 'category',
+          label: 'Monitoring Applications',
+          items: [
+            'enterprise/monitoring-applications',
+            'enterprise/monitoring-external-prometheus',
+          ],
+        },
+        'enterprise/status-viewing-details',
+        // 'enterprise/troubleshooting-an-app',
+        'enterprise/delete-admin-console',
       ],
     },
     {
@@ -419,7 +443,6 @@ const sidebars = {
       items: [
         'vendor/embedded-overview',
         'reference/embedded-config',
-        'vendor/embedded-disaster-recovery',
         {
           type: 'category',
           label: 'Installing with Embedded Cluster',
@@ -429,13 +452,8 @@ const sidebars = {
             'reference/embedded-cluster-install',
           ],
         },
-        {
-          type: 'category',
-          label: 'Performing Updates',
-          items: [
-            'enterprise/updating-embedded',
-          ],
-        },
+        'enterprise/updating-embedded',
+        'vendor/embedded-disaster-recovery',
       ],
     },
     {
@@ -443,12 +461,16 @@ const sidebars = {
       label: 'kURL',
       items: [
         'vendor/kurl-about',
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/installer-history',
-        'vendor/packaging-using-tls-certs',
-        'vendor/kurl-nodeport-services',
-        'enterprise/image-registry-kurl',
+        {
+          type: 'category',
+          label: 'Configuring kURL Installers',
+          items: [
+            'vendor/packaging-embedded-kubernetes',
+            'vendor/packaging-installer-storage',
+            'vendor/installer-history',
+            'vendor/kurl-nodeport-services',
+          ],
+        },
         {
           type: 'category',
           label: 'Installing with kURL',
@@ -458,9 +480,11 @@ const sidebars = {
           ],
         },
         'enterprise/cluster-management-add-nodes',
+        'enterprise/updating-tls-cert',
+        'enterprise/image-registry-kurl',
         {
           type: 'category',
-          label: 'Performing Updates',
+          label: 'Performing Updates with kURL',
           items: [
             'enterprise/updating-kurl-about',
             'enterprise/updating-kurl',
@@ -468,96 +492,6 @@ const sidebars = {
         },
       ],
     },
-    
-    {
-      type: 'category',
-      label: 'Distributing and Installing with KOTS',
-      items: [  
-        // KOTS ENTERPRISE USER DOCS
-        {
-          type: 'category',
-          label: 'Installing and Managing Applications',
-          items: [
-          {
-            type: 'category',
-            label: 'Using Image Registries',
-            items: [
-              'enterprise/image-registry-settings',
-              'enterprise/image-registry-rate-limits',
-            ],
-          },
-          'enterprise/updating-patching-with-kustomize',
-          
-          {
-            type: 'category',
-            label: 'Using a GitOps Workflow (Deprecated)',
-            items: [
-              'enterprise/gitops-workflow',
-              'enterprise/gitops-managing-secrets',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Managing Admin Console User Access',
-            items: [
-              'enterprise/auth-changing-passwords',
-              'enterprise/auth-identity-provider',
-              'enterprise/auth-configuring-rbac',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Monitoring Applications',
-            items: [
-              'enterprise/monitoring-applications',
-              'enterprise/monitoring-external-prometheus',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Backup and Restore',
-            items: [
-              'enterprise/snapshots-understanding',
-              {
-                type: 'category',
-                label: 'Configuring Backup Storage',
-                items: [
-                  'enterprise/snapshots-velero-cli-installing',
-                  'enterprise/snapshots-configuring-hostpath',
-                  'enterprise/snapshots-configuring-nfs',
-                  'enterprise/snapshots-storage-destinations',
-                  'enterprise/snapshots-velero-installing-config',
-                ],
-              },
-              'enterprise/snapshots-creating',
-              'enterprise/snapshots-restoring-full',
-              'enterprise/snapshots-updating-with-admin-console',
-              'enterprise/snapshots-troubleshooting-backup-restore',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Troubleshooting',
-            items: [
-              'enterprise/status-viewing-details',
-              'enterprise/troubleshooting-an-app',
-              'enterprise/delete-admin-console',
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Installing with Helm',
-    items: [
-      'vendor/helm-install-overview',
-      'vendor/install-with-helm',
-      'vendor/helm-install-airgap',
-      'vendor/using-third-party-registry-proxy',
-    ],
-  },
   {
     type: 'category',
     label: 'Replicated SDK (Beta)',
@@ -566,7 +500,7 @@ const sidebars = {
       'vendor/replicated-sdk-installing',
       'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
-      'vendor/replicated-sdk-slsa-validating',
+      // 'vendor/replicated-sdk-slsa-validating',
     ],
   },
   {
@@ -653,6 +587,45 @@ const sidebars = {
       'vendor/testing-cluster-addons',
       'vendor/testing-how-to',
       'vendor/testing-ingress',
+    ],
+  },
+
+  // WORKFLOWS
+  {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
+  {
+    type: 'category',
+    label: 'Installing with Helm',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+      'vendor/using-third-party-registry-proxy',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Integrating with CI/CD',
+    items: [
+      'vendor/ci-overview',
+      'vendor/ci-workflows',
+      'vendor/ci-workflows-github-actions',
+      'vendor/tutorial-ci-cd-integration',
+      {
+        type: 'category',
+        label: 'Automating Installation with the KOTS CLI',
+        items: [
+          'enterprise/installing-existing-cluster-automation',
+          'vendor/releases-configvalues',
+        ],
+      },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Security Workflows',
+    items: [
+      'enterprise/sbom-validating',
+      'vendor/replicated-sdk-slsa-validating',
     ],
   },
 
@@ -857,9 +830,9 @@ const sidebars = {
   },
 
   //OPEN SOURCE DOCS
-  {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
-  {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
-  {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
+  // {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
+  // {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
+  // {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
   // POLICIES
   {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
   {
