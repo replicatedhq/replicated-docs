@@ -40,7 +40,7 @@ The following describes each installation type available, as well as the require
      <tr>
           <th>Existing Cluster (Helm CLI)</th>
           <td><p>The customer does not have access to the Replicated installers.</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
-          <td>The latest release promoted to the channel where the customer is assigned must contain at least one Helm chart.</td>
+          <td>The latest release promoted to the channel where the customer is assigned must contain only Helm charts and Replicated Custom Resources at the top level of the directory.</td>
      </tr>
      <tr>
        <th>Existing Cluster (KOTS install)</th>
