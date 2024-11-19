@@ -47,6 +47,7 @@ To create a cluster using the Replicated CLI:
       * When creating a kURL cluster type using `cluster create`, use of `--version` is optional, and the value passed should be the kURL Installer ID if not using "latest" 
    * `DISK_SIZE` is the disk size (GiB) to request per node.
    * `INSTANCE_TYPE` is the instance type to use for each node.
+   * (Embedded Cluster only) `License ID` - A valid customer license is required to create an Embedded Cluster and can be passed as `--license-id [value]`. 
 
    For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
 
