@@ -42,8 +42,9 @@ To create a cluster using the Replicated CLI:
    Where:
    * `NAME` is any name for the cluster. If `--name` is excluded, a name is automatically generated for the cluster.
    * `K8S_DISTRO` is the Kubernetes distribution for the cluster.
-   * `K8S_VERSION` is the Kubernetes version for the cluster.
-      * When creating an Embedded Cluster using `cluster create`, the value passed for `--version` should be the `Channel sequence` value 
+   * `K8S_VERSION` is the Kubernetes version for the cluster if creating a standard Cloud or VM based cluster.
+      * When creating an Embedded Cluster type using `cluster create`, use of `--version` is optional, and the value passed should be the `Channel release sequence` value if not using "latest"
+      * When creating a kURL cluster type using `cluster create`, use of `--version` is optional, and the value passed should be the kURL Installer ID if not using "latest" 
    * `DISK_SIZE` is the disk size (GiB) to request per node.
    * `INSTANCE_TYPE` is the instance type to use for each node.
 
