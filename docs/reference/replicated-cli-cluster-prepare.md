@@ -9,6 +9,10 @@ Create a cluster and a release, then install the release in the cluster. This al
 `cluster prepare` is not recommended for production testing. For production testing, use `cluster create` instead.
 :::
 
+:::note
+The `cluster prepare` command is not supported for the Embedded Cluster type.
+:::
+
 ## Usage
 ```bash
 replicated cluster prepare [flags]
