@@ -24,7 +24,7 @@ For more information about installing from the command line, see [Installing fro
 
 During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file in the Admin Console **View files** tab or from the command line by running the `kubectl kots get config` command.
 
-To get the ConfigValues file for a release:
+To get the ConfigValues file from an installed application instance:
 
 1. Install the target release in a development environment. You can either install the release with Replicated Embedded Cluster or install in an existing cluster with KOTS. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
 
