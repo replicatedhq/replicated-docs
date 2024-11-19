@@ -32,15 +32,15 @@ const sidebars = {
         'release-notes/rn-vendor-platform',
       ],
     },
-    
-    // GET STARTED
-    {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    'intro-replicated',
+    'vendor/kots-faq',
     // {
     //   type: 'category',
     //   label: 'Concepts',
     //   items: [
-        'intro-replicated',
-        'vendor/kots-faq',
+    // GET STARTED
+    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    
         // 'vendor/embedded-kubernetes-overview',
     //   ],
     // },
@@ -424,14 +424,7 @@ const sidebars = {
             'enterprise/gitops-managing-secrets',
           ],
         },  
-        {
-          type: 'category',
-          label: 'Monitoring Applications',
-          items: [
-            'enterprise/monitoring-applications',
-            'enterprise/monitoring-external-prometheus',
-          ],
-        },
+        'enterprise/monitoring-applications',
         'enterprise/status-viewing-details',
         // 'enterprise/troubleshooting-an-app',
         'enterprise/delete-admin-console',
@@ -490,6 +483,7 @@ const sidebars = {
             'enterprise/updating-kurl',
           ],
         },
+        'enterprise/monitoring-external-prometheus',
       ],
     },
   {
