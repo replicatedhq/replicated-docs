@@ -95,7 +95,7 @@ Released on November 4, 2024
 </table>
 
 ### New Features {#new-features-1-17-0}
-* Adds partial rollback support where you can roll back from one version to another as long as the Embedded Cluster Config doesn't change between the two.
+* Adds support for partial rollbacks. Partial rollbacks are supported only when rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same [Embedded Cluster Config](/reference/embedded-config). For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 * Introduces a new landing page and guided installation workflow for the Admin Console.
 
 ### Improvements {#improvements-1-17-0}
