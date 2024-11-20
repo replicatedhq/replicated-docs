@@ -244,7 +244,7 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
     <td>
       <ul>
         <li>The Admin Console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
-        <li><b>A valid customer license is required to create an Embedded Cluster.</b></li>
+        <li><strong>A valid customer license is required to create an Embedded Cluster.</strong></li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
