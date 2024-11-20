@@ -20,6 +20,8 @@ const sidebars = {
 
   main: [
     'intro',
+    'intro-replicated',
+    'vendor/kots-faq',
     {
       type: 'category',
       label: 'Release Notes',
@@ -32,14 +34,13 @@ const sidebars = {
         'release-notes/rn-vendor-platform',
       ],
     },
-    'intro-replicated',
-    'vendor/kots-faq',
+    
     // {
     //   type: 'category',
     //   label: 'Concepts',
     //   items: [
     // GET STARTED
-    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    // {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     
         // 'vendor/embedded-kubernetes-overview',
     //   ],
@@ -54,8 +55,13 @@ const sidebars = {
     //   ],
     // },
     
-    
-    'vendor/quick-start',
+      // WORKFLOWS
+  {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
+  {
+    type: 'category',
+    label: 'Getting Started',
+    items: [
+'vendor/quick-start',
     'vendor/replicated-onboarding',
     {
       type: 'category',
@@ -117,6 +123,44 @@ const sidebars = {
         {type: 'link', href: 'https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd', label: 'Protecting Your Assets'},
       ],
     },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Installing with Helm',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+      'vendor/using-third-party-registry-proxy',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Integrating with CI/CD',
+    items: [
+      'vendor/ci-overview',
+      'vendor/ci-workflows',
+      'vendor/ci-workflows-github-actions',
+      'vendor/tutorial-ci-cd-integration',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Performing Headless Installs from the Command Line',
+    items: [
+      'enterprise/installing-existing-cluster-automation',
+      'vendor/releases-configvalues',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Security Workflows',
+    items: [
+      'enterprise/sbom-validating',
+      'vendor/replicated-sdk-slsa-validating',
+    ],
+  },
 
     // PRODUCT DOCS
     {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
@@ -223,7 +267,25 @@ const sidebars = {
         },
       ],
     },
-
+    {
+      type: 'category',
+      label: 'Embedded Cluster',
+      items: [
+        'vendor/embedded-overview',
+        'reference/embedded-config',
+        {
+          type: 'category',
+          label: 'Installing with Embedded Cluster',
+          items: [
+            'enterprise/installing-embedded',
+            'enterprise/installing-embedded-air-gap',
+            'reference/embedded-cluster-install',
+          ],
+        },
+        'enterprise/updating-embedded',
+        'vendor/embedded-disaster-recovery',
+      ],
+    },
     {
       type: 'category',
       label: 'KOTS (Admin Console)',
@@ -432,25 +494,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Embedded Cluster',
-      items: [
-        'vendor/embedded-overview',
-        'reference/embedded-config',
-        {
-          type: 'category',
-          label: 'Installing with Embedded Cluster',
-          items: [
-            'enterprise/installing-embedded',
-            'enterprise/installing-embedded-air-gap',
-            'reference/embedded-cluster-install',
-          ],
-        },
-        'enterprise/updating-embedded',
-        'vendor/embedded-disaster-recovery',
-      ],
-    },
-    {
-      type: 'category',
       label: 'kURL',
       items: [
         'vendor/kurl-about',
@@ -581,45 +624,6 @@ const sidebars = {
       'vendor/testing-cluster-addons',
       'vendor/testing-how-to',
       'vendor/testing-ingress',
-    ],
-  },
-
-  // WORKFLOWS
-  {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
-  {
-    type: 'category',
-    label: 'Installing with Helm',
-    items: [
-      'vendor/helm-install-overview',
-      'vendor/install-with-helm',
-      'vendor/helm-install-airgap',
-      'vendor/using-third-party-registry-proxy',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Integrating with CI/CD',
-    items: [
-      'vendor/ci-overview',
-      'vendor/ci-workflows',
-      'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
-      {
-        type: 'category',
-        label: 'Automating Installation with the KOTS CLI',
-        items: [
-          'enterprise/installing-existing-cluster-automation',
-          'vendor/releases-configvalues',
-        ],
-      },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Security Workflows',
-    items: [
-      'enterprise/sbom-validating',
-      'vendor/replicated-sdk-slsa-validating',
     ],
   },
 
