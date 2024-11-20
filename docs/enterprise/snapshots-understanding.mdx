@@ -3,10 +3,15 @@ import Dr from "../partials/snapshots/_limitation-dr.mdx"
 import Os from "../partials/snapshots/_limitation-os.mdx"
 import InstallMethod from "../partials/snapshots/_limitation-install-method.mdx"
 import CliRestores from "../partials/snapshots/_limitation-cli-restores.mdx"
+import NoEcSupport from "../partials/snapshots/_limitation-no-ec-support.mdx"
 
-# About Backup and Restore
+# About Backing Up and Restoring with Snapshots
 
-This topic provides an introduction to the Replicated KOTS snapshots feature, including information about backing up and restoring KOTS installations with snapshots. 
+This topic provides an introduction to performing backup and restore with the Replicated KOTS snapshots feature. 
+
+:::note
+<NoEcSupport/>
+:::
 
 ## Overview
 
@@ -16,7 +21,9 @@ Velero and restic are the underlying technologies for snapshots. For more inform
 
 ### Limitations and Considerations
 
-- The snapshots feature is available only for KOTS-enabled licenses with the **Allow Snapshots** feature.
+* <NoEcSupport/>
+
+- The snapshots feature is available only for licenses with the **Allow Snapshots** option enabled. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 - Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration.
 

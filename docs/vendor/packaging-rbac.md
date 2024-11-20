@@ -4,7 +4,7 @@ This topic describes role-based access control (RBAC) for Replicated KOTS in exi
 
 ## Cluster-scoped RBAC
 
-When a user installs your application in an existing cluster, Kubernetes RBAC resources are created to allow KOTS to install and manage the application.
+When a user installs your application with KOTS in an existing cluster, Kubernetes RBAC resources are created to allow KOTS to install and manage the application.
 
 By default, the following ClusterRole and ClusterRoleBinding resources are created that grant KOTS access to all resources across all namespaces in the cluster:
 
@@ -98,11 +98,11 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
 
-* **Velero namespace access**: Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. Velero is a requirement for configuring backup and restore with snapshots. 
+* **Velero namespace access for KOTS snapshots**: Velero is required for enabling backup and restore with the KOTS snapshots feature. Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. 
 
    To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation.
 
-   For more information about snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
+   For more information about snapshots, see [About Backing Up and Restoring with Snapshots](/enterprise/snapshots-understanding).
 
 * **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the Admin Console UI after KOTS is installed.
 
