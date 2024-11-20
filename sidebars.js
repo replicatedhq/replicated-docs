@@ -40,7 +40,7 @@ const sidebars = {
     //   label: 'Concepts',
     //   items: [
     // GET STARTED
-    // {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     
         // 'vendor/embedded-kubernetes-overview',
     //   ],
@@ -127,7 +127,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Installing with Helm',
+    label: 'Installing and Updating with Helm',
     items: [
       'vendor/helm-install-overview',
       'vendor/install-with-helm',
@@ -267,6 +267,22 @@ const sidebars = {
         },
       ],
     },
+    // {
+    //   type: 'category',
+    //   label: 'Download Portal',
+    //   items: [
+    //     {
+    //       type: 'category',
+    //       label: 'Installing and Updating with Helm',
+    //       items: [
+    //         'vendor/helm-install-overview',
+    //         'vendor/install-with-helm',
+    //         'vendor/helm-install-airgap',
+    //         'vendor/using-third-party-registry-proxy',
+    //       ],
+    //     },
+    //   ],
+    // },
     {
       type: 'category',
       label: 'Embedded Cluster',
