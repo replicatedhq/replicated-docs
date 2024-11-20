@@ -244,7 +244,7 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
     <td>
       <ul>
         <li>The Admin Console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
-        <li>A valid customer license is required for installing with Embedded Cluster.</li>
+        <li><strong>A valid customer license is required to create an Embedded Cluster.</strong></li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
@@ -267,7 +267,7 @@ Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>Any promoted kURL installer. For an installer version other than "latest", you can find the ID for previously promoted installers on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
+    <td>Any promoted kURL installer. Version is optional. For an installer version other than "latest", you can find the specific Installer ID for a previously promoted installer under the relevant **Install Command** (ID after kurl.sh/) on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
