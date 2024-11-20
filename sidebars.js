@@ -20,48 +20,50 @@ const sidebars = {
 
   main: [
     'intro',
-    'intro-replicated',
-    'vendor/kots-faq',
-    {
-      type: 'category',
-      label: 'Release Notes',
-      items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-embedded-cluster',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer',
-        'release-notes/rn-replicated-sdk',
-        'release-notes/rn-vendor-platform',
-      ],
-    },
-    
-    // {
-    //   type: 'category',
-    //   label: 'Concepts',
-    //   items: [
-    // GET STARTED
-    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
-    
-        // 'vendor/embedded-kubernetes-overview',
-    //   ],
-    // },
-    
-    // {
-    //   type: 'category',
-    //   label: 'Planning',
-    //   items: [
-    //     'vendor/planning-questionnaire',
-    //     'vendor/namespaces',
-    //   ],
-    // },
-    
-      // WORKFLOWS
-  {type: 'html', value: '<h5>workflows</h5>', defaultStyle: true},
+  // Platform overview
+  {type: 'html', value: '<h5>platform overview</h5>', defaultStyle: true},
+  'intro-replicated',
+  'vendor/kots-faq',
+  // 'vendor/embedded-kubernetes-overview',
   {
     type: 'category',
-    label: 'Getting Started',
+    label: 'Release Notes',
     items: [
-'vendor/quick-start',
+      'release-notes/rn-whats-new',
+      'release-notes/rn-embedded-cluster',
+      'release-notes/rn-app-manager',
+      'release-notes/rn-kubernetes-installer',
+      'release-notes/rn-replicated-sdk',
+      'release-notes/rn-vendor-platform',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Replicated Policies',
+    items: [
+      'vendor/policies-vulnerability-patch',
+      'vendor/policies-support-lifecycle',
+      'vendor/policies-data-transmission',
+      'vendor/policies-infrastructure-and-subprocessors',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Replicated Data Storage',
+    items: [
+      'vendor/data-availability',
+      'vendor/offsite-backup'
+    ],
+  },
+  {
+    type: 'link',
+    label: 'Security at Replicated',
+    href: 'https://www.replicated.com/security/'
+  },
+
+  // getting started
+  {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},  
+    'vendor/quick-start',
     'vendor/replicated-onboarding',
     {
       type: 'category',
@@ -108,8 +110,6 @@ const sidebars = {
             'vendor/tutorial-cli-create-new-version',
             'vendor/tutorial-cli-update-app',
           ],
-        },
-      ],
     },
     {
       type: 'category',
@@ -125,45 +125,45 @@ const sidebars = {
     },
     ],
   },
-  {
-    type: 'category',
-    label: 'Installing and Updating with Helm',
-    items: [
-      'vendor/helm-install-overview',
-      'vendor/install-with-helm',
-      'vendor/helm-install-airgap',
-      'vendor/using-third-party-registry-proxy',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Integrating with CI/CD',
-    items: [
-      'vendor/ci-overview',
-      'vendor/ci-workflows',
-      'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Performing Headless Installs from the Command Line',
-    items: [
-      'enterprise/installing-existing-cluster-automation',
-      'vendor/releases-configvalues',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Security Workflows',
-    items: [
-      'enterprise/sbom-validating',
-      'vendor/replicated-sdk-slsa-validating',
-    ],
-  },
+  // {
+  //   type: 'category',
+  //   label: 'Installing and Updating with Helm',
+  //   items: [
+  //     'vendor/helm-install-overview',
+  //     'vendor/install-with-helm',
+  //     'vendor/helm-install-airgap',
+  //     'vendor/using-third-party-registry-proxy',
+  //   ],
+  // },
+  // {
+  //   type: 'category',
+  //   label: 'Integrating with CI/CD',
+  //   items: [
+  //     'vendor/ci-overview',
+  //     'vendor/ci-workflows',
+  //     'vendor/ci-workflows-github-actions',
+  //     'vendor/tutorial-ci-cd-integration',
+  //   ],
+  // },
+  // {
+  //   type: 'category',
+  //   label: 'Performing Headless Installs from the Command Line',
+  //   items: [
+  //     'enterprise/installing-existing-cluster-automation',
+  //     'vendor/releases-configvalues',
+  //   ],
+  // },
+  // {
+  //   type: 'category',
+  //   label: 'Security Workflows',
+  //   items: [
+  //     'enterprise/sbom-validating',
+  //     'vendor/replicated-sdk-slsa-validating',
+  //   ],
+  // },
 
-    // PRODUCT DOCS
-    {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
+    // Pproducts
+    {type: 'html', value: '<h5>products</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Vendor Portal',
@@ -848,30 +848,7 @@ const sidebars = {
   // {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
   // {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
   // POLICIES
-  {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
-  {
-    type: 'category',
-    label: 'Replicated Policies',
-    items: [
-      'vendor/policies-vulnerability-patch',
-      'vendor/policies-support-lifecycle',
-      'vendor/policies-data-transmission',
-      'vendor/policies-infrastructure-and-subprocessors',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Replicated Data Storage',
-    items: [
-      'vendor/data-availability',
-      'vendor/offsite-backup'
-    ],
-  },
-  {
-    type: 'link',
-    label: 'Security at Replicated',
-    href: 'https://www.replicated.com/security/'
-  },
+  // {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
  ],
 };
 
