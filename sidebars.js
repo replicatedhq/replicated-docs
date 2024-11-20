@@ -587,6 +587,26 @@ const sidebars = {
       'vendor/testing-ingress',
     ],
   },
+  {
+    type: 'category',
+    label: 'Installing and Updating with Helm',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+      'vendor/using-third-party-registry-proxy',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Integrating with CI/CD',
+    items: [
+      'vendor/ci-overview',
+      'vendor/ci-workflows',
+      'vendor/ci-workflows-github-actions',
+      'vendor/tutorial-ci-cd-integration',
+    ],
+  },
 
   // DEVELOPER TOOLS
   {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
