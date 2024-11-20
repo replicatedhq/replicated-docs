@@ -37,7 +37,7 @@ To create a cluster using the Replicated CLI:
 1. Run the following command to create a cluster:
 
    ```
-   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE
+   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
    ```
    Where:
    * `NAME` is any name for the cluster. If `--name` is excluded, a name is automatically generated for the cluster.
@@ -47,7 +47,7 @@ To create a cluster using the Replicated CLI:
       * For kURL cluster types, `--verison` is the `"latest"` kURL Installer ID by default.  Otherwise, to specify a different kURL Installer, set `--version` to the kURL Installer ID. 
    * `DISK_SIZE` is the disk size (GiB) to request per node.
    * `INSTANCE_TYPE` is the instance type to use for each node.
-   * (Embedded Cluster only) `License ID` - A valid customer license is required to create an Embedded Cluster and can be passed as `--license-id [value]`. 
+   * (Embedded Cluster Only) `LICENSE_ID` is a valid customer license. Required to create an Embedded Cluster.
 
    For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
 
