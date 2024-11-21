@@ -1,0 +1,92 @@
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+import PlaceholdersGlobal from "../partials/install/_placeholders-global.mdx"
+import PlaceholderAirgapBundle from "../partials/install/_placeholder-airgap-bundle.mdx"
+import PlaceholderNamespaceKurl from "../partials/install/_placeholder-namespace-embedded.mdx"
+import IntroKurl from "../partials/install/_automation-intro-embedded.mdx"
+
+# Installing with kURL from the Command Line
+
+This topic describes how to install an application with Replicated kURL from the command line.
+
+## Overview
+
+You can use the command line to install an application with Replicated kURL. A common use case for installing from the command line is to automate installation, such as performing headless installations as part of CI/CD pipelines.
+
+To install from the command line, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the Admin Console UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the Admin Console.
+
+## Prerequisite
+
+Create a ConfigValues YAML file to define the configuration values for the application release. You will pass the ConfigValues file with the installation command. For air-gapped environments, ensure that the ConfigValues file can be accessed from the installation environment. 
+
+For more information, see [Generating a ConfigValues File](/vendor/releases-configvalues).
+
+**Example:**
+
+<ConfigValuesExample/>
+
+## Online (Internet-Connected) Installation
+
+<IntroKurl/>
+
+To install with kURL on a VM or bare metal server:
+
+1. Create the kURL cluster:
+
+   ```bash
+   curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
+   ```
+
+1. Install the application in the cluster:
+
+    ```bash
+    kubectl kots install APP_NAME \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE \
+      --config-values PATH_TO_CONFIGVALUES \
+      --namespace default \
+      --no-port-forward
+    ```
+
+    Replace:
+
+    <PlaceholdersGlobal/>
+
+    <PlaceholderNamespaceKurl/>
+
+<IntroEmbedded/>
+
+## Air Gap Installation
+
+To install in an air-gapped kURL cluster:
+
+1. Download the kURL `.tar.gz` air gap bundle:
+
+   <DownloadkURLBundle/>
+
+1. <ExtractKurlBundle/>
+
+1. Create the kURL cluster:
+
+   ```
+   cat install.sh | sudo bash -s airgap
+   ```
+
+1. Install the application:
+
+    ```bash
+    kubectl kots install APP_NAME \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE \
+      --config-values PATH_TO_CONFIGVALUES \
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+      --namespace default \
+      --no-port-forward
+    ```
+
+    Replace:
+
+    <PlaceholdersGlobal/>
+
+    <PlaceholderAirgapBundle/>
+
+    <PlaceholderNamespaceEmbedded/>    
