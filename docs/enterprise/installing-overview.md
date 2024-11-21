@@ -24,7 +24,7 @@ For more information about the security context enabled by the `--strict-securit
 During install, KOTS can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules. A private image registry is required for air gapped environments, and is optional for online environments.
 
-For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#private-registry-requirements).
+For information about image registry requirements, see [Compatible Image Registries](installing-general-requirements#registries).
 
 ## Automated (Headless) Installation
 
