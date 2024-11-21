@@ -1,4 +1,5 @@
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+import ConfigValuesProcedure from "../partials/configValues/_config-values-procedure.mdx"
 
 # Installing with Embedded Cluster from the Command Line
 
@@ -12,13 +13,13 @@ To install from the command line, you provide all the necessary installation ass
 
 ## Prerequisite
 
-Create a ConfigValues YAML file to define the configuration values for the application release. You will pass the ConfigValues file with the installation command. For air-gapped environments, ensure that the ConfigValues file can be accessed from the installation environment. 
+Create a ConfigValues YAML file to define the configuration values for the application release. The ConfigValues file allows you to pass the configuration values for an application from the command line with the install command, rather than through the Admin Console UI. For air-gapped environments, ensure that the ConfigValues file can be accessed from the installation environment. 
 
-For more information, see [Generating a ConfigValues File](/vendor/releases-configvalues).
-
-**Example:**
+The KOTS ConfigValues file includes the fields that are defined in the KOTS Config custom resource for an application release, along with the user-supplied and default values for each field, as shown in the example below:
 
 <ConfigValuesExample/>
+
+<ConfigValuesProcedure/>
 
 ## Online (Internet-Connected) Installation
 
