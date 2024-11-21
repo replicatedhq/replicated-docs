@@ -256,11 +256,11 @@ const sidebars = {
         'intro-kots',
         {
           type: 'category',
-          label: 'Packaging KOTS Releases',
+          label: 'Configuring KOTS',
           items: [
             {
               type: 'category',
-              label: 'Distributing Helm Charts with KOTS',
+              label: 'Configuring the HelmChart Custom Resource',
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
@@ -271,7 +271,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Admin Console and Download Portal Customization',
+              label: 'Customizing the Admin Console and Download Portal',
               items: [
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-adding-buttons-links',
@@ -281,7 +281,7 @@ const sidebars = {
             },
             {
                 type: 'category',
-                label: 'Admin Console Config Screen',
+                label: 'Configuring the Admin Console Config Screen',
                 items: [
                   'vendor/config-screen-about',
                   'vendor/admin-console-customize-config-screen',
@@ -493,6 +493,7 @@ const sidebars = {
           ],
         },
         'enterprise/monitoring-external-prometheus',
+        'vendor/kurl-reset',
       ],
     },
   {
@@ -609,7 +610,6 @@ const sidebars = {
       'vendor/ci-overview',
       'vendor/ci-workflows',
       'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
     ],
   },
 
