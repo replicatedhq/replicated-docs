@@ -251,7 +251,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'KOTS (Admin Console)',
+      label: 'KOTS',
       items: [
         'intro-kots',
         {
