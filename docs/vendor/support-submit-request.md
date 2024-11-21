@@ -2,11 +2,6 @@
 
 You can submit a support request and a support bundle using the Replicated Vendor Portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
-:::note
-
-For KOTS, if your customer cannot generate a support bundle using the KOTS Admin Console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app) in the KOTS documentation.
-:::
-
 ### Prerequisites
 
 The following prerequisites must be met to submit support requests:
