@@ -10,6 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.20-5
+
+Released on November 20, 2024
+
+### New Features {#new-features-v2024-11-20-5}
+* Allows the user to edit cluster tags from the **Edit Cluster** page.
+
+## v2024.11.20-2
+
+Released on November 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-20-2}
+* Fixes a bug that could cause the [Channel installation command](/vendor/releases-about#channels-page) to use a kURL Installer other than the latest.
+
 ## v2024.11.18-0
 
 Released on November 18, 2024
