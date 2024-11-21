@@ -214,6 +214,17 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Compatibility Matrix',
+      items: [
+        'vendor/testing-about',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-cluster-addons',
+        'vendor/testing-how-to',
+        'vendor/testing-ingress',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Embedded Cluster',
       items: [
         'vendor/embedded-overview',
@@ -481,36 +492,6 @@ const sidebars = {
     },
   {
     type: 'category',
-    label: 'Replicated SDK (Beta)',
-    items: [
-      'vendor/replicated-sdk-overview',
-      'vendor/replicated-sdk-installing',
-      'vendor/replicated-sdk-airgap',
-      'vendor/replicated-sdk-customizing',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Replicated Proxy Registry',
-    items: [
-      'vendor/private-images-about',
-      'vendor/packaging-private-images',
-      'vendor/helm-image-registry',
-      'vendor/private-images-kots',
-      'vendor/private-images-tags-digests',
-      {
-        type: 'category',
-        label: 'Replicated Private Registry',
-        items: [
-          'vendor/private-images-replicated',
-          'vendor/packaging-private-registry-security',
-        ],
-      },
-      'vendor/tutorial-ecr-private-images',
-    ],
-  },
-  {
-    type: 'category',
     label: 'Preflight Checks and Support Bundles',
     items: [
       'vendor/preflight-support-bundle-about',
@@ -570,21 +551,40 @@ const sidebars = {
         ],
       },
     ],
-  },
+  },  
   {
     type: 'category',
-    label: 'Compatibility Matrix',
+    label: 'Replicated Proxy Registry',
     items: [
-      'vendor/testing-about',
-      'vendor/testing-supported-clusters',
-      'vendor/testing-cluster-addons',
-      'vendor/testing-how-to',
-      'vendor/testing-ingress',
+      'vendor/private-images-about',
+      'vendor/packaging-private-images',
+      'vendor/helm-image-registry',
+      'vendor/private-images-kots',
+      'vendor/private-images-tags-digests',
+      {
+        type: 'category',
+        label: 'Replicated Private Registry',
+        items: [
+          'vendor/private-images-replicated',
+          'vendor/packaging-private-registry-security',
+        ],
+      },
+      'vendor/tutorial-ecr-private-images',
     ],
   },
   {
     type: 'category',
-    label: 'Installing and Updating with Helm',
+    label: 'Replicated SDK (Beta)',
+    items: [
+      'vendor/replicated-sdk-overview',
+      'vendor/replicated-sdk-installing',
+      'vendor/replicated-sdk-airgap',
+      'vendor/replicated-sdk-customizing',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Helm Installations with Replicated',
     items: [
       'vendor/helm-install-overview',
       'vendor/install-with-helm',
@@ -594,7 +594,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Integrating with CI/CD',
+    label: 'Integrating Replicated in CI/CD Workflows',
     items: [
       'vendor/ci-overview',
       'vendor/ci-workflows',
