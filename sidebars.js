@@ -238,6 +238,7 @@ const sidebars = {
           type: 'category',
           label: 'Installing with Embedded Cluster',
           items: [
+            'enterprise/installing-embedded-requirements',
             'enterprise/installing-embedded',
             'enterprise/installing-embedded-air-gap',
             'reference/embedded-cluster-install',
@@ -472,6 +473,7 @@ const sidebars = {
           type: 'category',
           label: 'Installing with kURL',
           items: [
+            'enterprise/installing-kurl-requirements',
             'enterprise/installing-kurl',
             'enterprise/installing-kurl-airgap',
           ],
