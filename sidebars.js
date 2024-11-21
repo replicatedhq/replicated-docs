@@ -108,7 +108,7 @@ const sidebars = {
       ],
     },
     // PRODUCT DOCS
-    {type: 'html', value: '<h5>products</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Vendor Portal',
@@ -212,22 +212,6 @@ const sidebars = {
         },
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Download Portal',
-    //   items: [
-    //     {
-    //       type: 'category',
-    //       label: 'Installing and Updating with Helm',
-    //       items: [
-    //         'vendor/helm-install-overview',
-    //         'vendor/install-with-helm',
-    //         'vendor/helm-install-airgap',
-    //         'vendor/using-third-party-registry-proxy',
-    //       ],
-    //     },
-    //   ],
-    // },
     {
       type: 'category',
       label: 'Embedded Cluster',
@@ -396,7 +380,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Performing Updates with KOTS',
+          label: 'Performing Updates in Existing Cluster KOTS Installations',
           items: [
             'enterprise/updating-app-manager',
             'enterprise/updating-apps',
@@ -441,7 +425,10 @@ const sidebars = {
             'enterprise/auth-identity-provider',
             'enterprise/auth-configuring-rbac',
           ],
-        },
+        }, 
+        'enterprise/monitoring-applications',
+        'enterprise/status-viewing-details',
+        'enterprise/delete-admin-console',
         {
           type: 'category',
           label: 'Using a GitOps Workflow (Deprecated)',
@@ -449,11 +436,7 @@ const sidebars = {
             'enterprise/gitops-workflow',
             'enterprise/gitops-managing-secrets',
           ],
-        },  
-        'enterprise/monitoring-applications',
-        'enterprise/status-viewing-details',
-        'enterprise/troubleshooting-an-app',
-        'enterprise/delete-admin-console',
+        }, 
       ],
     },
     {
@@ -504,7 +487,6 @@ const sidebars = {
       'vendor/replicated-sdk-installing',
       'vendor/replicated-sdk-airgap',
       'vendor/replicated-sdk-customizing',
-      'vendor/replicated-sdk-slsa-validating',
     ],
   },
   {
@@ -561,14 +543,21 @@ const sidebars = {
         items: [
           'vendor/support-bundle-customizing',
           'vendor/support-bundle-examples',
-          'vendor/support-bundle-generating',
-          'vendor/support-bundle-embedded',
-          'vendor/support-host-support-bundles',
+          'vendor/support-online-support-bundle-specs',
+          'vendor/support-modular-support-bundle-specs',
+          {
+            type: 'category',
+            label: 'Generating Support Bundles',
+            items: [
+              'vendor/support-bundle-generating',
+              'vendor/support-bundle-embedded',
+              'enterprise/troubleshooting-an-app',
+              'vendor/support-host-support-bundles',
+            ],
+          },
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
           'vendor/support-submit-request',
-          'vendor/support-online-support-bundle-specs',
-          'vendor/support-modular-support-bundle-specs',
         ],
       },
       'vendor/preflight-sb-helm-templates-about',
@@ -817,8 +806,9 @@ const sidebars = {
   {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
   {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
   {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
+
   // POLICIES
-  {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
+  {type: 'html', value: '<h5>platform overview</h5>', defaultStyle: true},
   {
     type: 'category',
     label: 'Replicated Policies',
@@ -838,10 +828,19 @@ const sidebars = {
     ],
   },
   {
-    type: 'link',
+    type: 'category',
     label: 'Security at Replicated',
-    href: 'https://www.replicated.com/security/'
+    items: [
+      {
+        type: 'link',
+        label: 'Security at Replicated',
+        href: 'https://www.replicated.com/security/'
+      },
+      'enterprise/sbom-validating',
+      'vendor/replicated-sdk-slsa-validating',
+    ],
   },
+  
  ],
 };
 
