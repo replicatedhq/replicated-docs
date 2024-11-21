@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.20-5
+
+Released on November 20, 2024
+
+### New Features {#new-features-v2024-11-20-5}
+* Allows the user to edit cluster tags from the **Edit Cluster** page.
+
 ## v2024.11.20-2
 
 Released on November 20, 2024
