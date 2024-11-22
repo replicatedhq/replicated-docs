@@ -102,6 +102,14 @@ Grants the holder permission to view the team's Slack notification subscriptions
 
 Grants the holder permission to edit the team's Slack notification subscriptions for instances associated with the specified license.
 
+### kots/app/[:appId]/builtin-licensefields/update
+
+Grants the holder permission to edit the builtin license field override values for the specified application(s).
+
+### kots/app/[:appId]/builtin-licensefields/delete
+
+Grants the holder permission to delete the builtin license field override values for the specified application(s).
+
 ### kots/license/[:customerId]/airgap/password
 
 Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
