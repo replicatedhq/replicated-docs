@@ -109,7 +109,7 @@ This will create a postgres database, and return the `uri` which allows you to c
     <th>Options</th>
     <td>
       <ul>
-        <li><strong>version (string):</strong> The Postgres version to create. Supported versions: 11, 12, 13, 14, 15, 16</li>
+        <li><strong>version (string):</strong> The Postgres version to create. Supported versions: 11, 12, 13, 14, 15, 16, 17</li>
         <li><strong>instance-type (string):</strong>The type of instance to use for the Postgres database (default "db.t3.micro"). Supported Instance Types: db.t3.micro, db.t3.small, db.t3.medium, db.t3.large, db.t3.xlarge, db.t3.2xlarge, db.m5d.large, db.m5d.xlarge, db.m5d.2xlarge</li>
         <li><strong>disk (number):</strong>Disk Size (GiB) for the Postgres database (default 200)</li>
       </ul>
