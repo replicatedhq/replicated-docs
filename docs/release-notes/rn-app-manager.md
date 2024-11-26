@@ -25,8 +25,7 @@ Released on November 26, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-121-1}
-* The join command is no longer regenerated on window focus on the cluster configuration page.
-* Fixed logged out when joining the second controller node on an Embedded Cluster installation.
+* Various fixes for Embedded Cluster.
 
 ## 1.121.0
 
