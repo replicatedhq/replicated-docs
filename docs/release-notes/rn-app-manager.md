@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.121.1
+
+Released on November 26, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-121-1}
+* The join command is no longer regenerated on window focus on the cluster configuration page.
+* Fixed logged out when joining the second controller node on an Embedded Cluster installation.
+
 ## 1.121.0
 
 Released on November 12, 2024
