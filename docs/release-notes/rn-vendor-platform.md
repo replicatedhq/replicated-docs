@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.26-6
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-6}
+* Fixes a bug where it causes the Customer Portal to show a blank screen when missing data from an endpoint.
+
 ## v2024.11.26-2
 
 Released on November 26, 2024
