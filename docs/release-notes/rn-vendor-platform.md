@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 26, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-11-26-2}
-* Fixes an bug that could result in images not being included in Helm Airg gap install instructions.
+* Fixes a bug that caused images to be excluded from the Helm air gap install instructions.
 
 ## v2024.11.20-5
 
