@@ -23,6 +23,13 @@ Released on November 27, 2024
 ### Bug Fixes {#bug-fixes-v2024-11-27-0}
 * Fixes a bug where Helm install instructions in the [Download Portal](/vendor/helm-install-airgap) didn't use custom domains.
 
+## v2024.11.26-6
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-6}
+* Fixes a bug where it causes the Customer Portal to show a blank screen when missing data from an endpoint.
+
 ## v2024.11.26-2
 
 Released on November 26, 2024
