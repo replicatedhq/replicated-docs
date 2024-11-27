@@ -24,8 +24,8 @@ Released on November 27, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-121-2}
-* Enable embedded cluster node joins to preflight Node to Node communications.
+### Improvements {#improvements-1-121-2}
+* Various updates for Embedded Cluster.
 
 ## 1.121.1
 
