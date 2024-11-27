@@ -10,6 +10,19 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.27-1
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-1}
+* Fixes an issue where a KOTS release was incorrectly identified as a [Helm CLI-only](/vendor/licenses-install-types#install-types) release, preventing it from being promoted.
+## v2024.11.27-0
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-0}
+* Fixes a bug where Helm install instructions in the [Download Portal](/vendor/helm-install-airgap) didn't use custom domains.
+
 ## v2024.11.26-6
 
 Released on November 26, 2024
