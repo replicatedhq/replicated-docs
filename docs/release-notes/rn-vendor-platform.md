@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.27-1
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-1}
+* Fixes a bug that could cause an [Helm CLI Only](/vendor/licenses-install-types#install-types) error when promoting a KOTS release.
+
 ## v2024.11.26-2
 
 Released on November 26, 2024
