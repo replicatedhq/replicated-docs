@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.27-0
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-0}
+* Fixes a bug that could cause a custom hostnames to not be used in the instructions show in the [Download Portal](/vendor/helm-install-airgap).
+
 ## v2024.11.26-2
 
 Released on November 26, 2024
