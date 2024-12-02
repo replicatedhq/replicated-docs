@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.02-0
+
+Released on December 2, 2024
+
+### New Features {#new-features-v2024-12-02-0}
+* Adds support for `kots.io/installer-only` annotation on Kuberntes specs.
+
 ## v2024.11.27-1
 
 Released on November 27, 2024
