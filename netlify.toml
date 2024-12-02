@@ -182,7 +182,11 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/tutorial-ci-cd-integration"
-  to = "https://docs.replicated.com/vendor/ci-overview"                                  
+  to = "https://docs.replicated.com/vendor/ci-overview"   
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-kubernetes-overview"
+  to = "https://docs.replicated.com/vendor/embedded-overview"                        
 
 ###################################################
 # Redirects To the Enterprise Section
