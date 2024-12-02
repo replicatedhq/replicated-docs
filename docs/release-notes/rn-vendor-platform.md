@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.02-2
+
+Released on December 2, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-02-2}
+* Fixes a bug that could cause the [kURL Embedded Cluster](https://docs.replicated.com/vendor/licenses-install-types#install-types) option to be disabled for customers even though there is a kURL Installer spec available.
+
 ## v2024.11.27-1
 
 Released on November 27, 2024
