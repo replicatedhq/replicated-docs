@@ -17,6 +17,13 @@ Released on December 2, 2024
 ### Bug Fixes {#bug-fixes-v2024-12-02-2}
 * Fixes a bug that could cause the [kURL Embedded Cluster](https://docs.replicated.com/vendor/licenses-install-types#install-types) option to be disabled for customers even though there is a kURL Installer spec available.
 
+## v2024.12.02-0
+
+Released on December 2, 2024
+
+### New Features {#new-features-v2024-12-02-0}
+* Adds support for `kots.io/installer-only` annotation on Kuberntes specs. For more information, see [kots.io/installer-only Annotation](/vendor/licenses-install-types#installer-only-annotation) in _Managing Install Types for a License (Beta)_.
+
 ## v2024.11.27-1
 
 Released on November 27, 2024
