@@ -40,7 +40,7 @@ The following describes each installation type available, as well as the require
      <tr>
           <th>Existing Cluster (Helm CLI)</th>
           <td><p>The customer does not have access to the Replicated installers.</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
-          <td>The latest release promoted to the channel where the customer is assigned must contain only Helm charts and Replicated Custom Resources. Any other Kubernetes resources must include `kots.io/installer-only` annotation. See <a href="#installer-only-annotation">The kots.io/installer-only Annotation</a> below.</td>
+          <td>The latest release promoted to the channel where the customer is assigned must contain only Helm charts and Replicated Custom Resources. Any other Kubernetes resources must include the `kots.io/installer-only` annotation. See <a href="#installer-only-annotation">kots.io/installer-only Annotation</a> below.</td>
      </tr>
      <tr>
        <th>Existing Cluster (KOTS install)</th>
@@ -77,9 +77,9 @@ The following describes each installation type available, as well as the require
      </tr>
 </table>
 
-### The `kots.io/installer-only` Annotation {#installer-only-annotation}
+### `kots.io/installer-only` Annotation {#installer-only-annotation}
 
-The `kots.io/installer-only` annotation is used to indicate that the Kubernetes resource is only used by the Replicated installer. This annotation is required for releases that include resources other than Helm charts but still want to use the `Existing Cluster (Helm CLI)` install type.
+The `kots.io/installer-only` annotation indicates that the Kubernetes resource is only used by the Replicated installers (Embedded Cluster, KOTS, or kURL). This annotation is required for releases that support the `Existing Cluster (Helm CLI)` install type and include resources other than Helm charts.
 
 Example:
 ```yaml
