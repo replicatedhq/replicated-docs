@@ -49,15 +49,15 @@ For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
 Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together as a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ with the application.
 
-Additionally, each version of Embedded Cluster includes a specific version of Replicated KOTS that is installed in the cluster during installation. KOTS is used by Embedded Cluster to deploy the application and also provides the Admin Console UI where users can manage both the application and the cluster.
+Additionally, each version of Embedded Cluster includes a specific version of [Replicated KOTS](#kots) that is installed in the cluster during installation. KOTS is used by Embedded Cluster to deploy the application and also provides the Admin Console UI where users can manage both the application and the cluster.
 
 For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-### KOTS (Admin Console)
+### KOTS (Admin Console) {#kots}
 
 KOTS is a kubectl plugin and in-cluster Admin Console that installs Kubernetes applications in customer-controlled environments.
 
-KOTS is used by Replicated Embedded Cluster to deploy applications and also to provide the Admin Console UI where users can manage both the application and the cluster. Embedded Cluster automatically installs KOTS during installation. 
+KOTS is used by [Replicated Embedded Cluster](#embedded-cluster) to deploy applications and also to provide the Admin Console UI where users can manage both the application and the cluster. Embedded Cluster automatically installs KOTS during installation. 
 
 KOTS can also be used to install applications in existing Kubernetes clusters in customer-controlled environments, including clusters in air-gapped environments with limited or no outbound internet access.
 
@@ -151,7 +151,7 @@ Applications distributed with the Replicated Platform can support multiple diffe
 
 * Customers who are not experienced with Kubernetes or who prefer to deploy to a dedicated cluster in their environment can install on a VM or bare metal server with the Replicated Embedded Cluster installer. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 * Customers familiar with Kubernetes and Helm can install in their own existing cluster using Helm. For more information, see [Installing with Helm](/vendor/install-with-helm).
-* Customers with limited or no outbound internet access can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap).
+* Customers installing into environments with limited or no outbound internet access (often referred to as air-gapped environments) can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap).
 
 ### Report
 
