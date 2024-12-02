@@ -42,12 +42,21 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      <td>`--cidr`</td>
      <td>
         <p>The range of IP addresses that can be assigned to Pods and Services, in CIDR notation. **Default:** By default, the CIDR block is `10.244.0.0/16`.</p>
+        <p>**Requirement**: Embedded Cluster 1.16.0 or later.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--config-values`</td>
+     <td>
+        <p>Path to the ConfigValues file for the application. The ConfigValues file can be used to pass the application configuration values from the command line during installation, such as when performing automated installations as part of CI/CD pipelines. For more information about generating the ConfigValues file for a release, see [Generating a ConfigValues File](/vendor/releases-configvalues).</p>
+        <p><strong>Requirement:</strong> Embedded Cluster 1.18.0 and later.</p>
      </td>
   </tr>
   <tr>
      <td>`--data-dir`</td>
      <td>
         <p>The data directory used by Embedded Cluster. **Default**: `/var/lib/embedded-cluster`</p>
+        <p>**Requirement**: Embedded Cluster 1.16.0 or later.</p>
         <p>**Limitations:**</p>
         <ul>
             <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
@@ -113,19 +122,27 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
 ### Air Gap Install
 
 ```bash
-sudo ./myapp install --license license.yaml --airgap-bundle myapp.airgap
+sudo ./my-app install --license license.yaml --airgap-bundle myapp.airgap
 ```
 
 ### Change the Admin Console and LAM Ports
 
 ```bash
-sudo ./myapp install --license license.yaml --admin-console-port=20000 --local-artifact-mirror-port=40000
+sudo ./my-app install --license license.yaml --admin-console-port=20000 --local-artifact-mirror-port=40000
 ```
 
 ### Change the Data Directory
 
 ```bash
 sudo ./my-app install --license license.yaml --data-dir /data/embedded-cluster
+```
+
+### Headless (Automated) Install
+
+```bash
+sudo ./my-app install --license license.yaml \
+  --config-values configvalues.yaml \
+  --admin-console-password password
 ```
 
 ### Install Behind a Proxy
@@ -144,7 +161,7 @@ Where:
 ### Install Behind an MITM Proxy
 
 ```bash
-sudo ./APP_SLUG install --license license.yaml --private-ca /path/to/private-ca-bundle \
+sudo ./my-app install --license license.yaml --private-ca /path/to/private-ca-bundle \
   --http-proxy=http://10.128.0.0:3300 \
   --https-proxy=http://10.128.0.0:3300 \
   --no-proxy=123.89.46.4,10.96.0.0/16,*.example.com

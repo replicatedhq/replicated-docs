@@ -117,7 +117,7 @@ replicated:
 ```
 
 :::note
-If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with the [kots install](/enterprise/installing-existing-cluster-automation) command, these variables will also be set automatically in the Replicated SDK.
+If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with the [kots install](/reference/kots-cli-install) command, these variables will also be set automatically in the Replicated SDK.
 :::
 
 **Example**:
@@ -152,7 +152,7 @@ To use a CA stored in a ConfigMap:
    ```
 
 :::note
-If the `--private-ca-configmap` flag is used with the [kots install](/enterprise/installing-existing-cluster-automation) command, this value will be populated in the Replicated SDK automatically.
+If the `--private-ca-configmap` flag is used with the [kots install](/reference/kots-cli-install) command, this value will be populated in the Replicated SDK automatically.
 :::
 
 ### Using a Secret

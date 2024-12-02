@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Embedded Cluster Runs Host Preflight Checks</h3>
-        <p>A default set of host preflight checks verify that the installation environment meets the requirements for Embedded Cluster and provide clear feedback to users.</p>
+        <h3>Steps for Helm Air Gap Installs and Upgrades in Download Portal (Alpha)</h3>
+        <p>Teams can request the Helm air gap Alpha feature to make detailed instructions for using Helm to install and upgrade in air-gapped environments available in the Download Portal.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-overview#about-host-preflight-checks">Learn more</a>
+      <a href="/vendor/helm-install-airgap">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Configure Custom RBAC Policies</h3>
-        <p>Add custom RBAC policies to control which team members can perform actions like promoting to a specific channel, creating new license fields, and more.</p>
+        <h3>Download the Commercial Software Distribution Handbook</h3>
+        <p>Download your free copy of Replicated's Commercial Software Distribution Handbook, a complete guide to distributing commercial software in customer-controlled environments.</p>
     </li>
     <li>
-      <a href="/vendor/team-management-rbac-configuring">Learn more</a>
+      <a href="https://www.replicated.com/blog/announcing-the-commercial-software-distribution-handbook">Learn more</a>
     </li>
   </ul>
 </section>

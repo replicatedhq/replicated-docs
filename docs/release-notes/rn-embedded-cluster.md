@@ -10,6 +10,34 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.19.0
+
+Released on November 14, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.19.0+k8s-1.30</td>
+    <td id="center">1.19.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.121.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-19-0}
+* Adds preflight checks to ensure that the following kernel parameters are set: `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`.
+* The following kernel parameters will be written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
+
+### Improvements {#improvements-1-19-0}
+* If a user downloads an air gap bundle but attempts to install without it, the user will be instructed how to pass the air gap bundle to `install`. They will then be asked if they want to continue with an online installation anyway.
+
 ## 1.18.0
 
 Released on November 8, 2024
@@ -67,7 +95,7 @@ Released on November 4, 2024
 </table>
 
 ### New Features {#new-features-1-17-0}
-* Adds partial rollback support where you can roll back from one version to another as long as the Embedded Cluster Config doesn't change between the two.
+* Adds support for partial rollbacks. Partial rollbacks are supported only when rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same [Embedded Cluster Config](/reference/embedded-config). For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 * Introduces a new landing page and guided installation workflow for the Admin Console.
 
 ### Improvements {#improvements-1-17-0}
@@ -117,7 +145,7 @@ Released on October 23, 2024
 
 ### Improvements {#improvements-1-16-0}
 * For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. With this change, Embedded Cluster now only documents and includes preflight checks for `/var/lib/embedded-cluster`.
-* Adds the `support-bundle` command to make it easier to generate support bundles.
+* Adds the `support-bundle` command to make it easier to generate support bundles. For more information, see [Generating Support Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 * Improves the reliability of waiting for the Kubernetes server to start.
 * Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
 * Requires that the Admin Console password is at least six characters.

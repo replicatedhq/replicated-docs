@@ -148,7 +148,7 @@ spec:
   </tr>
   <tr>
     <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No. <code>allowRollback</code> is not supported because Embedded Cluster does not support rolling back or downgrading.</td>
+    <td>Embedded Cluster 1.17.0 and later supports partial rollbacks of the application version. Partial rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/reference/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config.</td>
   </tr>    
 </table>
 

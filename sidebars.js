@@ -168,6 +168,7 @@ const sidebars = {
         'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-install-types',
         'vendor/licenses-about-types',
         'vendor/licenses-download',
         {
@@ -368,7 +369,7 @@ const sidebars = {
               },
               {
                 type: 'category',
-                label: 'Installing with the KOTS CLI',
+                label: 'Installing from the Command Line',
                 items: [
                   'enterprise/installing-existing-cluster-automation',
                   'vendor/releases-configvalues',
@@ -609,7 +610,6 @@ const sidebars = {
       'vendor/ci-overview',
       'vendor/ci-workflows',
       'vendor/ci-workflows-github-actions',
-      'vendor/tutorial-ci-cd-integration',
     ],
   },
   {

@@ -10,6 +10,54 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.11.27-1
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-1}
+* Fixes an issue where a KOTS release was incorrectly identified as a [Helm CLI-only](/vendor/licenses-install-types#install-types) release, preventing it from being promoted.
+## v2024.11.27-0
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-0}
+* Fixes a bug where Helm install instructions in the [Download Portal](/vendor/helm-install-airgap) didn't use custom domains.
+
+## v2024.11.26-6
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-6}
+* Fixes a bug where it causes the Customer Portal to show a blank screen when missing data from an endpoint.
+
+## v2024.11.26-2
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-2}
+* Fixes a bug that caused images to be excluded from the Helm air gap install instructions.
+
+## v2024.11.20-5
+
+Released on November 20, 2024
+
+### New Features {#new-features-v2024-11-20-5}
+* Allows the user to edit cluster tags from the **Edit Cluster** page.
+
+## v2024.11.20-2
+
+Released on November 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-20-2}
+* Fixes a bug that could cause the [Channel installation command](/vendor/releases-about#channels-page) to use a kURL Installer other than the latest.
+
+## v2024.11.18-0
+
+Released on November 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-18-0}
+* Fixes a bug where the Helm install instructions would not appear on the **Customer** pages if the KOTS install license option was not enabled.
+
 ## v2024.11.13-0
 
 Released on November 13, 2024
