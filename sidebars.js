@@ -442,7 +442,7 @@ const sidebars = {
         'enterprise/delete-admin-console',
         {
           type: 'category',
-          label: 'Using a GitOps Workflow (Deprecated)',
+          label: 'Using a GitOps Workflow',
           items: [
             'enterprise/gitops-workflow',
             'enterprise/gitops-managing-secrets',
@@ -490,6 +490,26 @@ const sidebars = {
         'vendor/kurl-reset',
       ],
     },
+  {
+    type: 'category',
+    label: 'Helm Installations with Replicated',
+    items: [
+      'vendor/helm-install-overview',
+      'vendor/install-with-helm',
+      'vendor/helm-install-airgap',
+      'vendor/using-third-party-registry-proxy',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Replicated SDK (Beta)',
+    items: [
+      'vendor/replicated-sdk-overview',
+      'vendor/replicated-sdk-installing',
+      'vendor/replicated-sdk-airgap',
+      'vendor/replicated-sdk-customizing',
+    ],
+  },
   {
     type: 'category',
     label: 'Preflight Checks and Support Bundles',
@@ -570,26 +590,6 @@ const sidebars = {
         ],
       },
       'vendor/tutorial-ecr-private-images',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Replicated SDK (Beta)',
-    items: [
-      'vendor/replicated-sdk-overview',
-      'vendor/replicated-sdk-installing',
-      'vendor/replicated-sdk-airgap',
-      'vendor/replicated-sdk-customizing',
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Helm Installations with Replicated',
-    items: [
-      'vendor/helm-install-overview',
-      'vendor/install-with-helm',
-      'vendor/helm-install-airgap',
-      'vendor/using-third-party-registry-proxy',
     ],
   },
   {
