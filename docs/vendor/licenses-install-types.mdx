@@ -1,3 +1,5 @@
+import InstallerOnlyAnnotation from "../partials/helm/_installer-only-annotation.mdx"
+
 # Managing Install Types for a License (Beta)
 
 This topic describes how to manage which installation types and options are enabled for a license.
@@ -34,13 +36,17 @@ The following describes each installation type available, as well as the require
 <table>
      <tr>
           <th width="30%">Install Type</th>
-          <th>Description</th>
+          <th width="35%">Description</th>
           <th>Requirements</th>
      </tr>
      <tr>
           <th>Existing Cluster (Helm CLI)</th>
-          <td><p>The customer does not have access to the Replicated installers.</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
-          <td>The latest release promoted to the channel where the customer is assigned must contain only Helm charts and Replicated Custom Resources. Any other Kubernetes resources must include the `kots.io/installer-only` annotation. See <a href="#installer-only-annotation">kots.io/installer-only Annotation</a> below.</td>
+          <td><p>Allows the customer to install with Helm in an existing cluster. The customer does not have access to the Replicated installers (Embedded Cluster, KOTS, and kURL).</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
+          <td>
+            <p>The latest release promoted to the channel where the customer is assigned must contain one or more Helm charts. The release can also optionally include Replicated custom resources (such as Embedded Cluster Config and KOTS HelmChart, Config, and Application).</p>
+            <p>Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only` annotation.</p>
+            <InstallerOnlyAnnotation/>
+          </td>
      </tr>
      <tr>
        <th>Existing Cluster (KOTS install)</th>
@@ -48,7 +54,7 @@ The following describes each installation type available, as well as the require
        <td>
           <ul>
             <li>Your Vendor Portal team must have the KOTS entitlement</li>
-            <li>The latest release promoted to the channel where the customer is assigned must contain KOTS custom resources</li>
+            <li>The latest release promoted to the channel where the customer is assigned must contain KOTS custom resources, such as the KOTS HelmChart, Config, and Application custom resources. For more information, see [About Custom Resources](/reference/custom-resource-about).</li>
           </ul> 
        </td>   
      </tr>
@@ -76,20 +82,6 @@ The following describes each installation type available, as well as the require
        </td>   
      </tr>
 </table>
-
-### `kots.io/installer-only` Annotation {#installer-only-annotation}
-
-The `kots.io/installer-only` annotation indicates that the Kubernetes resource is only used by the Replicated installers (Embedded Cluster, KOTS, or kURL). This annotation is required for releases that support the `Existing Cluster (Helm CLI)` install type and include resources other than Helm charts.
-
-Example:
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-  annotations:
-    kots.io/installer-only: "true"
-```
 
 ## Understanding Additional Install Options {#install-options}
 

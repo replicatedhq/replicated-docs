@@ -1,5 +1,15 @@
-* You must have a customer in the Replicated Vendor Portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the Vendor Portal, see [Creating a Customer](/vendor/releases-creating-customer).
+import InstallerOnlyAnnotation from "./_installer-only-annotation.mdx"
+
+* The customer used to install must have a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the Vendor Portal, see [Creating a Customer](/vendor/releases-creating-customer).
+
+* The customer used to install must have the **Existing Cluster (Helm CLI)** install type enabled. For more information about enabling install types for customers in the Vendor Portal, see [Managing Install Types for a License](licenses-install-types).
+
+* If the release that will be installed includes any Kubernetes resources, add the `kots.io/installer-only` annotation to each resource. It is not necessary to add the `kots.io/installer-only` annotation to any Replicated custom resources, such as the Embedded Cluster Config custom resource, the KOTS HelmChart, Config, or Application custom resources, or the Troubleshoot Preflight or SupportBundle custom resources.
+
+     <InstallerOnlyAnnotation/> 
+
+     For more information, see [Understand Install Types](/vendor/licenses-install-types#install-types) in _Managing Install Types for a License_. 
 
 * To ensure that the Replicated proxy registry can be used to grant proxy access to your application images during Helm installations, you must create an image pull secret for the proxy registry and add it to your Helm chart. To do so, follow the steps in [Using the Proxy Registry with Helm Installations](/vendor/helm-image-registry).
 
-* (Recommended) To install the Replicated SDK alongside the application, declare the SDK as a dependency. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
+* Declare the SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
