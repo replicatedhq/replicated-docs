@@ -1,12 +1,6 @@
-import InstallerOnlyAnnotation from "./_installer-only-annotation.mdx"
-
 * The customer used to install must have a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the Vendor Portal, see [Creating a Customer](/vendor/releases-creating-customer).
 
 * The customer used to install must have the **Existing Cluster (Helm CLI)** install type enabled. For more information about enabling install types for customers in the Vendor Portal, see [Managing Install Types for a License](licenses-install-types).
-
-* The release that will be installed must include one or more Helm charts. It can also include Replicated custom resources, such as the Embedded Cluster Config custom resource, the KOTS HelmChart, Config, and Application custom resources, or the Troubleshoot Preflight and SupportBundle custom resources.
-
-     <InstallerOnlyAnnotation/> 
 
 * To ensure that the Replicated proxy registry can be used to grant proxy access to your application images during Helm installations, you must create an image pull secret for the proxy registry and add it to your Helm chart. To do so, follow the steps in [Using the Proxy Registry with Helm Installations](/vendor/helm-image-registry).
 
