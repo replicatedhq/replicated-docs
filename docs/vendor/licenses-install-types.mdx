@@ -43,8 +43,7 @@ The following describes each installation type available, as well as the require
           <th>Existing Cluster (Helm CLI)</th>
           <td><p>Allows the customer to install with Helm in an existing cluster. The customer does not have access to the Replicated installers (Embedded Cluster, KOTS, and kURL).</p><p>When the <strong>Helm CLI Air Gap Instructions (Helm CLI only)</strong> install option is also enabled, the Download Portal displays instructions on how to pull Helm installable images into a local repository. See <a href="#install-options">Understanding Additional Install Options</a> below.</p></td>
           <td>
-            <p>The latest release promoted to the channel where the customer is assigned must contain one or more Helm charts. The release can also optionally include Replicated custom resources (such as Embedded Cluster Config and KOTS HelmChart, Config, and Application).</p>
-            <p>Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only` annotation.</p>
+            <p>The latest release promoted to the channel where the customer is assigned must contain one or more Helm charts. It can also include Replicated custom resources, such as the Embedded Cluster Config custom resource, the KOTS HelmChart, Config, and Application custom resources, or the Troubleshoot Preflight and SupportBundle custom resources.</p>
             <InstallerOnlyAnnotation/>
           </td>
      </tr>

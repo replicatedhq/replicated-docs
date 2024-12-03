@@ -4,11 +4,9 @@ import InstallerOnlyAnnotation from "./_installer-only-annotation.mdx"
 
 * The customer used to install must have the **Existing Cluster (Helm CLI)** install type enabled. For more information about enabling install types for customers in the Vendor Portal, see [Managing Install Types for a License](licenses-install-types).
 
-* If the release that will be installed includes any Kubernetes resources, add the `kots.io/installer-only` annotation to each resource. It is not necessary to add the `kots.io/installer-only` annotation to any Replicated custom resources, such as the Embedded Cluster Config custom resource, the KOTS HelmChart, Config, or Application custom resources, or the Troubleshoot Preflight or SupportBundle custom resources.
+* The release that will be installed must include one or more Helm charts. It can also include Replicated custom resources, such as the Embedded Cluster Config custom resource, the KOTS HelmChart, Config, and Application custom resources, or the Troubleshoot Preflight and SupportBundle custom resources.
 
      <InstallerOnlyAnnotation/> 
-
-     For more information, see [Understand Install Types](/vendor/licenses-install-types#install-types) in _Managing Install Types for a License_. 
 
 * To ensure that the Replicated proxy registry can be used to grant proxy access to your application images during Helm installations, you must create an image pull secret for the proxy registry and add it to your Helm chart. To do so, follow the steps in [Using the Proxy Registry with Helm Installations](/vendor/helm-image-registry).
 
