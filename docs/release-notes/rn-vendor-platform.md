@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on December 4, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-04-1}
-* CMX: Fix cluster assignment for EKS, AKS, GKE and OKE in case no warm clusters are available.
+* Compatibility Matrix: Fix cluster assignment for EKS, AKS, GKE and OKE in case no warm clusters are available.
 
 ## v2024.12.02-2
 
