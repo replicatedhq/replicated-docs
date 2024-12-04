@@ -6,11 +6,26 @@ For example, if your application includes a UI where users manage their applicat
 
 For more information about how to get started with the Replicated SDK, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
-## Access the SDK API
+## Use Port Forwarding to Access the SDK API
 
-The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing with Helm](/vendor/install-with-helm).
+After the Replicated SDK is installed and initialized in a cluster, the Replicated SDK API is exposed at `replicated:3000`. You can access the SDK API for testing by forwarding port 3000 to your local machine.
 
-After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify where the Replicated SDK API service is exposed, you can run `kubectl get service -A`.
+To use port forwarding to access the SDK API:
+
+1. Install the SDK in your cluster. See [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
+
+1. Run the following command to port forward to the SDK API service:
+
+    ```bash
+    kubectl port-forward service/replicated 3000
+    ```
+
+1. Interact with the SDK API endpoints as desired using the port forward. For example:
+
+   ```bash
+   curl localhost:3000/api/v1/license/fields/expires_at
+   curl localhost:3000/api/v1/license/fields/{field}
+   ```
 
 ## app
 
