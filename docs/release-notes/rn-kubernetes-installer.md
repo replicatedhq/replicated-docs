@@ -15,12 +15,11 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on December 4, 2024
 
 ### New Features {#new-features-v2024-12-04-0}
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.3 1.30.7 1.29.11 1.28.15 1.27.16.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.31.3 1.30.7 1.29.11 1.28.15.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.1.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.78.2-66.2.2.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2024-11-07T00-52-20Z.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.33.
+* Adds support for RHEL 9.5 and Rocky Linux 9.5.
 
 ## v2024.11.08-0
 
