@@ -19,8 +19,12 @@ To use port forwarding to access the SDK API:
     ```bash
     kubectl port-forward service/replicated 3000
     ```
+    ```
+    Forwarding from 127.0.0.1:3000 -> 3000
+    Forwarding from [::1]:3000 -> 3000
+    ```
 
-1. Interact with the SDK API endpoints as desired using the port forward. For example:
+1. With the port forward running, test the SDK API endpoints as desired. For example:
 
    ```bash
    curl localhost:3000/api/v1/license/fields/expires_at
