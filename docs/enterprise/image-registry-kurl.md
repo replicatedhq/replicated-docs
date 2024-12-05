@@ -26,7 +26,7 @@ For more information, see [admin-console garbage-collect-images](/reference/kots
 
 ## Disable Image Garbage Collection
 
-Image garbage collection is enabled by default for embedded kURL clusters that use the kURL registry.
+Image garbage collection is enabled by default for kURL clusters that use the kURL registry.
 
 To disable image garbage collection:
 
@@ -56,8 +56,8 @@ The kURL registry image garbage collection feature has following limitations:
 
    To prevent this from happening, include the optional images in the `additionalImages` list of the Application custom resource. For more information, see [`additionalImages`](/reference/custom-resource-application#additionalimages) in _Application_.
 
-* **Shared Image Registries**: The image garbage collection process assumes that the registry is not shared with any other instances of Replicated KOTS, nor shared with any external applications. If the embedded kURL registry is used by another external application, disable garbage collection to prevent image loss.
+* **Shared Image Registries**: The image garbage collection process assumes that the registry is not shared with any other instances of Replicated KOTS, nor shared with any external applications. If the built-in kURL registry is used by another external application, disable garbage collection to prevent image loss.
 
-* **Customer Supplied Registries**: Image garbage collection is supported only when used with the embedded kURL registry. If the KOTS instance is configured to use a different registry, disable garbage collection to prevent image loss.
+* **Customer Supplied Registries**: Image garbage collection is supported only when used with the built-in kURL registry. If the KOTS instance is configured to use a different registry, disable garbage collection to prevent image loss.
 
 * **Application Rollbacks**: Image garbage collection has no effect when the `allowRollback` field in the KOTS Application custom resource is set to `true`. For more information, see [Application](/reference/custom-resource-application) in _KOTS Custom Resources_.
