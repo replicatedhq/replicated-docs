@@ -65,6 +65,7 @@ For more information about how to use the add-ons, see [Compatibility Matrix Clu
 Compatibility Matrix has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
+- Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
 - On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - Multi-node support is not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).

@@ -1,0 +1,24 @@
+During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file in the Admin Console **View files** tab or from the command line by running the `kubectl kots get config` command.
+
+To get the ConfigValues file from an installed application instance:
+
+1. Install the target release in a development environment. You can either install the release with Replicated Embedded Cluster or install in an existing cluster with KOTS. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
+
+1. Depending on the installer that you used, do one of the following to get the ConfigValues for the installed instance:
+
+   * **For Embedded Cluster installations**: In the Admin Console, go to the **View files** tab. In the filetree, go to **upstream > userdata** and open **config.yaml**, as shown in the image below: 
+
+       ![ConfigValues file in the Admin Console View Files tab](/images/admin-console-view-files-configvalues.png)
+
+       [View a larger version of this image](/images/admin-console-view-files-configvalues.png)
+
+   * **For KOTS installations in an existing cluster**: Run the `kubectl kots get config` command to view the generated ConfigValues file:
+
+       ```bash
+       kubectl kots get config --namespace APP_NAMESPACE --decrypt 
+       ```
+       Where:
+       * `APP_NAMESPACE` is the cluster namespace where KOTS is running.
+       * The `--decrypt` flag decrypts all configuration fields with `type: password`. In the downloaded ConfigValues file, the decrypted value is stored in a `valuePlaintext` field.
+
+       The output of the `kots get config` command shows the contents of the ConfigValues file. For more information about the `kots get config` command, including additional flags, see [kots get config](/reference/kots-cli-get-config).

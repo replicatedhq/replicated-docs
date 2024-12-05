@@ -1,0 +1,13 @@
+Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only` annotation.
+
+The `kots.io/installer-only` annotation indicates that the Kubernetes resource is used only by the Replicated installers (Embedded Cluster, KOTS, and kURL).
+
+Example:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  annotations:
+    kots.io/installer-only: "true"
+```

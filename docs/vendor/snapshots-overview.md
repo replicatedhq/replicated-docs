@@ -25,7 +25,7 @@ Full backups include the Admin Console and all application data, including KOTS-
 
 ### Other Object-Stored Data
 
-For embedded kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
+For kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
 
 For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 

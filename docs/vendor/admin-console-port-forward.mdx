@@ -189,7 +189,7 @@ To test this example:
     </TabItem>
     </Tabs>
 
-1. Install the release to confirm that the service was port-forwarded successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+1. Install the release to confirm that the service was port-forwarded successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
 
 ### Example: NGINX Application with ClusterIP and NodePort Services
 
@@ -204,7 +204,7 @@ To test this example:
     <Tabs>
     <TabItem value="service" label="example-service.yaml" default>
     <h5>Description</h5>
-    <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or embedded kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
+    <p>The YAML below contains ClusterIP and NodePort specifications for a service named <code>nginx</code>. Each specification uses the <code>kots.io/when</code> annotation with the Replicated IsKurl template function to conditionally include the service based on the installation type (existing cluster or kURL cluster). For more information, see <a href="/vendor/packaging-include-resources">Conditionally Including or Excluding Resources</a> and <a href="/reference/template-functions-static-context#iskurl">IsKurl</a>.</p>
     <p>As shown below, both the ClusterIP and NodePort <code>nginx</code> services are exposed on port 80.</p>
     <h5>YAML</h5>
     <NginxService/>
@@ -229,7 +229,7 @@ To test this example:
     </TabItem>
     </Tabs>
 
-1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster).
+1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
 
 1. If there is not already a kURL installer promoted to the channel, add a kURL installer to the release to support kURL installs. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
 
