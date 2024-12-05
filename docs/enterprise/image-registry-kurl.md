@@ -1,4 +1,4 @@
-# Image Registry for kURL Clusters
+# Working with the kURL Image Registry
 
 This topic describes the Replicated kURL registry for kURL clusters.
 

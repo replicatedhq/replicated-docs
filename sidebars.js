@@ -318,7 +318,6 @@ const sidebars = {
                 'vendor/packaging-ingress',
               ],
             },
-            'vendor/packaging-using-tls-certs',
             {
               type: 'category',
               label: 'Managing KOTS',
@@ -476,8 +475,6 @@ const sidebars = {
           ],
         },
         'enterprise/cluster-management-add-nodes',
-        'enterprise/updating-tls-cert',
-        'enterprise/image-registry-kurl',
         {
           type: 'category',
           label: 'Performing Updates with kURL',
@@ -486,6 +483,9 @@ const sidebars = {
             'enterprise/updating-kurl',
           ],
         },
+        'vendor/packaging-using-tls-certs',
+        'enterprise/updating-tls-cert',
+        'enterprise/image-registry-kurl',
         'enterprise/monitoring-external-prometheus',
         'vendor/kurl-reset',
       ],
