@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.04-2
+
+Released on December 4, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-04-2}
+* Fixes a bug that could cause the "email is required for customers with helm install enabled" error when creating or updating customers.
+
 ## v2024.12.04-1
 
 Released on December 4, 2024
