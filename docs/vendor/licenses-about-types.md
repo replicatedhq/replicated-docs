@@ -10,7 +10,7 @@ After installing an application with a community license, users can replace thei
 
 Community licenses are supported for applications that are installed with Replicated KOTS or with the Helm CLI.
 
-For applications installed with KOTS, community license users can upload a new license file of a different type in the Replicated admin console. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses_. 
+For applications installed with KOTS, community license users can upload a new license file of a different type in the Replicated admin console. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses in the Admin Console_. 
 
 ## Limitations
 

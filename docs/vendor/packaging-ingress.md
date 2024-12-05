@@ -6,7 +6,7 @@ Below is an example of a flexible `ingress.yaml` file designed to work in most K
 ## Example
 
 The following example includes an Ingress resource with a single host based routing rule.
-The resource works in both existing clusters and embedded kURL clusters.
+The resource works in both existing clusters and kURL clusters.
 
 ### Config
 

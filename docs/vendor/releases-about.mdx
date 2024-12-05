@@ -66,7 +66,7 @@ This section provides additional information about releases, including details a
 
 A release contains your application files as well as the manifests required to install the application with the Replicated installers ([Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated KOTS](../intro-kots)). 
 
-The application files in releases can be Helm charts and/or Kubernetes manifests. Replicated strongly recommends that all applications are packaged with Helm. For more information, see [About Packaging Applications](/vendor/distributing-overview#about-packaging-applications).
+The application files in releases can be Helm charts and/or Kubernetes manifests. Replicated strongly recommends that all applications are packaged as Helm charts because many enterprise customers will expect to be able to install with Helm.
 
 ### Promotion
 
@@ -207,7 +207,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
    Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
    
-   For applications that support installation with Replicated KOTS, you can also build and download air gap bundles, and edit the release properties for each release promoted to the channel from the **Release History** page.
+   You can also build and download air gap bundles to be used in air gap installations with Replicated installers (Embedded Cluster, KOTS, kURL), and edit the release properties for each release promoted to the channel from the **Release History** page.
 
    The following shows an example of the **Release History** page: 
 
@@ -217,9 +217,9 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
-   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers within a release or separate from a release, see [Creating a kURL installer](packaging-embedded-kubernetes).
+   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers, see [Creating a kURL Installer](packaging-embedded-kubernetes).
 
-   * In the **Install** section, view and copy the installation commands for the latest release on the channel. For more information, see the [Installing an Application](/enterprise/installing-overview) section.
+   * In the **Install** section, view and copy the installation commands for the latest release on the channel.
 
 ### Draft Release Page
 

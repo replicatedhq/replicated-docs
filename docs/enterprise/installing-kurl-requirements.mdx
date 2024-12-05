@@ -1,0 +1,38 @@
+import FirewallOpenings from "../partials/install/_firewall-openings.mdx"
+
+# kURL Installation Requirements
+
+This topic lists the installation requirements for Replicated kURL. Ensure that the installation environment meets these requirements before attempting to install.
+
+## Minimum System Requirements
+
+* 4 CPUs or equivalent per machine
+* 8GB of RAM per machine
+* 40GB of disk space per machine
+* TCP ports 2379, 2380, 6443, 6783, and 10250 open between cluster nodes
+* UDP port 8472 open between cluster nodes
+
+  :::note
+  If the Kubernetes installer specification uses the deprecated kURL [Weave add-on](https://kurl.sh/docs/add-ons/weave), UDP ports 6783 and 6784 must be open between cluster nodes. Reach out to your software vendor for more information.
+  :::
+
+* Root access is required
+* (Rook Only) The Rook add-on version 1.4.3 and later requires block storage on each node in the cluster. For more information about how to enable block storage for Rook, see [Block Storage](https://kurl.sh/docs/add-ons/rook/#block-storage) in _Rook Add-On_ in the kURL documentation.
+
+## Additional System Requirements
+
+You must meet the additional kURL system requirements when applicable:
+
+- **Supported Operating Systems**: For supported operating systems, see [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
+
+- **kURL Dependencies Directory**: kURL installs additional dependencies in the directory /var/lib/kurl and the directory requirements must be met. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
+
+- **Networking Requirements**: Networking requirements include firewall openings, host firewalls rules, and port availability. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
+
+- **High Availability Requirements**: If you are operating a cluster with high availability, see [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
+
+- **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
+
+## Firewall Openings for Online Installations
+
+<FirewallOpenings/>

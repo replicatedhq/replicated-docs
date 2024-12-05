@@ -14,7 +14,7 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 KOTS communicates securely with the Replicated vendor platform to synchronize customer licenses, check for available application updates, send instance data, share customer-generated support bundles, and more.
 
-Installing an application with KOTS provides access to feautures such as:
+Installing an application with KOTS provides access to features such as:
 
 * Support for air gap installations
 * Support for installations on VMs or bare metal servers
@@ -70,4 +70,4 @@ The kots command-line interface (CLI) is a kubectl plugin. Customers can run com
 
 For information about getting started with the KOTS CLI, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
 
-The KOTS CLI can also be used to install an application without needing to access the Admin Console. This can be useful for automating installations and upgrades, such as in CI/CD pipelines. For information about how to perform headless installations from the command line, see [Installing from the Command Line](/enterprise/installing-existing-cluster-automation).
+The KOTS CLI can also be used to install an application without needing to access the Admin Console. This can be useful for automating installations and upgrades, such as in CI/CD pipelines. For information about how to perform headless installations from the command line, see [Installing with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
