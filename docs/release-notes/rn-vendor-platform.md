@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.05-5
+
+Released on December 5, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-05-5}
+* Compatibility Matrix: Display time in local timezone on the **Cluster History** page.
+
 ## v2024.12.04-2
 
 Released on December 4, 2024
