@@ -128,19 +128,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-overview"
-<<<<<<< HEAD
   to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/helm-native-about"
-=======
   to="https://docs.replicated.com/vendor/helm-install-overview"
-
-[[redirects]]
-  from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/helm-install-overview"
->>>>>>> main
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
