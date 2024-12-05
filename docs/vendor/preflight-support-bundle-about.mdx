@@ -1,14 +1,12 @@
+import Overview from "../partials/preflights/_preflights-sb-about.mdx"
+
 # About Preflight Checks and Support Bundles
 
 This topic provides an introduction to preflight checks and support bundles, which are provided by the [Troubleshoot](https://troubleshoot.sh/) open source project.
 
 ## Overview
 
-Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
-
-Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
-* **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
-* **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
+<Overview/>
 
 Preflight checks and support bundles consist of _collectors_, _redactors_, and _analyzers_ that are defined in a YAML specification. When preflight checks or support bundles are executed, data is collected, redacted, then analyzed to provide insights to users, as illustrated in the following diagram:
 
