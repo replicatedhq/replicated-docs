@@ -11,7 +11,7 @@ If the target cluster does not have outbound internet access, the application ca
 
 To install an application in an air-gapped environment, the cluster must have access to an image registry. In this case, KOTS re-tags and pushes all images to the target registry.
 
-For information about installing with KOTS in air-gapped environments, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
+For information about installing with KOTS in air-gapped environments, see [Air Gap Installation in Existing Clusters with KOTS](installing-existing-cluster-airgapped).
 
 ## Hardened Environments
 
@@ -30,7 +30,7 @@ For information about image registry requirements, see [Compatible Image Registr
 
 You can automate application installation in online and air-gapped environments using the KOTS CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated Admin Console.
 
-For more information, see [Installing with the CLI](/enterprise/installing-existing-cluster-automation).
+For more information, see [Installing with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
 
 ## KOTS Installations Without Object Storage
 
