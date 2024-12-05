@@ -385,7 +385,6 @@ const sidebars = {
             'enterprise/installing-existing-cluster-airgapped',
             'enterprise/installing-existing-cluster-automation',
             'enterprise/installing-stateful-component-requirements',
-            'enterprise/updating-patching-with-kustomize',
           ],
         },
         {
@@ -394,6 +393,7 @@ const sidebars = {
           items: [
             'enterprise/updating-app-manager',
             'enterprise/updating-apps',
+            'enterprise/updating-patching-with-kustomize',
           ],
         },
         {
