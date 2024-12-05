@@ -99,11 +99,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-installing-native-helm"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-processing"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
@@ -128,11 +128,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-overview"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-install-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-install-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
@@ -186,7 +186,11 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/embedded-kubernetes-overview"
-  to = "https://docs.replicated.com/vendor/embedded-overview"                        
+  to = "https://docs.replicated.com/vendor/embedded-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/distributing-overview"
+  to = "https://docs.replicated.com/intro-replicated"                          
 
 ###################################################
 # Redirects To the Enterprise Section

@@ -110,13 +110,7 @@ pagination_next: null
         <p>Distribute Helm charts with Replicated.</p>
     </li>
     <li>
-      <a href="/vendor/distributing-overview#about-packaging-applications">About Packaging Applications with Helm</a>
-    </li>
-    <li>
-      <a href="/vendor/install-with-helm">Installing with Helm</a>
-    </li>
-    <li>
-      <a href="/vendor/helm-native-about">About Distributing Helm Charts with KOTS</a>
+      <a href="/vendor/install-with-helm">Helm Installations with Replicated</a>
     </li>
     <li>
       <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>
