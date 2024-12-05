@@ -40,11 +40,15 @@ To install the SDK as a subchart:
 
 1. Add the chart archive to a new release. For more information, see [Managing Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-1. (Optional) Add a HelmChart custom resource to the release to support installation with KOTS. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about) and [HelmChart v2](/reference/custom-resource-helmchart-v2).
+1. (Optional) Add a KOTS HelmChart custom resource to the release to support installation with Embedded Cluster, KOTS, or kURL. For more information, see [Configuring the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
 
 1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
 
-1. Install the release using the Helm CLI or KOTS. For information about installing releases with the Helm CLI, see [Installing with Helm](/vendor/install-with-helm). For information about installing with KOTS, see [About Installing an Application](/enterprise/installing-overview).
+1. Install the release using Helm or a Replicated installer. For more information, see:
+     * **Emebdded Cluster**: [Online Installation with Embedded Cluster](/enterprise/installing-embedded)
+     * **Helm**: [Installing with Helm](/vendor/install-with-helm)
+     * **KOTS Existing Cluster**: [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster)
+     * **kURL**: [Online Installation with kURL](/enterprise/installing-kurl)
 
 1. Confirm that the SDK was installed by seeing that the `replicated` Deployment was created:
 
@@ -122,7 +126,10 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
 1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
 
-1. Install the release using KOTS. For more information, see [About Installing an Application](/enterprise/installing-overview).
+1. Install the release using a Replicated installer (Emebdded Cluster, KOTS, kURL). For more information, see:
+     * **Emebdded Cluster**: [Online Installation with Embedded Cluster](/enterprise/installing-embedded)
+     * **KOTS Existing Cluster**: [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster)
+     * **kURL**: [Online Installation with kURL](/enterprise/installing-kurl)
 
 1. Confirm that the SDK was installed by seeing that the `replicated` Deployment was created:
 

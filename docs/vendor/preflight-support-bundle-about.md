@@ -85,9 +85,9 @@ You can add required preflight checks for an application by including `strict: t
 
 This section describes how users can run preflight checks for KOTS and Helm installations.
 
-#### KOTS Installations
+#### Replicated Installations
 
-For installations with KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS Admin Console or in the KOTS CLI, depending on the installation method.
+For Replicated installations with Embedded Cluster, KOTS, or kURL, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS Admin Console or in the KOTS CLI, depending on the installation method.
 
 Additionally, users can access preflight checks from the Admin Console after installation to view their results and optionally re-run the checks.
 
@@ -96,8 +96,6 @@ The following shows an example of the results of preflight checks displayed in t
 ![Preflight results in Admin Console](/images/preflight-warning.png)
 
 [View a larger version of this image](/images/preflight-warning.png)
-
-For more information about the KOTS installation process, see [About Installing an Application](/enterprise/installing-overview).
 
 #### Helm Installations
 
