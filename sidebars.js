@@ -270,8 +270,8 @@ const sidebars = {
               items: [
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-adding-buttons-links',
-                'vendor/admin-console-prometheus-monitoring',
                 'vendor/admin-console-port-forward',
+                'vendor/admin-console-prometheus-monitoring',
               ],
             },
             {
