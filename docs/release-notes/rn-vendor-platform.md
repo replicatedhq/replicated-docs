@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on December 5, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-05-5}
-* CMX: Display time in local timezone on cluster history.
+* Compatibility Matrix: Display time in local timezone on the **Cluster History** page.
 
 ## v2024.12.04-2
 
