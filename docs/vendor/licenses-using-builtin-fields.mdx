@@ -2,8 +2,14 @@ import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx
 
 # Built-in License Fields
 
-Built-in fields are reserved field names. The following table describes each built-in license field that you can define for a customer.
+Built-in fields are reserved field names. The table below describes each built-in license field that you can define for a customer.
 
+## Setting Initial License Field Values (Beta)
+The initial values that populate the "Create Customer" form in the Vendor Portal, can be set from the License Fields page by clicking the edit icon for the row.
+![Edit Initial Value](/images/edit-initial-value.png)
+This will ensure that each time a user clicks "Create Customer" they start with a set of default values that you specify.
+
+## License Field Details
 :::note
 License fields labeled "KOTS Only" in the table below apply only to Replicated KOTS installations.
 :::
@@ -27,7 +33,7 @@ License fields labeled "KOTS Only" in the table below apply only to Replicated K
 | `isSupportBundleUploadSupported` | (KOTS Only) If a license supports uploading a support bundle in the Admin Console, this field is set to `true`. If a license does not support uploading a support bundle, this field is either missing or `false`. |
 | `licenseID`, `licenseId` | ID of the installed license.  This value never changes. |
 | `licenseSequence` | Every time a license is updated, its sequence number is incremented. This value represents the license sequence that the client currently has. |
-| `licenseType` | This field contains a string value that describes the type of the license. This is currently one of `paid`, `trial`, `dev` or `community`. For more information about license types, see [Managing License Type](licenses-about-types).|
+| `licenseType` | This field contains a string value that describes the type of the license. This is currently one of `paid`, `trial`, `dev`, `single-tenant-vendor-managed` or `community`. For more information about license types, see [Managing License Type](licenses-about-types).|
 | `signature` | The base64 encoded license signature. This value will change when license is updated. |
 | `isHelmAirgapEnabled` | If a license supports Helm air gap installations, then this field is set to `true` or missing. If Helm air gap is not supported, this field is missing. When you enable this feature, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded. This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.|
 | `isHelmInstallEnabled` | If a license supports Helm installations, then this field is set to `true` or missing. If Helm installations are not supported, this field is set to `false`. This field requires that the vendor only packages the application as Helm charts and Replicated Custom Resources. This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.|
