@@ -116,13 +116,11 @@ The following graphic shows release sequence numbers in the Vendor Portal:
 
 #### Instance Sequences 
 
-When a KOTS instance checks for an application update, the Vendor Portal returns a release identifier (a sequence number or a version label) to the instance. The Replicated admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the Vendor Portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when KOTS checks for an update.
+When a new version is available for upgrade, including when KOTS checks for upstream updates as well as when the user syncs their license or makes a config change, the KOTS Admin Console assigns a unique instance sequence number to that version. The instance sequence in the Admin Console starts at 0 and increments for each identifier that is returned when a new version is available.
 
-A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`.
+This instance sequence is unrelated to the release sequence dispalyed in the Vendor Portal, and it is likely that the instance sequence will differ from the release sequence. Instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers.
 
-Note that instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers.
-
-The following graphic shows instance sequence numbers on the admin console dashboard:
+The following graphic shows instance sequence numbers on the Admin Console dashboard:
 
 <img alt="Instance sequence numbers" src="/images/instance-sequences.png" width="550px"/>
 
@@ -142,9 +140,9 @@ Ordering is more complex if some or all of the releases in a channel have a sema
 
 #### Semantic Versioning Sequence
 
-For channels with semantic versioning enabled, the admin console sequences instance releases by their semantic versions instead of their promotion dates.
+For channels with semantic versioning enabled, the Admin Console sequences instance releases by their semantic versions instead of their promotion dates.
 
-If releases without a valid semantic version are already promoted to a channel, the admin console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. The releases with non-semantic versioning stay in the order of their promotion dates. For example, assume that you promote these releases in the following order to a channel: 
+If releases without a valid semantic version are already promoted to a channel, the Admin Console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. The releases with non-semantic versioning stay in the order of their promotion dates. For example, assume that you promote these releases in the following order to a channel: 
 
 - 1.0.0
 - abc
@@ -152,7 +150,7 @@ If releases without a valid semantic version are already promoted to a channel, 
 - xyz
 - 2.0.0 
 
-Then, you enable semantic versioning on that channel. The admin console sequences the version history for the channel as follows: 
+Then, you enable semantic versioning on that channel. The Admin Console sequences the version history for the channel as follows: 
 
 - 0.1.0
 - 1.0.0
@@ -245,4 +243,4 @@ You can do the following tasks on the **Draft** page:
 
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](config-screen-about).
 
-- Select the Application custom resource to preview how your application icon will look in the admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](admin-console-customize-app-icon).
+- Select the Application custom resource to preview how your application icon will look in the Admin Console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](admin-console-customize-app-icon).
