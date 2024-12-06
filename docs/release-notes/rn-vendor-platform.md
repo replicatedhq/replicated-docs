@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on December 6, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-06-4}
-* CMX: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
+* Compatiblity Matrix: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
 
 ## v2024.12.05-5
 
