@@ -9,7 +9,7 @@ This topic describes the built-in license fields that are available when creatin
 You can set initial values to populate the **Create Customer** form in the Vendor Portal when a new customer is created. This ensures that each new customer created from the Vendor Portal UI starts with the same set of built-in license field values.
 
 :::note
-Initial values are not applied to new customers created through the Vendor API v3.
+Initial values are not applied to new customers created through the Vendor API v3. For more information, see [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) in the Vendor API v3 documentation.
 :::
 
 These _initial_ values differ from _default_ values in that setting initial values does not update the license field values for any existing customers.
@@ -26,7 +26,7 @@ To set inital values for built-in license fields:
 
 ## Built-In License Fields
 
-Built-in license fields are reserved field names. You can interact with built-in license fields using the Vendor API v3 and the Replicated SDK API.
+Built-in license fields are reserved field names. You can interact with built-in license fields using the Vendor API v3 and the Replicated SDK API. For more information, see [customers](https://replicated-vendor-api.readme.io/reference/getcustomerentitlements) in the Vendor API v3 documentation and [license](/reference/replicated-sdk-apis#license) in _SDK API_.
 
 ### General License Properties
 
@@ -58,7 +58,7 @@ The table below describes the general built-in license fields:
       <td>Unique customer identifier. This value never changes.</td>
     </tr>
     <tr>
-      <td>`email`</td>
+      <td>`email`, `customerEmail`</td>
       <td>The customer email address.</td>
     </tr>
     <tr>
