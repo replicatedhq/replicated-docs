@@ -17,6 +17,13 @@ Released on December 9, 2024
 ### Bug Fixes {#bug-fixes-v2024-12-09-0}
 * Fixes a bug that would hide air gap instances on the Customer Reporting page even when they existed.
 
+## v2024.12.06-4
+
+Released on December 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-06-4}
+* Compatiblity Matrix: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
+
 ## v2024.12.05-5
 
 Released on December 5, 2024
