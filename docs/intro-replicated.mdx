@@ -27,13 +27,13 @@ The following diagram demonstrates the process of using the Replicated Platform 
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The diagram above shows an application that is packaged with the [**Replicated SDK**](replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix**](testing-about), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
+The diagram above shows an application that is packaged with the [**Replicated SDK**](/vendor/replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix**](/vendor/testing-about), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
 
 The application is then installed by a customer ("Big Bank") on a VM. To install, the customer downloads their license, which grants proxy access to the application images through the [**Replicated proxy registry**](/vendor/private-images-about). They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
 
-Embedded Cluster runs [**preflight checks**](preflight-support-bundle-about) to verify that the environment meets the installation requirements, provisions a cluster on the VM, and installs [**Replicated KOTS**](intro-kots) in the cluster. KOTS provides an [**Admin Console**](intro-kots#kots-admin-console) where the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and then deploys the application. After installation, customers can manage both the application and the cluster from the Admin Console.
+Embedded Cluster runs [**preflight checks**](/vendor/preflight-support-bundle-about) to verify that the environment meets the installation requirements, provisions a cluster on the VM, and installs [**Replicated KOTS**](intro-kots) in the cluster. KOTS provides an [**Admin Console**](intro-kots#kots-admin-console) where the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and then deploys the application. After installation, customers can manage both the application and the cluster from the Admin Console.
 
-Finally, the diagram shows how [**instance data**](instance-insights-event-data) is automatically sent from the customer environment to the Vendor Portal by the Replicated SDK API and the KOTS Admin Console. Additionally, tooling from the open source [**Troubleshoot**](https://troubleshoot.sh/docs/collect/) project is used to generate and send [**support bundles**](preflight-support-bundle-about), which include logs and other important diagnostic data.
+Finally, the diagram shows how [**instance data**](/vendor/instance-insights-event-data) is automatically sent from the customer environment to the Vendor Portal by the Replicated SDK API and the KOTS Admin Console. Additionally, tooling from the open source [**Troubleshoot**](https://troubleshoot.sh/docs/collect/) project is used to generate and send [**support bundles**](/vendor/preflight-support-bundle-about), which include logs and other important diagnostic data.
 
 ## Replicated Platform Features
 
