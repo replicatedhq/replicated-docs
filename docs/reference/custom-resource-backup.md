@@ -83,7 +83,7 @@ The following Velero fields are supported for full backups, as shown in the prev
   </tr>
   <tr>
     <td><code>orLabelSelectors</code></td>
-    <td>(Optional) A list of metav1.LabelSelector to filter with when adding individual objects to the backup. If multiple provided they will be joined by the OR operator.</td>
+    <td>(Optional) A list of metav1.LabelSelector to filter with when adding individual objects to the backup. If multiple are provided, they will be joined by the OR operator.</td>
   </tr>
   <tr>
     <td><code>orderedResources</code></td>
