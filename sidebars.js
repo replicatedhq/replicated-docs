@@ -165,12 +165,11 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Customer Licenses',
+          label: 'Customers and Licenses',
           items: [
             'vendor/licenses-about',
             'vendor/releases-creating-customer',
             'vendor/licenses-adding-custom-fields',
-            'vendor/licenses-using-builtin-fields',
             'vendor/licenses-install-types',
             'vendor/licenses-about-types',
             'vendor/licenses-download',
@@ -178,6 +177,7 @@ const sidebars = {
               type: 'category',
               label: 'Querying License Entitlements',
               items: [
+                'vendor/licenses-using-builtin-fields',
                 'vendor/licenses-reference-sdk',
                 'vendor/licenses-reference-helm',
                 'vendor/licenses-referencing-fields',

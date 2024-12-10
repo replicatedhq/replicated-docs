@@ -210,7 +210,7 @@ pagination_next: null
       <a href="/vendor/releases-creating-customer">Creating and Managing Customers</a>
     </li>
     <li>
-      <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
+      <a href="/vendor/licenses-adding-custom-fields">Managing Customer License Fields</a>
     </li>
   </ul>
 </section>
