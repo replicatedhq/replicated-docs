@@ -8,7 +8,7 @@ This topic describes the built-in license fields that appear customer licenses f
 
 The license associated with each customer record in the Replicated Vendor Portal includes several built-in fields. These built-in fields include customer properties (such as the customer name, customer email, and the Vendor Portal channel where the customer is assigned), the license expiration date, as well as the Replicated features that are enabled for the customer (such as the supported install types or Admin Console features).
 
-When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-about) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-function-license-context#licensefieldvalue) template function.
+When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-overview) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function.
 
 ## License Field Names
 
@@ -129,6 +129,10 @@ The table below describes the built-in license fields related to the Admin Conso
     <tr>
         <td>Field Name</td>
         <td>Description</td>
+    </tr>
+    <tr>
+        <td>`isDisasterRecoverySupported`</td>
+        <td>If a license supports the Embedded Cluster disaster recovery feature, this field is set to `true`. If a license does not support disaster recovery for Embedded Cluster, this field is either missing or `false`. **Note**: Embedded Cluster Disaster Recovery is in Alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com). For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</td>
     </tr>
     <tr>
         <td>`isGeoaxisSupported`</td>
