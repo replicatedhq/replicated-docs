@@ -8,7 +8,7 @@ For information about how to download customer licenses with the Vendor API v3, 
 
 ## Download Licenses
 
-A valid license file is required to install with Replicated KOTS. You can download license files for your customers from the **Customer** page in the Vendor Portal.
+You can download license files for your customers from the **Customer** page in the Vendor Portal.
 
 To download a license:
 

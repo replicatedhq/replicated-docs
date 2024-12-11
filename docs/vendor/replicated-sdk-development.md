@@ -39,7 +39,7 @@ To create a development license:
 
    1. For **Expiration policy**, you can add an expiration date for the license. 
 
-   1. For **Custom fields**, you can add values for any custom license fields in your application. For information about how to create custom license fields, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
+   1. For **Custom fields**, you can add values for any custom license fields in your application. For information about how to create custom license fields, see [Managing Customer License Fields](/vendor/licenses-adding-custom-fields).
 
 1. Click **Save Changes**.
 

@@ -10,12 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2024.12.11-1
+
+Released on December 11, 2024
+
+### New Features {#new-features-v2024-12-11-1}
+* Downloaded support bundle file names will now include customer name and instance name or ID if available.
+
 ## v2024.12.10-0
 
 Released on December 10, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-10-0}
-* CMX: Fix update TTL for VM based clusters (k3s, OpenShift, rke2, ...).
+* Compatibility Matrix: Fix update TTL for VM based clusters (k3s, OpenShift, rke2, ...).
 
 ## v2024.12.06-4
 
@@ -23,6 +31,13 @@ Released on December 6, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-06-4}
 * Compatiblity Matrix: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
+
+## v2024.12.06-2
+
+Released on December 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-06-2}
+* Fixes a bug that could cause the Replicated CLI to fail to promote a new release to a channel.
 
 ## v2024.12.05-5
 
