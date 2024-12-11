@@ -139,19 +139,19 @@ pagination_next: null
   <ul>
     <li class="tile__header">
         <img src="images/icons/k8s_installer.png" alt="installer icon"></img>
-        <p>Embedded Cluster (Beta)</p>
+        <p>Embedded Cluster</p>
     </li>
     <li>
         <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-overview">Using Embedded Cluster (Beta)</a>
+      <a href="/vendor/embedded-overview">Using Embedded Cluster</a>
     </li>
     <li>
-      <a href="/enterprise/installing-embedded">Installing with Embedded Cluster (Beta)</a>
+      <a href="/enterprise/installing-embedded">Installing with Embedded Cluster</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster (Beta)</a>
+      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster</a>
     </li>
   </ul>
 </section>
@@ -210,7 +210,7 @@ pagination_next: null
       <a href="/vendor/releases-creating-customer">Creating and Managing Customers</a>
     </li>
     <li>
-      <a href="/vendor/licenses-adding-custom-fields">Managing Custom License Fields</a>
+      <a href="/vendor/licenses-adding-custom-fields">Managing Customer License Fields</a>
     </li>
   </ul>
 </section>
