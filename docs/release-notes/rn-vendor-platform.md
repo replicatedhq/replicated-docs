@@ -23,7 +23,7 @@ Released on December 11, 2024
 Released on December 10, 2024
 
 ### Bug Fixes {#bug-fixes-v2024-12-10-0}
-* Compatibility Matrix: Fix update TTL for VM based clusters (k3s, OpenShift, rke2, ...).
+* Compatibility Matrix: Fix `update ttl` for VM-based clusters (including k3s, OpenShift, rke2, and so on).
 
 ## v2024.12.06-4
 
