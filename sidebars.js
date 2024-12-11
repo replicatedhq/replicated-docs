@@ -240,6 +240,7 @@ const sidebars = {
             'reference/embedded-cluster-install',
           ],
         },
+        'enterprise/embedded-manage-nodes',
         'enterprise/updating-embedded',
         'vendor/embedded-disaster-recovery',
       ],
