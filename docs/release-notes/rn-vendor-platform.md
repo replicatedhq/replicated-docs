@@ -24,6 +24,13 @@ Released on December 6, 2024
 ### Bug Fixes {#bug-fixes-v2024-12-06-4}
 * Compatiblity Matrix: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
 
+## v2024.12.06-2
+
+Released on December 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-06-2}
+* Fixes a bug that could cause the Replicated CLI to fail to promote a new release to a channel.
+
 ## v2024.12.05-5
 
 Released on December 5, 2024
