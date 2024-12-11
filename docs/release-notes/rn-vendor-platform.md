@@ -10,12 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2024.12.11-1
 
 Released on December 11, 2024
 
 ### New Features {#new-features-v2024-12-11-1}
 * Downloaded support bundle file names will now include customer name and instance name or ID if available.
+
+## v2024.12.10-0
+
+Released on December 10, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-10-0}
+* Compatibility Matrix: Fix `update ttl` for VM-based clusters (including k3s, OpenShift, rke2, and so on).
 
 ## v2024.12.06-4
 
