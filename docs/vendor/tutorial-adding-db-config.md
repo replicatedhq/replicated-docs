@@ -16,7 +16,7 @@ It is split into 5 sections:
 
 This guide assumes you have:
 
-* A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the Admin Console in an existing or embedded kURL cluster, complete the [Install with KOTS in an Existing Cluster](tutorial-cli-setup) tutorial to package and install a sample application.
+* A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL. If you do not have a running instance of the Admin Console in an existing or kURL cluster, complete the [Install with KOTS in an Existing Cluster](tutorial-cli-setup) tutorial to package and install a sample application.
 * A local git checkout of your application manifests.
 
 ### Accompanying Code Examples
@@ -202,7 +202,7 @@ As mentioned in the introduction, a full example of the code for this guide can 
 ### Validating Config Changes
 
 Even though the options aren't wired, let's create a new release to validate the configuration screen was modified.
-Create a release by pushing a commit to your [ci-enabled repo](tutorial-ci-cd-integration) or by running `replicated release create --auto` locally.
+Create a release by running `replicated release create --auto`.
 Then head to the Admin Console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)

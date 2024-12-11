@@ -142,4 +142,4 @@ Finally, edit the HelmChart custom resource:
           database: mydatabase
     ```
 
-1. Save and promote the release. Then, install the release in a development environment to test the embedded and external Postgres options. For more information, see [Installing in an Existing Cluster](/enterprise/installing-existing-cluster).
+1. Save and promote the release. Then, install the release in a development environment to test the embedded and external Postgres options. For more information, see [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).

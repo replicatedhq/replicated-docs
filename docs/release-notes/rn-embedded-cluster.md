@@ -10,6 +10,103 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.19.0
+
+Released on November 14, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.19.0+k8s-1.30</td>
+    <td id="center">1.19.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.121.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-19-0}
+* Adds preflight checks to ensure that the following kernel parameters are set: `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`.
+* The following kernel parameters will be written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
+
+### Improvements {#improvements-1-19-0}
+* If a user downloads an air gap bundle but attempts to install without it, the user will be instructed how to pass the air gap bundle to `install`. They will then be asked if they want to continue with an online installation anyway.
+
+## 1.18.0
+
+Released on November 8, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.18.0+k8s-1.30</td>
+    <td id="center">1.18.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-18-0}
+* Adds support for passing ConfigValues using the `--config-values` flag for the `install` command. This also enables automated installations of both Embedded Cluster and the application.
+
+### Improvements {#improvements-1-18-0}
+* When the Admin Console URL is printed at the end of the `install` command, it will now use the public IP address instead of the private IP address for AWS EC2 instances that use IMDSv2.
+* During setup of the Admin Console when a self-signed certificate is used, the instructions are updated to better inform users how to ignore the warning on different browsers.
+
+### Bug Fixes {#bug-fixes-1-18-0}
+* Fixes an issue where registry logs weren't included in support bundles.
+* Fixes an issue when installing on Azure that caused the Admin Console URL shown at the end of the `install` command to use the private IP address rather than the public IP address.
+* Fixes an issue that prevented you from updating an application if the new version contained a required config item without a `default` or `value` set.
+* The copy button now works for the command to validate the authenticity of the self-signed certificate during Admin Console setup.
+* Fixes an issue where the **Config** page showed an error and wouldn't load.
+
+## 1.17.0
+
+Released on November 4, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.17.0+k8s-1.30</td>
+    <td id="center">1.17.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-17-0}
+* Adds support for partial rollbacks. Partial rollbacks are supported only when rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same [Embedded Cluster Config](/reference/embedded-config). For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
+* Introduces a new landing page and guided installation workflow for the Admin Console.
+
+### Improvements {#improvements-1-17-0}
+* Removes unused infrastructure images from the data directory on upgrades to free up storage space.
+* Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
+* Support bundles now include information on connectivity between Pods and nodes to help resolve networking issues more quickly.
+* The preflight check for connectivity to replicated.app and proxy.replicated.com now use any private CAs provided with `--private-ca`, in case a man-in-the-middle proxy is in use.
+
+### Bug Fixes {#bug-fixes-1-17-0}
+* Fixes a panic that occurred when prompted to proceed after preflight warnings.
+* Fixes an issue where `troubleshoot.sh/v1beta2` was erroneously printed to the screen during installation.
 
 ## 1.16.0
 
@@ -48,6 +145,7 @@ Released on October 23, 2024
 
 ### Improvements {#improvements-1-16-0}
 * For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. With this change, Embedded Cluster now only documents and includes preflight checks for `/var/lib/embedded-cluster`.
+* Adds the `support-bundle` command to make it easier to generate support bundles. For more information, see [Generating Support Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 * Improves the reliability of waiting for the Kubernetes server to start.
 * Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
 * Requires that the Admin Console password is at least six characters.
@@ -59,9 +157,11 @@ Released on October 23, 2024
 * Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
 * Fixes an issue that prevented you from upgrading to an application version that didn't have Config and preflights.
 * Fixes an issue where the Admin Console could reach out the internet when generating a support bundle in air gap environments.
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
 * Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
 * If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
+* Fixes an issue where node joins failed because of a version mismatch, even though the versions were the same.
 
 ## 1.15.0 - Removed
 
@@ -99,7 +199,9 @@ Released on October 10, 2024
 * The Admin Console password must be at least six characters.
 
 ### Bug Fixes {#bug-fixes-1-15-0}
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+* Fixes an issue where node joins failed because of a version mismatch, even though the versions were the same.
 
 ## 1.14.2
 

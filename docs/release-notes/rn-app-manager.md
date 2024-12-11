@@ -18,6 +18,70 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.121.2
+
+Released on November 27, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-121-2}
+* Various updates for Embedded Cluster.
+
+## 1.121.1
+
+Released on November 26, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-121-1}
+* Various fixes for Embedded Cluster.
+
+## 1.121.0
+
+Released on November 12, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-121-0}
+* Adds the ability to download the application archive for any version, including the currently deployed version, by using the `--sequence` and `--current` flags for the `kots download` command.
+
+## 1.120.3
+
+Released on November 7, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-120-3}
+* Various updates for Embedded Cluster.
+
+## 1.120.2
+
+Released on November 5, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-120-2}
+* Fixes an issue where generating a support bundle in air gap kURL environments took a really long time.
+
+## 1.120.1
+
+Released on November 4, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-120-1}
+* Fixes an issue where generating support bundles failed in air gap and minimal RBAC installations.
+* Fixes an issue where pushing images from an air gap bundle could time out due to the host's environment variables interfering with the temporary registry used by the KOTS CLI.
+
+## 1.120.0
+
+Released on October 30, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-120-0}
+* Various new features to support Replicated Embedded Cluster.
+
 ## 1.119.1
 
 Released on October 22, 2024

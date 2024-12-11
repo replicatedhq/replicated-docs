@@ -1,12 +1,17 @@
 import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
+import NoEcSupport from "../partials/snapshots/_limitation-no-ec-support.mdx"
 
 # Understanding Backup and Restore
 
-This topic describes how vendors enable the backup and restore feature, the type of data that is backed up, and how to troubleshoot issues for enterprise users. 
+This topic provides an introduction to the Replicated KOTS snapshots feature for backup and restore. It describes how vendors enable snapshots, the type of data that is backed up, and how to troubleshoot issues for enterprise users.
+
+:::note
+<NoEcSupport/>
+:::
 
 ## About Backup and Restore
 
-As a vendor, when you distribute your application with Replicated KOTS you can enable Replicated snapshots to support backup and restore for your enterprise users.
+You can enable Replicated KOTS snapshots to support backup and restore for existing cluster installations with KOTS and Replicated kURL installations.
 
 Snapshots uses the Velero open source project as the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
@@ -16,11 +21,11 @@ KOTS provides the Admin Console and the KOTS CLI so that your users can fully ma
 
 ## What Data is Backed Up
 
-Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For embedded clusters created with Replicated kURL, this also backs up the Docker registry, which is required for air gapped installations.
+Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For Replicated kURL installations, this also backs up the Docker registry, which is required for air gapped installations.
 
 ### Other Object-Stored Data
 
-For embedded kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
+For kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
 
 For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
@@ -41,7 +46,7 @@ To enable the snapshots backup and restore feature for your users, you must:
 
 ## Understanding Backup and Restore for Enterprise Users {#how-users}
 
-After vendors enable backup and restore, enterprise users install Velero and configure a storage destination in the Admin Console. Then users can create backups manually or schedule automatic backups. For more information about how users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
+After vendors enable backup and restore, enterprise users install Velero and configure a storage destination in the Admin Console. Then users can create backups manually or schedule automatic backups. For more information about how users create and restore backups, see [About Backing Up and Restoring with Snapshots](/enterprise/snapshots-understanding).
 
 Replicated recommends advising your users to make full backups for disaster recovery purposes. Additionally, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the Admin Console.
 
@@ -55,8 +60,8 @@ Partial backups are not recommended as they are a legacy feature and only back u
 
 To support end users with backup and restore, use the following resources:
 
-- To help troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. 
+- To help troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore). 
 
-- Review the Limitations and Considerations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations) in _Enterprise_.
+- Review the Limitations and Considerations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations).
 
-- Check that the installed Velero version and KOTS version are compatible. See [Velero Version Compatibility](/enterprise/snapshots-understanding#velero-version-compatibility) in _Enterprise_.
+- Check that the installed Velero version and KOTS version are compatible. See [Velero Version Compatibility](/enterprise/snapshots-understanding#velero-version-compatibility).

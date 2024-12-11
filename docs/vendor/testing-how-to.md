@@ -37,14 +37,17 @@ To create a cluster using the Replicated CLI:
 1. Run the following command to create a cluster:
 
    ```
-   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE
+   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
    ```
    Where:
    * `NAME` is any name for the cluster. If `--name` is excluded, a name is automatically generated for the cluster.
    * `K8S_DISTRO` is the Kubernetes distribution for the cluster.
-   * `K8S_VERSION` is the Kubernetes version for the cluster.
+   * `K8S_VERSION` is the Kubernetes version for the cluster if creating a standard Cloud or VM-based cluster. If creating an Embedded Cluster or kURL cluster type,`--version` is optional:
+      * For Embedded Cluster types, `--verison` is the latest available release on the channel by default. Otherwise, to specify a different release, set `--version` to the `Channel release sequence` value for the release.  
+      * For kURL cluster types, `--verison` is the `"latest"` kURL Installer ID by default.  Otherwise, to specify a different kURL Installer, set `--version` to the kURL Installer ID. 
    * `DISK_SIZE` is the disk size (GiB) to request per node.
    * `INSTANCE_TYPE` is the instance type to use for each node.
+   * (Embedded Cluster Only) `LICENSE_ID` is a valid customer license. Required to create an Embedded Cluster.
 
    For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
 
@@ -193,6 +196,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
     ```
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
+
 ### Access Clusters
 
 Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
@@ -206,18 +210,22 @@ To access a cluster from the command line:
    ```
    In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
-1. Run the following command to download the kubeconfig for the cluster and update Kubernetes context:
+1. Run the following command to open a new shell session with the kubeconfig configured for the cluster:
 
    ```bash
-   replicated cluster kubeconfig CLUSTER_ID
-   ```
-   When the command completes, a `Updated kubernetes context` message is displayed. For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+   replicated cluster shell CLUSTER_ID
+   ``` 
+   Where `CLUSTER_ID` is the unique ID for the running cluster that you want to access.
+
+   For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
 
 1. Verify that you can interact with the cluster through kubectl by running a command. For example:
 
    ```bash
    kubectl get ns
    ```
+
+1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
 
 ### Upgrade Clusters (kURL Only)
 

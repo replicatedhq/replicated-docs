@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.0.0-beta.32
+
+Released on December 9, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-32}
+* Fixes an issue that caused [custom metrics](/vendor/custom-metrics#configure-custom-metrics) to not be collected.
+
 ## 1.0.0-beta.31
 
 Released on October 17, 2024

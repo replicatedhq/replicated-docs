@@ -10,11 +10,182 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.11-1
+
+Released on December 11, 2024
+
+### New Features {#new-features-v2024-12-11-1}
+* Downloaded support bundle file names will now include customer name and instance name or ID if available.
+
+## v2024.12.06-4
+
+Released on December 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-06-4}
+* Compatiblity Matrix: Fix for `cluster ls` not taking into account end-time when including terminated clusters.
+
+## v2024.12.05-5
+
+Released on December 5, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-05-5}
+* Compatibility Matrix: Display time in local timezone on the **Cluster History** page.
+
+## v2024.12.04-2
+
+Released on December 4, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-04-2}
+* Fixes a bug that could cause the "email is required for customers with helm install enabled" error when creating or updating customers.
+
+## v2024.12.04-1
+
+Released on December 4, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-04-1}
+* Compatibility Matrix: Fix cluster assignment for EKS, AKS, GKE and OKE in case no warm clusters are available.
+
+## v2024.12.02-2
+
+Released on December 2, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-02-2}
+* Fixes a bug that could cause the [kURL Embedded Cluster](https://docs.replicated.com/vendor/licenses-install-types#install-types) option to be disabled for customers even though there is a kURL Installer spec available.
+
+## v2024.12.02-0
+
+Released on December 2, 2024
+
+### New Features {#new-features-v2024-12-02-0}
+* Adds support for `kots.io/installer-only` annotation on Kuberntes specs. For more information, see [kots.io/installer-only Annotation](/vendor/licenses-install-types#installer-only-annotation) in _Managing Install Types for a License (Beta)_.
+
+## v2024.11.27-1
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-1}
+* Fixes an issue where a KOTS release was incorrectly identified as a [Helm CLI-only](/vendor/licenses-install-types#install-types) release, preventing it from being promoted.
+## v2024.11.27-0
+
+Released on November 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-27-0}
+* Fixes a bug where Helm install instructions in the [Download Portal](/vendor/helm-install-airgap) didn't use custom domains.
+
+## v2024.11.26-6
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-6}
+* Fixes a bug where it causes the Customer Portal to show a blank screen when missing data from an endpoint.
+
+## v2024.11.26-2
+
+Released on November 26, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-26-2}
+* Fixes a bug that caused images to be excluded from the Helm air gap install instructions.
+
+## v2024.11.20-5
+
+Released on November 20, 2024
+
+### New Features {#new-features-v2024-11-20-5}
+* Allows the user to edit cluster tags from the **Edit Cluster** page.
+
+## v2024.11.20-2
+
+Released on November 20, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-20-2}
+* Fixes a bug that could cause the [Channel installation command](/vendor/releases-about#channels-page) to use a kURL Installer other than the latest.
+
+## v2024.11.18-0
+
+Released on November 18, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-18-0}
+* Fixes a bug where the Helm install instructions would not appear on the **Customer** pages if the KOTS install license option was not enabled.
+
+## v2024.11.13-0
+
+Released on November 13, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-13-0}
+* Fixes a bug that could cause an error message similar to the following to display when attempting to update an existing customer: "This team cannot create customers with kurl install enabled".
+
+## v2024.11.12-4
+
+Released on November 12, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-12-4}
+* Fixes a bug on the **Customer** page that caused the **Embedded Cluster Install Instructions** to be hidden when the Embedded Cluster install type was enabled for the license.
+
+## v2024.11.12-4
+
+Released on November 12, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-12-4}
+* Fixes a bug on the **Customer** page that caused the **Embedded Cluster Install Instructions** to be hidden when the Embedded Cluster install type was enabled for the license.
+
+## v2024.11.12-2
+
+Released on November 12, 2024
+
+### Improvements {#improvements-v2024-11-12-2}
+* Updates the styles and removes irrelevant content for errored clusters on the Compatibility Matrix Clusters page.
+
+## v2024.11.11-0
+
+Released on November 11, 2024
+
+### Improvements {#improvements-v2024-11-11-0}
+* Compatibility Matrix: Clusters in error will remain visible for about 5 minutes before they will be transferred to the cluster history.
+
+### Bug Fixes {#bug-fixes-v2024-11-11-0}
+* Fixes exception raised when submitting a support case without a GitHub username.
+* When downloading an Embedded Cluster installation asset, a 400 status code and message will now be returned when an air gap bundle does not exist and `airgap=true` is set in the URL.
+
+## v2024.11.06-1
+
+Released on November 6, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-06-1}
+* Fixes a bug in the Helm Install Instructions modal when entering an email address.
+
+## v2024.11.01-1
+
+Released on November 1, 2024
+
+### Bug Fixes {#bug-fixes-v2024-11-01-1}
+* Fix default license install options when creating new license.
+
+## v2024.10.28-3
+
+Released on October 28, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-28-3}
+* Fixes a bug that could cause the **Customer Email** field to be required.
+
+## v2024.10.25-8
+
+Released on October 25, 2024
+
+### Bug Fixes {#bug-fixes-v2024-10-25-8}
+* Fixes a bug where users could not create a new customer when there are required license fields.
+
+## v2024.10.25-3
+
+Released on October 25, 2024
+
+### Improvements {#improvements-v2024-10-25-3}
+* Add GitHub issue URL to feature request confirmation modal.
+
 ## v2024.10.24-2
 
 Released on October 24, 2024
 
-### New Features {#new-features-v2024-10-24-2}
+### Improvements {#improvements-v2024-10-24-2}
 * Renames "Embedded cluster" to "Embedded Kubernetes" and "Bring my own cluster" to "Bring my own Kubernetes" in the Download Portal side bar.
 
 ## v2024.10.23-6

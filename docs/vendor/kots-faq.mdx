@@ -1,6 +1,7 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import EmbeddedKubernetes from "../partials/kots/_embedded-kubernetes-definition.mdx"
 import Helm from "../partials/helm/_helm-definition.mdx"
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Replicated FAQs
 
@@ -41,6 +42,20 @@ The following getting started tutorials demonstrate how to integrate key Replica
 * [Install a Helm Chart with KOTS and the Helm CLI](/vendor/tutorial-kots-helm-setup): Create a release that can be installed with both the KOTS installer and the Helm CLI.
 * [Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup): Configure the Admin Console Config screen to collect user-supplied values. 
 * [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup): Create preflight checks for your application by addin a spec for preflight checks to a Secret in the Helm templates.
+
+### What are air gap installations?
+
+_Air gap_ refers to a computer or network that does not have outbound internet access. Air-gapped environments are common for enterprises that require high security, such as government agencies or financial institutions.
+
+Traditionally, air-gapped systems are physically isolated from the network. For example, an air-gapped server might be stored in a separate location away from network-connected servers. Physical access to air-gapped servers is often restricted as well.
+
+It is also possible to use _virtual_ or _logical_ air gaps, in which security controls such as firewalls, role-based access control (RBAC), and encryption are used to logically isolate a device from a network. In this way, network access is still restricted, but there is not a phyiscal air gap that disconnects the device from the network.
+
+Replicated supports installations into air-gapped environments. In an air gap installation, users first download the images and other assets required for installation on an internet-connected device. These installation assets are usually provided in an _air gap bundle_ that ISVs can build in the Replicated Vendor Portal. Then, users transfer the installation assets to their air-gapped machine where they can push the images to an internal private registry and install.
+
+For more information, see:
+* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap)
 
 ### What is the Commercial Sotware Distribution Lifecycle?
 
@@ -109,7 +124,7 @@ Yes. The Embedded Cluster and KOTS installers support installation in _air gap_ 
 
 To support air gap installations, vendors can build air gap bundles for their application in the Vendor Portal that contain all the required assets for a specific release of the application. Additionally, Replicated provides bundles that contain the assets for the Replicated installers.
 
-For more information about how to install with Embedded Cluster and KOTS in air gap environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Air Gap Installation in Existing Clusters](/enterprise/installing-existing-cluster-airgapped).
+For more information about how to install with Embedded Cluster and KOTS in air gap environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
 ### Can I deploy Helm charts with KOTS?
 
@@ -120,6 +135,8 @@ For more information, see [About Distributing Helm Charts with KOTS](/vendor/hel
 ### What's the difference between Embedded Cluster and kURL?
 
 Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster feature offers significantly faster installation, updates, and node joins, a redesigned Admin Console UI, improved support for multi-node clusters, one-click updates that update the application and the cluster at the same time, and more.
+
+<KurlAvailability/>
 
 For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 

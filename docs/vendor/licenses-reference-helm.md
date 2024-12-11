@@ -39,7 +39,7 @@ To check entitlements before installation:
 
    1. In the Vendor Portal, click **Customers**. Select a customer and click the **Manage customer** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
-   1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. Or, you can create a custom field that limits the number of nodes a user is permitted in their cluster. For more information, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
+   1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. Or, you can create a custom field that limits the number of nodes a user is permitted in their cluster. For more information, see [Managing Customer License Fields](/vendor/licenses-adding-custom-fields).
 
 1. In your Helm chart, update the Helm templates with one or more directives to access the license field. For example, you can access the built-in `expires_at` field with `{{ .Values.global.replicated.licenseFields.expires_at }}`. Add the desired logic to control application behavior based on the values of license fields.
 

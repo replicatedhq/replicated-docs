@@ -6,10 +6,12 @@
 
 * At least 2GB of memory and 2 CPU cores
 
+* The disk on the host must have a maximum P99 write latency of 10 ms. This supports etcd performance and stability. For more information about the disk write latency requirements for etcd, see [Disks](https://etcd.io/docs/latest/op-guide/hardware/#disks) in _Hardware recommendations_ and [What does the etcd warning “failed to send out heartbeat on time” mean?](https://etcd.io/docs/latest/faq/) in the etcd documentation.
+
 * The filesystem at `/var/lib/embedded-cluster` has 40Gi or more of total space and must be less than 80% full
 
    :::note
-   The directory used for data storage can be changed by passing the `--data-dir` flag with the Embedded Cluster install command. For more information, see [Change the Default Data Directory](/enterprise/installing-embedded#data-dir) in _Installing with Embedded Cluster_.
+   The directory used for data storage can be changed by passing the `--data-dir` flag with the Embedded Cluster install command. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
    :::
 
    Note that in addition to the primary `/var/lib/embedded-cluster` directory, Embedded Cluster creates directories and files in the following locations:

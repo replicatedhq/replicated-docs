@@ -18,7 +18,7 @@ The following `cluster addon create` commands are supported:
   <th width="50%">Description</th>
 </tr>
   <tr>
-    <td><a href="replicated-cli-addon-create-object-store"><code>replicated cluster addon create object-store</code></a></td>
+    <td><code>replicated cluster addon create object-store</code></td>
     <td>Create an object store bucket for a cluster.</td>
   </tr>
 </table>

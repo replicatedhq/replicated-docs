@@ -99,11 +99,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-installing-native-helm"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-processing"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-native-about"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
@@ -128,11 +128,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-overview"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-install-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/vendor/helm-install-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
@@ -174,11 +174,23 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/support-bundle-helm-customizing"
-  to="https://docs.replicated.com/vendor/support-bundle-customizing"
+  to="https://docs.replicated.com/vendor/support-bundle-customizing"   
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/distributing-overview"
+  to="https://docs.replicated.com/intro-replicated"                                
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/distributing-workflow"
-  to="https://docs.replicated.com/vendor/replicated-onboarding"                                   
+  to="https://docs.replicated.com/vendor/replicated-onboarding"                                      
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/tutorial-ci-cd-integration"
+  to = "https://docs.replicated.com/vendor/ci-overview"   
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-kubernetes-overview"
+  to = "https://docs.replicated.com/vendor/embedded-overview"               
 
 ###################################################
 # Redirects To the Enterprise Section
@@ -223,6 +235,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise/image-registry-embedded-cluster"
   to="https://docs.replicated.com/enterprise/image-registry-kurl"   
+   
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-configvalues"
+  to="https://docs.replicated.com/enterprise/installing-embedded-automation"      
    
 ###################################################
 # Redirects To the References Section

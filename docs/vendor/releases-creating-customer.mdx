@@ -8,7 +8,7 @@ This topic describes how to create and manage customers in the Replicated Vendor
 
 ## Create a Customer
 
-This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time in the Vendor Portal.
+This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time.
 
 For information about creating a customer with the Replicated CLI, see [customer create](/reference/replicated-cli-customer-create).
 
@@ -22,9 +22,15 @@ To create a customer:
 
    ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
 
+   [View a larger version of this image](/images/create-customer.png)
+
 1. For **Customer name**, enter a name for the customer.
 
-1. For **Customer email**, enter the email address for the customer. The customer email address is required for Helm installations. This email address is never used send emails to customers.
+1. For **Customer email**, enter the email address for the customer.
+
+   :::note
+   A customer email address is required for Helm installations. This email address is never used to send emails to customers.
+   :::
 
 1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
@@ -32,48 +38,19 @@ To create a customer:
    <ChangeChannel/>
    :::
 
-1. For **Custom ID**, you can enter a custom ID for the customer. Setting a custom ID allows you to easily tie this Replicated customer record to your own internal customer data systems during data exports. We suggest setting an alphanumeric value such as your Salesforce ID, Hubspot ID, etc for that customer. Replicated does not require the custom ID to be unique. The custom ID is for vendor data reconciliation purposes, and is not used by Replicated for any functionality purposes.
+1. For **Custom ID**, you can enter a custom ID for the customer. Setting a custom ID allows you to easily associate this Replicated customer record to your own internal customer data systems during data exports. Replicated recommends using an alphanumeric value such as your Salesforce ID or Hubspot ID.
+
+   :::note
+   Replicated does _not_ require that the custom ID is unique. The custom ID is for vendor data reconciliation purposes, and is not used by Replicated for any functionality purposes.
+   :::
 
 1. For **Expiration policy**, by default, **Customer's license does not expire** is enabled. To set an expiration date for the license, enable **Customer's license has an expiration date** and specify an expiration date in the **When does this customer expire?** calendar. 
 
 1. For **Customer type**, set the customer type. Customer type is used only for reporting purposes. Customer access to your application is not affected by the type you assign to them. By default, **Trial** is selected. For more information, see [About Customer License Types](licenses-about-types).
 
-1. In the **License options** pane, configure any of the built-in KOTS entitlements that you support in your application. For more information, see [Built-in License Fields](licenses-using-builtin-fields).
+1. Enable any of the available options for the customer. For more information about the license options, see [Built-in License Fields](/vendor/licenses-using-builtin-fields). For more information about enabling install types, see [Managing Install Types for a License (Beta)](/vendor/licenses-install-types).
 
-    The available license options are:
-
-      <table>
-        <tr>
-          <th width="30%">Name</th>
-          <th width="70%">Description</th>
-        </tr>
-        <tr>
-          <td>KOTS Install Enabled</td>
-          <td>Enables customers to install with Replicated KOTS.</td>
-        </tr>
-        <tr>
-          <td>Airgap Download Enabled</td>
-          <td>Enables new installations with this license to install from an air gap package or from an online installation.</td>
-        </tr>
-        <tr>
-          <td>Gitops Enabled</td>
-          <td> <GitOpsNotRecommended/> Enables customers with a KOTS-managed installation to transition from click-to-deploy to the KOTS Auto-GitOps workflow for deployment. See <a href="/enterprise/gitops-workflow">KOTS Auto-GitOps Workflow</a>. </td>
-        </tr>
-        <tr>
-          <td>Identity Service Enabled</td>
-          <td>Enables customers to integrate with third-party identity service providers to provision RBAC for authenticating to the admin console.</td>
-        </tr>
-        <tr>
-          <td>Support Bundle Upload Enabled</td>
-          <td>Enables installations to upload support bundles directly from the admin console.</td>
-        </tr>
-        <tr>
-          <td>Allow Snapshot</td>
-          <td>Enables customers to create snapshots for backup and restore. Vendors must also add a Backup custom resource. See <a href="/reference/custom-resource-backup">Velero Backup Custom Resource</a>.</td>
-        </tr>
-      </table>
-
-1. (Optional) For **Custom fields**, configure any custom fields that are available for your Replicated application. For more information about how to create custom fields for your application, see [Managing Custom License Fields](licenses-adding-custom-fields).
+1. For **Custom fields**, configure any custom fields that you have added for your application. For more information about how to create custom fields for your application, see [Managing Customer License Fields](licenses-adding-custom-fields).
 
 1. Click **Save Changes**.
 
@@ -99,7 +76,7 @@ To edit license fields:
 
 1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
     * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
-    * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses_.
+    * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses in the Admin Console_.
 
 ## Archive a Customer
 
