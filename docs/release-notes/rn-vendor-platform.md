@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.11-5
+
+Released on December 11, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-11-5}
+* Fixes a bug that would hide air gap instances on the Customer Reporting page even if they existed.
+
 ## v2024.12.11-1
 
 Released on December 11, 2024
