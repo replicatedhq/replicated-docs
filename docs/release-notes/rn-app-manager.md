@@ -25,7 +25,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-122-0}
-* Adds support for adding `orLabelSelectors` to the velero.io/v1 Backup resource for [Full Snapshots](https://docs.replicated.com/vendor/snapshots-overview).
+* Adds support for adding [`orLabelSelectors`](https://docs.replicated.com/reference/custom-resource-backup#fields) to the velero.io/v1 Backup resource for [Full Snapshots](https://docs.replicated.com/vendor/snapshots-overview).
 
 ## 1.121.2
 
