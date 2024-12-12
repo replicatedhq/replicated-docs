@@ -6,7 +6,7 @@ import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 
 This topic describes the methods for distributing and installing the Replicated SDK.
 
-It includes information about how to install the SDK alongside Helm chart- or standard manifest-based applications using the Helm CLI or Replicated KOTS. It also includes information about installing the SDK separately from an application as a standalone component in integration mode.
+It includes information about how to install the SDK alongside Helm charts or Kubernetes manifest-based applications using the Helm CLI or a Replicated installer (Replicated KOTS, kURL, Embedded Cluster). It also includes information about installing the SDK as a standalone component in integration mode.
 
 For information about installing the SDK in air gap mode, see [Installing the SDK in Air Gap Environments](replicated-sdk-airgap).
 
@@ -65,13 +65,13 @@ To install the SDK as a subchart:
     replicated   1/1     1            1           35s
     ```
 
-## Install the SDK Alongside a Standard Manifest-Based Application
+## Install the SDK Alongside a Kubernetes Manifest-Based Application
 
-For applications that use standard Kubernetes manifest files, the SDK Helm chart can be added to a release and then installed by KOTS alongside the application.
+For applications that use Kubernetes manifest files instead of Helm charts, the SDK Helm chart can be added to a release and then installed by KOTS alongside the application.
 
 <KotsVerReq/>
 
-To add the SDK Helm chart to a release for a standard manifest-based application:
+To add the SDK Helm chart to a release for a Kubernetes manifest-based application:
 
 1. Install the Helm CLI using Homebrew:
 
@@ -99,7 +99,7 @@ To add the SDK Helm chart to a release for a standard manifest-based application
     
     [View a larger version of this image](/images/sdk-kots-release.png)
 
-1. If one was not created automatically, add a Replicated HelmChart custom resource to the release. HelmChart custom resources have `apiVersion: kots.io/v1beta2` and `kind: HelmChart`. 
+1. If one was not created automatically, add a KOTS HelmChart custom resource to the release. HelmChart custom resources have `apiVersion: kots.io/v1beta2` and `kind: HelmChart`. 
 
      **Example:**
   
@@ -126,7 +126,7 @@ To add the SDK Helm chart to a release for a standard manifest-based application
 
 1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
 
-1. Install the release using a Replicated installer (Emebdded Cluster, KOTS, kURL). For more information, see:
+1. Install the release using a Replicated installer. For more information, see:
      * [Online Installation with Embedded Cluster](/enterprise/installing-embedded)
      * [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster)
      * [Online Installation with kURL](/enterprise/installing-kurl)
