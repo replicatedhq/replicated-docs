@@ -7,7 +7,7 @@ import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
 
-# Using Embedded Cluster
+# Overview of Embedded Cluster
 
 This topic describes how to use the Replicated Embedded Cluster to configure, install, and manage your application in an embedded Kubernetes cluster.
 
@@ -79,11 +79,11 @@ Embedded Cluster has the following limitations:
 
 ## Quick Start
 
-You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
+If you already have a release for your application in the Vendor Portal that supports installation with Replicated KOTS, you can use the following steps to get started quickly with Embedded Cluster:
 
 1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled** license option. Save the customer.
 
-1. Create a new release that includes your application. In that release, create an Embedded Cluster Config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
+1. Create a new release that includes your application as well as the KOTS custom resources. In that release, create an Embedded Cluster Config that includes, at minimum, the Embedded Cluster version you want to use. See the Embedded Cluster [GitHub repo](https://github.com/replicatedhq/embedded-cluster/releases) to find the latest version.
 
      Example Embedded Cluster Config:
 
@@ -135,54 +135,6 @@ To install with Embedded Cluster, you can follow the customer-specific instructi
 
 [View a larger version of this image](/images/embedded-cluster-install-dialog.png)
 
-### (Optional) Serve Installation Assets Using the Vendor API
-
-To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
-
-To serve Embedded Cluster installation assets with the Vendor API:
-
-1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
-
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
-
-     Note the following:
-
-     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
-
-     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
-
-### About Host Preflight Checks
-
-During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
-* The system has sufficient disk space
-* The system has at least 2G of memory and 2 CPU cores
-* The system clock is synchronized
-
-For Embedded Cluster requirements, see [Requirements](#requirements). For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
-
-If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks for installations on VMs or bare metal servers, see [About Host Preflights](preflight-support-bundle-about#host-preflights).
-
-#### Limitations
-
-Embedded Cluster host preflight checks have the following limitations:
-
-* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
-* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
-
-#### Skip Host Preflight Checks
-
-You can skip host preflight checks by passing the `--skip-host-preflights` flag with the Embedded Cluster `install` command. For example:
-
-```bash
-sudo ./my-app install --license license.yaml --skip-host-preflights
-```
-
-When you skip host preflight checks, the Admin Console still runs any application-specific preflight checks that are defined in the release before the application is deployed.
-
-:::note
-Skipping host preflight checks is _not_ recommended for production installations.
-:::
-
 ## About Managing Multi-Node Clusters with Embedded Cluster
 
 This section describes managing nodes in multi-node clusters created with Embedded Cluster.
@@ -211,83 +163,11 @@ For more information about creating HA multi-node clusters with Embedded Cluster
 
 For more information about updating, see [Performing Updates with Embedded Cluster](/enterprise/updating-embedded).
 
-## Access the Cluster
+## Troubleshoot with Support Bundles
 
-With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
+<SupportBundleIntro/>
 
-Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
-
-To access the cluster and use other included binaries:
-
-1. SSH onto a controller node.
-
-1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
-
-     ```
-     sudo ./APP_SLUG shell
-     ```
-
-     The output looks similar to the following:
-     ```
-        __4___
-    _  \ \ \ \   Welcome to APP_SLUG debug shell.
-    <'\ /_/_/_/   This terminal is now configured to access your cluster.
-    ((____!___/) Type 'exit' (or CTRL+d) to exit.
-    \0\0\0\0\/  Happy hacking.
-    ~~~~~~~~~~~
-    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
-    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
-    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
-    root@alex-ec-2:/home/alex# source /etc/bash_completion
-    ```
-
-     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
-
-     :::note
-     You cannot run the `shell` command on worker nodes.
-     :::
-
-1. Use the available binaries as needed.
-
-     **Example**:
-
-     ```bash
-     kubectl version
-     ```
-     ```
-     Client Version: v1.29.1
-     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-     Server Version: v1.29.1+k0s
-     ```
-
-1. Type `exit` or **Ctrl + D** to exit the shell.
-
-     :::note
-     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
-     :::
-
-## Reset a Node
-
-Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
-
-If you want to completely remove a cluster, you need to reset each node individually.
-
-When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
-
-To reset a node:
-
-1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
-
-1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
-
-    ```
-    sudo ./APP_SLUG reset
-    ```
-    Where `APP_SLUG` is the unique slug for the application.
-
-    :::note
-    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
-    :::
+<EmbeddedClusterSupportBundle/>
 
 ## Additional Use Cases
 
@@ -306,10 +186,4 @@ toolkit:
      value: /etc/k0s/containerd.d/nvidia.toml
    - name: CONTAINERD_SOCKET
      value: /run/k0s/containerd.sock
-```     
-
-## Troubleshoot with Support Bundles
-
-<SupportBundleIntro/>
-
-<EmbeddedClusterSupportBundle/>
+```
