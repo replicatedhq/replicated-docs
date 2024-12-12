@@ -30,6 +30,9 @@ spec:
   - '*'
   excludedNamespaces:
   - some-namespace
+  orLabelSelectors:
+  - matchLabels:
+      app: my-app
   orderedResources:
     pods: mysql/mysql-cluster-replica-0,mysql/mysql-cluster-replica-1
     persistentvolumes: pvc-12345,pvc-67890
@@ -77,6 +80,10 @@ The following Velero fields are supported for full backups, as shown in the prev
   <tr>
     <td><code>excludedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces to exclude from the backup.</td>
+  </tr>
+  <tr>
+    <td><code>orLabelSelectors</code></td>
+    <td>(Optional) A list of metav1.LabelSelector to filter with when adding individual objects to the backup. If multiple are provided, they will be joined by the OR operator.</td>
   </tr>
   <tr>
     <td><code>orderedResources</code></td>
