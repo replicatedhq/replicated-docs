@@ -34,11 +34,16 @@ const sidebars = {
     },
 
     //GET STARTED
-    {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
-    'intro-replicated',
-    'vendor/kots-faq',
-    'vendor/quick-start',
-    'vendor/replicated-onboarding',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      items: [
+        'intro-replicated',
+        'vendor/kots-faq',
+        'vendor/quick-start',
+        'vendor/replicated-onboarding',
+      ]
+    },
     // {
     //   type: 'category',
     //   label: 'Planning',
