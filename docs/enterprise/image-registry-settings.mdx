@@ -14,9 +14,11 @@ In online (internet-connected) KOTS installations, you can optionally use a loca
 
 To configure private registry settings in an online cluster:
 
-1. In the Admin Console, on the **Registry Settings** tab, edit the fields:
+1. In the Admin Console, on the **Registry settings** tab, edit the fields:
     
     <img src="/images/registry-settings.png" alt="Registry Settings" width="400"></img>
+
+    [View a larger version of this image](/images/registry-settings.png)
 
     The following table describes the fields:
 
@@ -32,9 +34,11 @@ During air gap installations, you configure a private registry where KOTS pushes
 
 To change private registry settings in an air gap cluster:
 
-1. On the Registry Settings tab in the Admin Console, select the **Disable Pushing Images to Private Registry** checkbox, and click **Save changes**. 
+1. In the Admin Console, on the **Registry settings** tab, select the **Disable Pushing Images to Private Registry** checkbox. Click **Save changes**. 
 
-   This is a temporary action that allows you to edit the registry namespace and hostname. If you only want to change the username or password, you do not have to disable pushing the images.
+   :::note
+   This is a temporary action that allows you to edit the registry namespace and hostname. If you only want to change the username or password for the registry, you do not have to disable pushing the images.
+   :::
 
 1. Edit the fields as needed, and click **Save changes**.
 
@@ -61,7 +65,7 @@ To change private registry settings in an air gap cluster:
       </tr>
      </table>
 
-1. Deselect the **Disable Pushing Images to Private Registry** checkbox. This action re-enables KOTS to push images to your registry.
+1. Deselect the **Disable Pushing Images to Private Registry** checkbox. This action re-enables KOTS to push images to the registry.
 
 1. Click **Test Connection** to test the connection between KOTS and the private registry host.
 
@@ -69,7 +73,7 @@ To change private registry settings in an air gap cluster:
 
 ## Stop Using a Registry and Remove Registry Settings
 
-To stop using a registry:
+To stop using a registry and remove registry settings from the Admin Console:
 
 1. Log in to the Admin Console and go to **Registry Settings**.
 
