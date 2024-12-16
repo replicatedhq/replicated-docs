@@ -4,32 +4,9 @@ The Replicated SDK provides an API that you can use to embed Replicated function
 
 For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application during runtime when a license expires using the `/api/v1/license/fields` endpoint.
 
-For more information about how to get started with the Replicated SDK, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-## Use Port Forwarding to Access the SDK API
-
-After the Replicated SDK is installed and initialized in a cluster, the Replicated SDK API is exposed at `replicated:3000`. You can access the SDK API for testing by forwarding port 3000 to your local machine.
-
-To use port forwarding to access the SDK API:
-
-1. Install the SDK in your cluster. See [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
-
-1. Run the following command to port forward to the SDK API service:
-
-    ```bash
-    kubectl port-forward service/replicated 3000
-    ```
-    ```
-    Forwarding from 127.0.0.1:3000 -> 3000
-    Forwarding from [::1]:3000 -> 3000
-    ```
-
-1. With the port forward running, test the SDK API endpoints as desired. For example:
-
-   ```bash
-   curl localhost:3000/api/v1/license/fields/expires_at
-   curl localhost:3000/api/v1/license/fields/{field}
-   ```
+For information about how to develop against the Replicated SDK API with mock data, see [Developing Against the Replicated SDK](/vendor/replicated-sdk-developing).
 
 ## app
 
