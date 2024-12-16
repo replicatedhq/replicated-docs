@@ -3,24 +3,41 @@ import LimitationEc from "../partials/monitoring/_limitation-ec.mdx"
 
 # Monitoring Applications with Prometheus
 
-This topic describes monitoring applications and clusters with Prometheus. It includes information about how to configure Prometheus monitoring for existing clusters and how to access the dashboard using a port forward.
+This topic describes how to monitor applications and clusters with Prometheus in existing cluster installations with Replicated KOTS.
+
+For information about consuming Prometheus metrics externally in Replicated kURL installations, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus).
 
 ## Overview
 
 <OverviewProm/>
 
+To configure Prometheus monitoring for applications installed with KOTS in an existing cluster, you can connect the Admin Console to the endpoint of an instance of Prometheus installed in the cluster.
+
+### About Visualizing Metrics with Grafana
+
+In addition to the Prometheus Expression Browser, Grafana and some preconfigured dashboards are included with Kube-Prometheus for advanced visualization.
+
+For information about configuring Grafana, see the [Grafana documentation](https://grafana.com/docs/).
+
+For information about constructing Prometheus queries, see the [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
+
+For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
+
+
+### About Alerting with Prometheus
+
+Alerting with Prometheus has two phases:
+
+1. Alerting rules in Prometheus servers send alerts to an Alertmanager.
+1. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications through methods such as email, on-call notification systems, and chat platforms.
+
+For more information about configuring Alertmanager, see [Configuration](https://prometheus.io/docs/alerting/configuration/) in the Prometheus documentation.
+
 ## Limitation
 
 <LimitationEc/>
 
-## Configure Monitoring in Existing Clusters {#configure-existing}
-
-To configure Prometheus monitoring for applications installed in an existing cluster, connect the Admin Console to the endpoint of an installed instance of Prometheus on the cluster. See the following sections:
-
-* [Install Prometheus](#install-prometheus)
-* [Connect to a Prometheus Endpoint](#connect-to-a-prometheus-endpoint)
-
-### Install Prometheus
+## Install Prometheus in the Cluster {#configure-existing}
 
 Replicated recommends that you use CoreOS's Kube-Prometheus distribution for installing and configuring highly available Prometheus on an existing cluster. For more information, see the [kube-prometheus](https://github.com/coreos/kube-prometheus) GitHub repository.
 
@@ -43,9 +60,9 @@ To install Prometheus using the recommended Kube-Prometheus distribution:
 
    For more information about advanced Kube-Prometheus configuration options, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
 
-### Connect to a Prometheus Endpoint
+## Connect to a Prometheus Endpoint
 
-To view graphs on the Admin Console dashboard, you must provide the address of the Prometheus instance that you installed on the cluster.
+To view graphs on the Admin Console dashboard, provide the address of a Prometheus instance installed in the cluster.
 
 To connect the Admin Console to a Prometheus endpoint:
 
@@ -56,19 +73,17 @@ To connect the Admin Console to a Prometheus endpoint:
 
    Graphs appear on the dashboard shortly after saving the address.
 
-## Access the Dashboards with kubectl Port Forward
+## Access the Dashboards Using Port Forwarding
 
-You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using `kubectl port-forward` after you install the manifests.
+You can access Prometheus, Grafana, and Alertmanager dashboards using `kubectl port-forward` after you install the manifests.
 
 You can also expose these pods on NodePorts or behind an ingress controller. This is an advanced use case. For information about exposing the pods on NodePorts, see [NodePorts](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/node-ports.md) in the kube-prometheus GitHub repository. For information about exposing the pods behind an ingress controller, see [Expose via Ingress](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/exposing-prometheus-alertmanager-grafana-ingress.md) in the kube-prometheus GitHub repository.
 
-For Replicated kURL clusters, you can consume Prometheus metrics from an external monitoring solution by connecting to the Prometheus NodePort service running in the cluster. For more information, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus). 
-
 ### Access Prometheus
 
-To access the Prometheus dashboard with a port forward:
+To access the Prometheus dashboard:
 
-1. Run the following command to create the port forward:
+1. Run the following command to port forward the Prometheus service:
 
    ```bash
    kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090
@@ -78,9 +93,9 @@ To access the Prometheus dashboard with a port forward:
 
 ### Access Grafana
 
-To access the Grafana dashboard with a port forward:
+To access the Grafana dashboard:
 
-1. Run the following command to create the port forward:
+1. Run the following command to port forward the Grafana service:
 
    ```bash
    kubectl --namespace monitoring port-forward deployment/grafana 3000
@@ -98,32 +113,12 @@ To access the Grafana dashboard with a port forward:
 
 ### Access Alertmanager
 
-To access the Alertmanager dashboard with a port forward:
+To access the Alertmanager dashboard:
 
-1. Run the following command to create the port forward:
+1. Run the following command to port forward the Alertmanager service:
 
    ```
    kubectl --namespace monitoring port-forward svc/prometheus-alertmanager 9093
    ```
 
 1. Access the dashboard at http://localhost:9093.
-
-## About Visualizing Metrics with Grafana
-
-In addition to the Prometheus Expression Browser, Grafana and some preconfigured dashboards are included with Kube-Prometheus for advanced visualization.
-
-For information about configuring Grafana, see the [Grafana documentation](https://grafana.com/docs/).
-
-For information about constructing Prometheus queries, see the [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
-
-For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
-
-
-## About Alerting with Prometheus
-
-Alerting with Prometheus has two phases:
-
-1. Alerting rules in Prometheus servers send alerts to an Alertmanager.
-1. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications through methods such as email, on-call notification systems, and chat platforms.
-
-For more information about configuring Alertmanager, see [Configuration](https://prometheus.io/docs/alerting/configuration/) in the Prometheus documentation.
