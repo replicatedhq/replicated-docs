@@ -1,24 +1,20 @@
 import ImageRegistrySettings from "../partials/image-registry/_image-registry-settings.mdx"
 
-# Using Private Registries for KOTS Existing Cluster Installations
+# Configuring Local Image Registries for KOTS Installations
 
 This topic describes how to configure private registry settings in the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS in online (internet-connected) or air gap (limited or no outbound internet access) environments.
 
-## Overview
-
-You can push images to your own image registry. Any proprietary configurations that you make to the application are shared only with the groups that you allow access, such as your team or organization. This gives you control over the storage location, logging messages, load balancing requests, and other configuration options.
-
 ## Prerequisite
 
-Your domain must support a Docker V2 protocol. For more information, see [Compatible Image Registries](installing-general-requirements#registries) in _KOTS Installation Requirements_.
+The domain of the image registry must support a Docker V2 protocol. For more information, see [Compatible Image Registries](installing-general-requirements#registries) in _KOTS Installation Requirements_.
 
-## Configure Private Registries in Online Clusters
+## Configure Local Private Registries in Online Clusters
 
-You configure the application to use a private registry in the Admin Console. You can also disable the connection or remove the registry settings if needed.
+In online (internet-connected) KOTS installations, you can optionally use a local private image registry. You can also disable the connection or remove the registry settings if needed.
 
 To configure private registry settings in an online cluster:
 
-1. On the Registry Settings tab in the Admin Console, edit the fields:
+1. In the Admin Console, on the **Registry Settings** tab, edit the fields:
     
     <img src="/images/registry-settings.png" alt="Registry Settings" width="400"></img>
 
@@ -26,11 +22,9 @@ To configure private registry settings in an online cluster:
 
     <ImageRegistrySettings/>
 
-1. Click **Test Connection** to test the connection between Replicated KOTS and the private registry host.
+1. Click **Test Connection** to test the connection between KOTS and the registry host.
 
 1. Click **Save changes**.
-
-1. (Optional) Click **Stop using registry** if you want to remove the registry settings from KOTS.
 
 ## Change Private Registries in Air Gap Clusters {#air-gap}
 
@@ -72,3 +66,11 @@ To change private registry settings in an air gap cluster:
 1. Click **Test Connection** to test the connection between KOTS and the private registry host.
 
 1. Click **Save changes**.
+
+## Stop Using a Registry and Remove Registry Settings
+
+To stop using a registry:
+
+1. Log in to the Admin Console and go to **Registry Settings**.
+
+1. Click **Stop using registry** to remove the registry settings from the Admin Console.
