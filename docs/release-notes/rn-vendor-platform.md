@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.17-1
+
+Released on December 17, 2024
+
+### New Features {#new-features-v2024-12-17-1}
+* Remaining credit balance can now be obtained using the v3/cluster/status endpoint via 'credit_balance', the value is in cents.
+
 ## v2024.12.11-5
 
 Released on December 11, 2024
