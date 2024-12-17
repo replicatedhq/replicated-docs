@@ -13,26 +13,6 @@ For information about consuming Prometheus metrics externally in Replicated kURL
 
 To configure Prometheus monitoring for applications installed with KOTS in an existing cluster, you can connect the Admin Console to the endpoint of an instance of Prometheus installed in the cluster.
 
-### About Visualizing Metrics with Grafana
-
-In addition to the Prometheus Expression Browser, Grafana and some preconfigured dashboards are included with Kube-Prometheus for advanced visualization.
-
-For information about configuring Grafana, see the [Grafana documentation](https://grafana.com/docs/).
-
-For information about constructing Prometheus queries, see the [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
-
-For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
-
-
-### About Alerting with Prometheus
-
-Alerting with Prometheus has two phases:
-
-1. Alerting rules in Prometheus servers send alerts to an Alertmanager.
-1. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications through methods such as email, on-call notification systems, and chat platforms.
-
-For more information about configuring Alertmanager, see [Configuration](https://prometheus.io/docs/alerting/configuration/) in the Prometheus documentation.
-
 ## Limitation
 
 <LimitationEc/>
@@ -122,3 +102,23 @@ To access the Alertmanager dashboard:
    ```
 
 1. Access the dashboard at http://localhost:9093.
+
+## About Visualizing Metrics with Grafana
+
+In addition to the Prometheus Expression Browser, Grafana and some preconfigured dashboards are included with Kube-Prometheus for advanced visualization.
+
+For information about configuring Grafana, see the [Grafana documentation](https://grafana.com/docs/).
+
+For information about constructing Prometheus queries, see the [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
+
+For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
+
+
+## About Alerting with Prometheus
+
+Alerting with Prometheus has two phases:
+
+1. Alerting rules in Prometheus servers send alerts to an Alertmanager.
+1. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications through methods such as email, on-call notification systems, and chat platforms.
+
+For more information about configuring Alertmanager, see [Configuration](https://prometheus.io/docs/alerting/configuration/) in the Prometheus documentation.
