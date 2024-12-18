@@ -1,5 +1,4 @@
 import Overview from "../partials/cmx/_overview.mdx"
-import Billing from "../partials/cmx/_billing.mdx"
 import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 
 # About Compatibility Matrix
