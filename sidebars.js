@@ -401,7 +401,7 @@ const sidebars = {
           label: 'Performing Backup and Restore with Snapshots',
           items: [
             'vendor/snapshots-overview',
-            'enterprise/snapshots-understanding',
+            // 'enterprise/snapshots-understanding',
             {
               type: 'category',
               label: 'Configuring Backup and Restore with Snapshots',
