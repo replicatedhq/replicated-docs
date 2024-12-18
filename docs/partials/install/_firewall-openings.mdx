@@ -4,17 +4,83 @@ For services hosted at domains owned by Replicated, the table below includes a l
 
 For third-party services hosted at domains not owned by Replicated, the table below lists the required domains. Consult the third-party's documentation for the IP address range for each domain, as needed. 
 
-| Host   | Embedded Cluster | KOTS Existing Cluster | kURL Clusters | Description |
-|--------|------------------|-------------------|-------------------|-------------|
-| Docker Hub    | Not Required | Required    | Required    | Some dependencies of KOTS are hosted as public images in Docker Hub. The required domains for this service are `index.docker.io`, `cdn.auth0.com`, `*.docker.io`, and `*.docker.com.` |
-| `replicated.app`  | Required | Required  | Required | <p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p> |
-| `proxy.replicated.com` | Required | Required&#42;| Required&#42;| <p>Private Docker images are proxied through `proxy.replicated.com`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p> <p>For the range of IP addresses for `proxy.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p> |
-| `registry.replicated.com` | Required&#42;&#42; | Required&#42;&#42;         | Required&#42;&#42;            | <p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p>
-| `kots.io`              | Not Required | Required     | Not Required | Requests are made to this domain when installing the Replicated KOTS CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
-| `github.com `          | Not Required | Required     | Not Required | Requests are made to this domain when installing the Replicated KOTS CLI. For information about retrieving GitHub IP addresses, see [About GitHub's IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation. |
-| `k8s.kurl.sh`<br/>`s3.kurl.sh`    | Not Required | Not Required | Required     | <p>kURL installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `k8s.kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L34-L39) in GitHub.</p><p> The range of IP addresses for `s3.kurl.sh` are the same as IP addresses for the `kurl.sh` domain. For the range of IP address for `kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L28-L31) in GitHub.</p> |
-| `amazonaws.com`  | Not Required | Not Required    | Required        | `tar.gz` packages are downloaded from Amazon S3 during installations with kURL. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.|
+<table>
+    <tr>
+        <th width="10%">Host</th>
+        <th width="20%">Embedded Cluster</th>
+        <th width="20%">Helm</th>
+        <th width="20%">KOTS Existing Cluster</th>
+        <th width="20%">kURL</th>
+        <th width="10%">Description</th>
+    </tr>
+    <tr>
+        <td>Docker Hub</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Required</td>
+        <td>Required</td>
+        <td>Some dependencies of KOTS are hosted as public images in Docker Hub. The required domains for this service are `index.docker.io`, `cdn.auth0.com`, `*.docker.io`, and `*.docker.com.`</td>
+    </tr>
+    <tr>
+        <td>`replicated.app`</td>
+        <td>Required</td>
+        <td>Required&#42;&#42;&#42;</td>
+        <td>Required</td>
+        <td>Required</td>
+        <td><p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p></td>
+    </tr>
+    <tr>
+        <td>`proxy.replicated.com`</td>
+        <td>Required</td>
+        <td>Required</td>
+        <td>Required&#42;</td>
+        <td>Required&#42;</td>
+        <td><p>Private Docker images are proxied through `proxy.replicated.com`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `proxy.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p></td>
+    </tr>
+    <tr>
+        <td>`registry.replicated.com`</td>
+        <td>Required&#42;&#42;</td>
+        <td>Required</td>
+        <td>Required&#42;&#42;</td>
+        <td>Required&#42;&#42;</td>
+        <td><p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p></td>
+    </tr>
+    <tr>
+        <td>`kots.io`</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Required</td>
+        <td>Not Required</td>
+        <td>Requests are made to this domain when installing the Replicated KOTS CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</td>
+    </tr>
+    <tr>
+        <td>`github.com`</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Required</td>
+        <td>Not Required</td>
+        <td>Requests are made to this domain when installing the Replicated KOTS CLI. For information about retrieving GitHub IP addresses, see [About GitHub&#39;s IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation.</td>
+    </tr>
+    <tr>
+        <td><p>`k8s.kurl.sh`</p><p>`s3.kurl.sh`</p></td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Required</td>
+        <td><p>kURL installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `k8s.kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L34-L39) in GitHub.</p><p> The range of IP addresses for `s3.kurl.sh` are the same as IP addresses for the `kurl.sh` domain. For the range of IP address for `kurl.sh`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L28-L31) in GitHub.</p></td>
+    </tr>
+    <tr>
+        <td>`amazonaws.com`</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Not Required</td>
+        <td>Required</td>
+        <td>`tar.gz` packages are downloaded from Amazon S3 during installations with kURL. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.</td>
+    </tr>
+</table>
 
-&#42; Required only if the application uses the Replicated proxy registry. Contact your software vendor for more information.
+&#42; Required only if the application uses the [Replicated proxy registry](/vendor/private-images-about).
 
-&#42;&#42; Required only if the application uses the Replicated registry. Contact your software vendor for more information.
+&#42;&#42; Required only if the application uses the [Replicated registry](/vendor/private-images-replicated).
+
+&#42;&#42;&#42; Required only if the [Replicated SDK](/vendor/replicated-sdk-overview) if included as a dependency of the application Helm chart.
