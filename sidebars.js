@@ -330,16 +330,6 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Backup and Restore with Snapshots',
-              items: [
-                'vendor/snapshots-overview',
-                'vendor/snapshots-configuring-backups',
-                'vendor/snapshots-hooks',
-                'reference/custom-resource-backup',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Distributing Kubernetes Operators with KOTS',
               items: [
                 'vendor/operator-packaging-about',
@@ -410,7 +400,18 @@ const sidebars = {
           type: 'category',
           label: 'Performing Backup and Restore with Snapshots',
           items: [
+            'vendor/snapshots-overview',
             'enterprise/snapshots-understanding',
+            {
+              type: 'category',
+              label: 'Configuring Backup and Restore with Snapshots',
+              items: [
+                
+                'vendor/snapshots-configuring-backups',
+                'reference/custom-resource-backup',
+                'vendor/snapshots-hooks',
+              ],
+            },
             {
               type: 'category',
               label: 'Configuring Backup Storage',
