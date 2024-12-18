@@ -6,7 +6,7 @@ For example, if your application includes a UI where users manage their applicat
 
 For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-For information about how to develop against the Replicated SDK API with mock data, see [Developing Against the Replicated SDK](/vendor/replicated-sdk-developing).
+For information about how to develop against the Replicated SDK API with mock data, see [Developing Against the Replicated SDK](/vendor/replicated-sdk-development).
 
 ## app
 
