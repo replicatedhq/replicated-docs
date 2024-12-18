@@ -1,4 +1,4 @@
-# Configuring the Velero Backup Resource for Snapshots
+# About the Velero Backup Resource for Snapshots
 
 This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
 
