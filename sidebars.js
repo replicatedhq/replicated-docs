@@ -833,7 +833,6 @@ const sidebars = {
       },
       'enterprise/sbom-validating',
       'vendor/replicated-sdk-slsa-validating',
-      'vendor/security-firewall-openings',
     ],
   },
   
