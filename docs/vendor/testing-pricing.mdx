@@ -18,37 +18,39 @@ VM-based clusters approximately match the AWS m6.i instance type pricing.
 
 <table>
   <tr>
-    <th>Instance Type</th>
-    <th>VCPUs</th>
-    <th>Memory (GiB)</th>
-    <th>USD/Credit per hour</th>
+    <th width="25%">Instance Type</th>
+    <th width="25%">VCPUs</th>
+    <th width="25%">Memory (GiB)</th>
+    <th width="25%">USD/Credit per hour</th>
   </tr>
   <tr>
     <td>r1.small</td>
-    <td>r1.medium</td>
-    <td>r1.large</td>
-    <td>r1.xlarge</td>
-    <td>r1.2xlarge</td>
-  </tr>
-  <tr>
     <td>2</td>
-    <td>4</td>
     <td>8</td>
-    <td>16</td>
-    <td>32</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-  </tr>
-  <tr>
     <td>$0.096</td>
+  </tr>
+  <tr>
+    <td>r1.medium</td>
+    <td>4</td>
+    <td>16</td>
     <td>$0.192</td>
+  </tr>
+  <tr>
+    <td>r1.large</td>
+    <td>8</td>
+    <td>32</td>
     <td>$0.384</td>
+  </tr>  
+  <tr>
+    <td>r1.xlarge</td>
+    <td>16</td>
+    <td>64</td>
     <td>$0.768</td>
+  </tr>
+  <tr>
+    <td>r1.2xlarge</td>
+    <td>32</td>
+    <td>128</td>
     <td>$1.536</td>
   </tr>
 </table>  
@@ -61,141 +63,195 @@ AWS clusters will be charged AWS pricing plus a markup of 20%. Note that the mar
 
 <table>
   <tr>
-    <th>Instance Type</th>
-    <th>VCPUs</th>
-    <th>Memory (GiB)</th>
-    <th>USD/Credit per hour</th>
+    <th width="25%">Instance Type</th>
+    <th width="25%">VCPUs</th>
+    <th width="25%">Memory (GiB)</th>
+    <th width="25%">USD/Credit per hour</th>
   </tr>
   <tr>
     <td>m6i.large</td>
+    <td>2</td>
+    <td>8</td>
+    <td>$0.115</td>
+  </tr>
+  <tr>
     <td>m6i.xlarge</td>
+    <td>4</td>
+    <td>16</td>
+     <td>$0.230</td>
+  </tr>
+  <tr>
     <td>m6i.2xlarge</td>
+     <td>8</td>
+    <td>32</td>
+    <td>$0.461</td>
+  </tr>
+  <tr>
     <td>m6i.4xlarge</td>
+    <td>16</td>
+    <td>64</td>
+    <td>$0.922</td>
+  </tr>
+  <tr>
     <td>m6i.8xlarge</td>
+    <td>32</td>
+    <td>128</td>
+    <td>$1.843</td>
+  </tr>
+<tr>
     <td>m7i.large</td>
-    <td>m7i.xlarge</td>
-    <td>m7i.2xlarge</td>
-    <td>m7i.4xlarge</td>
-    <td>m7i.8xlarge</td>
-    <td>m5.large</td>
-    <td>m5.xlarge</td>
-    <td>m5.2xlarge</td>
-    <td>m5.4xlarge</td>
-    <td>m5.8xlarge</td>
-    <td>m7g.large</td>
-    <td>m7g.xlarge</td>
-    <td>m7g.2xlarge</td>
-    <td>m7g.4xlarge</td>
-    <td>m7g.8xlarge</td>
-    <td>c5.large</td>
-    <td>c5.xlarge</td>
-    <td>c5.2xlarge</td>
-    <td>c5.4xlarge</td>
-    <td>c5.9xlarge</td>
-    <td>g4dn.xlarge</td>
-    <td>g4dn.2xlarge</td>
-    <td>g4dn.4xlarge</td>
-    <td>g4dn.8xlarge</td>
-    <td>g4dn.12xlarge</td>
-    <td>g4dn.16xlarge</td>
-  </tr>
-  <tr>
     <td>2</td>
-    <td>4</td>
     <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>2</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>2</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>2</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>2</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>36</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>48</td>
-    <td>64</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-    <td>4</td>
-    <td>8</td>
-    <td>16</td>
-    <td>32</td>
-    <td>72</td>
-    <td>16</td>
-    <td>32</td>
-    <td>64</td>
-    <td>128</td>
-    <td>192</td>
-    <td>256</td>
-  </tr>
-  <tr>
-    <td>$0.115</td>
-    <td>$0.230</td>
-    <td>$0.461</td>
-    <td>$0.922</td>
-    <td>$1.843</td>
     <td>$0.121</td>
+  </tr>
+  <tr>
+    <td>m7i.xlarge</td>
+    <td>4</td>
+    <td>16</td>
     <td>$0.242</td>
+  </tr>
+  <tr>
+    <td>m7i.2xlarge</td>
+     <td>8</td>
+    <td>32</td>
     <td>$0.484</td>
+  </tr>
+  <tr>
+    <td>m7i.4xlarge</td>
+    <td>16</td>
+    <td>64</td>
     <td>$0.968</td>
+  </tr>
+  <tr>
+    <td>m7i.8xlarge</td>
+    <td>32</td>
+    <td>128</td>
     <td>$1.935</td>
+  </tr>
+  <tr>
+    <td>m5.large</td>
+    <td>2</td>
+    <td>8</td>
     <td>$0.115</td>
-    <td>$0.230</td>
+  </tr>
+  <tr>
+    <td>m5.xlarge</td>
+    <td>4</td>
+    <td>16</td>
+    <td>$</td>
+  </tr>
+  <tr>
+    <td>m5.2xlarge</td>
+     <td>8</td>
+    <td>32</td>
     <td>$0.461</td>
+  </tr>
+  <tr>
+    <td>m5.4xlarge</td>
+    <td>16</td>
+    <td>64</td>
     <td>$0.922</td>
+  </tr>
+  <tr>
+    <td>m5.8xlarge</td>
+    <td>32</td>
+    <td>128</td>
     <td>$1.843</td>
+  </tr>
+  <tr>
+    <td>m7g.large</td>
+    <td>2</td>
+    <td>8</td>
     <td>$0.098</td>
+  </tr>
+  <tr>
+    <td>m7g.xlarge</td>
+    <td>4</td>
+    <td>16</td>
     <td>$0.195</td>
+  </tr>
+  <tr>
+    <td>m7g.2xlarge</td>
+     <td>8</td>
+    <td>32</td>
     <td>$0.392</td>
+  </tr>
+  <tr>
+    <td>m7g.4xlarge</td>
+    <td>16</td>
+    <td>64</td>
     <td>$0.784</td>
+  </tr>
+  <tr>
+    <td>m7g.8xlarge</td>
+    <td>32</td>
+    <td>128</td>
     <td>$1.567</td>
+  </tr>
+  <tr>
+    <td>c5.large</td>
+    <td>2</td>
+    <td>4</td>
     <td>$0.102</td>
+  </tr>
+  <tr>
+    <td>c5.xlarge</td>
+    <td>4</td>
+    <td>8</td>
     <td>$0.204</td>
+  </tr>
+  <tr>
+    <td>c5.2xlarge</td>
+    <td>8</td>
+    <td>16</td>
     <td>$0.408</td>
+  </tr>
+  <tr>
+    <td>c5.4xlarge</td>
+    <td>16</td>
+    <td>32</td>
     <td>$0.816</td>
+  </tr>
+  <tr>
+    <td>c5.9xlarge</td>
+    <td>36</td>
+    <td>72</td>
     <td>$1.836</td>
+  </tr>
+  <tr>
+    <td>g4dn.xlarge</td>
+    <td>4</td>
+    <td>16</td>
     <td>$0.631</td>
+  </tr>
+  <tr>
+    <td>g4dn.2xlarge</td>
+    <td>8</td>
+    <td>32</td>
     <td>$0.902</td>
+  </tr>
+  <tr>
+    <td>g4dn.4xlarge</td>
+    <td>16</td>
+    <td>64</td>
     <td>$1.445</td>
+  </tr>
+  <tr>
+    <td>g4dn.8xlarge</td>
+    <td>32</td>
+    <td>128</td>
     <td>$2.611</td>
+  </tr>
+  <tr>
+    <td>g4dn.12xlarge</td>
+    <td>48</td>
+    <td>192</td>
     <td>$4.964</td>
+  </tr>
+  <tr>
+    <td>g4dn.16xlarge</td>
+    <td>64</td>
+    <td>256</td>
     <td>$5.222</td>
   </tr>
 </table> 
@@ -395,12 +451,20 @@ Azure clusters will be charged Azure list pricing plus a markup of 20%. Note tha
     <th>USD/Credit per hour</th>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Standard_B2ms</td>
+    <td>2</td>
+    <td>8</td>
+    <td>8300</td>
+    <td>$0.083</td>
+    <td>$0.10</td>
+  </tr>
+  <tr>
+    <td>Standard_B4ms</td>
+    <td>2</td>
+    <td>8</td>
+    <td>8300</td>
+    <td>$0.083</td>
+    <td>$0.10</td>
   </tr>
 </table>  
 
