@@ -44,9 +44,13 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 To configure disaster recovery for your application:
 
-1. In a new release containing your application files, add a Velero Backup resource. For more information, see [Backup API Type](https://velero.io/docs/latest/api-types/backup/) in the Velero documentation.
+1. In a new release containing your application files, add a Velero Backup resource. In the Backup resource, indicate the labels of the resources that you want to include in the backup.
 
-1. The the release, add a Velero Restore resource.
+      For more information about the available fields, see [Backup API Type](https://velero.io/docs/latest/api-types/backup/) in the Velero documentation.
+
+1. In the same release, add a Velero Restore resource.
+
+      For more information about the available fields, see [Restore API Type](https://velero.io/docs/latest/api-types/restore/) in the Velero documentation.
 
 1. 
 
@@ -104,9 +108,11 @@ To enable disaster recovery for a customer:
 	
 ## Configure Backup Storage and Take Backups in the Admin Console
 
-To configure backup storage and take backups in the Admin Console:
+Customers with the **Allow Disaster Recovery (Alpha)** license field can configure their backup storage location and take backups from the Admin Console.
 
-1. After installing the application and visiting the Admin Console, click the **Disaster Recovery** tab at the top of the Admin Console.
+To configure backup storage and take backups:
+
+1. After installing the application and logging in to the Admin Console, click the **Disaster Recovery** tab at the top of the Admin Console.
 
 1. For the desired S3-compatible backup storage location, enter the bucket, prefix (optional), access key ID, access key secret, endpoint, and region. Click **Update storage settings**.
 
