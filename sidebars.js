@@ -217,6 +217,7 @@ const sidebars = {
       label: 'Compatibility Matrix',
       items: [
         'vendor/testing-about',
+        'vendor/testing-pricing',
         'vendor/testing-supported-clusters',
         'vendor/testing-cluster-addons',
         'vendor/testing-how-to',
