@@ -44,6 +44,35 @@ Response:
 }
 ```
 
+### GET /app/status
+
+List details about an application status, including the list of individual resource states and the overall application state. 
+
+```
+/api/v1/app/status
+```
+
+Response:
+
+```json
+{
+  "appStatus": {
+    "appSlug": "my-app",
+    "resourceStates": [
+      {
+        "kind": "deployment",
+        "name": "api",
+        "namespace": "default",
+        "state": "ready"
+      }
+    ],
+    "updatedAt": "2024-12-19T23:01:52.207162284Z",
+    "state": "ready",
+    "sequence": 268
+  }
+}
+```
+
 ### GET /app/updates
 
 List details about the releases that are available to an application instance for upgrade, including the version label, created timestamp, and release notes.
