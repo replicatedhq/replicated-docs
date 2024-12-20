@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.122.1
+
+Released on December 20, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-122-1}
+* Fixes a bug that could result in instance being reported as unavailable if application includes an Ingress resource.
+
 ## 1.122.0
 
 Released on December 12, 2024
