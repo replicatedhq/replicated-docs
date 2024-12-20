@@ -22,8 +22,6 @@ The Replicated SDK has the following limitations:
 
   * The SDK does not automatically generate status informers to report status data for installed instances of the application. To get instance status data, you must enable custom status informers by overriding the `replicated.statusInformers` Helm value. See [Enable Application Status Insights](/vendor/insights-app-status#enable-application-status-insights) in _Enabling and Understanding Application Status_.
  
-* When installing a KOTS application that includes the SDK, license field titles with special YAML characters like question marks (`?`) can lead to errors during application release downloads. To avoid this issue, use only alphanumeric characters in license field titles when including the SDK in a KOTS application.
-
 ## SDK Resiliency
 
 At startup and when serving requests, the SDK retrieves and caches the latest information from the upstream Replicated APIs, including customer license information.
