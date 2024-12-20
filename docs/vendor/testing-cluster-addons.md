@@ -44,7 +44,7 @@ Additional service accounts can be created in any namespace with access to the o
   </tr>
   <tr>
     <th>Cost</th>
-    <td>Flat fee per bucket.</td>
+    <td>Flat fee of $0.50 per bucket.</td>
   </tr>
   <tr>
     <th>Options</th>
