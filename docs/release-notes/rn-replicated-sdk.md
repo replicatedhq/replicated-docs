@@ -8,6 +8,18 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.0.0-beta.33
+
+Released on December 23, 2024
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-33}
+* Fixes a bug that could result in instance being reported as unavailable if application includes an Ingress resource.
+
+### New Features {#new-features-1-0-0-beta-33}
+* Adds support for setting `affinity` for Replicated SDK deployment
+* Adds `/app/status` [API](/reference/replicated-sdk-apis) that returns detailed application status information. 
+* Adds support for mocking channelID, channelName, channelSequence, releaseSequence in current release info returned by /app/info API.
+
 ## 1.0.0-beta.32
 
 Released on December 9, 2024
