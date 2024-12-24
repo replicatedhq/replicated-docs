@@ -1,4 +1,4 @@
-# About the Velero Backup Resource for Snapshots
+# Velero Backup Resource for Snapshots
 
 This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
 
@@ -69,8 +69,8 @@ Not all fields available in the Velero Backup resource are supported for full ba
 
 <table>
   <tr>
-    <th width="30%">Field Name</th>
-    <th width="70%">Description</th>
+    <th width="50%">Field Name</th>
+    <th width="50%">Description</th>
   </tr>
   <tr>
     <td><code>includedNamespaces</code></td>
@@ -97,59 +97,59 @@ Not all fields available in the Velero Backup resource are supported for full ba
     <td>(Optional) Specifies the actions to perform at different times during a backup. The only supported hook is executing a command in a container in a pod (uses the pod exec API). Supports <code>pre</code> and <code>post</code> hooks.</td>
   </tr>
   <tr>
-    <td><code>resources</code></td>
+    <td><code>hooks.resources</code></td>
     <td>(Optional) Specifies an array of hooks that are applied to specific resources.</td>
   </tr>
   <tr>
-    <td><code>name</code></td>
+    <td><code>hooks.resources.name</code></td>
     <td>Specifies the name of the hook. This value displays in the backup log.</td>
   </tr>
   <tr>
-    <td><code>includedNamespaces</code></td>
+    <td><code>hooks.resources.includedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces that this hook applies to. If unspecified, the hook is applied to all namespaces.</td>
   </tr>
   <tr>
-    <td><code>excludedNamespaces</code></td>
+    <td><code>hooks.resources.excludedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces to which this hook does not apply.</td>
   </tr>
   <tr>
-    <td><code>includedResources</code></td>
+    <td><code>hooks.resources.includedResources</code></td>
     <td>Specifies an array of pod resources to which this hook applies.</td>
   </tr>
   <tr>
-    <td><code>excludedResources</code></td>
+    <td><code>hooks.resources.excludedResources</code></td>
     <td>(Optional) Specifies an array of resources to which this hook does not apply.</td>
   </tr>
   <tr>
-    <td><code>labelSelector</code></td>
+    <td><code>hooks.resources.labelSelector</code></td>
     <td>(Optional) Specifies that this hook only applies to objects that match this label selector.</td>
   </tr>
   <tr>
-    <td><code>pre</code></td>
+    <td><code>hooks.resources.pre</code></td>
     <td>Specifies an array of <code>exec</code> hooks to run before executing custom actions.</td>
   </tr>
   <tr>
-    <td><code>post</code></td>
+    <td><code>hooks.resources.post</code></td>
     <td>Specifies an array of <code>exec</code> hooks to run after executing custom actions. Supports the same arrays and fields as <code>pre</code> hooks.</td>
   </tr>
   <tr>
-    <td><code>exec</code></td>
+    <td><code>hooks.resources.[post/pre].exec</code></td>
     <td>Specifies the type of the hook. <code>exec</code> is the only supported type.</td>
   </tr>
   <tr>
-    <td><code>container</code></td>
+    <td><code>hooks.resources.[post/pre].exec.container</code></td>
     <td>(Optional) Specifies the name of the container where the specified command will be executed. If unspecified, the first container in the pod is used.</td>
   </tr>
   <tr>
-    <td><code>command</code></td>
+    <td><code>hooks.resources.[post/pre].exec.command</code></td>
     <td>Specifies the command to execute. The format is an array.</td>
   </tr>
   <tr>
-    <td><code>onError</code></td>
+    <td><code>hooks.resources.[post/pre].exec.onError</code></td>
     <td>(Optional) Specifies how to handle an error that might occur when executing the command. <b>Valid values:</b> <code>Fail</code> and <code>Continue</code> <b>Default:</b> <code>Fail</code></td>
   </tr>
   <tr>
-    <td><code>timeout</code></td>
+    <td><code>hooks.resources.[post/pre].exec.timeout</code></td>
     <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b> <code>30s</code></td>
   </tr>
 </table>
