@@ -38,13 +38,13 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
    [View a larger version of this image](/images/ec-version-command.png)
 
+* Any Helm extensions included in the `extensions` field of the Embedded Cluster Config are _not_ included in backups. Helm extensions are reinstalled as part of the restore process. To include Helm extensions in backups, configure the Velero Backup resource to include the extensions using namespace-based or label-based selection.
+
 * Users can only restore from the most recent backup.
 
 * Velero is installed only during the initial installation process. Enabling the disaster recovery license field for customers after they have already installed will not do anything.
 
 * If the `--admin-console-port` flag was used during install to change the port for the Admin Console, note that during a restore the Admin Console port will be used from the backup and cannot be changed. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
-
-* Any Helm extensions included in the `extensions` field of the Embedded Cluster Config custom resource are not included in the backup.
 
 ## Configure Disaster Recovery
 
