@@ -1,24 +1,24 @@
 # Disaster Recovery for Embedded Cluster (Alpha)
 
-This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application, how to configure disaster recovery in the Replicated KOTS Admin Console, and how to restore from a backup.
+This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application. It also describes how end users can configure disaster recovery in the Replicated KOTS Admin Console and restore from a backup.
 
 :::important
 Embedded Cluster disaster recovery is an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 :::
 
 :::note
-Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about snapshots, see [Understanding Backup and Restore](/vendor/snapshots-overview).
+Embedded Cluster does not support backup and restore with the KOTS snapshots feature. For more information about using snapshots for existing cluster installations with KOTS, see [About Backup and Restore with Snapshots](/vendor/snapshots-overview).
 :::
 
 ## Overview
 
-The Embedded Cluster disaster recovery feature allows your customers to take backups from the Admin Console and perform restores from the command line using the Embedded Cluster `restore` command.
-
-Backups taken from the Admin Console include both the Embedded Cluster infrastructure and your application resources:
-* The infrastructure that is backed up includes components such as KOTS and the built-in registry. No configuration is required.
-* The application resources backed up include those that you specify in a Velero Backup custom resource in the release
+The Embedded Cluster disaster recovery feature allows your customers to take backups from the Admin Console and to perform restores from the command line with the Embedded Cluster `restore` command.
 
 Disaster recovery for Embedded Cluster is implemented with Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
+
+Backups taken from the Admin Console include both the Embedded Cluster infrastructure and your application resources:
+* The Embedded Cluster infrastructure that is backed up includes components such as the KOTS Admin Console and the built-in registry that is deployed for air gap installations. No configuration is required to include Embedded Cluster components in the backup.
+* The application resources backed up include those that you specify in a Velero Backup custom resource in the release.
 
 ## Requirements
 
@@ -46,7 +46,11 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 * Any Helm extensions included in the `extensions` field of the Embedded Cluster Config custom resource are not included in the backup.
 
-## Configure Disaster Recovery for Your Application
+## Configure Disaster Recovery
+
+This section describes how to configure disaster recovery for Embedded Cluster installations and enable access to the disaster recovery feature on a per-customer basis.
+
+### Configure the Velero Custom Resources
 
 This section describes how to set up Embedded Cluster disaster recovery for your application by configuring Velero Backup and Restore custom resources in a release.
 
@@ -54,13 +58,13 @@ To configure disaster recovery:
 
 1. In a new release containing your application files, add a Velero Backup resource. In the Backup resource, use namespace-based or label-based selection to indicate the application resources that you want to be included in the backup. For more information, see [Backup API Type](https://velero.io/docs/latest/api-types/backup/) in the Velero documentation.
 
-     :::note
-     If you use namespace-based selection to include your application resources that are deployed in the `kotsadm` namespace, ensure that you also exclude the Replicated resources that are also deployed in the `kotsadm` resource.
-     :::
-
      **Example**:
 
-     The following Backup resource is configured to use namespace-based selection to include application resources in the backup. It is configured to include all resources the `kotsadm` namespace, where both the application and Replicated resources are deployed. The Backup resources also includes an expression in the `orLabelSelectors.matchExpressions` field to ensure that the Replicated resources are excluded from the backup. 
+     The following Backup resource uses namespace-based selection to include all resources deployed in the `kotsadm` namespace. It also uses an expression in the `orLabelSelectors.matchExpressions` field to _exclude_ the Replicated resources that are deployed in the `kotsadm` namespace.
+
+     :::note
+     If you use namespace-based selection to include all of your application resources deployed in the `kotsadm` namespace, ensure that you exclude the Replicated resources that are also deployed in the `kotsadm` namespace. This avoid duplication in backups taken by user because the Embedded Cluster infrastructure components are always included in backups automatically.
+     ::: 
 
      ```yaml
      apiVersion: velero.io/v1
@@ -93,34 +97,9 @@ To configure disaster recovery:
        - '*'
      ```
 
-{/* 1. Apply the `replicated.com/disaster-recovery: app` label to any Kubernetes resource you want backed up.
-
-     Example HelmChart resource to set the required label on all resources:
-
-    ```yaml
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    metadata:
-      name: postgresql
-    spec:
-      chart:
-        name: postgresql
-        chartVersion: 15.5.0
-      values:
-        commonLabels:
-          replicated.com/disaster-recovery: app
-    ``` */}
-
-{/* 1. You must specify which Pod volumes you want backed up. This is done with the `backup.velero.io/backup-volumes` annotation. For more information, see [File System Backup](https://velero.io/docs/v1.14/file-system-backup/) in the Velero documentation.
-
-     Example Helm chart values to set the backup-volumes annotation on the relevant Pod:
-
-     ```yaml
-     podAnnotations:
-       backup.velero.io/backup-volumes: backup
-     ``` */}
-
 1. (Optional) In addition to the previous steps, you can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
+
+     **Example**:
 
      For example, a Postgres database might be backed up using pg_dump to extract the database into a file as part of a backup hook. It can then be restored using the file in a restore hook:
 
@@ -133,7 +112,7 @@ To configure disaster recovery:
        post.hook.restore.velero.io/wait-for-ready: 'true' # waits for the pod to be ready before running the post-restore hook
      ```
 
-## Enable Disaster Recovery for Your Customers
+### Enable the Disaster Recovery Feature for Your Customers
 
 After configuring disaster recovery for your application, you can enable it on a per-customer basis with the **Allow Disaster Recovery** license field.
 
@@ -145,7 +124,11 @@ To enable disaster recovery for a customer:
    
    When your customer installs with Embedded Cluster, Velero will be deployed if the **Allow Disaster Recovery** license field is enabled.
 	
-## Configure Backup Storage and Take Backups in the Admin Console
+## Take Backups and Restore
+
+This section describes how your customers can configure backup storage, take backups, and restore from backups.
+
+### Configure Backup Storage and Take Backups in the Admin Console
 
 Customers with the **Allow Disaster Recovery (Alpha)** license field can configure their backup storage location and take backups from the Admin Console.
 
@@ -170,7 +153,7 @@ To configure backup storage and take backups:
      <img src="/images/dr-backups.png" alt="backups page" width="600px"/>
      [View a larger version of this image](/images/dr-backups.png)
 
-## Restore from a Backup
+### Restore from a Backup
 
 To restore from a backup:
 
