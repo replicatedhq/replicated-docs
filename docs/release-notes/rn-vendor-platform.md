@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.27-1
+
+Released on December 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-27-1}
+* Fixes a bug that would cause the configured GitHub username to not show up on the Account Settings page when logging in with Google.
+
 ## v2024.12.17-1
 
 Released on December 17, 2024
