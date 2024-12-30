@@ -23,6 +23,7 @@
     "@types/react": "18.3.5",
     "clsx": "^2.1.0",
     "docusaurus": "^1.14.7",
+    "immer": "^9.0.6",
     "loader-utils": "3.3.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.2.0",
@@ -35,6 +36,11 @@
     "@docusaurus/module-type-aliases": "3.5.2",
     "@docusaurus/types": "3.5.2",
     "typescript": "~5.2.2"
+  },
+  "resolutions": {
+    "immer": "^9.0.6",
+    "loader-utils": "^2.0.3",
+    "shell-quote": "^1.7.3"
   },
   "browserslist": {
     "production": [
