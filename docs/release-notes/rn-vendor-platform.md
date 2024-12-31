@@ -15,7 +15,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on December 31, 2024
 
 ### New Features {#new-features-v2024-12-31-2}
-* Adds ability to enable and disable [Development Mode](/vendor/replicated-sdk-development) per customer in Replicated SDK.
+* Adds ability to enable and disable [Development Mode](/vendor/replicated-sdk-development) per customer in the Replicated SDK.
+
+## v2024.12.27-1
+
+Released on December 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-27-1}
+* Fixes a bug that would cause the configured GitHub username to not show up on the Account Settings page when logging in with Google.
 
 ## v2024.12.17-1
 
