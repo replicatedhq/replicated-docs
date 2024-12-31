@@ -10,6 +10,16 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.31-0
+
+Released on December 31, 2024
+
+### New Features {#new-features-v2024-12-31-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version 1.31.4, 1.30.8 and 1.29.12.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to include runc v1.2.3.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.2.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.79.2-67.5.0.
+
 ## v2024.12.04-0
 
 Released on December 4, 2024
