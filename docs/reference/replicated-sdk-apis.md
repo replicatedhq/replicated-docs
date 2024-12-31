@@ -292,6 +292,118 @@ Response:
   }
 }
 ```
+
+## Integration
+
+### GET /api/v1/integration/status
+
+Get status of Development Mode. When this mode is enabled, the `app` API will use mock data. This value cannot be set programmatically. It is controlled by the installed license.
+
+```json
+{
+  "isEnabled": true
+}
+```
+
+### GET /api/v1/integration/mock-data
+
+Get mock data that is used when Development Mode is enabled.
+
+```json
+{
+  "appStatus": "ready",
+  "helmChartURL": "oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart",
+  "currentRelease": {
+    "versionLabel": "0.1.3",
+    "releaseNotes": "release notes 0.1.3",
+    "createdAt": "2023-05-23T20:58:07Z",
+    "deployedAt": "2023-05-23T21:58:07Z",
+    "helmReleaseName": "dev-parent-chart",
+    "helmReleaseRevision": 3,
+    "helmReleaseNamespace": "default"
+  },
+  "deployedReleases": [
+    {
+      "versionLabel": "0.1.1",
+      "releaseNotes": "release notes 0.1.1",
+      "createdAt": "2023-05-21T20:58:07Z",
+      "deployedAt": "2023-05-21T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 1,
+      "helmReleaseNamespace": "default"
+    },
+    {
+      "versionLabel": "0.1.2",
+      "releaseNotes": "release notes 0.1.2",
+      "createdAt": "2023-05-22T20:58:07Z",
+      "deployedAt": "2023-05-22T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 2,
+      "helmReleaseNamespace": "default"
+    },
+    {
+      "versionLabel": "0.1.3",
+      "releaseNotes": "release notes 0.1.3",
+      "createdAt": "2023-05-23T20:58:07Z",
+      "deployedAt": "2023-05-23T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 3,
+      "helmReleaseNamespace": "default"
+    }
+  ],
+  "availableReleases": [
+    {
+      "versionLabel": "0.1.4",
+      "releaseNotes": "release notes 0.1.4",
+      "createdAt": "2023-05-24T20:58:07Z",
+      "deployedAt": "2023-05-24T21:58:07Z",
+      "helmReleaseName": "",
+      "helmReleaseRevision": 0,
+      "helmReleaseNamespace": ""
+    },
+    {
+      "versionLabel": "0.1.5",
+      "releaseNotes": "release notes 0.1.5",
+      "createdAt": "2023-06-01T20:58:07Z",
+      "deployedAt": "2023-06-01T21:58:07Z",
+      "helmReleaseName": "",
+      "helmReleaseRevision": 0,
+      "helmReleaseNamespace": ""
+    }
+  ]
+}
+```
+
+### POST /api/v1/integration/mock-data
+
+Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
+
+```
+POST http://replicated:3000/api/v1/integration/mock-data
+```
+
+Request:
+
+```json
+{
+  "appStatus": "ready",
+  "helmChartURL": "oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart",
+  "currentRelease": {
+    "versionLabel": "0.1.3",
+    "releaseNotes": "release notes 0.1.3",
+    "createdAt": "2023-05-23T20:58:07Z",
+    "deployedAt": "2023-05-23T21:58:07Z",
+    "helmReleaseName": "dev-parent-chart",
+    "helmReleaseRevision": 3,
+    "helmReleaseNamespace": "default"
+  },
+  "deployedReleases": [],
+  "availableReleases": []
+}
+```
+
+Response: Status `201` Created
+
 ## Examples
 
 This section provides example use cases for the Replicated SDK API.
