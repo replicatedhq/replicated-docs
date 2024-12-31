@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2024.12.31-2
+
+Released on December 31, 2024
+
+### New Features {#new-features-v2024-12-31-2}
+* Adds ability to enable and disable [Development Mode](/vendor/replicated-sdk-development) per customer in Replicated SDK.
+
 ## v2024.12.17-1
 
 Released on December 17, 2024
