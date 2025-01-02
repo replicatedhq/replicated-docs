@@ -55,7 +55,7 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
     - name: Slack Notification
-      uses: slackapi/slack-github-action@v1.16.0
+      uses: slackapi/slack-github-action@v2.0.0
       with: 
         payload: |
           {
