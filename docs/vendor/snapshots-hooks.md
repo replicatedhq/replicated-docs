@@ -1,4 +1,4 @@
-# Configuring Velero Backup and Restore Hooks for Snapshots
+# Configuring Backup and Restore Hooks for Snapshots
 
 This topic describes the use of custom backup and restore hooks and demonstrates a common example.
 

@@ -6,9 +6,11 @@ For more information about snapshots, see [About Backup and Restore with snapsho
 
 ## Configure the Velero Backup Resource
 
+Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. After configuring the Backup resource, add annotations for each volume that you want to be included in backups.
+
 To configure the Velero Backup Resource for snapshots:
 
-1. Log in to the Vendor Portal and create a new release containing your application files.
+1. Log in to the[ Vendor Portal](https://vendor.replicated.com) and create a new release containing your application files.
 
 1. In the new release, add a Velero Backup resource (`kind: Backup` and `apiVersion: velero.io/v1`):
 
@@ -20,9 +22,9 @@ To configure the Velero Backup Resource for snapshots:
     spec: {}
     ```
 
-1. Configure the Backup resource to specify the resources to include in backups.
+1. Configure the Backup resource to specify the resources that will be included in backups.
 
-    For more information about the Velero Backup resource, including an example, limitations, and the list of supported fields, see [About the Velero Backup Resource](/reference/custom-resource-backup) below.
+    For more information about the Velero Backup resource, including an example, limitations, and the list of supported fields for snapshots, see [About the Velero Backup Resource](/reference/custom-resource-backup) below.
 
 1. (Optional) Configure backup and restore hooks in the Velero Backup resource. For more information, see [Configuring Velero Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
@@ -93,6 +95,8 @@ To configure the Velero Backup Resource for snapshots:
 ## About the Velero Backup Resource
 
 This section provides information about the supported fields in the Velero Backup resource for the KOTS snapshots feature.
+
+The Velero Backup custom resource enables the KOTS snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
 ### Example
 
