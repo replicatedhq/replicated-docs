@@ -72,7 +72,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic Native Installer</a></td>
-    <td>EOA</td>
+    <td>EOL</td>
     <td>2023-12-31&#42;</td>
     <td>2024-12-31&#42;</td>
   </tr>
@@ -129,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified December 17, 2024.
+Last modified January 2, 2025.
