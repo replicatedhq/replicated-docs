@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.02-1
+
+Released on January 2, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-02-1}
+* Fixes a bug where Download Portal would have a blank screen.
+
 ## v2024.12.31-2
 
 Released on December 31, 2024
