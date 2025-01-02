@@ -404,17 +404,16 @@ const sidebars = {
             // 'enterprise/snapshots-understanding',
             {
               type: 'category',
-              label: 'Configuring Backup and Restore with Snapshots',
+              label: 'Enabling and Configuring Snapshots',
               items: [
-                
                 'vendor/snapshots-configuring-backups',
-                'reference/custom-resource-backup',
+                // 'reference/custom-resource-backup',
                 'vendor/snapshots-hooks',
               ],
             },
             {
               type: 'category',
-              label: 'Configuring Backup Storage',
+              label: 'Configuring Backup Storage for Snaphots',
               items: [
                 'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
