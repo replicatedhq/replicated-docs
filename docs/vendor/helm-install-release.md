@@ -28,13 +28,15 @@ To package a Helm chart so that it can be added to a release:
 
     <DependencyYaml/>
     
-    For additional guidelines related to adding the SDK as a dependency, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
-
-1. <RegistryLogout/> 
+    For additional guidelines related to adding the SDK as a dependency, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_. 
 
 1. Update dependencies and package the chart as a `.tgz` file:
 
     <HelmPackage/>
+
+    :::note
+    <RegistryLogout/>
+    :::
 
 1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 

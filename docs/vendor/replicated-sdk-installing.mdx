@@ -25,13 +25,14 @@ To install the SDK as a subchart:
 
      <DependencyYaml/>
 
-1. <RegistryLogout/> 
-
 1. Update the `charts/` directory:
 
     ```
     helm dependency update
     ```
+    :::note
+    <RegistryLogout/> 
+    :::
     
 1. Package the Helm chart into a `.tgz` archive:
 
@@ -151,3 +152,31 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
 ## Install the SDK in Integration Mode
 
 <IntegrationMode/>
+
+## Troubleshoot
+
+### 401 Unauthorized Error When Updating Helm Dependencies {#401}
+
+#### Symptom
+
+You see an error message similar to the following after adding the Replicated SDK as a dependency in your Helm chart then running `helm dependency update`:
+
+```
+Error: could not download oci://registry.replicated.com/library/replicated-sdk: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://registry.replicated.com/v2/token?scope=repository%3Alibrary%2Freplicated-sdk%3Apull&service=registry.replicated.com: 401 Unauthorized
+```
+
+#### Cause
+
+When you run `helm dependency update`, Helm attempts to pull the Replicated SDK chart from the Replicated registry. An error can occur if you are already logged in to the Replicated registry with a license that has expired, such as when testing application releases.
+
+#### Solution
+
+To solve this issue:
+
+1. Run the following command to remove login credentials for the Replicated registry:
+
+    ```
+    helm registry logout registry.replicated.com
+    ```
+
+1. Re-run `helm dependency update` for your Helm chart.    
