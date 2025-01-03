@@ -238,7 +238,12 @@
    
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-configvalues"
-  to="https://docs.replicated.com/enterprise/installing-embedded-automation"      
+  to="https://docs.replicated.com/enterprise/installing-embedded-automation"  
+
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/snapshots-understanding"
+  to="https://docs.replicated.com/vendor/snapshots-overview"    
    
 ###################################################
 # Redirects To the References Section
