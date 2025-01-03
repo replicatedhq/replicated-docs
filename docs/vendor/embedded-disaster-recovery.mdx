@@ -38,7 +38,7 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
    [View a larger version of this image](/images/ec-version-command.png)
 
-* Any Helm extensions included in the `extensions` field of the Embedded Cluster Config are _not_ included in backups. Helm extensions are reinstalled as part of the restore process. To include Helm extensions in backups, configure the Velero Backup resource to include the extensions using namespace-based or label-based selection.
+* Any Helm extensions included in the `extensions` field of the Embedded Cluster Config are _not_ included in backups. Helm extensions are reinstalled as part of the restore process. To include Helm extensions in backups, configure the Velero Backup resource to include the extensions using namespace-based or label-based selection. For more information, see [Configure the Velero Backup Resource](#config-backup-resource) below.
 
 * Users can only restore from the most recent backup.
 
@@ -50,7 +50,7 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 This section describes how to configure disaster recovery for Embedded Cluster installations and enable access to the disaster recovery feature on a per-customer basis.
 
-### Configure the Velero Custom Resources
+### Configure the Velero Custom Resource {#config-backup-resource}
 
 This section describes how to set up Embedded Cluster disaster recovery for your application by configuring Velero Backup and Restore custom resources in a release.
 
