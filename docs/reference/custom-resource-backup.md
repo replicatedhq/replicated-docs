@@ -6,8 +6,6 @@ This topic provides information about the supported fields in the Velero Backup 
 
 The Backup custom resource enables the KOTS snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
-Add a Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. A Backup custom resource is required for each application that you deploy. Additionally, you must add annotations for each volume that you want to back up. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
-
 The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
 
 ## Example
@@ -61,11 +59,11 @@ spec:
         post:
 ```
 
-## Supported Fields
+## Supported Fields for Full Backups with Snapshots
 
-For partial backups, you can use all of the fields that Velero supports. For more information, see [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
+For partial backups with the snapshots feature, you can use all of the fields that Velero supports. See [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
 
-Not all fields available in the Velero Backup resource are supported for full backups with snapshots. The table below lists the fields that are supported for full backups with KOTS snapshots: 
+However, not all fields are supported for full backups. The table below lists the fields that are supported for full backups with snapshots: 
 
 <table>
   <tr>
