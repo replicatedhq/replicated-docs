@@ -3,7 +3,7 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
 
-# Installing the Replicated SDK (Beta)
+# Installing the Replicated SDK
 
 This topic describes the methods for distributing and installing the Replicated SDK.
 
@@ -89,7 +89,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
     ```
     Where `SDK_VERSION` is the version of the SDK to install. For a list of available SDK versions, see the [replicated-sdk repository](https://github.com/replicatedhq/replicated-sdk/tags) in GitHub.
 
-    The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.32.tgz`.
+    The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0.tgz`.
 
     For more information and additional options, see [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
 
@@ -117,7 +117,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
         name: replicated
         # for chartversion, enter the version of the
         # SDK Helm chart in the release
-        chartVersion: 1.0.0-beta.32
+        chartVersion: 1.0.0
     ```
 
      As shown in the example above, the HelmChart custom resource requires the name and version of the SDK Helm chart that you added to the release:

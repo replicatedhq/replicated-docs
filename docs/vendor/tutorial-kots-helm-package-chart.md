@@ -29,5 +29,5 @@ Create a release using the Helm chart archive. See [Step 4: Add the Chart Archiv
 ## Related Topics
 
 * [Packaging a Helm Chart for a Release](/vendor/helm-install-release.md)
-* [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview)
+* [About the Replicated SDK](/vendor/replicated-sdk-overview)
 * [Helm Package](https://helm.sh/docs/helm/helm_package/)

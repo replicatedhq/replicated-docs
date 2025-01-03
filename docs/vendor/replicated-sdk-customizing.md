@@ -1,4 +1,4 @@
-# Customizing the Replicated SDK (Beta)
+# Customizing the Replicated SDK
 
 This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, and adding tolerations.
 
