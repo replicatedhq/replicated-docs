@@ -407,7 +407,7 @@ const sidebars = {
               label: 'Enabling and Configuring Snapshots',
               items: [
                 'vendor/snapshots-configuring-backups',
-                // 'reference/custom-resource-backup',
+                'reference/custom-resource-backup',
                 'vendor/snapshots-hooks',
               ],
             },
