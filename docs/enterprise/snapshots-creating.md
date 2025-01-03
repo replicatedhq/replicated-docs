@@ -97,4 +97,4 @@ To schedule automatic backups in the Admin Console:
    The retention policy applies to all backups, including both automatically- and manually-created backups. Changing the retention policy affects only backups created after the time of the change.
 ## Additional Resources
 
-[Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+[Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)

@@ -102,7 +102,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
    To set up snapshots when KOTS has namespace-scoped access, users can run the `kubectl kots velero ensure-permissions` command. This command creates additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation.
 
-   For more information about snapshots, see [About Backing Up and Restoring with Snapshots](/enterprise/snapshots-understanding).
+   For more information about snapshots, see [About Backup and Restore with Snapshots](/vendor/snapshots-overview).
 
 * **Air Gap Installations**: For air gap installations, the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags are supported only in automated, or _headless_, installations. In headless installations, the user passes all the required information to install both KOTS and the application with the `kots install` command. In non-headless installations, the user provides information to install the application through the Admin Console UI after KOTS is installed.
 

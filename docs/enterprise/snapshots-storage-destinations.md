@@ -188,4 +188,4 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Additional Resources
 
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)

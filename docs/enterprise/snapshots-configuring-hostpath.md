@@ -118,4 +118,4 @@ To install Velero and configure host path storage for existing clusters:
 
 ## Additional Resources
 
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
