@@ -4,9 +4,7 @@ This topic provides information about the supported fields in the Velero Backup 
 
 ## Overview
 
-The Backup custom resource enables the KOTS snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
-
-The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
+The Velero Backup custom resource enables the KOTS snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
 ## Example
 

@@ -24,17 +24,20 @@ To configure the Velero Backup Resource for snapshots:
 
 1. Configure the Backup resource to specify the resources that will be included in backups.
 
-    For more information about the Velero Backup resource, including an example, limitations, and the list of supported fields for snapshots, see [About the Velero Backup Resource](/reference/custom-resource-backup) below.
+    For more information about the Velero Backup resource, including limitations, the list of supported fields for snapshots, and an example, see [Velero Backup Resource for Snapshots](/reference/custom-resource-backup).
 
-1. (Optional) Configure backup and restore hooks in the Velero Backup resource. For more information, see [Configuring Velero Backup and Restore Hooks for Snapshots](snapshots-hooks).
+1. (Optional) Configure backup and restore hooks in the Backup resource. For more information, see [Configuring Velero Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
-1. For each volume that requires a backup, add and configure the `backup.velero.io/backup-volumes` annotation.
+1. For each volume that requires a backup, add the `backup.velero.io/backup-volumes` annotation. The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
 
-    By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the backup.
+   <details>
+    <summary>Why do I need to use the backup annotation?</summary>
+    <p>By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the backup.</p>
+   </details>
 
-    The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
+   **Example:**
 
-    For example, in the following Deployment manifest file, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
+   In the following Deployment manifest file, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
 
     ```yaml
     apiVersion: apps/v1
@@ -88,6 +91,6 @@ To configure the Velero Backup Resource for snapshots:
 
     ```
 
-1. If you distribute multiple applications with Replicated, repeat these steps for each application. Each application must have its own Backup resource to be included in a full backup.
+1. If you distribute multiple applications with Replicated, repeat these steps for each application. Each application must have its own Backup resource to be included in a full backup with snaphots.
 
 1. (kURL Only) If your application supports installation with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero in the kURL cluster. For more information, see [Creating a kURL Installer](packaging-embedded-kubernetes).
