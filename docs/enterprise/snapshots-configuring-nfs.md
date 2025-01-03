@@ -121,4 +121,4 @@ To install Velero and configure NFS storage for existing clusters:
 
 ## Additional Resources
 
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
