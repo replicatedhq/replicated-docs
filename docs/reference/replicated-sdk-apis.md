@@ -1,4 +1,4 @@
-# Replicated SDK API (Beta)
+# Replicated SDK API
 
 The Replicated SDK provides an API that you can use to embed Replicated functionality in your Helm chart application.
 

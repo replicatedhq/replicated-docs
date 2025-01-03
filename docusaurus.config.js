@@ -176,7 +176,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'reference/replicated-sdk-apis',
-                label: 'Replicated SDK API (Beta)',
+                label: 'Replicated SDK API',
               },
               {
                 type: 'doc',
