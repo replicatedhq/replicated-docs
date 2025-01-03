@@ -25,7 +25,7 @@ Released on January 2, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-123-0}
-* Add a `--tolerations` flag to `kots install` to supply additional tolerations to kotsadm pods.
+* Adds the `--tolerations` flag to `kots install` to supply additional tolerations to the KOTS pods.
 
 ## 1.122.1
 
