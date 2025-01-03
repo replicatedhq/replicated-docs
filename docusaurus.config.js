@@ -149,7 +149,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
-                label: 'Replicated SDK (Beta)',
+                label: 'Replicated SDK',
               },
               {
                 type: 'doc',
