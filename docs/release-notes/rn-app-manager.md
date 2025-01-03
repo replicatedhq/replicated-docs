@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.123.0
+
+Released on January 2, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-123-0}
+* Adds the `--tolerations` flag to `kots install` to supply additional tolerations to the KOTS pods.
+
 ## 1.122.1
 
 Released on December 20, 2024
