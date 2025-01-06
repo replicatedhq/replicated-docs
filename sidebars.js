@@ -504,7 +504,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Replicated SDK (Beta)',
+    label: 'Replicated SDK',
     items: [
       'vendor/replicated-sdk-overview',
       'vendor/replicated-sdk-installing',
