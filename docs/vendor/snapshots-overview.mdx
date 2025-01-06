@@ -22,7 +22,7 @@ When snapshots is enabled for your application, your customers can manage and pe
 
 Snapshots uses the Velero open source project as the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
-In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](snapshots-hooks).
+In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](/vendor/snapshots-hooks).
 
 ### Limitations and Considerations
 
@@ -119,7 +119,7 @@ Then, the restore process redeploys all of the application manifests. All Pods a
 
 When you restore the Admin Console only, no changes are made to the application.
 
-For information about how to restore using the Admin Console or the KOTS CLI, see [Restoring from Backups](snapshots-restoring-full).
+For information about how to restore using the Admin Console or the KOTS CLI, see [Restoring from Backups](/enterprise/snapshots-restoring-full).
 
 ## Using Snapshots
 

@@ -54,7 +54,7 @@ spec:
         post:
 ```
 
-## Supported Fields for Full Backups with Snapshots
+## Supported Fields for Full Backups with Snapshots {#fields}
 
 For partial backups with the snapshots feature, you can use all of the fields that Velero supports. See [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
 
@@ -154,7 +154,7 @@ However, not all fields are supported for full backups. The table below lists th
   - `excludedResources`
 
   :::note
-  Some of these fields are supported for hook arrays, as described in the previous field definition table. See [Fields](#fields).
+  Some of these fields are supported for hook arrays, as described in the previous field definition table. See [Supported Fields for Full Backups with Snapshots](#fields) above.
   :::
 
 - All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).

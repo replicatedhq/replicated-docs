@@ -16,7 +16,7 @@ To configure host path or NFS as a storage destination, see [Configuring a Host 
 
 Complete the following items before you install Velero and configure a storage destination:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
+* Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
 ## Configure AWS Storage for Online Environments

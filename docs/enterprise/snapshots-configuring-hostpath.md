@@ -25,7 +25,7 @@ This topic describes how to install Velero and configure a host path as your sto
 
 Complete the following items before you perform this task:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
+* Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
 ## Install Velero and Configure Host Path Storage in Online Environments
@@ -118,4 +118,4 @@ To install Velero and configure host path storage for existing clusters:
 
 ## Additional Resources
 
-* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](/enterprise/snapshots-troubleshooting-backup-restore)
