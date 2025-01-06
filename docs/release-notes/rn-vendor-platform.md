@@ -17,6 +17,13 @@ Released on January 6, 2025
 ### Bug Fixes {#bug-fixes-v2025-01-06-2}
 * Fixes a bug that could cause instances to not receive updates on [semver](/vendor/releases-about#semantic-versioning) enabled channels when [--app-version-label](/reference/kots-cli-install#usage) flag is used during the install.
 
+## v2025.01.02-1
+
+Released on January 2, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-02-1}
+* Fixes a bug that caused the Download Portal to display a blank screen.
+
 ## v2024.12.31-2
 
 Released on December 31, 2024
