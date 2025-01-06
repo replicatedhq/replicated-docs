@@ -1,14 +1,14 @@
-# Enabling and Configuring Snapshots
+# Configuring Snapshots
 
 This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 
 For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
 
-## Configure the Velero Backup Resource
+## Configure Snapshots
 
 Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. After configuring the Backup resource, add annotations for each volume that you want to be included in backups.
 
-To configure the Velero Backup Resource for snapshots:
+To configure snapshots for your application:
 
 1. Log in to the[ Vendor Portal](https://vendor.replicated.com) and create a new release containing your application files.
 
@@ -26,7 +26,7 @@ To configure the Velero Backup Resource for snapshots:
 
     For more information about the Velero Backup resource, including limitations, the list of supported fields for snapshots, and an example, see [Velero Backup Resource for Snapshots](/reference/custom-resource-backup).
 
-1. (Optional) Configure backup and restore hooks in the Backup resource. For more information, see [Configuring Velero Backup and Restore Hooks for Snapshots](snapshots-hooks).
+1. (Optional) Configure backup and restore hooks in the Backup resource. For more information, see [Configuring Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
 1. For each volume that requires a backup, add the `backup.velero.io/backup-volumes` annotation. The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
 

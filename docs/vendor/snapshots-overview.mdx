@@ -22,7 +22,7 @@ When snapshots is enabled for your application, your customers can manage and pe
 
 Snapshots uses the Velero open source project as the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
-In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](/vendor/snapshots-hooks).
+In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks for Snapshots](/vendor/snapshots-hooks).
 
 ### Limitations and Considerations
 
@@ -101,13 +101,13 @@ Full backups include the Admin Console and all application data, including KOTS-
 
 For kURL clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
 
-For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
+For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
 #### Pod Volume Data
 
 Replicated supports only the restic backup program for pod volume data.
 
-By default, Velero requires that you opt-in to have pod volumes backed up. In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up. For more information about including and excluding pod volumes, see [Configuring Backups](snapshots-configuring-backups).
+By default, Velero requires that you opt-in to have pod volumes backed up. In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up. For more information about including and excluding pod volumes, see [Configuring Snapshots](/vendor/snapshots-configuring-backups).
 
 ## About Restores {#restores}
 
@@ -123,13 +123,15 @@ For information about how to restore using the Admin Console or the KOTS CLI, se
 
 ## Using Snapshots
 
+This section provides an overview of how vendors and enterprise users can configure and use the snapshots feature.
+
 ### How to Enable Snapshots for Your Application
 
 To enable the snapshots backup and restore feature for your users, you must:
 
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
-- Define a manifest for creating backups. See [Configuring Backups](snapshots-configuring-backups).
-- When needed, configure backup and restore hooks. See [Configuring Backup and Restore Hooks](snapshots-hooks).
+- Define a manifest for creating backups. See [Configuring Snapshots](snapshots-configuring-backups).
+- When needed, configure backup and restore hooks. See [Configuring Backup and Restore Hooks for Snapshots](snapshots-hooks).
 - Enable the **Allow Snapshot** option in customer licenses. See [Creating and Managing Customers](releases-creating-customer).
 
 ### Understanding Backup and Restore for Users {#how-users}
