@@ -12,13 +12,11 @@ Embedded Cluster does not support backup and restore with the KOTS snapshots fea
 
 ## Overview
 
-The Embedded Cluster disaster recovery feature allows your customers to take backups from the Admin Console and to perform restores from the command line with the Embedded Cluster `restore` command.
+The Embedded Cluster disaster recovery feature allows your customers to take backups from the Admin Console and perform restores from the command line. Disaster recovery for Embedded Cluster is implemented with Velero. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation.
 
-Disaster recovery for Embedded Cluster is implemented with Velero. For more information about Velero, see the [Velero](https://velero.io/docs/v1.14/) documentation.
+The backups that your customers take from the Admin Console will include both the Embedded Cluster infrastructure and the application resources that you specify.
 
-Backups taken from the Admin Console include both the Embedded Cluster infrastructure and your application resources:
-* The Embedded Cluster infrastructure that is backed up includes components such as the KOTS Admin Console and the built-in registry that is deployed for air gap installations. No configuration is required to include Embedded Cluster components in the backup.
-* The application resources backed up include those that you specify in a Velero Backup custom resource in the release.
+The Embedded Cluster infrastructure that is backed up includes components such as the KOTS Admin Console and the built-in registry that is deployed for air gap installations. No configuration is required to include Embedded Cluster infrastructure in backups. Vendors specify the application resources to include in backups by configuring a Velero Backup resource in the application release.
 
 ## Requirements
 
@@ -48,23 +46,23 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 ## Configure Disaster Recovery
 
-This section describes how to configure disaster recovery for Embedded Cluster installations and enable access to the disaster recovery feature on a per-customer basis.
+This section describes how to configure disaster recovery for Embedded Cluster installations. It also describes how to enable access to the disaster recovery feature on a per-customer basis.
 
 ### Configure the Velero Custom Resources {#config-velero-resources}
 
-This section describes how to set up Embedded Cluster disaster recovery for your application by configuring Velero Backup and Restore custom resources in a release.
+This section describes how to set up Embedded Cluster disaster recovery for your application by configuring Velero [Backup](https://velero.io/docs/latest/api-types/backup/) and [Restore](https://velero.io/docs/latest/api-types/restore/) custom resources in a release.
 
-To configure the Velero custom resources for disaster recovery:
+To configure Velero Backup and Restore custom resources for Embedded Cluster disaster recovery:
 
 1. In a new release containing your application files, add a Velero Backup resource. In the Backup resource, use namespace-based or label-based selection to indicate the application resources that you want to be included in the backup. For more information, see [Backup API Type](https://velero.io/docs/latest/api-types/backup/) in the Velero documentation.
 
-     **Example**:
-
-     The following Backup resource uses namespace-based selection to include all resources deployed in the `kotsadm` namespace. It also uses an expression in the `orLabelSelectors.matchExpressions` field to _exclude_ the Replicated resources that are deployed in the `kotsadm` namespace.
-
-     :::note
-     If you use namespace-based selection to include all of your application resources deployed in the `kotsadm` namespace, ensure that you exclude the Replicated resources that are also deployed in the `kotsadm` namespace. This avoid duplication in backups taken by user because the Embedded Cluster infrastructure components are always included in backups automatically.
+     :::important
+     If you use namespace-based selection to include all of your application resources deployed in the `kotsadm` namespace, ensure that you exclude the Replicated resources that are also deployed in the `kotsadm` namespace. Because the Embedded Cluster infrastructure components are always included in backups automatically, this avoids duplication.
      ::: 
+
+     **Example:**
+
+     The following Backup resource uses namespace-based selection to include application resources deployed in the `kotsadm` namespace:
 
      ```yaml
      apiVersion: velero.io/v1
@@ -79,9 +77,9 @@ To configure the Velero custom resources for disaster recovery:
        - matchExpressions:
          # Exclude Replicated resources from the backup
          - { key: kots.io/kotsadm, operator: NotIn, values: ["true"] }
-     ```  
+     ```
 
-1. In the same release, add a Velero Restore resource. In the Restore resource, include the name of the Backup resource that you created in the `backupName` field. For more information, see [Restore API Type](https://velero.io/docs/latest/api-types/restore/) in the Velero documentation.
+1. In the same release, add a Velero Restore resource. In the `backupName` field of the Restore resource, include the name of the Backup resource that you created. For more information, see [Restore API Type](https://velero.io/docs/latest/api-types/restore/) in the Velero documentation.
 
      **Example**:
 
@@ -91,13 +89,13 @@ To configure the Velero custom resources for disaster recovery:
      metadata:
        name: restore
      spec:
-       # the name of the Backup resource that you added
+       # the name of the Backup resource that you created
        backupName: backup
        includedNamespaces:
        - '*'
      ```
 
-1. (Optional) In addition to the previous steps, you can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
+1. (Optional) You can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
 
      **Example**:
 
@@ -111,6 +109,8 @@ To configure the Velero custom resources for disaster recovery:
        post.hook.restore.velero.io/command: '["/bin/bash", "-c", "[ -f \"/scratch/backup.sql\" ] && PGPASSWORD=$POSTGRES_PASSWORD psql -U {{repl ConfigOption "postgresql_username" }} -h 127.0.0.1 -d {{repl ConfigOption "postgresql_database" }} -f /scratch/backup.sql && rm -f /scratch/backup.sql;"]'
        post.hook.restore.velero.io/wait-for-ready: 'true' # waits for the pod to be ready before running the post-restore hook
      ```
+
+1. Save and the promote the release to a development channel for testing.     
 
 ### Enable the Disaster Recovery Feature for Your Customers
 
@@ -144,13 +144,14 @@ To configure backup storage and take backups:
 
 1. (Optional) From this same page, configure scheduled backups and a retention policy for backups.
 
-    <img src="/images/dr-scheduled-backups.png" width="450px" alt="scheduled backups"/>
+    <img src="/images/dr-scheduled-backups.png" width="400px" alt="scheduled backups"/>
 	
     [View a larger version of this image](/images/dr-scheduled-backups.png)
 
 1. In the **Disaster Recovery** submenu, click **Backups**. Backups can be taken from this screen.
 
      <img src="/images/dr-backups.png" alt="backups page" width="600px"/>
+
      [View a larger version of this image](/images/dr-backups.png)
 
 ### Restore from a Backup
