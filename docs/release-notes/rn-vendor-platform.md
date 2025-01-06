@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.06-5
+
+Released on January 6, 2025
+
+### New Features {#new-features-v2025-01-06-5}
+* The /v3/cmx/history endpoint has been added which can be used to obtain historical data for both test clusters and VMs created within Compatibility Matrix.
+
 ## v2025.01.06-2
 
 Released on January 6, 2025
