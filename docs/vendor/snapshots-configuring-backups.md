@@ -10,9 +10,7 @@ Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`)
 
 To configure snapshots for your application:
 
-1. Log in to the [Vendor Portal](https://vendor.replicated.com) and create a new release containing your application files.
-
-1. In the new release, add a Velero Backup resource (`kind: Backup` and `apiVersion: velero.io/v1`):
+1. In a new release containing your application files, add a Velero Backup resource (`kind: Backup` and `apiVersion: velero.io/v1`):
 
     ```yaml
     apiVersion: velero.io/v1
