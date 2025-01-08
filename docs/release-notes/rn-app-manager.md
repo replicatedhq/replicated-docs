@@ -43,7 +43,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-122-0}
-* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This is particularly useful when migrating from HelmChart v1beta1 and `useHelmInstall: false` to v1beta2, so that the existing reosurces will not be removed and can be adopted into the Helm chart on upgrade.
+* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This is particularly useful when migrating from HelmChart v1beta1 and `useHelmInstall: false` to v1beta2, so that the existing resources will not be removed and can be adopted into the Helm chart on upgrade.
 
 ## 1.121.2
 
