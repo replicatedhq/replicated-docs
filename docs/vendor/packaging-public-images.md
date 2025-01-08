@@ -34,14 +34,12 @@ Pull public images from other registries:
 docker pull proxy.replicated.com/anonymous/public.ecr.aws/nginx/nginx:latest
 ```
 
+:::note
 If you have configured a custom domain for your proxy registry, replace `proxy.replicated.com` with your custom domain in the examples above:
 
 ```bash
 docker pull {your proxy custom domain}/anonymous/public.ecr.aws/nginx/nginx:latest
 ```
-
-:::note
-When you need to use specific credentials for quasi-public registries, configure the registry as an private external registry first and use `/proxy/` instead of `/anonymous/` in the URL path.
 :::
 
 ## Related Topic
