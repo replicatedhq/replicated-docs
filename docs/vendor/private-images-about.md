@@ -1,6 +1,6 @@
 # About the Replicated Proxy Registry
 
-This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images.
+This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images or allow pull through access of public images.
 
 ## Overview
 
