@@ -9,7 +9,7 @@ import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-
 
 # Using Embedded Cluster
 
-This topic describes how to use the Replicated Embedded Cluster to configure, install, and manage your application in an embedded Kubernetes cluster.
+This topic provides an introduction to Replicated Embedded Cluster, including how to use and configure Embedded Cluster to install and manage an application.
 
 :::note
 If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
@@ -19,13 +19,23 @@ If you are instead looking for information about creating Kubernetes Installers 
 
 <EmbeddedCluster/>
 
-The following diagram demonstrates how Kubernetes and an application are installed into a customer environment using Embedded Cluster: 
+### Architecture and Add-ons
 
-![Embedded Cluster installs an app in a customer environment](/images/embedded-cluster-install.png)
+The following diagram shows the architecture of Embedded Cluster installations:
 
-[View a larger version of this image](/images/embedded-cluster-install.png)
+![Embedded Cluster architecture](/images/embedded-cluster-architecture.png)
 
-As shown in the diagram above, the Embedded Cluster Config is included in the application release in the Replicated Vendor Portal and is used to generate the Embedded Cluster installation assets. Users can download these installation assets from the Replicated app service (`replicated.app`) on the command line, then run the Embedded Cluster installation command to install Kubernetes and the KOTS Admin Console. Finally, users access the Admin Console to optionally add nodes to the cluster and to configure and install the application.
+[View a larger version of this image](/images/embedded-cluster-architecture.png)
+
+As shown in the diagram above:
+
+* The Embedded Cluster installation assets include the customer's license and the Embedded Cluster binary. For air gap installations, an air gap bundle containing the images required to run the application in environments with limited or no outbound internet access is also included.
+
+* In the primary node, the Embedded Cluster binary installs the cluster So k Zero's cluster runs as a system d service deploys a systemd service. This first systemd service is named using the unique slug of the application (such as gitea). This service The binary installs the cluster, so it deploys that system. It starts that system d service and then waits for the cluster to start. So it waits for all the different Kubernetes components to come up and be available. And then it's going to. I believe the order is that it's then going to install the Add-ons. 
+
+* After the first systemd service is deployed, the Embedded Cluster binary then deploys a second systemd service (named APP_SLUG-manager). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+
+* Any optional Helm extensions that are included in the Embedded Cluster Config are also deployed in the cluster in one or more namespaces defined by the vendor. The diagram above shows two different Helm extensions deployed in the cluster, each in its own namespace.
 
 ### Comparison to kURL
 
@@ -116,6 +126,16 @@ For more information, see [Embedded Cluster Config](/reference/embedded-config).
 ## About Installing with Embedded Cluster
 
 This section provides an overview of installing applications with Embedded Cluster.
+
+### Installation Overview
+
+The following diagram demonstrates how Kubernetes and an application are installed into a customer environment using Embedded Cluster: 
+
+![Embedded Cluster installs an app in a customer environment](/images/embedded-cluster-install.png)
+
+[View a larger version of this image](/images/embedded-cluster-install.png)
+
+As shown in the diagram above, the Embedded Cluster Config is included in the application release in the Replicated Vendor Portal and is used to generate the Embedded Cluster installation assets. Users can download these installation assets from the Replicated app service (`replicated.app`) on the command line, then run the Embedded Cluster installation command to install Kubernetes and the KOTS Admin Console. Finally, users access the Admin Console to optionally add nodes to the cluster and to configure and install the application.
 
 ### Installation Options
 
