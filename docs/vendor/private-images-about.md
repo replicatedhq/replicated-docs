@@ -21,3 +21,9 @@ The proxy registry requires read-only credentials to your private registry to ac
 After connecting your registry, the steps the enable the proxy registry vary depending on your application deployment method. For more information, see:
 * [Using the Proxy Registry with KOTS Installations](/vendor/private-images-kots)
 * [Using the Proxy Registry with Helm Installations](/vendor/helm-image-registry)
+
+## About Allowing Pull-Through Access of Public Images
+
+Using the Replicated proxy registry to grant pull-through access to public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
+
+For more information about how to pull public images through the proxy registry, see [Connecting to a Public Registry through the Proxy Registry](/vendor/packaging-public-images).
