@@ -1,46 +1,58 @@
-# Connecting to an Public Registry
+# Connecting to a Public Registry
 
-This topic describes how to pull images from public registries using the Replicated proxy registry. This can simplify network access requirements for your customers, as they only need to allowlist a single domain (`proxy.replicated.com` or your custom domain) instead of multiple registry domains.
+This topic describes how to pull images from public registries using the Replicated proxy registry. For more information about the Replicated proxy registry, see [About the Replicated Proxy Registry](private-images-about).
 
-For more information about the Replicated proxy registry, see [About the Replicated Proxy Registry](private-images-about).
+## Pull Public Images Through the Replicated Proxy Registry
 
-## Pull public images through the Replicated proxy registry
+You can use the Replicated proxy registry to pull both public and private images. Using the Replicated proxy registry for public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
 
-You can use the Replicated proxy registry to pull both public and private images. Using the Replicated proxy registry for public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (`proxy.replicated.com` or your custom domain) instead of multiple registry domains.
+For public images, you can use anonymous access without configuring registry credentials.
 
-For public images, you can use anonymous access without configuring registry credentials. The URL structure for pulling public images is:
-
-```
-proxy.replicated.com/anonymous/<upstream registry hostname>/<image>:<tag>
-```
-
-### Pulling images
-
-Pull public images from DockerHub (default registry when no registry hostname is specified):
+To pull public images through the Replicated proxy registry, use the following `docker` command:
 
 ```bash
-# DockerHub/index.docker.io is the default when no registry hostname is specified
+docker pull REPLICATED_PROXY_DOMAIN/anonymous/UPSTREAM_REGISTRY_HOSTNAME/IMAGE:TAG
+```
+Where:
+* `REPLICATED_PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For information about how to set a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using). 
+* `UPSTREAM_REGISTRY_HOSTNAME` is the hostname for the public registry where the image is located. If the image is located in a namespace within the registry, include the namespace after the hostname. For example, `quay.io/namespace`.
+* `IMAGE` is the image name.
+* `TAG` is the image tag.
+
+## Examples
+
+This section includes examples of pulling public images through the Replicated proxy registry.
+
+### Pull Images from DockerHub
+
+The following examples show how to pull public images from DockerHub:
+
+```bash
+# DockerHub is the default when no hostname is specified
 docker pull proxy.replicated.com/anonymous/busybox
 docker pull proxy.replicated.com/anonymous/nginx:1.16.0
-
-# You can also explicitly specify docker.io
+```
+```bash
+# You can also optionally specify docker.io
 docker pull proxy.replicated.com/anonymous/docker.io/replicated/replicated-sdk:1.0.0
 ```
 
-Pull public images from other registries:
+### Pull Images from Other Registries
+
+The following example shows how to pull images from the Amazon ECR Public Gallery:
 
 ```bash
-# Pull from Amazon ECR Public Gallery
 docker pull proxy.replicated.com/anonymous/public.ecr.aws/nginx/nginx:latest
 ```
 
-:::note
-If you have configured a custom domain for your proxy registry, replace `proxy.replicated.com` with your custom domain in the examples above:
+### Pull Images Using a Custom Domain for the Proxy Registry
+
+The following example shows how to pull a public image when a custom domain is configured for the proxy registry:
 
 ```bash
-docker pull {your proxy custom domain}/anonymous/public.ecr.aws/nginx/nginx:latest
+docker pull my.customdomain.io/anonymous/public.ecr.aws/nginx/nginx:latest
 ```
-:::
+For information about how to set a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using). 
 
 ## Related Topic
 
