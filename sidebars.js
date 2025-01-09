@@ -620,7 +620,7 @@ const sidebars = {
         label: 'app',
         items: [
           'reference/replicated-cli-app-create',
-          // 'reference/replicated-cli-app-delete', REMOVE
+          'reference/replicated-cli-app-delete',
           'reference/replicated-cli-app-ls',
           // 'reference/replicated-cli-app-rm', ADD
         ],
@@ -630,7 +630,7 @@ const sidebars = {
         label: 'channel',
         items: [
           // 'reference/replicated-cli-channel-create', REMOVE
-          // 'reference/replicated-cli-channel-delete', REMOVE
+          'reference/replicated-cli-channel-delete',
           // 'reference/replicated-cli-channel-disable-semver', REMOVE
           // 'reference/replicated-cli-channel-enable-semver', REMOVE
           'reference/replicated-cli-channel-inspect',
@@ -642,23 +642,23 @@ const sidebars = {
         type: 'category',
         label: 'cluster',
         items: [
+          'reference/replicated-cli-cluster-addon-ls',
+          'reference/replicated-cli-cluster-addon-rm',
+          'reference/replicated-cli-cluster-addon-create',
+          'reference/replicated-cli-cluster-addon-create-object-store',
           'reference/replicated-cli-cluster-create',
           'reference/replicated-cli-cluster-kubeconfig',
           'reference/replicated-cli-cluster-ls',
           'reference/replicated-cli-cluster-nodegroup-ls',
-          'reference/replicated-cli-cluster-prepare',
           'reference/replicated-cli-cluster-port-expose',
           'reference/replicated-cli-cluster-port-ls',
           'reference/replicated-cli-cluster-port-rm',
+          'reference/replicated-cli-cluster-prepare',
           'reference/replicated-cli-cluster-rm',
           'reference/replicated-cli-cluster-shell',
           'reference/replicated-cli-cluster-update-ttl',
           'reference/replicated-cli-cluster-upgrade',
           'reference/replicated-cli-cluster-versions',
-          'reference/replicated-cli-cluster-addon-ls',
-          'reference/replicated-cli-cluster-addon-rm',
-          'reference/replicated-cli-cluster-addon-create',
-          'reference/replicated-cli-cluster-addon-create-object-store',
         ],
       },
       {
@@ -676,10 +676,10 @@ const sidebars = {
         type: 'category',
         label: 'customer',
         items: [
-          // 'reference/replicated-cli-customer-archive', ADD
+          'reference/replicated-cli-customer-archive', // NEW
           'reference/replicated-cli-customer-create',
           'reference/replicated-cli-customer-download-license',
-          // 'reference/replicated-cli-customer-inspect', ADD
+          'reference/replicated-cli-customer-inspect',  // NEW
           'reference/replicated-cli-customer-ls',
           // 'reference/replicated-cli-customer-update', ADD
         ],
@@ -725,10 +725,10 @@ const sidebars = {
         type: 'category',
         label: 'release',
         items: [
-          'reference/replicated-cli-release-create',
           'reference/replicated-cli-release-compatibility',
+          'reference/replicated-cli-release-create',
           'reference/replicated-cli-release-download',
-          'reference/replicated-cli-release-inspect',
+          // 'reference/replicated-cli-release-inspect', REMOVE
           'reference/replicated-cli-release-lint',
           'reference/replicated-cli-release-ls',
           'reference/replicated-cli-release-promote',

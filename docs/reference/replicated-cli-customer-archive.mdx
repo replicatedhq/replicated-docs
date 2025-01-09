@@ -1,0 +1,49 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+
+# customer archive
+
+Archive a customer for the current application.
+
+This command allows you to archive a customer record. Archiving a customer
+will make their license inactive and remove them from active customer lists.
+This action is reversible. You can unarchive a customer later if needed.
+
+The customer can be specified by either their name or ID.
+
+## Usage
+```bash
+replicated customer archive [CUSTOMER_NAME_OR_ID]
+```
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+  <App/>
+</table>
+
+## Examples
+
+### Archive a customer by name
+```bash
+replicated customer archive "Acme Inc"
+```
+
+### Archive a customer by ID
+```bash
+replicated customer archive cus_abcdef123456
+```
+
+### Archive multiple customers by ID
+```bash
+replicated customer archive cus_abcdef123456 cus_xyz9876543210
+```
+
+### Archive a customer in a specific app (if you have multiple apps)
+```bash
+replicated customer archive --app myapp "Acme Inc"
+```

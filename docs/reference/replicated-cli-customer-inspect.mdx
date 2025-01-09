@@ -1,0 +1,59 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+
+# customer inspect
+
+The inspect command provides comprehensive details about a customer.
+
+This command retrieves and displays full information about a specified customer,
+including their assigned channels, registry information, and other relevant attributes.
+It's useful for getting an in-depth view of a customer's configuration and status.
+
+You must specify the customer using either their name or ID with the `--customer` flag.
+
+## Usage
+```bash
+replicated customer inspect --customer [CUSTOMER_NAME_OR_ID]
+```
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <App/>
+  <tr>
+    <td>--customer</td>
+    <td>string</td>
+    <td>Customer name or ID</td>
+  </tr>
+  <Help/>
+  <tr>
+    <td>--output</td>
+    <td>string</td>
+    <td>The output format to use: `json` or `table`. **Default:** `table`</td>
+  </tr>
+</table>
+
+## Examples
+
+### Inspect a customer by ID
+```bash
+replicated customer inspect --customer cus_abcdef123456
+```
+
+### Inspect a customer by name
+```bash
+replicated customer inspect --customer "Acme Inc"
+```
+
+### Inspect a customer and output in JSON format
+```bash
+replicated customer inspect --customer cus_abcdef123456 --output json
+```
+
+### Inspect a customer for a specific app (if you have multiple apps)
+```bash
+replicated customer inspect --app myapp --customer "Acme Inc"
+```
