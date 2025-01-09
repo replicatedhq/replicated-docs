@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Steps for Helm Air Gap Installs and Upgrades in Download Portal (Alpha)</h3>
-        <p>Teams can request the Helm air gap Alpha feature to make detailed instructions for using Helm to install and upgrade in air-gapped environments available in the Download Portal.</p>
+        <h3>Set Initial Values for New Customers (Beta)</h3>
+        <p>Populate the built-in fields in the Vendor Portal **Create Customer** form with a set of initial values.</p>
     </li>
     <li>
-      <a href="/vendor/helm-install-airgap">Learn more</a>
+      <a href="/vendor/licenses-adding-custom-fields#set-initial-values-for-built-in-license-fields-beta">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Download the Commercial Software Distribution Handbook</h3>
-        <p>Download your free copy of Replicated's Commercial Software Distribution Handbook, a complete guide to distributing commercial software in customer-controlled environments.</p>
+        <h3>Automate Installation with Embedded Cluster</h3>
+        <p>Pass the `--license-file`, `--admin-console-password`, and `--config-values` flags with the Embedded Cluster install command to perform headless installs from the command line.</p>
     </li>
     <li>
-      <a href="https://www.replicated.com/blog/announcing-the-commercial-software-distribution-handbook">Learn more</a>
+      <a href="/enterprise/installing-embedded-automation">Learn more</a>
     </li>
   </ul>
 </section>
