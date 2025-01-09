@@ -24,6 +24,10 @@ Pass the PATH of the request as the final argument. Do not include the host or v
     <td>Make adhoc GET API calls to the Vendor API v3</td>
   </tr>
   <tr>
+    <td>patch</td>
+    <td>Make adhoc PATCH API calls to the Vendor API v3</td>
+  </tr>
+  <tr>
     <td>post</td>
     <td>Make adhoc POST API calls to the Vendor API v3</td>
   </tr>
