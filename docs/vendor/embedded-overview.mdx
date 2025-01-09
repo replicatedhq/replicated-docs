@@ -25,9 +25,11 @@ The following diagram shows the architecture of Embedded Cluster installations:
 
 The diagram above shows a multi-node installation with Embedded Cluster for an application named Gitea. During installation, the Embedded Cluster binary first installs the k0s cluster as a systemd service on the primary node. This systemd service is named using the unique slug of the given application (`gitea`).
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons. The add-ons include the following:
-* **KOTS:** Embedded Cluster deploys the KOTS Admin Console in the kotsadm namespace. KOTS uses rqlite for storage. KOTS also deploys the application in the kotsadm namespace.
-* **OpenEBS:** Embedded Cluster uses OpenEBS for managing PV storage on the node or nodes.
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons.
+
+Embedded Cluster add-ons include:
+* **KOTS:** Embedded Cluster deploys the KOTS Admin Console in the kotsadm namespace. KOTS deploys the application and a rqlite StatefulSet. KOTS uses rqlite to store the version history, application metadata and other small amounts of data needed to manage the application. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage for support bundles and application archives.
 * **Helm extensions**: Vendors can optionally add Helm extensions in the Embedded Cluster Config `extensions` field. Vendors also define the namespaces where each extension will be installed.
 * **(Disaster Recovery Only) Velero:** For applications the use the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool the provides backup and restore functionality.
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs a built-in image registry where application and Replicated KOTS images are pushed.
