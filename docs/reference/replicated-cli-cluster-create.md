@@ -19,6 +19,16 @@ replicated cluster create [flags]
   </tr>
   <Help/>
   <tr>
+    <td>--addon</td>
+    <td>string</td>
+    <td>Addons to install on the cluster (can be specified multiple times)</td>
+  </tr>
+  <tr>
+    <td>--bucket-prefix</td>
+    <td>string</td>
+    <td>A prefix for the bucket name to be created (required by '--addon object-store')</td>
+  </tr>
+  <tr>
     <td>--disk</td>
     <td>integer</td>
     <td>The disk size (GiB) to request per node. <strong>Default:</strong> 50</td>
