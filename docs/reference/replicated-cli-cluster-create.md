@@ -21,12 +21,12 @@ replicated cluster create [flags]
   <tr>
     <td>--addon</td>
     <td>string</td>
-    <td>Addons to install on the cluster (can be specified multiple times)</td>
+    <td>Add-ons to install in the cluster. Can be specified multiple times.</td>
   </tr>
   <tr>
     <td>--bucket-prefix</td>
     <td>string</td>
-    <td>A prefix for the bucket name to be created (required by '--addon object-store')</td>
+    <td>A prefix for the bucket name to be created. Required by `--addon object-store`.</td>
   </tr>
   <tr>
     <td>--disk</td>
