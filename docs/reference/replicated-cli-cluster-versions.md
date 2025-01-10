@@ -17,12 +17,12 @@ replicated cluster versions [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--output</td>
+    <td>`--output`</td>
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json or table. <strong>Default:</strong> table</td>
   </tr>
   <tr>
-    <td>--distribution</td>
+    <td>`--distribution`</td>
     <td>string</td>
     <td>The Kubernetes distribution to filter by. For example, <code>openshift</code></td>
   </tr>

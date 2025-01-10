@@ -639,11 +639,11 @@ const sidebars = {
         label: 'channel',
         items: [
           // 'reference/replicated-cli-channel-create', REMOVE
-          'reference/replicated-cli-channel-delete', // CHANGE TO RM
           // 'reference/replicated-cli-channel-disable-semver', REMOVE
           // 'reference/replicated-cli-channel-enable-semver', REMOVE
           'reference/replicated-cli-channel-inspect',
           'reference/replicated-cli-channel-ls',
+          'reference/replicated-cli-channel-delete', // CHANGE TO RM
         ],
       },
       {
@@ -652,8 +652,14 @@ const sidebars = {
         items: [
           'reference/replicated-cli-cluster-addon-ls',
           'reference/replicated-cli-cluster-addon-rm',
-          'reference/replicated-cli-cluster-addon-create',
-          'reference/replicated-cli-cluster-addon-create-object-store',
+          {
+            type: 'category',
+            label: 'cluster addon create',
+            items: [
+              'reference/replicated-cli-cluster-addon-create',
+              'reference/replicated-cli-cluster-addon-create-object-store',
+            ],
+          },
           'reference/replicated-cli-cluster-create',
           'reference/replicated-cli-cluster-kubeconfig',
           'reference/replicated-cli-cluster-ls',
