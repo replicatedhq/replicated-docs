@@ -1,8 +1,6 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
-# channel delete
+# channel rm (delete)
 
 Delete (archive) a channel.
 
@@ -10,21 +8,17 @@ Delete (archive) a channel.
 ```bash
 replicated channel rm CHANNEL_ID
 ```
+```bash
+replicated channel delete CHANNEL_ID
+```
 
 :::note
 You must use the channel ID to delete the channel, not the channel name.
 :::
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-  <App/>
-  <Token/>
-</table>
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

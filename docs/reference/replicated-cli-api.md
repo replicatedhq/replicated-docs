@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # api
 
@@ -7,12 +7,9 @@ Make adhoc calls to the Vendor API v3. Uses your local credentials and prints th
 ## Usage
 
 ```bash
-replicated api [command]
+replicated api [command] [flags]
 ```
-
-Pass the PATH of the request as the final argument. Do not include the host or version. Replicated recommends piping the output to jq for easier reading.
-
-### Available Commands
+The following commands are available:
 
 <table>
   <tr>
@@ -20,33 +17,26 @@ Pass the PATH of the request as the final argument. Do not include the host or v
     <th>Description</th>
   </tr>
   <tr>
-    <td>get</td>
+    <td>[get](replicated-cli-api-get)</td>
     <td>Make adhoc GET API calls to the Vendor API v3</td>
   </tr>
   <tr>
-    <td>patch</td>
+    <td>[patch](replicated-cli-api-patch)</td>
     <td>Make adhoc PATCH API calls to the Vendor API v3</td>
   </tr>
   <tr>
-    <td>post</td>
+    <td>[post](replicated-cli-api-post)</td>
     <td>Make adhoc POST API calls to the Vendor API v3</td>
   </tr>
   <tr>
-    <td>put</td>
+    <td>[put](replicated-cli-api-put)</td>
     <td>Make adhoc PUT API calls to the Vendor API v3</td>
   </tr>
 </table>
 
-### Flags
+## Global Flags
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-</table>
+<GlobalFlags/>
 
 ## Examples
 

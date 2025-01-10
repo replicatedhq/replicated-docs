@@ -1,8 +1,6 @@
-import App from "../partials/replicated-cli/_app.mdx"
 import SkipValidation from "../partials/replicated-cli/_skip-validation.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 import TokenStdin from "../partials/replicated-cli/_token-stdin.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
 
 # registry add ghcr
 
@@ -20,9 +18,10 @@ The following flags are supported:
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <App/>
-  <Help/>
   <SkipValidation/>
-  <Token/>
   <TokenStdin/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>

@@ -1,5 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster rm
 
@@ -19,7 +18,6 @@ Replace `Cluster ID, name, or tag` with one or more cluster IDs, names, or tags.
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--name</td>
     <td>stringArray</td>
@@ -36,6 +34,10 @@ Replace `Cluster ID, name, or tag` with one or more cluster IDs, names, or tags.
     <td>Removes all clusters.</td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

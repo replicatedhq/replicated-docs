@@ -1,6 +1,4 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # customer create
 
@@ -43,10 +41,11 @@ replicated customer create [Flags]
     <td>string</td>
     <td>If set, this custom alphanumeric ID is associated with this customer to more easily tie this record to your external data systems (i.e. Salesforce, Hubspot, etc.) </td>
   </tr>
-  <Help/>
-  <App/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

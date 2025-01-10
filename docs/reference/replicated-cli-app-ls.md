@@ -1,5 +1,4 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # app ls
 
@@ -9,16 +8,13 @@ List all applications, or specify the application you want to list.
 ```bash
 replicated app ls
 ```
+```bash
+replicated app ls APP_NAME
+```
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-  <Token/>
-</table>
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

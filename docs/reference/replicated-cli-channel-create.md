@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # channel create
 
@@ -8,7 +6,7 @@ Create a new channel in your application, and then print the channel.
 
 ## Usage
 ```bash
-replicated channel create --name Beta --description 'New features subject to change'
+replicated channel create --name CHANNEL_NAME --description 'Channel description'
 ```
 
 <table>
@@ -27,10 +25,11 @@ replicated channel create --name Beta --description 'New features subject to cha
     <td>string</td>
     <td>The name of this channel. <strong>(Required)</strong></td>
   </tr>
-  <Help/>
-  <App/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

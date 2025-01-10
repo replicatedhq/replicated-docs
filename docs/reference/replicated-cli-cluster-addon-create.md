@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster addon create
 
@@ -23,13 +23,6 @@ The following `cluster addon create` commands are supported:
   </tr>
 </table>
 
-The following flags are supported:
+## Global Flags
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-</table>
+<GlobalFlags/>

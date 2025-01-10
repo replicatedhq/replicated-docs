@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # installer create
 
@@ -47,10 +45,11 @@ replicated installer create [flags]
     <td>string</td>
     <td>The file name with YAML config for this installer. Cannot be used with the <code>--yaml</code> flag. </td>
   </tr>
-  <Help/>
-  <App/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

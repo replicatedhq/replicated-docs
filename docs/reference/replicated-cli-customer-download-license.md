@@ -1,6 +1,4 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # customer download-license
 
@@ -22,10 +20,11 @@ replicated customer download-license
     <td>string</td>
     <td>The customer name or ID.</td>
   </tr>
-  <Help/>
-  <App/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

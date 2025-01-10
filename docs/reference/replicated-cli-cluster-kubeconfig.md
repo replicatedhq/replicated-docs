@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster kubeconfig
 
@@ -16,7 +16,6 @@ replicated cluster kubeconfig ID [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--id</td>
     <td>string</td>
@@ -39,6 +38,6 @@ replicated cluster kubeconfig ID [flags]
   </tr>
 </table>
 
-                   
-                
-                     
+## Global Flags
+
+<GlobalFlags/>

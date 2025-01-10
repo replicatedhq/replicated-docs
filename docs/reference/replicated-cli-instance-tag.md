@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # instance tag
 
@@ -18,7 +16,6 @@ instance tag [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <App/>
   <tr>
     <td><code>--customer</code></td>
     <td>string</td>
@@ -29,7 +26,6 @@ instance tag [flags]
     <td>string</td>
     <td>Instance Name or ID to add or remove tags.</td>
   </tr>
-  <Help/>
   <tr>
     <td><code>--output</code></td>
     <td>string</td>
@@ -40,8 +36,11 @@ instance tag [flags]
     <td>string</td>
     <td>Tags to apply to the instance. Leave value empty to remove tag. Tags not specified are removed or modified.</td>
   </tr>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

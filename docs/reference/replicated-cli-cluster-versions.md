@@ -1,5 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster versions
 
@@ -17,7 +16,6 @@ replicated cluster versions [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--output</td>
     <td>string</td>
@@ -26,9 +24,13 @@ replicated cluster versions [flags]
   <tr>
     <td>--distribution</td>
     <td>string</td>
-    <td>The Kuberntes distribution to filter by. For example, <code>openshift</code></td>
+    <td>The Kubernetes distribution to filter by. For example, <code>openshift</code></td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

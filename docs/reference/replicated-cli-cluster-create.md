@@ -1,5 +1,5 @@
-import Help from "../partials/replicated-cli/\_help.mdx"
-import Output from "../partials/replicated-cli/\_output.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
+import Output from "../partials/replicated-cli/_output.mdx"
 
 # cluster create
 
@@ -17,7 +17,6 @@ replicated cluster create [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--disk</td>
     <td>integer</td>
@@ -95,6 +94,10 @@ replicated cluster create [flags]
     <td>The wait duration for the cluster to be ready. Leave the value empty to avoid waiting.</td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

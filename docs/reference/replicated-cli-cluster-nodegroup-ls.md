@@ -1,6 +1,5 @@
-import Help from "../partials/replicated-cli/_help.mdx"
 import Output from "../partials/replicated-cli/_output.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster nodegroup ls
 
@@ -20,9 +19,11 @@ replicated cluster nodegroup ls [ID]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

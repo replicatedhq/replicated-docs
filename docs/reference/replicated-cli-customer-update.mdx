@@ -1,5 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # customer update
 
@@ -27,74 +26,16 @@ replicated customer update --customer [CUSTOMER_NAME_OR_ID]
     <td></td>
     <td> If set, the license will allow airgap installs.</td>
   </tr>
-  <App/>
   <tr>
     <td>--channel</td>
     <td>stringArray</td>
     <td>Release channel to which the customer should be assigned (can be specified multiple times)</td>
   </tr>
-  <tr>
-    <td>--custom-id</td>
-    <td>string</td>
-    <td>Set a custom customer ID to more easily tie this customer record to your external data systems</td>
-  </tr>
-  <tr>
-    <td>--customer</td>
-    <td>string</td>
-    <td>The ID of the customer to update</td>
-  </tr>
-  <tr>
-    <td>--default-channel</td>
-    <td>string</td>
-    <td>Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.</td>
-  </tr>
-  <tr>
-    <td>--developer-mode</td>
-    <td></td>
-    <td>If set, Replicated SDK installed in dev mode will use mock data.</td>
-  </tr>
-  <tr>
-    <td>--email</td>
-    <td>string</td>
-    <td>Email address of the customer that is to be updated.</td>
-  </tr>
-  <tr>
-    <td>--embedded-cluster-download</td>
-    <td></td>
-    <td>If set, the license will allow embedded cluster downloads.</td>
-  </tr>
-  <tr>
-    <td>--ensure-channel</td>
-    <td></td>
-    <td>If set, channel will be created if it does not exist.</td>
-  </tr>
-  <tr>
-    <td>--expires-in</td>
-    <td>duration</td>
-    <td>If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'</td>
-  </tr>
-  <tr>
-    <td>--geo-axis</td>
-    <td></td>
-    <td>If set, the license will allow Geo Axis usage.</td>
-  </tr>
-  <tr>
-    <td>--gitops</td>
-    <td></td>
-    <td>If set, the license will allow GitOps usage.</td>
-  </tr>
-  <tr>
-    <td>--gitops</td>
-    <td></td>
-    <td>If set, the license will allow GitOps usage.</td>
-  </tr>
-  <Help/>
-  <tr>
-    <td>--helmvm-cluster-download</td>
-    <td></td>
-    <td>If set, the license will allow helmvm cluster downloads.</td>
-  </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

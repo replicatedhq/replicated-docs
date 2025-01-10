@@ -1,7 +1,5 @@
-import App from "../partials/replicated-cli/_app.mdx"
 import SkipValidation from "../partials/replicated-cli/_skip-validation.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # registry add ecr
 
@@ -25,8 +23,6 @@ The following flags are supported:
     <td>string</td>
     <td>The access key ID to use when authenticating to the registry.</td>
   </tr>
-  <App/>
-  <Help/>
   <tr>
     <td><code>--secretaccesskey</code></td>
     <td>string</td>
@@ -38,5 +34,8 @@ The following flags are supported:
     <td>Takes the secret access key from stdin.</td>
   </tr>
   <SkipValidation/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>

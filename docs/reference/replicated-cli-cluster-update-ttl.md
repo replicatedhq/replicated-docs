@@ -1,5 +1,5 @@
-import Help from "../partials/replicated-cli/_help.mdx"
 import Output from "../partials/replicated-cli/_output.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster update ttl
 
@@ -21,7 +21,6 @@ The `cluster update ttl` command first looks for the target cluster based on the
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <Output/>
   <tr>
     <td><code>--ttl</code></td>
@@ -45,6 +44,10 @@ The `cluster update ttl` command first looks for the target cluster based on the
    </td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

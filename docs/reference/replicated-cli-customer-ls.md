@@ -1,6 +1,4 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # customer ls
 
@@ -17,11 +15,12 @@ replicated customer ls
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
-  <App/>
   <td><code>--app-version</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific application version.</td>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

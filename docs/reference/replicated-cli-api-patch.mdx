@@ -1,0 +1,17 @@
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
+
+# replicated api patch
+
+Make adhoc PATCH requests to the Vendor API v3. Uses your local credentials and prints the response unmodified. For more information, see the [Vendor API v3 documentation](https://replicated-vendor-api.readme.io/reference/createapp).
+
+## Usage
+
+```bash
+replicated api patch [PATH]
+```
+
+Pass the PATH of the request as the final argument. Do not include the host or version. Replicated recommends piping the output to jq for easier reading.
+
+## Global Flags
+
+<GlobalFlags/>

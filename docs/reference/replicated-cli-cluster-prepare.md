@@ -1,5 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster prepare
 
@@ -21,7 +20,6 @@ replicated cluster prepare [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--disk</td>
     <td>integer</td>
@@ -144,6 +142,10 @@ replicated cluster prepare [flags]
   </tr>
   
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

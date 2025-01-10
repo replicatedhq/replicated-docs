@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster addon rm
 
@@ -21,8 +21,11 @@ replicated cluster addon rm CLUSTER_ID --id ADDON_ID [flags]
     <td>string</td>
     <td>The ID of the cluster add-on to remove. <strong>(Required)</strong></td>
   </tr>
-  <Help/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

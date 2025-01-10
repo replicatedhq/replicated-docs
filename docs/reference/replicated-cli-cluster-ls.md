@@ -1,10 +1,8 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster ls
 
 List the clusters available for compatibility testing. For more information, see [About Compatibility Matrix](/vendor/testing-about).
-
 
 ## Usage
 
@@ -18,7 +16,6 @@ replicated cluster ls [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td>--end-time</td>
     <td>string</td>
@@ -45,6 +42,10 @@ replicated cluster ls [flags]
     <td>Watches the clusters.</td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

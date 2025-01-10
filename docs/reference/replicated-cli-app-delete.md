@@ -1,13 +1,15 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
-# app delete
+# app rm (delete)
 
 Delete an application.
 
 ## Usage
 ```bash
-replicated app delete NAME
+replicated app rm APP_NAME
+```
+```bash
+replicated app delete APP_NAME
 ```
 
 <table>
@@ -16,14 +18,16 @@ replicated app delete NAME
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td><code>-f, --force</code></td>
     <td></td>
     <td>Skip the confirmation prompt. This action cannot be undone.</td>
   </tr>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

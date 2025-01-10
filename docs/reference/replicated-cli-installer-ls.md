@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # installer ls
 
@@ -11,16 +9,9 @@ List the Kubernetes installer manifests for an app. For more information, see [C
 replicated installer ls
 ```
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-  <App/>
-  <Token/>
-</table>
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

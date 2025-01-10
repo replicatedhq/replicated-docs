@@ -1,5 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster upgrade
 
@@ -16,7 +15,6 @@ replicated cluster upgrade ID [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <Help/>
   <tr>
     <td><code>--dry-run</code></td>
     <td></td>
@@ -33,6 +31,10 @@ replicated cluster upgrade ID [flags]
     <td>Wait duration for cluster to be ready (leave empty to not wait)</td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

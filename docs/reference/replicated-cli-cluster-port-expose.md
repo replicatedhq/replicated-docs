@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/\_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster port expose
 
@@ -42,8 +42,11 @@ replicated cluster port expose CLUSTER_ID --port PORT [flags]
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>
-  <Help/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

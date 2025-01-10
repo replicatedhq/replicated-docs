@@ -614,15 +614,24 @@ const sidebars = {
     label: 'Replicated CLI',
     items: [
       'reference/replicated-cli-installing',
-      'reference/replicated-cli-api',
+      {
+        type: 'category',
+        label: 'api',
+        items: [
+          'reference/replicated-cli-api',
+          'reference/replicated-cli-api-patch',
+          'reference/replicated-cli-api-post',
+          'reference/replicated-cli-api-put',
+          'reference/replicated-cli-api-get',
+        ],
+      },
       {
         type: 'category',
         label: 'app',
         items: [
           'reference/replicated-cli-app-create',
-          'reference/replicated-cli-app-delete',
           'reference/replicated-cli-app-ls',
-          // 'reference/replicated-cli-app-rm', ADD
+          'reference/replicated-cli-app-delete', // change to rm
         ],
       },
       {

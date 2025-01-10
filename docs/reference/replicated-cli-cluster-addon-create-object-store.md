@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/\_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # cluster addon create object-store (Alpha)
 
@@ -6,7 +6,9 @@ Create an object store bucket for a cluster.
 
 Requires a bucket name prefix (using flag "--bucket-prefix") that will be used to create a unique bucket name with format "[BUCKET_PREFIX]-[ADDON_ID]-cmx".
 
-_NOTE: This add-on currently only support EKS (AWS S3)._
+:::note
+This add-on supports EKS (AWS S3) only.
+:::
 
 ## Usage
 
@@ -40,12 +42,15 @@ replicated cluster addon create object-store CLUSTER_ID --bucket-prefix BUCKET_P
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>
-  <Help/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 
 ```bash
-$ replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket
+replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket
 05929b24    Object Store    pending         {"bucket_prefix":"mybucket"}
 ```
