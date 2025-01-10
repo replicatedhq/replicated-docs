@@ -631,7 +631,7 @@ const sidebars = {
         items: [
           'reference/replicated-cli-app-create',
           'reference/replicated-cli-app-ls',
-          'reference/replicated-cli-app-delete', // change to rm
+          'reference/replicated-cli-app-delete', // CHANGE TO RM
         ],
       },
       {
@@ -639,12 +639,11 @@ const sidebars = {
         label: 'channel',
         items: [
           // 'reference/replicated-cli-channel-create', REMOVE
-          'reference/replicated-cli-channel-delete',
+          'reference/replicated-cli-channel-delete', // CHANGE TO RM
           // 'reference/replicated-cli-channel-disable-semver', REMOVE
           // 'reference/replicated-cli-channel-enable-semver', REMOVE
           'reference/replicated-cli-channel-inspect',
           'reference/replicated-cli-channel-ls',
-          // 'reference/replicated-cli-channel-rm', ADD
         ],
       },
       {
@@ -744,7 +743,7 @@ const sidebars = {
           'reference/replicated-cli-release-update',
         ],
       },
-      // 'reference/replicated-cli-version', ADD
+      'reference/replicated-cli-version', // NEW
     ],
   },
   {
