@@ -1,17 +1,16 @@
-import Help from "../partials/replicated-cli/_help.mdx"
 import YamlDir from "../partials/replicated-cli/_yaml-dir.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release lint
 
 Lint a directory of application manifest files. For more information, see [Linter Rules](linter).
 
+Returns exit code 1 when an error in linting is discovered. Otherwise, returns exit code 0 (such as for info and warning messages).
+
 ## Usage
 ```bash
 replicated release lint --yaml-dir YAML_DIR [flags]
 ```
-
-* _`YAML_DIR` corresponds to the root directory of the YAML application manifest files._
-* _Returns exit code 1 when an error in linting is discovered. Otherwise, returns exit codse 0 (such as for info and warning messages)._
 
 <table>
   <tr>
@@ -25,8 +24,11 @@ replicated release lint --yaml-dir YAML_DIR [flags]
     <td>string</td>
     <td>The minimum severity of a linting rule to cause a non-zero exit code. Supported values are <code>info</code>, <code>warn</code>, <code>error</code>, <code>none</code>. <strong>Default:</strong> Error</td>
   </tr>
-  <Help/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

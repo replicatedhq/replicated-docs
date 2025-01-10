@@ -1,4 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release compatibility
 
@@ -28,7 +28,6 @@ Where `SEQUENCE` is the sequence number for the target release.
     <td>bool</td>
     <td> If set, the compatibility will be reported as a failure.</td>
   </tr>
-  <Help/>
   <tr>
     <td><code>--notes</code></td>
     <td>string</td>
@@ -45,6 +44,10 @@ Where `SEQUENCE` is the sequence number for the target release.
     <td>Kubernetes version of the cluster to report on (format is distribution dependent).</td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Example
 

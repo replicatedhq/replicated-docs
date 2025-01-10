@@ -681,7 +681,7 @@ const sidebars = {
           'reference/replicated-cli-customer-download-license',
           'reference/replicated-cli-customer-inspect',  // NEW
           'reference/replicated-cli-customer-ls',
-          // 'reference/replicated-cli-customer-update', ADD
+          'reference/replicated-cli-customer-update', // NEW
         ],
       },
       {

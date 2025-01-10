@@ -1,10 +1,10 @@
-import Help from "../partials/replicated-cli/_help.mdx"
 import YamlDir from "../partials/replicated-cli/_yaml-dir.mdx"
 import ChartYamlDirReqs from "../partials/replicated-cli/_chart-yaml-dir-reqs.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release create
 
-Create a new release using a collection of application manifest files and/or one or more Helm charts.
+Create a new release.
 
 ## Usage
 ```bash
@@ -51,8 +51,11 @@ Additional flags returned by `--help` that are not supported by Replicated are o
     <td>string</td>
     <td><p>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</p><p>If semantic versioning is enabled on the channel, then the version label must be a valid semantic version number. See <a href="/vendor/releases-about#semantic-versioning">Semantic Versioning</a> in <em>About Releases</em>.</p></td>
   </tr>
-  <Help/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 

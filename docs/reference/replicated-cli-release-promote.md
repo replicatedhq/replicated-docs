@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release promote
 
@@ -20,8 +18,6 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <App/>
-  <Help/>
   <tr>
     <td><code>--release-notes</code></td>
     <td>string</td>
@@ -32,13 +28,16 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
     <td></td>
     <td>Prevents users from skipping this release during application upgrades. For more information, see <a href="/vendor/releases-creating-releases">Managing Releases with the Vendor Portal</a>.</td>
   </tr>
-  <Token/>
   <tr>
     <td><code>--version</code></td>
     <td>string</td>
     <td><p>A version label for the release in this channel.</p><p>If semantic versioning is enabled on the channel, then the version label must be a valid semantic version number. See <a href="/vendor/releases-about#semantic-versioning">Semantic Versioning</a> in <em>About Releases</em>.</p></td>
   </tr>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash

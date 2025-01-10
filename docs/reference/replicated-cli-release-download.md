@@ -1,6 +1,4 @@
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
-import Token from "../partials/replicated-cli/_token.mdx"
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release download
 
@@ -24,10 +22,11 @@ replicated release download SEQUENCE -d ./appyaml
     <td>string</td>
     <td>Directory where release manifests should be downloaded.</td>
   </tr>
-  <Help/>
-  <App/>
-  <Token/>
 </table>
+
+## Global Flags
+
+<GlobalFlags/>
 
 ## Examples
 ```bash
