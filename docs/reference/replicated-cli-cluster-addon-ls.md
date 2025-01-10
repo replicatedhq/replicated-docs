@@ -17,7 +17,7 @@ replicated cluster addon ls CLUSTER_ID [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--output</td>
+    <td>`--output`</td>
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>

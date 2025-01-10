@@ -23,22 +23,22 @@ replicated cluster port expose CLUSTER_ID --port PORT [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--port</td>
+    <td>`--port`</td>
     <td>string</td>
     <td>Port to expose. <strong>(Required)</strong></td>
   </tr>
   <tr>
-    <td>--protocol</td>
+    <td>`--protocol`</td>
     <td>string</td>
     <td>Protocol to expose (valid values are "http" and "https"). Specify multiple or separate values with commas.</td>
   </tr>
   <tr>
-    <td>--wildcard</td>
+    <td>`--wildcard`</td>
     <td>bool</td>
     <td>Create a wildcard DNS entry and TLS certificate for this port.</td>
   </tr>
   <tr>
-    <td>--output</td>
+    <td>`--output`</td>
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>

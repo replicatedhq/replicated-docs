@@ -13,14 +13,6 @@ For more information, see [About Compatibility Matrix](/vendor/testing-about).
 replicated cluster nodegroup ls [ID]
 ```
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-</table>
-
 ## Global Flags
 
 <GlobalFlags/>

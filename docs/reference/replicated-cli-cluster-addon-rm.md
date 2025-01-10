@@ -17,7 +17,7 @@ replicated cluster addon rm CLUSTER_ID --id ADDON_ID [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--id</td>
+    <td>`--id`</td>
     <td>string</td>
     <td>The ID of the cluster add-on to remove. <strong>(Required)</strong></td>
   </tr>

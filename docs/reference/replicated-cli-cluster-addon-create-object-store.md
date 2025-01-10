@@ -23,22 +23,22 @@ replicated cluster addon create object-store CLUSTER_ID --bucket-prefix BUCKET_P
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--bucket-prefix</td>
+    <td>`--bucket-prefix`</td>
     <td>string</td>
     <td>A prefix for the bucket name to be created. <strong>(Required)</strong></td>
   </tr>
   <tr>
-    <td>--wait</td>
+    <td>`--wait`</td>
     <td>bool</td>
     <td>Wait duration for add-on to be ready before exiting (leave empty to not wait).</td>
   </tr>
   <tr>
-    <td>--dry-run</td>
+    <td>`--dry-run`</td>
     <td>bool</td>
     <td>Simulate creation to verify that your inputs are valid without actually creating an add-on.</td>
   </tr>
   <tr>
-    <td>--output</td>
+    <td>`--output`</td>
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>
