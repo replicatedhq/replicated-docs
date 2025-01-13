@@ -16,11 +16,6 @@ replicated release update --yaml-dir YAML_DIR [Flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <tr>
-    <td>`--chart`</td>
-    <td>string</td>
-    <td>Helm chart to create the release from. Cannot be used with the `--yaml`, `--yaml-file`, or `--yaml-dir` flags.</td>
-  </tr>
   <YamlDir/>
 </table>
 

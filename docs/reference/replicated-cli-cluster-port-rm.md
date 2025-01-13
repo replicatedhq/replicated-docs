@@ -17,12 +17,12 @@ replicated cluster port rm CLUSTER_ID --id PORT_ID [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
-    <td>--id</td>
+    <td>`--id`</td>
     <td>string</td>
     <td>ID of the port to remove. <strong>(Required)</strong></td>
   </tr>
   <tr>
-    <td>--output</td>
+    <td>`--output`</td>
     <td>string</td>
     <td>The output format to use. <strong>Value values:</strong> json, table or wide. <strong>Default:</strong> table</td>
   </tr>
