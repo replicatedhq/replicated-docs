@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.123.1
+
+Released on January 13, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-123-1}
+* Fixes an issue where the Config navbar was not visible on the Config page.
+
 ## 1.123.0
 
 Released on January 2, 2025
