@@ -631,7 +631,7 @@ const sidebars = {
         items: [
           'reference/replicated-cli-app-create',
           'reference/replicated-cli-app-ls',
-          'reference/replicated-cli-app-delete', // CHANGE TO RM
+          'reference/replicated-cli-app-delete',
         ],
       },
       {
@@ -643,7 +643,7 @@ const sidebars = {
           // 'reference/replicated-cli-channel-enable-semver', REMOVE
           'reference/replicated-cli-channel-inspect',
           'reference/replicated-cli-channel-ls',
-          'reference/replicated-cli-channel-delete', // CHANGE TO RM
+          'reference/replicated-cli-channel-delete',
         ],
       },
       {
@@ -690,12 +690,12 @@ const sidebars = {
         type: 'category',
         label: 'customer',
         items: [
-          'reference/replicated-cli-customer-archive', // NEW
+          'reference/replicated-cli-customer-archive',
           'reference/replicated-cli-customer-create',
           'reference/replicated-cli-customer-download-license',
-          'reference/replicated-cli-customer-inspect',  // NEW
+          'reference/replicated-cli-customer-inspect',
           'reference/replicated-cli-customer-ls',
-          'reference/replicated-cli-customer-update', // NEW
+          'reference/replicated-cli-customer-update',
         ],
       },
       {
@@ -742,14 +742,21 @@ const sidebars = {
           'reference/replicated-cli-release-compatibility',
           'reference/replicated-cli-release-create',
           'reference/replicated-cli-release-download',
-          // 'reference/replicated-cli-release-inspect', REMOVE
+          'reference/replicated-cli-release-inspect',
           'reference/replicated-cli-release-lint',
           'reference/replicated-cli-release-ls',
           'reference/replicated-cli-release-promote',
           'reference/replicated-cli-release-update',
         ],
       },
-      'reference/replicated-cli-version', // NEW
+      {
+        type: 'category',
+        label: 'version',
+        items: [
+          'reference/replicated-cli-version',
+          'reference/replicated-cli-version-upgrade',
+        ],
+      }, 
     ],
   },
   {
