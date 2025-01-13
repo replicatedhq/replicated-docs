@@ -5,6 +5,12 @@ import Output from "../partials/replicated-cli/_output.mdx"
 
 Create clusters for compatibility testing. For more information, see [About Compatibility Matrix](/vendor/testing-about).
 
+The `cluster create` command provisions a new test cluster with the specified Kubernetes distribution and configuration. You can customize the cluster's size, version, node groups, disk space, IP family, and other parameters.
+
+This command supports creating clusters on multiple Kubernetes distributions, including setting up node groups with different instance types and counts. You can also specify a TTL (Time-To-Live) to automatically terminate the cluster after a set duration.
+
+Use the `--dry-run` flag to simulate the creation process and get an estimated cost without actually provisioning the cluster.
+
 ## Usage
 
 ```bash
@@ -58,14 +64,9 @@ replicated cluster create [flags]
     <td>A valid customer license ID. Required for Replicated embedded cluster distribution.</td>
   </tr>
   <tr>
-    <td>`--name`</td>
+    <td>`--max-nodes`</td>
     <td>string</td>
-    <td>The name of the cluster. If no name is specified, a name will be generated.</td>
-  </tr>
-  <tr>
-    <td>`--nodes`</td>
-    <td>integer</td>
-    <td>The node count. <strong>Default:</strong> 1</td>
+    <td>Maximum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
     <td>`--min-nodes`</td>
@@ -73,14 +74,19 @@ replicated cluster create [flags]
     <td>Minimum Node count (only for EKS, AKS and GKE clusters).</td>
   </tr>
   <tr>
-    <td>`--max-nodes`</td>
+    <td>`--name`</td>
     <td>string</td>
-    <td>Maximum Node count (only for EKS, AKS and GKE clusters).</td>
+    <td>The name of the cluster. If no name is specified, a name will be generated.</td>
   </tr>
   <tr>
     <td>`--nodegroup`</td>
     <td>string</td>
     <td>Node group to create (name=?,instance-type=?,nodes=?,min-nodes=?,max-nodes=?,disk=? format, can be specified multiple times). For each nodegroup, at least one flag must be specified. The flags min-nodes and max-nodes are mutually dependent.</td>
+  </tr>
+  <tr>
+    <td>`--nodes`</td>
+    <td>integer</td>
+    <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
   <Output/>
   <tr>
@@ -129,7 +135,7 @@ replicated cluster create [flags]
   replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
   ```
 
-- For a Replicated embedded cluster distribution:
+- For a Replicated Embedded Cluster distribution:
 
 ```bash
 replicated cluster create --distribution embedded-cluster --license-id <license-id>
