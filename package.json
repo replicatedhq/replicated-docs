@@ -23,7 +23,7 @@
     "@types/react": "18.3.5",
     "clsx": "^2.1.0",
     "docusaurus": "^1.14.7",
-    "immer": "^10.0.0",
+    "immer": "^10.1.1",
     "loader-utils": "3.3.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^18.2.0",
