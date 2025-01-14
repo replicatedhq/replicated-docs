@@ -27,26 +27,26 @@ The following diagram shows the architecture of a single-node Embedded Cluster i
 
 [View a larger version of this image](/images/embedded-architecture-single-node.png)
 
-As shown in the diagram above, the Embedded Cluster binary first installs the k0s cluster as a systemd service on the primary node. This systemd service is named using the slug of the application (for example, `gitea`).
+As shown in the diagram above, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
 
 After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons, including:
 
-* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
+* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
 
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide the local PersistentVolume (PV) storage for rqlite. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
-* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information, see the [Velero](https://velero.io/docs/latest/) documentation.
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs a built-in image registry where the images required to install and run the application are pushed.
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-Any optional Helm extensions that the vendor included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.  
+Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.  
 
-After the add-ons and any Helm extensions are installed, the Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (`gitea-manager`). The manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+After the add-ons and Helm extensions are installed, the Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
 
 ### Multi-Node Architecture
 
 The following diagram shows the architecture of a multi-node Embedded Cluster installation for an application named `Gitea`:
 
 :::note
-High availability (HA) for multi-node installations with Embedded Cluster is Alpha. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
+High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
 :::
 
 ![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node.png)
