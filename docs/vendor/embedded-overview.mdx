@@ -5,7 +5,7 @@ import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-
 
 # Embedded Cluster Overview
 
-This topic provides an introduction to Replicated Embedded Cluster, including how to use and configure Embedded Cluster to install and manage an application.
+This topic provides an introduction to Replicated Embedded Cluster, including a description of the add-ons installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
 
 :::note
 If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
@@ -17,24 +17,45 @@ If you are instead looking for information about creating Kubernetes Installers 
 
 ## Architecture and Add-ons
 
-The following diagram shows the architecture of Embedded Cluster installations:
+This section describes the Embedded Cluster architecture, including the add-ons deployed by Embedded Cluster.
 
-![Embedded Cluster architecture](/images/embedded-cluster-architecture.png)
+### Single-Node Architecture
 
-[View a larger version of this image](/images/embedded-cluster-architecture.png)
+The following diagram shows the architecture of a single-node Embedded Cluster installation for an application named Gitea:
 
-The diagram above shows a multi-node installation with Embedded Cluster for an application named Gitea. During installation, the Embedded Cluster binary first installs the k0s cluster as a systemd service on the primary node. This systemd service is named using the unique slug of the given application (`gitea`).
+![Embedded Cluster single-node architecture](/images/embedded-architecture-single-node.png)
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons.
+[View a larger version of this image](/images/embedded-architecture-single-node.png)
 
-Embedded Cluster add-ons include:
-* **KOTS:** Embedded Cluster deploys the KOTS Admin Console in the kotsadm namespace. KOTS deploys the application and a rqlite StatefulSet. KOTS uses rqlite to store the version history, application metadata and other small amounts of data needed to manage the application. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
-* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage for support bundles and application archives.
-* **Helm extensions**: Vendors can optionally add Helm extensions in the Embedded Cluster Config `extensions` field. Vendors also define the namespaces where each extension will be installed.
-* **(Disaster Recovery Only) Velero:** For applications the use the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool the provides backup and restore functionality.
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs a built-in image registry where application and Replicated KOTS images are pushed.
+As shown in the diagram above, the Embedded Cluster binary first installs the k0s cluster as a systemd service on the primary node. This systemd service is named using the slug of the application (for example, `gitea`).
 
-After the add-ons and any Helm extensions are installed, the Embedded Cluster binary then deploys a second systemd service on the node named `APP_SLUG-manager` (`gitea-manager`). The manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket. In multi-node installations, the manager systemd service running on each node communicates with the KOTS instance running on the primary node.
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons, including:
+
+* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide the local PersistentVolume (PV) storage for rqlite. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information, see the [Velero](https://velero.io/docs/latest/) documentation.
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs a built-in image registry where the images required to install and run the application are pushed.
+
+Any optional Helm extensions that the vendor included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.  
+
+After the add-ons and any Helm extensions are installed, the Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (`gitea-manager`). The manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+
+### Multi-Node Architecture
+
+The following diagram shows the architecture of a multi-node Embedded Cluster installation for an application named `Gitea`:
+
+:::note
+High availability (HA) for multi-node installations with Embedded Cluster is Alpha. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
+:::
+
+![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node.png)
+
+[View a larger version of this image](/images/embedded-architecture-multi-node.png)
+
+As shown in the diagram above, in multi-node installations, an instance of the Embedded Cluster manager systemd service runs on each node and communicates with the KOTS instance running on the primary node through a websocket. This allows Embedded Cluster and KOTS to manage installations where workloads are running on multiple nodes in a cluster.
+
+Additionally, for installations that include disaster recovery with Velero, the Velero Node Agent also runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 
 ## Comparison to kURL
 
