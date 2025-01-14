@@ -202,6 +202,18 @@ Grants the holder permission to get cluster details.
 
 Grants the holder permission to upgrade a cluster.
 
+### kots/cluster/tag/update
+
+Grants the holder permission to update cluster tags.
+
+### kots/cluster/ttl/update
+
+Grants the holder permission to update cluster ttl.
+
+### kots/cluster/[:clusterId]/nodegroup
+
+Grants the holder permission to update nodegroup details.
+
 ### kots/cluster[:clusterId]/kubeconfig
 
 Grants the holder permision to get the kubeconfig for a cluster.
@@ -209,6 +221,62 @@ Grants the holder permision to get the kubeconfig for a cluster.
 ### kots/cluster/[:clusterId]/delete
 
 Grants the holder permission to delete a cluster.
+
+### kots/cluster/[:clusterId]/addon/list
+
+Grants the holder permission to list addons for a cluster.
+
+### kots/cluster/[:clusterId]/addon/[:addonId]/read
+
+Grants the holder permission to read the addon for a cluster.
+
+### kots/cluster/[:clusterId]/addon/[:addonId]/delete
+
+Grants the holder permission to delete the addon for a cluster.
+
+### kots/cluster/[:clusterId]/addon/create/objectStore
+
+Grants the holder permission to create an object store for a cluster.
+
+### kots/cluster/[:clusterId]/port/expose
+
+Grants the holder permission to expose a port for a cluster.
+
+### kots/cluster/[:clusterId]/port/delete
+
+Grants the holder permission to delete a port for a cluster.
+
+### kots/cluster/[:clusterId]/port/list
+
+Grants the holder permission to list exposed ports for a cluster.
+
+### kots/cluster/list-quotas
+
+Grants the holder permission to list the quotas.
+
+### kots/cluster/increase-quota
+
+Grants the holder permission to request an increase in the quota.
+
+### kots/vm/tag/update
+
+Grants the holder permission to update vm tags.
+
+### kots/vm/ttl/update
+
+Grants the holder permission to update vm ttl.
+
+### kots/vm/[:vmId]/port/expose
+
+Grants the holder permission to expose a port for a vm.
+
+### kots/vm/[:vmId]/port/list
+
+Grants the holder permission to list exposed ports for a vm.
+
+### kots/vm/[:vmId]/addon/[:addonId]/delete
+
+Grants the holder permission to delete the addon for a vm.
 
 ## Team
 
