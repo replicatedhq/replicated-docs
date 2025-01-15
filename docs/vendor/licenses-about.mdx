@@ -6,21 +6,19 @@ This topic provides an overview of customer licenses, including information abou
 
 ## Overview
 
-The following diagram provides an overview of licensing with the Replicated Platform:
+The following diagram provides an overview of licensing with the Replicated Platform, including how the vendor's external image registries and the installed instances of an application running in end customer environments retrieve customer license information from the Replicated license server:
 
 ![App instance communicates with the Replicated licensing server](/images/licensing-overview.png)
 
 [View a larger version of this image](/images/licensing-overview.png)
 
-As shown in the diagram above, the Replicated license and update server is responsible for managing customer licenses.
-
-The license server retrieves up-to-date license details from customer records in the Vendor Portal.
+As shown in the diagram above, the Replicated license and update server retrieves up-to-date license details from customer records in the Vendor Portal.
 
 This license information is used by the Replicated Proxy Registry to grant end customers secure access to application images in the vendor's external private registries based on the customer's license ID.
 
-When the Replicated SDK is installed alongside an application in a customer environment, the SDK API `/license/` endpoints can be used to retrieve customer license details from the license server. This allows vendors to programmatically enforce or report on license agreements.
+When the Replicated SDK is installed alongside an application in a customer environment, the in-cluster SDK API `/license/` endpoints can be used to retrieve customer license details from the license server. This allows vendors to programmatically enforce and report on license agreements.
 
-Finally, vendors can also integrate CRMs such as Salesforce with the Replicated Platform so that changes in customer records in the Vendor Portal are automatically reflected.
+Finally, vendors can also integrate internal CRMs such as Salesforce with the Replicated Platform so that changes in customer entitlements are automatically reflected in the customer records in the Vendor Portal.
 
 ## About Customers
 
