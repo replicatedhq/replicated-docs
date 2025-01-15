@@ -1,24 +1,111 @@
-Embedded Cluster requires that the following ports are open and available:
+This section lists the ports used by Embedded Cluster. These ports must be open and available for both single- and multi-node installations.
 
-* 2379/TCP &#42;
+#### Ports Used by Local Processes
+
+The following ports must be open and available for use by local processes running on the same node. It is not necessary to create firewall openings for these ports.
+
+* 2379/TCP
+* 9099/TCP
+* 10248/TCP
+* 10257/TCP
+* 10259/TCP
+
+<table>
+  <tr>
+    <th>Port/Protocol</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>2379/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>9099/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10248/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10257/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10259/TCP</td>
+    <td></td>
+  </tr>
+</table>
+
+#### Ports Required for Bidirectional Communication Between Nodes
+
+The following ports are used for bidirectional communication between nodes.
+
+For multi-node installations, create firewall openings between nodes for these ports.
+
+For single-node installations, ensure that there are no other processes using these ports. Although there is no communication between nodes in single-node installations, having these ports open and available ensures that Embedded Cluster preflight checks pass.
+
 * 2380/TCP
 * 4789/UDP
 * 6443/TCP
 * 7443/TCP
 * 9091/TCP
-* 9099/TCP &#42;
 * 9443/TCP
-* 10248/TCP &#42;
 * 10249/TCP
 * 10250/TCP
 * 10256/TCP
-* 10257/TCP &#42;
-* 10259/TCP &#42;
-* 30000/TCP &#42;&#42;&#42;
-* 50000/TCP &#42; &#42;&#42; &#42;&#42;&#42;
 
-&#42; These ports are used only by processes running on the same node. Ensure that there are no other processes using them. It is not necessary to create firewall openings for these ports. 
+<table>
+  <tr>
+    <th>Port/Protocol</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>2380/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4789/UDP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>6443/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>7443/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>9091/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>9443/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10249/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10250/TCP</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10256/TCP</td>
+    <td></td>
+  </tr>
+</table>
 
-&#42;&#42; Required for air gap installations only.
+#### Admin Console Port
 
-&#42;&#42;&#42; By default, the Admin Console and Local Artifact Mirror (LAM) run on ports 30000 and 50000, respectively. If these ports are occupied, you can select different ports during installation. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+The KOTS Admin Console requires that port 30000/TCP is open and available. Create a firewall opening for port 30000/TCP so that the Admin Console can be accessed by the end user.
+
+If port 30000 is occupied, you can select a different port for the Admin Console during installation. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+
+#### LAM Port (Air Gap Only)
+
+In addition to the ports above, air gap installations also require that port 50000/TCP is open and available for the Local Artifact Mirror (LAM).
+
+If port 50000 is occupied, you can select a different port for the LAM during installation. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
