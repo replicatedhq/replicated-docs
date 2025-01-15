@@ -84,5 +84,6 @@ Compatibility Matrix has the following limitations:
 - The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
 - The Kubernetes scheduler for clusters created with Compatibility Matrix cannot be replaced with a different scheduler.
 - Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
+- Team actions with Compatibility Matrix (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
 
 For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).
