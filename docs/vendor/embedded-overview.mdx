@@ -295,18 +295,36 @@ This section outlines some additional use cases for Embedded Cluster. These are 
 
 ### NVIDIA GPU Operator
 
-The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation. You can include the operator in your release as an additional Helm chart, or using the Embedded Cluster Helm extensions. For information about Helm extensions, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
+The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation.
 
-Using this operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
+You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
+
+Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
 
 ```yaml
-toolkit:
-   env:
-   - name: CONTAINERD_CONFIG
-     value: /etc/k0s/containerd.d/nvidia.toml
-   - name: CONTAINERD_SOCKET
-     value: /run/k0s/containerd.sock
-```     
+# Embedded Cluster Config
+
+  extensions:
+    helm:
+      repositories:
+        - name: nvidia
+          url: https://nvidia.github.io/gpu-operator
+      charts:
+        - name: gpu-operator
+          chartname: nvidia/gpu-operator
+          namespace: gpu-operator
+          version: "v24.9.1"
+          values: |
+            # configure the containerd options
+            toolkit:
+             env:
+             - name: CONTAINERD_CONFIG
+               value: /etc/k0s/containerd.d/nvidia.toml
+             - name: CONTAINERD_SOCKET
+               value: /run/k0s/containerd.sock
+```
+
+When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually.
 
 ## Troubleshoot with Support Bundles
 
