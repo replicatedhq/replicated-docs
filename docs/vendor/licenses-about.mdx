@@ -2,23 +2,23 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
 # About Customers and Licensing
 
-This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated Vendor Portal, and how Replicated uses the customer entitlement information that you provide in licenses.
+This topic provides an overview of customers and licenses in the Replicated Platform.
 
 ## Overview
 
-The following diagram provides an overview of licensing with the Replicated Platform, including how the vendor's external image registries and the installed instances of an application running in end customer environments retrieve customer license information from the Replicated license server:
+The following diagram shows an overview of licensing with the Replicated Platform:
 
 ![App instance communicates with the Replicated licensing server](/images/licensing-overview.png)
 
 [View a larger version of this image](/images/licensing-overview.png)
 
-As shown in the diagram above, the Replicated license and update server retrieves up-to-date license details from customer records in the Vendor Portal.
+As shown in the diagram above, the Replicated license and update server retrieves customer details and license entitlements from the customer records that are managed by vendors in the Vendor Portal.
 
-This license information is used by the Replicated Proxy Registry to grant end customers secure access to application images in the vendor's external private registries based on the customer's license ID.
+The license server is identified with a CNAME record where it can be accessed from end customer environments. When running alongside an application in a customer environment, the Replicated SDK retrieves up-to-date customer license information from the license server during runtime. The in-cluster SDK API `/license/` endpoints can be used to retrieve customer license details, allowing vendors to programmatically enforce and report on license agreements.
 
-When the Replicated SDK is installed alongside an application in a customer environment, the in-cluster SDK API `/license/` endpoints can be used to retrieve customer license details from the license server. This allows vendors to programmatically enforce and report on license agreements.
+Additionally, during installation or upgrade, the Replicated Proxy Registry uses the customer's license ID to grant proxy access to images in the vendor's external registry.
 
-Finally, vendors can also integrate internal CRMs such as Salesforce with the Replicated Platform so that changes in customer entitlements are automatically reflected in the customer records in the Vendor Portal.
+Vendors can also integrate internal Customer Relationship Management (CRM) tools such as Salesforce with the Replicated Platform so that any changes to a customer's entitlements are automatically reflected in the customer records in the Vendor Portal.
 
 ## About Customers
 
