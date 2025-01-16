@@ -302,12 +302,26 @@ You can include the NVIDIA GPU Operator in your release as an additional Helm ch
 Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
 
 ```yaml
-toolkit:
-   env:
-   - name: CONTAINERD_CONFIG
-     value: /etc/k0s/containerd.d/nvidia.toml
-   - name: CONTAINERD_SOCKET
-     value: /run/k0s/containerd.sock
+# Embedded Cluster Config
+
+  extensions:
+    helm:
+      repositories:
+        - name: nvidia
+          url: https://nvidia.github.io/gpu-operator
+      charts:
+        - name: gpu-operator
+          chartname: nvidia/gpu-operator
+          namespace: gpu-operator
+          version: "v24.9.1"
+          values: |
+            # configure the containerd options
+            toolkit:
+             env:
+             - name: CONTAINERD_CONFIG
+               value: /etc/k0s/containerd.d/nvidia.toml
+             - name: CONTAINERD_SOCKET
+               value: /run/k0s/containerd.sock
 ```
 
 When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually.
