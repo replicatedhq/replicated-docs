@@ -10,7 +10,7 @@ The licensing features of the Replicated Platform allow vendors to securely gran
 
 The Replicated Vendor Portal also allows vendors to create and manage customer records. Each customer record includes several fields that uniquely identify the customer and the application, specify the customer's assigned release channel, and define the customer's entitlements. 
 
-Vendors can use these licensing features to enforce entitlements such as license expiration dates, and to track and report on software usage for the prupose of surfacing insights to both internal teams and customers.
+Vendors can use these licensing features to enforce entitlements such as license expiration dates, and to track and report on software usage for the purpose of surfacing insights to both internal teams and customers.
 
 The following diagram provides an overview of licensing with the Replicated Platform:
 
@@ -20,7 +20,7 @@ The following diagram provides an overview of licensing with the Replicated Plat
 
 As shown in the diagram above, the Replicated license and update server manages and distributes customer license information. The license server retrieves this license information from customer records managed by vendors in the Vendor Portal. 
 
-During installation or upgrade, the license server provides the customer's license ID, which is used to authenticate with the Replicated Proxy Registry. In this way, the customer's license is used to securely grant proxy access to images in the vendor's external registry.
+During installation or upgrade, the customer's license ID is used to authenticate with the license server. The license ID also provides authentication for the Replicated proxy registry, securely granting proxy access to images in the vendor's external registry.
 
 The license server is identified with a CNAME record where it can be accessed from end customer environments. When running alongside an application in a customer environment, the Replicated SDK retrieves up-to-date customer license information from the license server during runtime. The in-cluster SDK API `/license/` endpoints can be used to get customer license information on-demand, allowing vendors to programmatically enforce and report on license agreements.
 
