@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.17-3
+
+Released on January 17, 2025
+
+### New Features {#new-features-v2025-01-17-3}
+* Added /v3/cmx/stats to query historical CMX usage data for created VMs and Clusters.
+
 ## v2025.01.15-4
 
 Released on January 15, 2025
