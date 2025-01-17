@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on January 15, 2025
 
 ### New Features {#new-features-v2025-01-15-4}
-* Show vendor's github collab repo in Vendor Portal.
+* Show the vendor's GitHub Collab repository in the Vendor Portal.
 
 ## v2025.01.06-5
 
