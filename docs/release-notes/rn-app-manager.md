@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.123.1
+
+Released on January 13, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-123-1}
+* Fixes an issue where the navigation menu was not visible on the Config page.
+
 ## 1.123.0
 
 Released on January 2, 2025
@@ -43,7 +52,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-122-0}
-* Adds support for [orLabelSelectors](https://docs.replicated.com/reference/custom-resource-backup#fields) to the velero.io/v1 Backup resource for [Full Snapshots](https://docs.replicated.com/vendor/snapshots-overview).
+* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release.
 
 ## 1.121.2
 

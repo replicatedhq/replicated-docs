@@ -1,20 +1,14 @@
 # Deleting the Admin Console and Removing Applications
 
-This topic describes how to remove installed applications and delete the Replicated Admin Console from a cluster.
+This topic describes how to remove installed applications and delete the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS.
 
 ## Remove an Application
-
-This section describes how to remove an application instance that was installed with KOTS in an existing cluster.
-
-### About Removing an Installed Application Instance
 
 The Replicated KOTS CLI `kots remove` command removes the reference to an installed application from the Admin Console. When you use `kots remove`, the Admin Console no longer manages the application because the record of that application’s installation is removed. This means that you can no longer manage the application through the Admin Console or through the KOTS CLI.
 
 By default, `kots remove` does not delete any of the installed Kubernetes resources for the application from the cluster. To remove both the reference to an application from the Admin Console and remove any resources for the application from the cluster, you can run `kots remove` with the `--undeploy` flag.
 
 It can be useful to remove only the reference to an application from the Admin Console if you want to reinstall the application, but you do not want to recreate the namespace or other Kubernetes resources. For example, if you installed an application using an incorrect license file and need to reinstall with the correct license.
-
-### Procedure
  
 To remove an application:
 
@@ -50,10 +44,6 @@ To remove an application:
 
 ## Delete the Admin Console
 
-This section describes how to remove the KOTS Admin Console from an existing cluster.
-
-### About Deleting the Admin Console from an Existing Cluster
-
 When you install an application, KOTS creates the Kubernetes resources for the Admin Console itself on the cluster. The Admin Console includes Deployments and Services, Secrets, and other resources such as StatefulSets and PersistentVolumeClaims.
 
 By default, KOTS also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the Admin Console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the Admin Console is installed. Alternatively, when the Admin Console is installed with namespace-scoped access, KOTS creates Role and RoleBinding resources inside the namespace where the Admin Console is installed.
@@ -63,8 +53,6 @@ In existing cluster installations, if the Admin Console is not installed in the 
 If you installed the Admin Console with namespace-scoped access, then the Admin Console Role and RoleBinding RBAC resources are also deleted when you delete the namespace. Alternatively, if you installed with the default cluster-scoped access, then you manually delete the Admin Console ClusterRole and ClusterRoleBindings resources from the cluster. For more information, see [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportminimalrbacprivileges) and [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireminimalrbacprivileges) in _Application_.
 
 For more information about installing with cluster- or namespace-scoped access, see [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Installation Requirements_.
-
-### Procedure
 
 To completely delete the Admin Console from an existing cluster:
 

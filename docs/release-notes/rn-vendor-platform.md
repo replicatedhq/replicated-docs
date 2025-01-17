@@ -10,6 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.15-4
+
+Released on January 15, 2025
+
+### New Features {#new-features-v2025-01-15-4}
+* Show the vendor's GitHub Collab repository in the Vendor Portal.
+
+## v2025.01.06-5
+
+Released on January 6, 2025
+
+### New Features {#new-features-v2025-01-06-5}
+* Adds the Vendor API v3 [/cmx/history](https://replicated-vendor-api.readme.io/reference/listcmxhistory) endpoint, which can be used to get historical data on Compatibility Matrix usage.
+
 ## v2025.01.06-2
 
 Released on January 6, 2025

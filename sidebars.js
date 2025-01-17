@@ -593,6 +593,7 @@ const sidebars = {
           'vendor/packaging-private-registry-security',
         ],
       },
+      'vendor/packaging-public-images',
       'vendor/tutorial-ecr-private-images',
     ],
   },
