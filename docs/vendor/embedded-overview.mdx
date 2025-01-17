@@ -15,9 +15,9 @@ If you are instead looking for information about creating Kubernetes Installers 
 
 <EmbeddedCluster/>
 
-## Architecture and Add-ons
+## Architecture and Built-In Extensions
 
-This section describes the Embedded Cluster architecture, including the add-ons deployed by Embedded Cluster.
+This section describes the Embedded Cluster architecture, including the built-in extensions deployed by Embedded Cluster.
 
 ### Single-Node Architecture
 
@@ -27,9 +27,13 @@ The following diagram shows the architecture of a single-node Embedded Cluster i
 
 [View a larger version of this image](/images/embedded-architecture-single-node.png)
 
-As shown in the diagram above, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
+As shown in the diagram above, the Embedded Cluster installation assets (`gitea.tgz`) include the Embedded Cluster binary, a license file, and, for air gap installations, an air gap bundle containing the images needed to install and run the release in an environment with limited or not outbound internet access.
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster add-ons, including:
+At installation, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
+
+The Embedded Cluster binary also deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions, including:
 
 * **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
 
@@ -37,9 +41,7 @@ After all the Kubernetes components for the cluster are available, the Embedded 
 * **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.  
-
-After the add-ons and Helm extensions are installed, the Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.
 
 ### Multi-Node Architecture
 
