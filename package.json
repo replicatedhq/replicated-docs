@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.19.0",
-    "@babel/traverse": "^7.26.4",
+    "@babel/traverse": "^7.26.5",
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
     "@mdx-js/react": "^3.0.0",
