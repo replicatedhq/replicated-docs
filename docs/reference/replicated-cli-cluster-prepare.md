@@ -1,177 +1,72 @@
-import Help from "../partials/replicated-cli/_help.mdx"
+# replicated cluster prepare
 
+Prepare cluster for testing.
 
-# cluster prepare
+### Synopsis
 
-Create a cluster and a release, then install the release in the cluster. This allows you to deploy applications to a cluster for compatibility testing without needing to promote a release to a channel or create a temporary customer. For more information, see [About Compatibility Matrix](/vendor/testing-about).
+The 'cluster prepare' command provisions a Kubernetes cluster and installs an application using a Helm chart or KOTS YAML configuration.
 
-## Limtiations
+This command is designed to be used in CI environments to prepare a cluster for testing by deploying a Helm chart or KOTS application with entitlements and custom values. You can specify the cluster configuration, such as the Kubernetes distribution, version, node count, and instance type, and then install your application automatically.
 
-* `cluster prepare` is not recommended for production testing. For production testing, use `cluster create` instead.
-* `cluster prepare` is not supported for the Embedded Cluster type.
+Alternatively, if you prefer deploying KOTS applications, you can specify YAML manifests for the release and use the '--shared-password' flag for the KOTS admin console.
 
-## Usage
-```bash
+You can also pass entitlement values to configure the cluster's customer entitlements.
+
+Note:
+- The '--chart' flag cannot be used with '--yaml', '--yaml-file', or '--yaml-dir'.
+- If deploying a Helm chart, use the '--set' flags to pass chart values. When deploying a KOTS application, the '--shared-password' flag is required.
+
+```
 replicated cluster prepare [flags]
 ```
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <Help/>
-  <tr>
-    <td>--disk</td>
-    <td>integer</td>
-    <td>The disk size (GiB) to request per node. <strong>Default:</strong> 50</td>
-  </tr>
-  <tr>
-    <td>--distribution</td>
-    <td>string</td>
-    <td>The Kubernetes cluster distribution type to provision. <strong>Default:</strong> kind</td>
-  </tr>
-  <tr>
-    <td>--instance-type</td>
-    <td>string</td>
-    <td>The type of instance to use for nodes in the cluster. See <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
-  </tr>
-  <tr>
-    <td>--name</td>
-    <td>string</td>
-    <td>The name of the cluster. If no name is specified, a name will be generated.</td>
-  </tr>
-  <tr>
-    <td>--nodes</td>
-    <td>integer</td>
-    <td>The node count. <strong>Default:</strong> 1</td>
-  </tr>
-  <tr>
-    <td>--ttl</td>
-    <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
-  </tr>
-  <tr>
-    <td>--version</td>
-    <td>string</td>
-    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
-  </tr>
-  <tr>
-    <td>--wait</td>
-    <td>duration</td>
-    <td>The wait duration for the cluster to be ready. <strong>Default:</strong> 5 minutes</td>
-  </tr>
-  <tr>
-    <td>--cluster-id</td>
-    <td>string</td>
-    <td>The ID of an existing cluster to use instead of creating a new ID.</td>
-  </tr>
-  <tr>
-    <td>--entitlements</td>
-    <td>string</td>
-    <td>The entitlements to set on the customer. You can specify multiple entitlements.</td>
-  </tr>
-  <tr>
-    <td>--namespace</td>
-    <td>string</td>
-    <td>The namespace in which to deploy the KOTS or Helm chart application. <strong>Default:</strong> default</td>
-  </tr>
-  <tr>
-    <td>--app-ready-timeout</td>
-    <td>string</td>
-    <td>Timeout to wait for the application to be ready. Requires the Go duration format (e.g., 10s, 2m). <strong>Default:</strong> 5 minutes</td>
-  </tr>
-  <tr>
-    <td>--chart</td>
-    <td>string</td>
-    <td>The path to the Helm chart for a release.</td>
-  </tr>
-  <tr>
-    <td>--values</td>
-    <td>string</td>
-    <td>Specify values in a YAML file or a URL. You can specify multiple values.</td>
-  </tr>
-  <tr>
-    <td>--set</td>
-    <td>string</td>
-    <td>Set values using the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
-  </tr>
-  <tr>
-    <td>--set-string</td>
-    <td>string</td>
-    <td>Set String values using the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
-  </tr>
-  <tr>
-    <td>--set-file</td>
-    <td>string</td>
-    <td>Set values from respective files specified using the command line. Specify multiple or separate values with commas: key1=path1,key2=path2.</td>
-  </tr>
-  <tr>
-    <td>--set-json</td>
-    <td>string</td>
-    <td>Set JSON values using the command line. Specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2.</td>
-  </tr>
-  <tr>
-    <td>--set-literal</td>
-    <td>string</td>
-    <td>Set a literal String value using the command line.</td>
-  </tr>
-  <tr>
-    <td>--yaml</td>
-    <td>string</td>
-    <td>The YAML config for this release. Use <code>-</code> to read from stdin. Cannot be used with the <code>--yaml-file</code> flag.</td>
-  </tr>
-  <tr>
-    <td>--yaml-file</td>
-    <td>string</td>
-    <td>The YAML config for this release. Cannot be used with the <code>--yaml</code> flag.</td>
-  </tr>
-  <tr>
-    <td>--yaml-dir</td>
-    <td>string</td>
-    <td>The directory containing multiple YAML files for a KOTS release. Cannot be used with the <code>--yaml</code> flag.</td>
-  </tr>
-  <tr>
-    <td>--config-values-file</td>
-    <td>string</td>
-    <td>Path to a manifest containing config values. Must use <code>apiVersion: kots.io/v1beta1</code>, <code>kind: ConfigValues</code>.</td>
-  </tr>
-  <tr>
-    <td>--shared-password</td>
-    <td>string</td>
-    <td>Shared password for the KOTS admin console.</td>
-  </tr>
-  
-</table>
+### Examples
 
-## Examples
+```
+replicated cluster prepare --distribution eks --version 1.27 --instance-type c6.xlarge --node-count 3 --chart ./your-chart.tgz --values ./values.yaml --set chart-key=value --set chart-key2=value2
+```
 
-- For a Helm application with a kind distribution:
+### Options
 
-    ```bash
-    replicated cluster cluster prepare \
-    --distribution kind \
-    --version 1.27.0 \
-    --chart nginx-chart-0.0.14.tgz \
-    --set key1=val1,key2=val2 \
-    --set-string s1=val1,s2=val2 \
-    --set-json j1='{"key1":"val1","key2":"val2"}' \
-    --set-literal l1=val1,l2=val2 \
-    --values values.yaml
-    ```
+```
+      --app-ready-timeout duration   Timeout to wait for the application to be ready. Must be in Go duration format (e.g., 10s, 2m). (default 5m0s)
+      --chart string                 Path to the helm chart package to deploy
+      --cluster-id string            The ID of an existing cluster to use instead of creating a new one.
+      --config-values-file string    Path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues).
+      --disk int                     Disk Size (GiB) to request per node. (default 50)
+      --distribution string          Kubernetes distribution of the cluster to provision
+      --entitlements strings         The entitlements to set on the customer. Can be specified multiple times.
+  -h, --help                         help for prepare
+      --instance-type string         the type of instance to use clusters (e.g. x5.xlarge)
+      --name string                  Cluster name
+      --namespace string             The namespace into which to deploy the KOTS application or Helm chart. (default "default")
+      --node-count int               Node count. (default 1)
+      --set stringArray              Set values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2).
+      --set-file stringArray         Set values from respective files specified via the command line (can specify multiple or separate values with commas: key1=path1,key2=path2).
+      --set-json stringArray         Set JSON values on the command line (can specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2).
+      --set-literal stringArray      Set a literal STRING value on the command line.
+      --set-string stringArray       Set STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2).
+      --shared-password string       Shared password for the KOTS admin console.
+      --ttl string                   Cluster TTL (duration, max 48h)
+      --values strings               Specify values in a YAML file or a URL (can specify multiple).
+      --version string               Kubernetes version to provision (format is distribution dependent)
+      --wait duration                Wait duration for cluster to be ready. (default 5m0s)
+      --yaml string                  The YAML config for this release. Use '-' to read from stdin. Cannot be used with the --yaml-file flag.
+      --yaml-dir string              The directory containing multiple yamls for a KOTS release. Cannot be used with the --yaml flag.
+      --yaml-file string             The YAML config for this release. Cannot be used with the --yaml flag.
+```
 
-- For a KOTS-based application with a k3s distribution:
+### Options inherited from parent commands
 
-    ```bash
-    replicated cluster prepare \
-    --distribution k3s \
-    --version 1.26 \
-    --namespace config-validation \
-    --shared-password password \
-    --app-ready-timeout 10m \
-    --yaml-dir config-validation \
-    --config-values-file config-values.yaml \
-    --entitlements "num_of_queues=5"
-    ```
+```
+      --app string                The app slug or app id to use in all calls
+      --integration-test string   Set to the name of the integration test to run
+      --log-api-calls string      Log the API calls to the specified file
+      --token string              The API token to use to access your app in the Vendor API
+```
 
+### SEE ALSO
+
+* [replicated cluster](replicated_cluster.md)	 - Manage test Kubernetes clusters.
+
+###### Auto generated by spf13/cobra on 21-Jan-2025
