@@ -10,6 +10,50 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.21.0
+
+Released on January 22, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.21.0+k8s-1.30</td>
+    <td id="center">1.21.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.6</td>
+    <td id="center">1.29.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.123.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-21-0}
+* Adds a new flag `ignore-host-preflights` and deprecates `skip-host-preflights`. If passed, preflights will run, but the user will be presented with the option to continue the installation if they fail.
+* Adds a new flag `yes` and deprecates `no-prompt`.
+* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380 and 10250.
+* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). We have found that automatically enabling IP forwarding during installation results in broken clusters following users restarting systems or otherwise reverting kernel parameters.
+* If the network interface flag is not passed, Embedded Cluster will use improved logic to determine the correct interface.
+* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
+* `install` will now prompt the user if a newer version of the application is available to install instead.
+
+### Improvements {#improvements-1-21-0}
+* Host support bundles will now include `firewall-cmd --list-all`.
+* "Does `modprobe`/`mount`/`umount` exist in the path" support bundle analyzers have been improved and will now pass regardless of where the binary is located.
+* Potentially sensitive CLI flag values will no longer be included in metrics reporting.
+* Error messages have been improved.
+* Usage messages have been improved.
+
+### Bug Fixes {#bug-fixes-1-18-0}
+* Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
+* Fixes an issue where the `join run-preflights` command was missing the `network-interface` flag. 
+
+### Changes {#changes-1-21-0}
+* The CLI library has been changed from `urfave/cli/v2` to `spf13/cobra`.
+
 ## 1.19.0
 
 Released on November 14, 2024
