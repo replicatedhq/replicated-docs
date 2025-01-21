@@ -700,6 +700,17 @@ const sidebars = {
       },
       {
         type: 'category',
+        label: 'default',
+        items: [
+          'reference/replicated-cli-default',
+          'reference/replicated-cli-default-clear',
+          'reference/replicated-cli-default-clearall',
+          'reference/replicated-cli-default-set',
+          'reference/replicated-cli-default-show',
+        ],
+      },
+      {
+        type: 'category',
         label: 'installer',
         items: [
           'reference/replicated-cli-installer-create',

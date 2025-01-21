@@ -1,0 +1,34 @@
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
+
+# default clear
+
+Clear the default value for the specified key.
+
+## Usage
+
+```bash
+replicated default clear [key] [flags]
+```
+The following keys are supported:
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>app</td>
+    <td>The default application to use, identified by the unique application slug.</td>
+  </tr>
+</table>
+
+## Global Flags
+
+<GlobalFlags/>
+
+## Example
+
+```bash
+# Clear default application
+replicated default clear app
+```

@@ -10,7 +10,7 @@ Create cluster add-ons.
 replicated cluster addon create [command]
 ```
 
-## Available Commands
+The following commands are available:
 
 <table>
 <tr>

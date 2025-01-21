@@ -1,0 +1,34 @@
+import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
+
+# default set
+
+Set default value for the specified key run by the current user.
+
+## Usage
+
+```bash
+replicated default set [key] [flags]
+```
+The following keys are supported:
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>app</td>
+    <td>The default application to use, identified by the unique application slug.</td>
+  </tr>
+</table>
+
+## Global Flags
+
+<GlobalFlags/>
+
+## Example
+
+```bash
+# Set the default application
+replicated default set app my-app-slug
+```
