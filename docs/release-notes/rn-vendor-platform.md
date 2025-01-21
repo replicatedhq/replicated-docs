@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on January 17, 2025
 
 ### New Features {#new-features-v2025-01-17-3}
-* Compatibility Matrix: Adds `/v3/cmx/stats` to query historical Compatibility Matrix usage data.
+* Compatibility Matrix: Adds `/v3/cmx/stats` to query historical Compatibility Matrix usage data. See [Get CMX usage stats](https://replicated-vendor-api.readme.io/reference/getcmxstats) in the Vendor API v3 documentation.
 
 ## v2025.01.15-4
 
