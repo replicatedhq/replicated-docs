@@ -5,7 +5,7 @@ import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-
 
 # Embedded Cluster Overview
 
-This topic provides an introduction to Replicated Embedded Cluster, including a description of the add-ons installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
+This topic provides an introduction to Replicated Embedded Cluster, including a description of the built-in extensions installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
 
 :::note
 If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
@@ -27,21 +27,23 @@ The following diagram shows the architecture of a single-node Embedded Cluster i
 
 [View a larger version of this image](/images/embedded-architecture-single-node.png)
 
-As shown in the diagram above, the Embedded Cluster installation assets (`gitea.tgz`) include the Embedded Cluster binary, a license file, and, for air gap installations, an air gap bundle containing the images needed to install and run the release in an environment with limited or not outbound internet access.
+As shown in the diagram above, the user downloads the Embedded Cluster installation assets as a `.tgz` in their installation environment. These installation assets include the Embedded Cluster binary, the user's license file, and (for air gap installations) an air gap bundle containing the images needed to install and run the release in an environment with limited or no outbound internet access. 
 
-At installation, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
+When the user runs the Embedded Cluster install command, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
 
-The Embedded Cluster binary also deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions and any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config. Each built-in extension is installed in its own namespace. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config.
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions, including:
+The built-in extensions include:
 
 * **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
 
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
+
 * **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed in the cluster. The namespace or namespaces where extensions are installed are defined by the vendor in the Embedded Cluster Config.
+Finally, after the built-in extensions and any Helm extensions are installed, The Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
 
 ### Multi-Node Architecture
 
