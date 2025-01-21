@@ -638,9 +638,9 @@ const sidebars = {
         type: 'category',
         label: 'channel',
         items: [
-          // 'reference/replicated-cli-channel-create', REMOVE
-          // 'reference/replicated-cli-channel-disable-semver', REMOVE
-          // 'reference/replicated-cli-channel-enable-semver', REMOVE
+          'reference/replicated-cli-channel-create',
+          'reference/replicated-cli-channel-disable-semver',
+          'reference/replicated-cli-channel-enable-semver',
           'reference/replicated-cli-channel-inspect',
           'reference/replicated-cli-channel-ls',
           'reference/replicated-cli-channel-delete',

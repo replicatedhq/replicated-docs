@@ -2,14 +2,17 @@ import GlobalFlags from "../partials/replicated-cli/_global-flags.mdx"
 
 # release download
 
-Download the config manifest file for a release.
+Download application manifests for a release to a specified directory.
 
-**Note:** This command is the same as the `release inspect` command for applications that are not packaged with Replicated.
+:::note
+For application releases that do not support installation a Replicated installer (Replicated Embedded Cluster, Replicated KOTS, Replicated kURL), `release download` is equivalent to the [`release inspect`](replicated-cli-release-inspect) command.
+:::
 
 ## Usage
 ```bash
-replicated release download SEQUENCE -d ./appyaml
+replicated release download SEQUENCE --dest ./DIRECTORY_NAME
 ```
+Where `SEQUENCE` is the sequence number for the target release.
 
 <table>
   <tr>
@@ -28,7 +31,8 @@ replicated release download SEQUENCE -d ./appyaml
 
 <GlobalFlags/>
 
-## Examples
+## Example
+
 ```bash
 replicated release download 9 -d ./appyaml
   • Fetching Release 9 ✓
