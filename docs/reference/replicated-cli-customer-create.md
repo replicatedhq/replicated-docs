@@ -1,59 +1,83 @@
-import Token from "../partials/replicated-cli/_token.mdx"
-import Help from "../partials/replicated-cli/_help.mdx"
-import App from "../partials/replicated-cli/_app.mdx"
+# replicated customer create
 
-# customer create
+Create a new customer for the current application
 
-Create a new customer in your application and associate a customer to a channel.
-Customer information returned on success.
+### Synopsis
 
-## Usage
-```bash
-replicated customer create [Flags]
+Create a new customer for the current application with specified attributes.
+
+This command allows you to create a customer record with various properties such as name,
+custom ID, channels, license type, and feature flags. You can set expiration dates,
+enable or disable specific features, and assign the customer to one or more channels.
+
+The --app flag must be set to specify the target application.
+
+```
+replicated customer create [flags]
 ```
 
-<table>
-  <tr>
-    <th width="30%">Flag</th>
-    <th width="20%">Type (if applicable)</th>
-    <th width="50%">Description</th>
-  </tr>
-  <tr>
-    <td><code>--name</code></td>
-    <td>string</td>
-    <td>The name of the customer. <strong>(Required)</strong></td>
-  </tr>
-  <tr>
-    <td><code>--channel</code></td>
-    <td>string</td>
-    <td>The channel name to associate with the customer. Case-sensitive. <strong>(Required)</strong></td>
-  </tr>
-  <tr>
-    <td><code>--ensure-channel</code></td>
-    <td></td>
-    <td>If set, channel is created if it does not exist.</td>
-  </tr>
-  <tr>
-    <td><code>--expires-in</code></td>
-    <td>duration</td>
-    <td>If set, license will expire a specified number of units from the current time. For example, <code>2h</code> or <code>1h60m</code> or <code>120m</code> are all the same duration.</td>
-  </tr>
-  <tr>
-    <td><code>--custom-id</code></td>
-    <td>string</td>
-    <td>If set, this custom alphanumeric ID is associated with this customer to more easily tie this record to your external data systems (i.e. Salesforce, Hubspot, etc.) </td>
-  </tr>
-  <Help/>
-  <App/>
-  <Token/>
-</table>
+### Examples
 
-## Examples
-```bash
-replicated customer create --channel Megacorp_Beta --name "Megacorp" --ensure-channel --expires-in "8760h" --custom-id "salesforceid-123"
+```
+# Create a basic customer with a name and assigned to a channel
+replicated customer create --app myapp --name "Acme Inc" --channel stable
+
+# Create a customer with multiple channels and a custom ID
+replicated customer create --app myapp --name "Beta Corp" --custom-id "BETA123" --channel beta --channel stable
+
+# Create a paid customer with specific features enabled
+replicated customer create --app myapp --name "Enterprise Ltd" --type paid --channel enterprise --airgap --snapshot
+
+# Create a trial customer with an expiration date
+replicated customer create --app myapp --name "Trial User" --type trial --channel stable --expires-in 720h
+
+# Create a customer with all available options
+replicated customer create --app myapp --name "Full Options Inc" --custom-id "FULL001" \
+	--channel stable --channel beta --default-channel stable --type paid \
+	--email "contact@fulloptions.com" --expires-in 8760h \
+	--airgap --snapshot --kots-install --embedded-cluster-download \
+	--support-bundle-upload --ensure-channel
 ```
 
-```bash
-ID                                  NAME        CHANNELS         EXPIRES                          TYPE    CUSTOM_ID
-2u4KGXSY65SAUW0ltG_pPhxBGPJ4XNSS    Megacorp    Megacorp_Beta    2021-01-20 00:17:38 +0000 UTC    dev     salesforceid-123
+### Options
+
 ```
+      --airgap                      If set, the license will allow airgap installs.
+      --channel stringArray         Release channel to which the customer should be assigned (can be specified multiple times)
+      --custom-id string            Set a custom customer ID to more easily tie this customer record to your external data systems
+      --default-channel string      Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.
+      --developer-mode              If set, Replicated SDK installed in dev mode will use mock data.
+      --email string                Email address of the customer that is to be created.
+      --embedded-cluster-download   If set, the license will allow embedded cluster downloads.
+      --ensure-channel              If set, channel will be created if it does not exist.
+      --expires-in duration         If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
+      --geo-axis                    If set, the license will allow Geo Axis usage.
+      --gitops                      If set, the license will allow the GitOps usage.
+      --helm-install                If set, the license will allow Helm installs.
+      --helmvm-cluster-download     If set, the license will allow helmvm cluster downloads.
+  -h, --help                        help for create
+      --identity-service            If set, the license will allow Identity Service usage.
+      --installer-support           If set, the license will allow installer support.
+      --kots-install                If set, the license will allow KOTS install. Otherwise license will allow Helm CLI installs only. (default true)
+      --kurl-install                If set, the license will allow kURL installs.
+      --name string                 Name of the customer
+      --output string               The output format to use. One of: json|table (default: table) (default "table")
+      --snapshot                    If set, the license will allow Snapshots.
+      --support-bundle-upload       If set, the license will allow uploading support bundles.
+      --type string                 The license type to create. One of: dev|trial|paid|community|test (default: dev) (default "dev")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string                The app slug or app id to use in all calls
+      --integration-test string   Set to the name of the integration test to run
+      --log-api-calls string      Log the API calls to the specified file
+      --token string              The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated customer](replicated_customer.md)	 - Manage customers
+
+###### Auto generated by spf13/cobra on 21-Jan-2025
