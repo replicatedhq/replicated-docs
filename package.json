@@ -21,7 +21,7 @@
     "@mdx-js/react": "^3.0.0",
     "@types/node": "18.15.11",
     "@types/react": "18.3.5",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "docusaurus": "^1.14.7",
     "immer": "^10.1.1",
     "loader-utils": "3.3.1",
