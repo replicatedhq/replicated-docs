@@ -33,7 +33,7 @@
     "ts-node": "10.9.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.5.2",
+    "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/types": "3.5.2",
     "typescript": "~5.7.3"
   },
