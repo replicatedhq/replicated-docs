@@ -14,8 +14,8 @@ For information about how to develop against the Replicated SDK API with mock da
 
 List details about an application instance, including the app name, location of the Helm chart in the Replicated OCI registry, and details about the current application release that the instance is running. 
 
-```
-/api/v1/app/info
+```bash
+GET http://replicated:3000/api/v1/app/info
 ```
 
 Response:
@@ -48,8 +48,8 @@ Response:
 
 List details about an application status, including the list of individual resource states and the overall application state. 
 
-```
-/api/v1/app/status
+```bash
+GET http://replicated:3000/api/v1/app/status
 ```
 
 Response:
@@ -77,8 +77,8 @@ Response:
 
 List details about the releases that are available to an application instance for upgrade, including the version label, created timestamp, and release notes.
 
-```
-/api/v1/app/updates
+```bash
+GET http://replicated:3000/api/v1/app/updates
 ```
 
 Response:
@@ -97,8 +97,8 @@ Response:
 
 List details about the releases that an application instance has installed previously.
 
-```
-/api/v1/app/history
+```bash
+GET http://replicated:3000/api/v1/app/history
 ```
 
 Response:
@@ -190,8 +190,8 @@ Response: Status `200` OK
 
 List details about the license that was used to install, including the license ID, type, the customer name, and the channel the customer is assigned.
 
-```
-/api/v1/license/info
+```bash
+GET http://replicated:3000/api/v1/license/info
 ```
 
 Response:
@@ -234,8 +234,8 @@ Response:
 
 List details about all the fields in the license that was used to install, including the field names, descriptions, values, and signatures.
 
-```
-/api/v1/license/fields
+```bash
+GET http://replicated:3000/api/v1/license/fields
 ```
 
 Response:
@@ -268,13 +268,13 @@ Response:
 
 List details about one of the fields in the license that was used to install, including the field name, description, value, and signature.
 
-```
-/api/v1/license/fields/\{field_name\}
+```bash
+GET http://replicated:3000/api/v1/license/fields/\{field_name\}
 ```
 
 Example request:
 
-```
+```bash
 curl replicated:3000/api/v1/license/fields/expires_at
 ```
 
@@ -378,7 +378,7 @@ Get mock data that is used when Development Mode is enabled.
 
 Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
 
-```
+```bash
 POST http://replicated:3000/api/v1/integration/mock-data
 ```
 
