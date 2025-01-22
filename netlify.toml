@@ -42,6 +42,8 @@
   from = "https://docs.replicated.com/release-notes"
   to = "https://docs.replicated.com/release-notes/rn-whats-new"
 
+
+
 ###################################################
 # Redirects To the Getting Started Section
 ###################################################
@@ -261,7 +263,15 @@
 
 [[redirects]]
   from="https://docs.replicated.com/reference/custom-resource-sig-application"
-  to="https://docs.replicated.com/vendor/admin-console-adding-buttons-links"  
+  to="https://docs.replicated.com/vendor/admin-console-adding-buttons-links"
+
+[[redirects]]
+  from="https://docs.replicated.com/reference/replicated-cli-app-delete"
+  to="https://docs.replicated.com/reference/replicated-cli-app-rm"     
+
+[[redirects]]
+  from="https://docs.replicated.com/reference/replicated-cli-channel-delete"
+  to="https://docs.replicated.com/reference/replicated-cli-channel-rm"     
 
 ###################################################
 # Redirects To the Release Notes Section
