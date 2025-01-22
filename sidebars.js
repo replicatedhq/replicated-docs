@@ -612,8 +612,7 @@ const sidebars = {
   {
     type: 'category',
     label: 'Replicated CLI', // This label is generated. Do not edit.
-    items: [
-      // This list is generated. Do not edit.
+    items: [ // This list is generated. Do not edit.
       'reference/replicated-cli-installing',
       'reference/replicated',
       'reference/replicated-cli-api',
@@ -627,11 +626,13 @@ const sidebars = {
       'reference/replicated-cli-app-rm',
       'reference/replicated-cli-channel',
       'reference/replicated-cli-channel-create',
+      'reference/replicated-cli-channel-demote',
       'reference/replicated-cli-channel-disable-semantic-versioning',
       'reference/replicated-cli-channel-enable-semantic-versioning',
       'reference/replicated-cli-channel-inspect',
       'reference/replicated-cli-channel-ls',
       'reference/replicated-cli-channel-rm',
+      'reference/replicated-cli-channel-un-demote',
       'reference/replicated-cli-cluster',
       'reference/replicated-cli-cluster-addon',
       'reference/replicated-cli-cluster-addon-create',
@@ -712,6 +713,7 @@ const sidebars = {
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',
       'reference/replicated-cli-vm-versions',
+      // This list is generated. Do not edit.
     ],
   },
   {
