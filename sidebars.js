@@ -713,7 +713,6 @@ const sidebars = {
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',
       'reference/replicated-cli-vm-versions',
-      // This list is generated. Do not edit.
     ],
   },
   {
