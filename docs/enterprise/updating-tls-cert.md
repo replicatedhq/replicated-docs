@@ -1,4 +1,8 @@
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
+
 # Updating TLS Certificates in kURL Clusters
+
+<KurlAvailability/>
 
 This topic describes how to upload custom TLS certificates for Replicated kURL clusters.
 

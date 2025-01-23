@@ -1,4 +1,8 @@
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
+
 # Adding Nodes to kURL Clusters
+
+<KurlAvailability/>
 
 This topic describes how to add primary and secondary nodes to a Replicated kURL cluster.
 
