@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.23-1
+
+Released on January 23, 2025
+
+### New Features {#new-features-v2025-01-23-1}
+* Adds pagination and search to the **Channels** page in Vendor Portal.
+
 ## v2025.01.17-3
 
 Released on January 17, 2025
