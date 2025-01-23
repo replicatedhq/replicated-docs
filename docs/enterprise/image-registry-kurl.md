@@ -1,4 +1,8 @@
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
+
 # Working with the kURL Image Registry
+
+<KurlAvailability/>
 
 This topic describes the Replicated kURL registry for kURL clusters.
 
