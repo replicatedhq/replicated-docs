@@ -25,8 +25,7 @@ Released on January 24, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-124-0}
-* It is now possible to migrate from existing Helm installation of v1beta1 with `useHelmInstall: false` to Helm v1beta2 using the --take-ownership flag with Helm CLI.
-* Improve Disaster Recovery UX.
+* Now you can migrate Helm charts that were installed with HelmChart v1beta1 and `useHelmInstall: false` to HelmChart v1beta2 by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart. This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
 
 ## 1.123.1
 
