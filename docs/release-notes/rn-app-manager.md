@@ -25,6 +25,7 @@ Released on January 24, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-124-0}
+* It is not possible to migrate from existing Helm installation of v1beta1 with `useHelmInstall: false` to Helm v1beta2 using the --take-ownership flag with Helm CLI.
 * Improve Disaster Recovery UX.
 
 ## 1.123.1
