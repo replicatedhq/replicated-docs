@@ -401,7 +401,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Configuring Local Image Registries for KOTS Installations',
+          label: 'Configuring Local Image Registries',
           items: [
             'enterprise/image-registry-settings',
             'enterprise/image-registry-rate-limits',
