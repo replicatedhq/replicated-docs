@@ -1,20 +1,21 @@
 import ImageRegistrySettings from "../partials/image-registry/_image-registry-settings.mdx"
+import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
 
 # Configuring Local Image Registries
 
 This topic describes how to configure private registry settings in the Replicated KOTS Admin Console.
 
-The information in this topic applies to existing cluster installations with KOTS and installations with Replicated kURL.
+The information in this topic applies to existing cluster installations with KOTS and installations with Replicated kURL. This topic does _not_ apply to Replciated Embedded Cluster installations.
 
 ## Overview
 
-Using a private registry lets you create a custom image pipeline. Any proprietary configurations that you make to the application are shared only with the groups that you allow access, such as your team or organization. You also have control over the storage location, logging messages, load balancing requests, and other configuration options.
+Using a private registry lets you create a custom image pipeline. Any proprietary configurations that you make to the application are shared only with the groups that you allow access, such as your team or organization. You also have control over the storage location, logging messages, load balancing requests, and other configuration options. Private registries can be used with online or air gap clusters.
 
-Private registries can be used with online or air gap clusters.
+## Requirement
 
-## Prerequisite
+The domain of the image registry must support a Docker V2 protocol. KOTS has been tested for compatibility with the following registries:
 
-The domain of the image registry must support a Docker V2 protocol. For more information, see [Compatible Image Registries](installing-general-requirements#registries) in _KOTS Installation Requirements_.
+<DockerCompatibility/>
 
 ## Configure Local Private Registries in Online Clusters
 
