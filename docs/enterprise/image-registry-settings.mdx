@@ -1,8 +1,14 @@
 import ImageRegistrySettings from "../partials/image-registry/_image-registry-settings.mdx"
 
-# Configuring Local Image Registries for KOTS Installations
+# Configuring Local Image Registries
 
-This topic describes how to configure private registry settings in the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS in online (internet-connected) or air gap (limited or no outbound internet access) environments.
+This topic describes how to configure private registry settings in the Replicated KOTS Admin Console.
+
+## Overview
+
+Using a private registry lets you create a custom image pipeline. Any proprietary configurations that you make to the application are shared only with the groups that you allow access, such as your team or organization. You also have control over the storage location, logging messages, load balancing requests, and other configuration options.
+
+Private registries can be used with online or air gap clusters.
 
 ## Prerequisite
 
@@ -10,7 +16,7 @@ The domain of the image registry must support a Docker V2 protocol. For more inf
 
 ## Configure Local Private Registries in Online Clusters
 
-In online (internet-connected) KOTS installations, you can optionally use a local private image registry. You can also disable the connection or remove the registry settings if needed.
+In online (internet-connected) installations, you can optionally use a local private image registry. You can also disable the connection or remove the registry settings if needed.
 
 To configure private registry settings in an online cluster:
 
@@ -30,7 +36,7 @@ To configure private registry settings in an online cluster:
 
 ## Change Private Registries in Air Gap Clusters {#air-gap}
 
-During air gap installations, you configure a private registry where KOTS pushes images. You can change the private registry settings at any time in the Admin Console.
+You can change the private registry settings at any time in the Admin Console.
 
 To change private registry settings in an air gap cluster:
 
