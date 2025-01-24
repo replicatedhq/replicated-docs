@@ -18,6 +18,28 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.0
+
+Released on January 24, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-124-0}
+* You can migrate Helm charts that were installed with HelmChart v1beta1 and `useHelmInstall: false` to HelmChart v1beta2 by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
+
+   ```yaml
+   # HelmChart v1 beta2
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+      helmUpgradeFlags:
+        - --take-ownership
+   ```
+
+   This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
+
 ## 1.123.1
 
 Released on January 13, 2025
