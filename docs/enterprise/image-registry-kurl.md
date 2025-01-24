@@ -11,6 +11,10 @@ To keep the registry from running out of storage, images that are no longer used
 
 For more information about the kURL Registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
+:::note
+Users can also optionally configure their own private registry for kURL installations in the Admin Console. For more information, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+:::
+
 ## Trigger Garbage Collection
 
 Every time the application instance is upgraded, image garbage collection automatically deletes images that are no longer used.
