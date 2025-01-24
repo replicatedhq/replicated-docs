@@ -243,6 +243,7 @@ const sidebars = {
         },
         'enterprise/embedded-manage-nodes',
         'enterprise/updating-embedded',
+        'enterprise/embedded-tls-certs',
         'vendor/embedded-disaster-recovery',
       ],
     },
