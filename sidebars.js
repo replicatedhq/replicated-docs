@@ -229,6 +229,7 @@ const sidebars = {
       label: 'Embedded Cluster',
       items: [
         'vendor/embedded-overview',
+        'vendor/embedded-using',
         'reference/embedded-config',
         {
           type: 'category',
