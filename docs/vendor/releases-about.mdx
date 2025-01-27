@@ -179,6 +179,10 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
+### Demotion
+
+A channel release can be demoted from a channel. When a channel release is demoted, it will no longer be available for download, but it will not be withdrawn from environments where the release is already downloaded or installed. Its channel sequence and version will not be reused and for customer will appear to have been skipped. Un-demoting a release will restore its place in the channel sequence and make available for download and installation again.
+
 ## Vendor Portal Pages
 
 This section provides information about the channels and releases pages in the Vendor Portal.
@@ -205,7 +209,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
    Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
    
-   You can also build and download air gap bundles to be used in air gap installations with Replicated installers (Embedded Cluster, KOTS, kURL), and edit the release properties for each release promoted to the channel from the **Release History** page.
+   You can also build and download air gap bundles to be used in air gap installations with Replicated installers (Embedded Cluster, KOTS, kURL), edit the release properties for each release promoted to the channel from the **Release History** page, and demote a release from the channel.
 
    The following shows an example of the **Release History** page: 
 
