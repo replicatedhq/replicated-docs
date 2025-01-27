@@ -1,6 +1,6 @@
 # About Community Licenses
 
-This topic describes community licenses. For more information about other types of licenses, see [License Types](licenses-about#license-types) in _About Customers_.
+This topic describes community licenses. For more information about other types of licenses, see [Customer Types](licenses-about#customer-types) in _About Customers_.
 
 ## Overview
 
