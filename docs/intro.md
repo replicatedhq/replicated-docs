@@ -145,7 +145,7 @@ pagination_next: null
         <p>Embed Kubernetes with your application to support installations on VMs or bare metal servers.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-overview">Using Embedded Cluster</a>
+      <a href="/vendor/embedded-overview">Embedded Cluster Overview</a>
     </li>
     <li>
       <a href="/enterprise/installing-embedded">Installing with Embedded Cluster</a>

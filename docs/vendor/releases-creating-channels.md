@@ -67,4 +67,4 @@ To archive a channel with the Vendor Portal or the Replicated CLI:
      ```
      Replace `CHANNEL_ID` with the channel ID that you retrieved in the previous step.
 
-     For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the Replicated CLI documentation.
+     For more information, see [channel rm](/reference/replicated-cli-channel-rm) in the Replicated CLI documentation.
