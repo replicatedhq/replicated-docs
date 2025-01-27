@@ -12,7 +12,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 ## 1.22.0
 
-Released on November 14, 2024
+Released on January 27, 2025
 
 <table>
   <tr>
