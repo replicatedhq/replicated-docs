@@ -365,3 +365,5 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 ### Migrate Existing HelmChart v1 Installations to v2
 
 After you complete the tasks in this topic to configure the `kots.io/v1beta2` HelmChart custom resource, you can migrate any existing installations that were deployed with `kots.io/v1beta1` with `useHelmInstall: true` to use `kots.io/v1beta2` instead. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
+
+To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated Solutions Engineer in Slack or email.

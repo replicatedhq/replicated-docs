@@ -40,6 +40,8 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
    This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
 
+   To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated Solutions Engineer in Slack or email.
+
 ## 1.123.1
 
 Released on January 13, 2025
