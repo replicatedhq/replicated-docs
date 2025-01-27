@@ -8,7 +8,7 @@ The HelmChart custom resource `kots.io/v1beta1` is deprecated and is not recomme
 
 ### `useHelmInstall: false` Limitation
 
-To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated Solutions Engineer in Slack or over email.
+To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated account representative in Slack or over email.
 
 ## How to Migrate Existing Installations
 
