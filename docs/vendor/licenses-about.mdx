@@ -102,9 +102,9 @@ From the **Customers** page, you can do the following:
 * Archive customers. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 * Click on a customer on the **Customers** page to access the following customer-specific pages:
-  * [Reporting](#reporting-page)
-  * [Manage customer](#manage-customer-page)
-  * [Support bundles](#support-bundles-page)
+  * [Reporting](#about-the-customer-reporting-page)
+  * [Manage customer](#about-the-manage-customer-page)
+  * [Support bundles](#about-the-support-bundles-page)
 
 ### About the Customer Reporting Page
 
@@ -163,7 +163,7 @@ For more information, see [Updating Licenses in the Admin Console](/enterprise/u
 
 The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that can be used to retrieve up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that you can add logic to your application to get the latest license information without the customer needing to perform a license update. The SDK API polls the Vendor Portal for updated data every four hours.
 
-In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [License Updates with KOTS](#license-updates-with-kots) above. However, any logic in your application that uses the SDK API will update the user's license information without the customer needing to deploy a license update in the Admin Console.
+In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [About Syncing Licenses](#about-syncing-licenses) above. However, any logic in your application that uses the SDK API will update the user's license information without the customer needing to deploy a license update in the Admin Console.
 
 For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
