@@ -208,6 +208,7 @@ const sidebars = {
               'vendor/instance-notifications-config',
               'vendor/custom-metrics',
               'vendor/instance-data-export',
+              'vendor/compatibility-matrix-usage',
             ],
         },
       ],
