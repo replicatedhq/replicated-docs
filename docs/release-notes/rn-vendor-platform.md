@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on January 27, 2025
 
 ### New Features {#new-features-v2025-01-27-0}
-* Adds support for demoting/un-demoting releases from the **Channel Release History** page in Vendor Portal.
+* Adds support for demoting and un-demoting releases from the **Release History** page in the Vendor Portal.
 
 ## v2025.01.23-1
 
