@@ -34,36 +34,6 @@ Released on January 27, 2025
 ### New Features {#new-features-1-22-0}
 * Adds DR
 
-## 1.21.0
-
-Released on November 14, 2024
-
-<table>
-  <tr>
-    <th>Version</th>
-    <td id="center">1.21.0+k8s-1.30</td>
-    <td id="center">1.21.0+k8s-1.29</td>
-  </tr>
-  <tr>
-    <th>Kubernetes Version</th>
-    <td id="center">1.30.5</td>
-    <td id="center">1.29.9</td>
-  </tr>
-  <tr>
-    <th>KOTS Version</th>
-    <td id="center" colspan="2">1.123.1</td>
-  </tr>
-</table>
-
-### New Features {#new-features-1-21-0}
-* TODO
-
-### Improvements {#improvements-1-21-0}
-* TODO
-
-### Bug Fixes {#bug-fixes-1-21-0}
-* TODO
-
 ## 1.18.0
 
 Released on November 8, 2024
