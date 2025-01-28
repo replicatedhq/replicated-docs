@@ -84,16 +84,19 @@ is divided into distinct endpoints.
 To obtain summarized usage information in addition to your Compatibility Matrix
 credit balance, the `/v3/cmx/stats` endpoint can be used.
 
-This endpoint returns the total number of terminated clusters and VMs, the total
-number of billed usage minutes, the total cost and the remaining credit balance.
+This endpoint returns:
 
-The cost and remaining credit balance are returned in cents.
+- **`cluster_count`:** The total number of terminated clusters.
+- **`vm_count`:** The total number of terminated VMs.
+- **`usage_minutes`:** The total number of billed usage minutes.
+- **`cost`:** The total cost of the terminated clusters and VMs in cents.
+- **`credit_balance`:** The remaining credit balance in cents.
 
 ```shell
 curl --request GET \
      --url https://api.replicated.com/vendor/v3/customers \
      --header 'Accept: application/json' \
-     --header 'Authorization: my-token'
+     --header 'Authorization: $REPLICATED_API_TOKEN'
 {"cluster_count":2,"vm_count":4,"usage_minutes":152,"cost":276,"credit_balance":723}%
 ```
 
