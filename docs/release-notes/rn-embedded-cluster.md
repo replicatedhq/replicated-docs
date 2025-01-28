@@ -33,7 +33,7 @@ Released on January 22, 2025
 
 ### New Features {#new-features-1-21-0}
 * The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
-* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. Because of the prompt, use the `--yes` flag if you want to ignore host preflight failures in automation. `--skip-host-preflights` will be removed in a future release. 
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
 * During online installations, users will be prompted if a newer version of the application than what is currently downloaded is available. This encourages users to install the latest version of an application.
 
 ### Improvements {#improvements-1-21-0}
