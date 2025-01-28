@@ -47,4 +47,4 @@ After you configure a storage destination, you can create a backup. See [Creatin
 ## Additional Resources
 
 * [Restoring Full Backups](snapshots-restoring-full)
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)

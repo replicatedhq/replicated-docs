@@ -1,22 +1,14 @@
-# Velero Backup Custom Resource
+# Velero Backup Resource for Snapshots
 
-The Backup custom resource enables the Replicated snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
+This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
 
-Add a Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. A Backup custom resource is required for each application that you deploy. 
+## Overview
 
-You must add annotations for each volume that you want to back up. For more information about configuring backups, see [Configuring Backups](/vendor/snapshots-configuring-backups).
-
-The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources).
-
-Full backups are recommended because they give the flexibility of restoring full data, the application only, or the KOTS Admin Console only. For an example of a full backup and a list of the supported fields, see [Example](#example) and [Fields](#fields).
-
-Partial backups (application only) are supported but not recommended. For partial backups, you can use all of the fields that Velero supports. For information about the supported fields for partial backups, see [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
+The Velero Backup custom resource enables the KOTS snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
 ## Example
 
-The following example shows the supported fields for a full backup.
-
-The `annotations` field shows that `pvc-volume` is the only volume included in the backup.
+The following shows an example of the Velero Backup resource:
 
 ```yaml
 apiVersion: velero.io/v1
@@ -24,6 +16,7 @@ kind: Backup
 metadata:
   name: backup
   annotations:
+  # `pvc-volume` will be the only volume included in the backup
     backup.velero.io/backup-volumes: pvc-volume
 spec: 
   includedNamespaces:
@@ -58,17 +51,19 @@ spec:
                 - -a
               onError: Fail
               timeout: 10s
-        post:
+        post: []
 ```
 
-## Fields
+## Supported Fields for Full Backups with Snapshots {#fields}
 
-The following Velero fields are supported for full backups, as shown in the previous example: 
+For partial backups with the snapshots feature, you can use all of the fields that Velero supports. See [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
+
+However, not all fields are supported for full backups. The table below lists the fields that are supported for full backups with snapshots: 
 
 <table>
   <tr>
-    <th width="30%">Field Name</th>
-    <th width="70%">Description</th>
+    <th width="50%">Field Name</th>
+    <th width="50%">Description</th>
   </tr>
   <tr>
     <td><code>includedNamespaces</code></td>
@@ -91,66 +86,66 @@ The following Velero fields are supported for full backups, as shown in the prev
     <td>(Optional) Specifies the actions to perform at different times during a backup. The only supported hook is executing a command in a container in a pod (uses the pod exec API). Supports <code>pre</code> and <code>post</code> hooks.</td>
   </tr>
   <tr>
-    <td><code>resources</code></td>
+    <td><code>hooks.resources</code></td>
     <td>(Optional) Specifies an array of hooks that are applied to specific resources.</td>
   </tr>
   <tr>
-    <td><code>name</code></td>
+    <td><code>hooks.resources.name</code></td>
     <td>Specifies the name of the hook. This value displays in the backup log.</td>
   </tr>
   <tr>
-    <td><code>includedNamespaces</code></td>
+    <td><code>hooks.resources.includedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces that this hook applies to. If unspecified, the hook is applied to all namespaces.</td>
   </tr>
   <tr>
-    <td><code>excludedNamespaces</code></td>
+    <td><code>hooks.resources.excludedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces to which this hook does not apply.</td>
   </tr>
   <tr>
-    <td><code>includedResources</code></td>
+    <td><code>hooks.resources.includedResources</code></td>
     <td>Specifies an array of pod resources to which this hook applies.</td>
   </tr>
   <tr>
-    <td><code>excludedResources</code></td>
+    <td><code>hooks.resources.excludedResources</code></td>
     <td>(Optional) Specifies an array of resources to which this hook does not apply.</td>
   </tr>
   <tr>
-    <td><code>labelSelector</code></td>
+    <td><code>hooks.resources.labelSelector</code></td>
     <td>(Optional) Specifies that this hook only applies to objects that match this label selector.</td>
   </tr>
   <tr>
-    <td><code>pre</code></td>
+    <td><code>hooks.resources.pre</code></td>
     <td>Specifies an array of <code>exec</code> hooks to run before executing custom actions.</td>
   </tr>
   <tr>
-    <td><code>post</code></td>
+    <td><code>hooks.resources.post</code></td>
     <td>Specifies an array of <code>exec</code> hooks to run after executing custom actions. Supports the same arrays and fields as <code>pre</code> hooks.</td>
   </tr>
   <tr>
-    <td><code>exec</code></td>
+    <td><code>hooks.resources.[post/pre].exec</code></td>
     <td>Specifies the type of the hook. <code>exec</code> is the only supported type.</td>
   </tr>
   <tr>
-    <td><code>container</code></td>
+    <td><code>hooks.resources.[post/pre].exec.container</code></td>
     <td>(Optional) Specifies the name of the container where the specified command will be executed. If unspecified, the first container in the pod is used.</td>
   </tr>
   <tr>
-    <td><code>command</code></td>
+    <td><code>hooks.resources.[post/pre].exec.command</code></td>
     <td>Specifies the command to execute. The format is an array.</td>
   </tr>
   <tr>
-    <td><code>onError</code></td>
+    <td><code>hooks.resources.[post/pre].exec.onError</code></td>
     <td>(Optional) Specifies how to handle an error that might occur when executing the command. <b>Valid values:</b> <code>Fail</code> and <code>Continue</code> <b>Default:</b> <code>Fail</code></td>
   </tr>
   <tr>
-    <td><code>timeout</code></td>
+    <td><code>hooks.resources.[post/pre].exec.timeout</code></td>
     <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b> <code>30s</code></td>
   </tr>
 </table>
 
 ## Limitations {#limitations}
 
-- The following top-level Velero fields, or children of `spec`, are not supported in full backups. Therefore, these fields are not shown in the preceding example specification. See [Example](#example).
+- The following top-level Velero fields, or children of `spec`, are not supported in full backups:
 
   - `snapshotVolumes`
   - `volumeSnapshotLocations`
@@ -158,7 +153,9 @@ The following Velero fields are supported for full backups, as shown in the prev
   - `includedResources`
   - `excludedResources`
 
-  Note that some of these fields are supported for hook arrays, as described in the previous field definition table. See [Fields](#fields).
+  :::note
+  Some of these fields are supported for hook arrays, as described in the previous field definition table. See [Supported Fields for Full Backups with Snapshots](#fields) above.
+  :::
 
--   All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
+- All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Snapshots](/vendor/snapshots-configuring-backups).
 
