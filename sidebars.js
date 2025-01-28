@@ -332,16 +332,6 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Backup and Restore with Snapshots',
-              items: [
-                'vendor/snapshots-overview',
-                'vendor/snapshots-configuring-backups',
-                'vendor/snapshots-hooks',
-                'reference/custom-resource-backup',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Distributing Kubernetes Operators with KOTS',
               items: [
                 'vendor/operator-packaging-about',
@@ -412,10 +402,19 @@ const sidebars = {
           type: 'category',
           label: 'Performing Backup and Restore with Snapshots',
           items: [
-            'enterprise/snapshots-understanding',
+            'vendor/snapshots-overview',
             {
               type: 'category',
-              label: 'Configuring Backup Storage',
+              label: 'Enabling and Configuring Snapshots',
+              items: [
+                'vendor/snapshots-configuring-backups',
+                'reference/custom-resource-backup',
+                'vendor/snapshots-hooks',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Configuring Backup Storage for Snaphots',
               items: [
                 'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
