@@ -17,8 +17,8 @@ Released on January 24, 2025
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">1.21.0+k8s-1.30</td>
-    <td id="center">1.21.0+k8s-1.29</td>
+    <td id="center">1.22.0+k8s-1.30</td>
+    <td id="center">1.22.0+k8s-1.29</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
@@ -27,7 +27,7 @@ Released on January 24, 2025
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.123.1</td>
+    <td id="center" colspan="2">1.124.0</td>
   </tr>
 </table>
 
