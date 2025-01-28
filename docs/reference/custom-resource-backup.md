@@ -51,7 +51,7 @@ spec:
                 - -a
               onError: Fail
               timeout: 10s
-        post:
+        post: []
 ```
 
 ## Supported Fields for Full Backups with Snapshots {#fields}
