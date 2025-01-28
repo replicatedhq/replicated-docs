@@ -32,27 +32,26 @@ Released on January 22, 2025
 </table>
 
 ### New Features {#new-features-1-21-0}
-* Adds a new flag `ignore-host-preflights` and deprecates `skip-host-preflights`. If passed, preflights will run, but the user will be presented with the option to continue the installation if they fail.
-* Adds a new flag `yes` and deprecates `no-prompt`.
-* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380 and 10250.
-* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). We have found that automatically enabling IP forwarding during installation results in broken clusters following users restarting systems or otherwise reverting kernel parameters.
-* If the network interface flag is not passed, Embedded Cluster will use improved logic to determine the correct interface.
-* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
-* `install` will now prompt the user if a newer version of the application is available to install instead.
+* The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. Because of the prompt, use the `--yes` flag if you want to ignore host preflight failures in automation. `--skip-host-preflights` will be removed in a future release. 
+* During online installations, users will be prompted if a newer version of the application than what is currently downloaded is available. This encourages users to install the latest version of an application.
 
 ### Improvements {#improvements-1-21-0}
-* Host support bundles will now include `firewall-cmd --list-all`.
-* "Does `modprobe`/`mount`/`umount` exist in the path" support bundle analyzers have been improved and will now pass regardless of where the binary is located.
-* Potentially sensitive CLI flag values will no longer be included in metrics reporting.
-* Error messages have been improved.
-* Usage messages have been improved.
+* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380, and 10250.
+* Adds a preflight check to ensure that communication can occur between the Pod and Service CIDRs that Kubernetes will use. When this preflight fails, it's often because of a firewall configuration that blocks communication between the Pod and Service CIDRs.
+* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). Many machines have IP forwarding disabled by default. As of 1.19.0, Embedded Cluster uses a sysctl configuration file to enable IP forwarding, so this preflight should only fail if Embedded Cluster couldn't enable IP forwarding.
+* Adds a preflight check to ensure that a nameserver is configured in `/etc/resolv.conf`.
+* If a network interface is not specified with the `--network-interface` flag, Embedded Cluster will use improved logic to determine which interface to use.
+* The license file is now stored in the data directory and is included in host support bundles.
+* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured. 
+* Host support bundles now include  the output of `firewall-cmd --list-all`.
+* Potentially sensitive CLI flag values are no longer included in metrics reporting.
+* Usage and error messages have been improved for understandability. 
+* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
 
-### Bug Fixes {#bug-fixes-1-18-0}
+### Bug Fixes {#bug-fixes-1-21-0}
+* Support bundles now check that `modprobe`, `mount`, and `umount` exist in PATH rather than at hardcoded locations.
 * Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
-* Fixes an issue where the `join run-preflights` command was missing the `network-interface` flag. 
-
-### Changes {#changes-1-21-0}
-* The CLI library has been changed from `urfave/cli/v2` to `spf13/cobra`.
 
 ## 1.19.0
 
