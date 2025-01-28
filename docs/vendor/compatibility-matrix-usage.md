@@ -110,74 +110,7 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-### Detailed Cluster and VM Usage
-Depending on the type of information you are looking for you can use the
-following endpoints to obtain active and historical CMX usage information.
-Each of these endpoints supports pagination and filtering.  You can use the
-following query parameters to filter the results:
-
-- **Pagination:** Use the `pageSize` and `currentPage` query parameters to
-  paginate through the results:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?pageSize=10&currentPage=1' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
-
-- **Filter by date:** Use the `start-time` and `end-time` query parameters to
-  filter the results by a specific date range:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?start-time=2025-01-01T00:00:00Z&end-time=2025-01-31T23:59:59Z' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
-
-- **Sort by:** Use the `tag-sort-key` query parameter to sort the results by a
-  specific field.  The field can be any of the fields returned in the response.
-    - By default the results are sorted in ascending order, use
-      `sortDesc=true` to sort in descending order:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-sort-key=created_at&sortDesc=true' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
-
-- **Tag filters:** Use the `tag-filter` query parameter to filter the results by
-  a specific tag:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-filter=tag1' \
-        --header 'Authorization: $REPLICATED_API_TOKEN' \
-        --header 'accept: application/json'
-```
-
-- **Actor filters:** Use the `actor-filter` query parameter to filter the actor
-  that created the resource, or the type of actor such as `Web UI` or
-  `Replicated CLI`:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?actor-filter=name' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
-
-
-:::note
-If any filter is passed for an object that does not exist, no warning is given.
-For example, if you filter by `actor-filter=name` and there are no results
-the response will be empty.
-:::
-
-
-#### Currently Active Clusters
+### Currently Active Clusters
 To get a list of currently active clusters, the `/v3/clusters` endpoint can be
 used:
 
@@ -255,3 +188,73 @@ curl --request GET \
      --header 'Authorization: $REPLICATED_API_TOKEN' \
      --header 'accept: application/json'
 ```
+
+### Filtering Endpoint Results
+Depending on the type of information you are looking for you can use the
+following endpoints to obtain active and historical CMX usage information.
+Each of these endpoints supports pagination and filtering.  You can use the
+following query parameters to filter the results.  Each of the examples below
+uses the `v3/cmx/history` endpoint, but the same query parameters can be used
+with the other endpoints as well.
+
+- **Pagination:** Use the `pageSize` and `currentPage` query parameters to
+  paginate through the results:
+
+```shell
+curl --request GET \
+     --url 'https://api.replicated.com/vendor/v3/cmx/history?pageSize=10&currentPage=1' \
+     --header 'Authorization: $REPLICATED_API_TOKEN' \
+     --header 'accept: application/json'
+```
+
+- **Filter by date:** Use the `start-time` and `end-time` query parameters to
+  filter the results by a specific date range:
+
+```shell
+curl --request GET \
+     --url 'https://api.replicated.com/vendor/v3/cmx/history?start-time=2025-01-01T00:00:00Z&end-time=2025-01-31T23:59:59Z' \
+     --header 'Authorization: $REPLICATED_API_TOKEN' \
+     --header 'accept: application/json'
+```
+
+- **Sort by:** Use the `tag-sort-key` query parameter to sort the results by a
+  specific field.  The field can be any of the fields returned in the response.
+    - By default the results are sorted in ascending order, use
+      `sortDesc=true` to sort in descending order:
+
+```shell
+curl --request GET \
+     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-sort-key=created_at&sortDesc=true' \
+     --header 'Authorization: $REPLICATED_API_TOKEN' \
+     --header 'accept: application/json'
+```
+
+- **Tag filters:** Use the `tag-filter` query parameter to filter the results by
+  a specific tag:
+
+```shell
+curl --request GET \
+     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-filter=tag1' \
+        --header 'Authorization: $REPLICATED_API_TOKEN' \
+        --header 'accept: application/json'
+```
+
+- **Actor filters:** Use the `actor-filter` query parameter to filter the actor
+  that created the resource, or the type of actor such as `Web UI` or
+  `Replicated CLI`:
+
+```shell
+curl --request GET \
+     --url 'https://api.replicated.com/vendor/v3/cmx/history?actor-filter=name' \
+     --header 'Authorization: $REPLICATED_API_TOKEN' \
+     --header 'accept: application/json'
+```
+
+
+:::note
+If any filter is passed for an object that does not exist, no warning is given.
+For example, if you filter by `actor-filter=name` and there are no results
+the response will be empty.
+:::
+
+
