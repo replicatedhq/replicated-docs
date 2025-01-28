@@ -21,3 +21,11 @@ The `global.replicated` values schema is a set of values that are injected by th
 | `imagePullSecrets` | Array | An array of Kubernetes image pull secrets that are used to pull images from private registries. |
 | `appName` | String | The name of the application, as specified in the Replicated Vendor Portal. |
 | `channelID` | String | The unique ID of the release channel. |
+| `channelName` | String | The name of the release channel (e.g., “Stable”, “Beta”). |
+| `channelSequence` | Integer | The sequence number of the channel, sed to track updates in channel. |
+| `releaseSequence` | Integer | The sequence number of the release associated with this deployment. |
+| `releaseCreatedAt` | String | The timestamp when the release was created. |
+| `releaseNotes` | String | Release notes for the current release, as provided in the Vendor Portal. |
+| `versionLabel` | String | The version label for the release, often displayed in UI dashboards. |
+| `parentChartURL` | String | The URL of the parent Helm chart if the application is nested in a chart hierarchy. |
+| `statusInformers` | map | Configuration for custom status informers. Used for application health and status insights. |
