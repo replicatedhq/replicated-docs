@@ -3,7 +3,7 @@ This topic describes using the Replicated Vendor Portal to understand
 Compatibility Matrix usage across your team.
 
 ## Currently Active Clusters and Virtual Machines
-You can find current active cluster and virtual machines on the Compatibility
+You can find current active clusters and virtual machines (VMs) on the Compatibility
 Matrix overview page which is accessible by clicking the **Compatibility Matrix**
 tab and then selecting **Overview** from the sidebar.
 
@@ -14,7 +14,7 @@ see [Cluster Status](/vendor/testing-about#cluster-status).
 
 ## Historical Usage
 The Vendor Portal offers a Compatibility Matrix history page that provides
-historical information about both clusters and virtual machines (VMs).
+historical information about both clusters and virtual machines.
 
 You can access the Compatibility Matrix history page by clicking the
 **Compatibility Matrix** tab and then selecting **History** from the sidebar.
