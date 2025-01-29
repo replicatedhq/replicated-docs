@@ -17,6 +17,13 @@ Released on January 29, 2025
 ### Bug Fixes {#bug-fixes-v2025-01-29-1}
 * Fixes bug that would result in the "Next" button being hidden from the support form.
 
+## v2025.01.28-1
+
+Released on January 28, 2025
+
+### New Features {#new-features-v2025-01-28-1}
+* Adds `(demoted)` text label to any demoted channel releases in the Embedded Cluster install instructions accessed from the Vendor Portal customer manage page.
+
 ## v2025.01.27-0
 
 Released on January 27, 2025
