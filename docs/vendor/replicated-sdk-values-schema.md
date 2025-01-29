@@ -18,7 +18,13 @@ The `global.replicated` values schema is a set of values that are injected by th
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `imagePullSecrets` | Array | An array of Kubernetes image pull secrets that are used to pull images from private registries. |
+| `global.imageRegistry` | String | The URL of the image registry where the replicated-sdk images are stored. |
+| `image.registry` | String | The URL of the image registry where the replicated-sdk images are stored. |
+| `image.repository` | String | The name of the replicated/replicated-sdk image repository. |
+| `image.tag` | String | The tag of the replicated/replicated-sdk image. |
+| `image.pullPolicy` | String | The Kubernetes image pull policy for the replicated/replicated-sdk image. |
+| `license` | String | The license ID of customer. |
+| `licenseFields` | string | The license fields of the customer. |
 | `appName` | String | The name of the application, as specified in the Replicated Vendor Portal. |
 | `channelID` | String | The unique ID of the release channel. |
 | `channelName` | String | The name of the release channel (e.g., “Stable”, “Beta”). |
@@ -29,3 +35,37 @@ The `global.replicated` values schema is a set of values that are injected by th
 | `versionLabel` | String | The version label for the release, often displayed in UI dashboards. |
 | `parentChartURL` | String | The URL of the parent Helm chart if the application is nested in a chart hierarchy. |
 | `statusInformers` | map | Configuration for custom status informers. Used for application health and status insights. |
+| `replicatedAppEndpoint` | String | If it is not using the default Replicated App endpoint https://replicated.app, this field specifies the endpoint to use. |
+| `serviceAccountName` | String | The name of the Kubernetes service account used by the Replicated SDK. |
+| `clusterRole` | String | The name of the Kubernetes cluster role used by the Replicated SDK. |
+| `imagePullSecrets` | Array | An array of Kubernetes image pull secrets that are used to pull images from private registries. |
+| `nameOverride` | String | Overrides the name of the chart. |
+| `namespaceOverride` | String | Overrides the namespace of the chart. |
+| `containerSecurityContext.enabled` | Boolean | Enables the security context for the container. |
+| `containerSecurityContext.runAsNonRoot`| Boolean | Runs the container as a non-root user. |
+| `containerSecurityContext.readOnlyRootFilesystem` | Boolean | Mounts the container’s root filesystem as read-only. |
+| `containerSecurityContext.allowPrivilegeEscalation` | Boolean | Allows privilege escalation for the container. |
+| `containerSecurityContext.capabilities.drop` | Array | Define which capabilities for dropping. |
+| `podSecurityContext.enabled` | Boolean | Enables the security context for the pod. |
+| `podSecurityContext.runAsUser` | Integer | The user ID for the pod. |
+| `podSecurityContext.runAsGroup` | Integer | The group ID for the pod. |
+| `podSecurityContext.fsGroup` | Integer | The group ID for the pod’s filesystem. |
+| `podSecurityContext.supplementalGroups` | Array | The supplemental groups for the pod. |
+| `podSecurityContext.seccompProfile.type` | String | The type of seccomp profile. |
+| `service.type` | String | The replicated-sdk service type. |
+| `service.port` | Integer | The port for the replicated-sdk service. |
+| `privateCAConfigmap` | String | The name of the ConfigMap that contains the private CA certificate. |
+| `privateCASecret` | String | The name of the Secret that contains the private CA certificate. |
+| `extraEnv` | Array | Additional environment variables to inject into the container. |
+| `integration.licenseID` | String | The license ID of the customer. |
+| `integration.enabled` | Boolean | Enables the integration. |
+| `integration.mockData` | string | The mock data for the integration. |
+| `isAirgap` | Boolean | Indicates whether the replicated is installed in airgap environment. |
+| `replicatedID` | String | The unique ID of the replicated-sdk instance cluster ID. |
+| `appID` | String | The unique ID of the replicated app slug. |
+| `tolerations` | Array | The tolerations for the pod. |
+| `affinity` | Object | The affinity for the pod. |
+
+
+## Using Replicated Registry Values
+With the Replicated proxy registry, each customer’s license information is injected into the application’s environment and grant proxy access to images in an external private registry.
