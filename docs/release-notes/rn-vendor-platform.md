@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.29-1
+
+Released on January 29, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-29-1}
+* Fixes bug that would result in the "Next" button being hidden from the support form.
+
 ## v2025.01.27-0
 
 Released on January 27, 2025
