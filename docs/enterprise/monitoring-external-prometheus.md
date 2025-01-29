@@ -1,6 +1,9 @@
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Consuming Prometheus Metrics Externally
+
+<KurlAvailability/>
 
 This topic describes how to consume Prometheus metrics in Replicated kURL clusters from a monitoring service that is outside the cluster.
 

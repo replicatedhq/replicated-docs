@@ -10,6 +10,49 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.21.0
+
+Released on January 22, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.21.0+k8s-1.30</td>
+    <td id="center">1.21.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.6</td>
+    <td id="center">1.29.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.123.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-21-0}
+* The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
+* During online installations, users will be prompted if a newer version of the application than what is currently downloaded is available. This encourages users to install the latest version of an application.
+
+### Improvements {#improvements-1-21-0}
+* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380, and 10250.
+* Adds a preflight check to ensure that communication can occur between the Pod and Service CIDRs that Kubernetes will use. When this preflight fails, it's often because of a firewall configuration that blocks communication between the Pod and Service CIDRs.
+* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). Many machines have IP forwarding disabled by default. As of 1.19.0, Embedded Cluster uses a sysctl configuration file to enable IP forwarding, so this preflight should only fail if Embedded Cluster couldn't enable IP forwarding.
+* Adds a preflight check to ensure that a nameserver is configured in `/etc/resolv.conf`.
+* If a network interface is not specified with the `--network-interface` flag, Embedded Cluster will use improved logic to determine which interface to use.
+* The license file is now stored in the data directory and is included in host support bundles.
+* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured. 
+* Host support bundles now include  the output of `firewall-cmd --list-all`.
+* Potentially sensitive CLI flag values are no longer included in metrics reporting.
+* Usage and error messages have been improved for understandability. 
+* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
+
+### Bug Fixes {#bug-fixes-1-21-0}
+* Support bundles now check that `modprobe`, `mount`, and `umount` exist in PATH rather than at hardcoded locations.
+* Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
+
 ## 1.19.0
 
 Released on November 14, 2024

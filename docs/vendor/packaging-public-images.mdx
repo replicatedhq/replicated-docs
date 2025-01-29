@@ -1,0 +1,62 @@
+# Connecting to a Public Registry through the Proxy Registry
+
+This topic describes how to pull images from public registries using the Replicated proxy registry.
+
+For more information about the Replicated proxy registry, see [About the Replicated Proxy Registry](private-images-about).
+
+## Pull Public Images Through the Replicated Proxy Registry
+
+You can use the Replicated proxy registry to pull both public and private images. Using the Replicated proxy registry for public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
+
+For public images, you need to first configure registry credentials.
+
+To pull public images through the Replicated proxy registry, use the following `docker` command:
+
+```bash
+docker pull REPLICATED_PROXY_DOMAIN/proxy/APPSLUG/UPSTREAM_REGISTRY_HOSTNAME/IMAGE:TAG
+```
+Where:
+* `APPSLUG` is your Replicated app slug found on the [app settings page](https://vendor.replicated.com/settings).
+* `REPLICATED_PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For information about how to set a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using). 
+* `UPSTREAM_REGISTRY_HOSTNAME` is the hostname for the public registry where the image is located. If the image is located in a namespace within the registry, include the namespace after the hostname. For example, `quay.io/namespace`.
+* `IMAGE` is the image name.
+* `TAG` is the image tag.
+
+## Examples
+
+This section includes examples of pulling public images through the Replicated proxy registry.
+
+### Pull Images from DockerHub
+
+The following examples show how to pull public images from DockerHub:
+
+```bash
+# DockerHub is the default when no hostname is specified
+docker pull proxy.replicated.com/proxy/APPSLUG/busybox
+docker pull proxy.replicated.com/proxy/APPSLUG/nginx:1.16.0
+```
+```bash
+# You can also optionally specify docker.io
+docker pull proxy.replicated.com/proxy/APPSLUG/docker.io/replicated/replicated-sdk:1.0.0
+```
+
+### Pull Images from Other Registries
+
+The following example shows how to pull images from the Amazon ECR Public Gallery:
+
+```bash
+docker pull proxy.replicated.com/proxy/APPSLUG/public.ecr.aws/nginx/nginx:latest
+```
+
+### Pull Images Using a Custom Domain for the Proxy Registry
+
+The following example shows how to pull a public image when a custom domain is configured for the proxy registry:
+
+```bash
+docker pull my.customdomain.io/proxy/APPSLUG/public.ecr.aws/nginx/nginx:latest
+```
+For information about how to set a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using). 
+
+## Related Topic
+
+[Connecting to an External Registry](packaging-private-images)

@@ -91,14 +91,14 @@ To edit release properties:
 
 1. Go to **Channels**.
 1. In the channel where the release was promoted, click **Release History**.
-1. For the release sequence that you want to edit, click **Edit Release**.
+1. For the release sequence that you want to edit, open the dot menu and click **Edit release**.
 1. Edit the properties as needed.
     <img src="/images/release-properties.png" alt="Release Properties dialog in the Vendor Portal" width="300"/>
     
     [View a larger image](/images/release-properties.png)
 1. Click **Update Release**.
 
-## Archiving Releases
+## Archive a Release
 
 You can archive releases to remove them from view on the **Releases** page. Archiving a release that has been promoted does _not_ remove the release from the channel's **Release History** page or prevent KOTS from downloading the archived release.
 
@@ -108,3 +108,20 @@ To archive one or more releases:
 1. Select one or more releases.
 1. Click **Archive Releases**.
 1. Confirm the archive action when prompted.
+
+## Demote a Release
+
+A channel release can be demoted from a channel. When a channel release is demoted, the release is no longer available for download, but is not withdrawn from environments where it was already downloaded or installed. For more information, see [Demotion](/vendor/releases-about#demotion) in _About Channels and Releases_.
+
+For information about demoting and un-demoting releases with the Replicated CLI, see [channel demote](/reference/replicated-cli-channel-demote) and [channel un-demote](/reference/replicated-cli-channel-un-demote).
+
+To demote a release in the Vendor Portal:
+
+1. Go to **Channels**.
+1. In the channel where the release was promoted, click **Release History**.
+1. For the release sequence that you want to demote, open the dot menu and select **Demote Release**.
+
+   ![Release history page](/images/channels-release-history.png)
+   [View a larger version of this image](/images/channels-release-history.png)
+
+   After the release is demoted, the given release sequence is greyed out and a **Demoted** label is displayed next to the release on the **Release History** page.   

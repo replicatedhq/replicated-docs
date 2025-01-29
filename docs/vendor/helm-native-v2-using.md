@@ -270,7 +270,7 @@ spec:
 
 ## Task 4: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
@@ -365,3 +365,5 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 ### Migrate Existing HelmChart v1 Installations to v2
 
 After you complete the tasks in this topic to configure the `kots.io/v1beta2` HelmChart custom resource, you can migrate any existing installations that were deployed with `kots.io/v1beta1` with `useHelmInstall: true` to use `kots.io/v1beta2` instead. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
+
+To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated account representative in Slack or over email.

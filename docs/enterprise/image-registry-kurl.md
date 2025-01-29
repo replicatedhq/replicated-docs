@@ -1,4 +1,8 @@
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
+
 # Working with the kURL Image Registry
+
+<KurlAvailability/>
 
 This topic describes the Replicated kURL registry for kURL clusters.
 
@@ -10,6 +14,10 @@ With every application update, new images are pushed to the kURL registry.
 To keep the registry from running out of storage, images that are no longer used are automatically deleted from the registry.
 
 For more information about the kURL Registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
+
+:::note
+Users can also configure their own private registry for kURL installations instead of using the kURL registry. For more information, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+:::
 
 ## Trigger Garbage Collection
 
@@ -58,6 +66,6 @@ The kURL registry image garbage collection feature has following limitations:
 
 * **Shared Image Registries**: The image garbage collection process assumes that the registry is not shared with any other instances of Replicated KOTS, nor shared with any external applications. If the built-in kURL registry is used by another external application, disable garbage collection to prevent image loss.
 
-* **Customer Supplied Registries**: Image garbage collection is supported only when used with the built-in kURL registry. If the KOTS instance is configured to use a different registry, disable garbage collection to prevent image loss.
+* **Customer-Supplied Registries**: Image garbage collection is supported only when used with the built-in kURL registry. If the KOTS instance is configured to use a different registry, disable garbage collection to prevent image loss. For more information about configuring an image registry in the Admin Console, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
 
 * **Application Rollbacks**: Image garbage collection has no effect when the `allowRollback` field in the KOTS Application custom resource is set to `true`. For more information, see [Application](/reference/custom-resource-application) in _KOTS Custom Resources_.

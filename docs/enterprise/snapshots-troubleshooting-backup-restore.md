@@ -1,6 +1,6 @@
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 
-# Troubleshooting Backup and Restore
+# Troubleshooting Snapshots
 
 When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
 
@@ -160,7 +160,7 @@ There are file changes between Restic's initial scan of the volume and during th
 
 To resolve this issue, do one of the following:
 
-* Use [Snapshot Hooks](https://docs.replicated.com/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume.
+* Use [hooks](/vendor/snapshots-hooks) to export data to an [EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume and include that in the backup instead of the primary PVC volume. See [Configuring Backup and Restore Hooks for Snapshots](/vendor/snapshots-hooks).
 * Freeze the file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. For more information, see [Hook Example with fsfreeze](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze) in the Velero documentation.
 
 

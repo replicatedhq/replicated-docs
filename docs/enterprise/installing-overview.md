@@ -38,4 +38,4 @@ The KOTS Admin Console requires persistent storage for state. KOTS deploys MinIO
 
 You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the Admin Console as a StatefulSet with an attached PersistentVolume (PV) instead of as a deployment.
 
-For more information about how to install KOTS without object storage, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
+For more information about how to install KOTS without object storage, see [Installing KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).

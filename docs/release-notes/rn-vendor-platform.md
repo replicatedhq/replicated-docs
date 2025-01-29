@@ -10,6 +10,98 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.29-4
+
+Released on January 29, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-29-4}
+* Removes a duplicated section from the Download Portal.
+* Fixes a bug where app name would be missing from the app bundle header in the Download Portal.
+
+## v2025.01.29-1
+
+Released on January 29, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-29-1}
+* Fixes bug that would result in the "Next" button being hidden from the support form.
+
+## v2025.01.28-1
+
+Released on January 28, 2025
+
+### New Features {#new-features-v2025-01-28-1}
+* Adds `(demoted)` text label to any demoted channel releases in the Embedded Cluster install instructions accessed from the Vendor Portal customer manage page.
+
+## v2025.01.27-0
+
+Released on January 27, 2025
+
+### New Features {#new-features-v2025-01-27-0}
+* Adds support for demoting and un-demoting releases from the **Release History** page in the Vendor Portal.
+
+## v2025.01.23-1
+
+Released on January 23, 2025
+
+### New Features {#new-features-v2025-01-23-1}
+* Adds pagination and search to the **Channels** page in Vendor Portal.
+
+## v2025.01.17-3
+
+Released on January 17, 2025
+
+### New Features {#new-features-v2025-01-17-3}
+* Compatibility Matrix: Adds `/v3/cmx/stats` to query historical Compatibility Matrix usage data. See [Get CMX usage stats](https://replicated-vendor-api.readme.io/reference/getcmxstats) in the Vendor API v3 documentation.
+
+## v2025.01.15-4
+
+Released on January 15, 2025
+
+### New Features {#new-features-v2025-01-15-4}
+* Show the vendor's GitHub Collab repository in the Vendor Portal.
+
+## v2025.01.06-5
+
+Released on January 6, 2025
+
+### New Features {#new-features-v2025-01-06-5}
+* Adds the Vendor API v3 [/cmx/history](https://replicated-vendor-api.readme.io/reference/listcmxhistory) endpoint, which can be used to get historical data on Compatibility Matrix usage.
+
+## v2025.01.06-2
+
+Released on January 6, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-06-2}
+* Fixes a bug that could cause instances to not receive updates on [semver](/vendor/releases-about#semantic-versioning) enabled channels when [--app-version-label](/reference/kots-cli-install#usage) flag is used during the install.
+
+## v2025.01.02-1
+
+Released on January 2, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-02-1}
+* Fixes a bug that caused the Download Portal to display a blank screen.
+
+## v2024.12.31-2
+
+Released on December 31, 2024
+
+### New Features {#new-features-v2024-12-31-2}
+* Adds ability to enable and disable [Development Mode](/vendor/replicated-sdk-development) per customer in the Replicated SDK.
+
+## v2024.12.27-1
+
+Released on December 27, 2024
+
+### Bug Fixes {#bug-fixes-v2024-12-27-1}
+* Fixes a bug that would cause the configured GitHub username to not show up on the Account Settings page when logging in with Google.
+
+## v2024.12.17-1
+
+Released on December 17, 2024
+
+### New Features {#new-features-v2024-12-17-1}
+* Compatibility Matrix: View your remaining credit balance using the `v3/cluster/status` endpoint via 'credit_balance'. The value is in cents.
+
 ## v2024.12.11-5
 
 Released on December 11, 2024

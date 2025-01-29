@@ -1,4 +1,4 @@
-# Replicated SDK API (Beta)
+# Replicated SDK API
 
 The Replicated SDK provides an API that you can use to embed Replicated functionality in your Helm chart application.
 
@@ -6,7 +6,7 @@ For example, if your application includes a UI where users manage their applicat
 
 For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-For information about how to develop against the Replicated SDK API with mock data, see [Developing Against the Replicated SDK](/vendor/replicated-sdk-developing).
+For information about how to develop against the Replicated SDK API with mock data, see [Developing Against the Replicated SDK](/vendor/replicated-sdk-development).
 
 ## app
 
@@ -14,8 +14,8 @@ For information about how to develop against the Replicated SDK API with mock da
 
 List details about an application instance, including the app name, location of the Helm chart in the Replicated OCI registry, and details about the current application release that the instance is running. 
 
-```
-/api/v1/app/info
+```bash
+GET http://replicated:3000/api/v1/app/info
 ```
 
 Response:
@@ -44,12 +44,41 @@ Response:
 }
 ```
 
+### GET /app/status
+
+List details about an application status, including the list of individual resource states and the overall application state. 
+
+```bash
+GET http://replicated:3000/api/v1/app/status
+```
+
+Response:
+
+```json
+{
+  "appStatus": {
+    "appSlug": "my-app",
+    "resourceStates": [
+      {
+        "kind": "deployment",
+        "name": "api",
+        "namespace": "default",
+        "state": "ready"
+      }
+    ],
+    "updatedAt": "2024-12-19T23:01:52.207162284Z",
+    "state": "ready",
+    "sequence": 268
+  }
+}
+```
+
 ### GET /app/updates
 
 List details about the releases that are available to an application instance for upgrade, including the version label, created timestamp, and release notes.
 
-```
-/api/v1/app/updates
+```bash
+GET http://replicated:3000/api/v1/app/updates
 ```
 
 Response:
@@ -68,8 +97,8 @@ Response:
 
 List details about the releases that an application instance has installed previously.
 
-```
-/api/v1/app/history
+```bash
+GET http://replicated:3000/api/v1/app/history
 ```
 
 Response:
@@ -161,8 +190,8 @@ Response: Status `200` OK
 
 List details about the license that was used to install, including the license ID, type, the customer name, and the channel the customer is assigned.
 
-```
-/api/v1/license/info
+```bash
+GET http://replicated:3000/api/v1/license/info
 ```
 
 Response:
@@ -205,8 +234,8 @@ Response:
 
 List details about all the fields in the license that was used to install, including the field names, descriptions, values, and signatures.
 
-```
-/api/v1/license/fields
+```bash
+GET http://replicated:3000/api/v1/license/fields
 ```
 
 Response:
@@ -239,13 +268,13 @@ Response:
 
 List details about one of the fields in the license that was used to install, including the field name, description, value, and signature.
 
-```
-/api/v1/license/fields/\{field_name\}
+```bash
+GET http://replicated:3000/api/v1/license/fields/\{field_name\}
 ```
 
 Example request:
 
-```
+```bash
 curl replicated:3000/api/v1/license/fields/expires_at
 ```
 
@@ -263,6 +292,118 @@ Response:
   }
 }
 ```
+
+## Integration
+
+### GET /api/v1/integration/status
+
+Get status of Development Mode. When this mode is enabled, the `app` API will use mock data. This value cannot be set programmatically. It is controlled by the installed license.
+
+```json
+{
+  "isEnabled": true
+}
+```
+
+### GET /api/v1/integration/mock-data
+
+Get mock data that is used when Development Mode is enabled.
+
+```json
+{
+  "appStatus": "ready",
+  "helmChartURL": "oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart",
+  "currentRelease": {
+    "versionLabel": "0.1.3",
+    "releaseNotes": "release notes 0.1.3",
+    "createdAt": "2023-05-23T20:58:07Z",
+    "deployedAt": "2023-05-23T21:58:07Z",
+    "helmReleaseName": "dev-parent-chart",
+    "helmReleaseRevision": 3,
+    "helmReleaseNamespace": "default"
+  },
+  "deployedReleases": [
+    {
+      "versionLabel": "0.1.1",
+      "releaseNotes": "release notes 0.1.1",
+      "createdAt": "2023-05-21T20:58:07Z",
+      "deployedAt": "2023-05-21T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 1,
+      "helmReleaseNamespace": "default"
+    },
+    {
+      "versionLabel": "0.1.2",
+      "releaseNotes": "release notes 0.1.2",
+      "createdAt": "2023-05-22T20:58:07Z",
+      "deployedAt": "2023-05-22T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 2,
+      "helmReleaseNamespace": "default"
+    },
+    {
+      "versionLabel": "0.1.3",
+      "releaseNotes": "release notes 0.1.3",
+      "createdAt": "2023-05-23T20:58:07Z",
+      "deployedAt": "2023-05-23T21:58:07Z",
+      "helmReleaseName": "dev-parent-chart",
+      "helmReleaseRevision": 3,
+      "helmReleaseNamespace": "default"
+    }
+  ],
+  "availableReleases": [
+    {
+      "versionLabel": "0.1.4",
+      "releaseNotes": "release notes 0.1.4",
+      "createdAt": "2023-05-24T20:58:07Z",
+      "deployedAt": "2023-05-24T21:58:07Z",
+      "helmReleaseName": "",
+      "helmReleaseRevision": 0,
+      "helmReleaseNamespace": ""
+    },
+    {
+      "versionLabel": "0.1.5",
+      "releaseNotes": "release notes 0.1.5",
+      "createdAt": "2023-06-01T20:58:07Z",
+      "deployedAt": "2023-06-01T21:58:07Z",
+      "helmReleaseName": "",
+      "helmReleaseRevision": 0,
+      "helmReleaseNamespace": ""
+    }
+  ]
+}
+```
+
+### POST /api/v1/integration/mock-data
+
+Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
+
+```bash
+POST http://replicated:3000/api/v1/integration/mock-data
+```
+
+Request:
+
+```json
+{
+  "appStatus": "ready",
+  "helmChartURL": "oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart",
+  "currentRelease": {
+    "versionLabel": "0.1.3",
+    "releaseNotes": "release notes 0.1.3",
+    "createdAt": "2023-05-23T20:58:07Z",
+    "deployedAt": "2023-05-23T21:58:07Z",
+    "helmReleaseName": "dev-parent-chart",
+    "helmReleaseRevision": 3,
+    "helmReleaseNamespace": "default"
+  },
+  "deployedReleases": [],
+  "availableReleases": []
+}
+```
+
+Response: Status `201` Created
+
 ## Examples
 
 This section provides example use cases for the Replicated SDK API.

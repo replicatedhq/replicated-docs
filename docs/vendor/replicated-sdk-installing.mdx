@@ -3,7 +3,7 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
 
-# Installing the Replicated SDK (Beta)
+# Installing the Replicated SDK
 
 This topic describes the methods for distributing and installing the Replicated SDK.
 
@@ -25,13 +25,14 @@ To install the SDK as a subchart:
 
      <DependencyYaml/>
 
-1. <RegistryLogout/> 
-
 1. Update the `charts/` directory:
 
     ```
     helm dependency update
     ```
+    :::note
+    <RegistryLogout/> 
+    :::
     
 1. Package the Helm chart into a `.tgz` archive:
 
@@ -66,7 +67,7 @@ To install the SDK as a subchart:
     replicated   1/1     1            1           35s
     ```
 
-## Install the SDK Alongside a Kubernetes Manifest-Based Application
+## Install the SDK Alongside a Kubernetes Manifest-Based Application {#manifest-app}
 
 For applications that use Kubernetes manifest files instead of Helm charts, the SDK Helm chart can be added to a release and then installed by KOTS alongside the application.
 
@@ -88,7 +89,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
     ```
     Where `SDK_VERSION` is the version of the SDK to install. For a list of available SDK versions, see the [replicated-sdk repository](https://github.com/replicatedhq/replicated-sdk/tags) in GitHub.
 
-    The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0-beta.32.tgz`.
+    The output of this command is a `.tgz` file with the naming convention `CHART_NAME-CHART_VERSION.tgz`. For example, `replicated-1.0.0.tgz`.
 
     For more information and additional options, see [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
 
@@ -116,7 +117,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
         name: replicated
         # for chartversion, enter the version of the
         # SDK Helm chart in the release
-        chartVersion: 1.0.0-beta.32
+        chartVersion: 1.0.0
     ```
 
      As shown in the example above, the HelmChart custom resource requires the name and version of the SDK Helm chart that you added to the release:
@@ -151,3 +152,31 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
 ## Install the SDK in Integration Mode
 
 <IntegrationMode/>
+
+## Troubleshoot
+
+### 401 Unauthorized Error When Updating Helm Dependencies {#401}
+
+#### Symptom
+
+You see an error message similar to the following after adding the Replicated SDK as a dependency in your Helm chart then running `helm dependency update`:
+
+```
+Error: could not download oci://registry.replicated.com/library/replicated-sdk: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://registry.replicated.com/v2/token?scope=repository%3Alibrary%2Freplicated-sdk%3Apull&service=registry.replicated.com: 401 Unauthorized
+```
+
+#### Cause
+
+When you run `helm dependency update`, Helm attempts to pull the Replicated SDK chart from the Replicated registry. An error can occur if you are already logged in to the Replicated registry with a license that has expired, such as when testing application releases.
+
+#### Solution
+
+To solve this issue:
+
+1. Run the following command to remove login credentials for the Replicated registry:
+
+    ```
+    helm registry logout registry.replicated.com
+    ```
+
+1. Re-run `helm dependency update` for your Helm chart.    

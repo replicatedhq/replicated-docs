@@ -18,6 +18,57 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.0
+
+Released on January 24, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-124-0}
+* You can migrate Helm charts that were installed with HelmChart v1beta1 and `useHelmInstall: false` to HelmChart v1beta2 by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
+
+   ```yaml
+   # HelmChart v1 beta2
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+      helmUpgradeFlags:
+        - --take-ownership
+   ```
+
+   This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
+
+   To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated account representative in Slack or over email.
+
+## 1.123.1
+
+Released on January 13, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-123-1}
+* Fixes an issue where the navigation menu was not visible on the Config page.
+
+## 1.123.0
+
+Released on January 2, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### New Features {#new-features-1-123-0}
+* Adds the `--tolerations` flag to `kots install` to supply additional tolerations to the KOTS pods.
+
+## 1.122.1
+
+Released on December 20, 2024
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-122-1}
+* Fixes a bug that could result in instance being reported as unavailable if application includes an Ingress resource.
+
 ## 1.122.0
 
 Released on December 12, 2024
@@ -25,7 +76,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-122-0}
-* Adds support for [orLabelSelectors](https://docs.replicated.com/reference/custom-resource-backup#fields) to the velero.io/v1 Backup resource for [Full Snapshots](https://docs.replicated.com/vendor/snapshots-overview).
+* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release.
 
 ## 1.121.2
 

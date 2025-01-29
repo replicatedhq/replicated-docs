@@ -29,7 +29,7 @@ You can access the values in the `global.replicated.licenseFields` field from yo
 
 Add the Replicated SDK to your application:
 * For Helm-based applications, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_
-* For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Standard Manifest-Based Application](/vendor/replicated-sdk-installing#install-the-sdk-alongside-a-standard-manifest-based-application) in _Installing the Replicated SDK_
+* For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Kubernetes Manifest-Based Application](/vendor/replicated-sdk-installing#manifest-app) in _Installing the Replicated SDK_
 
 ## Check Entitlements Before Installation or Upgrade
 

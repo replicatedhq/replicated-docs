@@ -1,4 +1,4 @@
-# Querying Entitlements with the Replicated SDK API (Beta)
+# Querying Entitlements with the Replicated SDK API
 
 This topic describes how to query license entitlements at runtime using the Replicated SDK in-cluster API. The information in this topic applies to applications installed with Replicated KOTS or Helm.
 
@@ -11,13 +11,13 @@ After the Replicated SDK is initialized and running in a customer environment, y
 * `/api/v1/license/fields`: List all the fields in the license.  
 * `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.
 
-For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
+For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API_.
 
 ## Prerequisite
 
 Add the Replicated SDK to your application:
 * For Helm-based applications, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_
-* For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Standard Manifest-Based Application](/vendor/replicated-sdk-installing#install-the-sdk-alongside-a-standard-manifest-based-application) in _Installing the Replicated SDK_
+* For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Standard Manifest-Based Application](/vendor/replicated-sdk-installing#manifest-app) in _Installing the Replicated SDK_
 
 ## Query License Entitlements at Runtime {#runtime}
 

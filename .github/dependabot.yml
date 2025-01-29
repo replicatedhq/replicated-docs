@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Update npm dependencies based on package.json
+  - package-ecosystem: "npm"
+    directory: "/" # Root directory
+    schedule:
+      interval: "weekly"
+
+  # Keep Dependabot itself up to date
+  - package-ecosystem: "github-actions"
+    directory: "/" # Root directory (or specify if actions are elsewhere)
+    schedule:
+      interval: "weekly"
