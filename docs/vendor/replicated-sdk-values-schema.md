@@ -69,3 +69,35 @@ The `global.replicated` values schema is a set of values that are injected by th
 
 ## Using Replicated Registry Values
 With the Replicated proxy registry, each customer’s license information is injected into the application’s environment and grant proxy access to images in an external private registry.
+To use the Replicated registry values, you must first configure the Replicated proxy registry in your Kubernetes cluster. For more information, see [Replicated Proxy Registry](/vendor/replicated-proxy-registry).
+
+Here is an example of how to use the `global.replicated` values schema in your application:
+
+```yaml
+dockerconfigjson: '{{ .Values.global.replicated.dockerconfigjson }}'
+images:
+  myapp:
+    # Add image URL in the values file
+    apiImageRepository: proxy.replicated.com/proxy/my-app/quay.io/my-org/api
+    apiImageTag: v1.0.1
+```
+In your deployment manifest, you can reference the `global.replicated` values schema to access the license information and other values injected by the Replicated registry.
+```yaml
+# /templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: example
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          # Access the apiImageRepository field from the values file
+          image: "{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}"
+          {{ if .Values.global.replicated.dockerconfigjson }}
+          imagePullSecrets:
+            - name: replicated-pull-secret
+          {{ end }}
+```
