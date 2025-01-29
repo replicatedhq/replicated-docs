@@ -439,7 +439,14 @@ const sidebars = {
             'enterprise/auth-configuring-rbac',
           ],
         }, 
-        'enterprise/monitoring-applications',
+        {
+          type: 'category',
+          label: 'Monitoring Applications with Prometheus',
+          items: [
+            'enterprise/monitoring-applications',
+            'enterprise/monitoring-access-dashboards',
+          ],
+        },
         'enterprise/status-viewing-details',
         'enterprise/delete-admin-console',
         {

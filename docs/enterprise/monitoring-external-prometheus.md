@@ -1,3 +1,4 @@
+import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Consuming Prometheus Metrics Externally
@@ -6,11 +7,15 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 This topic describes how to consume Prometheus metrics in Replicated kURL clusters from a monitoring service that is outside the cluster.
 
-## About the Prometheus NodePort Service
+For information about how to access Prometheus, Grafana, and Alertmanager, see [Accessing Dashboards Using Port Forwarding](/enterprise/monitoring-access-dashboards).
 
-By default, Prometheus is included in kURL clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
+## Overview
 
-For more information about NodePort services, see [Type NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in _Services_ in the Kubernetes documentation.  
+<OverviewProm/>
+
+For kURL installations, if the [kURL Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) is included in the kURL installer spec, then the Prometheus monitoring system is installed alongside the application. No additional configuration is required to collect metrics and view any default and custom graphs on the Admin Console dashboard.
+
+Prometheus is deployed in kURL clusters as a NodePort service named `prometheus-k8s` in the `monitoring` namespace. The `prometheus-k8s` service is exposed on the IP address for each node in the cluster at port 30900.
 
 You can run the following command to view the `prometheus-k8s` service in your cluster:
 
@@ -24,6 +29,8 @@ NAME            TYPE      CLUSTER_IP   EXTERNAL_IP  PORT(S)         AGE
 prometheus-k8s  NodePort  10.96.2.229  <none>       9090:30900/TCP  5hr
 ```
 As shown in the example above, port 9090 on the `prometheus-k8s` service maps to port 30900 on each of the nodes.
+
+For more information about NodePort services, see [Type NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in _Services_ in the Kubernetes documentation.  
 
 ## Prerequisite
 
