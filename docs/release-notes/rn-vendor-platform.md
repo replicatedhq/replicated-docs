@@ -10,6 +10,18 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.29-4
+
+Released on January 29, 2025
+
+### New Features {#new-features-v2025-01-29-4}
+* Adds link to download Embedded Cluster installer assets in the Download Portal.
+* Adds link to download Embedded Cluster installer assets in the Download Portal.
+
+### Bug Fixes {#bug-fixes-v2025-01-29-4}
+* Removes a duplicated section from the download portal.
+* Fixes a bug where app name would be missing from the app bundle header in the download portal.
+
 ## v2025.01.29-1
 
 Released on January 29, 2025
