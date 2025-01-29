@@ -220,6 +220,7 @@ const sidebars = {
         'vendor/testing-pricing',
         'vendor/testing-supported-clusters',
         'vendor/testing-cluster-addons',
+        'vendor/compatibility-matrix-usage',
         'vendor/testing-how-to',
         'vendor/testing-ingress',
       ],
