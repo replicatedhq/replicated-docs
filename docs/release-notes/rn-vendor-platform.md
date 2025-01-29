@@ -15,8 +15,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on January 29, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-01-29-4}
-* Removes a duplicated section from the download portal.
-* Fixes a bug where app name would be missing from the app bundle header in the download portal.
+* Removes a duplicated section from the Download Portal.
+* Fixes a bug where app name would be missing from the app bundle header in the Download Portal.
 
 ## v2025.01.29-1
 
