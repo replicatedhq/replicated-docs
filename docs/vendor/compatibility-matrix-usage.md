@@ -61,11 +61,11 @@ Vendor API v3 documentation:
 * [/v3/clusters](https://replicated-vendor-api.readme.io/reference/listclusters)
 * [/v3/cmx/history](https://replicated-vendor-api.readme.io/reference/listcmxhistory)
 
-Examples of using these endpoints can be found below.
+For examples of using these endpoints, see the sections below.
 
 ### Credit Balance and Summarized Usage
-To obtain summarized usage information in addition to your Compatibility Matrix
-credit balance, the `/v3/cmx/stats` endpoint can be used.
+You can use the `/v3/cmx/stats` endpoint to get summarized usage information in addition to your Compatibility Matrix
+credit balance.
 
 This endpoint returns:
 
@@ -84,7 +84,7 @@ curl --request GET \
 ```
 
 The `v3/cmx/stats` endpoint also supports filtering by `start-time` and
-`end-time`, for example, to get usage information for January 2025:
+`end-time`. For example, the following request gets usage information for January 2025:
 
 ```shell
 curl --request GET \
@@ -94,8 +94,7 @@ curl --request GET \
 ```
 
 ### Currently Active Clusters
-To get a list of currently active clusters, the `/v3/clusters` endpoint can be
-used:
+To get a list of active clusters:
 
 ```shell
 curl --request GET \
@@ -104,7 +103,7 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-You can use a tool such as `jq` to filter and iterate over the output:
+You can also use a tool such as `jq` to filter and iterate over the output:
 
 ```shell
 curl --request GET \
@@ -122,8 +121,7 @@ curl --request GET \
 ```
 
 ### Currently Active Virtual Machines
-Similar to clusters, to get a list of currently active virtual machines, the
-`/v3/vms` endpoint can be used:
+To get a list of active VMs:
 
 ```shell
 curl --request GET \
@@ -133,8 +131,7 @@ curl --request GET \
 ```
 
 ### Historical Usage
-To fetch historical usage information, the `/v3/cmx/history` endpoint can be
-used.  This endpoint returns a list of terminated clusters and VMs:
+To fetch historical usage information:
 
 ```shell
 curl --request GET \
@@ -143,87 +140,91 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-Unique to this endpoint is the ability to filter by `distribution-type` which
-allows you to get a list of either just clusters or just virtual machines:
+You can also filter the response from the `/v3/cmx/history` endpoint by `distribution-type`, which
+allows you to get a list of either clusters or VMs:
 
 - **For clusters use `distribution-type=kubernetes`:**
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?distribution-type=kubernetes' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?distribution-type=kubernetes' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
-- **For virtual machines use `distribution-type=vm`:**
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?distribution-type=vm' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+- **For VMs use `distribution-type=vm`:**
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?distribution-type=vm' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
 ### Filtering Endpoint Results
-Each of these endpoints supports pagination and filtering.  You can use the
-following query parameters to filter the results.  Each of the examples below
+Each of these endpoints supports pagination and filtering. You can use the
+following query parameters to filter the results.
+
+:::note
+Each of the examples below
 uses the `v3/cmx/history` endpoint, but the same query parameters can be used
 with the other endpoints as well.
+:::
 
 - **Pagination:** Use the `pageSize` and `currentPage` query parameters to
   paginate through the results:
 
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?pageSize=10&currentPage=1' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?pageSize=10&currentPage=1' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
 - **Filter by date:** Use the `start-time` and `end-time` query parameters to
   filter the results by a specific date range:
 
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?start-time=2025-01-01T00:00:00Z&end-time=2025-01-31T23:59:59Z' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?start-time=2025-01-01T00:00:00Z&end-time=2025-01-31T23:59:59Z' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
 - **Sort by:** Use the `tag-sort-key` query parameter to sort the results by a
   specific field.  The field can be any of the fields returned in the response.
-    - By default the results are sorted in ascending order, use
-      `sortDesc=true` to sort in descending order:
+    
+     By default, the results are sorted in ascending order, use
+     `sortDesc=true` to sort in descending order:
 
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-sort-key=created_at&sortDesc=true' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-sort-key=created_at&sortDesc=true' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
 - **Tag filters:** Use the `tag-filter` query parameter to filter the results by
   a specific tag:
 
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-filter=tag1' \
-        --header 'Authorization: $REPLICATED_API_TOKEN' \
-        --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?tag-filter=tag1' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
 - **Actor filters:** Use the `actor-filter` query parameter to filter the actor
   that created the resource, or the type of actor such as `Web UI` or
   `Replicated CLI`:
 
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?actor-filter=name' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
+     ```shell
+     curl --request GET \
+          --url 'https://api.replicated.com/vendor/v3/cmx/history?actor-filter=name' \
+          --header 'Authorization: $REPLICATED_API_TOKEN' \
+          --header 'accept: application/json'
+     ```
 
-
-:::note
-If any filter is passed for an object that does not exist, no warning is given.
-For example, if you filter by `actor-filter=name` and there are no results
-the response will be empty.
-:::
+     :::note
+     If any filter is passed for an object that does not exist, no warning is given.
+     For example, if you filter by `actor-filter=name` and there are no results
+     the response will be empty.
+     :::
