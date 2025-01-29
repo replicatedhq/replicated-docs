@@ -4,7 +4,7 @@ Compatibility Matrix usage across your team.
 
 ## View Historical Usage
 The **Compatibility Matrix > History** page provides
-historical information about both clusters and VMs, as shown below: 
+historical information about both clusters and VMs, as shown below:
 
 ![Compatibility Matrix History Page](/images/compatibility-matrix-history.png)
 [View a larger version of this image](/images/compatibility-matrix-history.png)
@@ -52,7 +52,16 @@ To filter by a specific field, click on the filter icon in the column header, th
 
 ## Get Usage History with the Vendor API v3
 
-For more information about using the Vendor API v3 to get Compatibility Matrix usage history information, see [/v3/cmx/history](https://replicated-vendor-api.readme.io/reference/listcmxhistory) and [/v3/cmx/getcmxstats](https://replicated-vendor-api.readme.io/reference/getcmxstats) in the Vendor API v3 documentation.
+For more information about using the Vendor API v3 to get Compatibility Matrix
+usage history information, see the following API endpoints within the
+Vendor API v3 documentation:
+
+* [/v3/cmx/stats](https://replicated-vendor-api.readme.io/reference/getcmxstats)
+* [/v3/vms](https://replicated-vendor-api.readme.io/reference/listvms)
+* [/v3/clusters](https://replicated-vendor-api.readme.io/reference/listclusters)
+* [/v3/cmx/history](https://replicated-vendor-api.readme.io/reference/listcmxhistory)
+
+Examples of using these endpoints can be found below.
 
 ### Credit Balance and Summarized Usage
 To obtain summarized usage information in addition to your Compatibility Matrix
@@ -134,16 +143,6 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-You can specify `total-only=true` to get a quick total count of terminated
-clusters and VMs.  The `total-only` parameter supports filtering as well:
-
-```shell
-curl --request GET \
-     --url 'https://api.replicated.com/vendor/v3/cmx/history?total-only=true' \
-     --header 'Authorization: $REPLICATED_API_TOKEN' \
-     --header 'accept: application/json'
-```
-
 Unique to this endpoint is the ability to filter by `distribution-type` which
 allows you to get a list of either just clusters or just virtual machines:
 
@@ -164,8 +163,6 @@ curl --request GET \
 ```
 
 ### Filtering Endpoint Results
-Depending on the type of information you are looking for you can use the
-following endpoints to obtain active and historical CMX usage information.
 Each of these endpoints supports pagination and filtering.  You can use the
 following query parameters to filter the results.  Each of the examples below
 uses the `v3/cmx/history` endpoint, but the same query parameters can be used
