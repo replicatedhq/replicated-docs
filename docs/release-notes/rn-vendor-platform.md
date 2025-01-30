@@ -10,6 +10,18 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.30-0
+
+Released on January 30, 2025
+
+### New Features {#new-features-v2025-01-30-0}
+* Adds a link to download Embedded Cluster installer assets in the Download Portal.
+* Adds a button to log out of the Download Portal.
+
+### Bug Fixes {#bug-fixes-v2025-01-30-0}
+* Fixes bug that would prevent demoting a channel release when it was the only release in the channel.
+* Fixes bug that could have marked the wrong release as active, if a demoted channels semantic version was reused by multiple releases in that channel.
+
 ## v2025.01.29-4
 
 Released on January 29, 2025
