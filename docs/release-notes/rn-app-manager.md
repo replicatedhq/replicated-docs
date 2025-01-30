@@ -25,7 +25,7 @@ Released on January 29, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Bug Fixes {#bug-fixes-1-123-1}
-* Fixes an issue where error messages did not clearly communicate that an image was not found.
+* Improves an unclear error message that could occur when rewriting private images.
 
 ## 1.124.0
 
