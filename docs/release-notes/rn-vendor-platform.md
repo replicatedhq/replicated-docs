@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.01.31-1
+
+Released on January 31, 2025
+
+### New Features {#new-features-v2025-01-31-1}
+* Adds a new `instance_kurl_install_started_at` column to customer instance exports for kURL instances that reports when the install was reported as starting.
+
 ## v2025.01.30-0
 
 Released on January 30, 2025
