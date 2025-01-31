@@ -2,13 +2,9 @@
 
 This topic describes how to update custom TLS certificates in Replicated Embedded Cluster installations.
 
-## Overview
-
-For Embedded Cluster installations, the default Replicated KOTS self-signed certificate automatically renews 30 days before the expiration date.
-
-If a custom TLS certificate is used instead, then no renewal is attempted, even if the certificate is expired. In this case, users can manually upload a new custom certificate from the KOTS Admin Console when the certificate expires.
-
 ## Update Custom TLS Certificates
+
+Users can provide custom TLS certificates with Embedded Cluster installations and can update TLS certificates through the Admin Console.
 
 :::important
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
