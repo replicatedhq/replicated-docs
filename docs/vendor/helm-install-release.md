@@ -10,13 +10,25 @@ This topic describes how to package a Helm chart and the Replicated SDK into a c
 
 To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies as a `.tgz` chart archive.
 
-The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended because it provides access to key Replicated features, such as support for collecting custom metrics on application instances. For more information, see [About the Replicated SDK](replicated-sdk-overview). 
+The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK provides access to key Replicated features, such as support for collecting custom metrics on application instances. For more information, see [About the Replicated SDK](replicated-sdk-overview). 
 
-## Chart Version Requirement
+## Requirements and Recommendations
+
+This section includes requirements and recommendations for Helm charts.
+
+### Chart Version Requirement
 
 The chart version in your Helm chart must comply with image tag format requirements. A valid tag can contain only lowercase and uppercase letters, digits, underscores, periods, and dashes.
 
 The chart version must also comply with the Semantic Versioning (SemVer) specification. When you run the `helm install` command without the `--version` flag, Helm retrieves the list of all available image tags for the chart from the registry and compares them using the SemVer comparison rules described in the SemVer specification. The version that is installed is the version with the largest tag value. For more information about the SemVer specification, see the [Semantic Versioning](https://semver.org) documentation.
+
+### Chart Naming
+
+For releases that will contain more than one Helm chart, Replicated recommends that you use unique names for each top-level Helm chart in the release. This aligns with Helm best practices and also avoids potential conflicts in filenames during installation that could cause the installation to fail. 
+
+### Helm Best Practices
+
+Replicated recommends that you review the [Best Practices](https://helm.sh/docs/chart_best_practices/) guide in the Helm documentation to ensure that your Helm chart or charts follows the required and recommended conventions.
 
 ## Package a Helm Chart {#release}
 
