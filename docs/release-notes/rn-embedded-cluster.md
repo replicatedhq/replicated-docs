@@ -10,6 +10,30 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 1.22.0
+
+Released on January 24, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.22.0+k8s-1.30</td>
+    <td id="center">1.22.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-22-0}
+* Updates the disaster recovery alpha feature so that rather than having to apply specific labels to all the resources you want backed up, you now have full control over how your application is backed up and restored. Specifically, you now provide a Velero Backup resource and a Restore resource in your application release. These resources are used to back up and restore your application, separate from the Embedded Cluster infrastructure. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+
 ## 1.21.0
 
 Released on January 22, 2025
