@@ -107,5 +107,5 @@ spec:
   releaseNotes: Release notes for the current release, as provided in the Vendor Portal.
   releaseSequence: The sequence number of the release associated with this deployment.
   replicatedAppEndpoint: https://replicated.app
-  versionLabel: Unstable-1457889-dirty
+  versionLabel: The version label for the release
 ```
