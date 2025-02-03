@@ -32,7 +32,7 @@ Released on January 24, 2025
 </table>
 
 ### New Features {#new-features-1-22-0}
-* Refreshes the disaster recovery alpha feature, making it much easier to use. Specifically, you should now provide a Velero Backup resource and a Restore resource in your application release. These will be used to backup and restore your application, separate from the Embedded Cluster infrastructure. Now, rather than having to apply specific labels to all the resources you want backed up, you have full control over how your application is backed up and restored.
+* Updates the disaster recovery alpha feature so that rather than having to apply specific labels to all the resources you want backed up, you now have full control over how your application is backed up and restored. Specifically, you now provide a Velero Backup resource and a Restore resource in your application release. These resources are used to back up and restore your application, separate from the Embedded Cluster infrastructure. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 
 ## 1.21.0
 
