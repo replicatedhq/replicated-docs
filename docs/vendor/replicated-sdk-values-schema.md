@@ -1,70 +1,53 @@
 # Helm global.replicated Values Schema
 
-This document describes the global.replicated values schema injected by the Replicated registry when using the Helm CLI installation method. It includes information on the structure and purpose of fields to help developers integrate seamlessly with the Replicated SDK.
+This document describes the values injected by the Replicated registry when using the Helm CLI installation method. It describes the structure and purpose of fields to help developers integrate seamlessly with the Replicated SDK.
 
 ## Overview
 
-The `global.replicated` values schema is a set of values that are injected by the Replicated registry when using the Helm CLI installation method. These values are used by the Replicated SDK to provide information about the replicated application and the environment in which it is running. These values are critical for licensing, release management, and enabling key features of the Replicated Vendor Portal.
+When a user installs a Helm application using the Helm CLI, the Replicated registry injects a set of customer-specific values into the `replicated` and `global.replicated` keys.
 
 For additional information about the Replicated SDK, see [Replicated SDK Overview](/vendor/replicated-sdk-overview).
 
 ## Values Schema Structure
 
-The `global.replicated` values schema is a set of values that are injected by the Replicated registry when using the Helm CLI installation method. The schema is a JSON object that contains the following fields:
+The `replicated` schema contains the following fields:
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `global.imageRegistry` | String | The URL of the image registry where the replicated-sdk images are stored. |
-| `image.registry` | String | The URL of the image registry where the replicated-sdk images are stored. |
-| `image.repository` | String | The name of the replicated/replicated-sdk image repository. |
-| `image.tag` | String | The tag of the replicated/replicated-sdk image. |
-| `image.pullPolicy` | String | The Kubernetes image pull policy for the replicated/replicated-sdk image. |
-| `license` | String | The yaml representation of the customer license. |
-| `licenseFields` | string | The license fields of the customer. |
-| `appName` | String | The name of the application, as specified in the Replicated Vendor Portal. |
-| `channelID` | String | The unique ID of the release channel. |
-| `channelName` | String | The name of the release channel (e.g., “Stable”, “Beta”). |
-| `channelSequence` | Integer | The sequence number of the channel, sed to track updates in channel. |
-| `releaseSequence` | Integer | The sequence number of the release associated with this deployment. |
-| `releaseCreatedAt` | String | The timestamp when the release was created. |
-| `releaseNotes` | String | Release notes for the current release, as provided in the Vendor Portal. |
-| `versionLabel` | String | The version label for the release, often displayed in UI dashboards. |
-| `parentChartURL` | String | The URL of the parent Helm chart if the application is nested in a chart hierarchy. |
-| `statusInformers` | map | Configuration for custom status informers. Used for application health and status insights. |
-| `replicatedAppEndpoint` | String | If it is not using the default Replicated App endpoint https://replicated.app, this field specifies the endpoint to use. |
-| `serviceAccountName` | String | The name of the Kubernetes service account used by the Replicated SDK. |
-| `clusterRole` | String | The name of the Kubernetes cluster role used by the Replicated SDK. |
-| `imagePullSecrets` | Array | An array of Kubernetes image pull secrets that are used to pull images from private registries. |
-| `nameOverride` | String | Overrides the name of the chart. |
-| `namespaceOverride` | String | Overrides the namespace of the chart. |
-| `containerSecurityContext.enabled` | Boolean | Enables the security context for the container. |
-| `containerSecurityContext.runAsNonRoot`| Boolean | Runs the container as a non-root user. |
-| `containerSecurityContext.readOnlyRootFilesystem` | Boolean | Mounts the container’s root filesystem as read-only. |
-| `containerSecurityContext.allowPrivilegeEscalation` | Boolean | Allows privilege escalation for the container. |
-| `containerSecurityContext.capabilities.drop` | Array | Define which capabilities for dropping. |
-| `podSecurityContext.enabled` | Boolean | Enables the security context for the pod. |
-| `podSecurityContext.runAsUser` | Integer | The user ID for the pod. |
-| `podSecurityContext.runAsGroup` | Integer | The group ID for the pod. |
-| `podSecurityContext.fsGroup` | Integer | The group ID for the pod’s filesystem. |
-| `podSecurityContext.supplementalGroups` | Array | The supplemental groups for the pod. |
-| `podSecurityContext.seccompProfile.type` | String | The type of seccomp profile. |
-| `service.type` | String | The replicated-sdk service type. |
-| `service.port` | Integer | The port for the replicated-sdk service. |
-| `privateCAConfigmap` | String | The name of the ConfigMap that contains the private CA certificate. |
-| `privateCASecret` | String | The name of the Secret that contains the private CA certificate. |
-| `extraEnv` | Array | Additional environment variables to inject into the container. |
-| `integration.licenseID` | String | The license ID of the customer. |
-| `integration.enabled` | Boolean | Enables the integration. |
-| `integration.mockData` | string | The mock data for the integration. |
-| `isAirgap` | Boolean | Indicates whether the replicated is installed in airgap environment. |
-| `replicatedID` | String | The unique ID of the replicated-sdk instance cluster ID. |
-| `appID` | String | The unique ID of the replicated app slug. |
-| `tolerations` | Array | The tolerations for the pod. |
-| `affinity` | Object | The affinity for the pod. |
+| `enabled` | Boolean | Whether the Replicated SDK is enabled |
+| `appName` | String | The name of the application |
+| `channelID` | String | The unique ID of the release channel |
+| `channelName` | String | The name of the release channel (e.g., "Stable", "Beta") |
+| `channelSequence` | Integer | The sequence number of the channel |
+| `integration.enabled` | Boolean | Whether integration features are enabled |
+| `license` | String | The YAML representation of the customer license |
+| `parentChartURL` | String | The URL of the parent Helm chart |
+| `releaseCreatedAt` | String | The timestamp when the release was created |
+| `releaseNotes` | String | Release notes for the current release |
+| `releaseSequence` | Integer | The sequence number of the release |
+| `replicatedAppEndpoint` | String | The Replicated app endpoint URL |
+| `versionLabel` | String | The version label for the release |
+
+The `global.replicated` values schema contains the following fields:
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `channelName` | String | The name of the release channel |
+| `customerEmail` | String | The email address of the customer |
+| `customerName` | String | The name of the customer |
+| `dockerconfigjson` | String | Base64 encoded docker config json for pulling images |
+| `licenseFields.expires_at.description` | String | Description of the license expiration |
+| `licenseFields.expires_at.signature` | Object | Signature data for the expiration field |
+| `licenseFields.expires_at.title` | String | Title of the expiration field |
+| `licenseFields.expires_at.value` | String | Value of the expiration field |
+| `licenseFields.expires_at.valueType` | String | Type of the expiration value |
+| `licenseFields.expires_at.signature.v1` | String | Signature data for the license |
+| `licenseID` | String | The unique identifier for the license |
+| `licenseType` | String | The type of license (e.g., "dev", "prod") |
 
 ## license Values Schema
 
-The `license` field in the `global.replicated` values schema is a string that contains the YAML representation of the customer license. The license schema is a yaml object that contains the following fields:
+The `license` field in the `global.replicated` values schema is a string that contains the YAML representation of the customer license:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -102,10 +85,4 @@ spec:
   licenseType: A string value that describes the type of the license
   replicatedProxyDomain: proxy.replicated.com
   signature: The base64-encoded license signature. This value will change when the license is updated.
-  parentChartURL: The URL of the parent Helm chart if the application is nested in a chart hierarchy.
-  releaseCreatedAt: The timestamp when the release was created. 
-  releaseNotes: Release notes for the current release, as provided in the Vendor Portal.
-  releaseSequence: The sequence number of the release associated with this deployment.
-  replicatedAppEndpoint: https://replicated.app
-  versionLabel: The version label for the release
 ```
