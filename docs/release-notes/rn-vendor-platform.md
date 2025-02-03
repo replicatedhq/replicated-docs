@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on January 31, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-01-31-2}
-* Updates the Helm instructions in the download portal to use the correct file name for `values.yaml` depending on whether or not there is one Helm chart or many in a release.
+* Updates the Helm instructions in the Download Portal to use the correct file name for `values.yaml` depending on if there is more than one Helm chart in the given release. For releases with multiple Helm charts, the values file for each Helm chart is named according to the name of the chart. This avoids file name conflicts for users when downloading and editing each values file.
 
 ## v2025.01.30-0
 
