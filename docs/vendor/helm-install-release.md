@@ -24,7 +24,7 @@ The chart version must also comply with the Semantic Versioning (SemVer) specifi
 
 ### Chart Naming
 
-For releases that will contain more than one Helm chart, Replicated recommends that you use unique names for each top-level Helm chart in the release. This aligns with Helm best practices and also avoids potential conflicts in filenames during installation that could cause the installation to fail. For more information, see [Air Gap Installation Fails for Release With Multiple Helm Charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshooting Helm Installations_.
+For releases that contain more than one Helm chart, Replicated recommends that you use unique names for each top-level Helm chart in the release. This aligns with Helm best practices and also avoids potential conflicts in filenames during installation that could cause the installation to fail. For more information, see [Installation Fails for Release With Multiple Helm Charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshooting Helm Installations_.
 
 ### Helm Best Practices
 
