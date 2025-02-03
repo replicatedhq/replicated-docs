@@ -1,7 +1,3 @@
-
-import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
-import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
-
 # Helm global.replicated Values Schema
 
 This document describes the global.replicated values schema injected by the Replicated registry when using the Helm CLI installation method. It includes information on the structure and purpose of fields to help developers integrate seamlessly with the Replicated SDK.
@@ -23,7 +19,7 @@ The `global.replicated` values schema is a set of values that are injected by th
 | `image.repository` | String | The name of the replicated/replicated-sdk image repository. |
 | `image.tag` | String | The tag of the replicated/replicated-sdk image. |
 | `image.pullPolicy` | String | The Kubernetes image pull policy for the replicated/replicated-sdk image. |
-| `license` | String | The license ID of customer. |
+| `license` | String | The yaml representation of the customer license. |
 | `licenseFields` | string | The license fields of the customer. |
 | `appName` | String | The name of the application, as specified in the Replicated Vendor Portal. |
 | `channelID` | String | The unique ID of the release channel. |
@@ -66,38 +62,50 @@ The `global.replicated` values schema is a set of values that are injected by th
 | `tolerations` | Array | The tolerations for the pod. |
 | `affinity` | Object | The affinity for the pod. |
 
+## license Values Schema
 
-## Using Replicated Registry Values
-With the Replicated proxy registry, each customer’s license information is injected into the application’s environment and grant proxy access to images in an external private registry.
-To use the Replicated registry values, you must first configure the Replicated proxy registry in your Kubernetes cluster. For more information, see [Replicated Proxy Registry](/vendor/replicated-proxy-registry).
-
-Here is an example of how to use the `global.replicated` values schema in your application:
+The `license` field in the `global.replicated` values schema is a string that contains the YAML representation of the customer license. The license schema is a yaml object that contains the following fields:
 
 ```yaml
-dockerconfigjson: '{{ .Values.global.replicated.dockerconfigjson }}'
-images:
-  myapp:
-    # Add image URL in the values file
-    apiImageRepository: proxy.replicated.com/proxy/my-app/quay.io/my-org/api
-    apiImageTag: v1.0.1
-```
-In your deployment manifest, you can reference the `global.replicated` values schema to access the license information and other values injected by the Replicated registry.
-```yaml
-# /templates/deployment.yaml
-
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: kots.io/v1beta1
+kind: License
 metadata:
- name: example
+  name: name of the license
 spec:
-  template:
-    spec:
-      containers:
-        - name: api
-          # Access the apiImageRepository field from the values file
-          image: "{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}"
-          {{ if .Values.global.replicated.dockerconfigjson }}
-          imagePullSecrets:
-            - name: replicated-pull-secret
-          {{ end }}
+  appSlug: The unique application slug that the customer is associated with. This value never changes.
+  channelID: The ID of the channel where the customer is assigned.
+  channelName: The name of the channel where the customer is assigned.
+  channels:
+    - channelID: The ID of the channel where the customer is assigned.
+      channelName: The name of the channel where the customer is assigned.
+      channelSlug: The unique channel slug.
+      endpoint: The default Replicated App endpoint https://replicated.app
+      replicatedProxyDomain: The domain of Replicated Proxy Registry.
+  customerEmail: The customer email address.
+  customerName: The name of the customer.
+  endpoint: This is the endpoint that the KOTS Admin Console uses to synchronize the licenses and download updates.
+  entitlements:
+    expires_at:
+        description: License Expiration
+        signature: {}
+        title: Expiration
+        value: ""
+        valueType: String
+  isAirgapSupported: If a license supports air gap installations with the Replicated installers (KOTS, kURL, Embedded Cluster), then this field is set to true.
+  isDisasterRecoverySupported: If a license supports the Embedded Cluster disaster recovery feature, this field is set to true.
+  isEmbeddedClusterDownloadEnabled: If a license supports installation with Replicated Embedded Cluster, this field is set to true or missing.
+  isKotsInstallEnabled: If a license supports installation with Replicated KOTS, this field is set to true.
+  isSnapshotSupported: If a license supports the snapshots backup and restore feature, this field is set to true.
+  isSupportBundleUploadSupported: If a license supports uploading a support bundle in the Admin Console, this field is set to true.
+  licenseID: Unique ID for the installed license. This value never changes.
+  licenseSequence: This value represents the license sequence that the client currently has.
+  licenseType: A string value that describes the type of the license
+  replicatedProxyDomain: proxy.replicated.com
+  signature: The base64-encoded license signature. This value will change when the license is updated.
+  parentChartURL: The URL of the parent Helm chart if the application is nested in a chart hierarchy.
+  releaseCreatedAt: The timestamp when the release was created. 
+  releaseNotes: Release notes for the current release, as provided in the Vendor Portal.
+  releaseSequence: The sequence number of the release associated with this deployment.
+  replicatedAppEndpoint: https://replicated.app
+  versionLabel: Unstable-1457889-dirty
 ```
