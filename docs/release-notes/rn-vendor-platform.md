@@ -17,6 +17,13 @@ Released on January 31, 2025
 ### Bug Fixes {#bug-fixes-v2025-01-31-2}
 * Updates the Helm instructions in the Download Portal to use the correct file name for `values.yaml` depending on if there is more than one Helm chart in the given release. For releases with multiple Helm charts, the values file for each Helm chart is named according to the name of the chart. This avoids file name conflicts for users when downloading and editing each values file.
 
+## v2025.01.31-1
+
+Released on January 31, 2025
+
+### New Features {#new-features-v2025-01-31-1}
+* Adds a new `instance_kurl_install_started_at` column to the customer instance exports. `instance_kurl_install_started_at` is the date and time when the install for the given kURL instance was reported to start.
+
 ## v2025.01.30-0
 
 Released on January 30, 2025
