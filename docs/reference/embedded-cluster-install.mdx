@@ -60,6 +60,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
         <p>**Limitations:**</p>
         <ul>
             <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
+            <li>For multi-node installations, the same data directory that is supplied at installation is used for all nodes joined to the cluster. You cannot choose a different data directory when joining nodes with the Embedded Cluster `join` command. For more information about joining nodes, see [Add Nodes to a Cluster](/enterprise/embedded-manage-nodes#add-nodes) in _Managing Multi-Node Clusters with Embedded Cluster_.</li>
             <li>If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</li>
             <li>Replicated does not support using symlinks for the Embedded Cluster data directory. Use the `--data-dir` flag instead of symlinking `/var/lib/embedded-cluster`.</li>
         </ul>
