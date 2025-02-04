@@ -8,6 +8,12 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.1.0
+
+Released on February 5, 2025
+
+This release adds the ability to pass custom labels to the Replicated SDK Helm Chart via the `commonLabels` and `podLabels` Helm values.
+
 ## 1.0.0
 
 Released on December 23, 2024
