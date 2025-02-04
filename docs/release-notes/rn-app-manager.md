@@ -25,7 +25,7 @@ Released on February 4, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Improvements {#improvements-1-124-2}
-* Makes the Embedded Cluster upgrade process more resilient to intermittent errors.
+* Improvements for Embedded Cluster upgrades.
 
 ## 1.124.1
 
