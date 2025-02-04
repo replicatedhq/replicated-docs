@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.03-4
+
+Released on February 3, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-03-4}
+* Fixes a bug that could cause private application images hosted in Docker Hub to be shown using anonymous commands in the [Download Portal](https://docs.replicated.com/vendor/helm-install-airgap).
+
 ## v2025.01.31-2
 
 Released on January 31, 2025
