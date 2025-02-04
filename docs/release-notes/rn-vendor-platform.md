@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.04-2
+
+Released on February 4, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-04-2}
+* Fixed an issue present in the Compatibility Matrix Usage History page which caused items to appear outside the range of the selected date time.
+
 ## v2025.02.03-4
 
 Released on February 3, 2025
