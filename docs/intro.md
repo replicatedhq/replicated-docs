@@ -13,7 +13,7 @@ pagination_next: null
     </li>
     <li>
         <h3>Announcing: Replicated SDK is GA</h3>
-        <p>New features include setting `affinity` for the SDK, passing custom labels to the SDK Helm chart, and returning detailed application status information with the `/app/status` endpoint.</p>
+        <p>Additionally, new features include setting `affinity` for the SDK, passing custom labels to the SDK Helm chart, and returning detailed application status information with the `/app/status` endpoint.</p>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Learn more</a>
