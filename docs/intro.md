@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Set Initial Values for New Customers (Beta)</h3>
-        <p>Populate the built-in fields in the Vendor Portal **Create Customer** form with a set of initial values.</p>
+        <h3>Announcing: Replicated SDK is GA</h3>
+        <p>New features include setting `affinity` for the SDK, passing custom labels to the SDK Helm chart, and returning detailed application status information with the `/app/status` endpoint.</p>
     </li>
     <li>
-      <a href="/vendor/licenses-adding-custom-fields#set-initial-values-for-built-in-license-fields-beta">Learn more</a>
+      <a href="/vendor/replicated-sdk-overview">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Automate Installation with Embedded Cluster</h3>
-        <p>Pass the `--license-file`, `--admin-console-password`, and `--config-values` flags with the Embedded Cluster install command to perform headless installs from the command line.</p>
+        <h3>Distribute the NVIDIA Operator with Embedded Cluster</h3>
+        <p>Configure an Embedded Cluster Helm extension to include the NVIDIA GPU Operator with your release.</p>
     </li>
     <li>
-      <a href="/enterprise/installing-embedded-automation">Learn more</a>
+      <a href="/vendor/embedded-using#nvidia-gpu-operator">Learn more</a>
     </li>
   </ul>
 </section>
