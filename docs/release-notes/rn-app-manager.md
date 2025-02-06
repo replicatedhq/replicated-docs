@@ -25,7 +25,7 @@ Released on February 5, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Improvements {#improvements-1-124-3}
-* Updates images to resolve CVE-2024-45337 with critical severity; and CVE-2024-45338 with high severity.
+* Updates images to resolve CVE-2024-45337 with critical severity and CVE-2024-45338 with high severity.
 
 ## 1.124.2
 
