@@ -10,6 +10,36 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.0.0
+
+Released on February 7, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.0.0+k8s-1.30</td>
+    <td id="center">2.0.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-0-0}
+*
+
+### Improvements {#improvements-2-0-0}
+*
+
+### Bug Fixes {#bug-fixes-2-0-0}
+*
+
 ## 1.22.0
 
 Released on January 24, 2025
