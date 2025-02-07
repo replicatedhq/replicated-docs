@@ -32,14 +32,11 @@ Released on February 7, 2025
 </table>
 
 ### New Features {#new-features-2-0-0}
-*
+* The 2.0 release of Embedded Cluster introduces architecture changes that improve the reliability of the upgrade process, particularly the upgrade of Helm extensions like the Admin Console, OpenEBS, and vendor-supplied Helm extensions. As part of these improvements, upgrades from Embedded Cluster versions earlier than 1.8 are not supported. Online instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to an Embedded Cluster version from 1.8.0 to 1.22.0 before upgrading to 2.0.0. Air gap instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to version 1.8.0 before upgrading to later versions, including 2.0.0. If you have customers running these earlier versions, Replicated recommends using a [required release](https://docs.replicated.com/vendor/releases-about#properties) to ensure your customers upgrade to a supported version first.
 
 ### Improvements {#improvements-2-0-0}
 * If you don't provide a new Admin Console password to `admin-console reset-password`, you'll be prompted for one. This prevents the password from ending up in your terminal history.
-* The CLI will now detect if there is no terminal and suppress repeated log lines when there is a spinner, making output more readable.
-
-### Bug Fixes {#bug-fixes-2-0-0}
-*
+* If there is no TTY (like in CI), the CLI suppresses repeated log lines when there is a spinner, making output more readable. 
 
 ## 1.22.0
 
