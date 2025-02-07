@@ -35,7 +35,7 @@ Released on February 7, 2025
 *
 
 ### Improvements {#improvements-2-0-0}
-*
+* If you don't provide a new Admin Console password to `admin-console reset-password`, you'll be prompted for one. This prevents the password from ending up in your terminal history.
 
 ### Bug Fixes {#bug-fixes-2-0-0}
 *
