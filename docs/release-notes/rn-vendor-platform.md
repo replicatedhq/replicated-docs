@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.07-1
+
+Released on February 7, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-07-1}
+* Fixes a bug that caused the behavior of check boxes for instance events filters to be reversed.
+
 ## v2025.02.04-2
 
 Released on February 4, 2025
