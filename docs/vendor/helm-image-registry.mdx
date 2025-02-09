@@ -50,6 +50,7 @@ To enable the proxy registry:
    ```yaml
    # values.yaml
    ...
+   dockerconfigjson: '{{ .Values.global.replicated.dockerconfigjson }}'
    images:
      myapp:
        # Add image URL in the values file
