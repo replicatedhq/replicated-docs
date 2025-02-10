@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.06-2
+
+Released on February 6, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-06-2}
+* Fixes issue when viewing a release that would cause the **Help** sidebar to be unopenable after it was closed.
+
 ## v2025.02.04-2
 
 Released on February 4, 2025
