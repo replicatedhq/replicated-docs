@@ -10,6 +10,89 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.07-1
+
+Released on February 7, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-07-1}
+* Fixes a bug that caused the behavior of check boxes for instance events filters to be reversed.
+
+## v2025.02.06-2
+
+Released on February 6, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-06-2}
+* Fixes a bug when viewing a release that caused the **Help** sidebar to be unopenable after it was closed.
+
+## v2025.02.04-2
+
+Released on February 4, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-04-2}
+* Fixes an issue on the Compatibility Matrix Usage History page which caused items to appear outside the range of the selected date time.
+
+## v2025.02.03-4
+
+Released on February 3, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-03-4}
+* Fixes a bug that could cause private application images hosted in Docker Hub to be shown using anonymous commands in the [Download Portal](https://docs.replicated.com/vendor/helm-install-airgap).
+
+## v2025.01.31-2
+
+Released on January 31, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-31-2}
+* Updates the Helm instructions in the Download Portal to use the correct file name for `values.yaml` depending on if there is more than one Helm chart in the given release. For releases with multiple Helm charts, the values file for each Helm chart is named according to the name of the chart. This avoids file name conflicts for users when downloading and editing each values file.
+
+## v2025.01.31-1
+
+Released on January 31, 2025
+
+### New Features {#new-features-v2025-01-31-1}
+* Adds a new `instance_kurl_install_started_at` column to the customer instance exports. `instance_kurl_install_started_at` is the date and time when the install for the given kURL instance was reported to start.
+
+## v2025.01.30-0
+
+Released on January 30, 2025
+
+### New Features {#new-features-v2025-01-30-0}
+* Adds a link to download Embedded Cluster installation assets in the Download Portal.
+* Adds a button to log out of the Download Portal.
+
+### Bug Fixes {#bug-fixes-v2025-01-30-0}
+* Fixes a bug that would prevent demoting a channel release when it was the only release on the channel.
+* Fixes a bug that could have marked the wrong release as active if the semantic version for a demoted release was reused by multiple releases on the given channel.
+
+## v2025.01.29-4
+
+Released on January 29, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-29-4}
+* Removes a duplicated section from the Download Portal.
+* Fixes a bug where app name would be missing from the app bundle header in the Download Portal.
+
+## v2025.01.29-1
+
+Released on January 29, 2025
+
+### Bug Fixes {#bug-fixes-v2025-01-29-1}
+* Fixes bug that would result in the "Next" button being hidden from the support form.
+
+## v2025.01.28-1
+
+Released on January 28, 2025
+
+### New Features {#new-features-v2025-01-28-1}
+* Adds `(demoted)` text label to any demoted channel releases in the Embedded Cluster install instructions accessed from the Vendor Portal customer manage page.
+
+## v2025.01.27-0
+
+Released on January 27, 2025
+
+### New Features {#new-features-v2025-01-27-0}
+* Adds support for demoting and un-demoting releases from the **Release History** page in the Vendor Portal.
+
 ## v2025.01.23-1
 
 Released on January 23, 2025

@@ -1,34 +1,41 @@
-# Configuring Backups
+# Configuring Snapshots
 
-The snapshots feature is a backup and restore option that lets you define a manifest for creating backups and restoring previous backups. The backups include all of the annotated volumes in the archive. For more information, see [About Backup and Restore](snapshots-overview/).
+This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 
-:::note
-If you are using multiple applications, repeat this procedure for each application. Every application must have its own Backup resource to be included in a full backup.
-:::
+For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
 
-To configure backups:
+## Configure Snapshots
 
-1. Enable backups:
+Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. After configuring the Backup resource, add annotations for each volume that you want to be included in backups.
 
-    1. Add a Backup resource (`kind: Backup`) using `apiVersion: velero.io/v1` to the application manifest files. The following minimal YAML example enables backups in the application. For more information about Backup resource options, see [Velero Backup Custom Resource](/reference/custom-resource-backup).
+To configure snapshots for your application:
 
-        **Example:**
+1. In a new release containing your application files, add a Velero Backup resource (`kind: Backup` and `apiVersion: velero.io/v1`):
 
-        ```yaml
-        apiVersion: velero.io/v1
-        kind: Backup
-        metadata:
-          name: backup
-        spec: {}
+    ```yaml
+    apiVersion: velero.io/v1
+    kind: Backup
+    metadata:
+      name: backup
+    spec: {}
+    ```
 
-        ```
-    1. (Optional) Configure the resources annotation in the manifest so that it can be dynamically enabled based on a license field or a config option. For more information, see [Including Optional and Conditional Resources](packaging-include-resources/).
+1. Configure the Backup resource to specify the resources that will be included in backups.
 
-1. Configure backups for each volume that requires a backup. By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the backup.
+    For more information about the Velero Backup resource, including limitations, the list of supported fields for snapshots, and an example, see [Velero Backup Resource for Snapshots](/reference/custom-resource-backup).
 
-    The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
+1. (Optional) Configure backup and restore hooks. For more information, see [Configuring Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
-    For example, in the following Deployment manifest file, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
+1. For each volume that requires a backup, add the `backup.velero.io/backup-volumes` annotation. The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
+
+   <details>
+    <summary>Why do I need to use the backup annotation?</summary>
+    <p>By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the backup.</p>
+   </details>
+
+   **Example:**
+
+   In the following Deployment manifest file, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
 
     ```yaml
     apiVersion: apps/v1
@@ -81,9 +88,7 @@ To configure backups:
       uri: Secret To Not Include
 
     ```
-    
-1. (Optional) If you are distributing your application with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about distributing with kURL, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
-## Next Step
+1. If you distribute multiple applications with Replicated, repeat these steps for each application. Each application must have its own Backup resource to be included in a full backup with snapshots.
 
-Next, you can configure backup and restore hooks. See [Configuring Backup and Restore Hooks](snapshots-hooks).
+1. (kURL Only) If your application supports installation with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero in the kURL cluster. For more information, see [Creating a kURL Installer](packaging-embedded-kubernetes).

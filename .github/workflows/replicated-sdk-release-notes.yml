@@ -14,7 +14,7 @@ jobs:
   generate-release-notes-pr:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Generate Release Notes
       id: release-notes
@@ -42,7 +42,7 @@ jobs:
         rm -rf /tmp/release-notes.txt
 
     - name: Create Pull Request # creates a PR if there are differences
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v7
       id: cpr
       with:
         token: ${{ secrets.REPLICATED_GH_PAT }}
@@ -59,7 +59,7 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
     - name: Slack Notification
-      uses: slackapi/slack-github-action@v1.16.0
+      uses: slackapi/slack-github-action@v2.0.0
       with: 
         payload: |
           {

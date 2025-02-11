@@ -70,11 +70,9 @@ To use the OpenEBS add-on without object storage, your kURL installer must meet 
 
 * When neither the MinIO nor the Rook add-on are included in the kURL installer, the Velero add-on cannot be included. This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
 
-  When the Velero add-on is not included, your users must install and configure Velero on the cluster after installation in order to use Replicated snapshots for backup and restore. For more information, see [About Backup and Restore](/enterprise/snapshots-understanding).
+  When the Velero add-on is not included, your users must install and configure Velero on the cluster after installation in order to use Replicated snapshots for backup and restore. See [About Backup and Restore with Snapshots](/vendor/snapshots-overview).
 
   For a storage configuration for single node clusters that supports the use of the Velero add-on, see [OpenEBS with MinIO (Single or Multi-Node)](#openebs-minio) below.
-
-  
 
 #### Example
 

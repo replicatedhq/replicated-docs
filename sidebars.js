@@ -220,6 +220,7 @@ const sidebars = {
         'vendor/testing-pricing',
         'vendor/testing-supported-clusters',
         'vendor/testing-cluster-addons',
+        'vendor/compatibility-matrix-usage',
         'vendor/testing-how-to',
         'vendor/testing-ingress',
       ],
@@ -244,6 +245,7 @@ const sidebars = {
         },
         'enterprise/embedded-manage-nodes',
         'enterprise/updating-embedded',
+        'enterprise/embedded-tls-certs',
         'vendor/embedded-disaster-recovery',
       ],
     },
@@ -332,16 +334,6 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Backup and Restore with Snapshots',
-              items: [
-                'vendor/snapshots-overview',
-                'vendor/snapshots-configuring-backups',
-                'vendor/snapshots-hooks',
-                'reference/custom-resource-backup',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Distributing Kubernetes Operators with KOTS',
               items: [
                 'vendor/operator-packaging-about',
@@ -412,10 +404,19 @@ const sidebars = {
           type: 'category',
           label: 'Performing Backup and Restore with Snapshots',
           items: [
-            'enterprise/snapshots-understanding',
+            'vendor/snapshots-overview',
             {
               type: 'category',
-              label: 'Configuring Backup Storage',
+              label: 'Enabling and Configuring Snapshots',
+              items: [
+                'vendor/snapshots-configuring-backups',
+                'reference/custom-resource-backup',
+                'vendor/snapshots-hooks',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Configuring Backup Storage for Snaphots',
               items: [
                 'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
@@ -439,7 +440,14 @@ const sidebars = {
             'enterprise/auth-configuring-rbac',
           ],
         }, 
-        'enterprise/monitoring-applications',
+        {
+          type: 'category',
+          label: 'Monitoring Applications with Prometheus',
+          items: [
+            'enterprise/monitoring-applications',
+            'enterprise/monitoring-access-dashboards',
+          ],
+        },
         'enterprise/status-viewing-details',
         'enterprise/delete-admin-console',
         {
@@ -498,10 +506,11 @@ const sidebars = {
     label: 'Helm Installations with Replicated',
     items: [
       'vendor/helm-install-overview',
+      'vendor/helm-install-values-schema',
       'vendor/install-with-helm',
       'vendor/helm-install-airgap',
       'vendor/using-third-party-registry-proxy',
-      'vendor/helm-install-values-schema',
+      'vendor/helm-install-troubleshooting',
     ],
   },
   {

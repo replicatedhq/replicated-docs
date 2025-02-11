@@ -13,7 +13,7 @@ jobs:
     outputs:
       releaseNotes: ${{ steps.release-notes.outputs.release-notes }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Generate Release Notes
         id: release-notes
@@ -32,7 +32,7 @@ jobs:
     needs: generate-release-notes
     if: ${{ needs.generate-release-notes.outputs.releaseNotes != '' || needs.generate-release-notes.outputs.releaseNotes != null }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update Release Notes
         env:
           PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
@@ -45,7 +45,7 @@ jobs:
           rm -rf /tmp/release-notes.txt
 
       - name: Create Pull Request # creates a PR if there are differences
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v7
         id: cpr
         with:
           token: ${{ secrets.REPLICATED_GH_PAT }}
@@ -62,7 +62,7 @@ jobs:
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
       - name: Slack Notification
-        uses: slackapi/slack-github-action@v1.16.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           payload: |
             {

@@ -26,7 +26,7 @@ Configuring an NFS server as a snapshots storage destination has the following r
 
 Complete the following items before you perform this task:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
+* Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
 ## Install Velero and Configure NFS Storage in Online Environments
@@ -121,4 +121,4 @@ To install Velero and configure NFS storage for existing clusters:
 
 ## Additional Resources
 
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)

@@ -64,15 +64,17 @@ To install with Helm in an air gap environment:
 
 1. Run the command to install the `preflight` plugin. This allows you to run preflight checks before installing to ensure that the installation environment meets the requirements for the application.
 
-1. For **Determine install method**, select one of the options depending on your ability to access the internet and the cluster from your workstation.
+1. For **Download a copy of the values.yaml file** and **Edit the values.yaml file**, run the `helm show values` command provided to download the values file for the Helm chart. Then, edit the values file as needed to customize the configuration of the given chart.
 
-1. Run the `helm show values` command to download the default `values.yaml`. Then, edit the values as required. 
+    If you are installing a release that contains multiple Helm charts, repeat these steps to download and edit each values file.
 
     :::note
-    Replicated recommends that vendors provide detailed documentation that describes the values that customers need to configure. 
+    For installations with mutliple charts where two or more of the top-level charts in the release use the same name, ensure that each values file has a unique name to avoid installation error. For more information, see [Installation Fails for Release With Multiple Helm Charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshooting Helm Installations_.
     :::
 
-1. Use the commands provided and the edited `values.yaml` to run preflight checks and install the release with Helm.
+1. For **Determine install method**, select one of the options depending on your ability to access the internet and the cluster from your workstation.
+
+1. Use the commands provided and the values file or files that you edited to run preflight checks and then install the release.
 
 ## Perform Updates
 

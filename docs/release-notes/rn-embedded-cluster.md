@@ -10,6 +10,100 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.0.0
+
+Released on February 7, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.0.0+k8s-1.30</td>
+    <td id="center">2.0.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-0-0}
+* The 2.0 release of Embedded Cluster introduces architecture changes that improve the reliability of the upgrade process, particularly the upgrade of Helm extensions like the Admin Console, OpenEBS, and vendor-supplied Helm extensions. As part of these improvements, upgrades from Embedded Cluster versions earlier than 1.8 are not supported. Online instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to an Embedded Cluster version from 1.8.0 to 1.22.0 before upgrading to 2.0.0. Air gap instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to version 1.8.0 before upgrading to later versions, including 2.0.0. If you have customers running these earlier versions, Replicated recommends using a [required release](https://docs.replicated.com/vendor/releases-about#properties) to ensure your customers upgrade to a supported version first.
+
+### Improvements {#improvements-2-0-0}
+* If you don't provide a new Admin Console password to `admin-console reset-password`, you'll be prompted for one. This prevents the password from ending up in your terminal history.
+* If there is no TTY (like in CI), the CLI suppresses repeated log lines when there is a spinner, making output more readable. 
+
+## 1.22.0
+
+Released on January 24, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.22.0+k8s-1.30</td>
+    <td id="center">1.22.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-22-0}
+* Updates the disaster recovery alpha feature so that rather than having to apply specific labels to all the resources you want backed up, you now have full control over how your application is backed up and restored. Specifically, you now provide a Velero Backup resource and a Restore resource in your application release. These resources are used to back up and restore your application, separate from the Embedded Cluster infrastructure. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+
+## 1.21.0
+
+Released on January 22, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.21.0+k8s-1.30</td>
+    <td id="center">1.21.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.6</td>
+    <td id="center">1.29.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.123.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-21-0}
+* The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
+
+### Improvements {#improvements-1-21-0}
+* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380, and 10250.
+* Adds a preflight check to ensure that communication can occur between the Pod and Service CIDRs that Kubernetes will use. When this preflight fails, it's often because of a firewall configuration that blocks communication between the Pod and Service CIDRs.
+* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). Many machines have IP forwarding disabled by default. As of 1.19.0, Embedded Cluster uses a sysctl configuration file to enable IP forwarding, so this preflight should only fail if Embedded Cluster couldn't enable IP forwarding.
+* Adds a preflight check to ensure that a nameserver is configured in `/etc/resolv.conf`.
+* If a network interface is not specified with the `--network-interface` flag, Embedded Cluster will use improved logic to determine which interface to use.
+* The license file is now stored in the data directory and is included in host support bundles.
+* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured. 
+* Host support bundles now include  the output of `firewall-cmd --list-all`.
+* Potentially sensitive CLI flag values are no longer included in metrics reporting.
+* Usage and error messages have been improved for understandability. 
+* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
+
+### Bug Fixes {#bug-fixes-1-21-0}
+* Support bundles now check that `modprobe`, `mount`, and `umount` exist in PATH rather than at hardcoded locations.
+* Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
+
 ## 1.19.0
 
 Released on November 14, 2024
