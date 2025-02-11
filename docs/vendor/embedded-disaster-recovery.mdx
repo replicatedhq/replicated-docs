@@ -124,9 +124,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
                     repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
                     tag: 1.24-alpine
       ``` 
-      :::note
-      For more information about and additional examples of how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, see [Task 1: Rewrite Image Names](helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart v2 Custom Resource_.
-      :::
+      For more information about how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, including additional examples, see [Task 1: Rewrite Image Names](helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart v2 Custom Resource_.
 
 1. (Optional) Use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
 
