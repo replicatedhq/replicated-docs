@@ -1,5 +1,27 @@
 When a user installs a Helm chart that includes the Replicated SDK as a dependency, a set of default SDK values are included in the `replicated` key of the parent chart's values file.
 
+For example:
+
+```yaml
+# values.yaml 
+
+replicated:
+  enabled: true
+  appName: gitea
+  channelID: 2jKkegBMseH5w...
+  channelName: Beta
+  channelSequence: 33
+  integration:
+    enabled: true
+  license: {}
+  parentChartURL: oci://registry.replicated.com/gitea/beta/gitea-authoritative
+  releaseCreatedAt: "2024-11-25T20:38:22Z"
+  releaseNotes: 'CLI release'
+  releaseSequence: 88
+  replicatedAppEndpoint: https://replicated.app
+  versionLabel: Beta-1234
+```
+
 These `replicated` values can be referenced by the application or set during installation as needed. For example, if users need to add labels or annotations to everything that runs in their cluster, then they can pass the labels or annotations to the relevant value in the SDK subchart.
 
 For the default Replicated SDK Helm chart values file, see [values.yaml.tmpl](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl) in the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk) repository in GitHub.
