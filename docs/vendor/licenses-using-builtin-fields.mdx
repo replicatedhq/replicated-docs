@@ -10,6 +10,47 @@ The license associated with each customer record in the Replicated Vendor Portal
 
 When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-overview) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function.
 
+The following shows an example of a customer license:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: License
+metadata:
+  name: customertest
+spec:
+  appSlug: gitea
+  channelID: 2iy68JBTkvUqamgD...
+  channelName: Beta
+  channels:
+  - channelID: 2iy68JBTkvUqamgD...
+    channelName: Beta
+    channelSlug: beta
+    endpoint: https://replicated.app
+    isDefault: true
+    isSemverRequired: true
+    replicatedProxyDomain: proxy.replicated.com
+  customerEmail: example@replicated.com
+  customerName: Customer Test
+  endpoint: https://replicated.app
+  entitlements:
+    expires_at:
+      description: License Expiration
+      signature: {}
+      title: Expiration
+      value: ""
+      valueType: String
+  isAirgapSupported: true
+  isEmbeddedClusterDownloadEnabled: true
+  isKotsInstallEnabled: true
+  isSemverRequired: true
+  isSupportBundleUploadSupported: true
+  licenseID: 2sY6ZC2J9sO2...
+  licenseSequence: 4
+  licenseType: prod
+  replicatedProxyDomain: proxy.replicated.com
+  signature: eyJsaWNlbnNlRGF...
+```
+
 ## License Field Names
 
 This section lists the built-in fields that are included in customer licenses for applications distributed with Replicated.
