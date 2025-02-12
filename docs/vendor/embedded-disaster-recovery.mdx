@@ -95,7 +95,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
        - '*'
      ```
 
-1. For any image names that you include in your Backup and Restore resources, rewrite the image name using the Replicated KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions. This ensures that the image name is rendered correctly during deployment, allowing the image to be pulled from the user's local image registry (such as in air gap installations) or through the Replicated proxy registry. If any images referenced in Backup and Restore resources cannot be pulled, the application will fail to deploy after a restore.
+1. For any image names that you include in your Backup and Restore resources, rewrite the image name using the Replicated KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions. This ensures that the image name is rendered correctly during deployment, allowing the image to be pulled from the user's local image registry (such as in air gap installations) or through the Replicated proxy registry.
 
       **Example:**
 
