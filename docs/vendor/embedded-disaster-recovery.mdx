@@ -95,9 +95,55 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
        - '*'
      ```
 
-1. (Optional) You can use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
+1. For any image names that you include in your Backup and Restore resources, rewrite the image name using the Replicated KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions. This ensures that the image name is rendered correctly during deployment, allowing the image to be pulled from the user's local image registry (such as in air gap installations) or through the Replicated proxy registry.
 
-     **Example**:
+      **Example:**
+
+      ```yaml
+      apiVersion: velero.io/v1
+      kind: Restore
+      metadata:
+        name: restore
+      spec:
+        hooks:
+          resources:
+          - name: restore-hook-1
+            includedNamespaces:
+            - kotsadm
+            labelSelector:
+              matchLabels:
+                app: example
+            postHooks:
+            - init:
+                initContainers:
+                - name: restore-hook-init1
+                  image: 
+                    # Use HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace
+                    # to template the image name
+                    registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+                    repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+                    tag: 1.24-alpine
+      ``` 
+      For more information about how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, including additional examples, see [Task 1: Rewrite Image Names](helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart v2 Custom Resource_.
+
+1. If you support air gap installations, add any images that are referenced in your Backup and Restore resources to the `additionalImages` field of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release so they can be used during the backup and restore process in environments with limited or no outbound internet access. For more information, see [additionalImages](/reference/custom-resource-application#additionalimages) in _Application_.
+
+     **Example:**
+
+     ```yaml
+     apiVersion: kots.io/v1beta1
+     kind: Application
+     metadata:
+       name: my-app
+     spec:
+       additionalImages:
+         - elasticsearch:7.6.0
+         - quay.io/orgname/private-image:v1.2.3
+    ```
+
+1. (Optional) Use Velero functionality like [backup](https://velero.io/docs/main/backup-hooks/) and [restore](https://velero.io/docs/main/restore-hooks/) hooks to customize the backup and restore process as needed.
+
+     **Example:**
 
      For example, a Postgres database might be backed up using pg_dump to extract the database into a file as part of a backup hook. It can then be restored using the file in a restore hook:
 
