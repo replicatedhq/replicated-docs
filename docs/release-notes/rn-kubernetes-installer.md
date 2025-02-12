@@ -10,6 +10,17 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.12-0
+
+Released on February 12, 2025
+
+### New Features {#new-features-v2025-02-12-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.31.5, 1.30.9, and 1.29.13.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.25.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) versions 0.26.3 and 0.26.4.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 4.1.2 and 4.2.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.80.0-69.2.0.
+
 ## v2024.12.31-0
 
 Released on December 31, 2024
