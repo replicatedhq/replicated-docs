@@ -1,7 +1,3 @@
-import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
-import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
-import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
-
 # SLSA Provenance Validation Process for the Replicated SDK
 
 This topic describes the process to perform provenance validation on the Replicated SDK.
