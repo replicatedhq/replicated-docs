@@ -18,6 +18,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.4
+
+Released on February 14, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-124-4}
+* Improves error visibility by displaying the actual error message in the UI instead of a generic one when an upgrade fails to start.
+
+### Bug Fixes {#bug-fixes-1-124-4}
+* Fixes an issue when installing with a provided license, that can cause the installer not to respect the custom domain in the license and instead make a request to https://replicated.app.
+
 ## 1.124.3
 
 Released on February 5, 2025
