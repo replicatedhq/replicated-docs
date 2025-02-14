@@ -15,10 +15,13 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on February 14, 2025
 
 ### New Features {#new-features-v2025-02-14-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.32.2, 1.31.6, 1.30.10, and 1.29.14.
 * Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.7.2.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.15.2.
 * Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.17.1.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.32.2 1.31.6 1.30.10 1.29.14.
+
+### Bug Fixes {#bug-fixes-v2025-02-14-0}
+* Fixes [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.25 to install the correct version on RHEL 8, CentOS 8, and Oracle Linux 8.
 
 ## v2025.02.12-0
 
