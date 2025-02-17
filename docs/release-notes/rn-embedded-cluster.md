@@ -32,9 +32,11 @@ Released on February 14, 2025
 </table>
 
 ### Improvements {#improvements-2-1-0}
-* The following kernel parameters will be configured automatically: `net.ipv4.conf.all.forwarding = 1`, `net.ipv4.conf.default.forwarding = 1`, `net.bridge.bridge-nf-call-iptables = 1`, `net.ipv4.conf.default.rp_filter = 0`, and `net.ipv4.conf.all.rp_filter = 0`. Preflight checks were also added to ensure these values are set correctly.
-* The following kernel modules will be configured automatically: `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack`. Preflight checks were also added to ensure these modules are configured correctly.
-* Adds a preflight check to ensure a node's IP address isn't within the Pod and Service CIDR ranges that will be used by Kubernetes. If a conflict exists, a different CIDR block can be specified with `--cidr` or a different network interface can be specified with `--network-interface`.
+* The following kernel parameters are configured automatically: `net.ipv4.conf.all.forwarding = 1`, `net.ipv4.conf.default.forwarding = 1`, `net.bridge.bridge-nf-call-iptables = 1`, `net.ipv4.conf.default.rp_filter = 0`, and `net.ipv4.conf.all.rp_filter = 0`.
+* The following kernel modules are configured automatically: `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack`.
+* Adds a preflight check to ensure the values were set correctly for the `net.ipv4.conf.all.forwarding = 1`, `net.ipv4.conf.default.forwarding = 1`, `net.bridge.bridge-nf-call-iptables = 1`, `net.ipv4.conf.default.rp_filter = 0`, and `net.ipv4.conf.all.rp_filter = 0` kernel parameters.
+* Adds a preflight check to ensure the `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack` kernel modules were configured correctly.
+* Adds a preflight check to ensure a node's IP address is not within the Pod and Service CIDR ranges that will be used by Kubernetes. If a conflict exists, a different CIDR block can be specified with `--cidr` or a different network interface can be specified with `--network-interface`.
 * Adds a preflight check to ensure that SELinux is not running in enforcing mode.
 
 ### Bug Fixes {#bug-fixes-2-1-0}
