@@ -31,11 +31,9 @@ Released on February 18, 2025
   </tr>
 </table>
 
-### Improvements {#improvements-2-1-1}
-* Waits for the Local Artifact Mirror systemd service health and reports back errors before proceeding with the installation.
-
 ### Bug Fixes {#bug-fixes-2-1-1}
-* Fixes kernelModules host preflights for environments where kernel modules are built in.
+* Installing now waits for the Local Artifact Mirror systemd service to be healthy before proceeding, and any errors are reported. Previously, the install appeared successful even if LAM failed to start.
+* Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
 
 ## 2.1.0
 
