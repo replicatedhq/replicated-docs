@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on February 19, 2025
 
 ### Improvements {#improvements-1-1-1}
-* This release addresses CVE-2025-0665, CVE-2025-0725, and CVE-2024-12797
+* Addresses CVE-2025-0665, CVE-2025-0725, and CVE-2024-12797
 
 ## 1.1.0
 
