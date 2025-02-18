@@ -40,39 +40,30 @@ This repository has been made public so that vendors and the open-source communi
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-When you submit a PR in GitHub, Netlify builds a preview automatically. However, you can preview your changes locally. To do this, you must install `yarn` and run a build to create a Docusaurus preview in your local browser.
+When you submit a PR in GitHub, Netlify builds a preview automatically. However, you can preview your changes locally using Node.js and npm. This repository uses npm as its package manager.
 
-### Install yarn
+### Prerequisites
 
-The Yarn documentation recommends installing Yarn using the npm package manager, which comes bundled with Node.js when you install it on your system.
-
-After you install npm, you can run the following both to install and upgrade Yarn:
-
-```
-npm install --global yarn
-```
-
-If you use Homebrew, you can run this command to install Yarn:
-
-```
-$ brew install yarn
-```
+- Node.js version 18 or higher
+- npm (comes bundled with Node.js)
 
 ### Create a Local Development Server and WYSIWYG Preview
 
-1. Install the docusaurus package using Yarn:
+1. Install dependencies using npm:
 
-  ```
-  yarn add docusaurus
-  ```
-
-1. Run the following command to start a local development server and open up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as what-you-see-is-what-you-get or WYSIWYG), which can be more helpful than viewing content in a VS Code preview.
-
-  ```
-  $ yarn start
+  ```bash
+  npm install
   ```
 
-  If `yarn start` refuses to start, try reinstalling the `yarn` CLI. You do not need to uninstall `yarn` before reinstalling it. However, if you get build errors from your content, such as broken links, the Preview itself fails and error messages appear in the terminal that can help you troubleshoot the problems in the content.
+2. Run the following command to start a local development server and open up a browser window:
+
+  ```bash
+  npm start
+  ```
+
+Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (what-you-see-is-what-you-get or WYSIWYG).
+
+If you encounter any build errors, they will appear in the terminal and often indicate issues like broken links or formatting problems in the content.
 
 ## Folder Structure and TOC
 
