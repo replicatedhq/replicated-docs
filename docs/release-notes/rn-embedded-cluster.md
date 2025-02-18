@@ -10,6 +10,33 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.1.1
+
+Released on February 18, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.1+k8s-1.30</td>
+    <td id="center">2.1.1+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-1-1}
+* Waits for the Local Artifact Mirror systemd service health and reports back errors before proceeding with the installation.
+
+### Bug Fixes {#bug-fixes-2-1-1}
+* Fixes kernelModules host preflights for environments where kernel modules are built in.
+
 ## 2.1.0
 
 Released on February 14, 2025
