@@ -11,72 +11,17 @@ This topic provides information about troubleshooting Replicated Embedded Cluste
 
 <EmbeddedClusterSupportBundle/>
 
-## About the Custom Resources Used By Embedded Cluster
+## View Installation Logs
 
-The table below describes the custom resources used inside Embedded Cluster. It includes information about the owner of the resource (Replicated or k0s), the namespace where the resource is installed, and a description of how the resource is used. You can use this information to help you troubleshoot Embedded Cluster installations .
+You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot installation errors.
 
-<table>
-  <tr>
-    <th>Resource Name</th>
-    <th>Owner</th>
-    <th>Namespace</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>ClusterConfig</td>
-    <td>k0s</td>
-    <td>kube-system</td>
-    <td>
-      <p>The `ClusterConfig` object contains the ingested k0s config from `/etc/k0s/k0s.yaml`</p>
-      <p>This ingestion happens at k0s daemon startup on controller nodes.</p>
-      <p>It can be dynamically updated, and the k0s config reconciliation process will apply any changes to the cluster except from spec.api and spec.storage</p> 
-      <p>The embedded cluster operator reconciles helm chart updates against the `ClusterConfig` object to initiate helm chart upgrades via the k0s helm reconciler.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>Chart</td>
-    <td>k0s</td>
-    <td>kube-system</td>
-    <td>
-      <p>The `Chart` object contains the spec, values, and tracking information for helm charts installed by the k0s helm reconciler; they can be created, deleted and updated. Deleting a Chart object will uninstall the related helm chart from the cluster, however if the helm chart configuration is still present in the `ClusterConfig` the k0s reconciliation process will recreate and reinstall it.</p>
-      <p>`Chart` Objects are managed by the k0s Helm reconciler. The API / schema for these resources is not documented.</p>
-      <p>`Chart` Objects are monitored by the Embedded Cluster Operator in order to track and surface helm installation processes and errors.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>Plan</td>
-    <td>k0s</td>
-    <td>Cluster-scoped</td>
-    <td>
-      <p>`Plan` objects are used to configure the k0s autopilot operator, the autopilot operator controls cluster version upgrades through distributing and installing new k0s binaries and air gap bundles.</p>
-      <p>The `Plan` resource is created by the Embedded Cluster Operator using details from the Installation object</p>
-    </td>
-  </tr>
-  <tr>
-    <td>Installation</td>
-    <td>Replicated</td>
-    <td>Cluster-scoped</td>
-    <td>
-      <p>The `Installation` object is used by the Embedded Cluster Operator to both initiate and track cluster and helm chart upgrades. they are created by KOTS, and are marked as Obsolete when superseded by a newer `Installation` object</p>
-      <p>The `Installation` object can contain errors surfaced from the Plan and Chart resources.</p>
-      <p>For a list of possible `Installation` statuses, see the [`installation_types.go`](https://github.com/replicatedhq/embedded-cluster-operator/blob/e4fbb42919ad3b58cdc563dca77471cf76099393/api/v1beta1/installation_types.go#L24) file in the `embedded-cluster-operator` GitHub repository.</p>
-    </td>
-  </tr>
-</table>
+* Logs for Embedded Cluster are located at `/var/log/embedded-cluster`.
 
-## View Logs
+* Embedded Cluster is based on the open source k0s distribution. You can use the journalctl command line tool to access logs for systemd services, including k0s.For example:
 
-You can view logs for both k0s and Embedded Cluster to help troubleshoot issues.
-
-### k0s Logs
-
-```
-journalctl -u k0scontroller
-```
-
-### Embedded Cluster Logs
-
-`/var/lib/embedded-cluster/logs`
+    ```
+    journalctl -u k0scontroller
+    ```
 
 ## Troubleshoot Errors
 
