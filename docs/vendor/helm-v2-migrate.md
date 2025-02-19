@@ -87,31 +87,54 @@ To migrate applications that were previously packaged as standard Kubernetes man
 
 1. Create a new release containing the Kubernetes manifests for your application.
 
-1. For each application manifest in the release, add the `kots.io/keep` annotation. This ensures that KOTS does not delete these existing resources from the cluster when deploying a new release using the HelmChart v2 method.
+1. For each of the application manifests in the release, add the `kots.io/keep` annotation.
+
+     This ensures that KOTS will not delete these resources from the cluster when deploying a new release that uses the HelmChart v2 method.
 
 1. Save the release.
 
 1. Create another new release:
 
-     1. Remove all the standard Kubernetes manifests and adds the new Helm chart(s) for the application instead.
+     1. In the release, add your new application Helm chart or charts.
+     
+     1. Remove the Kubernetes manifests that are replaced by the Helm chart(s).
 
-     1. In the Embedded Cluster Config for the new release, add the `--take-ownership` flag.
+     1. In the Embedded Cluster Config, add the `--take-ownership` flag to the `helmUpgradeFlags` field, as shown below:
 
-     1. (Recommended) In the KOTS Application custom resource, set `minKotsVersion: 1.122.0` to ensure that the `--take-ownership` flag is supported.
+         ```yaml
+         # HelmChart v1 beta2
+         apiVersion: kots.io/v1beta2
+         kind: HelmChart
+         metadata:
+           name: samplechart
+         spec:
+            helmUpgradeFlags:
+              - --take-ownership
+         ```   
+
+         When the `--take-ownership` flag is enabled, Helm automatically takes ownership of existing resources in the cluster during upgrade.  
+
+     1. (Recommended) In the KOTS Application custom resource, set `minKotsVersion: 1.122.0`. The Helm `--take-ownership` flag is not supported on versions of KOTS earlier than 1.122.0.
+
+     1. Save the release.
 
 1. Test the upgrade flow:
 
-    1. Promote the first release to an internal channel used for testing. Replicated recommends that you mark the release as required because customers will need to upgrade to this release first before they can upgrade to the second release in order to migrate to HelmChart v2.
+    1. Promote the first release to an internal-only channel used for testing.
+    
+        :::note
+        Replicated recommends that you mark the release as required because customers must upgrade to this release first before they can upgrade to the release that migrates to HelmChart v2.
+        :::
 
-    1. Install the release in a development environment.
+    1. In a development environment, install the release.
 
     1. Promote the second release to the same channel.
 
-    1. In your development environment, upgrade to the second release from the Admin Console to migrate to HelmChart v2. Confirm that none of the existing resources in the cluster were deleted during upgrade.
+    1. In your development environment, upgrade to the second release to migrate the installation to HelmChart v2. Confirm that none of the existing resources in the cluster were deleted during upgrade.
 
-1. When you are done testing, promote the first release containing the Kubernetes manifests to one or more customer-facing channels.  Replicated recommends that you mark the release as required because customers will need to upgrade to this release first before they can upgrade to the second release in order to migrate to HelmChart v2.
+1. When you are ready, promote the first release containing your application manifests to one or more customer-facing channels.
 
-1. Promote the second release containing your Helm chart(s) to the same channel(s).
+1. Promote the second release containing your application Helm chart to the same channel or channels.
 
 1. Instruct customers to migrate by first upgrading to the release packaged with standard manifests, then upgrading to the release packaged with Helm second.
 
