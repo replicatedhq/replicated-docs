@@ -47,7 +47,7 @@ When you submit a PR in GitHub, Netlify builds a preview automatically. However,
 - Node.js version 18 or higher
 - npm (comes bundled with Node.js)
 
-### Create a Local Development Server and WYSIWYG Preview
+### Start the local dev server with `npm start`
 
 1. Install dependencies using npm:
 
@@ -55,15 +55,37 @@ When you submit a PR in GitHub, Netlify builds a preview automatically. However,
   npm install
   ```
 
-2. Run the following command to start a local development server and open up a browser window:
+2. Start a local development server in a browser window:
 
   ```bash
   npm start
   ```
 
-Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (what-you-see-is-what-you-get or WYSIWYG).
+Most changes are reflected live without having to restart the server (changes to the sidebar file typically require restarting the dev server). This preview shows the formatting and styles as they would render on the live site.
 
 If you encounter any build errors, they will appear in the terminal and often indicate issues like broken links or formatting problems in the content.
+
+## Build and test locally with `npm run build` and `npm run serve`
+
+Before pushing changes to the remote repository, build and serve the site locally to check for errors, including broken links.
+
+1. Install dependencies using npm:
+
+  ```bash
+  npm install
+  ```
+1. Build the static site files:
+   
+   ```bash
+   npm run build
+   ```
+   Any broken links and anchor links are listed in the output.
+
+1. Serve the `build` directory locally to test:
+
+   ```bash
+   npm run serve
+   ```
 
 ## Folder Structure and TOC
 
