@@ -1,0 +1,56 @@
+import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
+import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+
+# Troubleshooting Embedded Cluster
+
+This topic provides information about troubleshooting Replicated Embedded Cluster.
+
+## Troubleshoot with Support Bundles
+
+<SupportBundleIntro/>
+
+<EmbeddedClusterSupportBundle/>
+
+## View Installation Logs
+
+You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot installation errors.
+
+* Logs for Embedded Cluster are located at `/var/log/embedded-cluster`.
+
+* Embedded Cluster is based on the open source k0s distribution. You can use the journalctl command line tool to access logs for systemd services, including k0s.For example:
+
+    ```
+    journalctl -u k0scontroller
+    ```
+
+## Troubleshoot Errors
+
+### Installation failure when NVIDIA GPU Operator is included as a Helm extension
+
+#### Symptom
+
+A release that includes that includes the NVIDIA GPU Operator as a Helm extensions fails to install.
+
+#### Cause 
+
+If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
+
+#### Solution
+
+Remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster.
+
+For more information, see [NVIDIA GPU Operator](/vendor/embedded-using#nvidia-gpu-operator) in _Using Embedded Cluster_.
+
+### Calico networking issues 
+
+#### Symptom
+
+Possible symptoms include:
+
+Pod stuck in CrashLoopBackOff state with failed health checks
+
+Pod log contains i/o timeout
+
+#### Cause 
+
+#### Solution
