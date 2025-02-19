@@ -32,8 +32,8 @@ Released on February 19, 2025
 </table>
 
 ### Improvements {#improvements-2-1-2}
-* Preflight checks now accept synchronized system clocks even if NTP is inactive, accommodating systems where the clock is managed by alternative protocols (e.g., PTP).
-* When enabled, Firewalld is now automatically configured at install time to allow required network traffic in the cluster.
+* The preflight check that ensures the system clock is synchronized no longer requires NTP to be active. This accommodates systems where the clock is managed by alternative protocols (e.g., PTP).
+* If firewalld is enabled, it is now automatically configured at install time to allow required network traffic in the cluster.
 
 ### Bug Fixes {#bug-fixes-2-1-1}
 * Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
