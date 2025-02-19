@@ -10,6 +10,34 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.1.2
+
+Released on February 19, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.2+k8s-1.30</td>
+    <td id="center">2.1.2+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-1-2}
+* The preflight check that ensures the system clock is synchronized no longer requires NTP to be active. This accommodates systems where the clock is managed by alternative protocols (e.g., PTP).
+* If firewalld is enabled, it is now automatically configured at install time to allow required network traffic in the cluster.
+
+### Bug Fixes {#bug-fixes-2-1-1}
+* Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
+
 ## 2.1.1
 
 Released on February 18, 2025
