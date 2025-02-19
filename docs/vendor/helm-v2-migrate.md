@@ -1,57 +1,85 @@
 # Migrating Existing Installations to HelmChart v2
 
-This topic provides information about how to migrate existing installations to the Replicated KOTS HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application.
+This topic describes how to migrate existing Replicated KOTS installations to the KOTS HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and frequently-asked questions related to migrating to HelmChart v2.
 
-It includes steps on how to migrate the following types of installations to use HelmChart v2:
-* HelmChart `kots.io/v1beta1` with `useHelmInstall: true`
-* HelmChart `kots.io/v1beta1` with `useHelmInstall: false`
-* KOTS installations of releases previously packaged as standard Kubernetes manifests
+For more information about how KOTS deploys Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
 
 ## Migrate to HelmChart v2
 
-### Migrate From HelmChart v1 and `useHelmInstall: true`
+There are different migrations paths depending on which of the following methods were used to install the application previously:
+* HelmChart `kots.io/v1beta1` with `useHelmInstall: true`
+* HelmChart `kots.io/v1beta1` with `useHelmInstall: false`
+* KOTS installations of releases packaged as standard Kubernetes manifests
 
-To migrate existing installation from HelmChart `kots.io/v1beta1` and `useHelmInstall: true` to HelmChart v2:
+### Requirement
 
-1. HelmChart `kots.io/v1beta2` is available for installations that use KOTS v1.99.0 or later.
+The HelmChart v2 custom resource is supported for installations that use KOTS v1.99.0 or later. If any of your customers are running a version of KOTS earlier than v1.99.0, see [Support Customers on KOTS Versions Earlier Than v1.99.0](#support-both-v1-v2) below for more information about how to support both HelmChart v1 and HelmChart v2 installations from the same release.
 
-1. In a new release, update the API version of each HelmChart custom resource to `kots.io/v1beta2`.
+### Migrate From HelmChart v1 with `useHelmInstall: true`
 
-1. Configure the HelmChart custom resource to rewrite images, inject pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
+Your customers can follow the regular upgrade flow in the KOTS Admin Console to update their instance to the new version using HelmChart v2.
 
-1. Promote the release to a channel that your team uses for internal development. Install the release in a development environment to test that you can upgrade to the new release successfully.
+To migrate existing installations from HelmChart v1 with `useHelmInstall: true` to HelmChart v2:
+
+1. In a new release, for each HelmChart custom resource in the release, update the `apiVersion` to `kots.io/v1beta2`:
+
+     ```yaml
+     # Set apiVersion to kots.io/v1beta2
+     apiVersion: kots.io/v1beta2
+     kind: HelmChart
+     metadata:
+       name: samplechart
+     spec:
+
+     ```
+
+1. Configure the HelmChart custom resource to rewrite images, inject image pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
+
+1. Promote the release to channel that your team uses for testing.
+
+1. Access a development environment where there is an instance of your application that was deployed with KOTS HelmChart v1 with `useHelmInstall: true`. In the development environment, log in to the Admin Console and confirm that you can upgrade to the new HelmChart v2 release.
+
+1. When you are ready, promote the release to one or more of your customer-facing channels.
+
+### Migrate From HelmChart v1 with `useHelmInstall: false`
+
+With HelmChart v1 and `useHelmInstall: false`, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. With HelmChart v2, KOTS does a Helm install or upgrade of the chart directly.
+
+When migrating to HelmChart v2 from HelmChart v1 and `useHelmInstall: false`, you can use the `kots.io/keep` annotation to ensure that KOTS does not delete any existing resources from the cluster. Additionally, the `--take-ownership` flag will be used to allow Helm to take ownership of existing resources.
+
+To migrate existing installations from HelmChart v1 and `useHelmInstall: false` to HelmChart v2:
+
+1. Create a new release containing your application files:
+
+     1. Add the `kots.io/keep` annotation to any resources that were previously deployed with `kubectl apply`. This includes any resources packaged as standard Kubernetes manifests or in Helm `templates`. The `kots.io/keep` annotation prevents KOTS from uninstalling these resources when deploying the release with HelmChart v2.
+
+     1. In the Embedded Cluster Config, add the `--take-ownership` flag.
+
+     1. (Recommended) In the KOTS Application custom resource, set `minKotsVersion: 1.122.0` to ensure that the `--take-ownership` flag is supported.
+
+     1. For each HelmChart custom resource in the release, update the `apiVersion` to `kots.io/v1beta2`:
+
+         ```yaml
+         # Set apiVersion to kots.io/v1beta2
+         apiVersion: kots.io/v1beta2
+         kind: HelmChart
+         metadata:
+           name: samplechart
+         spec:
+
+         ```
+
+     1. Configure the HelmChart custom resource to rewrite images, inject pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using). 
+
+1. Promote the release to channel that your team uses for testing.
+
+1. Install the release in a development environment to test that you can upgrade to the new release successfully.
 
 1. After testing, promote the release to one or more of your customer-facing channels.
 
     Your customers can follow the regular upgrade flow in the Admin Console to update their instance to the new version using HelmChart `v1beta2`.
 
-### Migrate From HelmChart v1 and `useHelmInstall: false`
-
-With HelmChart `kots.io/v1beta1` and `useHelmInstall: false`, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. With HelmChart `kots.io/v1beta2`, KOTS does a Helm install or upgrade of the chart directly.
-
-To ensure that KOTS does not delete any existing resources when migrating to HelmChart `v1beta2`, you will add the `kots.io/annotation` to each resource that was previously deployed with `kubectl apply`. Additionally, to allow Helm to take ownership of existing resources, ensure that the `--take-ownership` flag is passed to the Helm upgrade command by updating the Embedded Cluster Config.
-
-To migrate existing installation from HelmChart `v1beta1` and `useHelmInstall: false` to HelmChart `v1beta2`:
-
-1. Add the `kots.io/keep` annotation to the resources in your release that were previously deployed with `kubectl apply`. This ensures that KOTS does not delete these resources when deploying the release with Helm.
-
-     1. For each Helm chart in your release, add the `kots.io/keep` annotation to any resources in the `templates` directory.
-
-     1. Add the `kots.io/keep` annotation to any resources in your release that are not part of a Helm chart, including any resources packaged as standard Kubernetes manifests.
-
-1. Update the version of each HelmChart custom resource to `kots.io/v1beta2`.
-
-1. Configure the HelmChart custom resource to rewrite images, inject pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using). 
-
-1. Configure the HelmChart custom resource to rewrite images, inject pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
-
-1. Promote the release to a channel that your team uses for internal development. Install the release in a development environment to test that you can upgrade to the new release successfully.
-
-1. After testing, promote the release to one or more of your customer-facing channels.
-
-    Your customers can follow the regular upgrade flow in the Admin Console to update their instance to the new version using HelmChart `v1beta2`.
-
-### Migrate KOTS Installations Previously Distributed as Standard Manifests
+### Migrate Installations Previously Distributed as Standard Manifests
 
 For applications distributed through KOTS that were packaged as standard Kubernetes manifests and are now packaged as one or more Helm charts, migrating to HelmChart v2 requires adding the `kots.io/keep` annotation to any previously-deployed resources. This ensures that KOTS does not delete these existing resources from the cluster when deploying a new release using the KOTS HelmChart v2 method.
 
@@ -87,9 +115,9 @@ To migrate applications that were previously packaged as standard Kubernetes man
 
 1. Instruct customers to migrate by first upgrading to the release packaged with standard manifests, then upgrading to the release packaged with Helm second.
 
-## Support Customers on KOTS Versions Earlier Than 1.99.0
+## Support Customers on KOTS Versions Earlier Than v1.99.0 {#support-both-v1-v2}
 
-The HelmChart v2 installation method requires KOTS 1.99.0 or later. If you have existing customers that have not yet upgraded to KOTS 1.99.0 or later, Replicated recommends that you support both the HelmChart v2 and v1 installation methods from the same release until all installations are running KOTS 1.99.0 or later.
+The HelmChart v2 installation method requires KOTS v1.99.0 or later. If you have existing customers that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you support both the HelmChart v2 and v1 installation methods from the same release until all installations are running KOTS v1.99.0 or later.
 
 To support both installation methods from the same release, include both versions of the HelmChart custom resource for each Helm chart in your application releases:
 * HelmChart `kots.io/v1beta2`
