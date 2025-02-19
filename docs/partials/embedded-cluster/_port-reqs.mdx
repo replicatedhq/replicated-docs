@@ -41,3 +41,33 @@ If port 30000 is occupied, you can select a different port for the Admin Console
 In addition to the ports above, air gap installations also require that port 50000/TCP is open and available for the Local Artifact Mirror (LAM).
 
 If port 50000 is occupied, you can select a different port for the LAM during installation. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+
+#### Firewalld
+
+When Firewalld is enabled, Embedded Cluster will modify the config to allow traffic over the pod and service networks and open the required ports on the host.
+
+The following rule is added to Firewalld:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <interface name="cali+"/>
+  <interface name="tunl+"/>
+  <interface name="vxlan-v6.calico"/>
+  <interface name="vxlan.calico"/>
+  <interface name="wg-v6.cali"/>
+  <interface name="wireguard.cali"/>
+  <source address="[pod-network-cidr]"/>
+  <source address="[service-network-cidr]"/>
+</zone>
+```
+
+The following ports are opened in the default zone:
+
+```
+  <port port="6443" protocol="tcp"/>
+  <port port="10250" protocol="tcp"/>
+  <port port="9443" protocol="tcp"/>
+  <port port="2380" protocol="tcp"/>
+  <port port="4789" protocol="udp"/>
+```
