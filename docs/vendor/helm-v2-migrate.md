@@ -2,9 +2,7 @@
 
 This topic describes how to migrate existing Replicated KOTS installations to the KOTS HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
 
-:::note
 For additional support migrating existing installations to HelmChart v2, reach out to your Replicated account representative.
-:::
 
 ## Migrate to HelmChart v2
 
@@ -165,3 +163,7 @@ With HelmChart v1 and `useHelmInstall: false`, KOTS renders the Helm templates a
 Because the HelmChart v1 with `useHelmInstall: false` method does not deploy resources with Helm, it is necessary to use the `kots.io/keep` annotation and the Helm `--take-ownership` flag when migrating to the HelmChart v2 installation method. These ensure that Helm can take ownership of existing resources and that the resources are not uninstalled during upgrade.
 
 For more information about how KOTS deploys Helm charts, including information about the deprecated HelmChart v1 installation methods, see [About Distributing Helm Charts with KOTS](helm-native-about).
+
+### Where can I find additional help migrating existing installations to HelmChart v2?
+
+For additional support migrating existing installations to HelmChart v2, Replicated recommends that you post your question in the [Replicated Community](https://community.replicated.com/) site. You can also reach out to your Replicated account representative.
