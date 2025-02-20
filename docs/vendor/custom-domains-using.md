@@ -34,7 +34,7 @@ To add and configure a custom domain:
 
     Your changes can take up to 24 hours to propagate.
 
-    :::important
+    :::note
     If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
 
     ```dns
