@@ -1,0 +1,121 @@
+import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
+
+# Embedded Cluster Overview
+
+This topic provides an introduction to Replicated Embedded Cluster, including a description of the built-in extensions installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
+
+:::note
+If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
+:::
+
+## Overview
+
+<EmbeddedCluster/>
+
+{/* [V2 ARCHITECTURE CONTENT] ## Architecture and Built-In Extensions
+
+This section describes the Embedded Cluster architecture, including the built-in extensions deployed by Embedded Cluster.
+
+### Single-Node Architecture
+
+The following diagram shows the architecture of a single-node Embedded Cluster installation for an application named Gitea:
+
+![Embedded Cluster single-node architecture](/images/embedded-architecture-single-node.png)
+
+[View a larger version of this image](/images/embedded-architecture-single-node.png)
+
+As shown in the diagram above, the user downloads the Embedded Cluster installation assets as a `.tgz` in their installation environment. These installation assets include the Embedded Cluster binary, the user's license file, and (for air gap installations) an air gap bundle containing the images needed to install and run the release in an environment with limited or no outbound internet access. 
+
+When the user runs the Embedded Cluster install command, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
+
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions and any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config. Each built-in extension is installed in its own namespace. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config. */}
+
+## Embedded Cluster Built-In Extensions
+
+Embedded Cluster deploys built-in extensions to provide capabilities such as application management and storage. These extensions are deployed by default and do not require configuration.
+
+The built-in extensions include:
+
+* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
+
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+{/* [V2 ARCHITECTURE CONTENT] Finally, after the built-in extensions and any Helm extensions are installed, The Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+
+### Multi-Node Architecture
+
+The following diagram shows the architecture of a multi-node Embedded Cluster installation for an application named `Gitea`:
+
+:::note
+High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
+:::
+
+![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node.png)
+
+[View a larger version of this image](/images/embedded-architecture-multi-node.png)
+
+As shown in the diagram above, in multi-node installations, an instance of the Embedded Cluster manager systemd service runs on each node and communicates with the KOTS instance running on the primary node through a websocket. This allows Embedded Cluster and KOTS to manage installations where workloads are running on multiple nodes in a cluster.
+
+Additionally, for installations that include disaster recovery with Velero, the Velero Node Agent also runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores. */}
+
+## Comparison to kURL
+
+Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster offers several improvements such as:
+* Significantly faster installation, updates, and node joins
+* A redesigned Admin Console UI for managing the cluster
+* Improved support for multi-node clusters
+* One-click updates of both the application and the cluster at the same time
+
+Additionally, Embedded Cluster automatically deploys several built-in extensions like KOTS and OpenEBS to provide capabilities such as application management and storage. This represents an improvement over kURL because vendors distributing their application with Embedded Cluster no longer need choose and define various add-ons in the installer spec. For additional functionality that is not included in the built-in extensions, such as an ingress controller, vendors can provide their own [`extensions`](/reference/embedded-config#extensions) that will be deployed alongside the application.
+
+## Requirements
+
+### System Requirements
+
+<Requirements/>
+
+### Port Requirements
+
+<EmbeddedClusterPortRequirements/>
+
+## Limitations
+
+Embedded Cluster has the following limitations:
+
+* **Reach out about migrating from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. Reach out to Alex Parker at alexp@replicated.com for more information.
+
+* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+* **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/reference/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
+
+* **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
+
+* **Automatic updates not supported**: Configuring automatic updates from the Admin Console so that new versions are automatically deployed is not supported for Embedded Cluster installations. For more information, see [Configuring Automatic Updates](/enterprise/updating-apps).
+
+* **Embedded Cluster installation assets not available through the Download Portal**: The assets required to install with Embedded Cluster cannot be shared with users through the Download Portal. Users can follow the Embedded Cluster installation instructions to download and extract the installation assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+
+* **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
+
+* **Support bundles over 100MB in the Admin Console**: Support bundles are stored in rqlite. Bundles over 100MB could cause rqlite to crash, causing errors in the installation. You can still generate a support bundle from the command line. For more information, see [Generating Support Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
+
+* **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
+
+* **Custom domains not supported**: Embedded Cluster does not support the use of custom domains, even if custom domains are configured. We intend to add support for custom domains. For more information about custom domains, see [About Custom Domains](/vendor/custom-domains). 
+
+* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Installing with Helm](/vendor/install-with-helm).
+
+* **Downgrading Kubernetes not supported**: Embedded Cluster does not support downgrading Kubernetes. The admin console will not prevent end-users from attempting to downgrade Kubernetes if a more recent version of your application specifies a previous Embedded Cluster version. You must ensure that you do not promote new versions with previous Embedded Cluster versions.
+
+* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
+
+* **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that require higher levels of privilege. If your application installs a policy enforcement engine such as Gatekeeper or Kyverno, ensure that its policies are not enforced in the namespaces used by Embedded Cluster.
+
+* **Installing on STIG- and CIS-hardened OS images is not supported**: Embedded Cluster isn't tested on these images, and issues have arisen when trying to install on them.

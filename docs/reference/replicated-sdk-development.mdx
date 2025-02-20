@@ -1,0 +1,38 @@
+import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
+
+# Developing Against the SDK API
+
+This topic describes how to develop against the SDK API to test changes locally. It includes information about installing the SDK in integration mode and port forwarding the SDK API service to your local machine. For more information about the SDK API, see [Replicated SDK API](/reference/replicated-sdk-apis).
+
+## Install the SDK in Integration Mode
+
+<IntegrationMode/>
+
+## Port Forwarding the SDK API Service {#port-forward}    
+
+After the Replicated SDK is installed and initialized in a cluster, the Replicated SDK API is exposed at `replicated:3000`. You can access the SDK API for testing by forwarding port 3000 to your local machine.
+
+To port forward the SDK API service to your local machine:
+
+1. Run the following command to port forward to the SDK API service:
+
+    ```bash
+    kubectl port-forward service/replicated 3000
+    ```
+    ```
+    Forwarding from 127.0.0.1:3000 -> 3000
+    Forwarding from [::1]:3000 -> 3000
+    ```
+
+1. With the port forward running, test the SDK API endpoints as desired. For example:
+
+   ```bash
+   curl localhost:3000/api/v1/license/fields/expires_at
+   curl localhost:3000/api/v1/license/fields/{field}
+   ```
+   
+   For more information, see [Replicated SDK API](/reference/replicated-sdk-apis).
+
+   :::note
+   When the SDK is installed in integration mode, requests to the `license` endpoints use your actual development license data, while requests to the `app` endpoints use the default mock data.
+   :::
