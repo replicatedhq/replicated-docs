@@ -162,4 +162,6 @@ The `--take-ownership` flag is required for the following types of migrations:
 
 With HelmChart v1 and `useHelmInstall: false`, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. This differs from both the HelmChart v1 with `useHelmInstall: true` and HelmChart v2 methods, where KOTS installs the application using Helm.
 
+Because the HelmChart v1 with `useHelmInstall: false` method does not deploy resources with Helm, it is necessary to use the `kots.io/keep` annotation and the Helm `--take-ownership` flag when migrating to the HelmChart v2 installation method. These ensure that Helm can take ownership of existing resources and that the resources are not uninstalled during upgrade.
+
 For more information about how KOTS deploys Helm charts, including information about the deprecated HelmChart v1 installation methods, see [About Distributing Helm Charts with KOTS](helm-native-about).
