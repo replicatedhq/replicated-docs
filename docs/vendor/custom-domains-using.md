@@ -35,7 +35,7 @@ To add and configure a custom domain:
     Your changes can take up to 24 hours to propagate.
 
     :::note
-    If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
+    If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
 
     ```dns
     @ IN CAA 0 issue "letsencrypt.org"
@@ -46,7 +46,7 @@ To add and configure a custom domain:
     @ IN CAA 0 issue "google.com"
     ```
 
-    Failing to include any of these CAs may prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
+    Failing to include any of these CAs might prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
 
     ```dns
     @ IN CAA 0 iodef "mailto:your-security-team@example.com"
