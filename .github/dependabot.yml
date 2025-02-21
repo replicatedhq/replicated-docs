@@ -5,9 +5,18 @@ updates:
     directory: "/" # Root directory
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "npm"
+      - "type::security"
 
   # Keep Dependabot itself up to date
   - package-ecosystem: "github-actions"
     directory: "/" # Root directory (or specify if actions are elsewhere)
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "type::security"
