@@ -40,6 +40,8 @@ The built-in extensions include:
 
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
 
+* **Local Artifact Mirror (LAM):** In air gap installations, the LAM caches 
+
 * **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
@@ -48,7 +50,7 @@ Finally, after the built-in extensions and any Helm extensions are installed, th
 
 ### Multi-Node Architecture
 
-The following diagram shows the architecture of a multi-node Embedded Cluster installation for an application named `Gitea`:
+The following diagram shows the architecture of a multi-node Embedded Cluster installation:
 
 :::note
 High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
@@ -58,9 +60,9 @@ High availability (HA) for multi-node installations with Embedded Cluster is Alp
 
 [View a larger version of this image](/images/embedded-architecture-multi-node.png)
 
-As shown in the diagram above, in multi-node installations, an instance of the Embedded Cluster manager systemd service runs on each node and communicates with the KOTS instance running on the primary node through a websocket. This allows Embedded Cluster and KOTS to manage installations where workloads are running on multiple nodes in a cluster.
+As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, OpenEBS, and KOTS are all installed on the primary node only. 
 
-Additionally, for installations that include disaster recovery with Velero, the Velero Node Agent also runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
+Additionally, for multi-node installations that include disaster recovery with Velero, the Velero Node Agent also runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 
 ## Comparison to kURL
 
