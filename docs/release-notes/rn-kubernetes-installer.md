@@ -22,7 +22,7 @@ Released on February 26, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-02-26-0}
 * Increased grafana pod limits to 200m cpu and 128Mi memory.
-* Fixed Prometheus reporting for Rook 1.13+.
+* Fixed Prometheus reporting for Rook 1.13 and later.
 
 ## v2025.02.14-0
 
