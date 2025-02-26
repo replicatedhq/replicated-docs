@@ -10,6 +10,20 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.02.26-0
+
+Released on February 26, 2025
+
+### New Features {#new-features-v2025-02-26-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2025-02-07T23-21-09Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.80.0-69.3.3.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.57.3.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.16.4.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2025-02-18T16-25-55Z.
+
+### Bug Fixes {#bug-fixes-v2025-02-26-0}
+* Increased grafana pod limits to 200m cpu and 128Mi memory.
+
 ## v2025.02.14-0
 
 Released on February 14, 2025
