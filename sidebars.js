@@ -247,6 +247,7 @@ const sidebars = {
         'enterprise/updating-embedded',
         'enterprise/embedded-tls-certs',
         'vendor/embedded-disaster-recovery',
+        'vendor/embedded-troubleshooting',
       ],
     },
     {
