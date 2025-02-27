@@ -59,7 +59,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
    1. In the HelmChart custom resource, under the `helmUpgradeFlags` field, add the `--take-ownership` flag:
 
       ```yaml
-      # HelmChart v1 beta2
+      # HelmChart v2
       apiVersion: kots.io/v1beta2
       kind: HelmChart
       metadata:
@@ -71,7 +71,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
 
       When the `--take-ownership` upgrade flag is enabled, Helm automatically takes ownership of resources that were previously deployed without Helm.
 
-   1. Save the release
+   1. Save the release.
 
 1. Test the migration process:
 
@@ -149,7 +149,7 @@ To migrate applications that were previously packaged as standard Kubernetes man
 
 1. After you are done testing the migration process, promote the first release containing your application manifests with the `kots.io/keep` annotation to one or more customer-facing channels. Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**. For more information about required releases, see [Properties](/vendor/releases-about#properties) in _About Channels and Releases_.
 
-1. Promote the second release containing your Helm chart(s) and the HelmChart v2 custom resource(s) to the same channels. Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**.
+1. Promote the second release containing your Helm chart(s) to the same channels. Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**.
 
 1. Instruct customers to migrate by first upgrading to the release containing the standard manifests, then upgrading to the release packaged with Helm.
 
