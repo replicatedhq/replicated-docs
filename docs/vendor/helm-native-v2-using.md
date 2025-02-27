@@ -171,9 +171,9 @@ metadata:
   name: samplechart
 spec:
   values:
-    image:
-      # Use proxy.replicated.com or your custom domain for the proxy registry 
+    image: 
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      # Note: Use proxy.replicated.com or your custom domain
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/my-org" }}/api'
       pullSecrets:
       - name: '{{repl ImagePullSecretName }}'
