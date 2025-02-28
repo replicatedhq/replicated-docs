@@ -46,11 +46,11 @@ This section describes how KOTS uses the HelmChart custom resource to deploy Hel
 
 <KotsHelmCrDescription/>
 
-The HelmChart custom resource with `apiVersion: kots.io/v1beta2` is supported with KOTS v1.99.0 and later. For more information, see [About the HelmChart kots.io/v1beta2 Installation Method](#v2-install) below.
+The HelmChart custom resource with `apiVersion: kots.io/v1beta2` (HelmChart v2) is supported with KOTS v1.99.0 and later. For more information, see [About the HelmChart kots.io/v1beta2 Installation Method](#v2-install) below.
 
 KOTS versions earlier than v1.99.0 can install Helm charts with `apiVersion: kots.io/v1beta1` of the HelmChart custom resource. The `kots.io/v1beta1` HelmChart custom resource is deprecated. For more information, see [Deprecated HelmChart kots.io/v1beta1 Installation Methods](#deprecated-helmchart-kotsiov1beta1-installation-methods) below.
 
-### About the HelmChart kots.io/v1beta2 Installation Method {#v2-install}
+### About the HelmChart v2 Installation Method {#v2-install}
 
 When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly.
 
