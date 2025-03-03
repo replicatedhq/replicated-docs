@@ -33,7 +33,7 @@ Released on February 19, 2025
 
 ### Improvements {#improvements-2-1-3}
 * Adds a preflight check to verify execute permissions on the data directory and its parent directories. This prevents installation issues, including etcd permissions issues.
-* During install and join, permissions for the data directory are set to 755 to ensure successful operation. If permissions cannot be set, the install or join will not fail, but the aforementioned preflight check will instruct the user to set the permissions appropriately.
+* During install and join, permissions for the data directory are set to 755 to ensure successful operation. If permissions cannot be set, the install or join will not fail, and the aforementioned preflight check will ensure at least execute permissions are set.
 * The following kernel parameters are configured automatically: `fs.inotify.max_user_instances = 1024` and `fs.inotify.max_user_watches = 65536`.
 * Adds a preflight check to ensure the following kernel parameters are set correctly: `fs.inotify.max_user_instances = 1024` and `fs.inotify.max_user_watches = 65536`.
 * Surfaces better error messages during the installation if the node is not ready.
