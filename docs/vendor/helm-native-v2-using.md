@@ -11,7 +11,7 @@ To support Helm chart installations with the KOTS `kots.io/v1beta2` HelmChart cu
 1. Inject a KOTS-generated image pull secret that grants proxy access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
 1. Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
 1. Configure the `builder` key to allow your users to push images to their own local registries. See [Support Local Image Registries](#local-registries).
-1. (KOTS Existing Cluster Installations Only) Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
+1. (KOTS Existing Cluster and kURL Installations Only) Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
    :::note
    Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring disaster recovery for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
    :::
@@ -276,7 +276,7 @@ Local image registries are required for KOTS installations in air-gapped environ
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-## Task 5: Add Backup Labels for Snapshots (KOTS Existing Cluster Installations Only) {#add-backup-labels-for-snapshots}
+## Task 5: Add Backup Labels for Snapshots (KOTS Existing Cluster and kURL Installations Only) {#add-backup-labels-for-snapshots}
 
 :::note
 The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
