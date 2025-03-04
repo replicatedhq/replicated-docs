@@ -20,7 +20,7 @@ To migrate existing installations from HelmChart v1 with `useHelmInstall: true` 
 
 1. Create a new release containing your application files.
 
-1. For each Helm chart in the release, configure the corresponding HelmChart custom resource to update `apiVersion` to `kots.io/v1beta2`, rewrite images, inject image pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
+1. For each Helm chart in the release, find the corresponding HelmChart custom resource and update `apiVersion` to `kots.io/v1beta2`. Then update it to rewrite images, inject image pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
 
 1. Promote the release to an internal-only channel that your team uses for testing.
 
