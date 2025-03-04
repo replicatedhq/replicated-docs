@@ -1,6 +1,7 @@
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
+import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
 # Embedded Cluster Overview
 
@@ -44,11 +45,11 @@ The following diagram shows the architecture of a multi-node Embedded Cluster in
 
 [View a larger version of this image](/images/embedded-architecture-multi-node.png)
 
-As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, KOTS (including rqlite), and the image registry for air gap installations are all installed on the primary node only.
+As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, KOTS, and the image registry for air gap installations are all installed on the primary node only.
 
 For installations that include disaster recovery with Velero, the Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 
-Any Helm [`extensions`](/reference/embedded-config#extensions) included in the Embedded Cluster Config can be installed on one or more nodes. 
+Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config can optionally be installed on one or more nodes. 
 
 ### Multi-Node Architecture with High Availability
 
@@ -56,17 +57,7 @@ Any Helm [`extensions`](/reference/embedded-config#extensions) included in the E
 High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
 :::
 
-The following diagram shows the architecture of an HA multi-node Embedded Cluster installation:
-
-![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node-ha.png)
-
-[View a larger version of this image](/images/embedded-architecture-multi-node-ha.png)
-
-In HA multi-node installations, the Embedded Cluster Operator and the KOTS Admin Console are installed on the primary node only. All other built-in extenions, including the image registry for air gap installations, are installed on each node in the cluster.
-
-Additionally, three replicas of rqlite are deployed for HA. Rqlite is used by KOTS to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application.
-
-For installations that include disaster recovery with Velero, the Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
+<HaArchitecture/>
 
 ## Built-In Extensions {#built-in-extensions}
 

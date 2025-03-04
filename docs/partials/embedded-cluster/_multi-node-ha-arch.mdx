@@ -1,0 +1,9 @@
+The following diagram shows the architecture of an HA multi-node Embedded Cluster installation:
+
+![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node-ha.png)
+
+[View a larger version of this image](/images/embedded-architecture-multi-node-ha.png)
+
+In HA multi-node installations, the Embedded Cluster Operator and the KOTS Admin Console are installed on the primary node only. All other built-in extenions, including the image registry for air gap installations, are installed on each node in the cluster. Any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config can optionally be installed on one or more nodes. 
+
+Additionally, three replicas of rqlite are deployed for HA. Rqlite is used by KOTS to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application.
