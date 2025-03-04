@@ -30,7 +30,13 @@ To migrate existing installations from HelmChart v1 with `useHelmInstall: true` 
 
 ### Migrate From HelmChart v1 with `useHelmInstall: false`
 
-This section describes how to migrate existing HelmChart v1 installations with `useHelmInstall: false`. These migration steps ensure that KOTS does not uninstall any resources that were previously deployed without Helm, and that Helm takes ownership of these existing resources.
+This section describes how to migrate existing HelmChart v1 installations with `useHelmInstall: false`.
+
+:::note
+When the `useHelmInstall` field is _not_ set in the HelmChart custom resource, `false` is the default value.
+:::
+
+These migration steps ensure that KOTS does not uninstall any resources that were previously deployed without Helm, and that Helm takes ownership of these existing resources.
 
 To migrate existing installations from HelmChart v1 and `useHelmInstall: false` to HelmChart v2:
 
@@ -54,7 +60,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
      
 1. Create another new release:
 
-   1. For each Helm chart in the release, configure the corresponding HelmChart custom resource to update `apiVersion` to `kots.io/v1beta2`, rewrite images, inject image pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
+   1. For each Helm chart in the release, find the corresponding HelmChart custom resource and update `apiVersion` to `kots.io/v1beta2`. Then update it to rewrite images, inject image pull secrets, and add backup labels. See [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
 
    1. In the HelmChart custom resource, under the `helmUpgradeFlags` field, add the `--take-ownership` flag:
 
@@ -89,7 +95,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
 
 1. Instruct customers to migrate by first upgrading to the release where the `kots.io.keep` annotation is applied to your resources, then upgrading to the release with HelmChart v2.
 
-1. In subsequent releases, remove the `helmUpgradeFlags` field (including the `--take-ownership` flag) from the HelmChart custom resource. This flag is only required during one upgrade to allow Helm to take ownership of your application resources.
+1. In subsequent releases, remove the `--take-ownership` flag from the `helmUpgradeFlags` field and remove the `kots.io/keep` annotation from resources in your Helm templates.  
 
 ### Migrate From Standard Kubernetes Manifests
 
@@ -153,7 +159,7 @@ To migrate applications that were previously packaged as standard Kubernetes man
 
 1. Instruct customers to migrate by first upgrading to the release containing the standard manifests, then upgrading to the release packaged with Helm.
 
-1. In subsequent releases, remove the `helmUpgradeFlags` field (including the `--take-ownership` flag) from the HelmChart custom resource. This flag is only required during one upgrade to allow Helm to take ownership of your application resources.
+1. In subsequent releases, remove the `--take-ownership` flag from the `helmUpgradeFlags` field and remove the `kots.io/keep` annotation from resources in your Helm templates.  
 
 ## Support Customers on KOTS Versions Earlier Than v1.99.0 {#support-both-v1-v2}
 
