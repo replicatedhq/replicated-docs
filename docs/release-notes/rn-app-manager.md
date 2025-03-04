@@ -64,7 +64,7 @@ Released on January 24, 2025
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-124-0}
-* You can migrate Helm charts that were installed with HelmChart v1beta1 and `useHelmInstall: false` to HelmChart v1beta2 by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
+* You can migrate Helm charts that were installed with HelmChart `v1beta1` and `useHelmInstall: false` to HelmChart `v1beta2` by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
 
    ```yaml
    # HelmChart v1 beta2
@@ -79,7 +79,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
    This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
 
-   To migrate an existing installation from `kots.io/v1beta1` with `useHelmInstall: false` to `kots.io/v1beta2`, reach out to your Replicated account representative in Slack or over email.
+   For information about how to migrate an existing installation to KOTS HelmChart `v1beta2`, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
 
 ## 1.123.1
 
@@ -115,7 +115,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New Features {#new-features-1-122-0}
-* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release.
+* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This annotation is useful when migrating existing KOTS installations to the KOTS HelmChart v2 installation method. For more information, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
 
 ## 1.121.2
 
