@@ -20,7 +20,7 @@ Released on February 19, 2025
 Released on February 4, 2025
 
 ### New Features {#new-features-1-1-0}
-* Adds the ability to pass custom labels to the Replicated SDK Helm Chart via the `commonLabels` and `podLabels` Helm values.
+* Adds the ability to pass custom labels to the Replicated SDK Helm Chart via the `commonLabels` and `podLabels` Helm values. For more information, see [Add Custom Labels](/vendor/replicated-sdk-customizing#add-custom-labels) in _Customizing the Replicated SDK_.
 
 ## 1.0.0
 
