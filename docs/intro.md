@@ -25,7 +25,7 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Enable Supported Install Methods Per Customer</h3>
+        <h3>Manage Supported Install Methods Per Customer</h3>
         <p>Control which installation methods are available for each customer from the **Install types** field in the customer's license.</p>
     </li>
     <li>
