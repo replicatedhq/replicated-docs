@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Announcing: Replicated SDK is GA</h3>
-        <p>Additionally, new features include setting `affinity` for the SDK, passing custom labels to the SDK Helm chart, and returning detailed application status information with the `/app/status` endpoint.</p>
+        <h3>Embedded Cluster 2.0 Release</h3>
+        <p>The 2.0 release brings improvements to architecture that increase the reliability and stability of Embedded Cluster.</p>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-overview">Learn more</a>
+      <a href="/release-notes/rn-embedded-cluster#200">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Distribute the NVIDIA Operator with Embedded Cluster</h3>
-        <p>Configure an Embedded Cluster Helm extension to include the NVIDIA GPU Operator with your release.</p>
+        <h3>Enable and Disable Supported Install Methods Per Customer</h3>
+        <p>Control which installation methods (Embedded Cluster, Helm, KOTS, kURL) are available for each customer from the **Install types** field in the customer's license.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-using#nvidia-gpu-operator">Learn more</a>
+      <a href="/vendor/licenses-install-types">Learn more</a>
     </li>
   </ul>
 </section>
