@@ -25,8 +25,8 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Enable and Disable Supported Install Methods Per Customer</h3>
-        <p>Control which installation methods (Embedded Cluster, Helm, KOTS, kURL) are available for each customer from the **Install types** field in the customer's license.</p>
+        <h3>Enable Supported Install Methods Per Customer</h3>
+        <p>Control which installation methods are available for each customer from the **Install types** field in the customer's license.</p>
     </li>
     <li>
       <a href="/vendor/licenses-install-types">Learn more</a>
