@@ -45,11 +45,11 @@ The following diagram shows the architecture of a multi-node Embedded Cluster in
 
 [View a larger version of this image](/images/embedded-architecture-multi-node.png)
 
-As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, KOTS, and the image registry for air gap installations are all installed on the primary node only.
+As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, KOTS, and the image registry for air gap installations are all installed on one controller node.
 
 For installations that include disaster recovery with Velero, the Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 
-Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config can optionally be installed on one or more nodes. 
+Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and how it is configured to be deployed.
 
 ### Multi-Node Architecture with High Availability
 

@@ -8,7 +8,7 @@ As shown in the diagram above, in HA installations with Embedded Cluster:
 * A single replica of the Embedded Cluster Operator is deployed and runs on a controller node.
 * A single replica of the KOTS Admin Console is deployed and runs on a controller node.
 * Three replicas of rqlite are deployed in the kotsadm namespace. Rqlite is used by KOTS to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application.
-* For installations with disaster recovery, the Velero pod is deployed on one node and the Velero node-agent is deployed on all nodes.
+* For installations that include disaster recovery, the Velero pod is deployed on one node. The Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 * For air gap installations, two replicas of the air gap image registry are deployed.
 
 Any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and whether or not it is configured to be deployed with high availability.
