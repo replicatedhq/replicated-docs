@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 6, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-06-1}
-* Updates the download portal to no longer show KOTS pre-releases.
+* Updates the Download Portal to no longer show KOTS pre-releases.
 
 ## v2025.02.07-1
 
