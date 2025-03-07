@@ -152,6 +152,10 @@ func ConfigOptionEquals(optionName string, expectedValue string) bool
 
 Returns true if the configuration option value is equal to the supplied value.
 
+```yaml
+'{{repl ConfigOptionEquals "http_enabled" "1" }}'
+```
+
 #### Example
 
 The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionEquals template function to set the `postgres.enabled` value depending on if the user selected the `embedded_postgres` option on the KOTS Admin Console config screen. This value is then mapped to the `values.yaml` file for the associated Helm chart during deployment.
@@ -179,6 +183,10 @@ func ConfigOptionNotEquals(optionName string, expectedValue string) bool
 ```
 
 Returns true if the configuration option value is not equal to the supplied value.
+
+```yaml
+'{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
+```
 
 ## LocalRegistryAddress
 
