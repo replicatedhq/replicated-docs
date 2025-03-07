@@ -1,4 +1,8 @@
+import IdentityContext from "../partials/template-functions/_identity-context.mdx"
+
 # Identity Context
+
+<IdentityContext/>
 
 ## IdentityServiceEnabled
 

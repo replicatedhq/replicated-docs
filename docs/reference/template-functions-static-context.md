@@ -1,9 +1,8 @@
+import StaticContext from "../partials/template-functions/_static-context.mdx"
+
 # Static Context
 
-## About Mastermind Sprig
-
-Many of the utility functions provided come from sprig, a third-party library of Go template functions.
-For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
+<StaticContext/>
 
 ## Certificate Functions
 

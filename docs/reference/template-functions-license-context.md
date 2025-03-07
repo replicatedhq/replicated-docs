@@ -1,4 +1,8 @@
+import LicenseContext from "../partials/template-functions/_license-context.mdx"
+
 # License Context
+
+<LicenseContext/>
 
 ## LicenseFieldValue
 ```go
