@@ -8,12 +8,19 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.1.1
+
+Released on February 19, 2025
+
+### Improvements {#improvements-1-1-1}
+* Addresses CVE-2025-0665, CVE-2025-0725, and CVE-2024-12797
+
 ## 1.1.0
 
 Released on February 4, 2025
 
 ### New Features {#new-features-1-1-0}
-* Adds the ability to pass custom labels to the Replicated SDK Helm Chart via the `commonLabels` and `podLabels` Helm values.
+* Adds the ability to pass custom labels to the Replicated SDK Helm Chart via the `commonLabels` and `podLabels` Helm values. For more information, see [Add Custom Labels](/vendor/replicated-sdk-customizing#add-custom-labels) in _Customizing the Replicated SDK_.
 
 ## 1.0.0
 

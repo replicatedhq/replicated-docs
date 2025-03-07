@@ -169,7 +169,7 @@ For information about how to use the SDK API to query license entitlements at ru
 
 ### License Expiration Handling {#expiration}
 
-The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is set to midnight UTC on the date selected.
+The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is encoded in ISO 8601 format (`2026-01-23T00:00:00Z`) and is set to midnight UTC at the beginning of the calendar day (`00:00:00`) on the date selected.
 
 Replicated enforces the following logic when a license expires:
 * By default, instances with expired licenses continue to run.

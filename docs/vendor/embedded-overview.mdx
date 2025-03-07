@@ -1,6 +1,7 @@
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
+import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
 # Embedded Cluster Overview
 
@@ -14,7 +15,7 @@ If you are instead looking for information about creating Kubernetes Installers 
 
 <EmbeddedCluster/>
 
-{/* [V2 ARCHITECTURE CONTENT] ## Architecture and Built-In Extensions
+## Architecture
 
 This section describes the Embedded Cluster architecture, including the built-in extensions deployed by Embedded Cluster.
 
@@ -28,41 +29,51 @@ The following diagram shows the architecture of a single-node Embedded Cluster i
 
 As shown in the diagram above, the user downloads the Embedded Cluster installation assets as a `.tgz` in their installation environment. These installation assets include the Embedded Cluster binary, the user's license file, and (for air gap installations) an air gap bundle containing the images needed to install and run the release in an environment with limited or no outbound internet access. 
 
-When the user runs the Embedded Cluster install command, the Embedded Cluster binary first installs the k0s cluster as a systemd service. This systemd service is named using the slug of the application (for example, `gitea`).
+When the user runs the Embedded Cluster install command, the Embedded Cluster binary first installs the k0s cluster as a systemd service.
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions and any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config. Each built-in extension is installed in its own namespace. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config. */}
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions. For more information about these extensions, see [Built-In Extensions](#built-in-extensions) below.
 
-## Embedded Cluster Built-In Extensions
+Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config.
 
-Embedded Cluster deploys built-in extensions to provide capabilities such as application management and storage. These extensions are deployed by default and do not require configuration.
-
-The built-in extensions include:
-
-* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
-
-* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation. 
-
-* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
-
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
-
-{/* [V2 ARCHITECTURE CONTENT] Finally, after the built-in extensions and any Helm extensions are installed, The Embedded Cluster binary deploys a second systemd service on the node named `APP_SLUG-manager` (for example, `gitea-manager`). This manager service orchestrates Embedded Cluster and communicates with the KOTS instance running in the cluster through a websocket.
+Finally, Embedded Cluster also installs Local Artifact Mirror (LAM). In air gap installations, LAM is used to store and update images.
 
 ### Multi-Node Architecture
 
-The following diagram shows the architecture of a multi-node Embedded Cluster installation for an application named `Gitea`:
-
-:::note
-High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
-:::
+The following diagram shows the architecture of a multi-node Embedded Cluster installation:
 
 ![Embedded Cluster multi-node architecture](/images/embedded-architecture-multi-node.png)
 
 [View a larger version of this image](/images/embedded-architecture-multi-node.png)
 
-As shown in the diagram above, in multi-node installations, an instance of the Embedded Cluster manager systemd service runs on each node and communicates with the KOTS instance running on the primary node through a websocket. This allows Embedded Cluster and KOTS to manage installations where workloads are running on multiple nodes in a cluster.
+As shown in the diagram above, in multi-node installations, the Embedded Cluster Operator, KOTS, and the image registry for air gap installations are all installed on one controller node.
 
-Additionally, for installations that include disaster recovery with Velero, the Velero Node Agent also runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores. */}
+For installations that include disaster recovery with Velero, the Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
+
+Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and how it is configured to be deployed.
+
+### Multi-Node Architecture with High Availability
+
+:::note
+High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
+:::
+
+<HaArchitecture/>
+
+## Built-In Extensions {#built-in-extensions}
+
+Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Each built-in extension is installed in its own namespace.
+
+The built-in extensions installed by Embedded Cluster include:
+
+* **Embedded Cluster Operator**: The Operator is used for reporting purposes as well as some clean up operations.
+
+* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
+
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Comparison to kURL
 
@@ -119,5 +130,3 @@ Embedded Cluster has the following limitations:
 * **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that require higher levels of privilege. If your application installs a policy enforcement engine such as Gatekeeper or Kyverno, ensure that its policies are not enforced in the namespaces used by Embedded Cluster.
 
 * **Installing on STIG- and CIS-hardened OS images is not supported**: Embedded Cluster isn't tested on these images, and issues have arisen when trying to install on them.
-
-* **Installing on Amazon Linux 2 is not supported**: Amazon Linux 2 includes a very dated version of systemd that isn't compatible with Embedded Cluster.
