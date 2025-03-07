@@ -18,7 +18,7 @@ Returns the value of the specified option from the KOTS Config custom resource a
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOption template function to set the TLS cert and key using the files supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOption template function to set the port, node port, and annotations for a LoadBalancer service using the values supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
 # KOTS HelmChart custom resource
@@ -31,10 +31,12 @@ spec:
     name: samplechart
     chartVersion: 3.1.7
   values:
-    my-app:
-      data:
-        tls.crt: '{{repl ConfigOption "tls_certificate_file" }}'
-        tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
+    myapp:
+      service:
+        type: LoadBalancer
+        port: repl{{ ConfigOption "myapp_load_balancer_port"}}
+        nodePort: repl{{ ConfigOption "myapp_load_balancer_node_port"}}
+        annotations: repl{{ ConfigOption `myapp_load_balancer_annotations` | nindent 14 }}
 ```
 For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
@@ -65,11 +67,12 @@ spec:
     name: samplechart
     chartVersion: 3.1.7
   values:
-    tls:
-      enabled: true
-      genSelfSignedCert: repl{{ ConfigOptionEquals "myapp_ingress_tls_type" "self_signed" }}
-      cert: repl{{ print `|`}}repl{{ ConfigOptionData `tls_certificate_file` | nindent 12 }}
-      key: repl{{ print `|`}}repl{{ ConfigOptionData `tls_private_key_file` | nindent 12 }}
+    myapp:
+      tls:
+        enabled: true
+        genSelfSignedCert: repl{{ ConfigOptionEquals "myapp_ingress_tls_type" "self_signed" }}
+        cert: repl{{ print `|`}}repl{{ ConfigOptionData `tls_certificate_file` | nindent 12 }}
+        key: repl{{ print `|`}}repl{{ ConfigOptionData `tls_private_key_file` | nindent 12 }}
 ```
 For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
@@ -94,7 +97,7 @@ For example, if you have the following KOTS Config defined:
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
-  name: my-application
+  name: myapp
 spec:
   groups:
     - name: java_settings
@@ -211,10 +214,10 @@ spec:
     name: samplechart
     chartVersion: 3.1.7
   values:
-    my-app:
+    myapp:
       image:
         registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
-        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
 For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
@@ -242,10 +245,10 @@ spec:
     name: samplechart
     chartVersion: 3.1.7
   values:
-    my-app:
+    myapp:
       image:
         registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
-        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
 For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
@@ -353,10 +356,10 @@ spec:
     name: samplechart
     chartVersion: 3.1.7
   values:
-    my-app:
+    myapp:
       image:
         registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
-        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
 For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
