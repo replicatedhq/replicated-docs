@@ -1,6 +1,9 @@
 import KurlContext from "../partials/template-functions/_kurl-context.mdx"
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # kURL Context
+
+<KurlAvailability/>
 
 ## Overview
 

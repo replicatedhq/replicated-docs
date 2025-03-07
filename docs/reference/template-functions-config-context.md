@@ -97,7 +97,7 @@ For example, if you have the following KOTS Config defined:
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
-  name: myapp
+  name: my-application
 spec:
   groups:
     - name: java_settings
@@ -109,7 +109,7 @@ spec:
           required: true
 ```
 
-You can use `ConfigOptionFilename` in a Pod Spec to mount a file, as shown below:
+The following example shows how to use `ConfigOptionFilename` in a Pod Spec to mount a file:
 
 ```yaml
 apiVersion: v1

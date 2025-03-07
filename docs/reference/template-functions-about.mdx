@@ -1,4 +1,10 @@
 import UseCases from "../partials/template-functions/_use-cases.mdx"
+import StaticContext from "../partials/template-functions/_static-context.mdx"
+import ConfigContext from "../partials/template-functions/_config-context.mdx"
+import LicenseContext from "../partials/template-functions/_license-context.mdx"
+import KurlContext from "../partials/template-functions/_kurl-context.mdx"
+import IdentityContext from "../partials/template-functions/_identity-context.mdx"
+import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # About Template Functions
 
@@ -126,33 +132,32 @@ KOTS template functions are grouped into different contexts, depending on the ph
 
 ### Static Context
 
-The context necessary to render the static template functions is always available.
+<StaticContext/>
 
-The static context also includes the Masterminds Sprig function library. For more information, see [Sprig Function Documentation](http://masterminds.github.io/sprig/) on the sprig website.
-
-For a list of all KOTS template functions available in the static context, see [Static context](template-functions-static-context).
+For a list of all KOTS template functions available in the static context, see [Static Context](template-functions-static-context).
 
 ### Config Context
 
-Template functions in the config context are available when rendering an application that includes a Config custom resource.
-At execution time, template functions in the config context also can use the static context functions.
+<ConfigContext/>
 
-For a list of all KOTS template functions available in the config context, see [Config context](template-functions-config-context).
+For a list of all KOTS template functions available in the config context, see [Config Context](template-functions-config-context).
 
 ### License Context
 
-Template functions in the license context have access to customer license and version data.
+<LicenseContext/>
 
-For a list of all KOTS template functions available in the license context, see [License context](template-functions-license-context).
+For a list of all KOTS template functions available in the license context, see [License Context](template-functions-license-context).
 
 ### kURL Context
 
-Template functions in the kURL context have access to information about applications installed in embedded clusters created by Replicated kURL.
+<KurlAvailability/>
 
-For a list of all KOTS template functions available in the kURL context, see [kURL context](template-functions-kurl-context).
+<KurlContext/>
+
+For a list of all KOTS template functions available in the kURL context, see [kURL Context](template-functions-kurl-context).
 
 ### Identity Context
 
-Template functions in the Identity context have access to Replicated identity service information.
+<IdentityContext/>
 
-For a list of all KOTS template functions available in the identity context, see [Identity context](template-functions-identity-context).
+For a list of all KOTS template functions available in the identity context, see [Identity Context](template-functions-identity-context).
