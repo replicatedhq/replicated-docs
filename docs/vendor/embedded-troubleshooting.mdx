@@ -43,6 +43,84 @@ To use journalctl to view k0s logs:
     journalctl -u k0scontroller
     ```
 
+## Access the Cluster
+
+With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
+
+Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
+
+To access the cluster and use other included binaries:
+
+1. SSH onto a controller node.
+
+1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
+
+     ```
+     sudo ./APP_SLUG shell
+     ```
+
+     The output looks similar to the following:
+     ```
+        __4___
+    _  \ \ \ \   Welcome to APP_SLUG debug shell.
+    <'\ /_/_/_/   This terminal is now configured to access your cluster.
+    ((____!___/) Type 'exit' (or CTRL+d) to exit.
+    \0\0\0\0\/  Happy hacking.
+    ~~~~~~~~~~~
+    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
+    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
+    root@alex-ec-2:/home/alex# source /etc/bash_completion
+    ```
+
+     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
+
+     :::note
+     You cannot run the `shell` command on worker nodes.
+     :::
+
+1. Use the available binaries as needed.
+
+     **Example**:
+
+     ```bash
+     kubectl version
+     ```
+     ```
+     Client Version: v1.29.1
+     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+     Server Version: v1.29.1+k0s
+     ```
+
+1. Type `exit` or **Ctrl + D** to exit the shell.
+
+     :::note
+     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
+     :::
+
+## Reset a Node
+
+Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
+
+If you want to completely remove a cluster, you need to reset each node individually.
+
+When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
+
+To reset a node:
+
+1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
+
+1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
+
+    ```
+    sudo ./APP_SLUG reset
+    ```
+    Where `APP_SLUG` is the unique slug for the application.
+
+    :::note
+    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
+    :::     
+
 ## Troubleshoot Errors
 
 This section provides troubleshooting advice for common errors.
