@@ -1,5 +1,7 @@
 import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Troubleshooting Embedded Cluster
 
@@ -176,11 +178,10 @@ Reasons can include:
 
 #### Solution
 
-To troubleshoot:
-
-* **podCIDR and serviceCIDR overlapping with the host network CIDR:**
-
-    1. Run the following command to verify:
+<Tabs>
+  <TabItem value="overlap" label="podCIDR and serviceCIDR overlapping with the host network CIDR" default>
+  To troubleshoot podCIDR and serviceCIDR overlapping with the host network CIDR:
+  1. Run the following command to verify:
         ```
         cat /etc/k0s/k0s.yaml | grep -i cidr
             podCIDR: 10.244.0.0/17
@@ -197,7 +198,7 @@ To troubleshoot:
         169.254.169.254 via 10.152.0.1 dev ens4 proto dhcp src 10.152.0.4 metric 100
         ```
 
-    1. Reset and reboot the installation. See [Reset a Node](/vendor/embedded-overview#reset-a-node)
+    1. Reset and reboot the installation. See [Reset a Node](#reset-a-node) above.
 
     1. Reinstall the application with different CIDRs using the `--cidr` flag:
 
@@ -207,10 +208,10 @@ To troubleshoot:
         Where `APP_SLUG` is the unique slug for the installed application.
 
         For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
-
-* **Incorrect kernel parameters values:**
-
-    1. Use sysctl to verify that these parameters are set correctly:
+  </TabItem>
+  <TabItem value="kernel" label="Incorrect kernel parameter values">
+  To troubleshoot incorrect kernel parameter values:
+  1. Use sysctl to verify that these parameters are set correctly:
 
         ```bash
         net.ipv4.conf.default.arp_filter = 0
@@ -233,16 +234,18 @@ To troubleshoot:
         sysctl -p
         ```
 
-    1. Reset and reboot the installation. See [Reset a Node](/vendor/embedded-overview#reset-a-node)
+    1. Reset and reboot the installation. See [Reset a Node](#reset-a-node) above.
 
     1. Re-run the installation.
+  </TabItem>
+  <TabItem value="vxlan" label="VXLAN traffic getting dropped">
 
-* **VXLAN traffic getting dropped:**
-
-    As a temporary troubleshooting measure, set the mode to CrossSubnet and see if the issue persists. This mode only encapsulates traffic between pods across different subnets with VXLAN.
+  As a temporary troubleshooting measure, set the mode to CrossSubnet and see if the issue persists. This mode only encapsulates traffic between pods across different subnets with VXLAN.
 
         ```bash
         kubectl patch ippool default-ipv4-ippool --type=merge -p '{"spec": {"vxlanMode": "CrossSubnet"}}'
         ```
     
     If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
+  </TabItem>
+</Tabs>
