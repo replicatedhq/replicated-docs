@@ -1,5 +1,6 @@
 import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -21,13 +22,43 @@ This section includes information about how to collect support bundles for Embed
 
 You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot installation errors.
 
-### View Logs for Embedded Cluster
+### View Installation Logs for Embedded Cluster
 
 To view installation logs for Embedded Cluster:
 
 1. SSH onto the installation VM.
 
 1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs. 
+
+### View Embedded Cluster Operator Pod Logs
+
+The Embedded Cluster Operator is used for reporting purposes as well as some clean up operations. The `embedded-cluster-operator` pod contains logs that can be useful for troubleshooting, including the reconciliation loop for Embedded Cluster installation.
+
+To view Embedded Cluster Operator pod logs:
+
+1. SSH onto a controller node.
+
+1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
+
+     ```
+     sudo ./APP_SLUG shell
+     ```
+     Where APP_SLUG is the unique application slug.
+
+1. Get the name of the Embedded Cluster Operator pod from the `embedded-cluster` namespace:
+
+     ```bash
+     kubectl get pod -n embedded-cluster
+     ```
+     The output contains the name of the Operator pod.
+
+1. Use the `kubectl logs` command to view logs for the Operator pod. For more information about this command, including supported options to filter logs, see [kubectl logs](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs) in the Kubernetes documentation.
+
+    **Example:**
+
+     ```bash
+     kubectl logs embedded-operator-123456abcd -n embedded-clsuter --limit-bytes=1000
+     ```
 
 ### View k0s Logs
 
@@ -47,81 +78,9 @@ To use journalctl to view k0s logs:
 
 ## Access the Cluster
 
-With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
+When troubleshooting, it can be useful to list the cluster and view logs using the kubectl command line tool. For additional suggestions related to troubleshooting applications, see [Troubleshooting Applications](https://kubernetes.io/docs/tasks/debug/debug-application/) in the Kubernetes documentation.
 
-Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
-
-To access the cluster and use other included binaries:
-
-1. SSH onto a controller node.
-
-1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
-
-     ```
-     sudo ./APP_SLUG shell
-     ```
-
-     The output looks similar to the following:
-     ```
-        __4___
-    _  \ \ \ \   Welcome to APP_SLUG debug shell.
-    <'\ /_/_/_/   This terminal is now configured to access your cluster.
-    ((____!___/) Type 'exit' (or CTRL+d) to exit.
-    \0\0\0\0\/  Happy hacking.
-    ~~~~~~~~~~~
-    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
-    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
-    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
-    root@alex-ec-2:/home/alex# source /etc/bash_completion
-    ```
-
-     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
-
-     :::note
-     You cannot run the `shell` command on worker nodes.
-     :::
-
-1. Use the available binaries as needed.
-
-     **Example**:
-
-     ```bash
-     kubectl version
-     ```
-     ```
-     Client Version: v1.29.1
-     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-     Server Version: v1.29.1+k0s
-     ```
-
-1. Type `exit` or **Ctrl + D** to exit the shell.
-
-     :::note
-     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
-     :::
-
-## Reset a Node
-
-Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
-
-If you want to completely remove a cluster, you need to reset each node individually.
-
-When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
-
-To reset a node:
-
-1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
-
-1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
-
-    ```
-    sudo ./APP_SLUG reset
-    ```
-    Where `APP_SLUG` is the unique slug for the application.
-
-    :::note
-    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
-    :::     
+<ShellCommand/>
 
 ## Troubleshoot Errors
 

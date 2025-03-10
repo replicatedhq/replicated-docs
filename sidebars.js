@@ -245,9 +245,9 @@ const sidebars = {
         },
         'enterprise/embedded-manage-nodes',
         'enterprise/updating-embedded',
+        'vendor/embedded-troubleshooting',
         'enterprise/embedded-tls-certs',
         'vendor/embedded-disaster-recovery',
-        'vendor/embedded-troubleshooting',
       ],
     },
     {
