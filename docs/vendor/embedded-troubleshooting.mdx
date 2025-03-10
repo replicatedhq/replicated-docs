@@ -26,7 +26,7 @@ You can view logs for both Embedded Cluster and the systemd k0s service running 
 
 To view installation logs for Embedded Cluster:
 
-1. SSH onto the installation VM.
+1. SSH onto a controller node.
 
 1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs. 
 
@@ -66,7 +66,7 @@ You can use the journalctl command line tool to access logs for systemd services
 
 To use journalctl to view k0s logs:
 
-1. SSH onto the installation VM.
+1. SSH onto a controller node.
 
 1. Use journalctl to view logs for the k0s systemd service that was deployed by Embedded Cluster.
 
