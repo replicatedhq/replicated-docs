@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 8, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-08-0}
-* Fixed an issue in the CMX Usage History page which caused the `pageSize` parameter to be set to an incorrect value.
+* Fixes an issue on the Compatibility Matrix **Usage History** page that caused the `pageSize` parameter to be set to an incorrect value.
 
 ## v2025.03.06-1
 
