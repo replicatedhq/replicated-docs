@@ -90,17 +90,30 @@ This section provides troubleshooting advice for common errors.
 
 #### Symptom
 
-A release that includes that includes the NVIDIA GPU Operator as a Helm extensions fails to install.
+A release that includes that includes the NVIDIA GPU Operator as a Helm extension fails to install.
 
 #### Cause 
 
 If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
 
+For more information, see [NVIDIA GPU Operator](/vendor/embedded-using#nvidia-gpu-operator) in _Using Embedded Cluster_.
+
 #### Solution
 
-Remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster.
+To troubleshoot:
 
-For more information, see [NVIDIA GPU Operator](/vendor/embedded-using#nvidia-gpu-operator) in _Using Embedded Cluster_.
+1. Remove any existing containerd services that are running on the host (such as those deployed by Docker).
+
+1. Reset and reboot the node:
+
+    ```bash
+    sudo ./APP_SLUG reset
+    ```
+    Where `APP_SLUG` is the unique slug for the application. 
+
+    For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
+
+1. Re-install with Embedded Cluster.
 
 ### Calico networking issues 
 
