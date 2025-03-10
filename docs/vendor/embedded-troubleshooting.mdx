@@ -6,13 +6,13 @@ import TabItem from '@theme/TabItem';
 
 # Troubleshooting Embedded Cluster
 
-This topic provides information about troubleshooting Replicated Embedded Cluster.
+This topic provides information about troubleshooting Replicated Embedded Cluster installations. For more information about Embedded Cluster, including built-in extensions and architecture, see [Embedded Cluster Overview](/vendor/embedded-overview).
 
 ## Troubleshoot with Support Bundles
 
 This section includes information about how to collect support bundles for Embedded Cluster installations. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-### About the Default Embedded Cluster Support Bundle
+### About the Default Embedded Cluster Support Bundle Spec
 
 <SupportBundleIntro/>
 
@@ -20,7 +20,7 @@ This section includes information about how to collect support bundles for Embed
 
 ## View Logs
 
-You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot installation errors.
+You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot Embedded Cluster deployments.
 
 ### View Installation Logs for Embedded Cluster
 
@@ -43,7 +43,7 @@ To view Embedded Cluster Operator pod logs:
      ```
      sudo ./APP_SLUG shell
      ```
-     Where APP_SLUG is the unique application slug.
+     Where `APP_SLUG` is the unique slug for the application.
 
 1. Get the name of the Embedded Cluster Operator pod from the `embedded-cluster` namespace:
 
@@ -129,7 +129,7 @@ Symptoms of Calico networking issues can include:
 
 Reasons can include:
 
-* podCIDR and serviceCIDR overlapping with the host network CIDR.
+* Pod CIDR and service CIDR overlap with the host network CIDR.
 
 * Incorrect kernel parameters values.
 
@@ -138,17 +138,17 @@ Reasons can include:
 #### Solution
 
 <Tabs>
-  <TabItem value="overlap" label="podCIDR and serviceCIDR overlapping with the host network CIDR" default>
-  To troubleshoot podCIDR and serviceCIDR overlapping with the host network CIDR:
-  1. Run the following command to verify:
+  <TabItem value="overlap" label="Pod CIDR and service CIDR overlap with the host network CIDR" default>
+  To troubleshoot pod CIDR and service CIDR overlapping with the host network CIDR:
+  1. Run the following command to verify the pod and service CIDR:
         ```
         cat /etc/k0s/k0s.yaml | grep -i cidr
             podCIDR: 10.244.0.0/17
             serviceCIDR: 10.244.128.0/17
         ```
-        The default podCIDR is 10.244.0.0/16 and serviceCIDR is 10.96.0.0/12.
+        The default pod CIDR is 10.244.0.0/16 and service CIDR is 10.96.0.0/12.
 
-    1. View pod network interfaces excluding Calico interfaces, and ensure no overlapping CIDRs.
+    1. View pod network interfaces excluding Calico interfaces, and ensure there are no overlapping CIDRs.
         ```
         ip route | grep -v cali
         default via 10.152.0.1 dev ens4 proto dhcp src 10.152.0.4 metric 100
@@ -157,14 +157,20 @@ Reasons can include:
         169.254.169.254 via 10.152.0.1 dev ens4 proto dhcp src 10.152.0.4 metric 100
         ```
 
-    1. Reset and reboot the installation. See [Reset a Node](#reset-a-node) above.
+    1. Reset and reboot the installation:
+
+       ```bash
+       sudo ./APP_SLUG reset
+       ```
+       Where `APP_SLUG` is the unique slug for the application. 
+
+       For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
 
     1. Reinstall the application with different CIDRs using the `--cidr` flag:
 
         ```bash
         sudo ./APP_SLUG install --license license.yaml --cidr 172.16.136.0/16
         ```
-        Where `APP_SLUG` is the unique slug for the installed application.
 
         For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
   </TabItem>
@@ -193,11 +199,17 @@ Reasons can include:
         sysctl -p
         ```
 
-    1. Reset and reboot the installation. See [Reset a Node](#reset-a-node) above.
+    1. Reset and reboot the installation:
+
+       ```bash
+       sudo ./APP_SLUG reset
+       ```
+       Where `APP_SLUG` is the unique slug for the application. 
+       For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
 
     1. Re-run the installation.
   </TabItem>
-  <TabItem value="vxlan" label="VXLAN traffic getting dropped">
+  <TabItem value="vxlan" label="VXLAN traffic dropped">
 
   As a temporary troubleshooting measure, set the mode to CrossSubnet and see if the issue persists. This mode only encapsulates traffic between pods across different subnets with VXLAN.
 
