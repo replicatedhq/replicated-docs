@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.20.3",
+    "@algolia/client-search": "^5.20.4",
     "@babel/traverse": "^7.26.9",
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
