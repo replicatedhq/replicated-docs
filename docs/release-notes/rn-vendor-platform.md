@@ -24,6 +24,13 @@ Released on March 6, 2025
 ### Bug Fixes {#bug-fixes-v2025-03-06-1}
 * Updates the Download Portal to no longer show KOTS pre-releases.
 
+## v2025.02.27-1
+
+Released on February 27, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-27-1}
+* Fixes an issue where `replicated cluster update ttl` did not return a distribution or kind value.
+
 ## v2025.02.07-1
 
 Released on February 7, 2025
