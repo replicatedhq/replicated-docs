@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on March 11, 2025
 
 ### New Features {#new-features-1-2-0}
-* Adds a new replicatedAppDomain Helm value to the SDK Helm chart for configuring the domain used by the Replicated App API. This value defaults to replicated.app if neither the replicatedAppDomain Helm value nor the replicatedAppEndpoint from the Replicated Registry is provided.
+* Adds a new `replicatedAppDomain` Helm value to the SDK Helm chart for configuring the domain used by the Replicated App API. This value defaults to `replicated.app` if neither the `replicatedAppDomain` Helm value nor the `replicatedAppEndpoint` from the Replicated Registry is provided.
 
 ## 1.1.1
 
