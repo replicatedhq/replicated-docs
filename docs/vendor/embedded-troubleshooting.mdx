@@ -66,14 +66,17 @@ You can use the journalctl command line tool to access logs for systemd services
 
 To use journalctl to view k0s logs:
 
-1. SSH onto a controller node.
+1. SSH onto a controller node or a worker node.
 
 1. Use journalctl to view logs for the k0s systemd service that was deployed by Embedded Cluster.
 
-    **Example:**
+    **Examples:**
 
     ```bash
     journalctl -u k0scontroller
+    ```
+    ```bash
+    journalctl -u k0sworker
     ```
 
 ## Access the Cluster
