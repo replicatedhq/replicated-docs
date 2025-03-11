@@ -64,10 +64,8 @@ jobs:
       - name: Slack Notification
         uses: slackapi/slack-github-action@v2.0.0
         with:
+          webhook: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}
+          webhook-type: webhook-trigger
           payload: |
-            {
-              "version": "${{ github.event.client_payload.version }}",
-              "pull_request_url": "${{ steps.cpr.outputs.pull-request-url }}"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}
+            version: "${{ github.event.client_payload.version }}"
+            pull_request_url: "${{ steps.cpr.outputs.pull-request-url }}"
