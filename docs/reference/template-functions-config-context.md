@@ -10,7 +10,9 @@ import ConfigContext from "../partials/template-functions/_config-context.mdx"
 func ConfigOption(optionName string) string
 ```
 
-Returns the value of the specified option from the KOTS Config custom resource as a string. For the `file` config option type, `ConfigOption` returns the base64 encoded value.
+Returns the value of the specified option from the KOTS Config custom resource as a string.
+
+For the `file` config option type, `ConfigOption` returns the base64 encoded file. To return the decoded contents of a file, use [ConfigOptionData](#configoptiondata) instead.
 
 ```yaml
 '{{repl ConfigOption "hostname" }}'
@@ -46,7 +48,7 @@ For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-
 func ConfigOptionData(optionName string) string
 ```
 
-`ConfigOptionData` returns the base64 decoded value of a `file` config option.
+For the `file` config option type,  `ConfigOptionData` returns the base64 decoded contents of the file. To return the base64 encoded file, use [ConfigOption](#configoption) instead.
 
 ```yaml
 '{{repl ConfigOptionData "ssl_key"}}'
