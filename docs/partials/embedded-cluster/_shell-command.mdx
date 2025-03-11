@@ -16,15 +16,16 @@ To access the cluster and use other included binaries:
      The output looks similar to the following:
      ```
         __4___
-    _  \ \ \ \   Welcome to APP_SLUG debug shell.
+     _  \ \ \ \   Welcome to APP_SLUG debug shell.
     <'\ /_/_/_/   This terminal is now configured to access your cluster.
-    ((____!___/) Type 'exit' (or CTRL+d) to exit.
-    \0\0\0\0\/  Happy hacking.
-    ~~~~~~~~~~~
-    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
-    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
-    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
-    root@alex-ec-2:/home/alex# source /etc/bash_completion
+     ((____!___/) Type 'exit' (or CTRL+d) to exit.
+      \0\0\0\0\/  Happy hacking.
+     ~~~~~~~~~~~
+    root@alex-ec-1:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
+    root@alex-ec-1:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-1:/home/alex# source <(k0s completion bash)
+    root@alex-ec-1:/home/alex# source <(cat /var/lib/embedded-cluster/bin/kubectl_completion_bash.sh)
+    root@alex-ec-1:/home/alex# source /etc/bash_completion
     ```
 
      The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.

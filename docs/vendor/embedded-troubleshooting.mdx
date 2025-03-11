@@ -20,7 +20,7 @@ This section includes information about how to collect support bundles for Embed
 
 ## View Logs
 
-You can view logs for both Embedded Cluster and the systemd k0s service running in the cluster to help troubleshoot Embedded Cluster deployments.
+You can view logs for both Embedded Cluster and the k0s systemd service to help troubleshoot Embedded Cluster deployments.
 
 ### View Installation Logs for Embedded Cluster
 
@@ -57,7 +57,7 @@ To view Embedded Cluster Operator pod logs:
     **Example:**
 
      ```bash
-     kubectl logs embedded-operator-123456abcd -n embedded-clsuter --limit-bytes=1000
+     kubectl logs embedded-operator-123456abcd -n embedded-cluster --limit-bytes=1000
      ```
 
 ### View k0s Logs
