@@ -20,7 +20,7 @@ replicated release create [flags]
       --fail-on string         The minimum severity to cause the command to exit with a non-zero exit code. Supported values are [info, warn, error, none]. (default "error")
   -h, --help                   help for create
       --lint                   Lint a manifests directory prior to creation of the KOTS Release.
-      --promote string         Channel name or id to promote this release to
+      --promote string         Channel name (case sensitive) or id to promote this release to
       --release-notes string   When used with --promote <channel>, sets the **markdown** release notes
       --version string         When used with --promote <channel>, sets the version label for the release in this channel
       --yaml-dir string        The directory containing multiple yamls for a Kots release. Cannot be used with the --yaml flag.
@@ -30,6 +30,7 @@ replicated release create [flags]
 
 ```
       --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
       --token string   The API token to use to access your app in the Vendor API
 ```
 

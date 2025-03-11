@@ -40,7 +40,7 @@ replicated vm create --distribution ubuntu --version 20.04 --count 5 --instance-
       --instance-type string   The type of instance to use (e.g. r1.medium)
       --name string            VM name (defaults to random name)
       --network string         The network to use for the VM(s). If not supplied, create a new network
-      --output string          The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string          The output format to use. One of: json|table|wide (default: table) (default "table")
       --tag stringArray        Tag to apply to the VM (key=value format, can be specified multiple times)
       --ttl string             VM TTL (duration, max 48h)
       --version string         Vversion to provision (format is distribution dependent)
@@ -51,6 +51,7 @@ replicated vm create --distribution ubuntu --version 20.04 --count 5 --instance-
 
 ```
       --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
       --token string   The API token to use to access your app in the Vendor API
 ```
 
