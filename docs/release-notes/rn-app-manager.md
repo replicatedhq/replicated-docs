@@ -18,7 +18,14 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.5
 
+Released on March 11, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-124-5}
+* Fixes SBOM generation and signing issue. A properly signed SBOM is now included in the release artifacts.
 
 ## 1.124.4
 
