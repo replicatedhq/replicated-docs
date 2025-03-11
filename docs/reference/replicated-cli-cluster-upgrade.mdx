@@ -28,7 +28,7 @@ replicated cluster upgrade [CLUSTER_ID] --version 1.31 --wait 30m
 ```
       --dry-run          Dry run
   -h, --help             help for upgrade
-      --output string    The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string    The output format to use. One of: json|table|wide (default: table) (default "table")
       --version string   Kubernetes version to upgrade to (format is distribution dependent)
       --wait duration    Wait duration for cluster to be ready (leave empty to not wait)
 ```
@@ -37,6 +37,7 @@ replicated cluster upgrade [CLUSTER_ID] --version 1.31 --wait 30m
 
 ```
       --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
       --token string   The API token to use to access your app in the Vendor API
 ```
 
