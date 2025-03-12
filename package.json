@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "repomix && docusaurus build",
+    "build": "repomix && mv llms-docs.txt static/llms/ && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -34,7 +34,8 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.5.2",
     "@docusaurus/types": "3.5.2",
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2",
+    "repomix": "0.2.36"
   },
   "resolutions": {
     "immer": "^10.1.1",
