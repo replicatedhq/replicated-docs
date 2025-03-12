@@ -1,0 +1,46 @@
+To access the cluster and use other included binaries:
+
+1. SSH onto a controller node.
+
+     :::note
+     You cannot run the `shell` command on worker nodes.
+     :::
+
+1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
+
+     ```
+     sudo ./APP_SLUG shell
+     ```
+     Where `APP_SLUG` is the unique slug for the application.
+
+     The output looks similar to the following:
+     ```
+        __4___
+     _  \ \ \ \   Welcome to APP_SLUG debug shell.
+    <'\ /_/_/_/   This terminal is now configured to access your cluster.
+     ((____!___/) Type 'exit' (or CTRL+d) to exit.
+      \0\0\0\0\/  Happy hacking.
+     ~~~~~~~~~~~
+    root@alex-ec-1:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
+    root@alex-ec-1:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
+    root@alex-ec-1:/home/alex# source <(k0s completion bash)
+    root@alex-ec-1:/home/alex# source <(cat /var/lib/embedded-cluster/bin/kubectl_completion_bash.sh)
+    root@alex-ec-1:/home/alex# source /etc/bash_completion
+    ```
+
+     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
+
+1. Use the available binaries as needed.
+
+     **Example**:
+
+     ```bash
+     kubectl version
+     ```
+     ```
+     Client Version: v1.29.1
+     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+     Server Version: v1.29.1+k0s
+     ```
+
+1. Type `exit` or **Ctrl + D** to exit the shell. 
