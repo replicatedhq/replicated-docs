@@ -267,6 +267,8 @@ When the containerd options are configured as shown above, the NVIDIA GPU Operat
 
 :::note
 If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster. If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
+
+This is the result of a known issue with v24.9.x of the GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
 :::
 
 ## Troubleshoot with Support Bundles
