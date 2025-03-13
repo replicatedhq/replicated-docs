@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.13-5
+
+Released on March 13, 2025
+
+### New Features {#new-features-v2025-03-13-5}
+* Enforces that the custom domains set in the Embedded Cluster config match that which is set on the channel when promoting a release.
+
 ## v2025.03.08-0
 
 Released on March 8, 2025
