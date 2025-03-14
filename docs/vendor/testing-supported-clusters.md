@@ -21,7 +21,7 @@ Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) cluster
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.10, 1.31.6, 1.32.2{/* END_kind_VERSIONS */}</td>
+    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.10, 1.31.6, 1.32.3{/* END_kind_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
