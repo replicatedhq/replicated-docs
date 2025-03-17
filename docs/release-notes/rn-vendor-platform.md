@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.17-8
+
+Released on March 17, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-17-8}
+* Fixes an issue that may cause a crash when clicking the "Embedded Cluster install instructions" button on the custom page in the browser.
+
 ## v2025.03.08-0
 
 Released on March 8, 2025
