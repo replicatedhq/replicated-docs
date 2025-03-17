@@ -34,6 +34,9 @@ spec:
     - name: app
       labels:
        app: "true"
+    domains:
+      proxyRegistryDomain: images.mycompany.com
+      replicatedAppDomain: updates.mycompany.com
   extensions:
     helm:
       repositories:
@@ -146,6 +149,27 @@ spec:
     - name: gpu
       labels:
         gpu: "true" # Label applied to "gpu" nodes    
+```
+
+## domains
+
+You can configure the `domains` key so that Replicated Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
+
+When the `domains.proxyRegistryDomain` and `domains.appServiceDomain` fields are set, Embedded Cluster uses the custom domains specified for requests to the proxy service and app service. Embedded Cluster also passes the domains to KOTS to ensure that KOTS uses the same custom domains for requests these services.
+
+If the `domains.proxyRegistryDomain` and `domains.appServiceDomain` fields are not set, Embedded Cluster uses the default Replicated domains.
+
+For more information about adding custom domains to alias Replicated endpoints, see [About Custom Domains](/vendor/custom-domains).
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  domains:
+    proxyRegistryDomain: images.mycompany.com
+    replicatedAppDomain: updates.mycompany.com   
 ```
 
 ## extensions

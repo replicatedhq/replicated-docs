@@ -1,16 +1,14 @@
 # Using Custom Domains
 
-This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the download portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the Download Portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
-For an overview about custom domains and limitations, see [About Custom Domains](custom-domains).
+For more information about custom domains, see [About Custom Domains](custom-domains).
 
-## Configure a Custom Domain
+## Add a Custom Domain in the Vendor Portal {#add-domain}
 
-Before you assign a custom domain for a registry or the download portal, you must first configure and verify the ownership and TLS certificate.
-
-To add and configure a custom domain:
+To add and verify a custom domain:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to **Custom Domains**. 
 
@@ -29,6 +27,11 @@ To add and configure a custom domain:
 1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
+
+    TXT records must be created to verify:
+
+      - Domain ownership: Domain ownership is verified when you initially add a record.
+      - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
 
 1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
 
@@ -59,11 +62,39 @@ To add and configure a custom domain:
     Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers.
     :::
 
-The Vendor Portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.
+    After the verification checks for ownership and TLS certificate creation are complete, the Vendor Portal marks the domain as **Configured**. 
+
+1. (Optional) After a domain is marked as **Configured**, you can remove any TXT records that you created in your DNS account.
 
 ## Use Custom Domains
 
-After you configure one or more custom domains in the Vendor Portal, you assign a custom domain by setting it as the default for all channels and customers or by assigning it to an individual release channel.
+After you add one or more custom domains in the Vendor Portal, you can configure your application to use the domains. 
+
+### Configure Embedded Cluster to Use Custom Domains
+
+You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service.
+
+To configure Embedded Cluster to use your custom domains for the proxy registry and app service:
+
+1. Add the custom domains that you want to use for the proxy registry and the app service. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
+
+1. In the [Embedded Cluster Config](/reference/embedded-config) spec for your application, add `domains.proxyRegistryDomain` and `domains.appServiceDomain`. Set each field to your custom domain for the given service.
+
+    **Example:**
+
+    ```yaml
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      domains:
+        # Your proxy registry custom domain
+        proxyRegistryDomain: images.mycompany.com
+        # Your app service custom domain
+        replicatedAppDomain: updates.mycompany.com   
+    ```
+    For more information, see [domains](/reference/embedded-config#domains) in _Embedded Cluster Config_.
+
+1. Save your changes and add the Embedded Cluster Config to a new release. Promote the release to the channel that your team uses for testing and install with Embedded Cluster in a development environment to test your changes.
 
 ### Set a Default Domain
 
@@ -109,7 +140,7 @@ To reuse a custom domain for another application:
 
 1. Click **Custom Domains**.
 
-1. In the section for the target endpoint, click Add your first custom domain for your first domain, or click **Add new domain** for additional domains.
+1. In the section for the target endpoint, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
 
     The **Configure a custom domain** wizard opens.
 
