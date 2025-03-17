@@ -151,9 +151,11 @@ spec:
 
 Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
 
-When `domains.proxyRegistryDomain` and `domains.appServiceDomain` are set, Embedded Cluster uses the domains specified for requests to the given service. Embedded Cluster also passes these values to KOTS to ensure that KOTS uses the same domains. The domains that you specify in the `domains.proxyRegistryDomain` and `domains.appServiceDomain` fields must be added to the Vendor Portal and verified. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+When `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are set, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
 
-If `domains.proxyRegistryDomain` and `domains.appServiceDomain` are not set, Embedded Cluster uses the default Replicated domains.
+The custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields must be added to the Vendor Portal before they can be used by Embedded Cluster. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
+
+If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
 
 #### Example
 
