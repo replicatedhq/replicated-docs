@@ -28,11 +28,6 @@ To add and verify a custom domain:
 
     Your changes can take up to 24 hours to propagate.
 
-    TXT records must be created to verify:
-
-      - Domain ownership: Domain ownership is verified when you initially add a record.
-      - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
-
 1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
@@ -70,13 +65,11 @@ To add and verify a custom domain:
 
 After you add one or more custom domains in the Vendor Portal, you can configure your application to use the domains. 
 
-### Configure Embedded Cluster to Use Custom Domains
+### Configure Embedded Cluster to Use Custom Domains {#ec}
 
-You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service.
+You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service. For more information about Embedded Cluster, see [Embedded Cluster Overview](/vendor/embedded-overview).
 
 To configure Embedded Cluster to use your custom domains for the proxy registry and app service:
-
-1. Add the custom domains that you want to use for the proxy registry and the app service. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
 
 1. In the [Embedded Cluster Config](/reference/embedded-config) spec for your application, add `domains.proxyRegistryDomain` and `domains.appServiceDomain`. Set each field to your custom domain for the given service.
 
@@ -88,13 +81,13 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
     spec:
       domains:
         # Your proxy registry custom domain
-        proxyRegistryDomain: images.mycompany.com
+        proxyRegistryDomain: proxy.mycompany.com
         # Your app service custom domain
         replicatedAppDomain: updates.mycompany.com   
     ```
     For more information, see [domains](/reference/embedded-config#domains) in _Embedded Cluster Config_.
 
-1. Save your changes and add the Embedded Cluster Config to a new release. Promote the release to the channel that your team uses for testing and install with Embedded Cluster in a development environment to test your changes.
+1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
 
 ### Set a Default Domain
 
@@ -103,6 +96,10 @@ Setting a default domain is useful for ensuring that the same domain is used acr
 When you set a custom domain as the default, it is used by default for all new releases promoted to any channel, as long as the channel does not have a different domain assigned in its channel settings.
 
 Only releases that are promoted to a channel _after_ you set a default domain use the new default domain. Any existing releases that were promoted before you set the default continue to use the same domain that they used previously.
+
+:::note
+If you configured Embedded Cluster to use custom domains for the proxy registry and the app service, then KOTS will always use the domains specified in the `domains.proxyRegistryDomain` and `domains.appServiceDomain` fields of the Embedded Cluster Config, regardless of the default domain or the domain assigned to the given release channel. In Embedded Cluster installations, this ensures that both Embedded Cluster and KOTS use the same domains for requests to the proxy registry or app service. For more information, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+:::
 
 To set a custom domain as the default:
 
@@ -119,6 +116,10 @@ You can assign a domain to an individual channel by editing the channel settings
 Assigning a domain to a release channel is useful when you need to override either the default Replicated domain or a default custom domain for a specific channel. For example:
 * You need to use a different domain for releases promoted to your Beta and Stable channels.
 * You need to test a domain in a development environment before you set the domain as the default for all channels.
+
+:::note
+If you configured Embedded Cluster to use custom domains for the proxy registry and the app service, then KOTS will always use the domains specified in the `domains.proxyRegistryDomain` and `domains.appServiceDomain` fields of the Embedded Cluster Config, regardless of the default domain or the domain assigned to the given release channel. In Embedded Cluster installations, this ensures that both Embedded Cluster and KOTS use the same domains for requests to the proxy registry or app service. For more information, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+:::
 
 To assign a custom domain to a channel:
 
