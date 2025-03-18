@@ -24,11 +24,11 @@ To add and verify a custom domain:
 
 1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
 
-1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
+1. For **Verify ownership**, ownership will be validated automatically using an HTTP token. If ownership cannot be validated automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
 
-1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account if displayed. If a TXT record is not displayed, ownership will be validated automatically using an HTTP token. Click **Validate & continue**.
+1. For **TLS cert creation verification**, certificate creation will be validated automatically using an HTTP token. If certificate creation cannot be validated automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
 
@@ -81,9 +81,9 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
     spec:
       domains:
         # Your proxy registry custom domain
-        proxyRegistryDomain: proxy.mycompany.com
+        proxyRegistryDomain: proxy.yourcompany.com
         # Your app service custom domain
-        replicatedAppDomain: updates.mycompany.com   
+        replicatedAppDomain: updates.yourcompany.com   
     ```
     For more information, see [domains](/reference/embedded-config#domains) in _Embedded Cluster Config_.
 
