@@ -98,7 +98,7 @@ When you set a custom domain as the default, it is used by default for all new r
 Only releases that are promoted to a channel _after_ you set a default domain use the new default domain. Any existing releases that were promoted before you set the default continue to use the same domain that they used previously.
 
 :::note
-If you configured Embedded Cluster to use custom domains for the proxy registry and the app service, then KOTS will always use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config, regardless of the default domain or the domain assigned to the given release channel. In Embedded Cluster installations, this ensures that both Embedded Cluster and KOTS use the same domains for requests to the proxy registry or app service. For more information, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+In Embedded Cluster installations, the KOTS Admin Console will use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config when making requests to the proxy registry and app service, regardless of the default domain or the domain assigned to the given release channel. For more information about using custom domains in Embedded Cluster installations, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
 :::
 
 To set a custom domain as the default:
@@ -118,7 +118,7 @@ Assigning a domain to a release channel is useful when you need to override eith
 * You need to test a domain in a development environment before you set the domain as the default for all channels.
 
 :::note
-If you configured Embedded Cluster to use custom domains for the proxy registry and the app service, then KOTS will always use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config, regardless of the default domain or the domain assigned to the given release channel. In Embedded Cluster installations, this ensures that both Embedded Cluster and KOTS use the same domains for requests to the proxy registry or app service. For more information, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+In Embedded Cluster installations, the KOTS Admin Console will use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config when making requests to the proxy registry and app service, regardless of the default domain or the domain assigned to the given release channel. For more information about using custom domains in Embedded Cluster installations, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
 :::
 
 To assign a custom domain to a channel:
