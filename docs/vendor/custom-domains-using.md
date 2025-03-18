@@ -24,13 +24,13 @@ To add and verify a custom domain:
 
 1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
 
-1. For **Verify ownership**, ownership will be validated automatically using an HTTP token. If ownership cannot be validated automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+1. For **Verify ownership**, ownership will be validated automatically using an HTTP token when possible.
 
-    Your changes can take up to 24 hours to propagate.
+    If ownership cannot be validated automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**. Your changes can take up to 24 hours to propagate.
 
-1. For **TLS cert creation verification**, certificate creation will be validated automatically using an HTTP token. If certificate creation cannot be validated automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+1. For **TLS cert creation verification**, TLS verification will be performed automatically using an HTTP token when possible.
 
-    Your changes can take up to 24 hours to propagate.
+    If TLS verification cannot be performed automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**. Your changes can take up to 24 hours to propagate.
 
     :::note
     If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
