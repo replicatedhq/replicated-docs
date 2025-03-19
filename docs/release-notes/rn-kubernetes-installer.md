@@ -19,7 +19,7 @@ Released on March 19, 2025
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.5.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.16.5.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.81.0-70.0.2.
-* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to use runc v1.2.5.
+* Updates the [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to use runc v1.2.5.
 
 ## v2025.02.26-0
 
