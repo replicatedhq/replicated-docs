@@ -10,6 +10,17 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.19-0
+
+Released on March 19, 2025
+
+### New Features {#new-features-v2025-03-19-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.26.5.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) to use runc v1.2.5.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.16.5.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.32.3 1.31.7 1.30.11 1.29.15.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.81.0-70.0.2.
+
 ## v2025.02.26-0
 
 Released on February 26, 2025
