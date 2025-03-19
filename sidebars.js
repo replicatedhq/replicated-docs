@@ -159,7 +159,6 @@ const sidebars = {
             'vendor/releases-creating-cli',
             'vendor/helm-install-release',
             'vendor/releases-sharing-license-install-script',
-            'vendor/releases-share-download-portal',
             'reference/linter',
           ],
         },
@@ -171,6 +170,7 @@ const sidebars = {
             'vendor/releases-creating-customer',
             'vendor/licenses-adding-custom-fields',
             'vendor/licenses-install-types',
+            'vendor/releases-share-download-portal',
             'vendor/licenses-about-types',
             'vendor/licenses-download',
             {
