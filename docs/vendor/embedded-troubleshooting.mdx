@@ -28,37 +28,7 @@ To view installation logs for Embedded Cluster:
 
 1. SSH onto a controller node.
 
-1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs. 
-
-### View Embedded Cluster Operator Pod Logs
-
-The Embedded Cluster Operator is used for reporting purposes as well as some clean up operations. The `embedded-cluster-operator` pod contains logs that can be useful for troubleshooting, including the reconciliation loop for Embedded Cluster installation.
-
-To view Embedded Cluster Operator pod logs:
-
-1. SSH onto a controller node.
-
-1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
-
-     ```
-     sudo ./APP_SLUG shell
-     ```
-     Where `APP_SLUG` is the unique slug for the application.
-
-1. Get the name of the Embedded Cluster Operator pod from the `embedded-cluster` namespace:
-
-     ```bash
-     kubectl get pod -n embedded-cluster
-     ```
-     The output contains the name of the Operator pod.
-
-1. Use the `kubectl logs` command to view logs for the Operator pod. For more information about this command, including supported options to filter logs, see [kubectl logs](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs) in the Kubernetes documentation.
-
-    **Example:**
-
-     ```bash
-     kubectl logs embedded-operator-123456abcd -n embedded-cluster --limit-bytes=1000
-     ```
+1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs.
 
 ### View k0s Logs
 
