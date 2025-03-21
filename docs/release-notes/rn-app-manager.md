@@ -16,9 +16,8 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
-<!--RELEASE_NOTES_PLACEHOLDER-->
-
-
+### Improvements {#improvements-1-124-8}
+* Updates to support custom domains for Embedded Cluster.
 
 ## 1.124.7
 
