@@ -1,0 +1,25 @@
+# Add patterns to ignore here, one per line
+# Example:
+# *.log
+# tmp/
+
+docs/release-notes/
+docs/templates/
+docs/pdfs/
+docs/.history/
+.github/
+src/
+.gitignore
+.repomixignore
+babel.config.js
+CODEOWNERS
+config.json
+docusaurus.config.js
+js/
+LICENSE
+netlify.toml
+package.json
+README.md
+repomix.config.json
+sidebars.js
+variables.js
