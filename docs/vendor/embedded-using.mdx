@@ -109,19 +109,34 @@ Embedded Cluster host preflight checks have the following limitations:
 * The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
 * Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
 
-#### Skip Host Preflight Checks
+#### Ignore Host Preflight Checks
 
-You can skip host preflight checks by passing the `--skip-host-preflights` flag with the Embedded Cluster `install` command. For example:
+When `--ignore-host-preflights` is passed, the built-in host preflight checks are still run, but the user is prompted and can choose to continue if failures occur. This ensures that users see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
 
-```bash
-sudo ./my-app install --license license.yaml --skip-host-preflights
-```
-
-When you skip host preflight checks, the Admin Console still runs any application-specific preflight checks that are defined in the release before the application is deployed.
+Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
 
 :::note
-Skipping host preflight checks is _not_ recommended for production installations.
+Replicated does not recommend ignoring preflight checks in production installations.
 :::
+
+To ignore the Embedded Cluster host preflight checks:
+
+* **During installation:**
+
+     1. Pass the `--ignore-host-preflights` flag with the install command:
+          
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights
+          ```
+          Where `APP_SLUG` is the unique slug for the application.
+
+     1. Review the results of the preflight checks. When prompted, type `yes` to ignore the preflight checks.      
+
+* **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
+
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
+          ```
 
 ## About Managing Multi-Node Clusters with Embedded Cluster
 
