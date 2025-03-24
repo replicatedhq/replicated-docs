@@ -19,7 +19,7 @@
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
     "@mdx-js/react": "^3.1.0",
-    "@types/node": "22.13.10",
+    "@types/node": "22.13.12",
     "@types/react": "18.3.5",
     "clsx": "^2.1.1",
     "immer": "^10.1.1",
