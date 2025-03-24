@@ -83,6 +83,15 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
+     <td>`--ignore-host-preflights`</td>
+     <td>
+        <p>When `--ignore-host-preflights` is passed, the built-in host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. Additionally, the Admin Console still runs any application-specific preflight checks before the application is deployed. For more information about the Embedded Cluster host preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_</p>
+        <p>Replicated does not recommend ignoring preflight checks in production installations.</p>
+        <p>The `--ignore-host-preflights` flag replaces the deprecated `--skip-host-preflights` flag.</p>
+        <p>**Requirement:** Embedded Cluster 1.21.0 and later</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--local-artifact-mirror-port`</td>
      <td>
         <p>Port on which to run the Local Artifact Mirror (LAM). **Default**: By default, the LAM runs on port 50000.</p>
@@ -110,10 +119,32 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
+     <td>`--no-prompt` **(Deprecated)**</td>
+     <td>
+        <p>Prevents the command from showing user prompts.</p>
+        <p>The `--no-prompt` flag is deprecated and replaced with the `--yes` flag in Embedded Cluster 1.21.0 and later.</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--private-ca`</td>
      <td>
         <p>The path to trusted certificate authority (CA) certificates. Using the `--private-ca` flag ensures that the CA is trusted by the installation. KOTS writes the CA certificates provided with the `--private-ca` flag to a ConfigMap in the cluster.</p>
         <p>The KOTS [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function returns the ConfigMap containing the private CA certificates supplied with the `--private-ca` flag. You can use this template function to mount the ConfigMap so your containers trust the CA too.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--skip-host-preflights` **(Deprecated)**</td>
+     <td>
+        <p>When `--skip-host-preflights` is passed, the Embedded Cluster host preflight checks are not run.</p>
+        <p>The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights` in Embedded Cluster 1.21.0 and later.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--yes`</td>
+     <td>
+        <p>In Embedded Cluster 1.21.0 and later, pass the `--yes` flag to provide an affirmative response to any user prompts for the command. For example, you can pass `--yes` with the `--ignore-host-preflights` flag to ignore host preflight checks during automated installations.</p>
+        <p>The `--yes` flag replaces the deprecated `--no-prompt` flag.</p>
+        <p>**Requirement:** Embedded Cluster 1.21.0 and later</p>
      </td>
   </tr>
 </table>
