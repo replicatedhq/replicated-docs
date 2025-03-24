@@ -10,12 +10,40 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.21-5
+
+Released on March 21, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-21-5}
+* Compatibility Matrix: Fix cluster and VM provisioning when the network fails to create.
+
+## v2025.03.17-8
+
+Released on March 17, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-17-8}
+* Fixes an issue that could cause a crash when users clicked the **Embedded Cluster install instructions** button on the **Customer** page.
+
+## v2025.03.08-0
+
+Released on March 8, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-08-0}
+* Fixes an issue on the Compatibility Matrix **Usage History** page that caused the `pageSize` parameter to be set to an incorrect value.
+
 ## v2025.03.06-1
 
 Released on March 6, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-06-1}
 * Updates the Download Portal to no longer show KOTS pre-releases.
+
+## v2025.02.27-1
+
+Released on February 27, 2025
+
+### Bug Fixes {#bug-fixes-v2025-02-27-1}
+* Fixes an issue where `replicated cluster update ttl` did not return a distribution or kind value.
 
 ## v2025.02.07-1
 

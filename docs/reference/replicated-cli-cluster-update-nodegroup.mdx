@@ -31,13 +31,14 @@ replicated cluster update nodegroup CLUSTER_ID --nodegroup-id NODEGROUP_ID --min
       --nodegroup-id string     The ID of the nodegroup to update
       --nodegroup-name string   The name of the nodegroup to update
       --nodes int               The number of nodes in the nodegroup
-      --output string           The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string           The output format to use. One of: json|table|wide (default: table) (default "table")
 ```
 
 ### Options inherited from parent commands
 
 ```
       --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
       --id string      id of the cluster to update (when name is not provided)
       --name string    Name of the cluster to update.
       --token string   The API token to use to access your app in the Vendor API

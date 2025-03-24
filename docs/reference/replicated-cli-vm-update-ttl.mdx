@@ -30,7 +30,7 @@ replicated vm update ttl aaaaa11 --ttl 30m
 
 ```
   -h, --help            help for ttl
-      --output string   The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string   The output format to use. One of: json|table|wide (default: table) (default "table")
       --ttl string      Update TTL which starts from the moment the vm is running (duration, max 48h).
 ```
 
@@ -38,6 +38,7 @@ replicated vm update ttl aaaaa11 --ttl 30m
 
 ```
       --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
       --id string      id of the vm to update (when name is not provided)
       --name string    Name of the vm to update.
       --token string   The API token to use to access your app in the Vendor API

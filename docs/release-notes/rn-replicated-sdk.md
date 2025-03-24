@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.2.0
+
+Released on March 11, 2025
+
+### New Features {#new-features-1-2-0}
+* Adds a `replicatedAppDomain` Helm value to the SDK Helm chart for configuring the domain used by the Replicated app service. This value defaults to `replicated.app` if neither the `replicatedAppDomain` Helm value nor the `replicatedAppEndpoint` from the Replicated registry is provided.
+
 ## 1.1.1
 
 Released on February 19, 2025

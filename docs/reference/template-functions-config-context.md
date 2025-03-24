@@ -1,4 +1,8 @@
+import ConfigContext from "../partials/template-functions/_config-context.mdx"
+
 # Config Context
+
+<ConfigContext/>
 
 ## ConfigOption
 
@@ -6,33 +10,37 @@
 func ConfigOption(optionName string) string
 ```
 
-Returns the value of the config option as a string.
+Returns the value of the specified option from the KOTS Config custom resource as a string.
 
-For information about the config screen and associated options, see [Config](custom-resource-config) in the _Custom Resources_ section.
+For the `file` config option type, `ConfigOption` returns the base64 encoded file. To return the decoded contents of a file, use [ConfigOptionData](#configoptiondata) instead.
 
 ```yaml
 '{{repl ConfigOption "hostname" }}'
 ```
 
-`ConfigOption` returns the base64 **encoded** value of the `file` config option.
+#### Example
+
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOption template function to set the port, node port, and annotations for a LoadBalancer service using the values supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-'{{repl ConfigOption "ssl_key"}}'
-```
-
-To use files in a Secret, use `ConfigOption`:
-```yaml
-apiVersion: v1
-kind: Secret
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
 metadata:
-  name: tls-secret
-type: kubernetes.io/tls
-data:
-  tls.crt: '{{repl ConfigOption "tls_certificate_file" }}'
-  tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    myapp:
+      service:
+        type: LoadBalancer
+        port: repl{{ ConfigOption "myapp_load_balancer_port"}}
+        nodePort: repl{{ ConfigOption "myapp_load_balancer_node_port"}}
+        annotations: repl{{ ConfigOption `myapp_load_balancer_annotations` | nindent 14 }}
 ```
-
-For more information about using TLS certificates, see [Using TLS Certificates](../vendor/packaging-using-tls-certs).
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## ConfigOptionData
 
@@ -40,25 +48,35 @@ For more information about using TLS certificates, see [Using TLS Certificates](
 func ConfigOptionData(optionName string) string
 ```
 
-`ConfigOptionData` returns the base64 **decoded** value of a `file` config option.
+For the `file` config option type,  `ConfigOptionData` returns the base64 decoded contents of the file. To return the base64 encoded file, use [ConfigOption](#configoption) instead.
 
 ```yaml
 '{{repl ConfigOptionData "ssl_key"}}'
 ```
 
-To use files in a ConfigMap, use `ConfigOptionData`:
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tls-config
-data:
-  tls.crt: |
-    repl{{- ConfigOptionData "tls_certificate_file" | nindent 4 }}
+#### Example
 
-  tls.key: |
-    repl{{- ConfigOptionData "tls_private_key_file" | nindent 4 }}
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionData template function to set the TLS cert and key using the files supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    myapp:
+      tls:
+        enabled: true
+        genSelfSignedCert: repl{{ ConfigOptionEquals "myapp_ingress_tls_type" "self_signed" }}
+        cert: repl{{ print `|`}}repl{{ ConfigOptionData `tls_certificate_file` | nindent 12 }}
+        key: repl{{ print `|`}}repl{{ ConfigOptionData `tls_private_key_file` | nindent 12 }}
 ```
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## ConfigOptionFilename
 
@@ -73,7 +91,9 @@ It will return an empty string if used erroneously with other types.
 '{{repl ConfigOptionFilename "pom_file"}}'
 ```
 
-As an example, if you have the following Config Spec defined:
+#### Example
+
+For example, if you have the following KOTS Config defined:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -91,7 +111,8 @@ spec:
           required: true
 ```
 
-You can use `ConfigOptionFilename` in a Pod Spec to mount a file like so:
+The following example shows how to use `ConfigOptionFilename` in a Pod Spec to mount a file:
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -137,6 +158,26 @@ Returns true if the configuration option value is equal to the supplied value.
 '{{repl ConfigOptionEquals "http_enabled" "1" }}'
 ```
 
+#### Example
+
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionEquals template function to set the `postgres.enabled` value depending on if the user selected the `embedded_postgres` option on the KOTS Admin Console config screen. This value is then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+
 ## ConfigOptionNotEquals
 
 ```go
@@ -168,6 +209,29 @@ Returns the host of the local registry that the user configured. Alternatively, 
 
 Includes the port if one is specified.
 
+#### Example
+
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    myapp:
+      image:
+        registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
+        tag: v1.0.1
+```
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+
 ## LocalRegistryNamespace
 
 ```go
@@ -175,6 +239,29 @@ func LocalRegistryNamespace() string
 ```
 
 Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
+
+#### Example
+
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    myapp:
+      image:
+        registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
+        tag: v1.0.1
+```
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## LocalImageName
 
@@ -205,6 +292,8 @@ func LocalRegistryImagePullSecret() string
 Returns the base64 encoded local registry image pull secret value.
 This is often needed when an operator is deploying images to a namespace that is not managed by Replicated KOTS.
 Image pull secrets must be present in the namespace of the pod.
+
+#### Example
 
 ```yaml
 apiVersion: v1
@@ -239,6 +328,8 @@ Returns the name of the image pull secret that can be added to pod specs that us
 The secret will be automatically created in all application namespaces.
 It will contain authentication information for any private registry used with the application.
 
+#### Example
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -259,3 +350,26 @@ func HasLocalRegistry() bool
 
 Returns true if the environment is configured to rewrite images to a local registry.
 HasLocalRegistry is always true for air gap installations. HasLocalRegistry is true in online installations if the user pushed images to a local registry.
+
+#### Example
+
+The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    myapp:
+      image:
+        registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
+        tag: v1.0.1
+```
+For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
