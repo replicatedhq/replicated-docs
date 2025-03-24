@@ -14,6 +14,8 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * The same Embedded Cluster data directory used at installation is used for all nodes joined to the cluster. This is either the default `/var/lib/embedded-cluster` directory or the directory set with the [`--data-dir`](/reference/embedded-cluster-install#flags) flag. You cannot choose a different data directory for Embedded Cluster when joining nodes.
 
+* More than one controller node should not be joined at the same time. When joining a controller node, a warning is printed to say the user shouldn't join another node until the controller node joins successfully.
+
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped (limited or no outbound internet access) environments. The Admin Console provides the join command that you use to join nodes to the cluster.
