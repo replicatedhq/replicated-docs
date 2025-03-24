@@ -15,7 +15,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 21, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-21-5}
-* CMX: Fix cluster/vm provisioning when the network fails to create.
+* Compatibility Matrix: Fix cluster and VM provisioning when the network fails to create.
+
+## v2025.03.17-8
+
+Released on March 17, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-17-8}
+* Fixes an issue that could cause a crash when users clicked the **Embedded Cluster install instructions** button on the **Customer** page.
 
 ## v2025.03.08-0
 
