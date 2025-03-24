@@ -111,7 +111,7 @@ Embedded Cluster host preflight checks have the following limitations:
 
 #### Ignore Host Preflight Checks
 
-You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. This ensures that users see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
+You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. The `--ignore-host-preflights` flag allows users to see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
 
 Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
 
