@@ -1,0 +1,202 @@
+import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
+import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
+import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Troubleshooting Embedded Cluster
+
+This topic provides information about troubleshooting Replicated Embedded Cluster installations. For more information about Embedded Cluster, including built-in extensions and architecture, see [Embedded Cluster Overview](/vendor/embedded-overview).
+
+## Troubleshoot with Support Bundles
+
+This section includes information about how to collect support bundles for Embedded Cluster installations. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+
+### About the Default Embedded Cluster Support Bundle Spec
+
+<SupportBundleIntro/>
+
+<EmbeddedClusterSupportBundle/>
+
+## View Logs
+
+You can view logs for both Embedded Cluster and the k0s systemd service to help troubleshoot Embedded Cluster deployments.
+
+### View Installation Logs for Embedded Cluster
+
+To view installation logs for Embedded Cluster:
+
+1. SSH onto a controller node.
+
+1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs.
+
+### View k0s Logs
+
+You can use the journalctl command line tool to access logs for systemd services, including k0s. For more information about k0s, see the [k0s documentation](https://docs.k0sproject.io/stable/).
+
+To use journalctl to view k0s logs:
+
+1. SSH onto a controller node or a worker node.
+
+1. Use journalctl to view logs for the k0s systemd service that was deployed by Embedded Cluster.
+
+    **Examples:**
+
+    ```bash
+    journalctl -u k0scontroller
+    ```
+    ```bash
+    journalctl -u k0sworker
+    ```
+
+## Access the Cluster
+
+When troubleshooting, it can be useful to list the cluster and view logs using the kubectl command line tool. For additional suggestions related to troubleshooting applications, see [Troubleshooting Applications](https://kubernetes.io/docs/tasks/debug/debug-application/) in the Kubernetes documentation.
+
+<ShellCommand/>
+
+## Troubleshoot Errors
+
+This section provides troubleshooting advice for common errors.
+
+### Installation failure when NVIDIA GPU Operator is included as Helm extension {#nvidia}
+
+#### Symptom
+
+A release that includes that includes the NVIDIA GPU Operator as a Helm extension fails to install.
+
+#### Cause 
+
+If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
+
+This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
+
+For more information about including the GPU Operator as a Helm extension, see [NVIDIA GPU Operator](/vendor/embedded-using#nvidia-gpu-operator) in _Using Embedded Cluster_.
+
+#### Solution
+
+To troubleshoot:
+
+1. Remove any existing containerd services that are running on the host (such as those deployed by Docker).
+
+1. Reset and reboot the node:
+
+    ```bash
+    sudo ./APP_SLUG reset
+    ```
+    Where `APP_SLUG` is the unique slug for the application. 
+
+    For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
+
+1. Re-install with Embedded Cluster.
+
+### Calico networking issues 
+
+#### Symptom
+
+Symptoms of Calico networking issues can include:
+
+* The pod is stuck in a CrashLoopBackOff state with failed health checks:
+
+    ```
+    Warning Unhealthy 6h51m (x3 over 6h52m) kubelet Liveness probe failed: Get "http://<ip:port>/readyz": dial tcp <ip:port>: connect: no route to host
+    Warning Unhealthy 6h51m (x19 over 6h52m) kubelet Readiness probe failed: Get "http://<ip:port>/readyz": dial tcp <ip:port>: connect: no route to host
+    ....
+    Unhealthy               pod/registry-dc699cbcf-pkkbr     Readiness probe failed: Get "https://<ip:port>/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+    Unhealthy               pod/registry-dc699cbcf-pkkbr     Liveness probe failed: Get "https://<ip:port>/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+    ...
+    ```
+
+* The pod log contains an I/O timeout:
+
+    ```
+    server APIs: config.k8ssandra.io/v1beta1: Get \"https://***HIDDEN***:443/apis/config.k8ssandra.io/v1beta1\": dial tcp ***HIDDEN***:443: i/o timeout"}
+    ```
+
+#### Cause 
+
+Reasons can include:
+
+* Pod CIDR and service CIDR overlap with the host network CIDR.
+
+* Incorrect kernel parameters values.
+
+* VXLAN traffic getting dropped. By default, Calico uses VXLAN as the overlay networking protocol, with Always mode. This mode encapsulates all pod-to-pod traffic in VXLAN packets. If for some reasons, the VXLAN packets get filtered by the network, the pod will not able to communicate with other pods.
+
+#### Solution
+
+<Tabs>
+  <TabItem value="overlap" label="Pod CIDR and service CIDR overlap with the host network CIDR" default>
+  To troubleshoot pod CIDR and service CIDR overlapping with the host network CIDR:
+  1. Run the following command to verify the pod and service CIDR:
+        ```
+        cat /etc/k0s/k0s.yaml | grep -i cidr
+            podCIDR: 10.244.0.0/17
+            serviceCIDR: 10.244.128.0/17
+        ```
+        The default pod CIDR is 10.244.0.0/16 and service CIDR is 10.96.0.0/12.
+
+    1. View pod network interfaces excluding Calico interfaces, and ensure there are no overlapping CIDRs.
+        ```
+        ip route | grep -v cali
+        default via 10.152.0.1 dev ens4 proto dhcp src 10.152.0.4 metric 100
+        10.152.0.1 dev ens4 proto dhcp scope link src 10.152.0.4 metric 100
+        blackhole 10.244.101.192/26 proto 80
+        169.254.169.254 via 10.152.0.1 dev ens4 proto dhcp src 10.152.0.4 metric 100
+        ```
+
+    1. Reset and reboot the installation:
+
+       ```bash
+       sudo ./APP_SLUG reset
+       ```
+       Where `APP_SLUG` is the unique slug for the application. 
+
+       For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
+
+    1. Reinstall the application with different CIDRs using the `--cidr` flag:
+
+        ```bash
+        sudo ./APP_SLUG install --license license.yaml --cidr 172.16.136.0/16
+        ```
+
+        For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
+  </TabItem>
+  <TabItem value="kernel" label="Incorrect kernel parameter values">
+  Embedded Cluster 1.19.0 and later automatically sets the `net.ipv4.conf.default.arp_filter`, `net.ipv4.conf.default.arp_ignore`, and `net.ipv4.ip_forward` kernel parameters. Additionally, host preflight checks automatically run during installation to verify that the kernel parameters were set correctly. For more information about the Embedded Cluster preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.
+
+  If kernel parameters are not set correctly and these preflight checks fail, you might see a message such as `IP forwarding must be enabled.` or `ARP filtering must be disabled by default for newly created interfaces.`.
+
+  To troubleshoot incorrect kernel parameter values:       
+    
+    1. Use sysctl to set the kernel parameters to the correct values:
+
+        ```bash
+        echo "net.ipv4.conf.default.arp_filter=0" >> /etc/sysctl.d/99-embedded-cluster.conf
+        echo "net.ipv4.conf.default.arp_ignore=0" >> /etc/sysctl.d/99-embedded-cluster.conf
+        echo "net.ipv4.ip_forward=1" >> /etc/sysctl.d/99-embedded-cluster.conf
+
+        sysctl --system
+        ```
+
+    1. Reset and reboot the installation:
+
+       ```bash
+       sudo ./APP_SLUG reset
+       ```
+       Where `APP_SLUG` is the unique slug for the application. 
+       For more information, see [Reset a Node](/vendor/embedded-using#reset-a-node) in _Using Embedded Cluster_.
+
+    1. Re-install with Embedded Cluster.
+  </TabItem>
+  <TabItem value="vxlan" label="VXLAN traffic dropped">
+
+  As a temporary troubleshooting measure, set the mode to CrossSubnet and see if the issue persists. This mode only encapsulates traffic between pods across different subnets with VXLAN.
+
+        ```bash
+        kubectl patch ippool default-ipv4-ippool --type=merge -p '{"spec": {"vxlanMode": "CrossSubnet"}}'
+        ```
+    
+    If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
+  </TabItem>
+</Tabs>
