@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 25, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-25-0}
-* Fixes an issue where custom domains weren't returned for KOTS installs with version `v1.124.9`.
+* Fixes an issue where custom domains were not returned for KOTS installations with version `v1.124.9`.
 
 ## v2025.03.21-5
 
