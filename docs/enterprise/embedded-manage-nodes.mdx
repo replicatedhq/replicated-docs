@@ -77,9 +77,9 @@ To add nodes to a cluster:
 
 ## Enable High Availability for Multi-Node Clusters{#ha}
 
-Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
+Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
-Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA after adding three or more controller nodes with the `enable-ha` command.
+Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA with the `enable-ha` command after adding three or more controller nodes.
 
 ### HA Architecture
 
