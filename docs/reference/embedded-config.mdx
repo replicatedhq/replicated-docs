@@ -21,9 +21,6 @@ apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
   version: 2.1.3+k8s-1.30
-  domains:
-    proxyRegistryDomain: proxy.yourcompany.com
-    replicatedAppDomain: updates.yourcompany.com
   nodeRoles:
     - name: app
       controller: true
@@ -33,6 +30,9 @@ spec:
       controller: false # Default false
       labels:
         database: "true"
+  domains:
+    proxyRegistryDomain: proxy.yourcompany.com
+    replicatedAppDomain: updates.yourcompany.com
   extensions:
     helm:
       repositories:
@@ -68,29 +68,6 @@ You must specify which version of Embedded Cluster to install. Each version of E
 
 For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because Embedded Cluster is changing rapidly.
 
-## domains
-
-Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
-
-When `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are set, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
-
-The custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields must be added to the Vendor Portal before they can be used by Embedded Cluster. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
-
-If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
-
-#### Example
-
-```yaml
-apiVersion: embeddedcluster.replicated.com/v1beta1
-kind: Config
-spec:
-  domains:
-    # Your proxy registry custom domain
-    proxyRegistryDomain: proxy.yourcompany.com
-    # Your app service custom domain
-    replicatedAppDomain: updates.yourcompany.com    
-```
-
 ## nodeRoles
 
 You can optionally customize node roles in the Embedded Cluster Config using the `nodeRoles` key. When the `nodeRoles` key is configured, users select a role to assign to a node when it is joined to the cluster. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
@@ -115,6 +92,29 @@ spec:
       controller: false # Default false
       labels:
         database: "true"
+```
+
+## domains
+
+Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
+
+When `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are set, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
+
+The custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields must be added to the Vendor Portal before they can be used by Embedded Cluster. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
+
+If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  domains:
+    # Your proxy registry custom domain
+    proxyRegistryDomain: proxy.yourcompany.com
+    # Your app service custom domain
+    replicatedAppDomain: updates.yourcompany.com    
 ```
 
 ## extensions
