@@ -10,6 +10,37 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.2.0
+
+Released on March 25, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.2.0+k8s-1.30</td>
+    <td id="center">2.2.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.9</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-2-0}
+* Embedded Cluster fully supports custom domains. After configuring custom domains in the Vendor Portal, set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` in the Embedded Cluster Config in order for a release to use the desired custom domains. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
+* Embedded Cluster only makes requests to two endpoints: replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). All calls to other endpoints have been removed. This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
+
+### Improvements {#improvements-2-2-0}
+* Adds a host preflight to check that the data directory is executable.
+* The common cloud metadata service IP address `169.254.169.254` is now added to the no_proxy list by default. This facilitates the detection of a machine's public IP address during installation so the Admin Console URL can be displayed.
+* When joining a controller node, a warning is printed to say that the user shouldn't join another node until the controller joins successfully.
+* The `join` command now waits for worker nodes to be ready before saying the join succeeded. Previously, `join` only waited when joining controllers.
+
 ## 2.1.3
 
 Released on February 19, 2025
