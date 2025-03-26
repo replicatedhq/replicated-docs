@@ -34,16 +34,16 @@ replicated vm create --distribution ubuntu --version 20.04 --count 5 --instance-
 ```
       --count int              Number of matching VMs to create (default 1)
       --disk int               Disk Size (GiB) to request per node (default 50)
-      --distribution string    Distribution of the vm to provision
+      --distribution string    Distribution of the VM to provision
       --dry-run                Dry run
   -h, --help                   help for create
       --instance-type string   The type of instance to use (e.g. r1.medium)
       --name string            VM name (defaults to random name)
       --network string         The network to use for the VM(s). If not supplied, create a new network
-  -o, --output string          The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string          The output format to use. One of: json|table|wide (default "table")
       --tag stringArray        Tag to apply to the VM (key=value format, can be specified multiple times)
       --ttl string             VM TTL (duration, max 48h)
-      --version string         Vversion to provision (format is distribution dependent)
+      --version string         Version to provision (format is distribution dependent)
       --wait duration          Wait duration for VM(s) to be ready (leave empty to not wait)
 ```
 
