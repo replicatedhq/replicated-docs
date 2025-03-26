@@ -32,13 +32,13 @@ Released on March 25, 2025
 </table>
 
 ### New Features {#new-features-2-2-0}
-* Embedded Cluster fully supports custom domains. After configuring custom domains in the Vendor Portal, set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` in the Embedded Cluster Config in order for a release to use the desired custom domains. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
-* Embedded Cluster only makes requests to two endpoints: replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). All calls to other endpoints have been removed. This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
+* Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
+* Removes all calls to endpoints other than replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
 
 ### Improvements {#improvements-2-2-0}
 * Adds a host preflight to check that the data directory is executable.
-* The common cloud metadata service IP address `169.254.169.254` is now added to the no_proxy list by default. This facilitates the detection of a machine's public IP address during installation so the Admin Console URL can be displayed.
-* When joining a controller node, a warning is printed to say that the user shouldn't join another node until the controller joins successfully.
+* Adds the common cloud metadata service IP address (`169.254.169.254`) to the no_proxy list by default. This facilitates the detection of a machine's public IP address during installation so the Admin Console URL can be displayed.
+* When joining a controller node, a warning is printed that explains how the user should not join another node until the controller joins successfully.
 * The `join` command now waits for worker nodes to be ready before saying the join succeeded. Previously, `join` only waited when joining controllers.
 
 ## 2.1.3
