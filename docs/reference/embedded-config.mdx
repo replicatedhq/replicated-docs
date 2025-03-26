@@ -2,19 +2,15 @@
 
 This topic is a reference for the Replicated Embedded Cluster Config custom resource. For more information about Embedded Cluster, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-:::note
-Embedded Cluster is in beta. If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
-:::
-
 ## Overview
 
-To install your application with Embedded Cluster, an Embedded Cluster Config must be created in a release. Embedded Cluster installation artifacts are available only for releases that include an Embedded Cluster Config.
+To install your application with Embedded Cluster, an Embedded Cluster Config must be included in the release. Embedded Cluster installation artifacts are available only for releases that include an Embedded Cluster Config.
 
 The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that will be created.
 
-### Limitations
+### Limitation
 
-* The Embedded Cluster Config does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
+The Embedded Cluster Config does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
 
 For additional property-specific limitations, see the sections below.
 
@@ -34,6 +30,9 @@ spec:
     - name: app
       labels:
        app: "true"
+    domains:
+      proxyRegistryDomain: proxy.yourcompany.com
+      replicatedAppDomain: updates.yourcompany.com
   extensions:
     helm:
       repositories:
@@ -146,6 +145,29 @@ spec:
     - name: gpu
       labels:
         gpu: "true" # Label applied to "gpu" nodes    
+```
+
+## domains
+
+Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
+
+When `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are set, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
+
+The custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields must be added to the Vendor Portal before they can be used by Embedded Cluster. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
+
+If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  domains:
+    # Your proxy registry custom domain
+    proxyRegistryDomain: proxy.yourcompany.com
+    # Your app service custom domain
+    replicatedAppDomain: updates.yourcompany.com    
 ```
 
 ## extensions

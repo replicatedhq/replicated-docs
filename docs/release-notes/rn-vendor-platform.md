@@ -10,12 +10,26 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.21-5
+
+Released on March 21, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-21-5}
+* Compatibility Matrix: Fix cluster and VM provisioning when the network fails to create.
+
+## v2025.03.17-8
+
+Released on March 17, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-17-8}
+* Fixes an issue that could cause a crash when users clicked the **Embedded Cluster install instructions** button on the **Customer** page.
+
 ## v2025.03.13-5
 
 Released on March 13, 2025
 
 ### New Features {#new-features-v2025-03-13-5}
-* Enforces that the custom domains set in the Embedded Cluster config match that which is set on the channel when promoting a release.
+* Enforces that the custom domains set in the Embedded Cluster Config match the custom domains set on the channel when promoting a release. For more information about using custom domains for Embedded Cluster installations, see [domains](https://docs.replicated.com/reference/embedded-config#domains) in _Embedded Cluster Config_.
 
 ## v2025.03.08-0
 

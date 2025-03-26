@@ -59,7 +59,7 @@ replicated cluster create --distribution eks --version 1.21 --nodes 3 --addon ob
       --name string             Cluster name (defaults to random name)
       --nodegroup stringArray   Node group to create (name=?,instance-type=?,nodes=?,min-nodes=?,max-nodes=?,disk=? format, can be specified multiple times). For each nodegroup, at least one flag must be specified. The flags min-nodes and max-nodes are mutually dependent.
       --nodes int               Node count (default 1)
-  -o, --output string           The output format to use. One of: json|table|wide (default: table) (default "table")
+  -o, --output string           The output format to use. One of: json|table|wide (default "table")
       --tag stringArray         Tag to apply to the cluster (key=value format, can be specified multiple times)
       --ttl string              Cluster TTL (duration, max 48h)
       --version string          Kubernetes version to provision (format is distribution dependent)

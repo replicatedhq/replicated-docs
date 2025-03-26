@@ -1,7 +1,6 @@
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
-import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
-import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
+import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 
 # Using Embedded Cluster
 
@@ -109,19 +108,34 @@ Embedded Cluster host preflight checks have the following limitations:
 * The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
 * Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
 
-#### Skip Host Preflight Checks
+#### Ignore Host Preflight Checks
 
-You can skip host preflight checks by passing the `--skip-host-preflights` flag with the Embedded Cluster `install` command. For example:
+You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. The `--ignore-host-preflights` flag allows users to see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
 
-```bash
-sudo ./my-app install --license license.yaml --skip-host-preflights
-```
-
-When you skip host preflight checks, the Admin Console still runs any application-specific preflight checks that are defined in the release before the application is deployed.
+Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
 
 :::note
-Skipping host preflight checks is _not_ recommended for production installations.
+Ignoring host preflight checks is _not_ recommended for production installations.
 :::
+
+To ignore the Embedded Cluster host preflight checks:
+
+* **During installation:**
+
+     1. Pass the `--ignore-host-preflights` flag with the install command:
+          
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights
+          ```
+          Where `APP_SLUG` is the unique slug for the application.
+
+     1. Review the results of the preflight checks. When prompted, type `yes` to ignore the preflight checks.      
+
+* **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
+
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
+          ```
 
 ## About Managing Multi-Node Clusters with Embedded Cluster
 
@@ -153,58 +167,13 @@ For more information about updating, see [Performing Updates with Embedded Clust
 
 ## Access the Cluster
 
-With Embedded Cluster, end-users are rarely supposed to need to use the CLI. Typical workflows, like updating the application and the cluster, are driven through the Admin Console.
+With Embedded Cluster, end users rarely need to use the CLI. Typical workflows, like updating the application and the cluster, can be done through the Admin Console. Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
 
-Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
+:::note
+If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
+:::
 
-To access the cluster and use other included binaries:
-
-1. SSH onto a controller node.
-
-1. Use the Embedded Cluster shell command to start a shell with access to the cluster:
-
-     ```
-     sudo ./APP_SLUG shell
-     ```
-
-     The output looks similar to the following:
-     ```
-        __4___
-    _  \ \ \ \   Welcome to APP_SLUG debug shell.
-    <'\ /_/_/_/   This terminal is now configured to access your cluster.
-    ((____!___/) Type 'exit' (or CTRL+d) to exit.
-    \0\0\0\0\/  Happy hacking.
-    ~~~~~~~~~~~
-    root@alex-ec-2:/home/alex# export KUBECONFIG="/var/lib/embedded-cluster/k0s/pki/admin.conf"
-    root@alex-ec-2:/home/alex# export PATH="$PATH:/var/lib/embedded-cluster/bin"
-    root@alex-ec-2:/home/alex# source <(kubectl completion bash)
-    root@alex-ec-2:/home/alex# source /etc/bash_completion
-    ```
-
-     The appropriate kubeconfig is exported, and the location of useful binaries like kubectl and Replicated’s preflight and support-bundle plugins is added to PATH.
-
-     :::note
-     You cannot run the `shell` command on worker nodes.
-     :::
-
-1. Use the available binaries as needed.
-
-     **Example**:
-
-     ```bash
-     kubectl version
-     ```
-     ```
-     Client Version: v1.29.1
-     Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-     Server Version: v1.29.1+k0s
-     ```
-
-1. Type `exit` or **Ctrl + D** to exit the shell.
-
-     :::note
-     If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
-     :::
+<ShellCommand/>
 
 ## Reset a Node
 
@@ -266,13 +235,7 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
 When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
 
 :::note
-If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster. If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
+If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster. If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia) in _Troubleshooting Embedded Cluster_.
 
 This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
 :::
-
-## Troubleshoot with Support Bundles
-
-<SupportBundleIntro/>
-
-<EmbeddedClusterSupportBundle/>

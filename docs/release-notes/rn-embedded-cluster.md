@@ -10,6 +10,37 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.2.0
+
+Released on March 25, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.2.0+k8s-1.30</td>
+    <td id="center">2.2.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.9</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-2-0}
+* Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
+* Removes all calls to endpoints other than replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
+
+### Improvements {#improvements-2-2-0}
+* Adds a host preflight to check that the data directory is executable.
+* Adds the common cloud metadata service IP address (`169.254.169.254`) to the no_proxy list by default. This facilitates the detection of a machine's public IP address during installation so the Admin Console URL can be displayed.
+* When joining a controller node, a warning is printed that explains how the user should not join another node until the controller joins successfully.
+* The `join` command now waits for worker nodes to be ready before saying the join succeeded. Previously, `join` only waited when joining controllers.
+
 ## 2.1.3
 
 Released on February 19, 2025
