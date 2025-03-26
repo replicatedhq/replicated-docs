@@ -90,6 +90,12 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
+     <td>`-l, --license`</td>
+     <td>
+        <p>Path to the license file</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--local-artifact-mirror-port`</td>
      <td>
         <p>Port on which to run the Local Artifact Mirror (LAM). **Default**: By default, the LAM runs on port 50000.</p>
@@ -124,7 +130,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
      </td>
   </tr>
   <tr>
-     <td>`--yes`</td>
+     <td>`-y, --yes`</td>
      <td>
         <p>In Embedded Cluster 1.21.0 and later, pass the `--yes` flag to provide an affirmative response to any user prompts for the command. For example, you can pass `--yes` with the `--ignore-host-preflights` flag to ignore host preflight checks during automated installations.</p>
         <p>**Requirement:** Embedded Cluster 1.21.0 and later</p>
