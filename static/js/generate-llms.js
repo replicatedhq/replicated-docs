@@ -4,7 +4,24 @@ const path = require('path');
 // Fix path resolution to use /docs and /static at project root
 const DOCS_DIR = path.join(__dirname, "../../docs");
 const OUTPUT_FILE = path.join(__dirname, "../../static", "llms.txt");
+const OUTPUT_FULL_FILE = path.join(__dirname, "../../static", "llms-full.txt");
 const BASE_URL = "https://docs.replicated.com";
+
+// Define static content
+const STATIC_HEADER = `# Replicated Documentation for LLMs
+
+This file contains markdown-formatted links to Replicated documentation pages.
+
+`;
+
+const STATIC_FOOTER = `
+
+## Additional Resources
+
+For more information, visit:
+- [Replicated Documentation Home](https://docs.replicated.com)
+- [Replicated Help Center](https://help.replicated.com)
+`;
 
 function extractFirstSentence(text) {
     // Remove any front matter between --- markers
@@ -26,13 +43,17 @@ function extractFirstSentence(text) {
     return sentenceMatch ? sentenceMatch[0].trim() : 'No description available.';
 }
 
+function shouldSkipDirectory(filePath) {
+    const excludedDirs = ['.history', 'release-notes', 'templates', 'pdfs'];
+    return excludedDirs.some(dir => filePath.includes(dir));
+}
+
 // Recursively get all .md files from a directory
 function getMarkdownFiles(dir, fileList = []) {
     fs.readdirSync(dir).forEach(file => {
         const filePath = path.join(dir, file);
         
-        // Skip .history and release-notes directories
-        if (filePath.includes('.history') || filePath.includes('release-notes') || filePath.includes('templates') || filePath.includes('pdfs')) {
+        if (shouldSkipDirectory(filePath)) {
             return;
         }
         
@@ -56,27 +77,40 @@ function getMarkdownFiles(dir, fileList = []) {
             fileList.push({
                 path: relativePath,
                 title: title,
-                description: description
+                description: description,
+                content: content
             });
         }
     });
     return fileList;
 }
 
-// Generate the llms.txt file
-function generateLLMSTxt() {
-    const files = getMarkdownFiles(DOCS_DIR);
+function generateFullLLMsTxt(files) {
+    const fullContent = files.map(file => {
+        return `# ${file.title}\n\n${file.content}\n\n---\n\n`;
+    }).join('\n');
     
-    const output = [
+    fs.writeFileSync(OUTPUT_FULL_FILE, fullContent);
+    console.log("✅ llms-full.txt generated!");
+}
+
+function generateLLMsTxt(files) {
+    const dynamicContent = [
         "## Docs\n",
+        "For a complete archive of all documentation pages, see [llms-full.txt](https://docs.replicated.com/llms-full.txt)\n",
         ...files.map(file => 
             `- [${file.title}](${BASE_URL}/${file.path}.md): ${file.description}`
         )
     ].join('\n');
     
-    fs.writeFileSync(OUTPUT_FILE, output);
+    // Combine static and dynamic content
+    const fullContent = STATIC_HEADER + dynamicContent + STATIC_FOOTER;
+    
+    fs.writeFileSync(OUTPUT_FILE, fullContent);
     console.log("✅ llms.txt generated!");
 }
 
-// Run the generator
-generateLLMSTxt();
+// Generate both files
+const files = getMarkdownFiles(DOCS_DIR);
+generateFullLLMsTxt(files);
+generateLLMsTxt(files);

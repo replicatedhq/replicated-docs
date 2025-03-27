@@ -1,4 +1,10 @@
+# Replicated Documentation for LLMs
+
+This file contains markdown-formatted links to Replicated documentation pages.
+
 ## Docs
+
+For a complete archive of all documentation pages, see [llms-full.txt](https://docs.replicated.com/llms-full.txt)
 
 - [Changing an Admin Console Password](https://docs.replicated.com/enterprise/auth-changing-passwords.md): When you install for the first time with Replicated kURL, the Replicated KOTS Admin Console is secured with a single shared password that is set automatically for all users.
 - [Configuring Role-based Access Control (Beta)](https://docs.replicated.com/enterprise/auth-configuring-rbac.md): You can regulate access to the Replicated KOTS Admin Console resources based on the roles of individual users within your organization.
@@ -751,3 +757,9 @@
 - [Application Settings Page](https://docs.replicated.com/vendor/vendor-portal-application-settings.md): Each application has its own settings, which include the application name and application slug.
 - [Creating a Vendor Account](https://docs.replicated.com/vendor/vendor-portal-creating-account.md): To get started with Replicated, you must create a Replicated vendor account.
 - [Managing Applications](https://docs.replicated.com/vendor/vendor-portal-manage-app.md): This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
+
+## Additional Resources
+
+For more information, visit:
+- [Replicated Documentation Home](https://docs.replicated.com)
+- [Replicated Help Center](https://help.replicated.com)
