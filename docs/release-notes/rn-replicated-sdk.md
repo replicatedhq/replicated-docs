@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on March 27, 2025
 
 ### Improvements {#improvements-1-3-0}
-* Updates endpoint resolution to prioritize custom domains provided via params before falling back to the license endpoint.
+* Updates endpoint resolution to prioritize custom domains provided via parameters before falling back to the license endpoint.
 
 ## 1.2.0
 
