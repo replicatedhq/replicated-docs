@@ -1,40 +1,82 @@
 const fs = require('fs');
 const path = require('path');
 
-// Recursively get all .md files from a directory
-function getMDFiles(dir, fileList = []) {
-  const files = fs.readdirSync(dir);
-  
-  files.forEach(file => {
-    const filePath = path.join(dir, file);
-    const stat = fs.statSync(filePath);
-    
-    if (stat.isDirectory()) {
-      getMDFiles(filePath, fileList);
-    } else if (path.extname(file) === '.md') {
-      // Convert Windows path separators to forward slashes if needed
-      const normalizedPath = filePath.replace(/\\/g, '/');
-      // Remove the /docs prefix to get relative path
-      const relativePath = normalizedPath.replace(/^docs\//, '');
-      fileList.push(relativePath);
-    }
-  });
+// Fix path resolution to use /docs and /static at project root
+const DOCS_DIR = path.join(__dirname, "../../docs");
+const OUTPUT_FILE = path.join(__dirname, "../../static", "llms.txt");
+const BASE_URL = "https://docs.replicated.com";
 
-  return fileList;
+function extractFirstSentence(text) {
+    // Remove any front matter between --- markers
+    text = text.replace(/^---[\s\S]*?---/, '');
+    
+    // Remove any import statements
+    text = text.replace(/^import.*$/gm, '');
+    
+    // Remove markdown headings
+    text = text.replace(/^#+\s.*$/gm, '');
+    
+    // Find the first non-empty line
+    const firstParagraph = text.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)[0];
+    
+    // Extract first sentence (ends with . ! or ?)
+    const sentenceMatch = firstParagraph?.match(/^[^.!?]+[.!?]/);
+    return sentenceMatch ? sentenceMatch[0].trim() : 'No description available.';
+}
+
+// Recursively get all .md files from a directory
+function getMarkdownFiles(dir, fileList = []) {
+    fs.readdirSync(dir).forEach(file => {
+        const filePath = path.join(dir, file);
+        
+        // Skip .history and release-notes directories
+        if (filePath.includes('.history') || filePath.includes('release-notes') || filePath.includes('templates') || filePath.includes('pdfs')) {
+            return;
+        }
+        
+        if (fs.statSync(filePath).isDirectory()) {
+            getMarkdownFiles(filePath, fileList);
+        } else if (path.extname(file) === '.md' || path.extname(file) === '.mdx') {
+            // Read the file content
+            const content = fs.readFileSync(filePath, 'utf8');
+            
+            // Extract title from first heading
+            const titleMatch = content.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : file.replace(/\.(md|mdx)$/, '');
+            // Extract description from first sentence
+            const description = extractFirstSentence(content);
+            
+            // Get the relative path without the extension
+            const relativePath = filePath
+                .replace(`${DOCS_DIR}/`, '')
+                .replace(/\.(md|mdx)$/, '');
+                
+            fileList.push({
+                path: relativePath,
+                title: title,
+                description: description
+            });
+        }
+    });
+    return fileList;
 }
 
 // Generate the llms.txt file
-function generateLLMsFile() {
-  const docsDir = path.join(process.cwd(), 'docs');
-  const mdFiles = getMDFiles(docsDir);
-  
-  // Create content with one file per line
-  const content = mdFiles.map(file => `https://docs.cursor.com/${file}`).join('\n');
-  
-  // Write to llms.txt
-  fs.writeFileSync('llms.txt', content);
-  console.log('Generated llms.txt with', mdFiles.length, 'files');
+function generateLLMSTxt() {
+    const files = getMarkdownFiles(DOCS_DIR);
+    
+    const output = [
+        "## Docs\n",
+        ...files.map(file => 
+            `- [${file.title}](${BASE_URL}/${file.path}.md): ${file.description}`
+        )
+    ].join('\n');
+    
+    fs.writeFileSync(OUTPUT_FILE, output);
+    console.log("✅ llms.txt generated!");
 }
 
 // Run the generator
-generateLLMsFile();
+generateLLMSTxt();

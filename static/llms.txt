@@ -1,0 +1,753 @@
+## Docs
+
+- [Changing an Admin Console Password](https://docs.replicated.com/enterprise/auth-changing-passwords.md): When you install for the first time with Replicated kURL, the Replicated KOTS Admin Console is secured with a single shared password that is set automatically for all users.
+- [Configuring Role-based Access Control (Beta)](https://docs.replicated.com/enterprise/auth-configuring-rbac.md): You can regulate access to the Replicated KOTS Admin Console resources based on the roles of individual users within your organization.
+- [Using an Identity Provider for User Access (Beta)](https://docs.replicated.com/enterprise/auth-identity-provider.md): When you install an application for the first time, the Replicated KOTS Admin Console is secured with a single shared password for all users.
+- [Adding Nodes to kURL Clusters](https://docs.replicated.com/enterprise/cluster-management-add-nodes.md): No description available.
+- [Deleting the Admin Console and Removing Applications](https://docs.replicated.com/enterprise/delete-admin-console.md): This topic describes how to remove installed applications and delete the Replicated KOTS Admin Console.
+- [Managing Multi-Node Clusters with Embedded Cluster](https://docs.replicated.com/enterprise/embedded-manage-nodes.md): The topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add nodes and enable high-availability for multi-node clusters.
+- [Updating Custom TLS Certificates in Embedded Cluster Installations](https://docs.replicated.com/enterprise/embedded-tls-certs.md): This topic describes how to update custom TLS certificates in Replicated Embedded Cluster installations.
+- [Managing Secrets with KOTS Auto-GitOps (Alpha)](https://docs.replicated.com/enterprise/gitops-managing-secrets.md): No description available.
+- [KOTS Auto-GitOps Workflow](https://docs.replicated.com/enterprise/gitops-workflow.md): No description available.
+- [Working with the kURL Image Registry](https://docs.replicated.com/enterprise/image-registry-kurl.md): No description available.
+- [Avoiding Docker Hub Rate Limits](https://docs.replicated.com/enterprise/image-registry-rate-limits.md): This topic describes how to avoid rate limiting for anonymous and free authenticated use of Docker Hub by providing a Docker Hub username and password to the `kots docker ensure-secret` command.
+- [Configuring Local Image Registries](https://docs.replicated.com/enterprise/image-registry-settings.md): This topic describes how to configure private registry settings in the Replicated KOTS Admin Console.
+- [Air Gap Installation with Embedded Cluster](https://docs.replicated.com/enterprise/installing-embedded-air-gap.md): This topic describes how to install applications with Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access.
+- [Automating Installation with Embedded Cluster](https://docs.replicated.com/enterprise/installing-embedded-automation.md): This topic describes how to install an application with Replicated Embedded Cluster from the command line, without needing to access the Replicated KOTS Admin Console.
+- [Embedded Cluster Installation Requirements](https://docs.replicated.com/enterprise/installing-embedded-requirements.md): This topic lists the installation requirements for Replicated Embedded Cluster.
+- [Online Installation with Embedded Cluster](https://docs.replicated.com/enterprise/installing-embedded.md): This topic describes how to install an application in an online (internet-connected) environment with the Replicated Embedded Cluster installer.
+- [Air Gap Installation in Existing Clusters with KOTS](https://docs.replicated.com/enterprise/installing-existing-cluster-airgapped.md): No description available.
+- [Installing with the KOTS CLI](https://docs.replicated.com/enterprise/installing-existing-cluster-automation.md): This topic describes how to install an application with Replicated KOTS in an existing cluster using the KOTS CLI.
+- [Online Installation in Existing Clusters with KOTS](https://docs.replicated.com/enterprise/installing-existing-cluster.md): No description available.
+- [KOTS Installation Requirements](https://docs.replicated.com/enterprise/installing-general-requirements.md): This topic describes the requirements for installing in a Kubernetes cluster with Replicated KOTS.
+- [Air Gap Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl-airgap.md): No description available.
+- [Installing with kURL from the Command Line](https://docs.replicated.com/enterprise/installing-kurl-automation.md): No description available.
+- [kURL Installation Requirements](https://docs.replicated.com/enterprise/installing-kurl-requirements.md): No description available.
+- [Online Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl.md): No description available.
+- [Considerations Before Installing](https://docs.replicated.com/enterprise/installing-overview.md): Before you install an application with KOTS in an existing cluster, consider the following installation options.
+- [Installing KOTS in Existing Clusters Without Object Storage](https://docs.replicated.com/enterprise/installing-stateful-component-requirements.md): This topic describes how to install Replicated KOTS in existing clusters without the default object storage, including limitations of installing without object storage.
+- [Accessing Dashboards Using Port Forwarding](https://docs.replicated.com/enterprise/monitoring-access-dashboards.md): This topic includes information about how to access Prometheus, Grafana, and Alertmanager in Replicated KOTS existing cluster and Replicated kURL installations.
+- [Configuring Prometheus Monitoring in Existing Cluster KOTS Installations](https://docs.replicated.com/enterprise/monitoring-applications.md): This topic describes how to monitor applications and clusters with Prometheus in existing cluster installations with Replicated KOTS.
+- [Consuming Prometheus Metrics Externally](https://docs.replicated.com/enterprise/monitoring-external-prometheus.md): No description available.
+- [Validating SBOM Signatures](https://docs.replicated.com/enterprise/sbom-validating.md): This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated KOTS, Replicated kURL, and Troubleshoot releases.
+- [How to Set Up Backup Storage](https://docs.replicated.com/enterprise/snapshots-config-workflow.md): This topic describes the process of setting up backup storage for the Replicated snapshots feature.
+- [Configuring a Host Path Storage Destination](https://docs.replicated.com/enterprise/snapshots-configuring-hostpath.md): This topic describes how to install Velero and configure a host path as your storage destination for backups.
+- [Configuring an NFS Storage Destination](https://docs.replicated.com/enterprise/snapshots-configuring-nfs.md): This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
+- [Creating and Scheduling Backups](https://docs.replicated.com/enterprise/snapshots-creating.md): This topic describes how to use the Replicated snapshots feature to create backups.
+- [Restoring from Backups](https://docs.replicated.com/enterprise/snapshots-restoring-full.md): This topic describes how to restore from full or partial backups using Replicated snapshots.
+- [Configuring Other Storage Destinations](https://docs.replicated.com/enterprise/snapshots-storage-destinations.md): This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provider (GCP), Microsoft Azure, and S3-compatible providers.
+- [Troubleshooting Snapshots](https://docs.replicated.com/enterprise/snapshots-troubleshooting-backup-restore.md): When a snapshot fails, a support bundle will be collected and stored automatically.
+- [Updating Storage Settings](https://docs.replicated.com/enterprise/snapshots-updating-with-admin-console.md): This topic describes how to update existing storage destination settings using the Replicated Admin Console.
+- [Installing the Velero CLI](https://docs.replicated.com/enterprise/snapshots-velero-cli-installing.md): You install the Velero CLI before installing Velero and configuring a storage destination for backups.
+- [Configuring Namespace Access and Memory Limit](https://docs.replicated.com/enterprise/snapshots-velero-installing-config.md): This topic describes how to configure namespace access and the memory limit for Velero.
+- [Understanding Application Status Details in the Admin Console](https://docs.replicated.com/enterprise/status-viewing-details.md): This topic describes how to view the status of an application on the Replicated KOTS Admin Console dashboard.
+- [Generating Support Bundles from the Admin Console](https://docs.replicated.com/enterprise/troubleshooting-an-app.md): This topic describes how to generate support bundles from the KOTS Admin Console.
+- [Performing Updates in Existing Clusters](https://docs.replicated.com/enterprise/updating-app-manager.md): This topic describes how to perform updates in existing cluster installations with Replicated KOTS.
+- [Configuring Automatic Updates](https://docs.replicated.com/enterprise/updating-apps.md): This topic describes how to configure automatic updates for applications installed in online (internet-connected) environments.
+- [Performing Updates in Embedded Clusters](https://docs.replicated.com/enterprise/updating-embedded.md): This topic describes how to perform updates for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
+- [About kURL Cluster Updates](https://docs.replicated.com/enterprise/updating-kurl-about.md): No description available.
+- [Performing Updates in kURL Clusters](https://docs.replicated.com/enterprise/updating-kurl.md): No description available.
+- [Updating Licenses in the Admin Console](https://docs.replicated.com/enterprise/updating-licenses.md): This topic describes how to update a license from the KOTS Admin Console.
+- [Patching with Kustomize](https://docs.replicated.com/enterprise/updating-patching-with-kustomize.md): This topic describes how to use Kustomize to patch an application before deploying.
+- [Updating TLS Certificates in kURL Clusters](https://docs.replicated.com/enterprise/updating-tls-cert.md): No description available.
+- [Introduction to KOTS](https://docs.replicated.com/intro-kots.md): This topic provides an introduction to the Replicated KOTS installer, including information about KOTS features, installation options, and user interfaces.
+- [Introduction to Replicated](https://docs.replicated.com/intro-replicated.md): This topic provides an introduction to the Replicated Platform, including a platform overview and a list of key features.
+- [Home](https://docs.replicated.com/intro.md): No description available.
+- [_airgap-bundle](https://docs.replicated.com/partials/airgap/_airgap-bundle.md): Air gap bundles (`.
+- [_nginx-deployment](https://docs.replicated.com/partials/application-links/_nginx-deployment.md): No description available.
+- [_nginx-k8s-app](https://docs.replicated.com/partials/application-links/_nginx-k8s-app.md): No description available.
+- [_nginx-kots-app](https://docs.replicated.com/partials/application-links/_nginx-kots-app.md): No description available.
+- [_nginx-service](https://docs.replicated.com/partials/application-links/_nginx-service.md): No description available.
+- [_build-source-code](https://docs.replicated.com/partials/ci-cd/_build-source-code.md): Add one or more jobs to compile your application source code and build images.
+- [_test-recs](https://docs.replicated.com/partials/ci-cd/_test-recs.md): * **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests.
+- [_openshift-pool](https://docs.replicated.com/partials/cmx/_openshift-pool.md): No description available.
+- [_overview](https://docs.replicated.com/partials/cmx/_overview.md): Replicated Compatibility Matrix quickly provisions ephemeral clusters of different Kubernetes distributions and versions, such as OpenShift, EKS, and Replicated kURL.
+- [_prerequisites](https://docs.replicated.com/partials/cmx/_prerequisites.md): * Create an account in the Replicated Vendor Portal.
+- [_supported-clusters-overview](https://docs.replicated.com/partials/cmx/_supported-clusters-overview.md): No description available.
+- [_collab-existing-user](https://docs.replicated.com/partials/collab-repo/_collab-existing-user.md): If a team member adds a GitHub username to their Vendor Portal account that already exists in the collab repository, then the Vendor Portal does _not_ change the role that the existing user is assigned in the collab repository.
+- [_collab-rbac-important](https://docs.replicated.com/partials/collab-repo/_collab-rbac-important.md): No description available.
+- [_collab-rbac-resources-important](https://docs.replicated.com/partials/collab-repo/_collab-rbac-resources-important.md): No description available.
+- [_collab-repo-about](https://docs.replicated.com/partials/collab-repo/_collab-repo-about.md): The replicated-collab organization in GitHub is used for tracking and collaborating on escalations, bug reports, and feature requests that are sent by members of a Vendor Portal team to the Replicated team.
+- [_affixExample](https://docs.replicated.com/partials/config/_affixExample.md): No description available.
+- [_defaultExample](https://docs.replicated.com/partials/config/_defaultExample.md): No description available.
+- [_helpTextExample](https://docs.replicated.com/partials/config/_helpTextExample.md): No description available.
+- [_hiddenExample](https://docs.replicated.com/partials/config/_hiddenExample.md): No description available.
+- [_item-types](https://docs.replicated.com/partials/config/_item-types.md): No description available.
+- [_nameExample](https://docs.replicated.com/partials/config/_nameExample.md): No description available.
+- [_property-when](https://docs.replicated.com/partials/config/_property-when.md): It can be useful to conditionally show or hide fields so that your users are only provided the configuration options that are relevant to them.
+- [_randomStringNote](https://docs.replicated.com/partials/config/_randomStringNote.md): No description available.
+- [_readonlyExample](https://docs.replicated.com/partials/config/_readonlyExample.md): No description available.
+- [_recommendedExample](https://docs.replicated.com/partials/config/_recommendedExample.md): No description available.
+- [_regexValidationExample](https://docs.replicated.com/partials/config/_regexValidationExample.md): No description available.
+- [_requiredExample](https://docs.replicated.com/partials/config/_requiredExample.md): No description available.
+- [_typeExample](https://docs.replicated.com/partials/config/_typeExample.md): No description available.
+- [_valueExample](https://docs.replicated.com/partials/config/_valueExample.md): No description available.
+- [_when-note](https://docs.replicated.com/partials/config/_when-note.md): No description available.
+- [_when-requirements](https://docs.replicated.com/partials/config/_when-requirements.md): No description available.
+- [_whenExample](https://docs.replicated.com/partials/config/_whenExample.md): No description available.
+- [_boolExample](https://docs.replicated.com/partials/configValues/_boolExample.md): No description available.
+- [_config-values-procedure](https://docs.replicated.com/partials/configValues/_config-values-procedure.md): During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`.
+- [_configValuesExample](https://docs.replicated.com/partials/configValues/_configValuesExample.md): No description available.
+- [_fileExample](https://docs.replicated.com/partials/configValues/_fileExample.md): No description available.
+- [_passwordExample](https://docs.replicated.com/partials/configValues/_passwordExample.md): No description available.
+- [_selectOneExample](https://docs.replicated.com/partials/configValues/_selectOneExample.md): No description available.
+- [_textExample](https://docs.replicated.com/partials/configValues/_textExample.md): No description available.
+- [_textareaExample](https://docs.replicated.com/partials/configValues/_textareaExample.md): No description available.
+- [_wizard](https://docs.replicated.com/partials/custom-domains/_wizard.md): 1.
+- [_additionalImages](https://docs.replicated.com/partials/custom-resource-application/_additionalImages.md): No description available.
+- [_additionalNamespaces](https://docs.replicated.com/partials/custom-resource-application/_additionalNamespaces.md): No description available.
+- [_allowRollback](https://docs.replicated.com/partials/custom-resource-application/_allowRollback.md): No description available.
+- [_graphs](https://docs.replicated.com/partials/custom-resource-application/_graphs.md): No description available.
+- [_icon](https://docs.replicated.com/partials/custom-resource-application/_icon.md): No description available.
+- [_minKotsVersion](https://docs.replicated.com/partials/custom-resource-application/_minKotsVersion.md): No description available.
+- [_ports-applicationURL](https://docs.replicated.com/partials/custom-resource-application/_ports-applicationURL.md): <li><p>(Optional) <code>ports.
+- [_ports-kurl-note](https://docs.replicated.com/partials/custom-resource-application/_ports-kurl-note.md): No description available.
+- [_ports-localPort](https://docs.replicated.com/partials/custom-resource-application/_ports-localPort.md): <li><code>ports.
+- [_ports-serviceName](https://docs.replicated.com/partials/custom-resource-application/_ports-serviceName.md): <li><code>ports.
+- [_ports-servicePort](https://docs.replicated.com/partials/custom-resource-application/_ports-servicePort.md): <li><p><code>ports.
+- [_ports](https://docs.replicated.com/partials/custom-resource-application/_ports.md): No description available.
+- [_proxyRegistryDomain](https://docs.replicated.com/partials/custom-resource-application/_proxyRegistryDomain.md): No description available.
+- [_releaseNotes](https://docs.replicated.com/partials/custom-resource-application/_releaseNotes.md): No description available.
+- [_replicatedRegistryDomain](https://docs.replicated.com/partials/custom-resource-application/_replicatedRegistryDomain.md): No description available.
+- [_requireMinimalRBACPrivileges](https://docs.replicated.com/partials/custom-resource-application/_requireMinimalRBACPrivileges.md): No description available.
+- [_servicePort-note](https://docs.replicated.com/partials/custom-resource-application/_servicePort-note.md): No description available.
+- [_statusInformers](https://docs.replicated.com/partials/custom-resource-application/_statusInformers.md): No description available.
+- [_supportMinimalRBACPrivileges](https://docs.replicated.com/partials/custom-resource-application/_supportMinimalRBACPrivileges.md): No description available.
+- [_targetKotsVersion](https://docs.replicated.com/partials/custom-resource-application/_targetKotsVersion.md): No description available.
+- [_title](https://docs.replicated.com/partials/custom-resource-application/_title.md): No description available.
+- [_change-channel](https://docs.replicated.com/partials/customers/_change-channel.md): You can change the channel a customer is assigned at any time.
+- [_download](https://docs.replicated.com/partials/customers/_download.md): No description available.
+- [_definition](https://docs.replicated.com/partials/embedded-cluster/_definition.md): Replicated Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance, making it easy for enterprise users to install, update, and manage the application and the cluster in tandem.
+- [_ec-config](https://docs.replicated.com/partials/embedded-cluster/_ec-config.md): No description available.
+- [_multi-node-ha-arch](https://docs.replicated.com/partials/embedded-cluster/_multi-node-ha-arch.md): No description available.
+- [_port-reqs](https://docs.replicated.com/partials/embedded-cluster/_port-reqs.md): This section lists the ports used by Embedded Cluster.
+- [_proxy-install-limitations](https://docs.replicated.com/partials/embedded-cluster/_proxy-install-limitations.md): No description available.
+- [_proxy-install-reqs](https://docs.replicated.com/partials/embedded-cluster/_proxy-install-reqs.md): **Requirement:** Proxy installations require Embedded Cluster 1.
+- [_requirements](https://docs.replicated.com/partials/embedded-cluster/_requirements.md): No description available.
+- [_update-air-gap-admin-console](https://docs.replicated.com/partials/embedded-cluster/_update-air-gap-admin-console.md): 1.
+- [_update-air-gap-cli](https://docs.replicated.com/partials/embedded-cluster/_update-air-gap-cli.md): 1.
+- [_update-air-gap-overview](https://docs.replicated.com/partials/embedded-cluster/_update-air-gap-overview.md): To upgrade an installation, new air gap bundles can be uploaded to the Admin Console from the browser or with the Embedded Cluster binary from the command line.
+- [_update-overview](https://docs.replicated.com/partials/embedded-cluster/_update-overview.md): When you update an application installed with Embedded Cluster, you update both the application and the cluster infrastructure together, including Kubernetes, KOTS, and other components running in the cluster.
+- [_warning-do-not-downgrade](https://docs.replicated.com/partials/embedded-cluster/_warning-do-not-downgrade.md): No description available.
+- [_create-promote-release](https://docs.replicated.com/partials/getting-started/_create-promote-release.md): Create a new release and promote it to the Unstable channel.
+- [_csdl-overview](https://docs.replicated.com/partials/getting-started/_csdl-overview.md): Commercial software distribution is the business process that independent software vendors (ISVs) use to enable enterprise customers to self-host a fully private instance of the vendor's application in an environment controlled by the customer.
+- [_gitea-ec-config](https://docs.replicated.com/partials/getting-started/_gitea-ec-config.md): No description available.
+- [_gitea-helmchart-cr-ec](https://docs.replicated.com/partials/getting-started/_gitea-helmchart-cr-ec.md): No description available.
+- [_gitea-helmchart-cr](https://docs.replicated.com/partials/getting-started/_gitea-helmchart-cr.md): No description available.
+- [_gitea-k8s-app-cr](https://docs.replicated.com/partials/getting-started/_gitea-k8s-app-cr.md): No description available.
+- [_gitea-kots-app-cr-ec](https://docs.replicated.com/partials/getting-started/_gitea-kots-app-cr-ec.md): No description available.
+- [_gitea-kots-app-cr](https://docs.replicated.com/partials/getting-started/_gitea-kots-app-cr.md): No description available.
+- [_grafana-config](https://docs.replicated.com/partials/getting-started/_grafana-config.md): No description available.
+- [_grafana-helmchart](https://docs.replicated.com/partials/getting-started/_grafana-helmchart.md): No description available.
+- [_grafana-k8s-app](https://docs.replicated.com/partials/getting-started/_grafana-k8s-app.md): No description available.
+- [_grafana-kots-app](https://docs.replicated.com/partials/getting-started/_grafana-kots-app.md): No description available.
+- [_kubernetes-training](https://docs.replicated.com/partials/getting-started/_kubernetes-training.md): No description available.
+- [_labs-intro](https://docs.replicated.com/partials/getting-started/_labs-intro.md): Replicated also offers a sandbox environment where you can complete several beginner, intermediate, and advanced labs.
+- [_related-topics](https://docs.replicated.com/partials/getting-started/_related-topics.md): No description available.
+- [_replicated-definition](https://docs.replicated.com/partials/getting-started/_replicated-definition.md): Replicated is a commercial software distribution platform.
+- [_test-your-changes](https://docs.replicated.com/partials/getting-started/_test-your-changes.md): Install the release to test your changes.
+- [_tutorial-intro](https://docs.replicated.com/partials/getting-started/_tutorial-intro.md): This tutorial introduces you to the Replicated features for software vendors and their enterprise users.
+- [_vm-requirements](https://docs.replicated.com/partials/getting-started/_vm-requirements.md): No description available.
+- [_gitops-not-recommended](https://docs.replicated.com/partials/gitops/_gitops-not-recommended.md): No description available.
+- [_gitops-limitation](https://docs.replicated.com/partials/helm/_gitops-limitation.md): The KOTS Auto-GitOps workflow is not supported for installations with the HelmChart custom resource `apiVersion: kots.
+- [_helm-builder-requirements](https://docs.replicated.com/partials/helm/_helm-builder-requirements.md): No description available.
+- [_helm-cr-builder-airgap-intro](https://docs.replicated.com/partials/helm/_helm-cr-builder-airgap-intro.md): In the `builder` key, you provide the minimum Helm values required to render the chart templates so that the output includes any images that must be included in the air gap bundle.
+- [...](https://docs.replicated.com/partials/helm/_helm-cr-builder-example.md): No description available.
+- [_helm-cr-chart-name](https://docs.replicated.com/partials/helm/_helm-cr-chart-name.md): The name of the chart.
+- [_helm-cr-chart-release-name](https://docs.replicated.com/partials/helm/_helm-cr-chart-release-name.md): Specifies the release name to use when installing this instance of the Helm chart.
+- [_helm-cr-chart-version](https://docs.replicated.com/partials/helm/_helm-cr-chart-version.md): The version of the chart.
+- [_helm-cr-chart](https://docs.replicated.com/partials/helm/_helm-cr-chart.md): The `chart` key allows for a mapping between the data in this definition and the chart archive itself.
+- [_helm-cr-exclude](https://docs.replicated.com/partials/helm/_helm-cr-exclude.md): The  attribute is a value for making optional charts.
+- [_helm-cr-namespace](https://docs.replicated.com/partials/helm/_helm-cr-namespace.md): The `namespace` key specifies an alternative namespace where Replicated KOTS installs the Helm chart.
+- [_helm-cr-optional-values-recursive-merge](https://docs.replicated.com/partials/helm/_helm-cr-optional-values-recursive-merge.md): The `optionalValues.
+- [_helm-cr-optional-values-when](https://docs.replicated.com/partials/helm/_helm-cr-optional-values-when.md): The `optionalValues.
+- [_helm-cr-optional-values](https://docs.replicated.com/partials/helm/_helm-cr-optional-values.md): The `optionalValues` key can be used to set values in the Helm chart `values.
+- [_helm-cr-upgrade-flags](https://docs.replicated.com/partials/helm/_helm-cr-upgrade-flags.md): Specifies additional flags to pass to the `helm upgrade` command for charts.
+- [_helm-cr-values](https://docs.replicated.com/partials/helm/_helm-cr-values.md): The `values` key can be used to set or delete existing values in the Helm chart `values.
+- [_helm-cr-weight-limitation](https://docs.replicated.com/partials/helm/_helm-cr-weight-limitation.md): The `weight` field is _not_ supported for HelmChart custom resources with `useHelmInstall: false`.
+- [_helm-cr-weight](https://docs.replicated.com/partials/helm/_helm-cr-weight.md): Determines the order in which KOTS applies the Helm chart.
+- [_helm-definition](https://docs.replicated.com/partials/helm/_helm-definition.md): Helm is a popular open source package manager for Kubernetes applications.
+- [_helm-install-beta](https://docs.replicated.com/partials/helm/_helm-install-beta.md): The Helm installation method is Beta and is not recommended for production releases.
+- [_helm-install-prereqs](https://docs.replicated.com/partials/helm/_helm-install-prereqs.md): * The customer used to install must have a valid email address.
+- [_helm-package](https://docs.replicated.com/partials/helm/_helm-package.md): No description available.
+- [_helm-template-limitation](https://docs.replicated.com/partials/helm/_helm-template-limitation.md): Helm's `lookup` function and some values in the built-in `Capabilities` object are not supported with the `kots.
+- [_helm-version-limitation](https://docs.replicated.com/partials/helm/_helm-version-limitation.md): Support for Helm v2, including security patches, ended on November 13, 2020.
+- [_hook-weights-limitation](https://docs.replicated.com/partials/helm/_hook-weights-limitation.md): Hook weights below -9999 are not supported.
+- [_hooks-limitation](https://docs.replicated.com/partials/helm/_hooks-limitation.md): No description available.
+- [_installer-only-annotation](https://docs.replicated.com/partials/helm/_installer-only-annotation.md): Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.
+- [_kots-helm-cr-description](https://docs.replicated.com/partials/helm/_kots-helm-cr-description.md): To deploy Helm charts, KOTS requires a unique HelmChart custom resource for each Helm chart `.
+- [_replicated-deprecated](https://docs.replicated.com/partials/helm/_replicated-deprecated.md): The HelmChart custom resource `apiVersion: kots.
+- [_replicated-helm-migration](https://docs.replicated.com/partials/helm/_replicated-helm-migration.md): You cannot migrate existing Helm charts in existing installations from the `useHelmInstall: false` installation method to a different method.
+- [Helm chart values.yaml](https://docs.replicated.com/partials/helm/_set-values-config-example.md): Using KOTS template functions in the [Config](/reference/template-functions-config-context) context allows you to set Helm values based on user-supplied values from the KOTS Admin Console configuration page.
+- [KOTS HelmChart custom resource](https://docs.replicated.com/partials/helm/_set-values-license-example.md): Using KOTS template functions in the [License](/reference/template-functions-license-context) context allows you to set Helm values based on the unique license file used for installation or upgrade.
+- [_v2-native-helm-cr-example](https://docs.replicated.com/partials/helm/_v2-native-helm-cr-example.md): No description available.
+- [_docker-compatibility](https://docs.replicated.com/partials/image-registry/_docker-compatibility.md): No description available.
+- [_image-registry-settings](https://docs.replicated.com/partials/image-registry/_image-registry-settings.md): No description available.
+- [_access-admin-console](https://docs.replicated.com/partials/install/_access-admin-console.md): By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the Admin Console.
+- [_airgap-bundle-build](https://docs.replicated.com/partials/install/_airgap-bundle-build.md): * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
+- [_airgap-bundle-download](https://docs.replicated.com/partials/install/_airgap-bundle-download.md): After the build completes, download the bundle.
+- [_airgap-bundle-view-contents](https://docs.replicated.com/partials/install/_airgap-bundle-view-contents.md): No description available.
+- [_airgap-license-download](https://docs.replicated.com/partials/install/_airgap-license-download.md): 1.
+- [_automation-intro-embedded](https://docs.replicated.com/partials/install/_automation-intro-embedded.md): When you use the KOTS CLI to install an application in a kURL cluster, you first run the kURL installation script to provision the cluster and automatically install KOTS in the cluster.
+- [_automation-intro-existing](https://docs.replicated.com/partials/install/_automation-intro-existing.md): When you use the KOTS CLI to install an application in an existing cluster, you install both the application and Replicated KOTS with a single command.
+- [_config-values-procedure](https://docs.replicated.com/partials/install/_config-values-procedure.md): No description available.
+- [_download-kotsadm-bundle](https://docs.replicated.com/partials/install/_download-kotsadm-bundle.md): Download the `kotsadm.
+- [_download-kurl-bundle](https://docs.replicated.com/partials/install/_download-kurl-bundle.md): No description available.
+- [_ec-prereqs](https://docs.replicated.com/partials/install/_ec-prereqs.md): * Ensure that your installation environment meets the Embedded Cluster requirements.
+- [_embedded-ha-step](https://docs.replicated.com/partials/install/_embedded-ha-step.md): (HA Installation Only) If you are installing in HA mode and did not already preconfigure a load balancer, you are prompted during the installation.
+- [_embedded-login-password](https://docs.replicated.com/partials/install/_embedded-login-password.md): After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the command.
+- [_extract-kurl-bundle](https://docs.replicated.com/partials/install/_extract-kurl-bundle.md): In your installation environment, extract the contents of the kURL `.
+- [_firewall-openings-intro](https://docs.replicated.com/partials/install/_firewall-openings-intro.md): The domains for the services listed in the table below need to be accessible from servers performing online installations.
+- [_firewall-openings](https://docs.replicated.com/partials/install/_firewall-openings.md): The domains for the services listed in the table below need to be accessible from servers performing online installations.
+- [_ha-load-balancer-about](https://docs.replicated.com/partials/install/_ha-load-balancer-about.md): A load balancer is required for high availability mode.
+- [_ha-load-balancer-prereq](https://docs.replicated.com/partials/install/_ha-load-balancer-prereq.md): - If you are installing in high availability (HA) mode, a load balancer is required.
+- [_install-kots-cli-airgap](https://docs.replicated.com/partials/install/_install-kots-cli-airgap.md): Install the KOTS CLI.
+- [_install-kots-cli](https://docs.replicated.com/partials/install/_install-kots-cli.md): No description available.
+- [_intro-air-gap](https://docs.replicated.com/partials/install/_intro-air-gap.md): The procedures in this topic apply to installation environments that do not have access to the internet, known as _air gap_ environments.
+- [_intro-embedded](https://docs.replicated.com/partials/install/_intro-embedded.md): This topic describes how to use Replicated kURL to provision an embedded cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
+- [_intro-existing](https://docs.replicated.com/partials/install/_intro-existing.md): This topic describes how to use Replicated KOTS to install an application in an existing Kubernetes cluster.
+- [_kots-airgap-version-match](https://docs.replicated.com/partials/install/_kots-airgap-version-match.md): No description available.
+- [_kots-install-prompts](https://docs.replicated.com/partials/install/_kots-install-prompts.md): No description available.
+- [_kubernetes-compatibility](https://docs.replicated.com/partials/install/_kubernetes-compatibility.md): No description available.
+- [_kurl-about](https://docs.replicated.com/partials/install/_kurl-about.md): Replicated kURL is an open source project.
+- [_license-file-prereq](https://docs.replicated.com/partials/install/_license-file-prereq.md): * Download your license file.
+- [_placeholder-airgap-bundle](https://docs.replicated.com/partials/install/_placeholder-airgap-bundle.md): * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.
+- [_placeholder-app-name-UI](https://docs.replicated.com/partials/install/_placeholder-app-name-UI.md): * `APP_NAME` with the name of the application.
+- [_placeholder-namespace-embedded](https://docs.replicated.com/partials/install/_placeholder-namespace-embedded.md): * `NAMESPACE` with the namespace where Replicated kURL installed Replicated KOTS when creating the cluster.
+- [_placeholder-namespace-existing](https://docs.replicated.com/partials/install/_placeholder-namespace-existing.md): * `NAMESPACE` with the namespace where you want to install both the application and KOTS.
+- [_placeholder-ro-creds](https://docs.replicated.com/partials/install/_placeholder-ro-creds.md): * `REGISTRY_HOST` with the same hostname for the private registry where you pushed the Admin Console images.
+- [_placeholders-global](https://docs.replicated.com/partials/install/_placeholders-global.md): * `APP_NAME` with a name for the application.
+- [_prereqs-embedded-cluster](https://docs.replicated.com/partials/install/_prereqs-embedded-cluster.md): * Ensure that your environment meets the minimum system requirements.
+- [_prereqs-existing-cluster](https://docs.replicated.com/partials/install/_prereqs-existing-cluster.md): * Ensure that your cluster meets the minimum system requirements.
+- [_provision-cluster-intro](https://docs.replicated.com/partials/install/_provision-cluster-intro.md): This procedure describes how to use kURL to provision an embedded cluster on a VM or bare metal server.
+- [_push-kotsadm-images](https://docs.replicated.com/partials/install/_push-kotsadm-images.md): Extract the KOTS Admin Console container images from the `kotsadm.
+- [_airgap-telemetry](https://docs.replicated.com/partials/instance-insights/_airgap-telemetry.md): For air gap instances, Replicated KOTS and the Replicated SDK collect and store instance telemetry in a Kubernetes Secret in the customer environment.
+- [_notifications-about](https://docs.replicated.com/partials/instance-insights/_notifications-about.md): No description available.
+- [_supported-resources-status](https://docs.replicated.com/partials/instance-insights/_supported-resources-status.md): No description available.
+- [_admin-console-about](https://docs.replicated.com/partials/kots/_admin-console-about.md): KOTS provides an Admin Console that lets your customers manage your application.
+- [_download-portal-about](https://docs.replicated.com/partials/kots/_download-portal-about.md): The Replicated Download Portal can be used to share license files, air gap bundles, and other assets with customers.
+- [_embedded-kubernetes-definition](https://docs.replicated.com/partials/kots/_embedded-kubernetes-definition.md): _Embedded Kubernetes_ refers to delivering a Kubernetes distribution alongside an application, so that both Kubernetes and the application are deployed in the customer environment.
+- [_kots-definition](https://docs.replicated.com/partials/kots/_kots-definition.md): Replicated KOTS is a kubectl plugin and an in-cluster Admin Console that provides highly successful installations of Helm charts and Kubernetes applications into customer-controlled environments, including on-prem and air gap environments.
+- [_kots-entitlement-note](https://docs.replicated.com/partials/kots/_kots-entitlement-note.md): No description available.
+- [_ensure-rbac](https://docs.replicated.com/partials/kots-cli/_ensure-rbac.md): No description available.
+- [_help](https://docs.replicated.com/partials/kots-cli/_help.md): No description available.
+- [_kotsadm-namespace](https://docs.replicated.com/partials/kots-cli/_kotsadm-namespace.md): No description available.
+- [_kotsadm-registry](https://docs.replicated.com/partials/kots-cli/_kotsadm-registry.md): No description available.
+- [_registry-password](https://docs.replicated.com/partials/kots-cli/_registry-password.md): No description available.
+- [_registry-username](https://docs.replicated.com/partials/kots-cli/_registry-username.md): No description available.
+- [_skip-rbac-check](https://docs.replicated.com/partials/kots-cli/_skip-rbac-check.md): No description available.
+- [_strict-sec-context-yaml](https://docs.replicated.com/partials/kots-cli/_strict-sec-context-yaml.md): No description available.
+- [_strict-security-context](https://docs.replicated.com/partials/kots-cli/_strict-security-context.md): No description available.
+- [_use-minimal-rbac](https://docs.replicated.com/partials/kots-cli/_use-minimal-rbac.md): No description available.
+- [_wait-duration](https://docs.replicated.com/partials/kots-cli/_wait-duration.md): No description available.
+- [_with-minio](https://docs.replicated.com/partials/kots-cli/_with-minio.md): No description available.
+- [_installers](https://docs.replicated.com/partials/kurl/_installers.md): To provision a cluster on a VM or bare metal server, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.
+- [_kurl-availability](https://docs.replicated.com/partials/kurl/_kurl-availability.md): No description available.
+- [_kurl-definition](https://docs.replicated.com/partials/kurl/_kurl-definition.md): kURL is an open source project maintained by Replicated that software vendors can use to create custom Kubernetes distributions that are embedded with their application.
+- [_allow-privilege-escalation](https://docs.replicated.com/partials/linter-rules/_allow-privilege-escalation.md): No description available.
+- [_application-icon](https://docs.replicated.com/partials/linter-rules/_application-icon.md): No description available.
+- [_application-spec](https://docs.replicated.com/partials/linter-rules/_application-spec.md): No description available.
+- [_application-statusInformers](https://docs.replicated.com/partials/linter-rules/_application-statusInformers.md): No description available.
+- [_config-option-invalid-regex-validator](https://docs.replicated.com/partials/linter-rules/_config-option-invalid-regex-validator.md): No description available.
+- [_config-option-invalid-type](https://docs.replicated.com/partials/linter-rules/_config-option-invalid-type.md): No description available.
+- [_config-option-is-circular](https://docs.replicated.com/partials/linter-rules/_config-option-is-circular.md): No description available.
+- [_config-option-password-type](https://docs.replicated.com/partials/linter-rules/_config-option-password-type.md): No description available.
+- [_config-option-regex-validator-invalid-type](https://docs.replicated.com/partials/linter-rules/_config-option-regex-validator-invalid-type.md): No description available.
+- [_config-spec](https://docs.replicated.com/partials/linter-rules/_config-spec.md): No description available.
+- [_container-image-latest-tag](https://docs.replicated.com/partials/linter-rules/_container-image-latest-tag.md): No description available.
+- [_container-image-local-image-name](https://docs.replicated.com/partials/linter-rules/_container-image-local-image-name.md): No description available.
+- [_container-resource-limits](https://docs.replicated.com/partials/linter-rules/_container-resource-limits.md): No description available.
+- [_container-resource-requests](https://docs.replicated.com/partials/linter-rules/_container-resource-requests.md): No description available.
+- [_container-resources](https://docs.replicated.com/partials/linter-rules/_container-resources.md): No description available.
+- [_deprecated-kubernetes-installer-version](https://docs.replicated.com/partials/linter-rules/_deprecated-kubernetes-installer-version.md): No description available.
+- [_hardcoded-namespace](https://docs.replicated.com/partials/linter-rules/_hardcoded-namespace.md): No description available.
+- [_invalid-helm-release-name](https://docs.replicated.com/partials/linter-rules/_invalid-helm-release-name.md): No description available.
+- [_invalid-kubernetes-installer](https://docs.replicated.com/partials/linter-rules/_invalid-kubernetes-installer.md): No description available.
+- [_invalid-min-kots-version](https://docs.replicated.com/partials/linter-rules/_invalid-min-kots-version.md): No description available.
+- [_invalid-rendered-yaml](https://docs.replicated.com/partials/linter-rules/_invalid-rendered-yaml.md): No description available.
+- [_invalid-target-kots-version](https://docs.replicated.com/partials/linter-rules/_invalid-target-kots-version.md): No description available.
+- [_invalid-yaml](https://docs.replicated.com/partials/linter-rules/_invalid-yaml.md): No description available.
+- [_invalid_type](https://docs.replicated.com/partials/linter-rules/_invalid_type.md): No description available.
+- [_linter-definition](https://docs.replicated.com/partials/linter-rules/_linter-definition.md): The linter checks the manifest files in Replicated KOTS releases to ensure that there are no YAML syntax errors, that all required manifest files are present in the release to support installation with KOTS, and more.
+- [_may-contain-secrets](https://docs.replicated.com/partials/linter-rules/_may-contain-secrets.md): No description available.
+- [_missing-api-version-field](https://docs.replicated.com/partials/linter-rules/_missing-api-version-field.md): No description available.
+- [_missing-kind-field](https://docs.replicated.com/partials/linter-rules/_missing-kind-field.md): No description available.
+- [_preflight-spec](https://docs.replicated.com/partials/linter-rules/_preflight-spec.md): No description available.
+- [_privileged](https://docs.replicated.com/partials/linter-rules/_privileged.md): No description available.
+- [_repeat-option-malformed-yamlpath](https://docs.replicated.com/partials/linter-rules/_repeat-option-malformed-yamlpath.md): No description available.
+- [_repeat-option-missing-template](https://docs.replicated.com/partials/linter-rules/_repeat-option-missing-template.md): No description available.
+- [_repeat-option-missing-valuesByGroup](https://docs.replicated.com/partials/linter-rules/_repeat-option-missing-valuesByGroup.md): No description available.
+- [_replicas-1](https://docs.replicated.com/partials/linter-rules/_replicas-1.md): No description available.
+- [_resource-limits-cpu](https://docs.replicated.com/partials/linter-rules/_resource-limits-cpu.md): No description available.
+- [_resource-limits-memory](https://docs.replicated.com/partials/linter-rules/_resource-limits-memory.md): No description available.
+- [_resource-requests-cpu](https://docs.replicated.com/partials/linter-rules/_resource-requests-cpu.md): No description available.
+- [_resource-requests-memory](https://docs.replicated.com/partials/linter-rules/_resource-requests-memory.md): No description available.
+- [_troubleshoot-spec](https://docs.replicated.com/partials/linter-rules/_troubleshoot-spec.md): No description available.
+- [_volume-docker-sock](https://docs.replicated.com/partials/linter-rules/_volume-docker-sock.md): No description available.
+- [_volumes-host-paths](https://docs.replicated.com/partials/linter-rules/_volumes-host-paths.md): No description available.
+- [_limitation-ec](https://docs.replicated.com/partials/monitoring/_limitation-ec.md): Monitoring applications with Prometheus is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview).
+- [_overview-prom](https://docs.replicated.com/partials/monitoring/_overview-prom.md): The KOTS Admin Console can use the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed.
+- [_analyzers-note](https://docs.replicated.com/partials/preflights/_analyzers-note.md): For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.
+- [_http-requests-cr](https://docs.replicated.com/partials/preflights/_http-requests-cr.md): No description available.
+- [_http-requests-secret](https://docs.replicated.com/partials/preflights/_http-requests-secret.md): No description available.
+- [_k8s-distro-cr](https://docs.replicated.com/partials/preflights/_k8s-distro-cr.md): No description available.
+- [_k8s-distro-secret](https://docs.replicated.com/partials/preflights/_k8s-distro-secret.md): No description available.
+- [_k8s-version-cr](https://docs.replicated.com/partials/preflights/_k8s-version-cr.md): No description available.
+- [_k8s-version-secret](https://docs.replicated.com/partials/preflights/_k8s-version-secret.md): No description available.
+- [_mysql-cr](https://docs.replicated.com/partials/preflights/_mysql-cr.md): No description available.
+- [_mysql-secret](https://docs.replicated.com/partials/preflights/_mysql-secret.md): No description available.
+- [_node-count-cr](https://docs.replicated.com/partials/preflights/_node-count-cr.md): No description available.
+- [_node-count-secret](https://docs.replicated.com/partials/preflights/_node-count-secret.md): No description available.
+- [_node-cpu-cr](https://docs.replicated.com/partials/preflights/_node-cpu-cr.md): No description available.
+- [_node-cpu-secret](https://docs.replicated.com/partials/preflights/_node-cpu-secret.md): No description available.
+- [_node-ephem-storage-cr](https://docs.replicated.com/partials/preflights/_node-ephem-storage-cr.md): No description available.
+- [_node-ephem-storage-secret](https://docs.replicated.com/partials/preflights/_node-ephem-storage-secret.md): No description available.
+- [_node-mem-cr](https://docs.replicated.com/partials/preflights/_node-mem-cr.md): No description available.
+- [_node-mem-secret](https://docs.replicated.com/partials/preflights/_node-mem-secret.md): No description available.
+- [_node-req-cr](https://docs.replicated.com/partials/preflights/_node-req-cr.md): No description available.
+- [_node-req-secret](https://docs.replicated.com/partials/preflights/_node-req-secret.md): No description available.
+- [_node-storage-cr](https://docs.replicated.com/partials/preflights/_node-storage-cr.md): No description available.
+- [_node-storage-secret](https://docs.replicated.com/partials/preflights/_node-storage-secret.md): No description available.
+- [_preflights-add-analyzers](https://docs.replicated.com/partials/preflights/_preflights-add-analyzers.md): You must add analyzers to analyze the data from the collectors that you specified.
+- [_preflights-define-xref](https://docs.replicated.com/partials/preflights/_preflights-define-xref.md): For more information about defining collectors and analyzers, see [Collecting Data](https://troubleshoot.
+- [_preflights-define](https://docs.replicated.com/partials/preflights/_preflights-define.md): Any preflight checks you run are dependent on your application needs.
+- [_preflights-sb-about](https://docs.replicated.com/partials/preflights/_preflights-sb-about.md): Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated.
+- [_preflights-sb-note](https://docs.replicated.com/partials/preflights/_preflights-sb-note.md): For a comprehensive overview, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
+- [_preflights-spec-locations](https://docs.replicated.com/partials/preflights/_preflights-spec-locations.md): For more information about specifications, see [About Specifications](preflight-support-bundle-about#about-specifications) in _About Preflight Checks and Support Bundles_.
+- [_preflights-strict](https://docs.replicated.com/partials/preflights/_preflights-strict.md): If any strict preflight checks are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
+- [_step-creds](https://docs.replicated.com/partials/proxy-service/_step-creds.md): Provide read-only credentials for the external private registry in your Replicated account.
+- [_step-custom-domain](https://docs.replicated.com/partials/proxy-service/_step-custom-domain.md): (Optional) Add a custom domain for the proxy registry instead of `proxy.
+- [_redactors-about](https://docs.replicated.com/partials/redactors/_redactors-about.md): Troubleshoot has built-in redactors to prevent sensitive data from being collected when support bundles are generated.
+- [_required-releases-description](https://docs.replicated.com/partials/releases/_required-releases-description.md): When a release is required, KOTS requires users to upgrade to that version before they can upgrade to a later version.
+- [_required-releases-limitations](https://docs.replicated.com/partials/releases/_required-releases-limitations.md): No description available.
+- [_version-label-reqs-helm](https://docs.replicated.com/partials/releases/_version-label-reqs-helm.md): * The version label for the release must match the version label from one of the `Chart.
+- [_app](https://docs.replicated.com/partials/replicated-cli/_app.md): No description available.
+- [_authorize-with-token-note](https://docs.replicated.com/partials/replicated-cli/_authorize-with-token-note.md): No description available.
+- [_authtype](https://docs.replicated.com/partials/replicated-cli/_authtype.md): No description available.
+- [_chart-yaml-dir-reqs](https://docs.replicated.com/partials/replicated-cli/_chart-yaml-dir-reqs.md): No description available.
+- [_help](https://docs.replicated.com/partials/replicated-cli/_help.md): No description available.
+- [_login](https://docs.replicated.com/partials/replicated-cli/_login.md): No description available.
+- [_logout](https://docs.replicated.com/partials/replicated-cli/_logout.md): No description available.
+- [_output](https://docs.replicated.com/partials/replicated-cli/_output.md): No description available.
+- [_password-stdin](https://docs.replicated.com/partials/replicated-cli/_password-stdin.md): No description available.
+- [_password](https://docs.replicated.com/partials/replicated-cli/_password.md): No description available.
+- [_skip-validation](https://docs.replicated.com/partials/replicated-cli/_skip-validation.md): No description available.
+- [_sudo-install](https://docs.replicated.com/partials/replicated-cli/_sudo-install.md): No description available.
+- [_token-stdin](https://docs.replicated.com/partials/replicated-cli/_token-stdin.md): No description available.
+- [_token](https://docs.replicated.com/partials/replicated-cli/_token.md): No description available.
+- [_username](https://docs.replicated.com/partials/replicated-cli/_username.md): No description available.
+- [_verify-install](https://docs.replicated.com/partials/replicated-cli/_verify-install.md): No description available.
+- [_yaml-dir](https://docs.replicated.com/partials/replicated-cli/_yaml-dir.md): No description available.
+- [_401-unauthorized](https://docs.replicated.com/partials/replicated-sdk/_401-unauthorized.md): No description available.
+- [Chart.yaml](https://docs.replicated.com/partials/replicated-sdk/_dependency-yaml.md): No description available.
+- [_integration-mode-install](https://docs.replicated.com/partials/replicated-sdk/_integration-mode-install.md): You can install the Replicated SDK in integration mode to develop locally against the SDK API without needing to add the SDK to your application, create a release in the Replicated Vendor Portal, or make changes in your environment.
+- [_kots-version-req](https://docs.replicated.com/partials/replicated-sdk/_kots-version-req.md): To install the SDK with a Replicated installer, KOTS v1.
+- [_overview](https://docs.replicated.com/partials/replicated-sdk/_overview.md): The Replicated SDK is a Helm chart that can be installed as a small service alongside your application.
+- [_registry-logout](https://docs.replicated.com/partials/replicated-sdk/_registry-logout.md): No description available.
+- [values.yaml ](https://docs.replicated.com/partials/replicated-sdk/_sdk-values.md): When a user installs a Helm chart that includes the Replicated SDK as a dependency, a set of default SDK values are included in the `replicated` key of the parent chart's values file.
+- [_checkVersion](https://docs.replicated.com/partials/snapshots/_checkVersion.md): Run `velero version --client-only` to check the version of the velero CLI that you installed as part of [Installing the Velero CLI](snapshots-velero-cli-installing).
+- [_installVelero](https://docs.replicated.com/partials/snapshots/_installVelero.md): No description available.
+- [_limitation-cli-restores](https://docs.replicated.com/partials/snapshots/_limitation-cli-restores.md): Only full backups can be restored using the KOTS CLI.
+- [_limitation-dr](https://docs.replicated.com/partials/snapshots/_limitation-dr.md): Only full backups that include both the application and the Admin Console can be restored to a new cluster in disaster recovery scenarios.
+- [_limitation-install-method](https://docs.replicated.com/partials/snapshots/_limitation-install-method.md): Snapshots can be restored only to clusters that use the same installation method as the cluster the snapshot was taken from.
+- [_limitation-no-ec-support](https://docs.replicated.com/partials/snapshots/_limitation-no-ec-support.md): The KOTS Snapshots feature is supported for existing cluster installations with KOTS and Replicated kURL installations only.
+- [_limitation-os](https://docs.replicated.com/partials/snapshots/_limitation-os.md): Snapshots must be restored on the same operating system that the snapshot was taken on.
+- [_node-agent-mem-limit](https://docs.replicated.com/partials/snapshots/_node-agent-mem-limit.md): Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large.
+- [_registryCredentialsNote](https://docs.replicated.com/partials/snapshots/_registryCredentialsNote.md): No description available.
+- [_resticDaemonSet](https://docs.replicated.com/partials/snapshots/_resticDaemonSet.md): No description available.
+- [_restore-types](https://docs.replicated.com/partials/snapshots/_restore-types.md): No description available.
+- [_restoreTable](https://docs.replicated.com/partials/snapshots/_restoreTable.md): No description available.
+- [_step-get-backups](https://docs.replicated.com/partials/snapshots/_step-get-backups.md): Run the [`kubectl kots get backups`](/reference/kots-cli-get-backups) command to get the list of full backups for the instance.
+- [_step-restore](https://docs.replicated.com/partials/snapshots/_step-restore.md): No description available.
+- [_updateDefaultStorage](https://docs.replicated.com/partials/snapshots/_updateDefaultStorage.md): If Velero is already installed, you can update your storage destination in the Replicated Admin Console.
+- [_aggregate-status-intro](https://docs.replicated.com/partials/status-informers/_aggregate-status-intro.md): When you provide more than one Kubernetes resource, Replicated aggregates all resource statuses to display a single application status.
+- [_aggregateStatus](https://docs.replicated.com/partials/status-informers/_aggregateStatus.md): No description available.
+- [_statusesTable](https://docs.replicated.com/partials/status-informers/_statusesTable.md): No description available.
+- [_configmap-note](https://docs.replicated.com/partials/support-bundles/_configmap-note.md): No description available.
+- [_customize-support-bundle-spec](https://docs.replicated.com/partials/support-bundles/_customize-support-bundle-spec.md): No description available.
+- [_deploy-status-cr](https://docs.replicated.com/partials/support-bundles/_deploy-status-cr.md): No description available.
+- [_deploy-status-secret](https://docs.replicated.com/partials/support-bundles/_deploy-status-secret.md): No description available.
+- [_ec-support-bundle-intro](https://docs.replicated.com/partials/support-bundles/_ec-support-bundle-intro.md): Embedded Cluster includes a default support bundle spec that collects both host- and cluster-level information.
+- [_generate-bundle-admin-console](https://docs.replicated.com/partials/support-bundles/_generate-bundle-admin-console.md): The Replicated KOTS Admin Console includes a **Troubleshoot** page where you can generate a support bundle and review remediation suggestions for troubleshooting.
+- [_generate-bundle-default-kots](https://docs.replicated.com/partials/support-bundles/_generate-bundle-default-kots.md): For KOTS installations, you can generate a support bundle using the default KOTS spec.
+- [_generate-bundle-ec](https://docs.replicated.com/partials/support-bundles/_generate-bundle-ec.md): There are different steps to generate a support bundle depending on the version of Embedded Cluster installed.
+- [_generate-bundle-host](https://docs.replicated.com/partials/support-bundles/_generate-bundle-host.md): No description available.
+- [_generate-bundle](https://docs.replicated.com/partials/support-bundles/_generate-bundle.md): No description available.
+- [_http-requests-cr](https://docs.replicated.com/partials/support-bundles/_http-requests-cr.md): No description available.
+- [_http-requests-secret](https://docs.replicated.com/partials/support-bundles/_http-requests-secret.md): No description available.
+- [_install-plugin](https://docs.replicated.com/partials/support-bundles/_install-plugin.md): The support-bundle plugin (a kubectl plugin) is required to generate support bundles from the command line.
+- [_k8s-version-cr](https://docs.replicated.com/partials/support-bundles/_k8s-version-cr.md): No description available.
+- [_k8s-version-secret](https://docs.replicated.com/partials/support-bundles/_k8s-version-secret.md): No description available.
+- [_logs-limits-cr](https://docs.replicated.com/partials/support-bundles/_logs-limits-cr.md): No description available.
+- [_logs-limits-secret](https://docs.replicated.com/partials/support-bundles/_logs-limits-secret.md): No description available.
+- [_logs-selectors-cr](https://docs.replicated.com/partials/support-bundles/_logs-selectors-cr.md): No description available.
+- [_logs-selectors-secret](https://docs.replicated.com/partials/support-bundles/_logs-selectors-secret.md): No description available.
+- [_node-resources-cr](https://docs.replicated.com/partials/support-bundles/_node-resources-cr.md): No description available.
+- [_node-resources-secret](https://docs.replicated.com/partials/support-bundles/_node-resources-secret.md): No description available.
+- [_node-status-cr](https://docs.replicated.com/partials/support-bundles/_node-status-cr.md): No description available.
+- [_node-status-secret](https://docs.replicated.com/partials/support-bundles/_node-status-secret.md): No description available.
+- [_redis-mysql-cr](https://docs.replicated.com/partials/support-bundles/_redis-mysql-cr.md): No description available.
+- [_redis-mysql-secret](https://docs.replicated.com/partials/support-bundles/_redis-mysql-secret.md): No description available.
+- [_run-pods-cr](https://docs.replicated.com/partials/support-bundles/_run-pods-cr.md): No description available.
+- [_run-pods-secret](https://docs.replicated.com/partials/support-bundles/_run-pods-secret.md): No description available.
+- [_support-bundle-add-analyzers](https://docs.replicated.com/partials/support-bundles/_support-bundle-add-analyzers.md): Add analyzers based on conditions that you expect for your application.
+- [_support-bundle-add-logs](https://docs.replicated.com/partials/support-bundles/_support-bundle-add-logs.md): Replicated recommends adding application Pod logs and set the collection limits for the number of lines logged.
+- [_support-bundle-custom-collectors](https://docs.replicated.com/partials/support-bundles/_support-bundle-custom-collectors.md): Add any custom collectors to the file.
+- [_go-sprig](https://docs.replicated.com/partials/template-functions/_go-sprig.md): KOTS template functions are based on the Go text/template library.
+- [KOTS Config custom resource](https://docs.replicated.com/partials/template-functions/_integer-comparison.md): No description available.
+- [_ne-comparison](https://docs.replicated.com/partials/template-functions/_ne-comparison.md): In the example below, the `ingress_type` field is displayed on the **Config** page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/vendor/embedded-overview).
+- [KOTS Config custom resource](https://docs.replicated.com/partials/template-functions/_string-comparison.md): No description available.
+- [_use-cases](https://docs.replicated.com/partials/template-functions/_use-cases.md): No description available.
+- [_admin-console-air-gap](https://docs.replicated.com/partials/updating/_admin-console-air-gap.md): No description available.
+- [_admin-console](https://docs.replicated.com/partials/updating/_admin-console.md): No description available.
+- [_installerRequirements](https://docs.replicated.com/partials/updating/_installerRequirements.md): * **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.
+- [_upgradePrompt](https://docs.replicated.com/partials/updating/_upgradePrompt.md): (Kubernetes Upgrades Only) If a Kubernetes upgrade is required, the script automatically prints a `Drain local node and apply upgrade?
+- [_api-about](https://docs.replicated.com/partials/vendor-api/_api-about.md): The Vendor API is the API for the Vendor Portal.
+- [_team-token-note](https://docs.replicated.com/partials/vendor-api/_team-token-note.md): No description available.
+- [Cron Expressions](https://docs.replicated.com/reference/cron-expressions.md): This topic describes the supported cron expressions that you can use to schedule automatic application update checks and automatic backups in the KOTS Admin Console.
+- [About Custom Resources](https://docs.replicated.com/reference/custom-resource-about.md): You can include custom resources in releases to control the experience for applications installed with Replicated KOTS.
+- [Application](https://docs.replicated.com/reference/custom-resource-application.md): The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
+- [Velero Backup Resource for Snapshots](https://docs.replicated.com/reference/custom-resource-backup.md): This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature.
+- [Config](https://docs.replicated.com/reference/custom-resource-config.md): The Config custom resource can be provided by a vendor to specify a Config page in the Replicated Admin Console for collecting customer supplied values and template function rendering.
+- [HelmChart v2](https://docs.replicated.com/reference/custom-resource-helmchart-v2.md): > Introduced in Replicated KOTS v1.
+- [HelmChart v1 (Deprecated)](https://docs.replicated.com/reference/custom-resource-helmchart.md): No description available.
+- [Identity (Beta)](https://docs.replicated.com/reference/custom-resource-identity.md): No description available.
+- [LintConfig](https://docs.replicated.com/reference/custom-resource-lintconfig.md): No description available.
+- [Preflight and Support Bundle](https://docs.replicated.com/reference/custom-resource-preflight.md): You can define preflight checks and support bundle specifications for Replicated KOTS and Helm installations.
+- [Redactor (KOTS Only)](https://docs.replicated.com/reference/custom-resource-redactor.md): This topic describes how to define redactors with the Redactor custom resource.
+- [Embedded Cluster Install Command Options](https://docs.replicated.com/reference/embedded-cluster-install.md): This topic describes the options available with the Embedded Cluster install command.
+- [Embedded Cluster Config](https://docs.replicated.com/reference/embedded-config.md): This topic is a reference for the Replicated Embedded Cluster Config custom resource.
+- [admin-console garbage-collect-images](https://docs.replicated.com/reference/kots-cli-admin-console-garbage-collect-images.md): Starts image garbage collection.
+- [admin-console generate-manifests](https://docs.replicated.com/reference/kots-cli-admin-console-generate-manifests.md): Running this command will create a directory on the workstation containing the Replicated Admin Console manifests.
+- [admin-console](https://docs.replicated.com/reference/kots-cli-admin-console-index.md): Enables access to the KOTS Admin Console from a local machine.
+- [admin-console push-images](https://docs.replicated.com/reference/kots-cli-admin-console-push-images.md): Pushes images from an air gap bundle to a private registry.
+- [admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade.md): Upgrades the KOTS Admin Console to match the version of KOTS CLI.
+- [backup](https://docs.replicated.com/reference/kots-cli-backup-index.md): Create a full instance snapshot for disaster recovery.
+- [backup ls](https://docs.replicated.com/reference/kots-cli-backup-ls.md): No description available.
+- [docker ensure-secret](https://docs.replicated.com/reference/kots-cli-docker-ensure-secret.md): Creates an image pull secret for Docker Hub that the Admin Console can utilize to avoid [rate limiting](/enterprise/image-registry-rate-limits).
+- [docker](https://docs.replicated.com/reference/kots-cli-docker-index.md): No description available.
+- [download](https://docs.replicated.com/reference/kots-cli-download.md): Retrieves a copy of the application manifests from the cluster, and store them in a specific directory structure on your workstation.
+- [enable-ha](https://docs.replicated.com/reference/kots-cli-enable-ha.md): (Deprecated) Runs the rqlite StatefulSet as three replicas for data replication and high availability.
+- [get apps](https://docs.replicated.com/reference/kots-cli-get-apps.md): The `kots get apps` command lists installed applications.
+- [get backups](https://docs.replicated.com/reference/kots-cli-get-backups.md): The `kots get backups` command lists available full snapshots (instance).
+- [get config](https://docs.replicated.com/reference/kots-cli-get-config.md): The `kots get config` command returns the `configValues` file for an application.
+- [get](https://docs.replicated.com/reference/kots-cli-get-index.md): The `kots get` command shows information about one or more resources.
+- [get restores](https://docs.replicated.com/reference/kots-cli-get-restores.md): The `kots get restores` command lists created full snapshot restores.
+- [get versions](https://docs.replicated.com/reference/kots-cli-get-versions.md): The `kots get versions` command lists all versions of an application.
+- [Installing the KOTS CLI](https://docs.replicated.com/reference/kots-cli-getting-started.md): Users can interact with the Replicated KOTS CLI to install and manage applications with Replicated KOTS.
+- [Global flags](https://docs.replicated.com/reference/kots-cli-global-flags.md): All KOTS CLI commands support a set of global flags to be used to connect to the cluster.
+- [identity-service enable-shared-password](https://docs.replicated.com/reference/kots-cli-identity-service-enable-shared-password.md): Enable the shared password login option in the KOTS Admin Console.
+- [identity-service](https://docs.replicated.com/reference/kots-cli-identity-service-index.md): No description available.
+- [install](https://docs.replicated.com/reference/kots-cli-install.md): Installs the application and the KOTS Admin Console directly to a cluster.
+- [pull](https://docs.replicated.com/reference/kots-cli-pull.md): Running this command will create a directory on the workstation containing the application and Kubernetes manifests.
+- [remove](https://docs.replicated.com/reference/kots-cli-remove.md): Remove application reference from the KOTS Admin Console.
+- [reset-password](https://docs.replicated.com/reference/kots-cli-reset-password.md): If you deployed an application with the KOTS Admin Console, the `kots reset-password` command will change the bcrypted password hash in the cluster, allowing you to log in again.
+- [reset-tls](https://docs.replicated.com/reference/kots-cli-reset-tls.md): If a bad TLS certificate is uploaded to the KOTS Admin Console or the kotsadm-tls secret is missing, the `kots reset-tls` command reapplies a default self-signed TLS certificate.
+- [restore](https://docs.replicated.com/reference/kots-cli-restore-index.md): Restore full snapshots for disaster recovery, or do a partial restore of the application only or the Replicated Admin Console only.
+- [restore ls](https://docs.replicated.com/reference/kots-cli-restore-ls.md): No description available.
+- [set config](https://docs.replicated.com/reference/kots-cli-set-config.md): The `kots set config` allows setting values for application config items in the latest release version.
+- [set](https://docs.replicated.com/reference/kots-cli-set-index.md): Configure KOTS resources.
+- [upload](https://docs.replicated.com/reference/kots-cli-upload.md): Upload Kubernetes manifests from the local filesystem, creating a new version of the application that can be deployed.
+- [upstream download](https://docs.replicated.com/reference/kots-cli-upstream-download.md): The `kots upstream download` command retries downloading a failed update of the upstream application.
+- [upstream upgrade](https://docs.replicated.com/reference/kots-cli-upstream-upgrade.md): The `kots upstream upgrade` fetches the latest version of the upstream application.
+- [upstream](https://docs.replicated.com/reference/kots-cli-upstream.md): KOTS Upstream interface.
+- [velero configure-aws-s3](https://docs.replicated.com/reference/kots-cli-velero-configure-aws-s3.md): Configures snapshots to use an AWS S3 Bucket as a storage destination.
+- [velero configure-azure](https://docs.replicated.com/reference/kots-cli-velero-configure-azure.md): Configures snapshots to use an Azure Blob Storage Container as a storage destination.
+- [velero configure-gcp](https://docs.replicated.com/reference/kots-cli-velero-configure-gcp.md): Configures snapshots to use a Google Cloud Platform Object Storage Bucket as a storage destination.
+- [velero configure-hostpath](https://docs.replicated.com/reference/kots-cli-velero-configure-hostpath.md): Configure snapshots to use a host path as storage destination.
+- [velero configure-internal](https://docs.replicated.com/reference/kots-cli-velero-configure-internal.md): No description available.
+- [velero configure-nfs](https://docs.replicated.com/reference/kots-cli-velero-configure-nfs.md): Configures snapshots to use NFS as storage destination.
+- [velero configure-other-s3](https://docs.replicated.com/reference/kots-cli-velero-configure-other-s3.md): Configures snapshots to use an S3-compatible storage provider, such as Minio, as a storage destination.
+- [velero ensure-permissions](https://docs.replicated.com/reference/kots-cli-velero-ensure-permissions.md): Ensures the necessary permissions that enables Replicated KOTS to access Velero.
+- [velero](https://docs.replicated.com/reference/kots-cli-velero-index.md): The KOTS Velero interface, which configures storage destinations for backups (snapshots), permissions, and print instructions fo set up.
+- [velero print-fs-instructions](https://docs.replicated.com/reference/kots-cli-velero-print-fs-instructions.md): No description available.
+- [Linter Rules](https://docs.replicated.com/reference/linter.md): This topic describes the release linter and the linter rules.
+- [replicated api get](https://docs.replicated.com/reference/replicated-cli-api-get.md): No description available.
+- [replicated api patch](https://docs.replicated.com/reference/replicated-cli-api-patch.md): No description available.
+- [replicated api post](https://docs.replicated.com/reference/replicated-cli-api-post.md): No description available.
+- [replicated api put](https://docs.replicated.com/reference/replicated-cli-api-put.md): No description available.
+- [replicated api](https://docs.replicated.com/reference/replicated-cli-api.md): No description available.
+- [replicated app create](https://docs.replicated.com/reference/replicated-cli-app-create.md): No description available.
+- [replicated app ls](https://docs.replicated.com/reference/replicated-cli-app-ls.md): No description available.
+- [replicated app rm](https://docs.replicated.com/reference/replicated-cli-app-rm.md): No description available.
+- [replicated app](https://docs.replicated.com/reference/replicated-cli-app.md): No description available.
+- [replicated channel create](https://docs.replicated.com/reference/replicated-cli-channel-create.md): No description available.
+- [replicated channel demote](https://docs.replicated.com/reference/replicated-cli-channel-demote.md): No description available.
+- [replicated channel disable-semantic-versioning](https://docs.replicated.com/reference/replicated-cli-channel-disable-semantic-versioning.md): No description available.
+- [replicated channel enable-semantic-versioning](https://docs.replicated.com/reference/replicated-cli-channel-enable-semantic-versioning.md): No description available.
+- [replicated channel inspect](https://docs.replicated.com/reference/replicated-cli-channel-inspect.md): No description available.
+- [replicated channel ls](https://docs.replicated.com/reference/replicated-cli-channel-ls.md): No description available.
+- [replicated channel rm](https://docs.replicated.com/reference/replicated-cli-channel-rm.md): No description available.
+- [replicated channel un-demote](https://docs.replicated.com/reference/replicated-cli-channel-un-demote.md): No description available.
+- [replicated channel](https://docs.replicated.com/reference/replicated-cli-channel.md): No description available.
+- [replicated cluster addon create object-store](https://docs.replicated.com/reference/replicated-cli-cluster-addon-create-object-store.md): Create an object store bucket for a cluster.
+- [replicated cluster addon create](https://docs.replicated.com/reference/replicated-cli-cluster-addon-create.md): Create cluster add-ons.
+- [replicated cluster addon ls](https://docs.replicated.com/reference/replicated-cli-cluster-addon-ls.md): List cluster add-ons for a cluster.
+- [replicated cluster addon rm](https://docs.replicated.com/reference/replicated-cli-cluster-addon-rm.md): Remove cluster add-on by ID.
+- [replicated cluster addon](https://docs.replicated.com/reference/replicated-cli-cluster-addon.md): Manage cluster add-ons.
+- [replicated cluster create](https://docs.replicated.com/reference/replicated-cli-cluster-create.md): Create test clusters.
+- [replicated cluster kubeconfig](https://docs.replicated.com/reference/replicated-cli-cluster-kubeconfig.md): Download credentials for a test cluster.
+- [replicated cluster ls](https://docs.replicated.com/reference/replicated-cli-cluster-ls.md): List test clusters.
+- [replicated cluster nodegroup ls](https://docs.replicated.com/reference/replicated-cli-cluster-nodegroup-ls.md): List node groups for a cluster.
+- [replicated cluster nodegroup](https://docs.replicated.com/reference/replicated-cli-cluster-nodegroup.md): Manage node groups for clusters.
+- [replicated cluster port expose](https://docs.replicated.com/reference/replicated-cli-cluster-port-expose.md): Expose a port on a cluster to the public internet.
+- [replicated cluster port ls](https://docs.replicated.com/reference/replicated-cli-cluster-port-ls.md): List cluster ports for a cluster.
+- [replicated cluster port rm](https://docs.replicated.com/reference/replicated-cli-cluster-port-rm.md): Remove cluster port by ID.
+- [replicated cluster port](https://docs.replicated.com/reference/replicated-cli-cluster-port.md): Manage cluster ports.
+- [replicated cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare.md): Prepare cluster for testing.
+- [replicated cluster rm](https://docs.replicated.com/reference/replicated-cli-cluster-rm.md): Remove test clusters.
+- [replicated cluster shell](https://docs.replicated.com/reference/replicated-cli-cluster-shell.md): Open a new shell with kubeconfig configured.
+- [replicated cluster update nodegroup](https://docs.replicated.com/reference/replicated-cli-cluster-update-nodegroup.md): Update a nodegroup for a test cluster.
+- [replicated cluster update ttl](https://docs.replicated.com/reference/replicated-cli-cluster-update-ttl.md): Update TTL for a test cluster.
+- [replicated cluster update](https://docs.replicated.com/reference/replicated-cli-cluster-update.md): Update cluster settings.
+- [replicated cluster upgrade](https://docs.replicated.com/reference/replicated-cli-cluster-upgrade.md): Upgrade a test cluster.
+- [replicated cluster versions](https://docs.replicated.com/reference/replicated-cli-cluster-versions.md): List cluster versions.
+- [replicated cluster](https://docs.replicated.com/reference/replicated-cli-cluster.md): Manage test Kubernetes clusters.
+- [replicated completion](https://docs.replicated.com/reference/replicated-cli-completion.md): No description available.
+- [replicated customer archive](https://docs.replicated.com/reference/replicated-cli-customer-archive.md): No description available.
+- [replicated customer create](https://docs.replicated.com/reference/replicated-cli-customer-create.md): No description available.
+- [replicated customer download-license](https://docs.replicated.com/reference/replicated-cli-customer-download-license.md): No description available.
+- [replicated customer inspect](https://docs.replicated.com/reference/replicated-cli-customer-inspect.md): No description available.
+- [replicated customer ls](https://docs.replicated.com/reference/replicated-cli-customer-ls.md): No description available.
+- [replicated customer update](https://docs.replicated.com/reference/replicated-cli-customer-update.md): No description available.
+- [replicated customer](https://docs.replicated.com/reference/replicated-cli-customer.md): No description available.
+- [replicated default clear-all](https://docs.replicated.com/reference/replicated-cli-default-clear-all.md): No description available.
+- [replicated default clear](https://docs.replicated.com/reference/replicated-cli-default-clear.md): No description available.
+- [replicated default set](https://docs.replicated.com/reference/replicated-cli-default-set.md): No description available.
+- [replicated default show](https://docs.replicated.com/reference/replicated-cli-default-show.md): No description available.
+- [replicated default](https://docs.replicated.com/reference/replicated-cli-default.md): No description available.
+- [replicated installer create](https://docs.replicated.com/reference/replicated-cli-installer-create.md): No description available.
+- [replicated installer ls](https://docs.replicated.com/reference/replicated-cli-installer-ls.md): No description available.
+- [replicated installer](https://docs.replicated.com/reference/replicated-cli-installer.md): No description available.
+- [Installing the Replicated CLI](https://docs.replicated.com/reference/replicated-cli-installing.md): Vendors can use the Replicated CLI to manage their applications with Replicated programmatically, rather than using the Replicated vendor portal.
+- [replicated instance inspect](https://docs.replicated.com/reference/replicated-cli-instance-inspect.md): No description available.
+- [replicated instance ls](https://docs.replicated.com/reference/replicated-cli-instance-ls.md): No description available.
+- [replicated instance tag](https://docs.replicated.com/reference/replicated-cli-instance-tag.md): No description available.
+- [replicated instance](https://docs.replicated.com/reference/replicated-cli-instance.md): No description available.
+- [replicated login](https://docs.replicated.com/reference/replicated-cli-login.md): No description available.
+- [replicated logout](https://docs.replicated.com/reference/replicated-cli-logout.md): No description available.
+- [replicated registry add dockerhub](https://docs.replicated.com/reference/replicated-cli-registry-add-dockerhub.md): No description available.
+- [replicated registry add ecr](https://docs.replicated.com/reference/replicated-cli-registry-add-ecr.md): No description available.
+- [replicated registry add gar](https://docs.replicated.com/reference/replicated-cli-registry-add-gar.md): No description available.
+- [replicated registry add gcr](https://docs.replicated.com/reference/replicated-cli-registry-add-gcr.md): No description available.
+- [replicated registry add ghcr](https://docs.replicated.com/reference/replicated-cli-registry-add-ghcr.md): No description available.
+- [replicated registry add other](https://docs.replicated.com/reference/replicated-cli-registry-add-other.md): No description available.
+- [replicated registry add quay](https://docs.replicated.com/reference/replicated-cli-registry-add-quay.md): Add a quay.
+- [replicated registry add](https://docs.replicated.com/reference/replicated-cli-registry-add.md): No description available.
+- [replicated registry ls](https://docs.replicated.com/reference/replicated-cli-registry-ls.md): No description available.
+- [replicated registry rm](https://docs.replicated.com/reference/replicated-cli-registry-rm.md): No description available.
+- [replicated registry test](https://docs.replicated.com/reference/replicated-cli-registry-test.md): No description available.
+- [replicated registry](https://docs.replicated.com/reference/replicated-cli-registry.md): No description available.
+- [replicated release compatibility](https://docs.replicated.com/reference/replicated-cli-release-compatibility.md): No description available.
+- [replicated release create](https://docs.replicated.com/reference/replicated-cli-release-create.md): No description available.
+- [replicated release download](https://docs.replicated.com/reference/replicated-cli-release-download.md): Download application manifests for a release.
+- [replicated release inspect](https://docs.replicated.com/reference/replicated-cli-release-inspect.md): No description available.
+- [replicated release lint](https://docs.replicated.com/reference/replicated-cli-release-lint.md): No description available.
+- [replicated release ls](https://docs.replicated.com/reference/replicated-cli-release-ls.md): No description available.
+- [replicated release promote](https://docs.replicated.com/reference/replicated-cli-release-promote.md): No description available.
+- [replicated release test](https://docs.replicated.com/reference/replicated-cli-release-test.md): No description available.
+- [replicated release update](https://docs.replicated.com/reference/replicated-cli-release-update.md): No description available.
+- [replicated release](https://docs.replicated.com/reference/replicated-cli-release.md): No description available.
+- [replicated version upgrade](https://docs.replicated.com/reference/replicated-cli-version-upgrade.md): No description available.
+- [replicated version](https://docs.replicated.com/reference/replicated-cli-version.md): No description available.
+- [replicated vm create](https://docs.replicated.com/reference/replicated-cli-vm-create.md): Create one or more test VMs with specified distribution, version, and configuration options.
+- [replicated vm ls](https://docs.replicated.com/reference/replicated-cli-vm-ls.md): List test VMs and their status, with optional filters for start/end time and terminated VMs.
+- [replicated vm port expose](https://docs.replicated.com/reference/replicated-cli-vm-port-expose.md): Expose a port on a vm to the public internet.
+- [replicated vm port ls](https://docs.replicated.com/reference/replicated-cli-vm-port-ls.md): List vm ports for a vm.
+- [replicated vm port rm](https://docs.replicated.com/reference/replicated-cli-vm-port-rm.md): Remove vm port by ID.
+- [replicated vm port](https://docs.replicated.com/reference/replicated-cli-vm-port.md): Manage VM ports.
+- [replicated vm rm](https://docs.replicated.com/reference/replicated-cli-vm-rm.md): Remove test VM(s) immediately, with options to filter by name, tag, or remove all VMs.
+- [replicated vm update ttl](https://docs.replicated.com/reference/replicated-cli-vm-update-ttl.md): Update TTL for a test VM.
+- [replicated vm update](https://docs.replicated.com/reference/replicated-cli-vm-update.md): Update VM settings.
+- [replicated vm versions](https://docs.replicated.com/reference/replicated-cli-vm-versions.md): List available VM versions.
+- [replicated vm](https://docs.replicated.com/reference/replicated-cli-vm.md): Manage test virtual machines.
+- [Replicated SDK API](https://docs.replicated.com/reference/replicated-sdk-apis.md): The Replicated SDK provides an API that you can use to embed Replicated functionality in your Helm chart application.
+- [replicated](https://docs.replicated.com/reference/replicated.md): No description available.
+- [About Template Functions](https://docs.replicated.com/reference/template-functions-about.md): This topic describes Replicated KOTS template functions, including information about use cases, template function contexts, syntax.
+- [Config Context](https://docs.replicated.com/reference/template-functions-config-context.md): No description available.
+- [Template Function Examples](https://docs.replicated.com/reference/template-functions-examples.md): This topic provides examples of how to use Replicated KOTS template functions in various common use cases.
+- [Identity Context](https://docs.replicated.com/reference/template-functions-identity-context.md): No description available.
+- [kURL Context](https://docs.replicated.com/reference/template-functions-kurl-context.md): For applications installed in embedded clusters created with Replicated kURL, you can use template functions to show all options the cluster was installed with.
+- [License Context](https://docs.replicated.com/reference/template-functions-license-context.md): No description available.
+- [Static Context](https://docs.replicated.com/reference/template-functions-static-context.md): Many of the utility functions provided come from sprig, a third-party library of Go template functions.
+- [Using the Vendor API v3](https://docs.replicated.com/reference/vendor-api-using.md): This topic describes how to use Replicated Vendor API authentication tokens to make API calls.
+- [Adding Links to the Dashboard](https://docs.replicated.com/vendor/admin-console-adding-buttons-links.md): This topic describes how to use the Kubernetes SIG Application custom resource to add links to the Replicated KOTS Admin Console dashboard.
+- [Customizing the Application Icon](https://docs.replicated.com/vendor/admin-console-customize-app-icon.md): You can add a custom application icon that displays in the Replicated Admin Console and the download portal.
+- [Creating and Editing Configuration Fields](https://docs.replicated.com/vendor/admin-console-customize-config-screen.md): This topic describes how to use the KOTS Config custom resource manifest file to add and edit fields in the KOTS Admin Console configuration screen.
+- [Adding Resource Status Informers](https://docs.replicated.com/vendor/admin-console-display-app-status.md): This topic describes how to add status informers for your application.
+- [Port Forwarding Services with KOTS](https://docs.replicated.com/vendor/admin-console-port-forward.md): This topic describes how to add one or more ports to the Replicated KOTS port forward tunnel by configuring the `ports` key in the KOTS Application custom resource.
+- [Adding Custom Graphs](https://docs.replicated.com/vendor/admin-console-prometheus-monitoring.md): This topic describes how to customize the graphs that are displayed on the Replicated Admin Console dashboard.
+- [About Integrating with CI/CD](https://docs.replicated.com/vendor/ci-overview.md): This topic provides an introduction to integrating Replicated CLI commands in your continuous integration and continuous delivery (CI/CD) pipelines, including Replicated's best practices and recommendations.
+- [Integrating Replicated GitHub Actions](https://docs.replicated.com/vendor/ci-workflows-github-actions.md): This topic describes how to integrate Replicated's custom GitHub actions into continuous integration and continuous delivery (CI/CD) workflows that use the GitHub Actions platform.
+- [Recommended CI/CD Workflows](https://docs.replicated.com/vendor/ci-workflows.md): This topic provides Replicated's recommended development and release workflows for your continuous integration and continuous delivery (CI/CD) pipelines.
+- [Viewing Compatibility Matrix Usage History](https://docs.replicated.com/vendor/compatibility-matrix-usage.md): No description available.
+- [About the Configuration Screen](https://docs.replicated.com/vendor/config-screen-about.md): This topic describes the configuration screen on the Config tab in the Replicated Admin Console.
+- [Using Conditional Statements in Configuration Fields](https://docs.replicated.com/vendor/config-screen-conditional.md): This topic describes how to use Replicated KOTS template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated KOTS Admin Console **Config** page.
+- [Mapping User-Supplied Values](https://docs.replicated.com/vendor/config-screen-map-inputs.md): This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
+- [Using Custom Domains](https://docs.replicated.com/vendor/custom-domains-using.md): This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the download portal.
+- [About Custom Domains](https://docs.replicated.com/vendor/custom-domains.md): This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy registry, Replicated app service, and the Download Portal.
+- [Configuring Custom Metrics (Beta)](https://docs.replicated.com/vendor/custom-metrics.md): This topic describes how to configure an application to send custom metrics to the Replicated Vendor Portal.
+- [Adoption Report](https://docs.replicated.com/vendor/customer-adoption.md): This topic describes the insights in the **Adoption** section on the Replicated Vendor Portal **Dashboard** page.
+- [Customer Reporting](https://docs.replicated.com/vendor/customer-reporting.md): This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated Vendor Portal.
+- [Data Availability and Continuity](https://docs.replicated.com/vendor/data-availability.md): Replicated uses redundancy and a cloud-native architecture in support of availability and continuity of vendor data.
+- [About Managing Stateful Services](https://docs.replicated.com/vendor/database-config-adding-options.md): This topic provides recommendations for managing stateful services that you install into existing clusters.
+- [Disaster Recovery for Embedded Cluster (Alpha)](https://docs.replicated.com/vendor/embedded-disaster-recovery.md): This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application.
+- [Embedded Cluster Overview](https://docs.replicated.com/vendor/embedded-overview.md): This topic provides an introduction to Replicated Embedded Cluster, including a description of the built-in extensions installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
+- [Using Embedded Cluster](https://docs.replicated.com/vendor/embedded-using.md): This topic provides information about using Replicated Embedded Cluster, including how to get started, configure Embedded Cluster, access the cluster using kubectl, and more.
+- [Using the Proxy Registry with Helm Installations](https://docs.replicated.com/vendor/helm-image-registry.md): This topic describes how to use the Replicated proxy registry to proxy images for installations with the Helm CLI.
+- [Installing and Updating with Helm in Air Gap Environments](https://docs.replicated.com/vendor/helm-install-airgap.md): Replicated supports installing and updating Helm charts in air gap environments with no outbound internet access.
+- [About Helm Installations with Replicated](https://docs.replicated.com/vendor/helm-install-overview.md): This topic provides an introduction to Helm installations for applications distributed with Replicated.
+- [Packaging a Helm Chart for a Release](https://docs.replicated.com/vendor/helm-install-release.md): This topic describes how to package a Helm chart and the Replicated SDK into a chart archive that can be added to a release.
+- [Troubleshooting Helm Installations with Replicated](https://docs.replicated.com/vendor/helm-install-troubleshooting.md): This topic provides troubleshooting information for common issues related to performing installations and upgrades with the Helm CLI.
+- [Helm global.replicated Values Schema](https://docs.replicated.com/vendor/helm-install-values-schema.md): This topic describes the `global.
+- [About Distributing Helm Charts with KOTS](https://docs.replicated.com/vendor/helm-native-about.md): This topic provides an overview of how Replicated KOTS deploys Helm charts, including an introduction to the KOTS HelmChart custom resource, limitations of deploying Helm charts with KOTS, and more.
+- [Configuring the HelmChart Custom Resource v2](https://docs.replicated.com/vendor/helm-native-v2-using.md): This topic describes how to configure the Replicated HelmChart custom resource version `kots.
+- [Example: Including Optional Helm Charts](https://docs.replicated.com/vendor/helm-optional-charts.md): This topic describes using optional Helm charts in your application.
+- [Setting Helm Values with KOTS](https://docs.replicated.com/vendor/helm-optional-value-keys.md): This topic describes how to use the Replicated KOTS HelmChart custom resource to set and delete values in `values.
+- [Packaging Air Gap Bundles for Helm Charts](https://docs.replicated.com/vendor/helm-packaging-airgap-bundles.md): This topic describes how to package and build air gap bundles for releases that contain one or more Helm charts.
+- [Migrating Existing Installations to HelmChart v2](https://docs.replicated.com/vendor/helm-v2-migrate.md): This topic describes how to migrate existing Replicated KOTS installations to the KOTS HelmChart `kots.
+- [Enabling and Configuring Identity Service (Beta)](https://docs.replicated.com/vendor/identity-service-configuring.md): No description available.
+- [Enabling and Understanding Application Status](https://docs.replicated.com/vendor/insights-app-status.md): This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal.
+- [Installing with Helm](https://docs.replicated.com/vendor/install-with-helm.md): This topic describes how to use Helm to install releases that contain one or more Helm charts.
+- [Installer History](https://docs.replicated.com/vendor/installer-history.md): No description available.
+- [Export Customer and Instance Data](https://docs.replicated.com/vendor/instance-data-export.md): This topic describes how to download and export customer and instance data from the Replicated Vendor Portal.
+- [Instance Details](https://docs.replicated.com/vendor/instance-insights-details.md): This topic describes using the Replicated Vendor Portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
+- [About Instance and Event Data](https://docs.replicated.com/vendor/instance-insights-event-data.md): This topic provides an overview of the customer and instance insights that you can view in the Replicated Vendor Portal.
+- [Configuring Instance Notifications (Beta)](https://docs.replicated.com/vendor/instance-notifications-config.md): No description available.
+- [Replicated FAQs](https://docs.replicated.com/vendor/kots-faq.md): This topic lists frequently-asked questions (FAQs) for different components of the Replicated Platform.
+- [Introduction to kURL](https://docs.replicated.com/vendor/kurl-about.md): No description available.
+- [Exposing Services Using NodePorts](https://docs.replicated.com/vendor/kurl-nodeport-services.md): No description available.
+- [Resetting a kURL Cluster](https://docs.replicated.com/vendor/kurl-reset.md): No description available.
+- [About Community Licenses](https://docs.replicated.com/vendor/licenses-about-types.md): This topic describes community licenses.
+- [About Customers and Licensing](https://docs.replicated.com/vendor/licenses-about.md): This topic provides an overview of customers and licenses in the Replicated Platform.
+- [Managing Customer License Fields](https://docs.replicated.com/vendor/licenses-adding-custom-fields.md): This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
+- [Downloading Customer Licenses](https://docs.replicated.com/vendor/licenses-download.md): This topic describes how to download a license file from the Replicated Vendor Portal.
+- [Managing Install Types for a License](https://docs.replicated.com/vendor/licenses-install-types.md): This topic describes how to manage which installation types and options are enabled for a license.
+- [Checking Entitlements in Helm Charts Before Deployment](https://docs.replicated.com/vendor/licenses-reference-helm.md): This topic describes how to check license entitlements before a Helm chart is installed or upgraded.
+- [Querying Entitlements with the KOTS License API](https://docs.replicated.com/vendor/licenses-reference-kots-runtime.md): This topic describes how to use the Replicated KOTS License API to query license fields during runtme.
+- [Querying Entitlements with the Replicated SDK API](https://docs.replicated.com/vendor/licenses-reference-sdk.md): This topic describes how to query license entitlements at runtime using the Replicated SDK in-cluster API.
+- [Checking Entitlements in Preflights with KOTS Template Functions](https://docs.replicated.com/vendor/licenses-referencing-fields.md): This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context.
+- [Built-In License Fields](https://docs.replicated.com/vendor/licenses-using-builtin-fields.md): This topic describes the built-in license fields that appear customer licenses for applications distributed with Replicated.
+- [Verifying License Field Signatures with the Replicated SDK API](https://docs.replicated.com/vendor/licenses-verify-fields-sdk-api.md): This topic describes how to verify the signatures of license fields when checking customer license entitlements with the Replicated SDK.
+- [Application Namespaces](https://docs.replicated.com/vendor/namespaces.md): Replicated strongly recommends that applications are architected to deploy a single application into a single namespace when possible.
+- [Offsite Data Backup](https://docs.replicated.com/vendor/offsite-backup.md): No description available.
+- [Defining Additional Images](https://docs.replicated.com/vendor/operator-defining-additional-images.md): This topic describes how to define additional images to be included in the `.
+- [Defining Additional Namespaces](https://docs.replicated.com/vendor/operator-defining-additional-namespaces.md): Operators often need to be able to manage resources in multiple namespaces in the cluster.
+- [About Packaging a Kubernetes Operator Application](https://docs.replicated.com/vendor/operator-packaging-about.md): Kubernetes Operators can be packaged and delivered as an application using the same methods as other Kubernetes applications.
+- [Referencing Images](https://docs.replicated.com/vendor/operator-referencing-images.md): This topic explains how to support the use of private image registries for applications that are packaged with Kubernetes Operators.
+- [Orchestrating Resource Deployment](https://docs.replicated.com/vendor/orchestrating-resource-deployment.md): This topic describes how to orchestrate the deployment order of resources deployed as part of your application.
+- [Excluding MinIO from Air Gap Bundles (Beta)](https://docs.replicated.com/vendor/packaging-air-gap-excluding-minio.md): The Replicated KOTS Admin Console requires an S3-compatible object store to store application archives and support bundles.
+- [Cleaning Up Kubernetes Jobs](https://docs.replicated.com/vendor/packaging-cleaning-up-jobs.md): This topic describes how to use the Replicated KOTS `kots.
+- [Creating a kURL Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes.md): No description available.
+- [Conditionally Including or Excluding Resources](https://docs.replicated.com/vendor/packaging-include-resources.md): This topic describes how to include or exclude optional application resources based on one or more conditional statements.
+- [Adding Cluster Ingress Options](https://docs.replicated.com/vendor/packaging-ingress.md): When delivering a configurable application, ingress can be challenging as it is very cluster specific.
+- [About Selecting Storage Add-ons](https://docs.replicated.com/vendor/packaging-installer-storage.md): No description available.
+- [Setting Minimum and Target Versions for KOTS](https://docs.replicated.com/vendor/packaging-kots-versions.md): This topic describes how to set minimum and target version for Replicated KOTS in the KOTS [Application](/reference/custom-resource-application) custom resource.
+- [Connecting to an External Registry](https://docs.replicated.com/vendor/packaging-private-images.md): This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI.
+- [Replicated Registry Security](https://docs.replicated.com/vendor/packaging-private-registry-security.md): This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private.
+- [Connecting to a Public Registry through the Proxy Registry](https://docs.replicated.com/vendor/packaging-public-images.md): This topic describes how to pull images from public registries using the Replicated proxy registry.
+- [Configuring KOTS RBAC](https://docs.replicated.com/vendor/packaging-rbac.md): This topic describes role-based access control (RBAC) for Replicated KOTS in existing cluster installations.
+- [Using TLS Certificates](https://docs.replicated.com/vendor/packaging-using-tls-certs.md): No description available.
+- [Customer Application Deployment Questionnaire](https://docs.replicated.com/vendor/planning-questionnaire.md): No description available.
+- [Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission.md): A Replicated installation connects to a Replicated-hosted endpoint periodically to perform various tasks including checking for updates and synchronizing the installed license properties.
+- [Infrastructure and Subprocessor Providers](https://docs.replicated.com/vendor/policies-infrastructure-and-subprocessors.md): This lists describes the infrastructure environment, subprocessors and other entities material to the Replicated products and services.
+- [Support Lifecycle Policy](https://docs.replicated.com/vendor/policies-support-lifecycle.md): Replicated will provide support for products per our terms and services until that product is noted as End of Life (EOL).
+- [Vulnerability Patch Policy](https://docs.replicated.com/vendor/policies-vulnerability-patch.md): While it’s our goal to distribute vulnerability-free versions of all components, this isn’t always possible.
+- [Defining Preflight Checks](https://docs.replicated.com/vendor/preflight-defining.md): This topic describes how to define preflight checks in Helm and Kubernetes manifest-based applications.
+- [Example Preflight Specs](https://docs.replicated.com/vendor/preflight-examples.md): This section includes common examples of preflight check specifications.
+- [Customizing Host Preflight Checks for kURL](https://docs.replicated.com/vendor/preflight-host-preflights.md): This topic provides information about how to customize host preflight checks for installations with Replicated kURL.
+- [Running Preflight Checks for Helm Installations](https://docs.replicated.com/vendor/preflight-running.md): This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
+- [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about.md): This topic provides an introduction to preflight checks and support bundles, which are provided by the [Troubleshoot](https://troubleshoot.
+- [About the Replicated Proxy Registry](https://docs.replicated.com/vendor/private-images-about.md): This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images or allow pull through access of public images.
+- [Using the Proxy Registry with KOTS Installations](https://docs.replicated.com/vendor/private-images-kots.md): This topic describes how to use the Replicated proxy registry with applications deployed with Replicated KOTS.
+- [Using the Replicated Registry for KOTS Installations](https://docs.replicated.com/vendor/private-images-replicated.md): This topic describes how to push images to the Replicated private registry.
+- [Using Image Tags and Digests](https://docs.replicated.com/vendor/private-images-tags-digests.md): This topic describes using image tags and digests with your application images.
+- [Replicated Quick Start](https://docs.replicated.com/vendor/quick-start.md): Welcome!
+- [About Channels and Releases](https://docs.replicated.com/vendor/releases-about.md): This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated Vendor Portal.
+- [Creating and Editing Channels](https://docs.replicated.com/vendor/releases-creating-channels.md): This topic describes how to create and edit channels using the Replicated Vendor Portal.
+- [Managing Releases with the CLI](https://docs.replicated.com/vendor/releases-creating-cli.md): This topic describes how to use the Replicated CLI to create and promote releases.
+- [Creating and Managing Customers](https://docs.replicated.com/vendor/releases-creating-customer.md): This topic describes how to create and manage customers in the Replicated Vendor Portal.
+- [Managing Releases with the Vendor Portal](https://docs.replicated.com/vendor/releases-creating-releases.md): This topic describes how to use the Replicated Vendor Portal to create and promote releases, edit releases, edit release properties, and archive releases.
+- [Downloading Assets from the Download Portal](https://docs.replicated.com/vendor/releases-share-download-portal.md): This topic describes how to download customer license files, air gap bundles, and other assets from the Replicated Download Portal.
+- [Finding Installation Commands for a Release](https://docs.replicated.com/vendor/releases-sharing-license-install-script.md): This topic describes where to find the installation commands and instructions for releases in the Replicated Vendor Portal.
+- [Generating API Tokens](https://docs.replicated.com/vendor/replicated-api-tokens.md): This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
+- [Replicated Onboarding ](https://docs.replicated.com/vendor/replicated-onboarding.md): This topic describes how to onboard applications to the Replicated Platform.
+- [Installing the SDK in Air Gap Environments](https://docs.replicated.com/vendor/replicated-sdk-airgap.md): This topic explains how to install the Replicated SDK in air gap environments by enabling air gap mode.
+- [Customizing the Replicated SDK](https://docs.replicated.com/vendor/replicated-sdk-customizing.md): This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
+- [Developing Against the SDK API](https://docs.replicated.com/vendor/replicated-sdk-development.md): This topic describes how to develop against the SDK API to test changes locally.
+- [Installing the Replicated SDK](https://docs.replicated.com/vendor/replicated-sdk-installing.md): This topic describes the methods for distributing and installing the Replicated SDK.
+- [About the Replicated SDK](https://docs.replicated.com/vendor/replicated-sdk-overview.md): This topic provides an introduction to using the Replicated SDK with your application.
+- [SLSA Provenance Validation Process for the Replicated SDK](https://docs.replicated.com/vendor/replicated-sdk-slsa-validating.md): This topic describes the process to perform provenance validation on the Replicated SDK.
+- [Templating Annotations](https://docs.replicated.com/vendor/resources-annotations-templating.md): This topic describes how to use Replicated KOTS template functions to template annotations for resources and objects based on user-supplied values.
+- [Configuring Snapshots](https://docs.replicated.com/vendor/snapshots-configuring-backups.md): This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
+- [Configuring Backup and Restore Hooks for Snapshots](https://docs.replicated.com/vendor/snapshots-hooks.md): This topic describes the use of custom backup and restore hooks and demonstrates a common example.
+- [About Backup and Restore with Snapshots](https://docs.replicated.com/vendor/snapshots-overview.md): This topic provides an introduction to the Replicated KOTS snapshots feature for backup and restore.
+- [Adding and Customizing Support Bundles](https://docs.replicated.com/vendor/support-bundle-customizing.md): This topic describes how to add a default support bundle spec to a release for your application.
+- [Generating Support Bundles for Embedded Cluster](https://docs.replicated.com/vendor/support-bundle-embedded.md): This topic describes how to generate a support bundle that includes cluster- and host-level information for [Replicated Embedded Cluster](/vendor/embedded-overview) installations.
+- [Example Support Bundle Specs](https://docs.replicated.com/vendor/support-bundle-examples.md): This topic includes common examples of support bundle specifications.
+- [Generating Support Bundles](https://docs.replicated.com/vendor/support-bundle-generating.md): This topic describes how to generate support bundles from the command line using the kubectl support-bundle plugin.
+- [Enabling Support Bundle Uploads (Beta)](https://docs.replicated.com/vendor/support-enabling-direct-bundle-uploads.md): No description available.
+- [Generating Host Bundles for kURL](https://docs.replicated.com/vendor/support-host-support-bundles.md): This topic describes how to configure a host support bundle spec for Replicated kURL installations.
+- [Inspecting Support Bundles](https://docs.replicated.com/vendor/support-inspecting-support-bundles.md): You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files.
+- [About Creating Modular Support Bundle Specs](https://docs.replicated.com/vendor/support-modular-support-bundle-specs.md): This topic describes how to use a modular approach to creating support bundle specs.
+- [Making Support Bundle Specs Available Online](https://docs.replicated.com/vendor/support-online-support-bundle-specs.md): This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
+- [Submitting a Support Request](https://docs.replicated.com/vendor/support-submit-request.md): You can submit a support request and a support bundle using the Replicated Vendor Portal.
+- [Managing Collab Repository Access](https://docs.replicated.com/vendor/team-management-github-username.md): This topic describes how to add users to the Replicated collab GitHub repository automatically through the Replicated Vendor Portal.
+- [Managing Google Authentication](https://docs.replicated.com/vendor/team-management-google-auth.md): This topic describes the Google authentication options that you can configure to control access to the Replicated Vendor Portal.
+- [Configuring RBAC Policies](https://docs.replicated.com/vendor/team-management-rbac-configuring.md): This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated Vendor Portal.
+- [RBAC Resource Names](https://docs.replicated.com/vendor/team-management-rbac-resource-names.md): No description available.
+- [Managing SAML Authentication](https://docs.replicated.com/vendor/team-management-saml-auth.md): This topic describes how to enable or disable SAML authentication for the Replicated Vendor Portal.
+- [Configuring a Slack Webhook (Beta)](https://docs.replicated.com/vendor/team-management-slack-config.md): As a vendor, anyone on your team can set up Slack notifications, which are sent to a shared Slack channel.
+- [Managing Two-Factor Authentication](https://docs.replicated.com/vendor/team-management-two-factor-auth.md): This topic describes how to enable and disable Replicated two-factor authentication for individual and team accounts in the Replicated Vendor Portal.
+- [Managing Team Members](https://docs.replicated.com/vendor/team-management.md): This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions.
+- [Collecting Telemetry for Air Gap Instances](https://docs.replicated.com/vendor/telemetry-air-gap.md): This topic describes how to collect telemetry for instances in air gap environments.
+- [About Compatibility Matrix](https://docs.replicated.com/vendor/testing-about.md): This topic describes Replicated Compatibility Matrix, including use cases, billing, limitations, and more.
+- [Compatibility Matrix Cluster Add-ons (Alpha)](https://docs.replicated.com/vendor/testing-cluster-addons.md): This topic describes the supported cluster add-ons for Replicated Compatibility Matrix.
+- [Using Compatibility Matrix](https://docs.replicated.com/vendor/testing-how-to.md): This topic describes how to use Replicated Compatibility Matrix to create ephemeral clusters.
+- [Accessing Your Application](https://docs.replicated.com/vendor/testing-ingress.md): This topic describes the networking options for accessing applications deployed on clusters created with Replicated Compatibility Matrix.
+- [Compatibility Matrix Pricing](https://docs.replicated.com/vendor/testing-pricing.md): This topic describes the pricing for Replicated Compatibility Matrix.
+- [Supported Compatibility Matrix Cluster Types](https://docs.replicated.com/vendor/testing-supported-clusters.md): This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix.
+- [Example: Adding Database Configuration Options](https://docs.replicated.com/vendor/tutorial-adding-db-config.md): In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
+- [Step 2: Create an Application](https://docs.replicated.com/vendor/tutorial-cli-create-app.md): After you install the Replicated CLI and create an API token, you can use the CLI to create a new application.
+- [Step 5: Create a Customer](https://docs.replicated.com/vendor/tutorial-cli-create-customer.md): After promoting the first release for the `cli-tutorial` application, create a customer so that you can install the application.
+- [Step 8: Create a New Version](https://docs.replicated.com/vendor/tutorial-cli-create-new-version.md): In this step, you make an edit to the Config custom resource manifest file in the `replicated-cli-tutorial/manifests` directory for the `cli-tutorial` application to create a new field on the **Config** page in the Admin Console.
+- [Step 4: Create a Release](https://docs.replicated.com/vendor/tutorial-cli-create-release.md): Now that you have the manifest files for the sample Kubernetes application, you can create a release for the `cli-tutorial` application and promote the release to the Unstable channel.
+- [Step 7: Configure the Application](https://docs.replicated.com/vendor/tutorial-cli-deploy-app.md): After you install KOTS, you can log in to the KOTS Admin Console.
+- [Step 6: Install KOTS and the Application](https://docs.replicated.com/vendor/tutorial-cli-install-app-manager.md): The next step is to test the installation process for the application release that you promoted.
+- [Step 1: Install the Replicated CLI](https://docs.replicated.com/vendor/tutorial-cli-install-cli.md): In this tutorial, you use the Replicated CLI to create and promote releases for a sample application with Replicated.
+- [Step 3: Get the Sample Manifests](https://docs.replicated.com/vendor/tutorial-cli-manifests.md): To create a release for the `cli-tutorial` application, first create the Kubernetes manifest files for the application.
+- [Introduction and Setup](https://docs.replicated.com/vendor/tutorial-cli-setup.md): No description available.
+- [Step 9: Update the Application](https://docs.replicated.com/vendor/tutorial-cli-update-app.md): To test the new release that you promoted, return to the Admin Console in a browser to update the application.
+- [Step 2: Create an Application](https://docs.replicated.com/vendor/tutorial-config-create-app.md): Next, install the Replicated CLI and then create an application.
+- [Step 5: Create a KOTS-Enabled Customer](https://docs.replicated.com/vendor/tutorial-config-create-customer.md): After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS.
+- [Step 4: Add the Chart Archive to a Release](https://docs.replicated.com/vendor/tutorial-config-create-release.md): Next, add the Helm chart archive to a new release for the application in the Replicated vendor platform.
+- [Step 1: Get the Sample Chart and Test](https://docs.replicated.com/vendor/tutorial-config-get-chart.md): To begin, get the sample Grafana Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall.
+- [Step 6: Install the Release with KOTS](https://docs.replicated.com/vendor/tutorial-config-install-kots.md): Next, get the KOTS installation command from the Unstable channel in the Vendor Portal and then install the release using the customer license that you downloaded.
+- [Step 3: Package the Helm Chart](https://docs.replicated.com/vendor/tutorial-config-package-chart.md): Next, add the Replicated SDK as a dependency of the Helm chart and then package the chart into a `.
+- [Introduction and Setup](https://docs.replicated.com/vendor/tutorial-config-setup.md): This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
+- [Tutorial: Using ECR for Private Images](https://docs.replicated.com/vendor/tutorial-ecr-private-images.md): The purpose of this tutorial is to walk you through how to configure Replicated KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR).
+- [Step 1: Create an Application](https://docs.replicated.com/vendor/tutorial-embedded-cluster-create-app.md): To begin, install the Replicated CLI and create an application in the Replicated Vendor Portal.
+- [Step 4: Create an Embedded Cluster-Enabled Customer](https://docs.replicated.com/vendor/tutorial-embedded-cluster-create-customer.md): After promoting the release, create a customer with the Replicated KOTS and Embedded Cluster entitlements so that you can install the release with Embedded Cluster.
+- [Step 3: Add the Chart Archive to a Release](https://docs.replicated.com/vendor/tutorial-embedded-cluster-create-release.md): Next, add the Helm chart archive to a new release for the application in the Replicated Vendor Portal.
+- [Step 5: Install the Release on a VM](https://docs.replicated.com/vendor/tutorial-embedded-cluster-install.md): Next, get the customer-specific Embedded Cluster installation commands and then install the release on a Linux VM.
+- [Step 2: Package the Gitea Helm Chart](https://docs.replicated.com/vendor/tutorial-embedded-cluster-package-chart.md): Next, get the sample Gitea Helm chart from Bitnami.
+- [Introduction and Setup](https://docs.replicated.com/vendor/tutorial-embedded-cluster-setup.md): This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
+- [Step 2: Create an Application](https://docs.replicated.com/vendor/tutorial-kots-helm-create-app.md): Next, install the Replicated CLI and then create an application.
+- [Step 5: Create a KOTS-Enabled Customer](https://docs.replicated.com/vendor/tutorial-kots-helm-create-customer.md): After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS.
+- [Step 4: Add the Chart Archive to a Release](https://docs.replicated.com/vendor/tutorial-kots-helm-create-release.md): Next, add the Helm chart archive to a new release for the application in the Replicated Vendor Portal.
+- [Step 1: Get the Sample Chart and Test](https://docs.replicated.com/vendor/tutorial-kots-helm-get-chart.md): To begin, get the sample Gitea Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall.
+- [Step 7: Install the Release with the Helm CLI](https://docs.replicated.com/vendor/tutorial-kots-helm-install-helm.md): Next, install the same release using the Helm CLI.
+- [Step 6: Install the Release with KOTS](https://docs.replicated.com/vendor/tutorial-kots-helm-install-kots.md): Next, get the KOTS installation command from the Unstable channel in the Vendor Portal and then install the release using the customer license that you downloaded.
+- [Step 3: Package the Helm Chart](https://docs.replicated.com/vendor/tutorial-kots-helm-package-chart.md): Next, add the Replicated SDK as a dependency of the Helm chart and then package the chart into a `.
+- [Introduction and Setup](https://docs.replicated.com/vendor/tutorial-kots-helm-setup.md): This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
+- [Step 2: Add a Preflight Spec to the Chart](https://docs.replicated.com/vendor/tutorial-preflight-helm-add-spec.md): Create a preflight specification that fails if the cluster is running a version of Kubernetes earlier than 1.
+- [Step 4: Create a Customer](https://docs.replicated.com/vendor/tutorial-preflight-helm-create-customer.md): After promoting the release, create a customer so that you can run the preflight checks and install.
+- [Step 3: Add the Chart Archive to a Release](https://docs.replicated.com/vendor/tutorial-preflight-helm-create-release.md): Use the Replicated CLI to add the Gitea Helm chart archive to a release in the Replicated vendor platform.
+- [Step 1: Get the Sample Chart and Test](https://docs.replicated.com/vendor/tutorial-preflight-helm-get-chart.md): To begin, get the sample Gitea Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall.
+- [Step 6: Run Preflights with KOTS](https://docs.replicated.com/vendor/tutorial-preflight-helm-install-kots.md): Create a KOTS-enabled release and then install Gitea with KOTS.
+- [Step 5: Run Preflights with the Helm CLI](https://docs.replicated.com/vendor/tutorial-preflight-helm-install.md): Use the Helm CLI installation instructions provided for the customer that you created to run the preflight checks for Gitea and install.
+- [Introduction and Setup](https://docs.replicated.com/vendor/tutorial-preflight-helm-setup.md): This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
+- [Using a Registry Proxy for Helm Air Gap Installations](https://docs.replicated.com/vendor/using-third-party-registry-proxy.md): This topic describes how to connect the Replicated proxy registry to a Harbor or jFrog Artifactory instance to support pull-through image caching.
+- [Application Settings Page](https://docs.replicated.com/vendor/vendor-portal-application-settings.md): Each application has its own settings, which include the application name and application slug.
+- [Creating a Vendor Account](https://docs.replicated.com/vendor/vendor-portal-creating-account.md): To get started with Replicated, you must create a Replicated vendor account.
+- [Managing Applications](https://docs.replicated.com/vendor/vendor-portal-manage-app.md): This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
