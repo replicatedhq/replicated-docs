@@ -50,7 +50,7 @@ To add nodes to a cluster:
 
      * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
-     * Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+     * Roles are not updated or changed after a node is added. If you need to change a node's role, reset the node and add it again with the new role.
 
      * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about creating HA clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 
@@ -145,3 +145,14 @@ To create a multi-node HA cluster:
     [View a larger version of this image](/images/embedded-cluster-ha-prompt.png)
 
 1. Wait for the migration to complete.
+
+### Enabling High Availability
+
+For existing clusters with 3 or more controller nodes that are not yet highly available, you can enable high availability using the `enable-ha` command.
+This command will migrate your cluster to a highly available configuration.
+
+To enable high availability:
+
+```bash
+sudo ./APP_SLUG enable-ha
+```
