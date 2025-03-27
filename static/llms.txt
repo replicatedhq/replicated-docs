@@ -1,6 +1,6 @@
-# Replicated Documentation for LLMs
+# Replicated Documentation
 
-This file contains markdown-formatted links to Replicated documentation pages.
+> Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
 
 ## Docs
 
@@ -758,8 +758,8 @@ For a complete archive of all documentation pages, see [llms-full.txt](https://d
 - [Creating a Vendor Account](https://docs.replicated.com/vendor/vendor-portal-creating-account.md): To get started with Replicated, you must create a Replicated vendor account.
 - [Managing Applications](https://docs.replicated.com/vendor/vendor-portal-manage-app.md): This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
 
-## Additional Resources
+## Optional
 
 For more information, visit:
-- [Replicated Documentation Home](https://docs.replicated.com)
-- [Replicated Help Center](https://help.replicated.com)
+- [Replicated Community](https://community.replicated.com/)
+- [Replicated Vendor API v3 Docs](https://replicated-vendor-api.readme.io/reference/)

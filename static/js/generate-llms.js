@@ -8,19 +8,19 @@ const OUTPUT_FULL_FILE = path.join(__dirname, "../../static", "llms-full.txt");
 const BASE_URL = "https://docs.replicated.com";
 
 // Define static content
-const STATIC_HEADER = `# Replicated Documentation for LLMs
+const STATIC_HEADER = `# Replicated Documentation
 
-This file contains markdown-formatted links to Replicated documentation pages.
+> Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
 
 `;
 
 const STATIC_FOOTER = `
 
-## Additional Resources
+## Optional
 
 For more information, visit:
-- [Replicated Documentation Home](https://docs.replicated.com)
-- [Replicated Help Center](https://help.replicated.com)
+- [Replicated Community](https://community.replicated.com/)
+- [Replicated Vendor API v3 Docs](https://replicated-vendor-api.readme.io/reference/)
 `;
 
 function extractFirstSentence(text) {
@@ -87,7 +87,8 @@ function getMarkdownFiles(dir, fileList = []) {
 
 function generateFullLLMsTxt(files) {
     const fullContent = files.map(file => {
-        return `# ${file.title}\n\n${file.content}\n\n---\n\n`;
+        // Don't add the title separately since it's already in the content
+        return `${file.content}\n\n---\n\n`;
     }).join('\n');
     
     fs.writeFileSync(OUTPUT_FULL_FILE, fullContent);

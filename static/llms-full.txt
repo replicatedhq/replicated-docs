@@ -1,7 +1,5 @@
 # Changing an Admin Console Password
 
-# Changing an Admin Console Password
-
 When you install for the first time with Replicated kURL, the Replicated KOTS Admin Console is secured with a single shared password that is set automatically for all users. Replicated recommends that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
 
 The Admin Console password is salted and one-way hashed using bcrypt. The irreversible hash is stored in a Secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your Admin Console password, reset your password to access the Admin Console.
@@ -32,8 +30,6 @@ To change your Admin Console password:
 
 ---
 
-
-# Configuring Role-based Access Control (Beta)
 
 # Configuring Role-based Access Control (Beta)
 
@@ -70,8 +66,6 @@ The Admin Console comes with pre-defined identity service roles that can be assi
 
 # Using an Identity Provider for User Access (Beta)
 
-# Using an Identity Provider for User Access (Beta)
-
 When you install an application for the first time, the Replicated KOTS Admin Console is secured with a single shared password for all users. It is possible to further configure the Admin Console to authenticate users with your organization's user management system. This feature is only available for licenses that have the Replicated identity service feature enabled.
 
 Replicated KOTS leverages the open source project Dex as an intermediary to control access to the Admin Console. Dex implements an array of protocols for querying other user-management systems, known as connectors. For more information, see the [Dex documentation](https://dexidp.io/docs/).
@@ -104,8 +98,6 @@ If you want to re-enable the shared password authentication, run the `kubectl ko
 ---
 
 
-# Adding Nodes to kURL Clusters
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Adding Nodes to kURL Clusters
@@ -136,8 +128,6 @@ To add primary and secondary nodes:
 
 ---
 
-
-# Deleting the Admin Console and Removing Applications
 
 # Deleting the Admin Console and Removing Applications
 
@@ -226,8 +216,6 @@ To completely delete the Admin Console from an existing cluster:
 
 ---
 
-
-# Managing Multi-Node Clusters with Embedded Cluster
 
 import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
@@ -380,8 +368,6 @@ To create a multi-node HA cluster:
 
 # Updating Custom TLS Certificates in Embedded Cluster Installations
 
-# Updating Custom TLS Certificates in Embedded Cluster Installations
-
 This topic describes how to update custom TLS certificates in Replicated Embedded Cluster installations.
 
 ## Update Custom TLS Certificates
@@ -431,8 +417,6 @@ To upload a new custom TLS certificate in Embedded Cluster installations:
 
 ---
 
-
-# Managing Secrets with KOTS Auto-GitOps (Alpha)
 
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
@@ -515,8 +499,6 @@ Replace:
 ---
 
 
-# KOTS Auto-GitOps Workflow
-
 import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
@@ -597,8 +579,6 @@ To enable pushing updates to the Auto-GitOps workflow:
 ---
 
 
-# Working with the kURL Image Registry
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Working with the kURL Image Registry
@@ -677,8 +657,6 @@ The kURL registry image garbage collection feature has following limitations:
 
 # Avoiding Docker Hub Rate Limits
 
-# Avoiding Docker Hub Rate Limits
-
 This topic describes how to avoid rate limiting for anonymous and free authenticated use of Docker Hub by providing a Docker Hub username and password to the `kots docker ensure-secret` command.
 
 ## Overview
@@ -710,8 +688,6 @@ For more information, see [docker ensure-secret](/reference/kots-cli-docker-ensu
 
 ---
 
-
-# Configuring Local Image Registries
 
 import ImageRegistrySettings from "../partials/image-registry/_image-registry-settings.mdx"
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
@@ -805,8 +781,6 @@ To stop using a registry and remove registry settings from the Admin Console:
 
 ---
 
-
-# Air Gap Installation with Embedded Cluster
 
 import UpdateAirGapAdm from "../partials/embedded-cluster/_update-air-gap-admin-console.mdx"
 import UpdateAirGapCli from "../partials/embedded-cluster/_update-air-gap-cli.mdx"
@@ -954,8 +928,6 @@ On the Admin Console dashboard, the application status changes from Missing to U
 ---
 
 
-# Automating Installation with Embedded Cluster
-
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 import ConfigValuesProcedure from "../partials/configValues/_config-values-procedure.mdx"
 
@@ -1023,8 +995,6 @@ To install with Embedded Cluster in an air-gapped environment:
 
 ---
 
-
-# Embedded Cluster Installation Requirements
 
 import EmbeddedClusterRequirements from "../partials/embedded-cluster/_requirements.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
@@ -1118,8 +1088,6 @@ The following ports are opened in the default zone:
 
 ---
 
-
-# Online Installation with Embedded Cluster
 
 import Prerequisites from "../partials/install/_ec-prereqs.mdx"
 
@@ -1228,8 +1196,6 @@ On the Admin Console dashboard, the application status changes from Missing to U
 
 ---
 
-
-# Air Gap Installation in Existing Clusters with KOTS
 
 import IntroExisting from "../partials/install/_intro-existing.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
@@ -1349,8 +1315,6 @@ On the Admin Console dashboard, the application status changes from Missing to U
 ---
 
 
-# Installing with the KOTS CLI
-
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 import ConfigValuesProcedure from "../partials/configValues/_config-values-procedure.mdx"
 import PlaceholdersGlobal from "../partials/install/_placeholders-global.mdx"
@@ -1466,8 +1430,6 @@ To install with KOTS in an air-gapped existing cluster:
 ---
 
 
-# Online Installation in Existing Clusters with KOTS
-
 import IntroExisting from "../partials/install/_intro-existing.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
@@ -1561,8 +1523,6 @@ On the Admin Console dashboard, the application status changes from Missing to U
 
 ---
 
-
-# KOTS Installation Requirements
 
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
@@ -1875,8 +1835,6 @@ KOTS has been tested for compatibility with the following registries:
 ---
 
 
-# Air Gap Installation with kURL
-
 import KurlAbout from "../partials/install/_kurl-about.mdx"
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
@@ -2008,8 +1966,6 @@ To install an application with kURL:
 ---
 
 
-# Installing with kURL from the Command Line
-
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 import ConfigValuesProcedure from "../partials/configValues/_config-values-procedure.mdx"
 import PlaceholdersGlobal from "../partials/install/_placeholders-global.mdx"
@@ -2110,8 +2066,6 @@ To install in an air-gapped kURL cluster:
 ---
 
 
-# kURL Installation Requirements
-
 import FirewallOpeningsIntro from "../partials/install/_firewall-openings-intro.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
@@ -2191,8 +2145,6 @@ You must meet the additional kURL system requirements when applicable:
 
 ---
 
-
-# Online Installation with kURL
 
 import KurlAbout from "../partials/install/_kurl-about.mdx"
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
@@ -2295,8 +2247,6 @@ To install an application with kURL:
 
 # Considerations Before Installing
 
-# Considerations Before Installing
-
 Before you install an application with KOTS in an existing cluster, consider the following installation options.
 
 ## Online (Internet-Connected) or Air Gap Installations
@@ -2342,8 +2292,6 @@ For more information about how to install KOTS without object storage, see [Inst
 
 # Installing KOTS in Existing Clusters Without Object Storage
 
-# Installing KOTS in Existing Clusters Without Object Storage
-
 This topic describes how to install Replicated KOTS in existing clusters without the default object storage, including limitations of installing without object storage.
 
 ## Overview
@@ -2374,8 +2322,6 @@ When `--with-minio=false` is used with the `kots admin-console upgrade` command,
 
 ---
 
-
-# Accessing Dashboards Using Port Forwarding
 
 # Accessing Dashboards Using Port Forwarding
 
@@ -2451,8 +2397,6 @@ To access the Alertmanager dashboard:
 ---
 
 
-# Configuring Prometheus Monitoring in Existing Cluster KOTS Installations
-
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 
 # Configuring Prometheus Monitoring in Existing Cluster KOTS Installations
@@ -2509,8 +2453,6 @@ To connect the Admin Console to a Prometheus endpoint:
 
 ---
 
-
-# Consuming Prometheus Metrics Externally
 
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
@@ -2579,8 +2521,6 @@ To consume Prometheus metrics from an external service:
 
 ---
 
-
-# Validating SBOM Signatures
 
 # Validating SBOM Signatures
 
@@ -2663,8 +2603,6 @@ To validate an Troubleshoot SBOM signature:
 
 # How to Set Up Backup Storage
 
-# How to Set Up Backup Storage
-
 This topic describes the process of setting up backup storage for the Replicated snapshots feature.
 
 ## Configuring Backup Storage for Embedded Clusters
@@ -2717,8 +2655,6 @@ After you configure a storage destination, you can create a backup. See [Creatin
 
 ---
 
-
-# Configuring a Host Path Storage Destination
 
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
@@ -2845,8 +2781,6 @@ To install Velero and configure host path storage for existing clusters:
 
 ---
 
-
-# Configuring an NFS Storage Destination
 
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
@@ -2979,8 +2913,6 @@ To install Velero and configure NFS storage for existing clusters:
 
 # Creating and Scheduling Backups
 
-# Creating and Scheduling Backups
-
 This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
 ## Prerequisites
@@ -3083,8 +3015,6 @@ To schedule automatic backups in the Admin Console:
 
 ---
 
-
-# Restoring from Backups
 
 import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
 import RestoreTypes from "../partials/snapshots/_restore-types.mdx"
@@ -3250,8 +3180,6 @@ To restore an application from a partial backup:
 
 ---
 
-
-# Configuring Other Storage Destinations
 
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
@@ -3448,8 +3376,6 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ---
 
-
-# Troubleshooting Snapshots
 
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 
@@ -3685,8 +3611,6 @@ These warnings do not necessarily mean that the restore itself failed. The endpo
 
 # Updating Storage Settings
 
-# Updating Storage Settings
-
 This topic describes how to update existing storage destination settings using the Replicated Admin Console.
 
 ## Prerequisite
@@ -3808,8 +3732,6 @@ When configuring the Admin Console to store backups on host path storage, the fo
 
 # Installing the Velero CLI
 
-# Installing the Velero CLI
-
 You install the Velero CLI before installing Velero and configuring a storage destination for backups.
 
 :::note
@@ -3916,8 +3838,6 @@ Install Velero and configure a storage destination using one of the following pr
 ---
 
 
-# Configuring Namespace Access and Memory Limit
-
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
@@ -3962,8 +3882,6 @@ Velero sets default limits for the velero Pod and the node-agent (restic) Pod du
 
 ---
 
-
-# Understanding Application Status Details in the Admin Console
 
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
@@ -4014,8 +3932,6 @@ The following table lists the supported Kubernetes resources and the conditions 
 ---
 
 
-# Generating Support Bundles from the Admin Console
-
 import GenerateBundleAdminConsole from "../partials/support-bundles/_generate-bundle-admin-console.mdx"
 
 # Generating Support Bundles from the Admin Console
@@ -4028,8 +3944,6 @@ This topic describes how to generate support bundles from the KOTS Admin Console
 
 ---
 
-
-# Performing Updates in Existing Clusters
 
 import AdminConsole from "../partials/updating/_admin-console.mdx"
 import AdminConsoleAirGap from "../partials/updating/_admin-console-air-gap.mdx"
@@ -4181,8 +4095,6 @@ To update KOTS in an existing air gap cluster:
 
 # Configuring Automatic Updates
 
-# Configuring Automatic Updates
-
 This topic describes how to configure automatic updates for applications installed in online (internet-connected) environments.
 
 ## Overview
@@ -4231,8 +4143,6 @@ To configure automatic updates:
 
 ---
 
-
-# Performing Updates in Embedded Clusters
 
 import UpdateAirGapAdm from "../partials/embedded-cluster/_update-air-gap-admin-console.mdx"
 import UpdateAirGapCli from "../partials/embedded-cluster/_update-air-gap-cli.mdx"
@@ -4325,8 +4235,6 @@ To update by uploading the air gap bundle for the new version from the Admin Con
 ---
 
 
-# About kURL Cluster Updates
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # About kURL Cluster Updates
@@ -4396,8 +4304,6 @@ For example, if the version of KOTS running in your cluster is 1.109.0, and the 
 
 ---
 
-
-# Performing Updates in kURL Clusters
 
 import InstallerRequirements from "../partials/updating/_installerRequirements.mdx"
 import UpgradePrompt from "../partials/updating/_upgradePrompt.mdx"
@@ -4522,8 +4428,6 @@ To update the kURL cluster in an air gap environment:
 
 # Updating Licenses in the Admin Console
 
-# Updating Licenses in the Admin Console
-
 This topic describes how to update a license from the KOTS Admin Console.
 
 ## Update Online Licenses
@@ -4612,8 +4516,6 @@ To change a community license to another license:
 
 ---
 
-
-# Patching with Kustomize
 
 # Patching with Kustomize
 
@@ -4831,8 +4733,6 @@ To patch an application:
 ---
 
 
-# Updating TLS Certificates in kURL Clusters
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Updating TLS Certificates in kURL Clusters
@@ -4885,8 +4785,6 @@ To upload a new custom TLS certificate:
 
 ---
 
-
-# Introduction to KOTS
 
 import Kots from "../docs/partials/kots/_kots-definition.mdx"
 
@@ -4970,8 +4868,6 @@ The KOTS CLI can also be used to install an application without needing to acces
 
 ---
 
-
-# Introduction to Replicated
 
 ---
 pagination_prev: null
@@ -5143,8 +5039,6 @@ Support teams can use Replicated features to more quickly diagnose and resolve a
 
 ---
 
-
-# Home
 
 ---
 slug: /
@@ -5436,14 +5330,10 @@ pagination_next: null
 ---
 
 
-# _airgap-bundle
-
 Air gap bundles (`.airgap`) contain the images needed to install and run a single release of your application in _air gap_ environments with no outbound internet access.
 
 ---
 
-
-# _nginx-deployment
 
 ```yaml
 apiVersion: apps/v1
@@ -5478,8 +5368,6 @@ spec:
 ---
 
 
-# _nginx-k8s-app
-
 ```yaml
 apiVersion: app.k8s.io/v1beta1
 kind: Application
@@ -5495,8 +5383,6 @@ spec:
 
 ---
 
-
-# _nginx-kots-app
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -5517,8 +5403,6 @@ spec:
 
 ---
 
-
-# _nginx-service
 
 ```yaml
 apiVersion: v1
@@ -5556,14 +5440,10 @@ spec:
 ---
 
 
-# _build-source-code
-
 Add one or more jobs to compile your application source code and build images. The build jobs that you create vary depending upon your application and your CI/CD platform. For additional guidance, see the documentation for your CI/CD platform. 
 
 ---
 
-
-# _test-recs
 
 * **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests. These tests are critical for application reliability, and Compatibility Matrix is designed to to incorporate and use your application testing.
 
@@ -5578,8 +5458,6 @@ Add one or more jobs to compile your application source code and build images. T
 ---
 
 
-# _openshift-pool
-
 :::note
 Due to the time it takes to start an OpenShift cluster, a warm pool of OpenShift clusters is maintained.
 When available, an OpenShift cluster from the pool starts in approximately two minutes with default disks.
@@ -5589,8 +5467,6 @@ When starting a cluster with a disk size different than the default, an addition
 
 ---
 
-
-# _overview
 
 Replicated Compatibility Matrix quickly provisions ephemeral clusters of different Kubernetes distributions and versions, such as OpenShift, EKS, and Replicated kURL.
 
@@ -5605,8 +5481,6 @@ Example use cases for Compatibility Matrix include:
 ---
 
 
-# _prerequisites
-
 * Create an account in the Replicated Vendor Portal. See [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 
 * Install the Replicated CLI and then authorize the CLI using your vendor account. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
@@ -5616,8 +5490,6 @@ Example use cases for Compatibility Matrix include:
 
 ---
 
-
-# _supported-clusters-overview
 
 Compatibility Matrix can create clusters on virtual machines (VMs), such as kind, k3s, RKE2, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as EKS, GKE and AKS:
 
@@ -5633,8 +5505,6 @@ For detailed information about the available cluster distributions, see [Support
 ---
 
 
-# _collab-existing-user
-
 If a team member adds a GitHub username to their Vendor Portal account that already exists in the collab repository, then the Vendor Portal does _not_ change the role that the existing user is assigned in the collab repository.
 
 However, if the RBAC policy assigned to this member in the Vendor Portal later changes, or if the member is removed from the Vendor Portal team, then the Vendor Portal updates or removes the user in the collab repository accordingly.
@@ -5642,8 +5512,6 @@ However, if the RBAC policy assigned to this member in the Vendor Portal later c
 
 ---
 
-
-# _collab-rbac-important
 
 :::important
 The RBAC policy that you specify also determines the level of access that the user has to the Replicated collab repository in GitHub. By default, the Read Only policy grants the user read access to the collab repository.
@@ -5655,8 +5523,6 @@ For more information about managing user access to the collab repository from th
 ---
 
 
-# _collab-rbac-resources-important
-
 :::important
 When you update an existing RBAC policy to add one or more `team/support-issues` resource, the GitHub role in the Replicated collab repository of every team member that is assigned to that policy and has a GitHub username saved in their account is updated accordingly.
 :::
@@ -5665,8 +5531,6 @@ When you update an existing RBAC policy to add one or more `team/support-issues`
 ---
 
 
-# _collab-repo-about
-
 The replicated-collab organization in GitHub is used for tracking and collaborating on escalations, bug reports, and feature requests that are sent by members of a Vendor Portal team to the Replicated team. Replicated creates a unique repository in the replicated-collab organization for each Vendor Portal team. Members of a Vendor Portal team submit issues to their unique collab repository on the Support page in the [Vendor Portal](https://vendor.replicated.com/support).
 
 For more information about the collab repositories and how they are used, see [Replicated Support Paths and Processes](https://community.replicated.com/t/replicated-vendor-support-paths-and-processes/850) in _Replicated Community_.
@@ -5674,8 +5538,6 @@ For more information about the collab repositories and how they are used, see [R
 
 ---
 
-
-# _affixExample
 
 ```yaml
 groups:
@@ -5698,8 +5560,6 @@ groups:
 ---
 
 
-# _defaultExample
-
 ```yaml
 - name: custom_key
   title: Set your secret key for your app
@@ -5718,8 +5578,6 @@ groups:
 ---
 
 
-# _helpTextExample
-
 ```yaml
 - name: http_settings
   title: HTTP Settings
@@ -5736,8 +5594,6 @@ groups:
 ---
 
 
-# _hiddenExample
-
 ```yaml
 - name: secret_key
   title: Secret Key
@@ -5748,8 +5604,6 @@ groups:
 
 ---
 
-
-# _item-types
 
 - `bool`
 - `dropdown`
@@ -5766,8 +5620,6 @@ groups:
 ---
 
 
-# _nameExample
-
 ```yaml
 - name: http_settings
   title: HTTP Settings
@@ -5780,8 +5632,6 @@ groups:
 ---
 
 
-# _property-when
-
 It can be useful to conditionally show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application. Conditional statements in the `when` property can be used to evaluate things like the user's environment, license entitlements, and configuration choices. For example:
 * The Kubernetes distribution of the cluster
 * If the license includes a specific feature entitlement
@@ -5793,16 +5643,12 @@ You can construct conditional statements in the `when` property using KOTS templ
 ---
 
 
-# _randomStringNote
-
 :::note
 When you assign a template function that generates a value to a `value` property, you can use the `readonly` and `hidden` properties to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 :::
 
 ---
 
-
-# _readonlyExample
 
 ```yaml
 - name: key
@@ -5823,8 +5669,6 @@ When you assign a template function that generates a value to a `value` property
 ---
 
 
-# _recommendedExample
-
 ```yaml
 - name: recommended_field
   title: My recommended field
@@ -5838,8 +5682,6 @@ When you assign a template function that generates a value to a `value` property
 
 ---
 
-
-# _regexValidationExample
 
 ```
 - name: smtp-settings
@@ -5865,8 +5707,6 @@ When you assign a template function that generates a value to a `value` property
 ---
 
 
-# _requiredExample
-
 ```yaml
     - name: custom_key
       title: Set your secret key for your app
@@ -5886,8 +5726,6 @@ When you assign a template function that generates a value to a `value` property
 ---
 
 
-# _typeExample
-
 ```yaml
 - name: group_title
   title: Group Title
@@ -5903,8 +5741,6 @@ When you assign a template function that generates a value to a `value` property
 
 ---
 
-
-# _valueExample
 
 ```yaml
 - name: custom_key
@@ -5923,16 +5759,12 @@ When you assign a template function that generates a value to a `value` property
 ---
 
 
-# _when-note
-
 :::note
 `when` is a property of both groups and items. See [Group Properties > `when`](/reference/custom-resource-config#when) above.
 :::
 
 ---
 
-
-# _when-requirements
 
 * The `when` property accepts the following types of values:
      * Booleans
@@ -5944,8 +5776,6 @@ When you assign a template function that generates a value to a `value` property
 
 ---
 
-
-# _whenExample
 
 ```yaml
 - name: database_settings_group
@@ -5981,8 +5811,6 @@ When you assign a template function that generates a value to a `value` property
 ---
 
 
-# _boolExample
-
 ```yaml
 bool_config_field:
   value: "1"
@@ -5995,8 +5823,6 @@ bool_config_field:
 
 ---
 
-
-# _config-values-procedure
 
 During installation, KOTS automatically generates a ConfigValues file and saves the file in a directory called `upstream`. After installation, you can view the generated ConfigValues file in the Admin Console **View files** tab or from the command line by running the `kubectl kots get config` command.
 
@@ -6026,8 +5852,6 @@ To get the ConfigValues file from an installed application instance:
 ---
 
 
-# _configValuesExample
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
@@ -6046,8 +5870,6 @@ spec:
 ---
 
 
-# _fileExample
-
 ```yaml
 file_config_field:
   filename: my-file.txt
@@ -6058,8 +5880,6 @@ file_config_field:
 ---
 
 
-# _passwordExample
-
 ```yaml
 password_config_field:
   valuePlaintext: myPlainTextPassword
@@ -6068,8 +5888,6 @@ password_config_field:
 
 ---
 
-
-# _selectOneExample
 
 ```yaml
 radio_config_field:
@@ -6080,8 +5898,6 @@ radio_config_field:
 ---
 
 
-# _textExample
-
 ```yaml
 text_config_field:
   value: This is a text field value.
@@ -6091,8 +5907,6 @@ text_config_field:
 ---
 
 
-# _textareaExample
-
 ```yaml
 textarea_config_field:
   value: This is a text area field value.
@@ -6101,8 +5915,6 @@ textarea_config_field:
 
 ---
 
-
-# _wizard
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to **Custom Domains**. 
 
@@ -6135,8 +5947,6 @@ The Vendor Portal marks the domain as **Configured** after the verification chec
 ---
 
 
-# _additionalImages
-
 ```yaml
 additionalImages:
   - jenkins/jenkins:lts
@@ -6145,8 +5955,6 @@ additionalImages:
 
 ---
 
-
-# _additionalNamespaces
 
 ```yaml
 additionalNamespaces:
@@ -6157,8 +5965,6 @@ additionalNamespaces:
 ---
 
 
-# _allowRollback
-
 ```yaml
 allowRollback: false
 ```
@@ -6166,8 +5972,6 @@ allowRollback: false
 
 ---
 
-
-# _graphs
 
 ```yaml
 graphs:
@@ -6179,8 +5983,6 @@ graphs:
 ---
 
 
-# _icon
-
 ```yaml
 icon: https://support.io/img/logo.png
 ```
@@ -6188,8 +5990,6 @@ icon: https://support.io/img/logo.png
 
 ---
 
-
-# _minKotsVersion
 
 ```yaml
 minKotsVersion: "1.71.0"
@@ -6199,14 +5999,10 @@ minKotsVersion: "1.71.0"
 ---
 
 
-# _ports-applicationURL
-
 <li><p>(Optional) <code>ports.applicationUrl</code>: When set to the same URL that is specified in the `descriptor.links.url` field of the Kubernetes SIG Application custom resource, KOTS adds a link on the Admin Console dashboard where the given service can be accessed. This process automatically links to the hostname in the browser (where the Admin Console is being accessed) and appends the specified `localPort`.</p><p>If not set, then the URL defined in the `descriptor.links.url` field of the Kubernetes SIG Application is linked on the Admin Console dashboard.</p></li>
 
 ---
 
-
-# _ports-kurl-note
 
 :::note
 KOTS does not automatically create port forwards for installations on VMs or bare metal servers with Replicated Embedded Cluster or Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated. Instead, Embedded Cluster or kURL creates a NodePort service to make the Admin Console accessible on a port on the node (port `8800` for kURL or port `30000` for Embedded Cluster). 
@@ -6217,28 +6013,20 @@ You can expose additional ports on the node for Embedded Cluster or kURL install
 ---
 
 
-# _ports-localPort
-
 <li><code>ports.localPort</code>: The port to map on the local workstation.</li>
 
 ---
 
-
-# _ports-serviceName
 
 <li><code>ports.serviceName</code>: The name of the service that receives the traffic.</li>
 
 ---
 
 
-# _ports-servicePort
-
 <li><p><code>ports.servicePort</code>: The <code>containerPort</code> of the Pod where the service is running.</p></li>
 
 ---
 
-
-# _ports
 
 ```yaml
 ports:
@@ -6252,16 +6040,12 @@ ports:
 ---
 
 
-# _proxyRegistryDomain
-
 ```yaml	
 proxyRegistryDomain: "proxy.mycompany.com"	
 ```
 
 ---
 
-
-# _releaseNotes
 
 ```yaml
 releaseNotes: Fixes a bug and adds a new feature.
@@ -6271,8 +6055,6 @@ releaseNotes: Fixes a bug and adds a new feature.
 ---
 
 
-# _replicatedRegistryDomain
-
 ```yaml
 replicatedRegistryDomain: "registry.mycompany.com"
 ```
@@ -6280,8 +6062,6 @@ replicatedRegistryDomain: "registry.mycompany.com"
 
 ---
 
-
-# _requireMinimalRBACPrivileges
 
 ```yaml
 requireMinimalRBACPrivileges: false
@@ -6291,16 +6071,12 @@ requireMinimalRBACPrivileges: false
 ---
 
 
-# _servicePort-note
-
 :::note
 Ensure that you use the `containerPort` and not the `servicePort`. The `containerPort` and `servicePort` are often the same port, though it is possible that they are different. 
 :::
 
 ---
 
-
-# _statusInformers
 
 ```yaml
 statusInformers:
@@ -6318,8 +6094,6 @@ statusInformers:
 ---
 
 
-# _supportMinimalRBACPrivileges
-
 ```yaml
 supportMinimalRBACPrivileges: true
 ```
@@ -6327,8 +6101,6 @@ supportMinimalRBACPrivileges: true
 
 ---
 
-
-# _targetKotsVersion
 
 ```yaml
 targetKotsVersion: "1.85.0"
@@ -6338,8 +6110,6 @@ targetKotsVersion: "1.85.0"
 ---
 
 
-# _title
-
 ```yaml
 title: My Application
 ```
@@ -6348,14 +6118,10 @@ title: My Application
 ---
 
 
-# _change-channel
-
 You can change the channel a customer is assigned at any time. For installations with Replicated KOTS, when you change the customer's channel, the customer can synchronize their license in the Replicated Admin Console to fetch the latest release on the new channel and then upgrade. The Admin Console always fetches the latest release on the new channel, regardless of the presence of any releases on the channel that are marked as required.
 
 ---
 
-
-# _download
 
 You can download customer and instance data from the **Download CSV** dropdown on the **Customers** page:
 
@@ -6374,16 +6140,12 @@ You can also export customer instance data as JSON using the Vendor API v3 `cust
 ---
 
 
-# _definition
-
 Replicated Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance, making it easy for enterprise users to install, update, and manage the application and the cluster in tandem. Embedded Cluster is based on the open source Kubernetes distribution k0s. For more information, see the [k0s documentation](https://docs.k0sproject.io/stable/).
 
 For software vendors, Embedded Cluster provides a Config for defining characteristics of the cluster that will be created in the customer environment. Additionally, each version of Embedded Cluster includes a specific version of Replicated KOTS, ensuring compatibility between KOTS and the cluster. For enterprise users, cluster updates are done automatically at the same time as application updates, allowing users to more easily keep the cluster up-to-date without needing to use kubectl.
 
 ---
 
-
-# _ec-config
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -6394,8 +6156,6 @@ spec:
 
 ---
 
-
-# _multi-node-ha-arch
 
 The following diagram shows the architecture of an HA multi-node Embedded Cluster installation:
 
@@ -6414,8 +6174,6 @@ Any Helm [`extensions`](/reference/embedded-config#extensions) that you include 
 
 ---
 
-
-# _port-reqs
 
 This section lists the ports used by Embedded Cluster. These ports must be open and available for both single- and multi-node installations.
 
@@ -6465,8 +6223,6 @@ If port 50000 is occupied, you can select a different port for the LAM during in
 ---
 
 
-# _proxy-install-limitations
-
 **Limitations:**
 
 * If any of your [Helm extensions](/reference/embedded-config#extensions) make requests to the internet, the given charts need to be manually configured so that those requests are made to the user-supplied proxy server instead. Typically, this requires updating the Helm values to set HTTP proxy, HTTPS proxy, and no proxy. Note that this limitation applies only to network requests made by your Helm extensions. The proxy settings supplied to the install command are used to pull the containers required to run your Helm extensions.
@@ -6476,14 +6232,10 @@ If port 50000 is occupied, you can select a different port for the LAM during in
 ---
 
 
-# _proxy-install-reqs
-
 **Requirement:** Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.
 
 ---
 
-
-# _requirements
 
 * Linux operating system
 
@@ -6529,8 +6281,6 @@ If port 50000 is occupied, you can select a different port for the LAM during in
 ---
 
 
-# _update-air-gap-admin-console
-
 1. On a machine with browser access (for example, where you accessed the Admin Console to configure the application), download the air gap bundle for the new version using the same curl command that you used to install. For example:
 
    ```bash
@@ -6575,8 +6325,6 @@ If port 50000 is occupied, you can select a different port for the LAM during in
 
 ---
 
-
-# _update-air-gap-cli
 
 1. SSH onto a controller node in the cluster and download the air gap bundle for the new version using the same curl command that you used to install. For example:
 
@@ -6632,16 +6380,12 @@ If port 50000 is occupied, you can select a different port for the LAM during in
 ---
 
 
-# _update-air-gap-overview
-
 To upgrade an installation, new air gap bundles can be uploaded to the Admin Console from the browser or with the Embedded Cluster binary from the command line.
 
 Using the binary is faster and allows the user to download the air gap bundle directly to the machine where the Embedded Cluster is running. Using the browser is slower because the user must download the air gap bundle to a machine with a browser, then upload that bundle to the Admin Console, and then the Admin Console can process it.
 
 ---
 
-
-# _update-overview
 
 When you update an application installed with Embedded Cluster, you update both the application and the cluster infrastructure together, including Kubernetes, KOTS, and other components running in the cluster. There is no need or mechanism to update the infrastructure on its own.
 
@@ -6654,8 +6398,6 @@ When performing an upgrade with Embedded Cluster, the user is able to change the
 ---
 
 
-# _warning-do-not-downgrade
-
 :::important
 Do not downgrade the Embedded Cluster version. This is not supported but is not prohibited, and it can lead to unexpected behavior.
 :::
@@ -6663,14 +6405,10 @@ Do not downgrade the Embedded Cluster version. This is not supported but is not 
 ---
 
 
-# _create-promote-release
-
 Create a new release and promote it to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
 ---
 
-
-# _csdl-overview
 
 Commercial software distribution is the business process that independent software vendors (ISVs) use to enable enterprise customers to self-host a fully private instance of the vendor's application in an environment controlled by the customer.
 
@@ -6681,8 +6419,6 @@ This lifecycle was inspired by the DevOps lifecycle and the Software Development
 ---
 
 
-# _gitea-ec-config
-
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
@@ -6692,8 +6428,6 @@ spec:
 
 ---
 
-
-# _gitea-helmchart-cr-ec
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -6718,8 +6452,6 @@ spec:
 ---
 
 
-# _gitea-helmchart-cr
-
 ```yaml
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -6735,8 +6467,6 @@ spec:
 
 ---
 
-
-# _gitea-k8s-app-cr
 
 ```yaml
 apiVersion: app.k8s.io/v1beta1
@@ -6754,8 +6484,6 @@ spec:
 
 ---
 
-
-# _gitea-kots-app-cr-ec
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -6778,8 +6506,6 @@ spec:
 ---
 
 
-# _gitea-kots-app-cr
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -6799,8 +6525,6 @@ spec:
 
 ---
 
-
-# _grafana-config
 
 ```yaml
   apiVersion: kots.io/v1beta1
@@ -6826,8 +6550,6 @@ spec:
 ---
 
 
-# _grafana-helmchart
-
 ```yaml
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -6847,8 +6569,6 @@ spec:
 ---
 
 
-# _grafana-k8s-app
-
 ```yaml
 apiVersion: app.k8s.io/v1beta1
 kind: Application
@@ -6864,8 +6584,6 @@ spec:
 
 ---
 
-
-# _grafana-kots-app
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -6887,8 +6605,6 @@ spec:
 ---
 
 
-# _kubernetes-training
-
 :::note
 This tutorial assumes that you have a working knowledge of Kubernetes. For an introduction to Kubernetes and free training resources, see [Training](https://kubernetes.io/training/) in the Kubernetes documentation.
 :::
@@ -6897,8 +6613,6 @@ This tutorial assumes that you have a working knowledge of Kubernetes. For an in
 ---
 
 
-# _labs-intro
-
 Replicated also offers a sandbox environment where you can complete several beginner, intermediate, and advanced labs. The sandbox environment automatically provisions the required Kubernetes cluster or VM where you will install a sample application as part of the labs.
 
 To get started with an introductory lab, see [Deploy a Hello World Application with Replicated](https://play.instruqt.com/replicated/tracks/hello-world).
@@ -6906,8 +6620,6 @@ To get started with an introductory lab, see [Deploy a Hello World Application w
 
 ---
 
-
-# _related-topics
 
 For more information about the subjects in the getting started tutorials, see the following topics:
 
@@ -6920,21 +6632,15 @@ For more information about the subjects in the getting started tutorials, see th
 ---
 
 
-# _replicated-definition
-
 Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
 
 ---
 
 
-# _test-your-changes
-
 Install the release to test your changes. For Embedded Cluster installations, see [Performing Udpates in Embedded Clusters](/enterprise/updating-embedded). For existing cluster installations with KOTS, see [Performing Updates in Existing Clusters](/enterprise/updating-app-manager).
 
 ---
 
-
-# _tutorial-intro
 
 This tutorial introduces you to the Replicated features for software vendors and their enterprise users. It is designed to familiarize you with the key concepts and processes that you use as a software vendor when you package and distribute your application with Replicated.
 
@@ -6945,8 +6651,6 @@ In this tutorial, you use a set of sample manifest files for a basic NGINX appli
 
 ---
 
-
-# _vm-requirements
 
 For this tutorial, the VM must meet the following requirements:
 
@@ -6965,8 +6669,6 @@ For the complete list of system requirements for the kURL, see [kURL Requirement
 ---
 
 
-# _gitops-not-recommended
-
 :::important
 KOTS Auto-GitOps is a legacy feature and is **not recommended** for use. For modern enterprise customers that prefer software deployment processes that use CI/CD pipelines, Replicated recommends the [Helm CLI installation method](/vendor/install-with-helm), which is more commonly used in these types of enterprise environments.
 :::
@@ -6974,15 +6676,11 @@ KOTS Auto-GitOps is a legacy feature and is **not recommended** for use. For mod
 ---
 
 
-# _gitops-limitation
-
 The KOTS Auto-GitOps workflow is not supported for installations with the HelmChart custom resource `apiVersion: kots.io/v1beta2` or the HelmChart custom resource `apiVersion: kots.io/v1beta1` with `useHelmInstall: true`.
 
 
 ---
 
-
-# _helm-builder-requirements
 
 The `builder` key has the following requirements and recommendations:
 * Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
@@ -6992,14 +6690,10 @@ The `builder` key has the following requirements and recommendations:
 ---
 
 
-# _helm-cr-builder-airgap-intro
-
 In the `builder` key, you provide the minimum Helm values required to render the chart templates so that the output includes any images that must be included in the air gap bundle. The Vendor Portal uses these values to render the Helm chart templates when building the `.airgap` bundle for the release.
 
 ---
 
-
-# ...
 
 For example, a Helm chart might include a conditional PostgreSQL Deployment, as shown in the Helm template below:
 
@@ -7052,15 +6746,11 @@ spec:
 ---
 
 
-# _helm-cr-chart-name
-
 The name of the chart. This value must exactly match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. If the names do not match, then the installation can error or fail.
 
 
 ---
 
-
-# _helm-cr-chart-release-name
 
 Specifies the release name to use when installing this instance of the Helm chart. Defaults to the chart name.
 
@@ -7072,23 +6762,17 @@ Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-
 ---
 
 
-# _helm-cr-chart-version
-
 The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release.
 
 
 ---
 
 
-# _helm-cr-chart
-
 The `chart` key allows for a mapping between the data in this definition and the chart archive itself.
 More than one `kind: HelmChart` can reference a single chart archive, if different settings are needed.
 
 ---
 
-
-# _helm-cr-exclude
 
 The  attribute is a value for making optional charts. The `exclude` attribute can be parsed by template functions. 
 
@@ -7103,8 +6787,6 @@ For more information about optional charts, template functions, and how KOTS pro
 ---
 
 
-# _helm-cr-namespace
-
 The `namespace` key specifies an alternative namespace where Replicated KOTS installs the Helm chart. **Default:** The Helm chart is installed in the same namespace as the Admin Console. The `namespace` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
 
@@ -7112,8 +6794,6 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 
 ---
 
-
-# _helm-cr-optional-values-recursive-merge
 
 The `optionalValues.recursiveMerge` boolean defines how KOTS merges `values` and `optionalValues`:
 
@@ -7123,8 +6803,6 @@ The `optionalValues.recursiveMerge` boolean defines how KOTS merges `values` and
 
 ---
 
-
-# _helm-cr-optional-values-when
 
 The `optionalValues.when` field defines a conditional statement that must evaluate to true for the given values to be set. Evaluation of the conditional in the `optionalValues.when` field is deferred until render time in the customer environment. 
 
@@ -7140,8 +6818,6 @@ For more information about using KOTS template functions, see [About Template Fu
 ---
 
 
-# _helm-cr-optional-values
-
 The `optionalValues` key can be used to set values in the Helm chart `values.yaml` file when a given conditional statement evaluates to true. For example, if a customer chooses to include an optional application component in their deployment, it might be necessary to include Helm chart values related to the optional component.
 
 `optionalValues` includes the following properties:
@@ -7154,8 +6830,6 @@ The `optionalValues` key can be used to set values in the Helm chart `values.yam
 
 ---
 
-
-# _helm-cr-upgrade-flags
 
 Specifies additional flags to pass to the `helm upgrade` command for charts. These flags are passed in addition to any flags Replicated KOTS passes by default. The values specified here take precedence if KOTS already passes the same flag. The `helmUpgradeFlags` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
@@ -7173,8 +6847,6 @@ helmUpgradeFlags:
 ---
 
 
-# _helm-cr-values
-
 The `values` key can be used to set or delete existing values in the Helm chart `values.yaml` file. Any values that you include in the `values` key must match values in the Helm chart `values.yaml`. For example, `spec.values.images.pullSecret` in the HelmChart custom resource matches `images.pullSecret` in the Helm chart `values.yaml`.
 
 During installation or upgrade with KOTS, `values` is merged with the Helm chart `values.yaml` in the chart archive. Only include values in the `values` key that you want to set or delete.
@@ -7182,14 +6854,10 @@ During installation or upgrade with KOTS, `values` is merged with the Helm chart
 ---
 
 
-# _helm-cr-weight-limitation
-
 The `weight` field is _not_ supported for HelmChart custom resources with `useHelmInstall: false`.
 
 ---
 
-
-# _helm-cr-weight
 
 Determines the order in which KOTS applies the Helm chart. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
 
@@ -7200,21 +6868,15 @@ For more information, see [Orchestrating Resource Deployment](/vendor/orchestrat
 ---
 
 
-# _helm-definition
-
 Helm is a popular open source package manager for Kubernetes applications. Many ISVs use Helm to configure and deploy Kubernetes applications because it provides a consistent, reusable, and sharable packaging format. For more information, see the [Helm documentation](https://helm.sh/docs).
 
 ---
 
 
-# _helm-install-beta
-
 The Helm installation method is Beta and is not recommended for production releases. The features and availability of the Helm installation method are subject to change.
 
 ---
 
-
-# _helm-install-prereqs
 
 * The customer used to install must have a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about creating and editing customers in the Vendor Portal, see [Creating a Customer](/vendor/releases-creating-customer).
 
@@ -7226,8 +6888,6 @@ The Helm installation method is Beta and is not recommended for production relea
 
 ---
 
-
-# _helm-package
 
 ```bash
 helm package -u PATH_TO_CHART
@@ -7241,8 +6901,6 @@ The Helm chart, including any dependencies, is packaged and copied to your curre
 ---
 
 
-# _helm-template-limitation
-
 Helm's `lookup` function and some values in the built-in `Capabilities` object are not supported with the `kots.io/v1beta1` HelmChart custom resource.
 
    This is because KOTS uses the `helm template` command to render chart templates locally. During rendering, Helm does not have access to the cluster where the chart will be installed. For more information, see [Kubernetes and Chart Functions](https://helm.sh/docs/chart_template_guide/function_list/#kubernetes-and-chart-functions) in the Helm documentation.
@@ -7250,21 +6908,15 @@ Helm's `lookup` function and some values in the built-in `Capabilities` object a
 ---
 
 
-# _helm-version-limitation
-
 Support for Helm v2, including security patches, ended on November 13, 2020. If you specified `helmVersion: v2` in any HelmChart custom resources, update your references to v3. By default, KOTS uses Helm v3 to process all Helm charts.
 
 ---
 
 
-# _hook-weights-limitation
-
 Hook weights below -9999 are not supported. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
 
 ---
 
-
-# _hooks-limitation
 
 The following hooks are not supported and are ignored if they are present:
   * `test`
@@ -7273,8 +6925,6 @@ The following hooks are not supported and are ignored if they are present:
 
 ---
 
-
-# _installer-only-annotation
 
 Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only` annotation.
 
@@ -7293,21 +6943,15 @@ metadata:
 ---
 
 
-# _kots-helm-cr-description
-
 To deploy Helm charts, KOTS requires a unique HelmChart custom resource for each Helm chart `.tgz` archive in the release. You configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart to allow Helm values to be dynamically set during installation or upgrade.
 
 ---
 
 
-# _replicated-deprecated
-
 The HelmChart custom resource `apiVersion: kots.io/v1beta1` is deprecated. For installations with Replicated KOTS v1.99.0 and later, use the HelmChart custom resource with `apiVersion: kots.io/v1beta2` instead. See [HelmChart v2](/reference/custom-resource-helmchart-v2) and [Confguring the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
 
 ---
 
-
-# _replicated-helm-migration
 
 You cannot migrate existing Helm charts in existing installations from the `useHelmInstall: false` installation method to a different method. If KOTS already installed the Helm chart previously in the environment using a HelmChart custom resource with `apiVersion: kots.io/v1beta1` and `useHelmInstall: false`, then KOTS does not attempt to install the chart using a different method and displays the following error message: `Deployment method for chart <chart_name> has changed`.
 
@@ -7315,8 +6959,6 @@ To change the installation method from `useHelmInstall: false` to a different me
 
 ---
 
-
-# Helm chart values.yaml
 
 Using KOTS template functions in the [Config](/reference/template-functions-config-context) context allows you to set Helm values based on user-supplied values from the KOTS Admin Console configuration page.
 
@@ -7355,8 +6997,6 @@ During installation or upgrade, the template function is rendered to true or fal
 ---
 
 
-# KOTS HelmChart custom resource
-
 Using KOTS template functions in the [License](/reference/template-functions-license-context) context allows you to set Helm values based on the unique license file used for installation or upgrade.
 
 For example, the following HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate if the license has the boolean `newFeatureEntitlement` field set to `true`:
@@ -7384,8 +7024,6 @@ During installation or upgrade, the LicenseFieldValue template function is rende
 
 ---
 
-
-# _v2-native-helm-cr-example
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -7456,8 +7094,6 @@ spec:
 ---
 
 
-# _docker-compatibility
-
 - Docker Hub
 
   :::note
@@ -7473,8 +7109,6 @@ spec:
 
 ---
 
-
-# _image-registry-settings
 
 <table>
     <tr>
@@ -7505,8 +7139,6 @@ spec:
 
 ---
 
-
-# _access-admin-console
 
 By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the Admin Console. Using the `--no-port-forward` flag with the `kots install` command prevents KOTS from creating a port forward to the Admin Console.
 
@@ -7548,8 +7180,6 @@ To access the Admin Console:
 ---
 
 
-# _airgap-bundle-build
-
 * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
 * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually. 
 
@@ -7564,14 +7194,10 @@ To access the Admin Console:
 ---
 
 
-# _airgap-bundle-download
-
 After the build completes, download the bundle. Ensure that you can access the downloaded bundle from the environment where you will install the application.
 
 ---
 
-
-# _airgap-bundle-view-contents
 
 (Optional) View the contents of the downloaded bundle:
 
@@ -7583,8 +7209,6 @@ After the build completes, download the bundle. Ensure that you can access the d
 
 ---
 
-
-# _airgap-license-download
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to the **Customers** page.
 
@@ -7605,21 +7229,15 @@ After the build completes, download the bundle. Ensure that you can access the d
 ---
 
 
-# _automation-intro-embedded
-
 When you use the KOTS CLI to install an application in a kURL cluster, you first run the kURL installation script to provision the cluster and automatically install KOTS in the cluster. Then, you can run the `kots install` command to install the application.
 
 ---
 
 
-# _automation-intro-existing
-
 When you use the KOTS CLI to install an application in an existing cluster, you install both the application and Replicated KOTS with a single command.
 
 ---
 
-
-# _config-values-procedure
 
 To get the ConfigValues file from an installed application instance:
 
@@ -7647,8 +7265,6 @@ To get the ConfigValues file from an installed application instance:
 ---
 
 
-# _download-kotsadm-bundle
-
 Download the `kotsadm.tar.gz` air gap bundle from the [Releases](https://github.com/replicatedhq/kots/releases) page in the kots repository in GitHub. Ensure that you can access the downloaded bundle from the environment where you will install the application.
 
 :::note
@@ -7657,8 +7273,6 @@ The version of the `kotsadm.tar.gz` air gap bundle used must be compatible with 
 
 ---
 
-
-# _download-kurl-bundle
 
 ```bash
 export REPLICATED_APP=APP_SLUG
@@ -7669,8 +7283,6 @@ Where `APP_SLUG` is the unqiue slug for the application.
 ---
 
 
-# _ec-prereqs
-
 * Ensure that your installation environment meets the Embedded Cluster requirements. See [Embedded Cluster Requirements](/enterprise/installing-embedded-requirements).
 
 * The application release that you want to install must include an [Embedded Cluster Config](/reference/embedded-config).
@@ -7680,8 +7292,6 @@ Where `APP_SLUG` is the unqiue slug for the application.
 ---
 
 
-# _embedded-ha-step
-
 (HA Installation Only) If you are installing in HA mode and did not already preconfigure a load balancer, you are prompted during the installation. Do one of the following:
 
   - If you are using the internal load balancer, leave the prompt blank and proceed with the installation.
@@ -7690,8 +7300,6 @@ Where `APP_SLUG` is the unqiue slug for the application.
 
 ---
 
-
-# _embedded-login-password
 
 After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the command. You use these to log in to the Admin Console.
 
@@ -7712,8 +7320,6 @@ After the installation command finishes, note the `Kotsadm` and `Login with pass
 ---
 
 
-# _extract-kurl-bundle
-
 In your installation environment, extract the contents of the kURL `.tar.gz` bundle that you downloaded:
 
    ```bash
@@ -7723,8 +7329,6 @@ In your installation environment, extract the contents of the kURL `.tar.gz` bun
 ---
 
 
-# _firewall-openings-intro
-
 The domains for the services listed in the table below need to be accessible from servers performing online installations. No outbound internet access is required for air gap installations.
 
 For services hosted at domains owned by Replicated, the table below includes a link to the list of IP addresses for the domain at [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json) in GitHub. Note that the IP addresses listed in the `replicatedhq/ips` repository also include IP addresses for some domains that are _not_ required for installation.
@@ -7733,8 +7337,6 @@ For any third-party services hosted at domains not owned by Replicated, consult 
 
 ---
 
-
-# _firewall-openings
 
 The domains for the services listed in the table below need to be accessible from servers performing online installations. No outbound internet access is required for air gap installations.
 
@@ -7826,8 +7428,6 @@ For third-party services hosted at domains not owned by Replicated, the table be
 ---
 
 
-# _ha-load-balancer-about
-
 A load balancer is required for high availability mode. If your vendor has chosen to use the internal load balancer with the kURL EKCO add-on, you do not need to provide your own external load balancer. An external load balancer can be preferred when clients outside the cluster need access to the cluster's Kubernetes API.
 
 If you decide to use an external load balancer, the external load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites).
@@ -7836,8 +7436,6 @@ The health check for an apiserver is a TCP check on the port that the kube-apise
 
 ---
 
-
-# _ha-load-balancer-prereq
 
 - If you are installing in high availability (HA) mode, a load balancer is required. You can use the kURL internal load balancer if the [Embedded kURL Cluster Operator (EKCO) Add-On](https://kurl.sh/docs/add-ons/ekco) is included in the kURL Installer spec. Or, you can bring your own external load balancer. An external load balancer might be preferred when clients outside the cluster need access to the cluster's Kubernetes API.
 
@@ -7855,14 +7453,10 @@ The health check for an apiserver is a TCP check on the port that the kube-apise
 ---
 
 
-# _install-kots-cli-airgap
-
 Install the KOTS CLI. See [Manually Download and Install](/reference/kots-cli-getting-started#manually-download-and-install) in _Installing the KOTS CLI_.
 
 ---
 
-
-# _install-kots-cli
 
 Install the KOTS CLI:
 
@@ -7875,28 +7469,20 @@ Install the KOTS CLI:
 ---
 
 
-# _intro-air-gap
-
 The procedures in this topic apply to installation environments that do not have access to the internet, known as _air gap_ environments.
 
 ---
 
-
-# _intro-embedded
 
 This topic describes how to use Replicated kURL to provision an embedded cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
 
 ---
 
 
-# _intro-existing
-
 This topic describes how to use Replicated KOTS to install an application in an existing Kubernetes cluster.
 
 ---
 
-
-# _kots-airgap-version-match
 
 :::note
 The versions of the KOTS CLI and the `kotsadm.tar.gz` bundle must match. You can check the version of the KOTS CLI with `kubectl kots version`.
@@ -7904,8 +7490,6 @@ The versions of the KOTS CLI and the `kotsadm.tar.gz` bundle must match. You can
 
 ---
 
-
-# _kots-install-prompts
 
 When prompted by the `kots install` command:
   1. Provide the namespace where you want to install both KOTS and the application.
@@ -7932,8 +7516,6 @@ When prompted by the `kots install` command:
 ---
 
 
-# _kubernetes-compatibility
-
 | KOTS Versions          | Kubernetes Compatibility    |
 |------------------------|-----------------------------|
 | 1.117.0 and later      | 1.31, 1.30, 1.29            |
@@ -7944,21 +7526,15 @@ When prompted by the `kots install` command:
 ---
 
 
-# _kurl-about
-
 Replicated kURL is an open source project. For more information, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
 ---
 
 
-# _license-file-prereq
-
 * Download your license file. Ensure that you can access the downloaded license file from the environment where you will install the application. See [Downloading Customer Licenses](/vendor/licenses-download).
 
 ---
 
-
-# _placeholder-airgap-bundle
 
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle for the application release. You can build and download the air gap bundle for a release in the [Vendor Portal](https://vendor.replicated.com) on the **Release history** page for the channel where the release is promoted.
 
@@ -7967,28 +7543,20 @@ Replicated kURL is an open source project. For more information, see the [kURL d
 ---
 
 
-# _placeholder-app-name-UI
-
 * `APP_NAME` with the name of the application. The `APP_NAME` is included in the installation command that your vendor gave you. This is a unique identifier that KOTS will use to refer to the application that you install.
 
 ---
 
-
-# _placeholder-namespace-embedded
 
 * `NAMESPACE` with the namespace where Replicated kURL installed Replicated KOTS when creating the cluster. By default, kURL installs KOTS in the `default` namespace.
 
 ---
 
 
-# _placeholder-namespace-existing
-
 * `NAMESPACE` with the namespace where you want to install both the application and KOTS.
 
 ---
 
-
-# _placeholder-ro-creds
 
 * `REGISTRY_HOST` with the same hostname for the private registry where you pushed the Admin Console images.
 
@@ -8003,8 +7571,6 @@ Replicated kURL is an open source project. For more information, see the [kURL d
 ---
 
 
-# _placeholders-global
-
 * `APP_NAME` with a name for the application. This is the unique name that KOTS will use to refer to the application that you install.
 
 * `PASSWORD` with a shared password for accessing the Admin Console.
@@ -8016,16 +7582,12 @@ Replicated kURL is an open source project. For more information, see the [kURL d
 ---
 
 
-# _prereqs-embedded-cluster
-
 * Ensure that your environment meets the minimum system requirements. See [kURL Installation Requirements](/enterprise/installing-kurl-requirements).
 
 * Review the advanced installation options available for the kURL installer. See [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
 
 ---
 
-
-# _prereqs-existing-cluster
 
 * Ensure that your cluster meets the minimum system requirements. See [Minimum System Requirements](/enterprise/installing-general-requirements#minimum-system-requirements) in _Installation Requirements_.
 
@@ -8042,14 +7604,10 @@ Replicated kURL is an open source project. For more information, see the [kURL d
 ---
 
 
-# _provision-cluster-intro
-
 This procedure describes how to use kURL to provision an embedded cluster on a VM or bare metal server. When you create a cluster with kURL, kURL also automatically installs Replicated KOTS in the `default` namespaces in the cluster.
 
 ---
 
-
-# _push-kotsadm-images
 
 Extract the KOTS Admin Console container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 
@@ -8072,8 +7630,6 @@ Extract the KOTS Admin Console container images from the `kotsadm.tar.gz` bundle
 ---
 
 
-# _airgap-telemetry
-
 For air gap instances, Replicated KOTS and the Replicated SDK collect and store instance telemetry in a Kubernetes Secret in the customer environment. The Replicated SDK also stores any custom metrics within its Secret.
 
 The telemetry and custom metrics stored in the Secret are collected when a support bundle is generated in the environment. When the support bundle is uploaded to the Vendor Portal, the telemetry and custom metrics are associated with the correct customer and instance ID, and the Vendor Portal updates the instance insights and event data accordingly. 
@@ -8081,8 +7637,6 @@ The telemetry and custom metrics stored in the Secret are collected when a suppo
 
 ---
 
-
-# _notifications-about
 
 :::note
 Configuring notifications for customer instance changes is in public Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
@@ -8096,8 +7650,6 @@ For more information about how application status is determined, see [Resource S
 ---
 
 
-# _supported-resources-status
-
 The following resource types are supported:
 
 * Deployment
@@ -8110,14 +7662,10 @@ The following resource types are supported:
 ---
 
 
-# _admin-console-about
-
 KOTS provides an Admin Console that lets your customers manage your application. You can customize the Admin Console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the Admin Console, configure status informers, and add custom graphs.
 
 ---
 
-
-# _download-portal-about
 
 The Replicated Download Portal can be used to share license files, air gap bundles, and other assets with customers. A unique Download Portal link is available for each customer. The Download Portal uses information from the customer's license to make the relevant assets available for download, such as:
 * The license file
@@ -8129,21 +7677,15 @@ The Replicated Download Portal can be used to share license files, air gap bundl
 ---
 
 
-# _embedded-kubernetes-definition
-
 _Embedded Kubernetes_ refers to delivering a Kubernetes distribution alongside an application, so that both Kubernetes and the application are deployed in the customer environment. Embedding Kubernetes allows software vendors to install their Kubernetes application in non-Kubernetes customer-controlled environments, such as virtual machines (VMs) or bare metal servers. Additionally, software vendors that embed Kubernetes with their application have greater control over the charactersitics of the cluster where their application is installed. This allows vendors to deliver a cluster that meets their application's requirements, which can help reduce errors during installation. 
 
 ---
 
 
-# _kots-definition
-
 Replicated KOTS is a kubectl plugin and an in-cluster Admin Console that provides highly successful installations of Helm charts and Kubernetes applications into customer-controlled environments, including on-prem and air gap environments.
 
 ---
 
-
-# _kots-entitlement-note
 
 :::note
 The Replicated KOTS entitlement is required to install applications with KOTS. For more information, see [Pricing](https://www.replicated.com/pricing) on the Replicated website.
@@ -8151,8 +7693,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 ---
 
-
-# _ensure-rbac
 
 <tr>
   <td><code>--ensure-rbac</code></td>
@@ -8164,8 +7704,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 ---
 
 
-# _help
-
 <tr>
   <td><code>-h, --help</code></td>
   <td></td>
@@ -8176,8 +7714,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 ---
 
 
-# _kotsadm-namespace
-
 <tr>
   <td><code>--kotsadm-namespace</code></td>
   <td>string</td>
@@ -8186,8 +7722,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 ---
 
-
-# _kotsadm-registry
 
 <tr>
   <td><code>--kotsadm-registry</code></td>
@@ -8198,8 +7732,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 ---
 
 
-# _registry-password
-
 <tr>
   <td><code>--registry-password</code></td>
   <td>string</td>
@@ -8208,8 +7740,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 ---
 
-
-# _registry-username
 
 <tr>
   <td><code>--registry-username</code></td>
@@ -8220,8 +7750,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 ---
 
 
-# _skip-rbac-check
-
 <tr>
   <td><code>--skip-rbac-check</code></td>
   <td>bool</td>
@@ -8231,8 +7759,6 @@ The Replicated KOTS entitlement is required to install applications with KOTS. F
 
 ---
 
-
-# _strict-sec-context-yaml
 
 ```yaml
 securityContext:
@@ -8249,8 +7775,6 @@ securityContext:
 
 ---
 
-
-# _strict-security-context
 
 import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
 
@@ -8283,8 +7807,6 @@ import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
 ---
 
 
-# _use-minimal-rbac
-
 <tr>
   <td><code>--use-minimal-rbac</code></td>
   <td>bool</td>
@@ -8294,8 +7816,6 @@ import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
 
 ---
 
-
-# _wait-duration
 
 <tr>
   <td><code>--wait-duration</code></td>
@@ -8307,8 +7827,6 @@ import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
 ---
 
 
-# _with-minio
-
 <tr>
   <td><code>--with-minio</code></td>
   <td>bool</td>
@@ -8319,14 +7837,10 @@ import StrictSecContextYaml from "./_strict-sec-context-yaml.mdx"
 ---
 
 
-# _installers
-
 To provision a cluster on a VM or bare metal server, kURL uses a spec that is defined in a manifest file with `apiVersion: cluster.kurl.sh/v1beta1` and `kind: Installer`. This spec (called a _kURL installer_) lists the kURL add-ons that will be included in the cluster. kURL provides add-ons for networking, storage, ingress, and more. kURL also provides a KOTS add-on, which installs KOTS in the cluster and deploys the KOTS Admin Console. You can customize the kURL installer according to your application requirements.
 
 ---
 
-
-# _kurl-availability
 
 :::note
 Replicated kURL is available only for existing customers. If you are not an existing kURL user, use Replicated Embedded Cluster instead. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
@@ -8337,16 +7851,12 @@ kURL is a Generally Available (GA) product for existing customers. For more info
 ---
 
 
-# _kurl-definition
-
 kURL is an open source project maintained by Replicated that software vendors can use to create custom Kubernetes distributions that are embedded with their application. Enterprise customers can then run a kURL installation script on their virtual machine (VM) or bare metal server to provision a cluster and install the application. This allows software vendors to distribute Kubernetes applications to customers that do not have access to a cluster in their environment.
 
 For more information about the kURL open source project, see the [kURL website](https://kurl.sh).
 
 ---
 
-
-# _allow-privilege-escalation
 
 ```yaml
 spec:
@@ -8356,8 +7866,6 @@ spec:
 
 ---
 
-
-# _application-icon
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -8370,8 +7878,6 @@ spec:
 ---
 
 
-# _application-spec
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -8380,8 +7886,6 @@ kind: Application
 
 ---
 
-
-# _application-statusInformers
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -8394,8 +7898,6 @@ spec:
 
 ---
 
-
-# _config-option-invalid-regex-validator
 
 **Correct**:
 
@@ -8435,8 +7937,6 @@ spec:
 ---
 
 
-# _config-option-invalid-type
-
 **Correct**:
 
 ```yaml
@@ -8473,8 +7973,6 @@ spec:
 ---
 
 
-# _config-option-is-circular
-
 **Incorrect**:
 
 ```yaml
@@ -8491,8 +7989,6 @@ spec:
 ---
 
 
-# _config-option-password-type
-
 ```yaml
 spec:
   groups:
@@ -8505,8 +8001,6 @@ spec:
 
 ---
 
-
-# _config-option-regex-validator-invalid-type
 
 **Correct**:
 
@@ -8546,8 +8040,6 @@ spec:
 ---
 
 
-# _config-spec
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Config
@@ -8556,8 +8048,6 @@ kind: Config
 
 ---
 
-
-# _container-image-latest-tag
 
 ```yaml
 spec:
@@ -8569,8 +8059,6 @@ spec:
 ---
 
 
-# _container-image-local-image-name
-
 ```yaml
 spec:
   containers:
@@ -8580,8 +8068,6 @@ spec:
 
 ---
 
-
-# _container-resource-limits
 
 ```yaml
 spec:
@@ -8598,8 +8084,6 @@ spec:
 ---
 
 
-# _container-resource-requests
-
 ```yaml
 spec:
   containers:
@@ -8615,8 +8099,6 @@ spec:
 ---
 
 
-# _container-resources
-
 
 ```yaml
 spec:
@@ -8628,8 +8110,6 @@ spec:
 
 ---
 
-
-# _deprecated-kubernetes-installer-version
 
 **Correct**:
 
@@ -8649,8 +8129,6 @@ kind: Installer
 ---
 
 
-# _hardcoded-namespace
-
 ```yaml
 metadata:
   name: spline-reticulator
@@ -8660,8 +8138,6 @@ metadata:
 
 ---
 
-
-# _invalid-helm-release-name
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -8674,8 +8150,6 @@ spec:
 
 ---
 
-
-# _invalid-kubernetes-installer
 
 **Correct**:
 
@@ -8703,8 +8177,6 @@ spec:
 ---
 
 
-# _invalid-min-kots-version
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -8715,8 +8187,6 @@ spec:
 
 ---
 
-
-# _invalid-rendered-yaml
 
 **Example Helm Chart**:
 ```yaml
@@ -8820,8 +8290,6 @@ spec:
 ---
 
 
-# _invalid-target-kots-version
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -8832,8 +8300,6 @@ spec:
 
 ---
 
-
-# _invalid-yaml
 
 **Correct**:
 
@@ -8853,8 +8319,6 @@ spec:
 
 ---
 
-
-# _invalid_type
 
 **Correct**:
 
@@ -8876,15 +8340,11 @@ ports:
 ---
 
 
-# _linter-definition
-
 The linter checks the manifest files in Replicated KOTS releases to ensure that there are no YAML syntax errors, that all required manifest files are present in the release to support installation with KOTS, and more.
 
 
 ---
 
-
-# _may-contain-secrets
 
 ```yaml
 data:
@@ -8895,8 +8355,6 @@ data:
 ---
 
 
-# _missing-api-version-field
-
 ```yaml
 apiVersion: kots.io/v1beta1
 ```
@@ -8905,8 +8363,6 @@ apiVersion: kots.io/v1beta1
 ---
 
 
-# _missing-kind-field
-
 ```yaml
 kind: Config
 ```
@@ -8914,8 +8370,6 @@ kind: Config
 
 ---
 
-
-# _preflight-spec
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -8926,8 +8380,6 @@ kind: Preflight
 ---
 
 
-# _privileged
-
 ```yaml
 spec:
   privileged: true
@@ -8936,8 +8388,6 @@ spec:
 
 ---
 
-
-# _repeat-option-malformed-yamlpath
 
 ```yaml
 spec:
@@ -8951,8 +8401,6 @@ spec:
 
 ---
 
-
-# _repeat-option-missing-template
 
 ```yaml
 spec:
@@ -8979,8 +8427,6 @@ spec:
 ---
 
 
-# _repeat-option-missing-valuesByGroup
-
 ```yaml
 spec:
   groups:
@@ -8999,8 +8445,6 @@ spec:
 ---
 
 
-# _replicas-1
-
 ```yaml
 spec:
   replicas: 1
@@ -9009,8 +8453,6 @@ spec:
 
 ---
 
-
-# _resource-limits-cpu
 
 ```yaml
 spec:
@@ -9026,8 +8468,6 @@ spec:
 ---
 
 
-# _resource-limits-memory
-
 ```yaml
 spec:
   containers:
@@ -9041,8 +8481,6 @@ spec:
 
 ---
 
-
-# _resource-requests-cpu
 
 ```yaml
 spec:
@@ -9058,8 +8496,6 @@ spec:
 ---
 
 
-# _resource-requests-memory
-
 ```yaml
 spec:
   containers:
@@ -9074,8 +8510,6 @@ spec:
 ---
 
 
-# _troubleshoot-spec
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -9084,8 +8518,6 @@ kind: SupportBundle
 
 ---
 
-
-# _volume-docker-sock
 
 ```yaml
 spec:
@@ -9098,8 +8530,6 @@ spec:
 ---
 
 
-# _volumes-host-paths
-
 ```yaml
 spec:
   volumes:
@@ -9111,14 +8541,10 @@ spec:
 ---
 
 
-# _limitation-ec
-
 Monitoring applications with Prometheus is not supported for installations with [Replicated Embedded Cluster](/vendor/embedded-overview).
 
 ---
 
-
-# _overview-prom
 
 The KOTS Admin Console can use the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed. Prometheus components include the main Prometheus server, which scrapes and stores time series data, an Alertmanager for alerting on metrics, and Grafana for visualizing metrics. For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
@@ -9139,15 +8565,11 @@ The following screenshot shows an example of the **Monitoring** section on the A
 ---
 
 
-# _analyzers-note
-
 For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
 
 
 ---
 
-
-# _http-requests-cr
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -9176,8 +8598,6 @@ spec:
 
 ---
 
-
-# _http-requests-secret
 
 ```yaml
 apiVersion: v1
@@ -9214,8 +8634,6 @@ stringData:
 
 ---
 
-
-# _k8s-distro-cr
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -9257,8 +8675,6 @@ spec:
 
 ---
 
-
-# _k8s-distro-secret
 
 ```yaml
 apiVersion: v1
@@ -9309,8 +8725,6 @@ stringData:
 ---
 
 
-# _k8s-version-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9334,8 +8748,6 @@ spec:
 
 ---
 
-
-# _k8s-version-secret
 
 ```yaml
 apiVersion: v1
@@ -9369,8 +8781,6 @@ stringData:
 ---
 
 
-# _mysql-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9400,8 +8810,6 @@ spec:
 
 ---
 
-
-# _mysql-secret
 
 ```yaml
 apiVersion: v1
@@ -9443,14 +8851,10 @@ stringData:
 ---
 
 
-# _node-count-cr
-
 
 
 ---
 
-
-# _node-count-secret
 
 ```yaml
 apiVersion: v1
@@ -9480,8 +8884,6 @@ stringData:
 ---
 
 
-# _node-cpu-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9502,8 +8904,6 @@ spec:
 
 ---
 
-
-# _node-cpu-secret
 
 ```yaml
 apiVersion: v1
@@ -9534,8 +8934,6 @@ stringData:
 ---
 
 
-# _node-ephem-storage-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9560,8 +8958,6 @@ spec:
 
 ---
 
-
-# _node-ephem-storage-secret
 
 ```yaml
 apiVersion: v1
@@ -9596,8 +8992,6 @@ stringData:
 ---
 
 
-# _node-mem-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9622,8 +9016,6 @@ spec:
 
 ---
 
-
-# _node-mem-secret
 
 ```yaml
 apiVersion: v1
@@ -9658,8 +9050,6 @@ stringData:
 ---
 
 
-# _node-req-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9684,8 +9074,6 @@ spec:
 
 ---
 
-
-# _node-req-secret
 
 ```yaml
 apiVersion: v1
@@ -9720,8 +9108,6 @@ stringData:
 ---
 
 
-# _node-storage-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
@@ -9741,8 +9127,6 @@ spec:
 
 ---
 
-
-# _node-storage-secret
 
 ```yaml
 apiVersion: v1
@@ -9772,16 +9156,12 @@ stringData:
 ---
 
 
-# _preflights-add-analyzers
-
 You must add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and warn outcomes, and specify custom messages for each. 
 
 For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
 ---
 
-
-# _preflights-define-xref
 
 For more information about defining collectors and analyzers, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
@@ -9790,14 +9170,10 @@ and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot 
 ---
 
 
-# _preflights-define
-
 Any preflight checks you run are dependent on your application needs. This section gives some guidance about how to think about using collectors and analyzers to design preflight checks.
 
 ---
 
-
-# _preflights-sb-about
 
 Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
 
@@ -9808,22 +9184,16 @@ Preflight checks and support bundles analyze data from customer environments to 
 ---
 
 
-# _preflights-sb-note
-
 For a comprehensive overview, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 
 ---
 
 
-# _preflights-spec-locations
-
 For more information about specifications, see [About Specifications](preflight-support-bundle-about#about-specifications) in _About Preflight Checks and Support Bundles_.
 
 ---
 
-
-# _preflights-strict
 
 If any strict preflight checks are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
 
@@ -9834,21 +9204,15 @@ For more information about strict preflight checks, see [Defining Preflight Chec
 ---
 
 
-# _step-creds
-
 Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy registry. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
 
 ---
 
 
-# _step-custom-domain
-
 (Optional) Add a custom domain for the proxy registry instead of `proxy.replicated.com`. See [Using Custom Domains](custom-domains-using).
 
 ---
 
-
-# _redactors-about
 
 Troubleshoot has built-in redactors to prevent sensitive data from being collected when support bundles are generated. You can add more redactors if needed. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
@@ -9856,14 +9220,10 @@ Troubleshoot has built-in redactors to prevent sensitive data from being collect
 ---
 
 
-# _required-releases-description
-
 When a release is required, KOTS requires users to upgrade to that version before they can upgrade to a later version. For example, if you select **Prevent this release from being skipped during upgrades** for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.
 
 ---
 
-
-# _required-releases-limitations
 
 Required releases have the following limitations:
 
@@ -9875,16 +9235,12 @@ Required releases have the following limitations:
 ---
 
 
-# _version-label-reqs-helm
-
 * The version label for the release must match the version label from one of the `Chart.yaml` files in the release.
 * If there is one Helm chart in the release, Replicated automatically uses the version from the `Chart.yaml` file.
 * If there is more than one Helm chart in the release, Replicated uses the version label from one of the `Chart.yaml` files. You can edit the version label for the release to use the version label from a different `Chart.yaml` file.
 
 ---
 
-
-# _app
 
 <tr>
   <td><code>--app</code></td>
@@ -9896,16 +9252,12 @@ Required releases have the following limitations:
 ---
 
 
-# _authorize-with-token-note
-
 :::note
 The `replicated login` command creates a token after you log in to your vendor account in a browser and saves it to a config file. Alteratively, if you do not have access to a browser, you can set the `REPLICATED_API_TOKEN` environment variable to authenticate. For more information, see [(Optional) Set Environment Variables](#env-var) below.
 ::: 
 
 ---
 
-
-# _authtype
 
 <tr>
   <td><code>--authtype</code></td>
@@ -9917,16 +9269,12 @@ The `replicated login` command creates a token after you log in to your vendor a
 ---
 
 
-# _chart-yaml-dir-reqs
-
 :::note
 If your release supports installations with Replicated KOTS, `--yaml-dir` is required. If your release supports installations with the Helm CLI only, either `--yaml-dir` or `--chart` can be used.
 :::
 
 ---
 
-
-# _help
 
 <tr>
   <td><code>-h, --help</code></td>
@@ -9937,8 +9285,6 @@ If your release supports installations with Replicated KOTS, `--yaml-dir` is req
 
 ---
 
-
-# _login
 
 Authorize the Replicated CLI:
 
@@ -9955,8 +9301,6 @@ Authorize the Replicated CLI:
 ---
 
 
-# _logout
-
 (Optional) When you are done using the Replicated CLI, remove any stored credentials created by the `replicated login` command:
 
    ```
@@ -9965,8 +9309,6 @@ Authorize the Replicated CLI:
 
 ---
 
-
-# _output
 
 <tr>
     <td><code>--output</code></td>
@@ -9979,8 +9321,6 @@ Authorize the Replicated CLI:
 ---
 
 
-# _password-stdin
-
 <tr>
   <td><code>--password-stdin</code></td>
   <td></td>
@@ -9990,8 +9330,6 @@ Authorize the Replicated CLI:
 
 ---
 
-
-# _password
 
 <tr>
   <td><code>--password</code></td>
@@ -10003,8 +9341,6 @@ Authorize the Replicated CLI:
 ---
 
 
-# _skip-validation
-
 <tr>
   <td><code>--skip-validation</code></td>
   <td></td>
@@ -10015,16 +9351,12 @@ Authorize the Replicated CLI:
 ---
 
 
-# _sudo-install
-
 :::note
 If you do not have root access to the `/usr/local/bin` directory, you can install with sudo by running `sudo mv replicated /usr/local/bin/replicated` instead of `mv replicated /usr/local/bin/replicated`.
 :::
 
 ---
 
-
-# _token-stdin
 
 <tr>
   <td><code>--token-stdin</code></td>
@@ -10036,8 +9368,6 @@ If you do not have root access to the `/usr/local/bin` directory, you can instal
 ---
 
 
-# _token
-
 <tr>
   <td><code>--token</code></td>
   <td>string</td>
@@ -10047,8 +9377,6 @@ If you do not have root access to the `/usr/local/bin` directory, you can instal
 
 ---
 
-
-# _username
 
 <tr>
   <td><code>--username</code></td>
@@ -10060,8 +9388,6 @@ If you do not have root access to the `/usr/local/bin` directory, you can instal
 ---
 
 
-# _verify-install
-
 Verify that the installation was successful:
 
   ```
@@ -10070,8 +9396,6 @@ Verify that the installation was successful:
 
 ---
 
-
-# _yaml-dir
 
 <tr>
   <td><code>--yaml-dir</code></td>
@@ -10083,16 +9407,12 @@ Verify that the installation was successful:
 ---
 
 
-# _401-unauthorized
-
 :::note
 If you see a `401 Unauthorized` error message, log out of the Replicated registry by running `helm registry logout registry.replicated.com` and then run `helm package . --dependency-update` again.
 :::
 
 ---
 
-
-# Chart.yaml
 
 ```yaml
 # Chart.yaml
@@ -10107,8 +9427,6 @@ For the latest version information for the Replicated SDK, see the [replicated-s
 
 ---
 
-
-# _integration-mode-install
 
 You can install the Replicated SDK in integration mode to develop locally against the SDK API without needing to add the SDK to your application, create a release in the Replicated Vendor Portal, or make changes in your environment. You can also use integration mode to test sending instance data to the Vendor Portal, including any custom metrics that you configure.
 
@@ -10163,14 +9481,10 @@ To install the SDK in integration mode:
 ---
 
 
-# _kots-version-req
-
 To install the SDK with a Replicated installer, KOTS v1.104.0 or later and the SDK version 1.0.0-beta.12 or later are required. You can verify the version of KOTS installed with `kubectl kots version`. For Replicated Embedded Cluster installations, you can see the version of KOTS that is installed by your version of Embedded Cluster in the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
 
 ---
 
-
-# _overview
 
 The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK can be installed alongside applications packaged as Helm charts or Kubernetes manifests. The SDK can be installed using the Helm CLI or KOTS.
 
@@ -10188,8 +9502,6 @@ Replicated recommends that the SDK is distributed with all applications because 
 ---
 
 
-# _registry-logout
-
 If you see a 401 Unauthorized error after running `helm dependency update`, run the following command to remove credentials from the Replicated registry, then re-run `helm dependency update`:
 
 ```bash
@@ -10200,8 +9512,6 @@ For more information, see [401 Unauthorized Error When Updating Helm Dependencie
 
 ---
 
-
-# values.yaml 
 
 When a user installs a Helm chart that includes the Replicated SDK as a dependency, a set of default SDK values are included in the `replicated` key of the parent chart's values file.
 
@@ -10236,14 +9546,10 @@ The SDK Helm values also include a `replicated.license` field, which is a string
 ---
 
 
-# _checkVersion
-
 Run `velero version --client-only` to check the version of the velero CLI that you installed as part of [Installing the Velero CLI](snapshots-velero-cli-installing). 
 
 ---
 
-
-# _installVelero
 
 Run one of the following commands to install Velero, depending on the version of the velero CLI you are using:
 
@@ -10272,42 +9578,30 @@ Run one of the following commands to install Velero, depending on the version of
 ---
 
 
-# _limitation-cli-restores
-
 Only full backups can be restored using the KOTS CLI. To restore an application from a partial backup, use the Admin Console. See [Restore the Application Only Using the Admin Console](/enterprise/snapshots-restoring-full#admin-console).
 
 ---
 
-
-# _limitation-dr
 
 Only full backups that include both the application and the Admin Console can be restored to a new cluster in disaster recovery scenarios. Partial backups that include the application only _cannot_ be restored to a new cluster, and are therefore not useable for disaster recovery.
 
 ---
 
 
-# _limitation-install-method
-
 Snapshots can be restored only to clusters that use the same installation method as the cluster the snapshot was taken from. For example, snapshots taken in an online (internet-connected) cluster must be restored to an online cluster.
 
 ---
 
-
-# _limitation-no-ec-support
 
 The KOTS Snapshots feature is supported for existing cluster installations with KOTS and Replicated kURL installations only. Snapshots is not supported for Replicated Embedded Cluster installations. For more information about configuring backup and restore for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 
 ---
 
 
-# _limitation-os
-
 Snapshots must be restored on the same operating system that the snapshot was taken on. For example, snapshots taken on a CentOS cluster must be restored on a CentOS cluster.
 
 ---
 
-
-# _node-agent-mem-limit
 
 Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
 
@@ -10342,8 +9636,6 @@ kubectl -n velero set env daemonset/restic GOGC=1
 ---
 
 
-# _registryCredentialsNote
-
 :::note
 It is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after you run the `velero install` command because Velero does not support passing registry credentials during installation. In Replicated KOTS v1.94.0 and later, this situation resolves itself after you complete the instructions to configure the storage destination.
 
@@ -10352,8 +9644,6 @@ If you are on an earlier version of KOTS, Replicated recommends that you upgrade
 
 ---
 
-
-# _resticDaemonSet
 
 Configure the Restic DaemonSet specification if your cluster uses one of the following Kubernetes distributions:
   * RancherOS 
@@ -10366,8 +9656,6 @@ For information about how to configure the Restic DaemonSet for these distributi
 ---
 
 
-# _restore-types
-
 Snapshots supports the following types of restores:
 * Restore both the application and the KOTS Admin Console (also referred to as a _full_ restore)
 * Restore the KOTS Admin Console only
@@ -10375,8 +9663,6 @@ Snapshots supports the following types of restores:
 
 ---
 
-
-# _restoreTable
 
 <table>
     <tr>
@@ -10404,14 +9690,10 @@ Snapshots supports the following types of restores:
 ---
 
 
-# _step-get-backups
-
 Run the [`kubectl kots get backups`](/reference/kots-cli-get-backups) command to get the list of full backups for the instance.
 
 ---
 
-
-# _step-restore
 
 Run the following command to restore a full backup: 
 
@@ -10425,8 +9707,6 @@ Run the following command to restore a full backup:
 ---
 
 
-# _updateDefaultStorage
-
 If Velero is already installed, you can update your storage destination in the Replicated Admin Console. 
 
 For embedded clusters with the Velero add-on, you must update the default internal storage settings in the Admin Console because internal storage is insufficient for full backups. 
@@ -10436,16 +9716,12 @@ For more information about updating storage, see [Updating Settings in the Admin
 ---
 
 
-# _aggregate-status-intro
-
 When you provide more than one Kubernetes resource, Replicated aggregates all resource statuses to display a single application status.
 
 Replicated uses the least available resource status to represent the aggregate application status. For example, if at least one resource has an Unavailable status, then the aggregate application status is Unavailable.
 
 ---
 
-
-# _aggregateStatus
 
 The following table describes the resource statuses that define each aggregate application status:
 
@@ -10480,8 +9756,6 @@ The following table describes the resource statuses that define each aggregate a
 
 ---
 
-
-# _statusesTable
 
 <table>
  <tbody>
@@ -10540,16 +9814,12 @@ The following table describes the resource statuses that define each aggregate a
 ---
 
 
-# _configmap-note
-
 :::note
 Alternatively, you can use a ConfigMap (`kind: ConfigMap`) if the specification will not collect private information from the cluster.
 :::
 
 ---
 
-
-# _customize-support-bundle-spec
 
 When customizing your support bundle specifications, consider the following guidelines:
 
@@ -10636,8 +9906,6 @@ When customizing your support bundle specifications, consider the following guid
 ---
 
 
-# _deploy-status-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -10662,8 +9930,6 @@ spec:
 
 ---
 
-
-# _deploy-status-secret
 
 ```yaml
 apiVersion: v1
@@ -10698,8 +9964,6 @@ stringData:
 ---
 
 
-# _ec-support-bundle-intro
-
 Embedded Cluster includes a default support bundle spec that collects both host- and cluster-level information.
 
 The host-level information is useful for troubleshooting failures related to host configuration like DNS, networking, or storage problems. Cluster-level information includes details about the components provided by Replicated, such as the Admin Console and Embedded Cluster operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, then it is excluded from the bundle.
@@ -10709,8 +9973,6 @@ In addition to the host- and cluster-level details provided by the default Embed
 
 ---
 
-
-# _generate-bundle-admin-console
 
 The Replicated KOTS Admin Console includes a **Troubleshoot** page where you can generate a support bundle and review remediation suggestions for troubleshooting. You can also download the support bundle from the Admin Console.
 
@@ -10735,8 +9997,6 @@ To generate a support bundle in the KOTS Admin Console:
 
 ---
 
-
-# _generate-bundle-default-kots
 
 For KOTS installations, you can generate a support bundle using the default KOTS spec. This is useful if the application does not have a support bundle spec included.
 
@@ -10768,8 +10028,6 @@ For air gap environments, perform the following steps to generate a support bund
 
 ---
 
-
-# _generate-bundle-ec
 
 There are different steps to generate a support bundle depending on the version of Embedded Cluster installed.
 
@@ -10843,8 +10101,6 @@ To generate a bundle:
 ---
 
 
-# _generate-bundle-host
-
 To generate a kURL host support bundle:
 
 1. Do one of the following:
@@ -10882,8 +10138,6 @@ To generate a kURL host support bundle:
 ---
 
 
-# _generate-bundle
-
 Run the following command to generate a bundle:
 
 ```bash
@@ -10896,8 +10150,6 @@ For a complete list of options with the `kubectl support-bundle` command, run `k
 
 ---
 
-
-# _http-requests-cr
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -10926,8 +10178,6 @@ spec:
 
 ---
 
-
-# _http-requests-secret
 
 ```yaml
 apiVersion: v1
@@ -10964,8 +10214,6 @@ stringData:
 
 ---
 
-
-# _install-plugin
 
 The support-bundle plugin (a kubectl plugin) is required to generate support bundles from the command line.
 
@@ -11023,8 +10271,6 @@ To install the support-bundle plugin manually:
 ---
 
 
-# _k8s-version-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -11050,8 +10296,6 @@ spec:
 
 ---
 
-
-# _k8s-version-secret
 
 ```yaml
 apiVersion: v1
@@ -11087,8 +10331,6 @@ stringData:
 ---
 
 
-# _logs-limits-cr
-
 ```yaml
 apiVersion: troubleshoot.replicated.com/v1beta1
 kind: SupportBundle
@@ -11107,8 +10349,6 @@ spec:
 
 ---
 
-
-# _logs-limits-secret
 
 ```yaml
 apiVersion: v1
@@ -11136,8 +10376,6 @@ stringData:
 
 ---
 
-
-# _logs-selectors-cr
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -11177,8 +10415,6 @@ spec:
 
 ---
 
-
-# _logs-selectors-secret
 
 ```yaml
 apiVersion: v1
@@ -11227,8 +10463,6 @@ stringData:
 ---
 
 
-# _node-resources-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -11276,8 +10510,6 @@ spec:
 
 ---
 
-
-# _node-resources-secret
 
 ```yaml
 apiVersion: v1
@@ -11335,8 +10567,6 @@ stringData:
 ---
 
 
-# _node-status-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -11360,8 +10590,6 @@ spec:
 
 ---
 
-
-# _node-status-secret
 
 ```yaml
 apiVersion: v1
@@ -11395,8 +10623,6 @@ stringData:
 ---
 
 
-# _redis-mysql-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -11422,8 +10648,6 @@ spec:
 
 ---
 
-
-# _redis-mysql-secret
 
 ```yaml
 apiVersion: v1
@@ -11459,8 +10683,6 @@ stringData:
 ---
 
 
-# _run-pods-cr
-
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -11489,8 +10711,6 @@ spec:
 
 ---
 
-
-# _run-pods-secret
 
 ```yaml
 apiVersion: v1
@@ -11529,8 +10749,6 @@ stringData:
 ---
 
 
-# _support-bundle-add-analyzers
-
 Add analyzers based on conditions that you expect for your application. For example, you might require that a cluster have at least 2 CPUs and 4GB memory available.
 
   Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
@@ -11546,8 +10764,6 @@ Add analyzers based on conditions that you expect for your application. For exam
 ---
 
 
-# _support-bundle-add-logs
-
 Replicated recommends adding application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
 
 To get the labels for an application, either inspect the YAML or run `kubectl get pods --show-labels`.
@@ -11558,8 +10774,6 @@ The `limits` field can support `maxAge` or `maxLines`. This limits the output to
 
 ---
 
-
-# _support-bundle-custom-collectors
 
 Add any custom collectors to the file. Collectors that Replicated recommends considering are:
 
@@ -11573,16 +10787,12 @@ Add any custom collectors to the file. Collectors that Replicated recommends con
 ---
 
 
-# _go-sprig
-
 KOTS template functions are based on the Go text/template library. All functionality of the Go templating language, including if statements, loops, and variables, is supported with KOTS template functions. For more information, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation. 
 
 Additionally, KOTS template functions can be used with all functions in the Sprig library. Sprig provides several template functions for the Go templating language, such as type conversion, string, and integer math functions. For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/).
 
 ---
 
-
-# KOTS Config custom resource
 
 The following example uses:
 * KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate the number of seats permitted by the license
@@ -11634,8 +10844,6 @@ As shown in the image below, if the user's license contains `numSeats: 150`, the
 
 ---
 
-
-# _ne-comparison
 
 In the example below, the `ingress_type` field is displayed on the **Config** page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/vendor/embedded-overview). This ensures that only users deploying to their own existing cluster are able to select the method for ingress.
 
@@ -11699,8 +10907,6 @@ Conversely, when the distribution of the cluster is not `embedded-cluster`, both
 ---
 
 
-# KOTS Config custom resource
-
 The following example uses:
 * KOTS [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where KOTS is running
 * [eq](https://pkg.go.dev/text/template#hdr-Functions) (_equal_) Go binary operator to compare the rendered value of the Distribution template function to a string, then return the boolean truth of the comparison
@@ -11741,8 +10947,6 @@ The following image shows how only the `gke_distribution` item is displayed on t
 ---
 
 
-# _use-cases
-
 Common use cases for KOTS template functions include rendering values during installation or upgrade, such as:
 * Customer-specific license field values
 * User-provided configuration values
@@ -11753,8 +10957,6 @@ KOTS template functions can also be used to work with integer, boolean, float, a
 
 ---
 
-
-# _admin-console-air-gap
 
 import BuildAirGapBundle from "../install/_airgap-bundle-build.mdx"
 import DownloadAirGapBundle from "../install/_airgap-bundle-download.mdx"
@@ -11794,8 +10996,6 @@ the changes between them by clicking **Diff releases** in the right corner.
 ---
 
 
-# _admin-console
-
 To perform an update from the Admin Console:
 
 1. In the Admin Console, go to the **Version History** tab.
@@ -11833,8 +11033,6 @@ the changes between them by clicking **Diff releases** in the right corner.
 ---
 
 
-# _installerRequirements
-
 * **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you installed, you must pass the same `patch.yaml` file when you upgrade. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `installer-spec-file="./patch.yaml"`.
 
 * **app-version-label**: By default, the script also upgrades your application to the latest version when you run the installation script.
@@ -11844,8 +11042,6 @@ the changes between them by clicking **Diff releases** in the right corner.
 ---
 
 
-# _upgradePrompt
-
 (Kubernetes Upgrades Only) If a Kubernetes upgrade is required, the script automatically prints a `Drain local node and apply upgrade?` prompt. Confirm the prompt to drain the local primary node and apply the Kubernetes upgrade to the control plane.
 
    The script continues to drain and upgrade nodes sequentially. For each node, the script prints a command that you must run on the node to upgrade Kubernetes. For more information, see [About Kubernetes Updates](/enterprise/updating-kurl-about#kubernetes) in _About kURL Cluster Updates_.
@@ -11853,14 +11049,10 @@ the changes between them by clicking **Diff releases** in the right corner.
 ---
 
 
-# _api-about
-
 The Vendor API is the API for the Vendor Portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files.
 
 ---
 
-
-# _team-token-note
 
 :::note
 Team API tokens are deprecated and cannot be generated. If you are already using team API tokens, Replicated recommends that you migrate to Service Accounts or User API tokens instead because these options provide better granular control over token access.
@@ -11868,8 +11060,6 @@ Team API tokens are deprecated and cannot be generated. If you are already using
 
 ---
 
-
-# Cron Expressions
 
 # Cron Expressions
 
@@ -12030,8 +11220,6 @@ The following examples show valid cron expressions to schedule checking for upda
 
 # About Custom Resources
 
-# About Custom Resources
-
 You can include custom resources in releases to control the experience for applications installed with Replicated KOTS.
 
 Custom resources are consumed by KOTS, the Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
@@ -12065,8 +11253,6 @@ The following are custom resources in API groups other than `kots.io` that can b
 
 ---
 
-
-# Application
 
 import Title from "../partials/custom-resource-application/_title.mdx"
 import Icon from "../partials/custom-resource-application/_icon.mdx"
@@ -12494,8 +11680,6 @@ spec:
 
 # Velero Backup Resource for Snapshots
 
-# Velero Backup Resource for Snapshots
-
 This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
 
 ## Overview
@@ -12659,8 +11843,6 @@ However, not all fields are supported for full backups. The table below lists th
 
 ---
 
-
-# Config
 
 import ItemTypes from "../partials/config/_item-types.mdx"
 import PropertyWhen from "../partials/config/_property-when.mdx"
@@ -13731,8 +12913,6 @@ spec:
 ---
 
 
-# HelmChart v2
-
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
 import Chart from "../partials/helm/_helm-cr-chart.mdx"
@@ -13849,8 +13029,6 @@ The `builder` key is required for the following use cases:
 
 ---
 
-
-# HelmChart v1 (Deprecated)
 
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
@@ -14042,8 +13220,6 @@ The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources w
 ---
 
 
-# Identity (Beta)
-
 :::important
 This topic is deleted from the product documentation because this Beta feature is deprecated.
 :::
@@ -14121,8 +13297,6 @@ Can be used for branding the application identity login screen.
 ---
 
 
-# LintConfig
-
 import LinterDefinition from "../partials/linter-rules/_linter-definition.mdx"
 
 # LintConfig
@@ -14178,8 +13352,6 @@ spec:
 
 ---
 
-
-# Preflight and Support Bundle
 
 # Preflight and Support Bundle
 
@@ -14334,8 +13506,6 @@ spec:
 
 # Redactor (KOTS Only)
 
-# Redactor (KOTS Only)
-
 This topic describes how to define redactors with the Redactor custom resource.
 
 :::note
@@ -14433,8 +13603,6 @@ spec:
 
 ---
 
-
-# Embedded Cluster Install Command Options
 
 import ProxyLimitations from "../partials/embedded-cluster/_proxy-install-limitations.mdx"
 import ProxyRequirements from "../partials/embedded-cluster/_proxy-install-reqs.mdx"
@@ -14626,8 +13794,6 @@ sudo ./my-app install --license license.yaml --network-interface eno167777
 
 ---
 
-
-# Embedded Cluster Config
 
 # Embedded Cluster Config
 
@@ -14900,8 +14066,6 @@ spec:
 
 # admin-console garbage-collect-images
 
-# admin-console garbage-collect-images
-
 Starts image garbage collection.
 The KOTS Admin Console must be running and an application must be installed in order to use this command.
 
@@ -14926,8 +14090,6 @@ kubectl kots admin-console garbage-collect-images -n default
 
 ---
 
-
-# admin-console generate-manifests
 
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
@@ -15036,8 +14198,6 @@ kubectl kots admin-console generate-manifests --namespace kotsadm --minimal-rbac
 
 # admin-console
 
-# admin-console
-
 Enables access to the KOTS Admin Console from a local machine.
 
 This command opens localhost port 8800, which forwards to the `kotsadm` service.
@@ -15069,8 +14229,6 @@ kubectl kots admin-console --namespace kots-sentry
 
 # admin-console push-images
 
-# admin-console push-images
-
 Pushes images from an air gap bundle to a private registry.
 The air gap bundle can be either a KOTS Admin Console release or an application release.
 
@@ -15098,8 +14256,6 @@ kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/ap
 
 ---
 
-
-# admin-console upgrade
 
 # admin-console upgrade
 
@@ -15153,8 +14309,6 @@ kubectl kots admin-console upgrade --ensure-rbac=false
 
 # backup
 
-# backup
-
 Create a full instance snapshot for disaster recovery.
 
 ### Usage
@@ -15181,8 +14335,6 @@ kubectl kots backup --namespace kots-sentry
 
 ---
 
-
-# backup ls
 
 # backup ls
 
@@ -15214,8 +14366,6 @@ kubectl kots backup ls --namespace kots-sentry
 
 ---
 
-
-# docker ensure-secret
 
 # docker ensure-secret
 
@@ -15251,8 +14401,6 @@ kubectl kots docker ensure-secret --dockerhub-username sentrypro --dockerhub-pas
 
 # docker
 
-# docker
-
 KOTS Docker interface
 
 ### Usage
@@ -15266,8 +14414,6 @@ This command supports all [global flags](kots-cli-global-flags).
 
 ---
 
-
-# download
 
 # download
 
@@ -15307,8 +14453,6 @@ kubectl kots download kots-sentry --namespace kots-sentry --dest ./manifests --o
 
 # enable-ha
 
-# enable-ha
-
 (Deprecated) Runs the rqlite StatefulSet as three replicas for data replication and high availability.
 
 This command is deprecated and will be removed in a future release. The EKCO add-on for Replicated kURL now scales up the rqlite StatefulSet automatically when three or more nodes are healthy and the OpenEBS localpv storage class is available. For more information, see [EKCO add-on](https://kurl.sh/docs/add-ons/ekco#kotsadm) in the kURL documentation.
@@ -15340,8 +14484,6 @@ kubectl kots enable-ha --namespace kots-sentry
 
 # get apps
 
-# get apps
-
 The `kots get apps` command lists installed applications.
 
 ### Usage
@@ -15366,8 +14508,6 @@ kubectl kots get apps -n default
 
 ---
 
-
-# get backups
 
 # get backups
 
@@ -15406,8 +14546,6 @@ kubectl kots get backups -n default
 
 # get config
 
-# get config
-
 The `kots get config` command returns the `configValues` file for an application.
 
 ### Usage
@@ -15439,8 +14577,6 @@ kubectl kots get config -n default --sequence 5 --appslug myapp
 
 # get
 
-# get
-
 The `kots get` command shows information about one or more resources.
 
 ### Usage
@@ -15465,8 +14601,6 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 
 ---
 
-
-# get restores
 
 # get restores
 
@@ -15505,8 +14639,6 @@ kubectl kots get restores -n default
 
 # get versions
 
-# get versions
-
 The `kots get versions` command lists all versions of an application.
 
 > Introduced in KOTS v1.61.0
@@ -15539,8 +14671,6 @@ kubectl kots get versions kots-sentry -n default
 
 ---
 
-
-# Installing the KOTS CLI
 
 # Installing the KOTS CLI
 
@@ -15734,8 +14864,6 @@ To uninstall the KOTS CLI:
 
 # Global flags
 
-# Global flags
-
 All KOTS CLI commands support a set of global flags to be used to connect to the cluster.
 
 | Flag | Type | Description |
@@ -15759,8 +14887,6 @@ All KOTS CLI commands support a set of global flags to be used to connect to the
 
 ---
 
-
-# identity-service enable-shared-password
 
 # identity-service enable-shared-password
 
@@ -15792,8 +14918,6 @@ kubectl kots identity-service enable-shared-password --namespace kots-sentry
 
 # identity-service
 
-# identity-service
-
 KOTS Identity Service
 
 ### Usage
@@ -15807,8 +14931,6 @@ This command supports all [global flags](kots-cli-global-flags).
 
 ---
 
-
-# install
 
 import StrictSecurityContext from "../partials/kots-cli/_strict-security-context.mdx"
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
@@ -16009,8 +15131,6 @@ kubectl kots install --ensure-rbac=false
 
 # pull
 
-# pull
-
 Running this command will create a directory on the workstation containing the application and Kubernetes manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl. This command is necessary when managing a application without the use of the Admin Console.
 
 ### Usage
@@ -16054,8 +15174,6 @@ kubectl kots pull sentry/unstable --license-file ~/license.yaml
 
 ---
 
-
-# remove
 
 # remove
 
@@ -16117,8 +15235,6 @@ kubectl kots remove sentry -n default
 
 # reset-password
 
-# reset-password
-
 If you deployed an application with the KOTS Admin Console, the `kots reset-password` command will change the bcrypted password hash in the cluster, allowing you to log in again.
 
 ### Usage
@@ -16144,8 +15260,6 @@ kubectl kots reset-password sentry-namespace
 
 ---
 
-
-# reset-tls
 
 # reset-tls
 
@@ -16175,8 +15289,6 @@ kubectl kots reset-tls sentry-namespace
 
 ---
 
-
-# restore
 
 # restore
 
@@ -16212,8 +15324,6 @@ kubectl kots restore --from-backup instance-942kf
 
 # restore ls
 
-# restore ls
-
 :::note
 This command is deprecated. Use [`kubectl kots get restores`](/reference/kots-cli-get-restores) instead.
 :::
@@ -16242,8 +15352,6 @@ kubectl kots restore ls --namespace kots-sentry
 
 ---
 
-
-# set config
 
 import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
 
@@ -16305,8 +15413,6 @@ kubectl kots set config myapp -n default --key config-item-name --value "config 
 
 # set
 
-# set
-
 Configure KOTS resources.
 
 ### Usage
@@ -16324,8 +15430,6 @@ This command supports all [global flags](kots-cli-global-flags).
 
 ---
 
-
-# upload
 
 import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
 
@@ -16376,8 +15480,6 @@ kubectl kots upload ./manifests --name kots-sentry --namespace kots-sentry --slu
 
 # upstream download
 
-# upstream download
-
 The `kots upstream download` command retries downloading a failed update of the upstream application.
 
 ### Usage
@@ -16406,8 +15508,6 @@ kubectl kots upstream download kots-sentry --namespace kots-sentry --sequence 8
 
 ---
 
-
-# upstream upgrade
 
 import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
 
@@ -16458,8 +15558,6 @@ kubectl kots upstream upgrade kots-sentry --namespace kots-sentry
 
 # upstream
 
-# upstream
-
 KOTS Upstream interface.
 
 ### Usage
@@ -16472,8 +15570,6 @@ This command supports all [global flags](kots-cli-global-flags).
 
 ---
 
-
-# velero configure-aws-s3
 
 # velero configure-aws-s3
 
@@ -16548,8 +15644,6 @@ kubectl kots velero configure-aws-s3 instance-role --namespace default --region 
 
 # velero configure-azure
 
-# velero configure-azure
-
 Configures snapshots to use an Azure Blob Storage Container as a storage destination.
 Currently only the [Service Principle authentication method](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#option-1-create-service-principal) of the velero-plugin-for-microsoft-azure.
 
@@ -16598,8 +15692,6 @@ kubectl kots velero configure-azure service-principle --namespace default  --con
 
 ---
 
-
-# velero configure-gcp
 
 # velero configure-gcp
 
@@ -16669,8 +15761,6 @@ kubectl kots velero configure-gcp workload-identity --namespace default --bucket
 
 ---
 
-
-# velero configure-hostpath
 
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
@@ -16748,8 +15838,6 @@ kubectl kots velero configure-hostpath \
 
 # velero configure-internal
 
-# velero configure-internal
-
 :::important
 The following command is applicable only to embedded clusters created by Replicated kURL and is _not_ recommended for production usage.
 Consider configuring one of the other available storage destinations. See [Configuring Other Storage Destinations](/enterprise/snapshots-storage-destinations).
@@ -16779,8 +15867,6 @@ kubectl kots velero configure-internal
 
 ---
 
-
-# velero configure-nfs
 
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
@@ -16861,8 +15947,6 @@ kubectl kots velero configure-nfs \
 
 ---
 
-
-# velero configure-other-s3
 
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
@@ -16952,8 +16036,6 @@ kubectl kots velero configure-other-s3 --namespace default --endpoint http://min
 
 # velero ensure-permissions
 
-# velero ensure-permissions
-
 Ensures the necessary permissions that enables Replicated KOTS to access Velero.
 
 ### Usage
@@ -16982,8 +16064,6 @@ kubectl kots velero ensure-permissions --namespace kots-sentry --velero-namespac
 
 # velero
 
-# velero
-
 The KOTS Velero interface, which configures storage destinations for backups (snapshots), permissions, and print instructions fo set up.
 
 ### Usage
@@ -17008,8 +16088,6 @@ The following `kots velero` commands are supported:
 
 ---
 
-
-# velero print-fs-instructions
 
 # velero print-fs-instructions
 
@@ -17043,8 +16121,6 @@ kubectl kots velero print-fs-instructions --namespace kots-sentry
 
 ---
 
-
-# Linter Rules
 
 import MissingKindField from "../partials/linter-rules/_missing-kind-field.mdx"
 import MissingAPIVersionField from "../partials/linter-rules/_missing-api-version-field.mdx"
@@ -18220,8 +17296,6 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 
 # replicated api get
 
-# replicated api get
-
 Make ad-hoc GET API calls to the Replicated API
 
 ### Synopsis
@@ -18264,8 +17338,6 @@ replicated api get /v3/apps
 
 ---
 
-
-# replicated api patch
 
 # replicated api patch
 
@@ -18315,8 +17387,6 @@ replicated api patch /v3/customer/2VffY549paATVfHSGpJhjh6Ehpy -b '{"name":"Valua
 
 # replicated api post
 
-# replicated api post
-
 Make ad-hoc POST API calls to the Replicated API
 
 ### Synopsis
@@ -18360,8 +17430,6 @@ replicated api post /v3/app/2EuFxKLDxKjPNk2jxMTmF6Vxvxu/channel -b '{"name":"mar
 
 ---
 
-
-# replicated api put
 
 # replicated api put
 
@@ -18411,8 +17479,6 @@ replicated api put /v3/app/2EuFxKLDxKjPNk2jxMTmF6Vxvxu/channel/2QLPm10JPkta7jO3Z
 
 # replicated api
 
-# replicated api
-
 Make ad-hoc API calls to the Replicated API
 
 ### Options
@@ -18440,8 +17506,6 @@ Make ad-hoc API calls to the Replicated API
 
 ---
 
-
-# replicated app create
 
 # replicated app create
 
@@ -18496,8 +17560,6 @@ replicated app create "Custom App" --output table
 
 ---
 
-
-# replicated app ls
 
 # replicated app ls
 
@@ -18566,8 +17628,6 @@ replicated app ls "App Name" --output table
 
 # replicated app rm
 
-# replicated app rm
-
 Delete an application
 
 ### Synopsis
@@ -18625,8 +17685,6 @@ replicated app delete "Custom App" --output json
 
 ---
 
-
-# replicated app
 
 # replicated app
 
@@ -18696,8 +17754,6 @@ replicated app ls --output json
 
 # replicated channel create
 
-# replicated channel create
-
 Create a new channel in your app
 
 ### Synopsis
@@ -18738,8 +17794,6 @@ replicated channel create --name Beta --description 'New features subject to cha
 
 ---
 
-
-# replicated channel demote
 
 # replicated channel demote
 
@@ -18789,8 +17843,6 @@ replicated channel demote CHANNEL_ID_OR_NAME [flags]
 
 # replicated channel disable-semantic-versioning
 
-# replicated channel disable-semantic-versioning
-
 Disable semantic versioning for CHANNEL_ID
 
 ### Synopsis
@@ -18828,8 +17880,6 @@ replicated channel disable-semantic-versioning CHANNEL_ID
 
 ---
 
-
-# replicated channel enable-semantic-versioning
 
 # replicated channel enable-semantic-versioning
 
@@ -18873,8 +17923,6 @@ replicated channel enable-semantic-versioning CHANNEL_ID
 
 # replicated channel inspect
 
-# replicated channel inspect
-
 Show full details for a channel
 
 ### Synopsis
@@ -18907,8 +17955,6 @@ replicated channel inspect CHANNEL_ID [flags]
 
 ---
 
-
-# replicated channel ls
 
 # replicated channel ls
 
@@ -18953,8 +17999,6 @@ ls, list
 
 # replicated channel rm
 
-# replicated channel rm
-
 Remove (archive) a channel
 
 ### Synopsis
@@ -18992,8 +18036,6 @@ rm, delete
 
 ---
 
-
-# replicated channel un-demote
 
 # replicated channel un-demote
 
@@ -19043,8 +18085,6 @@ replicated channel un-demote CHANNEL_ID_OR_NAME [flags]
 
 # replicated channel
 
-# replicated channel
-
 List channels
 
 ### Synopsis
@@ -19080,8 +18120,6 @@ List channels
 
 ---
 
-
-# replicated cluster addon create object-store
 
 # replicated cluster addon create object-store
 
@@ -19142,8 +18180,6 @@ replicated cluster addon create object-store 05929b24 --bucket-prefix custom-pre
 
 # replicated cluster addon create
 
-# replicated cluster addon create
-
 Create cluster add-ons.
 
 ### Synopsis
@@ -19182,8 +18218,6 @@ replicated cluster addon create object-store CLUSTER_ID --bucket-prefix mybucket
 
 ---
 
-
-# replicated cluster addon ls
 
 # replicated cluster addon ls
 
@@ -19243,8 +18277,6 @@ replicated cluster addon ls CLUSTER_ID --output wide
 
 # replicated cluster addon rm
 
-# replicated cluster addon rm
-
 Remove cluster add-on by ID.
 
 ### Synopsis
@@ -19292,8 +18324,6 @@ replicated cluster addon rm cluster456 --id abc123
 
 ---
 
-
-# replicated cluster addon
 
 # replicated cluster addon
 
@@ -19345,8 +18375,6 @@ replicated cluster addon ls CLUSTER_ID --output json
 
 ---
 
-
-# replicated cluster create
 
 # replicated cluster create
 
@@ -19434,8 +18462,6 @@ replicated cluster create --distribution eks --version 1.21 --nodes 3 --addon ob
 
 # replicated cluster kubeconfig
 
-# replicated cluster kubeconfig
-
 Download credentials for a test cluster.
 
 ### Synopsis
@@ -19494,8 +18520,6 @@ replicated cluster kubeconfig --id CLUSTER_ID
 
 ---
 
-
-# replicated cluster ls
 
 # replicated cluster ls
 
@@ -19570,8 +18594,6 @@ replicated cluster ls --output wide
 
 # replicated cluster nodegroup ls
 
-# replicated cluster nodegroup ls
-
 List node groups for a cluster.
 
 ### Synopsis
@@ -19630,8 +18652,6 @@ replicated cluster nodegroup ls CLUSTER_ID --output wide
 
 # replicated cluster nodegroup
 
-# replicated cluster nodegroup
-
 Manage node groups for clusters.
 
 ### Synopsis
@@ -19669,8 +18689,6 @@ replicated cluster nodegroup ls CLUSTER_ID
 
 ---
 
-
-# replicated cluster port expose
 
 # replicated cluster port expose
 
@@ -19734,8 +18752,6 @@ replicated cluster port expose CLUSTER_ID --port 8080 --protocol https --output 
 
 # replicated cluster port ls
 
-# replicated cluster port ls
-
 List cluster ports for a cluster.
 
 ### Synopsis
@@ -19789,8 +18805,6 @@ replicated cluster port ls CLUSTER_ID --output wide
 
 ---
 
-
-# replicated cluster port rm
 
 # replicated cluster port rm
 
@@ -19853,8 +18867,6 @@ replicated cluster port rm CLUSTER_ID --id PORT_ID --output json
 
 # replicated cluster port
 
-# replicated cluster port
-
 Manage cluster ports.
 
 ### Synopsis
@@ -19900,8 +18912,6 @@ replicated cluster port expose [CLUSTER_ID] [PORT]
 
 ---
 
-
-# replicated cluster prepare
 
 # replicated cluster prepare
 
@@ -19979,8 +18989,6 @@ replicated cluster prepare --distribution eks --version 1.27 --instance-type c6.
 
 # replicated cluster rm
 
-# replicated cluster rm
-
 Remove test clusters.
 
 ### Synopsis
@@ -20041,8 +19049,6 @@ replicated cluster rm --all
 
 # replicated cluster shell
 
-# replicated cluster shell
-
 Open a new shell with kubeconfig configured.
 
 ### Synopsis
@@ -20090,8 +19096,6 @@ replicated cluster shell --name "My Cluster"
 
 ---
 
-
-# replicated cluster update nodegroup
 
 # replicated cluster update nodegroup
 
@@ -20149,8 +19153,6 @@ replicated cluster update nodegroup CLUSTER_ID --nodegroup-id NODEGROUP_ID --min
 
 # replicated cluster update ttl
 
-# replicated cluster update ttl
-
 Update TTL for a test cluster.
 
 ### Synopsis
@@ -20193,8 +19195,6 @@ replicated cluster update ttl CLUSTER_ID --ttl 24h
 
 ---
 
-
-# replicated cluster update
 
 # replicated cluster update
 
@@ -20241,8 +19241,6 @@ replicated cluster update --name <cluster-name> [subcommand]
 
 ---
 
-
-# replicated cluster upgrade
 
 # replicated cluster upgrade
 
@@ -20297,8 +19295,6 @@ replicated cluster upgrade [CLUSTER_ID] --version 1.31 --wait 30m
 
 # replicated cluster versions
 
-# replicated cluster versions
-
 List cluster versions.
 
 ### Synopsis
@@ -20345,8 +19341,6 @@ replicated cluster versions --output json
 
 ---
 
-
-# replicated cluster
 
 # replicated cluster
 
@@ -20405,8 +19399,6 @@ replicated cluster nodegroup ls <cluster-id>
 
 ---
 
-
-# replicated completion
 
 # replicated completion
 
@@ -20487,8 +19479,6 @@ PowerShell:
 
 # replicated customer archive
 
-# replicated customer archive
-
 Archive a customer
 
 ### Synopsis
@@ -20542,8 +19532,6 @@ replicated customer archive --app myapp "Acme Inc"
 
 ---
 
-
-# replicated customer create
 
 # replicated customer create
 
@@ -20632,8 +19620,6 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
 
 # replicated customer download-license
 
-# replicated customer download-license
-
 Download a customer's license
 
 ### Synopsis
@@ -20686,8 +19672,6 @@ replicated customer download-license --app myapp --customer "Acme Inc" --output 
 
 ---
 
-
-# replicated customer inspect
 
 # replicated customer inspect
 
@@ -20746,8 +19730,6 @@ replicated customer inspect --app myapp --customer "Acme Inc"
 
 ---
 
-
-# replicated customer ls
 
 # replicated customer ls
 
@@ -20811,8 +19793,6 @@ replicated customer ls --app myapp --output json
 
 ---
 
-
-# replicated customer update
 
 # replicated customer update
 
@@ -20900,8 +19880,6 @@ replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --outp
 
 # replicated customer
 
-# replicated customer
-
 Manage customers
 
 ### Synopsis
@@ -20935,8 +19913,6 @@ The customers command allows vendors to create, display, modify end customer rec
 
 ---
 
-
-# replicated default clear-all
 
 # replicated default clear-all
 
@@ -20983,8 +19959,6 @@ replicated default clear-all
 
 # replicated default clear
 
-# replicated default clear
-
 Clear default value for a key
 
 ### Synopsis
@@ -21028,8 +20002,6 @@ replicated default clear app
 
 ---
 
-
-# replicated default set
 
 # replicated default set
 
@@ -21080,8 +20052,6 @@ replicated default set app my-app-slug
 
 ---
 
-
-# replicated default show
 
 # replicated default show
 
@@ -21136,8 +20106,6 @@ replicated default show app
 
 # replicated default
 
-# replicated default
-
 Manage default values used by other commands
 
 ### Options
@@ -21165,8 +20133,6 @@ Manage default values used by other commands
 
 ---
 
-
-# replicated installer create
 
 # replicated installer create
 
@@ -21207,8 +20173,6 @@ replicated installer create [flags]
 
 ---
 
-
-# replicated installer ls
 
 # replicated installer ls
 
@@ -21253,8 +20217,6 @@ ls, list
 
 # replicated installer
 
-# replicated installer
-
 Manage Kubernetes installers
 
 ### Synopsis
@@ -21284,8 +20246,6 @@ The installers command allows vendors to create, display, modify and promote kur
 
 ---
 
-
-# Installing the Replicated CLI
 
 import Verify from "../partials/replicated-cli/_verify-install.mdx"
 import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
@@ -21490,8 +20450,6 @@ To set the `REPLICATED_APP` environment variable:
 
 # replicated instance inspect
 
-# replicated instance inspect
-
 Show full details for a customer instance
 
 ### Synopsis
@@ -21526,8 +20484,6 @@ replicated instance inspect [flags]
 
 ---
 
-
-# replicated instance ls
 
 # replicated instance ls
 
@@ -21574,8 +20530,6 @@ ls, list
 
 # replicated instance tag
 
-# replicated instance tag
-
 tag an instance
 
 ### Synopsis
@@ -21614,8 +20568,6 @@ replicated instance tag [flags]
 
 # replicated instance
 
-# replicated instance
-
 Manage instances
 
 ### Synopsis
@@ -21646,8 +20598,6 @@ The instance command allows vendors to display and tag customer instances.
 
 ---
 
-
-# replicated login
 
 # replicated login
 
@@ -21685,8 +20635,6 @@ replicated login [flags]
 
 # replicated logout
 
-# replicated logout
-
 Logout from Replicated
 
 ### Synopsis
@@ -21718,8 +20666,6 @@ replicated logout [flags]
 
 ---
 
-
-# replicated registry add dockerhub
 
 # replicated registry add dockerhub
 
@@ -21764,8 +20710,6 @@ replicated registry add dockerhub [flags]
 
 # replicated registry add ecr
 
-# replicated registry add ecr
-
 Add an ECR registry
 
 ### Synopsis
@@ -21803,8 +20747,6 @@ replicated registry add ecr [flags]
 
 ---
 
-
-# replicated registry add gar
 
 # replicated registry add gar
 
@@ -21849,8 +20791,6 @@ replicated registry add gar [flags]
 
 # replicated registry add gcr
 
-# replicated registry add gcr
-
 Add a Google Container Registry
 
 ### Synopsis
@@ -21890,8 +20830,6 @@ replicated registry add gcr [flags]
 
 # replicated registry add ghcr
 
-# replicated registry add ghcr
-
 Add a GitHub Container Registry
 
 ### Synopsis
@@ -21926,8 +20864,6 @@ replicated registry add ghcr [flags]
 
 ---
 
-
-# replicated registry add other
 
 # replicated registry add other
 
@@ -21971,8 +20907,6 @@ replicated registry add other [flags]
 
 # replicated registry add quay
 
-# replicated registry add quay
-
 Add a quay.io registry
 
 ### Synopsis
@@ -22012,8 +20946,6 @@ replicated registry add quay [flags]
 
 # replicated registry add
 
-# replicated registry add
-
 add
 
 ### Synopsis
@@ -22049,8 +20981,6 @@ add
 
 ---
 
-
-# replicated registry ls
 
 # replicated registry ls
 
@@ -22095,8 +21025,6 @@ ls, list
 
 # replicated registry rm
 
-# replicated registry rm
-
 remove registry
 
 ### Synopsis
@@ -22137,8 +21065,6 @@ rm, delete
 
 # replicated registry test
 
-# replicated registry test
-
 test registry
 
 ### Synopsis
@@ -22174,8 +21100,6 @@ replicated registry test HOSTNAME [flags]
 
 # replicated registry
 
-# replicated registry
-
 Manage registries
 
 ### Synopsis
@@ -22207,8 +21131,6 @@ registry can be used to manage existing registries and add new registries to a t
 
 ---
 
-
-# replicated release compatibility
 
 # replicated release compatibility
 
@@ -22248,8 +21170,6 @@ replicated release compatibility SEQUENCE [flags]
 
 ---
 
-
-# replicated release create
 
 # replicated release create
 
@@ -22297,8 +21217,6 @@ replicated release create [flags]
 
 # replicated release download
 
-# replicated release download
-
 Download application manifests for a release.
 
 ### Synopsis
@@ -22339,8 +21257,6 @@ replicated release download 1 --dest ./manifests
 
 ---
 
-
-# replicated release inspect
 
 # replicated release inspect
 
@@ -22395,8 +21311,6 @@ replicated release inspect 123 --output json
 
 # replicated release lint
 
-# replicated release lint
-
 Lint a directory of KOTS manifests
 
 ### Synopsis
@@ -22431,8 +21345,6 @@ replicated release lint [flags]
 
 ---
 
-
-# replicated release ls
 
 # replicated release ls
 
@@ -22474,8 +21386,6 @@ ls, list
 
 ---
 
-
-# replicated release promote
 
 # replicated release promote
 
@@ -22523,8 +21433,6 @@ replicated release promote 15 fe4901690971757689f022f7a460f9b2
 
 # replicated release test
 
-# replicated release test
-
 Test the application release
 
 ### Synopsis
@@ -22556,8 +21464,6 @@ replicated release test SEQUENCE [flags]
 
 ---
 
-
-# replicated release update
 
 # replicated release update
 
@@ -22595,8 +21501,6 @@ replicated release update SEQUENCE [flags]
 
 ---
 
-
-# replicated release
 
 # replicated release
 
@@ -22639,8 +21543,6 @@ The release command allows vendors to create, display, and promote their release
 
 # replicated version upgrade
 
-# replicated version upgrade
-
 Upgrade the replicated CLI to the latest version
 
 ### Synopsis
@@ -22672,8 +21574,6 @@ replicated version upgrade [flags]
 
 ---
 
-
-# replicated version
 
 # replicated version
 
@@ -22710,8 +21610,6 @@ replicated version [flags]
 
 ---
 
-
-# replicated vm create
 
 # replicated vm create
 
@@ -22777,8 +21675,6 @@ replicated vm create --distribution ubuntu --version 20.04 --count 5 --instance-
 
 ---
 
-
-# replicated vm ls
 
 # replicated vm ls
 
@@ -22849,8 +21745,6 @@ replicated vm ls --watch
 
 # replicated vm port expose
 
-# replicated vm port expose
-
 Expose a port on a vm to the public internet.
 
 ### Synopsis
@@ -22909,8 +21803,6 @@ replicated vm port expose VM_ID --port 8080 --protocol https --output json
 
 # replicated vm port ls
 
-# replicated vm port ls
-
 List vm ports for a vm.
 
 ### Synopsis
@@ -22958,8 +21850,6 @@ replicated vm port ls VM_ID --output wide
 
 ---
 
-
-# replicated vm port rm
 
 # replicated vm port rm
 
@@ -23011,8 +21901,6 @@ replicated vm port rm VM_ID --id PORT_ID --output json
 
 # replicated vm port
 
-# replicated vm port
-
 Manage VM ports.
 
 ### Synopsis
@@ -23058,8 +21946,6 @@ replicated vm port expose [VM_ID] [PORT]
 
 ---
 
-
-# replicated vm rm
 
 # replicated vm rm
 
@@ -23133,8 +22019,6 @@ replicated vm rm --all --dry-run
 
 # replicated vm update ttl
 
-# replicated vm update ttl
-
 Update TTL for a test VM.
 
 ### Synopsis
@@ -23189,8 +22073,6 @@ replicated vm update ttl aaaaa11 --ttl 30m
 
 # replicated vm update
 
-# replicated vm update
-
 Update VM settings.
 
 ### Synopsis
@@ -23236,8 +22118,6 @@ replicated vm update --name --ttl 12h
 
 ---
 
-
-# replicated vm versions
 
 # replicated vm versions
 
@@ -23293,8 +22173,6 @@ replicated vm versions --output json
 
 # replicated vm
 
-# replicated vm
-
 Manage test virtual machines.
 
 ### Synopsis
@@ -23344,8 +22222,6 @@ replicated vm update ttl <vm-id> --ttl 24h
 
 ---
 
-
-# Replicated SDK API
 
 # Replicated SDK API
 
@@ -23872,8 +22748,6 @@ To revoke access to your application when a license expires:
 
 # replicated
 
-# replicated
-
 Manage your Commercial Software Distribution Lifecycle using Replicated
 
 ### Synopsis
@@ -23910,8 +22784,6 @@ The 'replicated' CLI allows Replicated customers (vendors) to manage their Comme
 
 ---
 
-
-# About Template Functions
 
 import UseCases from "../partials/template-functions/_use-cases.mdx"
 
@@ -24075,8 +22947,6 @@ For a list of all KOTS template functions available in the identity context, see
 
 ---
 
-
-# Config Context
 
 # Config Context
 
@@ -24342,8 +23212,6 @@ HasLocalRegistry is always true for air gap installations. HasLocalRegistry is t
 
 ---
 
-
-# Template Function Examples
 
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
 import StringComparison from "../partials/template-functions/_string-comparison.mdx"
@@ -24796,8 +23664,6 @@ The following topics include additional examples of using KOTS template function
 
 # Identity Context
 
-# Identity Context
-
 ## IdentityServiceEnabled
 
 ```go
@@ -24918,8 +23784,6 @@ kind: Ingress
 
 # kURL Context
 
-# kURL Context
-
 ## kURL Context Functions
 
 For applications installed in embedded clusters created with Replicated kURL, you can use template functions to show all options the cluster was installed with.
@@ -25005,8 +23869,6 @@ Returns all values in the Installer custom resource as key:value pairs, sorted b
 
 ---
 
-
-# License Context
 
 # License Context
 
@@ -25132,8 +23994,6 @@ IsAirgap is `true` when the app is installed via uploading an airgap package, fa
 
 ---
 
-
-# Static Context
 
 # Static Context
 
@@ -25771,8 +24631,6 @@ repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ---
 
 
-# Using the Vendor API v3
-
 import ApiAbout from "../partials/vendor-api/_api-about.mdx"
 
 # Using the Vendor API v3
@@ -25808,8 +24666,6 @@ For the Vendor API swagger specification, see [vendor-api-v3.json](https://api.r
 
 ---
 
-
-# Adding Links to the Dashboard
 
 # Adding Links to the Dashboard
 
@@ -25903,8 +24759,6 @@ For more information about working with KOTS template functions, see [About Temp
 
 # Customizing the Application Icon
 
-# Customizing the Application Icon
-
 You can add a custom application icon that displays in the Replicated Admin Console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
 
 :::note
@@ -25965,8 +24819,6 @@ For your custom application icon to look best in the Admin Console, consider the
 
 ---
 
-
-# Creating and Editing Configuration Fields
 
 # Creating and Editing Configuration Fields
 
@@ -26107,8 +24959,6 @@ For more information, see [Mapping User-Supplied Values](config-screen-map-input
 ---
 
 
-# Adding Resource Status Informers
-
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
@@ -26200,8 +25050,6 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 ---
 
-
-# Port Forwarding Services with KOTS
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -26447,8 +25295,6 @@ To test this example:
 ---
 
 
-# Adding Custom Graphs
-
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 import LimitationEc from "../partials/monitoring/_limitation-ec.mdx"
 
@@ -26538,8 +25384,6 @@ To customize graphs on the Admin Console dashboard:
 ---
 
 
-# About Integrating with CI/CD
-
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
 # About Integrating with CI/CD
@@ -26571,8 +25415,6 @@ The following are Replicated's best practices and recommendations for CI/CD:
 
 ---
 
-
-# Integrating Replicated GitHub Actions
 
 # Integrating Replicated GitHub Actions
 
@@ -26708,8 +25550,6 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
 
 ---
 
-
-# Recommended CI/CD Workflows
 
 import Build from "../partials/ci-cd/_build-source-code.mdx"
 
@@ -27019,8 +25859,6 @@ See the [channel rm](/reference/replicated-cli-channel-rm) Replicated CLI comman
 
 
 # Viewing Compatibility Matrix Usage History
-
-# Viewing Compatibility Matrix Usage History
 This topic describes using the Replicated Vendor Portal to understand
 Compatibility Matrix usage across your team.
 
@@ -27257,8 +26095,6 @@ with the other endpoints as well.
 
 # About the Configuration Screen
 
-# About the Configuration Screen
-
 This topic describes the configuration screen on the Config tab in the Replicated Admin Console.
 
 ## About Collecting Configuration Values
@@ -27300,8 +26136,6 @@ The following shows an example of how the configuration screen displays in the A
 
 ---
 
-
-# Using Conditional Statements in Configuration Fields
 
 import IntegerComparison from "../partials/template-functions/_integer-comparison.mdx"
 import PropertyWhen from "../partials/config/_property-when.mdx"
@@ -27556,8 +26390,6 @@ Additionally, the options relevant to the load balancer display when the user se
 
 # Mapping User-Supplied Values
 
-# Mapping User-Supplied Values
-
 This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
 This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
@@ -27733,8 +26565,6 @@ To map user inputs from the configuration screen to the `values.yaml` file:
 
 # Using Custom Domains
 
-# Using Custom Domains
-
 This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the download portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
@@ -27885,8 +26715,6 @@ To remove a custom domain:
 
 # About Custom Domains
 
-# About Custom Domains
-
 This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy registry, Replicated app service, and the Download Portal.
 
 For information about configuring and managing custom domains, see [Using Custom Domains](custom-domains-using).
@@ -27929,8 +26757,6 @@ Using custom domains has the following limitations:
 
 ---
 
-
-# Configuring Custom Metrics (Beta)
 
 # Configuring Custom Metrics (Beta)
 
@@ -28140,8 +26966,6 @@ You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically
 
 # Adoption Report
 
-# Adoption Report
-
 This topic describes the insights in the **Adoption** section on the Replicated Vendor Portal **Dashboard** page.
 
 ## About Adoption Rate
@@ -28254,8 +27078,6 @@ The following table describes each metric in the **Adoption** section, including
 
 # Customer Reporting
 
-# Customer Reporting
-
 This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated Vendor Portal.
 
 ## About the Customer Reporting Page {#reporting-page}
@@ -28348,8 +27170,6 @@ The **Instances** section displays the following details about each active insta
 
 # Data Availability and Continuity
 
-# Data Availability and Continuity
-
 Replicated uses redundancy and a cloud-native architecture in support of availability and continuity of vendor data.
 
 ## Data Storage Architecture
@@ -28390,8 +27210,6 @@ For additional data redundancy, an offsite data backup add-on is available to co
 
 # About Managing Stateful Services
 
-# About Managing Stateful Services
-
 This topic provides recommendations for managing stateful services that you install into existing clusters.
 
 ## Preflight Checks for Stateful Services
@@ -28409,8 +27227,6 @@ For an example of integrating persistent datastores, see [Example: Adding Databa
 
 ---
 
-
-# Disaster Recovery for Embedded Cluster (Alpha)
 
 # Disaster Recovery for Embedded Cluster (Alpha)
 
@@ -28673,8 +27489,6 @@ To restore from a backup:
 ---
 
 
-# Embedded Cluster Overview
-
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
@@ -28811,8 +27625,6 @@ Embedded Cluster has the following limitations:
 
 ---
 
-
-# Using Embedded Cluster
 
 import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
@@ -29095,8 +27907,6 @@ If you include the NVIDIA GPU Operator as a Helm extension, remove any existing 
 ---
 
 
-# Using the Proxy Registry with Helm Installations
-
 import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 
@@ -29235,8 +28045,6 @@ To enable the proxy registry:
 ---
 
 
-# Installing and Updating with Helm in Air Gap Environments
-
 import Prerequisites from "../partials/helm/_helm-install-prereqs.mdx"
 
 # Installing and Updating with Helm in Air Gap Environments
@@ -29347,8 +28155,6 @@ You can integrate the Replicated proxy registry with an existing Harbor or jFrog
 ---
 
 
-# About Helm Installations with Replicated
-
 import Helm from "../partials/helm/_helm-definition.mdx"
 
 # About Helm Installations with Replicated
@@ -29395,8 +28201,6 @@ Helm installations have the following limitations:
 
 ---
 
-
-# Packaging a Helm Chart for a Release
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
@@ -29460,8 +28264,6 @@ To package a Helm chart so that it can be added to a release:
 
 # Troubleshooting Helm Installations with Replicated
 
-# Troubleshooting Helm Installations with Replicated
-
 This topic provides troubleshooting information for common issues related to performing installations and upgrades with the Helm CLI.
 
 ## Installation Fails for Release With Multiple Helm Charts {#air-gap-values-file-conflict}
@@ -29488,8 +28290,6 @@ Alternatively, if a release contains charts that must use the same name, convert
 
 ---
 
-
-# Helm global.replicated Values Schema
 
 import SdkValues from "../partials/replicated-sdk/_sdk-values.mdx"
 
@@ -29555,8 +28355,6 @@ The `global.replicated` values schema contains the following fields:
 
 ---
 
-
-# About Distributing Helm Charts with KOTS
 
 import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
@@ -29818,8 +28616,6 @@ The following limitations apply when using version `kots.io/v1beta1` of the Helm
 
 ---
 
-
-# Configuring the HelmChart Custom Resource v2
 
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
@@ -30199,8 +28995,6 @@ There are different steps for migrating to HelmChart v2 depending on the applica
 
 # Example: Including Optional Helm Charts
 
-# Example: Including Optional Helm Charts
-
 This topic describes using optional Helm charts in your application. It also provides an example of how to configure the Replicated HelmChart custom resource to exclude optional Helm charts from your application when a given condition is met. 
 
 ## About Optional Helm Charts
@@ -30348,8 +29142,6 @@ Finally, edit the HelmChart custom resource:
 
 ---
 
-
-# Setting Helm Values with KOTS
 
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
@@ -30572,8 +29364,6 @@ For more information about using a `null` value to delete a key, see [Deleting a
 ---
 
 
-# Packaging Air Gap Bundles for Helm Charts
-
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
@@ -30653,8 +29443,6 @@ Many applications have images that are included or excluded based on a given con
 
 ---
 
-
-# Migrating Existing Installations to HelmChart v2
 
 # Migrating Existing Installations to HelmChart v2
 
@@ -30863,8 +29651,6 @@ For more information about how KOTS deploys Helm charts, including information a
 
 ---
 
-
-# Enabling and Configuring Identity Service (Beta)
 
 :::important
 This topic is deleted from the product documentation because this Beta feature is deprecated.
@@ -31093,8 +29879,6 @@ spec:
 ---
 
 
-# Enabling and Understanding Application Status
-
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
@@ -31183,8 +29967,6 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 ---
 
-
-# Installing with Helm
 
 import Prerequisites from "../partials/helm/_helm-install-prereqs.mdx"
 import FirewallOpeningsIntro from "../partials/install/_firewall-openings-intro.mdx"
@@ -31278,8 +30060,6 @@ To install a Helm chart:
 ---
 
 
-# Installer History
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Installer History
@@ -31319,8 +30099,6 @@ The **kURL Installer History** page includes the following information for each 
 
 ---
 
-
-# Export Customer and Instance Data
 
 import Download from "../partials/customers/_download.mdx"
 
@@ -31676,8 +30454,6 @@ The following table lists the data fields that can be included in the customers 
 
 ---
 
-
-# Instance Details
 
 # Instance Details
 
@@ -32057,8 +30833,6 @@ For more information about configuring custom metrics, see [Configuring Custom M
 ---
 
 
-# About Instance and Event Data
-
 import AirGapTelemetry from "../partials/instance-insights/_airgap-telemetry.mdx"
 
 # About Instance and Event Data
@@ -32165,8 +30939,6 @@ The Vendor Portal has the following limitations for reporting instance data and 
 ---
 
 
-# Configuring Instance Notifications (Beta)
-
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
@@ -32229,8 +31001,6 @@ There is a 30-second buffer between event detection and notifications being sent
 
 ---
 
-
-# Replicated FAQs
 
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import EmbeddedKubernetes from "../partials/kots/_embedded-kubernetes-definition.mdx"
@@ -32448,8 +31218,6 @@ For more information, see [About Instance and Event Data](/vendor/instance-insig
 ---
 
 
-# Introduction to kURL
-
 import KurlDefinition from "../partials/kurl/_kurl-definition.mdx"
 import Installers from "../partials/kurl/_installers.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
@@ -32506,8 +31274,6 @@ The open source kURL documentation contains additional information including kUR
 
 ---
 
-
-# Exposing Services Using NodePorts
 
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
@@ -32633,8 +31399,6 @@ For example:
 ---
 
 
-# Resetting a kURL Cluster
-
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Resetting a kURL Cluster
@@ -32667,8 +31431,6 @@ If the `reset` command is unsuccessful, discard your current VM, and recreate th
 
 ---
 
-
-# About Community Licenses
 
 # About Community Licenses
 
@@ -32712,8 +31474,6 @@ For applications installed with KOTS, the branding in the admin console for comm
 
 ---
 
-
-# About Customers and Licensing
 
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
@@ -32907,8 +31667,6 @@ Unless the existing customer is using a community license, it is not possible to
 
 # Managing Customer License Fields
 
-# Managing Customer License Fields
-
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 
 ## Set Initial Values for Built-In License Fields (Beta)
@@ -33022,8 +31780,6 @@ To delete a custom license field:
 ---
 
 
-# Downloading Customer Licenses
-
 import AirGapLicenseDownload from "../partials/install/_airgap-license-download.mdx"
 
 # Downloading Customer Licenses
@@ -33055,8 +31811,6 @@ To enable the air gap entitlement and download the license:
 
 ---
 
-
-# Managing Install Types for a License
 
 import InstallerOnlyAnnotation from "../partials/helm/_installer-only-annotation.mdx"
 
@@ -33189,8 +31943,6 @@ Otherwise, if the **KOTS Install Enabled** field is disabled for the existing li
 
 # Checking Entitlements in Helm Charts Before Deployment
 
-# Checking Entitlements in Helm Charts Before Deployment
-
 This topic describes how to check license entitlements before a Helm chart is installed or upgraded. The information in this topic applies to Helm charts installed with Replicated KOTS or Helm.
 
 The Replicated SDK API can be used to check entitlements at runtime. For more information, see [Querying Entitlements with the Replicated SDK API](licenses-reference-sdk).
@@ -33248,8 +32000,6 @@ To check entitlements before installation:
 
 ---
 
-
-# Querying Entitlements with the KOTS License API
 
 # Querying Entitlements with the KOTS License API
 
@@ -33315,8 +32065,6 @@ rp({
 
 ---
 
-
-# Querying Entitlements with the Replicated SDK API
 
 # Querying Entitlements with the Replicated SDK API
 
@@ -33415,8 +32163,6 @@ To use the SDK API to query entitlements at runtime:
 
 # Checking Entitlements in Preflights with KOTS Template Functions
 
-# Checking Entitlements in Preflights with KOTS Template Functions
-
 This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
 ## Overview
@@ -33465,8 +32211,6 @@ For more information about defining preflight checks, see [Defining Preflight Ch
 
 ---
 
-
-# Built-In License Fields
 
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
@@ -33676,8 +32420,6 @@ The table below describes the built-in license fields related to the Admin Conso
 
 # Verifying License Field Signatures with the Replicated SDK API
 
-# Verifying License Field Signatures with the Replicated SDK API
-
 This topic describes how to verify the signatures of license fields when checking customer license entitlements with the Replicated SDK.
 
 ## Overview
@@ -33734,8 +32476,6 @@ To use your public key to verify license field signatures:
 
 # Application Namespaces
 
-# Application Namespaces
-
 Replicated strongly recommends that applications are architected to deploy a single application into a single namespace when possible. 
 
 If you are distributing your application with Replicated KOTS, you can implement an architecture in which a single application is deployed into a single namespace.
@@ -33782,8 +32522,6 @@ spec:
 
 ---
 
-
-# Offsite Data Backup
 
 # Offsite Data Backup
 
@@ -33835,8 +32573,6 @@ vendor registry and the customer portal when offsite data backup is enabled.
 ---
 
 
-# Defining Additional Images
-
 import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
 
 # Defining Additional Images
@@ -33878,8 +32614,6 @@ spec:
 
 ---
 
-
-# Defining Additional Namespaces
 
 # Defining Additional Namespaces
 
@@ -33939,8 +32673,6 @@ This will ensure that the Admin Console will continue to have permissions to all
 
 # About Packaging a Kubernetes Operator Application
 
-# About Packaging a Kubernetes Operator Application
-
 Kubernetes Operators can be packaged and delivered as an application using the same methods as other Kubernetes applications.
 
 Operators are good for [specific use cases](https://blog.replicated.com/operators-in-kots/). In general, we recommend thinking deeply about the problem space an application solves before going down the Operator path because, although powerful, Operators take a lot of time to build and maintain.
@@ -33958,8 +32690,6 @@ An application includes a definition for the developer to list the additional im
 
 ---
 
-
-# Referencing Images
 
 # Referencing Images
 
@@ -34086,8 +32816,6 @@ The developer of the Operator should use these environment variables to change t
 
 ---
 
-
-# Orchestrating Resource Deployment
 
 import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
@@ -34241,8 +32969,6 @@ status:
 
 # Excluding MinIO from Air Gap Bundles (Beta)
 
-# Excluding MinIO from Air Gap Bundles (Beta)
-
 The Replicated KOTS Admin Console requires an S3-compatible object store to store application archives and support bundles. By default, KOTS deploys MinIO to satisfy the object storage requirement. For more information about the options for installing without MinIO in existing clusters, see [Installing KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).
 
 As a software vendor, you can exclude MinIO images from all Admin Console air gap distributions (`kotsadm.tar.gz`) in the download portal. Excluding MinIO from the `kotsadm.tar.gz` air gap bundle is useful if you want to prevent MinIO images from appearing in the air gap distribution that your end users download. It also reduces the file size of `kotsadm.tar.gz`.
@@ -34264,8 +32990,6 @@ To exclude MinIO from the `kotsadm.tar.gz` Admin Console air gap bundle:
 
 ---
 
-
-# Cleaning Up Kubernetes Jobs
 
 # Cleaning Up Kubernetes Jobs
 
@@ -34315,8 +33039,6 @@ spec:
 
 ---
 
-
-# Creating a kURL Installer
 
 import Installers from "../partials/kurl/_installers.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
@@ -34488,8 +33210,6 @@ When creating a kURL installer, consider the following requirements and guidelin
 
 # Conditionally Including or Excluding Resources
 
-# Conditionally Including or Excluding Resources
-
 This topic describes how to include or exclude optional application resources based on one or more conditional statements. The information in this topic applies to Helm chart- and standard manifest-based applications.
 
 ## Overview
@@ -34620,8 +33340,6 @@ spec:
 
 # Adding Cluster Ingress Options
 
-# Adding Cluster Ingress Options
-
 When delivering a configurable application, ingress can be challenging as it is very cluster specific.
 Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters, including embedded clusters created with Replicated kURL.
 
@@ -34739,8 +33457,6 @@ spec:
 
 ---
 
-
-# About Selecting Storage Add-ons
 
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
@@ -34907,8 +33623,6 @@ For more information about properties for the Rook add-on, see [Rook](https://ku
 
 # Setting Minimum and Target Versions for KOTS
 
-# Setting Minimum and Target Versions for KOTS
-
 This topic describes how to set minimum and target version for Replicated KOTS in the KOTS [Application](/reference/custom-resource-application) custom resource.
 
 ## Limitation
@@ -34959,8 +33673,6 @@ For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/do
 
 ---
 
-
-# Connecting to an External Registry
 
 # Connecting to an External Registry
 
@@ -35223,8 +33935,6 @@ replicated registry test index.docker.io --image my-company/my-image:v1.2.3
 
 # Replicated Registry Security
 
-# Replicated Registry Security
-
 This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private. For more information about pushing images to the Replicated registry, see [Using the Replicated Registry for KOTS Installations](private-images-replicated).
 
 
@@ -35275,8 +33985,6 @@ Replicated completed a formal pen test that included the private registry in the
 
 ---
 
-
-# Connecting to a Public Registry through the Proxy Registry
 
 # Connecting to a Public Registry through the Proxy Registry
 
@@ -35344,8 +34052,6 @@ For information about how to set a custom domain for the proxy registry, see [Us
 
 ---
 
-
-# Configuring KOTS RBAC
 
 # Configuring KOTS RBAC
 
@@ -35466,8 +34172,6 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 ---
 
-
-# Using TLS Certificates
 
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
@@ -35602,8 +34306,6 @@ spec:
 
 # Customer Application Deployment Questionnaire
 
-# Customer Application Deployment Questionnaire
-
 Before you package and distribute an application, Replicated recommends that you
 understand several key characteristics about the environments where your customers
 will deploy your application.
@@ -35681,8 +34383,6 @@ If it’s more convenient, limit answers to the scope of the target infrastructu
 
 # Data Transmission Policy
 
-# Data Transmission Policy
-
 A Replicated installation connects to a Replicated-hosted endpoint periodically to perform various tasks including checking for updates and synchronizing the installed license properties. During this time, some data is transmitted from an installed instance to the Replicated API. This data is limited to:
 
 - The IP address of the primary Replicated instance.
@@ -35705,8 +34405,6 @@ Last modified December 31, 2023
 
 ---
 
-
-# Infrastructure and Subprocessor Providers
 
 
 # Infrastructure and Subprocessor Providers
@@ -35754,8 +34452,6 @@ Last modified January 4, 2024
 
 ---
 
-
-# Support Lifecycle Policy
 
 # Support Lifecycle Policy
 
@@ -35894,8 +34590,6 @@ Last modified January 2, 2025.
 ---
 
 
-# Vulnerability Patch Policy
-
 
 # Vulnerability Patch Policy
 
@@ -35969,8 +34663,6 @@ Last modified January 29, 2025.
 
 ---
 
-
-# Defining Preflight Checks
 
 # Defining Preflight Checks
 
@@ -36093,8 +34785,6 @@ For common examples of collectors and analyzers used in preflight checks, see [E
 
 ---
 
-
-# Example Preflight Specs
 
 import HttpSecret from "../partials/preflights/_http-requests-secret.mdx"
 import HttpCr from "../partials/preflights/_http-requests-cr.mdx"
@@ -36294,8 +34984,6 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 # Customizing Host Preflight Checks for kURL
 
-# Customizing Host Preflight Checks for kURL
-
 This topic provides information about how to customize host preflight checks for installations with Replicated kURL. For information about the default host preflight checks that run for installations with Replicated Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.
 
 ## About Host Preflight Checks
@@ -36484,8 +35172,6 @@ spec:
 
 # Running Preflight Checks for Helm Installations
 
-# Running Preflight Checks for Helm Installations
-
 This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
 
 ## Overview
@@ -36605,8 +35291,6 @@ To save the results of preflight checks to a `.txt` file, users can can press `s
 
 ---
 
-
-# About Preflight Checks and Support Bundles
 
 import Overview from "../partials/preflights/_preflights-sb-about.mdx"
 
@@ -36764,8 +35448,6 @@ For more information, see [Generating Support Bundles](support-bundle-generating
 
 # About the Replicated Proxy Registry
 
-# About the Replicated Proxy Registry
-
 This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images or allow pull through access of public images.
 
 ## Overview
@@ -36796,8 +35478,6 @@ For more information about how to pull public images through the proxy registry,
 
 ---
 
-
-# Using the Proxy Registry with KOTS Installations
 
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import StepCreds from "../partials/proxy-service/_step-creds.mdx"
@@ -36875,8 +35555,6 @@ To enable the proxy registry:
 
 ---
 
-
-# Using the Replicated Registry for KOTS Installations
 
 import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
@@ -36964,8 +35642,6 @@ Docker format:
 
 # Using Image Tags and Digests
 
-# Using Image Tags and Digests
-
 This topic describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, and how to enable support for image digests in air gap bundles.
 
 ## Support for Image Tags and Digests
@@ -37039,8 +35715,6 @@ To enable the new air gap bundle format on a channel:
 
 ---
 
-
-# Replicated Quick Start
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
@@ -37486,8 +36160,6 @@ For additional tutorials related to this quick start, see:
 ---
 
 
-# About Channels and Releases
-
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
@@ -37749,8 +36421,6 @@ You can do the following tasks on the **Draft** page:
 
 # Creating and Editing Channels
 
-# Creating and Editing Channels
-
 This topic describes how to create and edit channels using the Replicated Vendor Portal. For more information about channels, see [About Channels and Releases](releases-about).
 
 For information about creating channels with the Replicated CLI, see [channel create](/reference/replicated-cli-channel-create).
@@ -37823,8 +36493,6 @@ To archive a channel with the Vendor Portal or the Replicated CLI:
 
 ---
 
-
-# Managing Releases with the CLI
 
 # Managing Releases with the CLI
 
@@ -37942,8 +36610,6 @@ To create and promote a release:
 
 ---
 
-
-# Creating and Managing Customers
 
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import Download from "../partials/customers/_download.mdx"
@@ -38063,8 +36729,6 @@ If you want to filter information using multiple license types or channels, you 
 
 ---
 
-
-# Managing Releases with the Vendor Portal
 
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
@@ -38197,8 +36861,6 @@ To demote a release in the Vendor Portal:
 ---
 
 
-# Downloading Assets from the Download Portal
-
 import DownloadPortal from "../partials/kots/_download-portal-about.mdx"
 
 # Downloading Assets from the Download Portal
@@ -38288,8 +36950,6 @@ and preview your customer's experience.
 
 ---
 
-
-# Finding Installation Commands for a Release
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
@@ -38431,8 +37091,6 @@ To get customer-specific Helm or Embedded Cluster installation instructions:
 ---
 
 
-# Generating API Tokens
-
 import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 # Generating API Tokens
@@ -38535,8 +37193,6 @@ To generate a user API token:
 
 ---
 
-
-# Replicated Onboarding 
 
 import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
@@ -39127,8 +37783,6 @@ For guidance on how to get started with documentation for applications distribut
 
 # Installing the SDK in Air Gap Environments
 
-# Installing the SDK in Air Gap Environments
-
 This topic explains how to install the Replicated SDK in air gap environments by enabling air gap mode.
 
 ## Overview
@@ -39172,8 +37826,6 @@ When the SDK is installed by KOTS in an air gap environment, KOTS automatically 
 
 ---
 
-
-# Customizing the Replicated SDK
 
 # Customizing the Replicated SDK
 
@@ -39426,8 +38078,6 @@ replicated:
 ---
 
 
-# Developing Against the SDK API
-
 import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
 
 # Developing Against the SDK API
@@ -39469,8 +38119,6 @@ To port forward the SDK API service to your local machine:
 
 ---
 
-
-# Installing the Replicated SDK
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
@@ -39658,8 +38306,6 @@ To solve this issue:
 ---
 
 
-# About the Replicated SDK
-
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import SdkValues from "../partials/replicated-sdk/_sdk-values.mdx"
 
@@ -39697,8 +38343,6 @@ When serving requests, if the upstream APIs become unavailable, the SDK serves f
 
 ---
 
-
-# SLSA Provenance Validation Process for the Replicated SDK
 
 # SLSA Provenance Validation Process for the Replicated SDK
 
@@ -39754,8 +38398,6 @@ slsa-verifier verify-image "${IMAGE_WITH_DIGEST}" \
 
 ---
 
-
-# Templating Annotations
 
 # Templating Annotations
 
@@ -40023,8 +38665,6 @@ In your Helm chart templates, you can access these values from the `values.yaml`
 
 # Configuring Snapshots
 
-# Configuring Snapshots
-
 This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 
 For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
@@ -40120,8 +38760,6 @@ To configure snapshots for your application:
 
 ---
 
-
-# Configuring Backup and Restore Hooks for Snapshots
 
 # Configuring Backup and Restore Hooks for Snapshots
 
@@ -40226,8 +38864,6 @@ The `extraVolumeMounts` field mounts the volume into the `/scratch` directory of
 
 ---
 
-
-# About Backup and Restore with Snapshots
 
 import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
 import NoEcSupport from "../partials/snapshots/_limitation-no-ec-support.mdx"
@@ -40389,8 +39025,6 @@ To support end users with backup and restore, use the following resources:
 
 ---
 
-
-# Adding and Customizing Support Bundles
 
 # Adding and Customizing Support Bundles
 
@@ -40583,8 +39217,6 @@ For common examples of collectors and analyzers used in support bundle specs, se
 ---
 
 
-# Generating Support Bundles for Embedded Cluster
-
 import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
 import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
 
@@ -40604,8 +39236,6 @@ For information about generating host support bundles for Replicated kURL instal
 
 ---
 
-
-# Example Support Bundle Specs
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -40775,8 +39405,6 @@ For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-po
 ---
 
 
-# Generating Support Bundles
-
 import InstallPlugin from "../partials/support-bundles/_install-plugin.mdx"
 import GenerateBundle from "../partials/support-bundles/_generate-bundle.mdx"
 
@@ -40806,8 +39434,6 @@ kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troublesho
 
 ---
 
-
-# Enabling Support Bundle Uploads (Beta)
 
 # Enabling Support Bundle Uploads (Beta)
 
@@ -40845,8 +39471,6 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 
 ---
 
-
-# Generating Host Bundles for kURL
 
 import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
 
@@ -40929,8 +39553,6 @@ Do not store support bundles on public shares, as they may still contain informa
 
 # Inspecting Support Bundles
 
-# Inspecting Support Bundles
-
 You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files. Use this information to get insights and help troubleshoot your customer issues.
 
 To inspect a support bundle:
@@ -40976,8 +39598,6 @@ To inspect a support bundle:
 
 ---
 
-
-# About Creating Modular Support Bundle Specs
 
 # About Creating Modular Support Bundle Specs
 
@@ -41060,8 +39680,6 @@ For more information and additional options, see [Generating Support Bundles](su
 
 # Making Support Bundle Specs Available Online
 
-# Making Support Bundle Specs Available Online
-
 This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
 
 ## Overview
@@ -41134,8 +39752,6 @@ For more information about the URI, see [Troubleshoot schema supports a `uri://`
 
 # Submitting a Support Request
 
-# Submitting a Support Request
-
 You can submit a support request and a support bundle using the Replicated Vendor Portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
 ### Prerequisites
@@ -41168,8 +39784,6 @@ To submit a support request:
 
 ---
 
-
-# Managing Collab Repository Access
 
 import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
@@ -41317,8 +39931,6 @@ For more information about how to edit the `allowed:` or `denied:` lists for cus
 
 # Managing Google Authentication
 
-# Managing Google Authentication
-
 This topic describes the Google authentication options that you can configure to control access to the Replicated Vendor Portal.
 
 ## Manage Google Authentication Options
@@ -41360,8 +39972,6 @@ Google authentication is not entirely compatible with Replicated two-factor auth
 
 ---
 
-
-# Configuring RBAC Policies
 
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
@@ -41628,8 +40238,6 @@ In the following example, a policy grants access to viewing all customers, but n
 
 ---
 
-
-# RBAC Resource Names
 
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
@@ -42061,8 +40669,6 @@ Grants the holder permission to delete user tokens.
 
 # Managing SAML Authentication
 
-# Managing SAML Authentication
-
 This topic describes how to enable or disable SAML authentication for the Replicated Vendor Portal.
 
 ## About Using SAML with the Vendor Portal
@@ -42204,8 +40810,6 @@ To disable SAML enforcement:
 ---
 
 
-# Configuring a Slack Webhook (Beta)
-
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
@@ -42248,8 +40852,6 @@ To configure the Slack webhook:
 
 ---
 
-
-# Managing Two-Factor Authentication
 
 # Managing Two-Factor Authentication
 
@@ -42340,8 +40942,6 @@ To enable or disable 2FA for a team:
 
 ---
 
-
-# Managing Team Members
 
 import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.mdx"
@@ -42473,8 +41073,6 @@ To update the email address for a team member:
 ---
 
 
-# Collecting Telemetry for Air Gap Instances
-
 import AirGapTelemetry from "../partials/instance-insights/_airgap-telemetry.mdx"
 
 # Collecting Telemetry for Air Gap Instances
@@ -42536,8 +41134,6 @@ To collect telemetry from air gap instances:
 
 ---
 
-
-# About Compatibility Matrix
 
 import Overview from "../partials/cmx/_overview.mdx"
 import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
@@ -42635,8 +41231,6 @@ For additional distribution-specific limitations, see [Supported Compatibility M
 
 # Compatibility Matrix Cluster Add-ons (Alpha)
 
-# Compatibility Matrix Cluster Add-ons (Alpha)
-
 This topic describes the supported cluster add-ons for Replicated Compatibility Matrix.
 
 ## Overview
@@ -42717,8 +41311,6 @@ Additional service accounts can be created in any namespace with access to the o
 
 ---
 
-
-# Using Compatibility Matrix
 
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
@@ -43040,8 +41632,6 @@ Incorporating code tests into your CI/CD workflows is important for ensuring tha
 
 # Accessing Your Application
 
-# Accessing Your Application
-
 This topic describes the networking options for accessing applications deployed on clusters created with Replicated Compatibility Matrix. It also describes how to use and manage Compatibility Matrix tunnels.
 
 ## Networking Options
@@ -43158,8 +41748,6 @@ Removing all protocols also removes the DNS record and TLS cert.
 
 ---
 
-
-# Compatibility Matrix Pricing
 
 # Compatibility Matrix Pricing
 
@@ -43988,8 +42576,6 @@ Last modified January 06, 2025
 ---
 
 
-# Supported Compatibility Matrix Cluster Types
-
 import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
@@ -44513,8 +43099,6 @@ We do not maintain forks or patches of the supported distributions. When a Kuber
 
 ---
 
-
-# Example: Adding Database Configuration Options
 
 # Example: Adding Database Configuration Options
 
@@ -45474,8 +44058,6 @@ If you'd like at this point, you can integrate a real database in your environme
 
 # Step 2: Create an Application
 
-# Step 2: Create an Application
-
 After you install the Replicated CLI and create an API token, you can use the CLI to create a new application.
 
 To create an application:
@@ -45519,8 +44101,6 @@ Continue to [Step 3: Get the Sample Manifests](tutorial-cli-manifests) to downlo
 
 ---
 
-
-# Step 5: Create a Customer
 
 # Step 5: Create a Customer
 
@@ -45632,8 +44212,6 @@ Continue to [Step 6: Install KOTS and the Application](tutorial-cli-install-app-
 
 ---
 
-
-# Step 8: Create a New Version
 
 # Step 8: Create a New Version
 
@@ -45781,8 +44359,6 @@ Continue to [Step 9: Update the Application](tutorial-cli-update-app) to return 
 
 # Step 4: Create a Release
 
-# Step 4: Create a Release
-
 Now that you have the manifest files for the sample Kubernetes application, you can create a release for the `cli-tutorial` application and promote the release to the Unstable channel.
 
 By default, the Vendor Portal includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Channels and Releases](releases-about).
@@ -45873,8 +44449,6 @@ Continue to [Step 5: Create a Customer](tutorial-cli-create-customer) to create 
 
 # Step 7: Configure the Application
 
-# Step 7: Configure the Application
-
 After you install KOTS, you can log in to the KOTS Admin Console. This procedure shows you how to make a configuration change for the application from the Admin Console, which is a typical task performed by end users.
 
 To configure the application:
@@ -45924,8 +44498,6 @@ Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to m
 
 ---
 
-
-# Step 6: Install KOTS and the Application
 
 # Step 6: Install KOTS and the Application
 
@@ -46035,8 +44607,6 @@ Continue to [Step 7: Configure the Application](tutorial-cli-deploy-app) to log 
 
 # Step 1: Install the Replicated CLI
 
-# Step 1: Install the Replicated CLI
-
 In this tutorial, you use the Replicated CLI to create and promote releases for a sample application with Replicated. The Replicated CLI is the CLI for the Replicated Vendor Portal.
 
 This procedure describes how to create a Vendor Portal account, install the Replicated CLI on your local machine, and set up a `REPLICATED_API_TOKEN` environment variable for authentication.
@@ -46122,8 +44692,6 @@ Continue to [Step 2: Create an Application](tutorial-cli-create-app) to use the 
 
 # Step 3: Get the Sample Manifests
 
-# Step 3: Get the Sample Manifests
-
 To create a release for the `cli-tutorial` application, first create the Kubernetes manifest files for the application. This tutorial provides a set of sample manifest files for a simple Kubernetes application that deploys an NGINX service.
 
 To get the sample manifest files:
@@ -46161,8 +44729,6 @@ Continue to [Step 4: Create a Release](tutorial-cli-create-release) to create an
 
 ---
 
-
-# Introduction and Setup
 
 import KubernetesTraining from "../partials/getting-started/_kubernetes-training.mdx"
 import LabsIntro from "../partials/getting-started/_labs-intro.mdx"
@@ -46203,8 +44769,6 @@ As part of this tutorial, you will install a sample application into a Kubernete
 
 ---
 
-
-# Step 9: Update the Application
 
 # Step 9: Update the Application
 
@@ -46268,8 +44832,6 @@ Congratulations! As part of this tutorial, you:
 
 ---
 
-
-# Step 2: Create an Application
 
 # Step 2: Create an Application
 
@@ -46338,8 +44900,6 @@ Add the Replicated SDK to the Helm chart and package the chart to an archive. Se
 
 # Step 5: Create a KOTS-Enabled Customer
 
-# Step 5: Create a KOTS-Enabled Customer
-
 After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS.
 
 To create a customer:
@@ -46379,8 +44939,6 @@ Get the KOTS installation command and install. See [Step 6: Install the Release 
 
 ---
 
-
-# Step 4: Add the Chart Archive to a Release
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -46522,8 +45080,6 @@ Create a customer with the KOTS entitlement so that you can install the release 
 
 # Step 1: Get the Sample Chart and Test
 
-# Step 1: Get the Sample Chart and Test
-
 To begin, get the sample Grafana Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall. The purpose of this step is to confirm that you can successfully install and access the application before adding the chart to a release in the Replicated vendor platform.
 
 To get the sample Grafana chart and test installation:
@@ -46644,8 +45200,6 @@ Log in to the Vendor Portal and create an application. See [Step 2: Create an Ap
 
 ---
 
-
-# Step 6: Install the Release with KOTS
 
 # Step 6: Install the Release with KOTS
 
@@ -46806,8 +45360,6 @@ To learn more about how to customize the Config custom resource to create config
 ---
 
 
-# Step 3: Package the Helm Chart
-
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 
@@ -46844,8 +45396,6 @@ Create a release using the Helm chart archive. See [Step 4: Add the Chart Archiv
 
 # Introduction and Setup
 
-# Introduction and Setup
-
 This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
 
 ## Summary
@@ -46867,8 +45417,6 @@ Get the sample Bitnami Helm chart and test installation with the Helm CLI. See [
 
 ---
 
-
-# Tutorial: Using ECR for Private Images
 
 # Tutorial: Using ECR for Private Images
 
@@ -47177,8 +45725,6 @@ The install of the new version should have created a new pod. If we run `kubectl
 
 # Step 1: Create an Application
 
-# Step 1: Create an Application
-
 To begin, install the Replicated CLI and create an application in the Replicated Vendor Portal.
 
 An _application_ is an object that has its own customers, channels, releases, license fields, and more. A single team can have more than one application. It is common for teams to have multiple applications for the purpose of onboarding, testing, and iterating.
@@ -47246,8 +45792,6 @@ Add the Replicated SDK to the Helm chart and package the chart to an archive. Se
 
 # Step 4: Create an Embedded Cluster-Enabled Customer
 
-# Step 4: Create an Embedded Cluster-Enabled Customer
-
 After promoting the release, create a customer with the Replicated KOTS and Embedded Cluster entitlements so that you can install the release with Embedded Cluster. A _customer_ represents a single licensed user of your application.
 
 To create a customer:
@@ -47283,8 +45827,6 @@ Get the Embedded Cluster installation commands and install. See [Step 5: Install
 
 ---
 
-
-# Step 3: Add the Chart Archive to a Release
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -47422,8 +45964,6 @@ Create a customer with the Embedded Cluster entitlement so that you can install 
 ---
 
 
-# Step 5: Install the Release on a VM
-
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
 # Step 5: Install the Release on a VM
@@ -47539,8 +46079,6 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 ---
 
 
-# Step 2: Package the Gitea Helm Chart
-
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 
@@ -47597,8 +46135,6 @@ Create a release using the Helm chart archive. See [Step 3: Add the Chart Archiv
 ---
 
 
-# Introduction and Setup
-
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Introduction and Setup
@@ -47626,8 +46162,6 @@ Install the Replicated CLI and create an application in the Replicated Vendor Po
 
 ---
 
-
-# Step 2: Create an Application
 
 # Step 2: Create an Application
 
@@ -47698,8 +46232,6 @@ Add the Replicated SDK to the Helm chart and package the chart to an archive. Se
 
 # Step 5: Create a KOTS-Enabled Customer
 
-# Step 5: Create a KOTS-Enabled Customer
-
 After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS. A _customer_ represents a single licensed user of your application.
 
 To create a customer:
@@ -47739,8 +46271,6 @@ Get the KOTS installation command and install. See [Step 6: Install the Release 
 
 ---
 
-
-# Step 4: Add the Chart Archive to a Release
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -47871,8 +46401,6 @@ Create a customer with the KOTS entitlement so that you can install the release 
 
 # Step 1: Get the Sample Chart and Test
 
-# Step 1: Get the Sample Chart and Test
-
 To begin, get the sample Gitea Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall. The purpose of this step is to confirm that you can successfully install and access the application before adding the chart to a release in the Replicated Vendor Portal.
 
 To get the sample Gitea Helm chart and test installation:
@@ -47981,8 +46509,6 @@ Log in to the Vendor Portal and create an application. See [Step 2: Create an Ap
 
 ---
 
-
-# Step 7: Install the Release with the Helm CLI
 
 # Step 7: Install the Release with the Helm CLI
 
@@ -48105,8 +46631,6 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 
 ---
 
-
-# Step 6: Install the Release with KOTS
 
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 
@@ -48260,8 +46784,6 @@ Install the same release with the Helm CLI. See [Step 7: Install the Release wit
 ---
 
 
-# Step 3: Package the Helm Chart
-
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
 
@@ -48299,8 +46821,6 @@ Create a release using the Helm chart archive. See [Step 4: Add the Chart Archiv
 
 ---
 
-
-# Introduction and Setup
 
 # Introduction and Setup
 
@@ -48348,8 +46868,6 @@ Get the sample Bitnami Helm chart and test installation with the Helm CLI. See [
 
 ---
 
-
-# Step 2: Add a Preflight Spec to the Chart
 
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
@@ -48425,8 +46943,6 @@ Add the chart archive to a release. See [Add the Chart Archive to a Release](tut
 
 # Step 4: Create a Customer
 
-# Step 4: Create a Customer
-
 After promoting the release, create a customer so that you can run the preflight checks and install.
 
 To create a customer:
@@ -48460,8 +46976,6 @@ Use the Helm CLI to run the preflight checks you defined and install Gitea. See 
 
 ---
 
-
-# Step 3: Add the Chart Archive to a Release
 
 # Step 3: Add the Chart Archive to a Release
 
@@ -48556,8 +47070,6 @@ Create a customer so that you can install the release in a development environme
 
 ---
 
-
-# Step 1: Get the Sample Chart and Test
 
 # Step 1: Get the Sample Chart and Test
 
@@ -48677,8 +47189,6 @@ Define preflight checks and add them to the Gitea Helm chart. See [Add a Preflig
 
 ---
 
-
-# Step 6: Run Preflights with KOTS
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -48885,8 +47395,6 @@ To learn more about defining and running preflight checks, see:
 
 # Step 5: Run Preflights with the Helm CLI
 
-# Step 5: Run Preflights with the Helm CLI
-
 Use the Helm CLI installation instructions provided for the customer that you created to run the preflight checks for Gitea and install. The purpose of this step is to demonstrate how enterprise users can run preflight checks defined in a Helm chart before installing.
 
 To run preflight checks and install with the Helm CLI:
@@ -48960,8 +47468,6 @@ Install the application with KOTS to see how preflight checks are run from the K
 
 # Introduction and Setup
 
-# Introduction and Setup
-
 This topic provides a summary of the goals and outcomes for the tutorial and also lists the prerequisites to set up your environment before you begin.
 
 ## Summary
@@ -49007,8 +47513,6 @@ Get the sample Bitnami Helm chart and test installation with the Helm CLI. See [
 
 ---
 
-
-# Using a Registry Proxy for Helm Air Gap Installations
 
 # Using a Registry Proxy for Helm Air Gap Installations
 
@@ -49089,8 +47593,6 @@ For information about how to configure a pull-through cache with Artifactory, se
 
 # Application Settings Page
 
-# Application Settings Page
-
 Each application has its own settings, which include the application name and application slug.
 
 The following shows the **Application Settings** page, which you access by selecting **_Application Name_ > Settings**:
@@ -49109,8 +47611,6 @@ The following describes each of the application settings:
 
 ---
 
-
-# Creating a Vendor Account
 
 # Creating a Vendor Account
 
@@ -49162,8 +47662,6 @@ Invite team members to collaborate with you in Vendor Portal. See [Invite Member
 
 ---
 
-
-# Managing Applications
 
 # Managing Applications
 

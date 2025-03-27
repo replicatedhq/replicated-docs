@@ -5,7 +5,9 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "repomix && mv llms-docs.txt static/llms/ && docusaurus build",
+    "build": "docusaurus build",
+    "generate-llms": "node static/js/generate-llms.js",
+    "prebuild": "npm run generate-llms",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
