@@ -32,7 +32,7 @@ You will use the following KOTS template functions to conditionally rewrite imag
     <details>
     <summary>What is the registry namespace?</summary>
     
-    The registry namespace is the path between the registry and the image name. For example, `images.mycompany.com/namespace/image:tag`.
+    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
     </details>
 
 ### Task 1a: Rewrite Private Image Names
@@ -44,7 +44,7 @@ To rewrite image names to the location of the image in the proxy registry, use t
 * `<app-slug>` is the unique application slug in the Vendor Portal
 * `<image>` is the path to the image in your registry
 
-For example, if the private image is `quay.io/my-org/nginx:v1.0.1` and `images.mycompany.com` is the custom proxy registry domain, then the image name should be rewritten to `images.mycompany.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
+For example, if the private image is `quay.io/my-org/nginx:v1.0.1` and `images.yourcompany.com` is the custom proxy registry domain, then the image name should be rewritten to `images.yourcompany.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
 
 For more information, see the example below. 
 
@@ -65,7 +65,7 @@ spec:
     image:
     # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry's hostname
     # Else use proxy.replicated.com or your custom proxy registry domain
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.yourcompany.com" }}'
       # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry namespace
       # Else use the image's namespace at the proxy registry domain
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
