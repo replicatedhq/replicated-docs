@@ -36,8 +36,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.5.2",
     "@docusaurus/types": "3.5.2",
-    "typescript": "~5.8.2",
-    "repomix": "0.2.36"
+    "typescript": "~5.8.2"
   },
   "resolutions": {
     "immer": "^10.1.1",
