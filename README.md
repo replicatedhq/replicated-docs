@@ -72,8 +72,3 @@ Before pushing changes to the remote repository, build and serve the site locall
    ```bash
    npm run serve
    ```
-
-## Replicated Documentation for LLMs
-
-- [llms.txt](https://docs.replicated.com/llms/llms.txt): This file provides an overview of the Replicated Documentation
-- [llms-docs.txt](https://docs.replicated.com/llms/llms-docs.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository
