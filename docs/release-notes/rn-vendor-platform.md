@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.03.27-1
+
+Released on March 27, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-27-1}
+* if the custom domain override in the channel matches the default domain, do not fail validation on promoting an Embedded Cluster release.
+
 ## v2025.03.25-0
 
 Released on March 25, 2025
