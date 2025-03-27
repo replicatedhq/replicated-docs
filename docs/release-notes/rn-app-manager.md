@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.10
+
+Released on March 27, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-124-10}
+* Fixes an issue where extracting Helm charts failed on deploy if duplicate files were found in the chart.
+
 ## 1.124.9
 
 Released on March 24, 2025
