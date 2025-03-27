@@ -4,7 +4,7 @@
 
 ## Docs
 
-- [llms-docs.txt](https://docs.replicated.com/llms/llms-docs.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository, excluding certain subdirectories as explained below
+- [llms-docs.txt](https://docs.replicated.com/llms/llms-docs.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository, excluding certain subdirectories as explained in Notes below.
 
 ## Notes
 
