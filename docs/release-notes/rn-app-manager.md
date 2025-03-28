@@ -26,7 +26,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### Improvements {#improvements-1-124-11}
 * Updates to the front end to resolve CVE-2024-4068, CVE-2024-29180 and CVE-2024-29180 with high severity and CVE-2023-44270 with medium severity.
-* Improvements for Embedded Cluster upgrades.
+* Improvements for multi-node Embedded Cluster.
 
 ## 1.124.9
 
