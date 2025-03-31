@@ -12,8 +12,8 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 
 Released on March 27, 2025
 
-### Improvements {#improvements-1-3-0}
-* Updates endpoint resolution to prioritize custom domains provided via params before falling back to the license endpoint.
+### Bug Fixes {#bug-fixes-1-3-0}
+* Fixes an issue where the `replicatedAppDomain` Helm value wasn't consistently applied across all API calls to replicated.app.
 
 ## 1.2.0
 
