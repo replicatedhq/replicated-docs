@@ -71,10 +71,10 @@ const INCLUDED_FILES = [
     // Preflight checks and support bundles
     'vendor/preflight-defining.mdx',
     'vendor/preflight-examples.mdx',
-    'vendor/preflight-host-preflights.mdx',
+    'vendor/preflight-host-preflights.md',
     'vendor/preflight-running.md',
     'vendor/preflight-support-bundle-about.mdx',
-    'vendor/support-bundle-customizing.md',
+    'vendor/support-bundle-customizing.mdx',
     'vendor/support-bundle-examples.mdx',
     'vendor/support-bundle-generating.mdx',
     // Proxy registry docs
