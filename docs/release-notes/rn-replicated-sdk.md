@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.4.0
+
+Released on April 1, 2025
+
+### New Features {#new-features-1-4-0}
+* Adds support for setting `nodeSelector` for the Replicated SDK deployment via the `nodeSelector` Helm value.
+
 ## 1.3.0
 
 Released on March 27, 2025
