@@ -13,7 +13,7 @@ const STATIC_HEADER = `# Replicated Documentation
 
 `;
 
-// Define list of md files
+// Define the specific files for the curated list
 const INCLUDED_FILES = [
     // Add specific file paths, relative to the docs directory
     // Compatibility Matrix docs
@@ -104,6 +104,66 @@ const INCLUDED_FILES = [
     'vendor/vendor-portal-manage-app.md',
 ];
 
+function shouldSkipDirectory(filePath) {
+    const excludedDirs = ['.history', 'release-notes', 'templates', 'pdfs'];
+    return excludedDirs.some(dir => filePath.includes(dir));
+}
+
+function getAllMarkdownFiles(dir, fileList = []) {
+    fs.readdirSync(dir).forEach(file => {
+        const filePath = path.join(dir, file);
+        
+        if (shouldSkipDirectory(filePath)) {
+            return;
+        }
+        
+        if (fs.statSync(filePath).isDirectory()) {
+            getAllMarkdownFiles(filePath, fileList);
+        } else if (path.extname(file) === '.md' || path.extname(file) === '.mdx') {
+            const content = fs.readFileSync(filePath, 'utf8');
+            
+            const titleMatch = content.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : file.replace(/\.(md|mdx)$/, '');
+            
+            const relativePath = filePath
+                .replace(`${DOCS_DIR}/`, '')
+                .replace(/\.(md|mdx)$/, '');
+                
+            fileList.push({
+                path: relativePath,
+                title: title,
+                content: content
+            });
+        }
+    });
+    return fileList;
+}
+
+function getCuratedFiles(dir) {
+    const fileList = [];
+    INCLUDED_FILES.forEach(relativePath => {
+        const filePath = path.join(dir, relativePath);
+        
+        try {
+            const content = fs.readFileSync(filePath, 'utf8');
+            
+            const titleMatch = content.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : path.basename(relativePath).replace(/\.(md|mdx)$/, '');
+            
+            const description = extractFirstSentence(content);
+            
+            fileList.push({
+                path: relativePath.replace(/\.(md|mdx)$/, ''),
+                title: title,
+                description: description
+            });
+        } catch (error) {
+            console.warn(`Warning: Could not process file ${relativePath}: ${error.message}`);
+        }
+    });
+    return fileList;
+}
+
 // Get the description of the page from the first sentence
 function extractFirstSentence(text) {
     // Remove front matter
@@ -156,38 +216,11 @@ function extractFirstSentence(text) {
     return firstParagraph.trim();
 }
 
-function getMarkdownFiles(dir, fileList = []) {
-    INCLUDED_FILES.forEach(relativePath => {
-        const filePath = path.join(dir, relativePath);
-        
-        try {
-            const content = fs.readFileSync(filePath, 'utf8');
-            
-            const titleMatch = content.match(/^#\s+(.+)$/m);
-            const title = titleMatch ? titleMatch[1] : path.basename(relativePath).replace(/\.(md|mdx)$/, '');
-            
-            const description = extractFirstSentence(content);
-            
-            fileList.push({
-                path: relativePath.replace(/\.(md|mdx)$/, ''),
-                title: title,
-                description: description,
-                content: content
-            });
-        } catch (error) {
-            console.warn(`Warning: Could not process file ${relativePath}: ${error.message}`);
-        }
-    });
-    
-    return fileList;
-}
-
-// Generate llms-full.txt (full docs site content in single md file)
 function generateFullLLMsTxt(files) {
     const fullContent = files.map(file => {
         return `${file.content}\n\n---\n\n`;
     }).join('\n');
-
+    
     fs.writeFileSync(OUTPUT_FULL_FILE, fullContent);
     console.log("✅ llms-full.txt generated!");
 }
@@ -200,14 +233,16 @@ function generateLLMsTxt(files) {
             `- [${file.title}](${BASE_URL}/${file.path}.md): ${file.description}`
         )
     ].join('\n');
-
+    
     const fullContent = STATIC_HEADER + dynamicContent;
-
+    
     fs.writeFileSync(OUTPUT_FILE, fullContent);
     console.log("✅ llms.txt generated!");
 }
 
 // Generate both files
-const files = getMarkdownFiles(DOCS_DIR);
-generateFullLLMsTxt(files);
-generateLLMsTxt(files);
+const allFiles = getAllMarkdownFiles(DOCS_DIR);
+const curatedFiles = getCuratedFiles(DOCS_DIR);
+
+generateFullLLMsTxt(allFiles);
+generateLLMsTxt(curatedFiles);

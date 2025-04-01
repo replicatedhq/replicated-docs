@@ -2,6 +2,8 @@ import ConfigContext from "../partials/template-functions/_config-context.mdx"
 
 # Config Context
 
+This topic provides a list of the KOTS template functions in the Config context.
+
 <ConfigContext/>
 
 ## ConfigOption

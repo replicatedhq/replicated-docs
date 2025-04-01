@@ -2,6 +2,8 @@ import IdentityContext from "../partials/template-functions/_identity-context.md
 
 # Identity Context
 
+This topic provides a list of the KOTS template functions in the Identity context.
+
 <IdentityContext/>
 
 ## IdentityServiceEnabled
