@@ -1837,8 +1837,6 @@ KOTS has been tested for compatibility with the following registries:
 
 
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
-import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
 import AirGapLicense from "../partials/install/_airgap-license-download.mdx"
@@ -1854,13 +1852,13 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Air Gap Installation with kURL
 
-<KurlAvailability/>
+This topic describes how to use Replicated kURL to provision a cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
 
-<IntroEmbedded/>
-
-<IntroAirGap/>
+The procedures in this topic apply to installation environments that do not have access to the internet, known as _air-gapped_ environments.
 
 <KurlAbout/>
+
+<KurlAvailability/>
 
 ## Prerequisites
 
@@ -2072,9 +2070,9 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # kURL Installation Requirements
 
-<KurlAvailability/>
-
 This topic lists the installation requirements for Replicated kURL. Ensure that the installation environment meets these requirements before attempting to install.
+
+<KurlAvailability/>
 
 ## Minimum System Requirements
 
@@ -2148,7 +2146,6 @@ You must meet the additional kURL system requirements when applicable:
 
 
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
@@ -2159,11 +2156,11 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Online Installation with kURL
 
-<KurlAvailability/>
-
-<IntroEmbedded/>
+This topic describes how to use Replicated kURL to provision a cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
 
 <KurlAbout/>
+
+<KurlAvailability/>
 
 ## Prerequisites
 
@@ -23299,6 +23296,8 @@ import ConfigContext from "../partials/template-functions/_config-context.mdx"
 
 # Config Context
 
+This topic provides a list of the KOTS template functions in the Config context.
+
 <ConfigContext/>
 
 ## ConfigOption
@@ -24127,6 +24126,8 @@ import IdentityContext from "../partials/template-functions/_identity-context.md
 
 # Identity Context
 
+This topic provides a list of the KOTS template functions in the Identity context.
+
 <IdentityContext/>
 
 ## IdentityServiceEnabled
@@ -24252,6 +24253,8 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # kURL Context
 
+This topic provides a list of the KOTS template functions in the kURL context.
+
 <KurlAvailability/>
 
 ## Overview
@@ -24341,6 +24344,8 @@ Returns all values in the Installer custom resource as key:value pairs, sorted b
 import LicenseContext from "../partials/template-functions/_license-context.mdx"
 
 # License Context
+
+This topic provides a list of the KOTS template functions in the License context.
 
 <LicenseContext/>
 
@@ -24470,6 +24475,8 @@ IsAirgap is `true` when the app is installed via uploading an airgap package, fa
 import StaticContext from "../partials/template-functions/_static-context.mdx"
 
 # Static Context
+
+This topic provides a list of the KOTS template functions in the Static context.
 
 <StaticContext/>
 
@@ -33709,11 +33716,11 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Creating a kURL Installer
 
-<KurlAvailability/>
-
 This topic describes how to create a kURL installer spec in the Replicated Vendor Portal to support installations with Replicated kURL.
 
 For information about creating kURL installers with the Replicated CLI, see [installer create](/reference/replicated-cli-installer-create).
+
+<KurlAvailability/>
 
 ## Overview
 

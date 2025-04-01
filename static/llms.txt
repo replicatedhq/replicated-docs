@@ -38,19 +38,19 @@ For a complete archive of all documentation pages, see [llms-full.txt](https://d
 - [HelmChart v2](https://docs.replicated.com/reference/custom-resource-helmchart-v2.md): This topic describes the KOTS HelmChart v2 custom resource.
 - [About Template Functions](https://docs.replicated.com/reference/template-functions-about.md): This topic describes Replicated KOTS template functions, including information about use cases, template function contexts, syntax.
 - [Template Function Examples](https://docs.replicated.com/reference/template-functions-examples.md): This topic provides examples of how to use Replicated KOTS template functions in various common use cases.
-- [Config Context](https://docs.replicated.com/reference/template-functions-config-context.md): <ConfigContext/>
-- [License Context](https://docs.replicated.com/reference/template-functions-license-context.md): <LicenseContext/>
-- [Static Context](https://docs.replicated.com/reference/template-functions-static-context.md): <StaticContext/>
+- [Config Context](https://docs.replicated.com/reference/template-functions-config-context.md): This topic provides a list of the KOTS template functions in the Config context.
+- [License Context](https://docs.replicated.com/reference/template-functions-license-context.md): This topic provides a list of the KOTS template functions in the License context.
+- [Static Context](https://docs.replicated.com/reference/template-functions-static-context.md): This topic provides a list of the KOTS template functions in the Static context.
 - [About Distributing Helm Charts with KOTS](https://docs.replicated.com/vendor/helm-native-about.md): This topic provides an overview of how Replicated KOTS deploys Helm charts, including an introduction to the KOTS HelmChart custom resource, limitations of deploying Helm charts with KOTS, and more.
 - [Configuring the HelmChart Custom Resource v2](https://docs.replicated.com/vendor/helm-native-v2-using.md): This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with Replicated KOTS.
 - [Packaging Air Gap Bundles for Helm Charts](https://docs.replicated.com/vendor/helm-packaging-airgap-bundles.md): This topic describes how to package and build air gap bundles for releases that contain one or more Helm charts.
 - [Templating Annotations](https://docs.replicated.com/vendor/resources-annotations-templating.md): This topic describes how to use Replicated KOTS template functions to template annotations for resources and objects based on user-supplied values.
 - [About Backup and Restore with Snapshots](https://docs.replicated.com/vendor/snapshots-overview.md): This topic provides an introduction to the Replicated KOTS snapshots feature for backup and restore.
 - [Introduction to kURL](https://docs.replicated.com/vendor/kurl-about.md): This topic provides an introduction to the Replicated kURL installer, including information about kURL specifications and installations.
-- [kURL Installation Requirements](https://docs.replicated.com/enterprise/installing-kurl-requirements.md): <KurlAvailability/>
-- [Online Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl.md): <KurlAvailability/>
-- [Air Gap Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl-airgap.md): <KurlAvailability/>
-- [Creating a kURL Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes.md): <KurlAvailability/>
+- [kURL Installation Requirements](https://docs.replicated.com/enterprise/installing-kurl-requirements.md): This topic lists the installation requirements for Replicated kURL.
+- [Online Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl.md): This topic describes how to use Replicated kURL to provision a cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
+- [Air Gap Installation with kURL](https://docs.replicated.com/enterprise/installing-kurl-airgap.md): This topic describes how to use Replicated kURL to provision a cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
+- [Creating a kURL Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes.md): This topic describes how to create a kURL installer spec in the Replicated Vendor Portal to support installations with Replicated kURL.
 - [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about.md): This topic provides an introduction to preflight checks and support bundles, which are provided by the Troubleshoot open source project.
 - [About the Replicated Proxy Registry](https://docs.replicated.com/vendor/private-images-about.md): This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images or allow pull through access of public images.
 - [Using the Proxy Registry with Helm Installations](https://docs.replicated.com/vendor/helm-image-registry.md): This topic describes how to use the Replicated proxy registry to proxy images for installations with the Helm CLI.

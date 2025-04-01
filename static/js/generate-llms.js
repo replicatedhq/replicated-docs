@@ -69,7 +69,14 @@ const INCLUDED_FILES = [
     'enterprise/installing-kurl-airgap.mdx',
     'vendor/packaging-embedded-kubernetes.mdx',
     // Preflight checks and support bundles
+    'vendor/preflight-defining.mdx',
+    'vendor/preflight-examples.mdx',
+    'vendor/preflight-host-preflights.mdx',
+    'vendor/preflight-running.md',
     'vendor/preflight-support-bundle-about.mdx',
+    'vendor/support-bundle-customizing.md',
+    'vendor/support-bundle-examples.mdx',
+    'vendor/support-bundle-generating.mdx',
     // Proxy registry docs
     'vendor/private-images-about.md',
     'vendor/helm-image-registry.mdx',
