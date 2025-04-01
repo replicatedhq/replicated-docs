@@ -1,19 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
-// Fix path resolution to use /docs and /static at project root
 const DOCS_DIR = path.join(__dirname, "../../docs");
 const OUTPUT_FILE = path.join(__dirname, "../../static", "llms.txt");
 const OUTPUT_FULL_FILE = path.join(__dirname, "../../static", "llms-full.txt");
 const BASE_URL = "https://docs.replicated.com";
 
-// Define static content
+// Define static header content
 const STATIC_HEADER = `# Replicated Documentation
 
 > Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
 
 `;
 
+// Define list of md files
 const INCLUDED_FILES = [
     // Add specific file paths, relative to the docs directory
     // Compatibility Matrix docs
@@ -104,6 +104,7 @@ const INCLUDED_FILES = [
     'vendor/vendor-portal-manage-app.md',
 ];
 
+// Get the description of the page from the first sentence
 function extractFirstSentence(text) {
     // Remove front matter
     text = text.replace(/^---[\s\S]*?---/, '');
@@ -121,7 +122,7 @@ function extractFirstSentence(text) {
     
     if (!firstParagraph) return 'No description available.';
 
-    // Function to check if a period is likely the end of a sentence
+    // Check if a period is likely the end of a sentence
     function isEndOfSentence(text, periodIndex) {
         // Check if period is inside a URL
         if (text.lastIndexOf('http', periodIndex) > text.lastIndexOf(' ', periodIndex)) {
@@ -181,9 +182,9 @@ function getMarkdownFiles(dir, fileList = []) {
     return fileList;
 }
 
+// Generate llms-full.txt (full docs site content in single md file)
 function generateFullLLMsTxt(files) {
     const fullContent = files.map(file => {
-        // Don't add the title separately since it's already in the content
         return `${file.content}\n\n---\n\n`;
     }).join('\n');
 
@@ -200,7 +201,6 @@ function generateLLMsTxt(files) {
         )
     ].join('\n');
 
-    // Combine static and dynamic content
     const fullContent = STATIC_HEADER + dynamicContent;
 
     fs.writeFileSync(OUTPUT_FILE, fullContent);
