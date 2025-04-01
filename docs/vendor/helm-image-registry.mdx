@@ -27,25 +27,15 @@ To use the Replicated proxy registry for applications installed with Helm:
       * `DOMAIN` is either `proxy.replicated.com` or your custom domain.
       * `APP_SLUG` is the unique slug of your application.
       * `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
-
-      **Example with custom domain:**
-
-      ```yaml
-      # values.yaml
-      images:
-        your-app:
-          apiImageRepository: images.yourcompany.com/proxy/your-app-slug/ghcr.io/org-name/api
-          apiImageTag: v1.0.1
-      ```
       
       **Example with proxy.replicated.com:**
 
       ```yaml
       # values.yaml
-      images:
-        your-app:
-          registry: proxy.replicated.com
-          repository: proxy/your-app-slug/ghcr.io/cloudnative-pg/cloudnative-pg
+      api:
+        image:
+          registry: ghcr.io
+          repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
           tag: catalog-1.24.0
       ```
 
@@ -53,31 +43,14 @@ To use the Replicated proxy registry for applications installed with Helm:
 
    **Example**:
 
-   ```yaml
-   # /templates/deployment.yaml
-
-   apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-    name: example
-   spec:
-     template:
-       spec:
-         containers:
-           - name: api
-             # Access the repository and tag fields from the values file
-             image: {{ .Values.images.your-app.apiImageRepository }}:{{ .Values.images.your-app.apiImageTag }}
-   ```
-   **Example**:
-
     ```yaml
     apiVersion: v1
     kind: Pod
     spec:
       containers:
-      - name: 
+        - name: api 
       # Access the registry, repository, and tag fields from the values file
-        image: {{ .Values.images.your-app.registry }}/{{ .Values.images.your-app.repository }}:{{ .Values.images.your-app.tag }}
+            image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
     ```
 
 1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set and then write the rendered value into a Secret on the cluster, as shown below.
@@ -89,7 +62,7 @@ To use the Replicated proxy registry for applications installed with Helm:
    :::
 
    ```yaml
-   # /templates/replicated-pull-secret.yaml
+   # templates/replicated-pull-secret.yaml
 
    {{ if .Values.global.replicated.dockerconfigjson }}
    apiVersion: v1
@@ -109,7 +82,7 @@ To use the Replicated proxy registry for applications installed with Helm:
    **Example:**
 
     ```yaml
-    # /templates/deployment.yaml
+    # templates/deployment.yaml
 
     image: "{{ .Values.images.your-app.apiImageRepository }}:{{ .Values.images.your-app.apiImageTag }}"
     # Add the pull secret
@@ -126,6 +99,3 @@ To use the Replicated proxy registry for applications installed with Helm:
 1. Package your Helm chart and add it to a release. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
 
 1. Install in a development environment to test your changes. See [Installing with Helm](/vendor/install-with-helm).
-
-
-    
