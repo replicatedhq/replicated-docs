@@ -359,7 +359,7 @@ Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.30, 1.31, 1.32.2{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.30, 1.31, 1.32{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
