@@ -50,7 +50,7 @@ To use the Replicated proxy registry for applications installed with Helm:
     spec:
       containers:
         - name: api 
-      # Access the registry, repository, and tag fields from the values file
+            # Access the registry, repository, and tag fields from the values file
             image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
     ```
 
