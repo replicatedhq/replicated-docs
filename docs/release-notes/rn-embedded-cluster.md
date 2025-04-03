@@ -10,6 +10,44 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.3.0
+
+Released on April 3, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.0+k8s-1.30</td>
+    <td id="center">2.3.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.11</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-3-0}
+* Adds support for high availability installations when adding a third controller node.
+* Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes.
+* For new installations, the control plane is now set up as highly available within the cluster, enabling the removal of controller nodes from multi-node clusters without affecting pod scheduling.
+* Adds support for passing kubelet parameters to worker nodes through [k0s worker profiles](https://docs.k0sproject.io/v1.30.9+k0s.0/worker-node-config/#worker-profiles) through the `unsupportedOverrides.k0s` spec.
+
+### Improvements {#improvements-2-3-0}
+* Host preflights have been updated to check that port 7443 is available on the loopback interface of the host, rather than being available on all network interfaces.
+* Stability improvements for enabling high availability when adding a third controller node.
+* Ensures that Embedded Cluster components only run on control planes.
+* Output from the `join` and `reset` commands no longer mentions "controller nodes," which is terminology users wouldn't be familiar with. The controller node role name is used if custom roles are defined in the Embedded Cluster Config.
+* Adds `-y` as an alias for `--yes` in the `join` and `restore` commands.
+* Debug logs of the installation will now include the Embedded Cluster and k0s versions.
+
+### Bug Fixes {#bug-fixes-2-3-0}
+* Fixes an issue where the UI continues to display the old Admin Console after an upgrade, which results in the previous version of the application showing as the currently deployed version.
+
 ## 2.2.0
 
 Released on March 25, 2025
