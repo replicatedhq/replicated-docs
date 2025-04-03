@@ -10,6 +10,14 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.04.03-0
+
+Released on April 3, 2025
+
+### New Features {#new-features-v2025-04-03-0}
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.26 and updates runc to v1.2.6.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.16.6.
+
 ## v2025.03.19-0
 
 Released on March 19, 2025
