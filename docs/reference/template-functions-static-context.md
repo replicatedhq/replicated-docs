@@ -2,6 +2,8 @@ import StaticContext from "../partials/template-functions/_static-context.mdx"
 
 # Static Context
 
+This topic provides a list of the KOTS template functions in the Static context.
+
 <StaticContext/>
 
 ## Certificate Functions
