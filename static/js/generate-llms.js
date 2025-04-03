@@ -2,8 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const DOCS_DIR = path.join(__dirname, "../../docs");
-const OUTPUT_FILE = path.join(__dirname, "../../static", "llms.txt");
-const OUTPUT_FULL_FILE = path.join(__dirname, "../../static", "llms-full.txt");
+const STATIC_DIR = path.join(__dirname, "../../static");
+const OUTPUT_FILE = path.join(STATIC_DIR, "llms.txt");
+const OUTPUT_FULL_FILE = path.join(STATIC_DIR, "llms-full.txt");
 const BASE_URL = "https://docs.replicated.com";
 
 // Define static header content
@@ -216,7 +217,8 @@ function getCuratedFiles(dir) {
             fileList.push({
                 path: relativePath.replace(/\.(md|mdx)$/, ''),
                 title: title,
-                description: description
+                description: description,
+                content: processedContent
             });
         } catch (error) {
             console.warn(`Warning: Could not process file ${relativePath}: ${error.message}`);
@@ -286,6 +288,26 @@ function generateFullLLMsTxt(files) {
     console.log("✅ llms-full.txt generated!");
 }
 
+function copyProcessedMarkdownToStatic(files) {
+    files.forEach(file => {
+        // Add error checking
+        if (!file.content) {
+            console.warn(`Warning: No content found for file ${file.path}`);
+            return;
+        }
+        
+        const staticPath = path.join(STATIC_DIR, `${file.path}.md`);
+        
+        const staticDir = path.dirname(staticPath);
+        if (!fs.existsSync(staticDir)) {
+            fs.mkdirSync(staticDir, { recursive: true });
+        }
+        
+        fs.writeFileSync(staticPath, file.content);
+        // console.log(`✅ Copied processed markdown to: ${file.path}.md`);
+    });
+}
+
 function generateLLMsTxt(files) {
     const dynamicContent = [
         "## Docs\n",
@@ -299,10 +321,13 @@ function generateLLMsTxt(files) {
     
     fs.writeFileSync(OUTPUT_FILE, fullContent);
     console.log("✅ llms.txt generated!");
+    
+    // Copy the processed markdown files to static directory
+    copyProcessedMarkdownToStatic(files);
 }
 
 // Update the main execution
-loadPartials(DOCS_DIR); // Load all partials first
+loadPartials(DOCS_DIR);
 const allFiles = getAllMarkdownFiles(DOCS_DIR);
 const curatedFiles = getCuratedFiles(DOCS_DIR);
 
