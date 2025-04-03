@@ -77,5 +77,5 @@ Before pushing changes to the remote repository, build and serve the site locall
 
 Replicated supports the [llms.txt](https://llmstxt.org/) convention for making documentation available to LLMs.
 
-- [llms.txt](https://docs.replicated.com/llms/llms.txt): This file contains Markdown versions each page on the docs site as well as optional resources.
-- [llms-full.txt](https://docs.replicated.com/llms/llms-docs.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository
+- [llms.txt](https://docs.replicated.com/llms/llms.txt): This file contains Markdown versions of key docs pages.
+- [llms-full.txt](https://docs.replicated.com/llms/llms-docs.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository.
