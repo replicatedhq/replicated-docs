@@ -111,6 +111,54 @@ const INCLUDED_FILES = [
     'vendor/vendor-portal-manage-app.md',
 ];
 
+// Store partials content
+const partialsCache = {};
+
+// Load all partials from the docs directory
+function loadPartials(dir) {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach(entry => {
+        const fullPath = path.join(dir, entry.name);
+        
+        if (entry.isDirectory() && !shouldSkipDirectory(fullPath)) {
+            loadPartials(fullPath);
+        } else if (entry.isFile() && entry.name.startsWith('_') && 
+                  (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
+            const content = fs.readFileSync(fullPath, 'utf8');
+            // Remove any front matter from the partial
+            const cleanContent = content.replace(/^---[\s\S]*?---/, '').trim();
+            // Store using the filename without extension as the key
+            const partialName = path.basename(entry.name, path.extname(entry.name)).substring(1);
+            partialsCache[partialName] = cleanContent;
+        }
+    });
+}
+
+// Process content to include partials
+function processContent(content, filePath) {
+    // Extract only partial imports (those referencing the /partials directory)
+    const imports = [];
+    content = content.replace(/^import\s+(\w+)\s+from\s+["']([^"']*\/partials\/[^"']+)["']/gm, (match, importName, importPath) => {
+        imports.push({ name: importName, path: importPath });
+        return ''; // Remove import statement
+    });
+
+    // Other import statements will be left unchanged
+    content = content.replace(/^import.*$/gm, ''); // Remove remaining import statements
+
+    // Replace partial references with their content
+    imports.forEach(importInfo => {
+        const partialName = path.basename(importInfo.path, path.extname(importInfo.path)).substring(1);
+        if (partialsCache[partialName]) {
+            const regex = new RegExp(`<${importInfo.name}\\s*/>`, 'g');
+            content = content.replace(regex, partialsCache[partialName]);
+        } else {
+            console.warn(`Warning: Partial '${partialName}' not found for file ${filePath}`);
+        }
+    });
+
+    return content.trim();
+}
+
 function shouldSkipDirectory(filePath) {
     const excludedDirs = ['.history', 'release-notes', 'templates', 'pdfs'];
     return excludedDirs.some(dir => filePath.includes(dir));
@@ -126,10 +174,13 @@ function getAllMarkdownFiles(dir, fileList = []) {
         
         if (fs.statSync(filePath).isDirectory()) {
             getAllMarkdownFiles(filePath, fileList);
-        } else if (path.extname(file) === '.md' || path.extname(file) === '.mdx') {
+        } else if ((path.extname(file) === '.md' || path.extname(file) === '.mdx') && !file.startsWith('_')) {
             const content = fs.readFileSync(filePath, 'utf8');
             
-            const titleMatch = content.match(/^#\s+(.+)$/m);
+            // Process the content to include partials
+            const processedContent = processContent(content, filePath);
+            
+            const titleMatch = processedContent.match(/^#\s+(.+)$/m);
             const title = titleMatch ? titleMatch[1] : file.replace(/\.(md|mdx)$/, '');
             
             const relativePath = filePath
@@ -139,7 +190,7 @@ function getAllMarkdownFiles(dir, fileList = []) {
             fileList.push({
                 path: relativePath,
                 title: title,
-                content: content
+                content: processedContent
             });
         }
     });
@@ -154,10 +205,13 @@ function getCuratedFiles(dir) {
         try {
             const content = fs.readFileSync(filePath, 'utf8');
             
-            const titleMatch = content.match(/^#\s+(.+)$/m);
+            // Process the content to include partials
+            const processedContent = processContent(content, filePath);
+            
+            const titleMatch = processedContent.match(/^#\s+(.+)$/m);
             const title = titleMatch ? titleMatch[1] : path.basename(relativePath).replace(/\.(md|mdx)$/, '');
             
-            const description = extractFirstSentence(content);
+            const description = extractFirstSentence(processedContent);
             
             fileList.push({
                 path: relativePath.replace(/\.(md|mdx)$/, ''),
@@ -247,7 +301,8 @@ function generateLLMsTxt(files) {
     console.log("✅ llms.txt generated!");
 }
 
-// Generate both files
+// Update the main execution
+loadPartials(DOCS_DIR); // Load all partials first
 const allFiles = getAllMarkdownFiles(DOCS_DIR);
 const curatedFiles = getCuratedFiles(DOCS_DIR);
 

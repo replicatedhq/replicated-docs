@@ -1,4 +1,4 @@
-import Pool from "../partials/cmx/\_openshift-pool.mdx"
+import Pool from "../partials/cmx/_openshift-pool.mdx"
 
 # Supported Compatibility Matrix Cluster Types
 
