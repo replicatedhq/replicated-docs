@@ -32,15 +32,15 @@ Released on April 3, 2025
 </table>
 
 ### New Features {#new-features-2-3-0}
-* Adds support for high availability installations when adding a third controller node.
-* Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes.
+* Adds support for high availability installations when adding a third controller node. If HA isn't yet enabled, users will be prompted to enable HA when adding the third or more controller node.
+* Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes. Although you are prompted to enable HA when adding nodes, this command can be used if you decline that prompt and later want to enable HA, or if your session is interrupted while HA is being enabled.
 * For new installations, the control plane is now set up as highly available within the cluster, enabling the removal of controller nodes from multi-node clusters without affecting pod scheduling.
-* Adds support for passing kubelet parameters to worker nodes through [k0s worker profiles](https://docs.k0sproject.io/v1.30.9+k0s.0/worker-node-config/#worker-profiles) through the `unsupportedOverrides.k0s` spec.
+* Adds support for passing kubelet parameters to nodes by specifying a [k0s worker profile](https://docs.k0sproject.io/v1.30.9+k0s.0/worker-node-config/#worker-profiles) in the k0s config in the `unsupportedOverrides.k0s` section of the Embedded Cluster config. Although `workerProfiles` is an array in the k0s config, Embedded Cluster will take the first worker profile in the array and apply it to all nodes in the cluster. This lets you modify the kubelet configuration on all nodes in the cluster.
 
 ### Improvements {#improvements-2-3-0}
-* Host preflights have been updated to check that port 7443 is available on the loopback interface of the host, rather than being available on all network interfaces.
+* Host preflights are updated to check that port 7443 is available on the loopback interface of the host, rather than being available on all network interfaces.
 * Stability improvements for enabling high availability when adding a third controller node.
-* Ensures that Embedded Cluster components only run on control planes.
+* Ensures that Embedded Cluster components like the Admin Console and rqlite only run on controller nodes.
 * Output from the `join` and `reset` commands no longer mentions "controller nodes," which is terminology users wouldn't be familiar with. The controller node role name is used if custom roles are defined in the Embedded Cluster Config.
 * Adds `-y` as an alias for `--yes` in the `join` and `restore` commands.
 * Debug logs of the installation will now include the Embedded Cluster and k0s versions.
