@@ -8,6 +8,26 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.5.0
+
+Released on April 4, 2025
+
+### New Features {#new-features-1-5-0}
+* Adds support for setting custom annotations across all resources via the `commonAnnotations` Helm value.
+* Adds support for configuring container resource requirements via the `resources` Helm value.
+* Adds support for customizing the readiness probe configuration.
+* Adds support for mounting custom volumes with `extraVolumes` and `extraVolumeMounts` Helm values.
+* Adds support for init containers with the `initContainers` Helm value.
+* Adds support for host settings including `hostNetwork`, `hostIPC`, and `hostAliases`.
+* Adds support for advanced scheduling with `topologySpreadConstraints`.
+* Adds support for priority configuration with `priorityClassName` and `schedulerName`.
+* Adds support for using existing secrets with new `existingSecret` Helm value.
+
+### Improvements {#improvements-1-5-0}
+* Improved template organization with reusable helper functions.
+* Consolidated related configuration sections in templates.
+* Added comprehensive documentation for all configuration options.
+
 ## 1.4.0
 
 Released on April 1, 2025
