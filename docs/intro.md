@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Embedded Cluster 2.0 Release</h3>
-        <p>The 2.0 release brings improvements to architecture that increase the reliability and stability of Embedded Cluster.</p>
+        <h3>Embedded Cluster Fully Supports Custom Domains</h3>
+        <p>Update the Embedded Cluster Config to alias the `replicated.app` and `proxy.replicated.com` endpoints with your custom domains.</p>
     </li>
     <li>
-      <a href="/release-notes/rn-embedded-cluster#200">Learn more</a>
+      <a href="/vendor/custom-domains-using#ec">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Manage Supported Install Methods Per Customer</h3>
-        <p>Control which installation methods are available for each customer from the **Install types** field in the customer's license.</p>
+        <h3>View Embedded Cluster Logs</h3>
+        <p>To help troubleshoot Embedded Cluster deployments, you can view logs for both Embedded Cluster and the k0s systemd service.</p>
     </li>
     <li>
-      <a href="/vendor/licenses-install-types">Learn more</a>
+      <a href="/vendor/embedded-troubleshooting">Learn more</a>
     </li>
   </ul>
 </section>
