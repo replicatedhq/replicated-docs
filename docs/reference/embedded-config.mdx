@@ -259,6 +259,27 @@ spec:
 
 * Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into Embedded Cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that Embedded Cluster includes by default.
 
+### Worker Profiles
+
+If any worker profiles are defined in the `unsupportedOverrides.k0s` config, Embedded Cluster will enable the first defined worker profile on install.
+
+For example, this worker profile increases the maximum number of pods per node:
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  unsupportedOverrides:
+    k0s: |
+      config:
+        spec:
+          workerProfiles:
+            - name: maxpods
+              values:
+                maxPods: 250
+```
+
+
 ### Override the Helm Values for Built-In Extensions
 
 Embedded Cluster deploys built-in extensions like KOTS and OpenEBS to provide capabilities like storage and application management. These extensions are deployed with Helm, and the Helm values for each can be modified if necessary.
