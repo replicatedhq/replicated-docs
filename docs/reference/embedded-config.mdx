@@ -291,9 +291,11 @@ k0s supports worker profiles, which allow you to configure the Kubelet with diff
 
 When a worker profile is defined in the Embedded Cluster Config, Embedded Cluster uses the profile for every node in the cluster during initial installation and when joining nodes to the cluster.
 
-You can add a worker profile in the Embedded Cluster Config under `unsupportedOverrides.k0s.config.spec.workerProfiles[]`. 
+You can add a worker profile in the Embedded Cluster Config under `unsupportedOverrides.k0s.config.spec.workerProfiles[]`. The worker profile has the following required fields:
+* `name`: The name of the worker profile. Do not use the name `default` for your custom worker profile. `default` is reserved by k0s.
+* `values`: The Kubelet configuration settings for the profile. For a complete list of the available Kubelet configuration options that you can set in a worker profile, see [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) in the Kubernetes documentation.
 
-For more information about how to define worker profiles, see [spec.workerProfiles](https://docs.k0sproject.io/stable/configuration/#specworkerprofiles) in the k0s documentation. For a complete list of the available Kubelet configuration options that you can set in a worker profile, see [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) in the Kubernetes documentation.
+For more information about how to define worker profiles, see [spec.workerProfiles](https://docs.k0sproject.io/stable/configuration/#specworkerprofiles) in the k0s documentation. 
 
 #### Limitations
 
@@ -312,6 +314,7 @@ spec:
         spec:
           # Define a default profile that sets maxPods to 150
           workerProfiles:
+          # Note: Do not use the name "default"
           - name: custom-maxpods
             values:
               maxPods: 150
