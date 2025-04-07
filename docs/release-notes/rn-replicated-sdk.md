@@ -8,6 +8,26 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.5.0
+
+Released on April 7, 2025
+
+### New Features {#new-features-1-5-0}
+* Adds support for setting custom annotations across all resources with the [`commonAnnotations`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L16) Helm value.
+* Adds support for configuring container resource requirements with the [`resources`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L93) Helm value.
+* Adds support for customizing the readiness probe configuration with the [`readinessProbe`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L79) Helm value.
+* Adds support for mounting custom volumes with the [`extraVolumes`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L115) and [`extraVolumeMounts`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L125) Helm values.
+* Adds support for init containers with the [`initContainers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L104) Helm value.
+* Adds support for host settings including [`hostNetwork`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L171C1-L171C8), [`hostIPC`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L175), and [`hostAliases`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L179).
+* Adds support for advanced scheduling with the [`topologySpreadConstraints`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L188) Helm value.
+* Adds support for priority configuration with the [`priorityClassName`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L199) and [`schedulerName`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L203) Helm values.
+* Adds support for using existing secrets with the [`existingSecret`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl#L134) Helm value.
+
+### Improvements {#improvements-1-5-0}
+* Improves template organization with reusable helper functions.
+* Consolidates related configuration sections in templates.
+* Adds comprehensive documentation for all configuration options. See [values.yaml.tmpl](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl) in the replicated-sdk repository in GitHub.
+
 ## 1.4.0
 
 Released on April 1, 2025
