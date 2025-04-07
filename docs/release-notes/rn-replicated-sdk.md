@@ -10,7 +10,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 
 ## 1.5.0
 
-Released on April 4, 2025
+Released on April 7, 2025
 
 ### New Features {#new-features-1-5-0}
 * Adds support for setting custom annotations across all resources via the `commonAnnotations` Helm value.
