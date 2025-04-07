@@ -285,15 +285,20 @@ spec:
         key: value
 ```
 
-### Configure Kubelet with k0s Worker Profiles
+### Configure the Kubelet with k0s Worker Profiles
 
-k0s supports worker profiles, which allow you to configure Kubelet with different settings for different worker nodes. One common use case for setting a worker profile is that you need more pods on a single node than the default limit of 100. In this case, you could define a worker profile to set `maxPods` to 150. Another common example is reducing startup time by setting `maxParallelImagePulls` to increase the maximum number of image pulls that can be done in parallel.
+k0s supports worker profiles, which allow you to configure the Kubelet with different settings for different worker nodes. One common use case for setting a worker profile is that you need more pods on a single node than the default limit of 100. In this case, you could define a worker profile to set `maxPods` to 150. Another common example is reducing startup time by setting `maxParallelImagePulls` to increase the maximum number of image pulls that can be done in parallel.
 
 When a worker profile is defined in the Embedded Cluster Config, Embedded Cluster uses the profile for every node in the cluster during initial installation and when joining nodes to the cluster.
 
 You can add a worker profile in the Embedded Cluster Config under `unsupportedOverrides.k0s.config.spec.workerProfiles[]`. 
 
 For more information about how to define worker profiles, see [spec.workerProfiles](https://docs.k0sproject.io/stable/configuration/#specworkerprofiles) in the k0s documentation. For a complete list of the available Kubelet configuration options that you can set in a worker profile, see [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) in the Kubernetes documentation.
+
+#### Limitations
+
+* The worker profile is set during initial installation. Worker profiles cannot be changed or added on upgrade.
+* Embedded Cluster supports only one worker profile that is used for all nodes. If you add more than one worker profile in the `workerProfiles[]` array in the Embedded Cluster Config, only the first profile is used.
 
 #### Example
 
@@ -307,12 +312,7 @@ spec:
         spec:
           # Define a default profile that sets maxPods to 150
           workerProfiles:
-          - name: default
+          - name: custom-maxpods
             values:
               maxPods: 150
 ```
-
-#### Limitations
-
-* The worker profile is set during initial installation. Worker profiles cannot be changed or added on upgrade.
-* Embedded Cluster supports only one worker profile that is used for all nodes. If you add more than one worker profile in the `workerProfiles[]` array in the Embedded Cluster Config, only the first profile is used.
