@@ -1,4 +1,4 @@
-# Patching with Kustomize
+# Patch with Kustomize
 
 This topic describes how to use Kustomize to patch an application before deploying.
 

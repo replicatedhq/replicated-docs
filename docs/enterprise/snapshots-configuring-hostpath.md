@@ -4,7 +4,7 @@ import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configuring a Host Path Storage Destination
+# Configure a Host Path Storage Destination
 
 This topic describes how to install Velero and configure a host path as your storage destination for backups.  
 
