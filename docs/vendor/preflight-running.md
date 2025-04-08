@@ -1,4 +1,4 @@
-# Running Preflight Checks for Helm Installations
+# Run Preflight Checks for Helm Installations
 
 This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
 

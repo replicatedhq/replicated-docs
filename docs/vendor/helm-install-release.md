@@ -2,7 +2,7 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 
-# Packaging a Helm Chart for a Release
+# Package a Helm Chart for a Release
 
 This topic describes how to package a Helm chart and the Replicated SDK into a chart archive that can be added to a release.
 

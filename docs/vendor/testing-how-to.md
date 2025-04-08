@@ -1,7 +1,7 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Using Compatibility Matrix
+# Use Compatibility Matrix
 
 This topic describes how to use Replicated Compatibility Matrix to create ephemeral clusters.
 
