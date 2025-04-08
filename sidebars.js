@@ -403,7 +403,7 @@ const sidebars = {
         'enterprise/updating-licenses',
         {
           type: 'category',
-          label: 'Performing Backup and Restore with Snapshots',
+          label: 'Perform Backup and Restore with Snapshots',
           items: [
             'vendor/snapshots-overview',
             {
@@ -610,7 +610,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Integrate Replicated in CI/CD Workflows',
+    label: 'Add Replicated to CI/CD Workflows',
     items: [
       'vendor/ci-overview',
       'vendor/ci-workflows',
