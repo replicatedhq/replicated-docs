@@ -22,7 +22,7 @@ Multi-node clusters are not highly available by default. For information about e
 
 To add nodes to a cluster:
 
-1. (Optional) In the Embedded Cluster Config, configure the `nodeRoles` key to customize node roles. For more information, see [roles](/reference/embedded-config#noderoles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
+1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following to get the join command from the Admin Console:
 
@@ -32,7 +32,7 @@ To add nodes to a cluster:
 
          1. Log in to the Admin Console.
          
-         1. If you promoted a new release that configures the `nodeRoles` key in the Embedded Cluster Config, update the instance to the new version. See [Performing Updates in Embedded Clusters](/enterprise/updating-embedded).
+         1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Performing Updates in Embedded Clusters](/enterprise/updating-embedded).
          
          1. Go to **Cluster Management > Add node** at the top of the page.
 
@@ -44,7 +44,7 @@ To add nodes to a cluster:
 
      Note the following:
 
-     * If the Embedded Cluster Config [nodeRoles](/reference/embedded-config#noderoles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+     * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
      * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
@@ -99,7 +99,7 @@ Enabling high availability has the following requirements:
 
 Consider the following best practices and recommendations for creating HA clusters:
 
-* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the `controller` node role, see [nodeRoles](/reference/embedded-config#noderoles) in _Embedded Cluster Config_.
+* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the `controller` node role, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 * Always use an odd number of controller nodes in HA clusters. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
