@@ -1,4 +1,4 @@
-# Enabling Support Bundle Uploads (Beta)
+# Enable Support Bundle Uploads (Beta)
 
 :::note
 Direct bundle uploads is in beta. The functionality, requirements, and limitations of direct bundle uploads are subject to change.

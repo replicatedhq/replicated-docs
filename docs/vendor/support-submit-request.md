@@ -1,4 +1,4 @@
-# Submitting a Support Request
+# Submit a Support Request
 
 You can submit a support request and a support bundle using the Replicated Vendor Portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 

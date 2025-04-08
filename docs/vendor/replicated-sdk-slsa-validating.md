@@ -1,4 +1,4 @@
-# SLSA Provenance Validation Process for the Replicated SDK
+# Validate Provenance of Releases for the Replicated SDK
 
 This topic describes the process to perform provenance validation on the Replicated SDK.
 

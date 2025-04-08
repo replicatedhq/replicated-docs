@@ -1,4 +1,4 @@
-# Excluding MinIO from Air Gap Bundles (Beta)
+# Exclude MinIO from Air Gap Bundles (Beta)
 
 The Replicated KOTS Admin Console requires an S3-compatible object store to store application archives and support bundles. By default, KOTS deploys MinIO to satisfy the object storage requirement. For more information about the options for installing without MinIO in existing clusters, see [Installing KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).
 

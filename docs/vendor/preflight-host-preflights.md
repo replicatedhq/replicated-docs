@@ -1,4 +1,4 @@
-# Customizing Host Preflight Checks for kURL
+# Customize Host Preflight Checks for kURL
 
 This topic provides information about how to customize host preflight checks for installations with Replicated kURL. For information about the default host preflight checks that run for installations with Replicated Embedded Cluster, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.
 

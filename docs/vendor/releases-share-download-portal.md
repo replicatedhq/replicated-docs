@@ -1,4 +1,4 @@
-# Accessing a Customer's Download Portal
+# Access a Customer's Download Portal
 
 This topic describes how to access installation instructions and download installation assets (such as customer license files and air gap bundles) from the Replicated Download Portal.
 

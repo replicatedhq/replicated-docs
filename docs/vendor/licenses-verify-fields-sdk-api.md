@@ -1,4 +1,4 @@
-# Verifying License Field Signatures with the Replicated SDK API
+# Verify License Field Signatures with the Replicated SDK API
 
 This topic describes how to verify the signatures of license fields when checking customer license entitlements with the Replicated SDK.
 
