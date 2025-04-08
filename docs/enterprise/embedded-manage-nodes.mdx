@@ -1,6 +1,6 @@
 import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
-# Managing Multi-Node Clusters with Embedded Cluster
+# Manage Multi-Node Clusters with Embedded Cluster
 
 This topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add nodes and enable high-availability for multi-node clusters.
 
@@ -50,7 +50,7 @@ To add nodes to a cluster:
 
      * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
-     * Roles are not updated or changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+     * Roles are not updated or changed after a node is added. If you need to change a node's role, reset the node and add it again with the new role.
 
      * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about creating HA clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 

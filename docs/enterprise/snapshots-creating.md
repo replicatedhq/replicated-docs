@@ -1,4 +1,4 @@
-# Creating and Scheduling Backups
+# Create and Schedule Backups
 
 This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
