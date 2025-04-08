@@ -1,4 +1,4 @@
-# Checking Entitlements in Helm Charts Before Deployment
+# Check Entitlements in Helm Charts Before Deployment
 
 This topic describes how to check license entitlements before a Helm chart is installed or upgraded. The information in this topic applies to Helm charts installed with Replicated KOTS or Helm.
 

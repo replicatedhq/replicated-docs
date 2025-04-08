@@ -1,4 +1,4 @@
-# Migrating Existing Installations to HelmChart v2
+# Migrate Existing Installations to HelmChart v2
 
 This topic describes how to migrate existing Replicated KOTS installations to the KOTS HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
 

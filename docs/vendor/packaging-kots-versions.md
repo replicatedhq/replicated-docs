@@ -1,4 +1,4 @@
-# Setting Minimum and Target Versions for KOTS
+# Set Minimum and Target Versions for KOTS
 
 This topic describes how to set minimum and target version for Replicated KOTS in the KOTS [Application](/reference/custom-resource-application) custom resource.
 
