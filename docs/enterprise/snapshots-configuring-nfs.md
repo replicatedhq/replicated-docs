@@ -4,7 +4,7 @@ import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configuring an NFS Storage Destination
+# Configure an NFS Storage Destination
 
 This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
 

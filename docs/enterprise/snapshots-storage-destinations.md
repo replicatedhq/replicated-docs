@@ -2,7 +2,7 @@ import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.md
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configuring Other Storage Destinations
+# Configure Other Storage Destinations
 
 This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provider (GCP), Microsoft Azure, and S3-compatible providers.
 

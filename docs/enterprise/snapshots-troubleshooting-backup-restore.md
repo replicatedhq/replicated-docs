@@ -1,6 +1,6 @@
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 
-# Troubleshooting Snapshots
+# Troubleshoot Snapshots
 
 When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
 
