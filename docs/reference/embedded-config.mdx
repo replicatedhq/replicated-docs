@@ -68,31 +68,53 @@ You must specify which version of Embedded Cluster to install. Each version of E
 
 For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because Embedded Cluster is changing rapidly.
 
-## nodeRoles
+## roles
 
-You can optionally customize node roles in the Embedded Cluster Config using the `nodeRoles` key. When the `nodeRoles` key is configured, users select a role to assign to a node when it is joined to the cluster. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
-If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the controller role. Controller nodes run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated workloads.
+A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu=true` label to any node that is assigned the role. This allows you to then schedule GPU workloads on nodes labled `gpu=true`.
 
-Each item in the `nodeRoles` array contains:
-* **(Required)** `name`: The name of the role. This name is displayed to users in the Admin Console when they join a new node to the cluster.
-* `controller`: Set to `true` to mark the role as a controller. Set to `false` to mark the role as a worker. If not set, `controller` is `false` by default.
-* `labels`: One or more key values pairs. When `labels` are defined, Embedded Cluster applies the label to any node in the cluster that is assigned the given role. Labels are useful for tasks like assigning workloads to nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a custom role that will add a `gpu=true` label to any node that is assigned the role. Or, if your application includes any resource-intensive workloads (such as a database) that must be run on dedicated nodes, you could create a custom role that adds a `db=true` label to the node.
+When the `roles` key is configured, users select one or more roles to assign to a node when it is joined to the cluster. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
-#### Example
+If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+
+### Example
 
 ```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
 spec:
-  nodeRoles:
-    - name: app
-      controller: true
+  roles:
+    controller:
+      # Optionally change the name for the default controller role
+      name: management
       labels:
-        app: "true"
-    - name: database
-      controller: false # Default false
+        management: "true" # Label applied to "management" nodes
+    # Custom roles
+    custom:
+    - name: db
       labels:
-        database: "true"
+        db: "true" # Label applied to "db" nodes
+    - name: gpu
+      labels:
+        gpu: "true" # Label applied to "gpu" nodes    
 ```
+
+### roles.controller
+
+In the `roles.controller` key, you can set the following fields to customize the default controller role:
+* `name`: Set the name that is assigned to controller nodes. By default, controller nodes are named “controller”.
+    :::note
+    If you plan to create any custom roles, Replicated recommends that you change the default name for the controller role to a term that is easy to understand, such as "management". This is because, when you add custom roles, both the name of the controller role and the names of any custom roles are displayed to the user when they join a node. 
+    :::
+* `labels`: Kubernetes labels that Embedded Cluster will apply to any node in the cluster that is assigned the given role.
+
+   
+### roles.custom
+
+In the `roles.custom` key, you can add custom roles. Each custom role includes the following fields:
+* `name`: (Required) A name for the custom role.
+* `labels`: Kubernetes labels that Embedded Cluster will apply to any node in the cluster that is assigned the given role.
 
 ## domains
 
