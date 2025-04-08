@@ -1,14 +1,14 @@
 # Create and Schedule Backups
 
-This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restoring from Backups](snapshots-restoring-full).
+This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restore from Backups](snapshots-restoring-full).
 
 ## Prerequisites
 
 - Before you can create backups, you must configure a storage destination:
 
-   - [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-   - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
-   - [Configuring Other Storage Destinations](snapshots-storage-destinations)
+   - [Configure a Host Path Storage Destination](snapshots-configuring-hostpath)
+   - [Configure an NFS Storage Destination](snapshots-configuring-nfs)
+   - [Configure Other Storage Destinations](snapshots-storage-destinations)
 
 - If you have multiple applications in the Admin Console, make sure that each application has its own Backup custom resource file so that they can be included in the full backup. Use the **View file** tab to check for the Backup custom resources (`kind: Backup`, `apiVersion: velero.io/v1`). 
 
@@ -97,4 +97,4 @@ To schedule automatic backups in the Admin Console:
    The retention policy applies to all backups, including both automatically- and manually-created backups. Changing the retention policy affects only backups created after the time of the change.
 ## Additional Resources
 
-[Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
+[Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

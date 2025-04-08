@@ -11,11 +11,11 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 This topic describes how to perform updates in Replicated kURL installations. It includes procedures for updating an application, as well as for updating the versions of Kubernetes, Replicated KOTS, and add-ons in a kURL cluster.
 
-For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Managing Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
+For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Manage Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
 
 ## Update an Application
 
-For kURL installations, you can update an application from the Admin Console. You can also set up automatic updates. See [Configuring Automatic Updates](/enterprise/updating-apps).
+For kURL installations, you can update an application from the Admin Console. You can also set up automatic updates. See [Configure Automatic Updates](/enterprise/updating-apps).
 
 ### Online Environments
 
@@ -29,7 +29,7 @@ For kURL installations, you can update an application from the Admin Console. Yo
 
 After updating the kURL installer spec, you can rerun the kURL installation script to update a kURL cluster. For more information about kURL cluster udpates, see [About kURL Cluster Updates](/enterprise/updating-kurl-about).
 
-For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Managing Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
+For more information about managing nodes in kURL clusters, including how to safely reset, reboot, and remove nodes when performing maintenance tasks, see [Manage Nodes](https://kurl.sh/docs/install-with-kurl/managing-nodes) in the open source kURL documentation.
 
 :::important
 The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
@@ -39,7 +39,7 @@ The Kubernetes scheduler automatically reschedules Pods to other nodes during ma
 
 To update the kURL cluster in an online environment:
 
-1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Create a kURL Installer](/vendor/packaging-embedded-kubernetes).
 
 1. Run the kURL installation script on any primary node in the cluster:
 
@@ -64,7 +64,7 @@ For air gap installations, you must load images on each node in the cluster befo
 
 To update the kURL cluster in an air gap environment:
 
-1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+1. Edit the kURL installer spec as desired. For example, update the version of Kubernetes or add, remove, or update add-ons. For more information, see [Create a kURL Installer](/vendor/packaging-embedded-kubernetes).
 
 1. Repeat the following steps on each node in the cluster to download and extract the kURL `.tar.gz` air gap bundle for the updated spec:
 

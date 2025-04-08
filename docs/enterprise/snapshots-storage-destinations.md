@@ -6,7 +6,7 @@ import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provider (GCP), Microsoft Azure, and S3-compatible providers.
 
-To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
+To configure host path or NFS as a storage destination, see [Configure a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configure an NFS Storage Destination](snapshots-configuring-nfs).
 
 :::note
 <UpdateDefaultStorage/>
@@ -17,7 +17,7 @@ To configure host path or NFS as a storage destination, see [Configuring a Host 
 Complete the following items before you install Velero and configure a storage destination:
 
 * Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
-* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+* Install the velero CLI. See [Install the Velero CLI](snapshots-velero-cli-installing).
 
 ## Configure AWS Storage for Online Environments
 
@@ -27,7 +27,7 @@ Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets tha
 
 To install Velero and configure an AWS storage destination:
 
-1. Follow the instructions for [installing Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
+1. Follow the instructions for [Install Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
 
 1. Run the `velero install` command with these additional flags:
 
@@ -53,7 +53,7 @@ In this procedure, you install Velero and configure a GCP storage destination in
 
 To install Velero and configure a GCP storage destination:
 
-1. Follow the instructions for [installing Velero on GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) in the Velero documentation.
+1. Follow the instructions for installing Velero on GCP in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) repository in GitHub.
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
@@ -77,7 +77,7 @@ In this procedure, you install Velero and configure an Azure storage destination
 
 To install Velero and configure an Azure storage destination:
 
-1. Follow the instructions for [installing Velero on Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) in the Velero documentation.
+1. Follow the instructions for [Install Velero on Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) in the Velero documentation.
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
@@ -182,10 +182,10 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Next Steps
 
-* (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* (Optional) Increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
+* (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Optional) Increase the default memory limits. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Create and Schedule Backups](snapshots-creating).
 
 ## Additional Resources
 
-* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
+* [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

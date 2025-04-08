@@ -4,9 +4,9 @@ import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 
 This topic describes how to monitor applications and clusters with Prometheus in existing cluster installations with Replicated KOTS.
 
-For information about how to access Prometheus, Grafana, and Alertmanager, see [Accessing Dashboards Using Port Forwarding](/enterprise/monitoring-access-dashboards).
+For information about how to access Prometheus, Grafana, and Alertmanager, see [Access Dashboards Using Port Forwarding](/enterprise/monitoring-access-dashboards).
 
-For information about consuming Prometheus metrics externally in kURL installations, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus).
+For information about consuming Prometheus metrics externally in kURL installations, see [Consume Prometheus Metrics Externally](monitoring-external-prometheus).
 
 ## Overview
 
@@ -37,7 +37,7 @@ To install Prometheus using the recommended Kube-Prometheus distribution:
 
    For advanced and cluster-specific configuration, you can customize Kube-Prometheus by compiling the manifests using jsonnet. For more information, see the [jsonnet website](https://jsonnet.org/).
 
-   For more information about advanced Kube-Prometheus configuration options, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
+   For more information about advanced Kube-Prometheus configuration options, see [Customize Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
 
 ### Step 2: Connect to a Prometheus Endpoint
 
@@ -48,6 +48,6 @@ To connect the Admin Console to a Prometheus endpoint:
 1. On the Admin Console dashboard, under Monitoring, click **Configure Prometheus Address**.
 1. Enter the address for the Prometheus endpoint in the text box and click **Save**.
 
-   ![Configuring Prometheus](/images/kotsadm-dashboard-configureprometheus.png)
+   ![Configure Prometheus](/images/kotsadm-dashboard-configureprometheus.png)
 
    Graphs appear on the dashboard shortly after saving the address.
