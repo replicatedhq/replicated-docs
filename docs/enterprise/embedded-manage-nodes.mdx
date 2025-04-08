@@ -75,7 +75,7 @@ To add nodes to a cluster:
 
 1. Repeat these steps for each node you want to add.    
 
-## Enable High Availability for Multi-Node Clusters{#ha}
+## High Availability for Multi-Node Clusters{#ha}
 
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
@@ -94,10 +94,6 @@ Enabling high availability has the following requirements:
 * High availability is supported with Embedded Cluster **VERSION** and later.
 
 * High availability is supported only for clusters where at least three nodes with the `controller` role are present.
-
-### Limitation
-
-HA multi-node clusters use rqlite to store support bundles up to 100 MB in size. Bundles over 100 MB can cause rqlite to crash and restart.
 
 ### Best Practices for High Availability
 
