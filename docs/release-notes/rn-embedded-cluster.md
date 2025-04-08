@@ -10,7 +10,11 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
-## 2.3.0
+## 2.3.0 - Removed
+
+:::important
+Embedded Cluster 2.3.0 has been removed and is not available for use because of install issues. It continues to work for anyone already using it. Upgrades were not affected.
+:::
 
 Released on April 3, 2025
 
