@@ -27,7 +27,7 @@ Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets tha
 
 To install Velero and configure an AWS storage destination:
 
-1. Follow the instructions for [Install Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
+1. Follow the instructions for [installing Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the velero-plugin-for-aws repository in GitHub.
 
 1. Run the `velero install` command with these additional flags:
 

@@ -30,7 +30,7 @@ For information about image registry requirements, see [Compatible Image Registr
 
 You can automate application installation in online and air-gapped environments using the KOTS CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated Admin Console.
 
-For more information, see [Installing with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
+For more information, see [Install with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
 
 ## KOTS Installations Without Object Storage
 
@@ -38,4 +38,4 @@ The KOTS Admin Console requires persistent storage for state. KOTS deploys MinIO
 
 You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the Admin Console as a StatefulSet with an attached PersistentVolume (PV) instead of as a deployment.
 
-For more information about how to install KOTS without object storage, see [Installing KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).
+For more information about how to install KOTS without object storage, see [Install KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).
