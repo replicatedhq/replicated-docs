@@ -1,4 +1,4 @@
-# Configuring KOTS RBAC
+# Configure KOTS RBAC
 
 This topic describes role-based access control (RBAC) for Replicated KOTS in existing cluster installations. It includes information about how to change the default cluster-scoped RBAC permissions granted to KOTS.
 
@@ -96,7 +96,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Existing clusters only**: The `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` options apply only to installations in existing clusters.
 
-* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
+* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Define Preflight Checks](/vendor/preflight-defining).
 
 * **Velero namespace access for KOTS snapshots**: Velero is required for enabling backup and restore with the KOTS snapshots feature. Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. 
 

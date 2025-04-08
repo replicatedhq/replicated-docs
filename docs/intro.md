@@ -66,13 +66,13 @@ pagination_next: null
         <p>Create and manage your account and team.</p>
     </li>
     <li>
-      <a href="/vendor/vendor-portal-creating-account">Creating a Vendor Account</a>
+      <a href="/vendor/vendor-portal-creating-account">Create a Vendor Account</a>
     </li>
     <li>
-      <a href="/vendor/team-management#invite-members">Managing Team Members</a>
+      <a href="/vendor/team-management#invite-members">Manage Team Members</a>
     </li>
     <li>
-      <a href="/vendor/team-management-rbac-configuring">Configuring RBAC Policies</a>
+      <a href="/vendor/team-management-rbac-configuring">Configure RBAC Policies</a>
     </li>
   </ul>
   <ul>
@@ -87,7 +87,7 @@ pagination_next: null
       <a href="/vendor/testing-about">About Compatibility Matrix</a>
     </li>
     <li>
-      <a href="/vendor/testing-how-to">Using Compatibility Matrix</a>
+      <a href="/vendor/testing-how-to">Use Compatibility Matrix</a>
     </li>
     <li>
       <a href="/vendor/testing-supported-clusters">Supported Cluster Types</a>
@@ -110,10 +110,10 @@ pagination_next: null
         <p>Distribute Helm charts with Replicated.</p>
     </li>
     <li>
-      <a href="/vendor/install-with-helm">Helm Installations with Replicated</a>
+      <a href="/vendor/install-with-helm">Install with Helm</a>
     </li>
     <li>
-      <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>
+      <a href="/vendor/helm-install-release">Package a Helm Chart for a Release</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">About the Replicated SDK</a>
@@ -148,7 +148,7 @@ pagination_next: null
       <a href="/vendor/embedded-overview">Embedded Cluster Overview</a>
     </li>
     <li>
-      <a href="/enterprise/installing-embedded">Installing with Embedded Cluster</a>
+      <a href="/enterprise/installing-embedded">Install with Embedded Cluster</a>
     </li>
     <li>
       <a href="/vendor/tutorial-embedded-cluster-setup">Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster</a>
@@ -174,7 +174,7 @@ pagination_next: null
       <a href="/vendor/instance-insights-details">Instance Details</a>
     </li>
     <li>
-      <a href="/vendor/custom-metrics-about">Configuring Custom Metrics</a>
+      <a href="/vendor/custom-metrics-about">Configure Custom Metrics</a>
     </li>
   </ul>
   <ul>
@@ -189,10 +189,10 @@ pagination_next: null
       <a href="/vendor/releases-about">About Channels and Releases</a>
     </li>
     <li>
-      <a href="/vendor/releases-creating-releases">Managing Releases with the Vendor Portal</a>
+      <a href="/vendor/releases-creating-releases">Manage Releases with the Vendor Portal</a>
     </li>
     <li>
-      <a href="/vendor/releases-creating-cli">Managing Releases with the CLI</a>
+      <a href="/vendor/releases-creating-cli">Manage Releases with the CLI</a>
     </li>
   </ul>
   <ul>
@@ -207,10 +207,10 @@ pagination_next: null
       <a href="/vendor/licenses-about">About Customers</a>
     </li>
     <li>
-      <a href="/vendor/releases-creating-customer">Creating and Managing Customers</a>
+      <a href="/vendor/releases-creating-customer">Create and Manage Customers</a>
     </li>
     <li>
-      <a href="/vendor/licenses-adding-custom-fields">Managing Customer License Fields</a>
+      <a href="/vendor/licenses-adding-custom-fields">Manage Customer License Fields</a>
     </li>
   </ul>
 </section>
@@ -224,10 +224,10 @@ pagination_next: null
         <p>Define and verify installation environment requirements.</p>
     </li>
     <li>
-      <a href="/vendor/preflight-defining">Defining Preflight Checks</a>
+      <a href="/vendor/preflight-defining">Define Preflight Checks</a>
     </li>
     <li>
-      <a href="/vendor/preflight-running">Running Preflight Checks for Helm Installations</a>
+      <a href="/vendor/preflight-running">Run Preflight Checks for Helm Installations</a>
     </li>
     <li>
       <a href="/vendor/tutorial-preflight-helm-setup">Preflight Checks Tutorial for Helm Charts</a>
@@ -245,13 +245,13 @@ pagination_next: null
         <p>Gather information about customer environments for troubleshooting.</p>
     </li>
     <li>
-      <a href="vendor/support-bundle-customizing">Adding and Customizing Support Bundles</a>
+      <a href="vendor/support-bundle-customizing">Add and Customize Support Bundles</a>
     </li>
     <li>
-      <a href="/vendor/support-host-support-bundles">Configuring Host Support Bundles</a>
+      <a href="/vendor/support-host-support-bundles">Configure Host Support Bundles</a>
     </li>
     <li>
-      <a href="/vendor/support-bundle-generating">Generating Support Bundles</a>
+      <a href="/vendor/support-bundle-generating">Generate Support Bundles</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support Bundles Lab in Instruqt</a>
@@ -268,13 +268,13 @@ pagination_next: null
         <p>APIs, CLIs, and an SDK for interacting with the Replicated platform.</p>
     </li>
     <li>
-      <a href="/reference/replicated-cli-installing">Replicated CLI</a>
+      <a href="/reference/replicated-cli-installing">Install the Replicated CLI</a>
     </li>
     <li>
-      <a href="/reference/vendor-api-using">Vendor API v3</a>
+      <a href="/reference/vendor-api-using">Use the Vendor API v3</a>
     </li>
     <li>
-      <a href="/reference/kots-cli-getting-started">KOTS CLI</a>
+      <a href="/reference/kots-cli-getting-started">Install the KOTS CLI</a>
     </li>
     <li>
       <a href="/vendor/replicated-sdk-overview">Replicated SDK</a>

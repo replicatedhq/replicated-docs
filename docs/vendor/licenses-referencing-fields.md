@@ -44,4 +44,4 @@ In the example above, the preflight check uses the `nodeResources` analyzer and 
 
 For more information about this example, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
 
-For more information about defining preflight checks, see [Defining Preflight Checks](preflight-defining).
+For more information about defining preflight checks, see [Define Preflight Checks](preflight-defining).
