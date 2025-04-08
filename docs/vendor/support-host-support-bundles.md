@@ -1,6 +1,6 @@
 import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
 
-# Generating Host Bundles for kURL
+# Generate Host Bundles for kURL
 
 This topic describes how to configure a host support bundle spec for Replicated kURL installations. For information about generating host support bundles for Replicated Embedded Cluster installations, see [Generating Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
