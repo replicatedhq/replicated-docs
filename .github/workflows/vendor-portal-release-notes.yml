@@ -9,7 +9,7 @@ on:
 
 jobs:
   generate-release-notes:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     outputs:
       releaseNotes: ${{ steps.release-notes.outputs.release-notes }}
     steps:
@@ -28,7 +28,7 @@ jobs:
           github-token: ${{ secrets.VENDOR_PORTAL_PAT }}
           feature-type-labels: type::feature
   generate-release-notes-pr:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: generate-release-notes
     if: ${{ needs.generate-release-notes.outputs.releaseNotes != '' || needs.generate-release-notes.outputs.releaseNotes != null }}
     steps:
