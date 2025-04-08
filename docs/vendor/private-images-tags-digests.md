@@ -1,4 +1,4 @@
-# Using Image Tags and Digests
+# Use Image Tags and Digests
 
 This topic describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, and how to enable support for image digests in air gap bundles.
 

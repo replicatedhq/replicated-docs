@@ -1,4 +1,4 @@
-# Creating and Editing Channels
+# Create and Edit Channels
 
 This topic describes how to create and edit channels using the Replicated Vendor Portal. For more information about channels, see [About Channels and Releases](releases-about).
 

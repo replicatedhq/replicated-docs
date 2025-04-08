@@ -1,4 +1,4 @@
-# Making Support Bundle Specs Available Online
+# Make Support Bundle Specs Available Online
 
 This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
 
@@ -24,7 +24,7 @@ Replicated kURL includes an EKCO add-on for maintenance on embedded clusters, su
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
 metadata:
-  name:  ekco
+  name:  ekco
 spec:
   collectors:
   analyzers:
@@ -53,7 +53,7 @@ The `uri` field is added to the specification as a raw file link. Replicated hos
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
 metadata:
-  name: ekco
+  name: ekco
 spec:
   uri: https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
   collectors: [...]

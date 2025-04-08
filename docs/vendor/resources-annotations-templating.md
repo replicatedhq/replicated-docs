@@ -1,4 +1,4 @@
-# Templating Annotations
+# Template Annotations
 
 This topic describes how to use Replicated KOTS template functions to template annotations for resources and objects based on user-supplied values.
 

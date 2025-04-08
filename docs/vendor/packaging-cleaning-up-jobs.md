@@ -1,4 +1,4 @@
-# Cleaning Up Kubernetes Jobs
+# Clean Up Kubernetes Jobs
 
 This topic describes how to use the Replicated KOTS `kots.io/hook-delete-policy` annotation to remove Kubernetes job objects from the cluster after they complete.
 

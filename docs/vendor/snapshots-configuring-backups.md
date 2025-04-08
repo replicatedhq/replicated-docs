@@ -1,4 +1,4 @@
-# Configuring Snapshots
+# Configure Snapshots
 
 This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 

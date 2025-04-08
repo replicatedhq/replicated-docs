@@ -1,4 +1,4 @@
-# Managing SAML Authentication
+# Manage SAML Authentication
 
 This topic describes how to enable or disable SAML authentication for the Replicated Vendor Portal.
 

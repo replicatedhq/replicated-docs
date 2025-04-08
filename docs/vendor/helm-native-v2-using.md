@@ -1,6 +1,6 @@
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
-# Configuring the HelmChart Custom Resource v2
+# Configure the HelmChart Custom Resource v2
 
 This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with Replicated KOTS.
 

@@ -1,4 +1,4 @@
-# Creating and Editing Configuration Fields
+# Create and Edit Configuration Fields
 
 This topic describes how to use the KOTS Config custom resource manifest file to add and edit fields in the KOTS Admin Console configuration screen.
 

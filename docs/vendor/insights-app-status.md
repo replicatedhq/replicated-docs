@@ -3,7 +3,7 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 
-# Enabling and Understanding Application Status
+# Enable and Understand Application Status
 
 This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal. It also describes the meaning of the different application statuses.
 

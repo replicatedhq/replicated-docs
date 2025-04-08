@@ -1,4 +1,4 @@
-# Managing Applications
+# Manage Applications
 
 This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
 

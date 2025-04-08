@@ -1,6 +1,6 @@
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
-# Configuring RBAC Policies
+# Configure RBAC Policies
 
 This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated Vendor Portal.
 

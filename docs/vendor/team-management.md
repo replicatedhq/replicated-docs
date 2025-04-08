@@ -1,7 +1,7 @@
 import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.mdx"
 
-# Managing Team Members
+# Manage Team Members
 
 This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Managing Collab Repository Access](team-management-github-username).
 

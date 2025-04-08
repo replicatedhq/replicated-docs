@@ -1,4 +1,4 @@
-# Mapping User-Supplied Values
+# Map User-Supplied Values
 
 This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
