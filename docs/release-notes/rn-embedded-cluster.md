@@ -13,7 +13,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 ## 2.3.0 - Removed
 
 :::important
-Embedded Cluster 2.3.0 has been removed and is not available for use because of install issues. It continues to work for anyone already using it. Upgrades were not affected.
+Embedded Cluster 2.3.0 has been removed and is not available for use because installs do not work unless worker profiles are specified in the k0s config in unsupported overrides. Upgrades to 2.3.0 were not affected because worker profiles are not used on upgrades.
 :::
 
 Released on April 3, 2025
