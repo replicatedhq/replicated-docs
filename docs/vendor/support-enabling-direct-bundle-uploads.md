@@ -12,7 +12,7 @@ When enabled, your customers can use the **Send bundle to vendor button** in the
 
 After clicking this button, the bundle will be immediately available under the Troubleshoot tab in the Vendor Portal team account associated with this customer.
 
-For more information on how your customer can use this feature, see [Generating Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app).
+For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app).
 
 ### How to Enable Direct Bundle Uploads
 
