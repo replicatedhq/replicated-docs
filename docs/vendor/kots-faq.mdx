@@ -116,7 +116,7 @@ To install with Embedded Cluster, users first download and extract the Embedded 
 
 After the installation command finishes, users log in to the Admin Console to provide application configuration values, optionally join more nodes to the cluster, run preflight checks, and deploy the application.
 
-Customer-specific Embedded Cluster installation instructions are provided in the Replicated Vendor Portal. For more information, see [Installing with Embedded Cluster](/enterprise/installing-embedded).
+Customer-specific Embedded Cluster installation instructions are provided in the Replicated Vendor Portal. For more information, see [Install with Embedded Cluster](/enterprise/installing-embedded).
 
 ### Does Replicated support installations into air gap environments?
 
@@ -152,7 +152,7 @@ For more information, see [Embedded Cluster Overview](/vendor/embedded-overview)
 
 The KOTS Admin Console and the Replicated Download Portal support the use of a custom logo. Additionally, software vendors can use custom domains to alias the endpoints for Replicated services.
 
-For more information, see [Customizing the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon) and [About Custom Domains](custom-domains).
+For more information, see [Customize the Admin Console and Download Portal](/vendor/admin-console-customize-app-icon) and [About Custom Domains](custom-domains).
 
 For more information, see [Use Custom Domains](/vendor/custom-domains-using).
 
@@ -166,13 +166,13 @@ For more information, see [Use Custom Domains](/vendor/custom-domains-using).
 
 Yes. The Replicated SDK has an _air gap mode_ that allows it to run in environments with no outbound internet access. When installed in air gap mode, the SDK does not attempt to connect to the internet. This avoids any failures that would occur when the SDK is unable to make outbound requests in air gap environments.
 
-For more information, see [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+For more information, see [Install the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
 
 ### How do I develop against the SDK API?
 
 You can use the Replicated SDK in _integration mode_ to develop locally against the SDK API without needing to make real changes in the Replicated Vendor Portal or in your environment.
 
-For more information, see [Developing Against the SDK API](/vendor/replicated-sdk-development).
+For more information, see [Develop Against the SDK API](/vendor/replicated-sdk-development).
 
 ### How does the Replicated SDK work with KOTS?
 
@@ -180,13 +180,13 @@ The Replicated SDK is a Helm chart that can be installed as a small service alon
 
 Replicated recommends that all applications include the SDK because it provides access to key functionality not available through KOTS, such as support for sending custom metrics from application instances. When both the SDK and KOTS are installed in a cluster alongside an application, both send instance telemetry to the Vendor Portal.
 
-For more information about the SDK installation options, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
+For more information about the SDK installation options, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
 
 ## Vendor Portal FAQs
 
 ### How do I add and remove team members?
 
-Admins can add, remove, and manage team members from the Vendor Portal. For more information, see [Managing Team Members](/vendor/team-management).
+Admins can add, remove, and manage team members from the Vendor Portal. For more information, see [Manage Team Members](/vendor/team-management).
 
 ### How do I manage RBAC policies for my team members?
 
@@ -194,7 +194,7 @@ By default, every team has two policies created automatically: Admin and Read On
 
 You can also configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. 
 
-For more information, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
+For more information, see [Configure RBAC Policies](/vendor/team-management-rbac-configuring).
 
 ### Can I alias Replicated endpoints?
 

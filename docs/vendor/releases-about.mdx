@@ -15,7 +15,7 @@ Channels also control which customers are able to install a release. You assign 
 
 Using channels and releases helps you distribute versions of your application to the right customer segments, without needing to manage different release workflows.
 
-You can manage channels and releases with the Vendor Portal, the Replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
+You can manage channels and releases with the Vendor Portal, the Replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
 
 ## About Channels
 
@@ -29,7 +29,7 @@ Replicated includes the following channels by default:
 * **Beta**: The Beta channel is designed for release candidates and early-adopting customers. Replicated recommends that you promote a release to the Beta channel after it has passed automated testing in the Unstable channel. You can also choose to license early-adopting customers against this channel.
 * **Stable**: The Stable channel is designed for releases that are generally available. Replicated recommends that you assign most of your customers to the Stable channel. Customers licensed against the Stable channel only receive application updates when you promote a new release to the Stable channel.
 
-You can archive or edit any of the default channels, and create new channels. For more information, see [Creating and Editing Channels](releases-creating-channels).
+You can archive or edit any of the default channels, and create new channels. For more information, see [Create and Edit Channels](releases-creating-channels).
 
 ### Settings
 
@@ -106,7 +106,7 @@ By default, Replicated uses release sequence numbers to organize and order relea
 
 #### Release Sequences
 
-In the Vendor Portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+In the Vendor Portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
 The following graphic shows release sequence numbers in the Vendor Portal:
 
@@ -223,7 +223,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
-   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers, see [Creating a kURL Installer](packaging-embedded-kubernetes).
+   * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers, see [Create a kURL Installer](packaging-embedded-kubernetes).
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel.
 

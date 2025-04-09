@@ -24,7 +24,7 @@ To configure snapshots for your application:
 
     For more information about the Velero Backup resource, including limitations, the list of supported fields for snapshots, and an example, see [Velero Backup Resource for Snapshots](/reference/custom-resource-backup).
 
-1. (Optional) Configure backup and restore hooks. For more information, see [Configuring Backup and Restore Hooks for Snapshots](snapshots-hooks).
+1. (Optional) Configure backup and restore hooks. For more information, see [Configure Backup and Restore Hooks for Snapshots](snapshots-hooks).
 
 1. For each volume that requires a backup, add the `backup.velero.io/backup-volumes` annotation. The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
 
@@ -91,4 +91,4 @@ To configure snapshots for your application:
 
 1. If you distribute multiple applications with Replicated, repeat these steps for each application. Each application must have its own Backup resource to be included in a full backup with snapshots.
 
-1. (kURL Only) If your application supports installation with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero in the kURL cluster. For more information, see [Creating a kURL Installer](packaging-embedded-kubernetes).
+1. (kURL Only) If your application supports installation with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero in the kURL cluster. For more information, see [Create a kURL Installer](packaging-embedded-kubernetes).

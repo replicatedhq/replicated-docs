@@ -54,7 +54,7 @@ To generate a service account:
 
      1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
 
-       This list includes the Vendor Portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
+       This list includes the Vendor Portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configure RBAC Policies](team-management-rbac-configuring).
 
        Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
 

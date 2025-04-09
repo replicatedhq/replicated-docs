@@ -32,7 +32,7 @@ To inspect a support bundle:
 
     [View a larger version of this image](/images/cmx-cluster-configuration.png)
 
-1. If you cannot resolve your customer's issue and need to submit a support request, go to the [**Support**](https://vendor.replicated.com/) page and click **Open a support request**. For more information, see [Submitting a Support Request](support-submit-request).
+1. If you cannot resolve your customer's issue and need to submit a support request, go to the [**Support**](https://vendor.replicated.com/) page and click **Open a support request**. For more information, see [Submit a Support Request](support-submit-request).
 
    :::note
    The **Share with Replicated** button on the support bundle analysis page does _not_ open a support request. You might be directed to use the **Share with Replicated** option when you are already interacting with a Replicated team member.

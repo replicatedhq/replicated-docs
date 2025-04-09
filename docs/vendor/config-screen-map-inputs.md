@@ -2,7 +2,7 @@
 
 This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
-This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Create and Edit Configuration Fields](admin-console-customize-config-screen).
 
 ## Overview of Mapping Values
 

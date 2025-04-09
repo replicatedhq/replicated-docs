@@ -21,11 +21,11 @@ The following are some best practices and recommendations for successfully onboa
 
 * When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot. This onboarding workflow will guide you through the process of integrating features in small iterations.
 
-* Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines. For more information, see [Installing the Replicated CLI](/reference/replicated-cli-installing).
+* Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines. For more information, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
 * These onboarding tasks assume that you will test the installation of each release on a VM with the Replicated Embedded Cluster installer _and_ in a cluster with the Replicated KOTS installer. If you do not intend to offer existing cluster installations with KOTS (for example, if you intend to support only Embedded Cluster and Helm installations for your users), then can choose to test with Embedded Cluster only.
 
-* Ask for help from the Replicated community. For more information, see [Getting Help from the Community](#community) below.
+* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#community) below.
 
 ### Getting Help from the Community {#community}
 
@@ -37,9 +37,9 @@ To search and participate in the Replicated community, see https://community.rep
 
 ### Prerequisites
 
-* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+* Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Create a Vendor Account](vendor-portal-creating-account).
 
-* Install the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
+* Install the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
 
 * Complete a basic quick start workflow to create an application with a sample Helm chart and then promote and install releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases in the Replicated Platform. See [Replicated Quick Start](/vendor/quick-start).
 
@@ -87,7 +87,7 @@ To create an application:
 
 Add credentials for your image registry to the Vendor Portal. This will allow you to use the Replicated proxy registry in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
 
-For more information, see [Connecting to an External Registry](/vendor/packaging-private-images).
+For more information, see [Connect to an External Registry](/vendor/packaging-private-images).
 
 ### Task 3: Add the Replicated SDK and Package your Chart
 
@@ -101,7 +101,7 @@ To package your Helm chart with the Replicated SDK:
 
 1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency.
    
-   If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
+   If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Package a Helm Chart for a Release](helm-install-release).
 
    <DependencyYaml/>   
 
@@ -144,7 +144,7 @@ To create the first release for your application:
       The Embedded Cluster Config is required to install with Embedded Cluster.
       </details>
     
-      For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+      For more information, see [Use Embedded Cluster](/vendor/embedded-overview).
 
    1. Create a new YAML file. In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
    
@@ -156,7 +156,7 @@ To create the first release for your application:
 
    1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
    
       This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
 
@@ -164,7 +164,7 @@ To create the first release for your application:
 
       For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.   
 
-1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
     ```bash
     replicated release create --yaml-dir . --promote Unstable
@@ -400,7 +400,7 @@ To add the default support bundle spec to your application:
 
 1. <TestYourChanges/>
 
-   For information about how to generate support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+   For information about how to generate support bundles, see [Generate Support Bundles](/vendor/support-bundle-generating).
 
 1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers.
 
@@ -408,7 +408,7 @@ To add the default support bundle spec to your application:
 
 Your customers are exposed to several Replicated domains by default. Replicated recommends you use custom domains to unify the customer's experience with your brand and simplify security reviews.
 
-For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+For more information, see [Use Custom Domains](/vendor/custom-domains-using).
 
 ## Next Steps
 
@@ -434,9 +434,9 @@ To support and test Helm installations:
 
     <HelmPackage/>
 
-1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Add the `.tgz` file to a release. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-1. Install the release in a cluster with the Helm CLI to test your changes. For more information, see [Installing with Helm](/vendor/install-with-helm).
+1. Install the release in a cluster with the Helm CLI to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
 
 ### Add Support for Air Gap Installations
 
@@ -450,7 +450,7 @@ To add support for air gap installations:
 
 1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release. One common use case for this is applications that use Kubernetes Operators. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
-1. In the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+1. In the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
     :::note
     If the default values in your Helm chart already enable all the images needed to successfully deploy, then you do not need to configure the `builder` key.
@@ -468,15 +468,15 @@ To add support for air gap installations:
 
    For more information, see [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
 
-1. Create and promote a new release with your changes. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Create and promote a new release with your changes. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
 
-1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Creating and Managing Customers](/vendor/releases-creating-customer).
+1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
-1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air gap VM to test. See [Installing in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air gap VM to test. See [Install in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
@@ -499,11 +499,11 @@ You can add custom license entitlements for your application in the Vendor Porta
 * Limit the number of nodes a customer is permitted on their cluster
 * Identify a customer on a "Premium" plan that has access to additional features or functionality not available with your base plan
 
-For more information about how to create and assign custom entitlements in the Vendor Portal, see [Managing Customer License Fields](/vendor/licenses-adding-custom-fields) and [Creating and Managing Customers](/vendor/releases-creating-customer).
+For more information about how to create and assign custom entitlements in the Vendor Portal, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields) and [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 #### Map Entitlements to Helm Values
 
-You can map license entitlements to your Helm values using KOTS template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Using KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
+You can map license entitlements to your Helm values using KOTS template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Use KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
 
 #### Query Entitlements Before Installation and at Runtime
 
@@ -519,7 +519,7 @@ You can add the Kubernetes SIG Application custom resource to your release to ad
 
 You can also configure the Kubernetes SIG Application resource add links to other resources like documentation or dashboards.
 
-For more information, see [Adding Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
+For more information, see [Add Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
 ### Update the Preflight and Support Bundles Specs
 
@@ -545,13 +545,13 @@ Enable backup and restore with Velero for your application so that users can bac
 
 There are different steps to configure backup and restore for Embedded Cluster and for existing cluster installations with KOTS:
 * To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
-* To configure the snapshots feature for existing cluster KOTS installations, see [Configuring Snapshots](snapshots-configuring-backups).
+* To configure the snapshots feature for existing cluster KOTS installations, see [Configure Snapshots](snapshots-configuring-backups).
 
 ### Add Custom Metrics
 
 In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
 
-For more information, see [Configuring Custom Metrics](/vendor/custom-metrics).
+For more information, see [Configure Custom Metrics](/vendor/custom-metrics).
 
 ### Integrate with CI/CD
 

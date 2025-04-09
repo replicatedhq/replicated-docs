@@ -9,7 +9,7 @@ This topic describes Replicated Compatibility Matrix, including use cases, billi
 
 <Overview/>
 
-You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Using Compatibility Matrix](testing-how-to).
+You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Use Compatibility Matrix](testing-how-to).
 
 ### Supported Clusters
 
