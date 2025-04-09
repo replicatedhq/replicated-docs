@@ -142,6 +142,6 @@ Install the same release with the Helm CLI. See [Step 7: Install the Release wit
 
 * [kots install](/reference/kots-cli-install/)
 * [Installing the KOTS CLI](/reference/kots-cli-getting-started/)
-* [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
+* [Delete the Admin Console and Remove Applications](/enterprise/delete-admin-console)
 * [Customer Reporting](customer-reporting)
 * [Instance Details](instance-insights-details)
