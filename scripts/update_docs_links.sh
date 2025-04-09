@@ -3,12 +3,10 @@
 # Script to update cross-reference link text
 # Run from the root of the replicated-docs repository after changing the title of one or more pages
 
-echo "Updating cross-references..."
-
 # Define replacement patterns with the format "[search pattern]:[replacement]"
 patterns=(
-  "Integrating Replicated GitHub Actions:Use Replicated GitHub Actions in CI/CD"
-  # Add more patterns here as needed, one per line
+  "Replicated Onboarding:Onboard to the Replicated Platform"
+  # Add patterns here, one per line
   # "Old Title:New Title"
 )
 
@@ -16,6 +14,7 @@ patterns=(
 files_processed=0
 replacements_made=0
 
+echo "Updating cross-references..."
 echo "Searching in the /docs directory..."
 
 # Get all markdown files, excluding .history directories
