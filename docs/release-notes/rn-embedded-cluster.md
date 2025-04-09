@@ -10,6 +10,33 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.3.1
+
+Released on April 8, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.1+k8s-1.30</td>
+    <td id="center">2.3.1+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.12</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-3-1}
+* When enabling high availability, Embedded Cluster will now wait until rqlite data for KOTS is fully synced to three nodes.
+
+### Bug Fixes {#bug-fixes-2-3-1}
+* Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
+
 ## 2.3.0 - Removed
 
 :::important
