@@ -48,11 +48,11 @@ The following describes each of the channel settings:
 * **Set this channel to default**: When enabled, sets the channel as the default channel. The default channel cannot be archived.
 * **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, Replicated proxy registry, Replicated app service, or Replicated Download Portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
 
-  For more information about configuring custom domains and assigning default domains, see [Using Custom Domains](custom-domains-using).
+  For more information about configuring custom domains and assigning default domains, see [Use Custom Domains](custom-domains-using).
 * The following channel settings apply only to applications that support KOTS:
     * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the Vendor Portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel.
     * **Enable semantic versioning**: When enabled, the Vendor Portal verifies that the version label for any releases promoted to the channel uses a valid semantic version. For more information, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.
-    * **Enable new airgap bundle format**: When enabled, air gap bundles built for releases promoted to the channel use a format that supports image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size. For more information, see [Using Image Digests in Air Gap Installations](private-images-tags-digests#digests-air-gap) in _Using Image Tags and Digests_.
+    * **Enable new airgap bundle format**: When enabled, air gap bundles built for releases promoted to the channel use a format that supports image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size. For more information, see [Use Image Digests in Air Gap Installations](private-images-tags-digests#digests-air-gap) in _Use Image Tags and Digests_.
 
       :::note
       The new air gap bundle format is supported for applications installed with KOTS v1.82.0 or later. 

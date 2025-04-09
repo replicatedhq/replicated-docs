@@ -132,4 +132,4 @@ To add fields to the Admin Console configuration screen:
 
 After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to manifest files in your release. If you use a Helm chart for your application, you map the values to the Helm chart `values.yaml` file using the HelmChart custom resource.
 
-For more information, see [Mapping User-Supplied Values](config-screen-map-inputs).
+For more information, see [Map User-Supplied Values](config-screen-map-inputs).

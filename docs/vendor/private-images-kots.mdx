@@ -71,3 +71,5 @@ To enable the proxy registry:
     * **Kubernetes Operators**: For applications packaged with Kubernetes Operators, KOTS cannot modify pods that are created at runtime by the Operator. To support the use of private images in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created. For instructions, see [Referencing Images](/vendor/operator-referencing-images) in the _Packaging Kubernetes Operators_ section.
 
 1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
+
+1. (Optional) Add a custom domain for the proxy registry instead of `proxy.replicated.com`. See [Use Custom Domains](custom-domains-using).

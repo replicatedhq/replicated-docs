@@ -24,7 +24,7 @@ Air gap telemetry has the following requirements:
 
 * To collect telemetry from air gap instances, one of the following must be installed in the cluster where the instance is running:
    
-   * The Replicated SDK installed in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+   * The Replicated SDK installed in air gap mode. See [Install the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
    
    * KOTS v1.92.1 or later
 
@@ -32,9 +32,9 @@ Air gap telemetry has the following requirements:
    When both the Replicated SDK and KOTS v1.92.1 or later are installed in the cluster (such as when a Helm chart that includes the SDK is installed by KOTS), both collect and store instance telemetry in their own dedicated secret, subject to the size limitation noted below. In the case of any overlapping data points, the Vendor Portal will report these data points chronologically based on their timestamp.
    :::
 
-* To collect custom metrics from air gap instances, the Replicated SDK must installed in the cluster in air gap mode. See [Installing the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
+* To collect custom metrics from air gap instances, the Replicated SDK must installed in the cluster in air gap mode. See [Install the SDK in Air Gap Environments](/vendor/replicated-sdk-airgap).
 
-    For more information about custom metrics, see [Configuring Custom Metrics](https://docs.replicated.com/vendor/custom-metrics).
+    For more information about custom metrics, see [Configure Custom Metrics](https://docs.replicated.com/vendor/custom-metrics).
 
 Replicated strongly recommends that all applications include the Replicated SDK because it enables access to both standard instance telemetry and custom metrics for air gap instances.
 
@@ -48,7 +48,7 @@ When a limit is reached, the oldest events are purged until the payload is withi
 
 To collect telemetry from air gap instances:
 
-1. Ask your customer to collect a support bundle. See [Generating Support Bundles](/vendor/support-bundle-generating).
+1. Ask your customer to collect a support bundle. See [Generate Support Bundles](/vendor/support-bundle-generating).
 
 1. After receiving the support bundle from your customer, go to the Vendor Portal **Customers**, **Customer Reporting**, or **Instance Details** page and upload the support bundle:
 
