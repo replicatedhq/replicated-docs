@@ -11,10 +11,19 @@ This script updates cross-reference link text throughout the documentation to ma
 #### Usage
 
 1. Edit the `patterns` array in the script to include the search and replacement patterns in the format `"[old title]:[new title]"`
-2. Run the script from the root of the repository:
+   
+   Example:
+   ```bash
+   patterns=(
+     "Integrating Replicated GitHub Actions:Use Replicated GitHub Actions in CI/CD"
+   )
+   ```
+
+2. Run the script from the root of the replicated-docs repository:
    ```
    bash scripts/update_docs_links.sh
    ```
+
 3. Review the changes with `git diff`
 4. Run `npm run build` to verify that links still work
 5. Commit the changes
@@ -22,8 +31,15 @@ This script updates cross-reference link text throughout the documentation to ma
 #### Features
 
 - Updates both "see [Title]" and "See [Title]" references
-- Searches in docs/reference, docs/enterprise, docs/partials, and docs/vendor directories
+- Searches in all markdown files under the docs directory
 - Excludes .history directories from the search
+- Reports the number of files processed and replacements made
+
+#### Troubleshooting
+
+If the script isn't working as expected:
+- Make sure your pattern is correctly formatted with a colon separating the old and new titles
+- Check that the exact text matches what's in the documentation
 
 ## Adding New Scripts
 

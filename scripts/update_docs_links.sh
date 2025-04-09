@@ -7,18 +7,22 @@ echo "Updating cross-references..."
 
 # Define replacement patterns with the format "[search pattern]:[replacement]"
 patterns=(
-  # "Adding Nodes to kURL Clusters:Add Nodes to kURL Clusters"
+  "Integrating Replicated GitHub Actions:Use Replicated GitHub Actions in CI/CD"
+  # Add more patterns here as needed, one per line
+  # "Old Title:New Title"
 )
 
-# # Count of files processed and replacements made
-# files_processed=0
-# replacements_made=0
+# Count of files processed and replacements made
+files_processed=0
+replacements_made=0
 
 echo "Searching in the /docs directory..."
 
-# Process each file in the docs directory
-# Exclude .history
-find docs -type f -name "*.md*" -not -path "*/\.history/*" | while read file; do
+# Get all markdown files, excluding .history directories
+files=$(find docs -type f -name "*.md*" -not -path "*/\.history/*")
+
+# Process each file without using a pipe to avoid subshell issues
+for file in $files; do
   file_modified=false
   
   # Process each replacement pair
@@ -28,26 +32,26 @@ find docs -type f -name "*.md*" -not -path "*/\.history/*" | while read file; do
     
     # Check if file contains the pattern
     if grep -q "see \[${search}\]" "$file" || grep -q "See \[${search}\]" "$file"; then
-      # Make the replacements
-      sed -i '' "s/see \[${search}\]/see \[${replacement}\]/g" "$file"
-      sed -i '' "s/See \[${search}\]/See \[${replacement}\]/g" "$file"
+      # Make the replacements - use | as delimiter instead of / to avoid issues with paths
+      sed -i '' "s|see \[${search}\]|see \[${replacement}\]|g" "$file"
+      sed -i '' "s|See \[${search}\]|See \[${replacement}\]|g" "$file"
       
       echo "In $file:"
       echo "  Replaced: '$search' → '$replacement'"
       
       file_modified=true
-      ((replacements_made++))
+      replacements_made=$((replacements_made+1))
     fi
   done
   
-  if $file_modified; then
-    ((files_processed++))
+  if [ "$file_modified" = true ]; then
+    files_processed=$((files_processed+1))
   fi
 done
 
 echo "Done!"
-# echo "Files processed: $files_processed"
-# echo "Total replacements made: $replacements_made"
+echo "Files processed: $files_processed"
+echo "Total replacements made: $replacements_made"
 # Instructions for verifying changes
 echo "Next steps:"
 echo "1. Review the changes using 'git diff'"
