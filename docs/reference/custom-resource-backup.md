@@ -157,5 +157,5 @@ However, not all fields are supported for full backups. The table below lists th
   Some of these fields are supported for hook arrays, as described in the previous field definition table. See [Supported Fields for Full Backups with Snapshots](#fields) above.
   :::
 
-- All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Snapshots](/vendor/snapshots-configuring-backups).
+- All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configure Snapshots](/vendor/snapshots-configuring-backups).
 
