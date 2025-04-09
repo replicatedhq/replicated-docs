@@ -122,7 +122,7 @@ Response:
 
 ### POST /app/custom-metrics
 
-Send custom application metrics. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics).
+Send custom application metrics. For more information and examples see [Configure Custom Metrics](/vendor/custom-metrics).
 
 ### PATCH /app/custom-metrics
 
@@ -490,7 +490,7 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
-1. Install the Replicated SDK as a standalone component in your cluster. This is called _integration mode_. Installing in integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
+1. Install the Replicated SDK as a standalone component in your cluster. This is called _integration mode_. Installing in integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Develop Against the SDK API](/vendor/replicated-sdk-development).
 
 1. In your application, use the `/api/v1/license/fields/expires_at` endpoint to get the `expires_at` field that you defined in the previous step.
 
@@ -515,4 +515,4 @@ To revoke access to your application when a license expires:
 
 1. Add logic to your application to revoke access if the current date and time is more recent than the expiration date of the license.
 
-1. (Recommended) Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api).
+1. (Recommended) Use signature verification in your application to ensure the integrity of the license field. See [Verify License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api).

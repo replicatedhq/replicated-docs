@@ -1,4 +1,4 @@
-# Customizing the Replicated SDK
+# Customize the Replicated SDK
 
 This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
 
@@ -80,7 +80,7 @@ To install the SDK with custom RBAC:
   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
   ```
 
- For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).  
+ For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).  
 
 #### Custom ClusterRole
 
@@ -97,7 +97,7 @@ To install the SDK with a custom ClusterRole:
   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
   ```
 
- For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).
+ For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).
 
 ## Set Environment Variables {#env-var}
 

@@ -1,7 +1,7 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Using Compatibility Matrix
+# Use Compatibility Matrix
 
 This topic describes how to use Replicated Compatibility Matrix to create ephemeral clusters.
 
@@ -300,7 +300,7 @@ If you use GitHub Actions as your CI/CD platform, you can include these custom a
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
-For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-workflows-github-actions).
+For more information, see [Use Replicated GitHub Actions in CI/CD](/vendor/ci-workflows-github-actions).
 
 ### Recommended Workflows
 

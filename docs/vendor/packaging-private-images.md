@@ -1,4 +1,4 @@
-# Connecting to an External Registry
+# Connect to an External Registry
 
 This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy registry. For more information, see [About the Replicated Proxy Registry](private-images-about).
 
@@ -209,7 +209,7 @@ To add an external registry using the Vendor Portal:
 
 To configure access to private images in an external registry using the Replicated CLI:
 
-1. Install and configure the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
+1. Install and configure the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _Replicated CLI_.
 

@@ -1,4 +1,4 @@
-# Installing the Velero CLI
+# Install the Velero CLI
 
 You install the Velero CLI before installing Velero and configuring a storage destination for backups.
 

@@ -1,4 +1,4 @@
-# Installing KOTS in Existing Clusters Without Object Storage
+# Install KOTS in Existing Clusters Without Object Storage
 
 This topic describes how to install Replicated KOTS in existing clusters without the default object storage, including limitations of installing without object storage.
 

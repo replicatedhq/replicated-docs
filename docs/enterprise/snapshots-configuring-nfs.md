@@ -4,7 +4,7 @@ import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configuring an NFS Storage Destination
+# Configure an NFS Storage Destination
 
 This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
 
@@ -27,7 +27,7 @@ Configuring an NFS server as a snapshots storage destination has the following r
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
-* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+* Install the velero CLI. See [Install the Velero CLI](snapshots-velero-cli-installing).
 
 ## Install Velero and Configure NFS Storage in Online Environments
 
@@ -115,10 +115,10 @@ To install Velero and configure NFS storage for existing clusters:
 
 ## Next Steps
 
-* (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* (Optional) Increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
+* (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Optional) Increase the default memory limits. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Create and Schedule Backups](snapshots-creating).
 
 ## Additional Resources
 
-* [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)
+* [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

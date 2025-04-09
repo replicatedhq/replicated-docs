@@ -112,7 +112,7 @@ Next, package the Helm chart and add it to the release in the Vendor Portal:
 
 1. Drag and drop the `.tgz` file into the file tree of the release. The Vendor Portal automatically creates a new HelmChart custom resource named `postgresql.yaml`, which references the `.tgz` file you uploaded.
 
-    For more information about adding Helm charts to a release in the Vendor Portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+    For more information about adding Helm charts to a release in the Vendor Portal, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
 ### Step 4: Edit the HelmChart Custom Resource
 

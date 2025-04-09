@@ -1,4 +1,4 @@
-# Managing Google Authentication
+# Manage Google Authentication
 
 This topic describes the Google authentication options that you can configure to control access to the Replicated Vendor Portal.
 

@@ -3,7 +3,7 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 
-# Adding Resource Status Informers
+# Add Resource Status Informers
 
 This topic describes how to add status informers for your application. Status informers apply only to applications installed with Replicated KOTS. For information about how to collect application status data for applications installed with Helm, see [Enabling and Understanding Application Status](insights-app-status).
 

@@ -1,4 +1,4 @@
-# Generating API Tokens
+# Generate API Tokens
 
 This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
 

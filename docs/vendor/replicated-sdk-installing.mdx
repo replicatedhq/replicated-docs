@@ -3,13 +3,13 @@ import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
 
-# Installing the Replicated SDK
+# Install the Replicated SDK
 
 This topic describes the methods for distributing and installing the Replicated SDK.
 
 It includes information about how to install the SDK alongside Helm charts or Kubernetes manifest-based applications using the Helm CLI or a Replicated installer (Replicated KOTS, kURL, Embedded Cluster). It also includes information about installing the SDK as a standalone component in integration mode.
 
-For information about installing the SDK in air gap mode, see [Installing the SDK in Air Gap Environments](replicated-sdk-airgap).
+For information about installing the SDK in air gap mode, see [Install the SDK in Air Gap Environments](replicated-sdk-airgap).
 
 ## Requirement
 
@@ -40,9 +40,9 @@ To install the SDK as a subchart:
    helm package .
    ```  
 
-1. Add the chart archive to a new release. For more information, see [Managing Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+1. Add the chart archive to a new release. For more information, see [Manage Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-1. (Optional) Add a KOTS HelmChart custom resource to the release to support installation with Embedded Cluster, KOTS, or kURL. For more information, see [Configuring the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
+1. (Optional) Add a KOTS HelmChart custom resource to the release to support installation with Embedded Cluster, KOTS, or kURL. For more information, see [Configure the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
 
 1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
 
@@ -93,7 +93,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
 
     For more information and additional options, see [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
 
-1. Add the SDK `.tgz` chart archive to a new release. For more information, see [Managing Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+1. Add the SDK `.tgz` chart archive to a new release. For more information, see [Manage Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
     The following shows an example of the SDK Helm chart added to a draft release for a standard manifest-based application:
 

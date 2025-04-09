@@ -1,6 +1,6 @@
 import AirGapLicenseDownload from "../partials/install/_airgap-license-download.mdx"
 
-# Downloading Customer Licenses
+# Download Customer Licenses
 
 This topic describes how to download a license file from the Replicated Vendor Portal.
 

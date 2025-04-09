@@ -1,4 +1,4 @@
-# Changing an Admin Console Password
+# Change an Admin Console Password
 
 When you install for the first time with Replicated kURL, the Replicated KOTS Admin Console is secured with a single shared password that is set automatically for all users. Replicated recommends that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
 
@@ -7,7 +7,7 @@ The Admin Console password is salted and one-way hashed using bcrypt. The irreve
 For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia.
 
 :::note
-Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Using an Identity Provider for User Access (Beta)_.
+Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Use an Identity Provider for User Access (Beta)_.
 :::
 
 To change your Admin Console password:

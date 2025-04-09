@@ -1,4 +1,4 @@
-# Deleting the Admin Console and Removing Applications
+# Delete the Admin Console and Remove Applications
 
 This topic describes how to remove installed applications and delete the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS.
 

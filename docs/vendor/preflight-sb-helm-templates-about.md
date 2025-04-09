@@ -1,4 +1,4 @@
-# Using Helm Templates in Specifications
+# Use Helm Templates in Specifications
 
 You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles for Helm installations.
 

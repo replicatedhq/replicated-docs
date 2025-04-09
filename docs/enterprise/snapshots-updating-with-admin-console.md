@@ -1,13 +1,13 @@
-# Updating Storage Settings
+# Update Storage Settings
 
 This topic describes how to update existing storage destination settings using the Replicated Admin Console.
 
 ## Prerequisite
 If you are changing from one provider to another provider, make sure that you meet the prerequisites for the storage destination. For information about prerequisites, see:
 
-- [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-- [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
-- [Configuring Other Storage Destinations](snapshots-storage-destinations)
+- [Configure a Host Path Storage Destination](snapshots-configuring-hostpath)
+- [Configure an NFS Storage Destination](snapshots-configuring-nfs)
+- [Configure Other Storage Destinations](snapshots-storage-destinations)
 
 ## Update Storage Settings
 
