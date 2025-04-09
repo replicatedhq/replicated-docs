@@ -16,7 +16,7 @@ The following diagram demonstrates how the proxy registry pulls images from your
 
 ## About Enabling the Proxy Registry
 
-The proxy registry requires read-only credentials to your private registry to access your application images. See [Connecting to an External Registry](/vendor/packaging-private-images).
+The proxy registry requires read-only credentials to your private registry to access your application images. See [Connect to an External Registry](/vendor/packaging-private-images).
 
 After connecting your registry, the steps the enable the proxy registry vary depending on your application deployment method. For more information, see:
 * [Using the Proxy Registry with KOTS Installations](/vendor/private-images-kots)

@@ -50,6 +50,6 @@ To package a Helm chart so that it can be added to a release:
     <RegistryLogout/>
     :::
 
-1. Add the `.tgz` file to a release. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Add the `.tgz` file to a release. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-    After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install a release with the Helm CLI, see [Installing with Helm](install-with-helm). For information about how to install Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
+    After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install a release with the Helm CLI, see [Install with Helm](install-with-helm). For information about how to install Helm charts with KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).

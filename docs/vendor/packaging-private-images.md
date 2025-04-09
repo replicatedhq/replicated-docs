@@ -209,7 +209,7 @@ To add an external registry using the Vendor Portal:
 
 To configure access to private images in an external registry using the Replicated CLI:
 
-1. Install and configure the Replicated CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
+1. Install and configure the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the `registry add` command for your external private registry. For more information about the `registry add` command, see [registry add](/reference/replicated-cli-registry-add) in _Replicated CLI_.
 

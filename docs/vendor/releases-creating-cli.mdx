@@ -2,7 +2,7 @@
 
 This topic describes how to use the Replicated CLI to create and promote releases.
 
-For information about creating and managing releases with the Vendor Portal, see [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+For information about creating and managing releases with the Vendor Portal, see [Manage Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) section in the Vendor API v3 documentation.
 
@@ -10,7 +10,7 @@ For information about creating and managing releases with the Vendor API v3, see
 
 Before you create a release using the Replicated CLI, complete the following prerequisites:
 
-* Install the Replicated CLI and then log in to authorize the CLI. See [Installing the Replicated CLI](/reference/replicated-cli-installing).
+* Install the Replicated CLI and then log in to authorize the CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
   
 * Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
@@ -30,7 +30,7 @@ To create and promote a release:
 
 1. (Helm Charts Only) If your release contains any Helm charts:
 
-   1. Package each Helm chart as a `.tgz` file. See [Packaging a Helm Chart for a Release](/vendor/helm-install-release).
+   1. Package each Helm chart as a `.tgz` file. See [Package a Helm Chart for a Release](/vendor/helm-install-release).
 
    1. Move the `.tgz` file or files to the local directory that contains the release files:
 

@@ -166,7 +166,7 @@ To test this example:
     helm pull oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
     ```
 
-1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the Vendor Portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+1. Add the `gitea-1.0.6.tgz` chart archive to a new, empty release in the Vendor Portal along with the `kots-app.yaml`, `k8s-app.yaml`, and `gitea.yaml` files provided below. Promote to the channel that you use for internal testing. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
     <Tabs>
     <TabItem value="kots-app" label="kots-app.yaml" default>
@@ -199,7 +199,7 @@ It also shows how to use the `ports` key to add a link to a NodePort service for
 
 To test this example:
 
-1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the Vendor Portal. Promote to the channel that you use for internal testing. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+1. Add the `example-service.yaml`, `example-deployment.yaml`, `kots-app.yaml`, and `k8s-app.yaml` files provided below to a new, empty release in the Vendor Portal. Promote to the channel that you use for internal testing. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
     <Tabs>
     <TabItem value="service" label="example-service.yaml" default>
@@ -231,7 +231,7 @@ To test this example:
 
 1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
 
-1. If there is not already a kURL installer promoted to the channel, add a kURL installer to the release to support kURL installs. For more information, see [Creating a kURL Installer](/vendor/packaging-embedded-kubernetes).
+1. If there is not already a kURL installer promoted to the channel, add a kURL installer to the release to support kURL installs. For more information, see [Create a kURL Installer](/vendor/packaging-embedded-kubernetes).
 
 1. Install the release on a VM and confirm that the service was exposed successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation with kURL](/enterprise/installing-kurl).
 

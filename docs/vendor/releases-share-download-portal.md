@@ -23,7 +23,7 @@ To access the Download Portal for a customer:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
 
-1. On the **Manage customer** tab, under **Install types**, enable the installation types that are supported for the customer. This determines the installation instructions and assets that are available for the customer in the Download Portal. For more information about install types, see [Managing Install Types for a License](/vendor/licenses-install-types).
+1. On the **Manage customer** tab, under **Install types**, enable the installation types that are supported for the customer. This determines the installation instructions and assets that are available for the customer in the Download Portal. For more information about install types, see [Manage Install Types for a License](/vendor/licenses-install-types).
 
    <img alt="install types" src="/images/license-install-types.png" width="700px"/>
 
@@ -61,7 +61,7 @@ To access the Download Portal for a customer:
 and preview your customer's experience.
 
    :::note
-   By default, the Download Portal uses the domain `get.replicated.com`. You can optionally use a custom domain for the Download Portal. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
+   By default, the Download Portal uses the domain `get.replicated.com`. You can optionally use a custom domain for the Download Portal. For more information, see [Use Custom Domains](/vendor/custom-domains-using).
    :::
 
 1. In the Download Portal, on the left side of the screen, select the installation type. The options displayed vary depending on the **Install types** and **Advanced install options** that you enabled in the customer's license.
