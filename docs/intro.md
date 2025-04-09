@@ -174,7 +174,7 @@ pagination_next: null
       <a href="/vendor/instance-insights-details">Instance Details</a>
     </li>
     <li>
-      <a href="/vendor/custom-metrics-about">Configure Custom Metrics</a>
+      <a href="/vendor/custom-metrics">Configure Custom Metrics</a>
     </li>
   </ul>
   <ul>
