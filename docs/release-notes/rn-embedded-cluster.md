@@ -32,10 +32,10 @@ Released on April 8, 2025
 </table>
 
 ### Improvements {#improvements-2-3-1}
-* When enabling High Availability, Embedded Cluster will now wait until rqlite data within kotsadm is fully synced to three nodes.
+* When enabling high availability, Embedded Cluster will now wait until rqlite data for KOTS is fully synced to three nodes.
 
 ### Bug Fixes {#bug-fixes-2-3-1}
-* Fixes an issue where installation would fail if a worker profile was not specified within unsupported overrides.
+* Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
 
 ## 2.3.0 - Removed
 
