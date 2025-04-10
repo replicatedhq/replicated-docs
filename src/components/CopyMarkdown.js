@@ -174,11 +174,11 @@ function CopyMarkdown() {
       if (newWindow) {
         // Also copy to clipboard
         navigator.clipboard.writeText(markdown);
-        showToast("ChatGPT opened. Please paste the copied markdown there.");
+        setIsOpen(false);
+        // No visual feedback for this option
       } else {
         showToast('Popup was blocked. Please allow popups for this site.', true);
       }
-      setIsOpen(false);
     } catch (error) {
       console.error('Failed to open ChatGPT:', error);
       showToast('Failed to open ChatGPT. Please try again.', true);
