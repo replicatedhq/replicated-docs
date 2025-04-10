@@ -10,10 +10,10 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--ifm-color-primary);
+  font-weight: 600;
+  color: var(--ifm-color-gray-800, #444950);
   background-color: transparent;
-  border: 2px solid var(--ifm-color-primary);
+  border: 2px solid var(--ifm-color-gray-400, #cfd3d9);
   border-radius: 8px;
   padding: 0.5rem 0.75rem;
   cursor: pointer;
@@ -23,11 +23,12 @@
 }
 
 .button:hover {
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  border-color: var(--ifm-color-gray-500, #a8acb3);
 }
 
 .button:focus {
-  box-shadow: 0 0 0 2px var(--ifm-color-primary-lighter);
+  box-shadow: 0 0 0 2px var(--ifm-color-gray-300, #dadde1);
 }
 
 .button:active {
@@ -39,6 +40,8 @@
   height: 1rem;
   margin-left: 0.5rem;
   transition: transform 0.2s ease;
+  color: var(--ifm-color-gray-800, #444950);
+  stroke-width: 2px;
 }
 
 .button[aria-expanded="true"] .icon {
@@ -53,9 +56,9 @@
   margin-top: 0.5rem;
   min-width: 240px;
   background-color: var(--ifm-background-surface-color, #ffffff);
-  border: 1px solid var(--ifm-color-emphasis-300);
+  border: 1px solid var(--ifm-color-gray-300, #dadde1);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   z-index: 1000;
   overflow: hidden;
   animation: fadeIn 0.2s ease;
@@ -73,7 +76,7 @@
 }
 
 .item {
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-gray-200, #ebedf0);
 }
 
 .item:last-child {
@@ -85,7 +88,7 @@
   padding: 0.75rem 1rem;
   width: 100%;
   text-align: left;
-  color: var(--ifm-font-color-base);
+  color: var(--ifm-color-gray-800, #444950);
   background: none;
   border: none;
   cursor: pointer;
@@ -95,13 +98,13 @@
 }
 
 .actionButton:hover {
-  background-color: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  color: var(--ifm-color-gray-900, #1c1e21);
 }
 
 .actionButton:focus {
-  background-color: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  color: var(--ifm-color-gray-900, #1c1e21);
 }
 
 .toast {
