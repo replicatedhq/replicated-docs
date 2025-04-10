@@ -73,7 +73,8 @@
   display: block;
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
+  right: auto;
   margin-top: 0.5rem;
   min-width: 240px;
   background-color: var(--ifm-background-surface-color, #ffffff);
