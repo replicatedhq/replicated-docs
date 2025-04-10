@@ -11,6 +11,11 @@
   margin-right: 0.2rem;
 }
 
+.buttonText {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -28,9 +33,19 @@
   margin-top: 0;
 }
 
+.copied {
+  cursor: default;
+}
+
 .button:hover {
   background-color: var(--ifm-color-gray-100, #f5f6f7);
   border-color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+.copied:hover {
+  background-color: transparent;
+  border-color: var(--ifm-color-gray-400, #cfd3d9);
+  transform: none;
 }
 
 .button:focus {
@@ -151,9 +166,21 @@ html[data-theme='dark'] .button {
   background-color: transparent;
 }
 
+html[data-theme='dark'] .copied {
+  background-color: transparent;
+  color: var(--ifm-color-gray-300, #dadde1);
+  border-color: var(--ifm-color-gray-600, #606770);
+}
+
 html[data-theme='dark'] .button:hover {
   background-color: var(--ifm-color-gray-800, #444950);
   border-color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+html[data-theme='dark'] .copied:hover {
+  background-color: transparent;
+  border-color: var(--ifm-color-gray-600, #606770);
+  transform: none;
 }
 
 html[data-theme='dark'] .button:focus {
@@ -182,6 +209,11 @@ html[data-theme='dark'] .actionButton:hover,
 html[data-theme='dark'] .actionButton:focus {
   background-color: var(--ifm-color-gray-800, #444950);
   color: var(--ifm-color-white, #ffffff);
+}
+
+.copied .buttonText {
+  padding-left: 24px; /* Equal to the width of the copy icon */
+  padding-right: 27px; /* Equal to the width of the arrow icon plus its margin */
 }
 
 @media (max-width: 768px) {

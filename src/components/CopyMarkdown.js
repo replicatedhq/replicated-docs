@@ -5,6 +5,7 @@ function CopyMarkdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasContent, setHasContent] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -134,7 +135,12 @@ function CopyMarkdown() {
       const markdown = generateCleanMarkdown();
       await navigator.clipboard.writeText(markdown);
       setIsOpen(false);
-      showToast('Markdown copied to clipboard!');
+      setIsCopied(true);
+      
+      // Reset the button state after 2 seconds
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
     } catch (error) {
       console.error('Failed to copy markdown:', error);
       showToast('Failed to copy. Please try again.', true);
@@ -254,24 +260,31 @@ function CopyMarkdown() {
     <div className={styles.container}>
       <button 
         ref={buttonRef}
-        className={styles.button} 
-        onClick={toggleDropdown}
+        className={`${styles.button} ${isCopied ? styles.copied : ''}`}
+        onClick={!isCopied ? toggleDropdown : undefined}
         aria-expanded={isOpen}
         aria-haspopup="true"
+        disabled={isCopied}
       >
-        <img 
-          src={isDarkTheme ? "/images/icons/copy-white.svg" : "/images/icons/copy.svg"} 
-          alt="Copy" 
-          className={styles.copyIcon} 
-        />
-        <span>Copy page</span>
-        <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor">
-          <path 
-            fillRule="evenodd" 
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" 
-            clipRule="evenodd" 
-          />
-        </svg>
+        {isCopied ? (
+          <span className={styles.buttonText}>Copied!</span>
+        ) : (
+          <>
+            <img 
+              src={isDarkTheme ? "/images/icons/copy-white.svg" : "/images/icons/copy.svg"} 
+              alt="Copy" 
+              className={styles.copyIcon} 
+            />
+            <span className={styles.buttonText}>Copy page</span>
+            <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor">
+              <path 
+                fillRule="evenodd" 
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" 
+                clipRule="evenodd" 
+              />
+            </svg>
+          </>
+        )}
       </button>
       
       {isOpen && (
