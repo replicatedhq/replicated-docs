@@ -1,0 +1,135 @@
+.container {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  z-index: 10;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  background-color: transparent;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  margin-top: 0;
+}
+
+.button:hover {
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+.button:focus {
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lighter);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.button[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  display: block;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  min-width: 240px;
+  background-color: var(--ifm-background-surface-color, #ffffff);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.actionButton {
+  display: block;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  text-align: left;
+  color: var(--ifm-font-color-base);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  outline: none;
+}
+
+.actionButton:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+}
+
+.actionButton:focus {
+  background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  z-index: 9999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease;
+  animation: slideIn 0.3s ease;
+}
+
+.errorToast {
+  background-color: #f44336;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+} 
