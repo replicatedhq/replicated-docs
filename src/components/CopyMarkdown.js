@@ -240,6 +240,11 @@ function CopyMarkdown() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
+        <img 
+          src="/images/icons/copy.svg" 
+          alt="Copy" 
+          className={styles.copyIcon} 
+        />
         <span>Copy page</span>
         <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor">
           <path 
@@ -264,7 +269,7 @@ function CopyMarkdown() {
                 onClick={copyMarkdown}
                 role="menuitem"
               >
-                <span>Copy page as Markdown for LLMs</span>
+                <span>Copy page as Markdown</span>
               </button>
             </li>
             <li className={styles.item}>
