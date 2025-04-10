@@ -1,0 +1,183 @@
+# About Customers and Licensing
+
+This topic provides an overview of customers and licenses in the Replicated Platform.
+
+## Overview
+
+The licensing features of the Replicated Platform allow vendors to securely grant access to software, making license agreements available to the application in end customer environments at startup and runtime.
+
+The Replicated Vendor Portal also allows vendors to create and manage customer records. Each customer record includes several fields that uniquely identify the customer and the application, specify the customer's assigned release channel, and define the customer's entitlements. 
+
+Vendors can use these licensing features to enforce entitlements such as license expiration dates, and to track and report on software usage for the purpose of surfacing insights to both internal teams and customers.
+
+The following diagram provides an overview of licensing with the Replicated Platform:
+
+![App instance communicates with the Replicated licensing server](/images/licensing-overview.png)
+
+[View a larger version of this image](/images/licensing-overview.png)
+
+As shown in the diagram above, the Replicated license and update server manages and distributes customer license information. The license server retrieves this license information from customer records managed by vendors in the Vendor Portal. 
+
+During installation or upgrade, the customer's license ID is used to authenticate with the license server. The license ID also provides authentication for the Replicated proxy registry, securely granting proxy access to images in the vendor's external registry.
+
+The license server is identified with a CNAME record where it can be accessed from end customer environments. When running alongside an application in a customer environment, the Replicated SDK retrieves up-to-date customer license information from the license server during runtime. The in-cluster SDK API `/license/` endpoints can be used to get customer license information on-demand, allowing vendors to programmatically enforce and report on license agreements.
+
+Vendors can also integrate internal Customer Relationship Management (CRM) tools such as Salesforce with the Replicated Platform so that any changes to a customer's entitlements are automatically reflected in the Vendor Portal. This ensures that updates to license agreements are reflected in the customer environment in real time.
+
+## About Customers
+
+Each customer that you create in the Replicated Vendor Portal has a unique license ID. Your customers use their license when they install or update your application.
+
+You assign customers to channels in the Vendor Portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel.
+
+Each customer license includes several fields that uniquely identify the customer and the application, specify the customer's assigned release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available at installation or at runtime.
+
+For more information about how to create and manage customers, see [Creating and Managing Customers](releases-creating-customer).
+
+### Customer Channel Assignment {#channel-assignment}
+
+You can change the channel a customer is assigned at any time. For installations with Replicated KOTS, when you change the customer's channel, the customer can synchronize their license in the Replicated Admin Console to fetch the latest release on the new channel and then upgrade. The Admin Console always fetches the latest release on the new channel, regardless of the presence of any releases on the channel that are marked as required.
+
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the KOTS Admin Console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
+
+For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the Admin Console, see [Updating Licenses in the Admin Console](/enterprise/updating-licenses).
+
+### Customer Types
+
+Each customer is assigned one of the following types:
+
+* **Development**: The Development type can be used internally by the development
+team for testing and integration.
+* **Trial**: The Trial type can be used for customers who are on 2-4 week trials
+of your software.
+* **Paid**: The Paid type identifies the customer as a paying customer for which
+additional information can be provided.
+* **Community**: The Community type is designed for a free or low cost version of your application. For more details about this type, see [Community Licenses](licenses-about-types).
+* (Beta) **Single Tenant Vendor Managed**: The Single Tenant Vendor Managed type is for customers for whom your team is operating the application in infrastructure you fully control and operate. Single Tenant Vendor Managed licenses are free to use, but come with limited support. The Single Tenant Vendor Managed type is a Beta feature. Reach out to your Replicated account representative to get access.
+
+Except Community licenses, the license type is used solely for reporting purposes and a customer's access to your application is not affected by the type that you assign.
+
+You can change the type of a license at any time in the Vendor Portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes. 
+
+### About Managing Customers
+
+Each customer record in the Vendor Portal has built-in fields and also supports custom fields:
+* The built-in fields include values such as the customer name, customer email, and the license expiration date. You can optionally set initial values for the built-in fields so that each new customer created in the Vendor Portal starts with the same set of values.
+* You can also create custom fields to define entitlements for your application. For example, you can create a custom field to set the number of active users permitted.
+
+For more information, see [Managing Customer License Fields](/vendor/licenses-adding-custom-fields).
+
+You can make changes to a customer record in the Vendor Portal at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about managing customers in the Vendor Portal, see [Creating and Managing Customers](releases-creating-customer).
+
+### About the Customers Page
+
+The following shows an example of the **Customers** page:
+
+![Customers page](/images/customers-page.png)
+
+[View a larger version of this image](/images/customers-page.png)
+
+From the **Customers** page, you can do the following:
+
+* Create new customers.
+
+* Download CSVs with customer and instance data.
+
+* Search and filter customers.
+
+* Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+* Download the license file for each customer.
+
+* Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
+
+* View instance details for each customer, including the version of the application that this instance is running, the Kubernetes distribution of the cluster, the last check-in time, and more:
+
+  <img width="800px" src="/images/customer-reporting-details.png" />
+  
+  [View a larger version of this image](/images/customer-reporting-details.png)
+
+* Archive customers. For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+* Click on a customer on the **Customers** page to access the following customer-specific pages:
+  * [Reporting](#about-the-customer-reporting-page)
+  * [Manage customer](#about-the-manage-customer-page)
+  * [Support bundles](#about-the-customer-support-bundles-page)
+
+### About the Customer Reporting Page
+
+The **Reporting** page for a customer displays data about the active application instances associated with each customer. The following shows an example of the **Reporting** page for a customer that has two active application instances:
+
+![Customer reporting page in the Vendor Portal](/images/customer-reporting-page.png)
+[View a larger version of this image](/images/customer-reporting-page.png)
+
+For more information about interpreting the data on the **Reporting** page, see [Customer Reporting](customer-reporting).
+
+### About the Manage Customer Page
+
+The **Manage customer** page for a customer displays details about the customer license, including the customer name and email, the license expiration policy, custom license fields, and more.
+
+The following shows an example of the **Manage customer** page:
+
+![Manage customer page in the Vendor Portal](/images/customer-details.png)
+[View a larger version of this image](/images/customer-details.png)
+
+From the **Manage customer** page, you can view and edit the customer's license fields or archive the customer. For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+### About the Customer Support Bundles Page
+
+The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers with the **Support Bundle Upload Enabled** entitlement can provide support bundles through the KOTS Admin Console, or you can upload support bundles manually in the Vendor Portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
+
+The following shows an example of the **Support bundles** page:
+
+![Support bundles page in the Vendor Portal](/images/customer-support-bundles.png)
+[View a larger version of this image](/images/customer-support-bundles.png)
+
+As shown in the screenshot above, the **Support bundles** page lists details about the collected support bundles, such as the date the support bundle was collected and the debugging insights found. You can click on a support bundle to view it in the **Support bundle analysis** page. You can also click **Delete** to delete the support bundle, or click **Customer Reporting** to view the **Reporting** page for the customer.
+
+## About Licensing with Replicated
+
+### About Syncing Licenses
+
+When you edit customer licenses for an application installed with a Replicated installer (Embedded Cluster, KOTS, kURL), your customers can use the KOTS Admin Console to get the latest license details from the Vendor Portal, then deploy a new version that includes the license changes. Deploying a new version with the license changes ensures that any license fields that you have templated in your release using [KOTS template functions](/reference/template-functions-about) are rendered with the latest license details.
+
+For online instances, KOTS pulls license details from the Vendor Portal when:
+* A customer clicks **Sync license** in the Admin Console.
+* An automatic or manual update check is performed by KOTS.
+* An update is performed with Replicated Embedded Cluster. See [Performing Updates with Embedded Cluster](/enterprise/updating-embedded).
+* An application status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
+
+For more information, see [Updating Licenses in the Admin Console](/enterprise/updating-licenses).
+
+### About Syncing Licenses in Air-Gapped Environments
+
+To update licenses in air gap installations, customers need to upload the updated license file to the Admin Console.
+
+After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into their Download Portal to downlaod the new license.
+
+For more information, see [Updating Licenses in the Admin Console](/enterprise/updating-licenses).
+
+### Retrieving License Details with the SDK API
+
+The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that can be used to retrieve up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that you can add logic to your application to get the latest license information without the customer needing to perform a license update. The SDK API polls the Vendor Portal for updated data every four hours.
+
+In KOTS installations that include the SDK, users need to update their licenses from the Admin Console as described in [About Syncing Licenses](#about-syncing-licenses) above. However, any logic in your application that uses the SDK API will update the user's license information without the customer needing to deploy a license update in the Admin Console.
+
+For information about how to use the SDK API to query license entitlements at runtime, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
+
+### License Expiration Handling {#expiration}
+
+The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is encoded in ISO 8601 format (`2026-01-23T00:00:00Z`) and is set to midnight UTC at the beginning of the calendar day (`00:00:00`) on the date selected.
+
+Replicated enforces the following logic when a license expires:
+* By default, instances with expired licenses continue to run.
+   To change the behavior of your application when a license expires, you can can add custom logic in your application that queries the `expires_at` field using the Replicated SDK in-cluster API. For more information, see [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
+* Expired licenses cannot log in to the Replicated registry to pull a Helm chart for installation or upgrade.
+* Expired licenses cannot pull application images through the Replicated proxy registry or from the Replicated registry.
+* In Replicated KOTS installations, KOTS prevents instances with expired licenses from receiving updates.
+
+### Replacing Licenses for Existing Installations
+
+Community licenses are the only license type that can be replaced with a new license without needing to reinstall the application. For more information, see [Community Licenses](licenses-about-types).
+
+Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license.

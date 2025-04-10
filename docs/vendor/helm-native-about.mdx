@@ -56,7 +56,7 @@ When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` 
 
 The `kots.io/v1beta2` HelmChart custom resource does _not_ modify the chart during installation. This results in Helm chart installations that are consistent, reliable, and easy to troubleshoot. For example, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`. And, you can use `helm get values` to view the values that were used to install.
 
-The `kots.io/v1beta2` HelmChart custom resource requires configuration. For more information, see [Configuring the HelmChart Custom Resource v2](helm-native-v2-using).
+The `kots.io/v1beta2` HelmChart custom resource requires configuration. For more information, see [Configure the HelmChart Custom Resource v2](helm-native-v2-using).
 
 For information about the fields and syntax of the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
@@ -72,7 +72,7 @@ The following limitations apply when deploying Helm charts with the `kots.io/v1b
 
 * When updating the HelmChart custom resource in a release from `kots.io/v1beta1` to `kots.io/v1beta2`, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different.
 
-* Editing downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information about patching applications with Kustomize, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize).
+* Editing downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information about patching applications with Kustomize, see [Patch with Kustomize](/enterprise/updating-patching-with-kustomize).
 
 * <GitOpsLimitation/>
 
@@ -101,13 +101,13 @@ For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/to
 
 KOTS supports installation of Helm charts into air gap environments with configuration of the HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder)  key. The `builder` key specifies the Helm values to use when building the air gap bundle for the application.
 
-For more information about how to configure the `builder` key to support air gap installations, see [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+For more information about how to configure the `builder` key to support air gap installations, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
 ## Resource Deployment Order
 
 When installing an application that includes one or more Helm charts, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying any Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
 
-For information about how to set the deployment order for Helm charts with KOTS, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
+For information about how to set the deployment order for Helm charts with KOTS, see [Orchestrate Resource Deployment](/vendor/orchestrating-resource-deployment).
 
 ## Deprecated HelmChart kots.io/v1beta1 Installation Methods
 
@@ -202,7 +202,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
     kind: Kustomization
     ```
    
-   End users can edit the downstream Kustomization files to make changes before deploying the application. Any instructions that users add to the Kustomization files in the downstream directory take priority over midstream and base Kustomization files. For more information about how users can make changes before deploying, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize).
+   End users can edit the downstream Kustomization files to make changes before deploying the application. Any instructions that users add to the Kustomization files in the downstream directory take priority over midstream and base Kustomization files. For more information about how users can make changes before deploying, see [Patch with Kustomize](/enterprise/updating-patching-with-kustomize).
 
 1. **Deploys the Helm chart**: KOTS runs `kustomize build` for any Kustomization files in the `overlays/downstream/charts` directory. KOTS then packages the resulting manifests into a new chart for Helm to consume.
 

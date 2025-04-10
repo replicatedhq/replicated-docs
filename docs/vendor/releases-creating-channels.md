@@ -1,4 +1,4 @@
-# Creating and Editing Channels
+# Create and Edit Channels
 
 This topic describes how to create and edit channels using the Replicated Vendor Portal. For more information about channels, see [About Channels and Releases](releases-about).
 
@@ -20,7 +20,7 @@ To create a channel:
 1. Enter a name and description for the channel.
 1. (Recommended) Enable semantic versioning on the channel if it is not enabled by default by turning on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
-1. (Recommended) Enable an air gap bundle format that supports image digests and deduplication of image layers, by turning on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](private-images-tags-digests).
+1. (Recommended) Enable an air gap bundle format that supports image digests and deduplication of image layers, by turning on **Enable new air gap bundle format**. For more information, see [Use Image Tags and Digests](private-images-tags-digests).
 
 1. Click **Create Channel**.
 

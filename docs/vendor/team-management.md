@@ -1,9 +1,9 @@
 import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.mdx"
 
-# Managing Team Members
+# Manage Team Members
 
-This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Managing Collab Repository Access](team-management-github-username).
+This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Manage Collab Repository Access](team-management-github-username).
 
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
@@ -64,17 +64,17 @@ To edit policy permissions for individual team members:
 1. From the the Team Members list, click **Edit permissions** next to a members name.
 
    :::note
-   The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
+   The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Manage Two-Factor Authentication](team-management-two-factor-auth).
    :::
 
-1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configuring RBAC Policies](team-management-rbac-configuring).
+1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configure RBAC Policies](team-management-rbac-configuring).
 
    <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the Vendor Portal" width="400"/>
 
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the Vendor Portal.
 
-To add, edit, or delete custom RBAC policies, see [Configuring RBAC Policies](team-management-rbac-configuring).
+To add, edit, or delete custom RBAC policies, see [Configure RBAC Policies](team-management-rbac-configuring).
 
 To enable users to auto-join your team:
 
@@ -93,7 +93,7 @@ To enable users to auto-join your team:
 ## Remove Members and End Sessions
 As a Vendor Portal team admin, you can remove team members, except for the account you are currently logged in with.
 
-If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Managing Collab Repository Access](team-management-github-username).
+If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
 
 SAML-created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
 
@@ -105,7 +105,7 @@ To remove a member:
 
    The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
 
-   If the member added their GitHub username to the Vendor Portal to access the collab repository, then the Vendor Portal also removes their GitHub username from the collab repository.
+   If the member added their GitHub username to the Vendor Portal to access the collab repository, then the Vendor Portal also removes their GitHub username from the collab repository. For more information, see [Manage Collab Repository Access](team-management-github-username).
 
    For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated Vendor Portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the Vendor Portal unless the username and password are allowed.
 

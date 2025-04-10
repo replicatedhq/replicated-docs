@@ -2,7 +2,7 @@ import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 
-# Orchestrating Resource Deployment
+# Orchestrate Resource Deployment
 
 This topic describes how to orchestrate the deployment order of resources deployed as part of your application. The information in this topic applies to Helm chart- and standard manifest-based applications deployed with Replicated KOTS.
 

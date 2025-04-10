@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Updating TLS Certificates in kURL Clusters
+# Update TLS Certificates in kURL Clusters
 
 <KurlAvailability/>
 

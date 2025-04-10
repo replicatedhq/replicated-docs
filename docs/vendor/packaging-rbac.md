@@ -1,4 +1,4 @@
-# Configuring KOTS RBAC
+# Configure KOTS RBAC
 
 This topic describes role-based access control (RBAC) for Replicated KOTS in existing cluster installations. It includes information about how to change the default cluster-scoped RBAC permissions granted to KOTS.
 
@@ -96,7 +96,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Existing clusters only**: The `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` options apply only to installations in existing clusters.
 
-* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Defining Preflight Checks](/vendor/preflight-defining).
+* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Define Preflight Checks](/vendor/preflight-defining).
 
 * **Velero namespace access for KOTS snapshots**: Velero is required for enabling backup and restore with the KOTS snapshots feature. Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. 
 
@@ -108,7 +108,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
    In non-headless installations in air gap environments, KOTS does not have access to the application's `.airgap` package during installation. This means that KOTS does not have the information required to determine whether namespace-scoped access is needed, so it defaults to the more permissive, default cluster-scoped RBAC policy.
 
-   For more information about how to do headless installations in air gap environments, see [Air Gap Installation](/enterprise/installing-existing-cluster-automation#air-gap) in _Installing with the KOTS CLI_.
+   For more information about how to do headless installations in air gap environments, see [Air Gap Installation](/enterprise/installing-existing-cluster-automation#air-gap) in _Install with the KOTS CLI_.
 
 * **Changing RBAC permissions for installed instances**: The RBAC permissions for KOTS are set during its initial installation. KOTS runs using the assumed identity and cannot change its own authorization. When you update your application to add or remove the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in the Application custom resource, the RBAC permissions for KOTS are affected only for new installations. Existing KOTS installations continue to run with their current RBAC permissions.
 

@@ -18,11 +18,11 @@ The following are Replicated's best practices and recommendations for CI/CD:
 
 * Integrate Replicated Compatibility Matrix into your CI/CD workflows to quickly create multiple different types of clusters where you can deploy and test your application. Supported distributions include OpenShift, GKE, EKS, and more. For more information, see [About Compatibility Matrix](testing-about).
 
-* If you use the GitHub Actions CI/CD platform, integrate the custom GitHub actions that Replicated maintains to replace repetitive tasks related to distributing application with Replicated or using Compatibility Matrix. For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-workflows-github-actions).
+* If you use the GitHub Actions CI/CD platform, integrate the custom GitHub actions that Replicated maintains to replace repetitive tasks related to distributing application with Replicated or using Compatibility Matrix. For more information, see [Use Replicated GitHub Actions in CI/CD](/vendor/ci-workflows-github-actions).
 
 * To help show you are conforming to a secure supply chain, sign all commits and container images. Additionally, provide a verification mechanism for container images.
 
-* Use custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy that blocks the ability to promote releases to your production channel. For more information about creating custom RBAC policies in the Vendor Portal, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring). For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
+* Use custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy that blocks the ability to promote releases to your production channel. For more information about creating custom RBAC policies in the Vendor Portal, see [Configure RBAC Policies](/vendor/team-management-rbac-configuring). For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
 
 * Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
     <TestRecs/>

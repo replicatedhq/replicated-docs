@@ -10,6 +10,75 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.3.1
+
+Released on April 8, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.1+k8s-1.30</td>
+    <td id="center">2.3.1+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.12</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-3-1}
+* When enabling high availability, Embedded Cluster will now wait until rqlite data for KOTS is fully synced to three nodes.
+
+### Bug Fixes {#bug-fixes-2-3-1}
+* Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
+
+## 2.3.0 - Removed
+
+:::important
+Embedded Cluster 2.3.0 has been removed because new installations do not work unless a worker profile is specified in the Embedded Cluster Config under `unsupportedOverrides`. For more information, see [Configure the Kubelet with k0s Worker Profiles](/reference/embedded-config#configure-the-kubelet-with-k0s-worker-profiles). Upgrades to 2.3.0 were not affected because worker profiles are not used on upgrades. New upgrades to 2.3.0 are not available. Any users that already upgraded can continue to use 2.3.0. 
+:::
+
+Released on April 3, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.0+k8s-1.30</td>
+    <td id="center">2.3.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.11</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-3-0}
+* Adds support for high availability installations when adding a third controller node. If HA isn't yet enabled, users will be prompted to enable HA when adding the third or more controller node.
+* Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes. Although you are prompted to enable HA when adding nodes, this command can be used if you decline that prompt and later want to enable HA, or if your session is interrupted while HA is being enabled.
+* For new installations, the control plane is now set up as highly available within the cluster, enabling the removal of controller nodes from multi-node clusters without affecting pod scheduling.
+* Adds support for passing kubelet parameters to nodes by specifying a [k0s worker profile](https://docs.k0sproject.io/head/worker-node-config/#worker-profiles) in the k0s config in the `unsupportedOverrides.k0s` section of the Embedded Cluster config. Although `workerProfiles` is an array in the k0s config, Embedded Cluster will take the first worker profile in the array and apply it to all nodes in the cluster. This lets you modify the kubelet configuration on all nodes in the cluster.
+
+### Improvements {#improvements-2-3-0}
+* Host preflights are updated to check that port 7443 is available on the loopback interface of the host, rather than being available on all network interfaces.
+* Stability improvements for enabling high availability when adding a third controller node.
+* Ensures that Embedded Cluster components like the Admin Console and rqlite only run on controller nodes.
+* Output from the `join` and `reset` commands no longer mentions "controller nodes," which is terminology users wouldn't be familiar with. The controller node role name is used if custom roles are defined in the Embedded Cluster Config.
+* Adds `-y` as an alias for `--yes` in the `join` and `restore` commands.
+* Debug logs of the installation will now include the Embedded Cluster and k0s versions.
+
+### Bug Fixes {#bug-fixes-2-3-0}
+* Fixes an issue where the UI continues to display the old Admin Console after an upgrade, which results in the previous version of the application showing as the currently deployed version.
+
 ## 2.2.0
 
 Released on March 25, 2025
@@ -32,7 +101,7 @@ Released on March 25, 2025
 </table>
 
 ### New Features {#new-features-2-2-0}
-* Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
+* Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `spec.domains.proxyRegistryDomain` and `spec.domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
 * Removes all calls to endpoints other than replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
 
 ### Improvements {#improvements-2-2-0}

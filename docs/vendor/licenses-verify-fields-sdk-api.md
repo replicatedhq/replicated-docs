@@ -1,4 +1,4 @@
-# Verifying License Field Signatures with the Replicated SDK API
+# Verify License Field Signatures with the Replicated SDK API
 
 This topic describes how to verify the signatures of license fields when checking customer license entitlements with the Replicated SDK.
 
@@ -21,7 +21,7 @@ The following shows an example of a Base64 encoded PSS signature for an `expires
 }
 ```
 
-Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about how to check entitlements in your application for Helm CLI installations, see [Checking Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
+Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about how to check entitlements in your application for Helm CLI installations, see [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
 
 ## Requirement
 

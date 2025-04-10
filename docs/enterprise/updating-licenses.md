@@ -1,4 +1,4 @@
-# Updating Licenses in the Admin Console
+# Update Licenses in the Admin Console
 
 This topic describes how to update a license from the KOTS Admin Console.
 

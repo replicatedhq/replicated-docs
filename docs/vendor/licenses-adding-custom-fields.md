@@ -1,4 +1,4 @@
-# Managing Customer License Fields
+# Manage Customer License Fields
 
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 

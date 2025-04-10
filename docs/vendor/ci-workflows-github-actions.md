@@ -1,4 +1,4 @@
-# Integrating Replicated GitHub Actions
+# Use Replicated GitHub Actions in CI/CD
 
 This topic describes how to integrate Replicated's custom GitHub actions into continuous integration and continuous delivery (CI/CD) workflows that use the GitHub Actions platform.
 

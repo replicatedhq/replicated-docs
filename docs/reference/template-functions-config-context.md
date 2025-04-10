@@ -2,6 +2,8 @@ import ConfigContext from "../partials/template-functions/_config-context.mdx"
 
 # Config Context
 
+This topic provides a list of the KOTS template functions in the Config context.
+
 <ConfigContext/>
 
 ## ConfigOption
@@ -40,7 +42,7 @@ spec:
         nodePort: repl{{ ConfigOption "myapp_load_balancer_node_port"}}
         annotations: repl{{ ConfigOption `myapp_load_balancer_annotations` | nindent 14 }}
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## ConfigOptionData
 
@@ -76,7 +78,7 @@ spec:
         cert: repl{{ print `|`}}repl{{ ConfigOptionData `tls_certificate_file` | nindent 12 }}
         key: repl{{ print `|`}}repl{{ ConfigOptionData `tls_private_key_file` | nindent 12 }}
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## ConfigOptionFilename
 
@@ -176,7 +178,7 @@ spec:
     postgresql:
       enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## ConfigOptionNotEquals
 
@@ -230,7 +232,7 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## LocalRegistryNamespace
 
@@ -261,7 +263,7 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## LocalImageName
 
@@ -271,7 +273,7 @@ func LocalImageName(remoteImageName string) string
 
 Given a `remoteImageName`, rewrite the `remoteImageName` so that it can be pulled to local hosts.
 
-A common use case for the `LocalImageName` function is to ensure that a Kubernetes Operator can determine the names of container images on Pods created at runtime. For more information, see [Referencing Images](/vendor/operator-referencing-images) in the _Packaging a Kubernetes Operator Application_ section.
+A common use case for the `LocalImageName` function is to ensure that a Kubernetes Operator can determine the names of container images on Pods created at runtime. For more information, see [Reference Images](/vendor/operator-referencing-images) in the _Packaging a Kubernetes Operator Application_ section.
 
 `LocalImageName` rewrites the `remoteImageName` in one of the following ways, depending on if a private registry is configured and if the image must be proxied:
 
@@ -372,4 +374,4 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).

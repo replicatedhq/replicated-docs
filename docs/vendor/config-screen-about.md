@@ -4,7 +4,7 @@ This topic describes the configuration screen on the Config tab in the Replicate
 
 ## About Collecting Configuration Values
 
-When you distribute your application with Replicated KOTS, you can include a configuration screen in the Admin Console. This configuration screen is used to collect required or optional values from your users that are used to run your application. You can use regular expressions to validate user input for some fields, such as passwords and email addresses. For more information about how to add custom fields to the configuration screen, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+When you distribute your application with Replicated KOTS, you can include a configuration screen in the Admin Console. This configuration screen is used to collect required or optional values from your users that are used to run your application. You can use regular expressions to validate user input for some fields, such as passwords and email addresses. For more information about how to add custom fields to the configuration screen, see [Create and Edit Configuration Fields](admin-console-customize-config-screen).
 
 If you use a Helm chart for your application, your users provide any values specific to their environment from the configuration screen, rather than in a Helm chart `values.yaml` file. This means that your users can provide configuration values through a user interface, rather than having to edit a YAML file or use `--set` CLI commands. The Admin Console configuration screen also allows you to control which options you expose to your users.
 

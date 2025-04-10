@@ -149,6 +149,5 @@ To learn more about how to customize the Config custom resource to create config
 ## Related Topics
 
 * [kots install](/reference/kots-cli-install/)
-* [Installing the KOTS CLI](/reference/kots-cli-getting-started/)
-* [Installing an Application](/enterprise/installing-overview)
-* [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
+* [Install the KOTS CLI](/reference/kots-cli-getting-started/)
+* [Delete the Admin Console and Remove Applications](/enterprise/delete-admin-console)

@@ -8,7 +8,7 @@ This topic provides Replicated's recommended development and release workflows f
 
 Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). The development and release workflows in this topic describe the recommended steps and jobs to include in your own workflows, including how to integrate Replicated Compatibility Matrix into your workflows for testing. For more information about Compatibility Matrix, see [About Compatibility Matrix](testing-about).
 
-For each step, the corresponding Replicated CLI command is provided. Additionally, for users of the GitHub Actions platform, a corresponding custom GitHub action that is maintained by Replicated is also provided. For more information about using the Replicated CLI, see [Installing the Replicated CLI](/reference/replicated-cli-installing). For more information about the Replicated GitHub actions, see [Integrating Replicated GitHub Actions](ci-workflows-github-actions).
+For each step, the corresponding Replicated CLI command is provided. Additionally, for users of the GitHub Actions platform, a corresponding custom GitHub action that is maintained by Replicated is also provided. For more information about using the Replicated CLI, see [Install the Replicated CLI](/reference/replicated-cli-installing). For more information about the Replicated GitHub actions, see [Use Replicated GitHub Actions in CI/CD](ci-workflows-github-actions).
 
 :::note
 How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
@@ -18,7 +18,7 @@ How you implement CI/CD workflows varies depending on the platform, such as GitH
 
 Replicated recommends using custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy using the [`kots/app/[]/channel/[]/promote`](/vendor/team-management-rbac-resource-names#kotsappchannelpromote) resource that blocks the ability to promote releases to your production channel. This allows for using CI/CD for the purpose of testing, without accidentally releasing to customers.
 
-For more information about creating custom RBAC policies in the Vendor Portal, including examples, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
+For more information about creating custom RBAC policies in the Vendor Portal, including examples, see [Configure RBAC Policies](/vendor/team-management-rbac-configuring).
 
 For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
 

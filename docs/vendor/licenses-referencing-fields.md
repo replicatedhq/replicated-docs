@@ -1,4 +1,4 @@
-# Checking Entitlements in Preflights with KOTS Template Functions
+# Check Entitlements in Preflights with KOTS Template Functions
 
 This topic describes how to check custom entitlements before installation or upgrade using preflight checks and KOTS template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
@@ -6,7 +6,7 @@ This topic describes how to check custom entitlements before installation or upg
 
 KOTS includes default logic to control access to features in the Replicated Admin Console and KOTS CLI based on the values for the built-in fields in the customer's license. For example, by default, KOTS uses the built-in `expires_at` field to prevent an instance from receiving updates when the customer license expires. You can add custom logic to your application to control the behavior of your application based on the built-in fields or any of the custom fields that you create.
 
-For more information, see [Managing Customer License Fields](licenses-adding-custom-fields). For the list of built-in fields in customer licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
+For more information, see [Manage Customer License Fields](licenses-adding-custom-fields). For the list of built-in fields in customer licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
 ## Add Preflights to Check Entitlements Before Installation or Upgrade {#install}
 
@@ -44,4 +44,4 @@ In the example above, the preflight check uses the `nodeResources` analyzer and 
 
 For more information about this example, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
 
-For more information about defining preflight checks, see [Defining Preflight Checks](preflight-defining).
+For more information about defining preflight checks, see [Define Preflight Checks](preflight-defining).

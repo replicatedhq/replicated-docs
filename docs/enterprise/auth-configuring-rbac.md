@@ -1,4 +1,4 @@
-# Configuring Role-based Access Control (Beta)
+# Configure Role-based Access Control (Beta)
 
 You can regulate access to the Replicated KOTS Admin Console resources based on the roles of individual users within your organization.
 

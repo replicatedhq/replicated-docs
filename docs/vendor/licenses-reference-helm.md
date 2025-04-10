@@ -1,8 +1,8 @@
-# Checking Entitlements in Helm Charts Before Deployment
+# Check Entitlements in Helm Charts Before Deployment
 
 This topic describes how to check license entitlements before a Helm chart is installed or upgraded. The information in this topic applies to Helm charts installed with Replicated KOTS or Helm.
 
-The Replicated SDK API can be used to check entitlements at runtime. For more information, see [Querying Entitlements with the Replicated SDK API](licenses-reference-sdk).
+The Replicated SDK API can be used to check entitlements at runtime. For more information, see [Query Entitlements with the Replicated SDK API](licenses-reference-sdk).
 
 ## Overview
 
@@ -37,9 +37,9 @@ To check entitlements before installation:
 
 1. Create or edit a customer to use for testing:
 
-   1. In the Vendor Portal, click **Customers**. Select a customer and click the **Manage customer** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+   1. In the Vendor Portal, click **Customers**. Select a customer and click the **Manage customer** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
-   1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. Or, you can create a custom field that limits the number of nodes a user is permitted in their cluster. For more information, see [Managing Customer License Fields](/vendor/licenses-adding-custom-fields).
+   1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. Or, you can create a custom field that limits the number of nodes a user is permitted in their cluster. For more information, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
 
 1. In your Helm chart, update the Helm templates with one or more directives to access the license field. For example, you can access the built-in `expires_at` field with `{{ .Values.global.replicated.licenseFields.expires_at }}`. Add the desired logic to control application behavior based on the values of license fields.
 
@@ -47,10 +47,10 @@ To check entitlements before installation:
 
 1. Test your changes by promoting a new release and installing in a development environment:
    
-   1. Package your Helm chart and its dependencies into a `.tgz` chart archive. See [Packaging a Helm Chart for a Release](helm-install-release).
+   1. Package your Helm chart and its dependencies into a `.tgz` chart archive. See [Package a Helm Chart for a Release](helm-install-release).
    
-   1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+   1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Manage Releases with the Vendor Portal](/vendor/releases-creating-releases).
    
-   1. Install in a development environment using the license ID for the test customer that you created. See [Installing with Helm](install-with-helm).
+   1. Install in a development environment using the license ID for the test customer that you created. See [Install with Helm](install-with-helm).
 
 1. Repeat these steps to add and test new license fields.

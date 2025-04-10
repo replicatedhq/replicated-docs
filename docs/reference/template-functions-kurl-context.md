@@ -3,6 +3,8 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # kURL Context
 
+This topic provides a list of the KOTS template functions in the kURL context.
+
 <KurlAvailability/>
 
 ## Overview

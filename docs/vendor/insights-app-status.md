@@ -3,7 +3,7 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 
-# Enabling and Understanding Application Status
+# Enable and Understand Application Status
 
 This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal. It also describes the meaning of the different application statuses.
 
@@ -27,7 +27,7 @@ To enable status informers for your application, do one of the following, depend
 
 ### Helm Installations 
 
-To get instance status data for applications installed with Helm, the Replicated SDK must be installed alongside the application. For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
+To get instance status data for applications installed with Helm, the Replicated SDK must be installed alongside the application. For information about how to distribute and install the SDK with your application, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
 
 After you include the SDK as a dependency, the requirements for enabling status informers vary depending on how your application is installed:
 
@@ -64,7 +64,7 @@ For applications that include the Replicated SDK, the Vendor Portal also display
 
 Viewing these resource status details is helpful for understanding which resources are contributing to the aggregate application status. For example, when an application has an Unavailable status, that means that one or more resources are Unavailable. By viewing the resource status insights on the **Instance details** page, you can quickly understand which resource or resources are Unavailable for the purpose of troubleshooting.
 
-Granular resource status details are automatically available when the Replicated SDK is installed alongside the application. For information about how to distribute and install the SDK with your application, see [Installing the Replicated SDK](/vendor/replicated-sdk-installing).
+Granular resource status details are automatically available when the Replicated SDK is installed alongside the application. For information about how to distribute and install the SDK with your application, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
 
 ## Understanding Application Status
 

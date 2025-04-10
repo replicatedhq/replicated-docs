@@ -2,7 +2,7 @@ import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 
-# Using Embedded Cluster
+# Use Embedded Cluster
 
 This topic provides information about using Replicated Embedded Cluster, including how to get started, configure Embedded Cluster, access the cluster using kubectl, and more. For an introduction to Embedded Cluster, see [Embedded Cluster Overview](embedded-overview).
 
@@ -80,7 +80,7 @@ To install with Embedded Cluster, you need to download the Embedded Cluster inst
 
 To serve Embedded Cluster installation assets with the Vendor API:
 
-1. If you have not done so already, create an API token for the Vendor API. See [Using the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+1. If you have not done so already, create an API token for the Vendor API. See [Use the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
 
 1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
 
@@ -106,7 +106,7 @@ If any of the host preflight checks fail, installation is blocked and a message 
 Embedded Cluster host preflight checks have the following limitations:
 
 * The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
-* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Defining Preflight Checks](/vendor/preflight-defining).
+* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
 
 #### Ignore Host Preflight Checks
 
@@ -151,7 +151,7 @@ For more information, see [roles](/reference/embedded-config#roles) in _Embedded
 
 Users can add nodes to a cluster with Embedded Cluster from the Admin Console. The Admin Console provides the join command used to add nodes to the cluster.
 
-For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 ### High Availability for Multi-Node Clusters (Alpha)
 
@@ -163,7 +163,7 @@ For more information about creating HA multi-node clusters with Embedded Cluster
 
 <UpdateOverview/>
 
-For more information about updating, see [Performing Updates with Embedded Cluster](/enterprise/updating-embedded).
+For more information about updating, see [Perform Updates with Embedded Cluster](/enterprise/updating-embedded).
 
 ## Access the Cluster
 

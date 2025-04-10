@@ -1,4 +1,4 @@
-# Managing Two-Factor Authentication
+# Manage Two-Factor Authentication
 
 This topic describes how to enable and disable Replicated two-factor authentication for individual and team accounts in the Replicated Vendor Portal.
 
