@@ -4,6 +4,7 @@ import styles from './CopyMarkdown.module.css';
 function CopyMarkdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasContent, setHasContent] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -226,6 +227,24 @@ function CopyMarkdown() {
     };
   }, [handleClickOutside]);
 
+  // Check for dark theme
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDarkTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+    };
+    
+    checkTheme();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
+
   // Don't render on pages that don't have markdown content
   if (!hasContent) {
     return null;
@@ -241,7 +260,7 @@ function CopyMarkdown() {
         aria-haspopup="true"
       >
         <img 
-          src="/images/icons/copy.svg" 
+          src={isDarkTheme ? "/images/icons/copy-white.svg" : "/images/icons/copy.svg"} 
           alt="Copy" 
           className={styles.copyIcon} 
         />
