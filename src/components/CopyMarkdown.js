@@ -209,7 +209,7 @@ function CopyMarkdown() {
                 onClick={copyMarkdown}
                 role="menuitem"
               >
-                <span>Copy page as plain text</span>
+                <span>Copy as plain text</span>
               </button>
             </li>
             <li className={styles.item}>
@@ -227,7 +227,7 @@ function CopyMarkdown() {
                 onClick={openInChatGpt}
                 role="menuitem"
               >
-                <span>Open page in ChatGPT</span>
+                <span>Open in ChatGPT</span>
               </button>
             </li>
           </ul>
