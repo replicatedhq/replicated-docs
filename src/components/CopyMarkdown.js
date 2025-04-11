@@ -150,20 +150,27 @@ function CopyMarkdown() {
   // View as plain text
   const viewAsMarkdown = useCallback(() => {
     try {
-      const markdown = generateCleanMarkdown();
-      const newWindow = window.open();
-      if (newWindow) {
-        newWindow.document.write(`<html><head><title>Markdown Content</title></head><body><pre>${markdown}</pre></body></html>`);
-        newWindow.document.close();
-      } else {
-        showToast('Popup was blocked. Please allow popups for this site.', true);
-      }
+      // Get the current page path
+      const currentPath = window.location.pathname;
+      
+      // Remove trailing slash if it exists
+      const normalizedPath = currentPath.endsWith('/') 
+        ? currentPath.slice(0, -1) 
+        : currentPath;
+      
+      // Construct the markdown URL
+      const markdownUrl = `${normalizedPath}.md`;
+      
+      // Open in a new tab
+      window.open(markdownUrl, '_blank');
+      
+      // Close dropdown
       setIsOpen(false);
     } catch (error) {
       console.error('Failed to view markdown:', error);
       showToast('Failed to open view. Please try again.', true);
     }
-  }, [generateCleanMarkdown]);
+  }, []);
 
   // Open in ChatGPT
   const openInChatGpt = useCallback(() => {
