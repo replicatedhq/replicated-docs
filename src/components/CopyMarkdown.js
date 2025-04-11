@@ -50,7 +50,6 @@ function CopyMarkdown() {
       }, 2000);
     } catch (error) {
       console.error('Failed to copy markdown:', error);
-      showToast('Failed to copy. Please try again.', true);
     }
   }, []);
 
@@ -75,7 +74,6 @@ function CopyMarkdown() {
       setIsOpen(false);
     } catch (error) {
       console.error('Failed to view markdown:', error);
-      showToast('Failed to open view. Please try again.', true);
     }
   }, []);
 
@@ -109,29 +107,8 @@ function CopyMarkdown() {
       setIsOpen(false);
     } catch (error) {
       console.error('Failed to open ChatGPT:', error);
-      showToast('Failed to open ChatGPT. Please try again.', true);
     }
   }, []);
-
-  // Show toast notification
-  const showToast = (message, isError = false) => {
-    const toast = document.createElement('div');
-    toast.className = styles.toast;
-    if (isError) {
-      toast.classList.add(styles.errorToast);
-    }
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      setTimeout(() => {
-        if (document.body.contains(toast)) {
-          document.body.removeChild(toast);
-        }
-      }, 500);
-    }, 3000);
-  };
 
   // Handle click outside to close dropdown
   const handleClickOutside = useCallback((event) => {
@@ -229,7 +206,7 @@ function CopyMarkdown() {
                 onClick={copyMarkdown}
                 role="menuitem"
               >
-                <span>Copy page as Markdown</span>
+                <span>Copy page as plain text</span>
               </button>
             </li>
             <li className={styles.item}>
@@ -247,7 +224,7 @@ function CopyMarkdown() {
                 onClick={openInChatGpt}
                 role="menuitem"
               >
-                <span>Open in ChatGPT</span>
+                <span>Open page in ChatGPT</span>
               </button>
             </li>
           </ul>

@@ -16,7 +16,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-  max-width: calc(100% - 150px);
+  max-width: calc(100% - 180px);
   line-height: 1.2;
 }
 
@@ -40,7 +40,7 @@
   .docTitle {
     margin-bottom: 0;
     font-size: 2rem;
-    max-width: calc(100% - 120px);
+    max-width: calc(100% - 150px);
   }
 }
 
