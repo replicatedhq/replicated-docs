@@ -286,6 +286,9 @@ function generateFullLLMsTxt(files) {
     
     fs.writeFileSync(OUTPUT_FULL_FILE, fullContent);
     console.log("✅ llms-full.txt generated!");
+    
+    // Copy all processed markdown files to static directory
+    copyProcessedMarkdownToStatic(files);
 }
 
 function copyProcessedMarkdownToStatic(files) {
@@ -321,9 +324,6 @@ function generateLLMsTxt(files) {
     
     fs.writeFileSync(OUTPUT_FILE, fullContent);
     console.log("✅ llms.txt generated!");
-    
-    // Copy the processed markdown files to static directory
-    copyProcessedMarkdownToStatic(files);
 }
 
 // Update the main execution
