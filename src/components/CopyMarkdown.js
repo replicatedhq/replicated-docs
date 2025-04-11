@@ -9,121 +9,6 @@ function CopyMarkdown() {
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  // Generate clean markdown from the page content
-  const generateCleanMarkdown = useCallback(() => {
-    const content = document.querySelector('.theme-doc-markdown.markdown');
-    if (!content) {
-      return 'Could not find content to convert to markdown.';
-    }
-
-    // Clone the content to avoid modifying the original
-    const contentClone = content.cloneNode(true);
-
-    // Get the title
-    const title = contentClone.querySelector('h1')?.textContent || 'Untitled';
-    
-    // Remove elements we don't want in the markdown
-    const elementsToRemove = contentClone.querySelectorAll('.theme-edit-this-page, .pagination-nav, .table-of-contents');
-    elementsToRemove.forEach(el => el?.remove());
-
-    // Convert the HTML content to markdown
-    let markdown = `# ${title}\n\n`;
-    
-    // Process paragraphs, headers, lists, etc.
-    const elements = contentClone.querySelectorAll('p, h2, h3, h4, h5, h6, ul, ol, pre, blockquote, table');
-    elements.forEach(el => {
-      // Skip the title as we've already added it
-      if (el.tagName === 'H1') return;
-      
-      // Process different element types
-      switch (el.tagName) {
-        case 'H2':
-          markdown += `\n## ${el.textContent}\n\n`;
-          break;
-        case 'H3':
-          markdown += `\n### ${el.textContent}\n\n`;
-          break;
-        case 'H4':
-          markdown += `\n#### ${el.textContent}\n\n`;
-          break;
-        case 'H5':
-          markdown += `\n##### ${el.textContent}\n\n`;
-          break;
-        case 'H6':
-          markdown += `\n###### ${el.textContent}\n\n`;
-          break;
-        case 'P':
-          markdown += `${el.textContent}\n\n`;
-          break;
-        case 'UL':
-          markdown += processListItems(el, '- ');
-          break;
-        case 'OL':
-          markdown += processListItems(el, (i) => `${i+1}. `);
-          break;
-        case 'PRE':
-          const codeElement = el.querySelector('code');
-          const codeClass = codeElement?.className?.match(/language-(\w+)/)?.[1] || '';
-          const codeContent = codeElement?.textContent || el.textContent;
-          markdown += `\`\`\`${codeClass}\n${codeContent}\n\`\`\`\n\n`;
-          break;
-        case 'BLOCKQUOTE':
-          const blockquoteLines = el.textContent.split('\n').map(line => `> ${line}`).join('\n');
-          markdown += `${blockquoteLines}\n\n`;
-          break;
-        case 'TABLE':
-          markdown += processTable(el);
-          break;
-        default:
-          markdown += `${el.textContent}\n\n`;
-      }
-    });
-
-    return markdown.trim();
-  }, []);
-
-  // Helper function to process list items
-  const processListItems = (listElement, prefix) => {
-    let result = '\n';
-    const items = listElement.querySelectorAll('li');
-    items.forEach((item, index) => {
-      // If prefix is a function, call it with the index
-      const prefixText = typeof prefix === 'function' ? prefix(index) : prefix;
-      result += `${prefixText}${item.textContent}\n`;
-      
-      // Process any nested lists
-      const nestedLists = item.querySelectorAll('ul, ol');
-      if (nestedLists.length > 0) {
-        nestedLists.forEach(nestedList => {
-          const nestedPrefix = nestedList.tagName === 'UL' ? '  - ' : (i) => `  ${i+1}. `;
-          result += processListItems(nestedList, nestedPrefix);
-        });
-      }
-    });
-    return result + '\n';
-  };
-
-  // Helper function to process tables
-  const processTable = (tableElement) => {
-    let result = '\n';
-    const rows = tableElement.querySelectorAll('tr');
-    
-    // Process header row
-    const headerCells = rows[0]?.querySelectorAll('th') || [];
-    if (headerCells.length > 0) {
-      result += '| ' + Array.from(headerCells).map(cell => cell.textContent).join(' | ') + ' |\n';
-      result += '| ' + Array.from(headerCells).map(() => '---').join(' | ') + ' |\n';
-    }
-    
-    // Process data rows
-    for (let i = headerCells.length > 0 ? 1 : 0; i < rows.length; i++) {
-      const cells = rows[i].querySelectorAll('td');
-      result += '| ' + Array.from(cells).map(cell => cell.textContent).join(' | ') + ' |\n';
-    }
-    
-    return result + '\n';
-  };
-
   // Toggle dropdown
   const toggleDropdown = useCallback(() => {
     setIsOpen(prev => !prev);
@@ -132,8 +17,30 @@ function CopyMarkdown() {
   // Copy markdown to clipboard
   const copyMarkdown = useCallback(async () => {
     try {
-      const markdown = generateCleanMarkdown();
+      // Get the current page path
+      const currentPath = window.location.pathname;
+      
+      // Remove trailing slash if it exists
+      const normalizedPath = currentPath.endsWith('/') 
+        ? currentPath.slice(0, -1) 
+        : currentPath;
+      
+      // Construct the markdown URL
+      const markdownUrl = `${normalizedPath}.md`;
+      
+      // Fetch the markdown content
+      const response = await fetch(markdownUrl);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch markdown: ${response.status}`);
+      }
+      
+      const markdown = await response.text();
+      
+      // Copy to clipboard
       await navigator.clipboard.writeText(markdown);
+      
+      // Close dropdown and show copied feedback
       setIsOpen(false);
       setIsCopied(true);
       
@@ -145,7 +52,7 @@ function CopyMarkdown() {
       console.error('Failed to copy markdown:', error);
       showToast('Failed to copy. Please try again.', true);
     }
-  }, [generateCleanMarkdown]);
+  }, []);
 
   // View as plain text
   const viewAsMarkdown = useCallback(() => {
@@ -173,14 +80,35 @@ function CopyMarkdown() {
   }, []);
 
   // Open in ChatGPT
-  const openInChatGpt = useCallback(() => {
+  const openInChatGpt = useCallback(async () => {
     try {
-      const markdown = generateCleanMarkdown();
+      // Get the current page path
+      const currentPath = window.location.pathname;
+      
+      // Remove trailing slash if it exists
+      const normalizedPath = currentPath.endsWith('/') 
+        ? currentPath.slice(0, -1) 
+        : currentPath;
+      
+      // Construct the markdown URL
+      const markdownUrl = `${normalizedPath}.md`;
+      
+      // Fetch the markdown content
+      const response = await fetch(markdownUrl);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch markdown: ${response.status}`);
+      }
+      
+      const markdown = await response.text();
+      
+      // Open ChatGPT
       const baseUrl = 'https://chat.openai.com/';
       const newWindow = window.open(baseUrl);
+      
       if (newWindow) {
-        // Also copy to clipboard
-        navigator.clipboard.writeText(markdown);
+        // Copy to clipboard for pasting into ChatGPT
+        await navigator.clipboard.writeText(markdown);
         setIsOpen(false);
         // No visual feedback for this option
       } else {
@@ -190,7 +118,7 @@ function CopyMarkdown() {
       console.error('Failed to open ChatGPT:', error);
       showToast('Failed to open ChatGPT. Please try again.', true);
     }
-  }, [generateCleanMarkdown]);
+  }, []);
 
   // Show toast notification
   const showToast = (message, isError = false) => {
