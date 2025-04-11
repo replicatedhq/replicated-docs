@@ -90,30 +90,23 @@ function CopyMarkdown() {
         ? currentPath.slice(0, -1) 
         : currentPath;
       
-      // Construct the markdown URL
-      const markdownUrl = `${normalizedPath}.md`;
+      // Construct the full markdown URL with domain
+      const fullMarkdownUrl = `https://docs.replicated.com${normalizedPath}.md`;
       
-      // Fetch the markdown content
-      const response = await fetch(markdownUrl);
+      // Create the prompt to send to ChatGPT
+      const prompt = `Read ${fullMarkdownUrl} so I can ask questions about it`;
       
-      if (!response.ok) {
-        throw new Error(`Failed to fetch markdown: ${response.status}`);
-      }
+      // URL encode the prompt for the ChatGPT URL
+      const encodedPrompt = encodeURIComponent(prompt);
       
-      const markdown = await response.text();
+      // Create the ChatGPT URL with the prompt
+      const chatGptUrl = `https://chat.openai.com/?prompt=${encodedPrompt}`;
       
-      // Open ChatGPT
-      const baseUrl = 'https://chat.openai.com/';
-      const newWindow = window.open(baseUrl);
+      // Open ChatGPT with the prompt
+      window.open(chatGptUrl, '_blank');
       
-      if (newWindow) {
-        // Copy to clipboard for pasting into ChatGPT
-        await navigator.clipboard.writeText(markdown);
-        setIsOpen(false);
-        // No visual feedback for this option
-      } else {
-        showToast('Popup was blocked. Please allow popups for this site.', true);
-      }
+      // Close the dropdown
+      setIsOpen(false);
     } catch (error) {
       console.error('Failed to open ChatGPT:', error);
       showToast('Failed to open ChatGPT. Please try again.', true);
