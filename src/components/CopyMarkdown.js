@@ -21,15 +21,15 @@ function CopyMarkdown() {
       const currentPath = window.location.pathname;
       
       // Remove trailing slash if it exists
-      const normalizedPath = currentPath.endsWith('/') 
+      const normalizedPath = currentPath.endsWith('/') && currentPath !== '/'
         ? currentPath.slice(0, -1) 
         : currentPath;
       
-      // Construct the markdown URL
-      const markdownUrl = `${normalizedPath}.md`;
+      // For the homepage/intro, use /intro.md specifically
+      const markdownPath = normalizedPath === '/' ? '/intro.md' : `${normalizedPath}.md`;
       
       // Fetch the markdown content
-      const response = await fetch(markdownUrl);
+      const response = await fetch(markdownPath);
       
       if (!response.ok) {
         throw new Error(`Failed to fetch markdown: ${response.status}`);
@@ -60,15 +60,15 @@ function CopyMarkdown() {
       const currentPath = window.location.pathname;
       
       // Remove trailing slash if it exists
-      const normalizedPath = currentPath.endsWith('/') 
+      const normalizedPath = currentPath.endsWith('/') && currentPath !== '/'
         ? currentPath.slice(0, -1) 
         : currentPath;
       
-      // Construct the markdown URL
-      const markdownUrl = `${normalizedPath}.md`;
+      // For the homepage/intro, use /intro.md specifically
+      const markdownPath = normalizedPath === '/' ? '/intro.md' : `${normalizedPath}.md`;
       
       // Open in a new tab
-      window.open(markdownUrl, '_blank');
+      window.open(markdownPath, '_blank');
       
       // Close dropdown
       setIsOpen(false);
@@ -84,12 +84,15 @@ function CopyMarkdown() {
       const currentPath = window.location.pathname;
       
       // Remove trailing slash if it exists
-      const normalizedPath = currentPath.endsWith('/') 
+      const normalizedPath = currentPath.endsWith('/') && currentPath !== '/'
         ? currentPath.slice(0, -1) 
         : currentPath;
       
+      // For the homepage/intro, use /intro specifically
+      const docPath = normalizedPath === '/' ? '/intro' : normalizedPath;
+      
       // Construct the full markdown URL with domain
-      const fullMarkdownUrl = `https://docs.replicated.com${normalizedPath}.md`;
+      const fullMarkdownUrl = `https://docs.replicated.com${docPath}.md`;
       
       // Create the prompt to send to ChatGPT
       const prompt = `Read ${fullMarkdownUrl} so I can ask questions about it`;
