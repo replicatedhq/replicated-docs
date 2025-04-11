@@ -160,21 +160,25 @@ function processContent(content, filePath) {
     return content.trim();
 }
 
-function shouldSkipDirectory(filePath) {
-    const excludedDirs = ['.history', 'release-notes', 'templates', 'pdfs'];
+function shouldSkipDirectory(filePath, excludedDirs = ['.history', 'templates', 'pdfs']) {
     return excludedDirs.some(dir => filePath.includes(dir));
 }
 
-function getAllMarkdownFiles(dir, fileList = []) {
+function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true) {
     fs.readdirSync(dir).forEach(file => {
         const filePath = path.join(dir, file);
+        
+        // Skip release-notes if excludeReleaseNotes is true
+        if (excludeReleaseNotes && filePath.includes('release-notes')) {
+            return;
+        }
         
         if (shouldSkipDirectory(filePath)) {
             return;
         }
         
         if (fs.statSync(filePath).isDirectory()) {
-            getAllMarkdownFiles(filePath, fileList);
+            getAllMarkdownFiles(filePath, fileList, excludeReleaseNotes);
         } else if ((path.extname(file) === '.md' || path.extname(file) === '.mdx') && !file.startsWith('_')) {
             const content = fs.readFileSync(filePath, 'utf8');
             
@@ -196,6 +200,11 @@ function getAllMarkdownFiles(dir, fileList = []) {
         }
     });
     return fileList;
+}
+
+// New function to get all markdown files including release-notes (only for static folder)
+function getAllMarkdownFilesForStatic(dir, fileList = []) {
+    return getAllMarkdownFiles(dir, fileList, false);
 }
 
 function getCuratedFiles(dir) {
@@ -286,9 +295,6 @@ function generateFullLLMsTxt(files) {
     
     fs.writeFileSync(OUTPUT_FULL_FILE, fullContent);
     console.log("✅ llms-full.txt generated!");
-    
-    // Copy all processed markdown files to static directory
-    copyProcessedMarkdownToStatic(files);
 }
 
 function copyProcessedMarkdownToStatic(files) {
@@ -328,8 +334,14 @@ function generateLLMsTxt(files) {
 
 // Update the main execution
 loadPartials(DOCS_DIR);
+// Get files for llms-full.txt (excluding release-notes)
 const allFiles = getAllMarkdownFiles(DOCS_DIR);
+// Get all files including release-notes for copying to static
+const allFilesForStatic = getAllMarkdownFilesForStatic(DOCS_DIR);
 const curatedFiles = getCuratedFiles(DOCS_DIR);
 
+// Generate llms-full.txt (excluding release-notes)
 generateFullLLMsTxt(allFiles);
+// Copy all files including release-notes to static
+copyProcessedMarkdownToStatic(allFilesForStatic);
 generateLLMsTxt(curatedFiles);
