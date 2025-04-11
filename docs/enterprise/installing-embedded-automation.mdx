@@ -30,7 +30,7 @@ To install with Embedded Cluster in an online environment:
 1. Run the following command to install:
 
     ```bash
-    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
+    sudo ./APP_SLUG install --license PATH_TO_LICENSE \
       --config-values PATH_TO_CONFIGVALUES \
       --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
@@ -50,7 +50,7 @@ To install with Embedded Cluster in an air-gapped environment:
 1. Ensure that the Embedded Cluster installation assets are available on the air-gapped machine, then run the following command to install:
 
     ```bash
-    sudo ./APP_SLUG install --license-file PATH_TO_LICENSE \
+    sudo ./APP_SLUG install --license PATH_TO_LICENSE \
       --config-values PATH_TO_CONFIGVALUES \
       --admin-console-password ADMIN_CONSOLE_PASSWORD \
       --airgap-bundle PATH_TO_AIRGAP_BUNDLE
@@ -58,7 +58,7 @@ To install with Embedded Cluster in an air-gapped environment:
 
     Replace:
     * `APP_SLUG` with the unique slug for the application.
-    * `LICENSE_FILE` with the customer license.
+    * `PATH_TO_LICENSE` with the path to the customer license.
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file.
     * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
     * `PATH_TO_AIRGAP_BUNDLE` with the path to the Embedded Cluster `.airgap` bundle for the release.
