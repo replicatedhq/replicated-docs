@@ -13,9 +13,10 @@
   margin-right: 0;
   flex: 1 1 auto;
   min-width: 0;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
   max-width: calc(100% - 180px);
   line-height: 1.2;
 }
