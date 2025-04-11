@@ -15,6 +15,7 @@ static/intro-replicated.md
 static/intro.md
 static/enterprise/*
 static/reference/*
+static/release-notes/*
 static/vendor/*
 
 # Misc
