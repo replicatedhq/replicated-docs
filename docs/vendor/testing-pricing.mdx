@@ -4,9 +4,13 @@ This topic describes the pricing for Replicated Compatibility Matrix.
 
 ## Pricing Overview
 
-Compatibility Matrix usage-based pricing includes a $0.50 per cluster startup cost, plus by the minute pricing based on instance size and count (starting at the time the cluster state changed to "running" and ending when the cluster is either expired (TTL) or removed). Minutes will be rounded up, so there will be a minimum charge of $0.50 plus 1 minute for all running clusters. Each cluster's cost will be rounded up to the nearest cent and subtracted from the available credits in the team account. Remaining credit balance is viewable on the Replicated Vendor Portal [Cluster History](https://vendor.replicated.com/compatibility-matrix/history) page or with the Vendor API v3 [/vendor/v3/cluster/stats](https://replicated-vendor-api.readme.io/reference/getclusterstats) endpoint. Cluster [add-ons](/vendor/testing-cluster-addons) may incur additional charges. 
+Compatibility Matrix usage-based pricing includes a $0.50 per cluster startup cost, plus by the minute pricing based on instance size and count (starting at the time the cluster state changed to "running" and ending when the cluster is either expired (TTL) or removed). Minutes will be rounded up, so there will be a minimum charge of $0.50 plus 1 minute for all running clusters. Each cluster's cost will be rounded up to the nearest cent and subtracted from the available credits in the team account. 
+
+Remaining credit balance is viewable on the Replicated Vendor Portal [Cluster History](https://vendor.replicated.com/compatibility-matrix/history) page or with the Vendor API v3 [/vendor/v3/cluster/stats](https://replicated-vendor-api.readme.io/reference/getclusterstats) endpoint. Cluster [add-ons](/vendor/testing-cluster-addons) may incur additional charges. 
 
 If the team's available credits are insufficient to run the cluster for the full duration of the TTL, the cluster creation will be rejected.
+
+Those with an admin role on your team will receive a low credit warning to their associated email address when the remaining credit balance falls below the amount of team credits consumed in the previous seven days. 
 
 ## Cluster Quotas
 
