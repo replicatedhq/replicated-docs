@@ -183,7 +183,7 @@ function CopyMarkdown() {
               alt="Copy" 
               className={styles.copyIcon} 
             />
-            <span className={styles.buttonText}>Copy page</span>
+            <span className={styles.buttonText}>Open in ChatGPT</span>
             <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor">
               <path 
                 fillRule="evenodd" 
@@ -203,13 +203,22 @@ function CopyMarkdown() {
           aria-orientation="vertical"
         >
           <ul className={styles.list}>
+          <li className={styles.item}>
+              <button 
+                className={styles.actionButton} 
+                onClick={openInChatGpt}
+                role="menuitem"
+              >
+                <span>Open in ChatGPT</span>
+              </button>
+            </li>
             <li className={styles.item}>
               <button 
                 className={styles.actionButton} 
                 onClick={copyMarkdown}
                 role="menuitem"
               >
-                <span>Copy as plain text</span>
+                <span>Copy Markdown</span>
               </button>
             </li>
             <li className={styles.item}>
@@ -218,16 +227,7 @@ function CopyMarkdown() {
                 onClick={viewAsMarkdown}
                 role="menuitem"
               >
-                <span>View as plain text</span>
-              </button>
-            </li>
-            <li className={styles.item}>
-              <button 
-                className={styles.actionButton} 
-                onClick={openInChatGpt}
-                role="menuitem"
-              >
-                <span>Open in ChatGPT</span>
+                <span>View in Markdown</span>
               </button>
             </li>
           </ul>
