@@ -209,7 +209,10 @@ function CopyMarkdown() {
                 onClick={openInChatGpt}
                 role="menuitem"
               >
-                <span>Open in ChatGPT</span>
+                <div className={styles.actionContent}>
+                  <span className={styles.actionTitle}>Open in ChatGPT</span>
+                  <span className={styles.actionDescription}>Ask questions about this page</span>
+                </div>
               </button>
             </li>
             <li className={styles.item}>
@@ -218,7 +221,10 @@ function CopyMarkdown() {
                 onClick={copyMarkdown}
                 role="menuitem"
               >
-                <span>Copy Markdown</span>
+                <div className={styles.actionContent}>
+                  <span className={styles.actionTitle}>Copy Markdown</span>
+                  <span className={styles.actionDescription}>Copy page source to clipboard</span>
+                </div>
               </button>
             </li>
             <li className={styles.item}>
@@ -227,7 +233,10 @@ function CopyMarkdown() {
                 onClick={viewAsMarkdown}
                 role="menuitem"
               >
-                <span>View in Markdown</span>
+                <div className={styles.actionContent}>
+                  <span className={styles.actionTitle}>View Markdown</span>
+                  <span className={styles.actionDescription}>Open this page in plain text format</span>
+                </div>
               </button>
             </li>
           </ul>

@@ -108,7 +108,7 @@
 .actionButton {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
   width: 100%;
   text-align: left;
   color: var(--ifm-color-gray-800, #444950);
@@ -118,6 +118,24 @@
   font-size: 1rem;
   transition: background-color 0.2s ease;
   outline: none;
+}
+
+.actionContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.actionTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.actionDescription {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-gray-600, #606770);
+  font-weight: 400;
 }
 
 .dropdownItemIcon {
@@ -187,6 +205,10 @@ html[data-theme='dark'] .actionButton:hover,
 html[data-theme='dark'] .actionButton:focus {
   background-color: var(--ifm-color-gray-800, #444950);
   color: var(--ifm-color-white, #ffffff);
+}
+
+html[data-theme='dark'] .actionDescription {
+  color: var(--ifm-color-gray-500, #a8acb3);
 }
 
 .copied .buttonText {
