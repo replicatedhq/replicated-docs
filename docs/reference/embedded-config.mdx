@@ -23,9 +23,9 @@ spec:
   version: 2.1.3+k8s-1.30
   roles:
     controller:	
-      name: management	
+      name: app	
       labels:	
-        management: "true"
+        app: "true"
     custom:
     - name: gpu
       labels:
@@ -90,9 +90,9 @@ spec:
   roles:
     controller:
       # Optionally change the name for the default controller role
-      name: management
+      name: app
       labels:
-        management: "true" # Label applied to "management" nodes
+        app: "true" # Label applied to "app" nodes
     # Custom roles
     custom:
     - name: db
@@ -108,7 +108,7 @@ spec:
 In the `roles.controller` key, you can set the following fields to customize the default controller role:
 * `name`: Set the name that is assigned to controller nodes. By default, controller nodes are named “controller”.
     :::note
-    If you plan to create any custom roles, Replicated recommends that you change the default name for the controller role to a term that is easy to understand, such as "management". This is because, when you add custom roles, both the name of the controller role and the names of any custom roles are displayed to the user when they join a node. 
+    If you plan to create any custom roles, Replicated recommends that you change the default name for the controller role to a term that is easy to understand, such as "app". This is because, when you add custom roles, both the name of the controller role and the names of any custom roles are displayed to the user when they join a node. 
     :::
 * `labels`: Kubernetes labels that Embedded Cluster will apply to any node in the cluster that is assigned the given role.
 
