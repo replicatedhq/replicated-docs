@@ -36,6 +36,7 @@ Released on April 8, 2025
 
 ### Bug Fixes {#bug-fixes-2-3-1}
 * Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
+* Fixes an issue that could cause upgrades to fail for clusters with more than seven nodes, because the upgrade job is rescheduled to different nodes too many times.
 
 ## 2.3.0 - Removed
 
