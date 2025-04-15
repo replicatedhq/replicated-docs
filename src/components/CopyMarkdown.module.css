@@ -1,0 +1,224 @@
+.container {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  z-index: 10;
+}
+
+.copyIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.2rem;
+}
+
+.buttonText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ifm-color-gray-800, #444950);
+  background-color: transparent;
+  border: 1px solid var(--ifm-color-gray-400, #cfd3d9);
+  border-radius: 8px;
+  padding: 0.45rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  margin-top: 0;
+}
+
+.copied {
+  cursor: default;
+}
+
+.button:hover {
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  border-color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+.copied:hover {
+  background-color: transparent;
+  border-color: var(--ifm-color-gray-400, #cfd3d9);
+  transform: none;
+}
+
+.button:focus {
+  box-shadow: 0 0 0 2px var(--ifm-color-gray-300, #dadde1);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.2rem;
+  transition: transform 0.2s ease;
+  color: var(--ifm-color-gray-800, #444950);
+  stroke-width: 1.5px;
+}
+
+.button[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: auto;
+  margin-top: 0.5rem;
+  min-width: 240px;
+  background-color: var(--ifm-background-surface-color, #ffffff);
+  border: 1px solid var(--ifm-color-gray-300, #dadde1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  border-bottom: 1px solid var(--ifm-color-gray-200, #ebedf0);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  width: 100%;
+  text-align: left;
+  color: var(--ifm-color-gray-800, #444950);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+  outline: none;
+}
+
+.actionContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.actionTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.actionDescription {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-gray-600, #606770);
+  font-weight: 400;
+}
+
+.dropdownItemIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.actionButton:hover {
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  color: var(--ifm-color-gray-900, #1c1e21);
+}
+
+.actionButton:focus {
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  color: var(--ifm-color-gray-900, #1c1e21);
+}
+
+/* Dark mode styles */
+html[data-theme='dark'] .button {
+  color: var(--ifm-color-gray-300, #dadde1);
+  border-color: var(--ifm-color-gray-600, #606770);
+  background-color: transparent;
+}
+
+html[data-theme='dark'] .copied {
+  background-color: transparent;
+  color: var(--ifm-color-gray-300, #dadde1);
+  border-color: var(--ifm-color-gray-600, #606770);
+}
+
+html[data-theme='dark'] .button:hover {
+  background-color: var(--ifm-color-gray-800, #444950);
+  border-color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+html[data-theme='dark'] .copied:hover {
+  background-color: transparent;
+  border-color: var(--ifm-color-gray-600, #606770);
+  transform: none;
+}
+
+html[data-theme='dark'] .button:focus {
+  box-shadow: 0 0 0 2px var(--ifm-color-gray-700, #606770);
+}
+
+html[data-theme='dark'] .icon {
+  color: var(--ifm-color-gray-300, #dadde1);
+}
+
+html[data-theme='dark'] .dropdown {
+  background-color: var(--ifm-color-gray-900, #1c1e21);
+  border-color: var(--ifm-color-gray-700, #606770);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .item {
+  border-color: var(--ifm-color-gray-800, #444950);
+}
+
+html[data-theme='dark'] .actionButton {
+  color: var(--ifm-color-gray-300, #dadde1);
+}
+
+html[data-theme='dark'] .actionButton:hover,
+html[data-theme='dark'] .actionButton:focus {
+  background-color: var(--ifm-color-gray-800, #444950);
+  color: var(--ifm-color-white, #ffffff);
+}
+
+html[data-theme='dark'] .actionDescription {
+  color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+.copied .buttonText {
+  padding-left: 24px; /* Equal to the width of the copy icon */
+  padding-right: 27px; /* Equal to the width of the arrow icon plus its margin */
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+} 
