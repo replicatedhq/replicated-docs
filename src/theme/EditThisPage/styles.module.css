@@ -9,29 +9,69 @@
   width: 18px;
   height: 18px;
   margin-right: 7px;
-  fill:#6DD2D2
+  fill: var(--ifm-color-gray-800, #444950);
+  transition: fill 0.2s ease;
 }
 
 .iconTextWrapper { 
   display: flex;
   align-items: center;
-  border: 2px solid #6DD2D2;
-  padding: 8px;
+  border: 1px solid var(--ifm-color-gray-400, #cfd3d9);
+  padding: 0.45rem 0.5rem;
   border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ifm-color-gray-800, #444950);
+  background-color: transparent;
+  transition: all 0.2s ease;
 }
+
 .iconTextWrapper:hover { 
-  color: #ffffff; 
-  background-color: #6DD2D2;
-  fill:#ffffff;
+  background-color: var(--ifm-color-gray-100, #f5f6f7);
+  border-color: var(--ifm-color-gray-500, #a8acb3);
   cursor: pointer;
 }
+
+.iconTextWrapper:active {
+  transform: translateY(1px);
+}
+
+.iconTextWrapper:focus {
+  box-shadow: 0 0 0 2px var(--ifm-color-gray-300, #dadde1);
+  outline: none;
+}
+
 .iconTextWrapper:hover .icon { 
-  fill:#ffffff;
+  fill: var(--ifm-color-gray-800, #444950);
 }
 
 .githubLinksWrapper { 
-  display:flex;
+  display: flex;
   gap: 10px;
+}
+
+/* Dark mode styles */
+html[data-theme='dark'] .iconTextWrapper {
+  color: var(--ifm-color-gray-300, #dadde1);
+  border-color: var(--ifm-color-gray-600, #606770);
+  background-color: transparent;
+}
+
+html[data-theme='dark'] .icon {
+  fill: var(--ifm-color-gray-300, #dadde1);
+}
+
+html[data-theme='dark'] .iconTextWrapper:hover {
+  background-color: var(--ifm-color-gray-800, #444950);
+  border-color: var(--ifm-color-gray-500, #a8acb3);
+}
+
+html[data-theme='dark'] .iconTextWrapper:focus {
+  box-shadow: 0 0 0 2px var(--ifm-color-gray-700, #606770);
+}
+
+html[data-theme='dark'] .iconTextWrapper:hover .icon {
+  fill: var(--ifm-color-gray-300, #dadde1);
 }
 
 @media (max-width: 500px) {
