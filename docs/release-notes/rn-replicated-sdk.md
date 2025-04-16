@@ -8,6 +8,11 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.5.1 
+
+### Improvements {#improvements-1-5-1}
+* Changed the default location of the image this chart uses to be registry.replicated.com/library/replicated-sdk-image. This is anonymous and will support custom domains.
+
 ## 1.5.0
 
 Released on April 7, 2025

@@ -31,14 +31,14 @@ To install the SDK as a subchart:
     helm dependency update
     ```
     :::note
-    <RegistryLogout/> 
+    <RegistryLogout/>
     :::
-    
+
 1. Package the Helm chart into a `.tgz` archive:
 
    ```
    helm package .
-   ```  
+   ```
 
 1. Add the chart archive to a new release. For more information, see [Manage Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
@@ -57,7 +57,7 @@ To install the SDK as a subchart:
     ```
     kubectl get deploy --namespace NAMESPACE
     ```
-    Where `NAMESPACE` is the namespace in the cluster where the application and the SDK are installed. 
+    Where `NAMESPACE` is the namespace in the cluster where the application and the SDK are installed.
 
     **Example output**:
 
@@ -98,13 +98,13 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
     The following shows an example of the SDK Helm chart added to a draft release for a standard manifest-based application:
 
     ![SDK Helm chart in a draft release](/images/sdk-kots-release.png)
-    
+
     [View a larger version of this image](/images/sdk-kots-release.png)
 
-1. If one was not created automatically, add a KOTS HelmChart custom resource to the release. HelmChart custom resources have `apiVersion: kots.io/v1beta2` and `kind: HelmChart`. 
+1. If one was not created automatically, add a KOTS HelmChart custom resource to the release. HelmChart custom resources have `apiVersion: kots.io/v1beta2` and `kind: HelmChart`.
 
      **Example:**
-  
+
     ```yaml
     apiVersion: kots.io/v1beta2
     kind: HelmChart
@@ -117,7 +117,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
         name: replicated
         # for chartversion, enter the version of the
         # SDK Helm chart in the release
-        chartVersion: 1.5.0
+        chartVersion: 1.5.1
     ```
 
      As shown in the example above, the HelmChart custom resource requires the name and version of the SDK Helm chart that you added to the release:
@@ -138,7 +138,7 @@ To add the SDK Helm chart to a release for a Kubernetes manifest-based applicati
     ```
     kubectl get deploy --namespace NAMESPACE
     ```
-    Where `NAMESPACE` is the namespace in the cluster where the application, the Admin Console, and the SDK are installed. 
+    Where `NAMESPACE` is the namespace in the cluster where the application, the Admin Console, and the SDK are installed.
 
     **Example output**:
 
@@ -179,4 +179,4 @@ To solve this issue:
     helm registry logout registry.replicated.com
     ```
 
-1. Re-run `helm dependency update` for your Helm chart.    
+1. Re-run `helm dependency update` for your Helm chart.
