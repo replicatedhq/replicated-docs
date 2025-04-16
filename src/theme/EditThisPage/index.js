@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Translate from "@docusaurus/Translate";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import ReportIcon from "../../../static/images/report.svg";
@@ -17,6 +17,25 @@ export default function EditThisPage({ editUrl }) {
     typeof window !== "undefined"
       ? url.substring(url.lastIndexOf("/") + 1)
       : "";
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  
+  // Check for dark theme
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDarkTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+    };
+    
+    checkTheme();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className={styles.githubLinksWrapper}>
@@ -42,7 +61,7 @@ export default function EditThisPage({ editUrl }) {
         target="_blank"
         rel="noreferrer noopener"
         className={ThemeClassNames.common.editThisPage}
-        style={{ textAlign: "right", textDecoration: "none" }}
+        style={{ textDecoration: "none" }}
       >
         <div className={styles.iconTextWrapper}>
           <ReportIcon className={styles.icon} />
