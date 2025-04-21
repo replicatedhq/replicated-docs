@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on April 17, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-04-17-2}
-* Fixes bug in Download Portal that results in the page displaying an error when only Helm installs are enabled for a customer.
+* Fixes bug in Download Portal that resulted in the page displaying an error when only Helm installs are enabled for a customer.
 
 ## v2025.03.27-1
 
