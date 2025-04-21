@@ -6,25 +6,17 @@ This topic describes how to configure the Replicated KOTS HelmChart custom resou
 
 For more information about how KOTS uses the HelmChart custom resource to install Helm charts, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-## Workflow
-
-To configure the HelmChart custom resource, do the following:
-
-1. Rewrite image names and inject the KOTS-generated image pull secret. See [Rewrite Image Names](#rewrite-image-names).
-1. Add a pull secret for any Docker Hub images that could be rate limited. See [Add Pull Secret for Rate-Limited Docker Hub Images](#docker-secret).
-1. Configure the `builder` key to allow users to push images to their own local registries. See [Configure the `builder` key to Support Local Image Registries](#local-registries).
-1. (KOTS Existing Cluster and kURL Installations Only) Add backup labels to your resources to support backup and restore with the KOTS snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
-   :::note
-   Snapshots is not supported for installations with Replicated Embedded Cluster. For more information about configuring disaster recovery for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
-   :::
-
-## Task 1: Rewrite Image Names and Inject the KOTS Image Pull Secret {#rewrite-image-names}
+## Overview
 
 Rewriting image names and injecting the KOTS pull secret allows your application images to be accessed at one of the following locations, depending on the installation type and where the given image is available:
 * The [Replicated proxy registry](private-images-about) at `proxy.replicated.com` or your custom domain. Private images are pulled through the proxy registry in online installations.
 * A public image registry. Any public images that your application uses can be access directly from the public image registry in online installations.
 * Your customer's local registry. The most common use case for configuring a local image registry is in KOTS existing cluster installations in air-gapped environments.
 * The built-in registry that is used in Replicated Embedded Cluster or Replicated kURL installations in air-gapped environments.
+
+## Workflow
+
+### Task 1: Rewrite Image Names and Inject the KOTS Image Pull Secret {#rewrite-image-names}
 
 To rewrite image names and inject the KOTS image pull secret:
 
@@ -106,7 +98,7 @@ To rewrite image names and inject the KOTS image pull secret:
     The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
    </details>
 
-## Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
+### Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
 Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
@@ -149,7 +141,7 @@ spec:
       - name: example-app-slug-kotsadm-dockerhub
 ```
 
-## Task 3: Support the Use of Local Image Registries {#local-registries}
+### Task 3: Support the Use of Local Image Registries {#local-registries}
 
 Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry.
 
@@ -157,7 +149,7 @@ To support the use of local registries, configure the `builder` key. For informa
 
 For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
 
-##  (KOTS Existing Cluster and kURL Installations Only) Task 4: Add Backup Labels for Snapshots {#add-backup-labels-for-snapshots}
+### Task 4: Add Backup Labels for Snapshots {#add-backup-labels-for-snapshots}
 
 :::note
 The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for KOTS existing cluster and kURL installations. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
