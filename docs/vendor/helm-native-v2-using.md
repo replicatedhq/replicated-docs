@@ -36,20 +36,41 @@ To rewrite image names and inject the KOTS image pull secret:
 
    * `IMAGE` is the path to the image in your registry
 
-   For example, if the private image is `quay.io/my-org/nginx:v1.0.1` and `images.yourcompany.com` is the custom proxy registry domain, then the image name should be rewritten to `images.yourcompany.com/proxy/your-app-slug/quay.io/my-org/nginx:v1.0.1`.
+   **Example:**
+
+   ```yaml
+   # KOTS HelmChart custom resource
+
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+     values:
+       api:
+         image:
+           # proxy.registry.com or your custom domain
+           registry: proxy.yourcompany.com
+           repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
+           tag: catalog-1.24.0
+    ```        
 
 1. Add the KOTS-generated pull secret to provide authentication for the proxy registry.
 
-    During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image through the Replicated proxy registry or in the Replicated registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
+    <details>
+     <summary>What is the KOTS-generated pull secret?</summary>
+    
+     During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image through the Replicated proxy registry or in the Replicated registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
     
     For more information about the `kubernetes.io/dockerconfigjson` type Secret required by Kubernetes to authenticate with a registry and pull a private image, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
+    </details>
 
     **Example:**
 
     The following example shows a `spec.values.image.pullSecrets` array in the HelmChart custom resource that uses the ImagePullSecretName template function to inject the name of the KOTS-generated pull secret:
 
     ```yaml
-    # kots.io/v1beta2 HelmChart custom resource
+    # KOTS HelmChart custom resource
 
     apiVersion: kots.io/v1beta2
     kind: HelmChart
@@ -57,11 +78,14 @@ To rewrite image names and inject the KOTS image pull secret:
       name: samplechart
     spec:
       values:
-        image: 
-          registry: 
-          repository: 
-          pullSecrets:
-          - name: '{{repl ImagePullSecretName }}'
+        api:
+          image:
+            # proxy.registry.com or your custom domain
+            registry: proxy.yourcompany.com
+            repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
+            tag: catalog-1.24.0 
+            pullSecrets:
+            - name: '{{repl ImagePullSecretName }}'
     ```
 
 1. Configure the `optionalValues` key so that KOTS conditionally rewrites private _and_ public image names only when there is a local image registry configured in the installation environment. You can do this using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions.
@@ -76,6 +100,11 @@ To rewrite image names and inject the KOTS image pull secret:
           registry: '{{repl LocalRegistryHost }}' 
           repository: '{{repl LocalRegistryNamespace }}/gitea'
    ```    
+   <details>
+    <summary>What is the registry namespace?</summary>
+    
+    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
+   </details>
 
 ## Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
