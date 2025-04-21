@@ -16,11 +16,20 @@ Rewriting image names and injecting the KOTS pull secret allows your application
 
 ## Workflow
 
+Complete the tasks in this workflow to configure the HelmChart v2 custom resource.
+
 ### Task 1: Rewrite Image Names and Inject the KOTS Image Pull Secret {#rewrite-image-names}
 
 To rewrite image names and inject the KOTS image pull secret:
 
-1. In the HelmChart custom resource, under the `values` key, rewrite _private_ image names using the format `PROXY_DOMAIN/proxy/APP_SLUG/IMAGE`, where:
+1. In the HelmChart custom resource, under the `values` key, rewrite the names of any _private_ images used by your application so that they can be accessed through the Replicated proxy registry.
+
+   Use the following format:
+
+   ```yaml
+   PROXY_DOMAIN/proxy/APP_SLUG/IMAGE
+   ```
+   Where:
 
    * `PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For more information about configuring a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using).
 
@@ -47,19 +56,17 @@ To rewrite image names and inject the KOTS image pull secret:
            tag: catalog-1.24.0
     ```        
 
-1. Add the KOTS-generated pull secret to provide authentication for the proxy registry.
+1. For each image that you included under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to inject the KOTS-generated image pull secret.
 
     <details>
-     <summary>What is the KOTS-generated pull secret?</summary>
+     <summary>What is the KOTS-generated image pull secret?</summary>
     
-     During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image through the Replicated proxy registry or in the Replicated registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
+     During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the images through the Replicated proxy registry. Additionally, if the user configured a local image registry, then the pull secret contains the credentials for the local registry.
     
-    For more information about the `kubernetes.io/dockerconfigjson` type Secret required by Kubernetes to authenticate with a registry and pull a private image, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
+     Kubernetes requires a Secret with the type `kubernetes.io/dockerconfigjson` to authenticate with a registry and pull a private image. For more information, see [Specifying imagePullSecrets on a Pod](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) in the Kubernetes documentation.
     </details>
 
     **Example:**
-
-    The following example shows a `spec.values.image.pullSecrets` array in the HelmChart custom resource that uses the ImagePullSecretName template function to inject the name of the KOTS-generated pull secret:
 
     ```yaml
     # KOTS HelmChart custom resource
@@ -72,15 +79,15 @@ To rewrite image names and inject the KOTS image pull secret:
       values:
         api:
           image:
-            # proxy.registry.com or your custom domain
             registry: proxy.yourcompany.com
             repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
             tag: catalog-1.24.0 
+            # Inject the pull secret with ImagePullSecretName
             pullSecrets:
             - name: '{{repl ImagePullSecretName }}'
     ```
 
-1. Configure the `optionalValues` key so that KOTS conditionally rewrites private _and_ public image names only when there is a local image registry configured in the installation environment. You can do this using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions.
+1. In the HelmChart `optionalValues` key, use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to conditionally rewrite any private or public images to the location of the image in the user's local image registry, only when a local registry was configured.
 
    **Example:**
 
@@ -100,30 +107,13 @@ To rewrite image names and inject the KOTS image pull secret:
 
 ### Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
-Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
+Docker Hub enforces rate limits for Anonymous and Free users. For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
 
-If you are deploying a Helm chart with Docker Hub images that could be rate limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret, where `<app-slug>` is your application slug.
+To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `APP_SLUG-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits). 
 
-You can do this by adding the `<app-slug>-kotsadm-dockerhub` pull secret to a field in the `values` key of the HelmChart custom resource, along with a matching field in your Helm chart `values.yaml` file. During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
+To support the use of the `kots docker ensure-secret` command, add the `APP_SLUG-kotsadm-dockerhub` pull secret (where `APP_SLUG` is your application slug) to any Docker images that could be rate-limited.
 
-For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
-
-#### Example
-
-The following Helm chart `values.yaml` file includes `image.registry`, `image.repository`, and `image.pullSecrets` for a rate-limited Docker Hub image:
-
-```yaml
-# Helm chart values.yaml file
-
-image:
-  registry: docker.io
-  repository: my-org/example-docker-hub-image
-  pullSecrets: []
-```
-
-The following HelmChart custom resource includes `spec.values.image.registry`, `spec.values.image.repository`, and `spec.values.image.pullSecrets`, which correspond to those in the Helm chart `values.yaml` file above.
-
-The `spec.values.image.pullSecrets` array lists the `<app-slug>-kotsadm-dockerhub` pull secret, where the slug for the application is `example-app-slug`:
+**Example:**
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
@@ -136,9 +126,10 @@ spec:
   values:
     image:
       registry: docker.io
-      repository: my-org/example-docker-hub-image
+      repository: org-name/example-docker-hub-image
+      # Add the dockerhub secret
       pullSecrets:
-      - name: example-app-slug-kotsadm-dockerhub
+      - name: gitea-kotsadm-dockerhub
 ```
 
 ### Task 3: Support the Use of Local Image Registries {#local-registries}
