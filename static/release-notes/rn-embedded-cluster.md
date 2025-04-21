@@ -1,0 +1,813 @@
+---
+toc_max_heading_level: 2
+pagination_next: null
+pagination_prev: null
+---
+
+# Embedded Cluster Release Notes
+
+This topic contains release notes for the [Replicated Embedded Cluster](/vendor/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
+Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
+
+## 2.3.1
+
+Released on April 8, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.1+k8s-1.30</td>
+    <td id="center">2.3.1+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.12</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-3-1}
+* When enabling high availability, Embedded Cluster will now wait until rqlite data for KOTS is fully synced to three nodes.
+
+### Bug Fixes {#bug-fixes-2-3-1}
+* Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
+* Fixes an issue that could cause upgrades to fail for clusters with more than seven nodes, because the upgrade job is rescheduled to different nodes too many times.
+
+## 2.3.0 - Removed
+
+:::important
+Embedded Cluster 2.3.0 has been removed because new installations do not work unless a worker profile is specified in the Embedded Cluster Config under `unsupportedOverrides`. For more information, see [Configure the Kubelet with k0s Worker Profiles](/reference/embedded-config#configure-the-kubelet). Upgrades to 2.3.0 were not affected because worker profiles are not used on upgrades. New upgrades to 2.3.0 are not available. Any users that already upgraded can continue to use 2.3.0. 
+:::
+
+Released on April 3, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.3.0+k8s-1.30</td>
+    <td id="center">2.3.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.11</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-3-0}
+* Adds support for high availability installations when adding a third controller node. If HA isn't yet enabled, users will be prompted to enable HA when adding the third or more controller node.
+* Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes. Although you are prompted to enable HA when adding nodes, this command can be used if you decline that prompt and later want to enable HA, or if your session is interrupted while HA is being enabled.
+* For new installations, the control plane is now set up as highly available within the cluster, enabling the removal of controller nodes from multi-node clusters without affecting pod scheduling.
+* Adds support for passing kubelet parameters to nodes by specifying a [k0s worker profile](https://docs.k0sproject.io/head/worker-node-config/#worker-profiles) in the k0s config in the `unsupportedOverrides.k0s` section of the Embedded Cluster config. Although `workerProfiles` is an array in the k0s config, Embedded Cluster will take the first worker profile in the array and apply it to all nodes in the cluster. This lets you modify the kubelet configuration on all nodes in the cluster.
+
+### Improvements {#improvements-2-3-0}
+* Host preflights are updated to check that port 7443 is available on the loopback interface of the host, rather than being available on all network interfaces.
+* Stability improvements for enabling high availability when adding a third controller node.
+* Ensures that Embedded Cluster components like the Admin Console and rqlite only run on controller nodes.
+* Output from the `join` and `reset` commands no longer mentions "controller nodes," which is terminology users wouldn't be familiar with. The controller node role name is used if custom roles are defined in the Embedded Cluster Config.
+* Adds `-y` as an alias for `--yes` in the `join` and `restore` commands.
+* Debug logs of the installation will now include the Embedded Cluster and k0s versions.
+
+### Bug Fixes {#bug-fixes-2-3-0}
+* Fixes an issue where the UI continues to display the old Admin Console after an upgrade, which results in the previous version of the application showing as the currently deployed version.
+
+## 2.2.0
+
+Released on March 25, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.2.0+k8s-1.30</td>
+    <td id="center">2.2.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.9</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-2-0}
+* Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `spec.domains.proxyRegistryDomain` and `spec.domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
+* Removes all calls to endpoints other than replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
+
+### Improvements {#improvements-2-2-0}
+* Adds a host preflight to check that the data directory is executable.
+* Adds the common cloud metadata service IP address (`169.254.169.254`) to the no_proxy list by default. This facilitates the detection of a machine's public IP address during installation so the Admin Console URL can be displayed.
+* When joining a controller node, a warning is printed that explains how the user should not join another node until the controller joins successfully.
+* The `join` command now waits for worker nodes to be ready before saying the join succeeded. Previously, `join` only waited when joining controllers.
+
+## 2.1.3
+
+Released on February 19, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.3+k8s-1.30</td>
+    <td id="center">2.1.3+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-1-3}
+* During `install` and `join`, permissions for the data directory are set to 755 to ensure successful operation.
+* Adds a preflight check to verify execute permissions on the data directory and its parent directories. This prevents installation issues, including etcd permissions issues.
+* The following kernel parameters are configured automatically: `fs.inotify.max_user_instances = 1024` and `fs.inotify.max_user_watches = 65536`.
+* Adds a preflight check to ensure the following kernel parameters are set correctly: `fs.inotify.max_user_instances = 1024` and `fs.inotify.max_user_watches = 65536`.
+* Surfaces better error messages during the installation if the node is not ready.
+
+## 2.1.2
+
+Released on February 19, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.2+k8s-1.30</td>
+    <td id="center">2.1.2+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-1-2}
+* The preflight check that ensures the system clock is synchronized no longer requires NTP to be active. This accommodates systems where the clock is managed by alternative protocols (e.g., PTP).
+* If firewalld is enabled, it is now automatically configured at install time to allow required network traffic in the cluster.
+
+### Bug Fixes {#bug-fixes-2-1-1}
+* Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
+
+## 2.1.1
+
+Released on February 18, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.1+k8s-1.30</td>
+    <td id="center">2.1.1+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-2-1-1}
+* Installing now waits for the Local Artifact Mirror systemd service to be healthy before proceeding, and any errors are reported. Previously, the install appeared successful even if LAM failed to start.
+* Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
+
+## 2.1.0
+
+Released on February 14, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.1.0+k8s-1.30</td>
+    <td id="center">2.1.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-1-0}
+* The following kernel parameters are configured automatically: `net.ipv4.conf.all.forwarding = 1`, `net.ipv4.conf.default.forwarding = 1`, `net.bridge.bridge-nf-call-iptables = 1`, `net.ipv4.conf.default.rp_filter = 0`, and `net.ipv4.conf.all.rp_filter = 0`.
+* The following kernel modules are configured automatically: `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack`.
+* Adds a preflight check to ensure the following kernel parameters are set correctly: `net.ipv4.conf.all.forwarding = 1`, `net.ipv4.conf.default.forwarding = 1`, `net.bridge.bridge-nf-call-iptables = 1`, `net.ipv4.conf.default.rp_filter = 0`, and `net.ipv4.conf.all.rp_filter = 0`.
+* Adds a preflight check to ensure the `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack` kernel modules were configured correctly.
+* Adds a preflight check to ensure a node's IP address is not within the Pod and Service CIDR ranges that will be used by Kubernetes. If a conflict exists, a different CIDR block can be specified with `--cidr` or a different network interface can be specified with `--network-interface`.
+* Adds a preflight check to ensure that SELinux is not running in enforcing mode.
+
+### Bug Fixes {#bug-fixes-2-1-0}
+* Fixes an issue when installing on Amazon Linux 2 and other older Linux distributions that causes the installation to timeout waiting for storage to be ready.
+
+## 2.0.0
+
+Released on February 7, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.0.0+k8s-1.30</td>
+    <td id="center">2.0.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-0-0}
+* The 2.0 release of Embedded Cluster introduces architecture changes that improve the reliability of the upgrade process, particularly the upgrade of Helm extensions like the Admin Console, OpenEBS, and vendor-supplied Helm extensions. As part of these improvements, upgrades from Embedded Cluster versions earlier than 1.8 are not supported. Online instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to an Embedded Cluster version from 1.8.0 to 1.22.0 before upgrading to 2.0.0. Air gap instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to version 1.8.0 before upgrading to later versions, including 2.0.0. If you have customers running these earlier versions, Replicated recommends using a [required release](https://docs.replicated.com/vendor/releases-about#properties) to ensure your customers upgrade to a supported version first.
+
+### Improvements {#improvements-2-0-0}
+* If you don't provide a new Admin Console password to `admin-console reset-password`, you'll be prompted for one. This prevents the password from ending up in your terminal history.
+* If there is no TTY (like in CI), the CLI suppresses repeated log lines when there is a spinner, making output more readable. 
+
+## 1.22.0
+
+Released on January 24, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.22.0+k8s-1.30</td>
+    <td id="center">1.22.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-22-0}
+* Updates the disaster recovery alpha feature so that rather than having to apply specific labels to all the resources you want backed up, you now have full control over how your application is backed up and restored. Specifically, you now provide a Velero Backup resource and a Restore resource in your application release. These resources are used to back up and restore your application, separate from the Embedded Cluster infrastructure. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+
+## 1.21.0
+
+Released on January 22, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.21.0+k8s-1.30</td>
+    <td id="center">1.21.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.6</td>
+    <td id="center">1.29.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.123.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-21-0}
+* The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
+
+### Improvements {#improvements-1-21-0}
+* Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380, and 10250.
+* Adds a preflight check to ensure that communication can occur between the Pod and Service CIDRs that Kubernetes will use. When this preflight fails, it's often because of a firewall configuration that blocks communication between the Pod and Service CIDRs.
+* Adds a preflight check to ensure IP forwarding is enabled (`net.ipv4.ip_forward = 1`). Many machines have IP forwarding disabled by default. As of 1.19.0, Embedded Cluster uses a sysctl configuration file to enable IP forwarding, so this preflight should only fail if Embedded Cluster couldn't enable IP forwarding.
+* Adds a preflight check to ensure that a nameserver is configured in `/etc/resolv.conf`.
+* If a network interface is not specified with the `--network-interface` flag, Embedded Cluster will use improved logic to determine which interface to use.
+* The license file is now stored in the data directory and is included in host support bundles.
+* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured. 
+* Host support bundles now include  the output of `firewall-cmd --list-all`.
+* Potentially sensitive CLI flag values are no longer included in metrics reporting.
+* Usage and error messages have been improved for understandability. 
+* `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
+
+### Bug Fixes {#bug-fixes-1-21-0}
+* Support bundles now check that `modprobe`, `mount`, and `umount` exist in PATH rather than at hardcoded locations.
+* Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
+
+## 1.19.0
+
+Released on November 14, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.19.0+k8s-1.30</td>
+    <td id="center">1.19.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.121.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-19-0}
+* Adds preflight checks to ensure that the following kernel parameters are set: `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`.
+* The following kernel parameters will be written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
+
+### Improvements {#improvements-1-19-0}
+* If a user downloads an air gap bundle but attempts to install without it, the user will be instructed how to pass the air gap bundle to `install`. They will then be asked if they want to continue with an online installation anyway.
+
+## 1.18.0
+
+Released on November 8, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.18.0+k8s-1.30</td>
+    <td id="center">1.18.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-18-0}
+* Adds support for passing ConfigValues using the `--config-values` flag for the `install` command. This also enables automated installations of both Embedded Cluster and the application.
+
+### Improvements {#improvements-1-18-0}
+* When the Admin Console URL is printed at the end of the `install` command, it will now use the public IP address instead of the private IP address for AWS EC2 instances that use IMDSv2.
+* During setup of the Admin Console when a self-signed certificate is used, the instructions are updated to better inform users how to ignore the warning on different browsers.
+
+### Bug Fixes {#bug-fixes-1-18-0}
+* Fixes an issue where registry logs weren't included in support bundles.
+* Fixes an issue when installing on Azure that caused the Admin Console URL shown at the end of the `install` command to use the private IP address rather than the public IP address.
+* Fixes an issue that prevented you from updating an application if the new version contained a required config item without a `default` or `value` set.
+* The copy button now works for the command to validate the authenticity of the self-signed certificate during Admin Console setup.
+* Fixes an issue where the **Config** page showed an error and wouldn't load.
+
+## 1.17.0
+
+Released on November 4, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.17.0+k8s-1.30</td>
+    <td id="center">1.17.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.120.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-17-0}
+* Adds support for partial rollbacks. Partial rollbacks are supported only when rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same [Embedded Cluster Config](/reference/embedded-config). For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
+* Introduces a new landing page and guided installation workflow for the Admin Console.
+
+### Improvements {#improvements-1-17-0}
+* Removes unused infrastructure images from the data directory on upgrades to free up storage space.
+* Adds additional host collectors and analyzers to improve troubleshooting with support bundles.
+* Support bundles now include information on connectivity between Pods and nodes to help resolve networking issues more quickly.
+* The preflight check for connectivity to replicated.app and proxy.replicated.com now use any private CAs provided with `--private-ca`, in case a man-in-the-middle proxy is in use.
+
+### Bug Fixes {#bug-fixes-1-17-0}
+* Fixes a panic that occurred when prompted to proceed after preflight warnings.
+* Fixes an issue where `troubleshoot.sh/v1beta2` was erroneously printed to the screen during installation.
+
+## 1.16.0
+
+Released on October 23, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.16.0+k8s-1.30</td>
+    <td id="center">1.16.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.5</td>
+    <td id="center">1.29.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.119.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-16-0}
+* Adds support for Kubernetes 1.30 and removes support for 1.28.
+* Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+* Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
+* Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+   :::note
+   The `--pod-cidr` and `--service-cidr` flags are hidden, but still functional. Replicated recommends that you update any automation that uses the `--pod-cidr` and 
+   `--service-cidr` flags to use the `--cidr` flag instead.
+   :::
+* Adds the following preflight checks:
+  * Verify that the CIDR range used for the cluster does not overlap with existing routes.
+  * Verify the CPU supports x86-64-v2.
+  * Verify the data directory (`/var/lib/embedded-cluster` by default) is not symlinked.
+
+### Improvements {#improvements-1-16-0}
+* For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. With this change, Embedded Cluster now only documents and includes preflight checks for `/var/lib/embedded-cluster`.
+* Adds the `support-bundle` command to make it easier to generate support bundles. For more information, see [Generating Support Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
+* Improves the reliability of waiting for the Kubernetes server to start.
+* Collects more information about the cluster in support bundles, including the Local Artifact Mirror and Kubernetes API Server logs.
+* Requires that the Admin Console password is at least six characters.
+* Improves the flexibility of configuring the Cluster Resources collector in support bundle specs by limiting KOTS's default collection to its own namespace.
+
+### Bug Fixes {#bug-fixes-1-16-0}
+* Fixes an issue that could occur when resetting a worker node that used a custom data directory.
+* Fixes an issue where k0s images were not updated within the cluster when k0s was upgraded.
+* Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
+* Fixes an issue that prevented you from upgrading to an application version that didn't have Config and preflights.
+* Fixes an issue where the Admin Console could reach out the internet when generating a support bundle in air gap environments.
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
+* Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+* Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
+* If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
+* Fixes an issue where node joins failed because of a version mismatch, even though the versions were the same.
+
+## 1.15.0 - Removed
+
+:::important
+Embedded Cluster 1.15.0 has been removed and is not available for use because of issues with upgrades. It continues to work for anyone already using it.
+:::
+
+Released on October 10, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.15.0+k8s-1.29</td>
+    <td id="center">1.15.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.9</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.5</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-15-0}
+* Adds the `--data-dir` flag to the `install` command so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`.
+
+### Improvements {#improvements-1-15-0}
+* Adds a preflight check to ensure the CPU supports x86-64-v2.
+* Adds a preflight check to ensure the data directory (`/var/lib/embedded-cluster` by default) is not symlinked.
+* Adds the `--data-dir` flag to the `restore` command. When restoring a backup that used a non-default data directory (i.e., the `--data-dir` flag was provided at install time), the same data directory must be provided when restoring.
+* For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. We will only document and preflight for `/var/lib/embedded-cluster` now.
+* The Admin Console password must be at least six characters.
+
+### Bug Fixes {#bug-fixes-1-15-0}
+* Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
+* Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
+* Fixes an issue where node joins failed because of a version mismatch, even though the versions were the same.
+
+## 1.14.2
+
+Released on September 26, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.2+k8s-1.29</td>
+    <td id="center">1.14.2+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-14-2}
+
+* Preflight checks for the Admin Console and local artifact mirror ports now take into consideration ports specified by the user with the `--admin-console-port` and `--local-artifact-mirror-port` flags.
+* Improves the display of preflight failures so they're more readable.
+
+## 1.14.1
+
+Released on September 26, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.1+k8s-1.29</td>
+    <td id="center">1.14.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-14-1}
+
+* Adds host preflight checks to ensure that the required ports are open and available. For more information, see [Port Requirements](/vendor/embedded-overview#port-requirements).
+
+### Improvements {#improvements-1-14-1}
+
+* Adds the `--network-interface` flag for the `join` command so a network interface can optionally be selected when joining nodes. If this flag is not provided, the first valid, non-local network interface is used.
+* The `reset` command now automatically reboots the machine, and the optional `--reboot` flag is no longer available. A reboot is required to reset iptables.
+
+### Bug Fixes {#bug-fixes-1-14-1}
+
+* Fixes an issue where nodes could fail to join with the error "unable to get network interface for address."
+
+## 1.14.0
+
+Released on September 24, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.14.0+k8s-1.29</td>
+    <td id="center">1.14.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.3</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-14-0}
+
+* Introduces the `--admin-console-port` and `--local-artifact-mirror-port` flags to the `install` command so the ports for the Admin Console (default 30000) and the local artifact mirror (default 50000) can be chosen.
+* Introduces the `--local-artifact-mirror-port` flag to the `restore` command so the port used for the local artifact mirror can be selected during the restore. If no port is provided, the port in use when the backup was taken will be used.
+* Introduces the `--network-interface` flag to the `install` command so a network interface can be selected. If a network interface is not provided, the first valid, non-local network interface is used.
+
+### Improvements {#improvements-1-14-0}
+
+* When a proxy server is configured, the default network interface's subnet will automatically be added to the no-proxy list if the node's IP address isn't already included.
+* When joining nodes to an Embedded Cluster, the correct network interface is chosen based on the node IP address in the join command.
+* The static IP addresses for replicated.app and proxy.replicated.com are now included in the failure messages for the preflight checks that verify connectivity to those endpoints, making it easier for end users to allowlist those endpoints.
+* If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca` flag for the `install` command.
+
+
+## 1.13.1
+
+Released on September 20, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.1+k8s-1.29</td>
+    <td id="center">1.13.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.1</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-1-13-1}
+
+* Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
+
+## 1.13.0
+
+Released on September 17, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.13.0+k8s-1.29</td>
+    <td id="center">1.13.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.117.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-13-0}
+
+* Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `install` command.
+
+### Bug Fixes {#bug-fixes-1-13-0}
+
+* Fixes an issue where user-provided proxy configuration was removed during upgrades.
+* Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
+
+## 1.12.1
+
+Released on September 13, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.1+k8s-1.29</td>
+    <td id="center">1.12.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-12-1}
+
+* Adds the ability to provide additional trusted certificate authority certificates with the `install` command's `--private-ca` flag. This is useful when Embedded Cluster is installed behind an enterprise proxy that intercepts traffic and issues its own certificates.
+
+### Bug Fixes {#bug-fixes-1-12-1}
+
+* Removes unnecessary values that were previously added to the no proxy list automatically.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` service to simplify HTTP proxy configuration.
+
+## 1.12.0
+
+Released on September 11, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.12.0+k8s-1.29</td>
+    <td id="center">1.12.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.8</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.116.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-12-0}
+
+* Available updates and the check for updates button are shown on the **Dashboard** page of the Admin Console. The check for updates button is now also shown on the **Version history** page. These were removed in a previous version.
+* The **Nodes** page displays guidance and easier access to the node join command during initial install.
+* When nodes need to be added to the cluster during a restore operation, the `join` command is more clearly shown in the Admin Console.
+* Hides a banner on the **View Files** page that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
+* KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
+
+### Bug Fixes {#bug-fixes-1-12-0}
+
+* Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the kots install command were not propagated to the Replicated SDK.
+
+## 1.11.1
+
+Released on August 30, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.11.1+k8s-1.29</td>
+    <td id="center">1.11.1+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.7</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.114.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-11-1}
+
+* Adds a host preflight check to ensure that disk performance is sufficient for etcd. Specifically, the P99 write latency must be less than 10 ms.
+
+## 1.11.0
+
+Released on August 23, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.11.0+k8s-1.29</td>
+    <td id="center">1.11.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.7</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.114.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-1-11-0}
+
+* The default range available for NodePorts is now 80-32767 instead of 30000-32767. Many customers used [`unsupportedOverrides`](/reference/embedded-config#unsupportedoverrides) to configure this wider range for use with things like an ingress controller, so we have adjusted the default range accordingly. Changes to this range are not applied on upgrades, so existing installations will not be changed.
+* Adds host preflight checks for connecting to replicated.app and proxy.replicated.com. If you use a custom domain for replicated.app, the custom domain will be used in the preflight check.
+* Adds a host preflight check to ensure that neither `nameserver localhost` nor `nameserver 127.0.0.1` is present in `resolv.conf`.
+
+### Bug Fixes {#bug-fixes-1-11-0}
+
+* Fixes several issues that caused node resets to fail. Single-node clusters are no longer drained before being reset. Resets will no longer fail with the error `unable to get installation` if the installation failed early on. And node resets will now work if bind mounts are used for `/var/lib/embedded-cluster`, `/var/lib/k0s`, and `/var/openebs`.
+* Fixes an issue where preflight checks for `modprobe`, `mount`, and `unmount` in `PATH` did not use absolute paths.
+* Fixes an issue where restoring did not work with S3-compatible object stores other than AWS S3.
+
+## 1.10.0
+
+Released on August 13, 2024
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">1.10.0+k8s-1.29</td>
+    <td id="center">1.10.0+k8s-1.28</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.29.7</td>
+    <td id="center">1.28.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.114.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-1-10-0}
+
+* Adds support for the `dropdown` config item type, which creates a dropdown on the config screen. See [`dropdown`](/reference/custom-resource-config#dropdown) in Config.
+* Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional. See [`radio`](/reference/custom-resource-config#radio) in _Config_.
+
+:::note
+For release notes for Embedded Cluster versions earlier than 1.10.0, see the [Embedded Cluster GitHub releases page](https://github.com/replicatedhq/embedded-cluster/releases).
+:::

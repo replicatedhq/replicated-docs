@@ -1,0 +1,122 @@
+# Create and Manage Customers
+
+This topic describes how to create and manage customers in the Replicated Vendor Portal. For more information about customer licenses, see [About Customers](licenses-about).
+
+## Create a Customer
+
+This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time.
+
+For information about creating a customer with the Replicated CLI, see [customer create](/reference/replicated-cli-customer-create).
+
+For information about creating and managing customers with the Vendor API v3, see the [customers](https://replicated-vendor-api.readme.io/reference/getcustomerentitlements) section in the Vendor API v3 documentation.
+
+To create a customer:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
+
+   The **Create a new customer** page opens:
+
+   ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+
+   [View a larger version of this image](/images/create-customer.png)
+
+1. For **Customer name**, enter a name for the customer.
+
+1. For **Customer email**, enter the email address for the customer.
+
+   :::note
+   A customer email address is required for Helm installations. This email address is never used to send emails to customers.
+   :::
+
+1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+
+   :::note
+   You can change the channel a customer is assigned at any time. For installations with Replicated KOTS, when you change the customer's channel, the customer can synchronize their license in the Replicated Admin Console to fetch the latest release on the new channel and then upgrade. The Admin Console always fetches the latest release on the new channel, regardless of the presence of any releases on the channel that are marked as required.
+   :::
+
+1. For **Custom ID**, you can enter a custom ID for the customer. Setting a custom ID allows you to easily associate this Replicated customer record to your own internal customer data systems during data exports. Replicated recommends using an alphanumeric value such as your Salesforce ID or Hubspot ID.
+
+   :::note
+   Replicated does _not_ require that the custom ID is unique. The custom ID is for vendor data reconciliation purposes, and is not used by Replicated for any functionality purposes.
+   :::
+
+1. For **Expiration policy**, by default, **Customer's license does not expire** is enabled. To set an expiration date for the license, enable **Customer's license has an expiration date** and specify an expiration date in the **When does this customer expire?** calendar. 
+
+1. For **Customer type**, set the customer type. Customer type is used only for reporting purposes. Customer access to your application is not affected by the type you assign to them. By default, **Trial** is selected. For more information, see [About Customer License Types](licenses-about-types).
+
+1. Enable any of the available options for the customer. For more information about the license options, see [Built-in License Fields](/vendor/licenses-using-builtin-fields). For more information about enabling install types, see [Managing Install Types for a License (Beta)](/vendor/licenses-install-types).
+
+1. For **Custom fields**, configure any custom fields that you have added for your application. For more information about how to create custom fields for your application, see [Manage Customer License Fields](licenses-adding-custom-fields).
+
+1. Click **Save Changes**.
+
+## Edit a Customer
+
+You can edit the built-in and custom license fields for a customer at any time by going to the **Manage customer** for a customer. For more information, see [Manage Customer Page](licenses-about#about-the-manage-customer-page) in _About Customers and Licensing_.
+   
+Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
+
+:::important
+For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query and enforce the target entitlement before making any changes.
+:::
+
+To edit license fields:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers**.
+
+1. Select the target customer and click the **Manage customer** tab.
+
+1. On the **Manage customer** page, edit the desired fields and click **Save**.
+
+   ![Full manage customer page for a customer named Prestige Financial](/images/customer-details.png)
+
+1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
+    * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
+    * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses in the Admin Console_.
+
+## Archive a Customer
+
+When you archive a customer in the Vendor Portal, the customer is hidden from search by default and becomes read-only. Archival does not affect the utility of license files downloaded before the customer was archived.
+
+To expire a license, set an expiration date and policy in the **Expiration policy** field before you archive the customer.
+
+To archive a customer:
+
+1. In the Vendor Portal, click **Customers**. Select the target customer then click the **Manage customer** tab.
+
+1. Click **Archive Customer**. In the confirmation dialog, click **Archive Customer** again.
+
+You can unarchive by clicking **Unarchive Customer** in the customer's **Manage customer** page.
+
+## Export Customer and Instance Data {#export}
+
+You can download customer and instance data from the **Download CSV** dropdown on the **Customers** page:
+
+![Download CSV button in the Customers page](/images/customers-download-csv.png)
+
+[View a larger version of this image](/images/customers-download-csv.png)
+
+The **Download CSV** dropdown has the following options:
+
+* **Customers**: Includes details about your customers, such as the customer's channel assignment, license entitlements, expiration date, last active timestamp, and more.
+
+* (Recommended) **Customers + Instances**: Includes details about the instances assoicated with each customer, such as the Kubernetes distribution and cloud provider of the cluster where the instance is running, the most recent application instance status, if the instance is active or inactive, and more. The **Customers + Instances** data is a super set of the customer data, and is the recommended download for most use cases.
+
+You can also export customer instance data as JSON using the Vendor API v3 `customer_instances` endpoint. For more information, see [Get customer instance report in CSV or JSON format](https://replicated-vendor-api.readme.io/reference/listappcustomerinstances) in the Vendor API v3 documentation.
+
+For more information about the data fields in the CSV downloads, see [Data Dictionary](/vendor/instance-data-export#data-dictionary) in _Export Customers and Instance Data_.
+## Filter and Search Customers
+
+The **Customers** page provides a search box and filters that help you find customers:
+
+<img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
+
+[View a larger version of this image](/images/customers-filter.png)
+
+You can filter customers based on whether they are active, by license type, and by channel name. You can filter using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time.
+
+If there is adoption rate data available for the channel that you are filtering by, you can also filter by current version, previous version, and older versions.
+
+You can also filter customers by custom ID or email address. To filter customers by custom ID or email, use the search box and prepend your search term with "customId:" (ex: `customId:1234`) or "email:" (ex: `email:bob@replicated.com`).
+
+If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.

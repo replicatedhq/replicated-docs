@@ -1,0 +1,52 @@
+# replicated cluster addon create object-store
+
+Create an object store bucket for a cluster.
+
+### Synopsis
+
+Creates an object store bucket for a cluster, requiring a bucket name prefix. The bucket name will be auto-generated using the format "[BUCKET_PREFIX]-[ADDON_ID]-cmx". This feature provisions an object storage bucket that can be used for storage in your cluster environment.
+
+```
+replicated cluster addon create object-store CLUSTER_ID --bucket-prefix BUCKET_PREFIX [flags]
+```
+
+### Examples
+
+```
+# Create an object store bucket with a specified prefix
+replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket
+
+# Create an object store bucket and wait for it to be ready (up to 5 minutes)
+replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket --wait 5m
+
+# Perform a dry run to validate inputs without creating the bucket
+replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket --dry-run
+
+# Create an object store bucket and output the result in JSON format
+replicated cluster addon create object-store 05929b24 --bucket-prefix mybucket --output json
+
+# Create an object store bucket with a custom prefix and wait for 10 minutes
+replicated cluster addon create object-store 05929b24 --bucket-prefix custom-prefix --wait 10m
+```
+
+### Options
+
+```
+      --bucket-prefix string   A prefix for the bucket name to be created (required)
+      --dry-run                Simulate creation to verify that your inputs are valid without actually creating an add-on
+  -h, --help                   help for object-store
+  -o, --output string          The output format to use. One of: json|table|wide (default "table")
+      --wait duration          Wait duration for add-on to be ready before exiting (leave empty to not wait)
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated cluster addon create](replicated-cli-cluster-addon-create)	 - Create cluster add-ons.

@@ -1,0 +1,202 @@
+# Built-In License Fields
+
+This topic describes the built-in license fields that appear customer licenses for applications distributed with Replicated.
+
+## Overview
+
+The license associated with each customer record in the Replicated Vendor Portal includes several built-in fields. These built-in fields include customer properties (such as the customer name, customer email, and the Vendor Portal channel where the customer is assigned), the license expiration date, as well as the Replicated features that are enabled for the customer (such as the supported install types or Admin Console features).
+
+When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-overview) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function.
+
+The following shows an example of a customer license:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: License
+metadata:
+  name: customertest
+spec:
+  appSlug: gitea
+  channelID: 2iy68JBTkvUqamgD...
+  channelName: Beta
+  channels:
+  - channelID: 2iy68JBTkvUqamgD...
+    channelName: Beta
+    channelSlug: beta
+    endpoint: https://replicated.app
+    isDefault: true
+    isSemverRequired: true
+    replicatedProxyDomain: proxy.replicated.com
+  customerEmail: example@replicated.com
+  customerName: Customer Test
+  endpoint: https://replicated.app
+  entitlements:
+    expires_at:
+      description: License Expiration
+      signature: {}
+      title: Expiration
+      value: ""
+      valueType: String
+  isAirgapSupported: true
+  isEmbeddedClusterDownloadEnabled: true
+  isKotsInstallEnabled: true
+  isSemverRequired: true
+  isSupportBundleUploadSupported: true
+  licenseID: 2sY6ZC2J9sO2...
+  licenseSequence: 4
+  licenseType: prod
+  replicatedProxyDomain: proxy.replicated.com
+  signature: eyJsaWNlbnNlRGF...
+```
+
+## License Field Names
+
+This section lists the built-in fields that are included in customer licenses for applications distributed with Replicated.
+
+:::note
+The built-in license fields are reserved field names.
+:::
+
+### General License Fields
+
+<table>
+    <tr>
+      <td>Field Name</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>`appSlug`</td>
+      <td>The unique application slug that the customer is associated with. This value never changes.</td>
+    </tr>
+    <tr>
+      <td>`channelID`</td>
+      <td>The ID of the channel where the customer is assigned. When the customer's assigned channel changes, the latest release from that channel will be downloaded on the next update check.</td>
+    </tr>
+    <tr>
+      <td>`channelName`</td>
+      <td>The name of the channel where the customer is assigned. When the customer's assigned channel changes, the latest release from that channel will be downloaded on the next update check.</td>
+    </tr>
+    <tr>
+      <td>`licenseID`, `licenseId`</td>
+      <td>Unique ID for the installed license. This value never changes.</td>
+    </tr>
+    <tr>
+      <td>`customerEmail`</td>
+      <td>The customer email address.</td>
+    </tr>
+    <tr>
+        <td>`endpoint`</td>
+        <td>For applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster), this is the endpoint that the KOTS Admin Console uses to synchronize the licenses and download updates. This is typically `https://replicated.app`.</td>
+    </tr>
+    <tr>
+      <td>`entitlementValues`</td>
+      <td>Includes both the built-in `expires_at` field and any custom license fields. For more information about adding custom license fields, see [Manage Customer License Fields](licenses-adding-custom-fields).</td>
+    </tr>
+    <tr>
+      <td>`expires_at`</td>
+      <td><p>Defines the expiration date for the license. The date is encoded in ISO 8601 format (`2026-01-23T00:00:00Z`) and is set to midnight UTC at the beginning of the calendar day (`00:00:00`) on the date selected. If a license does not expire, this field is missing.</p><p>For information about the default behavior when a license expires, see [License Expiration Handling](licenses-about#expiration) in _About Customers_.</p></td>
+    </tr>
+    <tr>
+      <td>`licenseSequence`</td>
+      <td>Every time a license is updated, its sequence number is incremented. This value represents the license sequence that the client currently has.</td>
+    </tr>
+    <tr>
+      <td>`customerName`</td>
+      <td>The name of the customer.</td>
+    </tr>
+    <tr>
+      <td>`signature`</td>
+      <td>The base64-encoded license signature. This value will change when the license is updated.</td>
+    </tr>
+    <tr>
+      <td>`licenseType`</td>
+      <td>A string value that describes the type of the license, which is one of the following: `paid`, `trial`, `dev`, `single-tenant-vendor-managed` or `community`. For more information about license types, see [Managing License Type](licenses-about-types).</td>
+    </tr>
+</table>    
+
+### Install Types
+
+The table below describes the built-in license fields related to the supported install type(s). For more information, see [Manage Install Types for a License](/vendor/licenses-install-types).
+
+<table>
+    <tr>
+      <td>Field Name</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>`isEmbeddedClusterDownloadEnabled`</td>
+      <td><p>If a license supports installation with Replicated Embedded Cluster, this field is set to `true` or missing. If Embedded Cluster installations are not supported, this field is `false`.</p><p>This field requires that the vendor has the Embedded Cluster entitlement and that the release at the head of the channel includes an [Embedded Cluster Config](/reference/embedded-config) custom resource. This field also requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
+    </tr>
+    <tr>
+      <td>`isHelmInstallEnabled`</td>
+      <td><p>If a license supports Helm installations, this field is set to `true` or missing. If Helm installations are not supported, this field is set to `false`. This field requires that the vendor packages the application as Helm charts and, optionally, Replicated custom resources.</p><p> This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
+    </tr>
+    <tr>
+      <td>`isKotsInstallEnabled`</td>
+      <td><p>If a license supports installation with Replicated KOTS, this field is set to `true`. If KOTS installations are not supported, this field is either `false` or missing.</p><p>This field requires that the vendor has the KOTS entitlement.</p></td>
+    </tr>
+    <tr>
+      <td>`isKurlInstallEnabled`</td>
+      <td><p>If a license supports installation with Replicated kURL, this field is set to `true` or missing. If kURL installations are not supported, this field is `false`. </p><p>This field requires that the vendor has the kURL entitlement and a promoted kURL installer spec. This field also requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
+    </tr>
+</table>    
+
+### Install Options 
+
+The table below describes the built-in license fields related to install options.
+
+<table>
+  <tr>
+    <td>Field Name</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td>`isAirgapSupported`</td>
+    <td><p>If a license supports air gap installations with the Replicated installers (KOTS, kURL, Embedded Cluster), then this field is set to `true`. If Replicated installer air gap installations are not supported, this field is missing.</p><p>When you enable this field for a license, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded.</p></td>
+  </tr>
+  <tr>
+    <td>`isHelmAirgapEnabled`</td>
+    <td><p>If a license supports Helm air gap installations, then this field is set to `true` or missing. If Helm air gap is not supported, this field is missing.</p><p> When you enable this feature, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded.</p><p>This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
+  </tr>
+</table>    
+
+### Admin Console Feature Options
+
+The table below describes the built-in license fields related to the Admin Console feature options. The Admin Console feature options apply only to licenses that support installation with the Replicated installers (KOTS, kURL, Embedded Cluster). 
+
+<table>
+    <tr>
+        <td>Field Name</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>`isDisasterRecoverySupported`</td>
+        <td>If a license supports the Embedded Cluster disaster recovery feature, this field is set to `true`. If a license does not support disaster recovery for Embedded Cluster, this field is either missing or `false`. **Note**: Embedded Cluster Disaster Recovery is in Alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com). For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</td>
+    </tr>
+    <tr>
+        <td>`isGeoaxisSupported`</td>
+        <td>(kURL Only) If a license supports integration with GeoAxis, this field is set to `true`. If GeoAxis is not supported, this field is either `false` or missing. **Note**: This field requires that the vendor has the GeoAxis entitlement. It also requires that the vendor has access to the Identity Service entitlement.</td>
+    </tr>
+    <tr>
+        <td>`isGitOpsSupported`</td>
+        <td>:::important
+KOTS Auto-GitOps is a legacy feature and is **not recommended** for use. For modern enterprise customers that prefer software deployment processes that use CI/CD pipelines, Replicated recommends the [Helm CLI installation method](/vendor/install-with-helm), which is more commonly used in these types of enterprise environments.
+::: If a license supports the KOTS AutoGitOps workflow in the Admin Console, this field is set to `true`. If Auto-GitOps is not supported, this field is either `false` or missing. See [KOTS Auto-GitOps Workflow](/enterprise/gitops-workflow).</td>
+    </tr>
+    <tr>
+        <td>`isIdentityServiceSupported`</td>
+        <td>If a license supports identity-service enablement for the Admin Console, this field is set to `true`. If identity service is not supported, this field is either `false` or missing. **Note**: This field requires that the vendor have access to the Identity Service entitlement.</td>
+    </tr>
+    <tr>
+        <td>`isSemverRequired`</td>
+        <td>If set to `true`, this field requires that the Admin Console orders releases according to Semantic Versioning. This field is controlled at the channel level. For more information about enabling Semantic Versioning on a channel, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.</td>
+    </tr>
+    <tr>
+        <td>`isSnapshotSupported`</td>
+        <td>If a license supports the snapshots backup and restore feature, this field is set to `true`. If a license does not support snapshots, this field is either missing or `false`. **Note**: This field requires that the vendor have access to the Snapshots entitlement.</td>
+    </tr>
+    <tr>
+        <td>`isSupportBundleUploadSupported`</td>
+        <td>If a license supports uploading a support bundle in the Admin Console, this field is set to `true`. If a license does not support uploading a support bundle, this field is either missing or `false`.</td>
+    </tr>
+</table>
