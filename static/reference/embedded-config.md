@@ -1,0 +1,321 @@
+# Embedded Cluster Config
+
+This topic is a reference for the Replicated Embedded Cluster Config custom resource. For more information about Embedded Cluster, see [Use Embedded Cluster](/vendor/embedded-overview).
+
+## Overview
+
+To install your application with Embedded Cluster, an Embedded Cluster Config must be included in the release. Embedded Cluster installation artifacts are available only for releases that include an Embedded Cluster Config.
+
+The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that will be created.
+
+### Limitation
+
+The Embedded Cluster Config does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
+
+For additional property-specific limitations, see the sections below.
+
+### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  version: 2.1.3+k8s-1.30
+  roles:
+    controller:
+      name: management
+      labels:
+        management: "true"
+    custom:
+    - name: app
+      labels:
+       app: "true"
+    domains:
+      proxyRegistryDomain: proxy.yourcompany.com
+      replicatedAppDomain: updates.yourcompany.com
+  extensions:
+    helm:
+      repositories:
+        - name: ingress-nginx
+          url: https://kubernetes.github.io/ingress-nginx
+      charts:
+        - name: ingress-nginx
+          chartname: ingress-nginx/ingress-nginx
+          namespace: ingress-nginx
+          version: "4.8.3"
+          values: |
+            controller:
+              service:
+                type: NodePort
+                nodePorts:
+                  http: "80"
+                  https: "443"
+              # Known issue: Only use image tags for multi-architecture images.
+              # Set digest to empty string to ensure the air gap builder uses
+              # single-architecture images.
+              image:
+                digest: ""
+                digestChroot: ""
+              admissionWebhooks:
+                patch:
+                  image:
+                    digest: ""
+```
+
+## version
+
+You must specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
+
+For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because Embedded Cluster is changing rapidly.
+
+## roles
+
+You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
+
+If the `roles` key is configured, users select one or more roles to assign to a node when it is joined to the cluster. A single node can be assigned:
+* The `controller` role, which designates nodes that run the Kubernetes control plane
+* One or more `custom` roles
+* Both the `controller` role _and_ one or more `custom` roles
+
+For more information about how to assign node roles in the Admin Console, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+
+If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+
+For more information, see the sections below.
+
+### controller
+
+By default, all nodes joined to a cluster are assigned the `controller` role.
+
+You can customize the `controller` role in the following ways:
+* Change the `name` that is assigned to controller nodes. By default, controller nodes are named “controller”. If you plan to create any `custom` roles, Replicated recommends that you change the default name for the `controller` role to a term that is easy to understand, such as "management". This is because, when you add `custom` roles, both the name of the `controller` role and the names of any `custom` roles are displayed to the user when they join a node. 
+* Add one or more `labels` to be assigned to all controller nodes. See [labels](#labels).
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    controller:
+      name: management
+      labels:
+        management: "true" # Label applied to "management" nodes
+```      
+
+### custom
+
+You can add `custom` roles that users can assign to one or more nodes in the cluster. Each `custom` role that you add must have a `name` and can also have one or more `labels`. See [labels](#labels).
+
+Adding `custom` node roles is useful if you need to assign application workloads to specific nodes in multi-node clusters. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu=true` label to any node that is assigned the role. This allows you to then schedule GPU workloads on nodes labled `gpu=true`. Or, if your application includes any resource-intensive workloads (such as a database) that must be run on dedicated nodes, you could create a `custom` role that adds a `db=true` label to the node. This way, the database workload could be assigned to a certain node or nodes.
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    custom:
+    - name: app
+      labels:
+        app: "true" # Label applied to "app" nodes
+```
+
+### labels
+
+You can define Kubernetes labels for the default `controller` role and any `custom` roles that you add. When `labels` are defined, Embedded Cluster applies the label to any node in the cluster that is assigned the given role. Labels are useful for tasks like assigning workloads to nodes.
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    controller:
+      name: management
+      labels:
+        management: "true" # Label applied to "management" nodes
+    custom:
+    - name: db
+      labels:
+        db: "true" # Label applied to "db" nodes
+    - name: gpu
+      labels:
+        gpu: "true" # Label applied to "gpu" nodes    
+```
+
+## domains
+
+Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
+
+When `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are set, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
+
+The custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields must be added to the Vendor Portal before they can be used by Embedded Cluster. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
+
+If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  domains:
+    # Your proxy registry custom domain
+    proxyRegistryDomain: proxy.yourcompany.com
+    # Your app service custom domain
+    replicatedAppDomain: updates.yourcompany.com    
+```
+
+## extensions
+
+If you need to install Helm charts before your application and as part of the Embedded Cluster itself, you can do this with Helm extensions. One situation where this is useful is if you want to ship an ingress controller, because Embedded Cluster does not yet include one.
+
+Helm extensions are updated when new versions of your application are deployed from the Admin Console. So, for example, you can change the values for a Helm extension from one release to another, and those changes will be applied to the cluster when the new release is deployed.
+
+The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/stable/helm-charts/#example).
+
+### Limitation
+
+If a Helm extension is removed from the Embedded Cluster Config, the associated Helm chart is not removed from the cluster.
+
+### Requirements
+
+* The `version` field is required. Failing to specify a chart version will cause problems for upgrades.
+
+* If you need to install multiple charts in a particular order, set the `order` field to a value greater than or equal to 10. Numbers below 10 are reserved for use by Embedded Cluster to deploy things like a storage provider and the Admin Console. If an `order` is not provided, Helm extensions are installed with order 10. 
+
+### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  extensions:
+    helm:
+      repositories:
+        - name: ingress-nginx
+          url: https://kubernetes.github.io/ingress-nginx
+      charts:
+        - name: ingress-nginx
+          chartname: ingress-nginx/ingress-nginx
+          namespace: ingress-nginx
+          version: "4.8.3"
+          values: |
+            controller:
+              service:
+                type: NodePort
+                nodePorts:
+                  http: "80"
+                  https: "443"
+              # Known issue: Only use image tags for multi-architecture images.
+              # Set digest to empty string to ensure the air gap builder uses
+              # single-architecture images.
+              image:
+                digest: ""
+                digestChroot: ""
+              admissionWebhooks:
+                patch:
+                  image:
+                    digest: ""
+```
+
+## unsupportedOverrides
+
+:::important
+This feature should be used with caution by advanced users who understand the risks and ramifications of changing the default configuration.
+:::
+
+Unsupported overrides allow you to override Embedded Cluster's default configuration, including the k0s config and the Helm values for extensions like KOTS and OpenEBS. This should be used with caution because changes here are untested and can disrupt or break Embedded Clusters. Any issues that are caused by unsupported overrides are not supported.
+
+While they should be used with caution, unsupported overrides are useful if you need to make changes that are not otherwise exposed by Embedded Cluster.
+
+### Override the k0s Config
+
+By default, Embedded Cluster uses a k0s config that is tested and known to work for Embedded Clusters. In some circumstances, you might want to change the k0s config.
+
+For more information on the k0s config, see [Configuration options](https://docs.k0sproject.io/stable/configuration/#configuration-file-reference) in the k0s documentation.
+
+For example, you can do the following to enable WireGuard-based encryption. Note that other configuration might be necessary. See [`spec.network.calico`](https://docs.k0sproject.io/stable/configuration/#specnetworkcalico) in the k0s documentation for more details.
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  unsupportedOverrides:
+    k0s: |
+      config:
+        spec:
+          network:
+            calico:
+              wireguard: true
+```
+
+#### Limtiations
+
+* The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
+
+* Overrides overwrite the corresponding fields in the k0s configuration. They are not merged into Embedded Cluster’s default configuration. When using overrides to override a list, for example, ensure that you include other elements in the list that Embedded Cluster includes by default.
+
+### Override the Helm Values for Built-In Extensions
+
+Embedded Cluster deploys built-in extensions like KOTS and OpenEBS to provide capabilities like storage and application management. These extensions are deployed with Helm, and the Helm values for each can be modified if necessary.
+
+To modify these values, you can use the `unsupportedOverrides.builtInExtensions` key of the Embedded Cluster Config. Each chart you want to modify is an item in the array. The `name` key identifies the Helm chart that you want to modify, and the `values` key is a string where you specify your modified Helm values. Your modified values are merged into the values used by Embedded Cluster.
+
+The following are the built-in extensions available for modification:
+
+- `openebs`
+- `admin-console`
+- `velero`
+- `embedded-cluster-operator`
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  unsupportedOverrides:
+    builtInExtensions:
+    - name: openebs
+      values: |
+        key: value
+```
+
+### Configure the Kubelet
+
+You can configure the Kubelet to customize your worker nodes with Embedded Cluster. One common use case for configuring the Kubelet is that you need more pods on a single node than the default limit of 100. In this case, you could set the `maxPods` Kubelet configuration option to 150. Another common example is reducing startup time by setting `maxParallelImagePulls` to increase the maximum number of image pulls that can be done in parallel.
+
+You can customize the Kubelet configuration settings by adding a _worker profile_ in the Embedded Cluster Config under `unsupportedOverrides.k0s.config.spec.workerProfiles[]`. When a worker profile is defined, Embedded Cluster uses the profile for every node in the cluster during initial installation and when joining nodes to the cluster.
+
+The worker profile has the following required fields:
+* `name`: The name of the worker profile. Do not use the name `default` for your custom worker profile. `default` is reserved by k0s.
+* `values`: The Kubelet configuration settings for the profile. For a complete list of the available Kubelet configuration options that you can set in a worker profile, see [KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) in the Kubernetes documentation.
+
+For more information about how to define worker profiles, see [spec.workerProfiles](https://docs.k0sproject.io/stable/configuration/#specworkerprofiles) in the k0s documentation. 
+
+#### Limitations
+
+* The worker profile is set during initial installation. Worker profiles cannot be changed or added on upgrade.
+* Embedded Cluster supports only one worker profile that is used for all nodes. If you add more than one worker profile in the `workerProfiles[]` array in the Embedded Cluster Config, only the first profile is used.
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  unsupportedOverrides:
+    k0s: |
+      config:
+        spec:
+          # Define a profile that sets maxPods to 150
+          workerProfiles:
+          # Note: Do not use the name "default"
+          - name: custom-maxpods
+            values:
+              maxPods: 150
+```

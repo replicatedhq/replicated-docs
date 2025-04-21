@@ -1,0 +1,30 @@
+# replicated channel inspect
+
+Show full details for a channel
+
+### Synopsis
+
+Show full details for a channel
+
+```
+replicated channel inspect CHANNEL_ID [flags]
+```
+
+### Options
+
+```
+  -h, --help            help for inspect
+  -o, --output string   The output format to use. One of: json|table (default "table")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated channel](replicated-cli-channel)	 - List channels

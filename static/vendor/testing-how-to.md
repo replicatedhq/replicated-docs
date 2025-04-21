@@ -1,0 +1,322 @@
+# Use Compatibility Matrix
+
+This topic describes how to use Replicated Compatibility Matrix to create ephemeral clusters.
+
+## Prerequisites
+
+Before you can use Compatibility Matrix, you must complete the following prerequisites:
+
+* Create an account in the Replicated Vendor Portal. See [Create a Vendor Account](/vendor/vendor-portal-creating-account).
+
+* Install the Replicated CLI and then authorize the CLI using your vendor account. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+
+* If you have a contract, you can purchase more credits by going to [**Compatibility Matrix > Buy additional credits**](https://vendor.replicated.com/compatibility-matrix). Otherwise, you can request credits by going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+
+* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+
+## Create and Manage Clusters
+
+This section explains how to use Compatibility Matrix to create and manage clusters with the Replicated CLI or the Vendor Portal.
+
+For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
+
+### Create Clusters
+
+You can create clusters with Compatibility Matrix using the Replicated CLI or the Vendor Portal.
+
+#### Replicated CLI
+
+To create a cluster using the Replicated CLI:
+
+1. (Optional) View the available cluster distributions, including the supported Kubernetes versions, instance types, and maximum nodes for each distribution:
+
+   ```bash
+   replicated cluster versions
+   ```
+   For command usage, see [cluster versions](/reference/replicated-cli-cluster-versions).
+
+1. Run the following command to create a cluster:
+
+   ```
+   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
+   ```
+   Where:
+   * `NAME` is any name for the cluster. If `--name` is excluded, a name is automatically generated for the cluster.
+   * `K8S_DISTRO` is the Kubernetes distribution for the cluster.
+   * `K8S_VERSION` is the Kubernetes version for the cluster if creating a standard Cloud or VM-based cluster. If creating an Embedded Cluster or kURL cluster type,`--version` is optional:
+      * For Embedded Cluster types, `--verison` is the latest available release on the channel by default. Otherwise, to specify a different release, set `--version` to the `Channel release sequence` value for the release.  
+      * For kURL cluster types, `--verison` is the `"latest"` kURL Installer ID by default.  Otherwise, to specify a different kURL Installer, set `--version` to the kURL Installer ID. 
+   * `DISK_SIZE` is the disk size (GiB) to request per node.
+   * `INSTANCE_TYPE` is the instance type to use for each node.
+   * (Embedded Cluster Only) `LICENSE_ID` is a valid customer license. Required to create an Embedded Cluster.
+
+   For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
+
+   **Example:**
+
+   The following example creates a kind cluster with Kubernetes version 1.27.0, a disk size of 100 GiB, and an instance type of `r1.small`. 
+
+   ```bash
+   replicated cluster create --name kind-example --distribution kind --version 1.27.0 --disk 100 --instance-type r1.small
+   ```
+
+1. Verify that the cluster was created:
+
+   ```bash
+   replicated cluster ls CLUSTER_NAME
+   ```
+   Where `CLUSTER_NAME` is the name of the cluster that you created.
+
+   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About Compatibility Matrix._
+
+#### Vendor Portal
+
+To create a cluster using the Vendor Portal:
+
+1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
+
+    <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
+
+    [View a larger version of this image](/images/create-a-cluster.png)
+
+1. On the **Create a cluster** page, complete the following fields:
+
+   <table>
+     <tr>
+       <th>Field</th>
+       <th>Description</th>
+     </tr>
+     <tr>
+       <td>Kubernetes distribution</td>
+       <td>Select the Kubernetes distribution for the cluster.</td>
+     </tr>
+     <tr>
+       <td>Version</td>
+       <td>Select the Kubernetes version for the cluster. The options available are specific to the distribution selected.</td>
+     </tr>
+     <tr>
+       <td>Name (optional)</td>
+       <td>Enter an optional name for the cluster.</td>
+     </tr>
+     <tr>
+       <td>Tags</td>
+       <td>Add one or more tags to the cluster as key-value pairs.</td>
+     </tr>
+     <tr>
+       <td>Set TTL</td>
+       <td>Select the Time to Live (TTL) for the cluster. When the TTL expires, the cluster is automatically deleted. TTL can be adjusted after cluster creation with [cluster update ttl](/reference/replicated-cli-cluster-update-ttl).</td>
+     </tr>
+   </table>  
+
+1. For **Nodes & Nodes Groups**, complete the following fields to configure nodes and node groups for the cluster:
+
+   <table>
+   <tr>
+       <td>Instance type</td>
+       <td>Select the instance type to use for the nodes in the node group. The options available are specific to the distribution selected.</td>
+     </tr>   
+     <tr>
+       <td>Disk size</td>
+       <td>Select the disk size in GiB to use per node.</td>
+     </tr>
+     <tr>
+       <td>Nodes</td>
+       <td>Select the number of nodes to provision in the node group. The options available are specific to the distribution selected.</td>
+     </tr>  
+   </table>
+
+1. (Optional) Click **Add node group** to add additional node groups.
+
+1. Click **Create cluster**.
+
+   The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
+
+   :::note
+   If the cluster is not automatically displayed, refresh your browser window.
+   :::
+
+   <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
+
+   [View a larger version of this image](/images/cmx-assigned-cluster.png)
+
+### Prepare Clusters
+
+For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+
+The `cluster prepare` command does the following:
+* Creates a cluster
+* Creates a release for your application based on either a Helm chart archive or a directory containing the application YAML files
+* Creates a temporary customer of type `test`
+  :::note
+  Test customers created by the `cluster prepare` command are not saved in your Vendor Portal team.
+  :::
+* Installs the release in the cluster using either the Helm CLI or Replicated KOTS
+
+The `cluster prepare` command requires either a Helm chart archive or a directory containing the application YAML files to be installed:
+
+* **Install a Helm chart with the Helm CLI**:
+
+  ```bash
+  replicated cluster prepare \
+    --distribution K8S_DISTRO \
+    --version K8S_VERSION \
+    --chart HELM_CHART_TGZ
+  ```
+  The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
+  ```bash
+  replicated cluster prepare \
+    --distribution kind \
+    --version 1.27.0 \
+    --chart nginx-chart-0.0.14.tgz \
+    --set key1=val1,key2=val2 \
+    --set-string s1=val1,s2=val2 \
+    --set-json j1='{"key1":"val1","key2":"val2"}' \
+    --set-literal l1=val1,l2=val2 \
+    --values values.yaml
+  ```
+
+* **Install with KOTS from a YAML directory**:
+
+  ```bash
+  replicated cluster prepare \
+    --distribution K8S_DISTRO \
+    --version K8S_VERSION \
+    --yaml-dir PATH_TO_YAML_DIR
+  ```
+  The following example creates a k3s cluster and installs an application in the cluster using the manifest files in a local directory named `config-validation`: 
+  ```bash
+  replicated cluster prepare \
+    --distribution k3s \
+    --version 1.26 \
+    --namespace config-validation \
+    --shared-password password \
+    --app-ready-timeout 10m \
+    --yaml-dir config-validation \
+    --config-values-file conifg-values.yaml \
+    --entitlements "num_of_queues=5"
+    ```
+
+For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
+
+### Access Clusters
+
+Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+
+To access a cluster from the command line:
+
+1. Verify that the cluster is in a Running state:
+
+   ```bash
+   replicated cluster ls
+   ```
+   In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+
+1. Run the following command to open a new shell session with the kubeconfig configured for the cluster:
+
+   ```bash
+   replicated cluster shell CLUSTER_ID
+   ``` 
+   Where `CLUSTER_ID` is the unique ID for the running cluster that you want to access.
+
+   For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
+
+1. Verify that you can interact with the cluster through kubectl by running a command. For example:
+
+   ```bash
+   kubectl get ns
+   ```
+
+1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
+
+### Upgrade Clusters (kURL Only)
+
+For kURL clusters provisioned with Compatibility Matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
+
+The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
+
+```bash
+replicated cluster upgrade cabb74d5 --version 9d5a44c
+```
+
+For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+
+### Delete Clusters
+
+You can delete clusters using the Replicated CLI or the Vendor Portal.
+
+#### Replicated CLI
+
+To delete a cluster using the Replicated CLI:
+
+1. Get the ID of the target cluster:
+
+   ```
+   replicated cluster ls
+   ```
+   In the output of the command, copy the ID for the cluster.
+
+   **Example:**
+
+   ```
+   ID        NAME              DISTRIBUTION   VERSION   STATUS    CREATED                        EXPIRES 
+   1234abc   My Test Cluster   eks            1.27      running   2023-10-09 17:08:01 +0000 UTC  - 
+   ``` 
+
+   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+
+1. Run the following command:
+
+    ```
+    replicated cluster rm CLUSTER_ID
+    ```
+    Where `CLUSTER_ID` is the ID of the target cluster. 
+    For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
+1. Confirm that the cluster was deleted:
+   ```
+   replicated cluster ls CLUSTER_ID --show-terminated
+   ```
+   Where `CLUSTER_ID` is the ID of the target cluster.
+   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+#### Vendor Portal
+
+To delete a cluster using the Vendor Portal:
+
+1. Go to **Compatibility Matrix**.
+
+1. Under **Clusters**, in the vertical dots menu for the target cluster, click **Delete cluster**.
+
+   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="700px"/>
+
+   [View a larger version of this image](/images/cmx-delete-cluster.png)
+
+## About Using Compatibility Matrix with CI/CD
+
+Replicated recommends that you integrate Compatibility Matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
+
+### Replicated GitHub Actions
+
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using Compatibility Matrix and distributing applications with Replicated.
+
+If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using Replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
+
+To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+
+For more information, see [Use Replicated GitHub Actions in CI/CD](/vendor/ci-workflows-github-actions).
+
+### Recommended Workflows
+
+Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). For example development and release workflows that integrate Compatibility Matrix for testing, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+
+### Test Script Recommendations
+
+Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
+
+* **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests. These tests are critical for application reliability, and Compatibility Matrix is designed to to incorporate and use your application testing.
+
+* **Performance Testing:** Performance testing is used to benchmark your application to ensure it can handle the expected load and scale gracefully. Test your application under a range of workloads and scenarios to identify any bottlenecks or performance issues. Make sure to optimize your application for different Kubernetes distributions and configurations by creating all of the environments you need to test in.
+
+* **Smoke Testing:** Using a single, conformant Kubernetes distribution to test basic functionality of your application with default (or standard) configuration values is a quick way to get feedback if something is likely to be broken for all or most customers. Replicated also recommends that you include each Kubernetes version that you intend to support in your smoke tests.
+
+* **Compatibility Testing:** Because applications run on various Kubernetes distributions and configurations, it is important to test compatibility across different environments. Compatibility Matrix provides this infrastructure.
+
+* **Canary Testing:** Before releasing to all customers, consider deploying your application to a small subset of your customer base as a _canary_ release. This lets you monitor the application's performance and stability in real-world environments, while minimizing the impact of potential issues. Compatibility Matrix enables canary testing by simulating exact (or near) customer environments and configurations to test your application with.
