@@ -2,11 +2,13 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Configure the HelmChart v2 Custom Resource
 
-This topic describes how to configure the Replicated KOTS HelmChart v2 custom resource. The information in this topic applies to existing cluster KOTS installations, Replicated Embedded Cluster installations, and Replicated kURL installations for applications packaged with Helm.
+This topic describes how to configure the Replicated KOTS HelmChart v2 custom resource. The information in this topic applies to Replicated KOTS installations in existing clusters, Replicated Embedded Cluster installations, and Replicated kURL installations for applications packaged with Helm.
 
 For more information about how KOTS uses the HelmChart custom resource to install Helm charts, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ## Overview
+
+
 
 The tasks in this topic involve editing the HelmChart `values` and `optionalValues` keys in order to set Helm values during deployment. For more information about working with these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
@@ -24,7 +26,7 @@ Rewriting image names and injecting the KOTS pull secret allows your application
 
 To rewrite image names and inject the KOTS image pull secret:
 
-1. In the HelmChart custom resource, under the `values` key, rewrite the names of any _private_ images used by your application so that they can be accessed through the Replicated proxy registry.
+1. In your Helm chart `values.yaml` file, rewrite private image names to use the Replicated proxy registry domain.
 
    Use the following format:
 
@@ -33,7 +35,7 @@ To rewrite image names and inject the KOTS image pull secret:
    ```
    Where:
 
-   * `PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For more information about configuring a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using).
+   * `PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For more information about setting a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using).
 
    * `APP_SLUG` is the unique application slug in the Vendor Portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
 
@@ -42,6 +44,13 @@ To rewrite image names and inject the KOTS image pull secret:
    **Example:**
 
    ```yaml
+   # values.yaml
+
+   global:
+     imageRegistry: proxy.yourcompany.com/proxy/your-app-slug/docker.io
+   ```
+
+   <!-- ```yaml
    # KOTS HelmChart custom resource
 
    apiVersion: kots.io/v1beta2
@@ -56,9 +65,9 @@ To rewrite image names and inject the KOTS image pull secret:
            registry: proxy.yourcompany.com
            repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
            tag: catalog-1.24.0
-    ```        
+    ```         -->
 
-1. For each image that you included under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to inject the KOTS-generated image pull secret, which is used to authenticate with the proxy registry.
+1. In the KOTS HelmChart custom resource, under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to inject the KOTS-generated image pull secret. This pull secret is used to authenticate with the Replicated proxy registry.
 
     <details>
      <summary>What is the KOTS-generated image pull secret?</summary>
@@ -79,13 +88,9 @@ To rewrite image names and inject the KOTS image pull secret:
       name: samplechart
     spec:
       values:
-        api:
-          image:
-            registry: proxy.yourcompany.com
-            repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
-            tag: catalog-1.24.0 
-            # Inject the pull secret with ImagePullSecretName
-            pullSecrets:
+        global:
+          # Inject the pull secret with ImagePullSecretName
+          imagePullSecrets:
             - name: '{{repl ImagePullSecretName }}'
     ```
 
@@ -101,14 +106,6 @@ To rewrite image names and inject the KOTS image pull secret:
     metadata:
       name: samplechart
     spec:
-      values:
-        api:
-          image:
-            registry: proxy.yourcompany.com
-            repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
-            tag: catalog-1.24.0
-            pullSecrets:
-            - name: '{{repl ImagePullSecretName }}'
       optionalValues:
         # Define the conditional statement in the when field
         - when: 'repl{{ HasLocalRegistry }}'
@@ -123,6 +120,17 @@ To rewrite image names and inject the KOTS image pull secret:
     
     The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
    </details>
+
+1. Under the `optionalValues` key, use the same template functions as above to conditionally rewrite the image for the Replicated SDK:
+
+    ```yaml
+    - when: 'repl{{ HasLocalRegistry }}'
+      values:
+        replicated:
+          image:
+            registry: '{{repl LocalRegistryHost }}'
+            repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
+    ```   
 
 ### Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
 
