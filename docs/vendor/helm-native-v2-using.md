@@ -8,8 +8,6 @@ For more information about how KOTS uses the HelmChart custom resource to instal
 
 ## Overview
 
-
-
 The tasks in this topic involve editing the HelmChart `values` and `optionalValues` keys in order to set Helm values during deployment. For more information about working with these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
 ## Workflow
@@ -26,7 +24,7 @@ Rewriting image names and injecting the KOTS pull secret allows your application
 
 To rewrite image names and inject the KOTS image pull secret:
 
-1. In your Helm chart `values.yaml` file, rewrite private image names to use the Replicated proxy registry domain.
+1. In your Helm chart `values.yaml` file, set the value or values for any private images to the URL where the image can be access through the Replicated proxy service.
 
    Use the following format:
 
@@ -50,10 +48,11 @@ To rewrite image names and inject the KOTS image pull secret:
      image:
        # proxy.registry.com or your custom domain
        registry: proxy.yourcompany.com
+       # image URL
        repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
        tag: catalog-1.24.0
        imagePullSecrets:
-         - name: replicated-pull-secret
+         - name: secret-name
    ```
 
    <!-- ```yaml
@@ -73,7 +72,7 @@ To rewrite image names and inject the KOTS image pull secret:
            tag: catalog-1.24.0
     ```         -->
 
-1. In the KOTS HelmChart custom resource, under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to inject the KOTS-generated image pull secret. This pull secret is used to authenticate with the Replicated proxy registry.
+1. In the KOTS HelmChart custom resource, under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to set the image pull secret to the KOTS-generated image pull secret. This pull secret is used to authenticate with the Replicated proxy registry.
 
     <details>
      <summary>What is the KOTS-generated image pull secret?</summary>
@@ -103,6 +102,12 @@ To rewrite image names and inject the KOTS image pull secret:
 
 1. In the HelmChart `optionalValues` key, use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions so that any private or public images are conditionally rewritten to the location of the image in the user's local image registry, only when a local registry is configured.
 
+   <details>
+    <summary>What is the registry namespace?</summary>
+    
+    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
+   </details>
+
    **Example:**
 
    ```yaml
@@ -117,16 +122,11 @@ To rewrite image names and inject the KOTS image pull secret:
         # Define the conditional statement in the when field
         - when: 'repl{{ HasLocalRegistry }}'
           values:
-            api:
+            postgres:
               image:
-                registry: '{{repl LocalRegistryHost }}' 
-                repository: '{{repl LocalRegistryNamespace }}/cloudnative-pg/cloudnative-pg'
-   ```    
-   <details>
-    <summary>What is the registry namespace?</summary>
-    
-    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
-   </details>
+                registry: '{{repl LocalRegistryHost }}'
+                repository: '{{repl LocalRegistryNamespace }}/cloudnative-pg/cloudnative-pg
+   ```
 
 1. Under the `optionalValues` key, use the same template functions as above to conditionally rewrite the image for the Replicated SDK:
 
