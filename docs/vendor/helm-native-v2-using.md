@@ -46,8 +46,14 @@ To rewrite image names and inject the KOTS image pull secret:
    ```yaml
    # values.yaml
 
-   global:
-     imageRegistry: proxy.yourcompany.com/proxy/your-app-slug/docker.io
+   postgres:
+     image:
+       # proxy.registry.com or your custom domain
+       registry: proxy.yourcompany.com
+       repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
+       tag: catalog-1.24.0
+       imagePullSecrets:
+         - name: replicated-pull-secret
    ```
 
    <!-- ```yaml
@@ -88,13 +94,14 @@ To rewrite image names and inject the KOTS image pull secret:
       name: samplechart
     spec:
       values:
-        global:
-          # Inject the pull secret with ImagePullSecretName
-          imagePullSecrets:
-            - name: '{{repl ImagePullSecretName }}'
+        postgres:
+          image:
+            # Inject the pull secret with ImagePullSecretName
+            imagePullSecrets:
+              - name: '{{repl ImagePullSecretName }}'
     ```
 
-1. In the HelmChart `optionalValues` key, use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to conditionally rewrite any private or public images to the location of the image in the user's local image registry.
+1. In the HelmChart `optionalValues` key, use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions so that any private or public images are conditionally rewritten to the location of the image in the user's local image registry, only when a local registry is configured.
 
    **Example:**
 
@@ -124,12 +131,27 @@ To rewrite image names and inject the KOTS image pull secret:
 1. Under the `optionalValues` key, use the same template functions as above to conditionally rewrite the image for the Replicated SDK:
 
     ```yaml
-    - when: 'repl{{ HasLocalRegistry }}'
-      values:
-        replicated:
-          image:
-            registry: '{{repl LocalRegistryHost }}'
-            repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
+       # KOTS HelmChart custom resource
+
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            api:
+              image:
+                registry: '{{repl LocalRegistryHost }}' 
+                repository: '{{repl LocalRegistryNamespace }}/cloudnative-pg/cloudnative-pg'
+        # Rewrite Replicated SDK image to local registry
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            replicated:
+              image:
+                registry: '{{repl LocalRegistryHost }}'
+                repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
     ```   
 
 ### Task 2: Add Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
