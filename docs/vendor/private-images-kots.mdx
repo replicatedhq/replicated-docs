@@ -8,53 +8,17 @@ This topic describes how to use the Replicated proxy registry with applications 
 
 ## Overview
 
-For applications installed with a Replicated installer, Replicated KOTS automatically creates the required image pull secret for accessing the Replicated proxy registry during application deployment. When possible, KOTS also automatically rewrites image names in the application manifests to the location of the image at `proxy.replicated.com` or your custom domain.  
+For applications installed with a Replicated installer, Replicated KOTS automatically creates the required image pull secret for accessing the Replicated proxy registry during application deployment. When possible, KOTS also automatically rewrites image names in the application manifests to the location of the image at `proxy.replicated.com` or your custom domain.
 
-### About the Image Pull Secret
-
-During application deployment, KOTS automatically creates an `imagePullSecret` with `type: kubernetes.io/dockerconfigjson` that is based on the customer license. This secret is used to authenticate with the proxy registry and grant proxy access to private images.
-
-For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
-
-### About Image Location Patching (HelmChart v1 and Standard Manifests)
-
-For applications packaged with the [HelmChart v1](/reference/custom-resource-helmchart) custom resource or with standard Kubernetes manifests, KOTS automatically patches image names to the location of the image at `proxy.replicated.com` or your custom domain during deployment. If KOTS receives a 401 response when attempting to load image manifests using the image reference from the PodSpec, it assumes that this is a private image that must be proxied through the proxy registry.
-
-KOTS uses Kustomize to patch the `midstream/kustomization.yaml` file to change the image name during deployment to reference the proxy registry. For example, a PodSpec for a Deployment references a private image hosted at `quay.io/my-org/api:v1.0.1`:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example
-spec:
-  template:
-    spec:
-      containers:
-        - name: api
-          image: quay.io/my-org/api:v1.0.1
-```
-
-When this application is deployed, KOTS detects that it cannot access
-the image at quay.io. So, it creates a patch in the `midstream/kustomization.yaml`
-file that changes the image name in all manifest files for the application. This causes the container runtime in the cluster to use the proxy registry to pull the images, using the license information provided to KOTS for authentication.
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-bases:
-- ../../base
-images:
-- name: quay.io/my-org/api:v1.0.1
-  newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
-```
+There are different steps to configure your application to use the proxy registry depending on the installation method and how your application is packaged.
 
 ## Use the Proxy Registry
 
 This section describes how to configure your application to use the proxy registry.
 
-### HelmChart v2
+### Helm Charts Deployed with HelmChart v2
 
-To enable the proxy registry with applications deployed with HelmChart v2:
+To use the proxy registry for Helm charts deployed with HelmChart v2:
 
 1. <StepCreds/>
 
@@ -96,6 +60,11 @@ To enable the proxy registry with applications deployed with HelmChart v2:
     ```
 
 1. In the KOTS HelmChart custom resource, under the `values` key, use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to set the image pull secret for any private images to the KOTS-generated image pull secret.
+    <details>
+    <summary>What is the image pull secret?</summary>
+    <p>During application deployment, KOTS automatically creates an `imagePullSecret` with `type: kubernetes.io/dockerconfigjson` that is based on the customer license. This secret is used to authenticate with the proxy registry and grant proxy access to private images.</p>
+    <p>For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.</p>
+    </details>
 
     **Example:**
 
@@ -118,7 +87,7 @@ To enable the proxy registry with applications deployed with HelmChart v2:
 1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Define Additional Namespaces](operator-defining-additional-namespaces).
 
 
-### HelmChart v1 or Standard Manifests
+### Helm Charts Deployed with HelmChart v1 or Standard Manifests
 
 :::note
 <Deprecated/>
@@ -133,6 +102,39 @@ To use the proxy registry with applications deployed with HelmChart v1 or packed
 1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Define Additional Namespaces](operator-defining-additional-namespaces).
 
 For standard manifest-based applications or Helm charts deployed with the [HelmChart v1](/reference/custom-resource-helmchart), KOTS automatically rewrites image names and injects image pull secrets during deployment for these application types. No additional configuration is required.
+
+<details>
+<summary>How does KOTS rewrite image names and inject image pull secrets?</summary>
+
+<p>For applications packaged with the [HelmChart v1](/reference/custom-resource-helmchart) custom resource or with standard Kubernetes manifests, KOTS automatically patches image names to the location of the image at `proxy.replicated.com` or your custom domain during deployment. If KOTS receives a 401 response when attempting to load image manifests using the image reference from the PodSpec, it assumes that this is a private image that must be proxied through the proxy registry.</p>
+<p>KOTS uses Kustomize to patch the `midstream/kustomization.yaml` file to change the image name during deployment to reference the proxy registry. For example, a PodSpec for a Deployment references a private image hosted at `quay.io/my-org/api:v1.0.1`:</p>
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          image: quay.io/my-org/api:v1.0.1
+```
+
+<p>When this application is deployed, KOTS detects that it cannot access
+the image at quay.io. So, it creates a patch in the `midstream/kustomization.yaml`
+file that changes the image name in all manifest files for the application. This causes the container runtime in the cluster to use the proxy registry to pull the images, using the license information provided to KOTS for authentication.</p>
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+bases:
+- ../../base
+images:
+- name: quay.io/my-org/api:v1.0.1
+  newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
+```
+</details>
 
 ### Kubernetes Operators
 
