@@ -12,6 +12,8 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * More than one controller node should not be joined at the same time. When joining a controller node, a warning is printed that explains that the user should not attempt to join another node until the controller node joins successfully.
 
+* Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
+
 ## Add Nodes to a Cluster {#add-nodes}
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped (limited or no outbound internet access) environments. The Admin Console provides the join command that you use to join nodes to the cluster.
