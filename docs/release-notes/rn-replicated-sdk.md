@@ -10,6 +10,8 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 
 ## 1.5.1 
 
+Released on Apr 16, 2025
+
 ### Improvements {#improvements-1-5-1}
 * Changed the default location of the image this chart uses to be registry.replicated.com/library/replicated-sdk-image. This is anonymous and will support custom domains.
 
