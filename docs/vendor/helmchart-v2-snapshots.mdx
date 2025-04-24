@@ -1,0 +1,48 @@
+# Add Backup Labels for Snapshots with HelmChart v2
+
+This topic describes how to configure the Replicated KOTS HelmChart v2 custom resource to add labels to resources in your Helm chart that you want to be included in backups taken with the Replicated snapshots feature. The information in this topic applies to Replicated KOTS installations in existing clusters and Replicated kURL installations.
+
+:::note
+The Replicated snapshots feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Replicated Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+:::
+
+## Overview
+
+The snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
+* `kots.io/backup: velero`
+* `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
+
+For more information about snapshots, see [Understanding Backup and Restore](snapshots-overview).
+
+## Add Backup Labels for Snapshots
+
+To support backup and restore with snapshots:
+
+1. In the HelmChart v2 custom resource for your Helm chart, under the `optionalValues` key, add a `when` statement that evaluates to true only when the customer license has the `isSnapshotSupported` entitlement. This ensures that the labels are only added to resources when the customer license supports snapshots. Then, add `values` that assign the following labels to the resources you want backed up:
+    * `kots.io/backup: velero`
+    * `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the unique slug of your application. You can use the KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) function to get the application slug from the license.
+
+    ```yaml
+    # kots.io/v1beta2 HelmChart custom resource
+
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+      # add backup labels only if the license supports snapshots
+      - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
+        recursiveMerge: true
+        values:
+          mariadb:
+            commonLabels:
+              kots.io/backup: velero
+              # use the LicenseFieldValue function to get the app slug from the license
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+            podLabels:
+              kots.io/backup: velero
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+    ```
+
+1. Save and promote the release to the channel that you use for testing. Install in a development environment using KOTS or kURL to test your changes.    
