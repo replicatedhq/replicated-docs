@@ -4,15 +4,17 @@ import Login from "../partials/replicated-cli/_login.mdx"
 import Logout from "../partials/replicated-cli/_logout.mdx"
 import AuthToken from "../partials/replicated-cli/_authorize-with-token-note.mdx"
 
-# Installing the Replicated CLI
+# Install the Replicated CLI
 
-Vendors can use the Replicated CLI to manage their applications with Replicated programmatically, rather than using the Replicated vendor portal.
+This topic describes how to install and run the Replicated CLI.
+
+You can use the Replicated CLI to manage your applications with Replicated programmatically, rather than using the Replicated Vendor Portal.
 
 ## Prerequisites
 
 Complete the following prerequisites before installing the Replicated CLI:
 
-- Create a vendor account. See [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
+- Create a vendor account. See [Create a Vendor Account](/vendor/vendor-portal-creating-account).
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
 
@@ -39,18 +41,17 @@ To install and run the latest Replicated CLI on MacOS:
     - Without Brew:
 
       ```shell
-      curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-      | grep "browser_download_url.*darwin_all.tar.gz" \
-      | cut -d : -f 2,3 \
-      | tr -d \" \
-      | wget -O replicated.tar.gz -qi -
+      curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+        | grep "browser_download_url.*darwin_all.tar.gz" \
+        | cut -d : -f 2,3 \
+        | tr -d \") -o replicated.tar.gz
       tar xf replicated.tar.gz replicated && rm replicated.tar.gz
       mv replicated /usr/local/bin/replicated
       ```
 
       <Sudo/>
 
-1. <Verify/> 
+1. <Verify/>
 
 1. <Login/>
 
@@ -65,11 +66,10 @@ To install and run the latest Replicated CLI on Linux:
 1. Run the following command:
 
     ```shell
-    curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-    | grep "browser_download_url.*linux_amd64.tar.gz" \
-    | cut -d : -f 2,3 \
-    | tr -d \" \
-    | wget -O replicated.tar.gz -qi -
+    curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+      | grep "browser_download_url.*linux_amd64.tar.gz" \
+      | cut -d : -f 2,3 \
+      | tr -d \") -o replicated.tar.gz
     tar xf replicated.tar.gz replicated && rm replicated.tar.gz
     mv replicated /usr/local/bin/replicated
     ```

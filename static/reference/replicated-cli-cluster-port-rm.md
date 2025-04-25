@@ -1,0 +1,54 @@
+# replicated cluster port rm
+
+Remove cluster port by ID.
+
+### Synopsis
+
+The 'cluster port rm' command removes a specific port from a cluster. You must provide either the ID of the port or the port number and protocol(s) to remove.
+
+This command is useful for managing the network settings of your test clusters by allowing you to clean up unused or incorrect ports. After removing a port, the updated list of ports will be displayed.
+
+Note that you can only use either the port ID or port number when removing a port, not both at the same time.
+
+```
+replicated cluster port rm CLUSTER_ID --id PORT_ID [flags]
+```
+
+### Aliases
+
+```
+rm, delete
+```
+
+### Examples
+
+```
+# Remove a port using its ID
+replicated cluster port rm CLUSTER_ID --id PORT_ID
+
+# Remove a port using its number (deprecated)
+replicated cluster port rm CLUSTER_ID --port 8080 --protocol http,https
+
+# Remove a port and display the result in JSON format
+replicated cluster port rm CLUSTER_ID --id PORT_ID --output json
+```
+
+### Options
+
+```
+  -h, --help            help for rm
+      --id string       ID of the port to remove (required)
+  -o, --output string   The output format to use. One of: json|table|wide (default "table")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated cluster port](replicated-cli-cluster-port)	 - Manage cluster ports.

@@ -1,4 +1,4 @@
-# Referencing Images
+# Reference Images
 
 This topic explains how to support the use of private image registries for applications that are packaged with Kubernetes Operators.
 

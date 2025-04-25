@@ -99,9 +99,9 @@ Additionally, Embedded Cluster automatically deploys several built-in extensions
 
 Embedded Cluster has the following limitations:
 
-* **Reach out about migrating from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. Reach out to Alex Parker at alexp@replicated.com for more information.
+* **Migration from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. For more information about migrating from kURL to Embedded Cluster, including key considerations before migrating and an example step-by-step migration process, see [Replicated kURL to Embedded Cluster Migration](https://docs.google.com/document/d/1Qw9owCK4xNXHRRmxDgAq_NJdxQ4O-6w2rWk_luzBD7A/edit?tab=t.0). For additional questions and to begin the migration process for your application, reach out to Alex Parker at alexp@replicated.com.
 
-* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
@@ -109,7 +109,7 @@ Embedded Cluster has the following limitations:
 
 * **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
-* **Automatic updates not supported**: Configuring automatic updates from the Admin Console so that new versions are automatically deployed is not supported for Embedded Cluster installations. For more information, see [Configuring Automatic Updates](/enterprise/updating-apps).
+* **Automatic updates not supported**: Configuring automatic updates from the Admin Console so that new versions are automatically deployed is not supported for Embedded Cluster installations. For more information, see [Configure Automatic Updates](/enterprise/updating-apps).
 
 * **`minKotsVersion` and `targetKotsVersion` not supported**: The [`minKotsVersion`](/reference/custom-resource-application#minkotsversion-beta) and [`targetKotsVersion`](/reference/custom-resource-application#targetkotsversion) fields in the KOTS Application custom resource are not supported for Embedded Cluster installations. This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed`. To avoid installation failures, do not use targetKotsVersion or minKotsVersion in releases that support installation with Embedded Cluster.
 
@@ -117,7 +117,7 @@ Embedded Cluster has the following limitations:
 
 * **Kubernetes version template functions not supported**: The KOTS [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions do not provide accurate Kubernetes version information for Embedded Cluster installations. This is because these template functions are rendered before the Kubernetes cluster has been updated to the intended version. However, `KubernetesVersion` is not necessary for Embedded Cluster because vendors specify the Embedded Cluster version, which includes a known Kubernetes version.
 
-* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Installing with Helm](/vendor/install-with-helm).
+* **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Install with Helm](/vendor/install-with-helm).
 
 * **Downgrading Kubernetes not supported**: Embedded Cluster does not support downgrading Kubernetes. The admin console will not prevent end-users from attempting to downgrade Kubernetes if a more recent version of your application specifies a previous Embedded Cluster version. You must ensure that you do not promote new versions with previous Embedded Cluster versions.
 

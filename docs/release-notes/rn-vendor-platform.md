@@ -10,6 +10,27 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.04.17-2
+
+Released on April 17, 2025
+
+### Bug Fixes {#bug-fixes-v2025-04-17-2}
+* Fixes bug in Download Portal that resulted in the page displaying an error when only Helm installs are enabled for a customer.
+
+## v2025.03.27-1
+
+Released on March 27, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-27-1}
+* If the custom domain override in the channel matches the default domain, do not fail validation on promoting an Embedded Cluster release.
+
+## v2025.03.25-0
+
+Released on March 25, 2025
+
+### Bug Fixes {#bug-fixes-v2025-03-25-0}
+* Fixes an issue where custom domains were not returned for KOTS installations with version `v1.124.9`.
+
 ## v2025.03.21-5
 
 Released on March 21, 2025
@@ -23,6 +44,13 @@ Released on March 17, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-03-17-8}
 * Fixes an issue that could cause a crash when users clicked the **Embedded Cluster install instructions** button on the **Customer** page.
+
+## v2025.03.13-5
+
+Released on March 13, 2025
+
+### New Features {#new-features-v2025-03-13-5}
+* Enforces that the custom domains set in the Embedded Cluster Config match the custom domains set on the channel when promoting a release. For more information about using custom domains for Embedded Cluster installations, see [domains](https://docs.replicated.com/reference/embedded-config#domains) in _Embedded Cluster Config_.
 
 ## v2025.03.08-0
 

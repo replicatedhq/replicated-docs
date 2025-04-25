@@ -1,6 +1,4 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
-import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
 import AirGapLicense from "../partials/install/_airgap-license-download.mdx"
@@ -16,13 +14,13 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 # Air Gap Installation with kURL
 
-<KurlAvailability/>
+This topic describes how to use Replicated kURL to provision a cluster in a virtual machine (VM) or bare metal server and install an application in the cluster.
 
-<IntroEmbedded/>
-
-<IntroAirGap/>
+The procedures in this topic apply to installation environments that do not have access to the internet, known as _air-gapped_ environments.
 
 <KurlAbout/>
+
+<KurlAvailability/>
 
 ## Prerequisites
 
@@ -122,6 +120,6 @@ To install an application with kURL:
    1. Click the menu in the top right corner of the Admin Console, then click **Change password**.
    1. Enter a new password in the dialog, and click **Change Password** to save.
 
-   Replicated strongly recommends that you change the password from the default provided during installation in a kURL cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
+   Replicated strongly recommends that you change the password from the default provided during installation in a kURL cluster. For more information, see [Change an Admin Console Password](auth-changing-passwords).
 
 1. Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements or to support your usage of the application. See [Adding Nodes to Embedded Clusters](cluster-management-add-nodes).

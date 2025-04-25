@@ -1,4 +1,4 @@
-# Making Support Bundle Specs Available Online
+# Make Support Bundle Specs Available Online
 
 This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
 

@@ -1,6 +1,6 @@
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
-# Configuring the HelmChart Custom Resource v2
+# Configure the HelmChart Custom Resource v2
 
 This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with Replicated KOTS.
 
@@ -32,7 +32,7 @@ You will use the following KOTS template functions to conditionally rewrite imag
     <details>
     <summary>What is the registry namespace?</summary>
     
-    The registry namespace is the path between the registry and the image name. For example, `images.mycompany.com/namespace/image:tag`.
+    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
     </details>
 
 ### Task 1a: Rewrite Private Image Names
@@ -40,11 +40,11 @@ You will use the following KOTS template functions to conditionally rewrite imag
 For any private images used by your application, configure the HelmChart custom resource so that image names are rewritten to either the Replicated proxy registry (for online installations) or to the local registry in the user's installation environment (for air gap installations or online installations where the user configured a local registry).
 
 To rewrite image names to the location of the image in the proxy registry, use the format `<proxy-domain>/proxy/<app-slug>/<image>`, where:
-* `<proxy-domain>` is `proxy.replicated.com` or your custom domain. For more information about configuring a custom domain for the proxy registry, see [Using Custom Domains](/vendor/custom-domains-using).
+* `<proxy-domain>` is `proxy.replicated.com` or your custom domain. For more information about configuring a custom domain for the proxy registry, see [Use Custom Domains](/vendor/custom-domains-using).
 * `<app-slug>` is the unique application slug in the Vendor Portal
 * `<image>` is the path to the image in your registry
 
-For example, if the private image is `quay.io/my-org/nginx:v1.0.1` and `images.mycompany.com` is the custom proxy registry domain, then the image name should be rewritten to `images.mycompany.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
+For example, if the private image is `quay.io/my-org/nginx:v1.0.1` and `images.yourcompany.com` is the custom proxy registry domain, then the image name should be rewritten to `images.yourcompany.com/proxy/my-app-slug/quay.io/my-org/nginx:v1.0.1`.
 
 For more information, see the example below. 
 
@@ -65,7 +65,7 @@ spec:
     image:
     # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry's hostname
     # Else use proxy.replicated.com or your custom proxy registry domain
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.mycompany.com" }}'
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "images.yourcompany.com" }}'
       # If a registry is configured by the user or by Embedded Cluster/kURL, use that registry namespace
       # Else use the image's namespace at the proxy registry domain
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
@@ -332,7 +332,7 @@ For more information about the HelmChart custom resource, including the unique r
 
 To support the use of local registries with version `kots.io/v1beta2` of the HelmChart custom resource, provide the necessary values in the builder field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the local registry.
 
-For more information about how to configure the `builder` key, see [Packaging Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles) and [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+For more information about how to configure the `builder` key, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles) and [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
 

@@ -1,4 +1,4 @@
-# Configuring Custom Metrics (Beta)
+# Configure Custom Metrics (Beta)
 
 This topic describes how to configure an application to send custom metrics to the Replicated Vendor Portal.
 

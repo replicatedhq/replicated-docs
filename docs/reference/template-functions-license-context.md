@@ -2,6 +2,8 @@ import LicenseContext from "../partials/template-functions/_license-context.mdx"
 
 # License Context
 
+This topic provides a list of the KOTS template functions in the License context.
+
 <LicenseContext/>
 
 ## LicenseFieldValue

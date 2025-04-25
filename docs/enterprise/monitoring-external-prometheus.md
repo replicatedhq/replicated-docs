@@ -1,7 +1,7 @@
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Consuming Prometheus Metrics Externally
+# Consume Prometheus Metrics Externally
 
 <KurlAvailability/>
 

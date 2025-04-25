@@ -1,4 +1,4 @@
-# Inspecting Support Bundles
+# Inspect Support Bundles
 
 You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files. Use this information to get insights and help troubleshoot your customer issues.
 
@@ -26,13 +26,13 @@ To inspect a support bundle:
 
 1. (Optional) Click **Download bundle** to download the bundle. This can be helpful if you want to access the bundle from another system or if other team members want to access the bundle and use other tools to examine the files.
 
-1. (Optional) Navigate back to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Create cluster** to provision a cluster with Replicated Compatibility Matrix. This can be helpful for creating customer-representative environments for troubleshooting. For more information about creating clusters with Compatibility Matrix, see [Using Compatibility Matrix](testing-how-to).
+1. (Optional) Navigate back to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Create cluster** to provision a cluster with Replicated Compatibility Matrix. This can be helpful for creating customer-representative environments for troubleshooting. For more information about creating clusters with Compatibility Matrix, see [Use Compatibility Matrix](testing-how-to).
 
     <img alt="Cluster configuration dialog" src="/images/cmx-cluster-configuration.png" width="400px"/>
 
     [View a larger version of this image](/images/cmx-cluster-configuration.png)
 
-1. If you cannot resolve your customer's issue and need to submit a support request, go to the [**Support**](https://vendor.replicated.com/) page and click **Open a support request**. For more information, see [Submitting a Support Request](support-submit-request).
+1. If you cannot resolve your customer's issue and need to submit a support request, go to the [**Support**](https://vendor.replicated.com/) page and click **Open a support request**. For more information, see [Submit a Support Request](support-submit-request).
 
    :::note
    The **Share with Replicated** button on the support bundle analysis page does _not_ open a support request. You might be directed to use the **Share with Replicated** option when you are already interacting with a Replicated team member.

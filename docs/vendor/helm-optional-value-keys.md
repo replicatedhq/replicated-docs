@@ -7,7 +7,7 @@ import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Setting Helm Values with KOTS
+# Set Helm Values with KOTS
 
 This topic describes how to use the Replicated KOTS HelmChart custom resource to set and delete values in `values.yaml` files for Helm charts deployed with Replicated KOTS.
 

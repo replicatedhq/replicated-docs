@@ -2,7 +2,7 @@ import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 
-# Using the Proxy Registry with KOTS Installations
+# Use the Proxy Registry with KOTS Installations
 
 This topic describes how to use the Replicated proxy registry with applications deployed with Replicated KOTS.
 
@@ -60,7 +60,7 @@ To enable the proxy registry:
 
 1. Rewrite images names to the location of the image at `proxy.replicated.com` or your custom domain. Also, ensure that the correct image pull secret is provided for all private images. The steps required to configure image names and add the image pull secret vary depending on your application type:
 
-    * **HelmChart v2**: For Helm charts deployed with the[ HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource, configure the HelmChart v2 custom resource to dynamically update image names in your Helm chart and to inject the image pull secret that is automatically created by KOTS. For instructions, see [Configuring the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
+    * **HelmChart v2**: For Helm charts deployed with the[ HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource, configure the HelmChart v2 custom resource to dynamically update image names in your Helm chart and to inject the image pull secret that is automatically created by KOTS. For instructions, see [Configure the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
 
     * **Standard Manifests or HelmChart v1**: For standard manifest-based applications or Helm charts deployed with the [HelmChart v1](/reference/custom-resource-helmchart) custom resource, no additional configuration is required. KOTS automatically rewrites image names and injects image pull secrets during deployment for these application types.
 
@@ -68,6 +68,8 @@ To enable the proxy registry:
         <Deprecated/>
         :::
 
-    * **Kubernetes Operators**: For applications packaged with Kubernetes Operators, KOTS cannot modify pods that are created at runtime by the Operator. To support the use of private images in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created. For instructions, see [Referencing Images](/vendor/operator-referencing-images) in the _Packaging Kubernetes Operators_ section.
+    * **Kubernetes Operators**: For applications packaged with Kubernetes Operators, KOTS cannot modify pods that are created at runtime by the Operator. To support the use of private images in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created. For instructions, see [Reference Images](/vendor/operator-referencing-images) in the _Packaging Kubernetes Operators_ section.
 
-1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
+1. If you are deploying Pods to namespaces other than the application namespace, add the namespace to the `additionalNamespaces` attribute of the KOTS Application custom resource. This ensures that KOTS can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image. For instructions, see [Define Additional Namespaces](operator-defining-additional-namespaces).
+
+1. (Optional) Add a custom domain for the proxy registry instead of `proxy.replicated.com`. See [Use Custom Domains](custom-domains-using).

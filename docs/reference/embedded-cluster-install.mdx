@@ -9,10 +9,10 @@ This topic describes the options available with the Embedded Cluster install com
 ## Usage
 
 ```bash
-sudo ./APP_SLUG install --license LICENSE_FILE [flags]
+sudo ./APP_SLUG install --license PATH_TO_LICENSE [flags]
 ```
 * `APP_SLUG` is the unique application slug
-* `LICENSE_FILE` is the customer's license
+* `PATH_TO_LICENSE` is the path to the customer license
 
 ## Flags
 
@@ -48,7 +48,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   <tr>
      <td>`--config-values`</td>
      <td>
-        <p>Path to the ConfigValues file for the application. The ConfigValues file can be used to pass the application configuration values from the command line during installation, such as when performing automated installations as part of CI/CD pipelines. For more information, see [Automating Installation with Embedded Cluster](/enterprise/installing-embedded-automation).</p>
+        <p>Path to the ConfigValues file for the application. The ConfigValues file can be used to pass the application configuration values from the command line during installation, such as when performing automated installations as part of CI/CD pipelines. For more information, see [Automate Installation with Embedded Cluster](/enterprise/installing-embedded-automation).</p>
         <p><strong>Requirement:</strong> Embedded Cluster 1.18.0 and later.</p>
      </td>
   </tr>
@@ -92,7 +92,7 @@ sudo ./APP_SLUG install --license LICENSE_FILE [flags]
   <tr>
      <td>`-l, --license`</td>
      <td>
-        <p>Path to the license file</p>
+        <p>Path to the customer license file</p>
      </td>
   </tr>
   <tr>

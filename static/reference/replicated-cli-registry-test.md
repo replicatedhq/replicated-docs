@@ -1,0 +1,30 @@
+# replicated registry test
+
+test registry
+
+### Synopsis
+
+test registry
+
+```
+replicated registry test HOSTNAME [flags]
+```
+
+### Options
+
+```
+  -h, --help           help for test
+      --image string   The image to test pulling
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated registry](replicated-cli-registry)	 - Manage registries

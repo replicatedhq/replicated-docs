@@ -34,7 +34,7 @@ const sidebars = {
     },
 
     //GET STARTED
-    {type: 'html', value: '<h5>getting started</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/kots-faq',
     'vendor/quick-start',
@@ -122,7 +122,7 @@ const sidebars = {
             'vendor/team-management-github-username',
             {
                 type: 'category',
-                label: 'Configuring Role-based Access Control',
+                label: 'Configure Role-based Access Control',
                 items: [
                   'vendor/team-management-rbac-configuring',
                   'vendor/team-management-rbac-resource-names',
@@ -130,7 +130,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Authentication',
+              label: 'Configure Authentication',
               items: [
                 'vendor/team-management-two-factor-auth',
                 'vendor/team-management-google-auth',
@@ -175,7 +175,7 @@ const sidebars = {
             'vendor/licenses-download',
             {
               type: 'category',
-              label: 'Querying License Entitlements',
+              label: 'Query License Entitlements',
               items: [
                 'vendor/licenses-using-builtin-fields',
                 'vendor/licenses-reference-sdk',
@@ -234,7 +234,7 @@ const sidebars = {
         'reference/embedded-config',
         {
           type: 'category',
-          label: 'Installing with Embedded Cluster',
+          label: 'Install with Embedded Cluster',
           items: [
             'enterprise/installing-embedded-requirements',
             'enterprise/installing-embedded',
@@ -257,11 +257,11 @@ const sidebars = {
         'intro-kots',
         {
           type: 'category',
-          label: 'Configuring KOTS',
+          label: 'Configure KOTS',
           items: [
             {
               type: 'category',
-              label: 'Configuring the HelmChart Custom Resource',
+              label: 'Configure the HelmChart Custom Resource',
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
@@ -272,7 +272,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Customizing the Admin Console and Download Portal',
+              label: 'Customize the Admin Console and Download Portal',
               items: [
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-adding-buttons-links',
@@ -282,7 +282,7 @@ const sidebars = {
             },
             {
                 type: 'category',
-                label: 'Configuring the Admin Console Config Screen',
+                label: 'Configure the Admin Console Config Screen',
                 items: [
                   'vendor/config-screen-about',
                   'vendor/admin-console-customize-config-screen',
@@ -305,12 +305,12 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Managing Resources and Objects',
+              label: 'Manage Resources and Objects',
               items: [
                 'vendor/admin-console-display-app-status',
                 {
                   type: 'category',
-                    label: 'Conditionally Deploying Resources',
+                    label: 'Conditionally Deploy Resources',
                     items: [
                       'vendor/packaging-include-resources',
                       'vendor/helm-optional-charts',
@@ -326,7 +326,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Managing KOTS',
+              label: 'Manage KOTS',
               items: [
                 'vendor/packaging-kots-versions',
                 'vendor/packaging-rbac',
@@ -335,7 +335,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Distributing Kubernetes Operators with KOTS',
+              label: 'Distribute Kubernetes Operators with KOTS',
               items: [
                 'vendor/operator-packaging-about',
                 'vendor/operator-defining-additional-images',
@@ -373,7 +373,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Installing in Existing Clusters with KOTS',
+          label: 'Install in Existing Clusters with KOTS',
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',         
@@ -385,7 +385,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Performing Updates in Existing Cluster KOTS Installations',
+          label: 'Perform Updates in Existing Cluster KOTS Installations',
           items: [
             'enterprise/updating-app-manager',
             'enterprise/updating-apps',
@@ -394,7 +394,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Configuring Local Image Registries',
+          label: 'Configure Local Image Registries',
           items: [
             'enterprise/image-registry-settings',
             'enterprise/image-registry-rate-limits',
@@ -403,12 +403,12 @@ const sidebars = {
         'enterprise/updating-licenses',
         {
           type: 'category',
-          label: 'Performing Backup and Restore with Snapshots',
+          label: 'Perform Backup and Restore with Snapshots',
           items: [
             'vendor/snapshots-overview',
             {
               type: 'category',
-              label: 'Enabling and Configuring Snapshots',
+              label: 'Enable and Configure Snapshots',
               items: [
                 'vendor/snapshots-configuring-backups',
                 'reference/custom-resource-backup',
@@ -417,7 +417,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Configuring Backup Storage for Snaphots',
+              label: 'Configure Backup Storage for Snaphots',
               items: [
                 'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
@@ -434,7 +434,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Managing Admin Console User Access',
+          label: 'Manage Admin Console User Access',
           items: [
             'enterprise/auth-changing-passwords',
             'enterprise/auth-identity-provider',
@@ -443,7 +443,7 @@ const sidebars = {
         }, 
         {
           type: 'category',
-          label: 'Monitoring Applications with Prometheus',
+          label: 'Monitor Applications with Prometheus',
           items: [
             'enterprise/monitoring-applications',
             'enterprise/monitoring-access-dashboards',
@@ -453,7 +453,7 @@ const sidebars = {
         'enterprise/delete-admin-console',
         {
           type: 'category',
-          label: 'Using a GitOps Workflow',
+          label: 'Use a GitOps Workflow',
           items: [
             'enterprise/gitops-workflow',
             'enterprise/gitops-managing-secrets',
@@ -468,7 +468,7 @@ const sidebars = {
         'vendor/kurl-about',
         {
           type: 'category',
-          label: 'Configuring kURL Installers',
+          label: 'Configure kURL Installers',
           items: [
             'vendor/packaging-embedded-kubernetes',
             'vendor/packaging-installer-storage',
@@ -478,7 +478,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Installing with kURL',
+          label: 'Install with kURL',
           items: [
             'enterprise/installing-kurl-requirements',
             'enterprise/installing-kurl',
@@ -489,7 +489,7 @@ const sidebars = {
         'enterprise/cluster-management-add-nodes',
         {
           type: 'category',
-          label: 'Performing Updates with kURL',
+          label: 'Perform Updates with kURL',
           items: [
             'enterprise/updating-kurl-about',
             'enterprise/updating-kurl',
@@ -563,7 +563,7 @@ const sidebars = {
           'vendor/support-modular-support-bundle-specs',
           {
             type: 'category',
-            label: 'Generating Support Bundles',
+            label: 'Generate Support Bundles',
             items: [
               'vendor/support-bundle-generating',
               'vendor/support-bundle-embedded',
@@ -610,7 +610,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Integrating Replicated in CI/CD Workflows',
+    label: 'Add Replicated to CI/CD Workflows',
     items: [
       'vendor/ci-overview',
       'vendor/ci-workflows',
@@ -722,8 +722,7 @@ const sidebars = {
       'reference/replicated-cli-vm-port-ls',
       'reference/replicated-cli-vm-port-rm',
       'reference/replicated-cli-vm-rm',
-      'reference/replicated-cli-vm-scp',
-      'reference/replicated-cli-vm-ssh',
+      'reference/replicated-cli-vm-ssh-endpoint',
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',
       'reference/replicated-cli-vm-versions',

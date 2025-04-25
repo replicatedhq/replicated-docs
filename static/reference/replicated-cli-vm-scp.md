@@ -62,4 +62,3 @@ replicated vm scp localfile.txt :/home/user/
 ### SEE ALSO
 
 * [replicated vm](replicated-cli-vm)	 - Manage test virtual machines.
-

@@ -1,4 +1,4 @@
-# Validating SBOM Signatures
+# Validate SBOM Signatures
 
 This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated KOTS, Replicated kURL, and Troubleshoot releases.
 

@@ -2,7 +2,7 @@
 
 This topic describes the supported cron expressions that you can use to schedule automatic application update checks and automatic backups in the KOTS Admin Console.
 
-For more information, see [Configuring Automatic Updates](/enterprise/updating-apps) and [Schedule Automatic Backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Creating and Scheduling Backups_.
+For more information, see [Configure Automatic Updates](/enterprise/updating-apps) and [Schedule Automatic Backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Creating and Scheduling Backups_.
 
 ## Syntax
 

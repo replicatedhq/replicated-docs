@@ -1,0 +1,228 @@
+# Step 6: Run Preflights with KOTS
+
+Create a KOTS-enabled release and then install Gitea with KOTS. This purpose of this step is to see how preflight checks automatically run in the KOTS Admin Console during installation.
+
+To run preflight checks during installation with KOTS: 
+
+1. In the `gitea` directory, create a subdirectory named `manifests`:
+
+   ```
+   mkdir manifests
+   ```
+
+   You will add the files required to support installation with KOTS to this subdirectory.
+
+1. Move the Helm chart archive to `manifests`:
+
+   ```
+   mv gitea-1.0.6.tgz manifests
+   ```
+
+1. In `manifests`, create the YAML manifests required by KOTS:
+   ```
+   cd manifests
+   ```
+   ```
+   touch gitea.yaml kots-app.yaml k8s-app.yaml
+   ```
+
+1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
+
+   <Tabs>
+   <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <h5>YAML</h5>
+    ```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: gitea
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: gitea
+    chartVersion: 1.0.6
+```
+   </TabItem>
+   <TabItem value="kots-app" label="kots-app.yaml">
+   <h5>Description</h5>
+    <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <h5>YAML</h5>
+    ```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: gitea
+spec:
+  title: Gitea
+  statusInformers:
+    - deployment/gitea
+  ports:
+    - serviceName: "gitea"
+      servicePort: 3000
+      localPort: 8888
+      applicationUrl: "http://gitea"
+  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+```
+   </TabItem>
+   <TabItem value="k8s-app" label="k8s-app.yaml">
+   <h5>Description</h5>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <h5>YAML</h5>
+    ```yaml
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: "gitea"
+spec:
+  descriptor:
+    links:
+      - description: Open App
+        # needs to match applicationUrl in kots-app.yaml
+        url: "http://gitea"
+```
+   </TabItem>
+   </Tabs>   
+
+1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
+
+   ```
+   replicated release lint --yaml-dir .
+   ```
+   `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
+
+   **Example output**:
+
+   ```
+   RULE                               TYPE    FILENAME        LINE  MESSAGE
+   config-spec                        warn                          Missing config spec                                                         
+   preflight-spec                     warn                          Missing preflight spec
+   troubleshoot-spec                  warn                          Missing troubleshoot spec
+   nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   ```
+   
+   The output includes warning messages, including a warning about a missing preflight spec. This warning appears because the preflight spec is defined in the Helm chart. The warnings can be ignored for the purpose of this tutorial.
+
+1. Create a release:
+
+   ```bash 
+   replicated release create --yaml-dir .   
+   ```
+   **Example output**:
+   ```bash
+   • Reading manifests from . ✓
+   • Creating Release ✓
+     • SEQUENCE: 2
+   ```
+
+1. Log in to the [vendor portal](https://vendor.replicated.com) and go to **Releases**. The new release is labeled **Sequence 2**.
+
+1. Promote the release to the Unstable channel.
+
+1. Go to the **Customers** page.
+
+1. Create a new customer named `KOTS Preflight Customer`. For **License options**, enable the **KOTS Install Enabled** checkbox. This is the entitlement that allows the customer to install with KOTS.
+
+1. On the **Manage customer** page for the customer, click **Download license**. You will use the license file to install with KOTS. 
+
+1. Go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
+
+    ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
+
+    [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
+
+1. On the command line, run the **KOTS Install** command that you copied:
+
+   ```bash
+   curl https://kots.io/install | bash
+   kubectl kots install $REPLICATED_APP/unstable
+   ```
+
+   This installs the latest version of the KOTS CLI and the Replicated Admin Console. The Admin Console provides a user interface where you can upload the customer license file and deploy the application.
+
+   For additional KOTS CLI installation options, including how to install without root access, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
+
+   :::note
+   To install the SDK with a Replicated installer, KOTS v1.104.0 or later and the SDK version 1.0.0-beta.12 or later are required. You can verify the version of KOTS installed with `kubectl kots version`. For Replicated Embedded Cluster installations, you can see the version of KOTS that is installed by your version of Embedded Cluster in the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
+   :::
+
+1. Complete the installation command prompts:
+
+   1. For `Enter the namespace to deploy to`, enter `gitea`. 
+
+   1. For `Enter a new password to be used for the Admin Console`, provide a password to access the Admin Console.
+
+       When the Admin Console is ready, the command prints the URL where you can access the Admin Console. At this point, the KOTS CLI is installed and the Admin Console is running, but the application is not yet deployed.
+
+       **Example output:**
+
+       ```bash
+       Enter the namespace to deploy to: gitea
+       • Deploying Admin Console
+         • Creating namespace ✓
+         • Waiting for datastore to be ready ✓
+       Enter a new password for the Admin Console (6+ characters): ••••••••
+       • Waiting for Admin Console to be ready ✓
+
+       • Press Ctrl+C to exit
+       • Go to http://localhost:8800 to access the Admin Console
+       ```
+
+1. With the port forward running, in a browser, go to `http://localhost:8800` to access the Admin Console.
+
+1. On the login page, enter the password that you created.
+
+1. On the license page, select the license file that you downloaded previously and click **Upload license**.
+
+   Preflight checks run automatically:
+
+   ![Gitea preflight checks page](/images/gitea-preflights-admin-console.png)
+
+   [View a larger version of this image](/images/gitea-preflights-admin-console.png)
+
+1. When the preflight checks finish, click **Deploy** to deploy the application.
+
+   The Admin Console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
+
+   ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
+
+   [View a larger version of this image](/images/tutorial-gitea-unavailable.png)
+
+1. (Optional) After the application is in a Ready status, click **Open App** to view the Gitea application in a browser.
+
+1. Uninstall the Gitea application from your cluster:
+
+   ```bash
+   kubectl kots remove $REPLICATED_APP --namespace gitea --undeploy
+   ```
+   **Example output**:
+   ```
+   • Removing application gitea-boxer reference from Admin Console and deleting associated resources from the cluster ✓
+   • Application gitea-boxer has been removed
+   ```
+
+1. Remove the Admin Console from the cluster:  
+
+   1. Delete the namespace where the Admin Console is installed:
+
+      ```
+      kubectl delete namespace gitea
+      ```
+   1. Delete the Admin Console ClusterRole and ClusterRoleBinding:  
+
+      ```
+      kubectl delete clusterrole kotsadm-role
+      ```
+      ```
+      kubectl delete clusterrolebinding kotsadm-rolebinding
+      ```
+
+## Summary
+
+Congratulations! In this tutorial, you defined a preflight check for Gitea that checks the version of Kubernetes running in the cluster. You also ran preflight checks before installing with both the Helm CLI and with KOTS. 
+
+To learn more about defining and running preflight checks, see:
+* [Define Preflight Checks](/vendor/preflight-defining)
+* [Run Preflight Checks for Helm Installations](/vendor/preflight-running) 
+* [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.

@@ -1,6 +1,6 @@
 import ApiAbout from "../partials/vendor-api/_api-about.mdx"
 
-# Using the Vendor API v3
+# Use the Vendor API v3
 
 This topic describes how to use Replicated Vendor API authentication tokens to make API calls.
 

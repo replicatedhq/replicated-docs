@@ -41,29 +41,30 @@ replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --outp
 ### Options
 
 ```
-      --airgap                      If set, the license will allow airgap installs.
-      --channel stringArray         Release channel to which the customer should be assigned (can be specified multiple times)
-      --custom-id string            Set a custom customer ID to more easily tie this customer record to your external data systems
-      --customer string             The ID of the customer to update
-      --default-channel string      Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.
-      --developer-mode              If set, Replicated SDK installed in dev mode will use mock data.
-      --email string                Email address of the customer that is to be updated.
-      --embedded-cluster-download   If set, the license will allow embedded cluster downloads.
-      --ensure-channel              If set, channel will be created if it does not exist.
-      --expires-in duration         If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
-      --geo-axis                    If set, the license will allow Geo Axis usage.
-      --gitops                      If set, the license will allow the GitOps usage.
-      --helm-install                If set, the license will allow Helm installs.
-      --helmvm-cluster-download     If set, the license will allow helmvm cluster downloads.
-  -h, --help                        help for update
-      --identity-service            If set, the license will allow Identity Service usage.
-      --kots-install                If set, the license will allow KOTS install. Otherwise license will allow Helm CLI installs only. (default true)
-      --kurl-install                If set, the license will allow kURL installs.
-      --name string                 Name of the customer
-      --output string               The output format to use. One of: json|table (default: table) (default "table")
-      --snapshot                    If set, the license will allow Snapshots.
-      --support-bundle-upload       If set, the license will allow uploading support bundles.
-      --type string                 The license type to update. One of: dev|trial|paid|community|test (default: dev) (default "dev")
+      --airgap                       If set, the license will allow airgap installs.
+      --channel stringArray          Release channel to which the customer should be assigned (can be specified multiple times)
+      --custom-id string             Set a custom customer ID to more easily tie this customer record to your external data systems
+      --customer string              The ID of the customer to update
+      --default-channel string       Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.
+      --developer-mode               If set, Replicated SDK installed in dev mode will use mock data.
+      --email string                 Email address of the customer that is to be updated.
+      --embedded-cluster-download    If set, the license will allow Embedded Cluster downloads.
+      --embedded-cluster-multinode   If set, users can add nodes to Embedded Cluster instances. (default true)
+      --ensure-channel               If set, channel will be created if it does not exist.
+      --expires-in duration          If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
+      --geo-axis                     If set, the license will allow Geo Axis usage.
+      --gitops                       If set, the license will allow the GitOps usage.
+      --helm-install                 If set, the license will allow Helm installs.
+      --helmvm-cluster-download      If set, the license will allow helmvm cluster downloads.
+  -h, --help                         help for update
+      --identity-service             If set, the license will allow Identity Service usage.
+      --kots-install                 If set, the license will allow KOTS install. Otherwise license will allow Helm CLI installs only. (default true)
+      --kurl-install                 If set, the license will allow kURL installs.
+      --name string                  Name of the customer
+  -o, --output string                The output format to use. One of: json|table (default "table")
+      --snapshot                     If set, the license will allow Snapshots.
+      --support-bundle-upload        If set, the license will allow uploading support bundles.
+      --type string                  The license type to update. One of: dev|trial|paid|community|test (default: dev) (default "dev")
 ```
 
 ### Options inherited from parent commands
