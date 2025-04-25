@@ -178,10 +178,6 @@ Helm extensions are updated when new versions of your application are deployed f
 
 The format for specifying Helm extensions uses the same k0s Helm extensions format from the k0s configuration. For more information about these fields, see the [k0s documentation](https://docs.k0sproject.io/stable/helm-charts/#example).
 
-### Limitation
-
-If a Helm extension is removed from the Embedded Cluster Config, the associated Helm chart is not removed from the cluster.
-
 ### Requirements
 
 * The `version` field is required. Failing to specify a chart version will cause problems for upgrades.
