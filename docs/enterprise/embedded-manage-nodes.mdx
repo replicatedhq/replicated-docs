@@ -103,7 +103,7 @@ Enabling high availability has the following requirements:
 
 * High availability is supported with Embedded Cluster 1.4.1 and later.
 
-* The `enable-ha` command is available with Embedded Cluster 2.3.0 and later.
+* The [`enable-ha`](#enable-ha-existing) command is available with Embedded Cluster 2.3.0 and later.
 
 * High availability is supported only for clusters where at least three nodes with the `controller` role are present.
 
@@ -135,6 +135,10 @@ To create a multi-node HA cluster:
      sudo ./APP_SLUG join 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
      ```
      Where `APP_SLUG` is the unique slug for the application.
+
+     :::note
+     For Embedded Cluster versions earlier than 2.3.0, pass the `--enable-ha` flag with the `join` command.
+     :::
 
 1. In response to the prompt asking if you want to enable high availability, type `y` or `yes`:
 
