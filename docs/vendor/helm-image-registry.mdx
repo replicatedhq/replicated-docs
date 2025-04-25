@@ -1,5 +1,6 @@
 import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
+import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 
 # Use the Proxy Registry with Helm Installations
 
@@ -19,40 +20,7 @@ To use the Replicated proxy registry for applications installed with Helm:
 
 1. <StepCustomDomain/>
 
-1. In your Helm chart values file, set your image repository URL to the location of the image on the proxy registry. If you added a custom domain, use your custom domain. Otherwise, use `proxy.replicated.com`.
-
-      The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`
-      
-      Where:
-      * `DOMAIN` is either `proxy.replicated.com` or your custom domain.
-      * `APP_SLUG` is the unique slug of your application.
-      * `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
-      
-      **Example:**
-
-      ```yaml
-      # values.yaml
-      api:
-        image:
-          # proxy.registry.com or your custom domain
-          registry: ghcr.io
-          repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
-          tag: catalog-1.24.0
-      ```
-
-1. Ensure that any references to the image in your Helm chart access the field from your values file.  
-
-   **Example**:
-
-    ```yaml
-    apiVersion: v1
-    kind: Pod
-    spec:
-      containers:
-        - name: api 
-            # Access the registry, repository, and tag fields from the values file
-            image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
-    ```
+1. <RewriteHelmValues/>
 
 1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set and then write the rendered value into a Secret on the cluster, as shown below.
 

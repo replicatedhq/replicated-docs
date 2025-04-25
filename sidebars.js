@@ -264,8 +264,9 @@ const sidebars = {
               label: 'Configure the HelmChart Custom Resource',
               items: [
                 'vendor/helm-native-about',
-                'vendor/helm-native-v2-using',
+                // 'vendor/helm-native-v2-using',
                 'vendor/helm-packaging-airgap-bundles',
+                'vendor/helmchart-local-registries',
                 'vendor/helm-optional-value-keys',
                 'vendor/helm-v2-migrate',
               ],

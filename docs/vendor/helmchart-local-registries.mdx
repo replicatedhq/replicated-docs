@@ -1,0 +1,93 @@
+# Conditionally Rewrite Image Names for Local Registries
+
+This topic describes how to conditionally rewrite image names for local registries when using the HelmChart v2 custom resource.
+
+## Overview
+
+Local image registries are required for air gap KOTS installations in existing clusters. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+
+You can configure the KOTS HelmChart custom resource `optionalValues` key so that KOTS conditionally rewrites the names of images in your Helm values during deployment, depending on if the user configured a local registry.
+
+You can use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names: 
+* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user configured a local private registry.
+* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryHost returns the host of the built-in registry.
+* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
+
+    <details>
+    <summary>What is the registry namespace?</summary>
+    
+    The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
+    </details>
+
+## Prerequisite
+
+To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+## Rewrite Application Image Names
+
+**Example:**
+
+    ```yaml
+    # KOTS HelmChart custom resource
+
+     apiVersion: kots.io/v1beta2
+     kind: HelmChart
+     metadata:
+       name: samplechart
+     spec:
+       optionalValues:
+         # Define the conditional statement in the when field
+         - when: 'repl{{ HasLocalRegistry }}'
+           values:
+             postgres:
+               image:
+                 registry: '{{repl LocalRegistryHost }}'
+                 repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+    ```  
+
+## Rewrite the Replicated SDK Image Name
+
+**Example:**
+
+```yaml
+    # KOTS HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+        # Rewrite Replicated SDK image to local registry
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            replicated:
+              image:
+                registry: '{{repl LocalRegistryHost }}'
+                repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
+    ```
+    
+## Add a Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
+
+Docker Hub enforces rate limits for Anonymous and Free users. For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+
+To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `APP_SLUG-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits). 
+
+To support the use of the `kots docker ensure-secret` command, add the `APP_SLUG-kotsadm-dockerhub` pull secret (where `APP_SLUG` is your application slug) to any Docker images that could be rate-limited.
+
+**Example:**
+
+```yaml
+# kots.io/v1beta2 HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    image:
+      registry: docker.io
+      repository: org-name/example-docker-hub-image
+      # Add the dockerhub secret
+      pullSecrets:
+      - name: gitea-kotsadm-dockerhub
+```    

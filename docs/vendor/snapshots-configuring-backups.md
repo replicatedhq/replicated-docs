@@ -73,6 +73,32 @@ To configure snapshots for your application:
 
     ```
 
+1. For any Helm charts deployed with the HelmChart v2 custom resource, add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to fields under the HelmChart custom resource `optionalValues` key. Add a `when` statement that evaluates to true only when the customer license has the `isSnapshotSupported` entitlement. The fields that you create under the `optionalValues` key must map to fields in your Helm chart `values.yaml` file. For more information about working with the `optionalValues` key, see [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_. The snapshots feature requires that the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels are on all resources in your Helm chart that you want to be included in the backup.
+
+    **Example:**
+
+    ```yaml
+    # kots.io/v1beta2 HelmChart custom resource
+
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+      # add backup labels only if the license supports snapshots
+      - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
+        recursiveMerge: true
+        values:
+          mariadb:
+            commonLabels:
+              kots.io/backup: velero
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+            podLabels:
+              kots.io/backup: velero
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+    ```
+
 1. (Optional) Configure manifest exclusions. By default, Velero also includes backups of all of the Kubernetes objects in the namespace.
 
     To exclude any manifest file, add a [`velero.io/exclude-from-backup=true`](https://velero.io/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label to the manifest to be excluded. The following example shows the Secret manifest file with the `velero.io/exclude-from-backup` label:
