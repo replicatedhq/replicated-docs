@@ -16,6 +16,8 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * More than one controller node should not be joined at the same time. When joining a controller node, a warning is printed that explains that the user should not attempt to join another node until the controller node joins successfully.
 
+* Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
+
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped (limited or no outbound internet access) environments. The Admin Console provides the join command that you use to join nodes to the cluster.
@@ -50,11 +52,7 @@ To add nodes to a cluster:
 
      * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
-     * Roles are not updated or changed after a node is added. If you need to change a node's role, reset the node and add it again with the new role.
-
-     * For multi-node clusters with high availability (HA), at least three `controller` nodes are required. You can assign both the `controller` role and one or more `custom` roles to the same node. For more information about creating HA clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
-
-     * To add non-controller or _worker_ nodes that do not run the Kubernetes control plane, select one or more `custom` roles for the node and deselect the `controller` role.
+     * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
 1. Do one of the following to make the Embedded Cluster installation assets available on the machine that you will join to the cluster:
 
@@ -83,13 +81,15 @@ To add nodes to a cluster:
 
 1. Repeat these steps for each node you want to add.    
 
-## Enable High Availability for Multi-Node Clusters (Alpha) {#ha}
-
-Multi-node clusters are not highly available by default. The first node of the cluster is special and holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
+## High Availability for Multi-Node Clusters (Alpha) {#ha}
 
 :::important
 High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. For more information about this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
 :::
+
+Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
+
+Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA with the `enable-ha` command after adding three or more controller nodes.
 
 ### HA Architecture
 
@@ -101,19 +101,11 @@ For more information about the Embedded Cluster built-in extensions, see [Built-
 
 Enabling high availability has the following requirements:
 
-* High availability is supported with Embedded Cluster 1.4.1 or later.
+* High availability is supported with Embedded Cluster 1.4.1 and later.
+
+* The [`enable-ha`](#enable-ha-existing) command is available with Embedded Cluster 2.3.0 and later.
 
 * High availability is supported only for clusters where at least three nodes with the `controller` role are present.
-
-### Limitations
-
-Enabling high availability has the following limitations:
-
-* High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. For more information about this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
-
-* The `--enable-ha` flag serves as a feature flag during the Alpha phase. In the future, the prompt about migrating to high availability will display automatically if the cluster is not yet HA and you are adding the third or more controller node. 
-
-* HA multi-node clusters use rqlite to store support bundles up to 100 MB in size. Bundles over 100 MB can cause rqlite to crash and restart.
 
 ### Best Practices for High Availability
 
@@ -125,7 +117,9 @@ Consider the following best practices and recommendations for creating HA cluste
 
 * You can have any number of _worker_ nodes in HA clusters. Worker nodes do not run the Kubernetes control plane, but can run workloads such as application or Replicated KOTS workloads.
 
-### Create a Multi-Node HA Cluster
+### Create a Multi-Node Cluster with High Availability {#create-ha}
+
+You can enable high availability for a multi-node cluster when joining the third controller node. Alternatively, you can enable HA for an existing cluster with three or more controller nodes. For more information, see [Enable High Availability For an Existing Cluster](#enable-ha-existing) below.
 
 To create a multi-node HA cluster:
 
@@ -133,15 +127,29 @@ To create a multi-node HA cluster:
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 
-1. Run the join command provided in the Admin Console **Cluster Management** tab and pass the `--enable-ha` flag. For example:
+1. On the third node, run the join command provided in the Admin Console **Cluster Management** tab.
+
+     **Example:**
 
      ```bash
-     sudo ./APP_SLUG join --enable-ha 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
+     sudo ./APP_SLUG join 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
      ```
+     Where `APP_SLUG` is the unique slug for the application.
 
-1. After the third node joins the cluster, type `y` in response to the prompt asking if you want to enable high availability.
+     :::note
+     For Embedded Cluster versions earlier than 2.3.0, pass the `--enable-ha` flag with the `join` command.
+     :::
 
-    ![high availability command line prompt](/images/embedded-cluster-ha-prompt.png)
-    [View a larger version of this image](/images/embedded-cluster-ha-prompt.png)
+1. In response to the prompt asking if you want to enable high availability, type `y` or `yes`.
 
-1. Wait for the migration to complete.
+1. Wait for the migration to HA to complete.
+
+### Enable High Availability For an Existing Cluster {#enable-ha-existing}
+
+To enable high availability for an existing Embedded Cluster installation with three or more controller nodes, run the following command:
+
+```bash
+sudo ./APP_SLUG enable-ha
+```
+
+Where `APP_SLUG` is the unique slug for the application.
