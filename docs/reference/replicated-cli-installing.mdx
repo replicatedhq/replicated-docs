@@ -41,18 +41,17 @@ To install and run the latest Replicated CLI on MacOS:
     - Without Brew:
 
       ```shell
-      curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-      | grep "browser_download_url.*darwin_all.tar.gz" \
-      | cut -d : -f 2,3 \
-      | tr -d \" \
-      | wget -O replicated.tar.gz -qi -
+      curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+        | grep "browser_download_url.*darwin_all.tar.gz" \
+        | cut -d : -f 2,3 \
+        | tr -d \") -o replicated.tar.gz
       tar xf replicated.tar.gz replicated && rm replicated.tar.gz
       mv replicated /usr/local/bin/replicated
       ```
 
       <Sudo/>
 
-1. <Verify/> 
+1. <Verify/>
 
 1. <Login/>
 
@@ -67,11 +66,10 @@ To install and run the latest Replicated CLI on Linux:
 1. Run the following command:
 
     ```shell
-    curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-    | grep "browser_download_url.*linux_amd64.tar.gz" \
-    | cut -d : -f 2,3 \
-    | tr -d \" \
-    | wget -O replicated.tar.gz -qi -
+    curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+      | grep "browser_download_url.*linux_amd64.tar.gz" \
+      | cut -d : -f 2,3 \
+      | tr -d \") -o replicated.tar.gz
     tar xf replicated.tar.gz replicated && rm replicated.tar.gz
     mv replicated /usr/local/bin/replicated
     ```
