@@ -8,18 +8,22 @@ The topic describes managing nodes in clusters created with Replicated Embedded 
 
 Multi-node clusters with Embedded Cluster have the following limitations:
 
+* Support for multi-node clusters with Embedded Cluster is Beta. Only single-node embedded clusters are Generally Available (GA).
+
+* High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. For more information about this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+
 * The same Embedded Cluster data directory used at installation is used for all nodes joined to the cluster. This is either the default `/var/lib/embedded-cluster` directory or the directory set with the [`--data-dir`](/reference/embedded-cluster-install#flags) flag. You cannot choose a different data directory for Embedded Cluster when joining nodes.
 
 * More than one controller node should not be joined at the same time. When joining a controller node, a warning is printed that explains that the user should not attempt to join another node until the controller node joins successfully.
 
 * Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
 
-## Add Nodes to a Cluster {#add-nodes}
+## Add Nodes to a Cluster (Beta) {#add-nodes}
 
 You can add nodes to create a multi-node cluster in online (internet-connected) and air-gapped (limited or no outbound internet access) environments. The Admin Console provides the join command that you use to join nodes to the cluster.
 
 :::note
-Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters](#ha) below.
+Multi-node clusters are not highly available by default. For information about enabling high availability, see [Enable High Availability for Multi-Node Clusters (Alpha)](#ha) below.
 :::
 
 To add nodes to a cluster:
@@ -77,7 +81,11 @@ To add nodes to a cluster:
 
 1. Repeat these steps for each node you want to add.    
 
-## High Availability for Multi-Node Clusters{#ha}
+## High Availability for Multi-Node Clusters (Alpha) {#ha}
+
+:::important
+High availability for Embedded Cluster in an Alpha feature. This feature is subject to change, including breaking changes. For more information about this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+:::
 
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
