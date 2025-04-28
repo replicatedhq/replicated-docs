@@ -24,8 +24,8 @@ Released on April 28, 2025
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-124-16}
-* Fixes an issue where license verification failed unexpectedly with this error `failed to verify signature: "IsEmbeddedClusterMultinodeEnabled" field has changed to false (license) from true (within signature)`.
+### Bug Fixes {#bug-fixes-1-124-16}
+* Fixes an issue where license verification failed unexpectedly with the following error: `failed to verify signature: "IsEmbeddedClusterMultinodeEnabled" field has changed to false (license) from true (within signature)`.
 
 ## 1.124.15
 
