@@ -1,6 +1,6 @@
 import ProxyLimitations from "../partials/embedded-cluster/_proxy-install-limitations.mdx"
 import ProxyRequirements from "../partials/embedded-cluster/_proxy-install-reqs.mdx"
-
+import ProxyEnvVars from "../partials/embedded-cluster/_proxy-env-vars.mdx"
 
 # Embedded Cluster Install Command Options
 
@@ -70,6 +70,7 @@ sudo ./APP_SLUG install --license PATH_TO_LICENSE [flags]
      <td>`--http-proxy`</td>
      <td>
         <p>Proxy server to use for HTTP.</p>
+        <ProxyEnvVars/>
         <ProxyRequirements/>
         <ProxyLimitations/>   
      </td>
@@ -78,6 +79,7 @@ sudo ./APP_SLUG install --license PATH_TO_LICENSE [flags]
      <td>`--https-proxy`</td>
      <td>
         <p>Proxy server to use for HTTPS.</p>
+        <ProxyEnvVars/>
         <ProxyRequirements/>
         <ProxyLimitations/>
      </td>
@@ -118,6 +120,7 @@ sudo ./APP_SLUG install --license PATH_TO_LICENSE [flags]
          <li>The CIDR block used for assigning IPs to Kubernetes Pods and Services. By default, the CIDR block is `10.244.0.0/16`. For information about how to change this default, see [Set IP Address Range for Pods and Services](#set-ip-address-range-for-pods-and-services).</li>
        </ul>
        <p>To ensure your application's internal cluster communication is not proxied, use fully qualified domain names like `my-service.my-namespace.svc` or `my-service.my-namespace.svc.cluster.local`.</p>
+       <ProxyEnvVars/>
        <ProxyRequirements/>
        <ProxyLimitations/>
      </td>
