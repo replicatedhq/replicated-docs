@@ -18,6 +18,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.16
+
+Released on April 28, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Bug Fixes {#bug-fixes-1-124-16}
+* Fixes an issue where license verification failed unexpectedly with the following error: `failed to verify signature: "IsEmbeddedClusterMultinodeEnabled" field has changed to false (license) from true (within signature)`.
+
 ## 1.124.15
 
 Released on April 14, 2025
