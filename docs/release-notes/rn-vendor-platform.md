@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.04.28-4
+
+Released on April 28, 2025
+
+### New Features {#new-features-v2025-04-28-4}
+* Vendors can now archive inactive, airgap and dev instances. This will hide instances from all views (including the Enterprise Portal) except a toggle has been introduced to view archived from the instance list table view. Visit the instance detail page to archive and unarchive an instance.
+
 ## v2025.04.17-2
 
 Released on April 17, 2025
