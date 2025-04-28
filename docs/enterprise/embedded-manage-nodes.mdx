@@ -127,7 +127,7 @@ To create a multi-node HA cluster:
 
 1. SSH onto a third node that you want to join to the cluster as a controller.
 
-1. On the third node, run the join command provided in the Admin Console **Cluster Management** tab.
+1. On the third node, run the join command. You can get the join command in the Admin Console **Cluster Management** tab or by running `sudo ./APP_SLUG join print-command` on a node that was already joined to the cluster.
 
      **Example:**
 
@@ -153,3 +153,17 @@ sudo ./APP_SLUG enable-ha
 ```
 
 Where `APP_SLUG` is the unique slug for the application.
+
+## Get the `join` Command to Automate Node Joins
+
+You can automate node joins with Embedded Cluster. This is especially useful when testing multi-node Embedded Cluster installations where you need to programmatically add nodes to the cluster.
+
+To automate node joins, update your existing automation to do the following:
+
+1. On a node that is already joined to the cluster, run the `sudo ./APP_SLUG join print-command` command to get the command for adding a node with the controller role.
+
+1. Run the join command that was provided in the output of the `join print-command` on the node that you want to add to the cluster.
+
+### Limitation
+
+The `join print-command` command always returns the `join` command for joining a node with the controller role. The `join print-command` command does not supported printing the `join` command for any custom node roles defined in the Embedded Cluster Config `roles` key.
