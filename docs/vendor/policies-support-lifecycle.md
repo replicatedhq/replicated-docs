@@ -48,7 +48,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td><a href="/vendor/replicated-sdk-overview">Replicated SDK</a></td>
-    <td>Beta</td>
+    <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
@@ -93,7 +93,14 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <th>KOTS Versions</th>
     <th>kURL Versions</th>
     <th>End of Replicated Support</th>
-  </tr>  
+  </tr>
+  <tr>
+    <td>1.33</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>2026-06-28</td>
+  </tr>
   <tr>
     <td>1.32</td>
     <td>N/A</td>
@@ -122,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified April 09, 2025.
+Last modified April 28, 2025.
