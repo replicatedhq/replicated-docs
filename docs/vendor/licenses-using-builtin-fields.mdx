@@ -157,6 +157,13 @@ The table below describes the built-in license fields related to install options
     <td><p>If a license supports air gap installations with the Replicated installers (KOTS, kURL, Embedded Cluster), then this field is set to `true`. If Replicated installer air gap installations are not supported, this field is missing.</p><p>When you enable this field for a license, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded.</p></td>
   </tr>
   <tr>
+      <td>`isEmbeddedClusterMultiNodeEnabled`</td>
+      <td>
+        <p>If a license supports multi-node installations with Embedded Cluster, this field is set to `true`. If a license does not support multi-node installations, this field is either missing or `false`. By default, `isEmbeddedClusterMultiNodeEnabled` is `true`.</p>
+        <p>When `isEmbeddedClusterMultiNodeEnabled` is missing or false, the **Configure the cluster** page is hidden from the Embedded Cluster installation and upgrade flow in the Admin Console. Additionally, the option to add nodes is removed from the Admin Console **Cluster management** page.</p>
+      </td>
+    </tr>
+  <tr>
     <td>`isHelmAirgapEnabled`</td>
     <td><p>If a license supports Helm air gap installations, then this field is set to `true` or missing. If Helm air gap is not supported, this field is missing.</p><p> When you enable this feature, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded.</p><p>This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
   </tr>
@@ -174,13 +181,6 @@ The table below describes the built-in license fields related to the Admin Conso
     <tr>
         <td>`isDisasterRecoverySupported`</td>
         <td>If a license supports the Embedded Cluster disaster recovery feature, this field is set to `true`. If a license does not support disaster recovery for Embedded Cluster, this field is either missing or `false`. **Note**: Embedded Cluster Disaster Recovery is in Alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com). For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</td>
-    </tr>
-    <tr>
-        <td>`isEmbeddedClusterMultiNodeEnabled`</td>
-        <td>
-          <p>If a license supports multi-node installations with Embedded Cluster, this field is set to `true`. If a license does not support multi-node installations, this field is either missing or `false`. By default, `isEmbeddedClusterMultiNodeEnabled` is `true`.</p>
-          <p>When `isEmbeddedClusterMultiNodeEnabled` is missing or false, the **Configure the cluster** page is hidden from the Embedded Cluster installation and upgrade flow in the Admin Console. Additionally, the option to add nodes is removed from the Admin Console **Cluster management** page.</p>
-        </td>
     </tr>
     <tr>
         <td>`isGeoaxisSupported`</td>
