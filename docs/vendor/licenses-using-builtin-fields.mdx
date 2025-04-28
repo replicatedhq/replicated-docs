@@ -176,6 +176,13 @@ The table below describes the built-in license fields related to the Admin Conso
         <td>If a license supports the Embedded Cluster disaster recovery feature, this field is set to `true`. If a license does not support disaster recovery for Embedded Cluster, this field is either missing or `false`. **Note**: Embedded Cluster Disaster Recovery is in Alpha. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com). For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</td>
     </tr>
     <tr>
+        <td>`isEmbeddedClusterMultiNodeEnabled`</td>
+        <td>
+          <p>If a license supports multi-node installations with Embedded Cluster, this field is set to `true`. If a license does not support multi-node installations, this field is either missing or `false`. By default, `isEmbeddedClusterMultiNodeEnabled` is `true`.</p>
+          <p>When `isEmbeddedClusterMultiNodeEnabled` is missing or false, the **Configure the cluster** page is hidden from the Embedded Cluster installation and upgrade flow in the Admin Console. Additionally, the option to add nodes is removed from the Admin Console **Cluster management** page.</p>
+        </td>
+    </tr>
+    <tr>
         <td>`isGeoaxisSupported`</td>
         <td>(kURL Only) If a license supports integration with GeoAxis, this field is set to `true`. If GeoAxis is not supported, this field is either `false` or missing. **Note**: This field requires that the vendor has the GeoAxis entitlement. It also requires that the vendor has access to the Identity Service entitlement.</td>
     </tr>
