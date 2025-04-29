@@ -108,8 +108,7 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 
 With Embedded Cluster, you can use the command line to get the commands for joining controller nodes, rather than having to log into the Admin Console UI to get the commands. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
 
-**Limitation:**
-* The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. 
+**Limitation:** The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. 
 
 To automate controller node joins with Embedded Cluster:
 
@@ -191,7 +190,7 @@ To create a multi-node HA cluster:
 
 1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. Get the command for joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
+1. Get the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
 
    ```bash
    sudo ./APP_SLUG get join-command
@@ -200,14 +199,7 @@ To create a multi-node HA cluster:
 
 1. SSH onto the node that you want to add as a third controller.
 
-1. On the node, run the join command that you copied.
-
-     **Example:**
-
-     ```bash
-     sudo ./APP_SLUG join 10.128.0.80:30000 tI13KUWITdIerfdMcWTA4Hpf
-     ```
-     Where `APP_SLUG` is the unique slug for the application.
+1. On the node that you want to add as a third controller, run each of the commands that you copied.
 
      :::note
      For Embedded Cluster versions earlier than 2.3.0, pass the `--enable-ha` flag with the `join` command.
