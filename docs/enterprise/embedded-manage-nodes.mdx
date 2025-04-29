@@ -18,9 +18,9 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
 
-* The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. See [Automate Controller Node Joins](#automate-node-joins) below.
-
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
+
+This section describes how to add nodes to a cluster with Embedded Cluster in online and air gap installations.
 
 ### Online Installations
 
@@ -40,17 +40,15 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
       
        1. Go to **Cluster Management > Add node** at the top of the page.
    
-1. If you configured the [roles](/reference/embedded-config#roles) key to customize node roles, select one or more roles for the node.
+1. If you configured the `roles` key to customize node roles, select one or more roles for the node.
 
-    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected.
+    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected. Keep this Admin Console page open for the next steps. 
 
-    Note the following:
+     :::note
+     The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+     :::
 
-     * If the [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
-
-     * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
-
-1. SSH onto the node that you want to join. Keep the Admin Console page that shows the join commands open for the next steps.
+1. SSH onto the node that you want to join.
 
 1. Copy the command to download the Embedded Cluster binary and then run it on the node you want to join.
 
@@ -70,7 +68,7 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 
 1. Do one of the following:
 
-   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join commands.
+   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console.
 
    1. Otherwise, to add a node to an existing cluster:
 
@@ -80,30 +78,26 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
       
        1. Go to **Cluster Management > Add node** at the top of the page.
    
-1. If you configured the [roles](/reference/embedded-config#roles) key to customize node roles, select one or more roles for the node.
+1. If you configured the `roles` key to customize node roles, select one or more roles for the node.
 
-    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected.
+    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected. Keep this Admin Console page open for the next steps.
 
-    Note the following:
+    :::note
+    The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+    :::
 
-     * If the [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+1. SSH onto a machine that has internet access. Run the curl command provided in the Admin Console to download the Embedded Cluster binary.
 
-     * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+1. Move the downloaded assets to the air-gapped node that you want to join to the cluster.
 
-1. SSH onto a node that has internet access. Keep the Admin Console page that shows the join commands open for the next steps.
+1. On the node that you want to join, run the tar command provided in the Admin Console to untar the Embedded Cluster assets.
 
-1. On the node with internet access, copy and run the first command to download the Embedded Cluster binary.
-
-1. Move the downloaded assets to the air-gapped node that you want to join.
-
-1. Copy and run the second command from the Admin Console to untar the Embedded Cluster assets.
-
-1. Copy and run the join command.
+1. Run the join command to add the node to the cluster.
 
     **Example:**
 
     ```bash
-    sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
+    sudo ./your-app-slug join --airgap-bundle your-app-slug.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
     ```
 
 1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
@@ -113,6 +107,9 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 ## Automate Controller Node Joins (Beta) {#automate-node-joins}
 
 With Embedded Cluster, you can use the command line to get the commands for joining controller nodes, rather than having to log into the Admin Console UI to get the commands. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
+
+**Limitation:**
+* The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. 
 
 To automate controller node joins with Embedded Cluster:
 
@@ -127,20 +124,18 @@ To automate controller node joins with Embedded Cluster:
 
    **Example:**
 
-   ```bash
-   sudo ./your-app-slug get join-command
    ```
-   ```bash
+   sudo ./your-app-slug get join-command
+
    curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
    tar -xvf embedded-cluster.tar.gz && \
    sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD
    ```
    **Example with JSON output:**
 
-   ```bash
-   sudo ./your-app-slug get join-command -ojson
    ```
-   ```bash
+   sudo ./your-app-slug get join-command -ojson
+
    {
    "commands": [
       "curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz",
@@ -150,7 +145,7 @@ To automate controller node joins with Embedded Cluster:
    }
    ```
 
-1. On the node that you want to join as a controller, run each of the commands from the `get join-command` output.
+1. On the node that you want to join as a controller, run each of the commands provided in the `get join-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
 ## High Availability for Multi-Node Clusters (Alpha) {#ha}
 
@@ -176,13 +171,13 @@ Enabling high availability has the following requirements:
 
 * The [`enable-ha`](#enable-ha-existing) command is available with Embedded Cluster 2.3.0 and later.
 
-* High availability is supported only for clusters where at least three nodes with the `controller` role are present.
+* High availability is supported only for clusters where at least three nodes with the controller role are present.
 
 ### Best Practices for High Availability
 
 Consider the following best practices and recommendations for creating HA clusters:
 
-* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the `controller` node role, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the controller node role, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
 * Always use an odd number of controller nodes in HA clusters. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
