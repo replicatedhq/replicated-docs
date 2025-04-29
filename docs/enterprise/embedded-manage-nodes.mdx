@@ -74,14 +74,14 @@ To add a node to a cluster with Embedded Cluster:
     ```bash
     sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
     ```
-    
+
 1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
 
 1. Repeat these steps for each node you want to add.
 
 ## Automate Controller Node Joins (Beta) {#automate-node-joins}
 
-With Embedded Cluster, you can use the command line to automate the process of joining controller nodes to a cluster. This is especially useful when testing multi-node Embedded Cluster installations where you need to programmatically add nodes.
+With Embedded Cluster, you can use the command line to get the join command for controller nodes, rather than having to log into the Admin Console UI to get the command. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
 
 To automate controller node joins with Embedded Cluster:
 
