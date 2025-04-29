@@ -50,17 +50,17 @@ To add a node to a cluster with Embedded Cluster:
 
      * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
-1. Do one of the following to make the Embedded Cluster installation assets available on the node that you will join to the cluster:
+1. Do one of the following to make the Embedded Cluster installation assets available on the node that you want to join to the cluster:
 
-    * **For online (internet-connected) installations**: SSH onto the node that you will join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the node. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+    * **For online (internet-connected) installations**: SSH onto the node that you want to join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the node. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
 
-    * **For air gap installations with limited or no outbound internet access**: On a node that has internet access, download the Embedded Cluster installation assets (including the air gap bundle) using the same command that you ran during installation. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). Then, move the downloaded assets to the air-gapped node that you will join, and untar. 
+    * **For air gap installations with limited or no outbound internet access**: On a node that has internet access, download the Embedded Cluster installation assets (including the air gap bundle) using the same command that you ran during installation. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). Then, move the downloaded assets to the air-gapped node that you want to join, and untar. 
 
     :::important
     The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
     :::
 
-1. SSH onto the node that you will join to the cluster.
+1. SSH onto the node that you want to join to the cluster.
 
 1. Run the join command that you copied.
 
