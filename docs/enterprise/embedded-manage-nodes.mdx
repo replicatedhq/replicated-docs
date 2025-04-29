@@ -58,6 +58,10 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
 
 1. Copy and run the join command to add the node to the cluster.
 
+1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
+
+1. Repeat these steps for each node you want to add.
+
 ### Air Gap Installations
 
 To add a node to a cluster with Embedded Cluster in air gap installations:
@@ -88,13 +92,13 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 
 1. SSH onto a node that has internet access. Keep the Admin Console page that shows the join commands open for the next steps.
 
-1. On a node that has internet access, copy and run the first command to download the Embedded Cluster installation assets (including the Embedded Cluster binary and the air gap bundle).
+1. On the node with internet access, copy and run the first command to download the Embedded Cluster binary.
 
 1. Move the downloaded assets to the air-gapped node that you want to join.
 
-1. Untar the Embedded Cluster assets on the node.
+1. Copy and run the second command from the Admin Console to untar the Embedded Cluster assets.
 
-1. Run the join command.
+1. Copy and run the join command.
 
     **Example:**
 
