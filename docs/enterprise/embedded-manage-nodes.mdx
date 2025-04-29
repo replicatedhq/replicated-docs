@@ -18,58 +18,85 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
 
-* The `join print-command` command always returns the command for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. See [Automate Controller Node Joins](#automate-node-joins) below.
+* The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. See [Automate Controller Node Joins](#automate-node-joins) below.
 
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
-To add a node to a cluster with Embedded Cluster:
+### Online Installations
+
+To add a node to a cluster with Embedded Cluster in online (internet-connected) installations:
 
 1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following:
 
-   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join command.
+   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console.
 
    1. Otherwise, to add a node to an existing cluster:
 
-         1. Log in to the Admin Console.
-         
-         1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
-         
-         1. Go to **Cluster Management > Add node** at the top of the page.
-
-            <img alt="Add node page in the Admin Console" src="/images/admin-console-add-node.png" width="600px"/>
-
-            [View a larger version of this image](/images/admin-console-add-node.png)      
+       1. Log in to the Admin Console.
+      
+       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+      
+       1. Go to **Cluster Management > Add node** at the top of the page.
    
-1. Select one or more roles for the node. Copy the join command.
+1. If you configured the [roles](/reference/embedded-config#roles) key to customize node roles, select one or more roles for the node.
 
-     Note the following:
+    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected.
 
-     * If the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+    Note the following:
+
+     * If the [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
 
      * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
 
-1. Do one of the following to make the Embedded Cluster installation assets available on the node that you want to join to the cluster:
+1. SSH onto the node that you want to join. Keep the Admin Console page that shows the join commands open for the next steps.
 
-    * **For online (internet-connected) installations**: SSH onto the node that you want to join. Then, use the same commands that you ran during installation to download and untar the Embedded Cluster installation assets on the node. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+1. Copy the command to download the Embedded Cluster binary and then run it on the node you want to join.
 
-    * **For air gap installations with limited or no outbound internet access**: On a node that has internet access, download the Embedded Cluster installation assets (including the air gap bundle) using the same command that you ran during installation. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). Then, move the downloaded assets to the air-gapped node that you want to join, and untar. 
+1. Copy and run the command to extract the Embedded Cluster binary.
 
-    :::important
-    The Embedded Cluster installation assets on each node must all be the same version. If you use a different version than what is installed elsewhere in the cluster, the cluster will not be stable. To download a specific version of the Embedded Cluster assets, select a version in the **Embedded cluster install instructions** dialog.
-    :::
+1. Copy and run the join command to add the node to the cluster.
 
-1. SSH onto the node that you want to join to the cluster.
+### Air Gap Installations
 
-1. Run the join command that you copied.
+To add a node to a cluster with Embedded Cluster in air gap installations:
+
+1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
+
+1. Do one of the following:
+
+   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console that allows you to choose a node role and copy the relevant join commands.
+
+   1. Otherwise, to add a node to an existing cluster:
+
+       1. Log in to the Admin Console.
+      
+       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+      
+       1. Go to **Cluster Management > Add node** at the top of the page.
+   
+1. If you configured the [roles](/reference/embedded-config#roles) key to customize node roles, select one or more roles for the node.
+
+    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected.
+
+    Note the following:
+
+     * If the [roles](/reference/embedded-config#roles) key is not configured, all new nodes joined to the cluster are assigned the `controller` role by default. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+
+     * The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
+
+1. SSH onto a node that has internet access. Keep the Admin Console page that shows the join commands open for the next steps.
+
+1. On a node that has internet access, copy and run the first command to download the Embedded Cluster installation assets (including the Embedded Cluster binary and the air gap bundle).
+
+1. Move the downloaded assets to the air-gapped node that you want to join.
+
+1. Untar the Embedded Cluster assets on the node.
+
+1. Run the join command.
 
     **Example:**
-
-    ```bash
-    sudo ./APP_SLUG join 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
-    ```
-    **Air Gap Example:**
 
     ```bash
     sudo ./APP_SLUG join --airgap-bundle APP_SLUG.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
@@ -81,20 +108,41 @@ To add a node to a cluster with Embedded Cluster:
 
 ## Automate Controller Node Joins (Beta) {#automate-node-joins}
 
-With Embedded Cluster, you can use the command line to get the join command for controller nodes, rather than having to log into the Admin Console UI to get the command. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
+With Embedded Cluster, you can use the command line to get the commands for joining controller nodes, rather than having to log into the Admin Console UI to get the commands. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
 
 To automate controller node joins with Embedded Cluster:
 
-1. On a node that is already joined to the cluster, run the following command to get the command for adding a controller node:
+1. On a node that is already joined to the cluster, run the following command to get the commands for adding a new controller node:
 
    ```bash
-   sudo ./APP_SLUG join print-command
+   sudo ./APP_SLUG get join-command
    ```
    Where `APP_SLUG` is the unique application slug.
 
-   :::note
-   The `join print-command` command always returns the command for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key.
-   :::
+   The output of `get join-command` includes the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster.
+
+   **Example:**
+   ```bash
+   sudo ./your-app-slug get join-command
+   ```
+   ```bash
+   curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
+   tar -xvf embedded-cluster.tar.gz && \
+   sudo ./embedded-cluster join 172.17.0.2:30000 mKjXc3FTBddmX3y4zkSMAKFB
+   ```
+   **Example:**
+   ```bash
+   sudo ./your-app-slug get join-command -ojson
+   ```
+   ```bash
+   {
+   "commands": [
+      "curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz",
+      "tar -xvf embedded-cluster.tar.gz",
+      "sudo ./embedded-cluster join 172.17.0.2:30000 GMYTL8RfkaTVBHylpslZy9yc"
+     ]
+   }
+   ```
 
 1. Copy the join command.
 
@@ -149,7 +197,7 @@ To create a multi-node HA cluster:
 1. Get the command for joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
 
    ```bash
-   sudo ./APP_SLUG join print-command
+   sudo ./APP_SLUG get join-command
    ```
    Where `APP_SLUG` is the unique application slug.
 
