@@ -116,25 +116,27 @@ With Embedded Cluster, you can use the command line to get the commands for join
 
 To automate controller node joins with Embedded Cluster:
 
-1. On a node that is already joined to the cluster, run the following command to get the commands for adding a new controller node:
+1. On a node that is already joined to the cluster, run the following command:
 
    ```bash
    sudo ./APP_SLUG get join-command
    ```
    Where `APP_SLUG` is the unique application slug.
 
-   The output of `get join-command` includes the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster.
+   The output lists the commands for downloading the Embedded Cluster binary, extracting the binary, and joining a new controller node to the cluster.
 
    **Example:**
+
    ```bash
    sudo ./your-app-slug get join-command
    ```
    ```bash
    curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
    tar -xvf embedded-cluster.tar.gz && \
-   sudo ./embedded-cluster join 172.17.0.2:30000 mKjXc3FTBddmX3y4zkSMAKFB
+   sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD
    ```
-   **Example:**
+   **Example with JSON output:**
+
    ```bash
    sudo ./your-app-slug get join-command -ojson
    ```
@@ -143,16 +145,12 @@ To automate controller node joins with Embedded Cluster:
    "commands": [
       "curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz",
       "tar -xvf embedded-cluster.tar.gz",
-      "sudo ./embedded-cluster join 172.17.0.2:30000 GMYTL8RfkaTVBHylpslZy9yc"
+      "sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD"
      ]
    }
    ```
 
-1. Copy the join command.
-
-1. SSH onto the node that you want to join as a controller.
-
-1. Run the join command that you copied.
+1. On the node that you want to join as a controller, run each of the commands from the `get join-command` output.
 
 ## High Availability for Multi-Node Clusters (Alpha) {#ha}
 
