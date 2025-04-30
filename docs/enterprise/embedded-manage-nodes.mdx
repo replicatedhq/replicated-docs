@@ -18,7 +18,7 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * Setting node roles with the Embedded Cluster Config [roles](/reference/embedded-config#roles) key is Beta.
 
-* The `get join-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. See [Automate Controller Node Joins (Beta)](#automate-node-joins) below.
+* The `join print-command` command always returns the commands for joining a node with the controller role. It does not support printing the join command for any custom node roles defined in the Embedded Cluster Config `roles` key. See [Automate Controller Node Joins (Beta)](#automate-node-joins) below.
 
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
@@ -52,7 +52,7 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
 
 1. SSH onto the node that you want to join.
 
-1. Copy the curl command provided in the Admin Console to download the Embedded Cluster binary and then run it on the node you want to join.
+1. Copy the curl command provided in the Admin Console to download the Embedded Cluster binary and then run it on the node you want to join. In air gap installations, 
 
 1. Copy and run the tar command to extract the Embedded Cluster binary.
 
@@ -107,7 +107,7 @@ To automate controller node joins with Embedded Cluster:
 1. On a node that is already joined to the cluster, run the following command:
 
    ```bash
-   sudo ./APP_SLUG get join-command
+   sudo ./APP_SLUG join print-command
    ```
    Where `APP_SLUG` is the unique application slug.
 
@@ -116,7 +116,7 @@ To automate controller node joins with Embedded Cluster:
    **Example:**
 
    ```
-   sudo ./your-app-slug get join-command
+   sudo ./your-app-slug join print-command
 
    curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
      tar -xvf embedded-cluster.tar.gz && \
@@ -125,7 +125,7 @@ To automate controller node joins with Embedded Cluster:
    **Example with JSON output:**
 
    ```
-   sudo ./your-app-slug get join-command -ojson
+   sudo ./your-app-slug join print-command -ojson
 
    {
    "commands": [
@@ -136,7 +136,7 @@ To automate controller node joins with Embedded Cluster:
    }
    ```
 
-1. On the node that you want to join as a controller, run each of the commands provided in the `get join-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
+1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
 ## High Availability for Multi-Node Clusters (Alpha) {#ha}
 
@@ -185,7 +185,7 @@ To create a multi-node HA cluster:
 1. Get the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
 
    ```bash
-   sudo ./APP_SLUG get join-command
+   sudo ./APP_SLUG join print-command
    ```
    Where `APP_SLUG` is the unique application slug.
 
