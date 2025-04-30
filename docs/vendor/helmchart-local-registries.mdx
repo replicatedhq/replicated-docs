@@ -1,12 +1,12 @@
-# Conditionally Rewrite Image Names for Local Registries
+# Rewrite Application Image Names with HelmChart v2 for Local Registries
 
-This topic describes how to conditionally rewrite image names for local registries when using the HelmChart v2 custom resource.
+This topic describes how to configure the Replicated KOTS HelmChart v2 custom resource to conditionally rewrite image names for your application to support users that will push images to their own local image registry.
 
 ## Overview
 
-Local image registries are required for air gap KOTS installations in existing clusters. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+Local image registries are required for air gap KOTS installations in existing clusters. Also, users in online environments can optionally use a local registry. For more information about how users configure and push images to a local image registry with KOTS, see [Configure Local Image Registries in the Admin Console](/enterprise/image-registry-settings).
 
-You can configure the KOTS HelmChart custom resource `optionalValues` key so that KOTS conditionally rewrites the names of images in your Helm values during deployment, depending on if the user configured a local registry.
+If you deploy any Helm charts with the HelmChart v2 custom resource, in order to support the use of local image registries, you must configure the HelmChart v2 custom resource `optionalValues` key so that KOTS conditionally rewrites the names of images in your Helm values during deployment, depending on if the user configured a local registry.
 
 You can use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names: 
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user configured a local private registry.
@@ -64,30 +64,4 @@ To support the use of local registries, configure the `builder` key. For more in
               image:
                 registry: '{{repl LocalRegistryHost }}'
                 repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
-    ```
-    
-## Add a Pull Secret for Rate-Limited Docker Hub Images {#docker-secret}
-
-Docker Hub enforces rate limits for Anonymous and Free users. For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
-
-To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `APP_SLUG-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits). 
-
-To support the use of the `kots docker ensure-secret` command, add the `APP_SLUG-kotsadm-dockerhub` pull secret (where `APP_SLUG` is your application slug) to any Docker images that could be rate-limited.
-
-**Example:**
-
-```yaml
-# kots.io/v1beta2 HelmChart custom resource
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  values:
-    image:
-      registry: docker.io
-      repository: org-name/example-docker-hub-image
-      # Add the dockerhub secret
-      pullSecrets:
-      - name: gitea-kotsadm-dockerhub
-```    
+    ``` 

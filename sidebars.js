@@ -266,7 +266,7 @@ const sidebars = {
                 'vendor/helm-native-about',
                 // 'vendor/helm-native-v2-using',
                 'vendor/helm-packaging-airgap-bundles',
-                'vendor/helmchart-local-registries',
+                // 'vendor/helmchart-local-registries',
                 'vendor/helm-optional-value-keys',
                 'vendor/helm-v2-migrate',
               ],
@@ -397,6 +397,7 @@ const sidebars = {
           type: 'category',
           label: 'Configure Local Image Registries',
           items: [
+            'vendor/helmchart-local-registries',
             'enterprise/image-registry-settings',
             'enterprise/image-registry-rate-limits',
           ],
