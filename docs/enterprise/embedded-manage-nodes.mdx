@@ -22,17 +22,15 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 ## Add Nodes to a Cluster (Beta) {#add-nodes}
 
-This section describes how to add nodes to a cluster with Embedded Cluster in online and air gap installations.
+This section describes how to add nodes to a cluster with Embedded Cluster.
 
-### Online Installations
-
-To add a node to a cluster with Embedded Cluster in online (internet-connected) installations:
+To add a node to a cluster with Embedded Cluster:
 
 1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following:
 
-   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
+   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
 
    1. Otherwise, to add a node to an existing cluster:
 
@@ -52,47 +50,11 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
 
 1. SSH onto the node that you want to join.
 
-1. Copy the curl command provided in the Admin Console to download the Embedded Cluster binary and then run it on the node you want to join. In air gap installations, 
+1. Copy the curl command provided in the Admin Console to download the Embedded Cluster binary and then run it on the node you want to join. 
 
 1. Copy and run the tar command to extract the Embedded Cluster binary.
 
 1. Copy and run the join command to add the node to the cluster.
-
-1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
-
-1. Repeat these steps for each node you want to add.
-
-### Air Gap Installations
-
-To add a node to a cluster with Embedded Cluster in air gap installations:
-
-1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
-
-1. Do one of the following:
-
-   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
-
-   1. Otherwise, to add a node to an existing cluster:
-
-       1. Log in to the Admin Console.
-      
-       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
-      
-       1. Go to **Cluster Management > Add node** at the top of the page.
-   
-1. If you configured the `roles` key to customize node roles, select one or more roles for the node.
-
-    The Admin Console page is updated to display the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the node to the cluster based on the roles you selected. Keep this Admin Console page open for the next steps.
-
-    :::note
-    The role cannot be changed after a node is added. If you need to change a node’s role, reset the node and add it again with the new role.
-    :::
-
-1. SSH onto a machine that has internet access. Run the curl command provided in the Admin Console to download the Embedded Cluster binary.
-
-1. Move the downloaded binary to the air-gapped node that you want to join to the cluster.
-
-1. On the node that you want to join, run the tar command provided in the Admin Console to untar the Embedded Cluster assets. Then, run the join command to add the node to the cluster.
 
 1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
 
