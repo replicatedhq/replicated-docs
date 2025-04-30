@@ -32,7 +32,7 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
 
 1. Do one of the following:
 
-   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console.
+   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
 
    1. Otherwise, to add a node to an existing cluster:
 
@@ -52,7 +52,7 @@ To add a node to a cluster with Embedded Cluster in online (internet-connected) 
 
 1. SSH onto the node that you want to join.
 
-1. Copy the curl command to download the Embedded Cluster binary and then run it on the node you want to join.
+1. Copy the curl command provided in the Admin Console to download the Embedded Cluster binary and then run it on the node you want to join.
 
 1. Copy and run the tar command to extract the Embedded Cluster binary.
 
@@ -70,7 +70,7 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 
 1. Do one of the following:
 
-   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. A **Nodes** screen is displayed as part of the installation flow in the Admin Console.
+   1. Follow the steps in [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
 
    1. Otherwise, to add a node to an existing cluster:
 
@@ -90,17 +90,9 @@ To add a node to a cluster with Embedded Cluster in air gap installations:
 
 1. SSH onto a machine that has internet access. Run the curl command provided in the Admin Console to download the Embedded Cluster binary.
 
-1. Move the downloaded assets to the air-gapped node that you want to join to the cluster.
+1. Move the downloaded binary to the air-gapped node that you want to join to the cluster.
 
-1. On the node that you want to join, run the tar command provided in the Admin Console to untar the Embedded Cluster assets.
-
-1. Run the join command to add the node to the cluster.
-
-    **Example:**
-
-    ```bash
-    sudo ./your-app-slug join --airgap-bundle your-app-slug.airgap 10.128.0.32:30000 TxXboDstBAamXaPdleSK7Lid
-    ```
+1. On the node that you want to join, run the tar command provided in the Admin Console to untar the Embedded Cluster assets. Then, run the join command to add the node to the cluster.
 
 1. In the Admin Console, either on the installation **Nodes** screen or on the **Cluster Management** page, verify that the node appears. Wait for the node's status to change to Ready.
 
