@@ -119,8 +119,8 @@ To automate controller node joins with Embedded Cluster:
    sudo ./your-app-slug get join-command
 
    curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
-   tar -xvf embedded-cluster.tar.gz && \
-   sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD
+     tar -xvf embedded-cluster.tar.gz && \
+     sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD
    ```
    **Example with JSON output:**
 
