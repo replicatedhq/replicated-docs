@@ -6,14 +6,16 @@ Remove test clusters.
 
 The 'rm' command removes test clusters immediately.
 
-You can remove clusters by specifying a cluster ID, or by using other criteria such as cluster names or tags. Alternatively, you can remove all clusters in your account at once.
+You can remove clusters by specifying a cluster ID or name, or by using other criteria such as cluster tags. Alternatively, you can remove all clusters in your account at once.
+
+When specifying a name that matches multiple clusters, all clusters with that name will be removed.
 
 This command can also be used in a dry-run mode to simulate the removal without actually deleting anything.
 
-You cannot mix the use of cluster IDs with other options like removing by name, tag, or removing all clusters at once.
+You cannot mix the use of cluster IDs or names with other options like removing by tag or removing all clusters at once.
 
 ```
-replicated cluster rm ID [ID …] [flags]
+replicated cluster rm ID_OR_NAME [ID_OR_NAME …] [flags]
 ```
 
 ### Aliases
@@ -25,8 +27,11 @@ rm, delete
 ### Examples
 
 ```
-# Remove a specific cluster by ID
-replicated cluster rm CLUSTER_ID
+# Remove a specific cluster by ID or name
+replicated cluster rm CLUSTER_ID_OR_NAME
+
+# Remove multiple clusters by ID or name
+replicated cluster rm CLUSTER_ID_1 CLUSTER_NAME_2
 
 # Remove all clusters
 replicated cluster rm --all
@@ -38,7 +43,7 @@ replicated cluster rm --all
       --all                remove all clusters
       --dry-run            Dry run
   -h, --help               help for rm
-      --name stringArray   Name of the cluster to remove (can be specified multiple times)
+      --name stringArray   Name of the cluster to remove (can be specified multiple times) (DEPRECATED: use ID_OR_NAME arguments instead)
       --tag stringArray    Tag of the cluster to remove (key=value format, can be specified multiple times)
 ```
 

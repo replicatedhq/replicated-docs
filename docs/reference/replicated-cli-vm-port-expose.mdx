@@ -9,23 +9,23 @@ The 'vm port expose' command is used to expose a specified port on a vm to the p
 This command supports different protocols including "http", "https", "ws", and "wss" for web traffic and web socket communication.
 
 ```
-replicated vm port expose VM_ID --port PORT [flags]
+replicated vm port expose VM_ID_OR_NAME --port PORT [flags]
 ```
 
 ### Examples
 
 ```
 # Expose port 8080 with HTTPS protocol
-replicated vm port expose VM_ID --port 8080 --protocol https
+replicated vm port expose VM_ID_OR_NAME --port 8080 --protocol https
 
 # Expose port 30000 with HTTP protocol
-replicated vm port expose VM_ID --port 30000 --protocol http
+replicated vm port expose VM_ID_OR_NAME --port 30000 --protocol http
 
 # Expose port 8080 with multiple protocols
-replicated vm port expose VM_ID --port 8080 --protocol http,https
+replicated vm port expose VM_ID_OR_NAME --port 8080 --protocol http,https
 
 # Expose port 8080 and display the result in JSON format
-replicated vm port expose VM_ID --port 8080 --protocol https --output json
+replicated vm port expose VM_ID_OR_NAME --port 8080 --protocol https --output json
 ```
 
 ### Options

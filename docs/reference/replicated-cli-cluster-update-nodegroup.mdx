@@ -9,17 +9,17 @@ The 'nodegroup' command allows you to update the configuration of a nodegroup wi
 If you do not provide the nodegroup ID, the command will try to resolve it based on the nodegroup name provided.
 
 ```
-replicated cluster update nodegroup [ID] [flags]
+replicated cluster update nodegroup [ID_OR_NAME] [flags]
 ```
 
 ### Examples
 
 ```
 # Update the number of nodes in a nodegroup
-replicated cluster update nodegroup CLUSTER_ID --nodegroup-id NODEGROUP_ID --nodes 3
+replicated cluster update nodegroup CLUSTER_ID_OR_NAME --nodegroup-id NODEGROUP_ID --nodes 3
 
 # Update the autoscaling limits for a nodegroup
-replicated cluster update nodegroup CLUSTER_ID --nodegroup-id NODEGROUP_ID --min-nodes 2 --max-nodes 5
+replicated cluster update nodegroup CLUSTER_ID_OR_NAME --nodegroup-id NODEGROUP_ID --min-nodes 2 --max-nodes 5
 ```
 
 ### Options
