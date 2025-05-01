@@ -7,14 +7,14 @@ Update TTL for a test cluster.
 The 'ttl' command allows you to update the Time-To-Live (TTL) of a test cluster. The TTL represents the duration for which the cluster will remain active before it is automatically terminated. The duration starts from the moment the cluster becomes active. You must provide a valid duration, with a maximum limit of 48 hours. If no TTL is specified, the default TTL is 1 hour.
 
 ```
-replicated cluster update ttl [ID] [flags]
+replicated cluster update ttl [ID_OR_NAME] [flags]
 ```
 
 ### Examples
 
 ```
 # Update the TTL for a specific cluster
-replicated cluster update ttl CLUSTER_ID --ttl 24h
+replicated cluster update ttl CLUSTER_ID_OR_NAME --ttl 24h
 ```
 
 ### Options

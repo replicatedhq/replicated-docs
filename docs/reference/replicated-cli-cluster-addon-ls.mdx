@@ -9,7 +9,7 @@ The 'cluster addon ls' command allows you to list all add-ons for a specific clu
 This can be useful for monitoring the health and configuration of add-ons or performing troubleshooting tasks.
 
 ```
-replicated cluster addon ls CLUSTER_ID [flags]
+replicated cluster addon ls CLUSTER_ID_OR_NAME [flags]
 ```
 
 ### Aliases
@@ -22,13 +22,13 @@ ls, list
 
 ```
 # List add-ons for a cluster with default table output
-replicated cluster addon ls CLUSTER_ID
+replicated cluster addon ls CLUSTER_ID_OR_NAME
 
 # List add-ons for a cluster with JSON output
-replicated cluster addon ls CLUSTER_ID --output json
+replicated cluster addon ls CLUSTER_ID_OR_NAME --output json
 
 # List add-ons for a cluster with wide table output
-replicated cluster addon ls CLUSTER_ID --output wide
+replicated cluster addon ls CLUSTER_ID_OR_NAME --output wide
 ```
 
 ### Options

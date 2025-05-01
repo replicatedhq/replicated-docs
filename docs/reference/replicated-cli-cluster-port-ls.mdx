@@ -4,12 +4,12 @@ List cluster ports for a cluster.
 
 ### Synopsis
 
-The 'cluster port ls' command lists all the ports configured for a specific cluster. You must provide the cluster ID to retrieve and display the ports.
+The 'cluster port ls' command lists all the ports configured for a specific cluster. You must provide the cluster ID or name to retrieve and display the ports.
 
 This command is useful for viewing the current port configurations, protocols, and other related settings of your test cluster. The output format can be customized to suit your needs, and the available formats include table, JSON, and wide views.
 
 ```
-replicated cluster port ls CLUSTER_ID [flags]
+replicated cluster port ls CLUSTER_ID_OR_NAME [flags]
 ```
 
 ### Aliases
@@ -22,13 +22,13 @@ ls, list
 
 ```
 # List ports for a cluster in the default table format
-replicated cluster port ls CLUSTER_ID
+replicated cluster port ls CLUSTER_ID_OR_NAME
 
 # List ports for a cluster in JSON format
-replicated cluster port ls CLUSTER_ID --output json
+replicated cluster port ls CLUSTER_ID_OR_NAME --output json
 
 # List ports for a cluster in wide format
-replicated cluster port ls CLUSTER_ID --output wide
+replicated cluster port ls CLUSTER_ID_OR_NAME --output wide
 ```
 
 ### Options

@@ -6,30 +6,33 @@ Open a new shell with kubeconfig configured.
 
 The 'shell' command opens a new shell session with the kubeconfig configured for the specified test cluster. This allows you to have immediate kubectl access to the cluster within the shell environment.
 
-You can either specify the cluster ID directly or provide the cluster name to resolve the corresponding cluster ID. The shell will inherit your existing environment and add the necessary kubeconfig context for interacting with the Kubernetes cluster.
+You can either specify the cluster ID or name directly as an argument, or provide the cluster name or ID using flags. The shell will inherit your existing environment and add the necessary kubeconfig context for interacting with the Kubernetes cluster.
 
 Once inside the shell, you can use 'kubectl' to interact with the cluster. To exit the shell, press Ctrl-D or type 'exit'. When the shell closes, the kubeconfig will be reset back to your default configuration.
 
 ```
-replicated cluster shell [ID] [flags]
+replicated cluster shell [ID_OR_NAME] [flags]
 ```
 
 ### Examples
 
 ```
-# Open a shell for a cluster by ID
-replicated cluster shell CLUSTER_ID
+# Open a shell for a cluster by ID or name
+replicated cluster shell CLUSTER_ID_OR_NAME
 
-# Open a shell for a cluster by name
+# Open a shell for a cluster by name using a flag
 replicated cluster shell --name "My Cluster"
+
+# Open a shell for a cluster by ID using a flag
+replicated cluster shell --id CLUSTER_ID
 ```
 
 ### Options
 
 ```
   -h, --help          help for shell
-      --id string     id of the cluster to have kubectl access to (when name is not provided)
-      --name string   name of the cluster to have kubectl access to.
+      --id string     id of the cluster to have kubectl access to (when name is not provided) (DEPRECATED: use ID_OR_NAME arguments instead)
+      --name string   name of the cluster to have kubectl access to. (DEPRECATED: use ID_OR_NAME arguments instead)
 ```
 
 ### Options inherited from parent commands
