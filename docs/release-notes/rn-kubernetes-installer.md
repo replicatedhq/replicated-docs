@@ -10,6 +10,13 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.02-0
+
+Released on May 2, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-02-0}
+* Fixed an issue that causes air gapped installs to fail with Rook 1.16.x due to a malformatted image tag in the Ceph toolbox pod.
+
 ## v2025.04.03-0
 
 Released on April 3, 2025
