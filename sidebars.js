@@ -214,6 +214,16 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Enterprise Portal',
+      items: [
+        'vendor/enterprise-portal-about',
+        'vendor/enterprise-portal-configure',
+        'vendor/enterprise-portal-invite',
+        'vendor/enterprise-portal-use',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Compatibility Matrix',
       items: [
         'vendor/testing-about',
