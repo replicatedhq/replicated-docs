@@ -272,7 +272,7 @@ spec:
 
 ## Task 4: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configure Local Image Registries in the Admin Console](/enterprise/image-registry-settings).
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 

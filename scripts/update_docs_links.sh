@@ -8,8 +8,8 @@ patterns=(
   # "Replicated Onboarding:Onboard to the Replicated Platform"
   # Add patterns here, one per line
   # "Old Title:New Title"
-  "Using the Proxy Registry with KOTS Installations:Use the Proxy Registry with Replicated Installers"
-  # "Use the Proxy Registry with KOTS Installations:Use the Proxy Registry with Replicated Installers"
+  "Configure Local Image Registries:Configure Local Image Registries in the Admin Console"
+  "Configuring Local Image Registries:Configure Local Image Registries in the Admin Console"
 )
 
 # Count of files processed and replacements made
