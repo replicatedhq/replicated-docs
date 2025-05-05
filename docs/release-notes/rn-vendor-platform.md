@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on May 2, 2025
 
 ### New Features {#new-features-v2025-05-02-0}
-* A "view expected bundle contents" button has been added to the channel release history page for releases that do not yet have an airgap bundle.
+* Adds a **View expected bundle contents** button to the channel **Release History** page for releases that do not have an `.airgap` bundle.
 
 ## v2025.04.28-4
 
