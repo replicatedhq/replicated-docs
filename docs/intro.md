@@ -29,7 +29,7 @@ pagination_next: null
         <p>The Replicated SDK's Helm values support various configuration options, like adding custom annotations across all resources, defining container resource requirements, and more.</p>
     </li>
     <li>
-      <a href="https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml">Learn more</a>
+      <a href="/vendor/replicated-sdk-customizing">Learn more</a>
     </li>
   </ul>
 </section>
