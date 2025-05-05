@@ -1,4 +1,5 @@
-For each Helm chart in the release, find the corresponding HelmChart custom resource and update `apiVersion` to `kots.io/v1beta2`. Then, do the following to configure the HelmChart v2 custom resource:
+For each Helm chart in the release, open the corresponding KOTS HelmChart custom resource. In the HelmChart custom resource, do the following:
+   1. Update `apiVersion` to `kots.io/v1beta2`.
    1. Rewrite image names to use the Replicated proxy registry and inject the image pull secret for the proxy registry. See [HelmChart v2](/vendor/private-images-kots#helmchart-v2) in _Use the Proxy Registry with Replicated Installers_.
    1. Configure the `builder` key to allow your users to push images to their own local registries. See [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
    1. Rewrite image names to the user's local image registry, if a local registry was configured. See [Rewrite Application Image Names with HelmChart v2 for Local Registries](/vendor/helmchart-local-registries).
