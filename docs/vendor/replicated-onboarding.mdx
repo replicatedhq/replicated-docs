@@ -6,6 +6,9 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import TestYourChanges from "../partials/getting-started/_test-your-changes.mdx"
 import UnauthorizedError from "../partials/replicated-sdk/_401-unauthorized.mdx"
+import StepCreds from "../partials/proxy-service/_step-creds.mdx"
+import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
+import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
 
 # Onboard to the Replicated Platform
 
@@ -83,11 +86,25 @@ To create an application:
    export REPLICATED_APP=my-app
    ```
 
-### Task 2: Connect Your Image Registry
+### Task 2: Rewrite Image Names in Helm Values to Use the Proxy Registry
 
-Add credentials for your image registry to the Vendor Portal. This will allow you to use the Replicated proxy registry in a later step so that you can grant proxy access to application images without exposing registry credentials to your customers.
+Update your Helm values to rewrite image names to use the Replicated proxy registry. The proxy regsitry allows you can grant proxy access to application images without exposing registry credentials to your customers.
 
-For more information, see [Connect to an External Registry](/vendor/packaging-private-images).
+:::note
+You will add a custom domain for the proxy registry as part of [Task 9: Alias Replicated Endpoints with Your Own Domains](#task-9-alias-replicated-endpoints-with-your-own-domains).
+:::
+
+To rewrite image names to use the proxy registry:
+
+1. <StepCreds/>
+
+1. <RewriteHelmValues/>
+
+1. If your application is deployed as multiple Helm charts, repeat the previous step to rewrite image names in the Helm values for each of your charts.
+
+1. Continue to the next task.
+
+   As part of [Task 4: Create the Initial Release with KOTS HelmChart and Embedded Cluster Config](#first-release), you will inject a Replicated-generated pull secret into your Helm values that grants authentication to pull your private images through the proxy registry.
 
 ### Task 3: Add the Replicated SDK and Package your Chart
 
@@ -146,15 +163,32 @@ To create the first release for your application:
     
       For more information, see [Use Embedded Cluster](/vendor/embedded-overview).
 
-   1. Create a new YAML file. In this file, configure the KOTS HelmChart custom resource by completing the workflow in [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+   1. Create a new YAML file named `YOUR_CHART_NAME.yaml`. For example, `samplechart.yaml`. In the file, add the following to create the KOTS HelmChart v2 custom resource for your primary Helm chart, updating the fields as needed to match the name and version of the chart:
+
+      ```yaml
+      # KOTS HelmChart custom resource
+      apiVersion: kots.io/v1beta2
+      kind: HelmChart
+      metadata:
+        name: samplechart
+      spec:
+        chart:
+          # name must match the chart name from the .tgz chart archive
+          name: samplechart
+          # chartVersion must match the chart version from the .tgz chart archive
+          chartVersion: 1.2.3 
+      ```
+      For more information about configuring these fields, see [HelmChart v2](custom-resource-helmchart-v2).    
    
       <details>
       <summary>What is the KOTS HelmChart custom resource?</summary>
       
-      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster. As part of configuring the KOTS HelmChart custom resource, you will rewrite image names and add image pull secrets to allow your application images to be accessed through the Replicated proxy registry.
+      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster.
       </details>
 
-   1. If your application is deployed as multiple Helm charts, repeat the step above to add a separate HelmChart custom resource for each Helm chart archive in the release.
+   1. <InjectPullSecret/>
+   
+   1. If your application is deployed as multiple Helm charts, repeat the previous steps to add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
 
    1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
    
@@ -464,9 +498,9 @@ To add support for air gap installations:
    For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
    </details>
 
-1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `values` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
+1. If you have not done so already as part of [Task 4: Create and Install the Initial Release](#first-release), ensure that the `optionalValues` key in the KOTS HelmChart custom resource correctly rewrites image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
 
-   For more information, see [Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart Custom Resource v2_.
+   For more information, see [Rewrite Image Names with HelmChart v2 for Local Registries](/vendor/helmchart-local-registries).
 
 1. Create and promote a new release with your changes. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 

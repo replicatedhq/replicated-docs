@@ -3,6 +3,7 @@ import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 import AdditionalNs from "../partials/proxy-service/_step-additional-ns.mdx"
+import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
 
 # Use the Proxy Registry with Replicated Installers
 
@@ -24,48 +25,7 @@ To use the proxy registry with HelmChart v2 installations:
 
 1. <RewriteHelmValues/>
 
-1. Provide authentication for the proxy registry by configuring the HelmChart v2 to inject a Replicated image pull secret into your Helm values. Use the KOTS [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) template function to get the pull secret name.
-
-    <details>
-    <summary>What is the Replicated image pull secret?</summary>
-    <p>During application deployment, KOTS automatically creates an `imagePullSecret` with `type: kubernetes.io/dockerconfigjson` that is based on the customer license. This secret is used to authenticate with the proxy registry and grant proxy access to private images. For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.</p>
-    </details>
-
-    **Example**:
-
-    ```yaml
-    # kots.io/v1beta2 HelmChart custom resource
-
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    metadata:
-      name: samplechart
-    spec:
-      values:
-        image: 
-          # Get the pull secret name with ImagePullSecretName
-          pullSecrets:
-            - name: '{{repl ImagePullSecretName }}'
-    ```
-    Ensure that you provide this pull secret in any Pod definitions that reference images to be pulled through the proxy registry.
-
-    **Example**:
-
-    ```yaml
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
-      # Access the value to provide the KOTS pull secret
-      {{- with .Values.image.pullSecrets }}
-      imagePullSecrets:
-      {{- toYaml . | nindent 2 }}
-      {{- end }}
-    ```
+1. <InjectPullSecret/>
 
 1. <AdditionalNs/>
 

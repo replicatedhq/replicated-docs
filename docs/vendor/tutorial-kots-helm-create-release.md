@@ -117,7 +117,6 @@ To create a release:
 
 Create a customer with the KOTS entitlement so that you can install the release in your cluster using Replicated KOTS. See [Step 5: Create a KOTS-Enabled Customer](tutorial-kots-helm-create-customer).
 
-## Related Topics
+## Related Topic
 
-* [About Channels and Releases](/vendor/releases-about)
-* [Configuring the HelmChart Custom Resource](/vendor/helm-native-v2-using)
+[About Channels and Releases](/vendor/releases-about)
