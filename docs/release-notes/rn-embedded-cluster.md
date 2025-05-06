@@ -32,15 +32,20 @@ Released on May 6, 2025
 </table>
 
 ### New Features {#new-features-2-4-0}
-* Multi-node and high availability clusters are now generally available. Note that node roles are still beta.
-* Joining nodes to the cluster is easier than ever thanks to a few improvements. Previously, users had to obtain the correct version of the binary without any product guidance. Now the binary is hosted and served from the first node on which Embedded Cluster was installed, and users can copy and paste commands from the Admin Console to download the binary and join new nodes. Additionally, the air gap bundle is no longer needed to join nodes to the cluster, eliminating the need to redownload the air gap bundle on every node. Therefore, the `--airgap-bundle` flag is now deprecated for the `join` command.
-* Adds the `join print-command` command to enable CLI-based and automated setup of multi-node clusters. Rather than go to the Admin Console to get join commands, `join print-command` can be used to determine which commands must be run on other nodes to join them to the cluster. The `--output json` option is useful for automation. Note that this will only give the commands for joining controllers, and node roles are not yet supported.
-* Adds support for the Multi-node Cluster license field that enables you to choose whether a customer has access to installing multi-node Embedded Clusters. If this license option is disabled, customers will not be prompted to join nodes during the installation, and the button to join nodes will not be present on the Nodes page.
+* Multi-node and high availability clusters are generally available (GA).
+   :::note
+   Configuring node roles with the `roles` key is still beta.
+   :::
+* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. When the `--output json` option in passed, `join print-command` prints the commands in JSON format. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. 
+* Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the join commands are not present on the **Nodes** page.
 
 ### Improvements {#improvements-2-4-0}
-* Ensures that the binary used to join a node is for the same application version that is running in the environment.
-* When prompted to enable high availability while joining a third or more controller node, the default response is now yes to encourage users to enable high availability.
-* Adds support to configure `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
+* Various improvements to the node join process:
+  * The Embedded Cluster binary is hosted and served from the first node where Embedded Cluster was installed. This allows users to copy and paste commands from the Admin Console to download the binary and join new nodes.
+  * The `--airgap-bundle` flag is deprecated for the `join` command because the air gap bundle is no longer needed to join nodes to the cluster. This eliminates the need to redownload the air gap bundle on each node before joining.
+  * Ensures that the version of the binary used to join a node is the same version that is running in the cluster.
+  * When prompted to enable high availability while joining a third or more controller node, the default response is yes to encourage users to enable high availability.
+* Adds support for configuring `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
 	* `http_proxy` or `HTTP_PROXY`
 	* `https_proxy` or `HTTPS_PROXY`
 	* `no_proxy` or `NO_PROXY`
