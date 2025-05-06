@@ -120,4 +120,4 @@ Create a customer with the KOTS entitlement so that you can install the release 
 ## Related Topics
 
 * [About Channels and Releases](/vendor/releases-about)
-* [Configuring the HelmChart Custom Resource](/vendor/helm-native-v2-using)
+* [Configuring the HelmChart Custom Resource v2](/vendor/helm-native-v2-using)
