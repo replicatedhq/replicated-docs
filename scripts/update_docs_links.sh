@@ -5,9 +5,11 @@
 
 # Define replacement patterns with the format "[search pattern]:[replacement]"
 patterns=(
-  "Replicated Onboarding:Onboard to the Replicated Platform"
+  # "Replicated Onboarding:Onboard to the Replicated Platform"
   # Add patterns here, one per line
   # "Old Title:New Title"
+  "Configure Local Image Registries:Configure Local Image Registries in the Admin Console"
+  "Configuring Local Image Registries:Configure Local Image Registries in the Admin Console"
 )
 
 # Count of files processed and replacements made
@@ -29,11 +31,10 @@ for file in $files; do
     # Split the pattern_pair into search and replacement parts
     IFS=':' read -r search replacement <<< "$pattern_pair"
     
-    # Check if file contains the pattern
-    if grep -q "see \[${search}\]" "$file" || grep -q "See \[${search}\]" "$file"; then
+    # Check if file contains the pattern - look for the link format [Title]
+    if grep -q "\[${search}\]" "$file"; then
       # Make the replacements - use | as delimiter instead of / to avoid issues with paths
-      sed -i '' "s|see \[${search}\]|see \[${replacement}\]|g" "$file"
-      sed -i '' "s|See \[${search}\]|See \[${replacement}\]|g" "$file"
+      sed -i '' "s|\[${search}\]|\[${replacement}\]|g" "$file"
       
       echo "In $file:"
       echo "  Replaced: '$search' → '$replacement'"
