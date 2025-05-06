@@ -32,24 +32,23 @@ Released on May 6, 2025
 </table>
 
 ### New Features {#new-features-2-4-0}
-* Adds a new command line flag `--print-command` for the `join` command. This prints a convenient command that can be executed on other VMs in order to join the cluster.
-* Improves the user experience of the node join operation. Previously, the install binary had to be obtained by the user without any guidance. Now the binary is hosted and served from the first node on which Embedded Cluster was installed.
+* Multi-node and high availability clusters and now generally available. Note that node roles are still beta.
+* Joining nodes to the cluster is easier than ever thanks to a few improvements. Previously, users had to obtain the correct version of the binary without any product guidance. Now the binary is hosted and served from the first node on which Embedded Cluster was installed, and users can copy and paste commands from the Admin Console to download the binary and join new nodes. Additionally, the air gap bundle is no longer needed to join nodes to the cluster, eliminating the need to redownload the air gap bundle on every node. Therefore, the `--airgap-bundle` flag is now deprecated for the `join` command.
+* Adds the `join print-command` command to enable CLI-based and automated setup of multi-node clusters. Rather than go to the Admin Console to get join commands, `join print-command` can be used to determine which commands must be run on other nodes to join them to the cluster. The `--output json` option is useful for automation.
+* Adds support for the Multi-node Cluster license field that enables you to choose whether a customer should have access to installing multi-node Embedded Clusters. If this license option is disabled, customers will not be prompted to join nodes during the installation, and the join commands will not be present on the Nodes page.
 
 ### Improvements {#improvements-2-4-0}
-* Deprecates the `--airgap-bundle` flag for the EC join command. All artifacts that are required for the `join` command to work are now copied from the initial node. The airgap bundle doesn't need to be provided anymore for `join` operations in airgapped installs.
-* Ensures that the installer version used for a join command is the same version that was used for the installation on the first node.
-* Prevents multi-node installations if the software license does not enable mutli-node installations.
+* Ensures that the version of the binary used to join a node is the same version that is running in the cluster.
 * Adds support to configure `http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
 	* `http_proxy` or `HTTP_PROXY`
 	* `https_proxy` or `HTTPS_PROXY`
 	* `no_proxy` or `NO_PROXY`
-
-  Note: If both, the command line flags and the environment variables are set, the command line flags will take precedent.
+  Note: If both the command line flags and the environment variables are set, the command line flags take precedence. If both lowercase and uppercase environment variables are present, the lowercase environment variables take precedence.
 
 ### Bug Fixes {#bug-fixes-2-4-0}
-* Fixes an issue that prevented a successful upgrade when a Helm installation got manually deleted or corrupted before the upgrade was attempted.
-* Fixes an issue that prevented a successful upgrade when the upgraded version added [WorkerProfiles](https://docs.replicated.com/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
-* Fixes an issue with the `reset` command where it was not able to successfully execute when some assets on the node were already manually cleaned up.
+* Fixes an issue that prevented a successful upgrade when a Helm extension was manually deleted or corrupted before the upgrade was attempted.
+* Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](https://docs.replicated.com/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
+* Fixes an issue where the `reset` command appeared to fail when parts of the installation were already cleaned up or were never successfully installed.
 
 ## 2.3.1
 
