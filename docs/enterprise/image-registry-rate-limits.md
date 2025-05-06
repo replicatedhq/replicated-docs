@@ -14,7 +14,9 @@ If your application has public Docker Hub images that are rate limited, then an 
 
 ## Prerequisite
 
-For any Helm charts in your application that are deployed with the KOTS HelmChart v2 custom resource, configure the HelmChart v2 custom resource `values` key to add an image pull secret named `APP_SLUG-kotsadm-dockerhub` (where `APP_SLUG` is your application slug) to any Docker images that could be rate-limited. This allows your users to run the `kots docker ensure-secret` command for their installation. 
+For any Helm charts in your application that are deployed with the KOTS HelmChart v2 custom resource, configure the HelmChart v2 custom resource `values` key to add an image pull secret named `APP_SLUG-kotsadm-dockerhub` (where `APP_SLUG` is your application slug) to any Docker images that could be rate-limited. This pull secret allows your users to run the `kots docker ensure-secret` command for their installation.
+
+The HelmChart `values` key creates a mapping between KOTS and the `values.yaml` file for your Helm chart. This allows you to set or delete Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself. For more information about working with the `values` key, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 **Example:**
 

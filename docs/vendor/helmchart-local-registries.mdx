@@ -1,14 +1,22 @@
-# Rewrite Application Image Names with HelmChart v2 for Local Registries
+# Rewrite Image Names with HelmChart v2 for Local Registries
 
 This topic describes how to configure the Replicated KOTS HelmChart v2 custom resource to conditionally rewrite image names for your application to support users that will push images to their own local image registry.
+
+The information in this topic applies only to Helm charts that are deployed with the HelmChart v2 custom resource.
 
 ## Overview
 
 Local image registries are required for air gap KOTS installations in existing clusters. Also, users in online environments can optionally use a local registry. For more information about how users configure and push images to a local image registry with KOTS, see [Configure Local Image Registries in the Admin Console](/enterprise/image-registry-settings).
 
-If you deploy any Helm charts with the HelmChart v2 custom resource, in order to support the use of local image registries, you must configure the HelmChart v2 custom resource `optionalValues` key so that KOTS conditionally rewrites the names of images in your Helm values during deployment, depending on if the user configured a local registry.
+If you deploy any Helm charts with the HelmChart v2 custom resource, you can configure the HelmChart v2 custom resource `optionalValues` key so that KOTS conditionally rewrites the names of images in your Helm values during deployment, depending on if the user configured a local registry. This is required to support the use of local registries for your users.
 
-You can use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names: 
+## Prerequisite
+
+To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+## Rewrite Image Names with `optionalValues`
+
+You will use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names depending on if the user configured a local registry:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user configured a local private registry.
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryHost returns the host of the built-in registry.
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
@@ -19,49 +27,49 @@ You can use the following KOTS template functions in the `optionalValues` key to
     The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
     </details>
 
-## Prerequisite
+### Rewrite Application Image Names
 
-To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
-
-## Rewrite Application Image Names
-
-**Example:**
-
-    ```yaml
-    # KOTS HelmChart custom resource
-
-     apiVersion: kots.io/v1beta2
-     kind: HelmChart
-     metadata:
-       name: samplechart
-     spec:
-       optionalValues:
-         # Define the conditional statement in the when field
-         - when: 'repl{{ HasLocalRegistry }}'
-           values:
-             postgres:
-               image:
-                 registry: '{{repl LocalRegistryHost }}'
-                 repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
-    ```  
-
-## Rewrite the Replicated SDK Image Name
+For each of your application images, configure the HelmChart custom resource `optionalValues` key so that the image names are conditionally rewritten to the local registry in the user's installation environment.
 
 **Example:**
 
 ```yaml
-    # KOTS HelmChart custom resource
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    metadata:
-      name: samplechart
-    spec:
-      optionalValues:
-        # Rewrite Replicated SDK image to local registry
-        - when: 'repl{{ HasLocalRegistry }}'
-          values:
-            replicated:
-              image:
-                registry: '{{repl LocalRegistryHost }}'
-                repository: '{{repl LocalRegistryNamespace }}/replicated-sdk'
-    ``` 
+# KOTS HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  optionalValues:
+    # Define the conditional statement in the when field
+    - when: 'repl{{ HasLocalRegistry }}'
+      values:
+        postgres:
+          image:
+            registry: '{{repl LocalRegistryHost }}'
+            repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+```  
+
+### Rewrite the Replicated SDK Image Name
+
+The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. 
+
+**Example:**
+
+```yaml
+# KOTS HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  optionalValues:
+    # Rewrite Replicated SDK image to local registry
+    - when: 'repl{{ HasLocalRegistry }}'
+      values:
+        replicated:
+          image:
+            registry: '{{repl LocalRegistryHost }}'
+            repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
+``` 
