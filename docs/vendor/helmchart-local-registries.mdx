@@ -53,9 +53,7 @@ spec:
 
 ### Rewrite the Replicated SDK Image Name
 
-The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. 
-
-**Example:**
+The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. To conditionally rewrite the Replicated SDK image if the user configured a local registry, configure the HelmChart `optionalValues` key as shown below:
 
 ```yaml
 # KOTS HelmChart custom resource
