@@ -32,13 +32,24 @@ Released on May 6, 2025
 </table>
 
 ### New Features {#new-features-2-4-0}
-* 
+* Adds a new command line flag `--print-command` for the `join` command. This prints a convenient command that can be executed on other VMs in order to join the cluster.
+* Improves the user experience of the node join operation. Previously, the install binary had to be obtained by the user without any guidance. Now the binary is hosted and served from the first node on which Embedded Cluster was installed.
 
 ### Improvements {#improvements-2-4-0}
-* 
+* Deprecates the `--airgap-bundle` flag for the EC join command. All artifacts that are required for the `join` command to work are now copied from the initial node. The airgap bundle doesn't need to be provided anymore for `join` operations in airgapped installs.
+* Ensures that the installer version used for a join command is the same version that was used for the installation on the first node.
+* Prevents multi-node installations if the software license does not enable mutli-node installations.
+* Adds support to configure `http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
+	* `http_proxy` or `HTTP_PROXY`
+	* `https_proxy` or `HTTPS_PROXY`
+	* `no_proxy` or `NO_PROXY`
+
+  Note: If both, the command line flags and the environment variables are set, the command line flags will take precedent.
 
 ### Bug Fixes {#bug-fixes-2-4-0}
-* 
+* Fixes an issue that prevented a successful upgrade when a Helm installation got manually deleted or corrupted before the upgrade was attempted.
+* Fixes an issue that prevented a successful upgrade when the upgraded version added [WorkerProfiles](https://docs.replicated.com/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
+* Fixes an issue with the `reset` command where it was not able to successfully execute when some assets on the node were already manually cleaned up.
 
 ## 2.3.1
 
