@@ -12,11 +12,11 @@ If you deploy any Helm charts with the HelmChart v2 custom resource, you can con
 
 ## Prerequisite
 
-To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+The HelmChart `builder` key must be configured for your users to be able to push images to their own local registries. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Rewrite Image Names with `optionalValues`
 
-You will use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names depending on if the user configured a local registry:
+You will use the following KOTS template functions in the `optionalValues` key to conditionally rewrite image names, depending on if the user configured a local registry:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry): Returns true if the installation environment is configured to use a local image registry. HasLocalRegistry is always true in air gap installations. HasLocalRegistry is also true in online installations if the user configured a local private registry.
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost): Returns the host of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryHost returns the host of the built-in registry.
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace): Returns the namespace of the local registry that the user configured. Alternatively, for air gap installations with Embedded Cluster or kURL, LocalRegistryNamespace returns the namespace of the built-in registry.
@@ -25,7 +25,7 @@ You will use the following KOTS template functions in the `optionalValues` key t
     <summary>What is the registry namespace?</summary>
     
     The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
-    </details>
+    </details>    
 
 ### Rewrite Application Image Names
 
@@ -70,4 +70,5 @@ spec:
           image:
             registry: '{{repl LocalRegistryHost }}'
             repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
-``` 
+```
+For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).

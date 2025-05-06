@@ -8,17 +8,13 @@ import AdditionalNs from "../partials/proxy-service/_step-additional-ns.mdx"
 
 This topic describes how to use the Replicated proxy registry with applications deployed with Replicated installers (Embedded Cluster, KOTS existing cluster, or kURL).
 
-## Overview
-
-For installations that use a Replicated installer, KOTS automatically creates the required image pull secret for accessing the Replicated proxy registry during application deployment. When possible, KOTS also automatically rewrites image names in the application manifests to the location of the image at `proxy.replicated.com` or your custom domain.
-
 ## Configure Your Application to Use the Proxy Registry
 
-There are different methods for configuring your application to use the proxy registry depending on how your application is packaged and the installation method.
+There are different steps for configuring your application to use the proxy registry depending on how your application is packaged and the Replicated installation method used.
 
 ### HelmChart v2
 
-This section describes how to configure your application to use the proxy registry HelmChart v2 installations.
+This section describes how to configure your application to use the proxy registry for HelmChart v2 installations.
 
 To use the proxy registry with HelmChart v2 installations:
 
@@ -79,11 +75,11 @@ To use the proxy registry with HelmChart v2 installations:
 
 ### HelmChart v1 or Standard Manifests
 
-For standard manifest-based applications or Helm charts deployed with the [HelmChart v1](/reference/custom-resource-helmchart) custom resource, no additional configuration is required. KOTS automatically rewrites image names and injects image pull secrets during deployment for these application types.
-
 :::note
 <Deprecated/>
 :::
+
+For standard manifest-based applications or Helm charts deployed with the [HelmChart v1](/reference/custom-resource-helmchart) custom resource, no additional configuration is required. KOTS automatically rewrites image names and injects image pull secrets during deployment for these application types.
 
 <details>
   <summary>How does KOTS patch image names?</summary>
