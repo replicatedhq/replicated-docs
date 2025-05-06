@@ -39,6 +39,7 @@ Released on May 6, 2025
 
 ### Improvements {#improvements-2-4-0}
 * Ensures that the version of the binary used to join a node is the same version that is running in the cluster.
+* When prompted to enable high availability while joining a third or more controller node, the default response is now yes to encourage users to enable high availability.
 * Adds support to configure `http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
 	* `http_proxy` or `HTTP_PROXY`
 	* `https_proxy` or `HTTPS_PROXY`
