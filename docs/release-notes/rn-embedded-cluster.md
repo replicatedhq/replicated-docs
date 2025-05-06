@@ -32,7 +32,7 @@ Released on May 6, 2025
 </table>
 
 ### New Features {#new-features-2-4-0}
-* Multi-node and high availability clusters and now generally available. Note that node roles are still beta.
+* Multi-node and high availability clusters are now generally available. Note that node roles are still beta.
 * Joining nodes to the cluster is easier than ever thanks to a few improvements. Previously, users had to obtain the correct version of the binary without any product guidance. Now the binary is hosted and served from the first node on which Embedded Cluster was installed, and users can copy and paste commands from the Admin Console to download the binary and join new nodes. Additionally, the air gap bundle is no longer needed to join nodes to the cluster, eliminating the need to redownload the air gap bundle on every node. Therefore, the `--airgap-bundle` flag is now deprecated for the `join` command.
 * Adds the `join print-command` command to enable CLI-based and automated setup of multi-node clusters. Rather than go to the Admin Console to get join commands, `join print-command` can be used to determine which commands must be run on other nodes to join them to the cluster. The `--output json` option is useful for automation.
 * Adds support for the Multi-node Cluster license field that enables you to choose whether a customer should have access to installing multi-node Embedded Clusters. If this license option is disabled, customers will not be prompted to join nodes during the installation, and the join commands will not be present on the Nodes page.
