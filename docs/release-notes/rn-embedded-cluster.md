@@ -49,6 +49,7 @@ Released on May 6, 2025
 	* `http_proxy` or `HTTP_PROXY`
 	* `https_proxy` or `HTTPS_PROXY`
 	* `no_proxy` or `NO_PROXY`
+
   Note: If both the command line flags and the environment variables are set, the command line flags take precedence. If both lowercase and uppercase environment variables are present, the lowercase environment variables take precedence.
 
 ### Bug Fixes {#bug-fixes-2-4-0}
