@@ -12,11 +12,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Embedded Cluster Fully Supports Custom Domains</h3>
-        <p>Update the Embedded Cluster Config to alias the `replicated.app` and `proxy.replicated.com` endpoints with your custom domains.</p>
+        <h3>Configure the Kubelet with Embedded Cluster</h3>
+        <p>Use the Embedded Cluster Config to change the Kubelet configuration based on your application's needs.</p>
     </li>
     <li>
-      <a href="/vendor/custom-domains-using#ec">Learn more</a>
+      <a href="/reference/embedded-config#configure-the-kubelet">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +25,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>View Embedded Cluster Logs</h3>
-        <p>To help troubleshoot Embedded Cluster deployments, you can view logs for both Embedded Cluster and the k0s systemd service.</p>
+        <h3>Customize the SDK with Helm Values</h3>
+        <p>The Replicated SDK's Helm values support various configuration options, like adding custom annotations across all resources, defining container resource requirements, and more.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-troubleshooting">Learn more</a>
+      <a href="/vendor/replicated-sdk-customizing">Learn more</a>
     </li>
   </ul>
 </section>

@@ -2,6 +2,8 @@
 
 This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
 
+For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
+
 ## Customize RBAC for the SDK
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.

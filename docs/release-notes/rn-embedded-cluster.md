@@ -10,6 +10,53 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+## 2.4.0
+
+Released on May 6, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.4.0+k8s-1.30</td>
+    <td id="center">2.4.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.16</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-4-0}
+* Multi-node and high availability clusters are generally available (GA).
+   :::note
+   Configuring node roles with the `roles` key is still beta.
+   :::
+* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. When the `--output json` option in passed, `join print-command` prints the commands in JSON format. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. 
+* Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the **Add node** button is not present on the **Nodes** page.
+
+### Improvements {#improvements-2-4-0}
+* Various improvements to the node join process:
+  * The Embedded Cluster binary is hosted and served from the first node where Embedded Cluster was installed. This allows users to copy and paste commands from the Admin Console to download the binary and join new nodes.
+  * The `--airgap-bundle` flag is deprecated for the `join` command because the air gap bundle is no longer needed to join nodes to the cluster. This eliminates the need to redownload the air gap bundle on each node before joining.
+  * Ensures that the version of the binary used to join a node is the same version that is currently installed on other nodes.
+  * When prompted to enable high availability while joining a third or more controller node, the default response is yes to encourage users to enable high availability.
+* Adds support for configuring `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
+	* `http_proxy` or `HTTP_PROXY`
+	* `https_proxy` or `HTTPS_PROXY`
+	* `no_proxy` or `NO_PROXY`
+
+  Note: If both the command line flags and the environment variables are set, the command line flags take precedence. If both lowercase and uppercase environment variables are present, the lowercase environment variables take precedence.
+
+### Bug Fixes {#bug-fixes-2-4-0}
+* Fixes an issue that prevented a successful upgrade when a Helm extension was manually deleted or corrupted before the upgrade was attempted.
+* Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](https://docs.replicated.com/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
+* Fixes an issue where the `reset` command appeared to fail when parts of the installation were already cleaned up or were never successfully installed.
+
 ## 2.3.1
 
 Released on April 8, 2025

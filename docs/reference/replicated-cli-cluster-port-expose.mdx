@@ -13,23 +13,23 @@ This command supports different protocols including "http", "https", "ws", and "
 NOTE: Currently, this feature only supports VM-based cluster distributions.
 
 ```
-replicated cluster port expose CLUSTER_ID --port PORT [flags]
+replicated cluster port expose CLUSTER_ID_OR_NAME --port PORT [flags]
 ```
 
 ### Examples
 
 ```
 # Expose port 8080 with HTTPS protocol and wildcard DNS
-replicated cluster port expose CLUSTER_ID --port 8080 --protocol https --wildcard
+replicated cluster port expose CLUSTER_ID_OR_NAME --port 8080 --protocol https --wildcard
 
-# Expose port 3000 with HTTP protocol
-replicated cluster port expose CLUSTER_ID --port 3000 --protocol http
+# Expose port 30000 with HTTP protocol
+replicated cluster port expose CLUSTER_ID_OR_NAME --port 30000 --protocol http
 
 # Expose port 8080 with multiple protocols
-replicated cluster port expose CLUSTER_ID --port 8080 --protocol http,https
+replicated cluster port expose CLUSTER_ID_OR_NAME --port 8080 --protocol http,https
 
 # Expose port 8080 and display the result in JSON format
-replicated cluster port expose CLUSTER_ID --port 8080 --protocol https --output json
+replicated cluster port expose CLUSTER_ID_OR_NAME --port 8080 --protocol https --output json
 ```
 
 ### Options

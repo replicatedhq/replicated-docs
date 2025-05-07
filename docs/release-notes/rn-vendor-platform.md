@@ -10,6 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.02-0
+
+Released on May 2, 2025
+
+### New Features {#new-features-v2025-05-02-0}
+* Adds a **View expected bundle contents** button to the channel **Release History** page for releases that do not have an `.airgap` bundle.
+
+## v2025.04.28-4
+
+Released on April 28, 2025
+
+### New Features {#new-features-v2025-04-28-4}
+* Adds support for archiving and unarchiving instances that are inactive, air gap, or that were installed with a development license. Archived instances are hidden from all views. To archive or unarchive an instance, select **Archive Instance** or **Unarchive Instance** on the instance detail page. To view a list of archived instances, enable the **Show Archived Instances** option on the **Customers > Instances** tab.
+
 ## v2025.04.17-2
 
 Released on April 17, 2025

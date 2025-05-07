@@ -6,7 +6,7 @@ Create one or more test VMs with specified distribution, version, and configurat
 
 Create one or more test VMs with a specified distribution, version, and a variety of customizable configuration options.
 
-This command allows you to provision VMs with different distributions (e.g., Ubuntu, RHEL), versions, instance types, and more. You can set the number of VMs to create, disk size, and specify the network to use. If no network is provided, a new network will be created automatically. You can also assign tags to your VMs and use a TTL (Time-To-Live) to define how long the VMs should live.
+This command allows you to provision VMs with different distributions (e.g., Ubuntu, RHEL), versions, instance types, and more. You can set the number of VMs to create, disk size, and specify the network to use. If no network is provided, a new network will be created automatically. You can also assign tags to your VMs and use a TTL (Time-To-Live) to define how long the VMs should live. If no TTL is specified, the default TTL is 1 hour.
 
 By default, the command provisions one VM, but you can customize the number of VMs to create by using the "--count" flag. Additionally, you can use the "--dry-run" flag to simulate the creation without actually provisioning the VMs.
 
@@ -27,24 +27,31 @@ replicated vm create --distribution ubuntu --version 22.04 --count 3
 
 # Create 5 Ubuntu VMs with a custom instance type and disk size
 replicated vm create --distribution ubuntu --version 20.04 --count 5 --instance-type r1.medium --disk 100
+
+# Create a VM with an SSH public key
+replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub
+
+# Create a VM with multiple SSH public keys
+replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
 ```
 
 ### Options
 
 ```
-      --count int              Number of matching VMs to create (default 1)
-      --disk int               Disk Size (GiB) to request per node (default 50)
-      --distribution string    Distribution of the VM to provision
-      --dry-run                Dry run
-  -h, --help                   help for create
-      --instance-type string   The type of instance to use (e.g. r1.medium)
-      --name string            VM name (defaults to random name)
-      --network string         The network to use for the VM(s). If not supplied, create a new network
-  -o, --output string          The output format to use. One of: json|table|wide (default "table")
-      --tag stringArray        Tag to apply to the VM (key=value format, can be specified multiple times)
-      --ttl string             VM TTL (duration, max 48h)
-      --version string         Version to provision (format is distribution dependent)
-      --wait duration          Wait duration for VM(s) to be ready (leave empty to not wait)
+      --count int                    Number of matching VMs to create (default 1)
+      --disk int                     Disk Size (GiB) to request per node (default 50)
+      --distribution string          Distribution of the VM to provision
+      --dry-run                      Dry run
+  -h, --help                         help for create
+      --instance-type string         The type of instance to use (e.g. r1.medium)
+      --name string                  VM name (defaults to random name)
+      --network string               The network to use for the VM(s). If not supplied, create a new network
+  -o, --output string                The output format to use. One of: json|table|wide (default "table")
+      --ssh-public-key stringArray   Path to SSH public key file to add to the VM (can be specified multiple times)
+      --tag stringArray              Tag to apply to the VM (key=value format, can be specified multiple times)
+      --ttl string                   VM TTL (duration, max 48h)
+      --version string               Version to provision (format is distribution dependent)
+      --wait duration                Wait duration for VM(s) to be ready (leave empty to not wait)
 ```
 
 ### Options inherited from parent commands
