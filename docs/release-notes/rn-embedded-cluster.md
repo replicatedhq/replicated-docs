@@ -43,7 +43,7 @@ Released on May 6, 2025
 * Various improvements to the node join process:
   * The Embedded Cluster binary is hosted and served from the first node where Embedded Cluster was installed. This allows users to copy and paste commands from the Admin Console to download the binary and join new nodes.
   * The `--airgap-bundle` flag is deprecated for the `join` command because the air gap bundle is no longer needed to join nodes to the cluster. This eliminates the need to redownload the air gap bundle on each node before joining.
-  * Ensures that the version of the binary used to join a node is the same version that is running in the cluster.
+  * Ensures that the version of the binary used to join a node is the same version that is currently installed on other nodes.
   * When prompted to enable high availability while joining a third or more controller node, the default response is yes to encourage users to enable high availability.
 * Adds support for configuring `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
 	* `http_proxy` or `HTTP_PROXY`
