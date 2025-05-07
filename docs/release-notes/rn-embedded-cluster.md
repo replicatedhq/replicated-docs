@@ -36,8 +36,8 @@ Released on May 6, 2025
    :::note
    Configuring node roles with the `roles` key is still beta.
    :::
-* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. When the `--output json` option in passed, `join print-command` prints the commands in JSON format. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. 
-* Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the **Add node** button is not present on the **Nodes** page.
+* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. When the `--output json` option in passed, `join print-command` prints the commands in JSON format. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. For more information, see [Automate Controller Node Joins](/enterprise/embedded-manage-nodes#automate-node-joins) in _Manage Multi-Node Clusters with Embedded Cluster_.
+* Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the **Add node** button is not present on the **Nodes** page. For more information, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
 ### Improvements {#improvements-2-4-0}
 * Various improvements to the node join process:
@@ -45,16 +45,18 @@ Released on May 6, 2025
   * The `--airgap-bundle` flag is deprecated for the `join` command because the air gap bundle is no longer needed to join nodes to the cluster. This eliminates the need to redownload the air gap bundle on each node before joining.
   * Ensures that the version of the binary used to join a node is the same version that is currently installed on other nodes.
   * When prompted to enable high availability while joining a third or more controller node, the default response is yes to encourage users to enable high availability.
+
+  For more information about joining nodes, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes#automate-node-joins).
 * Adds support for configuring `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
 	* `http_proxy` or `HTTP_PROXY`
 	* `https_proxy` or `HTTPS_PROXY`
 	* `no_proxy` or `NO_PROXY`
 
-  Note: If both the command line flags and the environment variables are set, the command line flags take precedence. If both lowercase and uppercase environment variables are present, the lowercase environment variables take precedence.
+  For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
 
 ### Bug Fixes {#bug-fixes-2-4-0}
 * Fixes an issue that prevented a successful upgrade when a Helm extension was manually deleted or corrupted before the upgrade was attempted.
-* Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](https://docs.replicated.com/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
+* Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
 * Fixes an issue where the `reset` command appeared to fail when parts of the installation were already cleaned up or were never successfully installed.
 
 ## 2.3.1
