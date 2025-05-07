@@ -15,8 +15,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on May 7, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-05-07-1}
-* VMs now are created with a default 'disk_gib' size of '50' (which matches the size created using Replicated CLI) when creating VMs via the Vendor V3 API via 'POST v3/vm'.
-* Fixed an issue which allowed teams who did not have the kurl installers entitlement enabled to create clusters with `replicated cluster create --distribution kurl`.
+* Compatibility Matrix: VMs created with the Vendor API v3 using `POST v3/vm` have a default `disk_gib` size of 50. This matches the size created using Replicated CLI.
+* Fixed an issue which allowed teams that did not have the kURL installers entitlement enabled to create clusters with `replicated cluster create --distribution kurl`.
 
 ## v2025.05.02-0
 
