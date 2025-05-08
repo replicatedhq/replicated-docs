@@ -1,0 +1,46 @@
+# replicated vm scp-endpoint
+
+Get the SCP endpoint of a VM
+
+### Synopsis
+
+Get the SCP endpoint and port of a VM.
+
+The output will be in the format: scp://username@hostname:port
+
+You can identify the VM either by its unique ID or by its name.
+
+Note: SCP endpoints can only be retrieved from VMs in the "running" state.
+
+```
+replicated vm scp-endpoint VM_ID_OR_NAME [flags]
+```
+
+### Examples
+
+```
+# Get SCP endpoint for a specific VM by ID
+replicated vm scp-endpoint aaaaa11
+
+# Get SCP endpoint for a specific VM by name
+replicated vm scp-endpoint my-test-vm
+```
+
+### Options
+
+```
+  -h, --help   help for scp-endpoint
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated vm](replicated-cli-vm)	 - Manage test virtual machines.
+
