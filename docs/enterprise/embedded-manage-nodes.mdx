@@ -80,22 +80,9 @@ To automate controller node joins with Embedded Cluster:
    ```
    sudo ./your-app-slug join print-command
 
-   curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz && \
-     tar -xvf embedded-cluster.tar.gz && \
+   curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o your-app-slug.tar.gz && \
+     tar -xvf your-app-slug.tar.gz && \
      sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD
-   ```
-   **Example with JSON output:**
-
-   ```
-   sudo ./your-app-slug join print-command -ojson
-
-   {
-   "commands": [
-      "curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o embedded-cluster.tar.gz",
-      "tar -xvf embedded-cluster.tar.gz",
-      "sudo ./embedded-cluster join 172.17.0.2:30000 1234aBcD"
-     ]
-   }
    ```
 
 1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
