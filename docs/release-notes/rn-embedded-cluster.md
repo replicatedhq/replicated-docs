@@ -36,7 +36,7 @@ Released on May 6, 2025
    :::note
    Configuring node roles with the `roles` key is still beta.
    :::
-* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. When the `--output json` option in passed, `join print-command` prints the commands in JSON format. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. For more information, see [Automate Controller Node Joins](/enterprise/embedded-manage-nodes#automate-node-joins) in _Manage Multi-Node Clusters with Embedded Cluster_.
+* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. For more information, see [Automate Controller Node Joins](/enterprise/embedded-manage-nodes#automate-node-joins) in _Manage Multi-Node Clusters with Embedded Cluster_.
 * Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the **Add node** button is not present on the **Nodes** page. For more information, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
 ### Improvements {#improvements-2-4-0}
