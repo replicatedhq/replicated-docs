@@ -722,6 +722,7 @@ const sidebars = {
       'reference/replicated-cli-vm-port-ls',
       'reference/replicated-cli-vm-port-rm',
       'reference/replicated-cli-vm-rm',
+      'reference/replicated-cli-vm-scp-endpoint',
       'reference/replicated-cli-vm-ssh-endpoint',
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',
