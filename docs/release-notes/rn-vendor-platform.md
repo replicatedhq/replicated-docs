@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.12-5
+
+Released on May 12, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-12-5}
+* Fixed an issue in the Compatibility Matrix overview where deleting the last VM after deleting previous VMs would cause the UI to crash with a "Something Went Wrong" error.
+
 ## v2025.05.07-1
 
 Released on May 7, 2025
