@@ -4,37 +4,28 @@ This topic provides an overview of the Replicated Enterprise Portal.
 
 ## Overview
 
-The Enterprise Portal is a web-based portal that provides a centralized location where your end customers can find installation and upgrade instructions, manage their license, manage team memebers and service accounts, collect and upload support bundles, and more.
+The Enterprise Portal is a customizable web-based portal that provides a centralized location where your customers can find installation and upgrade instructions, manage their license, manage team members and service accounts, collect and upload support bundles, and more.
 
-The Enterprise Portal includes customer-specific, customizable installation and upgrade instructions that are automatically generated based on the customer's license details.
+The Enterprise Portal includes customer-specific installation and upgrade instructions that are automatically generated based on the installation options that are available to the customer based on their license details. Additionally, the system generates a unique service account that is used to track installation attempts and control access to downloads.
 
-## Comparison to the Download Portal
+For more information about how to log in to and use the Enterprise Portal, see [Access and Use the Enterprise Portal](enterprise-portal-use).
 
-The Enterprise Portal is the next generation version of the Download Portal.
+Additionally, your customers can access the Enterprise Portal outside of the installation environment for their instance of your application, making it easier
 
-You can migrate your customers from the Download Portal to the Enterprise Portal by enabling the Enterprise Portal for their license. For more information, see [Enable the Enterprise Portal for a Customer](enterprise-portal-invite) in _Invite Customers to the Enterprise Portal_.
+### Comparison to the Download Portal
 
-## About Configuring the Enterprise Portal
+The Enterprise Portal is the next generation version of the Replicated Download Portal. Compared to the Download Portal, the Enterprise Portal includes several new features designed to make it easier for your customers to install, upgrade, and manage user access to their instance of your application.
 
-* License type controls the install/upgrade instructions that are shown to the customer
-* Customizable branding and documentation
-* Invitation and notification emails
-* etc
+You can migrate your customers from the Download Portal to the Enterprise Portal by enabling the Enterprise Portal for their license. For more information, see [Manage Enterprise Portal Access](enterprise-portal-invite).
+
+## About Customizing the Enterprise Portal
+
+You can customize the Enterprise Portal to use a custom domain, provide custom links and contact information, customize the look and feel of the Enterprise Portal, edit the content of invitation and notification emails, and more. This helps ensure that your customers have a consistent branding experience.
 
 For more information, see [Customize the Enterprise Portal](enterprise-portal-configure).
-
-## About Customer Insights and Telemetry
-
-Just-in-Time Service Account Generation:
-   *  The system generates a unique service account.
-   *  This service account is used to track installation attempts and control access to downloads. This is viewable on the customer/reporting detail page for each customer
-
-The vendor is able to see the progress of each install attempt on the reporting tab for each license.
-
-(Link to the docs page on viewing customer insights and telemetry)
 
 ## Limitations and Known Issues
 
 The Enterprise Portal has the following limitations and known issues:
 
-* Air gap instance records does not appear in the Enterprise Portal until the vendor uploads a support bundle for that instance.
+* Air gap instance records do not appear in the Enterprise Portal until the vendor uploads a support bundle for that instance.
