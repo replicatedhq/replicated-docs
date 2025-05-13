@@ -89,6 +89,28 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
 
 1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
 
+### Use a Custom Domain for the Replicated SDK Image {#sdk}
+
+The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. To view the Replicated SDK image properties, see the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+
+To use a custom domain for the SDK image:
+
+1. Add a custom domain for the Replicated registry in the Vendor Portal. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
+
+1. In the Replicated SDK Helm chart [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33), update the `image.registry` field with the custom domain that you added.
+
+     **Example:**
+
+     ```yaml
+     # SDK Helm chart values.yaml
+     image:
+       # update image.registry with your custom domain
+       registry: example.your-domain.com
+       repository: "library/replicated-sdk-image"
+       tag: "1.0.0"
+       pullPolicy: IfNotPresent   
+     ```
+
 ### Set a Default Domain
 
 Setting a default domain is useful for ensuring that the same domain is used across channels for all your customers.
