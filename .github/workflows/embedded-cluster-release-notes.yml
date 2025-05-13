@@ -16,7 +16,7 @@ jobs:
       - name: Generate Release Notes
         id: release-notes
         env:
-          EC_VERSION: ${{ github.event.client_payload.version }}
+          EC_VERSION: ${{ github.event.inputs.version }}
         uses: replicatedhq/release-notes-generator@main
         with:
           owner-repo: replicatedhq/embedded-cluster
@@ -29,7 +29,7 @@ jobs:
       - name: Update Release Notes
         env:
           PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
-          EC_VERSION: ${{ github.event.client_payload.version }}
+          EC_VERSION: ${{ github.event.inputs.version }}
         run: |
           # Extract EC version without v prefix if it exists
           EC_VERSION_CLEAN=${EC_VERSION#v}
