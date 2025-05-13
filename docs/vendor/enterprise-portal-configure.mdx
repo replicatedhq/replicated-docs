@@ -1,42 +1,82 @@
 # Customize the Enterprise Portal
 
-This topic describes how to customize the Enterprise Portal, including branding, invitation and notification emails, and documentation.
+This topic describes how to customize the Enterprise Portal, including using a custom domain, changing the branding, editing the content of invitation and notification emails, and adding custom documentation.
 
-## Configure a Custom Domain
+## Manage the Enterprise Portal Settings
 
-Vendors can configure a custom domain for the Enterprise Portal.
+You can edit the settings for the Enterprise Portal to use a custom domain, provide links to your support portal and email address, and customize the look and feel or the Enterprise Portal. This helps ensure a consistent brand experience for your customers.
 
-For information, see [Use Custom Domains](custom-domains-using).
+To manage Enterprise Portal settings:
 
-## Configure Custom Branding
-Vendors can customize the portal's appearance by uploading their logo, selecting color schemes, and applying other branding elements.  
-This ensures a consistent brand experience for end customers.
+1. In the Vendor Portal, go to **Enterprise Portal > Settings**.
+1. Edit the settings:
 
-To configure branding for the Enterprise Portal:
+   <table>
+     <tr>
+       <th>Field</th>
+       <th>Description</th>
+     </tr>
+     <tr>
+       <td>URL</td>
+       <td>The URL of the Enterprise Portal. You can change the URL to use a custom domain. For information, see [Use Custom Domains](custom-domains-using).</td>
+     </tr>
+     <tr>
+       <td>Title</td>
+       <td>The title of the Enterprise Portal.</td>
+     </tr>
+     <tr>
+       <td>Page overview</td>
+       <td>The page overview is displayed on the Enterprise Portal home page.</td>
+     </tr>
+     <tr>
+       <td>Support portal link</td>
+       <td>The URL for the portal that your customers can use to get support.</td>
+     </tr>
+     <tr>
+       <td>Contact email</td>
+       <td>The email address that customers can use to contact you.</td>
+     </tr>
+     <tr>
+       <td>Logo</td>
+       <td>Upload a custom PNG logo for the Enterprise Portal. The minimum size for the logo is 160px by 160px.</td>
+     </tr>
+     <tr>
+       <td>Favicon</td>
+       <td>Upload a custom favicon for the Enterprise Portal. The favicon is displayed in the browser tab.</td>
+     </tr>
+     <tr>
+       <td>Background</td>
+       <td>Select or customize the background for the Enterprise Portal.</td>
+     </tr>
+     <tr>
+       <td>Colors</td>
+       <td>Set the primary and secondary colors for the Enterprise Portal.</td>
+     </tr>
+   </table>
 
-1. Step 1
-1. Step 2
-1. Step 3
+1. Click **Save**.
 
 ## Configure Invitation and Notification Emails
 
-Vendors can configure email delegation and DMARC settings to send invitation and notification emails from their own domain.
-This allows for greater control over email deliverability and branding.
+You can customize the invitation and notification emails that are sent to your customers.
 
-Vendors will be able to customize the templates for the emails using a templating language like Jinja.
+To configure customer emails:
 
-To configure email delegation and DMARC settings:
+1. In the Vendor Portal, go to **Enterprise Portal > Customer emails**.
+1. For **Email Sender Verification**, in **From email address**, add the email address that you want to use as the sender for all system notifications sent to your customers, then click **Continue**. Adding a sender address helps ensure that your emails are delivered and are not marked as spam.
 
-1. Step 1
-1. Step 2
-1. Step 3
+    After the domain is verified automatically, the email address is displayed under **Verified Sender Address**.
+1. For **Customer Emails**, customize the subject line and body of the emails that are sent to your customers for various system events.
 
-## Configure Documentation
+## Customize Documentation
 
-Vendors can customize their pre & post install instructions with markdown.
+You can customize the documentation that is displayed in the Enterprise Portal by including a link to your installation instructions or by adding your own pre- and post-installation instructions.
 
-To configure documentation:
+To customize documentation:
 
-1. Step 1
-1. Step 2
-1. Step 3
+1. In the Vendor Portal, go to **Enterprise Portal > Knowledge Base**.
+1. In the panel on the left, select the installation type for which you want to configure documentation.
+1. Customize the documentation as desired:
+    1. In the documentation links section, add a link to relevant installation documentation.
+    1. In the documentation content section, add pre- and post-installation instructions in markdown format. Click **Preview** to see a preview of your changes.
+1. Click **Save changes**.
