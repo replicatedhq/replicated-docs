@@ -1,7 +1,7 @@
 name: embedded-cluster-release-notes
 on:
-  repository_dispatch:
-    types: [embedded-cluster-release-notes]
+  workflow_dispatch:
+    #types: [embedded-cluster-release-notes]
     inputs:
       version:
         description: Embedded Cluster version
