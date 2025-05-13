@@ -18,7 +18,7 @@ You can configure custom domains for the following services:
 
 - **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.
+- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. Additionally, the default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. By default, the Replicated registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.
 
 ## Limitations
 

@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on Apr 16, 2025
 
 ### Improvements {#improvements-1-5-1}
-* Changed the default location of the image this chart uses to be registry.replicated.com/library/replicated-sdk-image. This is anonymous and will support custom domains.
+* Changes the default location of the image that the Replicated SDK chart uses to the Replicated registry at `registry.replicated.com/library/replicated-sdk-image`. This is anonymous and supports the use of custom domains. To use a custom domain for the SDK, add the custom domain for the Replicated registry in the Vendor Portal and then specify the domain in the `registry` value for the SDK. For more information about how to add and use custom domains, see [Use a Custom Domain for the Replicated SDK Image](/vendor/custom-domains-using#sdk).
 
 ## 1.5.0
 
