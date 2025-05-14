@@ -22,7 +22,7 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 Released on April 28, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Bug Fixes {#bug-fixes-1-124-16}
 * Fixes an issue where license verification failed unexpectedly with the following error: `failed to verify signature: "IsEmbeddedClusterMultinodeEnabled" field has changed to false (license) from true (within signature)`.
@@ -31,7 +31,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on April 14, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-15}
 * Improvements for multi-node Embedded Cluster.
@@ -40,7 +40,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on April 9, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-14}
 * Improvements for multi-node Embedded Cluster.
@@ -49,7 +49,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on April 8, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-13}
 * Improvements for multi-node Embedded Cluster.
@@ -58,7 +58,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on April 2, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-11}
 * Updates to the front end to resolve CVE-2024-4068, CVE-2024-29180 and CVE-2024-29180 with high severity.
@@ -68,7 +68,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 27, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Bug Fixes {#bug-fixes-1-124-10}
 * Fixes an issue where extracting Helm charts failed on deploy if duplicate files were found in the chart. This error often looked like this: `failed to deploy helm charts: failed to find removed charts: failed to find current matching v1beta2 charts: failed to find chart name and version in /tmp/helm2856031708/curr-v1beta2/helm/mychart: failed to unarchive: reading file in tar archive: file already exists: /tmp/kots1381434460/charts/mychart/Chart.yaml`.
@@ -77,7 +77,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 24, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-9}
 * Updates to support custom domains for Embedded Cluster.
@@ -86,7 +86,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 20, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-8}
 * Updates to support custom domains for Embedded Cluster.
@@ -95,7 +95,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 17, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-7}
 * Updates to support custom domains for Embedded Cluster.
@@ -104,7 +104,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 13, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-6}
 * Improvements for Embedded Cluster upgrades.
@@ -113,7 +113,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on March 11, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Bug Fixes {#bug-fixes-1-124-5}
 * Fixes SBOM generation and signing issue. A properly signed SBOM is now included in the release artifacts.
@@ -122,7 +122,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on February 14, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-4}
 * Improves error visibility by displaying the actual error message in the UI instead of a generic one when an upgrade fails to start.
@@ -134,7 +134,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on February 5, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-3}
 * Updates images to resolve CVE-2024-45337 with critical severity and CVE-2024-45338 with high severity.
@@ -143,7 +143,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on February 4, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-2}
 * Improvements for Embedded Cluster upgrades.
@@ -152,7 +152,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on January 29, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Bug Fixes {#bug-fixes-1-123-1}
 * Improves an unclear error message that could occur when rewriting private images.
@@ -161,7 +161,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on January 24, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### New Features {#new-features-1-124-0}
 * You can migrate Helm charts that were installed with HelmChart `v1beta1` and `useHelmInstall: false` to HelmChart `v1beta2` by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
@@ -185,7 +185,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on January 13, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Bug Fixes {#bug-fixes-1-123-1}
 * Fixes an issue where the navigation menu was not visible on the Config page.
@@ -194,7 +194,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on January 2, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### New Features {#new-features-1-123-0}
 * Adds the `--tolerations` flag to `kots install` to supply additional tolerations to the KOTS pods.
