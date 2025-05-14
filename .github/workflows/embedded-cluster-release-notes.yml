@@ -1,5 +1,8 @@
-name: embedded-cluster-release-notes
+name: embedded-cluster-release-notes-test
 on:
+  push:
+    branches:
+      - diamonwiggins/test-workflow-dispatch
   workflow_dispatch:
     #types: [embedded-cluster-release-notes]
     inputs:
