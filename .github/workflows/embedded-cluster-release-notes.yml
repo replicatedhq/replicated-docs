@@ -31,8 +31,8 @@ jobs:
           PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
           EC_VERSION: ${{ github.event.inputs.version }}
         run: |
-          # Extract EC version without v prefix if it exists
-          EC_VERSION_CLEAN=${EC_VERSION#v}
+          # Remove any suffix after the + character to get clean semver
+          EC_VERSION_CLEAN=${EC_VERSION%%+*}
           
           # Create the full release notes content
           cat > /tmp/release-notes.txt << EOF
@@ -73,9 +73,9 @@ jobs:
         id: cpr
         with:
           token: ${{ secrets.REPLICATED_GH_PAT }}
-          commit-message: Embedded Cluster ${{ github.event.client_payload.version }} release notes
-          title: Embedded Cluster ${{ github.event.client_payload.version }} release notes
-          branch: automation/embedded-cluster-release-notes-${{ github.event.client_payload.version }}
+          commit-message: Embedded Cluster ${{ github.event.inputs.version }} release notes
+          title: Embedded Cluster ${{ github.event.inputs.version }} release notes
+          branch: automation/embedded-cluster-release-notes-${{ github.event.inputs.version }}
           delete-branch: true
           base: "main"
           body: "Automated changes by the [embedded-cluster-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/embedded-cluster-release-notes.yml) GitHub action. Please manually replace the version table placeholder."
@@ -91,5 +91,5 @@ jobs:
           webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
           webhook-type: webhook-trigger
           payload: |
-            version: "${{ github.event.client_payload.version }}"
+            version: "${{ github.event.inputs.version }}"
             pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
