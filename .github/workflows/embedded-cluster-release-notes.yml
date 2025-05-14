@@ -85,11 +85,11 @@ jobs:
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
-      #- name: Slack Notification
-      #  uses: slackapi/slack-github-action@v2.0.0
-      #  with:
-      #    webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
-      #    webhook-type: webhook-trigger
-      #    payload: |
-      #      version: "${{ github.event.client_payload.version }}"
-      #      pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
+      - name: Slack Notification
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
+          webhook-type: webhook-trigger
+          payload: |
+            version: "${{ github.event.client_payload.version }}"
+            pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
