@@ -86,7 +86,7 @@ jobs:
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
       - name: Slack Notification
-        uses: slackapi/slack-github-action@v2.0.0
+        uses: slackapi/slack-github-action@v2.1.0
         with:
           webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
           webhook-type: webhook-trigger
