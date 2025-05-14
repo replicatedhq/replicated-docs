@@ -1,8 +1,5 @@
 name: embedded-cluster-release-notes-test
 on:
-  push:
-    branches:
-      - diamonwiggins/test-workflow-dispatch
   workflow_dispatch:
     #types: [embedded-cluster-release-notes]
     inputs:
@@ -20,7 +17,7 @@ jobs:
         id: release-notes
         env:
           EC_VERSION: ${{ github.event.inputs.version }}
-        uses: replicatedhq/release-notes-generator@main
+        uses: replicatedhq/release-notes-generator@diamonwiggins/fix-nil-pointer-error
         with:
           owner-repo: replicatedhq/embedded-cluster
           head: $EC_VERSION
