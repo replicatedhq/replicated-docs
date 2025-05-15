@@ -17,7 +17,7 @@ jobs:
         id: release-notes
         env:
           EC_VERSION: ${{ github.event.inputs.version }}
-        uses: replicatedhq/release-notes-generator@diamonwiggins/fix-nil-pointer-error
+        uses: replicatedhq/release-notes-generator@main
         with:
           owner-repo: replicatedhq/embedded-cluster
           head: $EC_VERSION
