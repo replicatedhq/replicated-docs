@@ -91,6 +91,6 @@ jobs:
         webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
         webhook-type: incoming-webhook
         payload: |
-          version: "test"
-          pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
-        errors: true
+          {
+            "text": "Embedded Cluster release notes for version *${{ github.event.inputs.version }}* are ready for review at: ${{ steps.cpr.outputs.pull-request-url }}"
+          }
