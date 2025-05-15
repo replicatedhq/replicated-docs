@@ -67,9 +67,15 @@ spec:
 
 ## version
 
-You must specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
+Specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
 
-For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because Embedded Cluster is changing rapidly.
+Additionally, each version of Embedded Cluster also specifies a version of Kubernetes. For example, Embedded Cluster 2.1.3+k8s-1.30 uses Kubernetes 1.30, while 2.1.3+k8s-1.29 uses Kubernetes 1.29.
+
+:::note
+Embedded Cluster does not support upgrading by more than one minor version of Kubernetes at a time. To avoid issues that could be caused by skipping a minor version of Kubernetes, Replicated recommends that you select **Prevent this release from being skipped during upgrades** when you promote a new application release that increases the Kubernetes version. For more information about required releases, see [Properties](/vendor/releases-about#properties) in _About Channels and Releases_.
+:::
+
+For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
 
 ## roles (Beta)
 
