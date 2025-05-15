@@ -93,3 +93,4 @@ jobs:
         payload: |
           version: "test"
           pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
+        errors: true
