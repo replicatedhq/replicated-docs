@@ -11,85 +11,85 @@ jobs:
   generate-release-notes-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Generate Release Notes
-        id: release-notes
-        env:
-          EC_VERSION: ${{ github.event.inputs.version }}
-        uses: replicatedhq/release-notes-generator@main
-        with:
-          owner-repo: replicatedhq/embedded-cluster
-          head: $EC_VERSION
-          title: ${EC_VERSION#v}
-          description: ''
-          include-pr-links: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Generate Release Notes
+      id: release-notes
+      env:
+        EC_VERSION: ${{ github.event.inputs.version }}
+      uses: replicatedhq/release-notes-generator@main
+      with:
+        owner-repo: replicatedhq/embedded-cluster
+        head: $EC_VERSION
+        title: ${EC_VERSION#v}
+        description: ''
+        include-pr-links: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Release Notes
-        env:
-          PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
-          EC_VERSION: ${{ github.event.inputs.version }}
-        run: |
-          # Remove any suffix after the + character to get clean semver
-          EC_VERSION_CLEAN=${EC_VERSION%%+*}
-          
-          # Create the full release notes content
-          cat > /tmp/release-notes.txt << EOF
-          
-          ## ${EC_VERSION_CLEAN}
-          
-          Released on $(date +'%B %-d, %Y')
-          
-          <!-- VERSION TABLE PLACEHOLDER
-          Please manually replace this placeholder with a version table in the format:
-          
-          <table>
-            <tr>
-              <th>Version</th>
-              <td id="center">X.Y.Z+k8s-1.XX</td>
-              <td id="center">X.Y.Z+k8s-1.XX</td>
-            </tr>
-            <tr>
-              <th>Kubernetes Version</th>
-              <td id="center">1.XX.Y</td>
-              <td id="center">1.XX.Y</td>
-            </tr>
-            <tr>
-              <th>KOTS Version</th>
-              <td id="center" colspan="2">1.XXX.Y</td>
-            </tr>
-          </table>
-          -->
-          
-          ${{ steps.release-notes.outputs.release-notes }}
-          EOF
-          
-          sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-embedded-cluster.md
-          rm -f /tmp/release-notes.txt
+    - name: Update Release Notes
+      env:
+        PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
+        EC_VERSION: ${{ github.event.inputs.version }}
+      run: |
+        # Remove any suffix after the + character to get clean semver
+        EC_VERSION_CLEAN=${EC_VERSION%%+*}
+        
+        # Create the full release notes content
+        cat > /tmp/release-notes.txt << EOF
+        
+        ## ${EC_VERSION_CLEAN}
+        
+        Released on $(date +'%B %-d, %Y')
+        
+        <!-- VERSION TABLE PLACEHOLDER
+        Please manually replace this placeholder with a version table in the format:
+        
+        <table>
+          <tr>
+            <th>Version</th>
+            <td id="center">X.Y.Z+k8s-1.XX</td>
+            <td id="center">X.Y.Z+k8s-1.XX</td>
+          </tr>
+          <tr>
+            <th>Kubernetes Version</th>
+            <td id="center">1.XX.Y</td>
+            <td id="center">1.XX.Y</td>
+          </tr>
+          <tr>
+            <th>KOTS Version</th>
+            <td id="center" colspan="2">1.XXX.Y</td>
+          </tr>
+        </table>
+        -->
+        
+        ${{ steps.release-notes.outputs.release-notes }}
+        EOF
+        
+        sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-embedded-cluster.md
+        rm -f /tmp/release-notes.txt
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        id: cpr
-        with:
-          token: ${{ secrets.REPLICATED_GH_PAT }}
-          commit-message: Embedded Cluster ${{ github.event.inputs.version }} release notes
-          title: Embedded Cluster ${{ github.event.inputs.version }} release notes
-          branch: automation/embedded-cluster-release-notes-${{ github.event.inputs.version }}
-          delete-branch: true
-          base: "main"
-          body: "Automated changes by the [embedded-cluster-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/embedded-cluster-release-notes.yml) GitHub action. Please manually replace the version table placeholder."
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      id: cpr
+      with:
+        token: ${{ secrets.REPLICATED_GH_PAT }}
+        commit-message: Embedded Cluster ${{ github.event.inputs.version }} release notes
+        title: Embedded Cluster ${{ github.event.inputs.version }} release notes
+        branch: automation/embedded-cluster-release-notes-${{ github.event.inputs.version }}
+        delete-branch: true
+        base: "main"
+        body: "Automated changes by the [embedded-cluster-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/embedded-cluster-release-notes.yml) GitHub action. Please manually replace the version table placeholder."
 
-      - name: Check outputs
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
-      - name: Slack Notification
-        uses: slackapi/slack-github-action@v2.1.0
-        with:
-          webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
-          webhook-type: webhook-trigger
-          payload: |
-            "version": "${{ github.event.inputs.version }}",
-            "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}",
+    - name: Slack Notification
+      uses: slackapi/slack-github-action@v2.1.0
+      with:
+        webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
+        webhook-type: webhook-trigger
+        payload: |
+          version: "${{ github.event.client_payload.version }}"
+          pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
