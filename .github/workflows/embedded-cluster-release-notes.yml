@@ -92,4 +92,3 @@ jobs:
           webhook-type: webhook-trigger
           payload: |
             version: "${{ github.event.inputs.version }}"
-            pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
