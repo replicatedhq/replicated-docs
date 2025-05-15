@@ -24,12 +24,16 @@ replicated vm scp-endpoint aaaaa11
 
 # Get SCP endpoint for a specific VM by name
 replicated vm scp-endpoint my-test-vm
+
+# Get SCP endpoint with a custom username
+replicated vm scp-endpoint my-test-vm --username custom-user
 ```
 
 ### Options
 
 ```
-  -h, --help   help for scp-endpoint
+  -h, --help              help for scp-endpoint
+      --username string   Custom username to use in SCP endpoint instead of the GitHub username set in Vendor Portal
 ```
 
 ### Options inherited from parent commands

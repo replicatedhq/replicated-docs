@@ -24,12 +24,16 @@ replicated vm ssh-endpoint aaaaa11
 
 # Get SSH endpoint for a specific VM by name
 replicated vm ssh-endpoint my-test-vm
+
+# Get SSH endpoint with a custom username
+replicated vm ssh-endpoint my-test-vm --username custom-user
 ```
 
 ### Options
 
 ```
-  -h, --help   help for ssh-endpoint
+  -h, --help              help for ssh-endpoint
+      --username string   Custom username to use in SSH endpoint instead of the GitHub username set in Vendor Portal
 ```
 
 ### Options inherited from parent commands
