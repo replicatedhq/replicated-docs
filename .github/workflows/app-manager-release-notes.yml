@@ -55,10 +55,11 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
     - name: Slack Notification
-      uses: slackapi/slack-github-action@v2.0.0
+      uses: slackapi/slack-github-action@v2.1.0
       with:
-        webhook: ${{ secrets.KOTS_RELEASE_NOTES_SLACK_WEBHOOK }}
-        webhook-type: webhook-trigger
+        webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
+        webhook-type: incoming-webhook
         payload: |
-          version: "${{ github.event.client_payload.version }}"
-          pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
+          {
+            "text": "Embedded Cluster release notes for version *${{ github.event.inputs.version }}* are ready for review at: ${{ steps.cpr.outputs.pull-request-url }}"
+          }
