@@ -88,7 +88,7 @@ jobs:
       - name: Slack Notification
         uses: slackapi/slack-github-action@v2.1.0
         with:
-          webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
+          webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOO }}
           webhook-type: webhook-trigger
           payload: |
             version: "${{ github.event.inputs.version }}"
