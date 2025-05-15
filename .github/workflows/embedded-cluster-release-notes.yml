@@ -89,7 +89,7 @@ jobs:
         uses: slackapi/slack-github-action@v2.1.0
         with:
           webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
-          webhook-type: webhook-trigger
+          webhook-type: incoming-webhook
           payload: |
-            version: "test"
+            version: "${{ github.event.inputs.version }}"
             pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
