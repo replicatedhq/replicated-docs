@@ -91,5 +91,5 @@ jobs:
           webhook: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
           webhook-type: webhook-trigger
           payload: |
-            version: "${{ github.event.inputs.version }}"
+            version: "test"
             pull_request_url: "${{steps.cpr.outputs.pull-request-url}}"
