@@ -125,6 +125,8 @@ The **Install Attempts** section is available only for customers with the Replic
 
 The **Install Attempts** section includes details about the installation attempts made by users. These insights are based on the customer's activity in the Enterprise Portal.
 
+To track install attempts, the Enterprise Portal creates a unique, _just-in-time_ service account that sends data back to the Vendor Portal when the user starts and completes the installation or takes other actions that are specific to the installation type. These service accounts also provide realtime feedback to the user on their installation progress using checkboxes and status indicators, and allow users to pause and return to an installation attempt. 
+
 The following shows an example of the **Install Attempts** section:
 
 <img alt="Install attempts section of customer reporting page" src="/images/customer-reporting-install-attempts-expanded.png" width="700px"/>
