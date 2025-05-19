@@ -56,7 +56,7 @@ For more information about how to interpret the time to install metrics, see [Ti
 ### Download Portal
 
 :::note
-If the Enterprise Portal is enabled for the customer, then an Enterprise Portal section is displayed instead. For more information, see [Enterprise Portal](#enterprise-portal) below.
+If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal) below.
 :::
 
 From the **Download portal** section, you can:
@@ -68,7 +68,7 @@ You can use the Download Portal to give your customers access to the files they 
 ### Enterprise Portal
 
 :::note
-The **Enterprise Portal** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
 :::
 
 The following shows an example of the **Enterprise Portal** section:
