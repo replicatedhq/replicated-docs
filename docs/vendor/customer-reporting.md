@@ -140,7 +140,7 @@ The **Install Attempts** section includes the following details about each insta
   * **Mode**: If the installation is online (internet-connected) or air gap (offline).
   * **Registry**: If the image registry used is online (accessed over the internet) or offline (a local registry is used). For air gap installations, the registry is always offline. Users can also optionally use a local image registry in online installations.
 * Installation progress details, including when the installation was started and completed as well as other progress indicators that are specific to the installation type. For example:
-  * For installations with Helm, the Enterprise Portal reports when your image registry was accessed and when application images were pulled
+  * For installations with Helm, the Enterprise Portal reports when your image registry was accessed and when application images were pulled, as shown below:
     ![Helm install attempt progress details](/images/customer-reporting-install-attempts-helm.png)  
     [View a larger version of this image](/images/customer-reporting-install-attempts-helm.png) 
   * For installations with Replicated Embedded Cluster on VMs or bare metal servers, the Enterprise Portal reports when the installation assets were downloaded, as shown below:

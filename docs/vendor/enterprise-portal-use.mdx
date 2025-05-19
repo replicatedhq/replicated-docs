@@ -59,29 +59,40 @@ To view instances in the Enterprise Portal:
    The following table describes the instance details available on the **Updates** page:
 
    <table>
-      <th>
-         <tr>
-            <th>Field</th>
-            <th>Description</th>
-         </tr>
-      </th>
+      <tr>
+         <th>Field</th>
+         <th>Description</th>
+      </tr>
       <tr>
          <td>Instance ID</td>
          <td>The unique identifier for the instance.</td>
       </tr>
       <tr>
          <td>Version</td>
-         <td>The unique identifier for the instance.</td>
+         <td>The application version installed.</td>
       </tr>
       <tr>
          <td>Instance status</td>
-         <td>The unique identifier for the instance.</td>
+         <td>The status of the instance, based on the status informers configured for the application. For more information, see [Enable and Understand Application Status](/vendor/insights-app-status).</td>
       </tr>
       <tr>
          <td>First check-in</td>
-         <td>The unique identifier for the instance.</td>
+         <td>The timestamp when the instance first sent data to the Vendor Portal.</td>
+      </tr>
+      <tr>
+         <td>Last check-in</td>
+         <td>The timestamp when the instance most recently sent data to the Vendor Portal.</td>
+      </tr>
+      <tr>
+         <td>First ready</td>
+         <td>The timestamp when the instance first reached a ready state. For more information about the ready state, see [About Resource Statuses](/vendor/insights-app-status#resource-statuses) in _Enable and Understand Application Status_.</td>
+      </tr>
+      <tr>
+         <td>Instance labels</td>
+         <td>Any labels applied to the instance.</td>
       </tr>
    </table>
+   
 ## View Release History
 
 To view the release history in the Enterprise Portal:
