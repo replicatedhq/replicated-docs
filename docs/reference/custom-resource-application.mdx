@@ -4,6 +4,7 @@ import ReleaseNotes from "../partials/custom-resource-application/_releaseNotes.
 import AllowRollback from "../partials/custom-resource-application/_allowRollback.mdx"
 import AdditionalNamespaces from "../partials/custom-resource-application/_additionalNamespaces.mdx"
 import AdditionalImages from "../partials/custom-resource-application/_additionalImages.mdx"
+import ExcludedImages from "../partials/custom-resource-application/_excludedImages.mdx"
 import RequireMinimalRBACPrivileges from "../partials/custom-resource-application/_requireMinimalRBACPrivileges.mdx"
 import SupportMinimalRBACPrivileges from "../partials/custom-resource-application/_supportMinimalRBACPrivileges.mdx"
 import Ports from "../partials/custom-resource-application/_ports.mdx"
@@ -44,6 +45,8 @@ spec:
   requireMinimalRBACPrivileges: false
   additionalImages:
     - jenkins/jenkins:lts
+  excludedImages:
+    - auto
   additionalNamespaces:
     - "*"
   ports:
@@ -188,6 +191,27 @@ spec:
   <tr>
     <th>Example</th>
     <td><AdditionalImages/></td>
+  </tr>  
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>   
+  <tr>
+    <th>Supported for <a href="/vendor/embedded-overview">Embedded Cluster</a>?</th>
+    <td>Yes</td>
+  </tr> 
+</table>
+
+## excludedImages
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>An array of strings that reference images to not be included in air gap bundles.</p></td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ExcludedImages/></td>
   </tr>  
   <tr>
     <th>Supports Go templates?</th>
