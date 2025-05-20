@@ -31,6 +31,8 @@ const config = {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
             extendDefaults: true,
           },
+          remarkPlugins: [],
+          rehypePlugins: [],
         },
         googleAnalytics: {
           trackingID: 'UA-61420213-25',

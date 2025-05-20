@@ -1,0 +1,137 @@
+.cardGrid {
+  margin: 2rem 0;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7em;
+}
+
+.card {
+  padding: 1.5em;
+  list-style: none;
+  border-radius: 7px;
+  border: 1px solid rgba(88,88,88,0.2);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.card:hover {
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.01));
+}
+
+html[data-theme='dark'] .card:hover {
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.08), rgba(88,88,88,0.02));
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.0em;
+  font-size: 1.25em;
+  margin-bottom: 0;
+}
+
+.cardHeader p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cardHeader img {
+  max-width: 55px;
+  height: 55px;
+  /* background-color: rgba(255,72,86,0.1); */
+  border-radius: 7px;
+}
+
+.card li h3 {
+  padding-top: 15px;
+  margin-bottom: 0.5em;
+}
+
+.card li p {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.card li {
+  margin-bottom: 0.5em;
+}
+
+.card li a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card li a:hover {
+  text-decoration: underline;
+}
+
+/* Special styling for specific cards */
+.cardContainer .card[id="whats-new"] {
+  background-image: linear-gradient(76deg, #c5fcff, #dadaff 54%, #9dc7ff);
+  border: none;
+}
+
+.cardContainer .card[id="whats-new"]:hover {
+  background-image: linear-gradient(76deg, #c5fcff, #dadaff 54%, #9dc7ff);
+  border: none;
+}
+
+html[data-theme='dark'] .cardContainer .card[id="whats-new"] {
+  background-image: linear-gradient(76deg, rgba(197, 252, 255, 0.15), rgba(218, 218, 255, 0.15) 54%, rgba(157, 199, 255, 0.15));
+  border: none;
+}
+
+html[data-theme='dark'] .cardContainer .card[id="whats-new"]:hover {
+  background-image: linear-gradient(76deg, rgba(197, 252, 255, 0.2), rgba(218, 218, 255, 0.2) 54%, rgba(157, 199, 255, 0.2));
+  border: none;
+}
+
+/* .cardContainer .card[id="whats-new"] .cardHeader img {
+  background-color: rgba(69,145,247,0.2);
+} */
+
+.cardContainer .card[id="whats-new"] li a {
+  color: rgb(69,145,247);
+}
+
+.cardContainer .card[id="did-you-know"],
+html[data-theme='dark'] .cardContainer .card[id="did-you-know"]:hover {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
+  border: 1px solid rgba(21, 140, 54,0.1);
+}
+
+.cardContainer .card[id="did-you-know"]:hover,
+html[data-theme='dark'] .cardContainer .card[id="did-you-know"] {
+  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.2), rgba(21, 140, 54,0.05));
+}
+
+/* .cardContainer .card[id="did-you-know"] .cardHeader img {
+  background-color: rgba(21, 140, 54,0.2);
+} */
+
+.cardContainer .card[id="did-you-know"] li a {
+  color: rgb(21, 140, 54);
+}
+
+.card#helm img {
+  background-color: rgba(15, 22, 137,0.05);
+}
+
+html[data-theme='dark'] .card#helm img {
+  background-color: rgb(169, 169, 198);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1300px) {
+  .cardContainer {
+    flex-direction: column;
+  }
+} 

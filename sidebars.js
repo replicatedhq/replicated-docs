@@ -19,7 +19,7 @@ const sidebars = {
   // But you can create a sidebar manually
 
   main: [
-    'intro',
+    'index',
     {
       type: 'category',
       label: 'Release Notes',
