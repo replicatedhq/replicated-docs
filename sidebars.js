@@ -189,7 +189,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Enterprise Portal',
+          label: 'Enterprise Portal (Alpha)',
           items: [
             'vendor/enterprise-portal-about',
             'vendor/enterprise-portal-configure',

@@ -65,7 +65,7 @@ From the **Download portal** section, you can:
 
 You can use the Download Portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Access a Customer's Download Portal](releases-share-download-portal).
 
-### Enterprise Portal
+### Enterprise Portal (Alpha)
 
 :::note
 The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
@@ -117,7 +117,7 @@ The **Instances** section displays the following details about each active insta
    * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
 
-### Install Attempts
+### Install Attempts (Alpha)
 
 :::note
 The **Install Attempts** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
