@@ -1,6 +1,6 @@
 # Use Custom Domains
 
-This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, and the Download Portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal and the Replicated Download Portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 

@@ -14,7 +14,9 @@ As shown in the image above, the **Reporting** page has the following main secti
 * [Manage Customer](#manage-customer)
 * [Time to Install](#time-to-install)
 * [Download Portal](#download-portal)
+* [Enterprise Portal](#enterprise-portal)
 * [Instances](#instances)
+* [Install Attempts](#install-attempts)
 
 ### Manage Customer
 
@@ -53,11 +55,39 @@ For more information about how to interpret the time to install metrics, see [Ti
 
 ### Download Portal
 
+:::note
+If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal) below.
+:::
+
 From the **Download portal** section, you can:
 * Manage the password for the Download Portal
 * Access the unique Download Portal URL for the customer
 
 You can use the Download Portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Access a Customer's Download Portal](releases-share-download-portal).
+
+### Enterprise Portal (Alpha)
+
+:::note
+The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+:::
+
+The following shows an example of the **Enterprise Portal** section:
+
+![Enterprise Portal section of customer reporting page](/images/customer-reporting-enterprise-portal.png)
+
+[View a larger version of this image](/images/customer-reporting-enterprise-portal.png)
+
+From the **Enterprise Portal** section, you can:
+* Click **View** to access the unique Enterprise Portal for the customer
+* View the status of the customer's access to the Enterprise Portal
+* View the timestamp when the Enterprise Portal was most recently accessed by the customer
+* View the number of users with Enterprise Portal accounts
+* Click **Invite user** to invite a new user to the Enterprise Portal
+* View the number of install attempts made by the customer. The **Customer Reporting > Install Attempts** section includes additional details about install attempts. For more information, see [Install Attempts](#install-attempts) below.
+* View the number of service accounts created in the Enterprise Portal
+* View the number of support bundles uploaded to the Enterprise Portal
+
+For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-about).
 
 ### Instances
 
@@ -86,3 +116,35 @@ The **Instances** section displays the following details about each active insta
    * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
    * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
+
+### Install Attempts (Alpha)
+
+:::note
+The **Install Attempts** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+:::
+
+The **Install Attempts** section includes details about the installation attempts made by users. These insights are based on the customer's activity in the Enterprise Portal.
+
+To track install attempts, the Enterprise Portal creates a unique, _just-in-time_ service account that sends data back to the Vendor Portal when the user starts and completes the installation or takes other actions that are specific to the installation type. These service accounts also provide realtime feedback to the user on their installation progress using checkboxes and status indicators, and allow users to pause and return to an installation attempt. 
+
+The following shows an example of the **Install Attempts** section:
+
+<img alt="Install attempts section of customer reporting page" src="/images/customer-reporting-install-attempts-expanded.png" width="700px"/>
+
+[View a larger version of this image](/images/customer-reporting-install-attempts-expanded.png)
+
+The **Install Attempts** section includes the following details about each installation attempt:
+* The installation status (succeeded, stalled, or failed)
+* The date and time when the installation attempt was started
+* The email address of the user that initiated the installation attempt
+* Installation environment details:
+  * **OS** or **K8s**: The operating system of the VM or bare metal server. Or, the distribution of Kubernetes running in the installation environment.
+  * **Mode**: If the installation is online (internet-connected) or air gap (offline).
+  * **Registry**: If the image registry used is online (accessed over the internet) or offline (a local registry is used). For air gap installations, the registry is always offline. Users can also optionally use a local image registry in online installations.
+* Installation progress details, including when the installation was started and completed as well as other progress indicators that are specific to the installation type. For example:
+  * For installations with Helm, the Enterprise Portal reports when your image registry was accessed and when application images were pulled, as shown below:
+    ![Helm install attempt progress details](/images/customer-reporting-install-attempts-helm.png)  
+    [View a larger version of this image](/images/customer-reporting-install-attempts-helm.png) 
+  * For installations with Replicated Embedded Cluster on VMs or bare metal servers, the Enterprise Portal reports when the installation assets were downloaded, as shown below:
+    ![VM-based install attempt progress details](/images/customer-reporting-install-attempts-vm.png)  
+    [View a larger version of this image](/images/customer-reporting-install-attempts-vm.png)   

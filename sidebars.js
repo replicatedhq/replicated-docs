@@ -189,6 +189,16 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Enterprise Portal (Alpha)',
+          items: [
+            'vendor/enterprise-portal-about',
+            'vendor/enterprise-portal-configure',
+            'vendor/enterprise-portal-invite',
+            'vendor/enterprise-portal-use',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Custom Domains',
           items: [
             'vendor/custom-domains',
