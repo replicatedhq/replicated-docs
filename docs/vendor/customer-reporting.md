@@ -14,9 +14,9 @@ As shown in the image above, the **Reporting** page has the following main secti
 * [Manage Customer](#manage-customer)
 * [Time to Install](#time-to-install)
 * [Download Portal](#download-portal)
-* [Enterprise Portal](#enterprise-portal)
+* [Enterprise Portal](#enterprise-portal-alpha)
 * [Instances](#instances)
-* [Install Attempts](#install-attempts)
+* [Install Attempts](#install-attempts-alpha)
 
 ### Manage Customer
 
