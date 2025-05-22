@@ -284,3 +284,39 @@ pagination_next: null
     </li>
   </ul>
 </section>
+<section>
+  <h2>Product Documentation</h2>
+  <div class="card-grid">
+    <a href="/vendor/embedded-overview" class="card-link">
+      <img src="/images/icons/k8s_installer-red.svg" alt="Kubernetes installer icon" class="card-logo card-logo-light" />
+      <!-- <img src="/images/icons/k8s_installer_white.svg" alt="Kubernetes installer icon" class="card-logo card-logo-dark" /> -->
+      <h3 class="card-title">Embedded Cluster</h3>
+      <p class="card-text">Learn how to embed Kubernetes with your application for VM or bare metal installations.</p>
+    </a>
+    <a href="/vendor/replicated-sdk-overview" class="card-link">
+      <img src="/images/icons/vendor_portal_1-red.svg" alt="Vendor portal logo" class="card-logo" />
+      <h3 class="card-title">Vendor Portal</h3>
+      <p class="card-text">Integrate the Replicated platform features with your Helm charts.</p>
+    </a>
+    <a href="/vendor/support-bundle-customizing" class="card-link">
+      <img src="/images/icons/support_bundle-red.svg" alt="Support bundle icon" class="card-logo" />
+      <h3 class="card-title">Support Bundles</h3>
+      <p class="card-text">Configure support bundles to troubleshoot installations efficiently.</p>
+    </a>
+    <a href="/vendor/support-bundle-customizing" class="card-link">
+      <img src="/images/icons/support_bundle-red.svg" alt="Support bundle icon" class="card-logo" />
+      <h3 class="card-title">Support Bundles</h3>
+      <p class="card-text">Configure support bundles to troubleshoot installations efficiently.</p>
+    </a>
+    <a href="/vendor/support-bundle-customizing" class="card-link">
+      <img src="/images/icons/support_bundle-red.svg" alt="Support bundle icon" class="card-logo" />
+      <h3 class="card-title">Support Bundles</h3>
+      <p class="card-text">Configure support bundles to troubleshoot installations efficiently.</p>
+    </a>
+    <a href="/vendor/support-bundle-customizing" class="card-link">
+      <img src="/images/icons/support_bundle-red.svg" alt="Support bundle icon" class="card-logo" />
+      <h3 class="card-title">Support Bundles</h3>
+      <p class="card-text">Configure support bundles to troubleshoot installations efficiently.</p>
+    </a>
+  </div>
+</section>
