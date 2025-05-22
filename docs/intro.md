@@ -3,9 +3,45 @@ slug: /
 pagination_next: null
 ---  
 
-# Home
+# Replicated Documentation
 
-<section class="tile__container">
+<div class="highlight-cards">
+  <div class="highlight-card">
+    <div class="highlight-card-label">What's New?</div>
+    <h3 class="highlight-card-title">Lorem Ipsum Dolor Sit Amet</h3>
+    <p class="highlight-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    <a href="#" class="highlight-card-link">Learn more</a>
+  </div>
+  <div class="highlight-card">
+    <div class="highlight-card-label">Did You Know?</div>
+    <h3 class="highlight-card-title">Lorem Ipsum Dolor Sit Amet</h3>
+    <p class="highlight-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    <a href="#" class="highlight-card-link">Learn more</a>
+  </div>
+</div>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h2 class="hero-title">Get Started with Replicated</h2>
+    <p class="hero-description">Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
+  </div>
+  <div class="hero-cards">
+    <a href="/vendor/replicated-onboarding" class="hero-card">
+      <h3 class="hero-card-title">Quick Start Guide</h3>
+      <p class="hero-card-text">Follow our step-by-step guide to get your application ready for distribution.</p>
+    </a>
+    <a href="/vendor/tutorial-embedded-cluster-setup" class="hero-card">
+      <h3 class="hero-card-title">Tutorials</h3>
+      <p class="hero-card-text">Learn through hands-on tutorials covering key Replicated features.</p>
+    </a>
+    <a href="/vendor/kots-faq" class="hero-card">
+      <h3 class="hero-card-title">FAQs</h3>
+      <p class="hero-card-text">Find answers to commonly asked questions about Replicated.</p>
+    </a>
+  </div>
+</section>
+
+<!-- <section class="tile__container">
  <ul id="whats-new">
     <li class="tile__header">
         <img src="/images/icons/chat_bubble.png" alt="chat bubble icon" width="55px" height="55px"></img>
@@ -283,9 +319,9 @@ pagination_next: null
       <a href="/reference/replicated-sdk-apis">Replicated SDK API</a>
     </li>
   </ul>
-</section>
+</section> -->
 <section>
-  <h2>Product Documentation</h2>
+  <!-- <h2>Product Documentation</h2> -->
   <div class="card-grid">
     <a href="/vendor/embedded-overview" class="card-link">
       <img src="/images/icons/k8s_installer-red.svg" alt="Kubernetes installer icon" class="card-logo card-logo-light" />
