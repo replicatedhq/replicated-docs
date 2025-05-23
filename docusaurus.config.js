@@ -31,6 +31,8 @@ const config = {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
             extendDefaults: true,
           },
+          showLastUpdateTime: false,
+          showLastUpdateAuthor: false,
         },
         googleAnalytics: {
           trackingID: 'UA-61420213-25',
@@ -67,6 +69,10 @@ const config = {
         sidebar: {
           hideable: true,
         },
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 6,
       },
       algolia: {
         // The application ID provided by Algolia

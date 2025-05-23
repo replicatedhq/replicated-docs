@@ -641,3 +641,21 @@ h1 + .hero-section {
     grid-template-columns: 1fr;
   }
 }
+
+/* Hide table of contents when frontmatter flag is set */
+article[class*="hideTableOfContents"] .table-of-contents {
+  display: none !important;
+}
+
+article[class*="hideTableOfContents"] .col--3 {
+  display: none !important;
+}
+
+/* Hide table of contents */
+[class*="docItemContainer_"] [class*="tableOfContents_"] {
+  display: none !important;
+}
+
+[class*="docItemContainer_"] [class*="tocCollapsible_"] {
+  display: none !important;
+}
