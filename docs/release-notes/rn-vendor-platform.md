@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.23-2
+
+Released on May 23, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-23-2}
+* Fixes a bug that could cause API to return error 500 when creating  multiple releases in parallel.
+
 ## v2025.05.12-5
 
 Released on May 12, 2025
