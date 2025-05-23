@@ -31,6 +31,8 @@ const config = {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
             extendDefaults: true,
           },
+          showLastUpdateTime: false,
+          showLastUpdateAuthor: false,
         },
         googleAnalytics: {
           trackingID: 'UA-61420213-25',
@@ -47,18 +49,18 @@ const config = {
     ],
   ],
 
-  scripts: [
-    {
-      src:
-        '/js/activecampaign.js',
-      async: true,
-    },
-    {
-      src:
-        '/js/visitoranalytics.js',
-      async: true,
-    },
-  ],
+  // scripts: [
+  //   {
+  //     src:
+  //       '/js/activecampaign.js',
+  //     async: true,
+  //   },
+  //   {
+  //     src:
+  //       '/js/visitoranalytics.js',
+  //     async: true,
+  //   },
+  // ],
   
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
