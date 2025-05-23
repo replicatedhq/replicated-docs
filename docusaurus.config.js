@@ -49,18 +49,18 @@ const config = {
     ],
   ],
 
-  scripts: [
-    {
-      src:
-        '/js/activecampaign.js',
-      async: true,
-    },
-    {
-      src:
-        '/js/visitoranalytics.js',
-      async: true,
-    },
-  ],
+  // scripts: [
+  //   {
+  //     src:
+  //       '/js/activecampaign.js',
+  //     async: true,
+  //   },
+  //   {
+  //     src:
+  //       '/js/visitoranalytics.js',
+  //     async: true,
+  //   },
+  // ],
   
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -69,10 +69,6 @@ const config = {
         sidebar: {
           hideable: true,
         },
-      },
-      tableOfContents: {
-        minHeadingLevel: 2,
-        maxHeadingLevel: 6,
       },
       algolia: {
         // The application ID provided by Algolia
