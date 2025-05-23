@@ -1,3 +1,12 @@
+/**
+ * CopyMarkdown Component
+ * 
+ * React component that provides a dropdown menu to:
+ * - Copy the current page as markdown
+ * - View the page as plain text
+ * - Open the page in ChatGPT
+ */
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './CopyMarkdown.module.css';
 
