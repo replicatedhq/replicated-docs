@@ -199,7 +199,7 @@ function CopyMarkdown() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, 'copy-markdown-container')}>
       <button 
         ref={buttonRef}
         className={clsx(styles.button, isCopied && styles.copied)}
