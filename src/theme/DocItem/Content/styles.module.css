@@ -28,16 +28,13 @@
 }
 
 .docItemContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   position: relative;
 }
 
 /* Position the CopyMarkdown component relative to the first h1 */
 .docItemContainer :global(.copy-markdown-container) {
   position: absolute;
-  top: 0;
+  top: 0.75rem; /* Approximate vertical center of h1 */
   right: 0;
   z-index: 10;
 }

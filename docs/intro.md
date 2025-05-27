@@ -1,6 +1,7 @@
 ---
 slug: /
 pagination_next: null
+hide_table_of_contents: true
 ---  
 
 # Home
