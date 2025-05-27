@@ -8,6 +8,18 @@ This topic provides a list of the KOTS template functions in the Static context.
 
 ## Certificate Functions
 
+### HostCABundlePath
+
+>Introduced in ???
+
+```yaml
+func HostCABundlePath() string
+```
+
+HostCABundlePath returns the path to the CA trust store on the host. This is only relevant for Embedded Cluster installations.
+
+You can use this template function to mount the host's CA trust store as a hostPath volume so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
+
 ### PrivateCACert
 
 >Introduced in KOTS v1.117.0
