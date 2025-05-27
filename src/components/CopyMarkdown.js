@@ -19,8 +19,6 @@ function CopyMarkdown() {
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  console.log('CopyMarkdown component mounted');
-
   // Toggle dropdown
   const toggleDropdown = useCallback(() => {
     setIsOpen(prev => !prev);
@@ -140,30 +138,13 @@ function CopyMarkdown() {
 
   // Initialize on client side
   useEffect(() => {
-    // More detailed debugging
-    const h1Elements = document.querySelectorAll('h1');
-    console.log('Found h1 elements:', h1Elements);
-    h1Elements.forEach(el => {
-      console.log('H1 element:', el);
-      console.log('H1 text content:', el.textContent);
-      console.log('H1 parent element:', el.parentElement);
-      console.log('Full element tree:', el.closest('article'));
-    });
-
-    // Check for content in multiple ways
+    // Check for content
     const hasH1 = document.querySelector('h1');
     const hasArticle = document.querySelector('article');
     const hasMainContent = document.querySelector('main');
     
-    console.log('Detection results:', {
-      hasH1: !!hasH1,
-      hasArticle: !!hasArticle,
-      hasMainContent: !!hasMainContent
-    });
-
     // Set content flag if we have both an h1 and either an article or main element
     const hasMarkdownContent = !!hasH1 && (!!hasArticle || !!hasMainContent);
-    console.log('Setting hasContent to:', hasMarkdownContent);
     setHasContent(hasMarkdownContent);
 
     // Set up click outside handler
