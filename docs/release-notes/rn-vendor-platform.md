@@ -10,6 +10,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.28-4
+
+Released on May 28, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-28-4}
+* VMs that sit in "queued" status for greater than 24 hours will now be removed and show up in the VM and CMX history as "queued".  On the UI they will be represented as "Queued Timeout".
+* Fixed an issue that resulted in an unremovable network being created when creating a VM that resulted in a create error.
+
 ## v2025.05.23-2
 
 Released on May 23, 2025
