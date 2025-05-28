@@ -15,8 +15,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on May 28, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-05-28-4}
-* VMs that sit in "queued" status for greater than 24 hours will now be removed and show up in the VM and CMX history as "queued".  On the UI they will be represented as "Queued Timeout".
-* Fixed an issue that resulted in an unremovable network being created when creating a VM that resulted in a create error.
+* Compatibility Matrix: VMs that remain in the "queued" status for longer than 24 hours are removed and then displayed on the Compatibility Matrix **History** page as "Queued Timeout".
+* Compatibility Matrix: Fixes an issue that could cause an error when creating a VM due to an unremovable network.
 
 ## v2025.05.23-2
 
