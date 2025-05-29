@@ -16,7 +16,7 @@ This topic provides a list of the KOTS template functions in the Static context.
 func PrivateCACert() string
 ```
 
-PrivateCACert returns the name of a ConfigMap that contains private CA certificates provided by the end user. For Embedded Cluster installations, these certificates are provided with the `--private-ca` flag for the `install` command. For KOTS installations, the user provides the ConfigMap using the `--private-ca-configmap` flag for the `install` command.
+For KOTS installations, PrivateCACert returns the name of a ConfigMap that contains CA certificates provided by the end user using the `--private-ca-configmap` flag for the `install` command. For Embedded Cluster installations, the ConfigMap contains a single file which is the CA trust store from the host.
 
 You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
 
