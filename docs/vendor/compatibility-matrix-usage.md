@@ -9,11 +9,16 @@ historical information about both clusters and VMs, as shown below:
 ![Compatibility Matrix History Page](/images/compatibility-matrix-history.png)
 [View a larger version of this image](/images/compatibility-matrix-history.png)
 
-Only _terminated_ clusters and VMs that have been deleted or errored are displayed on the **History** page.
+The **History** page displays clusters and VMs with one of the following statuses:
+* Terminated
+* Error
+* Queued Timeout. A Queued Timeout status indicates that the cluster or VM was automatically removed after being in a _queued_ state for more than 24 hours.
 
-The top of the **History** page displays the total number of terminated clusters and VMs
-in the selected time period as well as the total cost and usage time for
-the terminated resources.
+The top of the **History** page displays the total number of non-running clusters
+and VMs in the selected time period as well as the total cost and usage time
+for the non-running resources.  The total cost is calculated at termination and
+is based on the time the resource was running.  Clusters and VMs that never
+entered the _running_ state are not included in the total cost and usage time.
 
 The table includes cluster and VM entries with the following columns:
 - **Name:** The name of the cluster or VM.
