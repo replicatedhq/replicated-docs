@@ -30,7 +30,7 @@ Embedded Cluster disaster recovery has the following requirements:
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
 
-* Currently, only AWS S3 is supported as a storage location for the backups.
+* Embedded Cluster supports only AWS S3 as a storage location for backups.
 
 * During a restore, the version of the Embedded Cluster installation assets must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster installation assets for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the installation assets, where `APP_SLUG` is the unique application slug. For example:
 
