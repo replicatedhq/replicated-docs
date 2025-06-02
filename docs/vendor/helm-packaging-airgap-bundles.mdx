@@ -12,6 +12,8 @@ This topic describes how to package and build air gap bundles for releases that 
 <AirGapBundle/>
 
 When building the `.airgap` bundle for a release that contains one or more Helm charts, the Vendor Portal renders the Helm chart templates in the release using values supplied in the KOTS HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder) key.
+Each Helm chart is rendered with the minimum Kubernetes minor version that satisfies the `kubeVersion` within the root Helm chart. (For instance, if the chart specifies `kubeVersion: >=1.24.1`, it will be rendered with k8s `1.25.0`)
+If this fails or if a `kubeVersion` was not specified, rendering will be attempted with each minor version from Kubernetes 1.20 to the current release.
 
 ## Configure the `builder` Key
 
