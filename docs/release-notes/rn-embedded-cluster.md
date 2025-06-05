@@ -42,7 +42,7 @@ Released on June 5, 2025
 ### Improvements {#improvements-2-4-0}
 * Improves support for private Certificate Authorities (CA). During the installation process, the installer will detect the system CA bundle on the host. This CA bundle will be mounted into all Embedded Cluster components that require trust validation, such as kotsadm, velero, and any supporting pods. This means that the [PrivateCACert template function](https://docs.replicated.com/reference/template-functions-static-context#privatecacert) now returns the name of a the ConfigMap which contains the CA trust store from the host.
 * The `--private-ca` flag is now deprecated.
-* Improves user intput validation when the user is using the `--http-proxy` flag, but not the `--https-proxy` flag.
+* Improves user input validation when the user is using the `--http-proxy` flag, but not the `--https-proxy` flag.
 
 ## 2.4.0
 
