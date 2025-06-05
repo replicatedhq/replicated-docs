@@ -12,6 +12,38 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.6.0+k8s-1.31
+
+Released on June 5, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.6.0-1.31</td>
+    <td id="center">2.6.0-1.30</td>
+    <td id="center">2.6.0-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.17</td>
+  </tr>
+</table>
+
+
+### New Features {#new-features-2-4-0}
+* Adds support for Kubernetes 1.31.
+
+### Improvements {#improvements-2-4-0}
+* Improves support for private Certificate Authorities (CA). During the installation process, the installer will detect the system CA bundle on the host. This CA bundle will be mounted into all Embedded Cluster components that require trust validation, such as kotsadm, velero, and any supporting pods. This means that the [PrivateCACert template function](https://docs.replicated.com/reference/template-functions-static-context#privatecacert) now returns the name of a the ConfigMap which contains the CA trust store from the host.
+* The `--private-ca` flag is now deprecated.
+* Improves user input validation when the user is using the `--http-proxy` flag, but not the `--https-proxy` flag.
+
 ## 2.4.0
 
 Released on May 6, 2025
