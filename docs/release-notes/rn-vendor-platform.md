@@ -17,6 +17,14 @@ Released on May 29, 2025
 ### New Features {#new-features-v2025-05-29-3}
 * Adds a "cancel" button for in-progress airgap builds.
 
+## v2025.05.28-4
+
+Released on May 28, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-28-4}
+* Compatibility Matrix: VMs that remain in the "queued" status for longer than 24 hours are removed and then displayed on the Compatibility Matrix **History** page as "Queued Timeout".
+* Compatibility Matrix: Fixes an issue that could cause an error when creating a VM due to an unremovable network.
+
 ## v2025.05.23-2
 
 Released on May 23, 2025
