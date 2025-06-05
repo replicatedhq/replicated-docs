@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.05.29-3
+
+Released on May 29, 2025
+
+### New Features {#new-features-v2025-05-29-3}
+* Adds a "cancel" button for in-progress airgap builds.
+
 ## v2025.05.28-4
 
 Released on May 28, 2025
