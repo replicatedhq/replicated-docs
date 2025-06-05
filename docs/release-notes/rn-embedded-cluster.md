@@ -31,7 +31,7 @@ Released on June 5, 2025
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.124.17</td>
+    <td id="center" colspan="3">1.124.17</td>
   </tr>
 </table>
 
