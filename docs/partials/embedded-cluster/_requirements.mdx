@@ -6,6 +6,8 @@
 
 * At least 2GB of memory and 2 CPU cores
 
+* The host’s hostname must comply with [RFC 1123](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names): it must consist of lowercase alphanumeric characters (`a–z`, `0–9`), `-` or `.`, and must start and end with an alphanumeric character (e.g. `node-01`, `node.example.com`).
+
 * The disk on the host must have a maximum P99 write latency of 10 ms. This supports etcd performance and stability. For more information about the disk write latency requirements for etcd, see [Disks](https://etcd.io/docs/latest/op-guide/hardware/#disks) in _Hardware recommendations_ and [What does the etcd warning “failed to send out heartbeat on time” mean?](https://etcd.io/docs/latest/faq/) in the etcd documentation.
 
 * The data directory used by Embedded Cluster must have 40Gi or more of total space and be less than 80% full. By default, the data directory is `/var/lib/embedded-cluster`. The directory can be changed by passing the `--data-dir` flag with the Embedded Cluster `install` command. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
