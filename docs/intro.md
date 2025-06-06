@@ -13,11 +13,11 @@ hide_table_of_contents: true
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Configure the Kubelet with Embedded Cluster</h3>
-        <p>Use the Embedded Cluster Config to change the Kubelet configuration based on your application's needs.</p>
+        <h3>Announcing: Enterprise Portal Beta</h3>
+        <p>The Enterprise Portal is the next generation of the Download Portal, offering a modern unboxing experience for Embedded Cluster and Helm installations.</p>
     </li>
     <li>
-      <a href="/reference/embedded-config#configure-the-kubelet">Learn more</a>
+      <a href="/vendor/enterprise-portal-about">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -26,11 +26,11 @@ hide_table_of_contents: true
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Customize the SDK with Helm Values</h3>
-        <p>The Replicated SDK's Helm values support various configuration options, like adding custom annotations across all resources, defining container resource requirements, and more.</p>
+        <h3>Verify SDK Image Integrity</h3>
+        <p>Replicated provides a script that you can use to verify the integrity of Replicated SDK images using SLSA provenance, image signatures, and SBOM attestations.</p>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-customizing">Learn more</a>
+      <a href="/vendor/replicated-sdk-slsa-validating">Learn more</a>
     </li>
   </ul>
 </section>
