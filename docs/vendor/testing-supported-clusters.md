@@ -165,7 +165,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Supported OpenShift Versions</th>
-    <td>{/* START_openshift_VERSIONS */}4.10.0-okd, 4.11.0-okd, 4.12.0-okd, 4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd, 4.18.0-okd{/* END_openshift_VERSIONS */}</td>
+    <td>{/* START_openshift_VERSIONS */}4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd, 4.18.0-okd{/* END_openshift_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -192,7 +192,6 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
     <td>
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
-        <li>OpenShift versions earlier than 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Docker Hub. For information about Docker Hub rate limiting, see <a href="https://docs.docker.com/docker-hub/download-rate-limit/">Docker Hub rate limit</a>. To increase limits, Replicated recommends that you configure an image pull secret to pull public Docker Hub images as an authenticated user. For more information about how to configure image pull secrets, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">Pull an Image from a Private Registry</a> in the Kubernetes documentation.</li>
         <li>
           <p>OpenShift builds take approximately 17 minutes.</p>
           <p><Pool/></p>
