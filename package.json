@@ -18,7 +18,7 @@
     "generate-llms": "node static/js/generate-llms.js"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.24.0",
+    "@algolia/client-search": "^5.27.0",
     "@babel/traverse": "^7.27.4",
     "@docusaurus/core": "3.8.0",
     "@docusaurus/preset-classic": "3.8.0",
