@@ -123,7 +123,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Node Groups</th>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
   <tr>
     <th>Node Auto Scaling</th>
@@ -131,7 +131,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Nodes</th>
-    <td>Supports multiple nodes.</td>
+    <td>Supports a single node.</td>
   </tr>
   <tr>
     <th>IP Family</th>
