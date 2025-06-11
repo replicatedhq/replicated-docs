@@ -1,0 +1,70 @@
+.docHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* When there's no title, align the dropdown to the right */
+.docHeader:empty,
+.docHeader:has(> :only-child) {
+  justify-content: flex-end;
+}
+
+.docTitle {
+  font-size: 2.5rem;
+  margin-bottom: 0;
+  margin-right: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+  max-width: calc(100% - 180px);
+  line-height: 1.2;
+}
+
+.docItemContainer {
+  position: relative;
+}
+
+/* Position the CopyMarkdown component relative to the first h1 */
+.docItemContainer :global(.copy-markdown-container) {
+  position: absolute;
+  top: 0.75rem; /* Approximate vertical center of h1 */
+  right: 0;
+  z-index: 10;
+}
+
+/* Ensure h1 elements have enough right margin for the dropdown */
+.docItemContainer :global(h1:first-of-type) {
+  margin-right: 200px;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .docHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .docTitle {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .docItemContainer :global(.copy-markdown-container) {
+    position: static;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .docItemContainer :global(h1:first-of-type) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}

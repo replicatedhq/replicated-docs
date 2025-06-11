@@ -1,5 +1,15 @@
+/**
+ * CopyMarkdown Component
+ * 
+ * React component that provides a dropdown menu to:
+ * - Copy the current page as markdown
+ * - View the page as plain text
+ * - Open the page in ChatGPT
+ */
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './CopyMarkdown.module.css';
+import clsx from 'clsx';
 
 function CopyMarkdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -128,8 +138,13 @@ function CopyMarkdown() {
 
   // Initialize on client side
   useEffect(() => {
-    // Check if we have markdown content
-    const hasMarkdownContent = !!document.querySelector('.theme-doc-markdown.markdown h1');
+    // Check for content
+    const hasH1 = document.querySelector('h1');
+    const hasArticle = document.querySelector('article');
+    const hasMainContent = document.querySelector('main');
+    
+    // Set content flag if we have both an h1 and either an article or main element
+    const hasMarkdownContent = !!hasH1 && (!!hasArticle || !!hasMainContent);
     setHasContent(hasMarkdownContent);
 
     // Set up click outside handler
@@ -165,10 +180,10 @@ function CopyMarkdown() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, 'copy-markdown-container')}>
       <button 
         ref={buttonRef}
-        className={`${styles.button} ${isCopied ? styles.copied : ''}`}
+        className={clsx(styles.button, isCopied && styles.copied)}
         onClick={!isCopied ? toggleDropdown : undefined}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -203,7 +218,7 @@ function CopyMarkdown() {
           aria-orientation="vertical"
         >
           <ul className={styles.list}>
-          <li className={styles.item}>
+            <li className={styles.item}>
               <button 
                 className={styles.actionButton} 
                 onClick={openInChatGpt}

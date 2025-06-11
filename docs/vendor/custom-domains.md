@@ -16,6 +16,8 @@ You can configure custom domains for the following services:
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from the app service. By default, this service uses the domain `replicated.app`. Replicated recommends using a CNAME such as `updates.{your app name}.com`. 
 
+- **Enterprise Portal:** The Enterprise Portal is a web-based portal that provides end customers with a centralized location for managing their installation. By default, the Enterprise Portal uses the domain **`[DOMAIN].replicated.com`**. Replicated recommending using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`.
+
 - **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
 - **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. Additionally, the default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. By default, the Replicated registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.

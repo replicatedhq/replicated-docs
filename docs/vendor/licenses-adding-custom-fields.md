@@ -2,25 +2,55 @@
 
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 
-## Set Initial Values for Built-In License Fields (Beta)
+## Manage Built-In License Fields
 
-You can set initial values to populate the **Create Customer** form in the Vendor Portal when a new customer is created. This ensures that each new customer created from the Vendor Portal UI starts with the same set of built-in license field values.
+This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
+
+### Set Initial Values for Built-In License Fields
+
+You can set initial values to populate the **Create Customer** form in the Vendor Portal when a new customer is created. This ensures that each new customer created from the Vendor Portal UI starts with the same set of built-in license field values. These _initial_ values differ from _default_ values in that setting initial values does not update the license field values for any existing customers.
 
 :::note
 Initial values are not applied to new customers created through the Vendor API v3. For more information, see [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) in the Vendor API v3 documentation.
 :::
 
-These _initial_ values differ from _default_ values in that setting initial values does not update the license field values for any existing customers.
-
 To set initial values for built-in license fields:
 
 1. In the Vendor Portal, go to **License Fields**.
 
-1. Under **Built-in license options**, click **Edit** next to each license field where you want to set an initial value. 
+1. Under **Built-in license options**, open the menu for the license field where you want to set an initial value and click **Edit**. 
 
      ![Edit Initial Value](/images/edit-initial-value.png)
 
      [View a larger version of this image](/images/edit-initial-value.png)
+
+1. In the **Edit built-in license field** dialog, edit the **Initial value** field.
+
+    ![Edit license field dialog](/images/edit-built-in-license-field-dialog.png)
+
+    [View a larger version of this image](/images/edit-built-in-license-field-dialog.png)
+
+    :::note
+    Click **Reset initial value** to reset the value for the field to its default.
+    :::
+
+1. (Optional) Enable the **Locked** checkbox to lock the license field.
+    
+    When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages.
+
+1. Click **Update** to save your changes.
+
+### Lock Built-In License Fields
+
+When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages. To edit a locked field, click the lock icon to temporarily unlock it. Locking a license field makes it more difficult to accidentally change the field's value.
+
+To lock a built-in license field:
+
+1. Under **Built-in license options**, open the menu for the license field that you want to lock and click **Edit**.
+
+1. In the **Edit built-in license field** dialog, enable the **Locked** checkbox to lock the license field.
+
+1. Click **Update** to save your changes.
 
 ## Manage Custom License Fields
 
