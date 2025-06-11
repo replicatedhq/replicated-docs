@@ -1,8 +1,8 @@
 # Customize the Replicated SDK
 
-This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
+This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
 
-For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
+For information about how to use a custom domain for the Replicated SDK image, see [Use a Custom Domain for the Replicated SDK Image](custom-domains-using#sdk) in _Using Custom Domains_.
 
 ## Customize RBAC for the SDK
 

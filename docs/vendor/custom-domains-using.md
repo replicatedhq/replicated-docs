@@ -1,6 +1,6 @@
 # Use Custom Domains
 
-This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal and the Replicated Download Portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias Replicated endpoints, including the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal, and the Replicated Download Portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
@@ -91,25 +91,13 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
 
 ### Use a Custom Domain for the Replicated SDK Image {#sdk}
 
-The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`. To view the Replicated SDK image properties, see the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. To view the Replicated SDK image properties, see the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+
+Because the SDK is located at the proxy registry domain, the SDK image is automatically pulled through the proxy registry during deployment.
 
 To use a custom domain for the SDK image:
 
-1. Add a custom domain for the Replicated registry in the Vendor Portal. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
-
-1. In the Replicated SDK Helm chart [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33), update the `image.registry` field with the custom domain that you added.
-
-     **Example:**
-
-     ```yaml
-     # SDK Helm chart values.yaml
-     image:
-       # update image.registry with your custom domain
-       registry: example.your-domain.com
-       repository: "library/replicated-sdk-image"
-       tag: "1.0.0"
-       pullPolicy: IfNotPresent   
-     ```
+* Add a custom domain for the Replicated proxy registry. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
 
 ### Set a Default Domain
 
