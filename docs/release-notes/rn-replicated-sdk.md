@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.7.0-beta.1
+
+Released on Jun 11, 2025
+
+### Improvements {#improvements-1-7-0-beta-1}
+* Updates the registry to point to a new proxy endpoint for improved performance and reliability.
+
 ## 1.6.0
 
 Released on Jun 9, 2025
