@@ -1,0 +1,3 @@
+:::note
+The `--private-ca` flag is deprecated. In Embedded Cluster 2.6.0 and later, it is no longer necessary to provide the path to a certificate authority (CA) with the `--private-ca` flag because Embedded Cluster automatically uses all CAs that are trusted by the host operating system. For more information about how to use these CAs in your application containers, see [PrivateCACert](/reference/template-functions-static-context#privatecacert) in _Static Context_. If you pass the `--private-ca` flag with the install command, the flag is not used and a deprecation message is displayed.
+:::
