@@ -1,6 +1,7 @@
 import ProxyLimitations from "../partials/embedded-cluster/_proxy-install-limitations.mdx"
 import ProxyRequirements from "../partials/embedded-cluster/_proxy-install-reqs.mdx"
 import ProxyEnvVars from "../partials/embedded-cluster/_proxy-env-vars.mdx"
+import DeprecatedPrivateCa from "../partials/embedded-cluster/_deprecated-private-ca.mdx"
 
 # Embedded Cluster Install Command Options
 
@@ -126,10 +127,10 @@ sudo ./APP_SLUG install --license PATH_TO_LICENSE [flags]
      </td>
   </tr>
   <tr>
-     <td>`--private-ca`</td>
+     <td>(Deprecated) `--private-ca`</td>
      <td>
-        <p>The path to trusted certificate authority (CA) certificates. Using the `--private-ca` flag ensures that the CA is trusted by the installation. KOTS writes the CA certificates provided with the `--private-ca` flag to a ConfigMap in the cluster.</p>
-        <p>The KOTS [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function returns the ConfigMap containing the private CA certificates supplied with the `--private-ca` flag. You can use this template function to mount the ConfigMap so your containers trust the CA too.</p>
+        <DeprecatedPrivateCa/>
+        <p>The path to trusted certificate authority (CA) certificates. In Embedded Cluster 2.4.0 and earlier, CAs provided with the `--private-ca` flag are written to a ConfigMap in the cluster that can then be accessed with the [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function.</p>
      </td>
   </tr>
   <tr>
@@ -181,15 +182,6 @@ Where:
 
 * `HOST:PORT` is the host and port of the proxy server
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
-
-### Install Behind an MITM Proxy
-
-```bash
-sudo ./my-app install --license license.yaml --private-ca /path/to/private-ca-bundle \
-  --http-proxy=http://10.128.0.0:3300 \
-  --https-proxy=http://10.128.0.0:3300 \
-  --no-proxy=123.89.46.4,10.96.0.0/16,*.example.com
-```
 
 ### Set Admin Console Password
 
