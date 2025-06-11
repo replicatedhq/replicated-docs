@@ -18,6 +18,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.124.18
+
+Released on June 11, 2025
+
+Support for Kubernetes: 1.29, 1.30, and 1.31
+
+### Improvements {#improvements-1-124-18}
+* Fixes CVE CVE-2024-0406.
+
+### Bug Fixes {#bug-fixes-1-124-18}
+* Fixes an issue where configuring the snapshot storage location maybe fail to restart Velero.
+
 ## 1.124.17
 
 Released on June 2, 2025
