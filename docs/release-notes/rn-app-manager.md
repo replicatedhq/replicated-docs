@@ -28,7 +28,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 * Fixes CVE CVE-2024-0406.
 
 ### Bug Fixes {#bug-fixes-1-124-18}
-* Fixes an issue where configuring the snapshot storage location maybe fail to restart Velero.
+* Fixes an issue where configuring the snapshot storage location failed to restart Velero, so the change didn't take effect.
 
 ## 1.124.17
 
