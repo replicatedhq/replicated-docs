@@ -93,7 +93,7 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
 
 The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. The SDK image is automatically pulled through the Replicated proxy registry during deployment.
 
-To view the Replicated SDK image properties, see the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
 
 To use a custom domain for the SDK image:
 
