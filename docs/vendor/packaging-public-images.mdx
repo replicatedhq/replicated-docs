@@ -6,13 +6,15 @@ For more information about the Replicated proxy registry, see [About the Replica
 
 ## Pull Public Images Through the Replicated Proxy Registry
 
-You can use the Replicated proxy registry to pull both public and private images. Using the Replicated proxy registry for public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
+You can use the Replicated proxy registry to pull both public and private images. Using the Replicated proxy registry for public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains. These are authenticated requests to avoid the proxy from hitting rate limits and preventing pulls. For more info on how to reference these in your values see  [Proxy with Helm installs](helm-image-registry)
 
-For public images, you need to first configure registry credentials.
+> [!IMPORTANT]  
+> For public images, you need to first configure registry credentials.
 
-To pull public images through the Replicated proxy registry, use the following `docker` command:
+To pull public images through the Replicated proxy registry, use the following `docker` commands:
 
 ```bash
+docker login REPLICATED_PROXY_DOMAIN  -u you@example.com -p $SERVICE_ACCOUNT_TOKEN
 docker pull REPLICATED_PROXY_DOMAIN/proxy/APPSLUG/UPSTREAM_REGISTRY_HOSTNAME/IMAGE:TAG
 ```
 Where:
