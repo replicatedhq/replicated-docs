@@ -174,6 +174,94 @@ Grants the holder permission to unset the default custom hostnames.
 
 Grants the holder permission to view and download support bundles.
 
+### kots/app/[:appId]/enterprise-portal/access/read
+
+Grants the holder permission to view Enterprise Portal access settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/access/update
+
+Grants the holder permission to update Enterprise Portal access settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/branding/read
+
+Grants the holder permission to view Enterprise Portal branding settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/branding/update
+
+Grants the holder permission to update Enterprise Portal branding settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/customer-users/read
+
+Grants the holder permission to view Enterprise Portal customer users for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/customer-user/create
+
+Grants the holder permission to create Enterprise Portal customer users for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/customer-user/[:customerId]/delete
+
+Grants the holder permission to delete Enterprise Portal customer users for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/documentation/read
+
+Grants the holder permission to view Enterprise Portal documentation settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/documentation/update
+
+Grants the holder permission to update Enterprise Portal documentation settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-domain/read
+
+Grants the holder permission to view Enterprise Portal email domain settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-domain/update
+
+Grants the holder permission to update Enterprise Portal email domain settings for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-domain/delete
+
+Grants the holder permission to delete Enterprise Portal email domains for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-domain/verify
+
+Grants the holder permission to verify Enterprise Portal email domains for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-templates/read
+
+Grants the holder permission to view Enterprise Portal email templates for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-templates/update
+
+Grants the holder permission to update Enterprise Portal email templates for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/email-templates/delete
+
+Grants the holder permission to delete Enterprise Portal email templates for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/failed-login-attempts/read
+
+Grants the holder permission to view Enterprise Portal failed login attempts for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/install-attempts/read
+
+Grants the holder permission to view Enterprise Portal install attempts for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/install-options/read
+
+Grants the holder permission to view Enterprise Portal install options for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/install-options/create
+
+Grants the holder permission to create Enterprise Portal install options for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/instances/read
+
+Grants the holder permission to view Enterprise Portal instances for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/service-accounts/read
+
+Grants the holder permission to view Enterprise Portal service accounts for the specified application.
+
 ## Registry
 
 ### registry/namespace/:namespace/pull
