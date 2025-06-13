@@ -27,3 +27,15 @@ These `replicated` values can be referenced by the application or set during ins
 For the default Replicated SDK Helm chart values file, see [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) in the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk) repository in GitHub.
 
 The SDK Helm values also include a `replicated.license` field, which is a string that contains the YAML representation of the customer license. For more information about the built-in fields in customer licenses, see [Built-In License Fields](licenses-using-builtin-fields).
+
+### Enabling SSL
+
+To configure the Replicated SDK pod to serve traffic over SSL, ensure a secret exists in the namespace with keys `tls.crt` and `tls.key` containing the TLS certificate and key.
+This is the format produced by `kubectl create secret tls <secret_name> --cert=<cert_file> --key=<key_file>`.
+Then, set `tlsCertSecretName` to the name of the secret.
+
+```yaml
+# values.yaml
+
+tlsCertSecretName: my-tls-secret
+```
