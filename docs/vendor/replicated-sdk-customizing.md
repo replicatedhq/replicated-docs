@@ -252,13 +252,17 @@ replicated:
 
 With the Replicated SDK version 1.6.0 and later, you can serve traffic from the Replicated SDK pod by setting the `replicated.tlsCertSecretName` Helm value in your Helm chart.
 
-To configure the Replicated SDK pod to serve traffic over SSL, ensure a secret exists in the namespace with keys `tls.crt` and `tls.key` containing the TLS certificate and key.
+To configure the Replicated SDK pod to serve traffic over SSL:
+
+1. Ensure a secret exists in the namespace with keys `tls.crt` and `tls.key` containing the TLS certificate and key.
 This is the format produced by `kubectl create secret tls <secret_name> --cert=<cert_file> --key=<key_file>`.
-Then, set `tlsCertSecretName` to the name of the secret.
 
-```yaml
-# Helm chart values.yaml
+1. Set `tlsCertSecretName` to the name of the secret, as shown below:
 
-replicated:
-  tlsCertSecretName: my-tls-secret
-```
+    ```yaml
+    # Helm chart values.yaml
+    
+    replicated:
+      tlsCertSecretName: YOUR_TLS_SECRET
+    ```
+    Where `YOUR_TLS_SECRET` is the secret in the namespace containing the TLS certificate and key. 
