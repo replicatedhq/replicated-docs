@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.13-4
+
+Released on June 13, 2025
+
+### New Features {#new-features-v2025-06-13-4}
+* Availability of initial set of vendor api routes for managing various aspects of the enterprise portal.
+
 ## v2025.05.29-3
 
 Released on May 29, 2025
