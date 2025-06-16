@@ -1,6 +1,6 @@
 # Use Custom Domains
 
-This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal and the Replicated Download Portal.
+This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias Replicated endpoints, including the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal, and the Replicated Download Portal.
 
 For information about adding and managing custom domains with the Vendor API v3, see the [customHostnames](https://replicated-vendor-api.readme.io/reference/createcustomhostname) section in the Vendor API v3 documentation.
 
@@ -88,6 +88,16 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
     For more information, see [domains](/reference/embedded-config#domains) in _Embedded Cluster Config_.
 
 1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
+
+### Use a Custom Domain for the Replicated SDK Image {#sdk}
+
+The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. The SDK image is automatically pulled through the Replicated proxy registry during deployment.
+
+You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+
+To use a custom domain for the SDK image:
+
+* Add a custom domain for the Replicated proxy registry. See [Add a Custom Domain in the Vendor Portal](#add-domain) above.
 
 ### Set a Default Domain
 

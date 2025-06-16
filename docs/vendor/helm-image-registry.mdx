@@ -9,7 +9,9 @@ This topic describes how to use the Replicated proxy registry to proxy images fo
 
 With the Replicated proxy registry, each customer's unique license can grant proxy access to images in an external private registry.
 
-During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry.
+During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry, allowing you to use the proxy registry for images in your Helm charts.
+
+Additionally, if you include the Replicated SDK as a dependency in your Helm chart, the image used by the Replicated SDK is automatically proxied through the proxy registry.
 
 ## Pull Private Images Through the Proxy Registry in Helm Installations
 
