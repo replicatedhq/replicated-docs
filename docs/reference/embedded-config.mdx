@@ -1,3 +1,5 @@
+import DoNotDowngrade from "../partials/embedded-cluster/_warning-do-not-downgrade.mdx"
+
 # Embedded Cluster Config
 
 This topic is a reference for the Replicated Embedded Cluster Config custom resource. For more information about Embedded Cluster, see [Use Embedded Cluster](/vendor/embedded-overview).
@@ -20,7 +22,7 @@ For additional property-specific limitations, see the sections below.
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
-  version: 2.1.3+k8s-1.30
+  version: 2.6.0+k8s-1.31
   roles:
     controller:	
       name: app	
@@ -67,9 +69,13 @@ spec:
 
 ## version
 
-You must specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
+Specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
 
-For a full list of versions, see the Embedded Cluster [releases page](https://github.com/replicatedhq/embedded-cluster/releases) in GitHub. It's recommended to keep this version as up to date as possible because Embedded Cluster is changing rapidly.
+Additionally, each version of Embedded Cluster also specifies a version of Kubernetes. For example, Embedded Cluster 2.6.0+k8s-1.31 uses Kubernetes 1.31, while 2.6.0+k8s-1.30 uses Kubernetes 1.30.
+
+For a full list of versions, see the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster). Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
+
+<DoNotDowngrade/>
 
 ## roles (Beta)
 

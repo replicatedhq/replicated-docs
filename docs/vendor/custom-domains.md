@@ -14,11 +14,17 @@ You can configure custom domains for the following services:
 
 - **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`. Replicated recommends using a CNAME such as `proxy.{your app name}.com`. 
 
+     :::note
+     The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. When you configure a custom domain for the Replicated proxy registry, the SDK is pulled from that custom domain. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+     :::
+
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from the app service. By default, this service uses the domain `replicated.app`. Replicated recommends using a CNAME such as `updates.{your app name}.com`. 
+
+- **Enterprise Portal:** The Enterprise Portal is a web-based portal that provides end customers with a centralized location for managing their installation. By default, the Enterprise Portal uses the domain **`[DOMAIN].replicated.com`**. Replicated recommending using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`.
 
 - **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.
+- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, the Replicated registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.
 
 ## Limitations
 

@@ -189,6 +189,16 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Enterprise Portal (Alpha)',
+          items: [
+            'vendor/enterprise-portal-about',
+            'vendor/enterprise-portal-configure',
+            'vendor/enterprise-portal-invite',
+            'vendor/enterprise-portal-use',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Custom Domains',
           items: [
             'vendor/custom-domains',
@@ -724,6 +734,7 @@ const sidebars = {
       'reference/replicated-cli-vm-port-ls',
       'reference/replicated-cli-vm-port-rm',
       'reference/replicated-cli-vm-rm',
+      'reference/replicated-cli-vm-scp-endpoint',
       'reference/replicated-cli-vm-ssh-endpoint',
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',

@@ -53,10 +53,6 @@ Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) tha
 
 ### Multi-Node Architecture with High Availability
 
-:::note
-High availability (HA) for multi-node installations with Embedded Cluster is Alpha and is not enabled by default. For more informaiton about enabling HA, see [Enable High Availability for Multi-Node Clusters (Alpha)](/enterprise/embedded-manage-nodes#ha).
-:::
-
 <HaArchitecture/>
 
 ## Built-In Extensions {#built-in-extensions}
@@ -101,8 +97,6 @@ Embedded Cluster has the following limitations:
 
 * **Migration from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. For more information about migrating from kURL to Embedded Cluster, including key considerations before migrating and an example step-by-step migration process, see [Replicated kURL to Embedded Cluster Migration](https://docs.google.com/document/d/1Qw9owCK4xNXHRRmxDgAq_NJdxQ4O-6w2rWk_luzBD7A/edit?tab=t.0). For additional questions and to begin the migration process for your application, reach out to Alex Parker at alexp@replicated.com.
 
-* **Multi-node support is in beta**: Support for multi-node embedded clusters is in beta, and enabling high availability for multi-node clusters is in alpha. Only single-node embedded clusters are generally available. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
-
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
 * **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/reference/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
@@ -119,7 +113,9 @@ Embedded Cluster has the following limitations:
 
 * **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Install with Helm](/vendor/install-with-helm).
 
-* **Downgrading Kubernetes not supported**: Embedded Cluster does not support downgrading Kubernetes. The admin console will not prevent end-users from attempting to downgrade Kubernetes if a more recent version of your application specifies a previous Embedded Cluster version. You must ensure that you do not promote new versions with previous Embedded Cluster versions.
+* **Downgrading Embedded Cluster or Kubernetes not supported**: Downgrading the versions of Embedded Cluster or Kubernetes that are installed in the cluster is not supported. However, the Admin Console does not prevent end-users from attempting to downgrade Emebdded Cluster or Kubernetes. To avoid issues in customer installations that could be caused by downgrading, do not promote new application releases with Embedded Cluster or Kubernetes versions that are earlier than the versions used by the previous release.
+
+* **Upgrading by more than one Kubernetes version at a time not supported**: Kubernetes does not support upgrading by more than one minor version at a time. However, the Admin Console does not prevent end-users from attempting to upgrade to a release that specifies a Kubernetes version more than one minor version later than what is currently installed. To avoid issues that could be caused by skipping a minor version of Kubernetes, Replicated recommends that you select **Prevent this release from being skipped during upgrades** when you promote a new application release that increases the Kubernetes version. For more information about required releases, see [Properties](/vendor/releases-about#properties) in _About Channels and Releases_.
 
 * **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
 

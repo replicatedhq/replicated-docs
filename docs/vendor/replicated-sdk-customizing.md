@@ -1,6 +1,8 @@
 # Customize the Replicated SDK
 
-This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
+This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
+
+For information about how to use a custom domain for the Replicated SDK image, see [Use a Custom Domain for the Replicated SDK Image](custom-domains-using#sdk) in _Using Custom Domains_.
 
 ## Customize RBAC for the SDK
 
@@ -245,3 +247,22 @@ replicated:
     monitoring: enabled
     custom.company.io/pod-label: value
 ```
+
+## Enable SSL
+
+With the Replicated SDK version 1.6.0 and later, you can serve traffic from the Replicated SDK pod by setting the `replicated.tlsCertSecretName` Helm value in your Helm chart.
+
+To configure the Replicated SDK pod to serve traffic over SSL:
+
+1. Ensure a secret exists in the namespace with keys `tls.crt` and `tls.key` containing the TLS certificate and key.
+This is the format produced by `kubectl create secret tls <secret_name> --cert=<cert_file> --key=<key_file>`.
+
+1. Set `tlsCertSecretName` to the name of the secret, as shown below:
+
+    ```yaml
+    # Helm chart values.yaml
+    
+    replicated:
+      tlsCertSecretName: YOUR_TLS_SECRET
+    ```
+    Where `YOUR_TLS_SECRET` is the secret in the namespace containing the TLS certificate and key. 

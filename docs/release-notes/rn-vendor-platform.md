@@ -10,6 +10,64 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.13-4
+
+Released on June 13, 2025
+
+### New Features {#new-features-v2025-06-13-4}
+* Adds initial set of Vendor API routes for managing various aspects of the Enterprise Portal. For more information, see [enterprisePortal](https://replicated-vendor-api.readme.io/reference/createinstalloptions) in the Vendor API v3 documentation.
+
+## v2025.05.29-3
+
+Released on May 29, 2025
+
+### New Features {#new-features-v2025-05-29-3}
+* Adds a "cancel" button for in-progress airgap builds.
+
+## v2025.05.28-4
+
+Released on May 28, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-28-4}
+* Compatibility Matrix: VMs that remain in the "queued" status for longer than 24 hours are removed and then displayed on the Compatibility Matrix **History** page as "Queued Timeout".
+* Compatibility Matrix: Fixes an issue that could cause an error when creating a VM due to an unremovable network.
+
+## v2025.05.23-2
+
+Released on May 23, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-23-2}
+* Fixes a bug that could cause API to return error 500 when creating  multiple releases in parallel.
+
+## v2025.05.12-5
+
+Released on May 12, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-12-5}
+* Fixed an issue in the Compatibility Matrix overview where deleting the last VM after deleting previous VMs would cause the UI to crash with a "Something Went Wrong" error.
+
+## v2025.05.07-1
+
+Released on May 7, 2025
+
+### Bug Fixes {#bug-fixes-v2025-05-07-1}
+* Compatibility Matrix: VMs created with the Vendor API v3 using `POST v3/vm` have a default `disk_gib` size of 50. This matches the size created using Replicated CLI.
+* Fixed an issue which allowed teams that did not have the kURL installers entitlement enabled to create clusters with `replicated cluster create --distribution kurl`.
+
+## v2025.05.02-0
+
+Released on May 2, 2025
+
+### New Features {#new-features-v2025-05-02-0}
+* Adds a **View expected bundle contents** button to the channel **Release History** page for releases that do not have an `.airgap` bundle.
+
+## v2025.04.28-4
+
+Released on April 28, 2025
+
+### New Features {#new-features-v2025-04-28-4}
+* Adds support for archiving and unarchiving instances that are inactive, air gap, or that were installed with a development license. Archived instances are hidden from all views. To archive or unarchive an instance, select **Archive Instance** or **Unarchive Instance** on the instance detail page. To view a list of archived instances, enable the **Show Archived Instances** option on the **Customers > Instances** tab.
+
 ## v2025.04.17-2
 
 Released on April 17, 2025

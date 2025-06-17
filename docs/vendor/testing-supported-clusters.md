@@ -21,7 +21,7 @@ Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) cluster
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.10, 1.31.6, 1.32.3, 1.33.0{/* END_kind_VERSIONS */}</td>
+    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.13, 1.31.9, 1.32.5, 1.33.1{/* END_kind_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -68,7 +68,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_k3s_VERSIONS */}1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.28.13, 1.28.14, 1.28.15, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.29.8, 1.29.9, 1.29.10, 1.29.11, 1.29.12, 1.29.13, 1.29.14, 1.29.15, 1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.32.0, 1.32.1, 1.32.2, 1.32.3{/* END_k3s_VERSIONS */}</td>
+    <td>{/* START_k3s_VERSIONS */}1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.1, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.28.13, 1.28.14, 1.28.15, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.29.8, 1.29.9, 1.29.10, 1.29.11, 1.29.12, 1.29.13, 1.29.14, 1.29.15, 1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.33.0, 1.33.1{/* END_k3s_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -115,7 +115,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_rke2_VERSIONS */}1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.28.13, 1.28.14, 1.28.15, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.29.8, 1.29.9, 1.29.10, 1.29.11, 1.29.12, 1.29.13, 1.29.14, 1.29.15, 1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.32.0, 1.32.1, 1.32.2, 1.32.3{/* END_rke2_VERSIONS */}</td>
+    <td>{/* START_rke2_VERSIONS */}1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.24.6, 1.24.7, 1.24.8, 1.24.9, 1.24.10, 1.24.11, 1.24.12, 1.24.13, 1.24.14, 1.24.15, 1.24.16, 1.24.17, 1.25.0, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.25.9, 1.25.10, 1.25.11, 1.25.12, 1.25.13, 1.25.14, 1.25.15, 1.25.16, 1.26.0, 1.26.1, 1.26.2, 1.26.3, 1.26.4, 1.26.5, 1.26.6, 1.26.7, 1.26.8, 1.26.9, 1.26.10, 1.26.11, 1.26.12, 1.26.13, 1.26.14, 1.26.15, 1.27.1, 1.27.2, 1.27.3, 1.27.4, 1.27.5, 1.27.6, 1.27.7, 1.27.8, 1.27.9, 1.27.10, 1.27.11, 1.27.12, 1.27.13, 1.27.14, 1.27.15, 1.27.16, 1.28.2, 1.28.3, 1.28.4, 1.28.5, 1.28.6, 1.28.7, 1.28.8, 1.28.9, 1.28.10, 1.28.11, 1.28.12, 1.28.13, 1.28.14, 1.28.15, 1.29.0, 1.29.1, 1.29.2, 1.29.3, 1.29.4, 1.29.5, 1.29.6, 1.29.7, 1.29.8, 1.29.9, 1.29.10, 1.29.11, 1.29.12, 1.29.13, 1.29.14, 1.29.15, 1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.33.0, 1.33.1{/* END_rke2_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -165,7 +165,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Supported OpenShift Versions</th>
-    <td>{/* START_openshift_VERSIONS */}4.10.0-okd, 4.11.0-okd, 4.12.0-okd, 4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd{/* END_openshift_VERSIONS */}</td>
+    <td>{/* START_openshift_VERSIONS */}4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd, 4.18.0-okd{/* END_openshift_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -192,7 +192,6 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
     <td>
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
-        <li>OpenShift versions earlier than 4.13-okd do not have a registry mirror and so may be subject to rate limiting from Docker Hub. For information about Docker Hub rate limiting, see <a href="https://docs.docker.com/docker-hub/download-rate-limit/">Docker Hub rate limit</a>. To increase limits, Replicated recommends that you configure an image pull secret to pull public Docker Hub images as an authenticated user. For more information about how to configure image pull secrets, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">Pull an Image from a Private Registry</a> in the Kubernetes documentation.</li>
         <li>
           <p>OpenShift builds take approximately 17 minutes.</p>
           <p><Pool/></p>
@@ -406,7 +405,7 @@ Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/e
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2, Standard_DS2_v5, Standard_DS3_v5, Standard_DS4_v5, Standard_DS5_v5, Standard_D2ps_v5 (arm), Standard_D4ps_v5 (arm), Standard_D8ps_v5 (arm), Standard_D16ps_v5 (arm), Standard_D32ps_v5 (arm), Standard_D48ps_v5 (arm), Standard_NC4as_T4_v3 (gpu), Standard_NC8as_T4_v3 (gpu), Standard_NC16as_T4_v3 (gpu), Standard_NC64as_T4_v3 (gpu)</p><p>GPU instance types depend on available capacity. After a GPU cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [NVIDIA GPU Operator with Azure Kubernetes Service](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/microsoft-aks.html) in the NVIDIA documentation.</p></td>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms, Standard_D2S_v5, Standard_D4S_v5, Standard_D8S_v5, Standard_D16S_v5, Standard_D32S_v5, Standard_D48S_v5, Standard_D2ps_v5 (arm), Standard_D4ps_v5 (arm), Standard_D8ps_v5 (arm), Standard_D16ps_v5 (arm), Standard_D32ps_v5 (arm), Standard_D48ps_v5 (arm), Standard_NC4as_T4_v3 (gpu), Standard_NC8as_T4_v3 (gpu), Standard_NC16as_T4_v3 (gpu), Standard_NC64as_T4_v3 (gpu)</p><p>GPU instance types depend on available capacity. After a GPU cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [NVIDIA GPU Operator with Azure Kubernetes Service](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/microsoft-aks.html) in the NVIDIA documentation.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>

@@ -8,10 +8,10 @@ The 'cluster nodegroup ls' command lists all the node groups associated with a g
 
 You can view information about the node groups within the specified cluster, including their ID, name, node count, and other configuration details.
 
-You must provide the cluster ID to list its node groups.
+You must provide the cluster ID or name to list its node groups.
 
 ```
-replicated cluster nodegroup ls [ID] [flags]
+replicated cluster nodegroup ls [ID_OR_NAME] [flags]
 ```
 
 ### Aliases
@@ -24,13 +24,13 @@ ls, list
 
 ```
 # List all node groups in a cluster with default table output
-replicated cluster nodegroup ls CLUSTER_ID
+replicated cluster nodegroup ls CLUSTER_ID_OR_NAME
 
 # List node groups with JSON output
-replicated cluster nodegroup ls CLUSTER_ID --output json
+replicated cluster nodegroup ls CLUSTER_ID_OR_NAME --output json
 
 # List node groups with wide table output
-replicated cluster nodegroup ls CLUSTER_ID --output wide
+replicated cluster nodegroup ls CLUSTER_ID_OR_NAME --output wide
 ```
 
 ### Options

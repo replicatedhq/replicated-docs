@@ -13,22 +13,21 @@ In your Helm chart values file, set your image repository URL to the location of
     # values.yaml
     api:
       image:
-        # proxy.registry.com or your custom domain
-        registry: ghcr.io
-        repository: proxy/app/ghcr.io/cloudnative-pg/cloudnative-pg
+        # proxy.replicated.com or your custom domain
+        registry: proxy.replicated.com
+        repository: proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
         tag: catalog-1.24.0
     ```
 
-  Ensure that any references to the image in your Helm chart access the field from your values file.  
+    Ensure that any references to the image in your Helm chart access the field from your values file.  
 
-   **Example**:
+    **Example**:
 
-    ```yaml
-    apiVersion: v1
-    kind: Pod
-    spec:
-      containers:
-        - name: api 
-            # Access the registry, repository, and tag fields from the values file
-            image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
-    ```
+      ```yaml
+      apiVersion: v1
+      kind: Pod
+      spec:
+        containers:
+          - name: api 
+              # Access the registry, repository, and tag fields from the values file
+              image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}

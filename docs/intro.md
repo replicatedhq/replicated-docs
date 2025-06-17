@@ -1,6 +1,7 @@
 ---
 slug: /
 pagination_next: null
+hide_table_of_contents: true
 ---  
 
 # Home
@@ -12,11 +13,11 @@ pagination_next: null
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Embedded Cluster Fully Supports Custom Domains</h3>
-        <p>Update the Embedded Cluster Config to alias the `replicated.app` and `proxy.replicated.com` endpoints with your custom domains.</p>
+        <h3>Announcing: Enterprise Portal Beta</h3>
+        <p>The Enterprise Portal is the next generation of the Download Portal, offering a modern unboxing experience for Embedded Cluster and Helm installations.</p>
     </li>
     <li>
-      <a href="/vendor/custom-domains-using#ec">Learn more</a>
+      <a href="/vendor/enterprise-portal-about">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -25,11 +26,11 @@ pagination_next: null
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>View Embedded Cluster Logs</h3>
-        <p>To help troubleshoot Embedded Cluster deployments, you can view logs for both Embedded Cluster and the k0s systemd service.</p>
+        <h3>Verify SDK Image Integrity</h3>
+        <p>Replicated provides a script that you can use to verify the integrity of Replicated SDK images using SLSA provenance, image signatures, and SBOM attestations.</p>
     </li>
     <li>
-      <a href="/vendor/embedded-troubleshooting">Learn more</a>
+      <a href="/vendor/replicated-sdk-slsa-validating">Learn more</a>
     </li>
   </ul>
 </section>

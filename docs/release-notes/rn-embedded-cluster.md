@@ -10,6 +10,89 @@ This topic contains release notes for the [Replicated Embedded Cluster](/vendor/
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
+<!--RELEASE_NOTES_PLACEHOLDER-->
+
+## 2.6.0
+
+Released on June 5, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.6.0+k8s-1.31</td>
+    <td id="center">2.6.0+k8s-1.30</td>
+    <td id="center">2.6.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.124.17</td>
+  </tr>
+</table>
+
+
+### New Features {#new-features-2-6-0}
+* Adds support for Kubernetes 1.31.
+
+### Improvements {#improvements-2-6-0}
+* Improves support for private certificate authorities (CA). During the installation process, the installer will detect the system CA bundle on the host. This CA bundle will be mounted into all Embedded Cluster components that require trust validation, such as KOTS, Velero, and any supporting Pods. This means that the [PrivateCACert template function](https://docs.replicated.com/reference/template-functions-static-context#privatecacert) now returns the name of a the ConfigMap that contains the CA trust store from the host.
+* The `--private-ca` flag is now deprecated.
+* Improves user input validation when the user is using the `--http-proxy` flag but not the `--https-proxy` flag.
+
+## 2.4.0
+
+Released on May 6, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.4.0+k8s-1.30</td>
+    <td id="center">2.4.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.124.16</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-4-0}
+* Multi-node and high availability clusters are generally available (GA).
+   :::note
+   Configuring node roles with the `roles` key is still beta.
+   :::
+* Adds the `join print-command` command, which prints the commands that can be run on nodes to join them to the cluster. This command allows users to access the required join commands from the CLI, rather than needing to go to the Admin Console UI. This is particularly useful for CLI-based and automated creation of multi-node clusters. For more information, see [Automate Controller Node Joins](/enterprise/embedded-manage-nodes#automate-node-joins) in _Manage Multi-Node Clusters with Embedded Cluster_.
+* Adds support for the **Multi-node Cluster** license field, which allows you to choose whether a customer can install multi-node Embedded Clusters. If this license option is disabled, customers are not prompted to join nodes during the installation, and the **Add node** button is not present on the **Nodes** page. For more information, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
+
+### Improvements {#improvements-2-4-0}
+* Various improvements to the node join process:
+  * The Embedded Cluster binary is hosted and served from the first node where Embedded Cluster was installed. This allows users to copy and paste commands from the Admin Console to download the binary and join new nodes.
+  * The `--airgap-bundle` flag is deprecated for the `join` command because the air gap bundle is no longer needed to join nodes to the cluster. This eliminates the need to redownload the air gap bundle on each node before joining.
+  * Ensures that the version of the binary used to join a node is the same version that is currently installed on other nodes.
+  * When prompted to enable high availability while joining a third or more controller node, the default response is yes to encourage users to enable high availability.
+
+  For more information about joining nodes, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes#automate-node-joins).
+* Adds support for configuring `--http-proxy`, `--https-proxy`, and `--no-proxy` for the `install` command through environment variables. The following environment variables can be used instead of the command line flags:
+	* `http_proxy` or `HTTP_PROXY`
+	* `https_proxy` or `HTTPS_PROXY`
+	* `no_proxy` or `NO_PROXY`
+
+  For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
+
+### Bug Fixes {#bug-fixes-2-4-0}
+* Fixes an issue that prevented a successful upgrade when a Helm extension was manually deleted or corrupted before the upgrade was attempted.
+* Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
+* Fixes an issue where the `reset` command appeared to fail when parts of the installation were already cleaned up or were never successfully installed.
+
 ## 2.3.1
 
 Released on April 8, 2025
