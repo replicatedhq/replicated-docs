@@ -4,6 +4,10 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 This topic describes how to push images to the Replicated private registry.
 
+:::note
+The ability to push additional images to the Replicated Registry is restricted to KOTS managed installations. Regardless of intended application installation method, Replicated recommends leveraging the [Replicated Proxy Registry](/vendor/private-images-about) instead for private/public image distribution. The Replicated Proxy Registry is a globally distributed and highly performant way to grant license controlled pull-through access to application images. 
+:::
+
 ## Overview
 
 For applications installed with KOTS, you can host private images on the Replicated registry. Hosting your images on the Replicated registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
