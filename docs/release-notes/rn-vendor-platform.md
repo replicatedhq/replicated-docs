@@ -17,6 +17,13 @@ Released on June 17, 2025
 ### New Features {#new-features-v2025-06-17-4}
 * Adds initial set of Vendor API routes for managing Enterprise Portal customer users. For more information, see [enterprisePortal](https://replicated-vendor-api.readme.io/reference/createinstalloptions) in the Vendor API v3 documentation.
 
+## v2025.06.17-0
+
+Released on June 17, 2025
+
+### New Features {#new-features-v2025-06-17-0}
+* Add Vendor API route for deleting Enterprise Portal service accounts. For more information, see [enterprisePortal](https://replicated-vendor-api.readme.io/reference/deleteenterpriseportalserviceaccount) in the Vendor API v3 documentation.
+
 ## v2025.06.13-4
 
 Released on June 13, 2025
