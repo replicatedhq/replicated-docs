@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.17-5
+
+Released on June 17, 2025
+
+### New Features {#new-features-v2025-06-17-5}
+* Adds an example image path to external registries on the Images page in the vendor portal and Improves image tag placeholders in the test registry modal.
+
 ## v2025.06.17-4
 
 Released on June 17, 2025
