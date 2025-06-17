@@ -1,6 +1,6 @@
 # Replicated Registry Security
 
-This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private. For more information about pushing images to the Replicated registry, see [Using the Replicated Registry for KOTS Installations](private-images-replicated).
+This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private. For more information about pushing images to the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
 
 
 ## Single Tenant Isolation
