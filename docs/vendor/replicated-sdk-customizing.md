@@ -10,7 +10,7 @@ This section describes role-based access control (RBAC) for the Replicated SDK, 
 
 ### Default RBAC
 
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated` and `replicated-instance-report` Secrets:
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -44,6 +44,7 @@ rules:
   - replicated
   - replicated-instance-report
   - replicated-custom-app-metrics-report
+  - replicated-meta-data
 ```
 
 ### Minimum RBAC Requirements
@@ -269,3 +270,121 @@ This is the format produced by `kubectl create secret tls <secret_name> --cert=<
       tlsCertSecretName: YOUR_TLS_SECRET
     ```
     Where `YOUR_TLS_SECRET` is the secret in the namespace containing the TLS certificate and key. 
+
+## Minimal RBAC
+
+With the Replicated SDK version 1.7.0 and later, you can enable the use of a less-permissive RBAC role for the SDK pod by setting the `replicated.minimalRBAC` Helm value in your Helm chart.
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+```
+
+If statusInformers are not set manually, this RBAC role will include permissions to `get`, `list`, and `watch` all secrets, deployments, statefulsets, daemonsets, services, ingresses, PVCs, pods, replicasets, and endpoints within the namespace.
+This allows Replicated to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
+
+If statusInformers are set manually, then the generated role will not be created with the ability to access all secrets, and other resources will be specified by name when possible.
+An example statusInformer configuration and generated role is presented below.
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+  statusInformers:
+  - deployment/replicated
+  - deployment/myapp
+  - service/replicated
+  - service/myapp
+```
+
+```yaml
+# Generated RBAC role
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: replicated-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - replicated-instance-report
+  - replicated-custom-app-metrics-report
+  - replicated-meta-data
+  resources:
+  - secrets
+  verbs:
+  - update
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  - myapp
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - myapp
+  resources:
+  - services
+  - endpoints
+  verbs:
+  - get
+```
