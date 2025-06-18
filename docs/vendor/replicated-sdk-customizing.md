@@ -285,6 +285,103 @@ replicated:
 If statusInformers are not set manually, this RBAC role will include permissions to `get`, `list`, and `watch` all secrets, deployments, statefulsets, daemonsets, services, ingresses, PVCs, pods, replicasets, and endpoints within the namespace.
 This allows Replicated to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
 
+```yaml
+# Generated RBAC role with no statusInformers
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: replicated-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - replicated-instance-report
+  - replicated-custom-app-metrics-report
+  - replicated-meta-data
+  resources:
+  - secrets
+  verbs:
+  - update
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - replicasets
+  - statefulsets
+  - daemonsets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - list
+```
+
 If statusInformers are set manually, then the generated role will not be created with the ability to access all secrets, and other resources will be specified by name when possible.
 An example statusInformer configuration and generated role is presented below.
 
@@ -301,7 +398,7 @@ replicated:
 ```
 
 ```yaml
-# Generated RBAC role
+# Generated RBAC role with deployment/replicated, deployment/myapp, service/replicated and service/myapp statusinformers
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
