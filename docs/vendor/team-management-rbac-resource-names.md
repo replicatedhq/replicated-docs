@@ -254,6 +254,14 @@ Grants the holder permission to view Enterprise Portal install options for the s
 
 Grants the holder permission to create Enterprise Portal install options for the specified application.
 
+### kots/app/[:appId]/enterprise-portal/install-options/[:installOptionId]/update
+
+Grants the holder permission to update Enterprise Portal install options for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/install-options/[:installOptionId]/delete
+
+Grants the holder permission to soft-delete Enterprise Portal install options for the specified application.
+
 ### kots/app/[:appId]/enterprise-portal/instances/read
 
 Grants the holder permission to view Enterprise Portal instances for the specified application.
@@ -261,6 +269,10 @@ Grants the holder permission to view Enterprise Portal instances for the specifi
 ### kots/app/[:appId]/enterprise-portal/service-accounts/read
 
 Grants the holder permission to view Enterprise Portal service accounts for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/service-accounts/[:serviceAccountId]/delete
+
+Grants the holder permission to soft-delete Enterprise Portal service accounts for the specified application.
 
 ## Registry
 
