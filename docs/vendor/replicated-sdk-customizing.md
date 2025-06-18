@@ -50,10 +50,13 @@ rules:
 
 The SDK requires the following minimum RBAC permissions:
 * Create Secrets.
-* Get and update Secrets named `replicated`, `replicated-instance-report`, and `replicated-custom-app-metrics-report`.
+* Get and update Secrets named `replicated`, `replicated-instance-report`, `replicated-meta-data`, and `replicated-custom-app-metrics-report`.
+* Get the `replicated` deployment.
+* Get the `replicaset` and `pods` corresponding to the `replicated` deployment.
 * The SDK requires the following minimum RBAC permissions for status informers:
-  * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
-  * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch the following resources:
+  * If you defined custom status informers, then the SDK must have permissions to `list` and `watch` all the types of resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file, as well as the ability to `get` the named resource.
+    * For instance, if you have a single status informer `deployment/myapp`, then the SDK requires permissions to `list` and `watch` all deployments as well as `get` the `myapp` deployment.
+  * If you did _not_ define custom status informers, then the SDK must have permissions to `get`, `list`, and `watch` the following resources:
     * Deployments
     * Daemonsets
     * Ingresses
