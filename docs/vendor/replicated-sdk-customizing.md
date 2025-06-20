@@ -8,7 +8,7 @@ For information about how to use a custom domain for the Replicated SDK image, s
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
 
-It also describes how to enable the `replicated.minimalRBAC` field to use a less-permissive default RBAC role for the Replicated SDK 1.7.0 and later. 
+It also describes how to enable the `replicated.minimalRBAC` field to use a less-permissive default RBAC role for the Replicated SDK version 1.7.0 and later. 
 
 ### Enable `minimalRBAC`
 
@@ -154,7 +154,7 @@ rules:
 
 #### Default `minimalRBAC` Role With Custom Status Informers {#default-status-informers}
 
-If you defined custom status informers for your application, then the default `minimalRBAC` role includes permissions only for the specific resources that you defined as status informers. These resources are specified by name when possible.
+If you defined custom status informers for your application, then the default `minimalRBAC` role is _not_ created with the ability to access all secrets, and other resources are specified by name when possible.
 
 For example, the following custom `statusInformer` configuration defines specific Deployment and Service resources as status informers for the application:
 
@@ -302,35 +302,36 @@ rules:
   - replicated-meta-data
 ```
 
-### Minimum RBAC Requirements
+### Install the SDK with Custom RBAC
+
+This section describes how to install the SDK with custom RBAC permissions, include the minimum RBAC requirements for custom roles. To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
+
+#### Minimum RBAC Requirements
 
 This section describes the minimum RBAC permissions required by the Replicated SDK. Any custom RBAC role that you create must include these permissions at minimum.
 
-The SDK requires the following minimum RBAC permissions:
+The SDK requires the following minimum RBAC permissions to start:
 * Create Secrets.
 * Get and update Secrets named `replicated`, `replicated-instance-report`, `replicated-meta-data`, and `replicated-custom-app-metrics-report`.
 * Get the `replicated` deployment.
 * Get the `replicaset` and `pods` corresponding to the `replicated` deployment.
-* The SDK requires the following minimum RBAC permissions for status informers:
-  * If you defined custom status informers, then the SDK must have permissions to `list` and `watch` all the types of resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file, as well as the ability to `get` the named resource.
-    
-    For instance, if you have a single status informer `deployment/myapp`, then the SDK requires permissions to `list` and `watch` all deployments as well as `get` the `myapp` deployment.
-  * If you did _not_ define custom status informers, then the SDK must have permissions to `get`, `list`, and `watch` the following resources:
+
+The SDK requires the following minimum RBAC permissions for status informers:
+* If you defined custom status informers, then the SDK must have permissions to `list` and `watch` all the types of resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file, as well as the ability to `get` the named resource.
+
+  For example, if you have a single status informer `deployment/myapp`, then the SDK requires permissions to `list` and `watch` all deployments as well as `get` the `myapp` deployment.
+* If you did _not_ define custom status informers, then the SDK must:
+  * Have permissions to `get`, and `list` all secrets within the namespace in order to discover the Helm Chart secret for your app.
+  * Have permissions to `get`, `list`, and `watch` the following resources:
     * Deployments
-    * Daemonsets
+    * DaemonSets
     * Ingresses
     * PersistentVolumeClaims
-    * Statefulsets
-    * Services   
-  * For any Ingress resources used as status informers, the SDK requires `get` permissions for the Service resources listed in the `backend.Service.Name` field of the Ingress resource.
-  * For any Daemonset and Statefulset resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
-  * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.  
-
-  The Replicated Vendor Portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
-
-### Install the SDK with Custom RBAC
-
-This section describes how to install the SDK with custom RBAC permissions. To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
+    * StatefulSets
+    * Services
+* For any Ingress resources used as status informers, the SDK requires `get` permissions for the Service resources listed in the `backend.Service.Name` field of the Ingress resource.
+* For any DaemonSet and StatefulSet resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
+* For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.
 
 #### Use a Custom ServiceAccount
 
