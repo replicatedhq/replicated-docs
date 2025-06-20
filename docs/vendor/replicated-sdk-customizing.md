@@ -10,22 +10,48 @@ This section describes role-based access control (RBAC) for the Replicated SDK, 
 
 It also describes how to enable the `replicated.minimalRBAC` field to use a less-permissive default RBAC role for the Replicated SDK version 1.7.0 and later. 
 
-### Enable `minimalRBAC`
+### Default RBAC
 
-With the Replicated SDK version 1.7.0 and later, you can enable the use of a less-permissive RBAC role for the SDK pod by setting the `replicated.minimalRBAC` Helm value in your Helm chart, as shown below:
+This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is false.
+
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
 
 ```yaml
-# Helm chart values.yaml
-
-replicated:
-  minimalRBAC: true
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: replicated-role
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - 'get'
+  - 'list'
+  - 'watch'
+- apiGroups:
+  - ''
+  resources:
+  - 'secrets'
+  verbs:
+  - 'create'
+- apiGroups:
+  - ''
+  resources:
+  - 'secrets'
+  verbs:
+  - 'update'
+  resourceNames:
+  - replicated
+  - replicated-instance-report
+  - replicated-custom-app-metrics-report
+  - replicated-meta-data
 ```
 
-For more information about the default RBAC role that is created when `minimalRBAC` is enabled, see [Default RBAC (`minimalRBAC: true`)](#default-rbac-true).
+### Minimal RBAC
 
-### Default RBAC (`minimalRBAC: true`) {#default-rbac-true}
-
-This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is true. For the default RBAC when `minimalRBAC` is false, see [Default RBAC (`minimalRBAC: false`)](#default-rbac-false).
+This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is true in version 1.7.0 and later.
 
 The permissions included in the default `minimalRBAC` Role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
 * [Default `minimalRBAC` Role Without Custom Status Informers](#default-no-status-informers)
@@ -52,6 +78,15 @@ If you did _not_ define custom status informers for your application, then the d
 * Endpoints
 
 These permissions allow the SDK to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
+
+To enable `minimalRBAC`, set the value in your Helm chart as shown below:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+```
 
 The following shows the default RBAC role for the SDK when `minimalRBAC` is enabled and no customer status informers are defined:
 
@@ -259,47 +294,6 @@ rules:
   - endpoints
   verbs:
   - get
-```
-
-### Default RBAC (`minimalRBAC: false`) {#default-rbac-false}
-
-This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is false.
-
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  labels:
-    {{- include "replicated.labels" . | nindent 4 }}
-  name: replicated-role
-rules:
-- apiGroups:
-  - '*'
-  resources:
-  - '*'
-  verbs:
-  - 'get'
-  - 'list'
-  - 'watch'
-- apiGroups:
-  - ''
-  resources:
-  - 'secrets'
-  verbs:
-  - 'create'
-- apiGroups:
-  - ''
-  resources:
-  - 'secrets'
-  verbs:
-  - 'update'
-  resourceNames:
-  - replicated
-  - replicated-instance-report
-  - replicated-custom-app-metrics-report
-  - replicated-meta-data
 ```
 
 ### Install the SDK with Custom RBAC
