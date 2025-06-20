@@ -8,13 +8,9 @@ For information about how to use a custom domain for the Replicated SDK image, s
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
 
-It also describes how to enable the `replicated.minimalRBAC` field to use a less-permissive default RBAC role for the Replicated SDK version 1.7.0 and later. 
-
 ### Default RBAC
 
-This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is false.
-
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. When `replicated.minimalRBAC` is false, the default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -51,11 +47,11 @@ rules:
 
 ### Minimal RBAC
 
-This section describes the default RBAC role that is created for the Replicated SDK when the `replicated.minimalRBAC` field is true in version 1.7.0 and later.
+With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true.
 
-The permissions included in the default `minimalRBAC` Role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
-* [Default `minimalRBAC` Role Without Custom Status Informers](#default-no-status-informers)
-* [Default `minimalRBAC` Role With Custom Status Informers](#default-status-informers)
+The permissions included in the Minimal RBAC role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
+* [Default Minimal RBAC Role Without Custom Status Informers](#default-no-status-informers)
+* [Default Minimal RBAC Role With Custom Status Informers](#default-status-informers)
 
 <details>
   <summary>What are status informers?</summary>
@@ -63,9 +59,9 @@ The permissions included in the default `minimalRBAC` Role vary depending on if 
   The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
 </details>
 
-#### Default `minimalRBAC` Role Without Custom Status Informers {#default-no-status-informers}
+#### Default Minimal RBAC Role Without Custom Status Informers {#default-no-status-informers}
 
-If you did _not_ define custom status informers for your application, then the default `minimalRBAC` Role includes permissions for the SDK to `get`, `list`, and `watch` the following resources in the namespace:
+If you did _not_ define custom status informers for your application, then the default minimal RBAC Role includes permissions for the SDK to `get`, `list`, and `watch` the following resources in the namespace:
 * Secrets 
 * Deployments 
 * StatefulSets 
@@ -79,7 +75,7 @@ If you did _not_ define custom status informers for your application, then the d
 
 These permissions allow the SDK to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
 
-To enable `minimalRBAC`, set the value in your Helm chart as shown below:
+To enable Minimal RBAC, set the value in your Helm chart as shown below:
 
 ```yaml
 # Helm chart values.yaml
@@ -88,7 +84,7 @@ replicated:
   minimalRBAC: true
 ```
 
-The following shows the default RBAC role for the SDK when `minimalRBAC` is enabled and no customer status informers are defined:
+The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no customer status informers are defined:
 
 ```yaml
 # Generated RBAC role with no statusInformers
@@ -187,9 +183,9 @@ rules:
   - list
 ```
 
-#### Default `minimalRBAC` Role With Custom Status Informers {#default-status-informers}
+#### Default Minimal RBAC Role With Custom Status Informers {#default-status-informers}
 
-If you defined custom status informers for your application, then the default `minimalRBAC` role is _not_ created with the ability to access all secrets, and other resources are specified by name when possible.
+If you defined custom status informers for your application, then the default Minimal RBAC role is _not_ created with the ability to access all secrets, and other resources are specified by name when possible.
 
 For example, the following custom `statusInformer` configuration defines specific Deployment and Service resources as status informers for the application:
 
@@ -205,7 +201,7 @@ replicated:
   - service/myapp
 ```
 
-Given the custom `statusInformer` configuration above, the following `minimalRBAC` role is created:
+Given the custom `statusInformer` configuration above, the following Minimal RBAC role is created:
 
 ```yaml
 # Generated RBAC role with deployment/replicated, deployment/myapp, service/replicated and service/myapp statusinformers
@@ -298,11 +294,11 @@ rules:
 
 ### Install the SDK with Custom RBAC
 
-This section describes how to install the SDK with custom RBAC permissions, include the minimum RBAC requirements for custom roles. To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
+To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
 
 #### Minimum RBAC Requirements
 
-This section describes the minimum RBAC permissions required by the Replicated SDK. Any custom RBAC role that you create must include these permissions at minimum.
+Any custom RBAC role that you create must include these permissions.
 
 The SDK requires the following minimum RBAC permissions to start:
 * Create Secrets.
