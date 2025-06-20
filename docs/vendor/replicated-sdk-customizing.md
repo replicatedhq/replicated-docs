@@ -6,7 +6,7 @@ For information about how to use a custom domain for the Replicated SDK image, s
 
 ## Customize RBAC for the SDK
 
-This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
+This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, and how to install the SDK with custom RBAC.
 
 ### Default RBAC
 
@@ -47,7 +47,14 @@ rules:
 
 ### Minimal RBAC
 
-With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true.
+With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true in your Helm chart values, as shown below:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+```
 
 The permissions included in the Minimal RBAC role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
 * [Default Minimal RBAC Role Without Custom Status Informers](#default-no-status-informers)
@@ -74,15 +81,6 @@ If you did _not_ define custom status informers for your application, then the d
 * Endpoints
 
 These permissions allow the SDK to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
-
-To enable Minimal RBAC, set the value in your Helm chart as shown below:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  minimalRBAC: true
-```
 
 The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no customer status informers are defined:
 
