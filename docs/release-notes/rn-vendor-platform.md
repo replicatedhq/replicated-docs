@@ -10,6 +10,15 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.18-2
+
+Released on June 18, 2025
+
+### New Features {#new-features-v2025-06-18-2}
+* Adds Vendor API routes for updating and deleting install option records. For more information, see [enterprisePortal](https://replicated-vendor-api.readme.io/reference/createinstalloptions) in the Vendor API v3 documentation.
+* Adds a "(Default)" text badge next to custom domains that are set as default in the vendor portal UI.
+* Adds a link to the custom domains docs if you do not have a default custom domain set and have configured domains.
+
 ## v2025.06.17-5
 
 Released on June 17, 2025

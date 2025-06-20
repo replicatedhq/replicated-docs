@@ -6,18 +6,16 @@ For information about how to use a custom domain for the Replicated SDK image, s
 
 ## Customize RBAC for the SDK
 
-This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
+This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, and how to install the SDK with custom RBAC.
 
 ### Default RBAC
 
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated` and `replicated-instance-report` Secrets:
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. When `replicated.minimalRBAC` is false, the default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated`, `replicated-instance-report`, `replicated-custom-app-metrics-report`, and `replicated-meta-data` Secrets:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  labels:
-    {{- include "replicated.labels" . | nindent 4 }}
   name: replicated-role
 rules:
 - apiGroups:
@@ -44,30 +42,286 @@ rules:
   - replicated
   - replicated-instance-report
   - replicated-custom-app-metrics-report
+  - replicated-meta-data
 ```
 
-### Minimum RBAC Requirements
+### Minimal RBAC
 
-The SDK requires the following minimum RBAC permissions:
-* Create Secrets.
-* Get and update Secrets named `replicated`, `replicated-instance-report`, and `replicated-custom-app-metrics-report`.
-* The SDK requires the following minimum RBAC permissions for status informers:
-  * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
-  * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch the following resources:
-    * Deployments
-    * Daemonsets
-    * Ingresses
-    * PersistentVolumeClaims
-    * Statefulsets
-    * Services   
-  * For any Ingress resources used as status informers, the SDK requires `get` permissions for the Service resources listed in the `backend.Service.Name` field of the Ingress resource.
-  * For any Daemonset and Statefulset resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
-  * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.  
+With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true in your Helm chart values, as shown below:
 
-  The Replicated Vendor Portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+```
+
+The permissions included in the Minimal RBAC role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
+* [Default Minimal RBAC Role Without Custom Status Informers](#default-no-status-informers)
+* [Default Minimal RBAC Role With Custom Status Informers](#default-status-informers)
+
+<details>
+  <summary>What are status informers?</summary>
+  
+  The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
+</details>
+
+#### Default Minimal RBAC Role Without Custom Status Informers {#default-no-status-informers}
+
+If you did _not_ define custom status informers for your application, then the default minimal RBAC Role includes permissions for the SDK to `get`, `list`, and `watch` the following resources in the namespace:
+* Secrets 
+* Deployments 
+* StatefulSets 
+* DaemonSets 
+* Services 
+* Ingresses 
+* PVCs 
+* Pods 
+* ReplicaSets 
+* Endpoints
+
+These permissions allow the SDK to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
+
+The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no customer status informers are defined:
+
+```yaml
+# Generated RBAC role with no statusInformers
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: replicated-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - replicated-instance-report
+  - replicated-custom-app-metrics-report
+  - replicated-meta-data
+  resources:
+  - secrets
+  verbs:
+  - update
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - replicasets
+  - statefulsets
+  - daemonsets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - list
+```
+
+#### Default Minimal RBAC Role With Custom Status Informers {#default-status-informers}
+
+If you defined custom status informers for your application, then the default Minimal RBAC role is _not_ created with the ability to access all secrets, and other resources are specified by name when possible.
+
+For example, the following custom `statusInformer` configuration defines specific Deployment and Service resources as status informers for the application:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  minimalRBAC: true
+  statusInformers:
+  - deployment/replicated
+  - deployment/myapp
+  - service/replicated
+  - service/myapp
+```
+
+Given the custom `statusInformer` configuration above, the following Minimal RBAC role is created:
+
+```yaml
+# Generated RBAC role with deployment/replicated, deployment/myapp, service/replicated and service/myapp statusinformers
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: replicated-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - replicated-instance-report
+  - replicated-custom-app-metrics-report
+  - replicated-meta-data
+  resources:
+  - secrets
+  verbs:
+  - update
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resourceNames:
+  - replicated
+  - myapp
+  resources:
+  - deployments
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resourceNames:
+  - replicated
+  - myapp
+  resources:
+  - services
+  - endpoints
+  verbs:
+  - get
+```
+
 ### Install the SDK with Custom RBAC
 
-#### Custom ServiceAccount
+To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
+
+#### Minimum RBAC Requirements
+
+Any custom RBAC role that you create must include these permissions.
+
+The SDK requires the following minimum RBAC permissions to start:
+* Create Secrets.
+* Get and update Secrets named `replicated`, `replicated-instance-report`, `replicated-meta-data`, and `replicated-custom-app-metrics-report`.
+* Get the `replicated` deployment.
+* Get the `replicaset` and `pods` corresponding to the `replicated` deployment.
+
+The SDK requires the following minimum RBAC permissions for status informers:
+* If you defined custom status informers, then the SDK must have permissions to `list` and `watch` all the types of resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file, as well as the ability to `get` the named resource.
+
+  For example, if you have a single status informer `deployment/myapp`, then the SDK requires permissions to `list` and `watch` all deployments as well as `get` the `myapp` deployment.
+* If you did _not_ define custom status informers, then the SDK must:
+  * Have permissions to `get`, and `list` all secrets within the namespace in order to discover the Helm Chart secret for your app.
+  * Have permissions to `get`, `list`, and `watch` the following resources:
+    * Deployments
+    * DaemonSets
+    * Ingresses
+    * PersistentVolumeClaims
+    * StatefulSets
+    * Services
+* For any Ingress resources used as status informers, the SDK requires `get` permissions for the Service resources listed in the `backend.Service.Name` field of the Ingress resource.
+* For any DaemonSet and StatefulSet resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
+* For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.
+
+#### Use a Custom ServiceAccount
 
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.
 
@@ -76,15 +330,15 @@ To install the SDK with custom RBAC:
 1. Create custom Role, RoleBinding, and ServiceAccount objects. The Role must meet the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above.
 1. During installation, provide the name of the service account that you created by including `--set replicated.serviceAccountName=CUSTOM_SERVICEACCOUNT_NAME`.
 
-  **Example**:
+   **Example**:
 
-  ```
-  helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
-  ```
+   ```
+   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
+   ```
 
- For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).  
+   For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).  
 
-#### Custom ClusterRole
+#### Use a Custom ClusterRole
 
 To use the SDK with an existing ClusterRole, provide the name for a custom ClusterRole object during installation. When a cluster role is provided, the SDK uses the RBAC permissions granted to the cluster role and does not create the default RoleBinding. Instead, the SDK creates a ClusterRoleBinding as well as a ServiceAccount object.
 
@@ -93,13 +347,13 @@ To install the SDK with a custom ClusterRole:
 1. Create a custom ClusterRole object. The ClusterRole must meet at least the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above. However, it can also provide additional permissions that can be used by the SDK, such as listing cluster Nodes.
 1. During installation, provide the name of the cluster role that you created by including `--set replicated.clusterRole=CUSTOM_CLUSTERROLE_NAME`.
 
-  **Example**:
+   **Example**:
 
-  ```
-  helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
-  ```
+   ```
+   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
+   ```
 
- For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).
+   For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).
 
 ## Set Environment Variables {#env-var}
 
