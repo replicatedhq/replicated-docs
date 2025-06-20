@@ -15,7 +15,7 @@ Released on Jun 20, 2025
 ### Improvements {#improvements-1-7-0}
 * Updates the registry to point to a new proxy endpoint for improved performance and reliability.
 * Adds support adding a liveness probe to the SDK deployment with the [`livenessProbe`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L106) Helm value.
-* Adds support for a RBAC role with reduced scope with the [`minimalRBAC`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L301) Helm value.For more information, see [Minimal RBAC](vendor/replicated-sdk-customizing#minimal-rbac) in _Customizing the Replicated SDK_.
+* Adds support for a RBAC role with reduced scope with the [`minimalRBAC`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L301) Helm value.For more information, see [Minimal RBAC](/vendor/replicated-sdk-customizing#minimal-rbac) in _Customizing the Replicated SDK_.
 
 ## 1.6.0
 
