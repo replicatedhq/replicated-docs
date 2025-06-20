@@ -19,6 +19,14 @@ Released on June 18, 2025
 * Adds a "(Default)" text badge next to custom domains that are set as default in the vendor portal UI.
 * Adds a link to the custom domains docs if you do not have a default custom domain set and have configured domains.
 
+## v2025.06.17-5
+
+Released on June 17, 2025
+
+### Improvements {#improvements-v2025-06-17-5}
+* Adds an example image path to external registries on the **Images** page in the Vendor Portal.
+* Improves the image tag placeholders in the test registry modal on the **Images** page in the Vendor Portal.
+
 ## v2025.06.17-4
 
 Released on June 17, 2025
