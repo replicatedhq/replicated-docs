@@ -272,14 +272,14 @@ spec:
 
 ## Task 4: Support the Use of Local Image Registries {#local-registries}
 
-Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air-gapped environments with no outbound internet connection. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry with KOTS, see [Configure Local Image Registries in the Admin Console](/enterprise/image-registry-settings).
 
 To support the use of local registries, configure the `builder` key. For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Task 5: Add Backup Labels for Snapshots (KOTS Existing Cluster and kURL Installations Only) {#add-backup-labels-for-snapshots}
 
 :::note
-The Replicated [snapshots](snapshots-overview) feature for backup and restsore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for existing cluster installations with KOTS. Snapshots are not support for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
 :::
 
 The snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
@@ -322,7 +322,6 @@ spec:
 ## Additional Information
 
 ### About the HelmChart Custom Resource
-
 
 <KotsHelmCrDescription/>
 
