@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.23-0
+
+Released on June 23, 2025
+
+### Bug Fixes {#bug-fixes-v2025-06-23-0}
+* Show correct updated date in Customer Manage page.
+
 ## v2025.06.18-2
 
 Released on June 18, 2025
