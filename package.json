@@ -18,12 +18,12 @@
     "generate-llms": "node static/js/generate-llms.js"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.27.0",
+    "@algolia/client-search": "^5.29.0",
     "@babel/traverse": "^7.27.4",
     "@docusaurus/core": "3.8.1",
     "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.1.0",
-    "@types/node": "24.0.1",
+    "@types/node": "24.0.3",
     "@types/react": "19.1.8",
     "clsx": "^2.1.1",
     "immer": "^10.1.1",
