@@ -10,19 +10,19 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## v2025.06.23-0
-
-Released on June 23, 2025
-
-### Bug Fixes {#bug-fixes-v2025-06-23-0}
-* Show correct updated date in Customer Manage page.
-
 ## v2025.06.23-1
 
 Released on June 23, 2025
 
 ### New Features {#new-features-v2025-06-23-1}
 * Adds Vendor API route for listing install attempts. For more information, see [enterprisePortal](https://replicated-vendor-api.readme.io/reference/listinstallattempts) in the Vendor API v3 documentation.
+
+## v2025.06.23-0
+
+Released on June 23, 2025
+
+### Bug Fixes {#bug-fixes-v2025-06-23-0}
+* Show correct updated date in Customer Manage page.
 
 ## v2025.06.18-2
 
