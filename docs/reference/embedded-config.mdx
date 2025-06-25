@@ -231,7 +231,7 @@ spec:
               wireguard: true
 ```
 
-#### Limtiations
+#### Limitations
 
 * The `spec.api` and `spec.storage` keys in the k0s config cannot be changed after installation. Whereas most keys in the k0s config apply to the whole cluster, these two keys are set for each node. Embedded Cluster cannot update these keys on each individual node during updates, so they cannot be changed after installation.
 
