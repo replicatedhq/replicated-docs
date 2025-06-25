@@ -10,6 +10,15 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.25-0
+
+Released on June 25, 2025
+
+### New Features {#new-features-v2025-06-25-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.17.1.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.32.4 1.31.8 1.30.12 1.29.15.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.8.
+
 ## v2025.05.02-0
 
 Released on May 2, 2025
