@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.25-1
+
+Released on June 25, 2025
+
+### New Features {#new-features-v2025-06-25-1}
+* Adds a machine-readable `step_name` field to the installation instructions in the Enterprise Portal. This field is used to identify each step when tracking the user's install progress. `step_name` provides a more consistent way for the Enterprise Portal to track install progress compared to using `Title` or `Description` fields, which might change over time.
+
 ## v2025.06.23-1
 
 Released on June 23, 2025
