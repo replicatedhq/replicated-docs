@@ -28,13 +28,15 @@ Alternatively, if a release contains charts that must use the same name, convert
 
 ### Symptom
 
-The Replicated Enterprise Portal and Download Portal provide instructions for installing with Helm in air-gapped environments. As part of installing with Helm in air-gapped environments, users are instructed to pull all required images for the Helm chart and then push them to their local image registry.
+You see an empty or incomplete list of application images in the Helm air gap installation instructions provided in the Replicated Enterprise Portal or Download Portal.
 
-If the list of images in these installation instructions does not include all images required to install and run the chart in an air-gapped environment, then the installation will fail.
+Or, when attempting to install, you see an error such as ErrImagePull or ImagePullBackOff because Kubernetes is not able to access one or more images referenced in the Helm deployment.
 
 ### Cause
 
-To create this list of images provided in the Helm air gap installation instructions, the Vendor Portal uses the values in the HelmChart custom resource `builder` key. If the `builder` key was not configured, then the Vendor Portal uses the default values in the Helm chart. However, if the default values do not expose all the images that customers might need to install the chart, then the installation could fail.
+The Enterprise Portal and Download Portal provide instructions for installing with Helm in air-gapped environments. As part of installing with Helm in air-gapped environments, users are instructed to pull all required images for the Helm chart and then push them to their local image registry.
+
+To create this list of images provided in the Helm air gap installation instructions, the Vendor Portal uses the values in the HelmChart custom resource `builder` key. If the `builder` key was not configured, then the Vendor Portal uses the default values in the Helm chart. However, if the default values do not expose all the images that customers might need to install the chart, the installation fails when Kubernetes is unable to access one or more images specified in the Helm chart's deployment on the user's local registry.
 
 ### Solution
 
