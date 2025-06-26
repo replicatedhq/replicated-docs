@@ -502,16 +502,35 @@ replicated:
     custom.company.io/pod-label: value
 ```
 
-## Enable SSL
+## Serve SDK API Endpoints Over HTTPS {#enable-ssl}
 
-With the Replicated SDK version 1.6.0 and later, you can serve traffic from the Replicated SDK pod by setting the `replicated.tlsCertSecretName` Helm value in your Helm chart.
+By default, the Replicated SDK serves its API over HTTP. With the Replicated SDK version 1.6.0 and later, you can serve the SDK API endpoints over HTTPS by providing a TLS certificate and key through the `tlsCertSecretName` value. This is useful if any of your enterprise customers require that communication between Kubernetes Pods occurs over HTTPS.
 
-To configure the Replicated SDK pod to serve traffic over SSL:
+**Requirement:** Serving the SDK API over HTTPS requires version 1.6.0 or later of the SDK.
 
-1. Ensure a secret exists in the namespace with keys `tls.crt` and `tls.key` containing the TLS certificate and key.
-This is the format produced by `kubectl create secret tls <secret_name> --cert=<cert_file> --key=<key_file>`.
+To serve SDK API endpoints over HTTPS:
 
-1. Set `tlsCertSecretName` to the name of the secret, as shown below:
+1. In the same namespace as the Replicated SDK, create a Kubernetes Secret with `tls.crt` and `tls.key` fields that contain the TLS certificate and key, respectively.
+
+    **Example**:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tls-secret
+      namespace: default
+    type: kubernetes.io/tls
+    data:
+      tls.crt: ...(your certificate data)...
+      tls.key: ...(your private key data)...
+    ```
+
+    :::note
+    This is the Secret format produced by `kubectl create secret tls <secret_name> --cert=path/to/tls.crt --key=path/to/tls.key`. For more information, see [kubectl create secret tls](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_tls/) in the Kubernetes documentation.
+    :::
+
+1. Set the Replicated SDK `tlsCertSecretName` Helm value to the name of the Secret, as shown below:
 
     ```yaml
     # Helm chart values.yaml
@@ -519,4 +538,4 @@ This is the format produced by `kubectl create secret tls <secret_name> --cert=<
     replicated:
       tlsCertSecretName: YOUR_TLS_SECRET
     ```
-    Where `YOUR_TLS_SECRET` is the secret in the namespace containing the TLS certificate and key. 
+    Where `YOUR_TLS_SECRET` is the name of the Secret in the namespace containing the TLS certificate and key.
