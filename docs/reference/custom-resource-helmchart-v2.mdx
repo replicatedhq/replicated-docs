@@ -89,24 +89,22 @@ For an example of recursive and non-recursive merging, see [About Recursive Merg
 
 ## builder
 
-The `builder` key is used to provide Helm values that are used during various stages of processing the Helm chart.
+The `builder` key contains the minimum Helm values required so that the output of `helm template` includes all container images needed to install and run the chart in an air-gapped environment.
+
+The Replicated Vendor Portal uses the values in the `builder` key to run `helm template` on the chart, then parses the output to discover the list of images that the Helm chart requires. This list of required images is used to create the `.airgap` bundle for the release, and to build the Helm air gap installation instructions available in the Replicated Enterprise Portal.
 
 The `builder` key is required for the following use cases:
 
-* To create an `.airgap` bundle for installations into air gap environments.
-
-  <BuilderAirgapIntro/>
-
-  For more information, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
-
-* To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
-
-  You cannot prevent customers from configuring a local private registry in the Admin Console. If you think any of your customers will use a local private registry, you should use the `builder` key. For more information, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+* Air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL)
+* Air gap installations with Helm
+* Online installations with a Replicated installer where the user configured a local image registry
 
 <HelmBuilderRequirements/>
-
-* Use the same `builder` configuration to support the use of local registries in both online and air gap installations. If you already configured the `builder` key to support air gap installations, then no additional configuration is required.
 
 **Example:**
 
 <BuilderExample/>
+
+For more information about building `.airgap` bundles for installations with a Replicated installer (Embedded Cluster, KOTS, kURL), see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+
+For more information about installing with Helm in air-gapped environments, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).

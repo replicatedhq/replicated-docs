@@ -1,40 +1,36 @@
-import Prerequisites from "../partials/helm/_helm-install-prereqs.mdx"
-
 # Install and Update with Helm in Air Gap Environments
 
-This topic describes how to use Helm to install releases that contain one or more Helm charts in air-gapped environments.
+This topic describes how to use Helm to install and update releases that contain one or more Helm charts in air-gapped environments.
 
 ## Overview
 
-Replicated supports installing and updating Helm charts in air-gapped environments with no outbound internet access. In air gap Helm installations, customers are guided through the process with instructions provided in the [Replicated Download Portal](/vendor/releases-share-download-portal).
+Replicated supports installing and updating Helm charts in _air-gapped_ environments with little or no outbound internet access. In air gap Helm installations, customers are guided through the installation process with instructions provided in either the [Replicated Enterprise Portal](/vendor/enterprise-portal-about) or the [Replicated Download Portal](/vendor/releases-share-download-portal), depending on which is enabled for the customer.
 
-When air gap Helm installations are enabled, an **Existing cluster with Helm** option is displayed in the Download Portal on the left nav. When selected, **Existing cluster with Helm** displays three tabs (**Install**, **Manual Update**, **Automate Updates**), as shown in the screenshot below:
-
-![download helm option](/images/download-helm.png)
-
-[View a larger version of this image](/images/download-helm.png)
-
-Each tab provides instructions for how to install, perform a manual update, or configure automatic updates, respectively.
-
-These installing and updating instructions assume that your customer is accessing the Download Portal from a workstation that can access the internet and their internal private registry. Direct access to the target cluster is not required.
-
-Each method assumes that your customer is familiar with `curl`, `docker`, `helm`, `kubernetes`, and a bit of `bash`, particularly for automating updates.
+These instructions assume that the customer is accessing the portal from a workstation that can access the internet and their internal private registry. Direct access to the target cluster is not required. The instructions also assume that the customer is familiar with `curl`, `docker`, `helm`, and `kubernetes`, and that they have some familiarity with `bash`, particularly for automating updates.
 
 ## Prerequisites
 
 Before you install, complete the following prerequisites:
 
-<Prerequisites/>
+* Declare the SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
+
+* Configure the HelmChart custom resource `builder` key. This ensures that the Vendor Portal can successfully template the chart to discover the full list of container images required to install and run the chart in an air-gapped environment. The Vendor Portal uses this list of required images to create the Helm air gap installation instructions for the customer. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_. 
+
+* The customer used to install must have the following:
+
+     * A valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information, see [Creating a Customer](/vendor/releases-creating-customer).
+
+     * The **Existing Cluster (Helm CLI)** install type enabled. For more information, see [Manage Install Types for a License](licenses-install-types).
+
+     * The **Helm CLI Air Gap Instructions** install option enabled.
 
 ## Install
-
-The installation instructions provided in the Download Portal are designed to walk your customer through the first installation of your chart in an air gap environment.
 
 To install with Helm in an air gap environment:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to **Customers > [Customer Name] > Reporting**.
 
-1. In the **Download portal** section, click **Visit download portal** to log in to the Download Portal for the customer.
+1. In the **Enterprise portal** or **Download portal** section (depending on which is enabled for the customer), click **Visit** to log in to the portal.
 
 1. In the Download Portal left nav, click **Existing cluster with Helm**. 
 
