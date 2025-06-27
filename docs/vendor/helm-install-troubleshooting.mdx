@@ -23,3 +23,25 @@ If any top-level charts in the release use the same name, the associated values 
 Replicated recommends that you use unique names for top-level Helm charts in the same release.
 
 Alternatively, if a release contains charts that must use the same name, convert one or both of the charts into subcharts and use Helm conditions to differentiate them. See [Conditions and Tags](https://helm.sh/docs/chart_best_practices/dependencies/#conditions-and-tags) in the Helm documentation. 
+
+## Incomplete list of required images in the Helm air gap instructions
+
+### Symptom
+
+You see an empty or incomplete list of application images in the Helm air gap installation instructions provided in the Replicated Enterprise Portal or Download Portal.
+
+Or, when attempting to install, you get an ImagePullBackOff error because Kubernetes is not able to access one or more images referenced in the Helm deployment.
+
+### Cause
+
+The Enterprise Portal and Download Portal provide instructions for installing with Helm in air-gapped environments. As part of installing with Helm in air-gapped environments, users are instructed to pull all required images for the Helm chart and then push them to their local image registry.
+
+To create the list of images for the Helm air gap installation instructions, the Vendor Portal uses the Helm values provided in the HelmChart custom resource `builder` key to template the chart and then parse the output for image references.
+
+If the `builder` key was not configured, then the Vendor Portal uses the default values for the chart when running `helm template`. If the Helm values used when templating the chart do not expose all the images that customers might need to install, then the installation fails when Kubernetes is unable to access one or more images in the Helm deployment from the user's local registry.
+
+### Solution
+
+Configure the `builder` key so that the ouput of `helm template` exposes all the images that might be required for users to install the chart in an air-gapped environment. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+For more information about why the `builder` key is required to support air gap installations with Helm, see [Why you should create `HelmChart` resources for your Helm-only releases](https://community.replicated.com/t/why-you-should-create-helmchart-resources-for-your-helm-only-releases/1539) in the Replicated Community site.
