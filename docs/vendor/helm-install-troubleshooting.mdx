@@ -30,16 +30,18 @@ Alternatively, if a release contains charts that must use the same name, convert
 
 You see an empty or incomplete list of application images in the Helm air gap installation instructions provided in the Replicated Enterprise Portal or Download Portal.
 
-Or, when attempting to install, you see an error such as ErrImagePull or ImagePullBackOff because Kubernetes is not able to access one or more images referenced in the Helm deployment.
+Or, when attempting to install, you get an ImagePullBackOff error because Kubernetes is not able to access one or more images referenced in the Helm deployment.
 
 ### Cause
 
 The Enterprise Portal and Download Portal provide instructions for installing with Helm in air-gapped environments. As part of installing with Helm in air-gapped environments, users are instructed to pull all required images for the Helm chart and then push them to their local image registry.
 
-To create this list of images provided in the Helm air gap installation instructions, the Vendor Portal uses the values in the HelmChart custom resource `builder` key. If the `builder` key was not configured, then the Vendor Portal uses the default values in the Helm chart. However, if the default values do not expose all the images that customers might need to install the chart, the installation fails when Kubernetes is unable to access one or more images specified in the Helm chart's deployment on the user's local registry.
+To create the list of images for the Helm air gap installation instructions, the Vendor Portal uses the Helm values provided in the HelmChart custom resource `builder` key to template the chart and then parse the output for image references.
+
+If the `builder` key was not configured, then the Vendor Portal uses the default values for the chart when running `helm template`. If the Helm values used when templating the chart do not expose all the images that customers might need to install, then the installation fails when Kubernetes is unable to access one or more images in the Helm deployment from the user's local registry.
 
 ### Solution
 
-Configure the `builder` key so that the ouput of `helm template` exposes all the images that might be required to install and run the chart in an air-gapped environment. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+Configure the `builder` key so that the ouput of `helm template` exposes all the images that might be required for users to install the chart in an air-gapped environment. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-For more information, see [Why you should create `HelmChart` resources for your Helm-only releases](https://community.replicated.com/t/why-you-should-create-helmchart-resources-for-your-helm-only-releases/1539) in the Replicated Community site
+For more information about why the `builder` key is required to support air gap installations with Helm, see [Why you should create `HelmChart` resources for your Helm-only releases](https://community.replicated.com/t/why-you-should-create-helmchart-resources-for-your-helm-only-releases/1539) in the Replicated Community site.
