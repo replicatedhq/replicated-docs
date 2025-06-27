@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.06.27-2
+
+Released on June 27, 2025
+
+### New Features {#new-features-v2025-06-27-2}
+* Return `serviceAccountId` field in `instance` object returned by end points like [Get Customer](https://replicated-vendor-api.readme.io/reference/getcustomer) and [List Customer Instances](https://replicated-vendor-api.readme.io/reference/listcustomerinstances). This field will be present and populated only if the instance was installed using an Enterprise Portal Service Account.
+
 ## v2025.06.25-1
 
 Released on June 25, 2025
