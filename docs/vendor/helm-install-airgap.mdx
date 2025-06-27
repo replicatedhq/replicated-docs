@@ -104,7 +104,7 @@ To install with Helm in an air gap environment using the Download Portal:
 
 ## Perform Updates
 
-This section describes the processes of performing manual and automatic updates with Helm in air gap environments using the instructions provided in the Download Portal.
+This section describes the processes of performing manual and automatic updates with Helm in air gap environments using the instructions provided in the Enterprise Portal or the Download Portal.
 
 ### Manual Updates
 
@@ -116,9 +116,9 @@ The additional steps are consistent with installation process until the `preflig
 
 If the new version introduces new images or other values, Replicated recommends that you explain this at the top of your release notes so that customers know they will need to make additional edits to the `values.yaml` before installing. 
 
-### Automate Updates
+### Automate Updates (Download Portal Only)
 
-The instructions in the Enterprise Portal or Download Portal for automating updates use API endpoints that your customers can automate against. 
+The instructions in the Download Portal for automating updates use API endpoints that your customers can automate against. 
 
 The instructions provide customers with example commands that can be put into a script that they run periodically (nightly, weekly) using GitHub Actions, Jenkins, or other platforms.
 
