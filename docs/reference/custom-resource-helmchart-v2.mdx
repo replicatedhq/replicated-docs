@@ -93,7 +93,11 @@ For an example of recursive and non-recursive merging, see [About Recursive Merg
 
 The `builder` key contains the minimum Helm values required so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment.
 
-The Replicated Vendor Portal uses the Helm values that you provide in the `builder` key to run `helm template` on the chart, then parses the output to discover the list of required images for the chart. This list of required images is used to create the `.airgap` bundle for the release (for air gap installations with a Replicated installer), and to create the Helm air gap installation instructions available to customers in the Replicated Enterprise Portal or Download Portal.
+The Replicated Vendor Portal uses the Helm values that you provide in the `builder` key to run `helm template` on the chart, then parses the output to discover the list of required images for the chart. 
+
+The Vendor Portal uses this list of images to create the Helm air gap installation instructions that are automatically made available to customers in the Replicated Enterprise Portal or Download Portal. For more information about installing with Helm in air-gapped environments, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap). 
+
+The list of images is also used when you build the `.airgap` bundle for a release to support air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL). For more information about how to build `.airgap` bundles, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
 The `builder` key is required to support the following installation types:
 
@@ -108,7 +112,3 @@ The `builder` key is required to support the following installation types:
 #### Example
 
 <BuilderExample/>
-
-For more information about how to build `.airgap` bundles for installations with a Replicated installer (Embedded Cluster, KOTS, kURL), see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
-
-For more information about how to install with Helm in air-gapped environments, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).
