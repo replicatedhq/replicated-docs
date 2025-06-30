@@ -14,7 +14,13 @@ Before you install, complete the following prerequisites:
 
 * Declare the SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-* Configure the HelmChart custom resource `builder` key. This ensures that the Vendor Portal can template the chart to discover the full list of container images required to install the chart in an air-gapped environment. The Vendor Portal uses this list of required images to create the Helm air gap installation instructions for the customer. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_. 
+* If your Helm chart's default values do not expose all the required and optional images that might be needed to install in air-gapped environments, add the Replicated HelmChart custom resource to your release and configure `builder` key. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_. If your default values expose all images needed for air gap installations, you do not need to configure the `builder` key. 
+
+     <details>
+       <summary>What is the purpose of the `builder` key?</summary>
+
+     Configuring the `builder` key ensures that the Vendor Portal can template the chart to discover the full list of container images required to install the chart in an air-gapped environment. The Vendor Portal uses this list of required images to create the Helm air gap installation instructions for the customer. 
+     </details> 
 
 * The customer used to install must have the following:
 
