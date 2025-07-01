@@ -1,0 +1,122 @@
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+
+# Set Up Your Environment
+
+This topic describes how to set up your environment to get started with the Replicated Platform. It includes information about installing the required tools on your local workstation as well as creating development environments for testing installation and upgrade scenarios for your application.
+
+## Set Up Your Local Workstation {#local}
+
+### Install kubectl
+
+Install kubectl, the Kubernetes command line tool.
+
+#### Mac
+
+Homebrew
+
+```
+brew install kubectl
+```
+
+You can also fetch kubectl using curl from the official Kubernetes release endpoint:
+
+```
+# macOS
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+#### Linux
+
+Linux users have similar options, whether through package managers or direct downloads:
+
+```
+# Using curl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+# Or using package manager (Ubuntu/Debian)
+sudo apt-get update
+sudo apt-get install -y kubectl
+
+# Or using package manager (CentOS/RHEL/Fedora)
+sudo yum install -y kubectl
+```
+
+### Install Helm
+
+Install the Helm CLI. 
+
+#### Mac
+
+Homebrew:
+
+```
+brew install helm
+```
+
+Or the official installation script that works across platforms:
+```
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
+#### Linux
+For manual installation on Linux:
+```
+curl -LO https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+tar -zxvf helm-v3.12.0-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/helm
+```
+
+###  Install the Replicated CLI
+
+The Replicated CLI serves as your primary interface to the platform.
+
+#### Mac
+On macOS, it’s available through a dedicated Homebrew tap:
+```
+brew install replicatedhq/replicated/cli
+```
+#### Linux
+Linux users can grab the latest release directly from GitHub:
+```
+curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+| grep "browser_download_url.*linux_amd64.tar.gz" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -O replicated.tar.gz -qi -
+
+tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+sudo mv replicated /usr/local/bin/
+```
+
+### Authorize the Replicated CLI with your Replicated Account
+
+The `replicated login` command creates a token after you log in to your vendor account in a browser and saves it to a config file. 
+
+Authorize the Replicated CLI:
+
+replicated login
+
+In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+
+Alteratively, if you do not have access to a browser, you can set the REPLICATED_API_TOKEN environment variable to authenticate. For more information, see (Optional) Set Environment Variables.
+
+### Install the Preflight and Support Bundles CLIs
+
+## Set Up Development Environments for Testing {#dev}
+
+Testing your releases is an important part of the commercial software distribution lifecycle. Replicated recommends that you have access to a virtual machine (VM) and a cluster where you can deploy your releases for testing.
+
+### Create a VM
+
+Create a VM that you can use for testing installation with the Replicated Embedded Cluster installer. The VM must meet the following requirements:
+
+<Requirements/>
+
+### Create a Kubernetes Cluster
+
+Create a Kubernetes Cluster for testing Helm installations.
+
+You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
