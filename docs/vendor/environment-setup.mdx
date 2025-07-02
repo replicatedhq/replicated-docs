@@ -1,4 +1,12 @@
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+import Verify from "../partials/replicated-cli/_verify-install.mdx"
+import InstallMac from "../partials/replicated-cli/_install-mac.mdx"
+import InstallLinux from "../partials/replicated-cli/_install-linux.mdx"
+import InstallDocker from "../partials/replicated-cli/_install-docker.mdx"
+import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
+import Login from "../partials/replicated-cli/_login.mdx"
+import Logout from "../partials/replicated-cli/_logout.mdx"
+import AuthToken from "../partials/replicated-cli/_authorize-with-token-note.mdx"
 
 # Set Up Your Environment
 
@@ -6,104 +14,252 @@ This topic describes how to set up your environment to get started with the Repl
 
 ## Set Up Your Local Workstation {#local}
 
+This section lists the tools that you need to install on your local workstation to manage applications, releases, customers, and so on with the Replicated Platform.
+
 ### Install kubectl
 
-Install kubectl, the Kubernetes command line tool.
+kubectl is the Kubernetes command line tool. With the Replicated Platform, you can use kubectl to communicate with the clusters that you create with the Replicated Compatibility Matrix. kubectl is also useful when testing and troubleshooting installations in existing clusters. For more information about kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 #### Mac
 
-Homebrew
+To install kubectl on Mac, do one of the following:
 
-```
-brew install kubectl
-```
+* (Recommended) Install with Homebrew:
+    ```bash
+    brew install kubectl
+    ```
+* Install with curl:
 
-You can also fetch kubectl using curl from the official Kubernetes release endpoint:
-
-```
-# macOS
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-```
+    To install kubectl on Mac using curl:
+    ```bash
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+    ```
 
 #### Linux
 
-Linux users have similar options, whether through package managers or direct downloads:
+To install kubectl on Linux, do one of the following:
 
-```
-# Using curl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+* Install with curl:
 
-# Or using package manager (Ubuntu/Debian)
-sudo apt-get update
-sudo apt-get install -y kubectl
+    ```bash
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+    ```
 
-# Or using package manager (CentOS/RHEL/Fedora)
-sudo yum install -y kubectl
-```
+* Install with a package manager (Ubuntu/Debain):
+
+    ```bash
+    sudo apt-get update
+    sudo apt-get install -y kubectl
+    ```
+
+* Install with a package manager (CentOS/RHEL/Fedora):
+
+    ```bash
+    sudo yum install -y kubectl
+    ```
 
 ### Install Helm
 
-Install the Helm CLI. 
+The Helm CLI is the tool for interacting with Helm and managing charts. Replicated recommends that all applications distributed with the Replicated Platform are packaged with Helm. Helm charts distributed with Replicated can also be installed in customer environments using Helm. Installing the Helm CLI on your workstation is important for being able to test and troubleshoot installations with Helm.
+
+For more information, see [Installing Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
 
 #### Mac
 
-Homebrew:
+To install the Helm CLI on Mac, do one of the following:
 
-```
-brew install helm
-```
+* Install with Homebrew:
 
-Or the official installation script that works across platforms:
-```
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-```
+    ```bash
+    brew install helm
+    ```
+
+* Or the official installation script that works across platforms:
+
+    ```bash
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    ```
+
 #### Linux
-For manual installation on Linux:
-```
+
+To install the Helm CLI on Linux:
+
+```bash
 curl -LO https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
 tar -zxvf helm-v3.12.0-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
 
-###  Install the Replicated CLI
+###  Install and Authorize the Replicated CLI
 
-The Replicated CLI serves as your primary interface to the platform.
+The Replicated CLI is the primary interface for the Replicated Platform. With the Replicated CLI, you can create and manage applications, releases, channels, customers, and more. You also use the Replicated CLI to create clusters with the Compatibility Matrix.
+
+After installing, you can authorize the Replicated CLI by logging in to your Replicated vendor account through the `replicated login` command.
+
+For more information about installing and authorizing the Replicated CLI, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
 #### Mac
-On macOS, it’s available through a dedicated Homebrew tap:
-```
-brew install replicatedhq/replicated/cli
-```
+
+To install and run the latest Replicated CLI on MacOS:
+
+1. <InstallMac/>
+
+      <Sudo/>
+
+1. <Verify/>
+
+1. <Login/>
+
+   <AuthToken/>
+
+1. <Logout/>
+
 #### Linux
-Linux users can grab the latest release directly from GitHub:
-```
-curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-| grep "browser_download_url.*linux_amd64.tar.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -O replicated.tar.gz -qi -
 
-tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-sudo mv replicated /usr/local/bin/
-```
+To install and run the latest Replicated CLI on Linux:
 
-### Authorize the Replicated CLI with your Replicated Account
+1. <InstallLinux/>
 
-The `replicated login` command creates a token after you log in to your vendor account in a browser and saves it to a config file. 
+    <Sudo/>
 
-Authorize the Replicated CLI:
+1. <Verify/>
 
-replicated login
+1. <Login/>
 
-In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+   <AuthToken/>
 
-Alteratively, if you do not have access to a browser, you can set the REPLICATED_API_TOKEN environment variable to authenticate. For more information, see (Optional) Set Environment Variables.
+1. <Logout/>
 
-### Install the Preflight and Support Bundles CLIs
+#### Docker / Windows
+
+<InstallDocker/> 
+
+### Install the Preflight and Support Bundle CLIs
+
+The preflight and support-bundle plugins available through the open source Troubleshoot project provide important troubleshooting tools for your customers, allowing them to run preflight checks and collect support bundles. For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+
+These instructions shows you how to install the Troubleshoot plugins using Krew. For more information about installing the preflight and support-bundle plugins, including other installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+
+To install the preflight and support-bundle plugins:
+
+1. Install Krew:
+
+    * **Mac:** 
+      ```bash
+      brew install krew
+      ```
+    * **Other operating systems:**
+      ```bash
+      (
+        set -x; cd "$(mktemp -d)" &&
+        OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+        ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+        KREW="krew-${OS}_${ARCH}" &&
+        curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+        tar zxvf "${KREW}.tar.gz" &&
+        ./"${KREW}" install krew
+      )
+      ``` 
+
+1. After installation, remember to add the krew binary directory to your PATH:
+
+    ```bash
+    echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+1. Run these commands:
+
+   ```bash
+   kubectl krew install preflight
+   kubectl krew install support-bundle
+   ```
+
+### Install sbctl
+
+sbctl is a command-line tool that you can use to examine Kubernetes resources in support bundles. With sbctl, you can interact with the support bundle in a shell using kubectl commands to view and inspect resources.
+
+For more information, see the [sbctl](https://github.com/replicatedhq/sbctl) repository in GitHub.
+
+To install sbctl:
+
+* **macOS Intel systems:**
+
+    ```bash
+    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_amd64.tar.gz
+    tar -xzf sbctl_darwin_amd64.tar.gz -C /tmp sbctl
+    rm -f sbctl_darwin_amd64.tar.gz
+    sudo mv /tmp/sbctl /usr/local/bin/
+    ```
+
+* **macOS Apple Silicon:**
+    ```bash
+    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_arm64.tar.gz
+    tar -xzf sbctl_darwin_arm64.tar.gz -C /tmp sbctl
+    rm -f sbctl_darwin_arm64.tar.gz
+    sudo mv /tmp/sbctl /usr/local/bin/
+    ```
+
+* **Linux x86_64:**
+    ```bash
+    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_linux_amd64.tar.gz
+    tar -xzf sbctl_linux_amd64.tar.gz -C /tmp sbctl
+    rm -f sbctl_linux_amd64.tar.gz
+    sudo mv /tmp/sbctl /usr/local/bin/
+    ```
+
+* **Linux ARM64:**
+    ```bash
+    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_linux_arm64.tar.gz
+    tar -xzf sbctl_linux_arm64.tar.gz -C /tmp sbctl
+    rm -f sbctl_linux_arm64.tar.gz
+    sudo mv /tmp/sbctl /usr/local/bin/
+    ```
+
+### (Recommended) Install Data Processing Tools
+
+Replicated recommends that you install the following tools for parsing and manipulating JSON and YAML data when working with Kubernetes and Replicated configurations:
+* [jq](https://jqlang.org/) for JSON processing
+* [yq](https://mikefarah.gitbook.io/yq/) for YAML manipulation
+
+These tools transform complex data manipulation tasks from multi-step processes into single commands, making your development workflow significantly more efficient.
+
+* To install jq:
+
+    ```bash
+    # macOS
+    brew install jq
+
+    # Ubuntu/Debian
+    sudo apt-get install jq
+
+    # CentOS/RHEL/Fedora
+    sudo yum install jq
+
+    # Or download directly
+    curl -LO https://github.com/stedolan/jq/releases/latest/download/jq-linux64
+    chmod +x jq-linux64
+    sudo mv jq-linux64 /usr/local/bin/jq
+    ```
+
+* To install yq:
+
+    ```bash
+    # macOS
+    brew install yq
+
+    # Linux
+    curl -LO https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+    chmod +x yq_linux_amd64
+    sudo mv yq_linux_amd64 /usr/local/bin/yq
+
+    # Or using go install
+    go install github.com/mikefarah/yq/v4@latest
+    ```
 
 ## Set Up Development Environments for Testing {#dev}
 
@@ -111,12 +267,14 @@ Testing your releases is an important part of the commercial software distributi
 
 ### Create a VM
 
-Create a VM that you can use for testing installation with the Replicated Embedded Cluster installer. The VM must meet the following requirements:
+To test installations and updates with the Replicated Embedded Cluster installer, create a VM that meets Embedded Cluster's requirements:
 
 <Requirements/>
 
-### Create a Kubernetes Cluster
+### Create a Cluster
 
-Create a Kubernetes Cluster for testing Helm installations.
+To test installations with Helm, you need kubectl access to a cluster.
 
 You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube.
+
+For information about how to create a cluster with Compatibility Matrix, see [Prerequisites](/vendor/testing-how-to#prerequisites) and [Create Clusters](/vendor/testing-how-to#create-clusters) in _Use Compatibility Matrix_.

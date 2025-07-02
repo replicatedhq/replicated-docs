@@ -1,4 +1,7 @@
 import Verify from "../partials/replicated-cli/_verify-install.mdx"
+import InstallMac from "../partials/replicated-cli/_install-mac.mdx"
+import InstallLinux from "../partials/replicated-cli/_install-linux.mdx"
+import InstallDocker from "../partials/replicated-cli/_install-docker.mdx"
 import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
 import Login from "../partials/replicated-cli/_login.mdx"
 import Logout from "../partials/replicated-cli/_logout.mdx"
@@ -30,24 +33,7 @@ You can install and run the Replicated CLI in the following environments:
 
 To install and run the latest Replicated CLI on MacOS:
 
-1. Run one of the following commands:
-
-    - With Brew:
-
-      ```shell
-      brew install replicatedhq/replicated/cli
-      ```
-
-    - Without Brew:
-
-      ```shell
-      curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-        | grep "browser_download_url.*darwin_all.tar.gz" \
-        | cut -d : -f 2,3 \
-        | tr -d \") -o replicated.tar.gz
-      tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-      mv replicated /usr/local/bin/replicated
-      ```
+1. <InstallMac/>
 
       <Sudo/>
 
@@ -63,16 +49,7 @@ To install and run the latest Replicated CLI on MacOS:
 
 To install and run the latest Replicated CLI on Linux:
 
-1. Run the following command:
-
-    ```shell
-    curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-      | grep "browser_download_url.*linux_amd64.tar.gz" \
-      | cut -d : -f 2,3 \
-      | tr -d \") -o replicated.tar.gz
-    tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-    mv replicated /usr/local/bin/replicated
-    ```
+1. <InstallLinux/>
 
     <Sudo/>
 
@@ -86,38 +63,7 @@ To install and run the latest Replicated CLI on Linux:
 
 ### Docker / Windows
 
-Installing in Docker environments requires that you set the `REPLICATED_API_TOKEN` environment variable to authorize the Replicated CLI with an API token. For more information, see [(Optional) Set Environment Variables](#env-var) below.
-
-To install and run the latest Replicated CLI in Docker environments:
-
-1. Generate a service account or user API token in the vendor portal. To create new releases, the token must have `Read/Write` access. See [Generating API Tokens](/vendor/replicated-api-tokens).
-
-1. Get the latest Replicated CLI installation files from the [replicatedhq/replicated repository](https://github.com/replicatedhq/replicated/releases) on GitHub.
-
-    Download and install the files. For simplicity, the usage in the next step is represented assuming that the CLI is downloaded and installed to the desktop.
-
-1. Authorize the Replicated CLI:
-
-     - Through a Docker container:
-
-        ```shell
-        docker run \
-          -e REPLICATED_API_TOKEN=$TOKEN \
-          replicated/vendor-cli --help
-        ```
-        Replace `TOKEN` with your API token.
-
-     - On Windows:
-
-        ```dos
-        docker.exe run \
-          -e REPLICATED_API_TOKEN=%TOKEN% \
-          replicated/vendor-cli --help
-        ```
-
-        Replace `TOKEN` with your API token.
-
-  For more information about the `docker run` command, see [docker run](https://docs.docker.com/engine/reference/commandline/run/) in the Docker documentation.  
+<InstallDocker/> 
 
 ## (Optional) Set Environment Variables {#env-var}
 
