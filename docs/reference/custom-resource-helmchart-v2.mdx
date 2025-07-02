@@ -89,24 +89,26 @@ For an example of recursive and non-recursive merging, see [About Recursive Merg
 
 ## builder
 
-The `builder` key is used to provide Helm values that are used during various stages of processing the Helm chart.
+#### Overview
 
-The `builder` key is required for the following use cases:
+The `builder` key contains the minimum Helm values required so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment.
 
-* To create an `.airgap` bundle for installations into air gap environments.
+The Replicated Vendor Portal uses the Helm values that you provide in the `builder` key to run `helm template` on the chart, then parses the output to discover the list of required images for the chart. 
 
-  <BuilderAirgapIntro/>
+The Vendor Portal uses this list of images to create the Helm air gap installation instructions that are automatically made available to customers in the Replicated Enterprise Portal or Download Portal. For more information about installing with Helm in air-gapped environments, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap). 
 
-  For more information, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+The list of images is also used when you build the `.airgap` bundle for a release to support air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL). For more information about how to build `.airgap` bundles, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
-* To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
+The `builder` key is required to support the following installation types:
 
-  You cannot prevent customers from configuring a local private registry in the Admin Console. If you think any of your customers will use a local private registry, you should use the `builder` key. For more information, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
+* Air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL)
+* Air gap installations with Helm
+* Online installations with a Replicated installer where the user configured a local image registry in the Admin Console
+
+#### Requirements
 
 <HelmBuilderRequirements/>
 
-* Use the same `builder` configuration to support the use of local registries in both online and air gap installations. If you already configured the `builder` key to support air gap installations, then no additional configuration is required.
-
-**Example:**
+#### Example
 
 <BuilderExample/>
