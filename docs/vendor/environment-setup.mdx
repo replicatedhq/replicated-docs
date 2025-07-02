@@ -118,9 +118,11 @@ To install and run the latest Replicated CLI on MacOS:
 
 1. <Logout/>
 
-#### Linux
+#### Linux / Windows Subsystem for Linux (WSL2) {#linux-wsl2}
 
-To install and run the latest Replicated CLI on Linux:
+To install and run the latest Replicated CLI on Linux or Windows Subsystem for Linux (WSL2):
+
+1. For Windows users, first install Linux on Windows using WSL2. See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 1. <InstallLinux/>
 
@@ -165,14 +167,14 @@ To install the preflight and support-bundle plugins:
       )
       ``` 
 
-1. After installation, remember to add the krew binary directory to your PATH:
+1. After installing, add the krew binary directory to your PATH:
 
     ```bash
     echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
     source ~/.bashrc
     ```
 
-1. Run these commands:
+1. Run the following commands:
 
    ```bash
    kubectl krew install preflight
