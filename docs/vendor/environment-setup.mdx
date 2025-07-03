@@ -14,23 +14,22 @@ This topic describes how to set up your environment to get started with the Repl
 
 ## Set Up Your Local Workstation {#local}
 
-This section lists the tools that you need to install on your local workstation to manage applications, releases, customers, and so on with the Replicated Platform.
+This section lists the tools that you need to install on your local workstation to manage applications, releases, customers, and more with the Replicated Platform.
 
 ### Install kubectl
 
-kubectl is the Kubernetes command line tool. With the Replicated Platform, you can use kubectl to communicate with the clusters that you create with the Replicated Compatibility Matrix. kubectl is also useful when testing and troubleshooting installations in existing clusters. For more information about kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+kubectl is the Kubernetes command line tool. You will use kubectl to communicate with the clusters that you create with the Replicated Compatibility Matrix, and when testing and troubleshooting installations in existing clusters. For more information about kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 #### Mac
 
 To install kubectl on Mac, do one of the following:
 
-* (Recommended) Install with Homebrew:
+* Install with Homebrew:
     ```bash
     brew install kubectl
     ```
-* Install with curl:
+* Install using curl:
 
-    To install kubectl on Mac using curl:
     ```bash
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
     chmod +x ./kubectl
@@ -41,7 +40,7 @@ To install kubectl on Mac, do one of the following:
 
 To install kubectl on Linux, do one of the following:
 
-* Install with curl:
+* Install using curl:
 
     ```bash
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -78,7 +77,7 @@ To install the Helm CLI on Mac, do one of the following:
     brew install helm
     ```
 
-* Or the official installation script that works across platforms:
+* Install using curl:
 
     ```bash
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -150,11 +149,11 @@ To install the preflight and support-bundle plugins:
 
 1. Install Krew:
 
-    * **Mac:** 
+    * Mac: 
       ```bash
       brew install krew
       ```
-    * **Other operating systems:**
+    * Other operating systems:
       ```bash
       (
         set -x; cd "$(mktemp -d)" &&
@@ -187,9 +186,9 @@ sbctl is a command-line tool that you can use to examine Kubernetes resources in
 
 For more information, see the [sbctl](https://github.com/replicatedhq/sbctl) repository in GitHub.
 
-To install sbctl:
+To install sbctl, run one of the following commands:
 
-* **macOS Intel systems:**
+* macOS Intel systems:
 
     ```bash
     curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_amd64.tar.gz
@@ -198,7 +197,7 @@ To install sbctl:
     sudo mv /tmp/sbctl /usr/local/bin/
     ```
 
-* **macOS Apple Silicon:**
+* macOS Apple Silicon:
     ```bash
     curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_arm64.tar.gz
     tar -xzf sbctl_darwin_arm64.tar.gz -C /tmp sbctl
@@ -206,7 +205,7 @@ To install sbctl:
     sudo mv /tmp/sbctl /usr/local/bin/
     ```
 
-* **Linux x86_64:**
+* Linux x86_64:
     ```bash
     curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_linux_amd64.tar.gz
     tar -xzf sbctl_linux_amd64.tar.gz -C /tmp sbctl
@@ -214,7 +213,7 @@ To install sbctl:
     sudo mv /tmp/sbctl /usr/local/bin/
     ```
 
-* **Linux ARM64:**
+* Linux ARM64:
     ```bash
     curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_linux_arm64.tar.gz
     tar -xzf sbctl_linux_arm64.tar.gz -C /tmp sbctl
@@ -224,48 +223,52 @@ To install sbctl:
 
 ### (Recommended) Install Data Processing Tools
 
-Replicated recommends that you install the following tools for parsing and manipulating JSON and YAML data when working with Kubernetes and Replicated configurations:
+Replicated recommends that you install the following tools for parsing and manipulating JSON and YAML data:
 * [jq](https://jqlang.org/) for JSON processing
 * [yq](https://mikefarah.gitbook.io/yq/) for YAML manipulation
 
-These tools transform complex data manipulation tasks from multi-step processes into single commands, making your development workflow significantly more efficient.
+These tools are useful when working with Kubernetes and Replicated configurations to reduce complex data manipulation tasks from multi-step processes into single commands, simplifying your development workflow.
 
-* To install jq:
+* To install jq, run one of the following commands:
 
-    ```bash
-    # macOS
-    brew install jq
+    * macOS:
+      ```bash
+      brew install jq
+      ```
+    * Ubuntu/Debian:
+      ```bash
+      sudo apt-get install jq
+      ```
+    * CentOS/RHEL/Fedora"   
+      ```bash
+      sudo yum install jq
+      ```
+    * Direct download:  
+      ```bash
+      curl -LO https://github.com/stedolan/jq/releases/latest/download/jq-linux64
+      chmod +x jq-linux64
+      sudo mv jq-linux64 /usr/local/bin/jq
+      ```
 
-    # Ubuntu/Debian
-    sudo apt-get install jq
-
-    # CentOS/RHEL/Fedora
-    sudo yum install jq
-
-    # Or download directly
-    curl -LO https://github.com/stedolan/jq/releases/latest/download/jq-linux64
-    chmod +x jq-linux64
-    sudo mv jq-linux64 /usr/local/bin/jq
-    ```
-
-* To install yq:
-
-    ```bash
-    # macOS
-    brew install yq
-
-    # Linux
-    curl -LO https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-    chmod +x yq_linux_amd64
-    sudo mv yq_linux_amd64 /usr/local/bin/yq
-
-    # Or using go install
-    go install github.com/mikefarah/yq/v4@latest
-    ```
+* To install yq, run one of the following commands:
+    * macOS:
+      ```bash
+      brew install yq
+      ```
+    * Linux:
+      ```bash
+      curl -LO https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+      chmod +x yq_linux_amd64
+      sudo mv yq_linux_amd64 /usr/local/bin/yq
+      ```
+    * Go install:
+      ```bash
+      go install github.com/mikefarah/yq/v4@latest
+      ```
 
 ## Set Up Development Environments for Testing {#dev}
 
-Testing your releases is an important part of the commercial software distribution lifecycle. Replicated recommends that you have access to a virtual machine (VM) and a cluster where you can deploy your releases for testing.
+Testing your releases is an important part of the commercial software distribution lifecycle. Replicated recommends that you have access to a virtual machine (VM) and a cluster where you can install your application releases for testing.
 
 ### About Creating a VM
 
