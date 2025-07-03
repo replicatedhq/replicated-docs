@@ -484,7 +484,11 @@ To add support for air gap installations:
 
 1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release. One common use case for this is applications that use Kubernetes Operators. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
-1. In the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+1. For each Helm chart in your release, update the KOTS HelmChart custom resource `optionalValues` key to conditionally rewrite image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
+
+   For more information, see [Rewrite Image Names with HelmChart v2 for Local Registries](/vendor/helmchart-local-registries).
+
+1. For each Helm chart in your release, in the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
     :::note
     If the default values in your Helm chart already enable all the images needed to successfully deploy, then you do not need to configure the `builder` key.
@@ -497,12 +501,6 @@ To add support for air gap installations:
 
    For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
    </details>
-
-1. For each Helm chart in your release, update the KOTS HelmChart custom resource `optionalValues` key to conditionally rewrite image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
-
-   For more information, see [Rewrite Image Names with HelmChart v2 for Local Registries](/vendor/helmchart-local-registries).
-
-1. If your application uses any public Docker Hub images that are rate limited, configure the HelmChart v2 custom resource `values` key to add a Replicated image pull secret to any Docker images that could be rate-limited. This pull secret allows any users that configure a local registry to avoid rate limits. For more information, see [Avoid Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
 1. Create and promote a new release with your changes. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
