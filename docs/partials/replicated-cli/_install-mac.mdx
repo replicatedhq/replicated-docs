@@ -1,0 +1,18 @@
+Run one of the following commands:
+
+    - With Brew:
+
+      ```shell
+      brew install replicatedhq/replicated/cli
+      ```
+
+    - Without Brew:
+
+      ```shell
+      curl -Ls $(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+        | grep "browser_download_url.*darwin_all.tar.gz" \
+        | cut -d : -f 2,3 \
+        | tr -d \") -o replicated.tar.gz
+      tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+      mv replicated /usr/local/bin/replicated
+      ```

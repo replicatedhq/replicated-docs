@@ -38,6 +38,7 @@ const sidebars = {
     'intro-replicated',
     'vendor/kots-faq',
     'vendor/quick-start',
+    'vendor/environment-setup',
     'vendor/replicated-onboarding',
     // {
     //   type: 'category',
