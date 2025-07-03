@@ -13,11 +13,11 @@ hide_table_of_contents: true
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Announcing: Enterprise Portal Beta</h3>
-        <p>The Enterprise Portal is the next generation of the Download Portal, offering a modern unboxing experience for Embedded Cluster and Helm installations.</p>
+        <h3>Enable Minimal RBAC for the SDK</h3>
+        <p>With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role.</p>
     </li>
     <li>
-      <a href="/vendor/enterprise-portal-about">Learn more</a>
+      <a href="/vendor/replicated-sdk-customizing#minimal-rbac">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -26,11 +26,11 @@ hide_table_of_contents: true
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Verify SDK Image Integrity</h3>
-        <p>Replicated provides a script that you can use to verify the integrity of Replicated SDK images using SLSA provenance, image signatures, and SBOM attestations.</p>
+        <h3>Track Install Attempts with Enterprise Portal</h3>
+        <p>Get realtime feedback on your customers' installation progress based on their activity in the Enterprise Portal.</p>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-slsa-validating">Learn more</a>
+      <a href="/vendor/customer-reporting#install-attempts-beta">Learn more</a>
     </li>
   </ul>
 </section>
