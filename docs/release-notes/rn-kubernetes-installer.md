@@ -10,6 +10,13 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.07.03-0
+
+Released on July 3, 2025
+
+### New Features {#new-features-v2025-07-03-0}
+* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 3.0.0.
+
 ## v2025.06.25-0
 
 Released on June 25, 2025
