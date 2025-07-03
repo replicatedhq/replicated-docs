@@ -158,7 +158,7 @@ To create the first release for your application:
       <details>
       <summary>What is the Embedded Cluster Config?</summary>
       
-      The Embedded Cluster Config is required to install with Embedded Cluster.
+      An Embedded Cluster Config must be included in the release to install with Embedded Cluster. The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that is created.
       </details>
     
       For more information, see [Use Embedded Cluster](/vendor/embedded-overview).
@@ -178,12 +178,12 @@ To create the first release for your application:
           # chartVersion must match the chart version from the .tgz chart archive
           chartVersion: 1.2.3 
       ```
-      For more information about configuring these fields, see [HelmChart v2](custom-resource-helmchart-v2).    
+      For more information about configuring these fields, see [HelmChart v2](/reference/custom-resource-helmchart-v2).    
    
       <details>
       <summary>What is the KOTS HelmChart custom resource?</summary>
       
-      The KOTS HelmChart custom resource is required to install Helm charts with KOTS and Embedded Cluster.
+      The HelmChart custom resource provides the necessary instructions for processing and preparing the chart for deployment.
       </details>
 
    1. <InjectPullSecret/>
@@ -474,24 +474,16 @@ To support and test Helm installations:
 
 ### Add Support for Air Gap Installations
 
-Replicated Embedded Cluster and KOTS support installations in _air gap_ environments with no outbound internet access. Users can install with Embedded Cluster and KOTS in air gap environments by providing air gap bundles that contain the required images for the installers and for your application.
-
-:::note
-Replicated also offers Alpha support for air gap installations with Helm. If you are interested in trying Helm air gap installations and providing feedback, please reach out to your account rep to enable this feature.
-:::
+Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Embedded Cluster and KOTS, users install by providing an air gap bundle which contains the required images for the Replicated installer and your application. For Helm installations, users install by following automatically-generated instructions provided in the Replicated Enterprise Portal to pull all images and push them to their local image registry.
 
 To add support for air gap installations:
 
 1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release. One common use case for this is applications that use Kubernetes Operators. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
-1. For each Helm chart in your release, update the KOTS HelmChart custom resource `optionalValues` key to conditionally rewrite image names for air gap installations. This is done using the KOTS HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to render the location of the given image in the user's own local registry.
-
-   For more information, see [Rewrite Image Names with HelmChart v2 for Local Registries](/vendor/helmchart-local-registries).
-
-1. For each Helm chart in your release, in the KOTS HelmChart custom resource `builder` key, pass any values that are required in order for `helm template` to yield all the images needed to successfully install your application. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+1. For each Helm chart in your release, configure the corresponding KOTS HelmChart custom resource `builder` key. In the `builder` key, define any Helm values that must be set so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment. This ensures that the Vendor Portal can build the air gap bundle for the release. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles) and [builder](/reference/custom-resource-helmchart-v2#builder).
 
     :::note
-    If the default values in your Helm chart already enable all the images needed to successfully deploy, then you do not need to configure the `builder` key.
+    If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
     ::: 
 
    <details>
@@ -502,23 +494,60 @@ To add support for air gap installations:
    For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
    </details>
 
+1. For each Helm chart in your release, configure the corresponding KOTS HelmChart custom resource `optionalValues` key to conditionally rewrite image names to the user's local image registry. This is done using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to render the location of the given image in the user's own local registry.
+
+   **Example:**
+
+   ```yaml
+   # KOTS HelmChart custom resource
+
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+     optionalValues:
+       # Define the conditional statement in the when field
+       - when: 'repl{{ HasLocalRegistry }}'
+         values:
+           postgres:
+             image:
+               registry: '{{repl LocalRegistryHost }}'
+               repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+   ```
+
+1. Configure the HelmChart `optionalValues` key to conditionally rewrite the Replicated SDK image to the user's local registry. The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`.
+
+    ```yaml
+    # KOTS HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+        # Rewrite Replicated SDK image to local registry
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            replicated:
+              image:
+                registry: '{{repl LocalRegistryHost }}'
+                repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
+    ```
+
 1. Create and promote a new release with your changes. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
 
-1. Create a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
+1. Create or edit a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
 1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air gap VM to test. See [Install in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
+1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test air gap installation in a cluster with Helm.
 
-1. (Optional) Follow the steps in [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap) to test air gap installation with Helm. 
-
-    :::note
-    Air gap Helm installations are an Alpha feature. If you are interested in trying Helm air gap installations and providing feedback, please reach out to your account rep to enable this feature.
-    :::
+1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).    
 
 ### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
 
