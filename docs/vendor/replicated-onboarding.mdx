@@ -86,21 +86,21 @@ To create an application:
    export REPLICATED_APP=my-app
    ```
 
-### Task 2: Rewrite Image Names in Helm Values to Use the Proxy Registry
+### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry
 
-Update your Helm values to rewrite image names to use the Replicated proxy registry. The proxy regsitry allows you can grant proxy access to application images without exposing registry credentials to your customers.
+Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you can grant proxy access to application images without exposing registry credentials to your customers.
 
 :::note
 You will add a custom domain for the proxy registry as part of [Task 9: Alias Replicated Endpoints with Your Own Domains](#task-9-alias-replicated-endpoints-with-your-own-domains).
 :::
 
-To rewrite image names to use the proxy registry:
+To modify image references to point to the proxy registry:
 
 1. <StepCreds/>
 
 1. <RewriteHelmValues/>
 
-1. If your application is deployed as multiple Helm charts, repeat the previous step to rewrite image names in the Helm values for each of your charts.
+1. If your application is deployed as multiple Helm charts, repeat the previous step to modify image references in the Helm values for each of your charts.
 
 1. Continue to the next task.
 
