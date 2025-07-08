@@ -21,11 +21,9 @@ The following are some best practices and recommendations for successfully onboa
 
 * When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot. This onboarding workflow will guide you through the process of integrating features in small iterations.
 
-* Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines. For more information, see [Install the Replicated CLI](/reference/replicated-cli-installing).
+* Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines.
 
-* These onboarding tasks assume that you will test the installation of each release on a VM with the Replicated Embedded Cluster installer _and_ in a cluster with the Replicated KOTS installer. If you do not intend to offer existing cluster installations with KOTS (for example, if you intend to support only Embedded Cluster and Helm installations for your users), then can choose to test with Embedded Cluster only.
-
-* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#community) below.
+* These onboarding tasks show you how to test the installation of each release on a VM with the Replicated Embedded Cluster installer _and_ in a cluster with the Replicated KOTS installer. If you do not intend to offer existing cluster installations with KOTS, then can choose to test with Embedded Cluster only.
 
 ### Getting Help from the Community {#community}
 
@@ -35,27 +33,27 @@ Before posting in the community site, use the search to find existing knowledge 
 
 To search and participate in the Replicated community, see https://community.replicated.com/.
 
-### Prerequisites
+## Prerequisites
 
 * Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Create a Vendor Account](vendor-portal-creating-account).
 
-* Install the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+* Set up your local workstation with the required toolkit for working with the Replicated Platform. See [Set Up Your Local Workstation](/vendor/environment-setup#local).
+
+* Set up a VM. You will use this VM to test installing and updating with the Replicated Embedded Cluster installer throughout the main onboarding tasks.
+
+    The VM that you create must meet the following requirements for Embedded Cluster:
+
+    <Requirements/>
+
+* (Optional) Create a Kubernetes cluster for testing Helm installations and/or existing cluster installations with Replicated KOTS. For information about how to create a cluster, see [Create a Kubernetes Cluster](/vendor/environment-setup#create-a-kubernetes-cluster) in _Set Up Your Environment_.
+
+    If you do _not_ intend to support existing cluster KOTS installations, you can wait to create this cluster until you begin the [Next Steps > Add Support for Helm Installations](/vendor/replicated-onboarding#add-support-for-helm-installations) task.
 
 * Complete a basic quick start workflow to create an application with a sample Helm chart and then promote and install releases in a development environment. This helps you get familiar with the process of creating, installing, and updating releases in the Replicated Platform. See [Replicated Quick Start](/vendor/quick-start).
 
-* Ensure that you have access to a VM that meets the requirements for the Replicated Embedded Cluster installer. You will use this VM to test installation with Embedded Cluster.
-
-  Embedded Cluster has the following requirements:
-
-  <Requirements/>
-
-* (Optional) Ensure that you have kubectl access to a Kubernetes cluster. You will use this cluster to test installation with KOTS. If you do not intend to offer existing cluster installations with KOTS (for example, if you intend to support only Embedded Cluster and Helm installations for your users), then you do not need access to a cluster for the main onboarding tasks.
-
-  You can use any cloud provider or tool that you prefer to create a cluster, such as [Replicated Compatibility Matrix](/vendor/testing-how-to), Google Kubernetes Engine (GKE), or minikube. 
-
 ## Onboard
 
-Complete the tasks in this section to onboard your application. When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
+Complete the tasks in this section to onboard your application to the Replicated Platform, with support for . When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
 
 ### Task 1: Create An Application
 
@@ -416,7 +414,7 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 
 ### Add Support for Helm Installations
 
-Existing KOTS releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
+Existing releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
 
 To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy registry.  
 
@@ -436,7 +434,9 @@ To support and test Helm installations:
 
 1. Add the `.tgz` file to a release. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-1. Install the release in a cluster with the Helm CLI to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
+1. Create or get kubectl access to a cluster to test the installation. See [Create a Kubernetes Cluster](/vendor/environment-setup#create-a-kubernetes-cluster) in _Set Up Your Environment_.
+
+1. In the cluster, istall the release with Helm to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
 
 ### Add Support for Air Gap Installations
 
