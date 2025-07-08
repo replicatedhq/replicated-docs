@@ -1,4 +1,4 @@
-In your Helm chart values file, set your image repository URL to the location of the image on the proxy registry. If you added a custom domain, use your custom domain. Otherwise, use `proxy.replicated.com`.
+In your Helm chart values file, for each image reference, set the image repository URL to the location of the image on the proxy registry. This is either `proxy.replicated.com` or your custom domain.
 
     The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`
     
@@ -30,4 +30,4 @@ In your Helm chart values file, set your image repository URL to the location of
         containers:
           - name: api 
               # Access the registry, repository, and tag fields from the values file
-              image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
+              image: {{ .Values.image.api.registry }}/{{ .Values.image.api.repository }}:{{ .Values.image.api.tag }}
