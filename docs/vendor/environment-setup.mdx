@@ -182,7 +182,7 @@ To install the preflight and support-bundle plugins:
 
 ### Install sbctl
 
-sbctl is a command-line tool that you can use to examine Kubernetes resources in support bundles. With sbctl, you can interact with the support bundle in a shell using kubectl commands to view and inspect resources.
+sbctl is a command-line tool that makes it easier to troubleshoot an installation using a support bundle. With sbctl, you provide a support bundle that was collected in a cluster. sbctl then generates a kubeconfig file based on the contents of the support bundle an opens an interactive shell. In the sbctl shell, you can run kubectl commands to interact with a representation of the state of the cluster when the support bundle was collected.
 
 For more information, see the [sbctl](https://github.com/replicatedhq/sbctl) repository in GitHub.
 
