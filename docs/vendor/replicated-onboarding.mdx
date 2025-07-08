@@ -86,13 +86,9 @@ To create an application:
    export REPLICATED_APP=my-app
    ```
 
-### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry
+### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry {#task-2}
 
 Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you can grant proxy access to application images without exposing registry credentials to your customers.
-
-:::note
-You will add a custom domain for the proxy registry as part of [Task 9: Alias Replicated Endpoints with Your Own Domains](#task-9-alias-replicated-endpoints-with-your-own-domains).
-:::
 
 To modify image references to point to the proxy registry:
 
@@ -441,6 +437,8 @@ To add the default support bundle spec to your application:
 ### Task 9: Alias Replicated Endpoints with Your Own Domains
 
 Your customers are exposed to several Replicated domains by default. Replicated recommends you use custom domains to unify the customer's experience with your brand and simplify security reviews.
+
+After adding a custom domain for the Replicated proxy registry, be sure to update any image references in your Helm chart values to point to your custom domain rather than the proxy registry at `proxy.replicated.com`. For more information, see [Task 2: Modify Image References in Helm Values to Point to the Proxy Registry](#task-2).
 
 For more information, see [Use Custom Domains](/vendor/custom-domains-using).
 
