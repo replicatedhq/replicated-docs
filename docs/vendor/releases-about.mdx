@@ -96,7 +96,7 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Version label**: The version label for the release. Version labels have the following requirements:
 
-  * If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning).
+  * If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [About Using Semantic Versioning](#semantic-versioning).
 
   <VersionLabelReqsHelm/>
 
@@ -120,7 +120,7 @@ Using SemVer for your releases is recommended because it makes versioning more p
 
 You can enable and disable SemVer for releases on each channel in the channel settings. When you enable SemVer on a channel, the Vendor Portal checks all releases promoted to that channel to verify that the version label is valid SemVer. For more information about how to enable SemVer on a channel, see [Enable Semantic Versioning](/vendor/releases-creating-channels#enable-semantic-versioning) in _Create and Edit Channels_.
 
-For information about the Admin Console determines precendence for releases that use SemVer, see [How the Admin Console Assigns Instance Sequence](#instance-sequence-how) below.
+When SemVer is enabled, the Admin Console uses the version labels that you assign to releases to determine release precedence. This is important because precedence controls which versions are available to customers for upgrade. It also determines how versions are ordered on the Admin Console **Version history** page. For more information, see [How the Admin Console Determines Version Precedence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence) in _Performing Updates in Existing Clusters_.
 
 ## Release and Instance Sequencing
 
@@ -150,7 +150,11 @@ The channel sequence is also used in certain URLs. For example, a release with a
 
 ### Admin Console Instance Sequence
 
-When a new version is available for upgrade (including when KOTS checks for upstream updates, when the user syncs their license, or when the user makes a config change) the KOTS Admin Console assigns a unique instance sequence number to that version.
+When a new version is available for upgrade (including when KOTS checks for upstream updates, when the user syncs their license, or when the user makes a config change) the KOTS Admin Console assigns a unique instance sequence number to that version. The instance sequence number starts at 0 and increments for each identifier that is returned when a new version is available.
+
+The purpose of the instance sequence number is to help the user track all new versions across upstream updates, config changes, and license syncs. Without the instance sequence number, this could be challegning as the version label does not change when the user makes config changes or syncs their license.
+
+The instance sequence number does _not_ reflect version precedence. The Admin Console determines version precedence based on either the release's version label (if semantic versioning is enabled) or based on the date and time the release was promoted (if semantic versioning is disabled). This is important because precedence controls which versions are available to customers for upgrade. It also determines how versions are ordered on the Admin Console **Version history** page. For more information, see [How the Admin Console Determines Version Precedence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence) in _Performing Updates in Existing Clusters_.
 
 The instance sequence in the Admin Console is unrelated to the release sequence in the Vendor Portal. Instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers. It is also likely that the instance sequence number is different than the Vendor Portal release sequence.
 
@@ -159,48 +163,6 @@ The following shows instance sequence numbers on the Admin Console dashboard:
 <img alt="Instance sequence numbers" src="/images/instance-sequences.png" width="550px"/>
 
 [View a larger version of this image](/images/instance-sequences.png)
-
-#### How the Admin Console Assigns Instance Sequence {#instance-sequence-how}
-
-The instance sequence in the Admin Console starts at 0 and increments for each identifier that is returned when a new version is available.
-
-The Admin Console assigns instance sequence numbers using the following logic, depending on how semantic versioning is used:
-
-* For channels _without_ semantic versioning (SemVer) enabled, the Admin Console sequences releases by their promotion dates.
-
-* For channels _with_ SemVer enabled, the Admin Console sequences releases by their semantic version. For information about how precedence is determined in SemVer, see [11. 
-Precedence refers to how versions are compared to each other when ordered](https://semver.org/#spec-item-11) in the Semantic Versioning 2.0.0 documentation.
-
-   The following shows an example of how the Admin Console sequences releases that use SemVer: 
-
-    - 2.13.0
-    - 2.12.1
-    - 2.12.0
-    - 2.12.0-2
-    - 2.12.0-1
-    - 2.11.0
-
-    :::note
-    Build metadata in the semantic version string is ignored when determining version precedence. For example, the Admin Console interprets 2.12.0, 2.12.0+1, and 2.12.0+2 as the same version. Instead of using build metadata in your semantic version labels, Replicated recommends that you increment the patch version. Or, use pre-release identifiers. For example, 1.0.0-alpha or 1.0.0-1.
-    :::
-
-* For channels with SemVer enabled where there is at least one release that does _not_ use SemVer, the Admin Console sequences the releases with semantic versioning by their version label. The release(s) with non-semantic versioning stay in the order of their promotion dates.
-
-    For example, assume that you promote these releases in the following order to a channel: 
-
-    - 1.0.0
-    - abc
-    - 0.1.0
-    - xyz
-    - 2.0.0 
-
-    Then, you enable SemVer on that channel. The Admin Console sequences the version history for the channel as follows: 
-
-    - 0.1.0
-    - 1.0.0
-    - abc
-    - xyz
-    - 2.0.0
 
 ## Vendor Portal Pages
 
