@@ -82,7 +82,7 @@ If you did _not_ define custom status informers for your application, then the d
 
 These permissions allow the SDK to discover the Helm chart secret for your application, parse it to determine what resources to monitor, and then monitor those resources.
 
-The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no customer status informers are defined:
+The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no custom status informers are defined:
 
 ```yaml
 # Generated RBAC role with no statusInformers
