@@ -4,19 +4,21 @@ import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-valu
 
 # Use the Proxy Registry with Helm Installations
 
-This topic describes how to use the Replicated proxy registry to proxy images for installations with the Helm CLI. For more information about the proxy registry, see [About the Replicated Proxy Registry](private-images-about).
+This topic describes how to configure your application to use the Replicated proxy registry with Helm installations. For more information about the proxy registry, see [About the Replicated Proxy Registry](private-images-about). For more information about installing applications distributed with Replicated using Helm, see [About Helm Installations with Replicated](/vendor/helm-install-overview).
 
 ## Overview
 
-With the Replicated proxy registry, each customer's unique license can grant proxy access to images in an external private registry.
+During Helm installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values.
 
-During Helm installations, after customers provide their license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry, allowing you to use the proxy registry for images in your Helm charts.
+You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry. For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
-Additionally, if you include the Replicated SDK as a dependency in your Helm chart, the image used by the Replicated SDK is automatically proxied through the proxy registry.
+:::note
+For Helm charts that include the Replicated SDK as a dependency, the image used by the Replicated SDK is automatically proxied through the proxy registry. No additional configuration is required. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+:::
 
-## Pull Private Images Through the Proxy Registry in Helm Installations
+## Configure Your Application to Use the Proxy Registry
 
-To use the Replicated proxy registry for applications installed with Helm:
+To configure your application to use the proxy registry with Helm installations:
 
 1. <StepCreds/>
 
@@ -24,9 +26,7 @@ To use the Replicated proxy registry for applications installed with Helm:
 
 1. <RewriteHelmValues/>
 
-1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set and then write the rendered value into a Secret on the cluster, as shown below.
-
-   This Secret is used to authenticate with the proxy registry. For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation. 
+1. In your Helm chart templates, add a YAML file that evaluates if the `global.replicated.dockerconfigjson` value is set, and then writes the rendered value into a Secret on the cluster, as shown below.
 
    :::note
    Do not use `replicated` for the name of the image pull secret because the Replicated SDK automatically creates a Secret named `replicated`. Using the same name causes an error.
@@ -47,8 +47,7 @@ To use the Replicated proxy registry for applications installed with Helm:
    {{ end }}
    ```
    
-
-1. Add the image pull secret that you created to any manifests that reference the image:
+1. Add the image pull secret that you created to any manifests that reference the image.
 
    **Example:**
 
