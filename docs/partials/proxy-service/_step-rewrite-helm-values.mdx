@@ -1,7 +1,7 @@
-For each image reference in your Helm chart values file, set the image repository URL to the location of the image on the proxy registry. This is either `proxy.replicated.com` or your custom domain.
+For each image reference in your Helm chart values file, set the image repository URL to the location of the image in the proxy registry. The domain for this URL is either `proxy.replicated.com` or your custom domain.
 
     The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`
-
+    
     Where:
     * `DOMAIN` is either `proxy.replicated.com` or your custom domain.
     * `APP_SLUG` is the unique slug of your application.
@@ -18,8 +18,11 @@ For each image reference in your Helm chart values file, set the image repositor
         repository: proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
         tag: catalog-1.24.0
     ```
+
     Ensure that any references to the image in your Helm chart access the field from your values file.  
+
     **Example**:
+
       ```yaml
       apiVersion: v1
       kind: Pod
