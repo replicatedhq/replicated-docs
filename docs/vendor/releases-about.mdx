@@ -31,7 +31,7 @@ Replicated includes the following channels by default:
 
 You can archive or edit any of the default channels, and create new channels. For more information, see [Create and Edit Channels](releases-creating-channels).
 
-### Settings
+### Channel Settings
 
 Each channel has settings. You can customize the settings for a channel to control some of the behavior of releases promoted to the channel.
 
@@ -74,7 +74,15 @@ Each release is promoted to one or more channels. While you are developing and t
 
 A release cannot be edited after it is promoted to a channel. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
 
-### Properties
+### Demotion
+
+A channel release can be demoted from a channel. When a channel release is demoted, the release is no longer available for download, but is not withdrawn from environments where it was already downloaded or installed.
+
+The demoted release's channel sequence and version are not reused. For customers, the release will appear to have been skipped. Un-demoting a release will restore its place in the channel sequence making it again available for download and installation.
+
+For information about how to demote a release, see [Demote a Release](/vendor/releases-creating-releases#demote-a-release) in _Managing Releases with the Vendor Portal_. 
+
+### Release Properties
 
 Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the Vendor Portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
 
@@ -88,7 +96,7 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Version label**: The version label for the release. Version labels have the following requirements:
 
-  * If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning).
+  * If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [About Using Semantic Versioning](#semantic-versioning).
 
   <VersionLabelReqsHelm/>
 
@@ -100,11 +108,25 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
 
-### Sequencing
+## About Using Semantic Versioning {#semantic-versioning}
 
-By default, Replicated uses release sequence numbers to organize and order releases, and uses instance sequence numbers in an instance's internal version history.
+Semantic Versioning (SemVer) is a commonly-used and recommended versioning strategy that provides implicit information about the backwards compatibility of each version, using the format MAJOR.MINOR.PATCH:
 
-#### Release Sequences
+![semver graphic](/images/semver-graphic.png)
+
+[View a larger version of this image](/images/semver-graphic.png)
+
+Using SemVer for your releases is recommended because it makes versioning more predictable for users. It also lets you enforce a consistent versioning pattern for your application in the Replicated Platform. For more information about SemVer, including how precendence is determined when comparing different versions, see [Semantic Versioning 2.0.0](https://semver.org).
+
+You can enable and disable SemVer for releases on each channel in the channel settings. When you enable SemVer on a channel, the Vendor Portal checks all releases promoted to that channel to verify that the version label is valid SemVer. For more information about how to enable SemVer on a channel, see [Enable Semantic Versioning](/vendor/releases-creating-channels#enable-semantic-versioning) in _Create and Edit Channels_.
+
+When SemVer is enabled, the Admin Console uses the version labels that you assign to releases to determine release precedence. This is important because precedence controls which versions are available to customers for upgrade. It also determines how versions are ordered on the Admin Console **Version history** page. For more information, see [How the Admin Console Determines Version Precedence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence) in _Performing Updates in Existing Clusters_.
+
+## Release and Instance Sequencing
+
+The Vendor Portal uses release sequence numbers to organize and order releases. The Admin Console uses instance sequence numbers to organize and order an instance's internal version history.
+
+### Vendor Portal Release Sequence
 
 In the Vendor Portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
@@ -114,21 +136,11 @@ The following graphic shows release sequence numbers in the Vendor Portal:
 
 [View a larger version of this image](/images/release-sequences.png)
 
-#### Instance Sequences 
+### Channel Sequence
 
-When a new version is available for upgrade, including when KOTS checks for upstream updates as well as when the user syncs their license or makes a config change, the KOTS Admin Console assigns a unique instance sequence number to that version. The instance sequence in the Admin Console starts at 0 and increments for each identifier that is returned when a new version is available.
+When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel.
 
-This instance sequence is unrelated to the release sequence dispalyed in the Vendor Portal, and it is likely that the instance sequence will differ from the release sequence. Instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers.
-
-The following graphic shows instance sequence numbers on the Admin Console dashboard:
-
-<img alt="Instance sequence numbers" src="/images/instance-sequences.png" width="550px"/>
-
-[View a larger version of this image](/images/instance-sequences.png)
-
-#### Channel Sequences
-
-When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel. You can view the channel sequence on the **Release History** page in the Vendor Portal, as shown in the image below:
+You can view the channel sequence on the **Release History** page in the Vendor Portal, as shown in the image below:
 
 <img alt="Channel sequence on Release History page" src="/images/release-history-channel-sequence.png" width="750px"/>
 
@@ -136,56 +148,21 @@ When a release is promoted to a channel, a channel sequence number is assigned. 
 
 The channel sequence is also used in certain URLs. For example, a release with a *release sequence* of `170` can have a *channel sequence* of `125`. The air gap download URL for that release can contain `125` in the URL, even though the release sequence is `170`.
 
-Ordering is more complex if some or all of the releases in a channel have a semantic version label and semantic versioning is enabled for the channel. For more information, see [Semantic Versioning Sequence](#semantic-versioning-sequence).
+### Admin Console Instance Sequence
 
-#### Semantic Versioning Sequence
+When a new version is available for upgrade (including when KOTS checks for upstream updates, when the user syncs their license, or when the user makes a config change) the KOTS Admin Console assigns a unique instance sequence number to that version. The instance sequence number starts at 0 and increments for each identifier that is returned when a new version is available.
 
-For channels with semantic versioning enabled, the Admin Console sequences instance releases by their semantic versions instead of their promotion dates.
+The purpose of the instance sequence number is to help the user track all new versions across upstream updates, config changes, and license syncs. Without the instance sequence number, this could be challegning as the version label does not change when the user makes config changes or syncs their license.
 
-If releases without a valid semantic version are already promoted to a channel, the Admin Console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. The releases with non-semantic versioning stay in the order of their promotion dates. For example, assume that you promote these releases in the following order to a channel: 
+The instance sequence number does _not_ reflect version precedence. The Admin Console determines version precedence based on either the release's version label (if semantic versioning is enabled) or based on the date and time the release was promoted (if semantic versioning is disabled). This is important because precedence controls which versions are available to customers for upgrade. It also determines how versions are ordered on the Admin Console **Version history** page. For more information, see [How the Admin Console Determines Version Precedence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence) in _Performing Updates in Existing Clusters_.
 
-- 1.0.0
-- abc
-- 0.1.0
-- xyz
-- 2.0.0 
+The instance sequence in the Admin Console is unrelated to the release sequence in the Vendor Portal. Instance sequences are only tracked by KOTS instances, and the Vendor Portal has no knowledge of these numbers. It is also likely that the instance sequence number is different than the Vendor Portal release sequence.
 
-Then, you enable semantic versioning on that channel. The Admin Console sequences the version history for the channel as follows: 
+The following shows instance sequence numbers on the Admin Console dashboard:
 
-- 0.1.0
-- 1.0.0
-- abc
-- xyz
-- 2.0.0
+<img alt="Instance sequence numbers" src="/images/instance-sequences.png" width="550px"/>
 
-### Semantic Versioning
-
-Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:
-
-- For applications created in the Vendor Portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
-
-- For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
-
-Semantic versioning is recommended because it makes versioning more predictable for users and lets you enforce versioning so that no one uses an incorrect version.
-
-To use semantic versioning:
-
-1. Enable semantic versioning on a channel, if it is not enabled by default. Click the **Edit channel settings** icon, and turn on the **Enable semantic versioning** toggle.
-1. Assign a semantic version number when you promote a release.
-
-Releases promoted to a channel with semantic versioning enabled are verified to ensure that the release version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
-
-If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
-
-You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
-
-### Demotion
-
-A channel release can be demoted from a channel. When a channel release is demoted, the release is no longer available for download, but is not withdrawn from environments where it was already downloaded or installed.
-
-The demoted release's channel sequence and version are not reused. For customers, the release will appear to have been skipped. Un-demoting a release will restore its place in the channel sequence making it again available for download and installation.
-
-For information about how to demote a release, see [Demote a Release](/vendor/releases-creating-releases#demote-a-release) in _Managing Releases with the Vendor Portal_. 
+[View a larger version of this image](/images/instance-sequences.png)
 
 ## Vendor Portal Pages
 

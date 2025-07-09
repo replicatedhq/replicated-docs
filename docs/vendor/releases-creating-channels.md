@@ -24,7 +24,7 @@ To create a channel:
 
 1. Click **Create Channel**.
 
-## Edit a Channel
+## Edit Channel Settings
 
 To edit the settings of an existing channel:
 
@@ -38,6 +38,28 @@ To edit the settings of an existing channel:
 1. Edit the fields and click **Save**.
 
    For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
+
+## Enable Semantic Versioning
+
+You can enable and disable semantic versioning (SemVer) for releases on each channel. When you enable SemVer on a channel, the Vendor Portal checks all releases promoted to that channel to verify that the version label is valid SemVer.
+
+You can enable SemVer on a channel that already has releases promoted to it that do not use semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For more information, see [About Using Semantic Versioning](/vendor/releases-about#semantic-versioning) in _About Channels and Releases_.
+
+:::note
+If you enable SemVer for a channel and then promote releases to it, Replicated recommends that you do _not_ later disable SemVer for that channel.
+:::
+
+To enable semantic versioning on a channel:
+
+1. In the Vendor Portal, go to **Channels** and click the **Edit channel settings** icon.
+
+   The **Channel settings** dialog opens. For example:
+
+   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the Vendor Portal" width="500"/>
+
+1. Enable the **Enable semantic versioning** toggle.
+    
+    The next time that you promote a release to the channel, assign the release a semantic version number.
 
 ## Archive a Channel
 
