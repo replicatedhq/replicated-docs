@@ -79,6 +79,8 @@ spec:
 
 Local image registries are required for installations in air-gapped environments with limited or no outbound internet access. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry, see [Configuring Local Image Registries](/enterprise/image-registry-settings).
 
+This section describes how to configure the HelmChart v2 custom resource so that your users can push application images to their own local registry, and so that image references in your Helm values are correctly rewritten to the user's local registry.
+
 To support the use of local image registries in air gap and online installations:
 
 1. Configure the `builder` key. This ensures that all of the required and optional images for your application are available to users to push their own local registry. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
