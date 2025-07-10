@@ -69,13 +69,13 @@ KOTS uses Kustomize to patch the `midstream/kustomization.yaml` file to change t
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: example
+  name: example
 spec:
-    template:
+  template:
     spec:
-        containers:
+      containers:
         - name: api
-            image: quay.io/my-org/api:v1.0.1
+          image: quay.io/my-org/api:v1.0.1
 ```
 
 When this application is deployed, KOTS detects that it cannot access
@@ -88,7 +88,7 @@ bases:
 - ../../base
 images:
 - name: quay.io/my-org/api:v1.0.1
-    newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
+  newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
 ```
 </details> 
 
