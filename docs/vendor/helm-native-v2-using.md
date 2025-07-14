@@ -2,102 +2,77 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Support Installations with HelmChart v2
 
-This topic describes how to configure your application to support installations with the Replicated HelmChart custom resource version `kots.io/v1beta2`.
+This topic describes how to configure your application to support installations with the Replicated HelmChart custom resource version `kots.io/v1beta2` (HelmChart v2).
 
 ## Prerequisite
 
-Update your Helm chart values to proxy your application images through the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
+For each Helm chart in your release, update all image references in your Helm values to use the domain of the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
 
 ## Configure HelmChart v2
 
-1. Configure the `builder` key. This ensures that all of the required and optional images for your application are available to users to push their own local registry. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+To support installations with HelmChart v2: 
 
-1. Configure the `optionalValues` key so that image references in your Helm values are correctly rewritten to the user's local registry.To support the use of local image registries in air gap and online installations. Local image registries are required for installations in air-gapped environments with limited or no outbound internet access. Also, users in online environments can optionally use a local registry. For more information about how users configure a local image registry, see [Configuring Local Image Registries](/enterprise/image-registry-settings). 
+1. In the HelmChart v2 custom resource, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-     You will use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to create the conditional statement. You will use the KOTS [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to inject the hostname and namespace for the user's registry in the image reference(s).
+1. Configure the HelmChart v2 [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if the user configured a local image registry.
 
-      <details>
-        <summary>What is the registry namespace?</summary>
-
-        The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
-      </details>
-
-        Do the following:
-
-        1. Rewrite each of the application image references in your Helm values.
-
-              **Example:**
-
-              ```yaml
-              # KOTS HelmChart custom resource
-
-              apiVersion: kots.io/v1beta2
-              kind: HelmChart
-              metadata:
-                name: samplechart
-              spec:
-                optionalValues:
-                  # Define the conditional statement in the when field
-                  - when: 'repl{{ HasLocalRegistry }}'
-                    values:
-                      postgres:
-                        image:
-                          registry: '{{repl LocalRegistryHost }}'
-                          repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
-              ```
-
-        1. Rewrite the reference Replicated SDK image in your Helm values.
-
-              **Example:**
-
-              ```yaml
-              # KOTS HelmChart custom resource
-              apiVersion: kots.io/v1beta2
-              kind: HelmChart
-              metadata:
-                name: samplechart
-              spec:
-                optionalValues:
-                  # Conditionally rewrite SDK image when a local registry
-                  # is configured
-                  - when: 'repl{{ HasLocalRegistry }}'
-                    values:
-                      replicated:
-                        image:
-                          registry: '{{repl LocalRegistryHost }}'
-                          # The default location for the SDK image is
-                          # proxy.replicated.com/library/replicated-sdk-image
-                          repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
-              ```
-
-1. To avoid errors caused by reaching the Docker Hub rate limit, add the `<app-slug>-kotsadm-dockerhub` pull secret to a field in the `values` key of the HelmChart custom resource, along with a matching field in your Helm chart `values.yaml` file. For more information about Docker Hub rate limiting, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+   You will use the KOTS [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to inject the hostname and namespace for the user's registry in the image reference(s). You will use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to create a conditional statement that evaluates if a local registry is configured.
 
    <details>
-     <summary>Why?</summary>
+     <summary>What is the registry namespace?</summary>
 
-     Docker Hub enforces rate limits for Anonymous and Free users. To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
-
-     If you are deploying a Helm chart with Docker Hub images that could be rate limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret, where `<app-slug>` is your application slug. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
-
-     During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
-    </details>
+      The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
+   </details>
 
     **Example:**
 
-      The following Helm chart `values.yaml` file includes `image.registry`, `image.repository`, and `image.pullSecrets` for a rate-limited Docker Hub image:
+    ```yaml
+    # KOTS HelmChart custom resource
 
-      ```yaml
-      # Helm chart values.yaml file
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+        # Create a conditional statement in the `when` field
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            postgres:
+              image:
+                registry: '{{repl LocalRegistryHost }}'
+                repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+    ```
 
-      image:
-        registry: docker.io
-        repository: my-org/example-docker-hub-image
-        pullSecrets: []
-      ```
+1. In the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key, use the same method as in the previous step to update the Replicated SDK image reference.
 
-      The following HelmChart custom resource includes `spec.values.image.registry`, `spec.values.image.repository`, and `spec.values.image.pullSecrets`, which correspond to those in the Helm chart `values.yaml` file above.
+    **Example:**
 
-      The `spec.values.image.pullSecrets` array lists the `<app-slug>-kotsadm-dockerhub` pull secret, where the slug for the application is `example-app-slug`:
+    ```yaml
+    # KOTS HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      optionalValues:
+        # Conditionally rewrite SDK image when a local registry
+        # is configured
+        - when: 'repl{{ HasLocalRegistry }}'
+          values:
+            replicated:
+              image:
+                registry: '{{repl LocalRegistryHost }}'
+                # The default location for the SDK image is
+                # proxy.replicated.com/library/replicated-sdk-image
+                repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
+    ```
+    
+1. To avoid errors caused by reaching the Docker Hub rate limit, do the following:
+
+   1. In the HelmChart v2 [`values`](/reference/custom-resource-helmchart-v2#values) key, add a new value with the KOTS `APP_SLUG-kotsadm-dockerhub` pull secret, where `APP_SLUG` is your unique application slug.
+
+      **Example:**
 
       ```yaml
       # kots.io/v1beta2 HelmChart custom resource
@@ -110,27 +85,56 @@ Update your Helm chart values to proxy your application images through the Repli
         values:
           image:
             registry: docker.io
-            repository: my-org/example-docker-hub-image
+            repository: your-org/example-docker-hub-image
+            # Add a new pullSecrets array with the <app-slug>-kotsadm-dockerhub pull secret
             pullSecrets:
-            - name: example-app-slug-kotsadm-dockerhub
+            - name: your-app-slug-kotsadm-dockerhub
       ```
+      <details>
+       <summary>How does the `kotsadm-dockerhub` pull secret avoid Docker Hub rate limiting errors?</summary>
 
-      During installation, KOTS adds the `example-app-slug-kotsadm-dockerhub` secret to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access `image.pullSecrets` are updated to use `example-app-slug-kotsadm-dockerhub`:
+       Docker Hub enforces rate limits for Anonymous and Free users. For more information, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+     
+       To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
-      ```yaml
-      apiVersion: v1
-      kind: Pod
-      metadata:
-        name: example
-      spec:
-        containers:
-        - name: example
-          image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
-        {{- with .Values.image.pullSecrets }}
-        imagePullSecrets:
-        {{- toYaml . | nindent 2 }}
-        {{- end }}
-      ```
+       If you are deploying a Helm chart with Docker Hub images that could be rate limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret.
+
+      During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
+      </details>
+   
+   1. Ensure that there is a matching value in your Helm chart `values.yaml`.
+
+       **Example:**
+
+       ```yaml
+       # Helm chart values.yaml file
+
+       image:
+         registry: docker.io
+         repository: your-org/your-docker-hub-image
+         # include the new pullSecrets array
+         pullSecrets: []
+       ```
+   
+   1. In your Helm chart templates, update any Pod definitions that reference rate-limited Docker Hub images to access the Helm value with the Docker Hub pull secret.
+
+      **Example:**
+
+        ```yaml
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: example
+        spec:
+          containers:
+          - name: example
+            image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
+          # the kotsadm-dockerhub pull secret is access from values and added to this array  
+          {{- with .Values.image.pullSecrets }}
+          imagePullSecrets:
+          {{- toYaml . | nindent 2 }}
+          {{- end }}
+        ```
 
 1. (KOTS Existing Cluster and kURL Installations Only) To support backup and restore with snapshots, configure the HelmChart v2 [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key so that the required `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels are added to all resources that you want to be included in backups.
 
@@ -170,9 +174,7 @@ Update your Helm chart values to proxy your application images through the Repli
               kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
     ```
 
-## Additional Information
-
-### HelmChart v1 and v2 Differences
+## Differences From HelmChart v1
 
 The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
 
@@ -204,8 +206,8 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
   </tr>
 </table>
 
-### Migrate Existing KOTS Installations to HelmChart v2
+## Next Step: Migrate Existing Installations to HelmChart v2
 
-Existing KOTS installations can be migrated to use the KOTS HelmChart v2 method, without having to reinstall the application.
+Existing installations can be migrated to use the KOTS HelmChart v2 method, without having to reinstall the application.
 
 There are different steps for migrating to HelmChart v2 depending on the application deployment method used previously. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
