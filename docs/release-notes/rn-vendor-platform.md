@@ -10,12 +10,12 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## v2025.07.14-1
+## v2025.07.15-0
 
-Released on July 14, 2025
+Released on July 15, 2025
 
-### New Features {#new-features-v2025-07-14-1}
-* Compatibility Matrix: Adds `replicated network policy update`, which can be used to apply a network policy update. After running replicated network policy update`, the VMs or cluster affiliated with the network will transition to 'updating' status until the update completes.
+### Bug Fixes {#bug-fixes-v2025-07-15-0}
+* Updates the Helm install instructions in the Vendor Portal to always show the `--version` flag.
 
 ## v2025.06.27-2
 
