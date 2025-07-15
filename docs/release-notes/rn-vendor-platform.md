@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on July 14, 2025
 
 ### New Features {#new-features-v2025-07-14-1}
-* After applying a network policy update via 'replicated network policy update' the VMs or cluster affiliated with the network will transition to 'updating' status until the update completes.
+* Compatibility Matrix: Adds `replicated network policy update`, which can be used to apply a network policy update. After running replicated network policy update`, the VMs or cluster affiliated with the network will transition to 'updating' status until the update completes.
 
 ## v2025.06.27-2
 
