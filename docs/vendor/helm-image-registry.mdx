@@ -2,13 +2,13 @@ import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 
-# Use the Proxy Registry with Helm Installations
+# Use the Proxy Registry with Helm CLI Installations
 
-This topic describes how to configure your application to use the Replicated proxy registry with Helm installations. For more information about the proxy registry, see [About the Replicated Proxy Registry](private-images-about). For more information about installing applications distributed with Replicated using Helm, see [About Helm Installations with Replicated](/vendor/helm-install-overview).
+This topic describes how to configure your application to use the Replicated proxy registry with Helm CLI installations. For more information about the proxy registry, see [About the Replicated Proxy Registry](private-images-about). For more information about installing applications distributed with Replicated using Helm, see [About Helm Installations with Replicated](/vendor/helm-install-overview).
 
 ## Overview
 
-During Helm installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values.
+During Helm CLI installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values.
 
 You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry. For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
@@ -18,7 +18,7 @@ For Helm charts that include the Replicated SDK as a dependency, the image used 
 
 ## Configure Your Application to Use the Proxy Registry
 
-To configure your application to use the proxy registry with Helm installations:
+To configure your application to use the proxy registry with Helm CLI installations:
 
 1. <StepCreds/>
 

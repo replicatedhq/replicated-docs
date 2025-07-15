@@ -19,8 +19,8 @@ The following diagram demonstrates how the proxy registry pulls images from your
 The proxy registry requires read-only credentials to your private registry to access your application images. See [Connect to an External Registry](/vendor/packaging-private-images).
 
 After connecting your registry, the steps the enable the proxy registry vary depending on your application deployment method. For more information, see:
-* [Using the Proxy Registry with KOTS Installations](/vendor/private-images-kots)
-* [Using the Proxy Registry with Helm Installations](/vendor/helm-image-registry)
+* [Use the Proxy Registry with Replicated Installers](/vendor/private-images-kots)
+* [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry)
 
 ## About Allowing Pull-Through Access of Public Images
 
