@@ -14,7 +14,7 @@ To configure a release to support installations with HelmChart v2:
 
 1. For each Helm chart in the release, ensure that there is a corresponding HelmChart v2 custom resource (version `kots.io/v1beta2`) . See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-1. If you are migrating from HelmChart v1, remove any unsupported fields from the HelmChart custom resource(s) in the release. See [Differences From HelmChart v1](#differences) below.
+1. If you are migrating from HelmChart v1, remove any unsupported fields from the HelmChart custom resource(s) in the release. See [HelmChart v1 and v2 Differences](#differences) below.
 
 1. For each HelmChart v2 resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
@@ -196,7 +196,7 @@ Existing installations can be migrated to use the KOTS HelmChart v2 method, with
 
 There are different steps for migrating to HelmChart v2 depending on the application deployment method used previously. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
 
-## Differences From HelmChart v1 {#differences}
+## HelmChart v1 and v2 Differences {#differences}
 
 The HelmChart v2 custom resource has the following differences from v1:
 
