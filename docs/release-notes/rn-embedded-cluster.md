@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.7.2
+
+Released on July 11, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.7.2+k8s-1.31</td>
+    <td id="center">2.7.2+k8s-1.30</td>
+    <td id="center">2.7.2+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.124.18</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-7-2}
+* Addresses CVE-2025-53547, CVE-2025-22870, and CVE-2025-22872.
+
 ## 2.7.1
 
 Released on July 2, 2025
