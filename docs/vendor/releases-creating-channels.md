@@ -37,7 +37,7 @@ To edit the settings of an existing channel:
 
 1. Edit the fields and click **Save**.
 
-   For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
+   For more information about channel settings, see [Channel Settings](releases-about#channel-settings) in _About Channels and Releases_.
 
 ## Enable Semantic Versioning
 

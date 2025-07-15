@@ -116,7 +116,7 @@ This section describes the processes of performing manual and automatic updates 
 
 The manual update instructions provided in the Enterprise Portal or Download Portal are similar to the installation instructions.
 
-However, the first step prompts the customer to select their current version an the target version to install. This step takes [required releases](/vendor/releases-about#properties) into consideration, thereby guiding the customer to the versions that are upgradable from their current version. 
+However, the first step prompts the customer to select their current version an the target version to install. This step takes [required releases](/vendor/releases-about#release-properties) into consideration, thereby guiding the customer to the versions that are upgradable from their current version. 
 
 The additional steps are consistent with installation process until the `preflight` and `install` commands where customers provide the existing values from the cluster with the `helm get values` command. Your customer will then need to edit the `values.yaml` to reference the new image tags.
 
