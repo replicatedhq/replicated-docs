@@ -56,7 +56,7 @@ For more information about how to interpret the time to install metrics, see [Ti
 ### Download Portal
 
 :::note
-If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal) below.
+If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal-beta) below.
 :::
 
 From the **Download portal** section, you can:
@@ -83,7 +83,7 @@ From the **Enterprise Portal** section, you can:
 * View the timestamp when the Enterprise Portal was most recently accessed by the customer
 * View the number of users with Enterprise Portal accounts
 * Click **Invite user** to invite a new user to the Enterprise Portal
-* View the number of install attempts made by the customer. The **Customer Reporting > Install Attempts** section includes additional details about install attempts. For more information, see [Install Attempts](#install-attempts) below.
+* View the number of install attempts made by the customer. The **Customer Reporting > Install Attempts** section includes additional details about install attempts. For more information, see [Install Attempts](#install-attempts-beta) below.
 * View the number of service accounts created in the Enterprise Portal
 * View the number of support bundles uploaded to the Enterprise Portal
 
