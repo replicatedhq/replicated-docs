@@ -89,7 +89,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
    
    1. In your development environment, access the Admin Console to upgrade to the second release.
 
-1. When you are done testing, promote the first release to one or more of your customer-facing channels. Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**. For more information about required releases, see [Properties](/vendor/releases-about#properties) in _About Channels and Releases_.
+1. When you are done testing, promote the first release to one or more of your customer-facing channels. Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**. For more information about required releases, see [Release Properties](/vendor/releases-about#release-properties) in _About Channels and Releases_.
 
 1. Promote the second release to the same customer-facing channel(s). Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**.
 
