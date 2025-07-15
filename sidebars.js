@@ -272,7 +272,7 @@ const sidebars = {
           items: [
             {
               type: 'category',
-              label: 'Distribute Helm Charts with KOTS',
+              label: 'Configure the HelmChart Custom Resource',
               items: [
                 'vendor/helm-native-about',
                 'vendor/helm-native-v2-using',
