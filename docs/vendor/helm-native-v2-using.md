@@ -2,49 +2,58 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Support Installations with HelmChart v2
 
-This topic describes how to configure your application to support installations with the Replicated HelmChart custom resource version `kots.io/v1beta2` (HelmChart v2).
+This topic describes how to configure a release to support installations with the Replicated HelmChart custom resource version `kots.io/v1beta2` (HelmChart v2). For more information about HelmChart v2, see [About Distributing Helm Chart with KOTS](/vendor/helm-native-about).
 
-## Prerequisite
+## Configure a Release to Support HelmChart v2 Installations
 
-For each Helm chart in your release, update all image references in your Helm values to use the domain of the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
+To configure a release to support installations with HelmChart v2:
 
-## Configure HelmChart v2
+1. For each Helm chart used by your application, update all image references in the Helm values to use the domain of the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
 
-To support installations with HelmChart v2: 
+1. Package each Helm chart and add the `.tgz` chart archives to a new release. See [Package a Helm Chart for a Release](/vendor/helm-install-release).
 
-1. In the HelmChart v2 custom resource, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+1. For each Helm chart in the release, ensure that there is a corresponding HelmChart v2 custom resource (version `kots.io/v1beta2`) . See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-1. Configure the HelmChart v2 [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if the user configured a local image registry.
+1. If you are migrating from HelmChart v1, remove any unsupported fields from the HelmChart custom resource(s) in the release. See [Differences From HelmChart v1](#differences) below.
 
-   You will use the KOTS [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to inject the hostname and namespace for the user's registry in the image reference(s). You will use the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to create a conditional statement that evaluates if a local registry is configured.
+1. For each HelmChart v2 resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+1. For each HelmChart v2 resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if a local image registry is used.
+
+    **Example:**
+
+   ```yaml
+   # KOTS HelmChart custom resource
+
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+     optionalValues:
+       # Use KOTS HasLocalRegistry in the conditional statement
+       # to evaluate if a local registry is used
+       - when: 'repl{{ HasLocalRegistry }}'
+         values:
+           postgres:
+             image:
+               # Use KOTS LocalRegistryHost to inject 
+               # the user's registry hostname
+               registry: '{{repl LocalRegistryHost }}'
+               # Use KOTS LocalRegistryNamespace to inject
+               # the image namespace in the user's registry
+               repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+    ```
+
+    For more information about the KOTS template functions used, see [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace).
 
    <details>
      <summary>What is the registry namespace?</summary>
 
-      The registry namespace is the path between the registry and the image name. For example, `images.yourcompany.com/namespace/image:tag`.
+      The registry namespace is the path between the registry and the image name. For example, `images.registry.com/namespace/image:tag`.
    </details>
 
-    **Example:**
-
-    ```yaml
-    # KOTS HelmChart custom resource
-
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    metadata:
-      name: samplechart
-    spec:
-      optionalValues:
-        # Create a conditional statement in the `when` field
-        - when: 'repl{{ HasLocalRegistry }}'
-          values:
-            postgres:
-              image:
-                registry: '{{repl LocalRegistryHost }}'
-                repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
-    ```
-
-1. In the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key, use the same method as in the previous step to update the Replicated SDK image reference.
+1. In the HelmChart v2 custom resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
 
     **Example:**
 
@@ -56,8 +65,8 @@ To support installations with HelmChart v2:
       name: samplechart
     spec:
       optionalValues:
-        # Conditionally rewrite SDK image when a local registry
-        # is configured
+        # Conditionally rewrite SDK image when a
+        # local registry is configured
         - when: 'repl{{ HasLocalRegistry }}'
           values:
             replicated:
@@ -67,10 +76,17 @@ To support installations with HelmChart v2:
                 # proxy.replicated.com/library/replicated-sdk-image
                 repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
     ```
+    For more information about declaring the SDK as a dependency, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
     
-1. To avoid errors caused by reaching the Docker Hub rate limit, do the following:
+1. For any of your application images that could be rate limited by Docker Hub, do the following to avoid errors caused by reaching the rate limit:
+   
+   <details>
+     <summary>What is Docker Hub rate limiting?</summary>
 
-   1. In the HelmChart v2 [`values`](/reference/custom-resource-helmchart-v2#values) key, add a new value with the KOTS `APP_SLUG-kotsadm-dockerhub` pull secret, where `APP_SLUG` is your unique application slug.
+     Docker Hub enforces rate limits for Anonymous and Free users. For more information, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+   </details>
+
+   1. For each  HelmChart v2 resource in the release, configure the [`values`](/reference/custom-resource-helmchart-v2#values) key to add a new value with the KOTS `APP_SLUG-kotsadm-dockerhub` pull secret, where `APP_SLUG` is your unique application slug.
 
       **Example:**
 
@@ -91,18 +107,14 @@ To support installations with HelmChart v2:
             - name: your-app-slug-kotsadm-dockerhub
       ```
       <details>
-       <summary>How does the `kotsadm-dockerhub` pull secret avoid Docker Hub rate limiting errors?</summary>
-
-       Docker Hub enforces rate limits for Anonymous and Free users. For more information, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
+       <summary>What is the purpose of the `kotsadm-dockerhub` pull secret?</summary>
      
-       To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
+       To avoid errors caused by reaching the rate limit, your users can run the `kots docker ensure-secret` command, which creates an `<app-slug>-kotsadm-dockerhub` secret for pulling Docker Hub images and applies the secret to Kubernetes manifests that have images. For more information about this command, see [Avoiding Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
-       If you are deploying a Helm chart with Docker Hub images that could be rate limited, to support the use of the `kots docker ensure-secret` command, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret.
-
-      During installation, KOTS sets the value of the matching field in the `values.yaml` file with the `<app-slug>-kotsadm-dockerhub` pull secret, and any Helm chart templates that access the value are updated.
+       If you are deploying a Helm chart with Docker Hub images that could be rate limited, any Pod definitions in your Helm chart templates that reference the rate-limited image must be updated to access the `<app-slug>-kotsadm-dockerhub` pull secret.
       </details>
    
-   1. Ensure that there is a matching value in your Helm chart `values.yaml`.
+   1. Ensure that there is a matching value in each of the corresponding Helm chart `values.yaml` files.
 
        **Example:**
 
@@ -116,7 +128,7 @@ To support installations with HelmChart v2:
          pullSecrets: []
        ```
    
-   1. In your Helm chart templates, update any Pod definitions that reference rate-limited Docker Hub images to access the Helm value with the Docker Hub pull secret.
+   1. In your Helm chart templates, update any Pod definitions that reference rate-limited Docker Hub images to include the pull secret.
 
       **Example:**
 
@@ -129,20 +141,19 @@ To support installations with HelmChart v2:
           containers:
           - name: example
             image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
-          # the kotsadm-dockerhub pull secret is access from values and added to this array  
+          # the kotsadm-dockerhub pull secret is accessed from
+          # the Helm values and added to this array  
           {{- with .Values.image.pullSecrets }}
           imagePullSecrets:
           {{- toYaml . | nindent 2 }}
           {{- end }}
         ```
 
-1. (KOTS Existing Cluster and kURL Installations Only) To support backup and restore with snapshots, configure the HelmChart v2 [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key so that the required `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels are added to all resources that you want to be included in backups.
+1. (KOTS Existing Cluster and kURL Installations Only) If you support KOTS existing cluster or kURL installations, for each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to all resources that you want to be included in backups with Replicated snapshots. These labels are required to support the use of snapshots. In the `optionalValues` key, use a `when` statement that evaluates to true only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
 
     :::note
-    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for installations with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
     :::
-
-    In the `optionalValues` key, use a `when` statement that evaluates to true only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license. You can use the KOTS [LicenseFieldValue](/reference/template-functions-license) template function to check the value of the `isSnapshotSupported` license field.
 
     **Example**:
 
@@ -173,10 +184,21 @@ To support installations with HelmChart v2:
               kots.io/backup: velero
               kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
     ```
+    For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license).
 
-## Differences From HelmChart v1
+    For more information about the `isSnapshotSupported` and `appSlug` built-in license fields, see the [Admin Console Feature Options](/vendor/licenses-using-builtin-fields#admin-console-feature-options) table in _Built-In License Fields_.
 
-The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
+1. Promote the release a channel that your team uses for testing, and install the release in a development environment to test your changes.
+
+## Next Step: Migrate Existing Installations to HelmChart v2
+
+Existing installations can be migrated to use the KOTS HelmChart v2 method, without having to reinstall the application.
+
+There are different steps for migrating to HelmChart v2 depending on the application deployment method used previously. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
+
+## Differences From HelmChart v1 {#differences}
+
+The HelmChart v2 custom resource has the following differences from v1:
 
 <table>
   <tr>
@@ -205,9 +227,3 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
     <td><code>useHelmInstall</code> field is removed</td>
   </tr>
 </table>
-
-## Next Step: Migrate Existing Installations to HelmChart v2
-
-Existing installations can be migrated to use the KOTS HelmChart v2 method, without having to reinstall the application.
-
-There are different steps for migrating to HelmChart v2 depending on the application deployment method used previously. For more information, see [Migrating Existing Installations to HelmChart v2](helm-v2-migrate).
