@@ -135,7 +135,7 @@ To assign a custom domain to a channel:
 
 1. In the Vendor Portal, go to **Channels** and click the settings icon for the target channel.
 
-1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
+1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Channel Settings](releases-about#settings) in _About Channels and Releases_.
 
     <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
 
