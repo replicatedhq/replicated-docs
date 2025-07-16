@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.07.16-0
+
+Released on July 16, 2025
+
+### Bug Fixes {#bug-fixes-v2025-07-16-0}
+* Fixes an issue where enterprise portal install and update instructions missed a protocol prefix in the curl command step.
+
 ## v2025.07.15-0
 
 Released on July 15, 2025
