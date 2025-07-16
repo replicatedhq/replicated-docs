@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.07.16-6
+
+Released on July 16, 2025
+
+### Bug Fixes {#bug-fixes-v2025-07-16-6}
+* Fixes an issue where the preflight step of the Enterprise Portal install instructions could reference charts without preflights.
+
 ## v2025.07.16-3
 
 Released on July 16, 2025
