@@ -17,6 +17,13 @@ Released on July 16, 2025
 ### Bug Fixes {#bug-fixes-v2025-07-16-6}
 * Fixes an issue where the preflight step of the Enterprise Portal install instructions could reference charts without preflights.
 
+## v2025.07.16-3
+
+Released on July 16, 2025
+
+### Bug Fixes {#bug-fixes-v2025-07-16-3}
+* Various UX fixes and improvements in the Vendor Portal.
+
 ## v2025.07.16-0
 
 Released on July 16, 2025
