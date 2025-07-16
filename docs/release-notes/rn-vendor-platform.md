@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.07.16-3
+
+Released on July 16, 2025
+
+### Bug Fixes {#bug-fixes-v2025-07-16-3}
+* Improves some odd spacing, button styles, and inconsistent copy in the Vendor Portal.
+
 ## v2025.07.16-0
 
 Released on July 16, 2025
