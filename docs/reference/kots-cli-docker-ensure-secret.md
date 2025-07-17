@@ -1,9 +1,12 @@
 # docker ensure-secret
 
-Creates an image pull secret for Docker Hub that the Admin Console can utilize to avoid [rate limiting](/enterprise/image-registry-rate-limits).
+Creates an image pull secret for Docker Hub that the Admin Console can utilize to avoid rate limiting.
+
 The credentials are validated before creating the image pull secret.
 Running this command creates a new application version, based on the latest version, with the new image pull secret added to all Kubernetes manifests that have images.
 In order for this secret to take effect to avoid rate limiting, the new version must be deployed.
+
+For more information, see [Avoid Docker Hub Rate Limits](/enterprise/image-registry-rate-limits).
 
 ### Usage
 
