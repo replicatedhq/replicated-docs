@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.7.3
+
+Released on July 22, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.7.3+k8s-1.31</td>
+    <td id="center">2.7.3+k8s-1.30</td>
+    <td id="center">2.7.3+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.124.18</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-7-3}
+* Addresses CVE-2024-45337, CVE-2025-22869, CVE-2025-22871, and CVE-2025-22874.
+
+### Bug Fixes {#bug-fixes-2-7-3}
+* Fixed seaweedfs-master to run with 3 replicas for true high availability, resolving registry backend failures during node outages in HA deployments.
+
 ## 2.7.2
 
 Released on July 11, 2025
