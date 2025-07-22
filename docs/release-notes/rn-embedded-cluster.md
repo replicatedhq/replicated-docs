@@ -39,7 +39,7 @@ Released on July 22, 2025
 * Addresses CVE-2024-45337, CVE-2025-22869, CVE-2025-22871, and CVE-2025-22874.
 
 ### Bug Fixes {#bug-fixes-2-7-3}
-* Fixed seaweedfs-master to run with 3 replicas for true high availability, resolving registry backend failures during node outages in HA deployments.
+* Fixes seaweedfs-master to run with 3 replicas for true high availability, resolving registry backend failures during node outages in HA deployments.
 
 ## 2.7.2
 
