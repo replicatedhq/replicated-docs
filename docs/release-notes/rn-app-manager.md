@@ -22,7 +22,7 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 Released on July 23, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.30, 1.31, 1.32, and 1.33
 
 ### New Features {#new-features-1-125-0}
 * Allow rotating service account tokens.
@@ -31,7 +31,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 
 Released on June 11, 2025
 
-Support for Kubernetes: 1.29, 1.30, and 1.31
+Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
 ### Improvements {#improvements-1-124-18}
 * Fixes CVE CVE-2024-0406.
