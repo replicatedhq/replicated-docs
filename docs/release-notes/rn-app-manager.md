@@ -32,7 +32,7 @@ Support for Kubernetes: 1.31, 1.32, and 1.33
 
 Released on June 11, 2025
 
-Support for Kubernetes: 1.31, 1.32, and 1.33
+Support for Kubernetes: 1.29, 1.30, 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-124-18}
 * Fixes CVE CVE-2024-0406.
