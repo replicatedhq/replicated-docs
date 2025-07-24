@@ -17,6 +17,13 @@ Released on July 23, 2025
 ### New Features {#new-features-v2025-07-23-0}
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.10.
 
+## v2025.07.21-0
+
+Released on July 21, 2025
+
+### New Features {#new-features-v2025-07-21-0}
+* Adds support for RHEL 9.6 and Rocky Linux 9.6.
+
 ## v2025.07.09-0
 
 Released on July 9, 2025
