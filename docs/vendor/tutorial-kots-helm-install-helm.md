@@ -22,9 +22,9 @@ To install the release with the Helm CLI:
 
    1. For **Customer email**, enter the email address for the customer. The customer email address is required to install the application with the Helm CLI. This email address is never used send emails to customers.
 
-   1. For **License type**, select Trial.
+   1. For **Customer type**, select Trial.
 
-   1. (Optional) For **License options**, _disable_ the **KOTS Install Enabled** entitlement. 
+   1. (Optional) For **License options**, select the **Existing Cluster (Helm CLI)** entitlement. 
 
    1. Click **Save Changes**.
 
