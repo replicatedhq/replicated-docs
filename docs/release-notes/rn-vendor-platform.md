@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.07.25-5
+
+Released on July 25, 2025
+
+### New Features {#new-features-v2025-07-25-5}
+* Addresses inconsistencies in how Helm charts were being displayed across different parts of the Vendor Portal, Enterprise Portal, and Vendor API. Charts are now sorted by their weight property from the `HelmChart` resource in the release.
+
 ## v2025.07.16-10
 
 Released on July 16, 2025
