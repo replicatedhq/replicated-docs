@@ -1,6 +1,6 @@
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Clusters
+# Create Clusters
 
 This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters.
 
