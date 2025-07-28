@@ -233,6 +233,7 @@ const sidebars = {
         'vendor/testing-cluster-addons',
         'vendor/compatibility-matrix-usage',
         'vendor/testing-how-to',
+        'vendor/testing-vm-create',
         'vendor/testing-ingress',
       ],
     },
