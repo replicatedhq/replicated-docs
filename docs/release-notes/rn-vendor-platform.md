@@ -14,9 +14,9 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on July 25, 2025
 
-### New Features {#new-features-v2025-07-25-0}
-* Updates the [external registry delete](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to operate using registry slug's rather than registry endpoint's. For previously added registries, the slug is the same as the endpoint.
-* Updates the [external registry create](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to accept an optional slug. If not provided, the endpoint will be used as the slug.
+### Improvements {#improvements-v2025-07-25-0}
+* Updates the [external registry delete](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to use the registry slug rather than the registry endpoint. For previously added registries, the slug is the same as the endpoint.
+* Updates the [external registry create](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to accept an optional slug. If not provided, the endpoint is used as the slug.
 
 ## v2025.07.16-10
 
