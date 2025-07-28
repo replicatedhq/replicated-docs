@@ -1,7 +1,7 @@
-Specifies the order in which Helm charts should be installed within the application. Charts should be installed by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
+Specifies the order in which Helm charts are installed within the application. Charts are installed by weight in ascending order, with lower weights installed first. **Supported values:** Positive or negative integers. **Default:** `0`
 
-The Replicated Enterprise Portal uses these weights to order the list of charts in the install and update instuctions they provide. See [View Install and Update Instructions](https://docs.replicated.com/vendor/enterprise-portal-use#view-install-and-update-instructions). When installing with KOTS or the Embedded Cluster, `weight` determines the order in which KOTS applies the Helm chart. 
+For installations with Helm, the Replicated Enterprise Portal uses the `weight` property to order the list of charts in the Helm installation and update instuctions. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Access and Use the Enterprise Portal_.
 
-In KOTS v1.99.0 and later, `weight` also determines the order in which charts are uninstalled. Charts are uninstalled by weight in descending order, with higher weights uninstalled first. For more information about uninstalling applications, see [remove](kots-cli-remove) in _KOTS CLI_.
+For installations with Replicated Embedded Cluster or with KOTS in an existing cluster, `weight` determines the order in which KOTS applies the Helm chart. In KOTS v1.99.0 and later, `weight` also determines the order in which charts are uninstalled. Charts are uninstalled by weight in descending order, with higher weights uninstalled first. For more information about uninstalling applications, see [remove](kots-cli-remove) in _KOTS CLI_.
 
 For more information, see [Orchestrate Resource Deployment](/vendor/orchestrating-resource-deployment).
