@@ -1,30 +1,9 @@
 # Create VMs (Beta)
 
-The Compatibility Matrix (CMX) platform allows you to create VMs with no Kubernetes pre-installed on them. This is particularly useful for testing VM-based installs such as the [Replicated Embedded Cluster](https://docs.replicated.com/intro-replicated#embedded-cluster).
+The Compatibility Matrix (CMX) platform allows you to create VMs with no Kubernetes pre-installed on them. This is useful for testing VM-based installs such as the [Replicated Embedded Cluster](https://docs.replicated.com/intro-replicated#embedded-cluster).
 
 | ⚠️ Current Limitations [GitHub Actions](https://docs.replicated.com/vendor/testing-how-to#replicated-github-actions) do not yet work with Compatibility Matrix VMs. [Cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare) is not yet supported with Compatibility Matrix VMs. → To try out VMs (Beta), [email](mailto:han@replicated.com) Replicated for access & support. |
 | :---- |
-
-## Create VMs
-
-To create [3] [Ubuntu] VMs:
-
-```bash
-replicated vm create --distribution ubuntu --count 3
-```
-
-List supported distributions and versions:
-
-```bash
-replicated vm versions
-```
-
-Supported VM types:
-
-| Distribution | Versions | Instance Types |
-| :---- | :---- | :---- |
-| ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
-| almalinux | 8 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
 
 ## Prerequisites
 
@@ -68,6 +47,41 @@ Using multiple SSH public keys:
 replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
 ```
 
+## Create VMs
+
+To create VMs with Compatibility Matrix:
+
+1. Run the following command to create VMs:
+
+   ```bash
+   replicated vm create --distribution DISTRIBUTION --count COUNT
+   ```
+
+   Where:
+   * `DISTRIBUTION` is the Linux distribution for the VM (e.g., ubuntu, almalinux)
+   * `COUNT` is the number of VMs to create
+
+   **Example:**
+
+   ```bash
+   replicated vm create --distribution ubuntu --count 3
+   ```
+
+1. List supported distributions and versions:
+
+   ```bash
+   replicated vm versions
+   ```
+
+### Supported VM Types
+
+The following VM types are supported:
+
+| Distribution | Versions | Instance Types |
+| :---- | :---- | :---- |
+| ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
+| almalinux | 8 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
+
 ## Connect to a VM
 
 There are currently two supported methods to SSH into a VM:
@@ -89,16 +103,20 @@ There are currently two supported methods to SSH into a VM:
 SSH into the VM:
 
 ```bash
-ssh [VMID]@replicatedvm.com
+ssh VMID@replicatedvm.com
 ```
+
+Where `VMID` is the ID of the VM.
 
 If needed, copy files onto the machine:
 
 ```bash
-scp somefile [VMID]@replicatedvm:/home/folder/somefile
+scp somefile VMID@replicatedvm:/home/folder/somefile
 ```
 
-| Beta Limitations: scp with flag -O (legacy scp protocol) is not supported. Relative paths is not supported `❌ scp somefile [VMID]@replicatedvm.com:~ ✅ scp somefile [VMID]@replicatedvm:/home/folder/somefile` File permissions are not inherited. |
+Where `VMID` is the ID of the VM.
+
+| Beta Limitations: scp with flag -O (legacy scp protocol) is not supported. Relative paths is not supported `❌ scp somefile VMID@replicatedvm.com:~ ✅ scp somefile VMID@replicatedvm:/home/folder/somefile` File permissions are not inherited. |
 | :---- |
 
 ### Direct SSH
@@ -108,67 +126,82 @@ scp somefile [VMID]@replicatedvm:/home/folder/somefile
 
 Get the SSH endpoint for the VM:
 
-```bash
-replicated vm ssh-endpoint [VMID or VMNAME]
-```
+1. Run the following command to get the SSH endpoint:
 
-If successful, you'll see:
+   ```bash
+   replicated vm ssh-endpoint VMID_OR_VMNAME
+   ```
 
-```
-ssh://[github-user-name]@[ssh-endpoint]:[port]
-```
+   Where `VMID_OR_VMNAME` is the ID or name of the VM.
 
-**Example** – `ssh://MyName@37.27.52.116:46795`
+   If successful, you'll see:
 
-⚠️ The username for SSH should match the GitHub username in Vendor Portal. ([override info](#override-username))
+   ```
+   ssh://[github-user-name]@[ssh-endpoint]:[port]
+   ```
 
-SSH into the VM:
+   **Example** – `ssh://MyName@37.27.52.116:46795`
 
-```bash
-ssh $(replicated vm ssh-endpoint [VMID or VMNAME])
-```
+   ⚠️ The username for SSH should match the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
 
-**Example** – `ssh $(replicated vm ssh-endpoint aba1acc2)`
+1. SSH into the VM:
+
+   ```bash
+   ssh $(replicated vm ssh-endpoint VMID_OR_VMNAME)
+   ```
+
+   **Example** – `ssh $(replicated vm ssh-endpoint aba1acc2)`
 
 ### Copy Files to the VM (SCP)
 
 Request the scp endpoint:
 
-```bash
-replicated vm scp-endpoint [VMID or VMNAME]
-```
+1. Run the following command to get the SCP endpoint:
 
-**Example** – `replicated vm scp-endpoint aba1acc2`
+   ```bash
+   replicated vm scp-endpoint VMID_OR_VMNAME
+   ```
 
-If successful, you'll see:
+   Where `VMID_OR_VMNAME` is the ID or name of the VM.
 
-```
-scp://[github-user-name]@[ssh-endpoint]:[port]
-```
+   **Example** – `replicated vm scp-endpoint aba1acc2`
 
-**Example** – `scp://MyName@37.27.52.116:46795`
+   If successful, you'll see:
 
-⚠️ The username for SSH should match the GitHub username in Vendor Portal. ([override info](#override-username))
+   ```
+   scp://[github-user-name]@[ssh-endpoint]:[port]
+   ```
 
-SCP files into the VM:
+   **Example** – `scp://MyName@37.27.52.116:46795`
 
-```bash
-scp somefile $(replicated vm scp-endpoint [VMID or VMNAME])//[PATH]
-```
+   ⚠️ The username for SSH should match the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
 
-**Example** – `scp somefile $(replicated vm scp-endpoint aba1acc2)//home/MyName/somefile`
+1. SCP files into the VM:
+
+   ```bash
+   scp somefile $(replicated vm scp-endpoint VMID_OR_VMNAME)//PATH
+   ```
+
+   Where `PATH` is the destination path on the VM.
+
+   **Example** – `scp somefile $(replicated vm scp-endpoint aba1acc2)//home/MyName/somefile`
 
 #### Override Username
 
-**Note:** You can override the username used for the endpoint with the `--username` flag.   
-Useful if you want to:
+You can override the username used for the endpoint with the `--username` flag. This is useful if you want to:
 
 * Use a different GitHub username than what is in Vendor Portal. (Or no username set.)  
-* When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal. ([more info](#use-a-service-github-account))
+* When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal. For more information, see [Use a Service GitHub Account](#use-a-service-github-account).
+
+To override the username:
 
 ```bash
-replicated vm ssh-endpoint [VMID or VMNAME] --username [github-user-name]
+replicated vm ssh-endpoint VMID_OR_VMNAME --username GITHUB_USERNAME
 ```
+
+Where:
+* `VMID_OR_VMNAME` is the ID or name of the VM
+* `GITHUB_USERNAME` is the GitHub username to use for the endpoint
 
 **Example** – `replicated vm ssh-endpoint aba1acc2 --username MyName`
 
@@ -179,39 +212,46 @@ You may need an alternate method if the above options don't work with your prefe
 When a VM is created, a random port is assigned to each machine within each group of the VM.   
 To connect with the machine over SSH:
 
-```bash
-replicated vm ls --output json
-```
+1. Run the following command to list VMs:
 
-If successful, you'll see:
+   ```bash
+   replicated vm ls --output json
+   ```
 
-```json
-[
-  {
-	"id": "e32aafa1",
-	"name": "sad_black",
-	"distribution": "ubuntu",
-	"version": "24.04",
-	"status": "running",
-	"created_at": "2024-10-24T15:00:37Z",
-	"expires_at": "2024-10-24T16:01:10Z",
-	"ttl": "1h",
-	"credits_per_hour_per_vm": 0,
-	"flat_fee": 50000,
-	"total_credits": 0,
-	"estimated_cost": 0,
-	"direct_ssh_port": 33655,
-	"direct_ssh_endpoint": "95.217.47.21",
-	"tags": []
-  }
-]
-```
+   If successful, you'll see:
+
+   ```json
+   [
+     {
+   	"id": "e32aafa1",
+   	"name": "sad_black",
+   	"distribution": "ubuntu",
+   	"version": "24.04",
+   	"status": "running",
+   	"created_at": "2024-10-24T15:00:37Z",
+   	"expires_at": "2024-10-24T16:01:10Z",
+   	"ttl": "1h",
+   	"credits_per_hour_per_vm": 0,
+   	"flat_fee": 50000,
+   	"total_credits": 0,
+   	"estimated_cost": 0,
+   	"direct_ssh_port": 33655,
+   	"direct_ssh_endpoint": "95.217.47.21",
+   	"tags": []
+     }
+   ]
+   ```
 
 To connect with them, you can run:
 
 ```bash
-ssh -p [direct_ssh_port] [github_username]@[direct_ssh_endpoint]
+ssh -p DIRECT_SSH_PORT GITHUB_USERNAME@DIRECT_SSH_ENDPOINT
 ```
+
+Where:
+* `DIRECT_SSH_PORT` is the port number from the JSON output
+* `GITHUB_USERNAME` is your GitHub username
+* `DIRECT_SSH_ENDPOINT` is the endpoint from the JSON output
 
 **Example** – `ssh -p 33655 myName@95.217.47.21`
 
@@ -225,24 +265,39 @@ You can expose ports on a VM and make them accessible on the public internet.
 
 ### Create a Tunnel
 
+To create a tunnel:
+
 ```bash
-replicated vm port expose [VMID or VMNAME]
+replicated vm port expose VMID_OR_VMNAME --port PORT --protocol PROTOCOL
 ```
 
-**Example** – Expose port 3000 with HTTP protocol  
+Where:
+* `VMID_OR_VMNAME` is the ID or name of the VM
+* `PORT` is the port number to expose
+* `PROTOCOL` is the protocol to use (e.g., http, tcp)
+
+**Example** – Expose port 3000 with HTTP protocol:  
 `replicated vm port expose VM_ID --port 30000 --protocol http`
 
 ### List Tunnels
 
+To list tunnels for a VM:
+
 ```bash
-replicated vm port ls [VMID or VMNAME]
+replicated vm port ls VMID_OR_VMNAME
 ```
+
+Where `VMID_OR_VMNAME` is the ID or name of the VM.
 
 ### Remove a Tunnel
 
+To remove a tunnel:
+
 ```bash
-replicated vm port rm [VMID or VMNAME]
+replicated vm port rm VMID_OR_VMNAME
 ```
+
+Where `VMID_OR_VMNAME` is the ID or name of the VM.
 
 ## Connect a CMX VM with a CMX Cluster
 
@@ -254,9 +309,13 @@ You can make a CMX Cluster available on the same network as a CMX VM.
 
 ### Create a Cluster
 
+To create a cluster:
+
 ```bash
-replicated cluster create --distribution [K8s Distribution]
+replicated cluster create --distribution K8S_DISTRIBUTION
 ```
+
+Where `K8S_DISTRIBUTION` is the Kubernetes distribution for the cluster.
 
 **Example** – `replicated cluster create --distribution k3s`
 
@@ -269,6 +328,8 @@ b09cf035	affect_mend     	k3s         	1.32.0    	queued      	2025-01-28 16:04 
 ```
 
 ### Check the Network
+
+To check the network:
 
 ```bash
 replicated network ls
@@ -283,9 +344,15 @@ accbd6a7	affect_mend 	running     	2025-01-28 16:04 PST    	2025-01-28 17:05 PST
 
 ### Create CMX VM on same Network
 
+To create a VM on the same network:
+
 ```bash
-replicated vm create --distribution [Distribution] --network [Network ID]
+replicated vm create --distribution DISTRIBUTION --network NETWORK_ID
 ```
+
+Where:
+* `DISTRIBUTION` is the Linux distribution for the VM
+* `NETWORK_ID` is the ID of the network from the previous step
 
 **Example** – `replicated vm create --distribution ubuntu --network accbd6a7`
 
@@ -308,26 +375,30 @@ replicated vm create --distribution ubuntu --count 3
 
 ### Join VMs to an Existing VM network
 
-First, get the ID of an existing VM network:
+To join VMs to an existing network:
 
-```bash
-replicated vm ls
-```
+1. Get the ID of an existing VM network:
 
-Or
+   ```bash
+   replicated vm ls
+   ```
 
-```bash
-replicated network ls
-```
+   Or
 
-Use the `--network` flag to create new VMs on the same network
+   ```bash
+   replicated network ls
+   ```
 
-```bash
-replicated vm create --distribution ubuntu --network [NETWORK_ID]
-```
+1. Use the `--network` flag to create new VMs on the same network:
+
+   ```bash
+   replicated vm create --distribution ubuntu --network NETWORK_ID
+   ```
+
+   Where `NETWORK_ID` is the ID of the existing network.
 
 ## Install Embedded Cluster on a CMX VM
 
 * Only available for [EC **1.21.x**](https://github.com/replicatedhq/embedded-cluster/releases/tag/1.21.0%2Bk8s-1.30) or later.  
 * You can now reboot a CMX VM. e.g., when running the [Embedded Cluster reset command](https://docs.replicated.com/vendor/embedded-using#reset-a-node).   
-* For **multi-node** Embedded Cluster initial install: you **no longer** need the flag `--network-interface tailscale0` as part of your [Embedded Cluster install command](https://docs.replicated.com/reference/embedded-cluster-install), which was needed to make sure the nodes can reach the api-server. This was due to an [upstream issue](https://github.com/tailscale/tailscale/issues/14706) with the Calico CNI on a Tailscale network. As of Jul 2, 2025, we have a new overlay network that makes this flag obsolete. 
+* For **multi-node** Embedded Cluster initial install: you **no longer** need the flag `--network-interface tailscale0` as part of your Embedded Cluster install command, which was needed to make sure the nodes can reach the api-server. This was due to an [upstream issue](https://github.com/tailscale/tailscale/issues/14706) with the Calico CNI on a Tailscale network. A new overlay network is available that makes this flag obsolete. For more information about the Embedded Cluster install command, see [Embedded Cluster Install](https://docs.replicated.com/reference/embedded-cluster-install). 
