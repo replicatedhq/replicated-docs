@@ -14,8 +14,16 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on July 25, 2025
 
-### New Features {#new-features-v2025-07-25-5}
-* Addresses inconsistencies in how Helm charts were being displayed across different parts of the Vendor Portal, Enterprise Portal, and Vendor API. Charts are now sorted by their weight property from the `HelmChart` resource in the release.
+### Improvements {#improvements-v2025-07-25-5}
+* Sorts Helm charts across different parts of the Vendor Portal, Enterprise Portal, and Vendor API using their `weight` property from the corresponding KOTS HelmChart custom resource in the release. This addresses inconsistencies in how Helm charts were displayed in these interfaces.
+
+## v2025.07.25-0
+
+Released on July 25, 2025
+
+### Improvements {#improvements-v2025-07-25-0}
+* Updates the [external registry delete](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to use the registry slug rather than the registry endpoint. For previously added registries, the slug is the same as the endpoint.
+* Updates the [external registry create](https://replicated-vendor-api.readme.io/reference/deleteexternalregistry) endpoint to accept an optional slug. If not provided, the endpoint is used as the slug.
 
 ## v2025.07.16-10
 
