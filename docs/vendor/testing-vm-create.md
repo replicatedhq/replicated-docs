@@ -1,8 +1,8 @@
-# Create VMs (Alpha)
+# Create VMs (Beta)
 
 The Compatibility Matrix (CMX) platform allows you to create VMs with no Kubernetes pre-installed on them. This is particularly useful for testing VM-based installs such as the [Replicated Embedded Cluster](https://docs.replicated.com/intro-replicated#embedded-cluster).
 
-| ⚠️ Current Limitations [GitHub Actions](https://docs.replicated.com/vendor/testing-how-to#replicated-github-actions) do not yet work with Compatibility Matrix VMs. [Cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare) is not yet supported with Compatibility Matrix VMs. → To try out VMs (Alpha), [email](mailto:han@replicated.com) Replicated for access & support. |
+| ⚠️ Current Limitations [GitHub Actions](https://docs.replicated.com/vendor/testing-how-to#replicated-github-actions) do not yet work with Compatibility Matrix VMs. [Cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare) is not yet supported with Compatibility Matrix VMs. → To try out VMs (Beta), [email](mailto:han@replicated.com) Replicated for access & support. |
 | :---- |
 
 ## Create VMs
@@ -98,7 +98,7 @@ If needed, copy files onto the machine:
 scp somefile [VMID]@replicatedvm:/home/folder/somefile
 ```
 
-| Alpha Limitations: scp with flag -O (legacy scp protocol) is not supported. Relative paths is not supported `❌ scp somefile [VMID]@replicatedvm.com:~ ✅ scp somefile [VMID]@replicatedvm:/home/folder/somefile` File permissions are not inherited. |
+| Beta Limitations: scp with flag -O (legacy scp protocol) is not supported. Relative paths is not supported `❌ scp somefile [VMID]@replicatedvm.com:~ ✅ scp somefile [VMID]@replicatedvm:/home/folder/somefile` File permissions are not inherited. |
 | :---- |
 
 ### Direct SSH
