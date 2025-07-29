@@ -191,3 +191,175 @@ Request the scp endpoint:
    ```
 
    Where `PATH` is the destination path on the VM.
+
+### Override Username
+
+You can override the username used for the endpoint with the `--username` flag. This is useful if you want to:
+
+* Use a different GitHub username than what is in Vendor Portal (or no username set)
+* When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal
+
+```bash
+replicated vm ssh-endpoint VMID_OR_VMNAME --username GITHUB_USER_NAME
+```
+
+**Example** – `replicated vm ssh-endpoint aba1acc2 --username MyName`
+
+## Connect to a VM Manually
+
+You may need an alternate method if the above options don't work with your preferred SSH client.
+
+When a VM is created, a random port is assigned to each machine within each group of the VM. To connect with the machine over SSH:
+
+```bash
+replicated vm ls --output json
+```
+
+If successful, you'll see:
+
+```json
+[
+  {
+    "id": "e32aafa1",
+    "name": "sad_black",
+    "distribution": "ubuntu",
+    "version": "24.04",
+    "status": "running",
+    "created_at": "2024-10-24T15:00:37Z",
+    "expires_at": "2024-10-24T16:01:10Z",
+    "ttl": "1h",
+    "credits_per_hour_per_vm": 0,
+    "flat_fee": 50000,
+    "total_credits": 0,
+    "estimated_cost": 0,
+    "direct_ssh_port": 33655,
+    "direct_ssh_endpoint": "95.217.47.21",
+    "tags": []
+  }
+]
+```
+
+To connect with them, you can run:
+
+```bash
+ssh -p DIRECT_SSH_PORT GITHUB_USERNAME@DIRECT_SSH_ENDPOINT
+```
+
+**Example** – `ssh -p 33655 myName@95.217.47.21`
+
+## Compatibility Matrix Tunnels
+
+:::note
+Creating wildcard DNS entries for VMs is not currently supported. For feedback, contact Replicated support.
+:::
+
+You can expose ports on a VM and make them accessible on the public internet. For more information about a similar feature, see [Compatibility Matrix Tunnels for Clusters](testing-ingress#compatibility-matrix-tunnels-beta).
+
+### Create a Tunnel
+
+```bash
+replicated vm port expose VMID_OR_VMNAME --port PORT --protocol PROTOCOL
+```
+
+**Example** – Expose port 3000 with HTTP protocol  
+`replicated vm port expose VM_ID --port 30000 --protocol http`
+
+### List Tunnels
+
+```bash
+replicated vm port ls VMID_OR_VMNAME
+```
+
+### Remove a Tunnel
+
+```bash
+replicated vm port rm VMID_OR_VMNAME
+```
+
+## Connect a CMX VM with a CMX Cluster
+
+You can make a CMX Cluster available on the same network as a CMX VM.
+
+**Compatible Clusters:** Openshift, K3s, RKE2, EC, kURL  
+**Requirement:** Replicated CLI 0.90.0 or higher  
+**Note:** Create the cluster first, then attach the new VM to that existing network.
+
+### Create a Cluster
+
+```bash
+replicated cluster create --distribution K8S_DISTRIBUTION
+```
+
+**Example** – `replicated cluster create --distribution k3s`
+
+If successful, you'll see:
+
+```
+ID      	NAME			DISTRIBUTION	VERSION	STATUS		CREATED	
+EXPIRES	COST
+b09cf035	affect_mend     	k3s         	1.32.0    	queued      	2025-01-28 16:04 PST    -             $0.60
+```
+
+### Check the Network
+
+```bash
+replicated network ls
+```
+
+If successful, you'll see:
+
+```
+ID		NAME			STATUS		CREATED			EXPIRES
+accbd6a7	affect_mend 	running     	2025-01-28 16:04 PST    	2025-01-28 17:05 PST
+```
+
+### Create CMX VM on Same Network
+
+```bash
+replicated vm create --distribution DISTRIBUTION --network NETWORK_ID
+```
+
+**Example** – `replicated vm create --distribution ubuntu --network accbd6a7`
+
+If successful, you'll see:
+
+```
+ID      	NAME            DISTRIBUTION	VERSION   	STATUS      	CREATED                 	EXPIRES       	COST
+760a30b1	laughing_tu	ubuntu      	24.04     	queued      	2025-01-28 16:07 PST        -                   $0.60
+```
+
+**Example** – Both the cluster `b09cf035` and the VM `760a30b1` are now on the same tailnet.
+
+## Connect CMX VMs on a Shared Network
+
+Use the `--count` flag to create multiple VMs with the same name, all running on the same Network ID.
+
+```bash
+replicated vm create --distribution ubuntu --count 3
+```
+
+### Join VMs to an Existing VM Network
+
+First, get the ID of an existing VM network:
+
+```bash
+replicated vm ls
+```
+
+Or
+
+```bash
+replicated network ls
+```
+
+Use the `--network` flag to create new VMs on the same network:
+
+```bash
+replicated vm create --distribution ubuntu --network NETWORK_ID
+```
+
+## Install Embedded Cluster on a CMX VM
+
+* Only available for [EC **1.21.x**](https://github.com/replicatedhq/embedded-cluster/releases/tag/1.21.0%2Bk8s-1.30) or later
+* You can now reboot a CMX VM. For example, when running the [Embedded Cluster reset command](embedded-using#reset-a-node)
+* For **multi-node** Embedded Cluster initial install: you **no longer** need the flag `--network-interface tailscale0` as part of your [Embedded Cluster install command](reference/embedded-cluster-install), which was needed to make sure the nodes can reach the api-server. This was due to an [upstream issue](https://github.com/tailscale/tailscale/issues/14706) with the Calico CNI on a Tailscale network. As of Jul 2, 2025, we have a new overlay network that makes this flag obsolete
