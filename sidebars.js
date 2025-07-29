@@ -236,6 +236,7 @@ const sidebars = {
           items: [
             'vendor/testing-how-to',
             'vendor/testing-vm-create',
+            'vendor/testing-vm-networking',
             'vendor/testing-ci-cd',
           ],
         },
