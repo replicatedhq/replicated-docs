@@ -358,8 +358,9 @@ Use the `--network` flag to create new VMs on the same network:
 replicated vm create --distribution ubuntu --network NETWORK_ID
 ```
 
-## Install Embedded Cluster on a CMX VM
+## Limitations
 
-* Only available for [EC **1.21.x**](https://github.com/replicatedhq/embedded-cluster/releases/tag/1.21.0%2Bk8s-1.30) or later
-* You can now reboot a CMX VM. For example, when running the [Embedded Cluster reset command](embedded-using#reset-a-node)
-* For **multi-node** Embedded Cluster initial install: you **no longer** need the flag `--network-interface tailscale0` as part of your [Embedded Cluster install command](reference/embedded-cluster-install), which was needed to make sure the nodes can reach the api-server. This was due to an [upstream issue](https://github.com/tailscale/tailscale/issues/14706) with the Calico CNI on a Tailscale network. As of Jul 2, 2025, we have a new overlay network that makes this flag obsolete
+- Installing Embedded Cluster is for [EC **1.21.x**](https://github.com/replicatedhq/embedded-cluster/releases/tag/1.21.0%2Bk8s-1.30) or later
+   - To reboot a CMX VM, run the [Embedded Cluster reset command](embedded-using#reset-a-node)
+- [GitHub Actions](https://docs.replicated.com/vendor/testing-how-to#replicated-github-actions) do not yet work with Compatibility Matrix VMs. 
+- [Cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare) is not yet supported with Compatibility Matrix VMs.
