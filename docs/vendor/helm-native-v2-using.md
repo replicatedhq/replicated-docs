@@ -8,7 +8,7 @@ This topic describes how to configure a release to support installations with th
 
 To configure a release to support installations with HelmChart v2:
 
-1. For each Helm chart used by your application, update all image references in the Helm values to use the domain of the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
+1. For each Helm chart used by your application, update all image references in the Helm chart `values.yaml` file to use the domain of the Replicated proxy registry. See [Configure Your Application to Use the Proxy Registry](/vendor/private-images-kots) in _Use the Proxy Registry with Replicated Installers_.
 
 1. Package each Helm chart and add the `.tgz` chart archives to a new release. See [Package a Helm Chart for a Release](/vendor/helm-install-release).
 
