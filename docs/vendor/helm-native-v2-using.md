@@ -14,11 +14,11 @@ To configure a release to support installations with HelmChart v2:
 
 1. For each Helm chart in the release, ensure that there is a corresponding HelmChart v2 custom resource (version `kots.io/v1beta2`) . See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-1. If you are migrating from HelmChart v1, remove any unsupported fields from the HelmChart custom resource(s) in the release. See [HelmChart v1 and v2 Differences](#differences) below.
+1. If you are updating existing HelmChart v1 custom resource(s) to v2, remove any unsupported fields. See [HelmChart v1 and v2 Differences](#differences) below.
 
-1. For each HelmChart v2 resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+1. For each HelmChart resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-1. For each HelmChart v2 resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if a local image registry is used.
+1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if a local image registry is used.
 
     **Example:**
 
@@ -53,7 +53,7 @@ To configure a release to support installations with HelmChart v2:
       The registry namespace is the path between the registry and the image name. For example, `images.registry.com/namespace/image:tag`.
    </details>
 
-1. In the HelmChart v2 custom resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
+1. In the HelmChart resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
 
     **Example:**
 
@@ -86,7 +86,7 @@ To configure a release to support installations with HelmChart v2:
      Docker Hub enforces rate limits for Anonymous and Free users. For more information, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
    </details>
 
-   1. For each  HelmChart v2 resource in the release, configure the [`values`](/reference/custom-resource-helmchart-v2#values) key to add a new value with the KOTS `APP_SLUG-kotsadm-dockerhub` pull secret, where `APP_SLUG` is your unique application slug.
+   1. For each HelmChart resource in the release, configure the [`values`](/reference/custom-resource-helmchart-v2#values) key to add a new value with the KOTS `APP_SLUG-kotsadm-dockerhub` pull secret, where `APP_SLUG` is your unique application slug.
 
       **Example:**
 
