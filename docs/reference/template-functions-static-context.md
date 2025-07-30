@@ -16,12 +16,28 @@ This topic provides a list of the KOTS template functions in the Static context.
 func PrivateCACert() string
 ```
 
-For KOTS installations, PrivateCACert returns the name of a ConfigMap that contains CA certificates provided by the end user with the `--private-ca-configmap` flag for the install command. For Embedded Cluster installations, the ConfigMap returned by PrivateCACert contains the CA trust store from the host. Embedded Cluster determines the CA trust store by first checking for the `SSL_CERT_FILE` environment variable. If `SSL_CERT_FILE` is not set, Embedded Cluster then searches common certificate paths and uses the first valid certificate file found.
+PrivateCACert returns the name of a ConfigMap containing any private CA certificates issued by TLS proxies that intercept outbound traffic in your end customers' environments.
 
-You can use this template function to mount the specified ConfigMap so your containers can access the internet through enterprise proxies that issue their own TLS certificates in order to inspect traffic.
+When the ConfigMap returned by PrivateCACert is mounted, your application containers trust the private CA certificates issued by TLS proxies. This allows your application to make outbound internet connections in customer environments without getting TLS errors.
+
+For Replicated Embedded Cluster installations on VMs or bare metal servers, you must manually mount the ConfigMap. Some examples of how to mount the ConfigMap include:
+* Set the `NODE_EXTRA_CA_CERTS` environment variable to append the CAs from the ConfigMap to any existing CAs in the container
+* Mount the CAs at `certs` and set the `SSL_CERT_DIR` environment variable to `/certs`
+
+For existing cluster installations with KOTS, KOTS automatically mounts the ConfigMap as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to append certificates to the trust store.
+
+<details>
+  <summary>Where does the ConfigMap returned by the PrivateCACert template function come from?</summary>
+
+    The ConfigMap returned by the PrivateCACert template function has a different source depending on if the user is installing with Replicated Embedded Cluster on a VM or bare metal server, or with KOTS in an existing cluster:
+
+    * For Embedded Cluster installations, the ConfigMap returned by PrivateCACert contains the CA trust store from the host. Embedded Cluster determines the CA trust store by first checking the `SSL_CERT_FILE` environment variable. If `SSL_CERT_FILE` is not set, Embedded Cluster then searches common certificate paths and uses the first valid certificate file found. Embedded Cluster than adds 
+
+    * For KOTS installations in existing clusters, the end user passes the ConfigMap to the `install` command using the `--private-ca-configmap` flag. For more information, see [install](/reference/kots-cli-install). 
+</details>
 
 :::note
-This function returns the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, this function returns the empty string.
+PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, PrivateCACert returns the empty string.
 :::
 
 ## Cluster Information Functions
