@@ -8,7 +8,7 @@ Compatibility Matrix VMs provide isolated Linux environments for testing your ap
 
 **When to use VMs vs Clusters:**
 * **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control
-* **Use Clusters** for testing Kubernetes-based deployments and Helm installations
+* **Use Clusters** for testing Kubernetes-based deployments and Helm installations. For more information about creating and managing clusters, see [Create Clusters](/vendor/testing-how-to).
 
 ## Prerequisites
 

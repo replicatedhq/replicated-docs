@@ -2,7 +2,17 @@ import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
 # Create Clusters
 
-This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters.
+This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions
+
+
+## About Compatibility Matrix Clusters
+
+Compatibility Matrix supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
+
+**When to use Clusters vs VMs:**
+* **Use Clusters** for testing Kubernetes-based deployments and Helm installations
+* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control. For more information about creating and managing VMs, see [Create VMs](/vendor/testing-vm-create).
+
 
 ## Prerequisites
 
