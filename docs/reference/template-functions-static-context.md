@@ -16,13 +16,13 @@ This topic provides a list of the KOTS template functions in the Static context.
 func PrivateCACert() string
 ```
 
-PrivateCACert returns the name of a ConfigMap containing any private CA certificates issued by TLS proxies that intercept outbound traffic in your end customers' environments.
+PrivateCACert returns the name of a ConfigMap containing any private CA certificates issued by TLS proxies that intercept outbound traffic in an end customer's environment.
 
-When the ConfigMap returned by PrivateCACert is mounted, your application containers trust the private CA certificates issued by TLS proxies. This allows your application to make outbound internet connections in customer environments without getting TLS errors.
+When the ConfigMap returned by PrivateCACert is mounted, your application containers can then trust the private CA certificates issued by TLS proxies. This allows your application to make outbound internet connections in customer environments without getting TLS errors.
 
-For Replicated Embedded Cluster installations on VMs or bare metal servers, you must manually mount the ConfigMap. Some examples of how to mount the ConfigMap include:
+For Replicated Embedded Cluster installations on VMs or bare metal servers, you must manually mount the ConfigMap returned by the PrivateCACert template function to ensure that your application trusts the private TLS certificates. Some examples of how to mount the ConfigMap include:
 * Set the `NODE_EXTRA_CA_CERTS` environment variable to append the CAs from the ConfigMap to any existing CAs in the container
-* Mount the CAs at `certs` and set the `SSL_CERT_DIR` environment variable to `/certs`
+* Mount the CAs at `/certs` and set the `SSL_CERT_DIR` environment variable to `/certs`
 
 For existing cluster installations with KOTS, KOTS automatically mounts the ConfigMap as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to append certificates to the trust store.
 
