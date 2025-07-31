@@ -135,12 +135,12 @@ The following VM types are supported:
 There are currently two supported methods to SSH into a VM:
 
 1. [**Compatibility Matrix Forwarder**](#compatibility-matrix-forwarder)  
-   * Easier – You only need to know the VM ID to connect to the machine via SSH. This is more approachable for users less familiar with SSH clients.   
-   * Example Use Case – Run an online Embedded Cluster install command
+   * **Easier** – You only need to know the VM ID to connect to the machine via SSH. This is more approachable for users less familiar with SSH clients.   
+   * **Example Use Case** – Run an online Embedded Cluster install command
 
 2. [**Direct SSH**](#direct-ssh)  
-   * More Flexible – Leverage your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder.   
-   * Example Use Case – SCP large assets to the VM, such as air gap bundles.   
+   * **More Flexible** – Leverage your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder.   
+   * **Example Use Case** – SCP large assets to the VM, such as air gap bundles.   
      Pass specific SHH flags during testing workflows
 
 ### Compatibility Matrix Forwarder
@@ -155,7 +155,7 @@ SSH into the VM:
 ssh VMID@replicatedvm.com
 ```
 
-Where `VMID` is the ID of the VM.
+- Where `VMID` is the ID of the VM.
 
 If needed, copy files onto the machine:
 
@@ -163,27 +163,33 @@ If needed, copy files onto the machine:
 scp somefile VMID@replicatedvm:/home/folder/somefile
 ```
 
-Where `VMID` is the ID of the VM.
+- Where `VMID` is the ID of the VM.
 
 :::note
-**Beta Limitations:** scp with flag -O (legacy scp protocol) is not supported. Relative paths is not supported `❌ scp somefile VMID@replicatedvm.com:~ ✅ scp somefile VMID@replicatedvm:/home/folder/somefile` File permissions are not inherited.
+**Beta Limitations:** 
+- `scp` with flag `-O` (legacy scp protocol) is not supported. 
+- Relative paths is not supported
+  - Unsupported: `scp somefile VMID@replicatedvm.com:~`
+  - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
+- File permissions are not inherited.
 :::
 
 ### Direct SSH
 
+Transferring files using Direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
+
+
 :::note
-Transferring files using Direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. Note: Requires Replicated CLI v0.104.0 or later.
+Requires Replicated CLI v0.104.0 or later.
 :::
 
-Get the SSH endpoint for the VM:
-
-1. Run the following command to get the SSH endpoint:
+1. Get the SSH endpoint for the VM:
 
    ```bash
    replicated vm ssh-endpoint VMID_OR_VMNAME
    ```
 
-   Where `VMID_OR_VMNAME` is the ID or name of the VM.
+   - Where `VMID_OR_VMNAME` is the ID or name of the VM. Run `replicated vm ls`
 
    If successful, you'll see:
 
@@ -191,9 +197,11 @@ Get the SSH endpoint for the VM:
    ssh://[github-user-name]@[ssh-endpoint]:[port]
    ```
 
-   **Example** – `ssh://MyName@37.27.52.116:46795`
+   - **Example** – `ssh://MyName@37.27.52.116:46795`
 
-   ⚠️ The username for SSH should match the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
+   :::note
+   Make sure the username for SSH matches the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
+   :::
 
 1. SSH into the VM:
 
@@ -225,7 +233,9 @@ Request the scp endpoint:
 
    **Example** – `scp://MyName@37.27.52.116:46795`
 
-   ⚠️ The username for SSH should match the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
+:::note
+Make sure the username for SSH matches the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
+:::
 
 1. SCP files into the VM:
 
