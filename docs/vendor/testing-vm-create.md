@@ -1,3 +1,5 @@
+import Prerequisites from "../partials/cmx/_prerequisites.mdx"
+
 # Create VMs (Beta)
 
 This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral VMs, which allows greater flexibility in testing VM-based installs such as the [Replicated Embedded Cluster](https://docs.replicated.com/intro-replicated#embedded-cluster).
@@ -7,20 +9,27 @@ This topic describes how to use Replicated Compatibility Matrix to create and ma
 Compatibility Matrix VMs provide isolated Linux environments for testing your applications. Unlike clusters, VMs give you full control over the operating system and allow you to test installation methods that require direct OS access.
 
 **When to use VMs vs Clusters:**
-* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control
-
-* **Use Clusters** for testing Kubernetes-based deployments and Helm installations. For more information about creating and managing clusters, see [Create Clusters](/vendor/testing-how-to).
+* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control.
+* **Use Clusters** for testing Kubernetes-based deployments and Helm installations. See [Create Clusters](/vendor/testing-how-to).
 
 ## Prerequisites
 
 Before you can use Compatibility Matrix VMs, you must complete the following prerequisites:
 
-* [Configure your GitHub username in Replicated Vendor Portal](team-management-github-username#procedure)
+<Prerequisites/>
+
+* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+
+
+Prerequisites for SSH access to VMs:
+
+* [Configure your GitHub username or GitHub service account in Replicated Vendor Portal](team-management-github-username#procedure)
 
 * Make sure you have added your SSH key in your GitHub account. For instructions, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) in the GitHub documentation.
 
 :::note
-GitHub usernames and SSH keys are synced every 24hrs. To immediately sync: → [Account Settings](https://vendor.replicated.com/account-settings) > click Save. Keys are synced to the VM at time of creation, so any updates after creation are ignored.
+Troubleshooting
+Your GitHub usernames and SSH keys are synced to the VM when you first create it. If you update your GitHub username or keys after VM creation, you can manually sync by going to [Account Settings](https://vendor.replicated.com/account-settings) > click "Save." 
 :::
 
 ## Set Up SSH Access
@@ -37,7 +46,19 @@ If successful, you will see:
 You have successfully authenticated, use [VM_ID]@replicatedvm.com to access your VM.
 ```
 
-If you do not see this message, your public/private key likely was not available.
+If you do not see this message, check if your public/private key has been properly set up with GitHub.
+
+```bash
+ssh -T git@github.com
+```
+
+If successful, you will see:
+
+```
+Hi! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
 
 ### Alternative: Use a Service GitHub Account
 
@@ -57,27 +78,29 @@ replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.s
 
 To create VMs with Compatibility Matrix:
 
-1. Run the following command to create VMs:
 
-   ```bash
-   replicated vm create --distribution DISTRIBUTION --count COUNT
-   ```
-
-   Where:
-   * `DISTRIBUTION` is the Linux distribution for the VM (e.g., ubuntu, almalinux)
-   * `COUNT` is the number of VMs to create
-
-   **Example:**
-
-   ```bash
-   replicated vm create --distribution ubuntu --count 3
-   ```
-
-1. List supported distributions and versions:
+1. (Optional) View the available VM distributions, including the supported VM distribution versions and instance types:
 
    ```bash
    replicated vm versions
    ```
+   For command usage, see [vm versions](/reference/replicated-cli-vm-versions).
+
+
+
+2. Run the following command to create VMs:
+
+```bash
+replicated vm create --distribution DISTRIBUTION --count COUNT
+```
+
+Where:
+* `DISTRIBUTION` is the Linux distribution for the VM (e.g., ubuntu, almalinux).
+* `COUNT` is the number of VMs to create
+
+
+replicated vm versions
+
 
 ### Supported VM Types
 
