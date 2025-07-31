@@ -10,8 +10,8 @@ This topic describes how to use Replicated Compatibility Matrix to create and ma
 Compatibility Matrix supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
 
 **When to use Clusters vs VMs:**
-* **Use Clusters** for testing Kubernetes-based deployments and Helm installations
-* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control. For more information about creating and managing VMs, see [Create VMs](/vendor/testing-vm-create).
+* **Use Clusters** for testing Kubernetes-based deployments and Helm installations.
+* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control. See [Create VMs](/vendor/testing-vm-create).
 
 
 ## Prerequisites
@@ -45,7 +45,7 @@ To create a cluster using the Replicated CLI:
 
 1. Run the following command to create a cluster:
 
-   ```
+   ```bash
    replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
    ```
    Where:
