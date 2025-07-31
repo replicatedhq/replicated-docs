@@ -8,6 +8,7 @@ Compatibility Matrix VMs provide isolated Linux environments for testing your ap
 
 **When to use VMs vs Clusters:**
 * **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control
+
 * **Use Clusters** for testing Kubernetes-based deployments and Helm installations. For more information about creating and managing clusters, see [Create Clusters](/vendor/testing-how-to).
 
 ## Prerequisites
@@ -91,19 +92,19 @@ The following VM types are supported:
 
 There are currently two supported methods to SSH into a VM:
 
-1. [**CMX Forwarder**](#cmx-forwarder)  
+1. [**Compatibility Matrix Forwarder**](#compatibility-matrix-forwarder)  
    * Easier – You only need to know the VM ID to connect to the machine via SSH. This is more approachable for users less familiar with SSH clients.   
    * Example Use Case – Run an online Embedded Cluster install command
 
 2. [**Direct SSH**](#direct-ssh)  
-   * More Flexible – Leverage your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder.   
+   * More Flexible – Leverage your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder.   
    * Example Use Case – SCP large assets to the VM, such as air gap bundles.   
      Pass specific SHH flags during testing workflows
 
-### CMX Forwarder
+### Compatibility Matrix Forwarder
 
 :::note
-Transferring files using CMX Forwarder is slower than Direct SSH. CMX servers run on EKS, so depending on your location going through the forwarder will add latency. If you're transferring large files onto the VM, use [Direct SSH](#direct-ssh) in combination with SCP.
+Transferring files using Compatibility Matrix Forwarder is slower than Direct SSH. Compatibility Matrix servers run on EKS, so depending on your location going through the forwarder will add latency. If you're transferring large files onto the VM, use [Direct SSH](#direct-ssh) in combination with SCP.
 :::
 
 SSH into the VM:
@@ -250,6 +251,6 @@ ssh -p DIRECT_SSH_PORT GITHUB_USERNAME@DIRECT_SSH_ENDPOINT
 ## Limitations
 
 - Installing Embedded Cluster is for [EC **1.21.x**](https://github.com/replicatedhq/embedded-cluster/releases/tag/1.21.0%2Bk8s-1.30) or later
-   - To reboot a CMX VM, run the [Embedded Cluster reset command](embedded-using#reset-a-node)
+   - To reboot a Compatibility Matrix VM, run the [Embedded Cluster reset command](embedded-using#reset-a-node)
 - [GitHub Actions](https://docs.replicated.com/vendor/testing-how-to#replicated-github-actions) do not yet work with Compatibility Matrix VMs. 
 - [Cluster prepare](https://docs.replicated.com/reference/replicated-cli-cluster-prepare) is not yet supported with Compatibility Matrix VMs.
