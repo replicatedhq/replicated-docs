@@ -28,8 +28,7 @@ Prerequisites for SSH access to VMs:
 * Make sure you have added your SSH key in your GitHub account. For instructions, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) in the GitHub documentation.
 
 :::note
-Troubleshooting
-Your GitHub usernames and SSH keys are synced to the VM when you first create it. If you update your GitHub username or keys after VM creation, you can manually sync by going to [Account Settings](https://vendor.replicated.com/account-settings) > click "Save." 
+Your GitHub usernames and SSH keys are synced to the VM when you first create it. If you update your GitHub username or keys after VM creation, you can manually sync by going to [Account Settings](https://vendor.replicated.com/account-settings) > click "Save."
 :::
 
 ## Set Up SSH Access
@@ -145,9 +144,7 @@ There are currently two supported methods to SSH into a VM:
 
 ### Compatibility Matrix Forwarder
 
-:::note
 Transferring files using Compatibility Matrix Forwarder is slower than Direct SSH. Compatibility Matrix servers run on EKS, so depending on your location going through the forwarder will add latency. If you're transferring large files onto the VM, use [Direct SSH](#direct-ssh) in combination with SCP.
-:::
 
 SSH into the VM:
 
@@ -176,12 +173,7 @@ scp somefile VMID@replicatedvm:/home/folder/somefile
 
 ### Direct SSH
 
-Transferring files using Direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
-
-
-:::note
-Requires Replicated CLI v0.104.0 or later.
-:::
+Transferring files using Direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. Requires Replicated CLI v0.104.0 or later.
 
 1. Get the SSH endpoint for the VM:
 
@@ -199,9 +191,7 @@ Requires Replicated CLI v0.104.0 or later.
 
    - **Example** – `ssh://MyName@37.27.52.116:46795`
 
-   :::note
    Make sure the username for SSH matches the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
-   :::
 
 1. SSH into the VM:
 
@@ -233,9 +223,7 @@ Request the scp endpoint:
 
    **Example** – `scp://MyName@37.27.52.116:46795`
 
-:::note
 Make sure the username for SSH matches the GitHub username in Vendor Portal. For more information about overriding the username, see [Override Username](#override-username).
-:::
 
 1. SCP files into the VM:
 
