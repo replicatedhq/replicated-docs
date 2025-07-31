@@ -45,6 +45,13 @@ To create a cluster using the Replicated CLI:
 
 1. Run the following command to create a cluster:
 
+
+   ```bash
+   replicated cluster create --distribution DISTRIBUTION
+   ```
+
+   To specify more options:
+
    ```bash
    replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
    ```

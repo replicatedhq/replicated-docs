@@ -88,18 +88,37 @@ To create VMs with Compatibility Matrix:
 
 
 
-2. Run the following command to create VMs:
+2. Run the following command to create a VM:
 
-```bash
-replicated vm create --distribution DISTRIBUTION --count COUNT
-```
+   ```bash
+   replicated vm create --distribution DISTRIBUTION
+   ```
 
-Where:
-* `DISTRIBUTION` is the Linux distribution for the VM (e.g., ubuntu, almalinux).
-* `COUNT` is the number of VMs to create
+   To specify more options:
 
 
-replicated vm versions
+   ```bash
+   replicated vm create  --name NAME --distribution DISTRIBUTION --version VERSION --instance-type INSTANCE_TYPE --count COUNT --ttl TTL
+   ```
+
+   Where:
+   * `NAME` is any name for the VM. If `--name` is excluded, a name is automatically generated for the cluster.
+   * `DISTRIBUTION` is the operating system distribution for the VM (e.g., ubuntu, almalinux).
+   * `VERSION` is the version of the distribution to provision (e.g., 20.04, 22.04 for Ubuntu).
+   * `INSTANCE_TYPE` is the instance type to use for the VM (e.g., r1.medium, r1.large).
+   * `COUNT` is the number of VMs to create. If `--count` is excluded, one VM is created by default.
+   * `TTL` is the VM Time-To-Live duration (maximum 48h). If `--ttl` is excluded, the default TTL is 1 hour.
+
+   For command usage and additional optional flags, see [vm create](/reference/replicated-cli-vm-create).
+
+   **Example:**
+
+   The following example creates an Ubuntu VM with version 22.04, a disk size of 50 GiB, and an instance type of `r1.medium`.
+
+   ```bash
+   replicated vm create --distribution ubuntu --version 22.04 --disk 50 --instance-type r1.medium
+   ```
+
 
 
 ### Supported VM Types
