@@ -2,11 +2,11 @@
 
 This topic describes advanced networking features for Replicated Compatibility Matrix VMs, including port exposure, VM-to-cluster connections, and shared networks.
 
-## Compatibility Matrix Tunnels
+## Limitations
 
-:::note
-Creating wildcard DNS entries for VMs is not currently supported. For feedback, contact Replicated support.
-:::
+Creating wildcard DNS entries for VMs is not supported. For feedback, contact Replicated support.
+
+## Compatibility Matrix Tunnels
 
 You can expose ports on a VM and make them accessible on the public internet. For more information about a similar feature, see [Compatibility Matrix Tunnels for Clusters](testing-ingress#compatibility-matrix-tunnels-beta).
 
@@ -31,9 +31,9 @@ replicated vm port ls VMID_OR_VMNAME
 replicated vm port rm VMID_OR_VMNAME
 ```
 
-## Connect a CMX VM with a CMX Cluster
+## Connect a Compatibility Matrix VM with a Compatibility Matrix Cluster
 
-You can make a CMX Cluster available on the same network as a CMX VM.
+You can make a Compatibility Matrix Cluster available on the same network as a CMX VM.
 
 **Compatible Clusters:** Openshift, K3s, RKE2, EC, kURL  
 **Requirement:** Replicated CLI 0.90.0 or higher  

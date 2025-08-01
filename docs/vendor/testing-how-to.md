@@ -2,17 +2,17 @@ import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
 # Create Clusters
 
-This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions
+This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
 
+This topic includes information about creating and managing clusters with Compatibility Matrix using the Replicated Vendor Portal or the Replicated CLI. For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
 ## About Compatibility Matrix Clusters
 
 Compatibility Matrix supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
 
-**When to use Clusters vs VMs:**
-* **Use Clusters** for testing Kubernetes-based deployments and Helm installations.
-* **Use VMs** for testing Embedded Cluster installers, air-gap installations, or when you need full OS control. See [Create VMs](/vendor/testing-vm-create).
+You can use Compatibility Matrix clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
 
+For information about creating VMs with Compatibility Matrix to test Replicated Embedded Cluster installers, air-gap installations, or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
 
 ## Prerequisites
 
@@ -22,17 +22,11 @@ Before you can use Compatibility Matrix clusters, you must complete the followin
 
 * Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
-## Create and Manage Clusters
-
-This section explains how to use Compatibility Matrix to create and manage clusters with the Replicated CLI or the Vendor Portal.
-
-For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
-
-### Create Clusters
+## Create Clusters
 
 You can create clusters with Compatibility Matrix using the Replicated CLI or the Vendor Portal.
 
-#### Replicated CLI
+### With the Replicated CLI
 
 To create a cluster using the Replicated CLI:
 
@@ -84,7 +78,7 @@ To create a cluster using the Replicated CLI:
 
    In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About Compatibility Matrix._
 
-#### Vendor Portal
+### Vendor Portal
 
 To create a cluster using the Vendor Portal:
 
@@ -154,7 +148,7 @@ To create a cluster using the Vendor Portal:
 
    [View a larger version of this image](/images/cmx-assigned-cluster.png)
 
-### Prepare Clusters
+## Prepare Clusters
 
 For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
@@ -213,7 +207,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 
-### Access Clusters
+## Access Clusters
 
 Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
@@ -243,7 +237,7 @@ To access a cluster from the command line:
 
 1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
 
-### Upgrade Clusters (kURL Only)
+## Upgrade Clusters (kURL Only)
 
 For kURL clusters provisioned with Compatibility Matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
 
@@ -255,11 +249,11 @@ replicated cluster upgrade cabb74d5 --version 9d5a44c
 
 For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 
-### Delete Clusters
+## Delete Clusters
 
 You can delete clusters using the Replicated CLI or the Vendor Portal.
 
-#### Replicated CLI
+### Replicated CLI
 
 To delete a cluster using the Replicated CLI:
 
@@ -292,7 +286,8 @@ To delete a cluster using the Replicated CLI:
    ```
    Where `CLUSTER_ID` is the ID of the target cluster.
    In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-#### Vendor Portal
+
+### Vendor Portal
 
 To delete a cluster using the Vendor Portal:
 
