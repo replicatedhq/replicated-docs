@@ -26,7 +26,7 @@ The following VM types are supported:
 Creating VMs with Compatibility Matrix has the following limitations:
 
 - Creating VMs with Compatibility Matrix is a Beta feature.
-- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
+- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later. To reboot a Compatibility Matrix VM, you can run the Embedded Cluster [reset](embedded-using#reset-a-node) command.
 - [GitHub Actions](/vendor/testing-how-to#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
 - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
 
@@ -95,7 +95,7 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
 
 ### Use a Service Account
 
-To automate the creation of VMs in your CI/CD workflows, you can use the flag `--ssh-public-key` when you first create a VM, where you provide the SSH public key for a GitHub service account connected to the Vendor Portal. For example:
+To automate the creation of VMs in your CI/CD workflows, you can use the flag `--ssh-public-key` to provide the SSH public key for a GitHub service account. For example:
 
 ```bash
 replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub
@@ -154,11 +154,13 @@ To create VMs with Compatibility Matrix:
 
 You can SSH into a VM using one of the following methods:
 
-* [**Compatibility Matrix Forwarder**](#compatibility-matrix-forwarder): To use the Compatibility Matrix Forwarder, you only need to know the VM ID to connect to the machine with SSH. This is more approachable for users less familiar with SSH clients. One example use case for the Forwarder is to run an online Embedded Cluster install command.
+* [**Compatibility Matrix Forwarder**](#compatibility-matrix-forwarder): To use the Compatibility Matrix Forwarder, you only need to know the VM ID to connect to the machine with SSH. This is more approachable for users less familiar with SSH clients.
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
 * [**Connect to a VM Manually**](#connect-to-a-vm-manually): If the above options are not supported with your preferred SSH client, you can connect to a VM manually.
+
+For information about how to copy files to a VM after connecting, see [Copy Files to a VM](#copy-files-to-a-vm) below.
 
 ### Compatibility Matrix Forwarder
 
@@ -238,33 +240,35 @@ If the Forwarder or direct SSH do not work with your preferred SSH client, you c
 
 To connect with the machine over SSH:
 
-```bash
-replicated vm ls --output json
-```
+1. Run the following command:
 
-If successful, you'll see:
+   ```bash
+   replicated vm ls --output json
+   ```
 
-```json
-[
-  {
-    "id": "e32aafa1",
-    "name": "sad_black",
-    "distribution": "ubuntu",
-    "version": "24.04",
-    "status": "running",
-    "created_at": "2024-10-24T15:00:37Z",
-    "expires_at": "2024-10-24T16:01:10Z",
-    "ttl": "1h",
-    "credits_per_hour_per_vm": 0,
-    "flat_fee": 50000,
-    "total_credits": 0,
-    "estimated_cost": 0,
-    "direct_ssh_port": 33655,
-    "direct_ssh_endpoint": "95.217.47.21",
-    "tags": []
-  }
-]
-```
+   The following shows an example of the output of this command:
+
+   ```json
+   [
+      {
+         "id": "e32aafa1",
+         "name": "sad_black",
+         "distribution": "ubuntu",
+         "version": "24.04",
+         "status": "running",
+         "created_at": "2024-10-24T15:00:37Z",
+         "expires_at": "2024-10-24T16:01:10Z",
+         "ttl": "1h",
+         "credits_per_hour_per_vm": 0,
+         "flat_fee": 50000,
+         "total_credits": 0,
+         "estimated_cost": 0,
+         "direct_ssh_port": 33655,
+         "direct_ssh_endpoint": "95.217.47.21",
+         "tags": []
+      }
+   ]
+   ```
 
 1. Run the following command to connect:
 
@@ -366,7 +370,3 @@ To copy files to the VM using SCP after connecting with the Compatibility Matrix
    ```bash
    scp somefile 123abc@replicatedvm:/home/folder/somefile
    ```
-
-## Reboot a VM
-
-To reboot a Compatibility Matrix VM, you can run the Embedded Cluster [reset](embedded-using#reset-a-node) command.
