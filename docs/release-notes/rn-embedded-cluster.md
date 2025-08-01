@@ -37,6 +37,7 @@ Released on August 1, 2025
 
 ### Improvements {#improvements-2-8-0}
 * Adds host preflight checks to ensure nodes have sufficient storage to perform airgap installations when installing a new node and when joining nodes to an existing cluster.
+* Enables Embedded Cluster to install in SELinux environments by setting appropriate SELinux file contexts on the bin directory and restoring SELinux contexts for the data directory after creation.
 
 ## 2.7.4
 
