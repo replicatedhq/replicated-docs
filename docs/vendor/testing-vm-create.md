@@ -164,10 +164,6 @@ For information about how to copy files to a VM after connecting, see [Copy File
 
 ### Compatibility Matrix Forwarder
 
-:::note
-Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH. Compatibility Matrix servers run on EKS, so depending on your location, using the Forwarder adds latency. If you want to transfer large files such as air gap bundles onto the VM, use [Direct SSH](#direct-ssh) in combination with SCP.
-:::
-
 To connect to a VM using the Forwarder:
 
 * SSH into the VM:
@@ -177,6 +173,8 @@ To connect to a VM using the Forwarder:
    ```
 
    Where `VMID` is the ID of the VM.
+
+For information about copying files to the VM after connecting, see [After Connecting to the VM with the Forwarder](#after-connecting-to-the-vm-with-the-forwarder) below.
 
 ### Direct SSH
 
@@ -334,16 +332,17 @@ To copy files to a VM using the scp endpoint:
 
 ### After Connecting to the VM with the Forwarder
 
-You can also copy files with SCP after connecting to the VM using the Compatibility Matrix Forwarder.
-
 :::note
-**Beta Limitations:** 
+Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH. Compatibility Matrix servers run on EKS, so depending on your location, using the Forwarder adds latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
+:::
+
+#### Limitations
+Transferring files using the Compatibility Matrix Forwarder has the following limitations:
 - `scp` with flag `-O` (legacy scp protocol) is not supported. 
 - Relative paths is not supported. For example:
   - Unsupported: `scp somefile VMID@replicatedvm.com:~`
   - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
 - File permissions are not inherited.
-:::
 
 To copy files to the VM using SCP after connecting with the Compatibility Matrix Forwarder:
 
