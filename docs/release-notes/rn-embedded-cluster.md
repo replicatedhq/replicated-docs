@@ -12,6 +12,59 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.8.0
+
+Released on August 1, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.8.0+k8s-1.31</td>
+    <td id="center">2.8.0+k8s-1.30</td>
+    <td id="center">2.8.0+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.125.1</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-8-0}
+* Adds host preflight checks to ensure nodes have sufficient storage to perform airgap installations when installing a new node and when joining nodes to an existing cluster.
+* Enables Embedded Cluster to install in SELinux environments by setting appropriate SELinux file contexts on the bin directory and restoring SELinux contexts for the data directory after creation.
+
+## 2.7.4
+
+Released on July 29, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.7.4+k8s-1.31</td>
+    <td id="center">2.7.4+k8s-1.30</td>
+    <td id="center">2.7.4+k8s-1.29</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.31.8</td>
+    <td id="center">1.30.9</td>
+    <td id="center">1.29.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.125.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-7-4}
+* Upgrades Troubleshoot to v0.121.2
+
 ## 2.7.3
 
 Released on July 22, 2025
