@@ -84,14 +84,15 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
     ```bash
     ssh -T replicated@replicatedvm.com
     ```
-
-1. For the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter.
-
     If successful, you will see a message similar to the following:
 
     ```
-    You have successfully authenticated, use <VM_ID>@replicatedvm.com to access your VM.
+    Hi <username>! You have successfully authenticated, use [VM_ID]@replicatedvm.com to access your VM.
     ```
+
+    :::note
+    If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
+    :::
 
 ### Use a Service Account
 
@@ -158,8 +159,6 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-* [**Connect to a VM Manually**](#connect-to-a-vm-manually): If the above options are not supported with your preferred SSH client, you can connect to a VM manually.
-
 For information about how to copy files to a VM after connecting, see [Copy Files to a VM](#copy-files-to-a-vm) below.
 
 ### Compatibility Matrix Forwarder
@@ -178,7 +177,9 @@ For information about copying files to the VM after connecting, see [After Conne
 
 ### Direct SSH
 
-Transferring files using Direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. Direct SSH requires Replicated CLI v0.104.0 or later.
+Connecting to a VM with direct SSH requires Replicated CLI v0.104.0 or later.
+
+To connect to a VM using direct SSH:
 
 1. Get the SSH endpoint for the VM:
 
@@ -205,6 +206,10 @@ Transferring files using Direct SSH allows you to use your SSH tool of choice, a
    ```
    For example, `ssh://yourusername@37.27.52.116:46795`.
 
+   :::note
+   You can also get the SSH endpoint and port in JSON format by running `replicated vm ls --output json`.
+   :::
+
 1. Copy the SSH endpoint.
 
 1. SSH into the VM using the SSH endpoint that you copied:
@@ -230,59 +235,11 @@ Transferring files using Direct SSH allows you to use your SSH tool of choice, a
    
    ```
    ssh $(replicated vm ssh-endpoint aba1acc2)
-   ```
-
-### Connect to a VM Manually
-
-If the Forwarder or direct SSH do not work with your preferred SSH client, you can connect manually. When a VM is created, a random port is assigned to each machine within each group of the VM.
-
-To connect with the machine over SSH:
-
-1. Run the following command:
-
-   ```bash
-   replicated vm ls --output json
-   ```
-
-   The following shows an example of the output of this command:
-
-   ```json
-   [
-      {
-         "id": "e32aafa1",
-         "name": "sad_black",
-         "distribution": "ubuntu",
-         "version": "24.04",
-         "status": "running",
-         "created_at": "2024-10-24T15:00:37Z",
-         "expires_at": "2024-10-24T16:01:10Z",
-         "ttl": "1h",
-         "credits_per_hour_per_vm": 0,
-         "flat_fee": 50000,
-         "total_credits": 0,
-         "estimated_cost": 0,
-         "direct_ssh_port": 33655,
-         "direct_ssh_endpoint": "95.217.47.21",
-         "tags": []
-      }
-   ]
-   ```
-
-1. Run the following command to connect:
-
-   ```bash
-   ssh -p DIRECT_SSH_PORT GITHUB_USERNAME@DIRECT_SSH_ENDPOINT
-   ```
-
-   **Example:**
-   
-   ```bash
-   ssh -p 33655 myName@95.217.47.21
-   ```   
+   ``` 
 
 ## Copy Files to a VM
 
-You can copy files to a VM either using an SCP endpoint, or by using SCP after connecting to the VM with the Compatibility Matrix Forwarder.
+You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the Compatibility Matrix Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
 
 ### Using the SCP Endpoint
 
