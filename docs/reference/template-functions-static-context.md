@@ -16,31 +16,29 @@ This topic provides a list of the KOTS template functions in the Static context.
 func PrivateCACert() string
 ```
 
-PrivateCACert returns the name of a ConfigMap containing one or more private CA certificates. The CA certificates included in the ConfigMap differ depending on if the user is installing with Replicated Embedded Cluster on a VM or bare metal server, or with KOTS in an existing cluster:
+PrivateCACert returns the name of a ConfigMap containing one or more private CA certificates:
 
 * For Embedded Cluster installations, the ConfigMap returned by PrivateCACert contains the CA trust store from the host. Embedded Cluster determines the CA trust store by first checking the `SSL_CERT_FILE` environment variable. If `SSL_CERT_FILE` is not set, Embedded Cluster then searches common certificate paths and uses the first valid certificate file found.
 
-* For KOTS installations in existing clusters, the end user passes the ConfigMap to the `install` command using the `--private-ca-configmap` flag. For more information, see [install](/reference/kots-cli-install).
+* For KOTS installations in existing clusters, the end user creates and passes the ConfigMap to the `install` command using the `--private-ca-configmap` flag. For more information, see [install](/reference/kots-cli-install).
 
 :::note
 PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, PrivateCACert returns the empty string.
 :::
 
-You can use the PrivateCACert template function to mount this ConfigMap so that your application containers trust the private CA certificates issued by TLS proxies that intercept outbound traffic in end customer environments. This allows your application to make outbound internet connections in customer environments without getting TLS errors. 
+KOTS mounts the ConfigMap returned by the PrivateCACert template function as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as the file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store in the container.
 
-The steps to mount the ConfigMap returned by PrivateCACert vary depending on the installation type:
+When the ConfigMap contains the private CA certificates issued by TLS proxies in end user environments and is mounted in the kotsadm container, KOTS trusts these private certificates and can make outbound internet connects without getting TLS errors.
 
-* For Replicated Embedded Cluster installations on VMs or bare metal servers, you must manually mount the ConfigMap returned by the PrivateCACert template function to ensure that your application trusts the private TLS certificates. For example:
-   * Use an init container to append the custom CAs into the system trust store (which is usually located at `/etc/ssl/certs/ca-certificates.crt`) before the application is deployed
-   * For applications that use Node.js, set the `NODE_EXTRA_CA_CERTS` environment variable to append the CAs from the ConfigMap to any existing CAs in the container. For more information, see [Environment Variables](https://nodejs.org/docs/latest-v4.x/api/cli.html#cli_node_extra_ca_certs_file) in the Node.js documentation.
+<details>
+  <summary>Can the ConfigMap returned by PrivateCACert be mounted in application containers?</summary>
 
-* For existing cluster installations with KOTS, KOTS automatically mounts the ConfigMap as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store.
+  You can use the PrivateCACert template function to mount the ConfigMap in your application container. To do so, you can use the same method that is used by KOTS described above. However, note that the `SSL_CERT_DIR` environment variable overrides the trust store in the container. This means that only the CAs included in the ConfigMap will be trusted.
 
-  :::note
-  If you must not override the trust store on the host (such as if your application needs to trust the default CAs as well as any CAs set by the end user during existing cluster KOTS installations), you can mount the CAs that KOTS adds in a subpath in the `SSL_CERT_DIR` and then modify the containers to update the trusted CAs during deployment.
+  If you do _not_ want to override the trust store, you can mount the CAs that KOTS adds in a subpath in the `SSL_CERT_DIR` and then modify the containers to update the trusted CAs during deployment. For example, you could mount the CAs that KOTS adds in a subpath of the `/usr/local/share/ca-certificates` directory in the container, and run the Ubuntu `update-ca-certificates` command in an init container or entrypoint to generate a concatenated single-file list of certificates.
   
-  For Debian/Ubuntu installations, Replicated recommends that you do this by mounting the directory as a subpath under `/usr/local/share/ca-certificates` and using the Ubuntu `update-ca-certificates` command to generate a concatenated single-file list of certificates. For more information, see [update-ca-certificates](https://manpages.ubuntu.com/manpages/focal/man8/update-ca-certificates.8.html) in the Ubuntu documentation.
-  :::
+  Replicated recommends that you consider the container OS and the language(s) used by your application to determine the method that you want to use to append certificates to the trust store.
+</details>
 
 ## Cluster Information Functions
 
