@@ -26,7 +26,7 @@ PrivateCACert returns the name of a ConfigMap containing one or more private CA 
 PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, PrivateCACert returns the empty string.
 :::
 
-KOTS mounts the ConfigMap returned by the PrivateCACert template function as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as the file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store in the container.
+KOTS mounts the ConfigMap returned by the PrivateCACert template function as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as the file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store.
 
 The primary use case for the PrivateCACert template function is to make sure that KOTS trusts the private CA certificates issued by TLS proxies in the end user's environment and can make outbound internet connects without TLS errors.
 
