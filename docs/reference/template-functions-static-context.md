@@ -35,7 +35,7 @@ The primary use case for the PrivateCACert template function is to make sure tha
 
   You can use the PrivateCACert template function to mount the ConfigMap in your application container. To do so, you can use the same method that is used by KOTS described above. However, note that the `SSL_CERT_DIR` environment variable overrides the trust store in the container. This means that only the CAs included in the ConfigMap will be trusted.
 
-  If you do _not_ want to override the trust store, you can mount the CAs that KOTS adds in a subpath in the `SSL_CERT_DIR` and then modify the containers to update the trusted CAs during deployment. For example, for Debian/Ubuntu environments, you could mount the CAs that KOTS adds in a subpath of the `/usr/local/share/ca-certificates` directory in the container, and run the Ubuntu `update-ca-certificates` command in an init container or entrypoint to generate a concatenated single-file list of certificates.
+  If you do _not_ want to override the trust store, you should mount the ConfigMap to an alternate directory in the container and append the certificates to the default trust store. For example, for Debian/Ubuntu environments, you could mount the ConfigMap from the PrivateCACert template function in a subpath of the `/usr/local/share/ca-certificates` directory in the container, and run the `update-ca-certificates` command in an init container or the container's entrypoint to update the trust store in the container to include the additional certificates.
   
   Replicated recommends that you consider the container OS and the language(s) used by your application to determine the method that you want to use to append certificates to the trust store.
 </details>
