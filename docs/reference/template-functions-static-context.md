@@ -28,10 +28,10 @@ PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no ent
 
 KOTS mounts the ConfigMap returned by the PrivateCACert template function as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as the file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store in the container.
 
-When the ConfigMap contains the private CA certificates issued by TLS proxies in end user environments and is mounted in the kotsadm container, KOTS trusts these private certificates and can make outbound internet connects without getting TLS errors.
+The primary use case for the PrivateCACert template function is to make sure that KOTS trusts the private CA certificates issued by TLS proxies in the end user's environment and can make outbound internet connects without TLS errors.
 
 <details>
-  <summary>Can the ConfigMap returned by PrivateCACert be mounted in application containers?</summary>
+  <summary>Can the ConfigMap returned by PrivateCACert also be mounted in application containers?</summary>
 
   You can use the PrivateCACert template function to mount the ConfigMap in your application container. To do so, you can use the same method that is used by KOTS described above. However, note that the `SSL_CERT_DIR` environment variable overrides the trust store in the container. This means that only the CAs included in the ConfigMap will be trusted.
 
