@@ -24,7 +24,7 @@ For Replicated Embedded Cluster installations on VMs or bare metal servers, you 
 * Set the `NODE_EXTRA_CA_CERTS` environment variable to append the CAs from the ConfigMap to any existing CAs in the container
 * Mount the CAs at `/certs` and set the `SSL_CERT_DIR` environment variable to `/certs`
 
-For existing cluster installations with KOTS, KOTS automatically mounts the ConfigMap as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to append certificates to the trust store.
+For existing cluster installations with KOTS, KOTS automatically mounts the ConfigMap as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store.
 
 <details>
   <summary>Where does the ConfigMap returned by the PrivateCACert template function come from?</summary>
