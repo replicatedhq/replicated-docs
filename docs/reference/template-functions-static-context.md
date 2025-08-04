@@ -20,7 +20,7 @@ PrivateCACert returns the name of a ConfigMap containing one or more private CA 
 
 * For Embedded Cluster installations, the ConfigMap returned by PrivateCACert contains the CA trust store from the host. Embedded Cluster determines the CA trust store by first checking the `SSL_CERT_FILE` environment variable. If `SSL_CERT_FILE` is not set, Embedded Cluster then searches common certificate paths and uses the first valid certificate file found.
 
-* For KOTS installations in existing clusters, the end user may optionally create and pass the ConfigMap to the `install` command using the `--private-ca-configmap` flag. For more information, see [install](/reference/kots-cli-install).
+* For KOTS installations in existing clusters, the end user can optionally create and pass the ConfigMap to the `install` command using the `--private-ca-configmap` flag. For more information, see [install](/reference/kots-cli-install).
 
 :::note
 PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no entries. If no ConfigMap exists, PrivateCACert returns the empty string.
@@ -28,7 +28,7 @@ PrivateCACert returns the name of the ConfigMap even if the ConfigMap has no ent
 
 KOTS mounts the ConfigMap returned by the PrivateCACert template function as a volume in the kotsadm container at `/certs`. Each key in the ConfigMap is created as a file, with its value as the file's contents. KOTS then sets the `SSL_CERT_DIR` environment variable in the kotsadm container to `/certs`. `SSL_CERT_DIR` is a common environment variable that is supported by most tools and languages to override the trust store.
 
-The primary use case for the PrivateCACert template function is to make sure that KOTS trusts the private CA certificates issued by TLS man-in-the-middle proxies in the end user's environment and can make outbound internet connects without TLS errors.
+The primary use case for the PrivateCACert template function is to make sure that KOTS trusts the private CA certificates issued by TLS man-in-the-middle (MITM) proxies in the end user's environment and can make outbound internet connects without TLS errors.
 
 <details>
   <summary>Can the ConfigMap returned by PrivateCACert also be mounted in application containers?</summary>
