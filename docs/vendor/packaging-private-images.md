@@ -266,8 +266,8 @@ To scope a registry to specific applications:
 1. In the **Vendor Portal**, go to **Images** and click **Edit** next to the target registry.
 
 1. For **App Access**, select one of these options:
-  * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license.
-  * **Specific apps**: Make this registry available only to the applications that you specify.
+   * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license.
+   * **Specific apps**: Make this registry available only to the applications that you specify.
 
 1. Click **Save**.  
 
