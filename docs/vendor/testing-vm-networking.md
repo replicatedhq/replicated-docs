@@ -50,17 +50,13 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
 
     For example, `replicated cluster create --distribution k3s`.
 
-1. Get the network ID:
+1. In the output of the `cluster create` command, under `NETWORK`, copy the network ID.
 
-    ```bash
-    replicated network ls
+    Example:
+
     ```
-
-    Example output:
-
-    ```bash
-    ID         NAME                 STATUS     CREATED                 EXPIRES    POLICY   REPORTING
-    accbd6a7   suspicious_paitras   preparing  2025-08-04 13:24 PDT    -          Open     Off
+    ID         NAME              DISTRIBUTION    VERSION    STATUS    NETWORK     CREATED                EXPIRES  COST
+    6b14376c   ecstatic_raman    k3s             1.33.2     queued    accbd6a7    2025-08-04 13:20 PDT   -        $0.60
     ```
 
 1. Create a VM on the same network:
@@ -68,7 +64,7 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
     ```bash
     replicated vm create --distribution DISTRIBUTION --network NETWORK_ID
     ```
-    Where `NETWORK_ID` is the ID of the network from the output of the `replicated network ls` command.
+    Where `NETWORK_ID` is the network ID that you copied in the previous step.
 
     For example, `replicated vm create --distribution ubuntu --network accbd6a7`.
 
