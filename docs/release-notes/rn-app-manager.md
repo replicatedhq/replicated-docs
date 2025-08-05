@@ -18,6 +18,19 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.125.2
+
+Released on August 5, 2025
+
+Support for Kubernetes: 1.31, 1.32, and 1.33
+
+### Improvements {#improvements-1-125-2}
+* Fixes CVEs CVE-2021-23337 and CVE-2025-7783
+
+### Bug Fixes {#bug-fixes-1-125-2}
+* Fixes an issue that caused debug output to print to the Kots CLI logs when installing.
+* Fixes an issue where the file viewer find menu was missing icons.
+
 ## 1.125.1
 
 Released on July 31, 2025
