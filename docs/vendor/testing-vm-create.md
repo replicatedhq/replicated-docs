@@ -99,13 +99,13 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
 To automate the creation of VMs in your CI/CD workflows, you can use the flag `--ssh-public-key` to provide the SSH public key for a GitHub service account. For example:
 
 ```bash
-replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub
+replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub
 ```
 
 Using multiple SSH public keys:
 
 ```bash
-replicated vm create --distribution ubuntu --version 20.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
+replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
 ```
 
 ## Create VMs
@@ -134,9 +134,9 @@ To create VMs with Compatibility Matrix:
    ```
 
    Where:
-   * `NAME` is any name for the VM. If `--name` is excluded, a name is automatically generated for the cluster.
+   * `NAME` is any name for the VM. If `--name` is excluded, a name is automatically generated for the VM.
    * `DISTRIBUTION` is the operating system distribution for the VM (e.g., ubuntu, almalinux).
-   * `VERSION` is the version of the distribution to provision (e.g., 20.04, 22.04 for Ubuntu).
+   * `VERSION` is the version of the distribution to provision (e.g., 22.04, 24.04 for Ubuntu).
    * `INSTANCE_TYPE` is the instance type to use for the VM (e.g., r1.medium, r1.large).
    * `COUNT` is the number of VMs to create. If `--count` is excluded, one VM is created by default.
    * `TTL` is the VM Time-To-Live duration (maximum 48h). If `--ttl` is excluded, the default TTL is 1 hour.

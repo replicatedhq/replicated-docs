@@ -37,7 +37,7 @@ replicated vm port rm VMID_OR_VMNAME
 
 You can make a Compatibility Matrix cluster available on the same network as a Compatibility Matrix VM.
 
-**Compatible clusters:** Openshift, K3s, RKE2, EC, kURL  
+**Compatible clusters:** Openshift, K3s, RKE2, EC, kURL, kind
 **Requirement:** Replicated CLI 0.90.0 or later
 
 To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the same network:
@@ -86,7 +86,7 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
     760a30b1	laughing_tu	ubuntu      	24.04     	queued      	2025-01-28 16:07 PST        -                   $0.60
     ```
 
-    In this example, both the cluster `b09cf035` and the VM `760a30b1` are now on the same tailnet.
+    In this example, both the cluster `b09cf035` and the VM `760a30b1` are now on the same network.
 
 ## Connect Compatibility Matrix VMs on a Shared Network
 
