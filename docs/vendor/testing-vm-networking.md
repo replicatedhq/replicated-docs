@@ -58,6 +58,7 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
     ID         NAME              DISTRIBUTION    VERSION    STATUS    NETWORK     CREATED                EXPIRES  COST
     6b14376c   ecstatic_raman    k3s             1.33.2     queued    accbd6a7    2025-08-04 13:20 PDT   -        $0.60
     ```
+    In the example above, the network ID is `accbd6a7`.
 
 1. Create a VM on the same network:
 
@@ -87,20 +88,23 @@ replicated vm create --distribution ubuntu --count 3
 
 ### Join VMs to an Existing VM Network
 
-First, get the ID of an existing VM network:
+1. Run one of the following commands to get the ID of an existing VM network:
 
-```bash
-replicated vm ls
-```
+   * List VMs:
+     ```bash
+     replicated vm ls
+     ```
 
-Or
+   * List networks: 
+     ```bash
+     replicated network ls
+     ```
 
-```bash
-replicated network ls
-```
+1. In the output of the command, copy the network ID.
 
-Use the `--network` flag to create new VMs on the same network:
+1. Use the `--network` flag to create a new VM on the same network:
 
-```bash
-replicated vm create --distribution ubuntu --network NETWORK_ID
-``` 
+    ```bash
+    replicated vm create --distribution ubuntu --network NETWORK_ID
+    ``` 
+    Where `NETWORK_ID` is the network ID that you copied in the previous step.
