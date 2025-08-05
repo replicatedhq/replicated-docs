@@ -12,7 +12,7 @@ Compatibility Matrix supports both VM-based clusters (such as kind, k3s, RKE2, O
 
 You can use Compatibility Matrix clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
 
-For information about creating VMs with Compatibility Matrix to test Replicated Embedded Cluster installers, air-gap installations, or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
+For information about creating VMs with Compatibility Matrix to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
 
 ## Prerequisites
 

@@ -26,7 +26,7 @@ The following VM types are supported:
 Creating VMs with Compatibility Matrix has the following limitations:
 
 - Creating VMs with Compatibility Matrix is a Beta feature.
-- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later. To reboot a Compatibility Matrix VM, you can run the Embedded Cluster [reset](embedded-using#reset-a-node) command.
+- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
 - [GitHub Actions](/vendor/testing-how-to#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
 - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
 
@@ -290,7 +290,7 @@ To copy files to a VM using the scp endpoint:
 ### After Connecting to the VM with the Forwarder
 
 :::note
-Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH. Compatibility Matrix servers run on EKS, so depending on your location, using the Forwarder adds latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
+Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
 :::
 
 #### Limitations

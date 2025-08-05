@@ -50,15 +50,7 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
 
     For example, `replicated cluster create --distribution k3s`.
 
-    Example output:
-
-    ```
-    ID      	NAME			DISTRIBUTION	VERSION	STATUS		CREATED	
-    EXPIRES	COST
-    b09cf035	affect_mend     	k3s         	1.32.0    	queued      	2025-01-28 16:04 PST    -             $0.60
-    ```
-
-1. Check the network:
+1. Get the network ID:
 
     ```bash
     replicated network ls
@@ -66,9 +58,9 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
 
     Example output:
 
-    ```
-    ID		NAME			STATUS		CREATED			EXPIRES
-    accbd6a7	affect_mend 	running     	2025-01-28 16:04 PST    	2025-01-28 17:05 PST
+    ```bash
+    ID         NAME                 STATUS     CREATED                 EXPIRES    POLICY   REPORTING
+    accbd6a7   suspicious_paitras   preparing  2025-08-04 13:24 PDT    -          Open     Off
     ```
 
 1. Create a VM on the same network:
@@ -76,17 +68,16 @@ To connect a Compatibility Matrix VM with a Compatibility Matrix cluster on the 
     ```bash
     replicated vm create --distribution DISTRIBUTION --network NETWORK_ID
     ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `replicated network ls` command.
 
     For example, `replicated vm create --distribution ubuntu --network accbd6a7`.
 
     Example output:
 
     ```
-    ID      	NAME            DISTRIBUTION	VERSION   	STATUS      	CREATED                 	EXPIRES       	COST
-    760a30b1	laughing_tu	ubuntu      	24.04     	queued      	2025-01-28 16:07 PST        -                   $0.60
+    ID         NAME                 DISTRIBUTION   VERSION   STATUS     NETWORK    CREATED                EXPIRES  COST
+    760a30b1   suspicious_poitras   ubuntu         24.04     assigned   accbd6a7   2025-08-04 13:24 PDT   -        $0.60
     ```
-
-    In this example, both the cluster `b09cf035` and the VM `760a30b1` are now on the same network.
 
 ## Connect Compatibility Matrix VMs on a Shared Network
 
