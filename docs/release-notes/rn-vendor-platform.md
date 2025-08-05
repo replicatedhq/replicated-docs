@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.08.05-1
+
+Released on August 5, 2025
+
+### Bug Fixes {#bug-fixes-v2025-08-05-1}
+* Fixes a bug where all Enterprise Portal pre-/post-install instructions treated any code in markdown as fenced code blocks.
+
 ## v2025.07.25-5
 
 Released on July 25, 2025
