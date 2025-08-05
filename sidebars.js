@@ -717,6 +717,8 @@ const sidebars = {
       'reference/replicated-cli-release-compatibility',
       'reference/replicated-cli-release-create',
       'reference/replicated-cli-release-download',
+      'reference/replicated-cli-release-image',
+      'reference/replicated-cli-release-image-ls',
       'reference/replicated-cli-release-inspect',
       'reference/replicated-cli-release-lint',
       'reference/replicated-cli-release-ls',

@@ -1,0 +1,49 @@
+# replicated release image ls
+
+List images in a channel's current or specified release
+
+### Synopsis
+
+List all container images in the current release or a specific version of a channel
+
+```
+replicated release image ls --channel CHANNEL_NAME_OR_ID [--version SEMVER] [--keep-proxy] [flags]
+```
+
+### Examples
+
+```
+# List images in current release of a channel by name
+replicated release image ls --channel Stable
+
+# List images in a specific version of a channel
+replicated release image ls --channel Stable --version 1.2.1
+
+# List images in a channel by ID  
+replicated release image ls --channel 2abc123
+
+# Keep proxy registry domains in the image names
+replicated release image ls --channel Stable --keep-proxy
+```
+
+### Options
+
+```
+      --channel string   The channel name, slug, or ID (required)
+  -h, --help             help for ls
+      --keep-proxy       Keep proxy registry domain in image names instead of stripping it
+      --version string   The specific semver version to get images for (optional, defaults to current release)
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated release image](replicated-cli-release-image)	 - Manage release images
+
