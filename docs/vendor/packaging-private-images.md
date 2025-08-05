@@ -31,10 +31,6 @@ To add an external registry using the Vendor Portal:
 1. Log in to the [Vendor Portal](https://vendor.replicated.com) and go to the **Images** page.
 1. Click **Add External Registry**.
 
-   <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
-
-   [View a larger version of this image](/images/add-external-registry.png)
-
 1. In the **Provider** drop-down, select your registry provider. 
 
 1. For **Registry Name**, optionally add a unique name for the registry. This can be useful if you intend to add multiple registries or duplicate any of your registries.
