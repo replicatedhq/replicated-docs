@@ -140,6 +140,14 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - configmaps
+  verbs:
+  - get
+  resourceNames:
+  - replicated-sdk
+- apiGroups:
+  - ""
+  resources:
   - secrets
   verbs:
   - get
@@ -254,6 +262,14 @@ rules:
   - secrets
   verbs:
   - get
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  resourceNames:
+  - replicated-sdk
 - apiGroups:
   - apps
   resources:

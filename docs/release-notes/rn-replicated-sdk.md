@@ -8,6 +8,20 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.7.2
+
+Released on July 10, 2025
+
+### Improvements {#improvements-1-7-2}
+* Updates the default Minimal RBAC role to allow accessing the replicated-sdk configmap.
+
+## 1.7.1
+
+Released on July 10, 2025
+
+### Improvements {#improvements-1-7-1}
+* Updates Helm from v3.18.3 to v3.18.4.
+
 ## 1.7.0
 
 Released on Jun 20, 2025
