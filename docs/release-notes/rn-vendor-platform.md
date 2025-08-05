@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on August 4, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-08-04-1}
-* CMX: Fixed a bug where a 412 might be returned when the kubeconfig is being retrieved.
+* Compatibility Matrix: Fixed a bug where a 412 could be returned when the kubeconfig is being retrieved.
 
 ## v2025.07.25-5
 
