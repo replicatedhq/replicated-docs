@@ -659,9 +659,9 @@ Released on October 23, 2024
 
 ### New Features {#new-features-1-16-0}
 * Adds support for Kubernetes 1.30 and removes support for 1.28.
-* Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [Embedded Cluster Install Command Options](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
+* Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [install](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 * Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
-* Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [Embedded Cluster Install Command Options](/reference/embedded-cluster-install).
+* Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [install](/reference/embedded-cluster-install).
    :::note
    The `--pod-cidr` and `--service-cidr` flags are hidden, but still functional. Replicated recommends that you update any automation that uses the `--pod-cidr` and 
    `--service-cidr` flags to use the `--cidr` flag instead.
