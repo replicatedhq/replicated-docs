@@ -108,24 +108,3 @@ sudo ./<app-slug> restore [flags]
      </td>
   </tr>
 </table>
-
-$ SOURCE CONTENT
-Restore a gitea-two cluster
-
-Usage:
-  gitea-two restore [flags]
-
-Flags:
-      --airgap-bundle string             Path to the air gap bundle. If set, the installation will complete without internet access.
-      --cidr string                      CIDR block of available private IP addresses (/16 or larger) (default "10.244.0.0/16")
-      --data-dir string                  Path to the data directory (default "/var/lib/embedded-cluster")
-  -h, --help                             help for restore
-      --http-proxy string                HTTP proxy to use for the installation
-      --https-proxy string               HTTPS proxy to use for the installation
-      --ignore-host-preflights           Allow bypassing host preflight failures
-      --local-artifact-mirror-port int   Port on which the Local Artifact Mirror will be served (default 50000)
-      --network-interface string         The network interface to use for the cluster
-      --no-proxy string                  Comma-separated list of hosts for which not to use a proxy
-      --private-ca strings               Path to a trusted private CA certificate file
-      --skip-store-validation            Skip validation of the backup storage location
-  -y, --yes                              Assume yes to all prompts.
