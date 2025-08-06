@@ -295,6 +295,7 @@ Released on April 3, 2025
 * Output from the `join` and `reset` commands no longer mentions "controller nodes," which is terminology users wouldn't be familiar with. The controller node role name is used if custom roles are defined in the Embedded Cluster Config.
 * Adds `-y` as an alias for `--yes` in the `join` and `restore` commands.
 * Debug logs of the installation will now include the Embedded Cluster and k0s versions.
+* Adds support for installing on hosts where the hostname includes uppercase letters.
 
 ### Bug Fixes {#bug-fixes-2-3-0}
 * Fixes an issue where the UI continues to display the old Admin Console after an upgrade, which results in the previous version of the application showing as the currently deployed version.
