@@ -36,7 +36,7 @@ Released on August 6, 2025
 </table>
 
 ### Improvements {#improvements-2-8-1}
-* Upgrades Troubleshoot to 1.125.2
+* Upgrades KOTS to 1.125.2
 
 ## 2.8.0
 
