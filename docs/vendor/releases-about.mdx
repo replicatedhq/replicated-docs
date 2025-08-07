@@ -76,11 +76,29 @@ A release cannot be edited after it is promoted to a channel. This means that yo
 
 ### Demotion
 
-A channel release can be demoted from a channel. When a channel release is demoted, the release is no longer available for download, but is not withdrawn from environments where it was already downloaded or installed.
+A release can be demoted from a channel. When a release is demoted, the release is no longer available for download, but is _not_ withdrawn from environments where it was already downloaded or installed. The reason you would demote a release is to prevent customers from fetching the release when they check for new versions of your application.
 
 The demoted release's channel sequence and version are not reused. For customers, the release will appear to have been skipped. Un-demoting a release will restore its place in the channel sequence making it again available for download and installation.
 
 For information about how to demote a release, see [Demote a Release](/vendor/releases-creating-releases#demote-a-release) in _Managing Releases with the Vendor Portal_. 
+
+The following describes how each installation method handles a demoted release:
+
+* **Helm CLI**: When a release is demoted, the demoted release is no longer listed in the customer's Enterprise Portal as available for update, unless the customer had already downloaded the release before it was demoted.
+
+* **Embedded Cluster**: Embedded Cluster fetches available upstream releases, but does not automatically download them. Therefore, when a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
+
+* **Existing Cluster KOTS and kURL**: After the Admin Console checks for upstream updates, it automatically downloads metadata for the newly-available releases. Therefore, whether or not the customer can see a demoted release in the Admin Console depends on the last time the customer checked for updates:
+   * If the customer checked for updates and fetched a release _before_ it was demoted, then the release will remain listed in the Admin Console the next time an update check occurs. This is because a release cannot be withdrawn from the customer’s environment after it has been downloaded.
+   * If the customer checks for udpates _after_ a release was demoted, then the demoted release is not fetched and is not listed in the Admin Console.
+
+### Archived Releases
+
+You can archive releases to remove them from view on the Vendor Portal **Releases** page. Archiving a release that has been promoted does _not_ remove the release from the channel's **Release History** page or prevent customers from being able to fetch the release.
+
+Archiving a release is most useful when you want to reduce the number of releases that you see on the **Releases** page, while ensuring that all of the archived releases are still available for use.
+
+For information about how to demote a release, see [Archive a Release](/vendor/releases-creating-releases#archive-a-release) in _Managing Releases with the Vendor Portal_. 
 
 ### Release Properties
 
