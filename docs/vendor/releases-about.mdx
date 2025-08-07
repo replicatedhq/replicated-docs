@@ -84,7 +84,7 @@ For information about how to demote a release, see [Demote a Release](/vendor/re
 
 The following describes how each installation method handles a demoted release:
 
-* **Helm CLI**: When a release is demoted, the demoted release is no longer listed in the customer's Enterprise Portal as available for update, unless the customer had already downloaded the release before it was demoted.
+* **Helm CLI**: When a release is demoted, it is no longer listed in the customer's Enterprise Portal as available for update, unless the customer had already downloaded the release before it was demoted.
 
 * **Embedded Cluster**: Embedded Cluster fetches available upstream releases, but does not automatically download them. Therefore, when a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
 
