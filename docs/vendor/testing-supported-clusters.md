@@ -21,7 +21,7 @@ Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) cluster
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.13, 1.31.9, 1.32.5, 1.33.1{/* END_kind_VERSIONS */}</td>
+    <td>{/* START_kind_VERSIONS */}1.26.15, 1.27.16, 1.28.15, 1.29.14, 1.30.13, 1.31.9, 1.32.5, 1.33.2{/* END_kind_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -68,7 +68,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_k3s_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.33.0, 1.33.1, 1.33.2{/* END_k3s_VERSIONS */}</td>
+    <td>{/* START_k3s_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.31.11, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.33.0, 1.33.1, 1.33.2, 1.33.3{/* END_k3s_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -115,7 +115,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_rke2_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.33.0, 1.33.1, 1.33.2{/* END_rke2_VERSIONS */}</td>
+    <td>{/* START_rke2_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.31.11, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.33.0, 1.33.1, 1.33.2, 1.33.3{/* END_rke2_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -444,7 +444,7 @@ Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_oke_VERSIONS */}1.31.1, 1.32.1, 1.33.1{/* END_oke_VERSIONS */}</td>
+    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1{/* END_oke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
