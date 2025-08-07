@@ -13,11 +13,11 @@ hide_table_of_contents: true
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Enable Minimal RBAC for the SDK</h3>
-        <p>With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role.</p>
+        <h3>Announcing: Beta Support for Compatibility Matrix VMs</h3>
+        <p>You can now use Compatibility Matrix to create VMs, making it easier to spin up environments for testing installation methods that require direct OS access, like Embedded Cluster.</p>
     </li>
     <li>
-      <a href="/vendor/replicated-sdk-customizing#minimal-rbac">Learn more</a>
+      <a href="/vendor/testing-vm-create">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -26,11 +26,11 @@ hide_table_of_contents: true
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Track Install Attempts with Enterprise Portal</h3>
-        <p>Get realtime feedback on your customers' installation progress based on their activity in the Enterprise Portal.</p>
+        <h3>Add Allowed Domains for Enterprise Portal Invitations</h3>
+        <p>When this option is enabled, only users with allowed email domains can be invited to a customer's Enterprise Portal.</p>
     </li>
     <li>
-      <a href="/vendor/customer-reporting#install-attempts-beta">Learn more</a>
+      <a href="/vendor/enterprise-portal-invite#configure-allowed-domains-for-user-invitations">Learn more</a>
     </li>
   </ul>
 </section>
