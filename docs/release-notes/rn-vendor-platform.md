@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on August 7, 2025
 
 ### New Features {#new-features-v2025-08-07-2}
-* CMX: Any multinode k8s cluster now supports up to 20 nodes.
+* Compatibility Matrix: Any multinode k8s cluster now supports up to 20 nodes.
 
 
 ## v2025.08.05-1
