@@ -78,7 +78,54 @@ To configure a release to support installations with HelmChart v2:
     ```
     For more information about declaring the SDK as a dependency, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
     
-1. For any of your application images that could be rate limited by Docker Hub, do the following to avoid errors caused by reaching the rate limit:
+1. If you need to support KOTS existing cluster or kURL installations, complete the [Additional Steps for KOTS Existing Cluster or kURL Installations](#kots-steps) below.
+
+1. Promote the release a channel that your team uses for testing, and install the release in a development environment to test your changes.
+
+## Additional Steps for KOTS Existing Cluster or kURL Installations {#kots-steps}
+
+To support KOTS existing cluster or kURL installations with HelmChart v2, complete these additional steps:
+
+1. For each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to all resources that you want to be included in backups with Replicated snapshots. These labels are required to support the use of snapshots. In the `optionalValues` key, use a `when` statement that evaluates to true only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
+
+    :::note
+    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+    :::
+
+    **Example**:
+
+    ```yaml
+    # kots.io/v1beta2 HelmChart custom resource
+
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      ...
+      optionalValues:
+      # Add backup labels only when the license supports snapshots.
+      # Use the LicenseFieldValue template function to check if
+      # the isSnapshotSupported license field is enabled
+      - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
+        recursiveMerge: true
+        values:
+          mariadb:
+            commonLabels:
+              kots.io/backup: velero
+              # Use the LicenseFieldValue template function and the 
+              # built-in appSlug license field value to inject your 
+              # unique app slug
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+            podLabels:
+              kots.io/backup: velero
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
+    ```
+    For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license).
+
+    For more information about the `isSnapshotSupported` and `appSlug` built-in license fields, see the [Admin Console Feature Options](/vendor/licenses-using-builtin-fields#admin-console-feature-options) table in _Built-In License Fields_.
+
+1. (KOTS Existing Cluster Only) For any of your application images that could be rate limited by Docker Hub, do the following to avoid errors caused by reaching the rate limit:
    
    <details>
      <summary>What is Docker Hub rate limiting?</summary>
@@ -148,47 +195,6 @@ To configure a release to support installations with HelmChart v2:
           {{- toYaml . | nindent 2 }}
           {{- end }}
         ```
-
-1. (KOTS Existing Cluster and kURL Installations Only) If you support KOTS existing cluster or kURL installations, for each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to all resources that you want to be included in backups with Replicated snapshots. These labels are required to support the use of snapshots. In the `optionalValues` key, use a `when` statement that evaluates to true only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
-
-    :::note
-    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
-    :::
-
-    **Example**:
-
-    ```yaml
-    # kots.io/v1beta2 HelmChart custom resource
-
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    metadata:
-      name: samplechart
-    spec:
-      ...
-      optionalValues:
-      # Add backup labels only when the license supports snapshots.
-      # Use the LicenseFieldValue template function to check if
-      # the isSnapshotSupported license field is enabled
-      - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
-        recursiveMerge: true
-        values:
-          mariadb:
-            commonLabels:
-              kots.io/backup: velero
-              # Use the LicenseFieldValue template function and the 
-              # built-in appSlug license field value to inject your 
-              # unique app slug
-              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
-            podLabels:
-              kots.io/backup: velero
-              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
-    ```
-    For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license).
-
-    For more information about the `isSnapshotSupported` and `appSlug` built-in license fields, see the [Admin Console Feature Options](/vendor/licenses-using-builtin-fields#admin-console-feature-options) table in _Built-In License Fields_.
-
-1. Promote the release a channel that your team uses for testing, and install the release in a development environment to test your changes.
 
 ## Next Step: Migrate Existing Installations to HelmChart v2
 
