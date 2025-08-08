@@ -1,0 +1,34 @@
+# update
+
+This topic describes the options available with the Embedded Cluster `update` command. The `update` command allows you to update an instance with a new air gap bundle. This is part of the process for performing updates in air-gapped environments. For more information, see [Update in Air Gap Clusters](/enterprise/updating-embedded#update-in-air-gap-clusters) in _Perform Updates in Embedded Clusters_.
+
+## Usage
+
+```bash
+sudo ./<app-slug> update. --airgap-bundle <path-to-airgap-bundle> [flags]
+```
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+     <td>`--airgap-bundle`</td>
+     <td>string</td>
+     <td>
+        <p>Path to the air gap bundle. If set, the installation will complete without internet access.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`-h, --help`</td>
+     <td></td>
+     <td>
+        <p>help for update</p>
+     </td>
+  </tr>
+</table>
+

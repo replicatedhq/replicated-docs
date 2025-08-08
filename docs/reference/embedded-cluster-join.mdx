@@ -1,0 +1,86 @@
+# join
+
+This topic describes the options available with the Embedded Cluster `join` command. For more information about joining nodes, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+
+## Usage
+
+```bash
+sudo ./<app-slug> join <url> <token> [flags]
+```
+
+```bash
+sudo ./<app-slug> join [command]
+```
+
+## Subcommands
+
+<table>
+  <tr>
+    <th width="35%">Command</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+     <td>run-preflights</td>
+     <td>
+        <p>Run join host preflights for the application.</p>
+     </td>
+  </tr>
+</table>
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Description</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+     <td>`--airgap-bundle`</td>
+     <td>string</td>
+     <td>
+        <p>Path to the air gap bundle. If set, the installation will complete without internet access.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`-h, --help`</td>
+     <td></td>
+     <td>
+        <p>help for join</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--ignore-host-preflights`</td>
+     <td></td>
+     <td>
+        <p>Run host preflight checks, but prompt the user to continue if they fail instead of exiting.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--network-interface`</td>
+     <td>string</td>
+     <td>
+        <p>The network interface to use for the cluster.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--no-ha`</td>
+     <td></td>
+     <td>
+        <p>Do not prompt for or enable high availability.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`-y, --yes`</td>
+     <td></td>
+     <td>
+        <p>Assume yes to all prompts.</p>
+     </td>
+  </tr>
+</table>
+
+## Examples
+
+```bash
+sudo ./slackernews join 10.128.0.55:30000 dCH2tsK9xvucAIbME0RBs7z7
+```

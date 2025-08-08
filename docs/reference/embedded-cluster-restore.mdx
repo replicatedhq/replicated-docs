@@ -1,0 +1,110 @@
+# restore
+
+This topic describes the options available with the Embedded Cluster `restore` command.
+
+## Usage
+
+```bash
+sudo ./<app-slug> restore [flags]
+```
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+     <td>`--airgap-bundle`</td>
+     <td>string</td>
+     <td>
+        <p>Path to the air gap bundle. If set, the installation will complete without internet access.</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--cidr`</td>
+     <td>string</td>
+     <td>
+        <p>CIDR block of available private IP addresses (/16 or larger) (default "10.244.0.0/16")</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--data-dir`</td>
+     <td>string</td>
+     <td>
+        <p>Path to the data directory (default "/var/lib/embedded-cluster")</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`-h, --help`</td>
+     <td></td>
+     <td>
+        <p>help for restore</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--http-proxy`</td>
+     <td>string</td>
+     <td>
+        <p>HTTP proxy to use for the installation</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--https-proxy`</td>
+     <td>string</td>
+     <td>
+        <p>HTTPS proxy to use for the installation</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--ignore-host-preflights`</td>
+     <td></td>
+     <td>
+        <p>Allow bypassing host preflight failures</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--local-artifact-mirror-port`</td>
+     <td>int</td>
+     <td>
+        <p>Port on which the Local Artifact Mirror will be served (default 50000)</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--network-interface`</td>
+     <td>string</td>
+     <td>
+        <p>The network interface to use for the cluster</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--no-proxy`</td>
+     <td>string</td>
+     <td>
+        <p>Comma-separated list of hosts for which not to use a proxy</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--private-ca`</td>
+     <td>strings</td>
+     <td>
+        <p>Path to a trusted private CA certificate file</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`--skip-store-validation`</td>
+     <td></td>
+     <td>
+        <p>Skip validation of the backup storage location</p>
+     </td>
+  </tr>
+  <tr>
+     <td>`-y, --yes`</td>
+     <td></td>
+     <td>
+        <p>Assume yes to all prompts.</p>
+     </td>
+  </tr>
+</table>
