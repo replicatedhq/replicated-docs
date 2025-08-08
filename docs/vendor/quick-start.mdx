@@ -2,10 +2,11 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import HelmChartCr from "../partials/getting-started/_gitea-helmchart-cr-ec.mdx"
-import KotsCr from "../partials/getting-started/_gitea-kots-app-cr-ec.mdx"
-import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
-import EcCr from "../partials/embedded-cluster/_ec-config.mdx"
+import HelmChartCr from "../partials/getting-started/_slackernews-chart.mdx"
+import KotsCr from "../partials/getting-started/_slackernews-repl-app.mdx"
+import K8sCr from "../partials/getting-started/_slackernews-k8s-app.mdx"
+import EcCr from "../partials/getting-started/_slackernews-embedded-cluster.mdx"
+import ConfigCr from "../partials/getting-started/_slackernews-config.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Replicated Quick Start
@@ -22,19 +23,19 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 * Working with the Replicated CLI
 
+* Creating test environments with Compatibility Matrix
+
 * Installing and updating applications on a VM with Replicated Embedded Cluster
 
-* Managing an installation with the Replicated KOTS Admin Console
+## Prerequisite
 
-## Set Up the Environment
-
-Before you begin, ensure that you have access to a VM that meets the requirements for Embedded Cluster:
-
-<Requirements/>
+* This quick start assumes that you have a GitHub account with an SSH key set up.
 
 ## Quick Start
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Create a Vendor Account](vendor-portal-creating-account).
+
+1. In your **Account Settings**, add your GitHub username. Compatibility Matrix will reference this username in a later step.
 
 1. Create an application using the Replicated CLI:
 
@@ -52,10 +53,10 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       ```
       In the browser window that opens, complete the prompts to log in to your Vendor Portal account and authorize the CLI.
 
-   1. Create an application named `Gitea`:
+   1. Create an application named `SlackerNews`:
 
       ```bash
-      replicated app create Gitea
+      replicated app create SlackerNews
       ```
 
    1. Set the `REPLICATED_APP` environment variable to the application that you created:
@@ -63,11 +64,11 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       ```bash
       export REPLICATED_APP=APP_SLUG
       ```
-      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command. For example, `export REPLICATED_APP=gitea-kite`.
+      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command. For example, `export REPLICATED_APP=slackernews-kite`.
 
       This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
 
-1. Get the sample Bitnami Gitea Helm chart and add the Replicated SDK as a dependency:
+1. Get the sample SlackerNews Helm chart:
 
    1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
 
@@ -97,18 +98,18 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
 1. Add the chart archive to a release:
 
-   1. In the `gitea` directory, create a subdirectory named `manifests`:
+   1. In the `slackernews` directory, create a subdirectory named `manifests`:
 
       ```
       mkdir manifests
       ```
 
-      You will add the files required to support installation with Replicated KOTS and Replicated Embedded Cluster to this subdirectory.
+      You will add the files required to support installation with Embedded Cluster to this subdirectory.
 
    1. Move the Helm chart archive that you created to `manifests`:
 
       ```
-      mv gitea-1.0.6.tgz manifests
+      mv slackernews-0.4.14.tgz manifests
       ```
 
    1. In `manifests`, create the following YAML files:
@@ -116,21 +117,21 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       cd manifests
       ```
       ```
-      touch gitea.yaml kots-app.yaml k8s-app.yaml embedded-cluster.yaml
+      touch slackernews.yaml replicated-app.yaml k8s-app.yaml embedded-cluster.yaml config.yaml
       ```
 
    1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
 
       <Tabs>
-      <TabItem value="helmchart" label="gitea.yaml" default>
+      <TabItem value="helmchart" label="slackernews.yaml" default>
       <h5>Description</h5>
-      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. In this case, if the application is installed with Embedded Cluster, then the Gitea service type is set to `NodePort` and the node port is set to `"32000"`. This will allow Gitea to be accessed from the local machine after deployment for the purpose of this quick start.</p>
+      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. This HelmChart resource includes several `values` and conditional `optionalValues` that are supplied to `helm template` during deployment.</p>
       <h5>YAML</h5>
       <HelmChartCr/>
       </TabItem>
-      <TabItem value="kots-app" label="kots-app.yaml">
+      <TabItem value="replicated-app" label="replicated-app.yaml">
       <h5>Description</h5>
-      <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the Admin Console dashboard, adds a custom application icon, and adds the port where the Gitea service can be accessed so that the user can open the application after installation.</p>
+      <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, adds a custom application icon, and adds the port where the Slackernews service can be accessed so that the user can open the application after installation.</p>
       <h5>YAML</h5>
       <KotsCr/>
       </TabItem>
@@ -145,6 +146,12 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       <p>To install your application with Embedded Cluster, an Embedded Cluster Config must be present in the release. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster.</p>
       <h5>YAML</h5>
       <EcCr/>
+      </TabItem>
+      <TabItem value="config" label="config.yaml">
+      <h5>Description</h5>
+      <p>The Config custom resource defines the application config fields that are exposed to the user in the Admin Console.</p>
+      <h5>YAML</h5>
+      <ConfigCr/>
       </TabItem>
       </Tabs>
 
@@ -179,9 +186,9 @@ Before you begin, ensure that you have access to a VM that meets the requirement
           • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
       ```
 
-1. Create a customer so that you can install the release on your VM with Embedded Cluster:
+1. Create a test customer so that you can install the release on your VM with Embedded Cluster:
 
-   1. In the [Vendor Portal](https://vendor.replicated.com), under the application drop down, select the Gitea application that you created.
+   1. In the [Vendor Portal](https://vendor.replicated.com), under the application drop down, select the SlackerNews application that you created.
 
       <img alt="App drop down" src="/images/quick-start-select-gitea-app.png" width="250px"/>
 
@@ -201,11 +208,27 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. For **License type**, select **Development**.
 
-   1. For **License options**, enable the following entitlements:
-      * **KOTS Install Enabled**
-      * **Embedded Cluster Enabled**
+   1. For **License options**, enable **Embedded Cluster Enabled**.
 
    1. Click **Save Changes**.
+
+1. Create a VM with Compatibility Matrix:
+
+   1. In the Vendor Portal, go the Compatibility Matrix.
+
+   1. Click **Create > Create VM**.
+
+   1. For **Distribution**, select Ubuntu. For **Instance type** select r1.small. This instance type meets the requirements for Embedded Cluster and SlackerNews.
+
+   1. On the **Ingress & Ports** tab, For **Add DNS record**, click **Add** to create a DNS record using the default settings. This will allow you to access the Admin Console in a browser during installation.
+
+   1. Click **Create** and wait for the VM status to be Running.
+
+   1. When the VM is running, open a command prompt and run the `ssh` command that's provided in the Vendor Portal.
+
+   1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
+
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Comaptibility Matrix uses GitHub SSH to provide access to the VM. 
 
 1. Install the application with Embedded Cluster:
      
@@ -215,7 +238,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
        [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-    1. On the command line, SSH onto your VM and run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
+    1. On the command line where you SSH-ed into the VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
 
        <img width="500px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
@@ -242,7 +265,7 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
-   1. Go to the URL provided in the output to access to the Admin Console.
+   1. To access the Admin Console, go back to the **Compatibility Matrix** page in the Vendor Portal and copy the URL provided for the DNS record that you added for the VM. This URL will provide a tunnel so that you can access the Admin Console from your local machine.
    
    1. On the Admin Console landing page, click **Start**.
 
@@ -260,9 +283,9 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
    1. On the Admin Console dashboard, next to the version, click **Deploy** and then **Yes, Deploy**. 
 
-      The application status changes from Missing to Unavailable while the `gitea` Deployment is being created.
+      The application status changes from Missing to Unavailable while the application is being deployed.
 
-   1. After a few minutes when the application status is Ready, click **Open App** to view the Gitea application in a browser.
+   1. After a few minutes when the application status is Ready, click **Open App** to view SlackerNews in a browser.
    
       For example:
 
@@ -282,9 +305,9 @@ Before you begin, ensure that you have access to a VM that meets the requirement
 
 1. Create a new release that adds preflight checks to the application:
 
-   1. In your local filesystem, go to the `gitea` directory.
+   1. In your local filesystem, go to the `slackernews` directory.
 
-   1. Create a `gitea-preflights.yaml` file in the `templates` directory:
+   1. Create a `slackernews-preflights.yaml` file in the `templates` directory:
 
       ```
       touch templates/gitea-preflights.yaml
@@ -393,17 +416,6 @@ Before you begin, ensure that you have access to a VM that meets the requirement
       :::   
 
    1. On the **Confirm and Deploy** page, click **Deploy**.
-
-1. Reset and reboot the VM to remove the installation:
-
-   ```bash
-   sudo ./APP_SLUG reset
-   ```
-   Where `APP_SLUG` is the unique slug for the application.
-   
-   :::note
-   You can find the application slug by running `replicated app ls` on your local machine.
-   :::
 
 ## Next Steps
 
