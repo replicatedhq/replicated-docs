@@ -169,7 +169,6 @@ The goals of this quick start are to introduce new Replicated users to the follo
       **Example output:**
       ```bash
       RULE                                  TYPE    FILENAME         LINE    MESSAGE
-      config-spec                           warn                                                                                                                                                    Missing config spec
       preflight-spec                        warn                                                                                                                                                    Missing preflight spec
       troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
       nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
@@ -313,7 +312,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
    1. In your local filesystem, go to the `quick-start/chart/slackernews` directory.
 
-   1. Create a `preflights.yaml` file in the `templates` directory:
+   1. Create a `preflights.yaml` file in the `templates` directory for the chart:
 
       ```
       touch templates/preflights.yaml
@@ -343,35 +342,8 @@ The goals of this quick start are to introduce new Replicated users to the follo
                   get:
                     url: https://api.slack.com/methods/api.test
                     timeout: 20s
-              - http:
-                  collectorName: helmValuesSlackUserToken
-                  post:
-                    url: https://slack.com/api/auth.test
-                    headers:
-                      Authorization: Bearer {{.Values.slack.userToken}}
-                    timeout: 20s
-              - http:
-                  collectorName: helmValuesSlackBotToken
-                  post:
-                    url: https://slack.com/api/auth.test
-                    headers:
-                      Authorization: Bearer {{.Values.slack.botToken}}
-                    timeout: 20s
             analyzers:
-              - clusterVersion:
-                  exclude: {{ eq .Values.replicated.isEmbeddedCluster true }}
-                  outcomes:
-                  - fail:
-                      message: This application relies on kubernetes features only present in 1.16.0
-                        and later.
-                      uri: https://kubernetes.io
-                      when: < 1.16.0
-                  - warn:
-                      message: Your cluster is running a version of kubernetes that is out of support.
-                      uri: https://kubernetes.io
-                      when: < 1.24.0
-                  - pass:
-                      message: Your cluster meets the recommended and reqquired versions of Kubernetes.
+              # verify that slack is accessible
               - textAnalyze:
                   checkName: Slack Accessible
                   fileName: slack.json
@@ -383,41 +355,6 @@ The goals of this quick start are to introduce new Replicated users to the follo
                     - fail:
                         when: "false"
                         message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."
-              - nodeResources:
-                  checkName: One node must have 2 GB RAM and 1 CPU Cores
-                  filters:
-                    allocatableMemory: 2Gi
-                    cpuCapacity: "1"
-                  outcomes:
-                    - fail:
-                        when: count() < 1
-                        message: Cannot find a node with sufficient memory and cpu
-                    - pass:
-                        message: Sufficient CPU and memory is available
-              - textAnalyze:
-                  exclude: {{ eq .Values.slack.userToken  "" }}
-                  checkName: Slack User Token
-                  fileName: helmValuesSlackUserToken.json
-                  regex: ok\\":true
-                  outcomes:
-                    - fail:
-                        when: "false"
-                        message: No Valid Slack User token in helm values
-                    - pass:
-                        when: "true"
-                        message: Slack User Token valid
-              - textAnalyze:
-                  exclude: {{ eq .Values.slack.botToken  "" }}
-                  checkName: Slack Bot Token
-                  fileName: helmValuesSlackBotToken.json
-                  regex: ok\\":true
-                  outcomes:
-                    - fail:
-                        when: "false"
-                        message: No Valid Slack Bot token in helm values
-                    - pass:
-                        when: "true"
-                        message: Slack Bot Token valid
       ```
       
       The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
@@ -482,11 +419,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
       ![preflight page of the embedded cluster upgrade wizard](/images/quick-start-ec-upgrade-wizard-preflight.png)
 
-      [View a larger version of this image](/images/quick-start-ec-upgrade-wizard-preflight.png)
-
-      :::note
-      The **Config** screen in the upgrade wizard is bypassed because this release does not contain a KOTS Config custom resource. The KOTS Config custom resource is used to set up the Config screen in the KOTS Admin Console.
-      :::   
+      [View a larger version of this image](/images/quick-start-ec-upgrade-wizard-preflight.png)  
 
    1. On the **Confirm and Deploy** page, click **Deploy**.
 
@@ -498,7 +431,7 @@ Congratulations! As part of this quick start, you:
 * Installed the release on a VM with Embedded Cluster
 * Viewed telemetry for the installed instance in the Vendor Portal
 * Created a new release to add preflight checks to the application
-* Updated the application from the Admin Console
+* Updated the application using Embedded Cluster
 
 Now that you are familiar with the workflow of creating, installing, and updating releases, you can begin onboarding your own application to the Replicated Platform.
 
