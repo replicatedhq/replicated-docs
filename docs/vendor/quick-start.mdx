@@ -49,10 +49,23 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On your local machine, install the Replicated CLI:
 
-      ```bash
-      brew install replicatedhq/replicated/cli
-      ```
-      For more installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
+      * **Mac**
+
+        ```bash
+        brew install replicatedhq/replicated/cli
+        ```
+      * **Linux / Windows Subsystem for Linux (WSL)**
+
+        ```bash
+        version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+          | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
+        curl -Ls \
+          "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+          -o replicated.tar.gz
+        tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+        mv replicated /usr/local/bin/replicated
+        ``` 
+      For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
    1. Authorize the Replicated CLI:
 
@@ -95,6 +108,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```bash
       cd quick-start/chart/slackernews
       ```
+      The following shows the files that you will see in the `slackernews` directory:
 
    1. In the SlackerNews Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
