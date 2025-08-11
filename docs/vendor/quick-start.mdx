@@ -70,17 +70,23 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 1. Get the sample SlackerNews Helm chart:
 
-   1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
+   1. Run the following commands to download version 0.4.14 of the `slackernews` Helm chart: 
 
       ```
-      helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
+      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-0.4.14.tar.gz
       ```
-      For more information about this chart, see the [bitnami/gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea) repository in GitHub.
+   
+   1. Run the following command to untar the chart:
 
-   1. Change to the new `gitea` directory that was created:
+      ```
+      tar -xzf quick-start/slackernews-0.4.14.tar.gz -C quick-start/
+      ```
+      For more information about this chart, see the [slackernews](https://github.com/slackernews/slackernews) repository in GitHub.
+
+   1. Change to the new `chart/slackernews` directory that was created:
       
       ```bash
-      cd gitea
+      cd chart/slackernews
       ```
 
    1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
@@ -98,7 +104,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 1. Add the chart archive to a release:
 
-   1. In the `slackernews` directory, create a subdirectory named `manifests`:
+   1. In the `quick-start` directory, create a subdirectory named `manifests`:
 
       ```
       mkdir manifests
