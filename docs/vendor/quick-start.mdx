@@ -23,19 +23,27 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 * Working with the Replicated CLI
 
-* Creating test environments with Compatibility Matrix
-
 * Installing and updating applications on a VM with Replicated Embedded Cluster
 
-## Prerequisite
+## Set Up Your Environment
 
-* This quick start assumes that you have a GitHub account with an SSH key set up.
+To complete this quick start, you need access to a VM that meets the requirements for Embedded Cluster:
+
+* **Option 1: Use Compatibility Matrix.** To use Compatibility Matrix to create a VM, do the following before proceeding:
+   
+   * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+   
+   * Add an SSH key to your GitHub account. This will be used for SSHing onto the VM during the tutorial.
+   
+   * In your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings), add your GitHub username.
+
+* **Option 2: Bring your own VM.** Your VM must meet these requirements:
+
+   <Requirements/>
 
 ## Quick Start
 
 1. Create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Create a Vendor Account](vendor-portal-creating-account).
-
-1. In your **Account Settings**, add your GitHub username. Compatibility Matrix will reference this username in a later step.
 
 1. Create an application using the Replicated CLI:
 
@@ -64,32 +72,31 @@ The goals of this quick start are to introduce new Replicated users to the follo
       ```bash
       export REPLICATED_APP=APP_SLUG
       ```
-      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command. For example, `export REPLICATED_APP=slackernews-kite`.
+      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
 
       This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
 
 1. Get the sample SlackerNews Helm chart:
 
-   1. Run the following commands to download version 0.4.14 of the `slackernews` Helm chart: 
+   1. Run the following command to create a directory named `quick-start` and download version 0.4.14 of the `slackernews` Helm chart to this new directory: 
 
       ```
       curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-0.4.14.tar.gz
       ```
    
-   1. Run the following command to untar the chart:
+   1. Untar the chart:
 
       ```
       tar -xzf quick-start/slackernews-0.4.14.tar.gz -C quick-start/
       ```
-      For more information about this chart, see the [slackernews](https://github.com/slackernews/slackernews) repository in GitHub.
 
-   1. Change to the new `chart/slackernews` directory that was created:
+   1. Change to the `slackernews` chart directory:
       
       ```bash
-      cd chart/slackernews
+      cd quick-start/chart/slackernews
       ```
 
-   1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+   1. In the SlackerNews Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
       <DependencyYaml/>
 
@@ -177,7 +184,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
       You can ignore any warning messages for the purpose of this quick start.
       :::
 
-   1. Create the release and promote it to the Unstable channel:
+   1. From the `manifests` directory, create the release and promote it to the Unstable channel:
 
       ```bash
       replicated release create --yaml-dir . --promote Unstable
@@ -191,13 +198,13 @@ The goals of this quick start are to introduce new Replicated users to the follo
           • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
       ```
 
-1. Create a test customer so that you can install the release on your VM with Embedded Cluster:
+1. Create a test customer so that you can install the release with Embedded Cluster:
 
    1. In the [Vendor Portal](https://vendor.replicated.com), under the application drop down, select the SlackerNews application that you created.
 
-      <img alt="App drop down" src="/images/quick-start-select-gitea-app.png" width="250px"/>
+      {/* <img alt="App drop down" src="/images/quick-start-select-gitea-app.png" width="250px"/>
 
-      [View a larger version of this image](/images/quick-start-select-gitea-app.png)
+      [View a larger version of this image](/images/quick-start-select-gitea-app.png) */}
    
    1. Click **Customers > Create customer**.
 
@@ -211,19 +218,23 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
    1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-   1. For **License type**, select **Development**.
+   1. For **Customer type**, select **Development**.
 
-   1. For **License options**, enable **Embedded Cluster Enabled**.
+   1. For **Install types**, enable **Embedded Cluster (current generation product)**.
 
    1. Click **Save Changes**.
 
-1. Create a VM with Compatibility Matrix:
+1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
 
-   1. In the Vendor Portal, go the Compatibility Matrix.
+   1. In the Vendor Portal, go to **Compatibility Matrix**.
 
    1. Click **Create > Create VM**.
 
-   1. For **Distribution**, select Ubuntu. For **Instance type** select r1.small. This instance type meets the requirements for Embedded Cluster and SlackerNews.
+   1. For **OS distribution > Distribution**, select Ubuntu. **OS distribution > Version**, select 24.04.
+   
+   1. (Optional) For **Set TTL**, select **2 hours** or longer. By default, the TTL is one hour. After the TTL expires, Compatibility Matrix automatically deletes the VM. If you want more time to complete this quick start tutorial, you can extend the TTL to two or more hours.
+   
+   1. On the **VM Config** tab, for **Instance type** select `r1.small`. This instance type meets the requirements for Embedded Cluster and SlackerNews.
 
    1. On the **Ingress & Ports** tab, For **Add DNS record**, click **Add** to create a DNS record using the default settings. This will allow you to access the Admin Console in a browser during installation.
 
@@ -245,11 +256,11 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
     1. On the command line where you SSH-ed into the VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
 
-       <img width="500px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
+       <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
        [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-   1. When prompted, enter a password for accessing the Admin Console.
+   1. When prompted, enter a password for accessing the Admin Console. You will use this password to log in to the Admin Console in a later step.
 
       The installation command takes a few minutes to complete.
 
@@ -270,7 +281,10 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
-   1. To access the Admin Console, go back to the **Compatibility Matrix** page in the Vendor Portal and copy the URL provided for the DNS record that you added for the VM. This URL will provide a tunnel so that you can access the Admin Console from your local machine.
+   1. Do one of the following to access the Admin Console:
+       * If you created the VM with Compatibility Matrix, go to the **Compatibility Matrix** page in the Vendor Portal and copy the URL provided for the DNS record that you added in an earlier step. This URL will provide a tunnel so that you can access the Admin Console from your local machine.
+
+       * If your brought your own VM, go to the URL provided in the output of the install command.
    
    1. On the Admin Console landing page, click **Start**.
 
@@ -284,6 +298,8 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
    1. On the **Configure the cluster** screen, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
 
+   1. On the application config page, leave the default application configuration settings. Click **Continue**.
+
        The Admin Console dashboard opens.
 
    1. On the Admin Console dashboard, next to the version, click **Deploy** and then **Yes, Deploy**. 
@@ -294,13 +310,13 @@ The goals of this quick start are to introduce new Replicated users to the follo
    
       For example:
 
-      ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+      {/* ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
-      [View a larger version of this image](/images/gitea-ec-ready.png)
+      [View a larger version of this image](/images/gitea-ec-ready.png) */}
 
-      <img alt="Slackernews landing page" src="/images/gitea-app.png" width="600px"/>
+      <img alt="Slackernews landing page" src="/images/slackernews-landing-page.png" width="800px"/>
 
-      [View a larger version of this image](/images/gitea-app.png) 
+      [View a larger version of this image](/images/slackernews-landing-page.png)
 
 1. Return to the Vendor Portal and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
 
@@ -375,7 +391,10 @@ The goals of this quick start are to introduce new Replicated users to the follo
    1. Move the chart archive to the `manifests` directory:
 
       ```bash
-      mv slackernews-0.4.15.tgz ../../manifests
+      cd ../../manifests
+      ```
+      ```bash
+      mv chart/slackernews/slackernews-0.4.15.tgz .
       ```
 
    1. In the `manifests` directory, open the KOTS HelmChart custom resource (`slackernews.yaml`) and update the `chartVersion`:
