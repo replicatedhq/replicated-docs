@@ -115,7 +115,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
    1. Move the Helm chart archive that you created to `manifests`:
 
       ```
-      mv slackernews-0.4.14.tgz manifests
+      mv chart/slackernews/slackernews-0.4.14.tgz manifests
       ```
 
    1. In `manifests`, create the following YAML files:
@@ -266,7 +266,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
       ✔  Embedded Cluster Operator is ready!
       ✔  Admin Console is ready!
       ✔  Additional components are ready!
-      Visit the Admin Console to configure and install gitea-kite: http://104.155.145.60:30000
+      Visit the Admin Console to configure and install slackernews-kite: http://104.155.145.60:30000
       ```
 
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
@@ -299,7 +299,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
       [View a larger version of this image](/images/gitea-ec-ready.png)
 
-      <img alt="Gitea app landing page" src="/images/gitea-app.png" width="600px"/>
+      <img alt="Slackernews landing page" src="/images/gitea-app.png" width="600px"/>
 
       [View a larger version of this image](/images/gitea-app.png) 
 
@@ -311,36 +311,67 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 1. Create a new release that adds preflight checks to the application:
 
-   1. In your local filesystem, go to the `slackernews` directory.
+   1. In your local filesystem, go to the `quick-start/chart/slackernews` directory.
 
-   1. Create a `slackernews-preflights.yaml` file in the `templates` directory:
+   1. Create a `preflights.yaml` file in the `templates` directory:
 
       ```
-      touch templates/gitea-preflights.yaml
+      touch templates/preflights.yaml
       ```
 
-   1. In the `gitea-preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a simple preflight spec: 
+   1. In the `preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a simple preflight spec: 
 
       ```yaml
       apiVersion: v1
       kind: Secret
       metadata:
+        name: slackernews-preflight
         labels:
           troubleshoot.sh/kind: preflight
-        name: "{{ .Release.Name }}-preflight-config"
       stringData:
-        preflight.yaml: |
+        preflight.yaml: |-
           apiVersion: troubleshoot.sh/v1beta2
           kind: Preflight
           metadata:
-            name: preflight-sample
+            name: slackernews-preflight
           spec:
             collectors:
+              - clusterInfo: {}
+              - clusterResources: {}
               - http:
                   collectorName: slack
                   get:
                     url: https://api.slack.com/methods/api.test
+                    timeout: 20s
+              - http:
+                  collectorName: helmValuesSlackUserToken
+                  post:
+                    url: https://slack.com/api/auth.test
+                    headers:
+                      Authorization: Bearer {{.Values.slack.userToken}}
+                    timeout: 20s
+              - http:
+                  collectorName: helmValuesSlackBotToken
+                  post:
+                    url: https://slack.com/api/auth.test
+                    headers:
+                      Authorization: Bearer {{.Values.slack.botToken}}
+                    timeout: 20s
             analyzers:
+              - clusterVersion:
+                  exclude: {{ eq .Values.replicated.isEmbeddedCluster true }}
+                  outcomes:
+                  - fail:
+                      message: This application relies on kubernetes features only present in 1.16.0
+                        and later.
+                      uri: https://kubernetes.io
+                      when: < 1.16.0
+                  - warn:
+                      message: Your cluster is running a version of kubernetes that is out of support.
+                      uri: https://kubernetes.io
+                      when: < 1.24.0
+                  - pass:
+                      message: Your cluster meets the recommended and reqquired versions of Kubernetes.
               - textAnalyze:
                   checkName: Slack Accessible
                   fileName: slack.json
@@ -352,14 +383,50 @@ The goals of this quick start are to introduce new Replicated users to the follo
                     - fail:
                         when: "false"
                         message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."
+              - nodeResources:
+                  checkName: One node must have 2 GB RAM and 1 CPU Cores
+                  filters:
+                    allocatableMemory: 2Gi
+                    cpuCapacity: "1"
+                  outcomes:
+                    - fail:
+                        when: count() < 1
+                        message: Cannot find a node with sufficient memory and cpu
+                    - pass:
+                        message: Sufficient CPU and memory is available
+              - textAnalyze:
+                  exclude: {{ eq .Values.slack.userToken  "" }}
+                  checkName: Slack User Token
+                  fileName: helmValuesSlackUserToken.json
+                  regex: ok\\":true
+                  outcomes:
+                    - fail:
+                        when: "false"
+                        message: No Valid Slack User token in helm values
+                    - pass:
+                        when: "true"
+                        message: Slack User Token valid
+              - textAnalyze:
+                  exclude: {{ eq .Values.slack.botToken  "" }}
+                  checkName: Slack Bot Token
+                  fileName: helmValuesSlackBotToken.json
+                  regex: ok\\":true
+                  outcomes:
+                    - fail:
+                        when: "false"
+                        message: No Valid Slack Bot token in helm values
+                    - pass:
+                        when: "true"
+                        message: Slack Bot Token valid
       ```
+      
       The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
-   1. In the `Chart.yaml` file, increment the version to 1.0.7:
+   1. In the `Chart.yaml` file, increment the version to 0.4.15:
 
       ```yaml
       # Chart.yaml
-      version: 1.0.7
+      version: 0.4.15
       ```
 
    1. Update dependencies and package the chart to a `.tgz` chart archive:
@@ -371,20 +438,20 @@ The goals of this quick start are to introduce new Replicated users to the follo
    1. Move the chart archive to the `manifests` directory:
 
       ```bash
-      mv gitea-1.0.7.tgz manifests
+      mv slackernews-0.4.15.tgz ../../manifests
       ```
 
-   1. In the `manifests` directory, open the KOTS HelmChart custom resource (`gitea.yaml`) and update the `chartVersion`:
+   1. In the `manifests` directory, open the KOTS HelmChart custom resource (`slackernews.yaml`) and update the `chartVersion`:
 
       ```yaml
-      # gitea.yaml KOTS HelmChart
-      chartVersion: 1.0.7
+      # slackernews.yaml KOTS HelmChart
+      chartVersion: 0.4.15
       ```  
 
-   1. Remove the chart archive for version 1.0.6 of the Gitea chart from the `manifests` directory:
+   1. Remove the chart archive for version 0.4.14 of the chart from the `manifests` directory:
 
       ```
-      rm gitea-1.0.6.tgz
+      rm slackernews-0.4.14.tgz
       ```        
 
    1. From the `manifests` directory, create and promote a new release, setting the version label of the release to `0.0.2`:  
