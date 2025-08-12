@@ -265,15 +265,17 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```bash
       replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
       ```
-   1. Run the following command to check the status of the VM:
+      In about one minute, the status of the VM changes from `queued` to `running`.
+
+   1. Check the status of the VM to see when it is `running`:
 
       ```bash
       replicated vm ls
       ```
 
-   1. When the VM status is `running`, copy the VM ID from the output of the `replicated vm ls` command.
+   1. When the VM is `running`, copy the VM ID from the output of the `replicated vm ls` command.
    
-   1. Run the following command to use the Compatibility Matrix Forwarder to SSH into the VM:
+   1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
 
       ```bash
       ssh VM_ID@replicatedvm.com
@@ -294,7 +296,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
        [View a larger image](/images/customer-install-instructions-dropdown.png)
 
-    1. On the command line where you SSH-ed into the VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
+    1. On the VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
 
        <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
@@ -331,7 +333,16 @@ To complete this quick start, you need access to a VM that meets the requirement
        * If you created the VM with Compatibility Matrix, do the following to create a tunnel so that you can access the Admin Console from your local machine:
          1. In the Vendor Portal, go to **Compatibility Matrix**.
          1. Open the dot menu for your VM and click **Edit**.
+
+            ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
+
+            [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
+
          1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings.
+
+            ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
+            [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
+
          1. Copy the URL provided for the DNS record.
          1. Open a browser and go to the URL.
 
@@ -352,16 +363,14 @@ To complete this quick start, you need access to a VM that meets the requirement
    1. On the application config page, complete the following fields:
    
        * For **Hostname**, enter any hostname to use for SlackerNews.
-       * For Service type, select **NodePort** and leave the port field blank to use the default port of 443. 
-       * Ensure that **Deploy Postgres** is enabled to deploy the built-in postgres database.
+       * For **Application Access > Service Type**, select **NodePort** and leave the port field blank to use the default port of 443. 
+       * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
    
    1. Click **Continue**.
 
        The Admin Console dashboard opens.
-
-   1. On the Admin Console dashboard, next to the version, click **Deploy** and then **Yes, Deploy**. 
-
-      The application status changes from Missing to Unavailable while the application is being deployed.
+       
+       The application status changes from Missing to Unavailable while the application is being deployed.
 
    1. After a few minutes when the application status is Ready, click **Open App** to view SlackerNews in a browser.
    
@@ -509,7 +518,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On the **Confirm and Deploy** page, click **Deploy**.
 
-1. Clean up:
+1. Clean up the installation:
 
     * If you created the VM with Compatibility Matrix, delete the VM:
 
@@ -537,7 +546,7 @@ Congratulations! As part of this quick start, you:
 * Installed the release on a VM with Embedded Cluster
 * Viewed telemetry for the installed instance in the Vendor Portal
 * Created a new release to add preflight checks to the application
-* Updated the application using Embedded Cluster
+* Updated the application to the new version using Embedded Cluster
 
 Now that you are familiar with the workflow of creating, installing, and updating releases, you can begin onboarding your own application to the Replicated Platform.
 
