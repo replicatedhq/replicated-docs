@@ -50,13 +50,25 @@ If you are restoring to a healthy cluster, you can skip reinstalling Velero and 
 
 To restore a full backup in an existing cluster:
 
+1. (Air Gap Only) For clusters in air-gapped environments, do the following to prepare the necessary Velero images:
+     1. Download the following images to your local machine, tag them, then upload them to your local image registry:
+         * The Velero image. See [Preparing the Velero Image](https://velero.io/docs/v1.16/on-premises/#preparing-the-velero-image).
+         * The `velero/velero-plugin-for-aws:v1.5.3` plugin image. See [Preparing plugin images](https://velero.io/docs/v1.16/on-premises/#preparing-plugin-images).
+         * The restore helper image. See [Preparing the restore helper image](https://velero.io/docs/v1.16/on-premises/#preparing-the-restore-helper-image-optional).
+
+     1. Create a ConfigMap in the Velero namespace to specify the location of the Velero restore helper image on your local registry. For more information about the requirements for this ConfigMap, see [Customize Restore Helper Container](https://velero.io/docs/v1.16/file-system-backup/#customize-restore-helper-container).
+
 1. (New or Unhealthy Clusters Only) In the cluster where you will do the restore, install a version of Velero that is compatible with the version that was used to make the snapshot backup.
 
     The Velero installation command varies depending on the storage destination for the backup. For the Velero installation command, see one of the following:
 
-    * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-    * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
-    * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
+     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
+     * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
+
+    :::note
+    For air-gapped environments, be sure to point to the location of each image on your local image registry with the `velero install` command. For more information, see [Installing Velero](https://velero.io/docs/v1.16/on-premises/#installing-velero).
+    :::
 
 1. <GetBackups/>
 
