@@ -102,7 +102,7 @@ To complete this quick start, you need access to a VM that meets the requirement
    1. Untar the chart:
 
       ```
-      tar -xzf quick-start/slackernews-0.4.14.tar.gz -C quick-start/
+      tar -xzf quick-start/slackernews-0.4.14.tar.gz -C quick-start/ && rm slackernews-0.4.14.tar.gz
       ```
 
    1. Change to the `slackernews` chart directory:
@@ -110,9 +110,13 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```bash
       cd quick-start/chart/slackernews
       ```
-      The following shows the files that you will see in the `slackernews` directory:
+
+   1. List the files in the `slackernews` directory to view the contents of the Helm chart:
       ```bash
-      
+      ls
+      ```
+      ```bash
+      Chart.lock  Chart.yaml  NOTES.txt   README.md   templates   values.yaml
       ```
 
    1. In the SlackerNews Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
@@ -128,8 +132,16 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       Where `-u` or `--dependency-update` is an option for the helm package command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
 
-1. Add the chart archive to a release:
+      The output of this command is a file named `slackernews-0.4.14.tgz`.
 
+1. Add the `slackernews-0.4.14.tgz` chart archive to a release:
+
+   1. Change to the `quick-start` directory:
+
+      ```bash
+      cd ../..
+      ```
+   
    1. In the `quick-start` directory, create a subdirectory named `manifests`:
 
       ```
@@ -194,13 +206,16 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       **Example output:**
       ```bash
-      RULE                                  TYPE    FILENAME         LINE    MESSAGE
-      preflight-spec                        warn                                                                                                                                                    Missing preflight spec
-      troubleshoot-spec                     warn                                                                                                                                                    Missing troubleshoot spec
-      nonexistent-status-informer-object    warn    kots-app.yaml    8       Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+      RULE                                TYPE   FILENAME             LINE   MESSAGE
+      may-contain-secrets                 info   slackernews.yaml     142    It looks like there might be secrets in this file
+      preflight-spec                      warn                               Missing preflight spec
+      troubleshoot-spec                   warn                               Missing troubleshoot spec
+      nonexistent-status-informer-object  warn   replicated-app.yaml  14     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+      nonexistent-status-informer-object  warn   replicated-app.yaml  15     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+      nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
       ```
       :::note
-      You can ignore any warning messages for the purpose of this quick start.
+      You can ignore these warning messages for the purpose of this quick start.
       :::
 
    1. From the `manifests` directory, create the release and promote it to the Unstable channel:
@@ -245,23 +260,29 @@ To complete this quick start, you need access to a VM that meets the requirement
 
 1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
 
-   1. In the Vendor Portal, go to **Compatibility Matrix**.
+   1. Run the following command to create a VM:
 
-   1. Click **Create > Create VM**.
+      ```bash
+      replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
+      ```
+   1. Run the following command to check the status of the VM:
 
-   1. For **OS distribution > Distribution**, select Ubuntu. **OS distribution > Version**, select 24.04.
+      ```bash
+      replicated vm ls
+      ```
+
+   1. When the VM status is `running`, copy the VM ID from the output of the `replicated vm ls` command.
    
-   1. (Optional) For **Set TTL**, select **2 hours** or longer. By default, the TTL is one hour. After the TTL expires, Compatibility Matrix automatically deletes the VM. If you want more time to complete this quick start tutorial, you can extend the TTL to two or more hours.
-   
-   1. On the **VM Config** tab, for **Instance type** select `r1.small`. This instance type meets the requirements for Embedded Cluster and SlackerNews.
+   1. Run the following command to use the Compatibility Matrix Forwarder to SSH into the VM:
 
-   1. On the **Ingress & Ports** tab, For **Add DNS record**, click **Add** to create a DNS record using the default settings. This will allow you to access the Admin Console in a browser during installation.
+      ```bash
+      ssh VM_ID@replicatedvm.com
+      ```
+      Where `VM_ID` is the ID that you copied.
 
-   1. Click **Create** and wait for the VM status to be Running.
-
-   1. When the VM is running, open a command prompt and run the `ssh` command that's provided in the Vendor Portal.
-
-   1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
+      :::note
+      If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
+      :::
 
    1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Comaptibility Matrix uses GitHub SSH to provide access to the VM. 
 
@@ -279,29 +300,40 @@ To complete this quick start, you need access to a VM that meets the requirement
 
        [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-   1. When prompted, enter a password for accessing the Admin Console. You will use this password to log in to the Admin Console in a later step.
+   1. When prompted, set a password for accessing the Admin Console. Save the password in a secure location. You will use this password to log in to the Admin Console in a later step.
 
       The installation command takes a few minutes to complete.
 
       **Example output:**
 
       ```bash
-      ? Enter an Admin Console password: ********
-      ? Confirm password: ********
-      ✔  Host files materialized!
-      ✔  Running host preflights
-      ✔  Node installation finished!
-      ✔  Storage is ready!
-      ✔  Embedded Cluster Operator is ready!
-      ✔  Admin Console is ready!
-      ✔  Additional components are ready!
-      Visit the Admin Console to configure and install slackernews-kite: http://104.155.145.60:30000
+      ? Set the Admin Console password (minimum 6 characters): ********
+      ? Confirm the Admin Console password: ********
+
+      ✔  Initialization complete
+      ✔  Host preflights passed
+      ✔  Node is ready
+      ✔  Storage is ready
+      ✔  Runtime Operator is ready
+      ✔  Admin Console is ready
+      ✔  Additional components are ready
+
+      -----------------------------------------------------------------
+      Visit the Admin Console to configure and install slackernews-gnu:
+
+      http://10.0.0.11:30000
+      -----------------------------------------------------------------
       ```
 
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
    1. Do one of the following to access the Admin Console:
-       * If you created the VM with Compatibility Matrix, go to the **Compatibility Matrix** page in the Vendor Portal and copy the URL provided for the DNS record that you added in an earlier step. This URL will provide a tunnel so that you can access the Admin Console from your local machine.
+       * If you created the VM with Compatibility Matrix, do the following to create a tunnel so that you can access the Admin Console from your local machine:
+         1. In the Vendor Portal, go to **Compatibility Matrix**.
+         1. Open the dot menu for your VM and click **Edit**.
+         1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings.
+         1. Copy the URL provided for the DNS record.
+         1. Open a browser and go to the URL.
 
        * If your brought your own VM, go to the URL provided in the output of the install command.
    
@@ -317,7 +349,13 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On the **Configure the cluster** screen, you can view details about the VM where you installed, including its node role, status, CPU, and memory. Users can also optionally add additional nodes on this page before deploying the application. Click **Continue**. 
 
-   1. On the application config page, leave the default application configuration settings. Click **Continue**.
+   1. On the application config page, complete the following fields:
+   
+       * For **Hostname**, enter any hostname to use for SlackerNews.
+       * For Service type, select **NodePort** and leave the port field blank to use the default port of 443. 
+       * Ensure that **Deploy Postgres** is enabled to deploy the built-in postgres database.
+   
+   1. Click **Continue**.
 
        The Admin Console dashboard opens.
 
@@ -337,7 +375,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
       [View a larger version of this image](/images/slackernews-landing-page.png)
 
-1. Return to the Vendor Portal and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
+1. Return to the Vendor Portal, select the SlackerNews application, and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
 
    This instance telemetry is automatically collected and sent back to the Vendor Portal by both KOTS and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
@@ -429,7 +467,17 @@ To complete this quick start, you need access to a VM that meets the requirement
       rm slackernews-0.4.14.tgz
       ```        
 
-   1. From the `manifests` directory, create and promote a new release, setting the version label of the release to `0.0.2`:  
+   1. From the `manifests` directory, lint the release manifests:
+
+      ```bash
+      replicated release lint --yaml-dir .
+      ```
+
+      :::note
+      If you see a `helm-archive-missing` error, run `rm -rf .history` and then try linting the files again.
+      :::
+   
+   1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
 
       ```bash
       replicated release create --yaml-dir . --promote Unstable --version 0.0.2
@@ -451,9 +499,9 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. Click **Deploy** next to the new version.
 
-      The Embedded Cluster upgrade wizard opens.
+      The Embedded Cluster upgrade wizard opens. Follow the steps until you see the **Preflight checks** screen
 
-   1. In the Embedded Cluster upgrade wizard, on the **Preflight checks** screen, note that the "Slack Accessible" preflight check that you added was successful. Click **Next: Confirm and deploy**.   
+   1. On the **Preflight checks** screen, note that the "Slack Accessible" preflight check that you added was successful. Click **Next: Confirm and deploy**.   
 
       ![preflight page of the embedded cluster upgrade wizard](/images/quick-start-ec-upgrade-wizard-preflight.png)
 
