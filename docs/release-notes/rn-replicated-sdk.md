@@ -8,9 +8,17 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.8.0
+
+Released on August 12, 2025
+
+### Improvements {#improvements-1-8-0}
+* Adds reporting of in-use digests of app images.
+* Expands the Minimal RBAC role to include the ability to list and watch pods within the namespace.
+
 ## 1.7.2
 
-Released on July 10, 2025
+Released on August 5, 2025
 
 ### Improvements {#improvements-1-7-2}
 * Updates the default Minimal RBAC role to allow accessing the replicated-sdk configmap.
