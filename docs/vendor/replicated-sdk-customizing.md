@@ -254,6 +254,8 @@ rules:
   - pods
   verbs:
   - get
+  - list
+  - watch
 - apiGroups:
   - ""
   resourceNames:
