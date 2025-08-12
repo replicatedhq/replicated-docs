@@ -509,6 +509,26 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On the **Confirm and Deploy** page, click **Deploy**.
 
+1. Clean up:
+
+    * If you created the VM with Compatibility Matrix, delete the VM:
+
+       ```bash
+       replicated vm rm VM_ID
+       ```
+       Where VM_ID is the ID of the VM. You can run `replicated vm ls` to get the ID.
+
+    * If you brought your own VM, reset and reboot the VM to remove the installation:
+
+       ```bash
+       sudo ./APP_SLUG reset
+       ```
+       Where `APP_SLUG` is the unique slug for the application.
+
+       :::note
+       You can find the application slug by running replicated app ls on your local machine.  
+       ::: 
+
 ## Next Steps
 
 Congratulations! As part of this quick start, you:
