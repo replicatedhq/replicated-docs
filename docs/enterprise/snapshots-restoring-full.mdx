@@ -45,7 +45,7 @@ To restore using the CLI, see the corresponding procedure for your environment:
 ### Existing Clusters {#existing}
 
 :::note
-If you are restoring to a healthy online or air-gapped cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
+If you are restoring to a healthy online cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
 :::
 
 To restore a full backup in an existing cluster:
@@ -53,7 +53,7 @@ To restore a full backup in an existing cluster:
 1. (Air Gap Only) For air-gapped environments, do the following to prepare the necessary Velero images so that you can install Velero in the target cluster:
      1. Download the following images to your local machine, tag them, then upload them to your local image registry:
          * The Velero image. See [Preparing the Velero Image](https://velero.io/docs/v1.16/on-premises/#preparing-the-velero-image).
-         * The `velero/velero-plugin-for-aws:v1.5.3` plugin image. See [Preparing plugin images](https://velero.io/docs/v1.16/on-premises/#preparing-plugin-images).
+         * The `velero/velero-plugin-for-aws:$PLUGIN_VERSION` plugin image. See [Preparing plugin images](https://velero.io/docs/v1.16/on-premises/#preparing-plugin-images).
          * The restore helper image. See [Preparing the restore helper image](https://velero.io/docs/v1.16/on-premises/#preparing-the-restore-helper-image-optional).
 
      1. Create a ConfigMap in the Velero namespace to specify the location of the Velero restore helper image on your local registry. For more information about the requirements for this ConfigMap, see [Customize Restore Helper Container](https://velero.io/docs/v1.16/file-system-backup/#customize-restore-helper-container).
