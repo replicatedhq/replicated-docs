@@ -19,7 +19,7 @@ The following VM types are supported:
 | Distribution | Versions | Instance Types |
 | :---- | :---- | :---- |
 | ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
-| almalinux | 8 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
+| almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
 
 ## Limitations
 
