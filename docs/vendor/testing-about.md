@@ -33,19 +33,3 @@ For more information about pricing, see [Compatibility Matrix Pricing](testing-p
 To create clusters with Compatibility Matrix, you must have credits in your Vendor Portal account.
 If you have a contract, you can purchase credits by logging in to the Vendor Portal and going to [**Compatibility Matrix > Buy additional credits**](https://vendor.replicated.com/compatibility-matrix).
 Otherwise, to request credits, log in to the Vendor Portal and go to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix).
-
-## Statuses
-
-The following describes the possible statuses of clusters or VMs created with Compatibility Matrix:
-
-* `assigned`/`queued`: The resources were requested and Compatibility Matrix is provisioning the environment. You are not billed for the time that a cluster or VM spends in the `assigned` status.
-
-* `running`: For clusters, a working kubeconfig for the cluster is accessible. For VMs, an SSH endpoint is available. Billing begins when a `running` status is reached.
-
-   Additionally, clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
-
-* `terminated`: The cluster or VM is deleted or the TTL has been reached. Billing ends when the cluster status is changed from `running` to `terminated`.
-
-* `error`: An error occurred when attempting to provision the cluster or VM.
-
-You can view the status of clusters and VMs using the `replicated cluster ls` or `replicated vm ls` commands. For more information, see [cluster ls](/reference/replicated-cli-cluster-ls) or [vm ls](/reference/replicated-cli-vm-ls).
