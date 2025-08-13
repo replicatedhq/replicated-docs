@@ -1,16 +1,15 @@
-import Overview from "../partials/cmx/_overview.mdx"
-
 # About Compatibility Matrix
 
 This topic describes Replicated Compatibility Matrix, including use cases, billing, limitations, and more.
 
 ## Overview
 
-<Overview/>
+You can use Replicated Compatibility Matrix to quickly provision ephemeral clusters and VMs. Compatibility Matrix's netowrking features also provide kubectl or SSH access to clusters and VMs. This allows you to install and test your application in a range of different development environments before releasing to customers.
 
-![Create cluster page in the vendor portal](/images/compatibility-matrix-create-cluster.png)
-
-[View a larger version of this image](/images/compatibility-matrix-create-cluster.png)
+Example use cases for Compatibility Matrix include:
+* Run tests before releasing a new version of your application to validate compatibility with supported Kubernetes distributions
+* Get access to a cluster or VM to develop on and quickly test changes
+* Reproduce a reported issue on a customer-representative environment for troubleshooting
 
 You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Use Compatibility Matrix](testing-how-to).
 
