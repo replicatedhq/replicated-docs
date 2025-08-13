@@ -1,4 +1,4 @@
-# Access Your Application
+# Cluster Networking
 
 This topic describes the networking options for accessing applications deployed on clusters created with Replicated Compatibility Matrix. It also describes how to use and manage Compatibility Matrix tunnels.
 

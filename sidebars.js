@@ -229,20 +229,21 @@ const sidebars = {
       items: [
         'vendor/testing-about',
         'vendor/testing-pricing',
-        'vendor/testing-supported-clusters',
         {
           type: 'category',
           label: 'Use Compatibility Matrix',
           items: [
             'vendor/testing-how-to',
+            'vendor/testing-supported-clusters',
+            'vendor/testing-ingress',
+            'vendor/testing-cluster-addons',
             'vendor/testing-vm-create',
             'vendor/testing-vm-networking',
             'vendor/testing-ci-cd',
           ],
         },
-        'vendor/testing-cluster-addons',
+        
         'vendor/compatibility-matrix-usage',
-        'vendor/testing-ingress',
       ],
     },
     {
