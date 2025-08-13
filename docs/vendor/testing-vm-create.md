@@ -111,6 +111,8 @@ replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.s
 
 ## Create VMs
 
+### With the Replicated CLI
+
 To create VMs with Compatibility Matrix:
 
 1. (Optional) View the available VM distributions, including the supported VM distribution versions and instance types:
@@ -151,6 +153,70 @@ To create VMs with Compatibility Matrix:
    ```bash
    replicated vm create --distribution ubuntu --version 22.04 --disk 50 --instance-type r1.medium
    ```
+
+### With the Vendor Portal
+
+To create a VM from the Vendor Portal:
+
+To create a cluster using the Vendor Portal:
+
+1. In the Vendor Portal, go to [**Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix).
+
+    <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
+
+    [View a larger version of this image](/images/create-a-cluster.png)
+
+1. Click **Create > Create VM**.
+
+1. On the **Create a Virtual Machine** page, complete the following fields:
+
+   <table>
+     <tr>
+       <th>Field</th>
+       <th>Description</th>
+     </tr>
+     <tr>
+       <td>OS distribution</td>
+       <td>Select the OS distribution for the VM.</td>
+     </tr>
+     <tr>
+       <td>Version</td>
+       <td>Select the OS version. The options available are specific to the distribution selected.</td>
+     </tr>
+     <tr>
+       <td>Name (optional)</td>
+       <td>Enter an optional name for the VM.</td>
+     </tr>
+     <tr>
+       <td>Tags</td>
+       <td>Add one or more tags to the VM as key-value pairs.</td>
+     </tr>
+     <tr>
+       <td>Set TTL</td>
+       <td>Select the Time to Live (TTL) for the VM. When the TTL expires, the VM is automatically deleted. TTL can be adjusted after VM creation with [vm update ttl](/reference/replicated-cli-vm-update-ttl).</td>
+     </tr>
+   </table>  
+
+1. For **VM Config**, complete the following fields:
+
+   <table>
+   <tr>
+       <td>Instance type</td>
+       <td>Select the instance type to use for the nodes in the node group. The options available are specific to the distribution selected.</td>
+     </tr>   
+     <tr>
+       <td>Disk size</td>
+       <td>Select the disk size in GiB to use per node.</td>
+     </tr>
+     <tr>
+       <td>Count</td>
+       <td>Select the number of VMs to provision.</td>
+     </tr>  
+   </table>
+
+1. Click **Create VM**.
+
+   The VM is displayed on the **Compatibility Matrix** page. When the SSH endpoint for the VM is available, the VM's status is changed to `running`.
 
 ## Connect to a VM
 
@@ -236,7 +302,28 @@ To connect to a VM using direct SSH:
    
    ```
    ssh $(replicated vm ssh-endpoint aba1acc2)
-   ``` 
+   ```
+
+## Expose Ports on Running VMs
+
+After creating a VM, you can create update the ingress and ports settings to add DNS records. This allows you to connect to ports on the VM.
+
+To update the ingress and ports settings for a running VM:
+
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
+
+1. Open the dot menu for the target VM and click **Edit**.
+
+   ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
+
+   [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
+
+1. Under **Ingress & Ports**, for **Add DNS record**, edit the fields as desired and click **Add** to create a DNS record.
+
+   ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
+   [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
+
+   A DNS record and valid TLS cert are created and connected to the specified port.
 
 ## Copy Files to a VM
 
