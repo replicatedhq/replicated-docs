@@ -11,7 +11,7 @@ Example use cases for Compatibility Matrix include:
 * Get access to a cluster or VM to develop on and quickly test changes
 * Reproduce a reported issue on a customer-representative environment for troubleshooting
 
-You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Use Compatibility Matrix](testing-how-to).
+You can use Compatibility Matrix with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use Compatibility Matrix, see [Create Clusters](testing-how-to) and [Create VMs](testing-vm-create).
 
 ## Supported Clusters and VMs
 
