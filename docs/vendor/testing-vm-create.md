@@ -158,15 +158,13 @@ To create VMs with Compatibility Matrix:
 
 To create a VM from the Vendor Portal:
 
-To create a cluster using the Vendor Portal:
-
-1. In the Vendor Portal, go to [**Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix).
-
-    <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
-
-    [View a larger version of this image](/images/create-a-cluster.png)
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
 
 1. Click **Create > Create VM**.
+
+   ![create vm page in the vendor portal](/images/compatibility-matrix-create-vm.png)
+   
+   [View a larger version of this image](/images/compatibility-matrix-create-vm.png)
 
 1. On the **Create a Virtual Machine** page, complete the following fields:
 
@@ -215,8 +213,6 @@ To create a cluster using the Vendor Portal:
    </table>
 
 1. Click **Create VM**.
-
-   The VM is displayed on the **Compatibility Matrix** page. When the SSH endpoint for the VM is available, the VM's status is changed to `running`.
 
 ## Connect to a VM
 
@@ -312,7 +308,7 @@ To update the ingress and ports settings for a running VM:
 
 1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
 
-1. Open the dot menu for the target VM and click **Edit**.
+1. Open the dot menu for the target VM and click **Edit VM**.
 
    ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
 
@@ -320,8 +316,8 @@ To update the ingress and ports settings for a running VM:
 
 1. Under **Ingress & Ports**, for **Add DNS record**, edit the fields as desired and click **Add** to create a DNS record.
 
-   ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
-   [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
+   ![DNS record for a VM](/images/compatibility-matrix-ingress-ports.png)
+   [View a larger version of this image](/images/compatibility-matrix-ingress-ports.png)
 
    A DNS record and valid TLS cert are created and connected to the specified port.
 
