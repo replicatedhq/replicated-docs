@@ -19,13 +19,14 @@ The following VM types are supported:
 | Distribution | Versions | Instance Types |
 | :---- | :---- | :---- |
 | ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
-| almalinux | 8 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
+| almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge |
 
 ## Limitations
 
 Creating VMs with Compatibility Matrix has the following limitations:
 
 - Creating VMs with Compatibility Matrix is a Beta feature.
+- Supporting SELinux: If you enfore selinux (`setenforce 1`), you cannot SSH into the VM. A workaround is to first run `touch /.autorelabel` and reboot the VM, before running `setenforce 1`.
 - Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
 - [GitHub Actions](/vendor/testing-how-to#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
 - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
