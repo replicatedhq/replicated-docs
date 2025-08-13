@@ -4,19 +4,42 @@ This topic describes the pricing for Replicated Compatibility Matrix.
 
 ## Pricing Overview
 
-Compatibility Matrix usage-based pricing includes a $0.50 per cluster startup cost, plus by the minute pricing based on instance size and count (starting at the time the cluster state changed to "running" and ending when the cluster is either expired (TTL) or removed). Minutes will be rounded up, so there will be a minimum charge of $0.50 plus 1 minute for all running clusters. Each cluster's cost will be rounded up to the nearest cent and subtracted from the available credits in the team account. 
+Compatibility Matrix usage-based pricing includes:
+* A $0.50 per cluster or VM startup cost
+* By-the-minute pricing based on instance size and count, starting at the time the cluster or VM state is `running` and ending when the cluster or VM is either expired (TTL) or removed. Minutes are rounded up.
+   :::note
+   You are billed only for the time that the cluster is in a `running` status. You are _not_ billed for the time that it takes Compatibility Matrix to create and tear down clusters and VMs.
+   :::
+* Additional charges when applicable for cluster [add-ons](/vendor/testing-cluster-addons).
 
-Remaining credit balance is viewable on the Replicated Vendor Portal [Cluster History](https://vendor.replicated.com/compatibility-matrix/history) page or with the Vendor API v3 [/vendor/v3/cluster/stats](https://replicated-vendor-api.readme.io/reference/getclusterstats) endpoint. Cluster [add-ons](/vendor/testing-cluster-addons) may incur additional charges. 
+There is a minimum charge of $0.50 plus one minute for all running clusters or VMs. Cost is rounded up to the nearest cent and subtracted from the available credits in the team account.
+
+## Credit Balance
+
+You can view remaining credit balance on the Replicated Vendor Portal [Cluster History](https://vendor.replicated.com/compatibility-matrix/history) page or with the Vendor API v3 [/vendor/v3/cluster/stats](https://replicated-vendor-api.readme.io/reference/getclusterstats) endpoint. 
 
 If the team's available credits are insufficient to run the cluster for the full duration of the TTL, the cluster creation will be rejected.
 
-Team members assigned the Admin role will receive a warning to their email address when the remaining credit balance falls below the amount of credits that were consumed by your team in the previous seven days. 
+Team members assigned the Admin role receive a warning to their email address when the remaining credit balance falls below the amount of credits that were consumed by your team in the previous seven days. 
 
-## Cluster Quotas
+## Quotas and Capacity
 
-Each team is limited by the number of clusters that they can run concurrently. To increase the quota, reach out to your account manager.
+By default, Compatibility Matrix sets quotas for the capacity that can be used concurrently by each Vendor Portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning both VM and cloud-based clusters.
 
-## VM Cluster Pricing (Openshift, RKE2, K3s, Kind, Embedded Cluster, kURL)
+By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
+
+VMs and VM-based cluster distributions (such as kind, OpenShift, and Replicated Embedded Cluster) have the following default quotas:
+* 32 vCPUs
+* 128 GiB memory
+* 800 GiB disk size 
+
+You can request increased quotas at any time with no additional cost. To view your team's current quota and capacity usage, or to request a quota increase, go to [**Compatibility Matrix > Settings**](https://vendor.replicated.com/compatibility-matrix/settings) in the Vendor Portal:
+
+![Compatibility matrix settings page](/images/compatibility-matrix-settings.png)
+
+[View a larger version of this image](/images/compatibility-matrix-settings.png)
+
+## VMs and VM-Based Cluster Pricing (Openshift, RKE2, K3s, Kind, Embedded Cluster, kURL)
 
 VM-based clusters approximately match the AWS m6.i instance type pricing.
 
