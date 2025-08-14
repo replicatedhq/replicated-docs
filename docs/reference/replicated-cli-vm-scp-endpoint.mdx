@@ -11,7 +11,7 @@ The output will be in the format: scp://username@hostname:port
 You can identify the VM either by its unique ID or by its name.
 
 Note: SCP endpoints can only be retrieved from VMs in the "running" state.
-	
+
 VMs are currently a beta feature.
 
 ```
@@ -29,6 +29,12 @@ replicated vm scp-endpoint my-test-vm
 
 # Get SCP endpoint with a custom username
 replicated vm scp-endpoint my-test-vm --username custom-user
+
+# Use the endpoint to SCP a file to a VM by name
+scp /tmp/my-file $(replicated vm scp-endpoint my-test-vm)//dst/path/my-file
+
+# Use the endpoint to SCP a file from a VM by name
+scp $(replicated vm scp-endpoint my-test-vm)//src/path/my-file /tmp/my-file
 ```
 
 ### Options
