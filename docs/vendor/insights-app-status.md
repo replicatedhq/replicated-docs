@@ -28,7 +28,7 @@ For information about how to enable status informers, see the sections below:
 
 ### Helm CLI Installations
 
-For Helm CLI installations, you can include the Replicated SDK as a dependency in your primary Helm chart to get status data. When the application is deployed using `helm install` or `helm upgrade`, the SDK automatically detects and reports the status of resources in the Helm release for the given chart. If you need status data for resources outside your primary Helm chart, you can configure the SDK's [`statusInformers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L287) value to specify the resources that you want the SDK to report on.
+For Helm CLI installations, you can include the Replicated SDK as a dependency in your primary Helm chart to get status data. When the application is deployed using `helm install` or `helm upgrade`, the SDK automatically detects and reports the status of resources in the Helm release for the given chart. You can also override the list of resources that get reported on using the SDK's [`statusInformers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L287) value.
 
 To get instance status data for installations with the Helm CLI:
 
