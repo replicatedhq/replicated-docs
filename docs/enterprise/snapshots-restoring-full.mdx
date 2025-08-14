@@ -45,24 +45,36 @@ To restore using the CLI, see the corresponding procedure for your environment:
 ### Existing Clusters {#existing}
 
 :::note
-If you are restoring to a healthy cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
+If you are restoring to a healthy online cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
 :::
 
 To restore a full backup in an existing cluster:
 
+1. (Air Gap Only) For air-gapped environments, do the following to prepare the necessary Velero images so that you can install Velero in the target cluster:
+     1. Download the following images to your local machine, tag them, then upload them to your local image registry:
+         * The Velero image. See [Preparing the Velero Image](https://velero.io/docs/v1.16/on-premises/#preparing-the-velero-image).
+         * The `velero/velero-plugin-for-aws:$PLUGIN_VERSION` plugin image. See [Preparing plugin images](https://velero.io/docs/v1.16/on-premises/#preparing-plugin-images).
+         * The restore helper image. The restore helper is required for File System Backups. See [Preparing the restore helper image](https://velero.io/docs/v1.16/on-premises/#preparing-the-restore-helper-image-optional).
+
+     1. Create a ConfigMap in the Velero namespace to specify the location of the Velero restore helper image on your local registry. For more information about the requirements for this ConfigMap, see [Customize Restore Helper Container](https://velero.io/docs/v1.16/file-system-backup/#customize-restore-helper-container).
+
 1. (New or Unhealthy Clusters Only) In the cluster where you will do the restore, install a version of Velero that is compatible with the version that was used to make the snapshot backup.
 
-    The Velero installation command varies depending on the storage destination for the backup. For the Velero installation command, see one of the following:
+    The Velero installation command varies depending on the storage destination for the backup:
 
-    * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-    * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
-    * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
+     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
+     * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
+
+    :::note
+    For air-gapped environments, be sure to point to the location of each image on your local image registry with the `velero install` command. For more information, see [Installing Velero](https://velero.io/docs/v1.16/on-premises/#installing-velero).
+    :::
 
 1. <GetBackups/>
 
 1. <Restore/>
 
-### Online Embedded kURL Clusters {#online}
+### Online kURL Clusters {#online}
 
 :::note
 If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `get backups` and `restore` commands in the last two steps.
@@ -107,6 +119,31 @@ To restore a full backup in an air gap kURL cluster:
 ## Restore the Application Only Using the Admin Console {#admin-console}
 
 You can restore an application from a full or partial backup using the Admin Console.
+
+### Prerequisite for Air-Gapped Environments
+
+For existing cluster installations in air-gapped environments, ensure that Velero is installed on the cluster before proceeding with the restore.
+
+To prepare the necessary Velero images and install Velero in air-gapped environments:
+
+1. Download the following images to your local machine, tag them, then upload them to your local image registry:
+     * The Velero image. See [Preparing the Velero Image](https://velero.io/docs/v1.16/on-premises/#preparing-the-velero-image).
+     * The `velero/velero-plugin-for-aws:$PLUGIN_VERSION` plugin image. See [Preparing plugin images](https://velero.io/docs/v1.16/on-premises/#preparing-plugin-images).
+     * The restore helper image. The restore helper is required for File System Backups. See [Preparing the restore helper image](https://velero.io/docs/v1.16/on-premises/#preparing-the-restore-helper-image-optional).
+
+1. Create a ConfigMap in the Velero namespace to specify the location of the Velero restore helper image on your local registry. For more information about the requirements for this ConfigMap, see [Customize Restore Helper Container](https://velero.io/docs/v1.16/file-system-backup/#customize-restore-helper-container).
+
+1. In the cluster where you will do the restore, install a version of Velero that is compatible with the version that was used to make the snapshot backup.
+
+    The Velero installation command varies depending on the storage destination for the backup:
+
+     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
+     * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations). 
+
+    :::note
+    For air-gapped environments, be sure to point to the location of each image on your local image registry with the `velero install` command. For more information, see [Installing Velero](https://velero.io/docs/v1.16/on-premises/#installing-velero).
+    :::
 
 ### Restore an Application From a Full Backup
 
