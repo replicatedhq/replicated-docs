@@ -4,7 +4,7 @@ This topic describes Replicated Compatibility Matrix, including use cases, billi
 
 ## Overview
 
-You can use Replicated Compatibility Matrix to quickly provision ephemeral clusters and VMs. Compatibility Matrix's netowrking features also provide kubectl or SSH access to clusters and VMs. This allows you to install and test your application in a range of different development environments before releasing to customers.
+You can use Replicated Compatibility Matrix to quickly provision ephemeral clusters and VMs. Compatibility Matrix's networking features also provide kubectl or SSH access to clusters and VMs. This allows you to install and test your application in a range of different development environments before releasing to customers.
 
 Example use cases for Compatibility Matrix include:
 * Run tests before releasing a new version of your application to validate compatibility with supported Kubernetes distributions
