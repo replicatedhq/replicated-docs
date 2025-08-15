@@ -14,6 +14,27 @@ You can use Compatibility Matrix clusters for testing and troubleshooting Kubern
 
 For information about creating VMs with Compatibility Matrix to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
 
+## Limitations
+
+Compatibility Matrix has the following limitations:
+
+- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
+- Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
+- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+- There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
+- There is no support for air gap testing. 
+- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
+- The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with Compatibility Matrix cannot be replaced with a different scheduler.
+- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
+- Team actions with Compatibility Matrix (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
+
+For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).
+
 ## Prerequisites
 
 Before you can use Compatibility Matrix clusters, you must complete the following prerequisites:
