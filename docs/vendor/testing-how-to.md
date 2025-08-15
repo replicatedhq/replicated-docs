@@ -103,13 +103,15 @@ To create a cluster using the Replicated CLI:
 
 To create a cluster using the Vendor Portal:
 
-1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
+1. Go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
+
+1. Click **Create > Create Kubernetes cluster**.
 
     <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
 
     [View a larger version of this image](/images/create-a-cluster.png)
 
-1. On the **Create a cluster** page, complete the following fields:
+1. On the **Create a Kubernetes cluster** page, complete the following fields:
 
    <table>
      <tr>
