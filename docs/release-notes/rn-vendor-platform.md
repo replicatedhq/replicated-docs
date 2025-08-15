@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on August 15, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-08-15-1}
-* CMX: Fixed the problem where it was only possible to create 1 VM at a time.
+* Compatibility Matrix: Fixes an issue where it was only possible to create one VM at a time.
 
 ## v2025.08.07-2
 
