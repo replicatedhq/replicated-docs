@@ -50,54 +50,6 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'Tutorials',
-      items: [
-        {
-          type: 'category',
-          label: 'Install a Helm Chart on a VM with Embedded Cluster',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install a Helm Chart with KOTS and the Helm CLI',
-          items: [
-            'vendor/tutorial-kots-helm-setup',
-            'vendor/tutorial-kots-helm-get-chart',
-            'vendor/tutorial-kots-helm-create-app',
-            'vendor/tutorial-kots-helm-package-chart',
-            'vendor/tutorial-kots-helm-create-release',
-            'vendor/tutorial-kots-helm-create-customer',
-            'vendor/tutorial-kots-helm-install-kots',
-            'vendor/tutorial-kots-helm-install-helm',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install with KOTS in an Existing Cluster',
-          items: [
-            'vendor/tutorial-cli-setup',
-            'vendor/tutorial-cli-install-cli',
-            'vendor/tutorial-cli-create-app',
-            'vendor/tutorial-cli-manifests',
-            'vendor/tutorial-cli-create-release',
-            'vendor/tutorial-cli-create-customer',
-            'vendor/tutorial-cli-install-app-manager',
-            'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-create-new-version',
-            'vendor/tutorial-cli-update-app',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
       label: 'Labs',
       items:
       [
@@ -549,6 +501,20 @@ const sidebars = {
       'vendor/helm-install-airgap',
       'vendor/using-third-party-registry-proxy',
       'vendor/helm-install-troubleshooting',
+      {
+        type: 'category',
+        label: 'Tutorial: Install with the Helm CLI',
+        items: [
+          'vendor/tutorial-kots-helm-setup',
+          // 'vendor/tutorial-kots-helm-get-chart',
+          'vendor/tutorial-kots-helm-create-app',
+          'vendor/tutorial-kots-helm-package-chart',
+          // 'vendor/tutorial-kots-helm-create-release',
+          'vendor/tutorial-kots-helm-create-customer',
+          // 'vendor/tutorial-kots-helm-install-kots',
+          'vendor/tutorial-kots-helm-install-helm',
+        ],
+      },
     ],
   },
   {

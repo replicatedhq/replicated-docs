@@ -1,8 +1,4 @@
-# Step 7: Install the Release with the Helm CLI
-
-Next, install the same release using the Helm CLI. All releases that contain one or more Helm charts can be installed with the Helm CLI.
-
-All Helm charts included in a release are automatically pushed to the Replicated registry when the release is promoted to a channel. Helm CLI installations require that the customer has a valid email address to authenticate with the Replicated registry.  
+# Step 5: Install the Release with the Helm CLI
 
 To install the release with the Helm CLI:
 

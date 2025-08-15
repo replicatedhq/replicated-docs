@@ -1,32 +1,37 @@
-# Step 5: Create a KOTS-Enabled Customer
+# Step 4: Create a Test Customer
 
-After promoting the release, create a customer with the KOTS entitlement so that you can install the release with KOTS. A _customer_ represents a single licensed user of your application.
+After promoting the release, create a customer so that you can install the release. A _customer_ represents a single licensed user of your application.
 
 To create a customer:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), click **Customers > Create customer**.
+1. In the [Vendor Portal](https://vendor.replicated.com), under the application drop down, select the SlackerNews application that you created.
 
-   The **Create a new customer** page opens:
+    <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
 
-   ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+    [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
 
-   [View a larger version of this image](/images/create-customer.png)
+1. Click **Customers > Create customer**.
 
-1. For **Customer name**, enter a name for the customer. For example, `KOTS Customer`.
+    The **Create a new customer** page opens:
+
+    ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+
+    [View a larger version of this image](/images/create-customer.png)
+
+1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
+
+1. For email, enter an email address for the customer.
+
+    Helm CLI installations require that the customer has a valid email address to authenticate with the Replicated registry.  
 
 1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-1. For **Customer type**, select Development.
+1. For **Customer type**, select **Development**.
 
-1. For **Install types options**, verify that **Existing Cluster (KOTS Install)** is enabled. This is the entitlement that allows the customer to install with KOTS.
+1. For **Install types**, enable **Existing Cluster (Helm install)**.
 
 1. Click **Save Changes**.
 
-1. On the **Manage customer** page for the customer, click **Download license**. You will use the license file to install with KOTS.
-
-   ![Download license button on the customer page](/images/customer-download-license.png)
-
-   [View a larger version of this image](/images/customer-download-license.png)
 
 ## Next Step
 
