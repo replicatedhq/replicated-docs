@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.08.15-1
+
+Released on August 15, 2025
+
+### Bug Fixes {#bug-fixes-v2025-08-15-1}
+* Compatibility Matrix: Fixes an issue where it was only possible to create one VM at a time.
+
 ## v2025.08.07-2
 
 Released on August 7, 2025
