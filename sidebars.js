@@ -435,9 +435,9 @@ const sidebars = {
           label: 'Configure Local Image Registries',
           items: [
             'enterprise/image-registry-settings',
-            'enterprise/image-registry-rate-limits',
           ],
         },
+        'enterprise/image-registry-rate-limits',
         'enterprise/updating-licenses',
         {
           type: 'category',
