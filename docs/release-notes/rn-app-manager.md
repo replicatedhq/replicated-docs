@@ -25,7 +25,7 @@ Released on August 15, 2025
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### New Features {#new-features-1-126-0}
-* When checking for application updates, KOTS now tries to automatically refresh the metadata (version labels, release notes, and required status) for pending releases that belong to the same channel of the currently deployed version.
+* When checking for application updates for an online installation, KOTS now tries to automatically refresh the metadata (version labels, release notes, and required status) for pending releases that belong to the same channel of the currently deployed version.
 
 ## 1.125.2
 
