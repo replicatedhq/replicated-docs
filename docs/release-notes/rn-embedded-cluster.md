@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.9.0
+
+Released on August 18, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.9.0+k8s-1.32</td>
+    <td id="center">2.9.0+k8s-1.31</td>
+    <td id="center">2.9.0+k8s-1.30</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.32.7</td>
+    <td id="center">1.31.11</td>
+    <td id="center">1.30.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.125.2</td>
+  </tr>
+</table>
+
+### Features {#features-2-9-0}
+* Adds support for Kubernetes 1.32.
+
+### Fixes {#fixes-2-9-0}
+* Fixes an issue where the network interface flag wasn't being respected when joining a new node.
+
 ## 2.8.1
 
 Released on August 6, 2025
