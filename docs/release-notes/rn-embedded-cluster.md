@@ -35,10 +35,10 @@ Released on August 18, 2025
   </tr>
 </table>
 
-### Features {#features-2-9-0}
+### New Features {#new-features-2-9-0}
 * Adds support for Kubernetes 1.32.
 
-### Fixes {#fixes-2-9-0}
+### Bug Fixes {#bug-fixes-2-9-0}
 * Fixes an issue where the `--network-interface` flag wasn't respected when joining a node.
 
 ## 2.8.1
