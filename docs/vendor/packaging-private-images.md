@@ -1,4 +1,4 @@
-# Connect to an External Registry
+# Add and Manage External Registries
 
 This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy registry. For more information, see [About the Replicated Proxy Registry](private-images-about).
 
@@ -31,11 +31,9 @@ To add an external registry using the Vendor Portal:
 1. Log in to the [Vendor Portal](https://vendor.replicated.com) and go to the **Images** page.
 1. Click **Add External Registry**.
 
-   <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
-
-   [View a larger version of this image](/images/add-external-registry.png)
-
 1. In the **Provider** drop-down, select your registry provider. 
+
+1. For **Registry Name**, optionally add a unique name for the registry. This can be useful if you intend to add multiple registries or want a simplified image proxy URI (`/name/` instead of `/registry-domain/`).
 
 1. Complete the fields in the dialog, depending on the provider that you chose:
 
@@ -201,9 +199,17 @@ To add an external registry using the Vendor Portal:
         </tr>
       </table>
 
-1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the Vendor Portal can access the image. For example, `api:v1.0.1` or `my-app/api:v1.01`.
+1. For **App Access**, select one of these options:
+    * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license. (This is the default behavior for registries added before August of 2025.)
+    * **Specific apps**: Make this registry available only to the applications that you specify. When the registry is scoped to specific applications, only customers with a valid license for the specified applications have pull-through access to the images in the registry.
 
-1. Click **Link registry**.
+1. Click **Test** and provide your image name and tag (for example, `api:v1.0.1` or `my-app/api:v1.01`.). Click **Test** to confirm that the Vendor Portal can access the image.
+
+   :::note
+   This tests credential validity only. Replicated strongly recommends that you still test your application end-to-end in a development environment.
+   :::
+ 
+1. Click **Save**.
 
 ### Using the CLI
 
@@ -249,6 +255,36 @@ For example:
 replicated registry test index.docker.io --image my-company/my-image:v1.2.3
 ```
 
-## Related Topic
+## Scope a Registry to Specific Applications
 
-[Tutorial: Using ECR for Private Images](tutorial-ecr-private-images)
+You can scope each external registry to one or more applications in your Vendor Portal team.
+
+When the registry is scoped to specific applications, only customers with a valid license for the specified applications have pull-through access to the images in the registry. Additionally, when you add new applications to your team, those applications do not automatically get access to the registry.
+
+To scope a registry to specific applications:
+
+1. In the **Vendor Portal**, go to **Images** and click **Edit** next to the target registry.
+
+1. For **App Access**, select one of these options:
+   * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license.
+   * **Specific apps**: Make this registry available only to the applications that you specify.
+
+1. Click **Save**.  
+
+## Duplicate a Registry
+
+You can duplicate an existing registry. This can be useful when you want to add an external registry with the same credentials, but change the proxy URI to use the `/name/` instead of the full upstream endpoint. 
+
+To duplicate an existing external registry:
+
+1. In the Vendor Portal, go to **Images** and click **Edit** next to the registry that you want to duplicate.
+
+1. Click **Duplicate**.
+
+   The fields are automatically populated with the credentials and provider from the duplicated registry.
+
+1. For **Registry Name**, provide a name for the registry.
+
+1. For **App access**, specify the application or applications that have access to the images in this registry. 
+
+1. Click **Save**.
