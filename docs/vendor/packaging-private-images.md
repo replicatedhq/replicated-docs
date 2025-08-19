@@ -200,7 +200,7 @@ To add an external registry using the Vendor Portal:
       </table>
 
 1. For **App Access**, select one of these options:
-    * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license.
+    * **All Apps**: Make the registry available to all applications in your Vendor Portal team. This means that all customers have pull-through access to the images in this registry with their valid license. (This is the default behavior for registries added before August of 2025.)
     * **Specific apps**: Make this registry available only to the applications that you specify. When the registry is scoped to specific applications, only customers with a valid license for the specified applications have pull-through access to the images in the registry.
 
 1. Click **Test** and provide your image name and tag (for example, `api:v1.0.1` or `my-app/api:v1.01`.). Click **Test** to confirm that the Vendor Portal can access the image.
