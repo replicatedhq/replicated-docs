@@ -14,6 +14,10 @@ The [Team](https://vendor.replicated.com/team/members) page provides a list of a
 
 All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
+### SCIM
+
+You can enable System for Cross-domain Identity Management (SCIM) for automated provisioning and deprovisioning. SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
+
 ## Invite Members
 By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
 
@@ -95,7 +99,7 @@ As a Vendor Portal team admin, you can remove team members, except for the accou
 
 If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
 
-SAML-created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
+If SCIM is not enabled, remove SAML-created users using this method to end their existing sessions. If SCIM is enabled, deprovision the user from your identity provider to deactivate the account in Replicated.
 
 To remove a member:
 

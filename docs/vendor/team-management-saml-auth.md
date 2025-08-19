@@ -8,13 +8,17 @@ After starting out with Replicated, most teams grow, adding more developers, sup
 
 Using SAML, everyone on your team logs in with their existing usernames and passwords through your identity provider's dashboard. Users do not need to sign up through the Vendor Portal or log in with a separate Vendor Portal account, simplifying their experience.
 
+### Service Provider Initiated Login
+
+You can start the SAML sign-in flow directly from the Vendor Portal. Go to the SAML login page at `https://vendor.replicated.com/login-saml`. Based on your team's SAML configuration, the Vendor Portal redirects you to your identity provider to complete authentication. IdP-initiated login from your identity provider dashboard is also supported. By default this only works for existing and invited users, however your account team can optionally enable JIT provisioning of users who input email addresses that match your team's domain (this will redirect any email with @domain.com to your IDP for auth.)
+
 ### Enabling SAML in Your Vendor Account
 
 To enable SAML in your Vendor Portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
 
 ### SCIM
 
-Replicated does not implement System for Cross-domain Identity Management (SCIM). Instead, we use SAML to authenticate and create just-in-time user identities in our system. We resolve the username (email address) as the actor and use this to ensure that audit log events follow these dynamically provisioned users. If a user's email address is already associated with a Replicated account, by using your SAML integration to access the Vendor Portal, they automatically leave their current team and join the team associated with the SAML login.
+For automated user provisioning and deprovisioning, you can enable System for Cross-domain Identity Management (SCIM). SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
 
 ### Compatibility with Two-Factor Authentication
 
@@ -31,8 +35,8 @@ You must retrieve the metadata and x.509 public certificate files from your SAML
 Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
 
 * Okta. For more information about integrating Okta with Replicated, see [Configure Okta](#configure-okta).
-
 * OneLogin
+* Duo
 
 
 ## Configure Okta

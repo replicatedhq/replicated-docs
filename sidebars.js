@@ -136,6 +136,7 @@ const sidebars = {
                 'vendor/team-management-two-factor-auth',
                 'vendor/team-management-google-auth',
                 'vendor/team-management-saml-auth',
+                'vendor/team-management-scim-provisioning',
               ],
             },
             'vendor/team-management-slack-config',
