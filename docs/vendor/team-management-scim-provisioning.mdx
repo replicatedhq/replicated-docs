@@ -15,67 +15,37 @@ The Replicated Vendor Portal supports SCIM v2.0 for automated user provisioning 
 - Automatically deprovision users when they leave your organization
 - Manage the user lifecycle through your existing identity provider
 
-## Prerequisites
+The following operations are supported:
+
+- User creation
+- User deactivation
+- User deletion
+- User filtering
+- Pagination
+- Email migration (automatic handling of email conflicts across teams)
+
+## Limitations
+
+The following operations are not supported:
+
+- User reactivation
+- Password management
+- Group management (read-only, returns empty results)
+- Bulk operations
+- Updating user attributes other than deactivation. For example, updating a user's email via SCIM is not supported; create a new user with the new email and deactivate the old one.
+
+## Requirements
 
 Before you configure SCIM, ensure that:
 
-1. SAML SSO is configured. For more information, see [Manage SAML Authentication](team-management-saml-auth).
-2. Your team has the SAML entitlement enabled.
-3. You have a Vendor Service Account token with permissions to manage team members.
-4. You have administrative access to your identity provider.
+* SAML SSO is configured. For more information, see [Manage SAML Authentication](team-management-saml-auth).
+* Your team has the SAML entitlement enabled.
+* You have a Vendor Service Account token with permissions to manage team members. See [Generate API Tokens](/vendor/replicated-api-tokens).
+* You have administrative access to your identity provider.
 
-## SCIM Endpoints
+## Configure SCIM
 
-Base URL: `https://api.replicated.com/vendor/scim/v2`
-
-### Discovery Endpoints
-
-- `GET /ServiceProviderConfig` — SCIM implementation capabilities
-- `GET /ResourceTypes` — Supported resource types (User, Group)
-- `GET /Schemas` — Detailed schema information
-
-### User Management Endpoints
-
-- `GET /Users` — List users with filtering and pagination
-- `POST /Users` — Create users
-- `GET /Users/{userId}` — Get a user (`userId` is the email address)
-- `PATCH /Users/{userId}` — Update user (deactivation only)
-- `PUT /Users/{userId}` — Replace user (deactivation only)
-- `DELETE /Users/{userId}` — Delete user
-
-### Group Endpoints
-
-- `GET /Groups` — Returns an empty list (read-only for compliance)
-
-## Unique Identifier
-
-- Primary identifier: `userName` (must be the user's email address)
-- Resource ID: The `id` in responses is the user's email address
-- Path parameter: `userId` for endpoints like `/Users/{userId}` is the user's email address
-- Uniqueness: Email must be unique within your Replicated team. Updating a user's email via SCIM is not supported; create a new user with the new email and deactivate the old one.
-
-:::tip
-Email precedence:
-1. If any entry in `emails[]` has `primary: true`, that value is used even if `userName` is set.
-2. Otherwise, if `userName` is set, it is used.
-3. Otherwise, if `emails[]` has values, the first `emails[0].value` is used.
-:::
-
-## Authentication
-
-- Scheme: OAuth 2.0 Bearer Token
-- Header: `Authorization: Bearer <YOUR_VENDOR_API_TOKEN>`
-- Token type: Replicated Vendor Service Account token scoped to your team with permissions to manage team members
-- Prerequisite: SAML entitlement must be enabled for SCIM access
-
-Example:
-
-```bash
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://api.replicated.com/vendor/scim/v2/Users
-```
-
-## Identity Provider Configuration
+You can configure SCIM using identity providers that support SCIM v2.0.
 
 ### Okta Configuration
 
@@ -93,11 +63,11 @@ curl -H "Authorization: Bearer YOUR_TOKEN" \
 2. Click **Configure API Integration**.
 3. Check **Enable API integration**.
 4. Enter the following settings:
-   - Base URL: `https://api.replicated.com/vendor/scim/v2`
-   - Unique ID: email
-   - Authentication Mode: HTTP
-   - Supported Actions: Import Users, Push New Users, Push Profile Updates (deactivate only)
-   - API Token: Your Replicated Vendor API token
+   - **Base URL:** `https://api.replicated.com/vendor/scim/v2`
+   - **Unique ID:** email
+   - **Authentication Mode:** HTTP
+   - **Supported Actions:** Import Users, Push New Users, Push Profile Updates (deactivate only)
+   - **API Token:** Your Replicated Vendor API token
 
 #### Step 4: Configure Provisioning Settings
 1. Go to **Provisioning > To App**.
@@ -117,59 +87,84 @@ Configure the following attribute mappings:
 | `user.lastName` | `name.familyName` | Recommended | Used for display purposes |
 | `user.displayName` | `displayName` | Optional | Auto-generated if not provided |
 
-Note: Only email is strictly required. If name fields are not provided, users are created but may have incomplete profile information. Internally, Replicated stores names as `firstName` and `lastName`; these map to SCIM `name.givenName` and `name.familyName` respectively.
+:::note
+If name fields are not provided, users are still created, but might have incomplete profile information. Internally, Replicated stores names as `firstName` and `lastName`; these map to SCIM `name.givenName` and `name.familyName` respectively.
+:::
 
 #### Step 6: Assign Users
 1. Go to the **Assignments** tab.
-2. Assign users or groups who should have access to Replicated.
-3. Users are provisioned to your Replicated team automatically.
+2. Assign users or groups to grant access to Replicated.
 
-## Migrating from Existing User Management
+Users are provisioned to your Replicated team automatically.
 
-### Pre-SCIM User Synchronization
+### Migrate from Existing User Management
 
-If your team already has users in Replicated before you enable SCIM, synchronize existing users with your identity provider.
+If your team already has users in Replicated before you enable SCIM, you can synchronize the existing users with your identity provider. Before you begin, review the best practices:
+* Test the environment first.
+* Perform a staged rollout starting with a small group of users.
+* Communicate the migration timeline.
+* Document the current user list and permissions before migration.
+* Monitor for provisioning errors during the first few days.
 
-#### Option 1: Automatic User Matching (Recommended)
-1. Before you enable SCIM provisioning, ensure that all existing Replicated users have matching accounts in your identity provider.
-2. Configure SCIM as described above, but do not assign users yet.
-3. Test with a single user:
-   - Assign one existing user to the Replicated app in your identity provider.
-   - The system matches by email and returns the existing user.
-4. Gradually assign all existing users to complete the sync.
+#### (Recommended) Automatic User Matching
 
-#### Option 2: Manual User Migration
-If email addresses do not match exactly or users exist in other teams:
+To automatically match users:
+
+1. Ensure that all existing Replicated users have matching accounts in your identity provider. If email addresses do not match exactly or users exist in other teams, follow the steps in [Manual User Migration](#manual-user-migration) below.
+
+1. Configure SCIM as described in [Idenitty Provider Configuration](#identity-provider-configuration) above, but do not assign any users yet.
+
+1. Test with a single user:
+     1. Assign one existing user to the Replicated application in your identity provider.
+     1. Confirm that the system returns the existing user by email as expected:
+
+        ```bash
+        # Check a specific user by email
+        curl -H "Authorization: Bearer YOUR_TOKEN" \
+          https://api.replicated.com/vendor/scim/v2/Users/user@example.com
+        ```
+        Where `YOUR_TOKEN` is a Replicated Vendor Service Account token scoped to your team with permissions to manage team members. For more information, see [Authentication](#authentication) below.
+
+1. Gradually assign all existing users, testing frequently.
+
+1. Run the following command to confirm that all users were synchronized:
+
+     ```bash
+     # List all users via SCIM to confirm sync
+     curl -H "Authorization: Bearer YOUR_TOKEN" \
+       https://api.replicated.com/vendor/scim/v2/Users
+     ```
+
+#### Manual User Migration
+
+If email addresses do not match exactly or users exist in other teams, you can manually sync users instead.
+
+To manually migrate users:
+
 1. Update email addresses in Replicated or your identity provider so that they match.
+
 2. For users existing in other Replicated teams:
-   - Domain authorized: The system automatically migrates the existing user's email and creates a new user.
-   - Domain not authorized: Manual intervention is required. Contact support.
+   - **Domain authorized:** The system automatically migrates the existing user's email and creates a new user.
+   - **Domain not authorized:** Manual intervention is required. Contact support.
+
 3. Ensure that your SAML domain authorization includes all relevant email domains.
 
-#### Verification Steps
-After migration, verify the setup:
+1. Verify the SCIM migration:
 
-```bash
-# List all users via SCIM to confirm sync
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://api.replicated.com/vendor/scim/v2/Users
+    ```bash
+    # List all users via SCIM to confirm sync
+    curl -H "Authorization: Bearer YOUR_TOKEN" \
+      https://api.replicated.com/vendor/scim/v2/Users
 
-# Check a specific user by email
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://api.replicated.com/vendor/scim/v2/Users/user@example.com
-```
-
-### Migration Best Practices
-
-1. Test environment first.
-2. Staged rollout starting with a small group of users.
-3. Communicate the migration timeline.
-4. Document the current user list and permissions before migration.
-5. Monitor for provisioning errors during the first few days.
+    # Check a specific user by email
+    curl -H "Authorization: Bearer YOUR_TOKEN" \
+      https://api.replicated.com/vendor/scim/v2/Users/user@example.com
+    ```
+    Where `YOUR_TOKEN` is a Replicated Vendor Service Account token scoped to your team with permissions to manage team members. For more information, see [Authentication](#authentication) below.
 
 ### Generic SCIM Provider Configuration
 
-For identity providers that support SCIM v2.0:
+For identity providers that support SCIM v2.0, use the basic settings and attributes described below to configure SCIM. For more information, see [SCIM API](#scim-api) below.
 
 #### Basic Settings
 
@@ -210,28 +205,97 @@ Recommended full attribute set:
 }
 ```
 
-## Supported Features
+## SCIM API
 
-### Supported Operations
+### Authentication
 
-- User creation
-- User deactivation
-- User deletion
-- User filtering
-- Pagination
-- Email migration (automatic handling of email conflicts across teams)
+- **Scheme:** OAuth 2.0 Bearer Token
+- **Header:** `Authorization: Bearer <YOUR_VENDOR_API_TOKEN>`
+- **Token type:** Replicated Vendor Service Account token scoped to your team with permissions to manage team members.
 
-### Unsupported Operations
+**Example:**
 
-- User reactivation
-- Password management
-- Group management (read-only, returns empty results)
-- Bulk operations
-- Updating user attributes other than deactivation
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.replicated.com/vendor/scim/v2/Users
+```
+
+### SCIM Endpoints
+
+Base URL: `https://api.replicated.com/vendor/scim/v2`
+
+#### Discovery Endpoints
+
+- `GET /ServiceProviderConfig` — SCIM implementation capabilities
+- `GET /ResourceTypes` — Supported resource types (User, Group)
+- `GET /Schemas` — Detailed schema information
+
+#### User Management Endpoints
+
+- `GET /Users` — List users with filtering and pagination
+- `POST /Users` — Create users
+- `GET /Users/{userId}` — Get a user (`userId` is the email address)
+- `PATCH /Users/{userId}` — Update user (deactivation only)
+- `PUT /Users/{userId}` — Replace user (deactivation only)
+- `DELETE /Users/{userId}` — Delete user
+
+#### Group Endpoints
+
+- `GET /Groups` — Returns an empty list (read-only for compliance)
+
+### Unique Identifier
+
+- **Primary identifier:** `userName` (must be the user's email address)
+- **Resource ID:** The `id` in responses is the user's email address
+- **Path parameter:** `userId` for endpoints like `/Users/{userId}` is the user's email address
+- **Uniqueness:** Email must be unique within your Replicated team. Updating a user's email via SCIM is not supported; create a new user with the new email and deactivate the old one.
+
+**Email precedence:**
+1. If any entry in `emails[]` has `primary: true`, that value is used even if `userName` is set.
+2. Otherwise, if `userName` is set, it is used.
+3. Otherwise, if `emails[]` has values, the first `emails[0].value` is used.
+
+## Test the SCIM Integration
+
+### Test SCIM Endpoints
+
+You can use the following curl commands to manually test SCIM endpoints:
+
+```bash
+# Test service provider configuration
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.replicated.com/vendor/scim/v2/ServiceProviderConfig
+
+# List users
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.replicated.com/vendor/scim/v2/Users
+
+# Create user
+curl -X POST \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/scim+json" \
+  -d '{
+    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
+    "userName": "test@example.com",
+    "emails": [{"value": "test@example.com", "primary": true}],
+    "name": {"givenName": "Test", "familyName": "User"},
+    "active": true
+  }' \
+  https://api.replicated.com/vendor/scim/v2/Users
+```
+
+### Test Using Your Identity Provider
+
+To test the SCIM integration using your identity provider:
+
+1. Test the connection using your identity provider's test feature.
+2. Provision a test user and verify creation.
+3. Deprovision the test user and verify deactivation.
+4. Review both the identity provider and Replicated audit logs.
 
 ## Troubleshooting
 
-### Common Issues
+The section includes information about troubleshooting common issues with SCIM.
 
 #### Authentication errors (401)
 
@@ -268,41 +332,3 @@ If the email domain is not authorized for SAML:
 2. Verify that all required attributes are being sent.
 3. Ensure that SAML is configured and working.
 4. Review identity provider logs for specific error messages.
-
-### Testing SCIM Integration
-
-#### Manual testing
-
-Use curl to test SCIM endpoints:
-
-```bash
-# Test service provider configuration
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://api.replicated.com/vendor/scim/v2/ServiceProviderConfig
-
-# List users
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://api.replicated.com/vendor/scim/v2/Users
-
-# Create user
-curl -X POST \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/scim+json" \
-  -d '{
-    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    "userName": "test@example.com",
-    "emails": [{"value": "test@example.com", "primary": true}],
-    "name": {"givenName": "Test", "familyName": "User"},
-    "active": true
-  }' \
-  https://api.replicated.com/vendor/scim/v2/Users
-```
-
-#### Identity provider testing
-
-1. Test the connection using your identity provider's test feature.
-2. Provision a test user and verify creation.
-3. Deprovision the test user and verify deactivation.
-4. Review both identity provider and Replicated audit logs.
-
-

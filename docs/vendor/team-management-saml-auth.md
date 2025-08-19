@@ -4,21 +4,19 @@ This topic describes how to enable or disable SAML authentication for the Replic
 
 ## About Using SAML with the Vendor Portal
 
-After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Vendor Portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and unprovisioning accounts) through your SAML identity provider.
+After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Vendor Portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and deprovisioning accounts) through your SAML identity provider.
 
 Using SAML, everyone on your team logs in with their existing usernames and passwords through your identity provider's dashboard. Users do not need to sign up through the Vendor Portal or log in with a separate Vendor Portal account, simplifying their experience.
 
-### Service Provider Initiated Login
+### Service Provider-Initiated Login
 
-You can start the SAML sign-in flow directly from the Vendor Portal. Go to the SAML login page at `https://vendor.replicated.com/login-saml`. Based on your team's SAML configuration, the Vendor Portal redirects you to your identity provider to complete authentication. IdP-initiated login from your identity provider dashboard is also supported. By default this only works for existing and invited users, however your account team can optionally enable JIT provisioning of users who input email addresses that match your team's domain (this will redirect any email with @domain.com to your IDP for auth.)
+You can start the SAML sign-in flow directly from the Vendor Portal on the SAML login page at `https://vendor.replicated.com/login-saml`. Based on your team's SAML configuration, the Vendor Portal redirects you to your identity provider to complete authentication.
 
-### Enabling SAML in Your Vendor Account
-
-To enable SAML in your Vendor Portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
+IdP-initiated login from your identity provider dashboard is also supported. By default, this only works for existing and invited users. However, your account team can optionally enable JIT provisioning of users who input email addresses that match your team's domain. This will redirect any email with `@domain.com` to your IDP for authentication.
 
 ### SCIM
 
-For automated user provisioning and deprovisioning, you can enable System for Cross-domain Identity Management (SCIM). SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
+For automated user provisioning and deprovisioning, you can also enable System for Cross-domain Identity Management (SCIM). SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
 
 ### Compatibility with Two-Factor Authentication
 
@@ -28,18 +26,25 @@ If SAML authentication is configured for your team, Replicated two-factor authen
 
 Replicated supports Role Based Access Control (RBAC) in the Vendor Portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about configuring RBAC, see [Configure RBAC Policies](team-management-rbac-configuring).
 
-## Downloading Certificates from Supported SAML providers
+## Supported SAML Providers
 
-You must retrieve the metadata and x.509 public certificate files from your SAML provider before configuring SAML in the Vendor Portal. The certificate file must be in PEM format.
+Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider.
 
-Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
+Replicated provides full support for the following SAML providers:
 
-* Okta. For more information about integrating Okta with Replicated, see [Configure Okta](#configure-okta).
+* Okta
 * OneLogin
 * Duo
 
+## Configure and Enable SAML
 
-## Configure Okta
+### Prerequisites
+
+* To enable SAML in your Vendor Portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
+
+* Download certificates from supported SAML providers: You must retrieve the metadata and x.509 public certificate files from your SAML provider before configuring SAML in the Vendor Portal. The certificate file must be in PEM format.
+
+### Configure Okta
 
 The first part of the Vendor Portal and Okta integration is configured in the Okta dashboard. This configuration lets you download the XML Metadata file and x.509 public certificate in PEM format required for the SAML authentication.
 
@@ -73,17 +78,13 @@ To configure Okta and download the required files:
 
 1. Click **Identity provider metadata** to download the Metadata.xml file. This likely opens an XML download that you can right-click and select **Save Link As…** to download this file.
 
-### Next Step
+#### Next Step
 
 Configure and enable SAML in the Vendor Portal. For more information, see [Configure SAML](#configure-saml).
 
-## Configure SAML
+### Configure SAML
 
 When you initially configure SAML, we do not recommend that you disable username/password access at the same time. It is possible, and recommended during testing, to support both SAML and non-SAML authentication on your account simultaneously.
-
-**Prerequisite**
-
-- Download your XML Metadata file and x.509 public certificate PEM file from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#downloading-certificates-from-supported-saml-providers).
 
 To configure SAML:
 
@@ -100,11 +101,11 @@ To configure SAML:
 
 1. Click **Upload Metadata & Cert**.
 
-### Next Step
+#### Next Step
 
 At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [Enable SAML Enforcement](#enable-saml-enforcement).
 
-## Enable SAML Enforcement
+### Enable SAML Enforcement
 
 After you have uploaded the metadata and x.509 public certificate PEM file, you must enable SAML enforcement options. Replicated provides options that can be enabled or disabled at any time. You can also change the IDP metadata if needed.
 
