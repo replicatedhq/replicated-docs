@@ -46,50 +46,50 @@ To configure your application to use the proxy registry with Helm CLI installati
      .dockerconfigjson: {{ .Values.global.replicated.dockerconfigjson }}
    {{ end }}
    ```
-1. Add a Helm helper for the image pull secret to your `_helper.tpl`. This code will use your secret but allow your customer to override it for situations, like an airgapped installation, where they have moved the image to another regitsry:
+1. In your `_helper.tpl`, add a Helm helper for the image pull secret. This helper creates an `imagePullSecrets` value that lists both the Replicated pull secret that you created (if present) as well as any global or chart-level pull secrets provided by your customers. This supports use cases where customers need to provide additional pull secrets, such as in air gap installations where images are pushed to a private regitsry in the air-gapped environment.
 
-```yam1
-{{/*
-Image pull secrets
-*/}}
-{{- define "replicated.imagePullSecrets" -}}
-  {{- $pullSecrets := list }}
+    ```yam1
+    {{/*
+    Image pull secrets
+    */}}
+    {{- define "replicated.imagePullSecrets" -}}
+      {{- $pullSecrets := list }}
 
-  {{- with ((.Values.global).imagePullSecrets) -}}
-    {{- range . -}}
-      {{- if kindIs "map" . -}}
-        {{- $pullSecrets = append $pullSecrets .name -}}
-      {{- else -}}
-        {{- $pullSecrets = append $pullSecrets . -}}
+      {{- with ((.Values.global).imagePullSecrets) -}}
+        {{- range . -}}
+          {{- if kindIs "map" . -}}
+            {{- $pullSecrets = append $pullSecrets .name -}}
+          {{- else -}}
+            {{- $pullSecrets = append $pullSecrets . -}}
+          {{- end }}
+        {{- end -}}
+      {{- end -}}
+
+      {{/* use image pull secrets provided as values */}}
+      {{- with .Values.images -}}
+        {{- range .pullSecrets -}}
+          {{- if kindIs "map" . -}}
+            {{- $pullSecrets = append $pullSecrets .name -}}
+          {{- else -}}
+            {{- $pullSecrets = append $pullSecrets . -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{/* use secret created with injected docker config */}}
+      {{- if hasKey ((.Values.global).replicated) "dockerconfigjson" }}
+        {{- $pullSecrets = append $pullSecrets "replicated-pull-secret" -}}
+      {{- end -}}
+
+
+      {{- if (not (empty $pullSecrets)) -}}
+    imagePullSecrets:
+        {{- range $pullSecrets | uniq }}
+      - name: {{ . }}
+        {{- end }}
       {{- end }}
     {{- end -}}
-  {{- end -}}
-
-  {{/* use image pull secrets provided as values */}}
-  {{- with .Values.images -}}
-    {{- range .pullSecrets -}}
-      {{- if kindIs "map" . -}}
-        {{- $pullSecrets = append $pullSecrets .name -}}
-      {{- else -}}
-        {{- $pullSecrets = append $pullSecrets . -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-
-  {{/* use secret created with injected docker config */}}
-  {{- if hasKey ((.Values.global).replicated) "dockerconfigjson" }}
-    {{- $pullSecrets = append $pullSecrets "replicated-pull-secret" -}}
-  {{- end -}}
-
-
-  {{- if (not (empty $pullSecrets)) -}}
-imagePullSecrets:
-    {{- range $pullSecrets | uniq }}
-  - name: {{ . }}
-    {{- end }}
-  {{- end }}
-{{- end -}}
-```
+    ```
 
 1. Use your helper in any manifests that reference the image.
 
