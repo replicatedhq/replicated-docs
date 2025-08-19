@@ -273,7 +273,7 @@ To scope a registry to specific applications:
 
 ## Duplicate a Registry
 
-You can duplicate an existing registry. This can be useful when you want to add an external registry with the same credentials, but make the registry available to a different application in your Vendor Portal team. 
+You can duplicate an existing registry. This can be useful when you want to add an external registry with the same credentials, but change the proxy URI to use the `/name/` instead of the full upstream endpoint. 
 
 To duplicate an existing external registry:
 
