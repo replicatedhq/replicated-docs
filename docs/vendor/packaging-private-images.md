@@ -33,7 +33,7 @@ To add an external registry using the Vendor Portal:
 
 1. In the **Provider** drop-down, select your registry provider. 
 
-1. For **Registry Name**, optionally add a unique name for the registry. This can be useful if you intend to add multiple registries or duplicate any of your registries.
+1. For **Registry Name**, optionally add a unique name for the registry. This can be useful if you intend to add multiple registries or want a simplified image proxy URI (`/name/` instead of `/registry-domain/`).
 
 1. Complete the fields in the dialog, depending on the provider that you chose:
 
