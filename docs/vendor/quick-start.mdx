@@ -405,7 +405,7 @@ To complete this quick start, you need access to a VM that meets the requirement
        * For **Hostname**:
           * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
           * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. You can copy the IP address from your browser's address bar. For example, `34.10.177.196`. Alternatively, if you know the hostname for your VM's IP address, you can provide that instead.
-       * For **Application Access > Service Type**, select **NodePort**. Leave the port field blank to use the default port of 443. 
+       * For **Application Access > Service Type**, select **NodePort**. Leave the **Node Port** field blank to use the default port of 443. 
        * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
 
        Leave the other fields on the **Configure SlackerNews** screen empty. They are not applicable for this quick start.
@@ -505,11 +505,10 @@ To complete this quick start, you need access to a VM that meets the requirement
    1. Move the `slackernews-0.4.15.tgz` chart archive to the `manifests` directory:
 
       ```bash
-      cd ../../manifests
+      mv slackernews-0.4.15.tgz ../../manifests
       ```
-      ```bash
-      mv chart/slackernews/slackernews-0.4.15.tgz .
-      ```
+
+   1. Change to the `manifests` directory.   
 
    1. In the `manifests` directory, open the HelmChart custom resource (`slackernews.yaml`) and update the `chartVersion` to match the new archive:
 
@@ -531,7 +530,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
 
       :::note
-      If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 0.4.15, and that the `chartVersion` in the HelmChart resource is also set to `0.4.15`. You can also try running `rm -rf .history` and then linting the files again.
+      If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 0.4.15, and that the `chartVersion` in the HelmChart resource is also set to `0.4.15`. If you notice that any of the errors are from files in your `.history/` directory, run `rm -rf .history` and then lint the files again.
       :::
    
    1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
