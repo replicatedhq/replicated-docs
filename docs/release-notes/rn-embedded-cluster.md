@@ -25,9 +25,9 @@ Released on August 19, 2025
   </tr>
   <tr>
     <th>Kubernetes Version</th>
+    <td id="center">1.33.3</td>
     <td id="center">1.32.7</td>
     <td id="center">1.31.11</td>
-    <td id="center">1.30.14</td>
   </tr>
   <tr>
     <th>KOTS Version</th>
