@@ -46,8 +46,52 @@ To configure your application to use the proxy registry with Helm CLI installati
      .dockerconfigjson: {{ .Values.global.replicated.dockerconfigjson }}
    {{ end }}
    ```
-   
-1. Add the image pull secret that you created to any manifests that reference the image.
+1. In your `_helper.tpl`, add a Helm helper for the image pull secret. This helper creates an `imagePullSecrets` value that lists both the Replicated pull secret that you created (if present) as well as any global or chart-level pull secrets provided by your customers. This supports use cases where customers need to provide additional pull secrets, such as in air gap installations where images are pushed to a private regitsry in the air-gapped environment.
+
+    ```yam1
+    {{/*
+    Image pull secrets
+    */}}
+    {{- define "replicated.imagePullSecrets" -}}
+      {{- $pullSecrets := list }}
+
+      {{- with ((.Values.global).imagePullSecrets) -}}
+        {{- range . -}}
+          {{- if kindIs "map" . -}}
+            {{- $pullSecrets = append $pullSecrets .name -}}
+          {{- else -}}
+            {{- $pullSecrets = append $pullSecrets . -}}
+          {{- end }}
+        {{- end -}}
+      {{- end -}}
+
+      {{/* use image pull secrets provided as values */}}
+      {{- with .Values.images -}}
+        {{- range .pullSecrets -}}
+          {{- if kindIs "map" . -}}
+            {{- $pullSecrets = append $pullSecrets .name -}}
+          {{- else -}}
+            {{- $pullSecrets = append $pullSecrets . -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{/* use secret created with injected docker config */}}
+      {{- if hasKey ((.Values.global).replicated) "dockerconfigjson" }}
+        {{- $pullSecrets = append $pullSecrets "replicated-pull-secret" -}}
+      {{- end -}}
+
+
+      {{- if (not (empty $pullSecrets)) -}}
+    imagePullSecrets:
+        {{- range $pullSecrets | uniq }}
+      - name: {{ . }}
+        {{- end }}
+      {{- end }}
+    {{- end -}}
+    ```
+
+1. Use your helper in any manifests that reference the image.
 
    **Example:**
 
@@ -59,11 +103,8 @@ To configure your application to use the proxy registry with Helm CLI installati
         - name: api 
       # Access the registry, repository, and tag fields from the values file
             image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
-            # Add the pull secret
-            {{ if .Values.global.replicated.dockerconfigjson }}
-            imagePullSecrets:
-              - name: replicated-pull-secret
-            {{ end }}
+            # Add the pull secret with your helper
+            {{- include "replicated.imagePullSecrets" . | nindent 6 }}
     ```
 
 1. Package your Helm chart and add it to a release. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
