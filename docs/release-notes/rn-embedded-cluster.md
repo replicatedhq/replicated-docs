@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.10.0
+
+Released on August 19, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.10.0+k8s-1.33</td>
+    <td id="center">2.10.0+k8s-1.32</td>
+    <td id="center">2.10.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.3</td>
+    <td id="center">1.32.7</td>
+    <td id="center">1.31.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.126.0</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-10-0}
+* Adds support for Kubernetes 1.33 and drops support for Kubernetes 1.30. Vendors using 1.30 need to upgrade to 1.31. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
+
+### Bug Fixes {#bug-fixes-2-10-0}
+* Fixes an issue where installations failed to parse release data if HelmChart custom resources contained template functions in non-string fields before being rendered.
+
 ## 2.9.0
 
 Released on August 18, 2025
@@ -36,7 +65,7 @@ Released on August 18, 2025
 </table>
 
 ### New Features {#new-features-2-9-0}
-* Adds support for Kubernetes 1.32.
+* Adds support for Kubernetes 1.32 and drops support for Kubernetes 1.29. Vendors using 1.29 need to upgrade to 1.30. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
 
 ### Bug Fixes {#bug-fixes-2-9-0}
 * Fixes an issue where the `--network-interface` flag wasn't respected when joining a node.
