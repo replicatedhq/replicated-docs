@@ -29,7 +29,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 To complete this quick start, you need access to a VM that meets the requirements for Embedded Cluster:
 
-* **Option 1: Use Compatibility Matrix.** To use Compatibility Matrix to create a VM, do the following before proceeding:
+* **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
    
    * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
    
@@ -39,7 +39,9 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    After you complete these prerequisites, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
 
-* **Option 2: Bring your own VM.** Your VM must meet these requirements for Embedded Cluster:
+* **Option 2: Bring your own VM.** Your VM must meet these requirements:
+
+   * Firewalls must allow HTTP and HTTPS traffic.
 
    <Requirements/>
 
@@ -208,13 +210,13 @@ To complete this quick start, you need access to a VM that meets the requirement
       </TabItem>
       <TabItem value="config" label="config.yaml">
       <h5>Description</h5>
-      <p>The Config custom resource defines the application configuration fields that are exposed to the user in the Admin Console. </p>
+      <p>The Config custom resource defines the application configuration fields that are exposed to the user in the Admin Console. These fields can then be mapped to the `values.yaml` file for the Helm chart.</p>
       <h5>YAML</h5>
       <ConfigCr/>
       </TabItem>
       </Tabs>
 
-   1. Lint the YAML files:
+   1. Lint the YAML files in the `manifests` directory:
 
       ```bash
       replicated release lint --yaml-dir .
@@ -230,10 +232,10 @@ To complete this quick start, you need access to a VM that meets the requirement
       nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
       ```
       :::note
-      You can ignore these warning messages for the purpose of this quick start.
+      You can ignore `info` or `warn` messages for the purpose of this quick start.
       :::
 
-   1. From the `manifests` directory, create the release and promote it to the Unstable channel:
+   1. From the `manifests` directory, create a release and promote it to the Unstable channel:
 
       ```bash
       replicated release create --yaml-dir . --promote Unstable
@@ -247,9 +249,11 @@ To complete this quick start, you need access to a VM that meets the requirement
           • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
       ```
 
-1. Create a test customer so that you can install the release with Embedded Cluster:
+1. Create a test customer so that you can install the release in your VM with Embedded Cluster:
 
-   1. In the [Vendor Portal](https://vendor.replicated.com), under the application drop down, select the SlackerNews application that you created.
+   1. Log in to the [Vendor Portal](https://vendor.replicated.com).
+   
+   1. Under the application drop down, select the SlackerNews application that you created.
 
       <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
 
@@ -269,26 +273,35 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. For **Customer type**, select **Development**.
 
-   1. For **Install types**, enable **Embedded Cluster (current generation product)** and disable the other options.
+   1. For **Install types**, enable **Embedded Cluster (current generation product)**. Disable the other install type options.
 
    1. Click **Save Changes**.
 
 1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
 
-   1. Run the following command to create a VM:
+   1. Create an Ubuntu VM that expires after two hours:
 
       ```bash
       replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
       ```
-      In about one minute, the status of the VM changes from `queued` to `running`.
+      **Example output:**
+      ```bash
+      ID        NAME             DISTRIBUTION  VERSION  STATUS  NETWORK   CREATED               EXPIRES   COST
+      97940819  practical_black  ubuntu        24.04    queued  c726ffff  2025-08-20 14:32 MDT  -         $0.69
+      ```
 
-   1. Check the status of the VM to see when it is `running`:
+   1. After a few minutes, check the status of the VM to see when it is `running`:
 
       ```bash
       replicated vm ls
       ```
+      **Example output:**
+      ```bash
+      ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
+      97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
+      ```
 
-   1. When the VM is `running`, copy the VM ID from the output of the `replicated vm ls` command.
+   1. Copy the `ID` from the output of the `replicated vm ls` command.
    
    1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
 
@@ -305,19 +318,19 @@ To complete this quick start, you need access to a VM that meets the requirement
 
 1. Install the application with Embedded Cluster:
      
-    1. On the page for the customer that you created, click **Embedded Cluster install instructions**.
+    1. In the Vendor Portal, on the page for the customer that you created, click **Embedded Cluster install instructions**.
 
        ![Customer install instructions](/images/quick-start-slackernews-customer-install-instructions-button.png)
 
        [View a larger version of this image](/images/quick-start-slackernews-customer-install-instructions-button.png)
 
-    1. On the VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install.
+    1. On your VM, run the commands in the **Embedded cluster install instructions** dialog to download the latest release, extract the installation assets, and install SlackerNews.
 
        <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
        [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-   1. When prompted, set a password for accessing the Admin Console. Save the password in a secure location. You will use this password to log in to the Admin Console in a later step.
+   1. When prompted by the `install` command, set a password for accessing the Admin Console. Save the password in a secure location. You will use this password to log in to the Admin Console in a later step.
 
       The installation command takes a few minutes to complete.
 
@@ -346,26 +359,28 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. Do one of the following to access the Admin Console:
        * If your brought your own VM, go to the URL provided in the output of the install command.
-       * If you created the VM with Compatibility Matrix, create DNS records so that you can access both the Admin Console and SlackerNews from a browser on your local machine:
-         1. In the Vendor Portal, go to **Compatibility Matrix**.
-         1. Open the dot menu for your VM and click **Edit**.
+       * If you created the VM with Compatibility Matrix:
+         1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/overview).
+         1. Open the dot menu for your VM and click **Edit VM**.
 
             ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
 
             [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
 
-         1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings. This will provide a hostname where you can access the Admin Console on port 30000.
+         1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings. This will provide a hostname where you can access the Admin Console.
 
-         1. Add another DNS record with a **Target Port** of **443**. This will provide a hostname where you can access SlackerNews on port 443.
+         1. Add another DNS record with a **Target Port** of **443**. This will provide a hostname where you can access SlackerNews after it's installed.
 
-             The following shows an example of a VM with both of the necessary DNS records:
+             The following shows an example of both of these DNS records added to a VM:
 
              ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
              [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
 
-         1. Copy the URL provided for the DNS record.
+         1. Copy the URL for the DNS record with a target port of 443 and save it somewhere on your local machine. You will be asked to provide this hostname in the Admin Console as part of the installation process for SlackerNews.
+         
+         1. In a browser, navigate to the URL for the DNS record with a target port of 30000.
 
-         1. Open a browser and go to the URL.
+            The Admin Console opens.
    
    1. On the Admin Console landing page, click **Start**.
 
@@ -375,7 +390,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
        By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
-   1. On the login page, enter the Admin Console password that you created during installation and click **Log in**.
+   1. On the login page, enter the Admin Console password that you set and click **Log in**.
 
        ![Admin console login screen](/images/quick-start-slackernews-admin-console-login.png)
 
@@ -390,12 +405,12 @@ To complete this quick start, you need access to a VM that meets the requirement
    1. On the **Configure SlackerNews** screen, complete the following fields:
    
        * For **Hostname**:
-          * If you created the VM with Compatibility Matrix, enter the hostname for the DNS record that you created with the target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
-          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. For example, `34.10.177.196`.
+          * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
+          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. You can copy the IP address from your browser's address bar. For example, `34.10.177.196`. Alternatively, if you know the hostname for your VM's IP address, you can provide that instead.
        * For **Application Access > Service Type**, select **NodePort**. Leave the port field blank to use the default port of 443. 
        * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
 
-       Leave the other fields on the **Configure SlackerNews** screen empty.
+       Leave the other fields on the **Configure SlackerNews** screen empty. They are not applicable for this quick start.
 
        ![Configure slackernews screen](/images/quick-start-slackernews-configure-slackernews.png)
 
@@ -405,10 +420,6 @@ To complete this quick start, you need access to a VM that meets the requirement
 
        The Admin Console dashboard opens. The application status changes from Missing to Unavailable while the application is being deployed. You can click **Details** next to the status for more information about the status of specific application resources.
 
-       ![Slackernews admin console dashboard](/images/quick-start-slackernews-dashboard.png)
-
-       [View a larger version of this image](/images/quick-start-slackernews-dashboard.png)
-
        After a few minutes, the status changes to Ready when the application is deployed:
 
        ![Slackernews with ready status on admin console dashboard](/images/quick-start-slackernews-adm-dashboard-ready.png)
@@ -417,19 +428,17 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. After a few minutes when the application status is Ready, click **Open SlackerNews** to view SlackerNews in a browser.
 
-      {/* ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+       ![Slackernews landing page](/images/slackernews-landing-page.png)
 
-      [View a larger version of this image](/images/gitea-ec-ready.png) */}
+       [View a larger version of this image](/images/slackernews-landing-page.png)
 
-      <img alt="Slackernews landing page" src="/images/slackernews-landing-page.png" width="800px"/>
+1. View telemetry for the instance that you just deployed:
 
-      [View a larger version of this image](/images/slackernews-landing-page.png)
+    1. Return to the Vendor Portal, select the SlackerNews application, and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
 
-1. Return to the Vendor Portal, select the SlackerNews application, and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
+       This instance telemetry is automatically collected and sent back to the Vendor Portal by Embedded Cluster and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
-   This instance telemetry is automatically collected and sent back to the Vendor Portal by both KOTS and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
-
-1. Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. For more information, see [Instance Details](/vendor/instance-insights-details).    
+    1. (Optional) Under **Instance ID**, click on the ID to view additional insights including the versions of Kubernetes and the Replicated SDK running in the cluster where you installed the application. 
 
 1. Create a new release that adds preflight checks to the application:
 
@@ -495,7 +504,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       helm package -u .
       ```
 
-   1. Move the chart archive to the `manifests` directory:
+   1. Move the `slackernews-0.4.15.tgz` chart archive to the `manifests` directory:
 
       ```bash
       cd ../../manifests
@@ -504,14 +513,14 @@ To complete this quick start, you need access to a VM that meets the requirement
       mv chart/slackernews/slackernews-0.4.15.tgz .
       ```
 
-   1. In the `manifests` directory, open the KOTS HelmChart custom resource (`slackernews.yaml`) and update the `chartVersion`:
+   1. In the `manifests` directory, open the HelmChart custom resource (`slackernews.yaml`) and update the `chartVersion` to match the new archive:
 
       ```yaml
-      # slackernews.yaml KOTS HelmChart
+      # slackernews.yaml HelmChart
       chartVersion: 0.4.15
       ```  
 
-   1. Remove the chart archive for version 0.4.14 of the chart from the `manifests` directory:
+   1. Remove the unused chart archive for version 0.4.14 from the `manifests` directory:
 
       ```
       rm slackernews-0.4.14.tgz
@@ -524,7 +533,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
 
       :::note
-      If you see a `helm-archive-missing` error, run `rm -rf .history` and then try linting the files again.
+      If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 0.4.15, and that the `chartVersion` in the HelmChart resource is also set to `0.4.15`. You can also try running `rm -rf .history` and then linting the files again.
       :::
    
    1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
@@ -553,7 +562,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. Click **Deploy** next to the new version.
 
-      The Embedded Cluster upgrade wizard opens. Follow the steps until you see the **Preflight checks** screen
+      The Embedded Cluster upgrade wizard opens. Follow the steps until you see the **Preflight checks** screen.
 
    1. On the **Preflight checks** screen, note that the "Slack Accessible" preflight check that you added was successful. Click **Next: Confirm and deploy**.   
 
@@ -572,7 +581,7 @@ To complete this quick start, you need access to a VM that meets the requirement
        ```
        Where VM_ID is the ID of the VM. You can run `replicated vm ls` to get the ID.
 
-    * If you brought your own VM, reset and reboot the VM to remove the installation:
+    * If you brought your own VM, use Embedded Cluster to reset and reboot the VM to remove the installation:
 
        ```bash
        sudo ./APP_SLUG reset
