@@ -338,12 +338,17 @@ To complete this quick start, you need access to a VM that meets the requirement
 
             [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
 
-         1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings.
+         1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings. This will provide a hostname where you can access the Admin Console on port 30000.
 
-            ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
-            [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
+         1. Add another DNS record with a **Target Port** of **443**. This will provide a hostname where you can access SlackerNews on port 443.
+
+             The following shows an example of a VM with both of the necessary DNS records:
+
+             ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
+             [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
 
          1. Copy the URL provided for the DNS record.
+
          1. Open a browser and go to the URL.
 
        * If your brought your own VM, go to the URL provided in the output of the install command.
@@ -370,9 +375,13 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On the **Configure SlackerNews** screen, complete the following fields:
    
-       * For **Hostname**, enter any hostname to use for SlackerNews.
-       * For **Application Access > Service Type**, select **NodePort** and leave the port field blank to use the default port of 443. 
+       * For **Hostname**:
+          * If you created the VM with Compatibility Matrix, enter the hostname for the DNS record that you created with the target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
+          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console with `:443` appended using the following format: `YOUR_IP_ADDRESS:443`. For example, `34.10.177.196:443`.
+       * For **Application Access > Service Type**, select **NodePort**. Leave the port field blank to use the default port of 443. 
        * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
+
+       Leave the other fields on the **Configure SlackerNews** screen empty.
 
        ![Configure slackernews screen](/images/quick-start-slackernews-configure-slackernews.png)
 
@@ -385,6 +394,12 @@ To complete this quick start, you need access to a VM that meets the requirement
        ![Slackernews admin console dashboard](/images/quick-start-slackernews-dashboard.png)
 
        [View a larger version of this image](/images/quick-start-slackernews-dashboard.png)
+
+       After a few minutes, the status changes to Ready when the application is deployed:
+
+       ![Slackernews with ready status on admin console dashboard](/images/quick-start-slackernews-adm-dashboard-ready.png)
+
+       [View a larger version of this image](/images/quick-start-slackernews-adm-dashboard-ready.png)
 
    1. After a few minutes when the application status is Ready, click **Open SlackerNews** to view SlackerNews in a browser.
 
