@@ -51,12 +51,12 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. On your local machine, install the Replicated CLI:
 
-      * **Mac**
+      * MacOS
 
         ```bash
         brew install replicatedhq/replicated/cli
         ```
-      * **Linux / Windows Subsystem for Linux (WSL)**
+      * Linux / Windows Subsystem for Linux (WSL)
 
         ```bash
         version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
@@ -74,7 +74,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```bash
       replicated login
       ```
-      In the browser window that opens, complete the prompts to log in to your Vendor Portal account and authorize the CLI.
+      In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
    1. Create an application named `SlackerNews`:
 
@@ -89,11 +89,11 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
 
-      This allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
+      Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
 
 1. Get the sample SlackerNews Helm chart:
 
-   1. Run the following command to create a directory named `quick-start` and download version 0.4.14 of the `slackernews` Helm chart to this new directory: 
+   1. Run the following command to download version 0.4.14 of the SlackerNews Helm chart to a new `quick-start` directory: 
 
       ```
       curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-0.4.14.tar.gz
@@ -125,6 +125,21 @@ To complete this quick start, you need access to a VM that meets the requirement
 
       The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
+      **Example:**
+
+      ```yaml
+      # Chart.yaml
+      apiVersion: v2
+      name: slackernews
+      version: 0.4.14
+      icon: data:image/png;base64,iVBORw0KGgoAAAA... # slackernews base64 encoded icon
+      # Replicated SDK subchart
+      dependencies:
+      - name: replicated
+        repository: oci://registry.replicated.com/library
+        version: 1.7.2
+      ```
+
    1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
       ```bash
@@ -134,7 +149,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
       The output of this command is a file named `slackernews-0.4.14.tgz`.
 
-1. Add the `slackernews-0.4.14.tgz` chart archive to a release:
+1. Add the `slackernews-0.4.14.tgz` chart archive to a release in the Replicated Platform:
 
    1. Change to the `quick-start` directory:
 
@@ -142,15 +157,14 @@ To complete this quick start, you need access to a VM that meets the requirement
       cd ../..
       ```
    
-   1. In the `quick-start` directory, create a subdirectory named `manifests`:
+   1. In the `quick-start` directory, create a directory named `manifests`:
 
       ```
       mkdir manifests
       ```
-
       You will add the files required to support installation with Embedded Cluster to this subdirectory.
 
-   1. Move the Helm chart archive that you created to `manifests`:
+   1. Move the `slackernews-0.4.14.tgz` chart archive that you created to `manifests`:
 
       ```
       mv chart/slackernews/slackernews-0.4.14.tgz manifests
@@ -163,25 +177,26 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       touch slackernews.yaml replicated-app.yaml k8s-app.yaml embedded-cluster.yaml config.yaml
       ```
+      These manifests will be used by the Replicated Embedded Cluster installer to install SlackerNews.
 
    1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
 
       <Tabs>
       <TabItem value="helmchart" label="slackernews.yaml" default>
       <h5>Description</h5>
-      <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. The <a href="/vendor/helm-optional-value-keys#conditionally-set-values"><code>optionalValues</code></a> field sets the specified Helm values when a given conditional statement evaluates to true. This HelmChart resource includes several `values` and conditional `optionalValues` that are supplied to `helm template` during deployment.</p>
+      <p>The KOTS HelmChart custom resource provides instructions to the installer about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. This HelmChart resource includes several `values` and conditional `optionalValues` that are supplied to `helm template` during deployment.</p>
       <h5>YAML</h5>
       <HelmChartCr/>
       </TabItem>
       <TabItem value="replicated-app" label="replicated-app.yaml">
       <h5>Description</h5>
-      <p>The KOTS Application custom resource enables features in the Replicated Admin Console such as branding, release notes, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, adds a custom application icon, and adds the port where the Slackernews service can be accessed so that the user can open the application after installation.</p>
+      <p>The KOTS Application custom resource enables features in the Replicated Admin Console UI. The YAML below provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, and adds a custom application icon.</p>
       <h5>YAML</h5>
       <KotsCr/>
       </TabItem>
       <TabItem value="k8s-app" label="k8s-app.yaml">
       <h5>Description</h5>
-      <p>The Kubernetes SIG Application custom resource supports functionality such as including buttons and links on the Replicated Admin Console dashboard. The YAML below adds an <strong>Open App</strong> button to the Admin Console dashboard that opens the application using the service port defined in the KOTS Application custom resource.</p>
+      <p>The Kubernetes SIG Application custom resource supports functionality such as including buttons and links on the Admin Console dashboard. The YAML below adds an <strong>Open SlackerNews</strong> button that opens the application.</p>
       <h5>YAML</h5>
       <K8sCr/>
       </TabItem>
@@ -193,7 +208,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       </TabItem>
       <TabItem value="config" label="config.yaml">
       <h5>Description</h5>
-      <p>The Config custom resource defines the application config fields that are exposed to the user in the Admin Console.</p>
+      <p>The Config custom resource defines the application configuration fields that are exposed to the user in the Admin Console. </p>
       <h5>YAML</h5>
       <ConfigCr/>
       </TabItem>
@@ -330,7 +345,8 @@ To complete this quick start, you need access to a VM that meets the requirement
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
    1. Do one of the following to access the Admin Console:
-       * If you created the VM with Compatibility Matrix, do the following to create a tunnel so that you can access the Admin Console from your local machine:
+       * If your brought your own VM, go to the URL provided in the output of the install command.
+       * If you created the VM with Compatibility Matrix, create DNS records so that you can access both the Admin Console and SlackerNews from a browser on your local machine:
          1. In the Vendor Portal, go to **Compatibility Matrix**.
          1. Open the dot menu for your VM and click **Edit**.
 
@@ -350,8 +366,6 @@ To complete this quick start, you need access to a VM that meets the requirement
          1. Copy the URL provided for the DNS record.
 
          1. Open a browser and go to the URL.
-
-       * If your brought your own VM, go to the URL provided in the output of the install command.
    
    1. On the Admin Console landing page, click **Start**.
 
