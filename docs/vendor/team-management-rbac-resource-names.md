@@ -366,9 +366,17 @@ Grants the holder permission to list exposed ports for a cluster.
 
 Grants the holder permission to list the quotas.
 
+### kots/cluster/credits/buy
+
+Grants the holder permission to buy compatibility matrix credits.
+
 ### kots/cluster/increase-quota
 
 Grants the holder permission to request an increase in the quota.
+
+### kots/network/[:networkId]/update
+
+Grants the holder permission to update the network, including setting airgap policy and network reporting.
 
 ### kots/vm/tag/update
 
