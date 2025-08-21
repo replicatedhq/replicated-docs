@@ -5,10 +5,6 @@ import ConfigValuesProcedure from "../partials/configValues/_config-values-proce
 
 This topic describes how to install an application with Replicated Embedded Cluster from the command line, without needing to access the Replicated KOTS Admin Console.
 
-:::note
-The following information applies only to initial installation with Embedded Cluster. Subsequent updates are not currently available in automated (headless) mode and must be conducted through the Admin UI. 
-:::
-
 ## Overview
 
 A common use case for installing with Embedded Cluster from the command line is to automate installation, such as performing headless installations as part of CI/CD pipelines.
@@ -22,6 +18,10 @@ Create a ConfigValues YAML file to define the configuration values for the appli
 The KOTS ConfigValues file includes the fields that are defined in the KOTS Config custom resource for an application release, along with the user-supplied and default values for each field, as shown in the example below:
 
 <ConfigValuesExample/>
+
+## Limtiation
+
+Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
 
 ## Online (Internet-Connected) Installation
 
