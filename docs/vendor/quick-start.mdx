@@ -15,7 +15,7 @@ This topic provides a quick start workflow to help new users learn about the Rep
 
 ## Introduction
 
-This quick start shows how to create, install, and update releases for a sample Helm chart in the Replicated Platform. You will repeat these same basic steps to create and test releases throughout the onboarding process to integrate Replicated features with your own application.
+This quick start demonstrates how to create, install, and update releases for a sample Helm chart in the Replicated Platform. You will repeat these same basic steps to create and test releases throughout the onboarding process to integrate Replicated features with your own application.
 
 The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
 
@@ -177,26 +177,26 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       touch slackernews.yaml replicated-app.yaml k8s-app.yaml embedded-cluster.yaml config.yaml
       ```
-      These manifests will be used by the Replicated Embedded Cluster installer to install SlackerNews.
+      These manifests will be used by Embedded Cluster to install SlackerNews.
 
    1. In each of the files that you created, paste the corresponding YAML provided in the tabs below:
 
       <Tabs>
       <TabItem value="helmchart" label="slackernews.yaml" default>
       <h5>Description</h5>
-      <p>The KOTS HelmChart custom resource provides instructions to the installer about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. This HelmChart resource includes several `values` and conditional `optionalValues` that are supplied to `helm template` during deployment.</p>
+      <p>The HelmChart custom resource provides instructions to the installer about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. This HelmChart resource includes several `values` and conditional `optionalValues` that are supplied to `helm template` during deployment.</p>
       <h5>YAML</h5>
       <HelmChartCr/>
       </TabItem>
       <TabItem value="replicated-app" label="replicated-app.yaml">
       <h5>Description</h5>
-      <p>The KOTS Application custom resource enables features in the Replicated Admin Console UI. The YAML below provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, and adds a custom application icon.</p>
+      <p>The Replicated Application custom resource enables features in the Replicated Admin Console UI. This Application resource provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, and adds a custom application icon.</p>
       <h5>YAML</h5>
       <KotsCr/>
       </TabItem>
       <TabItem value="k8s-app" label="k8s-app.yaml">
       <h5>Description</h5>
-      <p>The Kubernetes SIG Application custom resource supports functionality such as including buttons and links on the Admin Console dashboard. The YAML below adds an <strong>Open SlackerNews</strong> button that opens the application.</p>
+      <p>The Kubernetes SIG Application custom resource supports functionality such as including buttons and links on the Admin Console dashboard. This SIG Application resource adds an <strong>Open SlackerNews</strong> button that opens the application.</p>
       <h5>YAML</h5>
       <K8sCr/>
       </TabItem>
@@ -208,7 +208,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       </TabItem>
       <TabItem value="config" label="config.yaml">
       <h5>Description</h5>
-      <p>The Config custom resource defines the application configuration fields that are exposed to the user in the Admin Console. These fields can then be mapped to the `values.yaml` file for the Helm chart.</p>
+      <p>The Config custom resource defines the application configuration fields that are exposed to the user in the Admin Console. These fields can then be mapped to the `values.yaml` file for the Helm chart. This Config resource includes several fields, but you will only use a few of them when installing SlackerNews for the purpose of this tutorial.</p>
       <h5>YAML</h5>
       <ConfigCr/>
       </TabItem>
@@ -271,7 +271,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    1. For **Customer type**, select **Development**.
 
-   1. For **Install types**, enable **Embedded Cluster (current generation product)**. Disable the other install type options.
+   1. For **Install types**, enable **Embedded Cluster (current generation product)** and disable the other install type options.
 
    1. Click **Save Changes**.
 
@@ -298,21 +298,19 @@ To complete this quick start, you need access to a VM that meets the requirement
       ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
       97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
       ```
-
-   1. Copy the `ID` from the output of the `replicated vm ls` command.
    
    1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
 
       ```bash
       ssh VM_ID@replicatedvm.com
       ```
-      Where `VM_ID` is the ID that you copied.
+      Where `VM_ID` is the `ID` from the output of the `replicated vm ls` command.
 
       :::note
       If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
       :::
 
-   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Comaptibility Matrix uses GitHub SSH to provide access to the VM. 
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM. 
 
 1. Install the application with Embedded Cluster:
      
@@ -328,7 +326,7 @@ To complete this quick start, you need access to a VM that meets the requirement
 
        [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-   1. When prompted by the `install` command, set a password for accessing the Admin Console. Save the password in a secure location. You will use this password to log in to the Admin Console in a later step.
+   1. When prompted by the `install` command, set a password for accessing the Admin Console. You will use this password to log in to the Admin Console in a later step.
 
       The installation command takes a few minutes to complete.
 
@@ -356,7 +354,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
    1. Do one of the following to access the Admin Console:
-       * If your brought your own VM, go to the URL provided in the output of the install command.
+       * If you brought your own VM, go to the URL provided in the output of the install command.
        * If you created the VM with Compatibility Matrix:
          1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/overview).
          1. Open the dot menu for your VM and click **Edit VM**.
@@ -374,7 +372,7 @@ To complete this quick start, you need access to a VM that meets the requirement
              ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
              [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
 
-         1. Copy the URL for the DNS record with a target port of 443 and save it somewhere on your local machine. You will be asked to provide this hostname in the Admin Console as part of the installation process for SlackerNews.
+         1. (Optional) Copy the URL for the DNS record with a target port of 443 and save it somewhere on your local machine. You will be asked to provide this hostname in the Admin Console as part of the installation process for SlackerNews.
          
          1. In a browser, navigate to the URL for the DNS record with a target port of 30000.
 
@@ -404,7 +402,7 @@ To complete this quick start, you need access to a VM that meets the requirement
    
        * For **Hostname**:
           * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
-          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. You can copy the IP address from your browser's address bar. For example, `34.10.177.196`. Alternatively, if you know the hostname for your VM's IP address, you can provide that instead.
+          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. You can copy the IP address from your browser's address bar. Alternatively, if you have a hostname for your VM's IP address, you can provide that instead.
        * For **Application Access > Service Type**, select **NodePort**. Leave the **Node Port** field blank to use the default port of 443. 
        * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
 
@@ -433,6 +431,10 @@ To complete this quick start, you need access to a VM that meets the requirement
 1. View telemetry for the instance that you just deployed:
 
     1. Return to the Vendor Portal, select the SlackerNews application, and go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
+
+       ![Slackernews instance on customers page](/images/quick-start-slackernews-customer-instance.png)
+
+       [View a larger version of this image](/images/quick-start-slackernews-customer-instance.png)
 
        This instance telemetry is automatically collected and sent back to the Vendor Portal by Embedded Cluster and the Replicated SDK. For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
 
