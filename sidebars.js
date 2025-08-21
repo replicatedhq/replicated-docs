@@ -729,6 +729,8 @@ const sidebars = {
       'reference/replicated-cli-instance-tag',
       'reference/replicated-cli-login',
       'reference/replicated-cli-logout',
+      'reference/replicated-cli-network',
+      'reference/replicated-cli-network-ls',
       'reference/replicated-cli-registry',
       'reference/replicated-cli-registry-add',
       'reference/replicated-cli-registry-add-dockerhub',
