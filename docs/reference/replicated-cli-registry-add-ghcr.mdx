@@ -13,10 +13,12 @@ replicated registry add ghcr [flags]
 ### Options
 
 ```
-  -h, --help            help for ghcr
-  -o, --output string   The output format to use. One of: json|table (default "table")
-      --token string    The token to use to auth to the registry with
-      --token-stdin     Take the token from stdin
+      --app-ids string   Comma-separated list of app IDs to scope this registry to
+  -h, --help             help for ghcr
+      --name string      Name for the registry
+  -o, --output string    The output format to use. One of: json|table (default "table")
+      --token string     The token to use to auth to the registry with
+      --token-stdin      Take the token from stdin
 ```
 
 ### Options inherited from parent commands
