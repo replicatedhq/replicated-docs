@@ -23,7 +23,7 @@ The goals of this quick start are to introduce new Replicated users to the follo
 
 * Working with the Replicated CLI
 
-* Installing and updating applications on a VM with Replicated Embedded Cluster
+* Installing and updating applications on a VM with Replicated Embedded Cluster through the Replicated Admin Console UI.
 
 ## Set Up Your Environment
 
@@ -130,9 +130,9 @@ For more information about setting up your environment to work with the Replicat
    1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
       ```bash
-      helm package -u .
+      helm package --dependency-update .
       ```
-      Where `-u` or `--dependency-update` is an option for the helm package command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+      Where `--dependency-update` (or `-u`) is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
 
       The output of this command is a file named `slackernews-1.0.0.tgz`.
 
@@ -177,7 +177,7 @@ For more information about setting up your environment to work with the Replicat
       </TabItem>
       <TabItem value="replicated-app" label="replicated-app.yaml">
       <h5>Description</h5>
-      <p>The Replicated Application custom resource enables features in the Replicated Admin Console UI. This Application resource provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, and adds a custom application icon.</p>
+      <p>The Replicated Application custom resource enables features in the Replicated Admin Console UI, which is used to configure, install, update, and manage applications. This Application resource provides a name for the application to display in the Admin Console, adds custom <em>status informers</em> that are used to display the status of the deployment in the Admin Console dashboard, and adds a custom application icon.</p>
       <h5>YAML</h5>
       <KotsCr/>
       </TabItem>
@@ -495,7 +495,7 @@ For more information about setting up your environment to work with the Replicat
    1. Update dependencies and package the chart to a `.tgz` chart archive:
 
       ```bash
-      helm package -u .
+      helm package --dependency-update .
       ```
 
    1. Move the `slackernews-1.0.1.tgz` chart archive to the `manifests` directory:
