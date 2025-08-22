@@ -43,6 +43,8 @@ To complete this quick start, you need access to a VM that meets the requirement
 
    <Requirements/>
 
+For more information about setting up your environment to work with the Replicated Platform, see [Set Up Your Environment](/vendor/environment-setup).   
+
 ## Quick Start
 
 1. If you have not done so already, create an account in the Vendor Portal. You can either create a new team or join an existing team. For more information, see [Create a Vendor Account](vendor-portal-creating-account).
@@ -93,16 +95,16 @@ To complete this quick start, you need access to a VM that meets the requirement
 
 1. Get the sample SlackerNews Helm chart:
 
-   1. Run the following command to download version 0.4.14 of the SlackerNews Helm chart to a new `quick-start` directory: 
+   1. Run the following command to download version 1.0.0 of the sample SlackerNews Helm chart to a new `quick-start` directory: 
 
       ```
-      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-0.4.14.tar.gz
+      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-1.0.0.tar.gz
       ```
    
    1. Untar the chart:
 
       ```
-      tar -xzf quick-start/slackernews-0.4.14.tar.gz -C quick-start/ && rm quick-start/slackernews-0.4.14.tar.gz
+      tar -xzf quick-start/slackernews-1.0.0.tar.gz -C quick-start/ && rm quick-start/slackernews-1.0.0.tar.gz
       ```
 
    1. Change to the `slackernews` chart directory:
@@ -125,21 +127,6 @@ To complete this quick start, you need access to a VM that meets the requirement
 
       The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-      **Example:**
-
-      ```yaml
-      # Chart.yaml
-      apiVersion: v2
-      name: slackernews
-      version: 0.4.14
-      icon: data:image/png;base64,iVBORw0KGgoAAAA... # slackernews base64 encoded icon
-      # Replicated SDK subchart
-      dependencies:
-      - name: replicated
-        repository: oci://registry.replicated.com/library
-        version: 1.7.2
-      ```
-
    1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
       ```bash
@@ -147,9 +134,9 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       Where `-u` or `--dependency-update` is an option for the helm package command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
 
-      The output of this command is a file named `slackernews-0.4.14.tgz`.
+      The output of this command is a file named `slackernews-1.0.0.tgz`.
 
-1. Add the `slackernews-0.4.14.tgz` chart archive to a release in the Replicated Platform:
+1. Add the `slackernews-1.0.0.tgz` chart archive to a release in the Replicated Platform:
 
    1. Change to the `quick-start` directory:
 
@@ -164,10 +151,10 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
       You will add the files required to support installation with Embedded Cluster to this subdirectory.
 
-   1. Move the `slackernews-0.4.14.tgz` chart archive that you created to `manifests`:
+   1. Move the `slackernews-1.0.0.tgz` chart archive that you created to `manifests`:
 
       ```
-      mv chart/slackernews/slackernews-0.4.14.tgz manifests
+      mv chart/slackernews/slackernews-1.0.0.tgz manifests
       ```
 
    1. In `manifests`, create the following YAML files:
@@ -354,7 +341,10 @@ To complete this quick start, you need access to a VM that meets the requirement
       At this point, the cluster is provisioned and the Admin Console is deployed, but the application is not yet installed.
 
    1. Do one of the following to access the Admin Console:
-       * If you brought your own VM, go to the URL provided in the output of the install command.
+       * If you brought your own VM, go to the URL provided in the output of the install command. 
+          :::note
+          The IP address in the provided URL might be the private IP address of your VM. You might need to edit the URL to use the public IP address.
+          :::
        * If you created the VM with Compatibility Matrix:
          1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/overview).
          1. Open the dot menu for your VM and click **Edit VM**.
@@ -378,15 +368,16 @@ To complete this quick start, you need access to a VM that meets the requirement
 
             The Admin Console opens.
    
-   1. On the Admin Console landing page, click **Start**.
+   1. If you are directed to the Admin Console landing page:
+       1. Click **Start**.
+       1. On the **Secure the Admin Console** screen, review the instructions and click **Continue**. In your browser, follow the instructions that were provided on the **Secure the Admin Console** screen to bypass the warning.
+       1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificacte. By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
-   1. On the **Secure the Admin Console** screen, review the instructions and click **Continue**. In your browser, follow the instructions that were provided on the **Secure the Admin Console** screen to bypass the warning.
-
-   1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificacte.
-
-       By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
-
-   1. On the login page, enter the Admin Console password that you set and click **Log in**.
+       :::note
+       If you created the VM with Compatibility Matrix, you might not see these pages. Instead, your browser might automatically redirect to the Admin Console login screen.
+       :::
+   
+   1. On the login screen, enter the Admin Console password that you set and click **Log in**.
 
        ![Admin console login screen](/images/quick-start-slackernews-admin-console-login.png)
 
@@ -402,8 +393,11 @@ To complete this quick start, you need access to a VM that meets the requirement
    
        * For **Hostname**:
           * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
-          * If you are using your own VM, provide the IP address where you are currently accessing the Admin Console. You can copy the IP address from your browser's address bar. Alternatively, if you have a hostname for your VM's IP address, you can provide that instead.
+
+          * If you are using your own VM, provide the public IP address for your VM. You can copy the IP address from your browser's address bar where you are currently accessing the Admin Console. Alternatively, if you have a hostname for your VM's IP address, you can provide that instead.
+
        * For **Application Access > Service Type**, select **NodePort**. Leave the **Node Port** field blank to use the default port of 443. 
+       
        * For **Postgresql**, ensure that **Deploy Postgresql Database** is enabled to deploy the built-in Postgresql database.
 
        Leave the other fields on the **Configure SlackerNews** screen empty. They are not applicable for this quick start.
@@ -491,11 +485,11 @@ To complete this quick start, you need access to a VM that meets the requirement
       
       The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
-   1. In the `Chart.yaml` file, increment the version to 0.4.15:
+   1. In the `Chart.yaml` file, increment the version to 1.0.1:
 
       ```yaml
       # Chart.yaml
-      version: 0.4.15
+      version: 1.0.1
       ```
 
    1. Update dependencies and package the chart to a `.tgz` chart archive:
@@ -504,10 +498,10 @@ To complete this quick start, you need access to a VM that meets the requirement
       helm package -u .
       ```
 
-   1. Move the `slackernews-0.4.15.tgz` chart archive to the `manifests` directory:
+   1. Move the `slackernews-1.0.1.tgz` chart archive to the `manifests` directory:
 
       ```bash
-      mv slackernews-0.4.15.tgz ../../manifests
+      mv slackernews-1.0.1.tgz ../../manifests
       ```
 
    1. Change to the `manifests` directory.   
@@ -516,13 +510,13 @@ To complete this quick start, you need access to a VM that meets the requirement
 
       ```yaml
       # slackernews.yaml HelmChart
-      chartVersion: 0.4.15
+      chartVersion: 1.0.1
       ```  
 
-   1. Remove the unused chart archive for version 0.4.14 from the `manifests` directory:
+   1. Remove the unused chart archive for version 1.0.0 from the `manifests` directory:
 
       ```
-      rm slackernews-0.4.14.tgz
+      rm slackernews-1.0.0.tgz
       ```        
 
    1. From the `manifests` directory, lint the release manifests:
@@ -532,7 +526,7 @@ To complete this quick start, you need access to a VM that meets the requirement
       ```
 
       :::note
-      If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 0.4.15, and that the `chartVersion` in the HelmChart resource is also set to `0.4.15`. If you notice that any of the errors are from files in your `.history/` directory, run `rm -rf .history` and then lint the files again.
+      If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 1.0.1, and that the `chartVersion` in the HelmChart resource is also set to `1.0.1`. If you notice that any of the errors are from files in your `.history/` directory, run `rm -rf .history` and then lint the files again.
       :::
    
    1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
