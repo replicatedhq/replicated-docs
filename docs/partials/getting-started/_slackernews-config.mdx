@@ -54,13 +54,13 @@ spec:
           title: Service Type
           type: select_one
           items:
-            - name: cluster_ip
-              title: ClusterIP
             - name: node_port
               title: NodePort
+            - name: cluster_ip
+              title: ClusterIP
             - name: load_balancer
               title: LoadBalancer
-          default: cluster_ip
+          default: node_port
         - name: node_port_port
           title: Node Port
           help_text: >
