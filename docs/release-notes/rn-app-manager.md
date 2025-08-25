@@ -24,8 +24,8 @@ Released on August 25, 2025
 
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
-### New Features {#new-features-1-127-1}
-* Hide demoted releases from the app version history screen.
+### Bug Fixes {#bug-fixes-1-127-1}
+* Fixes high CVEs found in the KOTS Go binaries.
 
 ## 1.126.0
 
