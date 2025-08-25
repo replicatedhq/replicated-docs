@@ -1,0 +1,61 @@
+# replicated network update
+
+Update network settings.
+
+### Synopsis
+
+The 'update' command allows you to update various settings of a test network.
+
+You can either specify the network ID directly or provide the network name, and the command will resolve the corresponding network ID.
+
+Network Policies are currently a beta feature, and network reporting is currently an alpha feature.
+
+```
+replicated network update [ID_OR_NAME] [flags]
+```
+
+### Examples
+
+```
+# Update a network using its ID
+replicated network update <network-id> --policy airgap
+
+# Update a network using its name
+replicated network update <network-name> --policy airgap
+
+# Update using --id or --name flags
+replicated network update --id <network-id> --policy airgap
+replicated network update --name <network-name> --policy airgap
+
+# Enable report collection on a network
+replicated network update <network-id> --collect-report
+
+# Disable report collection on a network
+replicated network update <network-id> --collect-report=false
+
+# Update both policy and report collection on a network
+replicated network update <network-id> --policy airgap --collect-report
+```
+
+### Options
+
+```
+  -h, --help            help for update
+      --id string       id of the network to update (when name is not provided)
+      --name string     Name of the network to update.
+      --output string   The output format to use. One of: json|table|wide (default "table")
+      --policy string   Update network policy setting
+```
+
+### Options inherited from parent commands
+
+```
+      --app string     The app slug or app id to use in all calls
+      --debug          Enable debug output
+      --token string   The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated network](replicated-cli-network)	 - Manage test networks for VMs and Clusters
+
