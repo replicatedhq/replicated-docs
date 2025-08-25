@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.08.21-1
+
+Released on August 21, 2025
+
+### Improvements {#improvements-v2025-08-21-1}
+* Makes long release names wrap when viewing the Channels page.
+
 ## v2025.08.15-1
 
 Released on August 15, 2025
