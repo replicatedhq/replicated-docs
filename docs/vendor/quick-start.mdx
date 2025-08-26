@@ -19,31 +19,43 @@ This quick start demonstrates how to create, install, and update releases for a 
 
 The goals of this quick start are to introduce new Replicated users to the following common tasks for the purpose of preparing to onboard to the Replicated Platform:
 
-* Working with _applications_, _channels_, _releases_, and _customers_ in the Replicated Vendor Portal
+* Adding the Replicated SDK to a Helm chart as a dependency
+
+* Working with _applications_, _channels_, _releases_, and _customers_ in the Replicated Platform
 
 * Working with the Replicated CLI
 
 * Installing and updating applications on a VM with Replicated Embedded Cluster through the Replicated Admin Console UI.
 
+Replicated recommends that you allow one to two hours to complete this quick start. No prior knowledge of Replicated, Helm, or interacting with the command line is required. However, if you are unfamiliar with these tools, you might allow more time. If you have any questions or need help, don't hesitate to reach out to our team at https://www.replicated.com/contact.
+
 ## Set Up Your Environment
 
-To complete this quick start, you need access to a VM that meets the requirements for Embedded Cluster:
+Before you begin, do the following to see up your environment:
 
-* **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
-   
-   * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
-   
-   * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
+* Install the Helm CLI, which is the tool for interacting with Helm and managing Helm charts. See [Install Helm](/vendor/environment-setup#install-helm).
 
-   After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
+* Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
 
-* **Option 2: Bring your own VM.** Your VM must meet these requirements:
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
+      
+      * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
-   * Firewalls must allow HTTP and HTTPS traffic.
+          :::note
+          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing the Replicated Quick Start.
+          :::
+      
+      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
 
-   <Requirements/>
+      After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
 
-For more information about setting up your environment to work with the Replicated Platform, see [Set Up Your Environment](/vendor/environment-setup).   
+   * **Option 2: Bring your own VM.** Your VM must meet these requirements:
+
+      * Firewalls must allow HTTP and HTTPS traffic.
+
+      <Requirements/>
+
+   For more information, see [Set Up Development Environments for Testing](/vendor/environment-setup#dev).   
 
 ## Quick Start
 
@@ -254,7 +266,7 @@ For more information about setting up your environment to work with the Replicat
 
    1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
 
-   1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+   1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
    1. For **Customer type**, select **Development**.
 
@@ -313,7 +325,11 @@ For more information about setting up your environment to work with the Replicat
 
        [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-   1. When prompted by the `install` command, set a password for accessing the Admin Console. You will use this password to log in to the Admin Console in a later step.
+   1. When prompted by the `install` command, set a password for accessing the Admin Console.
+   
+      :::note
+      Remember this password because you will use it to log in to the Admin Console in a later step.
+      :::
 
       The installation command takes a few minutes to complete.
 
@@ -371,7 +387,7 @@ For more information about setting up your environment to work with the Replicat
    1. If you are directed to the Admin Console landing page:
        1. Click **Start**.
        1. On the **Secure the Admin Console** screen, review the instructions and click **Continue**. In your browser, follow the instructions that were provided on the **Secure the Admin Console** screen to bypass the warning.
-       1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificacte. By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
+       1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificate. By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
        :::note
        If you created the VM with Compatibility Matrix, you might not see these pages. Instead, your browser might automatically redirect to the Admin Console login screen.
@@ -391,7 +407,7 @@ For more information about setting up your environment to work with the Replicat
 
    1. On the **Configure SlackerNews** screen, complete the following fields:
    
-       * For **Hostname**:
+       * For **Ingress Hostname**:
           * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
 
           * If you are using your own VM, provide the public IP address for your VM. You can copy the IP address from your browser's address bar where you are currently accessing the Admin Console. Alternatively, if you have a hostname for your VM's IP address, you can provide that instead.
