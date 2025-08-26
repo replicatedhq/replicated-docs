@@ -19,6 +19,7 @@ Released on August 26, 2025
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.17.7.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) verison 1.16.2.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.32.1.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/mertrics-server) version 0.8.0.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.10.
 
 ## v2025.08.07-0
