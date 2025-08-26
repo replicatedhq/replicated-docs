@@ -1,140 +1,161 @@
-# Network Policies (Beta)
+# Set Network Policies (Beta)
 
-This topic describes how to use network policies and Air Gap features for Replicated Compatibility Matrix Clusters and VMs.
+This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix.
 
 ## About Network Policies
 
-Test and verify your application in an Air Gap environment. Particularly useful to test [Replicated Embedded Cluster](https://docs.replicated.com/enterprise/installing-embedded-air-gap) or [Helm CLI install](https://docs.replicated.com/vendor/helm-install-airgap) intended for install in an Air Gap environment.
+VMs and VM-based clusters created with Compatibility Matrix can use one of the following network policies:
 
-## Prerequisites
+| Network Policy | Description |
+| :---- | :---- |
+| `open` | No restrictions on network traffic. |
+| `airgap` | Restrict all network traffic. |
 
-* You must be using Replicated CLI 0.109.0 or higher
-* You must have the Admin or Developer role. Read Only users cannot change network settings
+By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to create an _air-gapped_ environment with no outbound internet access.
+
+The `airgap` network policy is particularly useful for testing air gap installations for your application. For information about installing with Embedded Cluster in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). For information about installing with the Helm CLI in an air-gapped environment, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).
+
+## Requirements
+
+* Replicated CLI 0.109.0 or later
+* The user must have the Admin or Developer role. Read Only users cannot change network settings.
 
 ## Limitations
 
-* Currently only open and air gapped policies are supported. For feedback, contact Replicated support.
-* Air Gap networks cannot yet be set within the Compatibility Matrix UI
+* Network policies are a beta feature. For feedback on this feature, including requests for additional types of network policies, contact Replicated support.
+* Setting network policies is only supported through the Replicated CLI. You cannot make changes to the network policy through the Compatibility Matrix UI in the Vendor Portal.
+* Network policies are supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
 
-## For Clusters
+## Set the Network Policy to `airgap`
 
-:::important
+### For VM-Based Clusters
 
-* Only for VM-base K8s clusters: K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift
-* Not yet for Cloud-based K8s clusters: EKS, GKE, AKE, OKE
+To set the network policy of a VM-based cluster:
 
-:::
+1. Create a cluster:
 
-### Create Cluster
+    ```bash
+    replicated cluster create --distribution VM_BASED_DISTRIBUTION
+    ```
+    Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
 
-```bash
-replicated cluster create --distribution [K8s DISTRIBUTION]
-```
+1. Watch until the cluster status is `running`:
 
-**Example:** `replicated cluster create --distribution k3s`
+    ```bash
+    replicated cluster ls --watch
+    ```
 
-### Option: Verify Initial Network Connectivity
+1. (Optional) Verify the initial outbound network connectivity for the cluster:
 
-1. Check the cluster is running (  `replicated cluster ls --watch` )
+    1. Access the cluster in a shell:
 
-2. Access the cluster (  `replicated cluster shell [CLUSTER ID]  )`
+       ```
+       replicated cluster shell CLUSTER_ID
+       ```
+       Where `CLUSTER_ID` is the ID of the cluster that you created from the output of the `cluster ls` command.
 
-3. Optional: Install a networking testing tool like a [netshoot](https://github.com/nicolaka/netshoot) pod:
+    1. In the cluster, install a networking testing tool. For example, [netshoot](https://github.com/nicolaka/netshoot).
 
-```bash
-kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot
-```
+       **Example:**
 
-4. Curl an endpoint (e.g.,  `curl www.google.com`  ), confirm success.
+       ```bash
+       kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot
+       ```
 
-### Set Network Policy to Air Gap
+    1. Curl an endpoint to confirm a successful response. For example, `curl www.google.com`.
 
-Using a different shell, update the network to `airgap`:
+1. Open a new shell to access the cluster:
 
-| Open | Air Gap | Custom / Allowlist  |
-| :---- | :---- | :---- |
-| No restrictions on network traffic | Restrict all network traffic | Restrict all except Allowlist |
-| `open` | `airgap` | Coming Soon |
+    ```
+    replicated cluster shell CLUSTER_ID
+    ```
+    Where `CLUSTER_ID` is the ID of the cluster that you created from the output of the `cluster ls` command.      
 
-```bash
-replicated network update [NETWORK ID] --policy airgap
-```
+1. Change the network policy to `airgap`:
 
-If successful, you’ll see network status transition from `updating` to `running`:
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
 
-```bash
-ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   REPORTING
-bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
-```
+1. Verify that the cluster's policy is `airgap` and the status is `running`:
 
-### Option: Verify Air Gap
+    ```bash
+    replicated cluster ls
+    ```
 
-1. In the netshoot container, check outbound connectivity. (e.g.,  `curl www.google.com`  )
+    ```bash
+    ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   REPORTING
+    bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
+    ```
 
-2. Request will eventually time out:
+    The air gap network is enabled when the status is `running`.
 
-```bash
-curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
-```
+1. (Optional) Use a networking testing tool such as [netshoot](https://github.com/nicolaka/netshoot) to curl an endpoint and verify that there is no outbound connectivity from the cluster.
 
-## For Virtual Machines (VMs)
+   If the air gap was successful, a request to curl an endpoint will time out. For example:
 
-### Create VM
+   ```bash
+   curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
+   ```
 
-```bash
-replicated vm create --distribution ubuntu
-```
+1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
 
-If successful, you’ll see something like. When ready, STATUS will change queued → running
+### For VMs
 
-```bash
-ID          NAME           DISTRIBUTION   VERSION   STATUS     NETWORK    CREATED               EXPIRES   COST
-067ddbd3    eloquent_sal   ubuntu         24.04     queued     85eb50a8   2025-01-28 16:18 PST  -         $0.60
-```
+To set the network policy of a VM-based cluster:
 
-### Option: Verify Initial Network Connectivity
+1. Create a VM:
 
-1. SSH into the VM (   `ssh [VMID]@replicatedvm.com`  )  
-   More options: [Connect to a VM](https://docs.replicated.com/vendor/testing-vm-create#connect-to-a-vm)
+    ```bash
+    replicated vm create --distribution ubuntu
+    ```
 
-2. Curl an endpoint (e.g.,  `curl www.google.com`  )
+1. Wait until the VM status is running:
 
-### Set Network Policy to Air Gap
+    ```bash
+    replicated vm ls
+    ```
 
-Optional: Confirm the VM is running  (`replicated vm ls`)
+1. SSH onto the VM:
 
-Then, set the network policy to `airgap`
+   ```bash
+   ssh VM_ID@replicatedvm.com
+   ```  
+   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
 
-| Open | Air Gap | Custom / Allowlist  |
-| :---- | :---- | :---- |
-| No restrictions on network traffic | Restrict all network traffic | Restrict all except Allowlist |
-| `open` | `airgap` | Coming Soon |
+   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
 
-```bash
-replicated network update [NETWORK ID] --policy airgap
-```
+1. (Optional) Curl an endpoint to verify the network connectivity of the VM. For example, `curl www.google.com`.
 
-**Example:** `replicated network update 85eb50a8 --policy airgap`
+1. Set the network policy to `airgap`:
 
-If successful, you’ll see the network STATUS change from `updating` → `running`  
-Note: it may take a few seconds for the setting to apply.
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.
 
-```bash
-ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   REPORTING
-85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
-```
+    **Example:**
 
-### Option: Verify Air Gap
+    ```bash
+    replicated network update 85eb50a8 --policy airgap
+    ```
 
-Confirm there is no outbound connectivity on your VM.
+    :::note
+    It can take a few seconds for the setting to apply.
+    :::
 
-1. SSH into the VM (   `ssh [VMID]@replicatedvm.com`  )  
-   More options: [Connect to a VM](https://docs.replicated.com/vendor/testing-vm-create#connect-to-a-vm)
+    ```bash
+    ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   REPORTING
+    85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
+    ```
 
-2. Curl an endpoint (e.g.,  `curl www.google.com`  )
+1. (Optional) Curl an endpoint to verify that there is no outbound connectivity from the VM. For example, `curl www.google.com`.
 
-The connection will eventually time out:
+    If the air gap was successful, a request to curl an endpoint will time out. For example:
 
-```bash
-curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
-```
+    ```bash
+    curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
+    ```
+
+1. (Optional) Test an air gap installation of your application on the VM. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).     
