@@ -1,0 +1,20 @@
+# ConfigValues
+
+This topic describes the Replicated KOTS ConfigValues custom resource. ConfigValues is used to provide application-specific configuration values during automated (headless) installations with the CLI.
+
+## Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: ConfigValues
+spec:
+  values:
+    text_config_field_name:
+      default: Example default value
+      value: Example user-provided value
+    boolean_config_field_name:
+      default: "0"
+      value: "1"
+    password_config_field_name:
+      valuePlaintext: examplePassword
+```
