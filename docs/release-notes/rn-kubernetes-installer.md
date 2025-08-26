@@ -10,6 +10,18 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.08.26-0
+
+Released on August 26, 2025
+
+### New Features {#new-features-v2025-08-26-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.33.4 1.32.8 1.31.12.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.17.7.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) verison 1.16.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.32.1.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/mertrics-server) version 0.8.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.10.
+
 ## v2025.08.07-0
 
 Released on August 7, 2025
