@@ -236,11 +236,18 @@ const sidebars = {
           items: [
             'vendor/testing-how-to',
             'vendor/testing-supported-clusters',
-            'vendor/testing-ingress',
             'vendor/testing-cluster-addons',
             'vendor/testing-vm-create',
-            'vendor/testing-vm-networking',
             'vendor/testing-ci-cd',
+            {
+              type: 'category',
+              label: 'Networking',
+              items: [
+                'vendor/testing-ingress',
+                'vendor/testing-vm-networking',
+                'vendor/testing-network-policy',
+              ]
+            }
           ],
         },
         
