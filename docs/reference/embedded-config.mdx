@@ -10,11 +10,11 @@ To install your application with Embedded Cluster, an Embedded Cluster Config mu
 
 The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that will be created.
 
-### Limitation
+### Limitations
 
-The Embedded Cluster Config does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
+* The Embedded Cluster Config does not support the use of Go template functions, including [KOTS template functions](/reference/template-functions-about).
 
-For additional property-specific limitations, see the sections below.
+* There are additional, property-specific limitations. For more information, see the sections below.
 
 ### Example
 
@@ -79,10 +79,6 @@ For a full list of versions, see the [Embedded Cluster Release Notes](/release-n
 
 ## roles (Beta)
 
-:::note
-Support for setting node roles is Beta.
-:::
-
 You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
 A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that will add a `gpu=true` label to any node that is assigned the role. This allows you to then schedule GPU workloads on nodes labled `gpu=true`.
@@ -112,6 +108,12 @@ spec:
       labels:
         gpu: "true" # Label applied to "gpu" nodes    
 ```
+
+### Limitations
+
+* Defining node roles with the `roles` key is Beta.
+
+* The first node added to the cluster is always a controller and cannot be assigned any custom roles. You can add custom labels to the first node by setting the `labels` field in the `roles.controller` key.
 
 ### roles.controller
 

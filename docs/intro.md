@@ -44,6 +44,9 @@ hide_table_of_contents: true
         <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
     </li>
     <li>
+      <a href="/vendor/quick-start">Quick Start</a>
+    </li>
+    <li>
       <a href="intro-replicated">Introduction to Replicated</a>
     </li>
     <li>
@@ -51,9 +54,6 @@ hide_table_of_contents: true
     </li>
     <li>
       <a href="/vendor/replicated-onboarding">Replicated Onboarding</a>
-    </li>
-    <li>
-      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorials</a>
     </li>
   </ul>
 </section>
@@ -151,9 +151,6 @@ hide_table_of_contents: true
     <li>
       <a href="/enterprise/installing-embedded">Install with Embedded Cluster</a>
     </li>
-    <li>
-      <a href="/vendor/tutorial-embedded-cluster-setup">Tutorial: Deploy a Helm Chart on a VM with Embedded Cluster</a>
-    </li>
   </ul>
 </section>
 <section class="tile__container">
@@ -229,9 +226,6 @@ hide_table_of_contents: true
     </li>
     <li>
       <a href="/vendor/preflight-running">Run Preflight Checks for Helm Installations</a>
-    </li>
-    <li>
-      <a href="/vendor/tutorial-preflight-helm-setup">Preflight Checks Tutorial for Helm Charts</a>
     </li>
     <li>
       <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight Checks Lab in Instruqt</a>

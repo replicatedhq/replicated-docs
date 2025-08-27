@@ -97,8 +97,6 @@ The `values.yaml` file in a Helm chart defines parameters that are specific to e
 
 To map the values that your users provide in the Admin Console configuration screen to your Helm chart `values.yaml` file, you create a HelmChart custom resource.
 
-For a tutorial that shows how to set values in a sample Helm chart during installation with KOTS, see [Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup).
-
 To map user inputs from the configuration screen to the `values.yaml` file:
 
 1. In the [Vendor Portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.

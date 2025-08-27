@@ -50,54 +50,6 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'Tutorials',
-      items: [
-        {
-          type: 'category',
-          label: 'Install a Helm Chart on a VM with Embedded Cluster',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install a Helm Chart with KOTS and the Helm CLI',
-          items: [
-            'vendor/tutorial-kots-helm-setup',
-            'vendor/tutorial-kots-helm-get-chart',
-            'vendor/tutorial-kots-helm-create-app',
-            'vendor/tutorial-kots-helm-package-chart',
-            'vendor/tutorial-kots-helm-create-release',
-            'vendor/tutorial-kots-helm-create-customer',
-            'vendor/tutorial-kots-helm-install-kots',
-            'vendor/tutorial-kots-helm-install-helm',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install with KOTS in an Existing Cluster',
-          items: [
-            'vendor/tutorial-cli-setup',
-            'vendor/tutorial-cli-install-cli',
-            'vendor/tutorial-cli-create-app',
-            'vendor/tutorial-cli-manifests',
-            'vendor/tutorial-cli-create-release',
-            'vendor/tutorial-cli-create-customer',
-            'vendor/tutorial-cli-install-app-manager',
-            'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-create-new-version',
-            'vendor/tutorial-cli-update-app',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
       label: 'Labs',
       items:
       [
@@ -236,11 +188,18 @@ const sidebars = {
           items: [
             'vendor/testing-how-to',
             'vendor/testing-supported-clusters',
-            'vendor/testing-ingress',
             'vendor/testing-cluster-addons',
             'vendor/testing-vm-create',
-            'vendor/testing-vm-networking',
             'vendor/testing-ci-cd',
+            {
+              type: 'category',
+              label: 'Networking',
+              items: [
+                'vendor/testing-ingress',
+                'vendor/testing-vm-networking',
+                'vendor/testing-network-policy',
+              ]
+            }
           ],
         },
         
@@ -327,19 +286,6 @@ const sidebars = {
                   'vendor/admin-console-customize-config-screen',
                   'vendor/config-screen-map-inputs',
                   'vendor/config-screen-conditional',
-                  {
-                    type: 'category',
-                    label: 'Tutorial: Set Helm Chart Values with KOTS',
-                    items: [
-                      'vendor/tutorial-config-setup',
-                      'vendor/tutorial-config-get-chart',
-                      'vendor/tutorial-config-create-app',
-                      'vendor/tutorial-config-package-chart',
-                      'vendor/tutorial-config-create-release',
-                      'vendor/tutorial-config-create-customer',
-                      'vendor/tutorial-config-install-kots',
-                    ],
-                  },
               ],
             },
             {
@@ -577,19 +523,6 @@ const sidebars = {
             'vendor/preflight-examples',
             'vendor/preflight-running',
             'vendor/preflight-host-preflights',
-            {
-            type: 'category',
-            label: 'Tutorial: Add Preflight Checks to a Helm Chart',
-            items: [
-              'vendor/tutorial-preflight-helm-setup',
-              'vendor/tutorial-preflight-helm-get-chart',
-              'vendor/tutorial-preflight-helm-add-spec',
-              'vendor/tutorial-preflight-helm-create-release',
-              'vendor/tutorial-preflight-helm-create-customer',
-              'vendor/tutorial-preflight-helm-install',
-              'vendor/tutorial-preflight-helm-install-kots',
-            ],
-          },
           ],
       },
       {
