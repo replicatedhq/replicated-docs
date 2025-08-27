@@ -254,8 +254,6 @@ To configure the KOTS Application custom resource:
 
 The KOTS Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
 
-Before you begin this task, you can complete the [Set Helm Values with KOTS](/vendor/tutorial-config-setup) tutorial to learn how to map user-supplied values from the Admin Console Config screen to a Helm chart.
-
 :::note
 Setting up the Admin Console config screen can include the use of various types of input fields, conditional statements, and KOTS template functions. Depending on your application's configuration options, Replicated recommends that you allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
 :::
@@ -311,7 +309,6 @@ To set up the Admin Console Config screen for your application:
 
    For more information, see:
    * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs)
-   * [Tutorial: Set Helm Chart Values with KOTS](/vendor/tutorial-config-setup)
    * [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys)
    * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
@@ -330,10 +327,6 @@ Preflight checks and support bundles are provided by the Troubleshoot open sourc
 Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
 * **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
 * **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
-
-:::note
-Before you begin this task, you can complete the [Add Preflight Checks to a Helm Chart](/vendor/tutorial-preflight-helm-setup) tutorial to learn how to add a preflight spec to a Helm chart in a Kubernetes secret and run the preflight checks before installation.
-:::
 
 To define preflight checks for your application:
 
@@ -451,10 +444,6 @@ Existing releases that include one or more Helm charts can be installed with the
 To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy registry.  
 
 This is the same secret that is passed to KOTS in the HelmChart custom resource using `'{{repl ImagePullSecretName }}'`, which you did as part of [Task 4: Create and Install the Initial Release](#first-release). So, whereas this Secret is created automatically for KOTS and Embedded Cluster installations, you need to create it and add it to your Helm chart for Helm installations.
-
-:::note
-Before you test Helm installations for your application, you can complete the [Deploy a Helm Chart with KOTS and the Helm CLI](tutorial-kots-helm-setup) tutorial to learn how to install a single release with both KOTS and Helm.
-:::
 
 To support and test Helm installations:
 
