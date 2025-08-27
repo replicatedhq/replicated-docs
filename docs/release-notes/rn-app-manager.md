@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## 1.127.1
+
+Released on August 25, 2025
+
+Support for Kubernetes: 1.31, 1.32, and 1.33
+
+### Bug Fixes {#bug-fixes-1-127-1}
+* Fixes high CVEs found in the KOTS Go binaries.
+
 ## 1.127.0
 
 Released on August 25, 2025
