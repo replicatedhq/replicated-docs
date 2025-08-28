@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.08.28-0
+
+Released on August 28, 2025
+
+### Bug Fixes {#bug-fixes-v2025-08-28-0}
+* Respect the channel sequence number sent by the client for the pending releases and endpoint and don't return pending releases that are already known to them.
+
 ## v2025.08.21-1
 
 Released on August 21, 2025
