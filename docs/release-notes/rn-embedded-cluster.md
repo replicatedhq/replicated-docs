@@ -12,6 +12,33 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.11.0
+
+Released on August 28, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.11.0+k8s-1.33</td>
+    <td id="center">2.11.0+k8s-1.32</td>
+    <td id="center">2.11.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.127.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-11-0}
+* Adds `--tls-cert` and `--tls-key` flags to let users secure the Admin Console during headless installations. Previously, users could deploy the app from the CLI, but they still had to go through the installation workflow when loading the Admin Console for the first time in order to upload certificate files.
+* Adds `--ignore-app-preflights` flag to allow skipping vendor-supplied preflight checks with failures or warnings during installation. Previously, preflight warnings and failures prevented headless installations from proceeding. Users can now rerun and skip these preflights.
+
 ## 2.10.0
 
 Released on August 19, 2025
