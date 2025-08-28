@@ -374,9 +374,41 @@ Grants the holder permission to buy compatibility matrix credits.
 
 Grants the holder permission to request an increase in the quota.
 
+### kots/network/create
+
+Grants the holder permission to create new networks.
+
+### kots/network/list
+
+Grants the holder permission to list networks.
+
+### kots/network/[:networkid]
+
+Grants the holder permission to get network details.
+
+### kots/network/[:networkid]/delete
+
+Grants the holder permission to delete a network.
+
 ### kots/network/[:networkId]/update
 
 Grants the holder permission to update the network, including setting airgap policy and network reporting.
+
+### kots/vm/create
+
+Grants the holder permission to create new VMs.
+
+### kots/vm/list
+
+Grants the holder permission to list running and terminated VMs.
+
+### kots/vm/[:vmid]
+
+Grants the holder permission to get VM details.
+
+### kots/vm/[:vmid]/delete
+
+Grants the holder permission to delete a VM.
 
 ### kots/vm/tag/update
 
