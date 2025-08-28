@@ -1,6 +1,6 @@
 # replicated network update
 
-Update network settings.
+Update network settings
 
 ### Synopsis
 
@@ -8,7 +8,7 @@ The 'update' command allows you to update various settings of a test network.
 
 You can either specify the network ID directly or provide the network name, and the command will resolve the corresponding network ID.
 
-Network Policies are currently a beta feature, and network reporting is currently an alpha feature.
+Network Policies are currently a beta feature.
 
 ```
 replicated network update [ID_OR_NAME] [flags]
@@ -27,14 +27,6 @@ replicated network update <network-name> --policy airgap
 replicated network update --id <network-id> --policy airgap
 replicated network update --name <network-name> --policy airgap
 
-# Enable report collection on a network
-replicated network update <network-id> --collect-report
-
-# Disable report collection on a network
-replicated network update <network-id> --collect-report=false
-
-# Update both policy and report collection on a network
-replicated network update <network-id> --policy airgap --collect-report
 ```
 
 ### Options
@@ -42,9 +34,9 @@ replicated network update <network-id> --policy airgap --collect-report
 ```
   -h, --help            help for update
       --id string       id of the network to update (when name is not provided)
-      --name string     Name of the network to update.
+      --name string     Name of the network to update
       --output string   The output format to use. One of: json|table|wide (default "table")
-      --policy string   Update network policy setting
+  -p, --policy string   Update network policy setting
 ```
 
 ### Options inherited from parent commands
