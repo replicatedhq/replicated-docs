@@ -36,9 +36,8 @@ Released on August 28, 2025
 </table>
 
 ### Improvements {#improvements-2-11-0}
-* Upgrades Admin Console to 1.127.2.
-* Adds `--tls-cert` and `--tls-key` flags to enable custom TLS certificate configuration during CLI installation.
-* Adds `--ignore-app-preflights` flag to allow skipping app preflight checks with failures or warnings during installation.
+* Adds `--tls-cert` and `--tls-key` flags to let users secure the Admin Console during headless installations. Previously, users could deploy the app from the CLI, but they still had to go through the installation workflow when loading the Admin Console for the first time in order to upload certificate files.
+* Adds `--ignore-app-preflights` flag to allow skipping vendor-supplied preflight checks with failures or warnings during installation. Previously, preflight warnings and failures prevented headless installations from proceeding. Users can now rerun and skip these preflights.
 
 ## 2.10.0
 
