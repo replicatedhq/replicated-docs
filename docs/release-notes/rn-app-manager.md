@@ -25,7 +25,7 @@ Released on September 1, 2025
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### New Features {#new-features-1-128-0}
-* Hide demoted releases from the app version history screen.
+* Demoted releases will now be hidden from the Version History page, removing a prior limitation in KOTS and kURL installations.
 
 ## 1.127.2
 
