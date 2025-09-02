@@ -86,7 +86,13 @@ The following describes how each installation method handles a demoted release:
 
 * **Helm CLI**: When a release is demoted, it is no longer listed in the customer's Enterprise Portal as available for update, unless the customer had already downloaded the release before it was demoted.
 
-* **Embedded Cluster, Existing Cluster KOTS, and kURL**: When a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
+* **Embedded Cluster**: When a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
+
+*  **Existing Cluster KOTS and kURL (KOTS 1.128.0 and Later)**: In KOTS existing cluster and kURL installations that use KOTS 1.128.0 or later, when a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
+
+* **Existing Cluster KOTS and kURL (KOTS 1.127.2 and Earlier)**: In KOTS existing cluster and kURL installations that use KOTS 1.127.2 or earlier, after the Admin Console checks for upstream updates, it automatically downloads metadata for the newly-available releases. Therefore, whether or not the customer can see a demoted release in the Admin Console depends on the last time the customer checked for updates:
+   * If the customer checked for updates and fetched a release _before_ it was demoted, then the release will remain listed in the Admin Console the next time an update check occurs. This is because a release cannot be withdrawn from the customer’s environment after it has been downloaded.
+   * If the customer checks for udpates _after_ a release was demoted, then the demoted release is not fetched and is not listed in the Admin Console.
 
 ### Archived Releases
 
