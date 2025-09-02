@@ -24,8 +24,8 @@ Released on September 1, 2025
 
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
-### New Features {#new-features-1-128-0}
-* Demoted releases will now be hidden from the Version History page, removing a prior limitation in KOTS and kURL installations.
+### Improvements {#improvements-1-128-0}
+* In online (internet-connected) KOTS existing cluster and kURL installations, demoted releases are hidden from the Admin Console **Version History** page after an update check occurs. This addresses a limitation in KOTS and kURL installations where a demoted release would remain viewable on the **Version History** page if the user had already checked for upstream updates before it was demoted.
 
 ## 1.127.2
 
