@@ -1,1 +1,3 @@
-When a release is required, KOTS requires users to upgrade to that version before they can upgrade to a later version. For example, if you select **Prevent this release from being skipped during upgrades** for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.
+When a release is marked as required, users must upgrade to the required release version before they can upgrade to a later version. For example, if 2.0.0 is a required release, users with 1.5.0 deployed must upgrade to 2.0.0 before they can upgrade to 2.1.0.
+
+For online (internet-connected) installations using KOTS 1.126.0 or later, you can disable the **Prevent this release from being skipped during upgrades** option for a release to mark the release as no longer required. The requirement will be removed from the given release in the Admin Console the next time that an upstream update check occurs.
