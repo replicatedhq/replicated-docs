@@ -4,6 +4,17 @@ This topic provides information about how to configure the Velero Backup resourc
 
 For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
 
+## Storage Class Requirement
+
+For backup and restore operations to work properly, PersistentVolumes must use a StorageClass with a reclaim policy of `Delete`. Backup and restore operations are not supported for volumes with `Retain` reclaim policy.
+
+To verify your StorageClass reclaim policy, run:
+```bash
+kubectl get storageclass -o wide
+```
+
+If needed, update the StorageClass reclaim policy to `Delete` before configuring snapshots.
+
 ## Configure Snapshots
 
 Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. After configuring the Backup resource, add annotations for each volume that you want to be included in backups.
