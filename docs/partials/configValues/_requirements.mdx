@@ -1,0 +1,5 @@
+The ConfigValues resource passed to the install command must meet the following requirements:
+* Must be valid YAML
+* Must list all configuration items that are defined in the corresponding Config resource in the release
+* For each item in the Config resource that has a default, the ConfigValues must also list the item's default. Default values are not automatically merged from the Config resource during installation.
+* For any configuration items of type `password`, provide the password in plain text in a `valuePlainText` property rather than in the `value` property. For example, `valuePlainText: somesecretvalue`.

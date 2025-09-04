@@ -1,24 +1,30 @@
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+
 # ConfigValues
 
 This topic describes the Replicated KOTS ConfigValues custom resource. ConfigValues is used to provide application configuration values during automated or headless installations with the CLI.
 
 ## Overview
 
-The ConfigValues custom resource lists the user-supplied and default values for each application configuration item defined in the Replicated KOTS Config custom resource in the release. For more information about the Config custom resource, see [Config](custom-resource-config).
+The ConfigValues resource lists the values and defaults set for each application configuration item defined in the Replicated KOTS Config custom resource in the release. For more information about the Config custom resource, see [Config](custom-resource-config).
 
-For each installation, the Admin Console automatically generates a ConfigValues resource and makes it available for download in the **View files** tab. End users can also manually create a ConfigValues resource. For example, users must pass a ConfigValues resource during automated or headless installs from the command line to provide application configuration values to the Admin Console. For more information about performing headless installations, see [Automate Embedded Cluster Installations](/enterprise/installing-embedded-automation) and [Automate Existing Cluster Installations with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
+For each installation, the Admin Console automatically generates a ConfigValues resource and makes it available for download in the **View files** tab.
 
-The following image shows how a ConfigValues resource is generated based on the items defined in a Config resource:
+In automated or headless installs from the command line, end users must pass a ConfigValues resource to the install command to provide application configuration values to the Admin Console. For more information about performing headless installations, see [Automate Embedded Cluster Installations](/enterprise/installing-embedded-automation) and [Automate Existing Cluster Installations with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
+
+The following image shows how application configuration items defined a Config resource are represented in a ConfigValues resource:
 
 ![Config fields mapped from Config resource to ConfigValues resource](/images/configvalues-diagram.png)
 
 [View a larger version of this image](/images/configvalues-diagram.png)
 
-As shown in the image above, the ConfigValues resource `values` key lists each item from the Config resource by its `name`. For each item, the ConfigValues lists the `default` value defined in the Config resource (if applicable) as well as the user-supplied `value`.
+As shown in the image above, the ConfigValues resource `values` key lists each item from the Config resource by its `name`. For each item, the ConfigValues resource lists the user-supplied value as well as the default that was defined in the Config resource (if applicable).
 
-## Examples
+## Example
 
+The following shows an example of a ConfigValues resource that can be provided during automated or headless installation from the command line:
 
+<ConfigValuesExample/>
 
 ## Spec
 
