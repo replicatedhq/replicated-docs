@@ -31,6 +31,12 @@ As shown in the image above, the ConfigValues resource `values` key lists each i
 
 <ConfigValuesRequirements/>
 
+## Limitation
+
+Replicated template functions are not supported in the ConfigValues resource. To set an application configuration item to a value rendered by a template function, you can use a template function in the `default` or `value` property for the item in the [Config](custom-resource-config) resource.
+
+For more information about working with Replicated template functions, see [About Template Functions](/reference/template-functions-about).
+
 ## Spec
 
 ### values.[item_name].default
@@ -77,7 +83,7 @@ spec:
     slackernews_domain:
       value: hello.ingress.replicatedcluster.com
     slackernews_admin_user_emails:
-      value: mandy@replicated.com, jeff@replicated.com, anil@replicated.com  
+      value: mandy@nitflex.com, jeff@nitflex.com, anil@nitflex.com  
     service_type:
       value: node_port
     node_port_port:
