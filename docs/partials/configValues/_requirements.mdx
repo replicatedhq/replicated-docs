@@ -1,6 +1,5 @@
 The ConfigValues resource must meet the following requirements:
 * Must be valid YAML.
-* Must list all configuration items that are defined in the corresponding Config resource in the release, except any items with the [`hidden`](/reference/custom-resource-config#hidden) or [`readonly`](/reference/custom-resource-config#readonly) properties set to true.
 * It is not necessary to set a `value` for each configuration item in the ConfigValues, unless the item is [`required`](/reference/custom-resource-config#required) and has no [`default`](/reference/custom-resource-config#default) set.
 * For each configuration item defined in the Config resource that has a [`default`](/reference/custom-resource-config#default) set, the ConfigValues must also list the default in the `default` property. Defaults are not automatically merged from the Config resource during installation.
 * For any configuration items of type [`password`](/reference/custom-resource-config#password) defined in the Config resource, set the value in plain text in the ConfigValues [`valuePlainText`](/reference/custom-resource-configvalues#valueplaintext) property rather than in the `value` property. For example, `valuePlainText: somesecretvalue`. Values set in `valuePlainText` are automatically encrypted during installation.
