@@ -1,0 +1,5 @@
+The ConfigValues resource must meet the following requirements:
+* Must be valid YAML.
+* It is not necessary to set a `value` for each configuration item in the ConfigValues, unless the item is [`required`](/reference/custom-resource-config#required) and has no [`default`](/reference/custom-resource-config#default) set in the Config resource.
+* For any configuration items of type [`password`](/reference/custom-resource-config#password) defined in the Config resource, set the value in plain text in the ConfigValues [`valuePlainText`](/reference/custom-resource-configvalues#valueplaintext) property rather than in the `value` property. For example, `valuePlainText: somesecretvalue`. Values set in `valuePlainText` are automatically encrypted during installation.
+* All values must be strings. For booleans, integers, or floats, wrap the value in quotes (for example, `value: "1"`, `value: "0"`, or `value: "443"`).
