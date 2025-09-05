@@ -1,0 +1,50 @@
+# Tutorial: Automate Installation with Embedded Cluster
+
+This tutorial shows how to install a release using Embedded Cluster from the command line without using the Admin Console UI. This is also known as a _headless_ installation.
+
+## Set Up
+
+Get access to a VM.
+
+## Tutorial
+
+1. Create an app.
+
+1. Get the release files and Helm chart archive.
+
+1. Add the files to a new release with `replicated release create --yaml-dir manifests --promote Unstable`.
+
+1. Create a customer with Embedded Cluster installation.
+
+1. If you are using Compatibility Matrix, create the VM:
+
+     1. Create the VM
+     1. Create the DNS records.
+
+1. SSH onto your VM.
+
+1. Download the installation assets and untar. You can add these commands to CI/CD workflows to automate this step.
+
+1. Create the ConfigValues file:
+
+     ```yaml
+     apiVersion: kots.io/v1beta1
+     kind: ConfigValues
+     spec:
+     values:
+       slackernews_domain:
+         value: YOUR_DOMAIN
+   ```
+   Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
+
+1. Transfer the ConfigValues to your VM using scp.
+
+1. Run the following command to install:
+
+1. Open a shell to watch the application resources deploy.
+
+     1. `sudo ./APP_SLUG shell`
+
+     1. `kubectl get all --namespace slackernews`
+
+1. Go to the domain that you listed for the SlackerNews to open the application.

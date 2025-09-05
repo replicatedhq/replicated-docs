@@ -1,0 +1,35 @@
+# Tutorial: Install with the Helm CLI
+
+This tutorial shows how to install a release using the Helm CLI.
+
+## Set Up
+
+Get access to a cluster.
+
+## Tutorial
+
+1. Create an app.
+
+1. Get the Helm chart archive.
+
+1. Add the Replicated SDK.
+
+1. Add preflights.
+
+1. Add the chart to a new release with `replicated release create --yaml-dir . --promote Unstable`.
+
+1. Create a customer with Helm CLI installation option enabled.
+
+1. If you are using Compatibility Matrix, create the cluster.
+
+1. Use the command provided to set your kubectl context to the cluster.
+
+1. Go to the Enterprise Portal for the customer.
+
+1. Follow instructions to install in the cluster.
+
+1. Run `kubectl get all -n slackernews` to see when services are running
+
+1. Run `kubectl port-forward --namespace slackernews svc/slackernews-nginx 8080:80` to port forward
+
+1. Open `localhost:8080` in a browser.
