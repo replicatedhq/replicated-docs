@@ -36,7 +36,7 @@ Released on September 8, 2025
 </table>
 
 ### Bug Fixes {#bug-fixes-2-11-1}
-* Fixes an issue that caused SeaweedFS high availability upgrades to fail when upgrading from Embedded Cluster versions earlier than 2.7.3. The upgrade process now properly handles StatefulSet scaling from single-node to HAwithout quorum configuration conflicts.
+* Fixes an issue that caused upgrades for air gap high availability installs to fail when upgrading from Embedded Cluster versions prior to 2.7.3. The upgrade process now properly scales SeaweedFS to run in high availability mode within existing HA clusters.
 
 ## 2.11.0
 
