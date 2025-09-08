@@ -1,3 +1,7 @@
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
+import Requirements from "../partials/embedded-cluster/_requirements.mdx"
+
 # Perform a Headless Installation of SlackerNews
 
 This topic provides a tutorial that demonstrates how to perform a headless installation for an application distributed with Replicated.
@@ -29,12 +33,12 @@ Before you begin, do the following to set up your environment:
       * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
           :::note
-          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing the Replicated Quick Start.
+          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
           :::
       
       * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
 
-      After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
+      After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the VM with Compatibility Matrix as part of the tutorial.
 
    * **Option 2: Bring your own VM.** Your VM must meet these requirements:
 
@@ -70,39 +74,39 @@ Before you begin, do the following to set up your environment:
 
     1. Authorize the Replicated CLI:
 
-      ```bash
-      replicated login
-      ```
-      In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
+       ```bash
+       replicated login
+       ```
+       In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
    1. Create an application named `SlackerNews`:
 
-      ```bash
-      replicated app create SlackerNews
-      ```
+       ```bash
+       replicated app create SlackerNews
+       ```
 
    1. Set the `REPLICATED_APP` environment variable to the application that you created:
 
-      ```bash
-      export REPLICATED_APP=APP_SLUG
-      ```
-      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
+       ```bash
+       export REPLICATED_APP=APP_SLUG
+       ```
+       Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
 
-      Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
+       Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
 1. Get the release files and Helm chart archive for SlackerNews:
 
-    1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `quick-start` directory: 
+    1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
 
-      ```bash
-      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-1.0.1.tar.gz
-      ```
+       ```bash
+       curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
+       ```
 
     1. Untar the chart:
 
-      ```bash
-      tar -xzf quick-start/slackernews-1.0.1.tar.gz -C quick-start/ && rm quick-start/slackernews-1.0.1.tar.gz
-      ```
+       ```bash
+       tar -xzf tutorial-headless-install/slackernews-1.0.1.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1.tar.gz
+       ```
 
     1. Download and untar the release manifests:
 
@@ -124,7 +128,7 @@ Before you begin, do the following to set up your environment:
         nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
         ```
         :::note
-        You can ignore `info` or `warn` messages for the purpose of this quick start.
+        You can ignore `info` or `warn` messages for the purpose of this tutorial.
         :::      
 
     1. From the `manifests` directory, create a release and promote it to the Unstable channel:
