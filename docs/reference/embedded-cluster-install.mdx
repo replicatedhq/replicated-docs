@@ -86,7 +86,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
   <tr>
      <td>`--ignore-app-preflights`</td>
      <td>
-        <p>When `--ignore-app-preflights` is passed, the application-specific preflight checks are still run, but any failures or warnings are ignored and the installation proceeds. The `--ignore-app-preflights` flag is useful when performing automated (headless) installations from the command line.</p>
+        <p>When `--ignore-app-preflights` is passed, the application-specific preflight checks are skipped. This is useful when performing automated (headless) installations because it ensures that any warnings or failures from application preflight checks do not prevent the installation from proceeding.</p>
         <p>**Requirement:** Embedded Cluster 2.11.0 or later.</p>
      </td>
   </tr>
