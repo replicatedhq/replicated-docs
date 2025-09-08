@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.11.1
+
+Released on September 8, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.11.1+k8s-1.33</td>
+    <td id="center">2.11.1+k8s-1.32</td>
+    <td id="center">2.11.1+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center">1.127.2</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-2-11-1}
+* Fixes an issue that caused upgrades for air gap high availability installs to fail when upgrading from Embedded Cluster versions prior to 2.7.3. The upgrade process now properly scales SeaweedFS to run in high availability mode within existing HA clusters.
+
 ## 2.11.0
 
 Released on August 28, 2025
