@@ -1,31 +1,191 @@
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import HelmChartCr from "../partials/getting-started/_slackernews-chart.mdx"
-import KotsCr from "../partials/getting-started/_slackernews-repl-app.mdx"
-import K8sCr from "../partials/getting-started/_slackernews-k8s-app.mdx"
-import EcCr from "../partials/getting-started/_slackernews-embedded-cluster.mdx"
-import ConfigCr from "../partials/getting-started/_slackernews-config.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Install SlackerNews with the Helm CLI
 
-This tutorial shows how to install a release using the Helm CLI.
+This topic provides a tutorial that demonstrates how to install a sample application using the Helm CLI.
 
-## Set Up
+## Introduction
 
-Get access to a cluster.
+This tutorial shows how to install a Helm chart distributed with Replicated using the Helm CLI.
+
+In this tutorial, you will:
+
+* Download the Helm chart for the sample application (SlackerNews)
+
+* Create a release for SlackerNews in the Replicated Platform
+
+* Access the Helm installation instructions for SlackerNews from the Replicated Enterprise Portal 
+
+* Install SlackerNews using the Helm CLI in a Kubernetes cluster
+
+## Set Up Your Environment
+
+Before you begin, do the following to set up your environment:
+
+* Install the Helm CLI, which is the tool for interacting with Helm and managing Helm charts. See [Install Helm](/vendor/environment-setup#install-helm).
+
+* Ensure that you have access to a cluster that meets the requirements for Embedded Cluster:
+
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a cluster for this tutorial, first request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+
+          :::note
+          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
+          :::
+
+      After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the cluster with Compatibility Matrix as part of the tutorial.
+
+   * **Option 2: Bring your own Cluster.**
+
+   For more information, see [Set Up Development Environments for Testing](/vendor/environment-setup#dev).
 
 ## Tutorial
 
-1. Create an app.
+1. Create an application using the Replicated CLI:
 
-1. Get the Helm chart archive.
+    1. On your local machine, install the Replicated CLI:
 
-1. Add the Replicated SDK.
+       * MacOS
 
-1. Add preflights.
+         ```bash
+         brew install replicatedhq/replicated/cli
+         ```
+       * Linux / Windows Subsystem for Linux (WSL)
+
+         ```bash
+         version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+           | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
+         curl -Ls \
+           "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+           -o replicated.tar.gz
+         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+         mv replicated /usr/local/bin/replicated
+         ``` 
+       For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
+
+    1. Authorize the Replicated CLI:
+
+       ```bash
+       replicated login
+       ```
+       In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
+
+   1. Create an application named `SlackerNews`:
+
+       ```bash
+       replicated app create SlackerNews
+       ```
+
+   1. Set the `REPLICATED_APP` environment variable to the application that you created:
+
+       ```bash
+       export REPLICATED_APP=APP_SLUG
+       ```
+       Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
+
+       Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command. 
+
+1. Get the sample SlackerNews Helm chart:
+
+   1. Run the following command to download version 1.0.0 of the sample SlackerNews Helm chart to a new `quick-start` directory: 
+
+      ```
+      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-1.0.0.tar.gz
+      ```
+   
+   1. Untar the chart:
+
+      ```
+      tar -xzf quick-start/slackernews-1.0.0.tar.gz -C quick-start/ && rm quick-start/slackernews-1.0.0.tar.gz
+      ```
+
+   1. Change to the `slackernews` chart directory:
+      
+      ```bash
+      cd quick-start/chart/slackernews
+      ```
+
+   1. List the files in the `slackernews` directory to view the contents of the Helm chart:
+      ```bash
+      ls
+      ```
+      ```bash
+      Chart.lock  Chart.yaml  NOTES.txt   README.md   templates   values.yaml
+      ```
+
+   1. In the SlackerNews Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+      <DependencyYaml/>
+
+      The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
+   adds preflight checks to the application:
+
+   1. In your local filesystem, go to the `quick-start/chart/slackernews` directory.
+
+   1. Create a `preflights.yaml` file in the `templates` directory for the chart:
+
+      ```
+      touch templates/preflights.yaml
+      ```
+
+   1. In the `preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a simple preflight spec: 
+
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: slackernews-preflight
+        labels:
+          troubleshoot.sh/kind: preflight
+      stringData:
+        preflight.yaml: |-
+          apiVersion: troubleshoot.sh/v1beta2
+          kind: Preflight
+          metadata:
+            name: slackernews-preflight
+          spec:
+            collectors:
+              - clusterInfo: {}
+              - clusterResources: {}
+              - http:
+                  collectorName: slack
+                  get:
+                    url: https://api.slack.com/methods/api.test
+                    timeout: 20s
+            analyzers:
+              # verify that slack is accessible
+              - textAnalyze:
+                  checkName: Slack Accessible
+                  fileName: slack.json
+                  regex: '"status": 200,'
+                  outcomes:
+                    - pass:
+                        when: "true"
+                        message: "Can access the Slack API"
+                    - fail:
+                        when: "false"
+                        message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."
+      ```
+      
+      The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
+
+   1. In the `Chart.yaml` file, increment the version to 1.0.1:
+
+      ```yaml
+      # Chart.yaml
+      version: 1.0.1
+      ```   
+
+   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
+
+      ```bash
+      helm package --dependency-update .
+      ```
+      Where `--dependency-update` (or `-u`) is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+
+      The output of this command is a file named `slackernews-1.0.0.tgz`.
 
 1. Add the chart to a new release with `replicated release create --yaml-dir . --promote Unstable`.
 
