@@ -1,29 +1,145 @@
-# Tutorial: Automate Installation with Embedded Cluster
+# Perform a Headless Installation of SlackerNews
 
-This tutorial shows how to install a release using Embedded Cluster from the command line without using the Admin Console UI. This is also known as a _headless_ installation.
+This topic provides a tutorial that demonstrates how to perform a headless installation for an application distributed with Replicated.
 
-## Set Up
+## Introduction
 
-Get access to a VM.
+This tutorial shows how to install a Helm chart with Replicated Embedded Cluster from the command line without interacting with the Admin Console UI. This is also known as a _headless_ installation. Headless installations are often used for automating application deployment as part of CI/CD pipelines.
+
+In this tutorial, you will:
+
+* Download the Helm chart and release manifests for the sample application (SlackerNews)
+
+* Create a release for SlackerNews in the Replicated Platform
+
+* Create a ConfigValues file to pass application-specific configuration values to the installation from the command line
+
+* Run the Embedded Cluster `install` command to perform a headless install of SlackerNews in a VM
+
+## Set Up Your Environment
+
+Before you begin, do the following to set up your environment:
+
+* Install the Helm CLI, which is the tool for interacting with Helm and managing Helm charts. See [Install Helm](/vendor/environment-setup#install-helm).
+
+* Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
+
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
+      
+      * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+
+          :::note
+          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing the Replicated Quick Start.
+          :::
+      
+      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
+
+      After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
+
+   * **Option 2: Bring your own VM.** Your VM must meet these requirements:
+
+      * Firewalls must allow HTTP and HTTPS traffic.
+
+      <Requirements/>
+
+   For more information, see [Set Up Development Environments for Testing](/vendor/environment-setup#dev).
 
 ## Tutorial
 
-1. Create an app.
+1. Create an application using the Replicated CLI:
 
-1. Get the release files and Helm chart archive.
+    1. On your local machine, install the Replicated CLI:
 
-1. Add the files to a new release with `replicated release create --yaml-dir manifests --promote Unstable`.
+       * MacOS
 
-1. Create a customer with Embedded Cluster installation.
+         ```bash
+         brew install replicatedhq/replicated/cli
+         ```
+       * Linux / Windows Subsystem for Linux (WSL)
 
-1. If you are using Compatibility Matrix, create the VM:
+         ```bash
+         version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+           | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
+         curl -Ls \
+           "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+           -o replicated.tar.gz
+         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+         mv replicated /usr/local/bin/replicated
+         ``` 
+       For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
-     1. Create the VM
-     1. Create the DNS records.
+    1. Authorize the Replicated CLI:
 
-1. SSH onto your VM.
+      ```bash
+      replicated login
+      ```
+      In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
-1. Download the installation assets and untar. You can add these commands to CI/CD workflows to automate this step.
+   1. Create an application named `SlackerNews`:
+
+      ```bash
+      replicated app create SlackerNews
+      ```
+
+   1. Set the `REPLICATED_APP` environment variable to the application that you created:
+
+      ```bash
+      export REPLICATED_APP=APP_SLUG
+      ```
+      Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
+
+      Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
+
+1. Get the release files and Helm chart archive for SlackerNews:
+
+    1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `quick-start` directory: 
+
+      ```bash
+      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-1.0.1.tar.gz
+      ```
+
+    1. Untar the chart:
+
+      ```bash
+      tar -xzf quick-start/slackernews-1.0.1.tar.gz -C quick-start/ && rm quick-start/slackernews-1.0.1.tar.gz
+      ```
+
+    1. Download and untar the release manifests:
+
+1. Create the release:
+
+     1. Lint the YAML files in the `manifests` directory:
+
+        ```bash
+        replicated release lint --yaml-dir .
+        ```
+        **Example output:**
+        ```bash
+        RULE                                TYPE   FILENAME             LINE   MESSAGE
+        may-contain-secrets                 info   slackernews.yaml     142    It looks like there might be secrets in this file
+        preflight-spec                      warn                               Missing preflight spec
+        troubleshoot-spec                   warn                               Missing troubleshoot spec
+        nonexistent-status-informer-object  warn   replicated-app.yaml  14     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+        nonexistent-status-informer-object  warn   replicated-app.yaml  15     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+        nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+        ```
+        :::note
+        You can ignore `info` or `warn` messages for the purpose of this quick start.
+        :::      
+
+    1. From the `manifests` directory, create a release and promote it to the Unstable channel:
+
+        ```bash
+        replicated release create --yaml-dir . --promote Unstable
+        ```
+        **Example output**:
+        ```bash
+        • Reading manifests from . ✓
+        • Creating Release ✓
+            • SEQUENCE: 1
+        • Promoting ✓
+            • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
+        ```
 
 1. Create the ConfigValues file:
 
@@ -34,8 +150,81 @@ Get access to a VM.
      values:
        slackernews_domain:
          value: YOUR_DOMAIN
-   ```
-   Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
+     ```
+     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
+
+   Save the ConfigValues on your local machine. You will transfer this file to your VM as part of a later step.
+
+1. Create a test customer so that you can install the release in your VM with Embedded Cluster:
+
+   1. Log in to the [Vendor Portal](https://vendor.replicated.com).
+   
+   1. Under the application drop down, select the SlackerNews application that you created.
+
+      <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
+
+      [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
+   
+   1. Click **Customers > Create customer**.
+
+      The **Create a new customer** page opens:
+
+      ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+
+      [View a larger version of this image](/images/create-customer.png)
+
+   1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
+
+   1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+   1. For **Customer type**, select **Development**.
+
+   1. For **Install types**, enable **Embedded Cluster (current generation product)** and disable the other install type options.
+
+   1. Click **Save Changes**.
+
+1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
+
+   1. Create an Ubuntu VM that expires after two hours:
+
+      ```bash
+      replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
+      ```
+      **Example output:**
+      ```bash
+      ID        NAME             DISTRIBUTION  VERSION  STATUS  NETWORK   CREATED               EXPIRES   COST
+      97940819  practical_black  ubuntu        24.04    queued  c726ffff  2025-08-20 14:32 MDT  -         $0.69
+      ```
+
+   1. After a few minutes, check the status of the VM to see when it is `running`:
+
+      ```bash
+      replicated vm ls
+      ```
+      **Example output:**
+      ```bash
+      ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
+      97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
+      ```
+   
+   1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
+
+      ```bash
+      ssh VM_ID@replicatedvm.com
+      ```
+      Where `VM_ID` is the `ID` from the output of the `replicated vm ls` command.
+
+      :::note
+      If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
+      :::
+
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
+
+1. On your VM, run the first two commands in the **Embedded cluster install instructions** dialog to download the latest release and extract the installation assets. Do not yet run the installation command.
+
+     <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
+
+     [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
 1. Transfer the ConfigValues to your VM using scp.
 
