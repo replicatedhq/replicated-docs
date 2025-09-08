@@ -1,4 +1,4 @@
----
+y---
 toc_max_heading_level: 2
 pagination_next: null
 pagination_prev: null
@@ -36,7 +36,7 @@ Released on September 8, 2025
 </table>
 
 ### Bug Fixes {#bug-fixes-2-11-1}
-* Fixes SeaweedFS high availability upgrades failing when upgrading from embedded-cluster versions prior to 2.7.3. The upgrade process now properly handles StatefulSet scaling from single-node to HA mode without quorum configuration conflicts.
+* Fixes an issue that caused SeaweedFS high availability upgrades to fail when upgrading from Embedded Cluster versions earlier than 2.7.3. The upgrade process now properly handles StatefulSet scaling from single-node to HAwithout quorum configuration conflicts.
 
 ## 2.11.0
 
