@@ -33,7 +33,6 @@ The following describes the Replicated instance types for VMs:
 Creating VMs with Compatibility Matrix has the following limitations:
 
 - Creating VMs with Compatibility Matrix is a Beta feature.
-- Supporting SELinux: If you enfore selinux (`setenforce 1`), you cannot SSH into the VM. A workaround is to first run `touch /.autorelabel` and reboot the VM, before running `setenforce 1`.
 - Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
 - [GitHub Actions](/vendor/testing-how-to#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
 - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
