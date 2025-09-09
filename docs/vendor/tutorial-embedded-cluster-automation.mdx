@@ -145,7 +145,7 @@ Before you begin, do the following to set up your environment:
             • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
         ```
 
-1. Create the ConfigValues file:
+1. Create the ConfigValues file. This file is passed to the installation using the `--application-config` flag.
 
      ```yaml
      apiVersion: kots.io/v1beta1
@@ -230,9 +230,27 @@ Before you begin, do the following to set up your environment:
 
      [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-1. Transfer the ConfigValues to your VM using scp.
+1. Transfer the ConfigValues to your VM.
+
+     If you are using a VM created with Compatibility Matrix, run the following command to transfer the file using scp:
+
+     ```bash
+     scp configvalues.yaml VM_ID@replicatedvm 
+     ```
+     Where `VM_ID` is the ID of your VM.
 
 1. Run the following command to install:
+
+    ```bash
+    sudo ./APP_SLUG install --license PATH_TO_LICENSE \
+    --config-values PATH_TO_CONFIGVALUES \
+    --admin-console-password ADMIN_CONSOLE_PASSWORD
+    ```
+    Where:
+    * `APP_SLUG` with the unique slug for the application.
+    * `PATH_TO_LICENSE` with the path to the customer license.
+    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
+    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file.
 
 1. Open a shell to watch the application resources deploy.
 

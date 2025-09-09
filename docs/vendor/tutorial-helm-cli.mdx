@@ -16,7 +16,7 @@ In this tutorial, you will:
 
 * Create a release for SlackerNews in the Replicated Platform
 
-* Access the Helm installation instructions for SlackerNews from the Replicated Enterprise Portal 
+* Get the Helm CLI installation instructions for SlackerNews from the Replicated Enterprise Portal 
 
 * Install SlackerNews using the Helm CLI in a Kubernetes cluster
 
@@ -189,11 +189,79 @@ Before you begin, do the following to set up your environment:
 
 1. Add the chart to a new release with `replicated release create --yaml-dir . --promote Unstable`.
 
-1. Create a customer with Helm CLI installation option enabled.
+1. Create a customer:
 
-1. If you are using Compatibility Matrix, create the cluster.
+    1. Log in to the [Vendor Portal](https://vendor.replicated.com).
+    
+    1. Under the application drop down, select the SlackerNews application that you created.
 
-1. Use the command provided to set your kubectl context to the cluster.
+         <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
+
+         [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
+    
+    1. Click **Customers > Create customer**.
+
+         The **Create a new customer** page opens:
+
+         ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+
+         [View a larger version of this image](/images/create-customer.png)
+
+    1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
+
+    1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+
+    1. For **Customer type**, select **Development**.
+
+    1. For **Install types**, enable **Existing Cluster (Helm CLI)**.
+
+    1. Click **Save Changes**.
+
+1. Access the Enterprise Portal for the customer to get the Helm CLI installatio instructions:
+
+    1. On the customer's page, go to the **Enterprise Portal Access** tab.
+
+    1. Enable the **Enable Enterprise Portal for this customer** toggle.
+
+         :::note
+         The Enterprise Portal is beta. By default, customers are assigned access to the Replicated Download Portal. For more information, see [Comparison to the Download Portal](/vendor/enterprise-portal-about#comparison-to-the-download-portal) in _About the Enterprise Portal_.
+         :::
+
+    1. In the **Invite users** dialog, enter your work email address and click **Send invite**.
+
+         For your production application, this is where you would invite your customers to access the Enterprise Portal.
+
+    1. In your inbox, open the **Invitation to join the Replicated Enterprise Portal** email and click **Activate your account**.
+
+    1. On the join page, click **Accept invite**.
+
+         The Enterprise Portal dashboard opens.
+
+    1. Go to the **Install** tab. 
+
+    1. On the **Installation Guide** page, if multiple installation options are displayed, select **Helm**.
+        
+         The installation options that are displayed in the Enterprise Portal depend on the **Install types** options that you enabled for the customer. 
+
+    1. For instance name, enter a nickname for the instance.
+
+    1. For **Kubernetes Distribution**, select the distribution of your cluster where you will install SlackerNews.
+
+    1. For **Cluster Network Availability**, select **Outbound requests allowed**.
+
+    1. For **Registry Access**, select **My workstation can access the internet, the registry AND the cluster**.
+
+    1. Click **Next**.
+
+    1. For **Helm Online Install**, select the release version that you promoted (`0.0.1`).
+
+    1. Copy and run each of the commands provided to log in to the Replicated registry to access the chart images, install and run preflight checks, and then install.
+
+1. Access your cluster:
+
+     * If you are using Compatibility Matrix, create the cluster. Use the command provided to set your kubectl context to the cluster.
+
+     * Otherwise, if you brought your own cluster, 
 
 1. Go to the Enterprise Portal for the customer.
 
