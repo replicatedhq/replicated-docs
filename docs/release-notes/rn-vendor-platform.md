@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on September 9, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-09-09-0}
-* Fixes an issue that causes downloaded licenses to be missing entitlement field signatures.
+* Fixes an issue that caused downloaded licenses to be missing entitlement field signatures.
 
 ## v2025.08.28-0
 
