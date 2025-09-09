@@ -223,6 +223,10 @@ Before you begin, do the following to set up your environment:
 
     1. Enable the **Enable Enterprise Portal for this customer** toggle.
 
+         ![enterprise portal toggle enabled](/images/customer-enterprise-portal-access-toggle.png)
+
+         [View a larger version of this image](/images/customer-enterprise-portal-access-toggle.png)
+
          :::note
          The Enterprise Portal is beta. By default, customers are assigned access to the Replicated Download Portal. For more information, see [Comparison to the Download Portal](/vendor/enterprise-portal-about#comparison-to-the-download-portal) in _About the Enterprise Portal_.
          :::
@@ -233,15 +237,31 @@ Before you begin, do the following to set up your environment:
 
     1. In your inbox, open the **Invitation to join the Replicated Enterprise Portal** email and click **Activate your account**.
 
+         ![invitation email](/images/enterprise-portal-invitation-email.png)
+
+         [View a larger version of this image](/images/enterprise-portal-invitation-email.png)
+
     1. On the join page, click **Accept invite**.
+
+         ![join page](/images/enterprise-portal-join-team.png)
+
+        [View a larger version of this image](/images/enterprise-portal-join-team.png) 
 
          The Enterprise Portal dashboard opens.
 
     1. Go to the **Install** tab. 
 
+        ![install tab](/images/enterprise-portal-install-tab.png)
+
+        [View a larger version of this image](/images/enterprise-portal-install-tab.png)
+
     1. On the **Installation Guide** page, if multiple installation options are displayed, select **Helm**.
         
          The installation options that are displayed in the Enterprise Portal depend on the **Install types** options that you enabled for the customer. 
+
+         ![installation guide landing page](/images/enterprise-portal-installation-guide.png)
+
+        [View a larger version of this image](/images/enterprise-portal-installation-guide.png)
 
     1. For instance name, enter a nickname for the instance.
 
@@ -253,19 +273,130 @@ Before you begin, do the following to set up your environment:
 
     1. Click **Next**.
 
+1. Access your cluster. If you are using Compatibility Matrix, do the following:
+
+    1. Create a kind cluster with version 1.34.0 of Kubernetes:
+
+     ```bash
+     replicated cluster create --distribution kind --instance-type r1.small --disk 50 --version 1.34.0
+     ```
+     
+    1. After the cluster is running, use the kubectl command provided to set your kubectl context to the cluster.
+
+1. Go back to the Enterprise Portal installation guide to get the installation commands:
+
     1. For **Helm Online Install**, select the release version that you promoted (`0.0.1`).
 
-    1. Copy and run each of the commands provided to log in to the Replicated registry to access the chart images, install and run preflight checks, and then install.
+    1. Copy and run the first command to log in to the Replicated registry.
+    
+    1. Copy and run the commands to install and run preflight checks.
 
-1. Access your cluster:
+    1. Create a values file to set the domain for the SlackerNews application.
 
-     * If you are using Compatibility Matrix, create the cluster. Use the command provided to set your kubectl context to the cluster.
+       ```bash
+       touch my-values.yaml
+       ```
+    1. In the `my-values.yaml` file, copy and paste the following YAML:
 
-     * Otherwise, if you brought your own cluster, 
+        <details>
+          <summary>View `my-values.yaml`</summary>
+          ```yaml
+          postgres:
+            # tells slackernews to use postgres as the
+            # backing database instead of sqlite
+            enabled: false
+            # deploys a postgresql workload to the cluster
+            deploy_postgres: false
+            # the password to use with deploy_postgres
+            password: ""
+            # if deploy_postgres is false, provide a URI
+            uri: ""
 
-1. Go to the Enterprise Portal for the customer.
+            # use a value in an existing secret instead of
+            # .postgres.password OR .postgres.uri
+            existingSecretName: ""
+            # key in the secret that contains the password
+            existingSecretPasswordKey: ""
+            # key in the secret that contains the uri
+            existingSecretUriKey: ""
+            # service type if deploy_postgres is true
+            service:
+              type: ClusterIP
+              nodePort:
+                port:
 
-1. Follow instructions to install in the cluster.
+            sqlite:
+              enabled: true
+
+            ingress:
+              annotations: {}
+              enabled: false
+              ingressClassName: ""
+
+            nginx:
+              service:
+                type: ClusterIP
+                nodePort:
+                  port:
+
+            service:
+              tls:
+                enabled: false
+                existingSecretName: ""
+                existingSecretCertKey: ""
+                existingSecretKeyKey: ""
+                cert: ""
+                key: ""
+
+            slack:
+              clientId: ""
+              clientSecret: ""
+              userToken: ""
+              botToken: ""
+              existingSecretName: ""
+              existingSecretClientIdKey: ""
+              existingSecretClientSecretKey: ""
+              existingSecretUserTokenKey: ""
+              existingSecretBotTokenKey: ""
+
+            slackernews:
+              domain: ""
+              # set default admin users
+              adminUserEmails: ""
+              # display running version on admin dashboard
+              version: "$TAG"
+
+            replicated:
+              isEmbeddedCluster: false
+              image:
+                registry: registry.replicated.com
+                repository: library/replicated-sdk-image
+                tag: 1.8.0
+
+            images:
+              pullSecrets:
+                - name: slackernews-pull-secret
+              slackernews:
+                registry: us-docker.pkg.dev
+                repository: smart-proxy-839/slackernews/slackernews-web
+                tag: v1.0.36
+                pullPolicy: IfNotPresent
+              nginx:
+                registry: index.docker.io
+                repository: library/nginx
+                tag: 1.28.0
+                pullPolicy: IfNotPresent
+              postgres:
+                registry: index.docker.io
+                repository: library/postgres
+                tag: 16
+                pullPolicy: IfNotPresent
+          ```
+        </details>
+
+    1. In the `my-values.yaml` file, enter a hostname in the `slackernews.domain` field.  
+
+    1. Run the install command to install SlackerNews in your cluster using the Helm CLI.
 
 1. Run `kubectl get all -n slackernews` to see when services are running
 
