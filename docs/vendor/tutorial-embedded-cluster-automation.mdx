@@ -47,58 +47,60 @@ Before you begin, do the following to set up your environment:
 
 ## Tutorial
 
-1. Create an application using the Replicated CLI:
+### Create the Application
 
-    1. On your local machine, install the Replicated CLI:
+1. On your local machine, install the Replicated CLI:
 
-       * MacOS
+   * MacOS
 
-         ```bash
-         brew install replicatedhq/replicated/cli
-         ```
-       * Linux / Windows Subsystem for Linux (WSL)
+      ```bash
+      brew install replicatedhq/replicated/cli
+      ```
+   * Linux / Windows Subsystem for Linux (WSL)
 
-         ```bash
-         version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-           | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
-         curl -Ls \
-           "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
-           -o replicated.tar.gz
-         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-         mv replicated /usr/local/bin/replicated
-         ``` 
-       For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
+      ```bash
+      version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+         | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
+      curl -Ls \
+         "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+         -o replicated.tar.gz
+      tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+      mv replicated /usr/local/bin/replicated
+      ``` 
+   For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
-    1. Authorize the Replicated CLI:
+1. Authorize the Replicated CLI:
 
-       ```bash
-       replicated login
-       ```
-       In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
+   ```bash
+   replicated login
+   ```
+   In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
-   1. Create an application SlackerNews:
+1. Create an application SlackerNews:
 
-       ```bash
-       replicated app create "SlackerNews"
-       ```
-       :::note
-       If you already have an application named SlackerNews in your Vendor Portal team, you can add a qualifier to the name. For example, `"SlackerNews Tutorial"` or `"SlackerNews YOUR_NAME"`.
-       :::
+   ```bash
+   replicated app create "SlackerNews"
+   ```
+   :::note
+   If you already have an application named SlackerNews in your Vendor Portal team, you can add a qualifier to the name. For example, `"SlackerNews Tutorial"` or `"SlackerNews YOUR_NAME"`.
+   :::
 
-   1. Set the `REPLICATED_APP` environment variable to the application that you created:
+1. Set the `REPLICATED_APP` environment variable to the application that you created:
 
-       ```bash
-       export REPLICATED_APP=APP_SLUG
-       ```
-       Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
+   ```bash
+   export REPLICATED_APP=APP_SLUG
+   ```
+   Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
 
-       Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
+   Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
+
+### Create the Release       
 
 1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
 
-       ```bash
-       curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
-       ```
+   ```bash
+   curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
+   ```
 
 1. Untar the chart:
 
@@ -195,35 +197,76 @@ Before you begin, do the following to set up your environment:
       • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
    ```
 
-1. Create a test customer so that you can install the release in your VM with Embedded Cluster:
+### Create a Customer
 
-   1. Log in to the [Vendor Portal](https://vendor.replicated.com).
-   
-   1. Under the application drop down, select the SlackerNews application that you created.
+Create a test customer so that you can install the release in your VM with Embedded Cluster:
 
-      <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
+1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
-      [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
-   
-   1. Click **Customers > Create customer**.
+1. Under the application drop down, select the SlackerNews application that you created.
 
-      The **Create a new customer** page opens:
+   <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
 
-      ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
+   [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
 
-      [View a larger version of this image](/images/create-customer.png)
+1. Click **Customers > Create customer**.
 
-   1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
+   The **Create a new customer** page opens:
 
-   1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
+   ![Customer a new customer page in the Vendor Portal](/images/create-customer.png)
 
-   1. For **Customer type**, select **Development**.
+   [View a larger version of this image](/images/create-customer.png)
 
-   1. For **Install types**, enable **Embedded Cluster (current generation product)** and disable the other install type options.
+1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
 
-   1. Click **Save Changes**.
+1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-1. Create the ConfigValues file. This file is passed to the installation using the `--application-config` flag.
+1. For **Customer type**, select **Development**.
+
+1. For **Install types**, enable **Embedded Cluster (current generation product)**.
+
+1. Click **Save Changes**.
+
+### Create the Compatibility Matrix VM   
+
+:::note
+Skip these steps if you are using your own VM.
+:::
+
+1. Create an Ubuntu VM that expires after two hours:
+
+   ```bash
+   replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
+   ```
+   **Example output:**
+   ```bash
+   ID        NAME             DISTRIBUTION  VERSION  STATUS  NETWORK   CREATED               EXPIRES   COST
+   97940819  practical_black  ubuntu        24.04    queued  c726ffff  2025-08-20 14:32 MDT  -         $0.69
+   ```
+
+1. After a few minutes, check the status of the VM to see when it is `running`:
+
+   ```bash
+   replicated vm ls
+   ```
+   **Example output:**
+   ```bash
+   ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
+   97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
+   ```
+
+1. Add DNS records.   
+
+### Create the ConfigValues      
+
+1. On your local machine, create a ConfigValues file:
+
+   ```bash
+   touch slackernews-configvalues.yaml 
+   ```
+   The ConfigValues file allows you to set application-specific configuration values for SlackerNews from the command line rather than through the Admin Console UI. You will transfer this file to your VM and then pass it to the installation in a later step.
+
+1. In `slackernews-configvalues.yaml`, add the following YAML:    
 
      ```yaml
      apiVersion: kots.io/v1beta1
@@ -235,33 +278,11 @@ Before you begin, do the following to set up your environment:
      ```
      Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
 
-   Save the ConfigValues on your local machine. You will transfer this file to your VM as part of a later step.   
+### SSH Onto the VM
 
-1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
+If you brought your own VM, SSH onto the VM. If you created the VM with Compatibility Matrix, follow these steps to SSH onto the VM:
 
-   1. Create an Ubuntu VM that expires after two hours:
-
-      ```bash
-      replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
-      ```
-      **Example output:**
-      ```bash
-      ID        NAME             DISTRIBUTION  VERSION  STATUS  NETWORK   CREATED               EXPIRES   COST
-      97940819  practical_black  ubuntu        24.04    queued  c726ffff  2025-08-20 14:32 MDT  -         $0.69
-      ```
-
-   1. After a few minutes, check the status of the VM to see when it is `running`:
-
-      ```bash
-      replicated vm ls
-      ```
-      **Example output:**
-      ```bash
-      ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
-      97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
-      ```
-   
-   1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
+1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
 
       ```bash
       ssh VM_ID@replicatedvm.com
@@ -272,35 +293,46 @@ Before you begin, do the following to set up your environment:
       If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
       :::
 
-   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
+1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
 
-1. On your VM, run the first two commands in the **Embedded cluster install instructions** dialog to download the latest release and extract the installation assets. Do not yet run the installation command.
+### Install
 
-     <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
+1. In the Vendor Portal, on the page for the customer that you created, click **Embedded Cluster install instructions**.
 
-     [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
+   ![Customer install instructions](/images/quick-start-slackernews-customer-install-instructions-button.png)
 
-1. Transfer the ConfigValues to your VM.
+   [View a larger version of this image](/images/quick-start-slackernews-customer-install-instructions-button.png)
+
+1. On your VM, run the _first two commands_ in the **Embedded cluster install instructions** dialog to download the latest release and extract the installation assets. 
+
+   Do not yet run the installation command.
+
+   <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
+
+   [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
+
+1. Transfer the ConfigValues file that you created to your VM.
 
      If you are using a VM created with Compatibility Matrix, run the following command to transfer the file using scp:
 
      ```bash
-     scp configvalues.yaml VM_ID@replicatedvm 
+     scp PATH_TO_CONFIGVALUES VM_ID@replicatedvm 
      ```
-     Where `VM_ID` is the ID of your VM.
+     Where:
+     * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you create on your local machine.
+     * `VM_ID` is the ID of your VM.
 
 1. Run the following command to install:
 
     ```bash
-    sudo ./APP_SLUG install --license PATH_TO_LICENSE \
+    sudo ./APP_SLUG install --license license.yaml \
     --config-values PATH_TO_CONFIGVALUES \
     --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
     Where:
     * `APP_SLUG` with the unique slug for the application.
-    * `PATH_TO_LICENSE` with the path to the customer license.
     * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
-    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file.
+    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file on the VM.
 
 1. Open a shell to watch the application resources deploy.
 
