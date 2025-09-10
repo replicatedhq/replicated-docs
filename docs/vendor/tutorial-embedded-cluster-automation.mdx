@@ -47,7 +47,7 @@ Before you begin, do the following to set up your environment:
 
 ## Tutorial
 
-### Create the Application
+### Create an Application
 
 1. On your local machine, install the Replicated CLI:
 
@@ -94,7 +94,7 @@ Before you begin, do the following to set up your environment:
 
    Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
-### Create the Release       
+### Create a Release       
 
 1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
 
@@ -227,35 +227,46 @@ Create a test customer so that you can install the release in your VM with Embed
 
 1. Click **Save Changes**.
 
-### Create the Compatibility Matrix VM   
+### Create a Compatibility Matrix VM   
 
 :::note
-Skip these steps if you are using your own VM.
+If you are using your own VM, skip these steps and continue to [Create the ConfigValues](#create-the-configvalues) below.
 :::
 
-1. Create an Ubuntu VM that expires after two hours:
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
 
-   ```bash
-   replicated vm create --distribution ubuntu --version 24.04 --instance-type r1.small --disk 50 --ttl 2h
-   ```
-   **Example output:**
-   ```bash
-   ID        NAME             DISTRIBUTION  VERSION  STATUS  NETWORK   CREATED               EXPIRES   COST
-   97940819  practical_black  ubuntu        24.04    queued  c726ffff  2025-08-20 14:32 MDT  -         $0.69
-   ```
+1. Click **Create > Create VM**.
 
-1. After a few minutes, check the status of the VM to see when it is `running`:
+   ![create vm page in the vendor portal](/images/compatibility-matrix-create-vm.png)
+   
+   [View a larger version of this image](/images/compatibility-matrix-create-vm.png)
 
-   ```bash
-   replicated vm ls
-   ```
-   **Example output:**
-   ```bash
-   ID        NAME             DISTRIBUTION  VERSION  STATUS   NETWORK   CREATED               EXPIRES                COST
-   97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
-   ```
+1. On the **Create a Virtual Machine** page, complete the following fields:
 
-1. Add DNS records.   
+     * **OS distribution**: Ubuntu
+     * **Version**: 24.04
+     * (Optional) **TTL**: Optionally increase the TTL for the VM if you want more time to test the installation. 
+
+     Leave the default values for the remaining fields.
+
+1. Click **Create VM**.
+
+1. Open the dot menu for the target VM and click **Edit VM**.
+
+   ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
+
+   [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
+
+1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record using the default settings. This will provide a hostname where you can optionally access the Admin Console after you install.
+
+1. Add another DNS record with a **Target Port** of **443**. This will provide a hostname where you can access SlackerNews.
+
+    The following shows an example of both of these DNS records added to a VM:
+
+    ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
+    [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
+
+1. Copy the URL for the DNS record with a target port of 443 (the hostname for accessing SlackerNews) and save it somewhere on your local machine. You will provide this hostname in the ConfigValues file that you created in the next step.
 
 ### Create the ConfigValues      
 
@@ -276,24 +287,46 @@ Skip these steps if you are using your own VM.
        slackernews_domain:
          value: YOUR_DOMAIN
      ```
-     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
+     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname for the DNS record with port 443.
+
+     **Example:**
+     ```yaml
+     apiVersion: kots.io/v1beta1
+     kind: ConfigValues
+     spec:
+     values:
+       slackernews_domain:
+         value: serene-jones.ingress.replicatedvm.com
+     ```
 
 ### SSH Onto the VM
 
-If you brought your own VM, SSH onto the VM. If you created the VM with Compatibility Matrix, follow these steps to SSH onto the VM:
+* **If you brought your own VM:**
 
-1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
+   1. SSH onto the VM.
+   1. Transfer the `slackernews-configvalues.yaml` file from your local machine to the VM.
+
+* **If you are using a Compatibility Matrix VM:**
+
+   1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) and find the VM under the **Virtual Machines** provided.
+   
+   1. Copy and run the SSH command provided.
+
+       ![ssh command for the vm](/images/compatibility-matrix-ssh-command.png)
+       [View a larger version of this image](/images/compatibility-matrix-ssh-command.png)
+
+   1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
+
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
+
+   1. Transfer the ConfigValues file that you created to your VM:
 
       ```bash
-      ssh VM_ID@replicatedvm.com
+      scp PATH_TO_CONFIGVALUES VM_ID@replicatedvm 
       ```
-      Where `VM_ID` is the `ID` from the output of the `replicated vm ls` command.
-
-      :::note
-      If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
-      :::
-
-1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
+      Where:
+      * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you create on your local machine.
+      * `VM_ID` is the ID of your VM.
 
 ### Install
 
@@ -310,17 +343,6 @@ If you brought your own VM, SSH onto the VM. If you created the VM with Compatib
    <img width="600px" src="/images/embedded-cluster-install-dialog-latest.png" alt="embedded cluster install instructions dialog"/>
 
    [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
-
-1. Transfer the ConfigValues file that you created to your VM.
-
-     If you are using a VM created with Compatibility Matrix, run the following command to transfer the file using scp:
-
-     ```bash
-     scp PATH_TO_CONFIGVALUES VM_ID@replicatedvm 
-     ```
-     Where:
-     * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you create on your local machine.
-     * `VM_ID` is the ID of your VM.
 
 1. Run the following command to install:
 
