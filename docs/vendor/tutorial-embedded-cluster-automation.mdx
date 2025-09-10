@@ -2,7 +2,7 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
-# Perform a Headless Installation of SlackerNews
+# SlackerNews Automated (Headless) Installation
 
 This topic provides a tutorial that demonstrates how to perform a headless installation for an application distributed with Replicated.
 
@@ -94,21 +94,39 @@ Before you begin, do the following to set up your environment:
 
        Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
-1. Get the release files and Helm chart archive for SlackerNews:
-
-    1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
+1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
 
        ```bash
        curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
        ```
 
-    1. Untar the chart:
+1. Untar the chart:
 
-       ```bash
-       tar -xzf tutorial-headless-install/slackernews-1.0.1.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1.tar.gz
-       ```
+   ```bash
+   tar -xzf tutorial-headless-install/slackernews-1.0.1.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1.tar.gz
+   ```
 
-    1. Download and untar the release manifests:
+1. View the contents of the chart.   
+
+1. Package the Helm chart to a `.tgz` chart archive:
+
+      ```bash
+      helm package .
+      ```
+
+      The output of this command is a file named `slackernews-1.0.0.tgz`.
+
+1. Download the release manifests:
+
+    ```bash
+   curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1-manifests.tar.gz
+   ```
+
+1. Untar:
+
+    ```bash
+    tar -xzf tutorial-headless-install/slackernews-1.0.1-manifests.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1-manifests.tar.gz
+    ```
 
 1. Create the release:
 
@@ -145,20 +163,6 @@ Before you begin, do the following to set up your environment:
             • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
         ```
 
-1. Create the ConfigValues file. This file is passed to the installation using the `--application-config` flag.
-
-     ```yaml
-     apiVersion: kots.io/v1beta1
-     kind: ConfigValues
-     spec:
-     values:
-       slackernews_domain:
-         value: YOUR_DOMAIN
-     ```
-     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
-
-   Save the ConfigValues on your local machine. You will transfer this file to your VM as part of a later step.
-
 1. Create a test customer so that you can install the release in your VM with Embedded Cluster:
 
    1. Log in to the [Vendor Portal](https://vendor.replicated.com).
@@ -186,6 +190,20 @@ Before you begin, do the following to set up your environment:
    1. For **Install types**, enable **Embedded Cluster (current generation product)** and disable the other install type options.
 
    1. Click **Save Changes**.
+
+1. Create the ConfigValues file. This file is passed to the installation using the `--application-config` flag.
+
+     ```yaml
+     apiVersion: kots.io/v1beta1
+     kind: ConfigValues
+     spec:
+     values:
+       slackernews_domain:
+         value: YOUR_DOMAIN
+     ```
+     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname provided for the DNS record you created with port 443.
+
+   Save the ConfigValues on your local machine. You will transfer this file to your VM as part of a later step.   
 
 1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
 
@@ -258,4 +276,4 @@ Before you begin, do the following to set up your environment:
 
      1. `kubectl get all --namespace slackernews`
 
-1. Go to the domain that you listed for the SlackerNews to open the application.
+1. Go to the domain that you listed for the SlackerNews to open the application and confirm that the installation was successful.
