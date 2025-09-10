@@ -84,9 +84,16 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
      </td>
   </tr>
   <tr>
+     <td>`--ignore-app-preflights`</td>
+     <td>
+        <p>When `--ignore-app-preflights` is passed, the application-specific preflight checks are skipped. This is useful when performing automated (headless) installations because it ensures that any warnings or failures from application preflight checks do not prevent the installation from proceeding.</p>
+        <p>**Requirement:** Embedded Cluster 2.11.0 or later.</p>
+     </td>
+  </tr>
+  <tr>
      <td>`--ignore-host-preflights`</td>
      <td>
-        <p>When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. Additionally, the Admin Console still runs any application-specific preflight checks before the application is deployed. For more information about the Embedded Cluster host preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_</p>
+        <p>When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. Additionally, the Admin Console still runs any application-specific preflight checks before the application is deployed. For more information about the Embedded Cluster host preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.</p>
         <p>Ignoring host preflight checks is _not_ recommended for production installations.</p>
      </td>
   </tr>
@@ -130,6 +137,20 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
         <DeprecatedPrivateCa/>
         <p>The path to trusted certificate authority (CA) certificates. In Embedded Cluster 2.4.0 and earlier, CAs provided with the `--private-ca` flag are written to a ConfigMap in the cluster that can then be accessed with the [PrivateCACert](/reference/template-functions-static-context#privatecacert) template function.</p>
      </td>
+  </tr>
+  <tr>
+    <td>`--tls-cert`</td>
+    <td>
+      <p>A custom TLS certificate for securing the Admin Console. When used with `--tls-key`, allows users performing automated (headless) installations to provide a custom TLS certificate and key from the command line rather than through the Admin Console UI.</p>
+      <p>**Requirement:** Embedded Cluster 2.11.0 or later.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>`--tls-key`</td>
+    <td>
+      <p>A custom TLS key for securing the Admin Console. When used with `--tls-cert`, allows users performing automated (headless) installations to provide a custom TLS certificate and key from the command line rather than through the Admin Console UI.</p>
+      <p>**Requirement:** Embedded Cluster 2.11.0 or later.</p>
+    </td>
   </tr>
   <tr>
      <td>`-y, --yes`</td>
