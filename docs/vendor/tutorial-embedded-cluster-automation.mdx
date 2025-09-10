@@ -2,9 +2,9 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
-# SlackerNews Automated (Headless) Installation
+# Install SlackerNews With Embedded Cluster From the Command Line
 
-This topic provides a tutorial that demonstrates how to perform a headless installation for an application distributed with Replicated.
+This topic provides a tutorial that demonstrates how to perform an automated or _headless_ installation for an application distributed with Replicated using the Replicated Embedded Cluster installer.
 
 ## Introduction
 
@@ -12,13 +12,10 @@ This tutorial shows how to install a Helm chart with Replicated Embedded Cluster
 
 In this tutorial, you will:
 
-* Download the Helm chart and release manifests for the sample application (SlackerNews)
-
+* Download the Helm chart and release manifests for the sample SlackerNews application
 * Create a release for SlackerNews in the Replicated Platform
-
 * Create a ConfigValues file to pass application-specific configuration values to the installation from the command line
-
-* Run the Embedded Cluster `install` command to perform a headless install of SlackerNews in a VM
+* On a VM, run the Embedded Cluster `install` command to perform a headless install of SlackerNews
 
 ## Set Up Your Environment
 
@@ -79,11 +76,14 @@ Before you begin, do the following to set up your environment:
        ```
        In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
-   1. Create an application named `SlackerNews`:
+   1. Create an application SlackerNews:
 
        ```bash
-       replicated app create SlackerNews
+       replicated app create "SlackerNews"
        ```
+       :::note
+       If you already have an application named SlackerNews in your Vendor Portal team, you can add a qualifier to the name. For example, `"SlackerNews Tutorial"` or `"SlackerNews YOUR_NAME"`.
+       :::
 
    1. Set the `REPLICATED_APP` environment variable to the application that you created:
 
@@ -106,62 +106,94 @@ Before you begin, do the following to set up your environment:
    tar -xzf tutorial-headless-install/slackernews-1.0.1.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1.tar.gz
    ```
 
-1. View the contents of the chart.   
+1. Change to the `slackernews` chart directory:
+      
+   ```bash
+   cd tutorial-headless-install/chart/slackernews
+   ```
 
-1. Package the Helm chart to a `.tgz` chart archive:
+1. List the files in the `slackernews` directory to view the contents of the Helm chart:
+   ```bash
+   ls
+   ```
+   ```bash
+   Chart.lock  Chart.yaml  NOTES.txt   README.md   templates   values.yaml
+   ``` 
 
-      ```bash
-      helm package .
-      ```
+1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
-      The output of this command is a file named `slackernews-1.0.0.tgz`.
+   ```bash
+   helm package --dependency-update .
+   ```
+   Where `--dependency-update` (or `-u`) is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+
+   The output of this command is a file named `slackernews-1.0.1.tgz`.
+
+1. Change from the `slackernews` chart directory to the `tutorial-headless-install` directory.
+
+    ```bash
+    cd ../../
+    ```
 
 1. Download the release manifests:
 
     ```bash
-   curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1-manifests.tar.gz
+   curl -O --create-dirs --output-dir manifests https://docs.replicated.com/slackernews-1.0.1-manifests.tar.gz
    ```
 
 1. Untar:
 
     ```bash
-    tar -xzf tutorial-headless-install/slackernews-1.0.1-manifests.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1-manifests.tar.gz
+    tar -xzf manifests/slackernews-1.0.1-manifests.tar.gz && rm manifests/slackernews-1.0.1-manifests.tar.gz
     ```
 
-1. Create the release:
+1. Move the `slackernews-1.0.1.tgz` chart archive that you created to the new `manifests` directory:
 
-     1. Lint the YAML files in the `manifests` directory:
+   ```bash
+   mv chart/slackernews/slackernews-1.0.1.tgz manifests
+   ```
 
-        ```bash
-        replicated release lint --yaml-dir .
-        ```
-        **Example output:**
-        ```bash
-        RULE                                TYPE   FILENAME             LINE   MESSAGE
-        may-contain-secrets                 info   slackernews.yaml     142    It looks like there might be secrets in this file
-        preflight-spec                      warn                               Missing preflight spec
-        troubleshoot-spec                   warn                               Missing troubleshoot spec
-        nonexistent-status-informer-object  warn   replicated-app.yaml  14     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-        nonexistent-status-informer-object  warn   replicated-app.yaml  15     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-        nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-        ```
-        :::note
-        You can ignore `info` or `warn` messages for the purpose of this tutorial.
-        :::      
+1. Change to the new `manifests` directory and view the contents:
 
-    1. From the `manifests` directory, create a release and promote it to the Unstable channel:
+   ```bash
+   cd manifests && ls
+   ```
+   ```bash
+   config.yaml   embedded-cluster.yaml   k8s-app.yaml   replicated-app.yaml   slackernews-1.0.1.tgz   slackernews.yaml
+   ```
 
-        ```bash
-        replicated release create --yaml-dir . --promote Unstable
-        ```
-        **Example output**:
-        ```bash
-        • Reading manifests from . ✓
-        • Creating Release ✓
-            • SEQUENCE: 1
-        • Promoting ✓
-            • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
-        ```
+1. Lint the YAML files in the `manifests` directory:
+
+   ```bash
+   replicated release lint --yaml-dir .
+   ```
+   **Example output:**
+   ```bash
+   RULE                                TYPE   FILENAME             LINE   MESSAGE
+   may-contain-secrets                 info   slackernews.yaml     142    It looks like there might be secrets in this file
+   preflight-spec                      warn                               Missing preflight spec
+   troubleshoot-spec                   warn                               Missing troubleshoot spec
+   nonexistent-status-informer-object  warn   replicated-app.yaml  14     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   nonexistent-status-informer-object  warn   replicated-app.yaml  15     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
+   ```
+   :::note
+   You can ignore `info` or `warn` messages for the purpose of this tutorial.
+   :::      
+
+1. From the `manifests` directory, create a release and promote it to the Unstable channel:
+
+   ```bash
+   replicated release create --yaml-dir . --promote Unstable
+   ```
+   **Example output**:
+   ```bash
+   • Reading manifests from . ✓
+   • Creating Release ✓
+      • SEQUENCE: 1
+   • Promoting ✓
+      • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
+   ```
 
 1. Create a test customer so that you can install the release in your VM with Embedded Cluster:
 
