@@ -339,11 +339,16 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
       Where:
       * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you created on your local machine.
       * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
-      
+
       **Example:**
       ```bash
       scp configvalues-slackernews.yaml scp://yourusername@37.27.52.178:43663 
       ```
+   1. When prompted, type `yes` to connect to the host.
+
+   1. When prompted, type your passphrase for your SSH key and press Enter.
+
+   1. Return to your VM and confirm that the ConfigValues was transfered. 
 
 ### Install
 
@@ -373,7 +378,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file on the VM.
     * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console. If you want to access the Admin Console after installing, you will need to provide this password.
 
-1. On your VM, open a shell so that you can interact with the cluster with the kubectl command line:
+1. After the installation command completes, open a shell so that you can interact with the cluster with the kubectl command line:
 
    ```
    sudo ./APP_SLUG shell
