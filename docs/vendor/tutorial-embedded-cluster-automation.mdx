@@ -352,14 +352,22 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
     --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
     Where:
-    * `APP_SLUG` with the unique slug for the application.
-    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
+    * `APP_SLUG` with the unique slug for the application. You can find the slug in the install command in the **Embedded cluster install instructions** dialog.
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file on the VM.
+    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console. If you want to access the Admin Console after installing, you will need to provide this password.
 
-1. Open a shell to watch the application resources deploy.
+1. On your VM, open a shell so that you can interact with the cluster with the kubectl command line:
 
-     1. `sudo ./APP_SLUG shell`
+   ```
+   sudo ./APP_SLUG shell
+   ```
 
-     1. `kubectl get all --namespace slackernews`
+1. Watch for the resources become ready:
 
-1. Go to the domain that you listed for the SlackerNews to open the application and confirm that the installation was successful.
+   ```bash
+   kubectl get all --namespace slackernews --watch
+   ```
+
+1. After the deployment is running, go to the domain for SlackerNews to open the application and confirm that the installation was successful.
+
+1. (Optional) Go to the domain for the Admin Console and log in.
