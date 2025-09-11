@@ -4,11 +4,11 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Install SlackerNews With Embedded Cluster From the Command Line
 
-This topic provides a tutorial that demonstrates how to perform an automated or _headless_ installation for an application distributed with Replicated using the Replicated Embedded Cluster installer.
+This tutorial demonstrates how to perform an automated or _headless_ installation for an application distributed with Replicated using the Replicated Embedded Cluster installer.
 
 ## Introduction
 
-This tutorial shows how to install a Helm chart with Replicated Embedded Cluster from the command line without interacting with the Admin Console UI. This is also known as a _headless_ installation. Headless installations are often used for automating application deployment as part of CI/CD pipelines.
+This tutorial shows how to install a Helm chart with Embedded Cluster from the command line without interacting with the Admin Console UI. This is also known as a _headless_ installation. Headless installations are often used for automating application deployment as part of CI/CD pipelines.
 
 In this tutorial, you will:
 
@@ -163,21 +163,12 @@ Before you begin, do the following to set up your environment:
    ```bash
    config.yaml   embedded-cluster.yaml   k8s-app.yaml   replicated-app.yaml   slackernews-1.0.1.tgz   slackernews.yaml
    ```
+   These are the Replicated manifests that are used to define different aspects of the installation experience for the application.
 
 1. Lint the YAML files in the `manifests` directory:
 
    ```bash
    replicated release lint --yaml-dir .
-   ```
-   **Example output:**
-   ```bash
-   RULE                                TYPE   FILENAME             LINE   MESSAGE
-   may-contain-secrets                 info   slackernews.yaml     142    It looks like there might be secrets in this file
-   preflight-spec                      warn                               Missing preflight spec
-   troubleshoot-spec                   warn                               Missing troubleshoot spec
-   nonexistent-status-informer-object  warn   replicated-app.yaml  14     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-   nonexistent-status-informer-object  warn   replicated-app.yaml  15     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
-   nonexistent-status-informer-object  warn   replicated-app.yaml  16     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
    :::note
    You can ignore `info` or `warn` messages for the purpose of this tutorial.
@@ -198,8 +189,6 @@ Before you begin, do the following to set up your environment:
    ```
 
 ### Create a Customer
-
-Create a test customer so that you can install the release in your VM with Embedded Cluster:
 
 1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
