@@ -395,3 +395,28 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 1. (Optional) Go to the domain for the Admin Console and log in using the password that you set with the `--admin-console-password` flag during installation.
 
     The Admin Console domain is the hostname for the DNS record with port 30000 that you added to the VM. You can find this hostname by going to **Compatibility Matrix > Edit VM** in the Vendor Portal.
+
+1. Clean up the installation:
+
+    * If you created the VM with Compatibility Matrix, delete the VM:
+
+      ```bash
+      replicated vm rm VM_ID
+      ```
+
+      Where `VM_ID` is the ID of the VM. You can run `replicated vm ls` to get the ID.
+
+   * If you brought your own VM, use Embedded Cluster to reset and reboot the VM to remove the installation:
+
+     ```bash
+     sudo ./APP_SLUG reset
+     ```
+     Where `APP_SLUG` is the unique slug for the application. You can find the application slug by running `replicated app ls`.
+
+## Summary
+
+Congratulations! As part of this tutorial, you:
+
+* Created a release with a Helm chart
+* Created a ConfigValues file
+* Performed a headless install of the release on a VM with Embedded Cluster
