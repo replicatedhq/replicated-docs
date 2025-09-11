@@ -381,9 +381,14 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
 1. After the deployment is running, go to the domain for SlackerNews (the domain that you listed in the ConfigValues) to open the application and confirm that the installation was successful.
 
-1. (Optional) Go to the domain for the Admin Console and log in using the password that you set with the `--admin-console-password` flag during installation.
+1. (Optional) Log in to the Admin Console using the password that you set with the `--admin-console-password` flag during installation:
 
-    The Admin Console domain is the hostname for the DNS record with port 30000 that you added to the VM. You can find this hostname by going to **Compatibility Matrix > Edit VM** in the Vendor Portal.
+    * **Compatibility Matrix VMs:** The Admin Console domain is the hostname for the DNS record with port 30000 that you added to the VM. You can find this hostname by going to **Compatibility Matrix > Edit VM** in the Vendor Portal.
+
+    * **If you brought your own VM:** The Admin Console URL is provided in the output of the install command.
+       :::note
+       The IP address in the provided URL might be the private IP address of your VM. You might need to edit the URL to use the public IP address.
+       :::
 
 1. Clean up the installation:
 
