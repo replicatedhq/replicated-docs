@@ -140,13 +140,13 @@ Before you begin, do the following to set up your environment:
 1. Download the release manifests:
 
     ```bash
-   curl -O --create-dirs --output-dir manifests https://docs.replicated.com/slackernews-1.0.1-manifests.tar.gz
-   ```
+    curl -O --create-dirs --output-dir manifests https://docs.replicated.com/slackernews-0.1.0-manifests.tar.gz
+    ```
 
 1. Untar:
 
     ```bash
-    tar -xzf manifests/slackernews-1.0.1-manifests.tar.gz && rm manifests/slackernews-1.0.1-manifests.tar.gz
+    tar -xzf manifests/slackernews-0.1.0-manifests.tar.gz && rm manifests/slackernews-0.1.0-manifests.tar.gz
     ```
 
 1. Move the `slackernews-1.0.1.tgz` chart archive that you created to the new `manifests` directory:
@@ -319,14 +319,31 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
    1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
 
-   1. Transfer the ConfigValues file that you created to your VM:
+   1. Open a new command prompt window.
+   
+   1. In the new windows, get the SCP endpoint for the VM:
 
       ```bash
-      scp PATH_TO_CONFIGVALUES VM_ID@replicatedvm 
+      replicated vm scp-endpoint VM_ID
+      ```
+      **Example output:**
+      ```bash
+      scp://yourusername@37.27.52.178:43663
+      ```
+   
+   1. Transfer the ConfigValues file that you created to your VM using the SCP endpoint:
+
+      ```bash
+      scp PATH_TO_CONFIGVALUES scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT 
       ```
       Where:
-      * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you create on your local machine.
-      * `VM_ID` is the ID of your VM.
+      * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file that you created on your local machine.
+      * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
+      
+      **Example:**
+      ```bash
+      scp configvalues-slackernews.yaml scp://yourusername@37.27.52.178:43663 
+      ```
 
 ### Install
 
