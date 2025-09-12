@@ -50,6 +50,13 @@ const sidebars = {
     // },
     {
       type: 'category',
+      label: 'Tutorials',
+      items: [
+        'vendor/tutorial-embedded-cluster-automation',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Labs',
       items:
       [
