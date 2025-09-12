@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.11.2
+
+Released on September 12, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.11.2+k8s-1.33</td>
+    <td id="center">2.11.2+k8s-1.32</td>
+    <td id="center">2.11.2+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center">1.128.1</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-11-1}
+* Upgrades KOTS to 1.128.1
+
 ## 2.11.1
 
 Released on September 8, 2025
@@ -31,7 +57,7 @@ Released on September 8, 2025
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center">1.127.2</td>
+    <td id="center">1.128.0</td>
   </tr>
 </table>
 
