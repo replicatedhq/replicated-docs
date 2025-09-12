@@ -39,6 +39,7 @@ Released on September 12, 2025
 * Upgrades KOTS to 1.128.1
 
 * ### Bug Fixes {#bug-fixes-2-11-2}
+* Fixes an issue that causes license field signatures to be empty for air gap installations when injected into the Helm chart values file at the global.replicated.licenseFields key.
 * Fixes an issue that caused support bundles and preflight checks to take a very long by adding a 10 second timeout to the registryImages collector.
 
 ## 2.11.1
