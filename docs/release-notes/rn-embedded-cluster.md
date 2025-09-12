@@ -35,8 +35,11 @@ Released on September 12, 2025
   </tr>
 </table>
 
-### Improvements {#improvements-2-11-1}
+### Improvements {#improvements-2-11-2}
 * Upgrades KOTS to 1.128.1
+
+* ### Bug Fixes {#bug-fixes-2-11-2}
+* Fixes an issue that caused support bundles and preflight checks to take a very long by adding a 10 second timeout to the registryImages collector.
 
 ## 2.11.1
 
