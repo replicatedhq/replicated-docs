@@ -18,6 +18,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.128.1
+
+Released on September 12, 2025
+
+Support for Kubernetes: 1.31, 1.32, and 1.33
+
+### New Features {#new-features-1-128-1}
+* Adds the channel ID and channel sequence in the output of the [kubectl kots get versions](/reference/kots-cli-get-versions) CLI command.
+
+### Bug Fixes {#bug-fixes-1-128-1}
+* Fixes an issue that causes license field signatures to be empty for air gap installations when injected into the [Helm chart values file](https://docs.replicated.com/vendor/helm-install-values-schema) at the `global.replicated.licenseFields` key.
+
 ## 1.128.0
 
 Released on September 1, 2025
