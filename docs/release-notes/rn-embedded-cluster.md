@@ -149,6 +149,7 @@ Released on August 18, 2025
 
 ### New Features {#new-features-2-9-0}
 * Adds support for Kubernetes 1.32 and drops support for Kubernetes 1.29. Vendors using 1.29 need to upgrade to 1.30. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
+* Users are now prevented from trying to upgrade by more than one minor version of Kubernetes at a time. If the Kubernetes version specified in an available update is more than one minor version ahead of the currently deployed Kubernetes version, the deploy button is disabled for that version, and a tooltip informs the user that they must upgrade to an intermediate version first.
 
 ### Bug Fixes {#bug-fixes-2-9-0}
 * Fixes an issue where the `--network-interface` flag wasn't respected when joining a node.
