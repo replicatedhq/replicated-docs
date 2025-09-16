@@ -94,78 +94,31 @@ Before you begin, do the following to set up your environment:
 
    Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
-### Create a Release       
+### Create a Release
 
-1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-headless-install` directory: 
-
-   ```bash
-   curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
-   ```
-
-1. Untar the chart:
-
-   ```bash
-   tar -xzf tutorial-headless-install/slackernews-1.0.1.tar.gz -C tutorial-headless-install/ && rm tutorial-headless-install/slackernews-1.0.1.tar.gz
-   ```
-
-1. Change to the `slackernews` chart directory:
-      
-   ```bash
-   cd tutorial-headless-install/chart/slackernews
-   ```
-
-1. List the files in the `slackernews` directory to view the contents of the Helm chart:
-   ```bash
-   ls
-   ```
-   ```bash
-   Chart.lock  Chart.yaml  NOTES.txt   README.md   templates   values.yaml
-   ``` 
-
-1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
-
-   ```bash
-   helm package --dependency-update .
-   ```
-   Where `--dependency-update` (or `-u`) is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
-
-   The output of this command is a file named `slackernews-1.0.1.tgz`.
-
-1. Change from the `slackernews` chart directory to the `tutorial-headless-install` directory.
+1. Run the following command to download a tarball containing the files for the release:
 
     ```bash
-    cd ../../
-    ```
-
-1. Download the release manifests:
-
-    ```bash
-    curl -O --create-dirs --output-dir manifests https://docs.replicated.com/slackernews-0.1.0-manifests.tar.gz
+    curl -O --create-dirs --output-dir tutorial-headless-install https://docs.replicated.com/slackernews-1.0.1-release.tar.gz
     ```
 
 1. Untar:
 
     ```bash
-    tar -xzf manifests/slackernews-0.1.0-manifests.tar.gz && rm manifests/slackernews-0.1.0-manifests.tar.gz
+    tar -xzf tutorial-headless-install/slackernews-1.0.1-release.tar.gz && rm manifests/slackernews-1.0.1-release.tar.gz
     ```
 
-1. Move the `slackernews-1.0.1.tgz` chart archive that you created to the new `manifests` directory:
+1. View the contents:
 
    ```bash
-   mv chart/slackernews/slackernews-1.0.1.tgz manifests
-   ```
-
-1. Change to the new `manifests` directory and view the contents:
-
-   ```bash
-   cd manifests && ls
+   ls
    ```
    ```bash
    config.yaml   embedded-cluster.yaml   k8s-app.yaml   replicated-app.yaml   slackernews-1.0.1.tgz   slackernews.yaml
    ```
-   These are the Replicated manifests that are used to define different aspects of the installation experience for the application.
+   The contents include the SlackerNews Helm chart archive (`slackernews-1.0.1.tgz`) and various Replicated manifests that are used to define different aspects of the installation experience for the application.
 
-1. Lint the YAML files in the `manifests` directory:
+1. Lint the YAML files in the directory:
 
    ```bash
    replicated release lint --yaml-dir .
@@ -174,7 +127,7 @@ Before you begin, do the following to set up your environment:
    You can ignore `info` or `warn` messages for the purpose of this tutorial.
    :::      
 
-1. From the `manifests` directory, create a release and promote it to the Unstable channel:
+1. From the `tutorial-headless-install` directory, create a release and promote it to the Unstable channel:
 
    ```bash
    replicated release create --yaml-dir . --promote Unstable
