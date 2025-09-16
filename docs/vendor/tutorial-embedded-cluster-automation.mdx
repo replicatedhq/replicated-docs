@@ -208,7 +208,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
     ![DNS record for a VM](/images/compatibility-matrix-dns-record.png)
     [View a larger version of this image](/images/compatibility-matrix-dns-record.png)
 
-1. Copy the URL for the DNS record with a target port of 443 (the hostname for accessing SlackerNews) and save it somewhere on your local machine. You will provide this hostname in the ConfigValues file that you created in the next step.
+1. Copy the URL for the DNS record with a target port of 443 (the hostname for accessing SlackerNews) and save it somewhere on your local machine. You will provide this hostname in the ConfigValues file that you create in the next step.
 
 ### Create the ConfigValues      
 
@@ -229,7 +229,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
        slackernews_domain:
          value: YOUR_DOMAIN
      ```
-     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname for the DNS record with port 443.
+     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname for the DNS record with port 443 that you copied in a previous step.
 
      **Example:**
      ```yaml
