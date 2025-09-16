@@ -355,7 +355,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
    [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-1. Run the following command to install:
+1. Copy the `install` command from the dialog. Then, add `--config-values` and `--admin-console-password` flags, as shown below:
 
     ```bash
     sudo ./APP_SLUG install --license license.yaml \
@@ -363,9 +363,11 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
     --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
     Where:
-    * `APP_SLUG` with the unique slug for the application. You can find the slug in the install command in the **Embedded cluster install instructions** dialog.
-    * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file on the VM.
-    * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
+    * `APP_SLUG` is the unique slug for the application.
+    * `PATH_TO_CONFIGVALUES` is the path to the `slackernews-configvalues.yaml` file on the VM.
+    * `ADMIN_CONSOLE_PASSWORD` is a password for accessing the Admin Console.
+
+1. Run the command to install. The installation takes a few minutes.
 
 1. After the installation command completes, open a shell so that you can interact with the cluster with the kubectl command line:
 
