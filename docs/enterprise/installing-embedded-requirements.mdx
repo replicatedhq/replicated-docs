@@ -39,7 +39,9 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 &#42; Required only if the application uses the [Replicated private registry](/vendor/private-images-replicated).
 
-**Note:** If monitoring outbound traffic attempts you may see an occasional attempted call to `updates.k0sproject.io`, approximately every 30 minutes. This is a feature of the upstream k0s project to check for k0s updates. The Embedded Cluster does not use this feature and blocking it in your firewall rules will not impact Replicated product functionality. In a coming [patch version](https://github.com/k0sproject/k0s/pull/6328) of upstream k0s 1.33 this probe can be disabled, and this probe chatter will be eliminated from Embedded Cluster. 
+:::note
+If you monitor the outbound traffic attempts made by Embedded Cluster, you might see an attempted call to `updates.k0sproject.io` approximately every 30 minutes. These calls are made by a feature of the upstream k0s project called `update-prober`, which checks for k0s updates. Embedded Cluster does not use the `update-prober` feature and blocking it in your firewall rules will not affect Replicated product functionality.
+:::
 
 ## About Firewalld Configuration
 
