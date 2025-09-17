@@ -88,22 +88,22 @@ Before you begin, do the following to set up your environment:
 
 1. Get the sample SlackerNews Helm chart:
 
-   1. Run the following command to download version 1.0.0 of the sample SlackerNews Helm chart to a new `quick-start` directory: 
+   1. Run the following command to download version 1.0.1 of the sample SlackerNews Helm chart to a new `tutorial-helm-install` directory: 
 
       ```
-      curl -O --create-dirs --output-dir quick-start https://docs.replicated.com/slackernews-1.0.0.tar.gz
+      curl -O --create-dirs --output-dir tutorial-helm-install https://docs.replicated.com/slackernews-1.0.1.tar.gz
       ```
 
    1. Untar the chart:
 
       ```
-      tar -xzf quick-start/slackernews-1.0.0.tar.gz -C quick-start/ && rm quick-start/slackernews-1.0.0.tar.gz
+      tar -xzf tutorial-helm-install/slackernews-1.0.1.tar.gz -C tutorial-helm-install/ && rm tutorial-helm-install/slackernews-1.0.1.tar.gz
       ```
 
    1. Change to the `slackernews` chart directory:
 
       ```bash
-      cd quick-start/chart/slackernews
+      cd tutorial-helm-install/chart/slackernews
       ```
 
    1. List the files in the `slackernews` directory to view the contents of the Helm chart:
@@ -114,82 +114,10 @@ Before you begin, do the following to set up your environment:
       Chart.lock  Chart.yaml  NOTES.txt   README.md   templates   values.yaml
       ```
 
-   1. In the SlackerNews Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
-
-      <DependencyYaml/>
-
-      The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
-
-   adds preflight checks to the application:
-
-   1. In your local filesystem, go to the `quick-start/chart/slackernews` directory.
-
-   1. Create a `preflights.yaml` file in the `templates` directory for the chart:
-
-      ```
-      touch templates/preflights.yaml
-      ```
-
-   1. In the `preflights.yaml` file, add the following YAML to create a Kubernetes Secret with a simple preflight spec: 
-
-      ```yaml
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: slackernews-preflight
-        labels:
-          troubleshoot.sh/kind: preflight
-      stringData:
-        preflight.yaml: |-
-          apiVersion: troubleshoot.sh/v1beta2
-          kind: Preflight
-          metadata:
-            name: slackernews-preflight
-          spec:
-            collectors:
-              - clusterInfo: {}
-              - clusterResources: {}
-              - http:
-                  collectorName: slack
-                  get:
-                    url: https://api.slack.com/methods/api.test
-                    timeout: 20s
-            analyzers:
-              # verify that slack is accessible
-              - textAnalyze:
-                  checkName: Slack Accessible
-                  fileName: slack.json
-                  regex: '"status": 200,'
-                  outcomes:
-                    - pass:
-                        when: "true"
-                        message: "Can access the Slack API"
-                    - fail:
-                        when: "false"
-                        message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."
-      ```
-      
-      The YAML above defines a preflight check that confirms that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
-
-   1. In the `Chart.yaml` file, increment the version to 1.0.1:
-
-      ```yaml
-      # Chart.yaml
-      version: 1.0.1
-      ```   
-
-   1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
-
-      ```bash
-      helm package --dependency-update .
-      ```
-      Where `--dependency-update` (or `-u`) is an option for the `helm package` command that updates chart dependencies before packaging. For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
-
-      The output of this command is a file named `slackernews-1.0.0.tgz`.
 
 1. Add the chart to a new release with `replicated release create --yaml-dir . --promote Unstable`.
 
-1. Create a customer:
+## Create a Customer
 
     1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
@@ -217,7 +145,7 @@ Before you begin, do the following to set up your environment:
 
     1. Click **Save Changes**.
 
-1. Access the Enterprise Portal for the customer to get the Helm CLI installatio instructions:
+## Access the Enterprise Portal for the Customer
 
     1. On the customer's page, go to the **Enterprise Portal Access** tab.
 
@@ -247,9 +175,9 @@ Before you begin, do the following to set up your environment:
 
         [View a larger version of this image](/images/enterprise-portal-join-team.png) 
 
-         The Enterprise Portal dashboard opens.
+         The Enterprise Portal dashboard opens.   
 
-    1. Go to the **Install** tab. 
+    1. In the Enterprise Portal, go to the **Install** tab. 
 
         ![install tab](/images/enterprise-portal-install-tab.png)
 
@@ -273,6 +201,8 @@ Before you begin, do the following to set up your environment:
 
     1. Click **Next**.
 
+## Install    
+
 1. Access your cluster. If you are using Compatibility Matrix, do the following:
 
     1. Create a kind cluster with version 1.34.0 of Kubernetes:
@@ -289,7 +219,7 @@ Before you begin, do the following to set up your environment:
 
     1. Copy and run the first command to log in to the Replicated registry.
 
-    1. Copy and run the commands to install and run preflight checks.
+    1. Copy and run the commands to install and run preflight checks in the cluster.
 
     1. Create a values file to set the domain for the SlackerNews application.
 
@@ -385,7 +315,7 @@ Before you begin, do the following to set up your environment:
           ```
         </details>
 
-    1. In the `my-values.yaml` file, enter a hostname in the `slackernews.domain` field.  
+    1. In the `slackernews.domain` field in the `my-values.yaml` file, enter a hostname. This is a required value for the application. For the purpose of this tutorial, the value that you provide does not need to be a real hostname. You will use a port forward to access SlackerNews in a browser after installation.
 
     1. Run the install command to install SlackerNews in your cluster using the Helm CLI.
 
