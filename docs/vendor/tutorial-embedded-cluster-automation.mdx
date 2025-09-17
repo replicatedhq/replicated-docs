@@ -8,13 +8,13 @@ This tutorial demonstrates how to perform an automated or _headless_ installatio
 
 ## Introduction
 
-This tutorial shows how to install a Helm chart with Embedded Cluster from the command line without interacting with the Admin Console UI. This is also known as a _headless_ installation. Headless installations are often used for automating application deployment as part of CI/CD pipelines.
+This tutorial shows how to install a Helm chart with Embedded Cluster from the command line without interacting with the Admin Console UI. This is also known as a _headless_ installation. Headless installations are often used for automating application deployment as part of CI/CD pipelines. For more information about headless installs with Embedded Cluster, see [Automating Installation with Embedded Cluster](/enterprise/installing-embedded-automation).
 
 In this tutorial, you will:
 
 * Download the Helm chart and release manifests for the sample SlackerNews application
 * Create a release for SlackerNews in the Replicated Platform
-* Create a ConfigValues file to pass application-specific configuration values to the installation from the command line
+* Create a [ConfigValues](/reference/custom-resource-configvalues) file to pass application-specific configuration values to the installation from the command line
 * On a VM, run the Embedded Cluster `install` command to perform a headless install of SlackerNews
 
 ## Set Up Your Environment
@@ -217,7 +217,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
    ```bash
    touch slackernews-configvalues.yaml 
    ```
-   The ConfigValues file allows you to set application-specific configuration values for SlackerNews from the command line rather than through the Admin Console UI. You will transfer this file to your VM and then pass it to the installation in a later step.
+   The [ConfigValues](/reference/custom-resource-configvalues) file allows you to set application-specific configuration values for SlackerNews from the command line rather than through the Admin Console UI. You will transfer this file to your VM and then pass it to the installation in a later step.
 
 1. In `slackernews-configvalues.yaml`, add the following YAML:    
 
