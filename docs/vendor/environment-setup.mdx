@@ -188,20 +188,19 @@ For more information, see the [sbctl](https://github.com/replicatedhq/sbctl) rep
 
 To install sbctl, run one of the following commands:
 
+* macOS Apple Silicon:
+    ```bash
+    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_arm64.tar.gz
+    tar -xzf sbctl_darwin_arm64.tar.gz -C /tmp sbctl
+    rm -f sbctl_darwin_arm64.tar.gz
+    sudo mv /tmp/sbctl /usr/local/bin/
+    ```
 * macOS Intel systems:
 
     ```bash
     curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_amd64.tar.gz
     tar -xzf sbctl_darwin_amd64.tar.gz -C /tmp sbctl
     rm -f sbctl_darwin_amd64.tar.gz
-    sudo mv /tmp/sbctl /usr/local/bin/
-    ```
-
-* macOS Apple Silicon:
-    ```bash
-    curl -LO https://github.com/replicatedhq/sbctl/releases/latest/download/sbctl_darwin_arm64.tar.gz
-    tar -xzf sbctl_darwin_arm64.tar.gz -C /tmp sbctl
-    rm -f sbctl_darwin_arm64.tar.gz
     sudo mv /tmp/sbctl /usr/local/bin/
     ```
 
