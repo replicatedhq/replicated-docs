@@ -150,23 +150,13 @@ Before you begin, do the following to set up your environment:
   The Enterprise Portal is beta. By default, customers are assigned access to the Replicated Download Portal. For more information, see [Comparison to the Download Portal](/vendor/enterprise-portal-about#comparison-to-the-download-portal) in _About the Enterprise Portal_.
   :::
 
-1. In the **Invite users** dialog, enter your work email address and click **Send invite**.
+1. In the **Invite users** dialog, click Cancel to close the dialog.
 
-      For your production application, this is where you would invite your customers to access the Enterprise Portal.
+   For your production application, this is where you would invite your customers to access the Enterprise Portal.
 
-1. In your inbox, open the **Invitation to join the Replicated Enterprise Portal** email and click **Activate your account**.
+1. Click **Login to portal** to generate a one-time login and open the Enterprise Portal for the customer.
 
-      ![invitation email](/images/enterprise-portal-invitation-email.png)
-
-      [View a larger version of this image](/images/enterprise-portal-invitation-email.png)
-
-1. On the join page, click **Accept invite**.
-
-      ![join page](/images/enterprise-portal-join-team.png)
-
-    [View a larger version of this image](/images/enterprise-portal-join-team.png) 
-
-      The Enterprise Portal dashboard opens.   
+   The Enterprise Portal dashboard opens.   
 
 1. In the Enterprise Portal, go to the **Install** tab. 
 
@@ -176,15 +166,15 @@ Before you begin, do the following to set up your environment:
 
 1. On the **Installation Guide** page, if multiple installation options are displayed, select **Helm**.
 
-      The installation options that are displayed in the Enterprise Portal depend on the **Install types** options that you enabled for the customer. 
+    The installation options that are displayed in the Enterprise Portal depend on the **Install types** options that you enabled for the customer. 
 
-      ![installation guide landing page](/images/enterprise-portal-installation-guide.png)
+    ![installation guide landing page](/images/enterprise-portal-installation-guide.png)
 
-      [View a larger version of this image](/images/enterprise-portal-installation-guide.png)
+    [View a larger version of this image](/images/enterprise-portal-installation-guide.png)
 
-1. For instance name, enter a nickname for the instance.
+1. For instance name, enter any nickname for the instance.
 
-1. For **Kubernetes Distribution**, select the distribution of your cluster where you will install SlackerNews. (If you are going to use Compatibility Matrix to create the cluster, select **Vanilla Kubernetes**).
+1. For **Kubernetes Distribution**, select the distribution of your cluster where you will install SlackerNews. If you are going to use Compatibility Matrix to create the cluster, select **Vanilla Kubernetes**.
 
 1. For **Cluster Network Availability**, select **Outbound requests allowed**.
 
@@ -194,7 +184,7 @@ Before you begin, do the following to set up your environment:
 
 ### Install    
 
-1. If you brouhgt your own cluster, set kubectl context to the cluster where you want to install. If you are using Compatibility Matrix, do the following:
+1. If you brought your own cluster, set kubectl context to the cluster where you want to install. If you are using Compatibility Matrix, do the following:
 
    1. Create a kind cluster with version 1.34.0 of Kubernetes:
 
@@ -206,13 +196,13 @@ Before you begin, do the following to set up your environment:
 
 1. In the Enterprise Portal, for **Helm Online Install**, select the release version that you promoted (`1.0.1`).
 
-1. Run the first command to log in to the Replicated registry.
+1. Run the command to log in to the Replicated registry.
 
-1. Run the commands to install the preflight plugin and then run preflight checks in the cluster.
+1. Run the next command to install the preflight plugin and run preflight checks.
 
 1. Copy the install command and make the following changes:
    * Remove the `--values my-values.yaml` flag. This is not necessary for the purpose of this tutorial because you do not need to pass a local values file to the chart.
-   * Add `--namespace slackernews --create-namespace` to install the application to the slackernews namespace on the cluster
+   * Add `--namespace slackernews --create-namespace` to install the application in the slackernews namespace.
 
 1. Watch the application resources become available: 
 
