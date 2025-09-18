@@ -162,9 +162,7 @@ The following example shows an **Open App** link on the dashboard of the Admin C
 
 ## Example: NGINX Application with ClusterIP and NodePort Services
 
-The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster installations.
-
-It also shows how to use the `ports` key to add a link to a NodePort service for kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster installations, it is also possible to use the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser. For information about exposing NodePort services for Embedded Cluster or kURL installations, see [Exposing Services Using NodePorts](kurl-nodeport-services).
+The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster KOTS installations. It also shows how to use the `ports` key to add a link to a NodePort service for Embedded Cluster or kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster KOTS installations, it is also possible to use the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser. For information about exposing NodePort services for Embedded Cluster or kURL installations, see [Exposing Services Using NodePorts](kurl-nodeport-services).
 
 To test this example:
 
@@ -206,8 +204,14 @@ To test this example:
 
 1. Install the release into an existing cluster and confirm that the service was port-forwarded successfully by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
 
-1. Install the release on a VM and confirm that the service was exposed successfully. To test the port forward, click **Open App** on the Admin Console dashboard after the application reaches a Ready state. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation with kURL](/enterprise/installing-kurl).
+1. Install the release on a VM and confirm that you can open the application by clicking **Open App** on the Admin Console dashboard. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Online Installation with kURL](/enterprise/installing-kurl).
 
     :::note
     Ensure that the VM where you install allows HTTP traffic.
+    :::
+
+    :::note
+    If you used Replicated Compatibility Matrix to create the VM, follow the steps in [Expose Ports on Running VMs](/vendor/testing-vm-create#expose-ports-on-running-vms) to add these DNS records to the VM:
+    * A DNS record with a **Target Port** of **30000** to get a hostname where you can access the Admin Console
+    * A DNS record with a **Target Port** of **8888** to get a hostname where you can access the NGINX application
     :::
