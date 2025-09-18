@@ -215,6 +215,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Unified Installer',
+      items: [
+        '/vendor/unified-installer',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Embedded Cluster',
       items: [
         'vendor/embedded-overview',
