@@ -305,7 +305,6 @@ const sidebars = {
                     label: 'Conditionally Deploy Resources',
                     items: [
                       'vendor/packaging-include-resources',
-                      'vendor/helm-optional-charts',
                       'vendor/tutorial-adding-db-config',
                     ],
                 },

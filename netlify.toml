@@ -73,7 +73,11 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/helm-chart-components"
-  to = "https://docs.replicated.com/vendor/helm-optional-charts"
+  to = "https://docs.replicated.com/vendor/packaging-include-resources"
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/helm-optional-charts"
+  to = "https://docs.replicated.com/vendor/packaging-include-resources" 
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/packaging-custom-resources"
