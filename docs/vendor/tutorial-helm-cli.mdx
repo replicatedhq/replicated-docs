@@ -4,15 +4,13 @@ import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
 # Install SlackerNews with the Helm CLI
 
-This topic provides a tutorial that demonstrates how to install a sample application using the Helm CLI.
+This tutorial demonstrates how to install an application distributed with Replicated using the Helm CLI.
 
 ## Introduction
 
-This tutorial shows how to install a Helm chart distributed with Replicated using the Helm CLI.
-
 In this tutorial, you will:
 
-* Download the Helm chart for the sample application (SlackerNews)
+* Download the sample Helm chart (SlackerNews)
 
 * Create a release for SlackerNews in the Replicated Platform
 
@@ -24,9 +22,9 @@ In this tutorial, you will:
 
 Before you begin, do the following to set up your environment:
 
-* Install the Helm CLI, which is the tool for interacting with Helm and managing Helm charts. See [Install Helm](/vendor/environment-setup#install-helm).
+* Install the Helm CLI, which is the tool for interacting with Helm and managing Helm charts. See [Install Helm](/vendor/environment-setup#install-helm) in _Set Up Your Environment_.
 
-* Ensure that you have access to a cluster that meets the requirements for Embedded Cluster:
+* Ensure that you have access to a Kubernetes cluster where you can test the installation using the Helm CLI:
 
    * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a cluster for this tutorial, first request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
@@ -34,63 +32,70 @@ Before you begin, do the following to set up your environment:
           If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
           :::
 
-      After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the cluster with Compatibility Matrix as part of the tutorial.
+      After you complete the prerequisites described above, continue to the [Tutorial](#tutorial). You will create the cluster with Compatibility Matrix as part of the tutorial.
 
-   * **Option 2: Bring your own Cluster.**
+   * **Option 2: Bring your own Cluster.** You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE) or minikube.
 
    For more information, see [Set Up Development Environments for Testing](/vendor/environment-setup#dev).
 
 ## Tutorial
 
-1. Create an application using the Replicated CLI:
+### Create an Application
 
-    1. On your local machine, install the Replicated CLI:
+Create a SlackerNews application in the Replicated Platform:
 
-       * MacOS
+1. On your local machine, install the Replicated CLI:
 
-         ```bash
-         brew install replicatedhq/replicated/cli
-         ```
-       * Linux / Windows Subsystem for Linux (WSL)
+    * MacOS
 
-         ```bash
-         version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-           | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
-         curl -Ls \
-           "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
-           -o replicated.tar.gz
-         tar xf replicated.tar.gz replicated && rm replicated.tar.gz
-         mv replicated /usr/local/bin/replicated
-         ``` 
-       For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
+      ```bash
+      brew install replicatedhq/replicated/cli
+      ```
+    * Linux / Windows Subsystem for Linux (WSL)
 
-    1. Authorize the Replicated CLI:
+      ```bash
+      version=$(curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
+         | grep -m1 -Po '"tag_name":\s*"v\K[^"]+')
+      curl -Ls \
+         "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+         -o replicated.tar.gz
+      tar xf replicated.tar.gz replicated && rm replicated.tar.gz
+      mv replicated /usr/local/bin/replicated
+      ``` 
+   For more information and additional installation options, see [Install the Replicated CLI](/reference/replicated-cli-installing).
 
-       ```bash
-       replicated login
-       ```
-       In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
+1. Authorize the Replicated CLI:
 
-   1. Create an application named `SlackerNews`:
+   ```bash
+   replicated login
+   ```
+   In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
-       ```bash
-       replicated app create SlackerNews
-       ```
+1. Create an application named SlackerNews:
 
-   1. Set the `REPLICATED_APP` environment variable to the application that you created:
+   ```bash
+   replicated app create "SlackerNews"
+   ```
+   :::note
+   If you already have an application named SlackerNews in your Vendor Portal team, you can add a qualifier to the name. For example, "SlackerNews Tutorial" or "SlackerNews YOUR_NAME".
+   :::
 
-       ```bash
-       export REPLICATED_APP=APP_SLUG
-       ```
-       Where `APP_SLUG` is the unique application slug provided in the output of the `app create` command.
+1. Set the `REPLICATED_APP` environment variable to the slug of the application that you created:
 
-       Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
+   ```bash
+   export REPLICATED_APP=APP_SLUG
+   ```
+   Where `APP_SLUG` is the unique application slug provided in the output of the `replicated app create` or `replicated app ls` commands.
 
-### Get the Chart Archive and Create a Release       
+   Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.
+
+### Get the Chart Archive and Create a Release
+
+Download the chart archive for SlackerNews version 1.0.1, then add the archive to a new release in the Replicated Platform:
 
 1. Run the following command to download the SlackerNews Helm chart archive to a new `tutorial-helm-install` directory: 
 
-    ```
+    ```bash
     curl -O --create-dirs --output-dir tutorial-helm-install https://docs.replicated.com/slackernews-1.0.1.tgz
     ```
 
@@ -108,17 +113,45 @@ Before you begin, do the following to set up your environment:
     • Channel 32q8tKLfRFbHYPGJ1Q2E2vcDQ9j successfully set to release 1
    ```
 
-### Create a Customer
+### Customize the Enterprise Portal
+
+Customize the look and feel of the Enterprise Portal for the SlackerNews application:
 
 1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
 1. Under the application drop down, select the SlackerNews application that you created.
 
-     <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
+    <img alt="App drop down" src="/images/quick-start-app-dropdown-slackernews.png" width="250px"/>
 
-     [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
+    [View a larger version of this image](/images/quick-start-app-dropdown-slackernews.png)
 
-1. Click **Customers > Create customer**.
+1. In the left navigation panel, click **Enterprise Portal**.
+
+1. On the **Enterprise Portal > Settings** tab, scroll down to the **Colors** section.
+
+1. For **Primary**, enter `#fd9431`. For **Secondary**, enter `#297372`. Click **Save**.
+
+    ![Enterprise Portal color settings](/images/enterprise-portal-settings-colors.png)
+
+    [View a larger version of this image](/images/enterprise-portal-settings-colors.png)
+
+1. Go to the **Knowledge base** tab. For **Helm Post-Install Instructions**, enter the following markdown:
+
+     ```mdx
+     Congratulations! For more information about getting started with SlackerNews, see the docs at [https://docs.slackernews.io/](https://docs.slackernews.io/).
+     ```
+
+     ![Enterprise Portal install instructions settings](/images/enterprise-portal-settings-post-install.png)
+
+     [View a larger version of this image](/images/enterprise-portal-settings-post-install.png)
+
+1. Click **Save Changes**.    
+
+### Create a Customer
+
+Create a test customer:
+
+1. In the Vendor Portal, go to **Customers > Create customer**.
 
      The **Create a new customer** page opens:
 
@@ -128,6 +161,8 @@ Before you begin, do the following to set up your environment:
 
 1. For **Customer name**, enter a name for the customer. For example, `Example Customer`.
 
+1. For **Customer email**, enter an email address. This email address is only used as a username for authenticating with the Replicated registry and is never contacted. A customer email address is required for Helm CLI installations.
+
 1. For **Assigned Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
 1. For **Customer type**, select **Development**.
@@ -136,29 +171,35 @@ Before you begin, do the following to set up your environment:
 
 1. Click **Save Changes**.
 
-### Access the Enterprise Portal
+### Access the Customer's Enterprise Portal
+
+Log in to the Enterprise Portal for the customer to get the Helm CLI installation instructions:
 
 1. On the customer's page, go to the **Enterprise Portal Access** tab.
 
 1. Enable the **Enable Enterprise Portal for this customer** toggle.
 
-  ![enterprise portal toggle enabled](/images/customer-enterprise-portal-access-toggle.png)
+    ![enterprise portal toggle enabled](/images/customer-enterprise-portal-access-toggle.png)
 
-  [View a larger version of this image](/images/customer-enterprise-portal-access-toggle.png)
+    [View a larger version of this image](/images/customer-enterprise-portal-access-toggle.png)
 
-  :::note
-  The Enterprise Portal is beta. By default, customers are assigned access to the Replicated Download Portal. For more information, see [Comparison to the Download Portal](/vendor/enterprise-portal-about#comparison-to-the-download-portal) in _About the Enterprise Portal_.
-  :::
+    :::note
+    The Enterprise Portal is beta. By default, customers have access to the Replicated Download Portal. For more information, see [Comparison to the Download Portal](/vendor/enterprise-portal-about#comparison-to-the-download-portal) in _About the Enterprise Portal_.
+    :::
 
-1. In the **Invite users** dialog, click Cancel to close the dialog.
+1. In the **Invite users** dialog that opens automatically, click **Cancel** to close the dialog.
 
-   For your production application, this is where you would invite your customers to access the Enterprise Portal.
+   For your production application, this is where you could send initations to customers so they can access the Enterprise Portal.
 
 1. Click **Login to portal** to generate a one-time login and open the Enterprise Portal for the customer.
 
+   ![Login to portal button](/images/enterprise-portal-one-time-login.png)
+
+   [View a larger version of this image](/images/enterprise-portal-one-time-login.png)
+
    The Enterprise Portal dashboard opens.   
 
-1. In the Enterprise Portal, go to the **Install** tab. 
+1. Go to the Enterprise Portal **Install** tab. 
 
     ![install tab](/images/enterprise-portal-install-tab.png)
 
@@ -166,15 +207,17 @@ Before you begin, do the following to set up your environment:
 
 1. On the **Installation Guide** page, if multiple installation options are displayed, select **Helm**.
 
-    The installation options that are displayed in the Enterprise Portal depend on the **Install types** options that you enabled for the customer. 
+    :::note
+    The installation options that are displayed in the Enterprise Portal depend on the **Install types** enabled for the customer. 
+    :::
 
     ![installation guide landing page](/images/enterprise-portal-installation-guide.png)
 
     [View a larger version of this image](/images/enterprise-portal-installation-guide.png)
 
-1. For instance name, enter any nickname for the instance.
+1. For **Instance Name**, enter a nickname for the instance.
 
-1. For **Kubernetes Distribution**, select the distribution of your cluster where you will install SlackerNews. If you are going to use Compatibility Matrix to create the cluster, select **Vanilla Kubernetes**.
+1. For **Kubernetes Distribution**, select the distribution of the cluster where you will install SlackerNews. If you are going to use Compatibility Matrix to create the cluster, select **Vanilla Kubernetes**.
 
 1. For **Cluster Network Availability**, select **Outbound requests allowed**.
 
@@ -184,6 +227,8 @@ Before you begin, do the following to set up your environment:
 
 ### Install    
 
+Install SlackerNews in a cluster:
+
 1. If you brought your own cluster, set kubectl context to the cluster where you want to install. If you are using Compatibility Matrix, do the following:
 
    1. Create a kind cluster with version 1.34.0 of Kubernetes:
@@ -192,28 +237,63 @@ Before you begin, do the following to set up your environment:
       replicated cluster create --distribution kind --instance-type r1.small --disk 50 --version 1.34.0
       ```
 
-   1. After the cluster is running, use the kubectl command provided to set your kubectl context to the cluster.
+   1. Watch for the cluster to have a `running` status:
 
-1. In the Enterprise Portal, for **Helm Online Install**, select the release version that you promoted (`1.0.1`).
+      ```bash
+      replicated cluster ls --watch
+      ```    
 
-1. Run the command to log in to the Replicated registry.
+   1. After the cluster status is `running`, use the kubectl command provided to set your kubectl context to the cluster.
 
-1. Run the next command to install the preflight plugin and run preflight checks.
+      ```bash
+      replicated cluster shell CLUSTER_ID
+      ```
+      Where `CLUSTER_ID` is the ID of the cluster provided in the output of `replicated cluster ls`.
 
-1. Copy the install command and make the following changes:
-   * Remove the `--values my-values.yaml` flag. This is not necessary for the purpose of this tutorial because you do not need to pass a local values file to the chart.
+      :::note
+      You can also copy the shell command for the cluster from the **Compatibility Matrix** page in the Vendor Portal.
+      :::
+
+1. Go back to the Enterprise Portal. On the **Helm Online Install** page of the install wizard, for **Select a version**, ensure that the version you promoted (`1.0.1`) is selected.
+
+1. For **Export credential and log in**, run the command to log in to the Replicated registry.
+
+1. Run the next command to install the preflight plugin.
+
+1. Run preflight checks against the cluster.
+
+1. Skip the **Create values override file** step. This is not necessary for the purpose of this tutorial because you do not need to pass a local values file to the chart.
+
+1. Copy the install command provided and make the following changes:
+   * Remove the `--values my-values.yaml` flag.
    * Add `--namespace slackernews --create-namespace` to install the application in the slackernews namespace.
 
-1. Watch the application resources become available: 
+   **Example:**
+
+   ```bash
+   helm install slackernews oci://registry.replicated.com/slackernews/unstable/slackernews --version 1.0.1 --namespace slackernews --create-namespace 
+   ```
+
+1. Watch the SlackerNews deployment: 
 
     ```bash
     kubectl get all --namespace slackernews --watch
     ```
 
-1. Run the following command to port forward the slackernews NGINX service to local port 8080:
+1. When the installation is complete and the `slackernews-nginx` service is running, run the following command to port forward the service to local port 8080:
 
    ```bash
    kubectl port-forward --namespace slackernews svc/slackernews-nginx 8080:8080
    ``` 
 
-1. Open `localhost:8080` in a browser to view the SlackerNews application and confirm that the installation was successful.
+1. In a browser, go to `localhost:8080`. The SlackerNews application landing page opens.
+
+    ![SlackerNews landing page page](/images/slackernews-landing-page.png)
+
+    [View a larger version of this image](/images/slackernews-landing-page.png)
+
+1. Go back to the **Helm Online Install** wizard in the Enterprise Portal and click **Continue**. On the **Installation Complete** page, you can see the post-installation message that you set.
+
+    ![Installation Complete page](/images/enterprise-portal-post-installation.png)
+
+    [View a larger version of this image](/images/enterprise-portal-post-installation.png)
