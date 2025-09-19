@@ -53,6 +53,7 @@ const sidebars = {
       label: 'Tutorials',
       items: [
         'vendor/tutorial-embedded-cluster-automation',
+        'vendor/tutorial-helm-cli',
       ],
     },
     {
