@@ -217,12 +217,12 @@ const sidebars = {
       type: 'category',
       label: 'Unified Installer',
       items: [
-        '/vendor/unified-installer',
+        'vendor/unified-installer',
       ]
     },
     {
       type: 'category',
-      label: 'Embedded Cluster',
+      label: 'Embedded Cluster v2',
       items: [
         'vendor/embedded-overview',
         'vendor/embedded-using',
