@@ -14,7 +14,7 @@ In this tutorial, you will:
 
 * Create a release for SlackerNews in the Replicated Platform
 
-* Get the Helm CLI installation instructions for SlackerNews from the Replicated Enterprise Portal 
+* Get the Helm CLI installation instructions for SlackerNews from the [Replicated Enterprise Portal](/vendor/enterprise-portal-about) 
 
 * Install SlackerNews using the Helm CLI in a Kubernetes cluster
 
@@ -127,7 +127,9 @@ Customize the look and feel of the Enterprise Portal for the SlackerNews applica
 
 1. In the left navigation panel, click **Enterprise Portal**.
 
-1. On the **Enterprise Portal > Settings** tab, scroll down to the **Colors** section.
+1. On the **Enterprise Portal > Settings** tab, for **Title** enter `SlackerNews Enterprise Portal`.
+
+1. Scroll down to the **Colors** section.
 
 1. For **Primary**, enter `#fd9431`. For **Secondary**, enter `#297372`. Click **Save**.
 
@@ -239,7 +241,7 @@ Install SlackerNews in a cluster:
       replicated cluster ls --watch
       ```    
 
-   1. After the cluster status is `running`, use the kubectl command provided to set your kubectl context to the cluster.
+   1. After the cluster status is `running`, run the following command to set your kubectl context to the cluster:
 
       ```bash
       replicated cluster shell CLUSTER_ID
@@ -250,7 +252,13 @@ Install SlackerNews in a cluster:
       You can also copy the shell command for the cluster from the **Compatibility Matrix** page in the Vendor Portal.
       :::
 
-1. Go back to the Enterprise Portal. On the **Helm Online Install** page of the install wizard, for **Select a version**, ensure that the version you promoted (`1.0.1`) is selected.
+1. Go back to the install wizard in the Enterprise Portal.
+
+    ![Helm online install wizard](/images/enterprise-portal-helm-online-install-slackernews.png)
+
+    [View a larger version of this image](/images/enterprise-portal-helm-online-install-slackernews.png)
+
+1. On the **Helm Online Install**, for **Select a version**, ensure that the version you promoted (`1.0.1`) is selected.
 
 1. For **Export credential and log in**, run the command to log in to the Replicated registry.
 
@@ -293,3 +301,9 @@ Install SlackerNews in a cluster:
     ![Installation Complete page](/images/enterprise-portal-post-installation.png)
 
     [View a larger version of this image](/images/enterprise-portal-post-installation.png)
+
+## Summary
+
+Congratulations! You created a release using a Helm chart, then followed the Helm CLI installation steps provided in the Enterprise Portal to install the release in a cluster.
+
+For more information about Helm CLI installations for applications distributed with Replicated, see [About Helm Installations with Replciated](/vendor/helm-install-overview).
