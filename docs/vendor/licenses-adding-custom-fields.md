@@ -80,8 +80,7 @@ To create a custom license field:
    |-----------------------|------------------------|
    | Field | The name used to reference the field. This value cannot be changed. |
    | Title| The display name for the field. This is how the field appears in the Vendor Portal and the Admin Console. You can change the title in the Vendor Portal. |
-   | Type| The field type. This value cannot be changed. See [Understanding
-   Custom License Field Types](#understanding-custom-license-field-types) for more information.
+   | Type| The field type. This value cannot be changed. See [Understanding Custom License Field Types](#understanding-custom-license-field-types) for more information.
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. The maximum size for a license field value is 64KB. |
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
    | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
