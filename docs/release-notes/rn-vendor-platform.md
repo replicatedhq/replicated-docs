@@ -10,12 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2025.09.24-1
 
 Released on September 24, 2025
 
 ### New Features {#new-features-v2025-09-24-1}
-* Includes a new type for custom license fields "Enum" that allows users to list a set of possible values for the license field.
+* Adds a new type for custom license fields "Enum" that allows users to list a set of possible values for the license field.
+
+## v2025.09.23-4
+
+Released on September 23, 2025
+
+### Improvements {#improvements-v2025-09-23-4}
+* Users can now select a custom value of Compatibility Matrix credits to purchase in the Buy credits drop down within the Compatibility Matrix page.
 
 ## v2025.09.23-3
 
