@@ -10,12 +10,20 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2025.09.23-4
 
 Released on September 23, 2025
 
 ### Improvements {#improvements-v2025-09-23-4}
 * Users can now select a custom value of Compatibility Matrix credits to purchase in the Buy credits drop down within the Compatibility Matrix page.
+
+## v2025.09.23-3
+
+Released on September 23, 2025
+
+### Bug Fixes {#bug-fixes-v2025-09-23-3}
+* Fixes an issue where available updates with higher semantic versions were not shown when a release with lower semantic version but higher channel sequence was installed on semver-enabled channels.
 
 ## v2025.09.09-0
 
