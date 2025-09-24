@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on September 23, 2025
 
-### New Features {#new-features-v2025-09-23-4}
+### Improvements {#improvements-v2025-09-23-4}
 * Users can now select a custom value of Compatibility Matrix credits to purchase in the Buy credits drop down within the Compatibility Matrix page.
 
 ## v2025.09.09-0
