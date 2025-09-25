@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.09.25-0
+
+Released on September 25, 2025
+
+### Bug Fixes {#bug-fixes-v2025-09-25-0}
+* Fixes an issue where semver enabled channel releases with equal semver to the current release do not show up as available updates in KOTS Admin Console.
+
 
 ## v2025.09.23-4
 
