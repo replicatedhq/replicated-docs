@@ -80,7 +80,7 @@ To create a custom license field:
    |-----------------------|------------------------|
    | Field | The name used to reference the field. This value cannot be changed. |
    | Title| The display name for the field. This is how the field appears in the Vendor Portal and the Admin Console. You can change the title in the Vendor Portal. |
-   | Type| The field type. Supported formats include integer, string, text (multi-line string), and boolean values. This value cannot be changed. |
+   | Type| The field type. This value cannot be changed. See [Understanding Custom License Field Types](#understanding-custom-license-field-types) for more information.
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. The maximum size for a license field value is 64KB. |
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
    | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
@@ -95,23 +95,6 @@ To update a custom license field:
    :::important
    Enabling **Is this field is required?** updates the license field to be required on all new and existing customers. If you enable **Is this field is required?**, you must either set a default value for the field or manually update each existing customer to provide a value for the field.
    :::
-   
-### Set Customer-Specific Values for Custom License Fields
-
-To set a customer-specific value for a custom license field:
-
-1. Log in to the Vendor Portal and select the application.
-1. Click **Customers**.
-1. For the target customer, click the **Manage customer** button.
-1. Under **Custom fields**, enter values for the target custom license fields for the customer.
-
-   :::note
-   The maximum size for a license field value is 64KB.
-   :::
-
-   <img width="600" alt="Custom license fields section in the manage customer page" src="/images/customer-license-custom-fields.png"/>
-
-   [View a larger version of this image](/images/customer-license-custom-fields.png)
 
 ### Delete Custom License Fields
 
@@ -139,3 +122,35 @@ To delete a custom license field:
    :::
 
 1. Follow the instructions in the dialog and click **Delete**.
+
+### Custom License Field Types
+
+Each custom license field has a _type_ that is used to validate its value. The type also determines the widget that you use to set the license field's value on the **Manager customer** page.
+
+| Field                 | Description            | Widget              | 
+|-----------------------|------------------------|---------------------|
+| Integer | A whole number numeric value | text field |
+| String | Short form text that typically fits on a single line | text field |
+| Text | Longer form text that can contain multiple lines | text area |
+| Boolean | True or false | checkbox |
+| Password | A short string of text that is masked on display | password |
+| Enum | Provides a list of possible values | dropdown |
+
+String, Text, Password, and Enum types are all represented as strings in the license.   
+
+## Set Customer-Specific Values for Custom License Fields
+
+To set a customer-specific value for a custom license field:
+
+1. Log in to the Vendor Portal and select the application.
+1. Click **Customers**.
+1. For the target customer, click the **Manage customer** button.
+1. Under **Custom fields**, enter values for the target custom license fields for the customer.
+
+   :::note
+   The maximum size for a license field value is 64KB.
+   :::
+
+   <img width="600" alt="Custom license fields section in the manage customer page" src="/images/customer-license-custom-fields.png"/>
+
+   [View a larger version of this image](/images/customer-license-custom-fields.png)
