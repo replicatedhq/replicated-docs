@@ -4,18 +4,35 @@ This topic provides an overview of the Replicated Security Center.
 
 ## Overview
 
-The Security Center allows Vendors and their Enterprise customers to monitor and manage security settings, vulnerabilities, and compliance for your applications.
-* View vulnerable container images
-* View CVE details
-* And more
+The Security Center helps Vendors strengthen security enablement within their application delivery process by providing a method for both Vendors and their Enterprise customers to monitor security risks, assess known vulnerabilities, and provide security information and compliance reports for each application release. The Security Center is powered by the underlying technology of Replicated’s [SecureBuild](https://securebuild.com/) product. 
 
-If the feature flag is enabled for your account, you can access Security Center in the left-side navigation in Vendor Portal. You can also allow your customers to access their own version of Security Center as a tab within their Enterprise Portal. This is enabled on a per-customer level under Customers -> Enterprise Portal access. 
+There are two primary interfaces of the Security Center:
+* Vendor facing dashboard within your Vendor Portal team account
+* End-customer facing dashboard within Enterprise Portal (optionally enabled per customer license) 
+
+To access the Security Center (Alpha) a feature flag must be enabled for your team. See [Limitations](/vendor/#Limitations). 
+
+## Vendor Portal 
+
+The Security Center helps Vendors be more security aware by:
+* Identifying known vulnerable container images 
+* Providing CVE details 
+
+If the feature flag is enabled for your team, the Security Center tab will be available in the left-hand navigation in Vendor Portal. 
 
 The following shows an example of the vendor-facing Security Center dashboard within Vendor Portal:
 
 ![Security Center dashboard](/images/security-center-dashboard.png)
 
 [View a larger version of this image](/images/security-center-dashboard.png)
+
+## Enterprise Portal 
+
+The Enterprise Portal Security Center allows you to provide security information alongside your application release, such as:
+* Report of currently known CVEs for available application release versions
+* Downloadable SBOM (Software Bill of Materials) 
+
+If you wish to enable the Security Center tab in a given customer’s Enterprise Portal experience, you must enable it at the per-customer license level under Customers -> Enterprise Portal access. The feature flag must be enabled for your team to see this option. 
 
 The following shows an example of the end-customer-facing Security Center dashboard within the Enterprise Portal:
 
