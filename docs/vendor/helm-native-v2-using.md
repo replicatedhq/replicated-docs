@@ -121,7 +121,7 @@ To support KOTS existing cluster or kURL installations with HelmChart v2, comple
               kots.io/backup: velero
               kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
     ```
-    For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license).
+    For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context).
 
     For more information about the `isSnapshotSupported` and `appSlug` built-in license fields, see the [Admin Console Feature Options](/vendor/licenses-using-builtin-fields#admin-console-feature-options) table in _Built-In License Fields_.
 
