@@ -20,8 +20,8 @@
   "dependencies": {
     "@algolia/client-search": "^5.36.0",
     "@babel/traverse": "^7.28.4",
-    "@docusaurus/core": "3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/core": "3.9.1",
+    "@docusaurus/preset-classic": "3.9.1",
     "@mdx-js/react": "^3.1.1",
     "@types/node": "24.5.2",
     "@types/react": "19.1.13",
@@ -36,8 +36,8 @@
     "ts-node": "10.9.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.8.1",
-    "@docusaurus/types": "3.8.1",
+    "@docusaurus/module-type-aliases": "3.9.1",
+    "@docusaurus/types": "3.9.1",
     "typescript": "~5.9.2"
   },
   "resolutions": {
