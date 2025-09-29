@@ -534,7 +534,15 @@ To add support for air gap installations:
 
 1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test air gap installation in a cluster with Helm.
 
-1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).    
+1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).  
+
+### Enable and Customize the Enterprise Portal (Beta)
+
+The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information about the Enterprise Portal, see [About the Enteprise Portal](/vendor/enterprise-portal-configure).
+
+The Enterprise Portal is Beta. You can enable access to the Enterprise Portal for all customers or on a per-customer basis. For more information, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+
+You can also customize the Enterprise Portal so that your customers have a consistent branding experience. For example, you can use a custom domain, add links and contact information, customize the look and feel of the UI, edit the content of invitation and notification emails, and more. For more information about customizing the Enterprise Portal, see [Customize the Enterprise Portal](/vendor/enterprise-portal-configure).
 
 ### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
 
