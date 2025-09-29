@@ -2,49 +2,56 @@
 
 This topic provides an overview of the Replicated Security Center.
 
+:::note
+The Security Center is Alpha. To access the Security Center, a feature flag must be enabled for your team. See [Limitations](/vendor/security-center-about#limitations) below. 
+:::
+
 ## Overview
 
-The Security Center helps Vendors strengthen security enablement within their application delivery process by providing a method for both Vendors and their Enterprise customers to monitor security risks, assess known vulnerabilities, and provide security information and compliance reports for each application release. The Security Center is powered by the underlying technology of Replicated’s [SecureBuild](https://securebuild.com/) product. 
+The Security Center helps you strengthen security enablement in your application delivery process by making it easier for both you and your enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each application release.
 
-There are two primary interfaces of the Security Center:
-* Vendor facing dashboard within your Vendor Portal team account
-* End-customer facing dashboard within Enterprise Portal (optionally enabled per customer license) 
+The Security Center is powered by Replicated’s [SecureBuild](https://securebuild.com/) product.
 
-To access the Security Center (Alpha) a feature flag must be enabled for your team. See [Limitations](/vendor/security-center-about#limitations). 
+## Limitations
+* The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
+* Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
+* Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
 
-## Vendor Portal 
+## Security Center Interfaces
 
-The Security Center helps Vendors be more security aware by:
-* Identifying known vulnerable container images 
-* Providing CVE details 
-* And more 
+The Security Center is accessible through the following interfaces:
+* Vendor-facing dashboard available in the Replicated Vendor Portal. See [Vendor Portal](#vendor-portal) below.
+* Enterprise customer-facing dashboard available in the Replicated Enterprise Portal (optionally enabled per customer license). See [Enterprise Portal](#enterprise-portal) below. 
 
-If the feature flag is enabled for your team, the Security Center tab will be available in the left-hand navigation in Vendor Portal. 
+### Vendor Portal 
 
-The following shows an example of the vendor-facing Security Center dashboard within Vendor Portal:
+The Vendor Portal Security Center gives you access to the following key security insights for your releases:
+* Known vulnerabilities in container images 
+* CVE details 
+* A summary of top secuirty risks based on the assessed severity of the vulnerability
+
+The following shows an example of the vendor-facing Security Center dashboard in the Vendor Portal:
 
 ![Security Center dashboard](/images/security-center-dashboard.png)
 
 [View a larger version of this image](/images/security-center-dashboard.png)
 
-## Enterprise Portal 
+### Enterprise Portal 
 
-The Enterprise Portal Security Center allows you to provide security information alongside your application release, such as:
-* Report of currently known CVEs for available application release versions
-* Downloadable SBOM (Software Bill of Materials) 
-* And more
+The Enterprise Portal Security Center allows you to provide key security information to your enterprise customers alongside your application releases.
 
-If you wish to enable the Security Center tab in a given customer’s Enterprise Portal experience, you must enable it at the per-customer license level under Customers -> Enterprise Portal access. The feature flag must be enabled for your team to see this option. 
+On the **Security Center** tab of the Enterprise Portal, for each available release version, customers can:
+* View a detailed report of known CVEs
+* Download the Software Bill of Materials (SBOM)
 
-The following shows an example of the end-customer-facing Security Center dashboard within the Enterprise Portal:
+The following shows an example of the Security Center dashboard in the Enterprise Portal:
 
 ![Enterprise Portal Security Center dashboard](/images/ep-security-center-dashboard.png)
 
 [View a larger version of this image](/images/ep-security-center-dashboard.png)
 
-## Limitations
-* The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
-* Access to the Security Center Alpha requires a feature flag be turned on for your team account. Please reach out to your Account Representative for more information.
-* Security Center reporting is available only for Embedded Clsuter and Helm installations. 
+#### Enable the Enterprise Portal Security Center
 
+The **Security Center** tab in the Enterprise Portal is not enabled by default. If the Security Center feature flag is enabled for your Vendor Portal team, you can optionally enable the Enterprise Portal **Security Center** tab on a per-customer basis.
 
+To enable the **Security Center** tab in a customer's Enterprise Portal, go to **Customers > [Customer] > Enterprise Portal access**.
