@@ -8,7 +8,7 @@ Creating wildcard DNS entries for VMs is not supported. For feedback, contact Re
 
 ## Compatibility Matrix Tunnels
 
-You can expose ports on a VM and make them accessible on the public internet. For more information about a similar feature, see [Compatibility Matrix Tunnels for Clusters](testing-ingress#compatibility-matrix-tunnels-beta).
+You can expose ports on a VM and make them accessible on the public internet. For more information about a similar feature, see [Compatibility Matrix Tunnels for Clusters](testing-ingress#compatibility-matrix-tunnels).
 
 ### Create a Tunnel
 

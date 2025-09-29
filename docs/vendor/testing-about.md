@@ -25,7 +25,7 @@ You can run [`replicated cluster versions`](/reference/replicated-cli-cluster-ve
 
 For more information about the supported cluster distributions, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).
 
-For more information about supported VMs, see [Supported VM Types](/vendor/testing-vm-create#supported-vm-types.)
+For more information about supported VMs, see [Supported VM Types](/vendor/testing-vm-create#supported-vm-types)
 
 ## Billing and Credits
 

@@ -97,7 +97,7 @@ To create a cluster using the Replicated CLI:
    ```
    Where `CLUSTER_NAME` is the name of the cluster that you created.
 
-   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About Compatibility Matrix._
+   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`.
 
 ### Vendor Portal
 
