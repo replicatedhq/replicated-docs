@@ -34,7 +34,7 @@ Creating VMs with Compatibility Matrix has the following limitations:
 
 - Creating VMs with Compatibility Matrix is a Beta feature.
 - Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
-- [GitHub Actions](/vendor/testing-how-to#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
+- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
 - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
 
 ## Prerequisites

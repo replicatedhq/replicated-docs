@@ -12,8 +12,12 @@ const config = {
   url: 'https://docs.replicated.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'images/favicon.png',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
   projectName: 'replicated-docs', // Usually your repo name.
   trailingSlash: false,
