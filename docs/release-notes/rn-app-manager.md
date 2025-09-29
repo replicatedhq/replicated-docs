@@ -18,6 +18,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.128.2
+
+Released on September 29, 2025
+
+Support for Kubernetes: 1.31, 1.32, and 1.33
+
+### Improvements {#improvements-1-128-2}
+
+* Removes CPU limits from all KOTS Admin Console pods to reduce CPU throttling risk.
+
 ## 1.128.1
 
 Released on September 12, 2025
