@@ -39,12 +39,6 @@ Finally, the diagram shows how [**instance data**](/vendor/instance-insights-eve
 
 The following describes the key features of the Replicated Platform.
 
-### Compatibility Matrix
-
-Replicated Compatibility Matrix can be used to get kubectl access to running clusters within minutes or less. Compatibility Matrix supports various Kubernetes distributions and versions and can be interacted with through the Vendor Portal or the Replicated CLI.
-
-For more information, see [About Compatibility Matrix](/vendor/testing-about).
-
 ### Embedded Cluster
 
 Replicated Embedded Cluster is a Kubernetes installer based on the open source Kubernetes distribution k0s. With Embedded Cluster, users install and manage both the cluster and the application together as a single appliance on a VM or bare metal server. In this way, Kubernetes is _embedded_ with the application.
@@ -66,6 +60,12 @@ For more information, see [Introduction to KOTS](intro-kots).
 <PreflightSbAbout/>
 
 For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+
+The following shows an example of the results of preflight checks displayed in the Admin Console during installation:
+
+![preflight checks in admin console UI](/images/preflight-warning.png)
+
+[View a larger version of this image](/images/preflight-warning.png)
 
 ### Proxy Registry
 
@@ -89,6 +89,28 @@ The Vendor Portal can also be interacted with programmatically using the followi
 
 * **Vendor API v3**: The Vendor API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams and license files. For more information, see [Using the Vendor API v3](/reference/vendor-api-using).
 
+### Enterprise Portal (Beta)
+
+The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-about).
+
+The following shows an example of the Enterprise Portal dashboard:
+
+![Enterprise Portal dashboard](/images/enterprise-portal-dashboard.png)
+
+[View a larger version of this image](/images/enterprise-portal-dashboard.png)
+
+### Compatibility Matrix
+
+Replicated Compatibility Matrix can be used to create VMs or Kubernetes clusters within minutes or less. You can interact with Compatibility Matrix through the Vendor Portal or the Replicated CLI, making it possible to integrate Compatibility Matrix into your existing CI/CD workflows to programmatically create test environments.
+
+For more information, see [About Compatibility Matrix](/vendor/testing-about).
+
+The following shows the Compatibility Matrix page for creating a cluster:
+
+<img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
+
+[View a larger version of this image](/images/create-a-cluster.png)
+
 ## Commercial Software Distribution Lifecycle {#csdl}
 
 Replicated Platform features are designed to support ISVs in each phase of the Commercial Software Distribution Lifecycle shown below:
@@ -105,8 +127,8 @@ The following describes the phases of the software distribution lifecycle:
 
 * **[Develop](#develop)**: Application design and architecture decisions align with customer needs, and development teams can quickly iterate on new features.
 * **[Test](#test)**: Run automated tests in several customer-representative environments as part of continuous integration and continuous delivery (CI/CD) workflows.
-* **[Release](#release)**: Use channels to share releases with external and internal users, publish release artifacts securely, and use consistent versioning.
 * **[License](#license)**: Licenses are customized to each customer and are easy to issue, manage, and update.
+* **[Release](#release)**: Use channels to share releases with external and internal users, publish release artifacts securely, and use consistent versioning.
 * **[Install](#install)**: Provide unique installation options depending on customers' preferences and experience levels.
 * **[Report](#report)**: Make more informed prioritization decisions by collecting usage and performance metadata for application instances running in customer environments.
 * **[Support](#support)**: Diagnose and resolve support issues quickly.
@@ -121,17 +143,9 @@ For more information about using the Replicated SDK, see [About the Replicated S
 
 ### Test
 
-The Replicated Compatibility Matrix rapidly provisions ephemeral Kubernetes clusters, including multi-node and OpenShift clusters. When integrated into existing CI/CD pipelines for an application, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
+The Compatibility Matrix can be used to quickly provision ephemeral VMs and Kubernetes clusters. When integrated into existing CI/CD workflows, the Compatibility Matrix can be used to automatically create a variety of customer-representative environments for testing code changes.
 
 For more information, see [About Compatibility Matrix](/vendor/testing-about).
-
-### Release
-
-Release channels in the Replicated Vendor Portal allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
-
-For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
-
-Additionally, the Replicated proxy registry grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 
 ### License
 
@@ -143,13 +157,23 @@ Create customers in the Replicated Vendor Portal to handle licensing for your ap
 
 For more information about working with customers and custom license fields, see [About Customers](/vendor/licenses-about).
 
+### Release
+
+Release channels in the Replicated Vendor Portal allow ISVs to make different application versions available to different customers, without needing to maintain separate code bases. For example, a "Beta" channel can be used to share beta releases of an application with only a certain subset of customers. 
+
+For more information about working with channels, see [About Channels and Releases](/vendor/releases-about).
+
+Additionally, the Replicated proxy registry grants proxy access to private application images using the customers' license. This ensures that customers have the right access to images based on the channel they are assigned. For more information about using the proxy registry, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+
 ### Install
 
 Applications distributed with the Replicated Platform can support multiple different installation methods from the same application release, helping you to meet your customers where they are. For example:
 
 * Customers who are not experienced with Kubernetes or who prefer to deploy to a dedicated cluster in their environment can install on a VM or bare metal server with the Replicated Embedded Cluster installer. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
-* Customers familiar with Kubernetes and Helm can install in their own existing cluster using Helm. For more information, see [Installing with Helm](/vendor/install-with-helm).
-* Customers installing into environments with limited or no outbound internet access (often referred to as air-gapped environments) can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap).
+* Customers familiar with Kubernetes and Helm can install in their own existing cluster using the Helm CLI. For more information, see [Installing with Helm](/vendor/install-with-helm).
+* Customers installing into environments with limited or no outbound internet access (often referred to as air-gapped environments) can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments](/vendor/helm-install-airgap).
+
+Additionally, to enhance the installation experience, the Enterprise Portal provides a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-about).
 
 ### Report
 
@@ -161,6 +185,6 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
-- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments with Compatibility Matrix to recreate and diagnose issues. See [About Compatibility Matrix](/vendor/testing-about).
 - Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).
