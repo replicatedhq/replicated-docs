@@ -208,7 +208,7 @@ After successfully installing the initial release on a VM with Embedded Cluster 
 
 ### Task 5: Customize the KOTS Admin Console {#admin-console}
 
-Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console and the Replicated Download Portal. The status informers will be used to display the application status on the Admin Console dashboard.
+Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console. The status informers will be used to display the application status on the Admin Console dashboard.
 
 To configure the KOTS Application custom resource:
 
@@ -437,6 +437,14 @@ For more information, see [Use Custom Domains](/vendor/custom-domains-using).
 
 After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
 
+### Enable and Customize the Enterprise Portal (Beta)
+
+The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. The Enterprise Portal is the next generation of the Download Portal. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-configure).
+
+The Enterprise Portal is Beta. You can enable access to the Enterprise Portal for all customers or on a per-customer basis. For more information, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+
+You can also customize the Enterprise Portal so that your customers have a consistent branding experience. For example, you can use a custom domain, add links and contact information, customize the look and feel of the UI, edit the content of invitation and notification emails, and more. For more information about customizing the Enterprise Portal, see [Customize the Enterprise Portal](/vendor/enterprise-portal-configure).
+
 ### Add Support for Helm Installations
 
 Existing releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
@@ -461,7 +469,7 @@ To support and test Helm installations:
 
 ### Add Support for Air Gap Installations
 
-Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Embedded Cluster and KOTS, users install by providing an air gap bundle which contains the required images for the Replicated installer and your application. For Helm installations, users install by following automatically-generated instructions provided in the Replicated Enterprise Portal to pull all images and push them to their local image registry.
+Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Embedded Cluster and KOTS, users install by providing an air gap bundle that contains the required images for the Replicated installer and your application. For Helm installations, users install by following automatically-generated instructions provided in the Replicated Enterprise Portal to pull all images and push them to their local image registry.
 
 To add support for air gap installations:
 
@@ -530,19 +538,11 @@ To add support for air gap installations:
 
 1. Create or edit a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
-1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air gap VM to test. See [Install in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air-gapped VM to test. See [Install in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test air gap installation in a cluster with Helm.
 
-1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. You can also download both bundles from the Download Portal for the target customer. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).  
-
-### Enable and Customize the Enterprise Portal (Beta)
-
-The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information about the Enterprise Portal, see [About the Enteprise Portal](/vendor/enterprise-portal-configure).
-
-The Enterprise Portal is Beta. You can enable access to the Enterprise Portal for all customers or on a per-customer basis. For more information, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
-
-You can also customize the Enterprise Portal so that your customers have a consistent branding experience. For example, you can use a custom domain, add links and contact information, customize the look and feel of the UI, edit the content of invitation and notification emails, and more. For more information about customizing the Enterprise Portal, see [Customize the Enterprise Portal](/vendor/enterprise-portal-configure).
+1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
 ### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
 
