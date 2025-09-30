@@ -61,6 +61,12 @@ For more information, see [Introduction to KOTS](intro-kots).
 
 For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
+The following shows an example of the results of preflight checks displayed in the Admin Console during installation:
+
+![preflight checks in admin console UI](/images/preflight-warning.png)
+
+[View a larger version of this image](/images/preflight-warning.png)
+
 ### Proxy Registry
 
 The Replicated proxy registry grants proxy access to an application's images using the customer's unique license. This means that customers can get access to application images during installation without the vendor needing to provide registry credentials.
@@ -85,7 +91,7 @@ The Vendor Portal can also be interacted with programmatically using the followi
 
 ### Enterprise Portal (Beta)
 
-The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-configure).
+The Enterprise Portal is a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-about).
 
 The following shows an example of the Enterprise Portal dashboard:
 
@@ -164,8 +170,10 @@ Additionally, the Replicated proxy registry grants proxy access to private appli
 Applications distributed with the Replicated Platform can support multiple different installation methods from the same application release, helping you to meet your customers where they are. For example:
 
 * Customers who are not experienced with Kubernetes or who prefer to deploy to a dedicated cluster in their environment can install on a VM or bare metal server with the Replicated Embedded Cluster installer. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
-* Customers familiar with Kubernetes and Helm can install in their own existing cluster using Helm. For more information, see [Installing with Helm](/vendor/install-with-helm).
-* Customers installing into environments with limited or no outbound internet access (often referred to as air-gapped environments) can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments (Alpha)](/vendor/helm-install-airgap).
+* Customers familiar with Kubernetes and Helm can install in their own existing cluster using the Helm CLI. For more information, see [Installing with Helm](/vendor/install-with-helm).
+* Customers installing into environments with limited or no outbound internet access (often referred to as air-gapped environments) can securely access and push images to their own internal registry, then install using Helm or a Replicated installer. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Installing and Updating with Helm in Air Gap Environments](/vendor/helm-install-airgap).
+
+Additionally, to enhance the installation experience, the Enterprise Portal provides a customizable, web-based portal where your customers can view application install and update instructions, upload support bundles, view insights about their active and inactive instances, and more. For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-about).
 
 ### Report
 
@@ -177,6 +185,6 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
-- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
+- Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments with Compatibility Matrix to recreate and diagnose issues. See [About Compatibility Matrix](/vendor/testing-about).
 - Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).
