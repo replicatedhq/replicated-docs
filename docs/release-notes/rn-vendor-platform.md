@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on September 29, 2025
 
 ### New Features {#new-features-v2025-09-29-1}
-* See Network Policy reports from terminated networks via the CMX History and Network Policy pages.
+* Compatibility Matrix: Adds ability to view network policy reports from terminated networks on the **History** and **Network Policy** pages.
 
 ## v2025.09.25-0
 
