@@ -184,6 +184,13 @@ const sidebars = {
         'vendor/enterprise-portal-use',
       ],
     },
+   {
+      type: 'category',
+      label: 'Security Center (Alpha)',
+      items: [
+        'vendor/security-center-about'
+      ],
+    },
     {
       type: 'category',
       label: 'Compatibility Matrix',
