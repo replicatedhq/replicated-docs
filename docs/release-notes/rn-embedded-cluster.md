@@ -12,6 +12,39 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.11.3
+
+Released on October 1, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.11.3+k8s-1.33</td>
+    <td id="center">2.11.3+k8s-1.32</td>
+    <td id="center">2.11.3+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center">1.128.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-11-3}
+* Upgrades KOTS to 1.128.2
+
+### Bug Fixes {#bug-fixes-2-11-3}
+* Fix issues with hostname inconsistencies that could prevent nodes to boot up after restart or from being upgraded.
+* Fixes an issue that can cause upgrades to fail when upgrading the OpenEBS add-on with error `serviceaccounts "openebs-pre-upgrade-hook" already exists`
+* Fixes an issue that can cause multi-controller clusters to fail to upgrade to k0s 1.31 requiring a restart of the k0scontroller service.
+* Upgrade jobs and pods are now deleted on successful upgrade.
+
+
 ## 2.11.2
 
 Released on September 12, 2025
