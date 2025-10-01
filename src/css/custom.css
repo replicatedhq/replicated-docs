@@ -547,6 +547,11 @@ td#center {
   letter-spacing: 0.5px;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 8px;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.browse-docs-category-title:hover {
+  border-bottom-color: #6a7afb;
 }
 
 .browse-docs-links {
@@ -561,6 +566,8 @@ td#center {
   font-size: 1rem;
   line-height: 1.4;
   transition: text-decoration 0.2s ease;
+  display: inline-block;
+  width: fit-content;
 }
 
 .browse-docs-link:hover {
