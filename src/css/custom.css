@@ -390,4 +390,192 @@ h3[id^="known-issues"] a {
 
 td#center {
   text-align: center;
-} 
+}
+
+/* Hero section styles */
+.hero-section {
+  background-color: #4591f726;
+  padding: 60px 40px;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: left;
+  margin: 0 0 24px 0;
+  line-height: 1.4;
+  max-width: 800px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-button {
+  background-color: #6a7afb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-button:hover {
+  background-color: #5a6aeb;
+}
+
+.hero-button-secondary {
+  background-color: white;
+  color: #6a7afb;
+  border: 2px solid #6a7afb;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-button-secondary:hover {
+  background-color: rgba(106, 122, 251, 0.1);
+  border-color: #5a6aeb;
+  color: #5a6aeb;
+}
+
+/* Get started section styles */
+.get-started-section {
+  margin: 3rem 0 2rem 0;
+}
+
+.get-started-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2f2f2f;
+  text-align: left;
+  margin: 0 0 24px 0;
+  line-height: 1.3;
+}
+
+.get-started-boxes {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.get-started-box {
+  flex: 1;
+  padding: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.get-started-box-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  min-height: 3.4rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.get-started-box-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .get-started-boxes {
+    flex-direction: column;
+  }
+}
+
+/* Browse documentation section styles */
+.browse-docs-section {
+  margin: 4rem 0 2rem 0;
+}
+
+.browse-docs-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2f2f2f;
+  text-align: left;
+  margin: 0 0 32px 0;
+  line-height: 1.3;
+}
+
+.browse-docs-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 2rem;
+}
+
+.browse-docs-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.browse-docs-category-title {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.browse-docs-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 16px;
+}
+
+.browse-docs-link {
+  color: #6a7afb;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: text-decoration 0.2s ease;
+}
+
+.browse-docs-link:hover {
+  text-decoration: underline;
+  color: #5a6aeb;
+}
+
+@media (max-width: 1024px) {
+  .browse-docs-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .browse-docs-links {
+    grid-template-columns: 1fr;
+  }
+}
