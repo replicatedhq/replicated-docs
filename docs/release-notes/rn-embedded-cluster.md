@@ -12,6 +12,37 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.11.3
+
+Released on October 1, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.11.3+k8s-1.33</td>
+    <td id="center">2.11.3+k8s-1.32</td>
+    <td id="center">2.11.3+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center">1.128.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-11-3}
+* Upgrade Jobs and Pods are now deleted on successful upgrade.
+
+### Bug Fixes {#bug-fixes-2-11-3}
+* Fixes issues with hostname inconsistencies that could cause upgrades to fail or prevent nodes from booting up after restart.
+* Fixes an issue that can cause upgrades to fail with the error `serviceaccounts "openebs-pre-upgrade-hook" already exists` when upgrading OpenEBS.
+* Fixes an issue that can cause multi-controller clusters to fail to upgrade to Kubernetes 1.31, requiring a restart of the k0scontroller service.
+
 ## 2.11.2
 
 Released on September 12, 2025
@@ -36,11 +67,10 @@ Released on September 12, 2025
 </table>
 
 ### Improvements {#improvements-2-11-2}
-* Upgrades KOTS to 1.128.1
+* Adds a 10 second timeout to the `registryImages` collector to fix an issue that caused support bundles and preflight checks to take a very long time.
 
 ### Bug Fixes {#bug-fixes-2-11-2}
-* Fixes an issue that causes license field signatures to be empty for air gap installations when injected into the Helm chart values file at the `global.replicated.licenseFields` key.
-* Adds a 10 second timeout to the `registryImages` collector to fix an issue that caused support bundles and preflight checks to take a very long time.
+* Fixes an issue where license field signatures were not injected into a Helm chart's global values at `global.replicated.licenseFields` in air gap installations.
 
 ## 2.11.1
 
