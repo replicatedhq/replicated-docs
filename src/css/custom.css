@@ -10,35 +10,44 @@
 /* You can override the default Infima variables here. */
 :root {
   --doc-sidebar-width: 350px !important;
-  --ifm-color-primary: #00959E;
-  --ifm-color-primary-dark: #00959E;
-  --ifm-color-primary-darker: #00959E;
-  --ifm-color-primary-darkest: #007b81;
-  --ifm-color-primary-light: #6DD2D2;
-  --ifm-color-primary-lighter: #97e2e2;
-  --ifm-color-primary-lightest: rgb(146, 221, 224);
+  --ifm-color-primary: var(--nebula-purple);
+  --ifm-color-primary-dark: #5e6be1;
+  --ifm-color-primary-darker: #545fc8;
+  --ifm-color-primary-darkest: #4953af;
+  --ifm-color-primary-light: #7884fb;
+  --ifm-color-primary-lighter: #8792fb;
+  --ifm-color-primary-lightest: #969ffc;
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Open Sans';
   --ifm-heading-font-family: 'Poppins', sans-serif;
   --ifm-heading-font-weight: 600;
-  /*this variable controls the background when govering over items in the sidebar*/
-  --ifm-menu-color-background-hover: transparent;
-  /*this variable controls the padding between items in the sidebar*/
+  /*controls the background when govering over items in the sidebar*/
+  /* --ifm-menu-color-background-hover: transparent; */
+  /*controls the padding between items in the sidebar*/
   --ifm-menu-link-padding-vertical: 0.5rem;
-  --red: #ff4856;
-  --indigo: #6a7afb;
-  --teal: #50e9f0;
-  --gray: #585858;
-  --off-black: #161616;
+  /* primary colors */
+  --replicated-red: #ff4856;
+  --cyber-mint: #51e9f0;
+  --nebula-purple: #6977fb;
+  --graphite-gray: #585858;
+  --slate-noir: #161616;
+  /* secondary colors */
+  --pixel-pink: #fe678c;
+  --neon-violet: #a45dfd;
+  --digital-blue: #4591f7;
+  --blue-nova: #306de5;
+  --leaf-byte: #37cc97;
+  --canary-beam: #ffed58;
+  --solar-flare: #ff934e;
 
 }
 
 html[data-theme='light'] {
-    --ifm-heading-color: #2f2f2f;
+    --ifm-heading-color: var(--slate-noir);
 }
 
 html[data-theme='dark'] {
-    --ifm-color-primary: #6DD2D2;
+    --ifm-color-primary: var(--cyber-mint);
 }
 
 .docusaurus-highlight-code-line {
@@ -146,110 +155,6 @@ ol ol ol {
 }
 
 /* Landing page */
-
-.tile__container {
-  display: flex;
-  flex-direction: row;
-  gap: 0.7em;
-}
-
-.tile__container > ul {
-  padding: 1.5em;
-  list-style: none;
-  border-radius: 7px;
-  border: 1px solid rgba(88,88,88,0.2);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.tile__container > ul:hover {
-  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.01));
-}
-
-[data-theme='dark'] .tile__container > ul:hover {
-  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.08), rgba(88,88,88,0.02));
-}
-
-.tile__container ul li h3 {
-  padding-top: 15px;
-}
-
-.tile__header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1.0em;
-  font-size: 1.25em;
-}
-
-.tile__header img {
-  max-width: 55px;
-  height: 55px;
-  background-color:rgba(255,72,86,0.1);
-  border-radius: 7px;
-}
-
-@media (max-width: 1300px) {
-  .tile__container {
-    flex-direction: column;
-  }
-}
-
-#helm {
-  background-color:rgba(15, 22, 137,0.05);
-}
-
-[data-theme='dark'] #helm {
-  background-color:rgb(169, 169, 198);
-}
-
-#whats-new,
-[data-theme='dark'] #whats-new:hover {
-  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.1), rgba(69,145,247,0.025));
-  border: 1px solid rgba(69,145,247,0.1);
-}
-
-#whats-new:hover,
-[data-theme='dark'] #whats-new {
-  background-image: linear-gradient(to bottom right, rgba(69,145,247,0.2), rgba(69,145,247,0.05));
-}
-
-#whats-new .tile__header img {
-  background-color: rgba(69,145,247,0.2);
-}
-
-[data-theme='dark'] #whats-new .tile__header img {
-  content:url("/images/icons/chat_bubble_white.png");
-}
-
-#whats-new li a {
-  color: rgb(69,145,247);
-}
-
-#did-you-know,
-[data-theme='dark'] #did-you-know:hover {
-  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.1), rgba(21, 140, 54,0.025));
-  border: 1px solid rgba(21, 140, 54,0.1);
-}
-
-#did-you-know:hover,
-[data-theme='dark'] #did-you-know {
-  background-image: linear-gradient(to bottom right, rgba(21, 140, 54,0.2), rgba(21, 140, 54,0.05));
-}
-
-#did-you-know .tile__header img {
-  background-color: rgba(21, 140, 54,0.2);
-}
-
-[data-theme='dark'] #did-you-know .tile__header img {
-  content:url("/images/icons/lightbulb_white.png");
-}
-
-#did-you-know li a {
-  color: rgb(21, 140, 54);
-}
 
 /* Sidebar */
 
@@ -408,7 +313,7 @@ td#center {
 .hero-title {
   font-size: 3rem;
   font-weight: bold;
-  color: #000;
+  color: var(--slate-noir);
   text-align: left;
   margin: 0 0 16px 0;
   line-height: 1.2;
@@ -416,7 +321,7 @@ td#center {
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--graphite-gray);
   text-align: left;
   margin: 0 0 24px 0;
   line-height: 1.4;
@@ -430,7 +335,7 @@ td#center {
 }
 
 .hero-button {
-  background-color: var(--indigo);
+  background-color: var(--nebula-purple);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -453,12 +358,12 @@ td#center {
 }
 
 .hero-button:hover {
-  background-color: #5a6aeb;
+  background-color: var(--nebula-purple);
 }
 
 .hero-button-secondary {
   background: none;
-  color: var(--off-black);
+  color: var(--slate-noir);
   border: none;
   padding: 0;
   font-size: 1.1rem;
@@ -470,7 +375,7 @@ td#center {
 }
 
 .hero-button-secondary:hover {
-  color: black;
+  color: var(--slate-noir);
   text-decoration: underline;
 }
 
@@ -480,9 +385,9 @@ td#center {
 }
 
 .get-started-title {
-  font-size: 2rem;
+  font-size: rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: var(--slate-noir);
   text-align: left;
   margin: 0 0 24px 0;
   line-height: 1.3;
@@ -496,7 +401,7 @@ td#center {
 
 .get-started-box {
   flex: 1;
-  padding: 40px;
+  padding: 30px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: white;
@@ -507,25 +412,31 @@ td#center {
   cursor: pointer;
 }
 
+.get-started-box-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+}
+
 .get-started-box:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(106, 122, 251, 0.1);
+  box-shadow: 0 8px 24px #5858581A;
 }
 
 .get-started-box-title {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: var(--slate-noir);
   margin: 0 0 12px 0;
   line-height: 1.3;
-  min-height: 3.4rem;
+  min-height: 1rem;
   display: flex;
   align-items: flex-start;
 }
 
 .get-started-box-subtitle {
   font-size: 1rem;
-  color: #666;
+  color: var(--graphite-gray);
   margin: 0;
   line-height: 1.5;
 }
@@ -544,7 +455,7 @@ td#center {
 .browse-docs-title {
   font-size: 2rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: var(--slate-noir);
   text-align: left;
   margin: 0 0 32px 0;
   line-height: 1.3;
@@ -564,7 +475,7 @@ td#center {
 
 .browse-docs-category-title {
   font-size: 1rem;
-  color: #666;
+  color: var(--graphite-gray);
   margin: 0 0 16px 0;
   line-height: 1.3;
   letter-spacing: 0.5px;
@@ -574,7 +485,7 @@ td#center {
 }
 
 .browse-docs-category-title:hover {
-  border-bottom-color: var(--indigo);
+  border-bottom-color: var(--ifm-color-primary);
 }
 
 .browse-docs-links {
@@ -584,7 +495,7 @@ td#center {
 }
 
 .browse-docs-link {
-  color: var(--indigo);
+  color: var(--ifm-color-primary);
   text-decoration: none;
   font-size: 1rem;
   line-height: 1.4;
@@ -619,7 +530,7 @@ td#center {
 }
 
 .whats-new-hero {
-  background: linear-gradient(135deg, var(--indigo) 0%, #5a6aeb 100%);
+  background: linear-gradient(135deg, var(--nebula-purple) 0%, var(--nebula-purple) 100%);
   color: white;
   padding: 32px;
   border-radius: 12px;
@@ -632,26 +543,14 @@ td#center {
 
 .whats-new-hero:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(106, 122, 251, 0.2);
+  box-shadow: 0 8px 24px #5858581A;
   color: white;
   text-decoration: none;
 }
 
-.whats-new-hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 100px;
-  height: 100px;
-  background: url('/images/icons/chat_bubble_white.png') no-repeat center;
-  background-size: 60px;
-  opacity: 0.2;
-}
-
 .whats-new-badge {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -684,7 +583,7 @@ td#center {
 
 .did-you-know-badge {
   display: inline-block;
-  background: var(--indigo);
+  background: var(--nebula-purple);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -697,36 +596,26 @@ td#center {
 }
 
 .did-you-know-card {
-  /* background: white; */
-  /* border: 1px solid #e0e0e0;
-  border-radius: 8px; */
-  padding: 20px;
-  transition: all 0.2s ease;
+  padding-top: 30px;
 }
-
-/* .did-you-know-card:hover {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 12px rgba(80, 233, 240, 0.1);
-  transform: translateY(-1px);
-} */
 
 .did-you-know-card-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: var(--slate-noir);
   margin: 0 0 8px 0;
   line-height: 1.3;
 }
 
 .did-you-know-card-description {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--graphite-gray);
   line-height: 1.4;
   margin: 0 0 12px 0;
 }
 
 .did-you-know-card-link {
-  color: var(--indigo);
+  color: var(--slate-noir);
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 600;
@@ -734,7 +623,7 @@ td#center {
 }
 
 .did-you-know-card-link:hover {
-  color: var(--indigo);
+  color: var(--slate-noir);
   text-decoration: underline;
 }
 
