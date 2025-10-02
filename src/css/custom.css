@@ -177,15 +177,55 @@ a.menu__link {
 
 /* Navbar */
 
+.navbar {
+  background-color: var(--slate-noir);
+}
+
+.navbar__brand, .navbar__title {
+  color: white;
+}
+
+.navbar__item .navbar__link:hover {
+  color: #ffffff;
+}
+
+/* Dropdown styling for dark navbar */
+.dropdown__menu {
+  background-color: var(--slate-noir);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown__link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 .dropdown__link:hover, .navbar__link {
   background-color: transparent;
-  color: var(--ifm-dropdown-link-color);
+  color: white;
   text-decoration: none;
 }
 
 .dropdown__link--active, .navbar__link--active {
   background-color: transparent;
-  color: #2f2f2f;
+  color: white !important;
+}
+
+/* Search styling for dark navbar */
+.DocSearch-Button {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.DocSearch-Button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.DocSearch-Search-Icon {
+  color: white !important;
+}
+
+.DocSearch-Button-Placeholder {
+  color: white !important;
 }
 
 html[data-theme='dark'] .dropdown__link--active, .navbar__link--active {
@@ -193,7 +233,7 @@ html[data-theme='dark'] .dropdown__link--active, .navbar__link--active {
 }
 
 html[data-theme='dark'] .dropdown__link:hover, .navbar__link {
-  color: var(--ifm-dropdown-link-color);
+  color: white;
   text-decoration: none;
 }
 
@@ -217,7 +257,7 @@ html[data-theme='dark'] .dropdown > .navbar__link:after {
 /* Release Note label styling */
 
 h3[id^="new-features"] {
-  background-color: #4BC99C;
+  background-color: var(--leaf-byte);
   border-radius: 7px!important;
   color: #fff;
   width: max-content;
@@ -227,7 +267,7 @@ h3[id^="new-features"] {
 }
 
 h3[id^="improvements"] {
-  background-color: #38C1CA;
+  background-color: var(--cyber-mint);
   border-radius: 7px!important;
   color: #fff;
   width: max-content;
@@ -237,7 +277,7 @@ h3[id^="improvements"] {
 }
 
 h3[id^="bug-fixes"] {
-  background-color: #F47878;
+  background-color: var(--solar-flare);
   border-radius: 7px!important;
   color: #fff;
   width: max-content;
@@ -247,7 +287,7 @@ h3[id^="bug-fixes"] {
 }
 
 h3[id^="breaking-changes"] {
-  background-color: #d34a54;
+  background-color: var(--pixel-pink);
   /* background-color: #D64399; */
   border-radius: 7px!important;
   color: #fff;
@@ -259,7 +299,7 @@ h3[id^="breaking-changes"] {
 
 
 h3[id^="known-issues"] {
-  background-color: #414288;
+  background-color: var(--neon-violet);
   /* background-color: #D64399; */
   border-radius: 7px!important;
   color: #fff;
@@ -305,7 +345,7 @@ td#center {
 
 /* Hero section styles */
 .hero-section {
-  background-color: #4591f726;
+  background-image: linear-gradient(to left,#4591f726,#4592f709);
   padding: 60px 40px;
   margin-bottom: 2rem;
 }
@@ -530,7 +570,7 @@ td#center {
 }
 
 .whats-new-hero {
-  background: linear-gradient(135deg, var(--nebula-purple) 0%, var(--nebula-purple) 100%);
+  background: var(--nebula-purple);
   color: white;
   padding: 32px;
   border-radius: 12px;
