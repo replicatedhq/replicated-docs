@@ -179,6 +179,11 @@ function CopyMarkdown() {
     return null;
   }
 
+  // Don't render on the homepage
+  if (window.location.pathname === '/') {
+    return null;
+  }
+
   return (
     <div className={clsx(styles.container, 'copy-markdown-container')}>
       <button 
