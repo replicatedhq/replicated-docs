@@ -1,4 +1,4 @@
-# Use Air Gap Networks (Beta)
+# Test in Air Gap Environments (Beta)
 
 This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix to use an air gap network with no outbound internet connection.
 
