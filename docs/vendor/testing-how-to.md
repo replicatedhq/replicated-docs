@@ -25,7 +25,6 @@ Compatibility Matrix has the following limitations:
 - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
 - There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
-- There is no support for air gap testing. 
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
 - The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
@@ -170,6 +169,28 @@ To create a cluster using the Vendor Portal:
    <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
 
    [View a larger version of this image](/images/cmx-assigned-cluster.png)
+
+## Create Air Gap Clusters (Beta)
+
+For any VM-based cluster distributions, you can create a cluster that uses an air-gapped network by setting the network policy to `airgap`.
+
+For more information, see [Use Air Gap Networks (Beta)](testing-network-policy).
+
+To set the network policy of a VM-based cluster to `airgap`:
+
+1. Create a cluster:
+
+   ```bash
+   replicated cluster create --distribution VM_BASED_DISTRIBUTION
+   ```
+   Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
+
+1. Change the network policy to `airgap`:
+
+   ```bash
+   replicated network update NETWORK_ID --policy airgap
+   ```
+   Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
 
 ## Prepare Clusters
 

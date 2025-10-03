@@ -305,3 +305,33 @@ To connect to a VM using direct SSH:
    ```
    ssh $(replicated vm ssh-endpoint aba1acc2)
    ```
+
+## Create Air Gap VMs (Beta)
+
+You can create a VM that uses an air-gapped network by setting the network policy to `airgap`.
+
+For more information, see [Use Air Gap Networks (Beta)](testing-network-policy).
+
+To set the network policy of a VM to `airgap`:
+
+1. Create a VM:
+
+    ```bash
+    replicated vm create --distribution VM_DISTRIBUTION
+    ```
+
+1. After the VM is running, SSH onto the VM:
+
+   ```bash
+   ssh VM_ID@replicatedvm.com
+   ```  
+   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
+
+   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
+
+1. Set the network policy to `airgap`:
+
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.
