@@ -1,6 +1,6 @@
-# Set Network Policies (Beta)
+# Use Air Gap Networks (Beta)
 
-This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix.
+This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix to use an air gap network with no outbound internet connection.
 
 ## About Network Policies
 
@@ -26,11 +26,11 @@ The `airgap` network policy is particularly useful for testing air gap installat
 * Setting network policies is only supported through the Replicated CLI. You cannot make changes to the network policy through the Compatibility Matrix UI in the Vendor Portal.
 * Network policies are supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
 
-## Set the Network Policy to `airgap`
+## Use an Air Gap Network
 
-### For VM-Based Clusters
+### VM-Based Clusters
 
-To set the network policy of a VM-based cluster:
+To set the network policy of a VM-based cluster to `airgap`:
 
 1. Create a cluster:
 
@@ -101,9 +101,9 @@ To set the network policy of a VM-based cluster:
 
 1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
 
-### For VMs
+### VMs
 
-To set the network policy of a VM-based cluster:
+To set the network policy of a VM-based cluster to `airgap`:
 
 1. Create a VM:
 

@@ -1,6 +1,6 @@
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Create Clusters
+# Create and Manage Clusters
 
 This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
 

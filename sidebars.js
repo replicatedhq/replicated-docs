@@ -192,26 +192,33 @@ const sidebars = {
         'vendor/testing-pricing',
         {
           type: 'category',
-          label: 'Use Compatibility Matrix',
+          label: 'Create and Manage Clusters',
           items: [
             'vendor/testing-how-to',
             'vendor/testing-supported-clusters',
-            'vendor/testing-cluster-addons',
-            'vendor/testing-vm-create',
-            'vendor/testing-ci-cd',
-            {
-              type: 'category',
-              label: 'Networking',
-              items: [
-                'vendor/testing-ingress',
-                'vendor/testing-vm-networking',
-                'vendor/testing-network-policy',
-              ]
-            }
-          ],
+            'vendor/testing-cluster-addons',    
+          ]
         },
-        
+        {
+          type: 'category',
+          label: 'Create and Manage VMs',
+          items: [
+            'vendor/testing-vm-create',
+            'vendor/testing-vm-transfer-files',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Networking',
+          items: [
+            'vendor/testing-vm-networking',
+            'vendor/testing-ingress',
+            'vendor/testing-shared-networks',
+            'vendor/testing-network-policy',
+          ]
+        },
         'vendor/compatibility-matrix-usage',
+        'vendor/testing-ci-cd',
       ],
     },
     {
