@@ -11,7 +11,7 @@ Compatibility Matrix VMs provide isolated Linux environments for testing your ap
 
 You can use Compatibility Matrix VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
 
-For information about creating clusters with Compatibility Matrix to test Kubernetes-based deployments and Helm installations, see [Create Clusters](/vendor/testing-how-to).
+For information about creating clusters with Compatibility Matrix to test Kubernetes-based deployments and Helm installations, see [Create and Manage Clusters](/vendor/testing-how-to).
 
 ## Supported VM Types
 
