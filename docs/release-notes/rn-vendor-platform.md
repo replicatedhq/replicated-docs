@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.09.29-1
+
+Released on September 29, 2025
+
+### New Features {#new-features-v2025-09-29-1}
+* Compatibility Matrix: Adds ability to view network policy reports from terminated networks on the **History** and **Network Policy** pages.
+
 ## v2025.09.25-0
 
 Released on September 25, 2025
