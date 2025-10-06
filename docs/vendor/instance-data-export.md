@@ -46,7 +46,7 @@ You can use the following types of filters to filter timeseries data for bulk ex
 - **Filter by customer**: Get instance events from one or more customers using a comma-separated list of customer IDs. For example:
     ```bash
     curl -H "Authorization: $REPLICATED_API_TOKEN" \ 
-    "https://api.replicated.com/vendor/v3/app/:appID/events?customerIDs=1b13241,2Rjk2923481"
+    "https://api.replicated.com/vendor/v3/app/:appID/events?customerIds=1b13241,2Rjk2923481"
     ```
 - **Filter by event type**: Get instance events by event type using a comma-separated list of event types. For example:
     ```bash
@@ -55,7 +55,7 @@ You can use the following types of filters to filter timeseries data for bulk ex
     ```
 
 :::note
-If any filter is passed for an object that does not exist, no warning is given. For example, if a `customerIDs` filter is passed for an ID that does not exist, or for an ID that the user does not have access to, then an empty array is returned.
+If any filter is passed for an object that does not exist, no warning is given. For example, if a `customerIds` filter is passed for an ID that does not exist, or for an ID that the user does not have access to, then an empty array is returned.
 :::
 
 
