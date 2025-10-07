@@ -1,30 +1,36 @@
 The support-bundle plugin (a kubectl plugin) is required to generate support bundles from the command line.
 
-You can install the support-bundle plugin using krew or install it manually from the release archives.
-
 :::note
 For Replicated Embedded Cluster and Replicated kURL installations, the support-bundle plugin is automatically installed on all of the control plane nodes. You can skip this prerequisite.
 :::
 
-#### Install or Upgrade using krew
+#### Mac
 
-To install the support-bundle plugin using krew, do one of the following:
+For Mac users, Replicated recommends using Homebrew to install the support-bundle plugin:
+
+```bash
+brew install support-bundle
+```
+
+#### Windows / Linux
+
+For Windows and Linux users, use Krew to install the support-bundle plugin:
 
 * If krew is _not_ installed already, run the following command to install krew and the support-bundle plugin at the same time:
-  
-    ```
+
+    ```bash
     curl https://krew.sh/support-bundle | bash
     ```
-    
-* If krew is installed already, run the following command to install the plug-in: 
 
-    ```
+* If krew is installed already, run the following command to install the plug-in:
+
+    ```bash
     kubectl krew install support-bundle
     ```
 
 * To upgrade your existing support-bundle plugin using krew:
 
-    ```
+    ```bash
     kubectl krew upgrade support-bundle
     ```
 
