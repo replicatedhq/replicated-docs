@@ -8,6 +8,15 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.8.1
+
+Released on October 8, 2025
+
+### Improvements {#improvements-1-8-1}
+* Updates Helm from v3.18.4 to v3.19.0.
+* Updates Kubernetes from v1.33.3 to v1.34.1.
+* Resolves vendor-portal empty namespace linter warnings for replicated-support-bundle.
+
 ## 1.8.0
 
 Released on August 12, 2025
