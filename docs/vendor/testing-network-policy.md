@@ -1,6 +1,6 @@
 # Test in Air Gap Environments (Beta)
 
-This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix to use an air gap network with no outbound internet connection.
+This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix, and how to collect and analyze network events to understand your application's behavior in an air gap environment.
 
 ## About Network Policies
 
@@ -15,22 +15,33 @@ By default, all VMs and clusters are created with an `open` network policy. You 
 
 The `airgap` network policy is particularly useful for testing air gap installations for your application. For information about installing with Embedded Cluster in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). For information about installing with the Helm CLI in an air-gapped environment, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).
 
+
 ## Requirements
 
-* Replicated CLI 0.109.0 or later
-* The user must have the Admin or Developer role. Read Only users cannot change network settings.
+- **VM-Based Only**: Network policies are supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
+- **Replicated CLI 0.109.0 or later**
+- **User Role**: The user must have the Admin or Developer role. Read Only users cannot change network settings.
 
 ## Limitations
 
-* Network policies are a beta feature. For feedback on this feature, including requests for additional types of network policies, contact Replicated support.
-* Setting network policies is only supported through the Replicated CLI. You cannot make changes to the network policy through the Compatibility Matrix UI in the Vendor Portal.
-* Network policies are supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
+- **Network Status**: Reporting can only be enabled on running networks
+- **Policy Changes**: Changing policies creates a new report (historical data remains)
+- **Real-time**: Events may have a 1-2 second delay before appearing in reports
 
-## Use an Air Gap Network
+## Network Policy Overview
 
-### VM-Based Clusters
+### Basic Network Policies (for traffic control)
 
-To set the network policy of a VM-based cluster to `airgap`:
+| Policy Name | Description | Use Case |
+|-------------|-------------|----------|
+| `open` | No restrictions on network traffic | Standard development and testing |
+| `airgap` | Restrict all network traffic | Air gap installation testing |
+
+## Set Network Policy to `airgap`
+
+### For VM-Based Clusters
+
+To set the network policy of a VM-based cluster:
 
 1. Create a cluster:
 
@@ -101,9 +112,9 @@ To set the network policy of a VM-based cluster to `airgap`:
 
 1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
 
-### VMs
+### For VMs
 
-To set the network policy of a VM-based cluster to `airgap`:
+To set the network policy of a VM:
 
 1. Create a VM:
 
@@ -158,4 +169,65 @@ To set the network policy of a VM-based cluster to `airgap`:
     curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
     ```
 
-1. (Optional) Test an air gap installation of your application on the VM. See [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).     
+
+## Collect and View Network Reports
+
+### Enable Network Reporting
+
+#### Via Vendor Portal
+
+1. Navigate to **Compatibility Matrix** > **Network Policy**
+2. In the **Reporting** column, toggle switch from "off" to "on"
+
+#### Via CLI
+
+```bash
+replicated network update NETWORK_ID --collect-report
+```
+
+### View Network Reports
+
+#### Via Vendor Portal
+
+1. Navigate to **Compatibility Matrix** > **Network Policy**
+2. Click on a network name in the Active Resources table
+3. The Network Policy Report will appear below the table
+4. Use the table to browse and filter network events
+
+#### Via CLI
+
+**View detailed network report as JSON:**
+
+```bash
+replicated network report NETWORK_ID
+```
+
+**View network summary as JSON:**
+
+```bash
+replicated network report NETWORK_ID --summary
+```
+
+
+**List all networks and their reporting status:**
+
+```bash
+replicated network ls
+```
+
+**Example output:**
+
+```
+ID          NAME                           STATUS          CREATED                           EXPIRES                           POLICY                            REPORTING
+a1b2c3d4    example_network_1              running         2025-01-28 16:04 PST              2025-01-28 18:06 PST              open                              off
+e5f6g7h8    example_network_2              running         2025-01-28 12:10 PST              2025-01-28 20:11 PST              airgap                            on
+```
+
+
+### Policy Configuration
+
+Policies are configured at the network level and apply to all VMs and clusters within that network. You can change the policy at any time, but note that:
+
+- Policy changes terminate the current report and start a new one
+- Historical data from the previous policy remains available
+- The new policy takes effect immediately for new events

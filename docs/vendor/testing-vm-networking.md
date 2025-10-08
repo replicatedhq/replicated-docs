@@ -1,4 +1,4 @@
-# Expose Ports Using Tunnels
+# Compatibility Matrix VM Networking
 
 This topic explains how to expose ports on VMs and VM-based clusters created with Compatibility Matrix.
 

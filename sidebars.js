@@ -189,36 +189,23 @@ const sidebars = {
       label: 'Compatibility Matrix',
       items: [
         'vendor/testing-about',
-        'vendor/testing-pricing',
-        {
-          type: 'category',
-          label: 'Create and Manage Clusters',
-          items: [
-            'vendor/testing-how-to',
-            'vendor/testing-supported-clusters',
-            'vendor/testing-cluster-addons',    
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Create and Manage VMs',
-          items: [
-            'vendor/testing-vm-create',
-            'vendor/testing-vm-transfer-files',
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Networking',
-          items: [
-            'vendor/testing-vm-networking',
-            'vendor/testing-ingress',
-            'vendor/testing-shared-networks',
-            'vendor/testing-network-policy',
-          ]
-        },
-        'vendor/compatibility-matrix-usage',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-how-to',
+        'vendor/testing-ingress',
+        'vendor/testing-cluster-addons',
+        'vendor/testing-vm-about',
+        'vendor/testing-vm-create',
+        'vendor/testing-vm-networking',
+        'vendor/testing-network-policy',
         'vendor/testing-ci-cd',
+        {
+          type: 'category',
+          label: 'Managing Cost with CMX',
+          items: [
+            'vendor/testing-pricing',
+            'vendor/compatibility-matrix-usage',
+          ]
+        },
       ],
     },
     {
