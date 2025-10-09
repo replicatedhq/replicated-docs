@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.10.09-0
+
+Released on October 9, 2025
+
+### New Features {#new-features-v2025-10-09-0}
+* The channel release history page will now show the status of our image list build that is calculated by applying the builder values upon promotion.
+
 ## v2025.09.29-1
 
 Released on September 29, 2025
