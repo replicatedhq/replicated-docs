@@ -1,49 +1,6 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-import InstanceTypes from "../partials/cmx/_instance-types.mdx"
-
-# Create VMs (Beta)
+# Use Compatibility Matrix VMs (Beta)
 
 This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral VMs.
-
-## About Compatibility Matrix VMs
-
-Compatibility Matrix VMs provide isolated Linux environments for testing your applications. Unlike clusters, VMs give you full control over the operating system (OS) and allow you to test installation methods that require direct OS access.
-
-You can use Compatibility Matrix VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
-
-For information about creating clusters with Compatibility Matrix to test Kubernetes-based deployments and Helm installations, see [Create Clusters](/vendor/testing-how-to).
-
-## Supported VM Types
-
-The following VM types are supported:
-
-| Distribution | Versions | Instance Types |
-| :---- | :---- | :---- |
-| ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#replicated-instance-types).|
-| almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#replicated-instance-types). |
-
-## Replicated Instance Types
-
-The following describes the Replicated instance types for VMs:
-
-<InstanceTypes/>
-
-## Limitations
-
-Creating VMs with Compatibility Matrix has the following limitations:
-
-- Creating VMs with Compatibility Matrix is a Beta feature.
-- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
-- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
-- The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
-
-## Prerequisites
-
-Before you can use Compatibility Matrix VMs, you must complete the following prerequisites:
-
-<Prerequisites/>
-
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
 ## Set Up SSH Access
 
@@ -228,7 +185,7 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-For information about how to copy files to a VM after connecting, see [Copy Files to a VM](#copy-files-to-a-vm) below.
+For information about how to copy files to a VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
 
 ### Compatibility Matrix Forwarder
 
@@ -242,7 +199,7 @@ To connect to a VM using the Forwarder:
 
    Where `VMID` is the ID of the VM.
 
-For information about copying files to the VM after connecting, see [After Connecting to the VM with the Forwarder](#after-connecting-to-the-vm-with-the-forwarder) below.
+For information about copying files to the VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
 
 ### Direct SSH
 
@@ -306,113 +263,32 @@ To connect to a VM using direct SSH:
    ssh $(replicated vm ssh-endpoint aba1acc2)
    ```
 
-## Expose Ports on Running VMs
+## Create Air Gap VMs (Beta)
 
-After creating a VM, you can create update the ingress and ports settings to add DNS records. This allows you to connect to ports on the VM.
+You can create a VM that uses an air-gapped network by setting the network policy to `airgap`.
 
-To update the ingress and ports settings for a running VM:
+For more information, see [Test in Use Air Gap Networks (Beta)](testing-network-policy).
 
-1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
+To set the network policy of a VM to `airgap`:
 
-1. Open the dot menu for the target VM and click **Edit VM**.
+1. Create a VM:
 
-   ![Edit VM in the dot menu](/images/compatibility-matrix-edit-vm.png)
+    ```bash
+    replicated vm create --distribution VM_DISTRIBUTION
+    ```
 
-   [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
-
-1. Under **Ingress & Ports**, for **Add DNS record**, edit the fields as desired and click **Add** to create a DNS record.
-
-   ![DNS record for a VM](/images/compatibility-matrix-ingress-ports.png)
-   [View a larger version of this image](/images/compatibility-matrix-ingress-ports.png)
-
-   A DNS record and valid TLS cert are created and connected to the specified port.
-
-## Copy Files to a VM
-
-You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the Compatibility Matrix Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
-
-### Using the SCP Endpoint
-
-To copy files to a VM using the scp endpoint:
-
-1. Run the following command to get the SCP endpoint:
+1. After the VM is running, SSH onto the VM:
 
    ```bash
-   replicated vm scp-endpoint VMID_OR_VMNAME [--username GITHUB_USERNAME]
-   ```
+   ssh VM_ID@replicatedvm.com
+   ```  
+   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
 
-   Where
-   * `VMID_OR_VMNAME` is the ID or name of the VM.
-   * (Optional) `GITHUB_USERNAME` is a GitHub username used to connect to the SCP endpoint. This is an optional flag that overrides the GitHub username listed in your Vendor Portal account. The `--username` flag is required if you want to:
-      * Use a different GitHub username than what is in Vendor Portal (or if there is no username set in the Vendor Portal)
-      * When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal
+   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
 
-   **Example**
-   ```bash
-   replicated vm scp-endpoint aba1acc2
-   ```
+1. Set the network policy to `airgap`:
 
-   The output of the command lists the SCP endpoint for the VM:
-
-   ```
-   scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT
-   ```
-
-   For example, `scp://yourusername@37.27.52.116:46795`.
-
-1. Copy the SCP endpoint.
-
-1. SCP files into the VM:
-
-   ```bash
-   scp somefile scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT//PATH
-   ```
-   Where:
-   * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
-   * `PATH` is the destination path on the VM.
-
-   Alternatively, run the following command to SCP files into the VM without needing to copy the endpoint:
-
-   ```bash
-   scp somefile $(replicated vm scp-endpoint VMID_OR_VMNAME)//PATH
-   ```
-
-### After Connecting to the VM with the Forwarder
-
-:::note
-Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
-:::
-
-#### Limitations
-Transferring files using the Compatibility Matrix Forwarder has the following limitations:
-- `scp` with flag `-O` (legacy scp protocol) is not supported. 
-- Relative paths is not supported. For example:
-  - Unsupported: `scp somefile VMID@replicatedvm.com:~`
-  - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
-- File permissions are not inherited.
-
-To copy files to the VM using SCP after connecting with the Compatibility Matrix Forwarder:
-
-1. SSH into the VM using the Forwarder:
-
-   ```bash
-   ssh VMID@replicatedvm.com
-   ```
-
-   Where `VMID` is the ID of the VM.
-
-1. Copy files onto the machine:
-   ```bash
-   scp FILENAME VMID@replicatedvm:PATH
-   ```
-
-   Where:
-   * `FILENAME` is the name of the file.
-   * `VMID` is the ID of the VM.
-   * `PATH` is the path on the VM where you want to copy the file. For example, `/home/folder/somefile`. Relative paths are not supported.
-
-   **Example:**
-
-   ```bash
-   scp somefile 123abc@replicatedvm:/home/folder/somefile
-   ```
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.

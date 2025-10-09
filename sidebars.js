@@ -196,29 +196,23 @@ const sidebars = {
       label: 'Compatibility Matrix',
       items: [
         'vendor/testing-about',
-        'vendor/testing-pricing',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-how-to',
+        'vendor/testing-ingress',
+        'vendor/testing-cluster-addons',
+        'vendor/testing-vm-about',
+        'vendor/testing-vm-create',
+        'vendor/testing-vm-networking',
+        'vendor/testing-network-policy',
+        'vendor/testing-ci-cd',
         {
           type: 'category',
-          label: 'Use Compatibility Matrix',
+          label: 'Managing Cost with CMX',
           items: [
-            'vendor/testing-how-to',
-            'vendor/testing-supported-clusters',
-            'vendor/testing-cluster-addons',
-            'vendor/testing-vm-create',
-            'vendor/testing-ci-cd',
-            {
-              type: 'category',
-              label: 'Networking',
-              items: [
-                'vendor/testing-ingress',
-                'vendor/testing-vm-networking',
-                'vendor/testing-network-policy',
-              ]
-            }
-          ],
+            'vendor/testing-pricing',
+            'vendor/compatibility-matrix-usage',
+          ]
         },
-        
-        'vendor/compatibility-matrix-usage',
       ],
     },
     {

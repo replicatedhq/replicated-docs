@@ -1,6 +1,6 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
-# Use Compatibility Matrix with CI/CD
+# Test in Compatibility Matrix with CI/CD
 
 This topic describes how to integrate Replicated Compatibility Matrix into your CI/CD workflows.
 

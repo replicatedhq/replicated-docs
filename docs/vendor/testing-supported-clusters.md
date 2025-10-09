@@ -1,7 +1,7 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# Supported Compatibility Matrix Cluster Types
+# Compatibility Matrix Cluster Types
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix.
 
@@ -10,6 +10,10 @@ Compatibility Matrix provisions cloud-based or virtual machine (VM) clusters.
 ## VM Clusters
 
 This section lists the supported VM cluster distributions for clusters created with Compatibility Matrix.
+
+VM-based clusters refers to clusters that run on Hetzner servers with the Compatibility Matrix cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, Compatibility Matrix offers warm pools to make Openshift startup times very fast.
+
+For information about provisioning VMs, which come without pre-installed clusters and allow for more access to the OS, see [Create VMs](testing-vm-create).
 
 ### kind
 
