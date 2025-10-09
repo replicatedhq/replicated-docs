@@ -10,6 +10,18 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.10.08-0
+
+Released on October 8, 2025
+
+### New Features {#new-features-v2025-10-08-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.27.3.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2025-09-07T16-13-09Z.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.34.1 1.33.5 1.32.9 1.31.13.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.27.4.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.28.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.11.
+
 ## v2025.08.29-0
 
 Released on August 29, 2025
