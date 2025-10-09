@@ -62,6 +62,11 @@ const config = {
         '/js/visitoranalytics.js',
       async: true,
     },
+    {
+      src:
+        '/js/commonroom.js',
+      async: true,
+    },
   ],
   
   themeConfig:
