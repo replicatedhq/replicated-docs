@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.10.10-3
+
+Released on October 10, 2025
+
+### Bug Fixes {#bug-fixes-v2025-10-10-3}
+* Enterprise Portal instances are now identified with the instance name instead of the ID (the id can be found by clicking the name).
+
 ## v2025.09.29-1
 
 Released on September 29, 2025
