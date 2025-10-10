@@ -10,6 +10,15 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2025.10.10-0
+
+Released on October 10, 2025
+
+### New Features {#new-features-v2025-10-10-0}
+* Compatibility Matrix: Adds `show-terminated=true` setting on the `v3/networks` Vendor API endpoint to return historical and current networks.
+* Compatibility Matrix: Adds current and historical Compatibility Matrix resources that have been attached to networks on the Vendor Portal **Network Policy** page and in the `v3/networks` response.
+
 ## v2025.10.09-0
 
 Released on October 9, 2025
