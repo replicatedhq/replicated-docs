@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 9, 2025
 
 ### New Features {#new-features-v2025-10-09-0}
-* The channel release history page will now show the status of our image list build that is calculated by applying the builder values upon promotion.
+* Shows the status of the image list build for the airgap bundle on the channel **Release History** page.
 
 ## v2025.09.29-1
 
