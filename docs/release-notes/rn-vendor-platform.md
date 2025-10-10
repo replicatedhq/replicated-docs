@@ -10,14 +10,21 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2025.10.10-0
 
 Released on October 10, 2025
 
 ### New Features {#new-features-v2025-10-10-0}
 * Users can now use the show-terminated=true setting on the v3/networks endpoint to return historical networks as well as current.
-* .
 * Users can now view current and historical CMX resources that have been attached to networks on the Network Policy page as well as in the v3/networks response.
+
+## v2025.10.09-0
+
+Released on October 9, 2025
+
+### New Features {#new-features-v2025-10-09-0}
+* Shows the status of the image list build for the airgap bundle on the channel **Release History** page.
 
 ## v2025.09.29-1
 
