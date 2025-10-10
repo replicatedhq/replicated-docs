@@ -314,7 +314,7 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.30, 1.31, 1.32, 1.33{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
+    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.30, 1.31, 1.32, 1.33, 1.34{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -359,7 +359,7 @@ Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.30, 1.31, 1.32, 1.33{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.31, 1.32, 1.33{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -445,7 +445,7 @@ Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1{/* END_oke_VERSIONS */}</td>
+    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1, 1.34.1{/* END_oke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
