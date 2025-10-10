@@ -10,12 +10,28 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
 ## v2025.10.10-3
 
 Released on October 10, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-10-10-3}
-* Enterprise Portal instances are now identified with the instance name instead of the ID (the id can be found by clicking the name).
+* Enterprise Portal instances are identified with the instance name instead of the ID (the ID can be found by clicking the name).
+
+## v2025.10.10-0
+
+Released on October 10, 2025
+
+### New Features {#new-features-v2025-10-10-0}
+* Compatibility Matrix: Adds `show-terminated=true` setting on the `v3/networks` Vendor API endpoint to return historical and current networks.
+* Compatibility Matrix: Adds current and historical Compatibility Matrix resources that have been attached to networks on the Vendor Portal **Network Policy** page and in the `v3/networks` response.
+
+## v2025.10.09-0
+
+Released on October 9, 2025
+
+### New Features {#new-features-v2025-10-09-0}
+* Shows the status of the image list build for the airgap bundle on the channel **Release History** page.
 
 ## v2025.09.29-1
 
