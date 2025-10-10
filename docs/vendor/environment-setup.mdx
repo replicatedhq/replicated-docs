@@ -143,28 +143,34 @@ To install and run the latest Replicated CLI on Linux or Windows Subsystem for L
 
 The preflight and support-bundle plugins available through the open source Troubleshoot project provide important troubleshooting tools for your customers, allowing them to run preflight checks and collect support bundles. For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-These instructions show you how to install the Troubleshoot plugins using Krew. For more information about installing the preflight and support-bundle plugins, including other installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+For more information about installing the preflight and support-bundle plugins, including other installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
-To install the preflight and support-bundle plugins:
+#### Mac
+
+For Mac users, Replicated recommends using Homebrew to install the preflight and support-bundle plugins:
+
+```bash
+brew install preflight
+brew install support-bundle
+```
+
+#### Windows / Linux
+
+For Windows and Linux users, use Krew to install the preflight and support-bundle plugins:
 
 1. Install Krew:
 
-    * Mac: 
-      ```bash
-      brew install krew
-      ```
-    * Other operating systems:
-      ```bash
-      (
-        set -x; cd "$(mktemp -d)" &&
-        OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
-        ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
-        KREW="krew-${OS}_${ARCH}" &&
-        curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
-        tar zxvf "${KREW}.tar.gz" &&
-        ./"${KREW}" install krew
-      )
-      ``` 
+    ```bash
+    (
+      set -x; cd "$(mktemp -d)" &&
+      OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+      ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+      KREW="krew-${OS}_${ARCH}" &&
+      curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+      tar zxvf "${KREW}.tar.gz" &&
+      ./"${KREW}" install krew
+    )
+    ```
 
 1. After installing, add the krew binary directory to your PATH:
 
