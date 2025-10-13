@@ -73,7 +73,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_k3s_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.31.11, 1.31.12, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4{/* END_k3s_VERSIONS */}</td>
+    <td>{/* START_k3s_VERSIONS */}1.30.0, 1.30.1, 1.30.2, 1.30.3, 1.30.4, 1.30.5, 1.30.6, 1.30.7, 1.30.8, 1.30.9, 1.30.10, 1.30.11, 1.30.12, 1.30.13, 1.30.14, 1.31.0, 1.31.1, 1.31.2, 1.31.3, 1.31.4, 1.31.5, 1.31.6, 1.31.7, 1.31.8, 1.31.9, 1.31.10, 1.31.11, 1.31.12, 1.31.13, 1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.34.1{/* END_k3s_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -170,7 +170,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
   <tr>
     <th>Supported OpenShift Versions</th>
-    <td>{/* START_openshift_VERSIONS */}4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd, 4.18.0-okd, 4.19.0-okd{/* END_openshift_VERSIONS */}</td>
+    <td>{/* START_openshift_VERSIONS */}4.13.0-okd, 4.14.0-okd, 4.15.0-okd, 4.16.0-okd, 4.17.0-okd, 4.18.0-okd, 4.19.0-okd, 4.20.0-okd{/* END_openshift_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -318,7 +318,7 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.30, 1.31, 1.32, 1.33{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
+    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.30, 1.31, 1.32, 1.33, 1.34{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -363,7 +363,7 @@ Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.30, 1.31, 1.32, 1.33{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.31, 1.32, 1.33{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -406,7 +406,7 @@ Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/e
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_aks_VERSIONS */}1.30, 1.31, 1.32, 1.33{/* END_aks_VERSIONS */}</td>
+    <td>{/* START_aks_VERSIONS */}1.31, 1.32, 1.33{/* END_aks_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -449,7 +449,7 @@ Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1{/* END_oke_VERSIONS */}</td>
+    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1, 1.34.1{/* END_oke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>

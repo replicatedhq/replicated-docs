@@ -62,6 +62,11 @@ const config = {
         '/js/visitoranalytics.js',
       async: true,
     },
+    {
+      src:
+        '/js/commonroom.js',
+      async: true,
+    },
   ],
   
   themeConfig:
@@ -77,9 +82,8 @@ const config = {
         appId: 'BHWS2Z6GO0',
 
         // Public API key: it is safe to commit it
-        apiKey: 'c1b3ad730ee08e83703eeaadd39c4790',
+        apiKey: 'ebabec43cbd814475c6111ca570fe648',
         indexName: 'docs',
-        contextualSearch: true,
       },
       navbar: {
         title: 'Docs',
