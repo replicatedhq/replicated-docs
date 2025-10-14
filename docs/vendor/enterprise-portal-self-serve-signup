@@ -1,1 +1,23 @@
+# Enable Self-Service Enterprise Portal Sign-Ups (Beta)
 
+This topic describes how to enable or disable self-service sign-ups to the Enterprise Portal to enable access to your application for the purposes of Trial or Community based licensing.
+
+For information about customizing the Trial Signup invitation email, see [Customize the Enterprise Portal](enterprise-portal-configure).
+
+## Enable Self-Service Sign-Ups {#enable-self-service-signup}
+
+You can enable and disable customer self-service login access to the Enterprise Portal for current and potential customers through your Enterprise Portal. You are able to set a default policy that will then apply to any new customer licenses created via self-service sign-up.
+
+To enable self-service customer access to the Enterprise Portal:
+
+* In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**. For **Portal access**, enable or disable the toggle to control if all customers have access to the Enterprise Portal or the Download Portal.
+* [Optional] Add a link to Terms & Conditions that the user must acknowlwedge before proceeding with signup.
+* Configure the default settings for licenses created through self-service signups.
+* Configure the default allowed installation types for licenses created through self-service signups.
+* Click **Save**
+
+## View Pending Trial Access to Your Application 
+
+## Configure Allowed Domains for User Invitations
+
+Users who have requested trial access for your application are viewable under the **Pending Trials** section
