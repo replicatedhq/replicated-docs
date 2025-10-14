@@ -79,11 +79,11 @@ const config = {
       },
       algolia: {
         // The application ID provided by Algolia
-        appId: 'BHWS2Z6GO0',
+        appId: 'GHHO0O7LF5',
 
         // Public API key: it is safe to commit it
-        apiKey: 'ebabec43cbd814475c6111ca570fe648',
-        indexName: 'docs',
+        apiKey: '94355b8c51360cebbfff7519ab737aa8',
+        indexName: 'Replicated Docs',
       },
       navbar: {
         title: 'Docs',
