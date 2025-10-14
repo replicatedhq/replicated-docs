@@ -14,11 +14,18 @@ To run preflight checks that are defined in your application Helm chart template
 
 The preflight kubectl plugin is required to run preflight checks for Helm CLI installations. The preflight plugin is a client-side utility that adds a single binary to the path.
 
-To install the preflight plugin, run the following command to install the preflight plug-in using krew:
+To install the preflight plugin:
 
-```
-curl https://krew.sh/preflight | bash
-```
+* **Mac:** Replicated recommends using Homebrew:
+  ```bash
+  brew install preflight
+  ```
+
+* **Windows / Linux:** Use Krew:
+  ```bash
+  curl https://krew.sh/preflight | bash
+  ```
+
 For information about the preflight plugin, including additional installation options, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation. 
 
 ## Command
@@ -76,11 +83,17 @@ To run preflights checks from a release before installation:
         helm registry login registry.replicated.com --username example@companyname.com password 1234abcd
         ```
 
-    1. Run the second command to install the kubectl plugin with krew:
+    1. Run the second command to install the kubectl plugin:
 
-        ```
-        curl https://krew.sh/preflight | bash
-        ```
+        * **Mac:**
+          ```bash
+          brew install preflight
+          ```
+
+        * **Windows / Linux:**
+          ```bash
+          curl https://krew.sh/preflight | bash
+          ```
     
     1. Run the third command to run preflight checks:
 
