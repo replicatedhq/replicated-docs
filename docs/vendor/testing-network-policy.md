@@ -1,8 +1,8 @@
 # Test in Air Gap Environments (Beta)
 
-This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix, and how to collect and analyze network events to understand your application's behavior in an air gap environment.
+This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix, and how to collect and analyze network events to understand your application's behavior in air-gapped environments.
 
-## About Network Policies
+## Overview
 
 VMs and VM-based clusters created with Compatibility Matrix can use one of the following network policies:
 
@@ -11,33 +11,23 @@ VMs and VM-based clusters created with Compatibility Matrix can use one of the f
 | `open` | No restrictions on network traffic. |
 | `airgap` | Restrict all network traffic. |
 
-By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to create an _air-gapped_ environment with no outbound internet access.
+By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an _air-gapped_ environment with no outbound internet access. The `airgap` network policy is particularly useful for testing air gap installations for your application.
 
-The `airgap` network policy is particularly useful for testing air gap installations for your application. For information about installing with Embedded Cluster in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap). For information about installing with the Helm CLI in an air-gapped environment, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).
-
+Compatibility Matrix also supports collecting network reports, which track and expose network events. Viewing network reports for environments with an `airgap` network policy can help you understand your application's behavior in air-gapped environments, such as if the application attempts to make an outbound request.
 
 ## Requirements
-
-- **VM-Based Only**: Network policies are supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
-- **Replicated CLI 0.109.0 or later**
-- **User Role**: The user must have the Admin or Developer role. Read Only users cannot change network settings.
+- Setting the network policy from the CLI requires the Replicated CLI 0.109.0 or later
+- To set a network policy, the user must have the Admin or Developer role. Read Only users cannot change network settings.
 
 ## Limitations
-
-- **Network Status**: Reporting can only be enabled on running networks
-- **Policy Changes**: Changing policies creates a new report (historical data remains)
-- **Real-time**: Events may have a 1-2 second delay before appearing in reports
-
-## Network Policy Overview
-
-### Basic Network Policies (for traffic control)
-
-| Policy Name | Description | Use Case |
-|-------------|-------------|----------|
-| `open` | No restrictions on network traffic | Standard development and testing |
-| `airgap` | Restrict all network traffic | Air gap installation testing |
+- Setting the network policy is supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
+- You can change the network policy at any time, but note that policy changes terminate the current network report and start a new one. In this case, historical data from the previous policy remains available.
+- Network events might have a one to two second delay before appearing in network reports
+- Network reporting can only be enabled on running networks
 
 ## Set Network Policy to `airgap`
+
+To simulate an air-gapped environment that prevents outbound network requests, you can change the policy for a network from `open` to `airgap`. Network policies are configured at the network level and apply to all VMs and clusters within the network. 
 
 ### For VM-Based Clusters
 
@@ -169,65 +159,63 @@ To set the network policy of a VM:
     curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
     ```
 
-
 ## Collect and View Network Reports
 
-### Enable Network Reporting
+You can collect network reports to analyze network events. Analyzing networking events is helpful to understand your application's behavior in air-gapped environments, such as when your application attempts to make outbound internet requests.
 
-#### Via Vendor Portal
+### Vendor Portal
 
-1. Navigate to **Compatibility Matrix** > **Network Policy**
-2. In the **Reporting** column, toggle switch from "off" to "on"
+To collect and view a network report from the Vendor Portal:
 
-#### Via CLI
+1. Go to **Compatibility Matrix** > **Network Policy**.
 
-```bash
-replicated network update NETWORK_ID --collect-report
-```
+1. In the **Reporting** column for the target network, toggle the switch from "off" to "on".
 
-### View Network Reports
+1. In the **Report** column, click **View report**.
 
-#### Via Vendor Portal
+     The **Network Policy Report** table is displayed.
 
-1. Navigate to **Compatibility Matrix** > **Network Policy**
-2. Click on a network name in the Active Resources table
-3. The Network Policy Report will appear below the table
-4. Use the table to browse and filter network events
+1. Use the table to browse and filter network events.
 
-#### Via CLI
+### CLI
 
-**View detailed network report as JSON:**
+To collect and view a network report from the CLI:
 
-```bash
-replicated network report NETWORK_ID
-```
+1. Collect a network report:
 
-**View network summary as JSON:**
+     ```bash
+     replicated network update NETWORK_ID --collect-report
+     ```
+     Where `NETWORK_ID` is the ID of the network. You can get the network ID by running `replicated network ls`.
 
-```bash
-replicated network report NETWORK_ID --summary
-```
+1. (Optional) Confirm that reporting is `on` for the network:
 
+     ```bash
+     replicated network ls
+     ```
 
-**List all networks and their reporting status:**
+     **Example output:**
 
-```bash
-replicated network ls
-```
+     ```
+     ID          NAME                   STATUS          CREATED                    EXPIRES                    POLICY        REPORTING
+     a1b2c3d4    example_network_1      running         2025-01-28 16:04 PST       2025-01-28 18:06 PST       open          off
+     e5f6g7h8    example_network_2      running         2025-01-28 12:10 PST       2025-01-28 20:11 PST       airgap        on
+     ```
+1. View the network report:
+    
+    * View the full report as JSON:
 
-**Example output:**
+     ```bash
+     replicated network report NETWORK_ID
+     ```
 
-```
-ID          NAME                           STATUS          CREATED                           EXPIRES                           POLICY                            REPORTING
-a1b2c3d4    example_network_1              running         2025-01-28 16:04 PST              2025-01-28 18:06 PST              open                              off
-e5f6g7h8    example_network_2              running         2025-01-28 12:10 PST              2025-01-28 20:11 PST              airgap                            on
-```
+    * View the report summary as JSON:
 
+     ```bash
+     replicated network report NETWORK_ID --summary
+     ```    
 
-### Policy Configuration
+## Related Topics
 
-Policies are configured at the network level and apply to all VMs and clusters within that network. You can change the policy at any time, but note that:
-
-- Policy changes terminate the current report and start a new one
-- Historical data from the previous policy remains available
-- The new policy takes effect immediately for new events
+* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).
