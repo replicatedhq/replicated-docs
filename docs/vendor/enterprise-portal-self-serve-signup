@@ -16,8 +16,18 @@ To enable self-service customer access to the Enterprise Portal:
 * Configure the default allowed installation types for licenses created through self-service signups.
 * Click **Save**
 
-## View Pending Trial Access to Your Application 
+## Share Your Sign-up URL {#share-trial-url}
 
-## Configure Allowed Domains for User Invitations
+Your dedicated sign-up URL is displayed underneath **Enable self-service sign-ups**.
+
+Customers who access the sign-up URL will have the opportunity to self-service access to your application based on the default policy you have configured. 
+
+Once a new trial or community user clicks **Create account**, they will receive an email with a 12-digit verification code. 
+
+If they have not yet confirmed via the confirmation email, they are considered a pending user. See [View Pending Trial Access to Your Application](#pending-user).
+
+Once they have confirmed their account, they will no longer be considered pending status, and will now be available along with other active customers under **Customers**
+
+## View Pending Trial Access to Your Application {#pending-user}
 
 Users who have requested trial access for your application are viewable under the **Pending Trials** section
