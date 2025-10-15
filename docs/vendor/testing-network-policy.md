@@ -108,10 +108,6 @@ To set the network policy of a VM:
     replicated network update 85eb50a8 --policy airgap
     ```
 
-    :::note
-    It can take a few seconds for the setting to apply.
-    :::
-
     ```bash
     ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   REPORTING
     85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
