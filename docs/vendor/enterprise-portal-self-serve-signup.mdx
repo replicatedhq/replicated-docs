@@ -1,45 +1,50 @@
 # Self-Service Enterprise Portal Sign-Ups (Beta)
 
-This topic describes how to enable or disable self-service sign-ups to the Enterprise Portal to enable access to your application for the purposes of Trial or Community based licensing.
+This topic describes how to enable Enterprise Portal self-service sign-ups. This allows users to access your application by signing up for Trial or Community licenses through the Enterprise Portal.
 
 For information about customizing the Trial Signup invitation email, see [Customize the Enterprise Portal](enterprise-portal-configure).
 
+## Overview
+
+You can enable self-service sign-ups through the Enterprise Portal for your application. When self-service sign-ups are enabled, current and potential customers can access your application by signing up for a trial or community license. All licenses issued through self-service sign-ups are automatically configured based on the default license policy that you configure in the Vendor Portal.
+
 ## Enable Self-Service Sign-Ups {#enable-self-service-signup}
 
-You can enable and disable customer self-service login access to the Enterprise Portal for current and potential customers through your Enterprise Portal. You are able to set a default policy that will then apply to any new customer licenses created via self-service sign-up.
+To enable Enterprise Portal self-service sign-ups:
 
-To enable self-service customer access to the Enterprise Portal:
+1. In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**. 
 
-* In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**. 
-* [Optional] Add a link to Terms & Conditions that the user must acknowlwedge before proceeding with signup.
-* Configure the default settings for licenses created through self-service signups.
-* Configure the default allowed installation types for licenses created through self-service signups.
-* Click **Save**
+    ![Self-Service Sign-Up Configuration Screen](/images/self-serve-configure.png)
 
-![Self-Service Sign-Up Configuration Screen](/images/self-serve-configure.png)
+    [View a larger version of this image](/images/self-serve-configure.png)
 
-[View a larger version of this image](/images/self-serve-configure.png)
+1. (Optional) For **Terms and Conditions URL**, enter a URL to the terms and conditions that the user must acknowlwedge before proceeding with signup.
+
+1. For **License Configuration**, configure the default settings for licenses created through self-service signups, including the default channel, expiration date, license type (trial or community), supported installation types, and other support features.
+
+1. Click **Save**.
 
 ## Share Your Sign-up URL {#share-trial-url}
 
-Your dedicated sign-up URL is displayed underneath **Enable self-service sign-ups**.
+Each application has a dedicated sign-up URL where users can access the self-servive sign up. When a new user naviagtes to the sign-up page and clicks **Create account**, they receive an email with a 12-digit verification code. The following shows an example of a self-service sign-up page for an application:
 
-Customers who access the sign-up URL will have the opportunity to self-service access to your application based on the default policy you have configured. 
-
-![Self-Service Sign-Up Interaction](/images/self-serve-signup-screen.png)
+<img alt="Self-Service Sign-Up Interaction" src="/images/self-serve-signup-screen.png" width="400px"/>
 
 [View a larger version of this image](/images/self-serve-signup-screen.png)
 
-Once a new trial or community user clicks **Create account**, they will receive an email with a 12-digit verification code. 
+To get the sign-up URL for your application:
+1. In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**.
+1. Under **Enable self-service sign-ups**, copy the **Sign-Up URL**.
 
-If they have not yet confirmed via the confirmation email, they are considered a pending user. See [View Pending Trial Access to Your Application](#pending-user).
+## View Pending Trials {#pending-user}
 
-Once they have confirmed their account, they will no longer be considered pending status, and will now be available along with other active customers under **Customers**.
+When users request access to your application through a self-service sign-up, they are added to a list of **Pending Trials**. After the user confirms their account through the automated confirmation email, an active customer record is created for the user on the **Customers** page.
 
-## View Pending Trial Access to Your Application {#pending-user}
+To view pending trials:
 
-Users who have requested trial access for your application are viewable under the **Pending Trials** section
+1. In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**.
+1. Under **Pending Trials**, review details about any pending self-service sign-ups, including the user's email address, company, sign-up date and time, and more.
 
-![Pending Trials List View](/images/pending-trial-user.png)
+     ![Pending Trials List View](/images/pending-trial-user.png)
 
-[View a larger version of this image](/images/pending-trial-user.png)
+     [View a larger version of this image](/images/pending-trial-user.png)
