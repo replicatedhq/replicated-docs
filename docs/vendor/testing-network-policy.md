@@ -118,15 +118,14 @@ To set the network policy of a VM:
     ```
 
 1. (Optional) To verify that there is no outbound connectivity from the VM, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
-
 ## Collect and View Network Reports
 
-Compatibility Matrix network reporting helps you understand your application's network activity. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls which might be inappropriate in an air-gapped environment.
+Compatibility Matrix network reporting helps you understand your application's network activity. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
 
 | Report Type | Contents |
 |---|---|
-| **Summary Report**<br />Aggregated analysis of<br />captured network events| <ul><li>Total Events Count</li><li>Time Range (start/end)</li><li>Domain Names Requested (Domain, Count)</li><li>Destination IP Addresses Connected To (IP, Port, Count)</li><li>Details: Source IP, Service, Command, Pod</li></ul> |
-| **Full Report**<br />See all network events<br />captured in near real-time | <ul><li>Timestamp</li><li>Source IP, Source Port, Source PID</li><li>Source Command, Source Pod</li><li>Destination IP, Destination Port</li><li>DNS Query Name</li><li>Protocol</li><li>Likely Service</li></ul> |
+| **Summary Report**<br />Aggregated analysis of<br />captured network events| <ul><li>Total Events Count</li><li>Time Range (start/end)</li><li>Report Creation Date</li><li>Domain Names Requested (Domain, Count)</li><li>Destination IP Addresses Connected To (IP, Port, Count)</li><li>Source Details (expandable): Source IP, Service, Command, Pod</li></ul> |
+| **Full Report**<br />See all network events<br />captured in near real-time | <ul><li>Timestamp (with microseconds)</li><li>Source IP, Source Port, Source PID</li><li>Source Command, Source Pod</li><li>Destination IP, Destination Port</li><li>DNS Query Name</li><li>Protocol</li><li>Likely Service</li></ul> |
 
 ### Vendor Portal
 
@@ -134,12 +133,11 @@ In Vendor Portal, you can set network policy, and collect network reports:
 
 1. Go to **Compatibility Matrix** > **Network Policy**.
 
-1. To collect a network report, toggle on the switch under **Reporting**.
+2. To collect a network report, toggle on the switch under **Reporting**.
 
-1. Toggle from `open` to `airgap` under **Policy Type** to block all network egress.
+3. Toggle from `open` to `airgap` under **Policy Type** to block all network egress.
 
-1. Where available, click "View" under **Report** to see the reporting table.
-
+4. Where available, click "View report" under **Report** to see the reporting table. You can also click "Export JSON" to download the raw report data.
 
 ### CLI
 
@@ -152,7 +150,7 @@ To collect and view a network report from the CLI:
      ```
      Where `NETWORK_ID` is the ID of the network. You can get the network ID by running `replicated network ls`.
 
-1. (Optional) Confirm that reporting is `on` for the network:
+1. (Optional) Confirm that reporting is **ON** for the network:
 
      ```bash
      replicated network ls
@@ -186,7 +184,7 @@ To collect and view a network report from the CLI:
     ```
     
     :::note
-    Network events might have a one to two second delay before appearing in network reports.
+    Network events are batched for display in the report, so appear with a short delay.
     :::
 
 
