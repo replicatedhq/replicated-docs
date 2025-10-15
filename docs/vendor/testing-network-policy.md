@@ -18,16 +18,6 @@ Compatibility Matrix also supports collecting network reports. Viewing a report 
 Network policy enforcement is separate from network reporting. For greater flexibility in testing, the report captures all network activity whether the policy is set to `open` or `airgap`.
 
 
-## Requirements
-- Setting network policy from the CLI requires Replicated CLI 0.109.0 or later
-- To set a network policy, the user must have the Admin or Developer role. Read Only users cannot change network settings.
-
-## Limitations
-- Setting the network policy is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
-- You can change the network policy at any time, but note that policy changes terminate the current network report and start a new one. In this case, historical data from the previous policy remains available.
-- Network events might have a one to two second delay before appearing in network reports
-- Network reporting can only be enabled on running networks
-
 ## Set Network Policy to `airgap`
 
 To simulate an air-gapped environment that prevents outbound network requests, you can change the policy for a network from `open` to `airgap`. Network policies are configured at the network level and apply to all VMs and clusters within the network. 
@@ -172,25 +162,28 @@ To collect and view a network report from the CLI:
      ```
 1. View the network report:
    
-   See all network events:
-
-    ```bash
-    replicated network report NETWORK_ID
-    ```
-
-   See summary of all Domains and IPs:
+    See network event summary that aggregates all unique domains and destination IPs, with connection counts and other details (JSON format):
 
     ```bash
     replicated network report NETWORK_ID --summary
     ```
 
-   Watch for new network events:
+   See all network events (JSON format):
+
+    ```bash
+    replicated network report NETWORK_ID
+    ```
+
+   Watch as new network events occur (JSON format):
 
     ```bash
     replicated network report NETWORK_ID --watch
     ```
+    
+    :::note
+    Network events might have a one to two second delay before appearing in network reports.
+    :::
 
-    Each of these commands outputs in JSON format.
 
 ## Related Topics
 
