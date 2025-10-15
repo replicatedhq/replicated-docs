@@ -121,7 +121,12 @@ To set the network policy of a VM:
 
 ## Collect and View Network Reports
 
-You can collect network reports to analyze network events. Analyzing networking events is helpful to understand your application's behavior in air-gapped environments, such as when your application attempts to make outbound internet requests.
+Compatibility Matrix network reporting helps you understand your application's network activity. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls which might be inappropriate in an air-gapped environment.
+
+| Report Type | Contents |
+|---|---|
+| **Summary Report**<br />Aggregated analysis of<br />captured network events| <ul><li>Total Events Count</li><li>Time Range (start/end)</li><li>Domain Names Requested (Domain, Count)</li><li>Destination IP Addresses Connected To (IP, Port, Count)</li><li>Details: Source IP, Service, Command, Pod</li></ul> |
+| **Full Report**<br />See all network events<br />captured in near real-time | <ul><li>Timestamp</li><li>Source IP, Source Port, Source PID</li><li>Source Command, Source Pod</li><li>Destination IP, Destination Port</li><li>DNS Query Name</li><li>Protocol</li><li>Likely Service</li></ul> |
 
 ### Vendor Portal
 
