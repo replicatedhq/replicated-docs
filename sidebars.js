@@ -878,6 +878,7 @@ const sidebars = {
         href: 'https://www.replicated.com/security/'
       },
       'enterprise/sbom-validating',
+      'vendor/vendor-password-integrity',
       'vendor/replicated-sdk-slsa-validating',
     ],
   },
