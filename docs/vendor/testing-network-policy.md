@@ -4,23 +4,26 @@ This topic describes how to change the network policy of a virtual machine (VM) 
 
 ## Overview
 
-VMs and VM-based clusters created with Compatibility Matrix can use one of the following network policies:
+VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with Compatibility Matrix can use one of the following network policies:
 
 | Network Policy | Description |
 | :---- | :---- |
 | `open` | No restrictions on network traffic. |
 | `airgap` | Restrict all network traffic. |
 
-By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an _air-gapped_ environment with no outbound internet access. The `airgap` network policy is particularly useful for testing air gap installations for your application.
+By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an air-gapped environment with no outbound internet access. This `airgap` network policy is particularly useful for previewing how your application will perform in air-gapped end customer environments.
 
-Compatibility Matrix also supports collecting network reports, which track and expose network events. Viewing network reports for environments with an `airgap` network policy can help you understand your application's behavior in air-gapped environments, such as if the application attempts to make an outbound request.
+Compatibility Matrix also supports collecting network reports. Viewing a report of network events can help you understand your application's behavior in air-gapped environments, with details on outbound network requests.
+
+Network policy enforcement is separate from network reporting. For greater flexibility in testing, the report captures all network activity whether the policy is set to `open` or `airgap`.
+
 
 ## Requirements
-- Setting the network policy from the CLI requires the Replicated CLI 0.109.0 or later
+- Setting network policy from the CLI requires Replicated CLI 0.109.0 or later
 - To set a network policy, the user must have the Admin or Developer role. Read Only users cannot change network settings.
 
 ## Limitations
-- Setting the network policy is supported only for VMs and VM-based clusters (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
+- Setting the network policy is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) (K3s, RKE2, Embedded Cluster, kURL, Kind, OpenShift). Network policies are not supported for cloud-based clusters (EKS, GKE, AKE, OKE).
 - You can change the network policy at any time, but note that policy changes terminate the current network report and start a new one. In this case, historical data from the previous policy remains available.
 - Network events might have a one to two second delay before appearing in network reports
 - Network reporting can only be enabled on running networks
@@ -46,26 +49,7 @@ To set the network policy of a VM-based cluster:
     replicated cluster ls --watch
     ```
 
-1. (Optional) Verify the initial outbound network connectivity for the cluster:
-
-    1. Access the cluster in a shell:
-
-       ```
-       replicated cluster shell CLUSTER_ID
-       ```
-       Where `CLUSTER_ID` is the ID of the cluster that you created from the output of the `cluster ls` command.
-
-    1. In the cluster, install a networking testing tool. For example, [netshoot](https://github.com/nicolaka/netshoot).
-
-       **Example:**
-
-       ```bash
-       kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot
-       ```
-
-    1. Curl an endpoint to confirm a successful response. For example, `curl www.google.com`.
-
-1. Open a new shell to access the cluster:
+1. Access the cluster in a shell:
 
     ```
     replicated cluster shell CLUSTER_ID
@@ -92,13 +76,7 @@ To set the network policy of a VM-based cluster:
 
     The air gap network is enabled when the status is `running`.
 
-1. (Optional) Use a networking testing tool such as [netshoot](https://github.com/nicolaka/netshoot) to curl an endpoint and verify that there is no outbound connectivity from the cluster.
-
-   If the air gap was successful, a request to curl an endpoint will time out. For example:
-
-   ```bash
-   curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
-   ```
+1. (Optional) To verify that there is no outbound connectivity from the cluster, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
 
 1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
 
@@ -127,8 +105,6 @@ To set the network policy of a VM:
 
    For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
 
-1. (Optional) Curl an endpoint to verify the network connectivity of the VM. For example, `curl www.google.com`.
-
 1. Set the network policy to `airgap`:
 
     ```bash
@@ -151,13 +127,7 @@ To set the network policy of a VM:
     85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
     ```
 
-1. (Optional) Curl an endpoint to verify that there is no outbound connectivity from the VM. For example, `curl www.google.com`.
-
-    If the air gap was successful, a request to curl an endpoint will time out. For example:
-
-    ```bash
-    curl: (28) Failed to connect to www.google.com port 80 after 129976 ms: Couldn't connect to server
-    ```
+1. (Optional) To verify that there is no outbound connectivity from the VM, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
 
 ## Collect and View Network Reports
 
@@ -165,23 +135,22 @@ You can collect network reports to analyze network events. Analyzing networking 
 
 ### Vendor Portal
 
-To collect and view a network report from the Vendor Portal:
+In Vendor Portal, you can set network policy, and collect network reports:
 
 1. Go to **Compatibility Matrix** > **Network Policy**.
 
-1. In the **Reporting** column for the target network, toggle the switch from "off" to "on".
+1. To collect a network report, toggle on the switch under **Reporting**.
 
-1. In the **Report** column, click **View report**.
+1. Toggle from `open` to `airgap` under **Policy Type** to block all network egress.
 
-     The **Network Policy Report** table is displayed.
+1. Where available, click "View" under **Report** to see the reporting table.
 
-1. Use the table to browse and filter network events.
 
 ### CLI
 
 To collect and view a network report from the CLI:
 
-1. Collect a network report:
+1. Turn on network reporting:
 
      ```bash
      replicated network update NETWORK_ID --collect-report
@@ -202,18 +171,26 @@ To collect and view a network report from the CLI:
      e5f6g7h8    example_network_2      running         2025-01-28 12:10 PST       2025-01-28 20:11 PST       airgap        on
      ```
 1. View the network report:
-    
-    * View the full report as JSON:
+   
+   See all network events:
 
-     ```bash
-     replicated network report NETWORK_ID
-     ```
+    ```bash
+    replicated network report NETWORK_ID
+    ```
 
-    * View the report summary as JSON:
+   See summary of all Domains and IPs:
 
-     ```bash
-     replicated network report NETWORK_ID --summary
-     ```    
+    ```bash
+    replicated network report NETWORK_ID --summary
+    ```
+
+   Watch for new network events:
+
+    ```bash
+    replicated network report NETWORK_ID --watch
+    ```
+
+    Each of these commands outputs in JSON format.
 
 ## Related Topics
 
