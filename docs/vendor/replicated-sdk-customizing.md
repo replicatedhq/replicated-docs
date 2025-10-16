@@ -557,3 +557,18 @@ To serve SDK API endpoints over HTTPS:
       tlsCertSecretName: YOUR_TLS_SECRET
     ```
     Where `YOUR_TLS_SECRET` is the name of the Secret in the namespace containing the TLS certificate and key.
+
+## Report All Images {#report-all-images}
+
+With the Replicated SDK version 1.9.0 and later, you can configure the SDK to report all container images observed in the cluster rather than only images from your application.
+
+When enabled, the SDK watches pod images across all accessible namespaces and reports any images that it discovers. In Embedded Cluster installations, this option is enabled automatically.
+
+To enable reporting all images, set the `replicated.reportAllImages` value in your Helm chart `values.yaml` file:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  reportAllImages: true
+```

@@ -8,6 +8,16 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.9.0
+
+Released on October 16, 2025
+
+### Improvements {#improvements-1-9-0}
+* Adds support for reporting all running images in a cluster with [`reportAllImages`](https://github.com/replicatedhq/replicated-sdk/blob/1.9.0/chart/values.yaml#L307). For more information, see [Report All Images](/vendor/replicated-sdk-customizing#report-all-images).
+* Enables `reportAllImages` automatically for Embedded Cluster installations.
+* Compares images using only the trailing name segments, so `alpine/curl:latest` matches `proxy.replicated.com/myapp/docker/alpine/curl:latest` and `private-registry.app.com/alpine/curl:latest`.
+* Improves image name reporting by using the image name from the container spec when available.
+
 ## 1.8.1
 
 Released on October 8, 2025
@@ -46,7 +56,7 @@ Released on Jun 20, 2025
 ### Improvements {#improvements-1-7-0}
 * Updates the registry to point to a new proxy endpoint for improved performance and reliability.
 * Adds support adding a liveness probe to the SDK deployment with the [`livenessProbe`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L106) Helm value.
-* Adds support for a RBAC role with reduced scope with the [`minimalRBAC`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L301) Helm value.For more information, see [Minimal RBAC](/vendor/replicated-sdk-customizing#minimal-rbac) in _Customizing the Replicated SDK_.
+* Adds support for a RBAC role with reduced scope with the [`minimalRBAC`](https://github.com/replicatedhq/replicated-sdk/blob/1.7.0/chart/values.yaml#L301) Helm value. For more information, see [Minimal RBAC](/vendor/replicated-sdk-customizing#minimal-rbac) in _Customizing the Replicated SDK_.
 
 ## 1.6.0
 
