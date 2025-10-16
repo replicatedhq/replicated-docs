@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.10.15-2
+
+Released on October 15, 2025
+
+### New Features {#new-features-v2025-10-15-2}
+* Added rate limiting to magic link login endpoints to prevent email abuse. The endpoints are limited to 20 requests per hour per IP address.
+
 
 ## v2025.10.10-3
 
