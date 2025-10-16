@@ -53,7 +53,7 @@ To set the network policy of a VM-based cluster:
     ```
 
     ```bash
-    ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   REPORTING
+    ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   HAS REPORT
     bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
     ```
 
@@ -102,7 +102,7 @@ To set the network policy of a VM:
     ```
 
     ```bash
-    ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   REPORTING
+    ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   HAS REPORT
     85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
     ```
 
@@ -169,7 +169,7 @@ To collect and view a network report from the CLI:
      **Example output:**
 
      ```
-     ID          NAME                   STATUS          CREATED                    EXPIRES                    POLICY        REPORTING
+     ID          NAME                   STATUS          CREATED                    EXPIRES                    POLICY        HAS REPORT
      a1b2c3d4    example_network_1      running         2025-01-28 16:04 PST       2025-01-28 18:06 PST       open          off
      e5f6g7h8    example_network_2      running         2025-01-28 12:10 PST       2025-01-28 20:11 PST       airgap        on
      ```
