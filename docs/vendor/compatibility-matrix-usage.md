@@ -1,4 +1,4 @@
-# View Compatibility Matrix Usage History
+# Compatibility Matrix Usage History
 This topic describes using the Replicated Vendor Portal to understand
 Compatibility Matrix usage across your team.
 
