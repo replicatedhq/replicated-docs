@@ -114,12 +114,12 @@ Compatibility Matrix network reporting helps you understand your application's n
 
 Network reporting is not enabled by default. For information about how to collect and view reports through the Vendor Portal or the Replicated CLI, see the sections below.
 
-The following table describes the contents of the supported network report types:
+There are two types of network reports:
 
 | Report Type | Contents |
 |---|---|
-| **Summary Report**<br />Aggregated analysis of<br />captured network events| <ul><li>Total Events Count</li><li>Time Range (start/end)</li><li>Report Creation Date</li><li>Domain Names Requested (Domain, Count)</li><li>Destination IP Addresses Connected To (IP, Port, Count)</li><li>Source Details (expandable): Source IP, Service, Command, Pod</li></ul> |
-| **Full Report**<br />See all network events<br />captured in near real-time | <ul><li>Timestamp (with microseconds)</li><li>Source IP, Source Port, Source PID</li><li>Source Command, Source Pod</li><li>Destination IP, Destination Port</li><li>DNS Query Name</li><li>Protocol</li><li>Likely Service</li></ul> |
+| **Running Report**<br />See all network events<br />captured in near real-time | <ul><li>Timestamp (with microseconds)</li><li>Source IP, Source Port, Source PID</li><li>Source Command, Source Pod</li><li>Destination IP, Destination Port</li><li>DNS Query Name</li><li>Protocol</li><li>Likely Service</li></ul> |
+| **Report Summary**<br />Aggregated analysis of<br />captured network events| <ul><li>Total Events Count</li><li>Time Range (start/end)</li><li>Report Creation Date</li><li>Domain Names Requested (Domain, Count)</li><li>Destination IP Addresses Connected To (IP, Port, Count)</li><li>Source Details (expandable): Source IP, Service, Command, Pod</li></ul> |
 
 ### Vendor Portal
 
@@ -129,9 +129,25 @@ To set the network policy and collect and view reports in the Vendor Portal:
 
 2. To collect a network report, toggle on the switch under **Reporting**.
 
-3. Toggle from `open` to `airgap` under **Policy Type** to block all network egress.
+3. (Optional) Toggle from `open` to `airgap` under **Policy Type** to block all network egress.
 
 4. Where available, click "View report" under **Report** to see the reporting table. You can also click "Export JSON" to download the raw report data.
+
+   :::note
+   When reporting is **ON** for an active network, all network events display in a **Running Report**. Once the network is terminated, the **Report Summary** is automatically generated.
+   :::
+
+   **Running Report**
+
+   ![Network Policy page with running report, showing all network events captured](/images/cmx-network-report.png)
+
+   [View a larger version of this image](/images/cmx-network-report.png)
+
+   **Report Summary**
+
+   ![Network Policy page with report summary, showing domain names and destination IPs](/images/cmx-network-report-summary.png)
+
+   [View a larger version of this image](/images/cmx-network-report-summary.png)
 
 ### CLI
 
