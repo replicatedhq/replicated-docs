@@ -2,7 +2,7 @@
 
 This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix, and how to collect and analyze network events to understand your application's behavior in air-gapped environments.
 
-## Overview
+## Set Network Policy to `airgap`
 
 VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with Compatibility Matrix can use one of the following network policies:
 
@@ -13,14 +13,7 @@ VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) crea
 
 By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an air-gapped environment with no outbound internet access. This `airgap` network policy is particularly useful for previewing how your application will perform in air-gapped end customer environments.
 
-Compatibility Matrix also supports collecting network reports. Viewing a report of network events can help you understand your application's behavior in air-gapped environments, with details on outbound network requests.
-
-Network policy enforcement is separate from network reporting. For greater flexibility in testing, the report captures all network activity whether the policy is set to `open` or `airgap`.
-
-
-## Set Network Policy to `airgap`
-
-To simulate an air-gapped environment that prevents outbound network requests, you can change the policy for a network from `open` to `airgap`. Network policies are configured at the network level and apply to all VMs and clusters within the network. 
+Network policies are configured at the network level and apply to all VMs and VM-based clusters within the network. 
 
 ### For VM-Based Clusters
 
@@ -118,9 +111,14 @@ To set the network policy of a VM:
     ```
 
 1. (Optional) To verify that there is no outbound connectivity from the VM, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
+
 ## Collect and View Network Reports
 
-Compatibility Matrix network reporting helps you understand your application's network activity. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
+Compatibility Matrix network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
+
+Network reporting is not enabled by default. For information about how to collect and view reports through the Vendor Portal or the Replicated CLI, see the sections below.
+
+The following table describes the contents of the supported network report types:
 
 | Report Type | Contents |
 |---|---|
@@ -129,7 +127,7 @@ Compatibility Matrix network reporting helps you understand your application's n
 
 ### Vendor Portal
 
-In Vendor Portal, you can set network policy, and collect network reports:
+To set the network policy and collect and view reports in the Vendor Portal:
 
 1. Go to **Compatibility Matrix** > **Network Policy**.
 
