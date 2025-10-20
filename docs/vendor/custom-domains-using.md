@@ -15,7 +15,7 @@ To add and verify a custom domain:
 1. In the **Add custom domain** dropdown, select the target Replicated endpoint.
 
     :::note
-    There is a known issue when using a custom domain for the Enterprise Portal if any of your customers use link transformers such as Microsoft Defender Safe Links. For more information, see [Known Issue](custom-domains-using#known-issue) in _About Custom Domains_.
+    There is a known issue when using a custom domain for the Enterprise Portal if any of your customers use link transformers such as Microsoft Defender Safe Links. For more information, see [Known Issue](custom-domains#known-issue) in _About Custom Domains_.
     :::
 
     The **Configure a custom domain** wizard opens.
