@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.10.20-2
+
+Released on October 20, 2025
+
+### New Features {#new-features-v2025-10-20-2}
+* CMX: Added support for ssh keys not synchronized via github.
+
 
 ## v2025.10.10-3
 
