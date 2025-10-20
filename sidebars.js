@@ -869,6 +869,16 @@ const sidebars = {
     items: [
       {
         type: 'link',
+        label: 'Trust Center',
+        href: 'https://trust.replicated.com/'
+      },
+      {
+        type: 'link',
+        label: 'Status Page',
+        href: 'https://status.replicated.com/'
+      },
+      {
+        type: 'link',
         label: 'Security at Replicated',
         href: 'https://www.replicated.com/security/'
       },
