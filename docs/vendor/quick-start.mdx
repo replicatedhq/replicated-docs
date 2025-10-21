@@ -37,17 +37,17 @@ Before you begin, do the following to set up your environment:
 
 * Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
 
-   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix (CMX) to create a VM, do the following before proceeding:
       
-      * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+      * Request CMX credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about CMX credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
           :::note
-          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing the Replicated Quick Start.
+          If you are new to the Replicated platform, you might be eligible for $100 in free CMX credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing the Replicated Quick Start.
           :::
       
-      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
+      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with CMX. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
 
-      After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with Compatibility Matrix as part of the tutorial.
+      After you complete the prerequisites above, continue to the [Quick Start](#quick-start). You will create the VM with CMX as part of the tutorial.
 
    * **Option 2: Bring your own VM.** Your VM must meet these requirements:
 
@@ -276,7 +276,7 @@ Before you begin, do the following to set up your environment:
 
 1. (Optional) In the Vendor Portal, click **Releases** to view the release that you promoted. In the release viewer, you can see the Replicated manifests as well as the SlackerNews `Chart.yaml` and `values.yaml` files.
 
-1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with Compatibility Matrix:
+1. If you brought your own VM, SSH onto your VM. Otherwise, follow these steps to create and SSH onto a VM with CMX:
 
    1. Create an Ubuntu VM that expires after two hours:
 
@@ -300,7 +300,7 @@ Before you begin, do the following to set up your environment:
       97940819  practical_black  ubuntu        24.04    running  c726ffff  2025-08-20 14:32 MDT  2025-08-20 16:33 MDT   $0.69
       ```
    
-   1. Run the following command to use the Compatibility Matrix Forwarder to SSH onto the VM:
+   1. Run the following command to use the CMX Forwarder to SSH onto the VM:
 
       ```bash
       ssh VM_ID@replicatedvm.com
@@ -311,7 +311,7 @@ Before you begin, do the following to set up your environment:
       If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
       :::
 
-   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM. 
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. CMX uses GitHub SSH to provide access to the VM. 
 
 1. Install the application with Embedded Cluster:
      
@@ -363,7 +363,7 @@ Before you begin, do the following to set up your environment:
           :::note
           The IP address in the provided URL might be the private IP address of your VM. You might need to edit the URL to use the public IP address.
           :::
-       * If you created the VM with Compatibility Matrix:
+       * If you created the VM with CMX:
          1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/overview).
          1. Open the dot menu for your VM and click **Edit VM**.
 
@@ -392,7 +392,7 @@ Before you begin, do the following to set up your environment:
        1. On the **Certificate type** screen, either select **Self-signed** to continue using the self-signed Admin Console certificate or click **Upload your own** to upload your own private key and certificate. By default, a self-signed TLS certificate is used to secure communication between your browser and the Admin Console. You will see a warning in your browser every time you access the Admin Console unless you upload your own certificate.
 
        :::note
-       If you created the VM with Compatibility Matrix, you might not see these pages. Instead, your browser might automatically redirect to the Admin Console login screen.
+       If you created the VM with CMX, you might not see these pages. Instead, your browser might automatically redirect to the Admin Console login screen.
        :::
    
    1. On the login screen, enter the Admin Console password that you set and click **Log in**.
@@ -410,7 +410,7 @@ Before you begin, do the following to set up your environment:
    1. On the **Configure SlackerNews** screen, complete the following fields:
    
        * For **Ingress Hostname**:
-          * If you created the VM with Compatibility Matrix, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
+          * If you created the VM with CMX, enter the URL that you copied for the DNS record with a target port of 443. For example, `pensive-keldysh.ingress.replicatedcluster.com`.
 
           * If you are using your own VM, provide the public IP address for your VM. You can copy the IP address from your browser's address bar where you are currently accessing the Admin Console. Alternatively, if you have a hostname for your VM's IP address, you can provide that instead.
 
@@ -585,7 +585,7 @@ Before you begin, do the following to set up your environment:
 
 1. Clean up the installation:
 
-    * If you created the VM with Compatibility Matrix, delete the VM:
+    * If you created the VM with CMX, delete the VM:
 
        ```bash
        replicated vm rm VM_ID
@@ -622,7 +622,7 @@ To get started, see [Onboard to the Replicated Platform](replicated-onboarding).
 For more information about the Replicated Platform features mentioned in this quick start, see:
 
 * [Embedded Cluster Overview](/vendor/embedded-overview)
-* [About Compatibility Matrix](/vendor/testing-about)
+* [About CMX](/vendor/testing-about)
 * [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about)
 * [About the Replicated SDK](/vendor/replicated-sdk-overview)
 * [Manage Releases with the CLI](/vendor/releases-creating-cli)

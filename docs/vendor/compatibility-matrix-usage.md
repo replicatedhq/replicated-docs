@@ -1,6 +1,6 @@
-# Compatibility Matrix Usage History
+# CMX Usage History
 This topic describes using the Replicated Vendor Portal to understand
-Compatibility Matrix usage across your team.
+Replicated Compatibility Matrix (CMX) usage across your team.
 
 ## View Historical Usage
 The **Compatibility Matrix > History** page provides
@@ -57,7 +57,7 @@ To filter by a specific field, click on the filter icon in the column header, th
 
 ## Get Usage History with the Vendor API v3
 
-For more information about using the Vendor API v3 to get Compatibility Matrix
+For more information about using the Vendor API v3 to get CMX
 usage history information, see the following API endpoints within the
 Vendor API v3 documentation:
 
@@ -69,7 +69,7 @@ Vendor API v3 documentation:
 For examples of using these endpoints, see the sections below.
 
 ### Credit Balance and Summarized Usage
-You can use the `/v3/cmx/stats` endpoint to get summarized usage information in addition to your Compatibility Matrix
+You can use the `/v3/cmx/stats` endpoint to get summarized usage information in addition to your CMX
 credit balance.
 
 This endpoint returns:

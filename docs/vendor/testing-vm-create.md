@@ -1,8 +1,9 @@
-# Use Compatibility Matrix VMs (Beta)
+# Use CMX VMs (Beta)
 
-This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral VMs.
+This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral VMs.
 
 ## Set Up SSH Access
+
 
 To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.
 
@@ -12,7 +13,9 @@ To access VMs that you create with Compatibility Matrix, you need to set up SSH 
 Your GitHub usernames and SSH keys are synced to a VM when it is first created. If you update your GitHub username or keys after creating a VM, you can manually sync by updating your [Account Settings](https://vendor.replicated.com/account-settings) in the Vendor Portal and clicking **Save**.
 :::
 
-To set up and verify SSH access for Compatibility Matrix VMs using your personal GitHub account:
+### Use Your GitHub Account
+
+To set up and verify SSH access for CMX VMs using your personal GitHub account:
 
 1. Log in to your GitHub account and add an SSH key if you do not have one already. For information about how to generate and add a new SSH key, see [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generati[…]w-ssh-key) and [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) in the GitHub documentation.
 
@@ -114,7 +117,7 @@ replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.s
 
 ### With the Replicated CLI
 
-To create VMs with Compatibility Matrix:
+To create VMs with CMX:
 
 1. (Optional) View the available VM distributions, including the supported VM distribution versions and instance types:
 
@@ -219,13 +222,13 @@ To create a VM from the Vendor Portal:
 
 You can SSH into a VM using one of the following methods:
 
-* [**Compatibility Matrix Forwarder**](#compatibility-matrix-forwarder): To use the Compatibility Matrix Forwarder, you only need to know the VM ID to connect to the machine with SSH. This is more approachable for users less familiar with SSH clients.
+* [**CMX Forwarder**](#compatibility-matrix-forwarder): To use the CMX Forwarder, you only need to know the VM ID to connect to the machine with SSH. This is more approachable for users less familiar with SSH clients.
 
-* [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the Compatibility Matrix Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
+* [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
 For information about how to copy files to a VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
 
-### Compatibility Matrix Forwarder
+### CMX Forwarder
 
 To connect to a VM using the Forwarder:
 

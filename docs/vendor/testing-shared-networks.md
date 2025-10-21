@@ -1,10 +1,10 @@
 # Use Shared Networks
 
-This topic explains how to create VMs and clusters with Replicated Compatibility Matrix on the same network.
+This topic explains how to create VMs and clusters with Replicated Compatibility Matrix (CMX) on the same network.
 
 ## Connect a VM with a Cluster on the Same Network
 
-You can make a Compatibility Matrix cluster available on the same network as a Compatibility Matrix VM.
+You can make a CMX cluster available on the same network as a CMX VM.
 
 #### Supported Cluster Distributions
 

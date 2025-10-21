@@ -1,8 +1,8 @@
 # Copy Files to a VM
 
-This topic describes how to transfer files to a VM created with Replicated Compatibility Matrix.
+This topic describes how to transfer files to a VM created with Replicated Compatibility Matrix (CMX).
 
-You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the Compatibility Matrix Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
+You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the CMX Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
 
 ## Using the SCP Endpoint
 
@@ -53,18 +53,18 @@ To copy files to a VM using the scp endpoint:
 ## After Connecting to the VM with the Forwarder
 
 :::note
-Transferring files using Compatibility Matrix Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
+Transferring files using CMX Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
 :::
 
 #### Limitations
-Transferring files using the Compatibility Matrix Forwarder has the following limitations:
+Transferring files using the CMX Forwarder has the following limitations:
 - `scp` with flag `-O` (legacy scp protocol) is not supported. 
 - Relative paths is not supported. For example:
   - Unsupported: `scp somefile VMID@replicatedvm.com:~`
   - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
 - File permissions are not inherited.
 
-To copy files to the VM using SCP after connecting with the Compatibility Matrix Forwarder:
+To copy files to the VM using SCP after connecting with the CMX Forwarder:
 
 1. SSH into the VM using the Forwarder:
 

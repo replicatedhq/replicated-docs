@@ -26,13 +26,13 @@ Before you begin, do the following to set up your environment:
 
 * Ensure that you have access to a Kubernetes cluster where you can test the installation using the Helm CLI:
 
-   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a cluster for this tutorial, first request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix (CMX) to create a cluster for this tutorial, first request CMX credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about CMX credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
           :::note
-          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
+          If you are new to the Replicated platform, you might be eligible for $100 in free CMX credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
           :::
 
-      After you complete the prerequisites described above, continue to the [Tutorial](#tutorial). You will create the cluster with Compatibility Matrix as part of the tutorial.
+      After you complete the prerequisites described above, continue to the [Tutorial](#tutorial). You will create the cluster with CMX as part of the tutorial.
 
    * **Option 2: Bring your own Cluster.** You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE) or minikube.
 
@@ -215,7 +215,7 @@ Log in to the Enterprise Portal for the customer to get the Helm CLI installatio
 
 1. For **Instance Name**, enter a nickname for the instance.
 
-1. For **Kubernetes Distribution**, select the distribution of the cluster where you will install SlackerNews. If you are going to use Compatibility Matrix to create the cluster, select **Vanilla Kubernetes**.
+1. For **Kubernetes Distribution**, select the distribution of the cluster where you will install SlackerNews. If you are going to use CMX to create the cluster, select **Vanilla Kubernetes**.
 
 1. For **Cluster Network Availability**, select **Outbound requests allowed**.
 
@@ -227,7 +227,7 @@ Log in to the Enterprise Portal for the customer to get the Helm CLI installatio
 
 Install SlackerNews in a cluster:
 
-1. If you brought your own cluster, set kubectl context to the cluster where you want to install. If you are using Compatibility Matrix, do the following:
+1. If you brought your own cluster, set kubectl context to the cluster where you want to install. If you are using CMX, do the following:
 
    1. Create a kind cluster with version 1.34.0 of Kubernetes:
 

@@ -1,10 +1,10 @@
-# Compatibility Matrix Cluster Add-ons (Alpha)
+# CMX Cluster Add-ons (Alpha)
 
-This topic describes the supported cluster add-ons for Replicated Compatibility Matrix.
+This topic describes the supported cluster add-ons for Replicated Compatibility Matrix (CMX).
 
 ## Overview
 
-Replicated Compatibility Matrix enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
+CMX enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
 This allows you to more easily provision dependencies required by your application.
 
 ## CLI
@@ -13,7 +13,7 @@ The Replicated CLI can be used to [create](/reference/replicated-cli-cluster-add
 
 ## Supported Add-ons
 
-This section lists the supported cluster add-ons for clusters created with Compatibility Matrix.
+This section lists the supported cluster add-ons for clusters created with CMX.
 
 ### object-store (Alpha)
 
