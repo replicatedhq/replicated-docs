@@ -8,7 +8,9 @@ In order to access VMs that you create with Compatibility Matrix, you need to se
 
 ### Use Your GitHub Account
 
-You can set up SSH access using your personal GitHub account or a GitHub service account used by your team. For setting up SSH access to VMs that you create on your local machine, Replicated recommends that you use your personal GitHub account. For setting up SSH access for VMs created in CI/CD workflows used by your team, use a GitHub service account.
+You can set up SSH access using your personal GitHub account or a GitHub service account used by your team. For setting up SSH access to VMs that you create on your local machine, Replicated recommends that you use your personal GitHub account.
+
+For setting up SSH access for VMs created in CI/CD workflows used by your team, use a GitHub service account. For more information, see [Use a GitHub Service Account](#github-service-account) below.
 
 :::note
 Your GitHub usernames and SSH keys are synced to a VM when it is first created. If you update your GitHub username or keys after creating a VM, you can manually sync by updating your [Account Settings](https://vendor.replicated.com/account-settings) in the Vendor Portal and clicking **Save**.
@@ -34,7 +36,9 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
 
 1. On the **Account Settings > Account Information** page, for **GitHub username**, add your GitHub username.
 
-### Use a GitHub Service Account
+### Use a GitHub Service Account {#github-service-account}
+
+Use a GitHub service account if you are setting up SSH access for VMs created in CI/CD workflows used by your team.
 
 To automate the creation of VMs in your CI/CD workflows, you can use the flag `--ssh-public-key` to provide the SSH public key for a GitHub service account. For example:
 
