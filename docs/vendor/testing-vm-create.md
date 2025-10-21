@@ -4,15 +4,13 @@ This topic describes how to use Replicated Compatibility Matrix to create and ma
 
 ## Set Up SSH Access
 
-In order to access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your personal GitHub account or a GitHub service account used by your team.
+To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.
 
-For setting up SSH access to VMs that you create on your local machine, Replicated recommends that you use your personal GitHub account. For setting up SSH access for VMs created in CI/CD workflows used by your team, use a GitHub service account. For more information, see the sections below.
+### Use Your GitHub Account
 
 :::note
 Your GitHub usernames and SSH keys are synced to a VM when it is first created. If you update your GitHub username or keys after creating a VM, you can manually sync by updating your [Account Settings](https://vendor.replicated.com/account-settings) in the Vendor Portal and clicking **Save**.
 :::
-
-### Use Your GitHub Account
 
 To set up and verify SSH access for Compatibility Matrix VMs using your personal GitHub account:
 
@@ -34,43 +32,83 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
 
 1. On the **Account Settings > Account Information** page, for **GitHub username**, add your GitHub username.
 
-1. On the command line, authenticate with the Replicated CLI using your Vendor Portal account:
+1. Verify that SSH access was set up successfully:
 
-   ```bash
-   replicated login
-   ```
-   :::note
-   To log out of an existing session, first run `replicated logout`.
-   :::
+   1. On the command line, authenticate with the Replicated CLI using your Vendor Portal account:
 
-1. Run the following command to verify that your SSH setup is working:   
+      ```bash
+      replicated login
+      ```
+      :::note
+      To log out of an existing session, first run `replicated logout`.
+      :::
 
-    ```bash
-    ssh -T replicated@replicatedvm.com
-    ```
-    If successful, you will see a message similar to the following:
+   1. Run the following command to verify that your SSH setup is working:   
 
-    ```
-    Hi <username>! You have successfully authenticated, use [VM_ID]@replicatedvm.com to access your VM.
-    ```
+      ```bash
+      ssh -T replicated@replicatedvm.com
+      ```
+      If successful, you will see a message similar to the following:
 
-    :::note
-    If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
-    :::
+      ```
+      Hi <username>! You have successfully authenticated, use [VM_ID]@replicatedvm.com to access your VM.
+      ```
 
-### Use a Service Account
+      :::note
+      If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
+      :::
 
-To automate the creation of VMs in your CI/CD workflows, you can use the flag `--ssh-public-key` to provide the SSH public key for a GitHub service account. For example:
+### Use a Personal Public/Private Key
+
+To set up and verify SSH access for Compatibility Matrix VMs using a personal public/private key pair:
+
+1. If you do not already have a public and private key, generate a new public/private key pair.
+
+1. Log in to the Vendor Portal and go to [**Compatibility Matrix Settings**](https://vendor.replicated.com/compatibility-matrix/settings).
+
+1. On the **Compatibility Matrix Settings > SSH Public Keys** page, upload your public key.
+
+1. Verify that SSH access was set up successfully:
+
+   1. On the command line, authenticate with the Replicated CLI using your Vendor Portal account:
+
+      ```bash
+      replicated login
+      ```
+      :::note
+      To log out of an existing session, first run `replicated logout`.
+      :::
+
+   1. Run the following command to verify that your SSH setup is working:   
+
+      ```bash
+      ssh -T replicated@replicatedvm.com
+      ```
+      If successful, you will see a message similar to the following:
+
+      ```
+      Hi <username>! You have successfully authenticated, use [VM_ID]@replicatedvm.com to access your VM.
+      ```
+
+      :::note
+      If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
+      :::
+
+### Use a Service Account {#github-service-account}
+
+If you are setting up SSH access for VMs created in CI/CD workflows used by your team, you can use the SSH key of a service account or bot with shared access.
+
+To automate the creation of VMs in your CI/CD workflows, use the flag `--ssh-public-key` to provide the SSH public key. For example:
 
 ```bash
 replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub
 ```
 
-Using multiple SSH public keys:
+Or, to use multiple SSH public keys:
 
 ```bash
 replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
-```
+```      
 
 ## Create VMs
 
