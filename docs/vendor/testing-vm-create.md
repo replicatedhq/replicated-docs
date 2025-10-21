@@ -34,6 +34,18 @@ To set up and verify SSH access for Compatibility Matrix VMs using your personal
 
 1. On the **Account Settings > Account Information** page, for **GitHub username**, add your GitHub username.
 
+### Use a personal public/private key
+
+To set up and verify SSH access for Compatibility Matrix VMs using a personal public/private key pair:
+
+1. Make sure you have a public and private key, or generate a new public/private key pair.
+
+1. Log in to the Vendor Portal and go to [**Compatibility Matrix Settings**](https://vendor.replicated.com/compatibility-matrix/settings).
+
+1. On the **Compatibility Matrix Settings > SSH Public Keys** page, upload your public key.
+
+### Test your SSH setup is working
+
 1. On the command line, authenticate with the Replicated CLI using your Vendor Portal account:
 
    ```bash
