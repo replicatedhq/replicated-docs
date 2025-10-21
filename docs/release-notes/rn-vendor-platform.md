@@ -16,7 +16,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 20, 2025
 
 ### New Features {#new-features-v2025-10-20-2}
-* Compatibility Matrix: Added support for SSH keys that are not synchronized with GitHub.
+* Compatibility Matrix: Added support for SSH keys that are not synchronized with GitHub. See [Use a Personal Public/Private Key](/vendor/testing-vm-create#use-a-personal-publicprivate-key) in _Use CMX VMs_.
 
 ## v2025.10.15-2
 
