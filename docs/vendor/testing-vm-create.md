@@ -13,8 +13,6 @@ To access VMs that you create with Compatibility Matrix, you need to set up SSH 
 Your GitHub usernames and SSH keys are synced to a VM when it is first created. If you update your GitHub username or keys after creating a VM, you can manually sync by updating your [Account Settings](https://vendor.replicated.com/account-settings) in the Vendor Portal and clicking **Save**.
 :::
 
-### Use Your GitHub Account
-
 To set up and verify SSH access for CMX VMs using your personal GitHub account:
 
 1. Log in to your GitHub account and add an SSH key if you do not have one already. For information about how to generate and add a new SSH key, see [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generati[…]w-ssh-key) and [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) in the GitHub documentation.
