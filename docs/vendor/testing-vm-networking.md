@@ -1,6 +1,6 @@
-# Compatibility Matrix VM Networking
+# CMX VM Networking
 
-This topic explains how to expose ports on VMs and VM-based clusters created with Compatibility Matrix.
+This topic explains how to expose ports on VMs and VM-based clusters created with Replicated Compatibility Matrix (CMX).
 
 ## Expose Ports on VMs
 
@@ -52,7 +52,7 @@ You can expose a node port that does not yet exist in the cluster.
 This is useful if you have a deterministic node port, but need the DNS name as a value in your Helm chart.
 :::
 
-The following diagram shows how the traffic is routed into the service using Compatibility Matrix tunnels:
+The following diagram shows how the traffic is routed into the service using CMX tunnels:
 
 <img src="/images/compatibility-matrix-ingress.png" alt="Compatibility Matrix ingress"></img>
 

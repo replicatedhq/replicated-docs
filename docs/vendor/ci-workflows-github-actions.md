@@ -4,7 +4,7 @@ This topic describes how to integrate Replicated's custom GitHub actions into co
 
 ## Overview
 
-Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using the Compatibility Matrix, such as:
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using Replicated Compatibility Matrix (CMX), such as:
   * Creating and removing customers, channels, and clusters
   * Promoting releases
   * Creating a matrix of clusters for testing based on the Kubernetes distributions and versions where your customers are running application instances
@@ -119,7 +119,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
-    <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the Compatibility Matrix.</td>
+    <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by CMX.</td>
     <td><code>release compatibility</code></td>
   </tr>
   <tr>

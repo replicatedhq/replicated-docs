@@ -25,17 +25,17 @@ Before you begin, do the following to set up your environment:
 
 * Ensure that you have access to a VM that meets the requirements for Embedded Cluster:
 
-   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix to create a VM, do the following before proceeding:
+   * **Option 1: Use Compatibility Matrix.** To use Replicated Compatibility Matrix (CMX) to create a VM, do the following before proceeding:
       
-      * Request Compatibility Matrix credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about Compatibility Matrix credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
+      * Request CMX credits. You can request credits by creating a Vendor Portal account and then going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information about creating an account, see [Create a Vendor Account](vendor-portal-creating-account). For more information about CMX credits, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
           :::note
-          If you are new to the Replicated platform, you might be eligible for $100 in free Compatibility Matrix credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
+          If you are new to the Replicated platform, you might be eligible for $100 in free CMX credits. To request your free credits, reach out to our sales team at https://www.replicated.com/contact and note in the comments that you are completing a Replicated tutorial.
           :::
       
-      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with Compatibility Matrix. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
+      * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with CMX. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
 
-      After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the VM with Compatibility Matrix as part of the tutorial.
+      After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the VM with CMX as part of the tutorial.
 
    * **Option 2: Bring your own VM.** Your VM must meet these requirements:
 
@@ -169,7 +169,7 @@ Before you begin, do the following to set up your environment:
 
 1. Click **Save Changes**.
 
-### Create a Compatibility Matrix VM   
+### Create a CMX VM   
 
 :::note
 If you are using your own VM, skip these steps and continue to [Create the ConfigValues](#create-the-configvalues) below.
@@ -229,7 +229,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
        slackernews_domain:
          value: YOUR_DOMAIN
      ```
-     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For Compatibility Matrix VMs, this is the hostname for the DNS record with port 443 that you copied in a previous step.
+     Where `YOUR_DOMAIN` is the domain to use for SlackerNews. For CMX VMs, this is the hostname for the DNS record with port 443 that you copied in a previous step.
 
      **Example:**
      ```yaml
@@ -248,7 +248,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
    1. SSH onto the VM.
    1. Transfer the `slackernews-configvalues.yaml` file from your local machine to the VM.
 
-* **If you are using a Compatibility Matrix VM:**
+* **If you are using a CMX VM:**
 
    1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) and find the VM under the **Virtual Machines** provided.
    
@@ -259,7 +259,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
    1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
 
-   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. Compatibility Matrix uses GitHub SSH to provide access to the VM.
+   1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. CMX uses GitHub SSH to provide access to the VM.
 
    1. Open a new command prompt window.
    
@@ -338,7 +338,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
 1. (Optional) Log in to the Admin Console using the password that you set with the `--admin-console-password` flag during installation:
 
-    * **Compatibility Matrix VMs:** The Admin Console domain is the hostname for the DNS record with port 30000 that you added to the VM. You can find this hostname by going to **Compatibility Matrix > Edit VM** in the Vendor Portal.
+    * **CMX VMs:** The Admin Console domain is the hostname for the DNS record with port 30000 that you added to the VM. You can find this hostname by going to **Compatibility Matrix > Edit VM** in the Vendor Portal.
 
     * **If you brought your own VM:** The Admin Console URL is provided in the output of the install command.
        :::note
@@ -347,7 +347,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
 1. Clean up the installation:
 
-    * If you created the VM with Compatibility Matrix, delete the VM:
+    * If you created the VM with CMX, delete the VM:
 
       ```bash
       replicated vm rm VM_ID
