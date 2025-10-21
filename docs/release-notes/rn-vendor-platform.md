@@ -16,14 +16,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 20, 2025
 
 ### New Features {#new-features-v2025-10-20-2}
-* Compatibility Matrix: Added support for SSH keys that are not synchronized with GitHub. See [Use a Personal Public/Private Key](/vendor/testing-vm-create#use-a-personal-publicprivate-key) in _Use CMX VMs_.
+* Compatibility Matrix: Adds support for SSH keys that are not synchronized with GitHub. See [Use a Personal Public/Private Key](/vendor/testing-vm-create#use-a-personal-publicprivate-key) in _Use CMX VMs_.
 
 ## v2025.10.15-2
 
 Released on October 15, 2025
 
 ### New Features {#new-features-v2025-10-15-2}
-* Added rate limiting to magic link login endpoints to prevent email abuse. The endpoints are limited to 20 requests per hour per IP address.
+* Adds rate limiting to magic link login endpoints to prevent email abuse. The endpoints are limited to 20 requests per hour per IP address.
 
 
 ## v2025.10.10-3
