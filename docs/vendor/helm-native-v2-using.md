@@ -18,7 +18,7 @@ To configure a release to support installations with HelmChart v2:
 
 1. For each HelmChart resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS conditionally rewrites any application image references in your Helm values if a local image registry is used.
+1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS rewrites any application image references in your Helm values when a local image registry is used.
 
     **Example:**
 
@@ -42,16 +42,15 @@ To configure a release to support installations with HelmChart v2:
                registry: '{{repl LocalRegistryHost }}'
                # Use KOTS LocalRegistryNamespace to inject
                # the image namespace in the user's registry
-               repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+               repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg
     ```
-
-    For more information about the KOTS template functions used, see [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace).
-
-   <details>
-     <summary>What is the registry namespace?</summary>
-
-      The registry namespace is the path between the registry and the image name. For example, `images.registry.com/namespace/image:tag`.
-   </details>
+    The following describes how to configure the image registry and repository fields:
+    * For the `when` statement, use the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to evaluate if a local registry is configured.
+    * For the image registry, use the [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) template function to inject the local registry's hostname. 
+    * For the image repository, use the [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template function to inject the local registry's namespace, followed by the image name and any tags. For example, for an image located at `registryhostname.com/namespace/more-path/name:tag`, set the repository in `optionalValues` to `'{{repl LocalRegistryNamespace }}'/name:tag`. You do not need to include the full path because KOTS automatically strips everything from the image name except `name:tag` when pushing an image to a local registry.
+       :::note
+       Image names must be unique. If you have more than one image with the same name (even if the images are in different registries or namespaces) KOTS will overwrite one with the other.
+       :::
 
 1. In the HelmChart resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
 
@@ -74,7 +73,7 @@ To configure a release to support installations with HelmChart v2:
                 registry: '{{repl LocalRegistryHost }}'
                 # The default location for the SDK image is
                 # proxy.replicated.com/library/replicated-sdk-image
-                repository: '{{repl LocalRegistryNamespace }}/library/replicated-sdk-image'
+                repository: '{{repl LocalRegistryNamespace }}/replicated-sdk-image'
     ```
     For more information about declaring the SDK as a dependency, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
     
