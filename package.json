@@ -36,7 +36,7 @@
     "ts-node": "10.9.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.1",
+    "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/types": "3.9.2",
     "typescript": "~5.9.3"
   },
