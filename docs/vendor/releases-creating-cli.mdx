@@ -6,6 +6,10 @@ For information about creating and managing releases with the Vendor Portal, see
 
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) section in the Vendor API v3 documentation.
 
+:::tip
+You can use a `.replicated` configuration file to define your project structure and resource locations. See [.replicated Configuration File](/reference/cli-replicated-config).
+:::
+
 ## Prerequisites
 
 Before you create a release using the Replicated CLI, complete the following prerequisites:
@@ -50,12 +54,16 @@ To create and promote a release:
    1. In the same directory that contains the release files, add a HelmChart custom resource for each Helm chart in the release. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 1. Lint the application manifest files and ensure that there are no errors in the YAML:
- 
+
     ```bash
     replicated release lint --yaml-dir=PATH_TO_RELEASE_DIR
     ```
 
     Where `PATH_TO_RELEASE_DIR` is the path to the directory with the release files.
+
+    :::note
+    If you have a `.replicated` configuration file, you can run `replicated release lint` without the `--yaml-dir` flag to automatically discover and lint resources. See [.replicated Configuration File](/reference/cli-replicated-config).
+    :::
 
     For more information, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter).   
 

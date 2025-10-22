@@ -10,6 +10,10 @@ The Vendor API v3 is the API that manages applications in the Replicated Vendor 
 
 Using the Replicated CLI and Vendor API V3 requires an API token for authorization. Tokens are primarily used for automated customer, channel, and release management. You create tokens in the Vendor Portal.
 
+:::tip
+The Replicated CLI supports multiple authentication profiles for managing tokens across different accounts or environments. See [CLI Authentication Profiles](/reference/cli-profiles).
+:::
+
 The following types of tokens are available:
 
 - [Service Accounts](#service-accounts)
@@ -64,6 +68,10 @@ To generate a service account:
 
 1. Copy the service account token and save it in a secure location. The token will not be available to view again.
 
+   :::tip
+   You can store this token in a CLI authentication profile for easy management. See [CLI Authentication Profiles](/reference/cli-profiles).
+   :::
+
    :::note
    To remove a service account, select **Remove** for the service account that you want to delete.
    :::
@@ -92,6 +100,10 @@ To generate a user API token:
    :::
 
 1. Copy the user API token that displays and save it in a secure location. The token will not be available to view again.
+
+   :::tip
+   You can store this token in a CLI authentication profile for easy management. See [CLI Authentication Profiles](/reference/cli-profiles).
+   :::
 
    :::note
    To revoke a token, select **Revoke token** for the token that you want to delete.
