@@ -550,10 +550,6 @@ Before you begin, do the following to set up your environment:
       :::note
       If you see a `helm-archive-missing` error, confirm that you have only one chart archive in `manifests` for version 1.0.1, and that the `chartVersion` in the HelmChart resource is also set to `1.0.1`. If you notice that any of the errors are from files in your `.history/` directory, run `rm -rf .history` and then lint the files again.
       :::
-
-      :::tip
-      For automated workflows, you can create a `.replicated` configuration file to define your project structure, resources, and linting preferences. This enables commands like `replicated release lint` to automatically discover and process resources without the `--yaml-dir` flag. See [.replicated Configuration File](/reference/cli-replicated-config).
-      :::
    
    1. Create and promote a new release, setting the version label of the release to `0.0.2`:  
 

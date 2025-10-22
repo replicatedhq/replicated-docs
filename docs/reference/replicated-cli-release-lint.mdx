@@ -4,7 +4,7 @@ Lint a directory of KOTS manifests
 
 ### Synopsis
 
-Lint a directory of KOTS manifests. If a `.replicated` configuration file is present, the command will automatically discover and lint resources based on the configuration. Otherwise, use `--yaml-dir` to specify the directory containing manifest files.
+Lint a directory of KOTS manifests.
 
 For more information about configuring automatic resource discovery, see [.replicated Configuration File](/reference/cli-replicated-config).
 
@@ -19,7 +19,6 @@ replicated release lint [flags]
   -h, --help             help for lint
   -o, --output string    The output format to use. One of: json|table (default "table")
       --verbose          Show verbose output, including discovered images
-      --yaml-dir yaml    The directory containing multiple yamls for a Kots release. Cannot be used with the yaml flag. If omitted and a .replicated config exists, resources will be auto-discovered.
 ```
 
 ### Options inherited from parent commands
