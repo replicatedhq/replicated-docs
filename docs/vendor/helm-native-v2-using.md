@@ -48,6 +48,9 @@ To configure a release to support installations with HelmChart v2:
     * For the `when` statement, use the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) template function to evaluate if a local registry is configured.
     * For the image registry, use the [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) template function to inject the local registry's hostname. 
     * For the image repository, use the [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template function to inject the local registry's namespace, followed by the image name and any tags. For example, for an image located at `registryhostname.com/namespace/more-path/name:tag`, set the repository in `optionalValues` to `'{{repl LocalRegistryNamespace }}'/name:tag`. You do not need to include the full path because KOTS automatically strips everything from the image name except `name:tag` when pushing an image to a local registry.
+       :::note
+       Image names must be unique. If you have more than one image with the same name (even if the images are in different registries or namespaces) KOTS will overwrite one with the other.
+       :::
 
 1. In the HelmChart resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
 
