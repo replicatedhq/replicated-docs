@@ -4,7 +4,9 @@ Lint a directory of KOTS manifests
 
 ### Synopsis
 
-Lint a directory of KOTS manifests
+Lint a directory of KOTS manifests.
+
+For more information about configuring automatic resource discovery, see [.replicated Configuration File](/reference/cli-replicated-config).
 
 ```
 replicated release lint [flags]
@@ -16,7 +18,7 @@ replicated release lint [flags]
       --fail-on string   The minimum severity to cause the command to exit with a non-zero exit code. Supported values are [info, warn, error, none]. (default "error")
   -h, --help             help for lint
   -o, --output string    The output format to use. One of: json|table (default "table")
-      --yaml-dir yaml    The directory containing multiple yamls for a Kots release.  Cannot be used with the yaml flag.
+      --verbose          Show verbose output, including discovered images
 ```
 
 ### Options inherited from parent commands
