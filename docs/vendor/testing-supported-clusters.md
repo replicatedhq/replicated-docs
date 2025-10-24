@@ -318,7 +318,7 @@ CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.31, 1.32, 1.33, 1.34{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
+    <td><p>{/* START_eks_VERSIONS */}1.28, 1.29, 1.30, 1.31, 1.32, 1.33, 1.34{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.28, 1.29, 1.30</p></td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
