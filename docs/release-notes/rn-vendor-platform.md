@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 22, 2025
 
 ### New Features {#new-features-v2025-10-22-2}
-* CMX: Updating the TTL now shows the expected time when the cluster or VM will expire.
+* Compatibility Matrix: Updating the TTL shows the expected time when the cluster or VM will expire.
 
 
 ## v2025.10.20-2
