@@ -18,6 +18,20 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.128.3
+
+Released on October 28, 2025
+
+Support for Kubernetes: 1.31, 1.32, and 1.33
+
+### Improvements {#improvements-1-128-3}
+* Adds fully qualified registry prefix for KOTS to improve registry handling.
+* Updates multiple security dependencies to address potential vulnerabilities.
+
+### Bug Fixes {#bug-fixes-1-128-3}
+* Fixes an issue when editing the release config on Embedded Cluster where the sidebar items would disappear.
+* Fixes an issue where channel switches in Embedded Cluster installations would skip infrastructure upgrades, leaving the cluster on an outdated Kubernetes version.
+
 ## 1.128.2
 
 Released on September 29, 2025
