@@ -23,6 +23,10 @@ This will provision the cloud-provider specific load balancer.
 The `LoadBalancer` service will be filled by the in-tree Kubernetes functionality that's integrated with the underlying cloud provider.
 You can then query the service definition using `kubectl` and connect to and execute your tests over the `LoadBalancer` IP address.
 
+  :::note
+  AKS clusters require additional annotations to be set on LoadBalancer services for traffic to be routed. `controller.service.externalTrafficPolicy` should be set to `Local`, and `service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path` must be set to a health check endpoint that returns a successful HTTP response when your service is ready. See the [AKS documentation](https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard) for more details and values for these annotations.
+  :::
+
 ### Ingress
 Ingress is a good way to recreate customer-representative environments, but the problem still remains on how to get inbound access to the IP address that the ingress controller allocates.
 Ingress is also not perfectly portable; each ingress controller might require different annotations in the ingress resource to work properly.
