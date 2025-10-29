@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on October 29, 2025
 
 ### Improvements {#improvements-1-10-0}
-* Adds support for configuring a proxy for the SDK with [`proxy`](https://github.com/replicatedhq/replicated-sdk/blob/1.10.0/chart/values.yaml#L315). For more information, see [Proxy](/vendor/replicated-sdk-customizing#proxy).
+* Adds support for configuring a proxy for the SDK with [`proxy`](https://github.com/replicatedhq/replicated-sdk/blob/1.10.0/chart/values.yaml#L315). For more information, see [Proxy Configuration](/vendor/replicated-sdk-customizing#proxy).
 * Enables the use of `kots.io/v1beta2` licenses.
 
 ## 1.9.0

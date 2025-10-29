@@ -575,9 +575,9 @@ replicated:
 
 ## Proxy Configuration {#proxy}
 
-With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use a https proxy when fetching license information and reporting metrics.
+With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use an HTTPS proxy when fetching license information and reporting metrics.
 
-When enabled, the SDK will use the configured proxy for requests to Replicated APIs, but will not use a proxy for requests to the Kubernetes API. You can set an additional no_proxy if desired but this should not be required.
+When enabled, the SDK will use the configured proxy for requests to Replicated APIs, but will not use a proxy for requests to the Kubernetes API. Setting an additional no_proxy is not required.
 
 To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
 
