@@ -140,7 +140,11 @@ To create channel-specific installation instructions:
 
 1. Select the channel you want to customize from the dropdown.
 
-1. Toggle **Enable custom install instructions** to enable the MDX template editor.
+1. Toggle **Enable** to enable the MDX template editor.
+
+   ![Enable toggle](/images/vendor-portal-custom-instructions-enable.png)
+
+   [View a larger version of this image](/images/vendor-portal-custom-instructions-enable.png)
 
 1. In the MDX template editor, write your custom installation instructions using Markdown, template variables, and MDX components.
 
@@ -339,7 +343,7 @@ Here's an example of a custom installation template using MDX with conditional r
 [View a larger version of this image](/images/enterprise-portal-custom-instructions-linux-online.png)
 
 ```mdx
-# Install {app.name}
+# Install \{app.name\}
 
 <ConditionalRender when="installOptions.installType === 'helm'">
   ## Helm Installation
@@ -471,7 +475,7 @@ Here's an example of a custom installation template using MDX with conditional r
     </ConditionalRender>
     <br /><br />
     <Tip>
-      The installer will provision a Kubernetes cluster and deploy {app.name}.
+      The installer will provision a Kubernetes cluster and deploy \{app.name\}.
     </Tip>
   </InstallStep>
 
