@@ -2,8 +2,6 @@
 For Windows users, Replicated recommends using Windows Subsystem for Linux (WSL2) and installing the Replicated using the Linux installations above. See [Linux / Windows Subsystem for Linux (WSL2)](#linux-wsl2).
 :::
 
-Installing in Docker environments requires that you set the `REPLICATED_API_TOKEN` environment variable to authorize the Replicated CLI with an API token. For more information, see [(Optional) Set Environment Variables](/reference/replicated-cli-installing#env-var).
-
 To install and run the latest Replicated CLI in Docker environments:
 
 1. Generate a service account or user API token in the vendor portal. To create new releases, the token must have `Read/Write` access. See [Generating API Tokens](/vendor/replicated-api-tokens).
@@ -12,25 +10,8 @@ To install and run the latest Replicated CLI in Docker environments:
 
     Download and install the files. For simplicity, the usage in the next step is represented assuming that the CLI is downloaded and installed to the desktop.
 
-1. Authorize the Replicated CLI:
+1. To begin using the Replicated CLI to manage your applications, authenticate with your Replicated credentials. See [Authenticate](#auth).
 
-     - Through a Docker container:
-
-        ```shell
-        docker run \
-          -e REPLICATED_API_TOKEN=$TOKEN \
-          replicated/vendor-cli --help
-        ```
-        Replace `TOKEN` with your API token.
-
-     - On Windows:
-
-        ```dos
-        docker.exe run \
-          -e REPLICATED_API_TOKEN=%TOKEN% \
-          replicated/vendor-cli --help
-        ```
-
-        Replace `TOKEN` with your API token.
-
-  For more information about the `docker run` command, see [docker run](https://docs.docker.com/engine/reference/commandline/run/) in the Docker documentation. 
+   :::note
+   Installing in Docker environments requires that you set the `REPLICATED_API_TOKEN` environment variable to authorize the Replicated CLI with an API token. For more information, see [Set Environment Variables](/reference/replicated-cli-installing#env-var).
+   :::

@@ -608,8 +608,6 @@ const sidebars = {
     label: 'Replicated CLI', // This label is generated. Do not edit.
     items: [ // This list is generated. Do not edit.
       'reference/replicated-cli-installing',
-      'reference/cli-profiles',
-      'reference/cli-replicated-config',
       'reference/replicated',
       'reference/replicated-cli-api',
       'reference/replicated-cli-api-get',
@@ -717,6 +715,14 @@ const sidebars = {
       'reference/replicated-cli-vm-update',
       'reference/replicated-cli-vm-update-ttl',
       'reference/replicated-cli-vm-versions',
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Replicated CLI Configuration File',
+    items: [
+      'reference/replicated-cli-config-file',
+      'reference/replicated-cli-config-file-reference',
     ],
   },
   {

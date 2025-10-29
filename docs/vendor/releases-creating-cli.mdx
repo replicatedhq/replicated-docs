@@ -6,25 +6,15 @@ For information about creating and managing releases with the Vendor Portal, see
 
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) section in the Vendor API v3 documentation.
 
-:::tip
-You can use a `.replicated` configuration file to define your project structure and resource locations. See [.replicated Configuration File](/reference/cli-replicated-config).
-:::
-
 ## Prerequisites
 
 Before you create a release using the Replicated CLI, complete the following prerequisites:
 
-* Install the Replicated CLI and then log in to authorize the CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+* Install the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
   
 * Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-* Set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
-
-  **Example**:
-
-  ```bash
-  export REPLICATED_APP=my-app-slug
-  ```
+* Add a `.replicated` configuration file to your project. See [Add a .replicated File](/reference/replicated-cli-config-file). Alternatively, set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
 
 ## Create a Release From a Local Directory {#dir}
 
