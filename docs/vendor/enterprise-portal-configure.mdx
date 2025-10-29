@@ -266,7 +266,7 @@ The following pre-built components are available in MDX templates:
   - Props: None (just wrap text content)
   - **Important**: To use template variables inside InlineCode, wrap them in template literals using curly braces: `{`...`}`
   - **Limitation**: Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not currently supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.
-  - Example: `<InlineCode>{`${app.slug}`}</InlineCode>`
+  - Example: ```<InlineCode>{`${app.slug}`}</InlineCode>```
 
 - `<CodeBlock>`: Display multi-line code blocks with syntax highlighting
   - Props: `language` (string, optional), `maxHeight` (number | string, optional), `showCopyButton` (boolean, optional), `disabled` (boolean, optional)
