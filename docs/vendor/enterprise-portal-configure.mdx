@@ -82,18 +82,11 @@ To configure customer emails:
 
      [View a larger version of this image](/images/enterprise-portal-customer-emails-edit.png)
 
-## Customize Documentation
+## Add a Link to Documentation
 
-The install instructions available in the Enterprise Portal are automatically generated based on the install types and options enabled in the customer's license. For more information about managing the installation types and options, see [Manage Install Types for a License](/vendor/licenses-install-types).
+For each of your supported install types, you can add a link your installation documentation. The link you provide is displayed on the Enterprise Portal **Install** page.
 
-You can customize the documentation that is displayed in the Enterprise Portal in two ways:
-
-- **Knowledge Base**: Add documentation links and pre/post-installation instructions that apply to all release channels
-- **Channel Customizations**: Create custom, channel-specific installation instructions using MDX templates
-
-### Add Documentation Links and Instructions
-
-To customize documentation at the app level:
+To add a link to your documentation in the Enterprise Portal:
 
 1. In the Vendor Portal, go to **Enterprise Portal > Knowledge Base**.
 
@@ -103,52 +96,65 @@ To customize documentation at the app level:
 
 1. In the panel on the left, select the installation type.
 
-1. Customize the documentation for the selected installation type as desired:
-    1. In the documentation links section, add a link to your installation documentation. The link is displayed on the Enterprise Portal **Install** page.
-    1. In the documentation content section, add pre- and post-installation instructions in markdown format. Click **Preview** to see a preview of your changes.
-
-    :::note
-    By default, these same instructions are shown for all release channels. To add channel-specific instructions, see [Customize Channel-Specific Install Instructions](#customize-channel-install-instructions).
-    :::
+1. In the documentation links section, add a link to your application install documentation.
 
 1. Click **Save changes**.
 
-### Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
+## Add Pre- and Post-Install Instructions
+
+For each of your supported install types, you can add custom pre- and post-install instructions for users. This is useful if there are additional prerequisites or follow-up steps that users need to complete in addition to the primary installation instructions.
+
+:::note
+The same pre- and post- instructions are shown for all your release channels. To add channel-specific instructions, see [Customize Channel-Specific Install Instructions](#customize-channel-install-instructions).
+:::
+
+To customize the pre- and post-install instructions for your application:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Knowledge Base**.
+
+   ![Enterprise Portal knowledge base page](/images/enterprise-portal-knowledge-base.png)
+
+   [View a larger version of this image](/images/enterprise-portal-knowledge-base.png)
+
+1. In the panel on the left, select the installation type.
+
+1. In the documentation content section, add pre- and post-installation instructions in markdown format. Click **Preview** to see a preview of your changes.
+
+1. Click **Save changes**.
+
+## Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
 
 :::note
 This feature is in Alpha and subject to change.
 :::
 
-You can create custom installation instructions for each release channel using MDX templates. This allows you to provide tailored installation experiences with dynamic content based on customer configuration, release information, and branding.
+By default, the installation instructions available in the Enterprise Portal are automatically generated based on the install types and options enabled in the customer's license. These default installation instructions are the same across all release channels. For more information about managing the install types and options, see [Manage Install Types for a License](/vendor/licenses-install-types).
 
-#### About MDX Templates
+You can also write custom, channel-specific instructions. This is useful if you need to provide unique installation steps for any of your release channels. For example, you can add custom steps, rename steps or sections to match your documentation, include videos or diagrams, and more.
 
-MDX is a format that combines Markdown with JSX, allowing you to use pre-built components and template variables in your installation instructions. MDX templates support:
+These custom installation instructions support MDX. MDX is a format that combines Markdown with JSX, allowing you to use components and template variables in your instructions. MDX templates support the following:
 
-- **Template Variables**: Access dynamic data like application name, release version, registry settings, and customer inputs
-- **Custom Components**: Use pre-built UI components like code blocks, alerts, tabs, and progress indicators
-- **Conditional Rendering**: Show or hide content based on installation options or environment
-- **Progressive Enhancement**: Automatically falls back to default instructions if custom instructions are disabled
+- **Template variables**: Access dynamic data like application name, release version, registry settings, and customer inputs
+- **Built-in UI components**: Use UI components like code blocks, alerts, tabs, and progress indicators
+- **Conditional rendering**: Conditionally show or hide content. For example, show or hide certain steps based on the installation options supported by the customer's license
 
-#### Create Custom Install Instructions
+### Customize Channel-Specific Instructions
 
-To create channel-specific installation instructions:
+To customize channel-specific installation instructions:
 
 1. In the Vendor Portal, go to **Enterprise Portal > Knowledge Base**.
 
 1. Scroll to the **Channel customizations** section.
 
-1. Select the channel you want to customize from the dropdown.
+1. For the channel where you want to customize instructions, click **Enable**.
 
-1. Toggle **Enable** to enable the MDX template editor.
-
-   ![Enable toggle](/images/vendor-portal-custom-instructions-enable.png)
+   ![Enable button](/images/vendor-portal-custom-instructions-enable.png)
 
    [View a larger version of this image](/images/vendor-portal-custom-instructions-enable.png)
 
 1. In the MDX template editor, write your custom installation instructions using Markdown, template variables, and MDX components.
 
-   The editor provides autocomplete for available template variables and components. Start typing `{` for template variables or `<` for MDX components to see suggestions.
+   The editor provides autocomplete for available template variables and components. Start typing `{` for template variables or `<` for MDX components to see suggestions. For more information about the available variables and components, see [Supported MDX Template Variables](#vars) and [Supported MDX Components](#components) below.
 
    ![MDX template editor](/images/vendor-portal-custom-instructions-editing.png)
 
@@ -156,197 +162,350 @@ To create channel-specific installation instructions:
 
 1. Click **Save changes** to save your custom installation instructions.
 
-#### Template Variables
+### Revert to Default Instructions
 
-The following template variables are available in MDX templates:
+To disable custom instructions for a channel and revert to the default automatically-generated instructions:
+
+1. In the **Channel customizations** section, select the channel.
+
+1. For the target channel, click **Disable**. When channel customizations are disabled, the Enterprise Portal shows the default installation instructions for the channel.
+
+   :::note
+   Your custom documentation is saved in the **Channel customizations** MDX template editor. You can enable the custom instructions again by clicking **Enable** for the channel.
+   :::
+
+### Supported MDX Template Variables {#vars}
+
+:::note
+For a complete list of available variables, use the autocomplete feature in the editor.
+:::
+
+The following describes some of the supported MDX template variables:
 
 <table>
   <tr>
-    <th>Variable</th>
-    <th>Description</th>
-    <th>Example</th>
+    <th width="20%">Variable</th>
+    <th width="40%">Description</th>
+    <th width="40%">Example</th>
   </tr>
   <tr>
     <td><code>{`{app.name}`}</code></td>
     <td>Application name</td>
-    <td>My Application</td>
+    <td>`My Application`</td>
   </tr>
   <tr>
     <td><code>{`{app.slug}`}</code></td>
     <td>Application slug (identifier)</td>
-    <td>my-app</td>
+    <td>`my-app`</td>
   </tr>
   <tr>
     <td><code>{`{channel.name}`}</code></td>
     <td>Channel name</td>
-    <td>Stable</td>
+    <td>`Stable`</td>
   </tr>
   <tr>
     <td><code>{`{channel.slug}`}</code></td>
     <td>Channel slug</td>
-    <td>stable</td>
+    <td>`stable`</td>
   </tr>
   <tr>
     <td><code>{`{release.versionLabel}`}</code></td>
     <td>Release version number</td>
-    <td>1.2.3</td>
+    <td>`1.2.3`</td>
   </tr>
   <tr>
     <td><code>{`{release.sequence}`}</code></td>
     <td>Release sequence number</td>
-    <td>42</td>
+    <td>`42`</td>
   </tr>
   <tr>
     <td><code>{`{installOptions.adminConsoleUrl}`}</code></td>
     <td>Admin Console URL (user input, dynamic)</td>
-    <td>https://admin.example.com</td>
+    <td>`https://admin.example.com`</td>
   </tr>
   <tr>
     <td><code>{`{installOptions.proxyUrl}`}</code></td>
     <td>HTTP/HTTPS proxy URL (user input, dynamic)</td>
-    <td>https://proxy.example.com:8080</td>
+    <td>`https://proxy.example.com:8080`</td>
   </tr>
   <tr>
     <td><code>{`{installOptions.privateRegistryUrl}`}</code></td>
     <td>Private registry hostname (user input, dynamic)</td>
-    <td>registry.example.com:5000</td>
+    <td>`registry.example.com:5000`</td>
   </tr>
   <tr>
     <td><code>{`{branding?.title}`}</code></td>
     <td>Enterprise Portal title (optional)</td>
-    <td>MyApp Enterprise Portal</td>
+    <td>`MyApp Enterprise Portal`</td>
   </tr>
   <tr>
     <td><code>{`{branding?.primaryColor}`}</code></td>
     <td>Primary brand color (optional)</td>
-    <td>#4a53b0</td>
+    <td>`#4a53b0`</td>
   </tr>
   <tr>
     <td><code>{`{branding?.supportPortalLink}`}</code></td>
     <td>Support portal URL (optional)</td>
-    <td>https://support.example.com</td>
+    <td>`https://support.example.com`</td>
   </tr>
   <tr>
     <td><code>{`{installation.licenseId}`}</code></td>
     <td>Customer license ID</td>
-    <td>2cHXb1RCttzpR0xvnNWyaZCgDBP</td>
+    <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
   </tr>
   <tr>
     <td><code>{`{installation.serviceAccountId}`}</code></td>
     <td>Service account identifier</td>
-    <td>2cHXb1RCttzpR0xvnNWyaZCgDBP</td>
+    <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
   </tr>
   <tr>
     <td><code>{`{images.raw}`}</code></td>
     <td>Array of image names without registry (Helm only)</td>
-    <td>["nginx:1.19", "postgres:13"]</td>
+    <td>`["nginx:1.19", "postgres:13"]`</td>
   </tr>
   <tr>
     <td><code>{`{images.full}`}</code></td>
     <td>Array of complete image references (Helm only)</td>
-    <td>["registry.replicated.com/..."]</td>
+    <td>`["registry.replicated.com/..."]`</td>
   </tr>
 </table>
 
-For a complete list of available variables, use the autocomplete feature in the editor.
+### Supported MDX Components {#components}
 
-#### MDX Components
+The following components are available in MDX templates. For examples of each component, see [Example](#example) below.
 
-The following pre-built components are available in MDX templates:
+#### Text and Formatting
 
-**Text and Formatting**
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<Note>`, `<Tip>`, `<Warning>`, `<Info>`</td>
+      <td>
+        Display callout boxes with different styles.
+      </td>
+      <td>`icon` (boolean, optional): Show or hide the icon in the callout.</td>
+    </tr>
+    <tr>
+      <td>`<Alert>`</td>
+      <td>
+        General purpose alert with customizable type
+      </td>
+      <td>
+        <ul>
+          <li>`kind` ("info" | "warning" | "error" | "success", optional)</li>
+          <li>`icon` (boolean, optional): Show or hide the icon in the callout.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>`<InlineCode>`</td>
+      <td>
+        <p>Display inline code.</p>
+        <p>To use template variables inside CodeBlock, wrap them in template literals using curly braces: `{`...`}`. For example, ```<InlineCode>{`${app.slug}`}</InlineCode>```.</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>`<CodeBlock>`</td>
+      <td>
+        <p>Display multi-line code blocks with syntax highlighting.</p>
+        <p>To use template variables inside CodeBlock, wrap them in template literals using curly braces: `{`...`}`. For examples of this, see [Example](#example).</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>
+        <ul>
+          <li>`language` (string, optional)</li>
+          <li>`maxHeight` (number | string, optional)</li>
+          <li>`showCopyButton` (boolean, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<CommandBlock>`</td>
+      <td>
+        <p>Display shell commands with copy functionality.</p>
+        <p>To use template variables inside CommandBlock, wrap them in template literals using curly braces: `{`...`}`. For examples of this, see [Example](#example).</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>
+        <ul>
+          <li>`language` (string, optional)</li>
+          <li>`maxHeight` (number | string, optional)</li>
+          <li>`showCopyButton` (boolean, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- `<Note>`, `<Tip>`, `<Warning>`, `<Info>`: Display callout boxes with different styles
-  - Props: `icon` (boolean, optional) - Show/hide icon
+#### Layout
 
-- `<Alert>`: General purpose alert with customizable type
-  - Props: `kind` ("info" | "warning" | "error" | "success", optional), `icon` (boolean, optional)
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<Tabs>`</td>
+      <td>Create tabbed content sections</td>
+      <td>`defaultActiveTab` (number, optional): Index of initially active tab</td>
+    </tr>
+    <tr>
+      <td>`<Tab>`</td>
+      <td>Individual tab within a Tabs container</td>
+      <td>`title` (string, required): Tab label text</td>
+    </tr>
+    <tr>
+      <td>`<Accordion>`</td>
+      <td>Create collapsible content sections</td>
+      <td>`title` (string, required), `defaultOpen` (boolean, optional)</td>
+    </tr>
+    <tr>
+      <td>`<ConditionalRender>`</td>
+      <td>Show or hide content based on conditions</td>
+      <td>`when` (string, required): JavaScript expression to evaluate</td>
+    </tr>
+  </tbody>
+</table>
 
-- `<InlineCode>`: Display inline code
-  - Props: None (just wrap text content)
-  - **Important**: To use template variables inside InlineCode, wrap them in template literals using curly braces: `{`...`}`
-  - **Limitation**: Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not currently supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.
-  - Example: ```<InlineCode>{`${app.slug}`}</InlineCode>```
 
-- `<CodeBlock>`: Display multi-line code blocks with syntax highlighting
-  - Props: `language` (string, optional), `maxHeight` (number | string, optional), `showCopyButton` (boolean, optional), `disabled` (boolean, optional)
-  - **Important**: To use template variables inside CodeBlock, wrap them in template literals using curly braces: `{`...`}`
-  - **Limitation**: Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not currently supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.
-  - Example:
-    ```mdx
-    <CodeBlock language="bash">
-    {`export REGISTRY=<YOUR_REGISTRY>
-    helm install ${app.slug} --version ${release.versionLabel}`}
-    </CodeBlock>
-    ```
+#### Installation Components
 
-- `<CommandBlock>`: Display shell commands with copy functionality
-  - Props: `language` (string, optional), `maxHeight` (number | string, optional), `showCopyButton` (boolean, optional), `disabled` (boolean, optional)
-  - **Important**: To use template variables inside CommandBlock, wrap them in template literals using curly braces: `{`...`}`
-  - **Limitation**: Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not currently supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.
-  - Example:
-    ```mdx
-    <CommandBlock>
-    {`curl -x <YOUR_PROXY_URL> https://example.com`}
-    </CommandBlock>
-    ```
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<InstallStep>`</td>
+      <td>Numbered installation step</td>
+      <td>
+        <ul>
+          <li>`title` (string, required)</li>
+          <li>`stepNumber` (number, optional)</li>
+          <li>`completed` (boolean, optional)</li>
+          <li>`optional` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<Prerequisites>`</td>
+      <td>Display prerequisites section</td>
+      <td>`title` (string, optional): Custom title for the section</td>
+    </tr>
+    <tr>
+      <td>`<Troubleshooting>`</td>
+      <td>Display troubleshooting section</td>
+      <td>`title` (string, optional): Custom title for the section</td>
+    </tr>
+  </tbody>
+</table>
 
-**Layout**
 
-- `<Tabs>`: Create tabbed content sections
-  - Props: `defaultActiveTab` (number, optional) - Index of initially active tab
+#### Input Components
 
-- `<Tab>`: Individual tab within a Tabs container
-  - Props: `title` (string, required) - Tab label text
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<ProxyURLInput>`</td>
+      <td>Collect proxy URL from user</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<PrivateRegistryInput>`</td>
+      <td>Collect registry credentials</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<AdminConsoleURLInput>`</td>
+      <td>Collect Admin Console URL</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- `<Accordion>`: Create collapsible content sections
-  - Props: `title` (string, required), `defaultOpen` (boolean, optional)
 
-- `<ConditionalRender>`: Show or hide content based on conditions
-  - Props: `when` (string, required) - JavaScript expression to evaluate
+#### Display Components
 
-**Installation Components**
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<SupportLink>`</td>
+      <td>Link to support resources</td>
+      <td>
+         <ul>
+           <li>`href` (string, optional): Link URL. If not set, uses `branding.supportPortalLink`.</li>
+           <li>`showIcon` (boolean, optional, default: true)</li>
+           <li>`target` ("_blank" | "_self", optional, default: "_blank")</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- `<InstallStep>`: Numbered installation step
-  - Props: `title` (string, required), `stepNumber` (number, optional), `completed` (boolean, optional), `optional` (boolean, optional)
+### MDX Templates Restrictions
 
-- `<Prerequisites>`: Display prerequisites section
-  - Props: `title` (string, optional) - Custom title for the section
+MDX templates are validated for security before being saved. The following restrictions apply:
 
-- `<Troubleshooting>`: Display troubleshooting section
-  - Props: `title` (string, optional) - Custom title for the section
+- Only approved MDX components can be used
+- JavaScript code execution is not allowed
+- External script imports are blocked
+- Dangerous HTML elements (script, iframe, embed) are not allowed
+- Template size is limited to 1MB
 
-**Input Components**
+### Example
 
-- `<ProxyURLInput>`: Collect proxy URL from user
-  - Props: `placeholder` (string, optional), `disabled` (boolean, optional)
+The following is an example of custom installation instructions that use MDX with conditional rendering based on installation type:
 
-- `<PrivateRegistryInput>`: Collect registry credentials
-  - Props: `placeholder` (string, optional), `disabled` (boolean, optional)
-
-- `<AdminConsoleURLInput>`: Collect Admin Console URL
-  - Props: `placeholder` (string, optional), `disabled` (boolean, optional)
-
-**Display Components**
-
-- `<SupportLink>`: Link to support resources
-  - Props: `href` (string, optional) - Link URL (falls back to branding.supportPortalLink), `showIcon` (boolean, optional, default: true), `target` ("_blank" | "_self", optional, default: "_blank")
-
-#### Example: Custom Install Instructions
-
-Here's an example of a custom installation template using MDX with conditional rendering based on installation type:
-
-**Helm Online Install Preview:**
-
-![Helm online install instructions example](/images/enterprise-portal-custom-instructions-helm-online.png)
-
-[View a larger version of this image](/images/enterprise-portal-custom-instructions-helm-online.png)
-
-**Linux (Embedded Cluster) Online Install Preview:**
-
-![Linux online install instructions example](/images/enterprise-portal-custom-instructions-linux-online.png)
-
-[View a larger version of this image](/images/enterprise-portal-custom-instructions-linux-online.png)
+<details>
+  <summary>MDX Example</summary>
 
 ```mdx
 # Install \{app.name\}
@@ -500,23 +659,24 @@ Here's an example of a custom installation template using MDX with conditional r
   </Troubleshooting>
 </ConditionalRender>
 ```
+</details>
 
-#### Security and Validation
+Given the MDX example above, the following show previews of how the Helm online install and Linux (Embedded Cluster) online install instructions would appear in the Enterprise Portal:
 
-MDX templates are validated for security before being saved. The following restrictions apply:
+<details>
+  <summary>Helm Online Install Preview</summary>
 
-- Only approved MDX components can be used
-- JavaScript code execution is not allowed
-- External script imports are blocked
-- Dangerous HTML elements (script, iframe, embed) are not allowed
-- Template size is limited to 1MB
+![Helm online install instructions example](/images/enterprise-portal-custom-instructions-helm-online.png)
 
-#### Disable Custom Instructions
+[View a larger version of this image](/images/enterprise-portal-custom-instructions-helm-online.png)
 
-To disable custom instructions and revert to the default automatically-generated instructions:
+</details>
 
-1. In the **Channel customizations** section, select the channel.
-1. Toggle **Enable custom install instructions** to off.
-1. Click **Save changes**.
+<details>
+  <summary>Linux (Embedded Cluster) Online Install Preview</summary>
 
-The Enterprise Portal will automatically display the default installation instructions when custom instructions are disabled.
+![Linux online install instructions example](/images/enterprise-portal-custom-instructions-linux-online.png)
+
+[View a larger version of this image](/images/enterprise-portal-custom-instructions-linux-online.png)
+
+</details>
