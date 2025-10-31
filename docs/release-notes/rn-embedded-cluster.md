@@ -12,6 +12,38 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.12.0
+
+Released on October 30, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.12.0+k8s-1.33</td>
+    <td id="center">2.12.0+k8s-1.32</td>
+    <td id="center">2.12.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.128.3</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-12-0}
+
+* KOTS and application deployments now use a namespace named after the app's slug instead of "kotsadm" for new installations. During upgrades, the "kotsadm" namespace is used if it exists, otherwise the app's slug is used. [#3070](https://github.com/replicatedhq/embedded-cluster/pull/3070)
+
+### Bug Fixes {#bug-fixes-2-12-0}
+
+* Fixed SeaweedFS Raft flakiness causing HA registry instability.
+* Fixed parsing of release files with multiple KOTS YAML documents.
+
 ## 2.11.3
 
 Released on October 1, 2025
