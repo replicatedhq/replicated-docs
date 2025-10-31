@@ -37,7 +37,7 @@ Released on October 30, 2025
 
 ### Improvements {#improvements-2-12-0}
 
-* KOTS and application deployments now use a namespace named after the app's slug instead of "kotsadm" for new installations. During upgrades, the "kotsadm" namespace is used if it exists, otherwise the app's slug is used. [#3070](https://github.com/replicatedhq/embedded-cluster/pull/3070)
+* KOTS and application deployments now use a namespace named after the app's slug instead of "kotsadm" for new installations. During upgrades, the "kotsadm" namespace is used if it exists, otherwise the app's slug is used.
 
 ### Bug Fixes {#bug-fixes-2-12-0}
 
