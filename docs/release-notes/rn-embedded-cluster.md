@@ -35,14 +35,10 @@ Released on October 30, 2025
   </tr>
 </table>
 
-### Improvements {#improvements-2-12-0}
-
-* KOTS and application deployments now use a namespace named after the app's slug instead of "kotsadm" for new installations. During upgrades, the "kotsadm" namespace is used if it exists, otherwise the app's slug is used.
-
 ### Bug Fixes {#bug-fixes-2-12-0}
 
-* Fixed SeaweedFS Raft flakiness causing HA registry instability.
-* Fixed parsing of release files with multiple KOTS YAML documents.
+* Fixes instability in the highly available registry used for HA air gap installations, which was caused by flakiness in SeaweedFS Raft.
+* Fixes an issue where multi-document YAML files were not parsed correctly, which led to resources not being recognized in the release.
 
 ## 2.11.3
 
