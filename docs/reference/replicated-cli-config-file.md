@@ -6,7 +6,7 @@ For a reference that describes the fields in the `.replicated` file, see [.repli
 
 ## Overview
 
-You can add a `.replicated` configuration file to set various preferences for the Replicated CLI, such as the application slug, the channel ID for promoting releases, paths to your application resources (including Helm charts, preflight specs, or Kubernetes manifests), and more. This file enables commands like [`replicated release create`](/reference/replicated-cli-release-create) and [`replicated release lint`](/reference/replicated-cli-release-lint) to automatically discover your application resources and preferences to help ensure consistent builds when managing releases from the Replicated CLI.
+You can add a `.replicated` configuration file to set various preferences for the Replicated CLI, such as the application slug, the channel ID for promoting releases, paths to your application resources (including Helm charts, preflight specs, or Kubernetes manifests), and more. This file enables the [`replicated release create`](/reference/replicated-cli-release-create) and [`replicated release lint`](/reference/replicated-cli-release-lint) commands to automatically discover your application resources and preferences to help ensure consistent builds when managing releases from the Replicated CLI.
 
 The Replicated CLI searches for `.replicated` or `.replicated.yaml` files starting from the current directory and walking up the directory tree. If no `.replicated` file is found, the Replicated CLI:
 - Automatically searches for Helm charts in the current directory
