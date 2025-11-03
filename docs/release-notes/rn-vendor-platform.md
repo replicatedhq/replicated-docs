@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.03-3
+
+Released on November 3, 2025
+
+### New Features {#new-features-v2025-11-03-3}
+* When the feature flag is toggled on, this introduces a new field in the Vendor Portal to enable SAML Authentication for a customer to the Enterprise Portal.
+
 ## v2025.10.22-2
 
 Released on October 22, 2025
