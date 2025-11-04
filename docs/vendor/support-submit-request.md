@@ -170,7 +170,7 @@ To submit a support request from the Vendor Portal **Support** page:
       </tr>
     </table> 
 
-1. In section 2, do _one_ of the following:
+1. In section 2, attach one or more support bundles:
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
 
