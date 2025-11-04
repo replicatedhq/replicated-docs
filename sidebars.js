@@ -172,6 +172,7 @@ const sidebars = {
               'vendor/instance-data-export',
             ],
         },
+        'vendor/support-submit-request',
       ],
     },
     {
@@ -555,7 +556,6 @@ const sidebars = {
           },
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
-          'vendor/support-submit-request',
         ],
       },
       'vendor/preflight-sb-helm-templates-about',
