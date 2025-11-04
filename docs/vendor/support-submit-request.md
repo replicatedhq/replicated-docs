@@ -8,8 +8,6 @@ You can submit support requests and support bundles to Replicated through the Re
 
 Replicated recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
-Replicated recommends uploading the support bundle through the Vendor Portal rather than uploading bundles to the issue in Github directly. Many support bundles will exceed the Github size limits for file uploads. Additionally, the Vendor Portal provides insights and analysis for uploaded bundles that are beneficial for the support process. 
-
 ## Prerequisites
 
 The following prerequisites must be met to submit support requests:
@@ -20,11 +18,11 @@ The following prerequisites must be met to submit support requests:
 
 ## (Recommended) Open a Support Request from a Support Bundle
 
-When you open a support request when viewing a bundle on the Vendor Portal **Support Bundle Analysis** page, the support request form is pre-populated with information from the support bundle and the associated customer license. The support bundle is also automatically attached to the request.
+If you open a support request when viewing a bundle on the Vendor Portal **Support Bundle Analysis** page, the support request form is pre-populated with information from the support bundle and the associated customer license. The support bundle is also automatically attached to the request.
 
 To submit a support request from the **Support Bundle Analysis** page:
 
-1. In the Vendor Portal, go to the **Troubleshoot** tab.
+1. In the Vendor Portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) tab.
 
 1. Select the support bundle that you want to attach to a new support request. If you need to upload or generate the support bundle, click **Add support bundle**. 
 
@@ -34,7 +32,7 @@ To submit a support request from the **Support Bundle Analysis** page:
     The **Share with Replicated** button on the **Support Bundle Analysis** page does _not_ open a support request. You might be directed to use the **Share with Replicated** option when you are already interacting with a Replicated team member. For more information, see [Provide Support Bundles to Replicated After Opening a Support Request](#add-bundle-after).
     :::
 
-1. For **1. Tell us about the issue**, review the pre-populated information in the request form and make any changes as needed. For more information about these fields, see [Open a Support Request from the Support Page](#support-page) below.
+1. In section 1 of the support request form, review the pre-populated information and make any changes as needed. For more information about these fields, see [Open a Support Request from the Support Page](#support-page) below.
 
 1. Complete any empty fields, including adding an issue title and description.
 
@@ -42,11 +40,13 @@ To submit a support request from the **Support Bundle Analysis** page:
 
 ## Open a Support Request from the Support Page {#support-page}
 
+Replicated support SLAs are a combination of the customer license type, your Replicated plan, which product is impacted, and other considerations. Your answers to the questions in the support request form generate a severity calculation that is posted on the GitHub issue as a label, and potentially result in a page for high severity incidents.
+
 To submit a support request from the Vendor Portal **Support** page:
 
 1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support) > Open a support request**.
 
-1. In section 1 of the Support Request form, complete the required fields that apply to all requests:
+1. In section 1 of the support request form, complete the required fields that apply to all requests:
 
     <table>
       <tr>
@@ -61,25 +61,25 @@ To submit a support request from the Vendor Portal **Support** page:
         <th>Please choose the application you're troubleshooting</th>
         <td>
           <p>Select the application associated with this support request.</p>
-          <p>The application informs which customers, if any, the support case is in relation to.</p>
+          <p>The application that you select informs which customers (if any) associated with this support request.</p>
         </td>
       </tr>
       <tr>
         <th>Which customer are you supporting?</th>
         <td>
-          <p>Search for the name of the customer.</p>
-          <p>Choosing a customer is required to enable some SLA levels which are tied to paid licenses.</p>
+          <p>Search for the name of the customer associated with this support request.</p>
+          <p>Choosing a customer is required to enable some SLA levels that are specific to paid licenses.</p>
         </td>
       </tr>
       <tr>
         <th>What type of installation is this impacting?</th>
         <td>
-          <p>The options available in this field vary depending on the license type of the customer that you selected. Your selection for installation type determines which additional dynamic fields that are displayed on the request form.</p>
+          <p>The options available in this field vary depending on the license type of the customer that you selected. Your selection for installation type determines the additional dynamic fields that are displayed on this request form.</p>
           <p>The following describes each option:</p>
           <ul>
             <li><strong>This is a non-critical question:</strong> Select this option for general questions</li>
-            <li><strong>This is a problem outside of the customer premises:</strong> Issues that are not related to the on-prem install, but impact customers</li>
-            <li><strong>This is a problem affecting our internal team:</strong> Issues impacting internal teams (such as CI/CD or development environment issues). These issues are not associated with a specific licensed customer.</li>
+            <li><strong>This is a problem outside of the customer premises:</strong> Issues that are not related to an on-prem installation, but still impact customers</li>
+            <li><strong>This is a problem affecting our internal team:</strong> Issues impacting internal teams (such as CI/CD or issues seen in development environments). These issues are not impacting one of your licensed customers.</li>
             <li><strong>This is a problem with software installed at a customer premises:</strong> Issues impacting one of your customers with the on-prem software</li>
           </ul>
         </td>
@@ -87,12 +87,12 @@ To submit a support request from the Vendor Portal **Support** page:
       <tr>
         <th>Product area</th>
         <td>
-          <p>The options available in this field vary depending on the products included in your account and enabled for the chosen customer.</p>
+          <p>The options available in this field vary depending on the products included in your account and enabled for the selected customer.</p>
           <p>The following describes each option:</p>
           <ul>
             <li><strong>KOTS:</strong> Issues with the KOTS Admin Console or KOTS CLI</li>
             <li><strong>Embedded Kubernetes (kURL):</strong> Issues with the kURL installer</li>
-            <li><strong>Embedded Kubernetes (Embedded Cluster):</strong> Issues with Embedded Cluster</li>
+            <li><strong>Embedded Kubernetes (Embedded Cluster):</strong> Issues with the Embedded Cluster installer</li>
             <li><strong>Download Portal:</strong> Issues with the SaaS customer facing portals, including the Download Portal or the Enterprise Portal</li>
             <li><strong>Product Documentation:</strong> Questions or issues with documentation</li>
             <li><strong>Support Bundles and Preflights:</strong> Questions about Troubleshoot Support Bundles and Preflights</li>
@@ -110,7 +110,7 @@ To submit a support request from the Vendor Portal **Support** page:
       </tr>
     </table>
 
-1. Depending on what you selected for the fields in the previous step, complete the additional dynamic fields displayed in the request form:   
+1. Complete the additional dynamic fields that are displayed in the request form. A subset of these dynamic fields are displayed depending on what you selected for the fields in the previous step.   
 
    <table>
       <tr>
@@ -120,7 +120,7 @@ To submit a support request from the Vendor Portal **Support** page:
       <tr>
         <th>The application is currently down in a customer environment</th>
         <td>
-          <p>This field is displayed if you selected **This is a problem with software installed at a customer premises** for the installation type.</p>
+          <p>This field is only present if you selected **This is a problem with software installed at a customer premises** for the installation type.</p>
           <p>Indicates if business critical functionality is not working at all.</p>
         </td>
       </tr>
@@ -128,19 +128,23 @@ To submit a support request from the Vendor Portal **Support** page:
         <th>What is impacted?</th>
         <td>
           <p>This field is only present if you selected **This is a problem outside of the customer premises** for the installation type.</p>
-          <p>The following describes the options:</p>
+          <p>Select one of the options:</p>
           <ul>
-            <li>I have a question</li>
-            <li>One or more components</li>
-            <li>I cannot use the service at all</li>
+            <li><strong>I have a question:</strong> Select for general questions</li>
+            <li><strong>One or more components:</strong> The issue is with one or more specific components</li>
+            <li><strong>I cannot use the service at all:</strong> Indicates that functionality is not working at all</li>
           </ul>
         </td>
       </tr>
       <tr>
         <th>Is the issue with installing an application?</th>
         <td>
-          <p>This field is only present when the issue is related to customer sites.</p>
-          <p>Indicate if the issue is with a new install or an existing install. New is for first time installation support and existing install is for any other lifecycle after an initial successful install, including upgrades.</p>
+          <p>This field is only present if you selected **This is a problem with software installed at a customer premises** for the installation type.</p>
+          <p>Select one of the following options:</p>
+          <ul>
+            <li><strong>New install:</strong> The issue is with a first time installation</li>
+            <li><strong>Existing instance:</strong> The issue is with an instance after an initial successful installation, including upgrades.</li>
+          </ul>  
         </td>
       </tr>
       <tr>
@@ -168,18 +172,28 @@ To submit a support request from the Vendor Portal **Support** page:
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
 
-1. Click **Submit Support Request**. You receive a link to your support issue, where you can interact with the support team.
-
-   :::note
-   Click **Back** to exit without submitting a support request.
-   :::
+1. Click **Submit support request**. You receive a link to your support issue where you can interact with the support team.
 
 ## Provide Support Bundles to Replicated After Opening a Support Request {#add-bundle-after}
 
-Other ways of providing support bundles after a support request is created:
+You can attach new support bundles to existing support issues when conditions change or new problems arise. This helps the Replicated support team troubleshoot the issue more quickly.
 
-* On the **Troubleshoot** tab select “Add support bundle/Upload bundle” in the upper right. You can attach new support bundles and select any open support case to have the bundle also posted to that support case.
+:::note
+Replicated recommends uploading support bundles through the Vendor Portal rather than uploading bundles to the issue in Github directly. Many support bundles will exceed the Github size limits for file uploads. Additionally, the Vendor Portal provides insights and analysis for uploaded bundles that are beneficial for the support process. 
+:::
 
-* On any **Customer** page, select the **Support bundles** tab to see support bundles for that customer. You can also upload a bundle here as well and select any open support case to have the bundle also posted to an open support case.
+After you open a support request, you can do the following to share additional support bundles with Replicated:
 
-* Support bundle URLs can be shared directly from the URL bar. These will be in the form https://vendor.replicated.com/troubleshoot/analyze/2024-08-07@22:10 however you must select “Share with Replicated” if you want Replicated support engineers to be able to access the bundle. This is not necessary when sharing internally with team members already registered in your Vendor Portal account.
+* Go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) tab and click **Add support bundle > Upload support bundle**. In the **Upload a support bundle** dialog, select any open support issue to attach the bundle to that issue.
+
+     <img alt="Upload a support bundle dialog" src="/images/support-bundle-analyze.png" width="500px"/>
+
+     [View a larger version of this image](/images/support-bundle-analyze.png)
+
+* Go to any **Customer** page and select the **Support bundles** tab. Click **Add support bundle > Upload support bundle**. In the **Upload a support bundle** dialog, select any open support issue to attach the bundle to that issue.
+
+* From the **Support Bundle Analysis** page for a bundle, click **Share with Replicated** to allow Replicated support engineers to be able to access the bundle. Then, copy the support bundle URL directly from the address bar in your browser and share the link in the open support issue. The support bundle URL is in the format: `https://vendor.replicated.com/troubleshoot/analyze/2024-08-07@22:10`.
+
+     :::note
+     You do not need to click **Share with Replicated** to share support bundles URLs internally with members of your Vendor Portal team.
+     :::
