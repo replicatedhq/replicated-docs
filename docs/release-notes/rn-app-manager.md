@@ -22,7 +22,7 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 Released on October 28, 2025
 
-Support for Kubernetes: 1.31, 1.32, and 1.33
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Improvements {#improvements-1-128-3}
 * Adds fully qualified registry prefix for KOTS to improve registry handling.
