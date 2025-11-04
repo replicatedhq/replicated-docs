@@ -2,6 +2,8 @@
 
 This topic describes how to open a support request with the Replicated team, including information about the fields in the support request form. It also describes how to attach new support bundles to an existing support issue.
 
+For more information about working with support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
+
 ## Overview
 
 You can submit support requests and support bundles to Replicated through the Replicated Vendor Portal.
@@ -24,7 +26,7 @@ To submit a support request from the **Support Bundle Analysis** page:
 
 1. In the Vendor Portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) tab.
 
-1. Select the support bundle that you want to attach to a new support request. If you need to upload or generate the support bundle, click **Add support bundle**. 
+1. Select the support bundle that you want to attach to a new support request. If you need to upload the support bundle, click **Add support bundle > Upload a support bundle**. 
 
 1. At the top of the **Support Bundle Analysis** page, click **Submit support ticket**.
 
@@ -79,7 +81,7 @@ To submit a support request from the Vendor Portal **Support** page:
           <ul>
             <li><strong>This is a non-critical question:</strong> Select this option for general questions</li>
             <li><strong>This is a problem outside of the customer premises:</strong> Issues that are not related to an on-prem installation, but still impact customers</li>
-            <li><strong>This is a problem affecting our internal team:</strong> Issues impacting internal teams (such as CI/CD or issues seen in development environments). These issues are not impacting one of your licensed customers.</li>
+            <li><strong>This is a problem affecting our internal team:</strong> Issues impacting internal teams (such as CI/CD or issues seen in development environments)</li>
             <li><strong>This is a problem with software installed at a customer premises:</strong> Issues impacting one of your customers with the on-prem software</li>
           </ul>
         </td>
@@ -110,7 +112,7 @@ To submit a support request from the Vendor Portal **Support** page:
       </tr>
     </table>
 
-1. Complete the additional dynamic fields that are displayed in the request form. A subset of these dynamic fields are displayed depending on what you selected for the fields in the previous step.   
+1. Complete the additional dynamic fields that are displayed in the request form. A subset of these dynamic fields is displayed depending on what you selected for the fields in the previous step.   
 
    <table>
       <tr>
