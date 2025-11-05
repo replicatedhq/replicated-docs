@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on November 5, 2025
 
 ### Improvements {#improvements-1-11-0}
-* Adds support configuring image pull secrets with [`values.global.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L8) as well as the existing [`values.replicated.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L167).
+* Adds support for configuring image pull secrets with [`values.global.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L8) as well as the existing [`values.replicated.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L167).
 * Adds an image pull secret, titled `enterprise-pull-secret`.
 
 ## 1.10.0
