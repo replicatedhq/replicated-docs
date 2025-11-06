@@ -22,7 +22,7 @@ jobs:
         owner-repo: replicatedhq/kots
         head: $KOTS_VERSION
         title: ${KOTS_VERSION#v}
-        description: 'Support for Kubernetes: 1.31, 1.32, and 1.33'
+        description: 'Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34'
         include-pr-links: false
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
