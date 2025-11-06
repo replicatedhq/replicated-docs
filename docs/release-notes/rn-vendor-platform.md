@@ -15,7 +15,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 6, 2025
 
 ### Bug Fixes {#bug-fixes-v2025-11-06-3}
-* Fixed icon colors in notification page in the Vendor Portal.
+* Fixes icon colors in notification page in the Vendor Portal.
+
+## v2025.11.06-2
+
+Released on November 6, 2025
+
+### Improvements {#improvements-v2025-11-06-2}
+* Content improvements for clarity on the Enterprise Portal configuration page.
 
 ## v2025.10.22-2
 
