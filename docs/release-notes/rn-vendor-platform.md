@@ -10,6 +10,42 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.06-3
+
+Released on November 6, 2025
+
+### Bug Fixes {#bug-fixes-v2025-11-06-3}
+* Fixes icon colors in notification page in the Vendor Portal.
+
+## v2025.11.06-2
+
+Released on November 6, 2025
+
+### Improvements {#improvements-v2025-11-06-2}
+* Content improvements for clarity on the Enterprise Portal configuration page.
+
+## v2025.10.22-2
+
+Released on October 22, 2025
+
+### New Features {#new-features-v2025-10-22-2}
+* Compatibility Matrix: Updating the TTL shows the expected time when the cluster or VM will expire.
+
+
+## v2025.10.20-2
+
+Released on October 20, 2025
+
+### New Features {#new-features-v2025-10-20-2}
+* Compatibility Matrix: Adds support for SSH keys that are not synchronized with GitHub. See [Use a Personal Public/Private Key](/vendor/testing-vm-create#use-a-personal-publicprivate-key) in _Use CMX VMs_.
+
+## v2025.10.15-2
+
+Released on October 15, 2025
+
+### New Features {#new-features-v2025-10-15-2}
+* Adds rate limiting to magic link login endpoints to prevent email abuse. The endpoints are limited to 20 requests per hour per IP address.
+
 
 ## v2025.10.10-3
 

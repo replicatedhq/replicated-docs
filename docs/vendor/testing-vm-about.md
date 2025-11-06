@@ -1,17 +1,17 @@
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# About Compatibility Matrix VMs (Beta)
+# About CMX VMs (Beta)
 
-This topic describes Compatibility Matrix VMs and their capabilities for testing your applications.
+This topic provides an introduction to Replicated Compatibility Matrix (CMX) VMs, including information about supported types, limitations, and prerequisites to use CMX VMs.
 
-## About Compatibility Matrix VMs
+## About CMX VMs
 
-Compatibility Matrix VMs provide isolated Linux environments for testing your applications. Unlike clusters, VMs give you full control over the operating system (OS) and allow you to test installation methods that require direct OS access.
+CMX VMs provide isolated Linux environments for testing your applications. Unlike clusters, VMs give you full control over the operating system (OS) and allow you to test installation methods that require direct OS access.
 
-You can use Compatibility Matrix VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
+You can use CMX VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
 
-For information about creating clusters with Compatibility Matrix to test Kubernetes-based deployments and Helm installations, see [Create and Manage Clusters](/vendor/testing-how-to).
+For information about creating clusters with CMX to test Kubernetes-based deployments and Helm installations, see [Create and Manage Clusters](/vendor/testing-how-to).
 
 ## Supported VM Types
 
@@ -30,16 +30,16 @@ The following describes the Replicated instance types for VMs:
 
 ## Limitations
 
-Creating VMs with Compatibility Matrix has the following limitations:
+Creating VMs with CMX has the following limitations:
 
-- Creating VMs with Compatibility Matrix is a Beta feature.
-- Installing Embedded Cluster on a VM created with Compatibility Matrix is supported for Embedded Cluster versions 1.21.0 or later.
-- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for Compatibility Matrix VMs. 
-- The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for Compatibility Matrix VMs.
+- Creating VMs with CMX is a Beta feature.
+- Installing Embedded Cluster on a VM created with CMX is supported for Embedded Cluster versions 1.21.0 or later.
+- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for CMX VMs. 
+- The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for CMX VMs.
 
 ## Prerequisites
 
-Before you can use Compatibility Matrix VMs, you must complete the following prerequisites:
+Before you can use CMX VMs, you must complete the following prerequisites:
 
 <Prerequisites/>
 

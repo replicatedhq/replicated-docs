@@ -1,42 +1,42 @@
 import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
-# Use Compatibility Matrix Clusters
+# Use CMX Clusters
 
-This topic describes how to use Replicated Compatibility Matrix to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
+This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
 
-This topic includes information about creating and managing clusters with Compatibility Matrix using the Replicated Vendor Portal or the Replicated CLI. For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
+This topic includes information about creating and managing clusters with CMX using the Replicated Vendor Portal or the Replicated CLI. For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
-## About Compatibility Matrix Clusters
+## About CMX Clusters
 
-Compatibility Matrix supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
+CMX supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
 
-You can use Compatibility Matrix clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
+You can use CMX clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
 
-For information about creating VMs with Compatibility Matrix to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
+For information about creating VMs with CMX to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
 
 ## Limitations
 
-Compatibility Matrix has the following limitations:
+CMX has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
-- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
-- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
-- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
-- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported Compatibility Matrix Cluster Types](/vendor/testing-supported-clusters).
+- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
+- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
+- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
+- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
 - There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with Compatibility Matrix cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with Compatibility Matrix cannot be replaced with a different scheduler.
+- The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
 - Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-- Team actions with Compatibility Matrix (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
+- Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
 
-For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types](testing-supported-clusters).
+For additional distribution-specific limitations, see [Supported CMX Cluster Types](testing-supported-clusters).
 
 ## Prerequisites
 
-Before you can use Compatibility Matrix clusters, you must complete the following prerequisites:
+Before you can use CMX clusters, you must complete the following prerequisites:
 
 <Prerequisites/>
 
@@ -44,7 +44,7 @@ Before you can use Compatibility Matrix clusters, you must complete the followin
 
 ## Create Clusters
 
-You can create clusters with Compatibility Matrix using the Replicated CLI or the Vendor Portal.
+You can create clusters with CMX using the Replicated CLI or the Vendor Portal.
 
 ### With the Replicated CLI
 
@@ -253,7 +253,7 @@ For command usage, including additional options, see [cluster prepare](/referenc
 
 ## Access Clusters
 
-Compatibility Matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+CMX provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 To access a cluster from the command line:
 
@@ -283,7 +283,7 @@ To access a cluster from the command line:
 
 ## Upgrade Clusters (kURL Only)
 
-For kURL clusters provisioned with Compatibility Matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
+For kURL clusters provisioned with CMX, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
 
 The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
 

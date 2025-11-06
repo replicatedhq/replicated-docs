@@ -1,10 +1,10 @@
 # Test in Air Gap Environments (Beta)
 
-This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix, and how to collect and analyze network events to understand your application's behavior in air-gapped environments.
+This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix (CMX), and how to collect and analyze network events to understand your application's behavior in air-gapped environments.
 
 ## Set Network Policy to `airgap`
 
-VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with Compatibility Matrix can use one of the following network policies:
+VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with CMX can use one of the following network policies:
 
 | Network Policy | Description |
 | :---- | :---- |
@@ -110,7 +110,7 @@ To set the network policy of a VM:
 
 ## Collect and View Network Reports
 
-Compatibility Matrix network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
+CMX network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
 
 Network reporting is not enabled by default. For information about how to collect and view reports through the Vendor Portal or the Replicated CLI, see the sections below.
 

@@ -1,23 +1,23 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# Compatibility Matrix Cluster Types
+# CMX Cluster Types
 
-This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix.
+This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix (CMX).
 
-Compatibility Matrix provisions cloud-based or virtual machine (VM) clusters.
+CMX provisions cloud-based or virtual machine (VM) clusters.
 
 ## VM Clusters
 
-This section lists the supported VM cluster distributions for clusters created with Compatibility Matrix.
+This section lists the supported VM cluster distributions for clusters created with CMX.
 
-VM-based clusters refers to clusters that run on Hetzner servers with the Compatibility Matrix cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, Compatibility Matrix offers warm pools to make Openshift startup times very fast.
+VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, CMX offers warm pools to make Openshift startup times very fast.
 
 For information about provisioning VMs, which come without pre-installed clusters and allow for more access to the OS, see [Create VMs](testing-vm-create).
 
 ### kind
 
-Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
+CMX supports creating [kind](https://kind.sigs.k8s.io/) clusters.
 
 <table>
   <tr>
@@ -60,7 +60,7 @@ Compatibility Matrix supports creating [kind](https://kind.sigs.k8s.io/) cluster
 
 ### k3s
 
-Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
+CMX supports creating [k3s](https://k3s.io) clusters.
 
 <table>
   <tr>
@@ -107,7 +107,7 @@ Compatibility Matrix supports creating [k3s](https://k3s.io) clusters.
 
 ### RKE2 (Beta)
 
-Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
+CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
 
 <table>
   <tr>
@@ -154,7 +154,7 @@ Compatibility Matrix supports creating [RKE2](https://docs.rke2.io/) clusters.
 
 ### OpenShift OKD
 
-Compatibility Matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
+CMX supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 OpenShift clusters are provisioned with two users:
 
@@ -213,7 +213,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-Compatibility Matrix supports creating clusters with Replicated Embedded Cluster. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+CMX supports creating clusters with Replicated Embedded Cluster. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
 
 <table>
   <tr>
@@ -262,7 +262,7 @@ Compatibility Matrix supports creating clusters with Replicated Embedded Cluster
 
 ### kURL
 
-Compatibility Matrix supports creating [kURL](https://kurl.sh) clusters.
+CMX supports creating [kURL](https://kurl.sh) clusters.
 
 <table>
   <tr>
@@ -309,7 +309,7 @@ This section lists the supported cloud clusters for compatibility testing.
 
 ### EKS
 
-Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
+CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters.
 
 <table>
   <tr>
@@ -354,7 +354,7 @@ Compatibility Matrix supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2
 
 ### GKE
 
-Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
+CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
 
 <table>
   <tr>
@@ -397,7 +397,7 @@ Compatibility Matrix supports creating [Google GKE](https://cloud.google.com/kub
 
 ### AKS
 
-Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
+CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
 
 <table>
   <tr>
@@ -440,7 +440,7 @@ Compatibility Matrix supports creating [Azure AKS](https://azure.microsoft.com/e
 
 ### OKE (Beta)
 
-Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
+CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
 
 <table>
   <tr>
@@ -483,10 +483,10 @@ Compatibility Matrix supports creating [Oracle Container Engine for Kubernetes (
 
 ## Replicated Instance Types {#types}
 
-When creating a VM-based cluster with Compatibility Matrix, you must specify a Replicated instance type.
+When creating a VM-based cluster with CMX, you must specify a Replicated instance type.
 
 <InstanceTypes/>
 
 ## Kubernetes Version Support Policy
 
-We do not maintain forks or patches of the supported distributions. When a Kubernetes version in Compatibility Matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
+We do not maintain forks or patches of the supported distributions. When a Kubernetes version in CMX is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.

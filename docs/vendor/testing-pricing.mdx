@@ -1,19 +1,19 @@
-# Compatibility Matrix Pricing
+# CMX Pricing
 
-This topic describes the pricing for Replicated Compatibility Matrix.
+This topic describes the pricing for Replicated Compatibility Matrix (CMX).
 
 ## Usage-Based Pricing
 
-There is a minimum cost of $0.50 plus one minute for each running cluster or VM created with Compatibility Matrix. Cost is rounded up to the nearest cent and subtracted from the available credits in the team account.
+There is a minimum cost of $0.50 plus one minute for each running cluster or VM created with CMX. Cost is rounded up to the nearest cent and subtracted from the available credits in the team account.
 
-The following provides more detail about the costs that are included in Compatibility Matrix usage-based pricing:
+The following provides more detail about the costs that are included in CMX usage-based pricing:
 
 * A $0.50 per cluster or VM startup cost.
 
 * By-the-minute pricing based on instance size and count, starting at the time the cluster or VM status is `running` and ending when the cluster or VM is either expired (TTL) or removed. Minutes are rounded up.
 
    :::note
-   You are billed _only_ for the time that the cluster status is `running`. You are _not_ billed for the time that it takes Compatibility Matrix to create, verify, and tear down clusters and VMs. You can view the status of clusters and VMs using the [`replicated cluster ls`](/reference/replicated-cli-cluster-ls) and [`replicated vm ls`](/reference/replicated-cli-vm-ls) commands.
+   You are billed _only_ for the time that the cluster status is `running`. You are _not_ billed for the time that it takes CMX to create, verify, and tear down clusters and VMs. You can view the status of clusters and VMs using the [`replicated cluster ls`](/reference/replicated-cli-cluster-ls) and [`replicated vm ls`](/reference/replicated-cli-vm-ls) commands.
    
    For VMs, a `running` status indicates an SSH endpoint is available. For clusters, a `running` status indicates a working kubeconfig for the cluster is accessible. Additionally, clusters are verified prior to transitioning to a `running` status. Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing sonobuoy tests in `--quick` mode. 
    :::
@@ -30,7 +30,7 @@ Team members assigned the Admin role receive a warning to their email address wh
 
 ## Quotas and Capacity
 
-By default, Compatibility Matrix sets quotas for the capacity that can be used concurrently by each Vendor Portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning VMs and clusters.
+By default, CMX sets quotas for the capacity that can be used concurrently by each Vendor Portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning VMs and clusters.
 
 By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
 

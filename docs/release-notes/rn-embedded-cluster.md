@@ -12,6 +12,34 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.12.0
+
+Released on October 30, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.12.0+k8s-1.33</td>
+    <td id="center">2.12.0+k8s-1.32</td>
+    <td id="center">2.12.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.4</td>
+    <td id="center">1.32.8</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.128.3</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-2-12-0}
+
+* Fixes instability in the highly available registry used for HA air gap installations, which was caused by flakiness in SeaweedFS Raft.
+* Fixes an issue where multi-document YAML files were not parsed correctly, which led to resources not being recognized in the release.
+
 ## 2.11.3
 
 Released on October 1, 2025

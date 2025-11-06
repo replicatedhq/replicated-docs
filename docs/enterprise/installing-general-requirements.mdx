@@ -266,7 +266,9 @@ KOTS has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 
-## Firewall Openings for Online Installations with KOTS in an Existing Cluster {#firewall}
+## Network Requirements for Online Installations
+
+### Firewall Openings {#firewall}
 
 <FirewallOpeningsIntro/>
 
@@ -304,3 +306,7 @@ KOTS has been tested for compatibility with the following registries:
 &#42; Required only if the application uses the [Replicated proxy registry](/vendor/private-images-about).
 
 &#42;&#42; Required only if the application uses the [Replicated registry](/vendor/private-images-replicated).
+
+### IPv4 or IPv4/IPv6 Dual-Stack Only
+
+KOTS does not support online installations in single-stack IPv6-only environments. Environments that use IPv4 or dual-stack IPv4/IPv6 networking are supported.
