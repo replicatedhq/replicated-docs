@@ -13,11 +13,11 @@ hide_table_of_contents: true
         <p>What's New?</p>
     </li>
     <li>
-        <h3>Announcing: Beta Support for Compatibility Matrix VMs</h3>
-        <p>You can now use Compatibility Matrix to create VMs, making it easier to spin up environments for testing installation methods that require direct OS access, like Embedded Cluster.</p>
+        <h3>Announcing: Security Center (Alpha)</h3>
+        <p>The Security Center (Alpha) makes it easier for vendors and their enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each release.</p>
     </li>
     <li>
-      <a href="/vendor/testing-vm-create">Learn more</a>
+      <a href="/vendor/security-center-about">Learn more</a>
     </li>
   </ul>
   <ul id="did-you-know">
@@ -26,11 +26,11 @@ hide_table_of_contents: true
         <p>Did You Know?</p>
     </li>
     <li>
-        <h3>Add Allowed Domains for Enterprise Portal Invitations</h3>
-        <p>When this option is enabled, only users with allowed email domains can be invited to a customer's Enterprise Portal.</p>
+        <h3>Simulate Air Gap Networks With CMX</h3>
+        <p>Set the network policy of VMs or VM-based clusters to `airgap` to simulate an environment with no outbound internet access.</p>
     </li>
     <li>
-      <a href="/vendor/enterprise-portal-invite#configure-allowed-domains-for-user-invitations">Learn more</a>
+      <a href="/vendor/testing-network-policy">Learn more</a>
     </li>
   </ul>
 </section>
