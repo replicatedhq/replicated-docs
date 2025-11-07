@@ -6,6 +6,8 @@ hide_table_of_contents: true
 hide_title: true
 ---  
 
+import clsx from 'clsx';
+
 <div className="hero-section">
   <h1 className="hero-title">
     Welcome to Replicated Docs
@@ -15,7 +17,7 @@ hide_title: true
   </p>
   <div className="hero-buttons">
     <button className="hero-button">
-      <span>Quick start tutorial</span>
+      <span>Tutorial</span>
     </button>
     <button className="hero-button-secondary">
       <span>Browse product docs</span>
@@ -25,44 +27,60 @@ hide_title: true
 
 <div className="get-started-section">
   <h2 className="get-started-title">Get started</h2>
-  <div className="get-started-boxes">
-    <div className="get-started-box">
-      <img src="/images/icons/lightbulb-black.svg" alt="Lightbulb icon" className="get-started-box-icon" />
-      <h3 className="get-started-box-title">Explore labs</h3>
-      <p className="get-started-box-subtitle">Learn about Replicated by completing common tasks in a lab environment</p>
-    </div>
-    <div className="get-started-box">
-      <img src="/images/icons/computer-black.svg" alt="Computer icon" className="get-started-box-icon" />
-      <h3 className="get-started-box-title">Set up your environment</h3>
-      <p className="get-started-box-subtitle">Install required and optional tools on your local workstation</p>
-    </div>
-    <div className="get-started-box">
-      <img src="/images/icons/alien-vault-black.svg" alt="Alien vault icon" className="get-started-box-icon" />
-      <h3 className="get-started-box-title">Complete the quick start</h3>
-      <p className="get-started-box-subtitle">Create a release using a sample app, then install in a local dev environment.</p>
+  <div className={clsx("container")}>
+    <div className={clsx("row")}>
+      <div className={clsx("col", "col--4")}>
+        <div className="get-started-box">
+          <img src="/images/icons/lightbulb-black.svg" alt="Lightbulb icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Explore labs</h3>
+          <p className="get-started-box-subtitle">Learn about Replicated by completing common tasks in a lab environment</p>
+        </div>
+      </div>
+      <div className={clsx("col", "col--4")}>
+        <div className="get-started-box">
+          <img src="/images/icons/computer-black.svg" alt="Computer icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Set up your environment</h3>
+          <p className="get-started-box-subtitle">Install required and optional tools on your local workstation</p>
+        </div>
+      </div>
+      <div className={clsx("col", "col--4")}>
+        <div className="get-started-box">
+          <img src="/images/icons/alien-vault-black.svg" alt="Alien vault icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Follow the onboarding guide</h3>
+          <p className="get-started-box-subtitle">Integrate Replicated features into your application releases.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div className="feature-showcase">
-  <a href="/vendor/testing-vm-create" className="whats-new-hero">
-    <div className="whats-new-badge">What's New</div>
-    <h3 className="whats-new-title">Announcing: Beta Support for Compatibility Matrix VMs</h3>
-    <p className="whats-new-description">
-      You can now use Compatibility Matrix to create VMs, making it easier to spin up environments for testing installation methods that require direct OS access, like Embedded Cluster.
-    </p>
-  </a>
-  
-  <div className="did-you-know-container">
-    <div className="did-you-know-card">
-      <div className="did-you-know-badge">Did You Know</div>
-      <h4 className="did-you-know-card-title">Add Allowed Domains for Enterprise Portal Invitations</h4>
-      <p className="did-you-know-card-description">
-        When this option is enabled, only users with allowed email domains can be invited to a customer's Enterprise Portal.
-      </p>
-      <a href="/vendor/enterprise-portal-invite#configure-allowed-domains-for-user-invitations" className="did-you-know-card-link">
-        Learn more →
-      </a>
+  <div className={clsx("container")}>
+    <div className={clsx("row")}>
+      <div className={clsx("col", "col--8")}>
+        <a href="/vendor/testing-vm-create" className="whats-new-hero">
+          <div className="whats-new-badge">What's New</div>
+          <h2 className="whats-new-title">Announcing: Beta Support for Compatibility Matrix VMs</h2>
+          <p className="whats-new-description">
+            You can now use Compatibility Matrix to create VMs, making it easier to spin up environments for testing installation methods that require direct OS access, like Embedded Cluster.
+          </p>
+        </a>
+      </div>
+      
+      <div className={clsx("col", "col--4")}>
+        <div className="did-you-know-container">
+          <div className="did-you-know-card">
+            <div className="did-you-know-badge">Did You Know</div>
+            <h3 className="did-you-know-card-title">Add Allowed Domains for Enterprise Portal Invitations</h3>
+            <p className="did-you-know-card-description">
+              When this option is enabled, only users with allowed email domains can be invited to a customer's Enterprise Portal.
+            </p>
+            <a href="/vendor/enterprise-portal-invite#configure-allowed-domains-for-user-invitations" className="did-you-know-card-link">
+              Learn more →
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -72,46 +90,102 @@ hide_title: true
   <div className="browse-docs-categories">
     <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">Develop & Test</h3>
-      <div className="browse-docs-links">
-        <a href="#" className="browse-docs-link">Quick Start Guide</a>
-        <a href="#" className="browse-docs-link">API Reference</a>
-        <a href="#" className="browse-docs-link">SDK Documentation</a>
-        <a href="#" className="browse-docs-link">Testing Framework</a>
-        <a href="#" className="browse-docs-link">Development Tools</a>
-        <a href="#" className="browse-docs-link">Best Practices</a>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Quick Start Guide</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">API Reference</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">SDK Documentation</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Testing Framework</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Development Tools</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Best Practices</a>
+          </div>
+        </div>
       </div>
     </div>
     <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">License & Release</h3>
-      <div className="browse-docs-links">
-        <a href="#" className="browse-docs-link">License Management</a>
-        <a href="#" className="browse-docs-link">Release Channels</a>
-        <a href="#" className="browse-docs-link">Version Control</a>
-        <a href="#" className="browse-docs-link">Customer Portal</a>
-        <a href="#" className="browse-docs-link">Distribution</a>
-        <a href="#" className="browse-docs-link">Analytics</a>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">License Management</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Release Channels</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Version Control</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Customer Portal</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Distribution</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Analytics</a>
+          </div>
+        </div>
       </div>
     </div>
     <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">Install</h3>
-      <div className="browse-docs-links">
-        <a href="#" className="browse-docs-link">Installation Guide</a>
-        <a href="#" className="browse-docs-link">System Requirements</a>
-        <a href="#" className="browse-docs-link">Configuration</a>
-        <a href="#" className="browse-docs-link">Air Gap Install</a>
-        <a href="#" className="browse-docs-link">Upgrades</a>
-        <a href="#" className="browse-docs-link">Backup & Restore</a>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Installation Guide</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">System Requirements</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Configuration</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Air Gap Install</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Upgrades</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Backup & Restore</a>
+          </div>
+        </div>
       </div>
     </div>
     <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">Report & Support</h3>
-      <div className="browse-docs-links">
-        <a href="#" className="browse-docs-link">Support Bundles</a>
-        <a href="#" className="browse-docs-link">Troubleshooting</a>
-        <a href="#" className="browse-docs-link">Log Analysis</a>
-        <a href="#" className="browse-docs-link">Performance</a>
-        <a href="#" className="browse-docs-link">Contact Support</a>
-        <a href="#" className="browse-docs-link">Community</a>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Support Bundles</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Troubleshooting</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Log Analysis</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Performance</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Contact Support</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">Community</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

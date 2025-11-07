@@ -82,7 +82,7 @@ const config = {
         contextualSearch: true,
       },
       navbar: {
-        title: 'Docs',
+        // title: 'Docs',
         logo: {
           alt: 'R',
           src: 'images/logo-replicated-red.png',

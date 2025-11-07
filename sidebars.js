@@ -34,7 +34,7 @@ const sidebars = {
     },
 
     //GET STARTED
-    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>Get started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/kots-faq',
     'vendor/quick-start',
@@ -69,7 +69,7 @@ const sidebars = {
       ],
     },
     // PRODUCT DOCS
-    {type: 'html', value: '<h5>product docs</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>Product docs</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Vendor Portal',
@@ -836,12 +836,12 @@ const sidebars = {
   },
 
   //OPEN SOURCE DOCS
-  {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
+  {type: 'html', value: '<h5>Open source docs</h5>', defaultStyle: true},
   {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
   {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
 
   // POLICIES
-  {type: 'html', value: '<h5>platform overview</h5>', defaultStyle: true},
+  {type: 'html', value: '<h5>Platform overview</h5>', defaultStyle: true},
   {
     type: 'category',
     label: 'Replicated Policies',
