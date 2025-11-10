@@ -11,12 +11,18 @@
 :root {
   --doc-sidebar-width: 350px !important;
   --ifm-color-primary: var(--replicated-red);
-  --ifm-color-primary-dark: #5e6be1;
-  --ifm-color-primary-darker: #545fc8;
-  --ifm-color-primary-darkest: #4953af;
-  --ifm-color-primary-light: #7884fb;
-  --ifm-color-primary-lighter: #8792fb;
-  --ifm-color-primary-lightest: #969ffc;
+  /* 20% darker */
+  --ifm-color-primary-dark: #cc3a45;
+  /* 30% darker */
+  --ifm-color-primary-darker: #b3323c;
+  /* 40% darker */
+  --ifm-color-primary-darkest: #992b34;
+  /* 20% lighter */
+  --ifm-color-primary-light: #ff6d78;
+  /* 30% lighter */ 
+  --ifm-color-primary-lighter: #ff7f89;
+  /* 40% lighter */
+  --ifm-color-primary-lightest: #ff919a;
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Open Sans';
   --ifm-heading-font-family: 'Poppins', sans-serif;
@@ -300,27 +306,22 @@ td#center {
 
 /* Hero section styles */
 .hero-section {
-  /* background-image: linear-gradient(to left bottom, var(--nebula-purple), white); */
-  background-image: linear-gradient(to left,#4591f726,#4592f709);
+  /* background-image: linear-gradient(to left,#4591f726,#4592f709); */
+  background-image: linear-gradient(to bottom left, rgba(48, 109, 229, 0.25), rgba(48, 109, 229, 0));
   padding: 60px 40px;
   margin-bottom: 2rem;
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: bold;
   text-align: left;
   margin: 0 0 16px 0;
-  line-height: 1.2;
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
   text-align: left;
   margin: 0 0 24px 0;
-  line-height: 1.4;
   max-width: 800px;
-  opacity: 0.8;
 }
 
 .hero-buttons {
@@ -544,7 +545,7 @@ td#center {
   text-decoration: none;
 }
 
-.whats-new-badge {
+.whats-new-badge, .did-you-know-badge {
   display: inline-block;
   background: rgba(255, 255, 255, 0.3);
   font-size: 0.75rem;
@@ -552,22 +553,12 @@ td#center {
   padding: 4px 12px;
   border-radius: 16px;
   text-transform: uppercase;
-  /* letter-spacing: 0.5px; */
   margin-bottom: 16px;
 }
 
 .did-you-know-badge {
-  display: inline-block;
   background: var(--replicated-red);
   color: white;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 16px;
-  text-transform: uppercase;
-  /* letter-spacing: 0.5px; */
-  margin-bottom: 16px;
-  width: fit-content;
 }
 
 @media (max-width: 1024px) {
@@ -578,17 +569,11 @@ td#center {
 
 /* Dark mode styles for landing page */
 html[data-theme='dark'] {
-  
-  /* get-started-box styles now use Infima variables and adapt automatically */
-  
-  .whats-new-hero {
-    background: var(--slate-noir);
+
+  .whats-new-hero, .did-you-know-badge, .hero-button {
+    background: var(--ifm-color-primary-dark);
   }
-  
-  .did-you-know-badge {
-    background: var(--slate-noir);
-  }
-  
+
   /* Sidebar menu styles - ensure text is white in dark mode */
   .menu__list-item > a:hover, 
   .menu__list-item-collapsible > a:hover, 
