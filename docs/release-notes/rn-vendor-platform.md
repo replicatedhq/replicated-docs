@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.07-0
+
+Released on November 7, 2025
+
+### New Features {#new-features-v2025-11-07-0}
+* Compatibility Matrix: By default, network reports show only external traffic. For more information about network reporting, see [Collect and View Network Reports](/vendor/testing-network-policy#collect-and-view-network-reports).
+
 ## v2025.11.06-3
 
 Released on November 6, 2025
