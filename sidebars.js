@@ -38,6 +38,7 @@ const sidebars = {
     'intro-replicated',
     'vendor/kots-faq',
     'vendor/quick-start',
+    'vendor/environment-setup',
     'vendor/replicated-onboarding',
     // {
     //   type: 'category',
@@ -51,48 +52,8 @@ const sidebars = {
       type: 'category',
       label: 'Tutorials',
       items: [
-        {
-          type: 'category',
-          label: 'Install a Helm Chart on a VM with Embedded Cluster',
-          items: [
-            'vendor/tutorial-embedded-cluster-setup',
-            'vendor/tutorial-embedded-cluster-create-app',
-            'vendor/tutorial-embedded-cluster-package-chart',
-            'vendor/tutorial-embedded-cluster-create-release',
-            'vendor/tutorial-embedded-cluster-create-customer',
-            'vendor/tutorial-embedded-cluster-install',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install a Helm Chart with KOTS and the Helm CLI',
-          items: [
-            'vendor/tutorial-kots-helm-setup',
-            'vendor/tutorial-kots-helm-get-chart',
-            'vendor/tutorial-kots-helm-create-app',
-            'vendor/tutorial-kots-helm-package-chart',
-            'vendor/tutorial-kots-helm-create-release',
-            'vendor/tutorial-kots-helm-create-customer',
-            'vendor/tutorial-kots-helm-install-kots',
-            'vendor/tutorial-kots-helm-install-helm',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Install with KOTS in an Existing Cluster',
-          items: [
-            'vendor/tutorial-cli-setup',
-            'vendor/tutorial-cli-install-cli',
-            'vendor/tutorial-cli-create-app',
-            'vendor/tutorial-cli-manifests',
-            'vendor/tutorial-cli-create-release',
-            'vendor/tutorial-cli-create-customer',
-            'vendor/tutorial-cli-install-app-manager',
-            'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-create-new-version',
-            'vendor/tutorial-cli-update-app',
-          ],
-        },
+        'vendor/tutorial-embedded-cluster-automation',
+        'vendor/tutorial-helm-cli',
       ],
     },
     {
@@ -135,6 +96,7 @@ const sidebars = {
                 'vendor/team-management-two-factor-auth',
                 'vendor/team-management-google-auth',
                 'vendor/team-management-saml-auth',
+                'vendor/team-management-scim-provisioning',
               ],
             },
             'vendor/team-management-slack-config',
@@ -189,16 +151,6 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Enterprise Portal (Alpha)',
-          items: [
-            'vendor/enterprise-portal-about',
-            'vendor/enterprise-portal-configure',
-            'vendor/enterprise-portal-invite',
-            'vendor/enterprise-portal-use',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Custom Domains',
           items: [
             'vendor/custom-domains',
@@ -220,6 +172,25 @@ const sidebars = {
               'vendor/instance-data-export',
             ],
         },
+        'vendor/support-submit-request',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Enterprise Portal',
+      items: [
+        'vendor/enterprise-portal-about',
+        'vendor/enterprise-portal-configure',
+        'vendor/enterprise-portal-invite',
+        'vendor/enterprise-portal-self-serve-signup',
+        'vendor/enterprise-portal-use',
+      ],
+    },
+   {
+      type: 'category',
+      label: 'Security Center (Alpha)',
+      items: [
+        'vendor/security-center-about'
       ],
     },
     {
@@ -227,12 +198,23 @@ const sidebars = {
       label: 'Compatibility Matrix',
       items: [
         'vendor/testing-about',
-        'vendor/testing-pricing',
         'vendor/testing-supported-clusters',
-        'vendor/testing-cluster-addons',
-        'vendor/compatibility-matrix-usage',
         'vendor/testing-how-to',
         'vendor/testing-ingress',
+        'vendor/testing-cluster-addons',
+        'vendor/testing-vm-about',
+        'vendor/testing-vm-create',
+        'vendor/testing-vm-networking',
+        'vendor/testing-network-policy',
+        'vendor/testing-ci-cd',
+        {
+          type: 'category',
+          label: 'Managing Cost with CMX',
+          items: [
+            'vendor/testing-pricing',
+            'vendor/compatibility-matrix-usage',
+          ]
+        },
       ],
     },
     {
@@ -250,7 +232,6 @@ const sidebars = {
             'enterprise/installing-embedded',
             'enterprise/installing-embedded-air-gap',
             'enterprise/installing-embedded-automation',
-            'reference/embedded-cluster-install',
           ],
         },
         'enterprise/embedded-manage-nodes',
@@ -258,6 +239,24 @@ const sidebars = {
         'vendor/embedded-troubleshooting',
         'enterprise/embedded-tls-certs',
         'vendor/embedded-disaster-recovery',
+        {
+        type: 'category',
+        label: 'Embedded Cluster Commands',
+        items: [ 
+          'reference/embedded-cluster-admin-console',
+          'reference/embedded-cluster-completion',
+          'reference/embedded-cluster-enable-ha',
+          'reference/embedded-cluster-install',
+          'reference/embedded-cluster-join',
+          'reference/embedded-cluster-join-print-command',
+          'reference/embedded-cluster-reset',
+          'reference/embedded-cluster-restore',
+          'reference/embedded-cluster-shell',
+          'reference/embedded-cluster-support-bundle',
+          'reference/embedded-cluster-update',
+          'reference/embedded-cluster-version',
+        ],
+      },
       ],
     },
     {
@@ -298,19 +297,6 @@ const sidebars = {
                   'vendor/admin-console-customize-config-screen',
                   'vendor/config-screen-map-inputs',
                   'vendor/config-screen-conditional',
-                  {
-                    type: 'category',
-                    label: 'Tutorial: Set Helm Chart Values with KOTS',
-                    items: [
-                      'vendor/tutorial-config-setup',
-                      'vendor/tutorial-config-get-chart',
-                      'vendor/tutorial-config-create-app',
-                      'vendor/tutorial-config-package-chart',
-                      'vendor/tutorial-config-create-release',
-                      'vendor/tutorial-config-create-customer',
-                      'vendor/tutorial-config-install-kots',
-                    ],
-                  },
               ],
             },
             {
@@ -323,7 +309,6 @@ const sidebars = {
                     label: 'Conditionally Deploy Resources',
                     items: [
                       'vendor/packaging-include-resources',
-                      'vendor/helm-optional-charts',
                       'vendor/tutorial-adding-db-config',
                     ],
                 },
@@ -360,6 +345,7 @@ const sidebars = {
                 'reference/custom-resource-about',
                 'reference/custom-resource-application',
                 'reference/custom-resource-config',
+                'reference/custom-resource-configvalues',
                 'reference/custom-resource-helmchart-v2',
                 'reference/custom-resource-helmchart',
                 'reference/custom-resource-lintconfig',
@@ -548,19 +534,6 @@ const sidebars = {
             'vendor/preflight-examples',
             'vendor/preflight-running',
             'vendor/preflight-host-preflights',
-            {
-            type: 'category',
-            label: 'Tutorial: Add Preflight Checks to a Helm Chart',
-            items: [
-              'vendor/tutorial-preflight-helm-setup',
-              'vendor/tutorial-preflight-helm-get-chart',
-              'vendor/tutorial-preflight-helm-add-spec',
-              'vendor/tutorial-preflight-helm-create-release',
-              'vendor/tutorial-preflight-helm-create-customer',
-              'vendor/tutorial-preflight-helm-install',
-              'vendor/tutorial-preflight-helm-install-kots',
-            ],
-          },
           ],
       },
       {
@@ -583,7 +556,6 @@ const sidebars = {
           },
           'vendor/support-inspecting-support-bundles',
           'vendor/support-enabling-direct-bundle-uploads',
-          'vendor/support-submit-request',
         ],
       },
       'vendor/preflight-sb-helm-templates-about',
@@ -700,6 +672,10 @@ const sidebars = {
       'reference/replicated-cli-instance-tag',
       'reference/replicated-cli-login',
       'reference/replicated-cli-logout',
+      'reference/replicated-cli-network',
+      'reference/replicated-cli-network-ls',
+      'reference/replicated-cli-network-report',
+      'reference/replicated-cli-network-update',
       'reference/replicated-cli-registry',
       'reference/replicated-cli-registry-add',
       'reference/replicated-cli-registry-add-dockerhub',
@@ -716,6 +692,8 @@ const sidebars = {
       'reference/replicated-cli-release-compatibility',
       'reference/replicated-cli-release-create',
       'reference/replicated-cli-release-download',
+      'reference/replicated-cli-release-image',
+      'reference/replicated-cli-release-image-ls',
       'reference/replicated-cli-release-inspect',
       'reference/replicated-cli-release-lint',
       'reference/replicated-cli-release-ls',
@@ -891,10 +869,21 @@ const sidebars = {
     items: [
       {
         type: 'link',
+        label: 'Trust Center',
+        href: 'https://trust.replicated.com/'
+      },
+      {
+        type: 'link',
+        label: 'Status Page',
+        href: 'https://status.replicated.com/'
+      },
+      {
+        type: 'link',
         label: 'Security at Replicated',
         href: 'https://www.replicated.com/security/'
       },
       'enterprise/sbom-validating',
+      'vendor/vendor-password-integrity',
       'vendor/replicated-sdk-slsa-validating',
     ],
   },
