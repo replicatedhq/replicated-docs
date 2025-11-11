@@ -1,0 +1,285 @@
+/* Hero/Welcome section styles */
+.hero-section {
+  background-image: linear-gradient(to bottom left, rgba(48, 109, 229, 0.25), rgba(48, 109, 229, 0));
+  padding: 60px 40px;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  text-align: left;
+  margin: 0 0 16px 0;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  text-align: left;
+  margin: 0 0 24px 0;
+  max-width: 800px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-button {
+  background-color: var(--replicated-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: var(--ifm-heading-font-weight);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-button::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('/static/images/icons/arrow-white.svg') no-repeat center;
+  background-size: 25px;
+}
+
+.hero-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.hero-button-secondary {
+  color: var(--ifm-color-content);
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Get started section styles */
+.get-started-section {
+  margin: 3rem 0 2rem 0;
+}
+
+.get-started-title {
+  font-size: rem;
+  font-weight: var(--ifm-heading-font-weight);
+  text-align: left;
+  margin: 0 0 24px 0;
+  line-height: 1.3;
+}
+
+/* Remove container padding to align with heading */
+.get-started-section .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Make get-started row columns equal height */
+.get-started-section .row {
+  display: flex;
+  align-items: stretch;
+}
+
+.get-started-section .col {
+  display: flex;
+}
+
+/* Add vertical spacing when cards stack on smaller screens */
+@media (max-width: 996px) {
+  .get-started-section .row, .feature-showcase .row {
+    flex-direction: column;
+    gap: var(--ifm-spacing-vertical);
+  }
+}
+
+/* Get started box styles */
+.get-started-box {
+  flex: 1;
+  padding: 30px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.get-started-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px #5858581A;
+  text-decoration: none;
+  color: inherit;
+}
+
+.get-started-box-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+}
+
+.get-started-box-title {
+  font-size: 1rem;
+  font-weight: var(--ifm-heading-font-weight);
+  margin: 0 0 12px 0;
+  min-height: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.get-started-box-subtitle {
+  font-size: 1rem;
+  margin: 0;
+  /* use opacity so that the color works in both light and dark mode */
+  opacity: 0.8;
+}
+
+/* Feature showcase section styles */
+.feature-showcase {
+    margin: 3rem 0;
+  }
+  
+  .feature-showcase .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .whats-new-hero {
+    background: var(--ifm-color-primary);
+    color: white;
+    padding: 32px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+  }
+  
+  .whats-new-hero p {
+    margin-bottom: 0;
+  }
+  
+  .whats-new-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px #5858581A;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .whats-new-badge, .did-you-know-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 0.75rem;
+    font-weight: var(--ifm-heading-font-weight);
+    padding: 4px 12px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  
+  .did-you-know-badge {
+    background: var(--ifm-color-primary);
+    color: white;
+  }
+
+/* Browse documentation section styles */
+
+.browse-docs-section .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.browse-docs-title {
+  font-size: 2rem;
+  font-weight: var(--ifm-heading-font-weight);
+  text-align: left;
+  margin: 0 0 32px 0;
+  line-height: 1.3;
+}
+
+.browse-docs-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 2rem;
+}
+
+.browse-docs-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.browse-docs-category-title {
+  font-size: 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 8px;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  /* use opacity so that the color works in both light and dark mode */
+  opacity: 0.8;
+}
+
+.browse-docs-category-title:hover {
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.browse-docs-links {
+  gap: 12px 0;
+}
+
+.browse-docs-link {
+  text-decoration: none;
+  font-size: 1rem;
+  transition: text-decoration 0.2s ease;
+  display: inline-block;
+  width: fit-content;
+}
+
+.browse-docs-link:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode styles for landing page */
+html[data-theme='dark'] {
+  .whats-new-hero, .did-you-know-badge, .hero-button {
+    background: var(--ifm-color-primary-dark);
+  }
+  
+  .dropdown__link--active,
+  .navbar__link--active,
+  .menu__list-item > a:hover, 
+  .menu__list-item-collapsible > a:hover, 
+  .menu__link--active {
+    color: var(--ifm-color-content);
+  }
+
+  .dropdown__link:hover, .navbar__link {
+    color: var(--ifm-dropdown-link-color);
+    text-decoration: none;
+  }
+
+  /* Get started icons - swap to white versions in dark mode */
+  .get-started-box img[src="/images/icons/lightbulb-black.svg"] {
+    content: url("/images/icons/lightbulb-white.svg");
+  }
+
+  .get-started-box img[src="/images/icons/computer-black.svg"] {
+    content: url("/images/icons/computer-white.svg");
+  }
+
+  .get-started-box img[src="/images/icons/alien-vault-black.svg"] {
+    content: url("/images/icons/alien-vault-white.svg");
+  }
+}
