@@ -1,0 +1,270 @@
+---
+slug: /
+pagination_next: null
+title: Home
+hide_table_of_contents: true
+hide_title: true
+---  
+
+import clsx from 'clsx';
+
+<div className="hero-section">
+  <h1 className="hero-title">
+    Welcome to Replicated Docs
+  </h1>
+  <p className="hero-subtitle">
+    Learn how to use the Replicated Platform to secure and distribute your software to enterprise customers.
+  </p>
+  <div className="hero-buttons">
+    <a href="/vendor/quick-start" className="hero-button">
+      <span>Quick start</span>
+    </a>
+    <a href="#browse-product-documentation" className="hero-button-secondary">
+      <span>Browse product docs</span>
+    </a>
+  </div>
+</div>
+
+<div className="get-started-section">
+  <h2 className="get-started-title">Get started</h2>
+  <div className={clsx("container")}>
+    <div className={clsx("row")}>
+      <div className={clsx("col", "col--4")}>
+        <a href="https://play.instruqt.com/replicated/invite/4iunw7uiipnp" className="get-started-box" target="_blank" rel="noopener noreferrer">
+          <img src="/images/icons/lightbulb-black.svg" alt="Lightbulb icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Explore labs</h3>
+          <p className="get-started-box-subtitle">Learn about Replicated by completing common tasks in a lab environment</p>
+        </a>
+      </div>
+      <div className={clsx("col", "col--4")}>
+        <a href="/vendor/environment-setup" className="get-started-box">
+          <img src="/images/icons/computer-black.svg" alt="Computer icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Set up your environment</h3>
+          <p className="get-started-box-subtitle">Install required and optional tools on your local workstation</p>
+        </a>
+      </div>
+      <div className={clsx("col", "col--4")}>
+        <a href="/vendor/replicated-onboarding" className="get-started-box">
+          <img src="/images/icons/alien-vault-black.svg" alt="Alien vault icon" className="get-started-box-icon" />
+          <h3 className="get-started-box-title">Follow the onboarding guide</h3>
+          <p className="get-started-box-subtitle">Integrate Replicated features into your application releases.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="feature-showcase">
+  <div className={clsx("container")}>
+    <div className={clsx("row")}>
+      <div className={clsx("col", "col--8")}>
+        <a href="/vendor/security-center-about" className="whats-new-hero">
+          <div className="whats-new-badge">What's New</div>
+          <h2 className="whats-new-title">Announcing: Security Center (Alpha)</h2>
+          <p className="whats-new-description">
+            The Security Center (Alpha) makes it easier for vendors and their enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each release.
+          </p>
+        </a>
+      </div>
+      
+      <div className={clsx("col", "col--4")}>
+        <div className="did-you-know-container">
+          <div className="did-you-know-card">
+            <div className="did-you-know-badge">Did You Know</div>
+            <h3 className="did-you-know-card-title">Simulate Air Gap Networks With CMX</h3>
+            <p className="did-you-know-card-description">
+             Set the network policy of VMs or VM-based clusters to `airgap` to simulate an environment with no outbound internet access.
+            </p>
+            <a href="https://docs.replicated.com/vendor/testing-network-policy" className="did-you-know-card-link">
+              Learn more →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="browse-docs-section">
+  <h2 id="browse-product-documentation" className="browse-docs-title">Browse product documentation</h2>
+  <div className="browse-docs-categories">
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Develop</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/vendor-portal-creating-account" className="browse-docs-link">Vendor Portal Teams and Accounts</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/vendor-portal-manage-app" className="browse-docs-link">Manage Applications</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/replicated-sdk-overview" className="browse-docs-link">Replicated SDK</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/reference/replicated-sdk-apis" className="browse-docs-link">Replicated SDK API</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/reference/replicated-cli-installing" className="browse-docs-link">Replicated CLI</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/reference/vendor-api-using" className="browse-docs-link">Vendor API</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Test</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-about" className="browse-docs-link">About Compatibility Matrix (CMX)</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-network-policy" className="browse-docs-link">Test in Air Gap Environments</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-pricing" className="browse-docs-link">CMX Pricing</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-vm-create" className="browse-docs-link">Use CMX VMs</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-how-to" className="browse-docs-link">Use CMX Clusters</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/testing-ci-cd" className="browse-docs-link">Test in CMX with CI/CD</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">License</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/licenses-about" className="browse-docs-link">About Customers and Licenses</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/releases-creating-customer" className="browse-docs-link">Create and Manage Customers</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/licenses-install-types" className="browse-docs-link">Manage Install Types for a License</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/licenses-adding-custom-fields" className="browse-docs-link">Manage Customer License Fields</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/licenses-reference-sdk" className="browse-docs-link">Query License Entitlements</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Release</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/releases-about" className="browse-docs-link">About Channels and Releases</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">About the Enterprise Portal</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/enterprise-portal-configure" className="browse-docs-link">Customize the Enterprise Portal</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/enterprise-portal-invite" className="browse-docs-link">Manage Enterprise Portal Access</a>
+          </div>  
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/releases-creating-cli" className="browse-docs-link">Manage Releases with the CLI</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/packaging-private-images" className="browse-docs-link">Add and Manage External Registries</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/helm-image-registry" className="browse-docs-link">Use the Proxy Registry with Helm CLI Installations</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/custom-domains-using" className="browse-docs-link">Use Custom Domains</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Install</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/embedded-using" className="browse-docs-link">Use Embedded Cluster</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/helm-install-overview" className="browse-docs-link">About Helm Installations with Replicated</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/enterprise/installing-embedded-air-gap" className="browse-docs-link">Air Gap Installation with Embedded Cluster</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/enterprise/installing-embedded" className="browse-docs-link">Online Installation with Embedded Cluster</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/helm-install-airgap" className="browse-docs-link">Install and Update with Helm in Air Gap Environments</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/install-with-helm" className="browse-docs-link">Install with Helm</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Report</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/customer-reporting" className="browse-docs-link">Customer Reporting</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/instance-insights-event-data" className="browse-docs-link">About Instance and Event Data</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/telemetry-air-gap" className="browse-docs-link">Collect Telemetry for Air Gap Instances</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/instance-insights-details" className="browse-docs-link">Instance Details</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/instance-data-export" className="browse-docs-link">Export Customer and Instance Data</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/enterprise-portal-use" className="browse-docs-link">Access and Use the Enterprise Portal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Support</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <a href="#" className="browse-docs-link">About Preflight Checks and Support Bundles</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/preflight-defining" className="browse-docs-link">Define Preflight Checks</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/support-bundle-customizing" className="browse-docs-link">Add and Customize Support Bundles</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/support-bundle-generating" className="browse-docs-link">Generate Support Bundles</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/support-inspecting-support-bundles" className="browse-docs-link">Inspect Support Bundles</a>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <a href="/vendor/support-submit-request" className="browse-docs-link">Submit a Support Request</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

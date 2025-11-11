@@ -1,0 +1,82 @@
+h3[id^="new-features"] {
+    background-color: var(--leaf-byte);
+    border-radius: 7px!important;
+    color: #fff;
+    width: max-content;
+    padding: 0.2em 0.6em 0.2em;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+h3[id^="improvements"] {
+    background-color: var(--digital-blue);
+    border-radius: 7px!important;
+    color: #fff;
+    width: max-content;
+    padding: 0.2em 0.6em 0.2em;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+h3[id^="bug-fixes"] {
+    background-color: var(--solar-flare);
+    border-radius: 7px!important;
+    color: #fff;
+    width: max-content;
+    padding: 0.2em 0.6em 0.2em;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+h3[id^="breaking-changes"] {
+    background-color: var(--pixel-pink);
+    /* background-color: #D64399; */
+    border-radius: 7px!important;
+    color: #fff;
+    width: max-content;
+    padding: 0.2em 0.6em 0.2em;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  
+h3[id^="known-issues"] {
+    background-color: var(--neon-violet);
+    /* background-color: #D64399; */
+    border-radius: 7px!important;
+    color: #fff;
+    width: max-content;
+    padding: 0.2em 0.6em 0.2em;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+h3[id^="new-features"] a {
+    color: #fff;
+    opacity: .5;
+    text-decoration: none;
+  }
+  
+h3[id^="improvements"] a {
+    color: #fff;
+    opacity: .5;
+    text-decoration: none;
+  }
+  
+h3[id^="bug-fixes"] a {
+    color: #fff;
+    opacity: .5;
+    text-decoration: none;
+  }
+  
+h3[id^="breaking-changes"] a {
+    color: #fff;
+    opacity: .5;
+    text-decoration: none;
+  }
+  
+h3[id^="known-issues"] a {
+    color: #fff;
+    opacity: .5;
+    text-decoration: none;
+  }
