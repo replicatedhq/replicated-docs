@@ -727,7 +727,7 @@ const sidebars = {
   },
   {
     type: 'category',
-    label: 'Replicated CLI Configuration File',
+    label: 'Replicated CLI Configuration File (Alpha)',
     items: [
       'reference/replicated-cli-config-file',
       'reference/replicated-cli-config-file-reference',

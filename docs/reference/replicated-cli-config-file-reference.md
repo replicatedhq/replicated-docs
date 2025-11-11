@@ -1,4 +1,8 @@
-# .replicated File Reference
+# .replicated File Reference (Alpha)
+
+:::important
+The `.replicated` configuration file is Alpha and its functionality is subject to change. For access to this feature, reach out to your Replicated account representative.
+:::
 
 This topic describes all supported fields in the `.replicated` configuration file. It also provides examples of `.replicated` configuration files.
 

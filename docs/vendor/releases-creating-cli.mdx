@@ -12,9 +12,9 @@ Before you create a release using the Replicated CLI, complete the following pre
 
 * Install the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
   
-* Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
+* If you do not yet have an application in the Replicated Platform, create a new application using the `replicated app create APP_NAME` command. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-* Add a `.replicated` configuration file to your project. See [Add a .replicated File](/reference/replicated-cli-config-file). Alternatively, set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
+* Set the `REPLICATED_APP` environment variable to the slug of the application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
 
 ## Create a Release From a Local Directory {#dir}
 

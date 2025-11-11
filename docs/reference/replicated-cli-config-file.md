@@ -1,4 +1,8 @@
-# Add a .replicated File
+# Add a .replicated File (Alpha)
+
+:::important
+The `.replicated` configuration file is Alpha and its functionality is subject to change. For access to this feature, reach out to your Replicated account representative.
+:::
 
 This topic describes the `.replicated` configuration file, including how to add a `.replicated` file and how the Replicated CLI uses this file to discover and process your application resources when linting and creating releases. 
 
@@ -8,11 +12,15 @@ For a reference that describes the fields in the `.replicated` file, see [.repli
 
 You can add a `.replicated` configuration file to set various preferences for the Replicated CLI, such as the application slug, the channel ID for promoting releases, paths to your application resources (including Helm charts, preflight specs, or Kubernetes manifests), and more. This file enables the [`replicated release create`](/reference/replicated-cli-release-create) and [`replicated release lint`](/reference/replicated-cli-release-lint) commands to automatically discover your application resources and preferences to help ensure consistent builds when managing releases from the Replicated CLI.
 
-The Replicated CLI searches for `.replicated` or `.replicated.yaml` files starting from the current directory and walking up the directory tree. If no `.replicated` file is found, the Replicated CLI:
+When the `.replicated` configuration file Alpha feature is enabled for your account, the Replicated CLI searches for `.replicated` or `.replicated.yaml` files starting from the current directory and walking up the directory tree. If no `.replicated` file is found, then the Replicated CLI:
 - Automatically searches for Helm charts in the current directory
 - Auto-detects preflight specs (files with `kind: Preflight`)
 - Auto-detects support bundle specs (files with `kind: SupportBundle`)
 - Uses default linting configuration
+
+## Prerequisite
+
+For access to the `.replicated` configuration file Alpha feature, reach out to your Replicated account representative.
 
 ## About Using Multiple `.replicated` Files for Monorepos
 
