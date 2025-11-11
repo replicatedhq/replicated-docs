@@ -20,6 +20,7 @@ replicated release create [flags]
       --fail-on string         The minimum severity to cause the command to exit with a non-zero exit code. Supported values are [info, warn, error, none]. (default "error")
   -h, --help                   help for create
       --lint                   Lint a manifests directory prior to creation of the KOTS Release.
+  -o, --output string          The output format to use. One of: json|table (default "table")
       --promote string         Channel name (case sensitive) or id to promote this release to
       --release-notes string   When used with --promote <channel>, sets the **markdown** release notes
       --version string         When used with --promote <channel>, sets the version label for the release in this channel
@@ -29,9 +30,10 @@ replicated release create [flags]
 ### Options inherited from parent commands
 
 ```
-      --app string     The app slug or app id to use in all calls
-      --debug          Enable debug output
-      --token string   The API token to use to access your app in the Vendor API
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
 ```
 
 ### SEE ALSO

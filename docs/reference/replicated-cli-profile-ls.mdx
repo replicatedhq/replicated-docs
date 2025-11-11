@@ -1,25 +1,28 @@
-# replicated channel rm
+# replicated profile ls
 
-Remove (archive) a channel
+List all authentication profiles
 
 ### Synopsis
 
-Remove (archive) a channel
+List all authentication profiles configured in ~/.replicated/config.yaml.
+
+The default profile is indicated with an asterisk (*).
 
 ```
-replicated channel rm CHANNEL_ID [flags]
+replicated profile ls [flags]
 ```
 
-### Aliases
+### Examples
 
 ```
-rm, delete
+# List all profiles
+replicated profile ls
 ```
 
 ### Options
 
 ```
-  -h, --help   help for rm
+  -h, --help   help for ls
 ```
 
 ### Options inherited from parent commands
@@ -33,5 +36,5 @@ rm, delete
 
 ### SEE ALSO
 
-* [replicated channel](replicated-cli-channel)	 - List channels
+* [replicated profile](replicated-cli-profile)	 - Manage authentication profiles
 

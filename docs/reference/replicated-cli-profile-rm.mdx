@@ -1,19 +1,23 @@
-# replicated channel rm
+# replicated profile rm
 
-Remove (archive) a channel
+Remove an authentication profile
 
 ### Synopsis
 
-Remove (archive) a channel
+Remove an authentication profile by name.
+
+If the removed profile was the default profile, the default will be automatically
+set to another available profile (if any exist).
 
 ```
-replicated channel rm CHANNEL_ID [flags]
+replicated profile rm [profile-name] [flags]
 ```
 
-### Aliases
+### Examples
 
 ```
-rm, delete
+# Remove a profile
+replicated profile rm dev
 ```
 
 ### Options
@@ -33,5 +37,5 @@ rm, delete
 
 ### SEE ALSO
 
-* [replicated channel](replicated-cli-channel)	 - List channels
+* [replicated profile](replicated-cli-profile)	 - Manage authentication profiles
 
