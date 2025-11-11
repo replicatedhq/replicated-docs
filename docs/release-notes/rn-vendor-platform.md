@@ -606,7 +606,7 @@ Released on December 2, 2024
 Released on December 2, 2024
 
 ### New Features {#new-features-v2024-12-02-0}
-* Adds support for `kots.io/installer-only` annotation on Kuberntes specs. For more information, see [kots.io/installer-only Annotation](/vendor/licenses-install-types#installer-only-annotation) in _Managing Install Types for a License (Beta)_.
+* Adds support for `kots.io/installer-only` annotation on Kuberntes specs. For more information, see [Understanding Install Types](/vendor/licenses-install-types#install-types) in _Managing Install Types for a License (Beta)_.
 
 ## v2024.11.27-1
 
