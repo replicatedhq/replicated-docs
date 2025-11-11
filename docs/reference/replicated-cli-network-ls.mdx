@@ -18,6 +18,8 @@ ls, list
       --end-time string     end time for the query (Format: 2006-01-02T15:04:05Z)
   -h, --help                help for ls
   -o, --output string       The output format to use. One of: json|table|wide (default "table")
+      --show-reports        when set, only show networks that have reports
+      --show-terminated     when set, only show terminated networks
       --start-time string   start time for the query (Format: 2006-01-02T15:04:05Z)
   -w, --watch               watch networks
 ```
@@ -25,9 +27,10 @@ ls, list
 ### Options inherited from parent commands
 
 ```
-      --app string     The app slug or app id to use in all calls
-      --debug          Enable debug output
-      --token string   The API token to use to access your app in the Vendor API
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
 ```
 
 ### SEE ALSO

@@ -1,0 +1,56 @@
+# replicated profile add
+
+Add a new authentication profile
+
+### Synopsis
+
+Add a new authentication profile with the specified name.
+
+You can provide an API token via the --token flag, or you will be prompted to enter it securely.
+Optionally, you can specify custom API and registry origins.
+If a profile with the same name already exists, it will be updated.
+
+The profile will be stored in ~/.replicated/config.yaml with file permissions 600 (owner read/write only).
+
+```
+replicated profile add [profile-name] [flags]
+```
+
+### Examples
+
+```
+# Add a production profile (will prompt for token)
+replicated profile add prod
+
+# Add a production profile with token flag
+replicated profile add prod --token=your-prod-token
+
+# Add a development profile with custom origins
+replicated profile add dev \
+  --token=your-dev-token \
+  --api-origin=https://vendor-api-noahecampbell.okteto.repldev.com \
+  --registry-origin=vendor-registry-v2-noahecampbell.okteto.repldev.com
+```
+
+### Options
+
+```
+      --api-origin string        API origin (optional, e.g., https://api.replicated.com/vendor). Mutually exclusive with --namespace
+  -h, --help                     help for add
+      --namespace string         Okteto namespace for dev environments (e.g., 'noahecampbell'). Auto-generates service URLs. Mutually exclusive with --api-origin and --registry-origin
+      --registry-origin string   Registry origin (optional, e.g., registry.replicated.com). Mutually exclusive with --namespace
+      --token string             API token for this profile (optional, will prompt if not provided)
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+```
+
+### SEE ALSO
+
+* [replicated profile](replicated-cli-profile)	 - Manage authentication profiles
+
