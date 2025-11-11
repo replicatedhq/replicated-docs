@@ -10,6 +10,34 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.07-0
+
+Released on November 7, 2025
+
+### New Features {#new-features-v2025-11-07-0}
+* Compatibility Matrix: By default, network reports show only external traffic. For more information about network reporting, see [Collect and View Network Reports](/vendor/testing-network-policy#collect-and-view-network-reports).
+
+## v2025.11.06-3
+
+Released on November 6, 2025
+
+### Bug Fixes {#bug-fixes-v2025-11-06-3}
+* Fixes icon colors in notification page in the Vendor Portal.
+
+## v2025.11.06-2
+
+Released on November 6, 2025
+
+### Improvements {#improvements-v2025-11-06-2}
+* Content improvements for clarity on the Enterprise Portal configuration page.
+
+## v2025.10.22-2
+
+Released on October 22, 2025
+
+### New Features {#new-features-v2025-10-22-2}
+* Compatibility Matrix: Updating the TTL shows the expected time when the cluster or VM will expire.
+
 
 ## v2025.10.20-2
 

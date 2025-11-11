@@ -18,10 +18,18 @@ If you have a single service or pod and are not worried about complex routing, t
 The basic steps are to connect the port-forward, execute your tests against localhost, and then shut down the port-forward.
 
 ### LoadBalancer
-If your application is only running on cloud services (EKS, GKE, AKS) you can create a service of type `LoadBalancer`. 
+If your application is only running on cloud services (EKS, GKE, AKS), you can create a service of type `LoadBalancer`. 
 This will provision the cloud-provider specific load balancer.
 The `LoadBalancer` service will be filled by the in-tree Kubernetes functionality that's integrated with the underlying cloud provider.
 You can then query the service definition using `kubectl` and connect to and execute your tests over the `LoadBalancer` IP address.
+
+:::note
+AKS clusters require the following additional annotations to be set on LoadBalancer services for traffic to be routed:
+* `controller.service.externalTrafficPolicy` must be set to `Local`
+* `service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path` must be set to a health check endpoint that returns a successful HTTP response when your service is ready
+
+For more information about these annotations, see the [Use a public standard load balancer in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard) in the Azure documentation.
+:::
 
 ### Ingress
 Ingress is a good way to recreate customer-representative environments, but the problem still remains on how to get inbound access to the IP address that the ingress controller allocates.

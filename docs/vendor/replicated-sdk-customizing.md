@@ -572,3 +572,29 @@ To enable reporting all images, set the `replicated.reportAllImages` value in yo
 replicated:
   reportAllImages: true
 ```
+
+## Proxy Configuration {#proxy}
+
+With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use an HTTPS proxy when fetching license information and reporting metrics.
+
+When enabled, the SDK will use the configured proxy for requests to Replicated APIs, but will not use a proxy for requests to the Kubernetes API. Setting an additional no_proxy is not required.
+
+To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  proxy:
+    httpsProxy: http://proxy.example.com
+    noProxy: internal.domain.com
+```
+
+```yaml
+# Helm chart values.yaml
+
+global:
+  replicated:
+    httpsProxy: http://proxy.example.com
+    noProxy: internal.domain.com
+```

@@ -1,11 +1,13 @@
-# About the Enterprise Portal (Beta)
+# About the Enterprise Portal
 
 This topic provides an overview of the Replicated Enterprise Portal.
 
 ## Overview
 
-The Enterprise Portal is a customizable, web-based portal that provides a centralized location where your customers can:
-* View application install and update instructions
+The Enterprise Portal is a customizable, web-based portal for customers that install using either Replicated Embedded Cluster or the Helm CLI.
+
+From the Enterprise Portal, your customers can:
+* View application install and update instructions for Embedded Cluster and Helm CLI installations
 * Manage their team members and service accounts
 * Upload support bundles
 * View insights about their active and inactive instances
@@ -33,9 +35,7 @@ For information about using the Enterprise Portal, see [Access and Use the Enter
 
 ## Limitations
 
-* The Enterprise Portal is Beta. The features and functionality of the Enterprise Portal are subject to change.
-
-* Installation and upgrade instructions are available only for Embedded Cluster and Helm installations. The Enterprise Portal does not provide instructions for installing and upgrading with KOTS in existing clusters.
+* Installation and upgrade instructions are available only for Embedded Cluster and Helm CLI installations. The Enterprise Portal does not provide instructions for installing and upgrading with KOTS in existing clusters or with kURL.
 
 * Air gap instance records do not appear in the Enterprise Portal until the end customer creates an air gap instance record by either uploading a support bundle for that instance or manually entering instance information. For more information, see [View Active and Inactive Instances](/vendor/enterprise-portal-use#view-active-and-inactive-instances) in _Access and Use the Enterprise Portal_.
 
@@ -45,7 +45,11 @@ For information about using the Enterprise Portal, see [Access and Use the Enter
 
 The Enterprise Portal is the next generation version of the Replicated Download Portal. Compared to the Download Portal, the Enterprise Portal not only provides access to installation assets and instructions, but also allows users to track available updates, manage their team and service accounts, view the status of their instances, view license details, and more. These features are designed to make it easier for your customers to manage their instances of your application from a centralized location outside of the installation environment.
 
-You can migrate existing customers from the Download Portal to the Enterprise Portal by enabling the Enterprise Portal for their license. For more information, see [Manage Enterprise Portal Access](enterprise-portal-invite).
+For more information about enabling Enterprise Portal access for your customers that install using either Embedded Cluster or the Helm CLI, see [Manage Enterprise Portal Access](enterprise-portal-invite).
+
+:::note
+The Entprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal. 
+:::
 
 For more information about the Download Portal, see [Access a Customer's Download Portal](/vendor/releases-share-download-portal).
 

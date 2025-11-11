@@ -1,4 +1,4 @@
-# Customize the Enterprise Portal (Beta)
+# Customize the Enterprise Portal
 
 This topic describes how to customize the Enterprise Portal, including using a custom domain, changing the branding, editing the content of invitation and notification emails, and adding custom documentation.
 
@@ -8,7 +8,7 @@ You can edit the settings for the Enterprise Portal to use a custom domain, prov
 
 To manage Enterprise Portal settings:
 
-1. In the Vendor Portal, go to **Enterprise Portal > Settings**.
+1. In the Vendor Portal, go to **Enterprise Portal > Portal Settings**.
 
     ![Enterprise Portal settings page](/images/enterprise-portal-settings.png)
 
@@ -67,7 +67,7 @@ You can customize the the content and styling of the invitation and notification
 
 To configure customer emails:
 
-1. In the Vendor Portal, go to **Enterprise Portal > Customer emails**.
+1. In the Vendor Portal, go to **Enterprise Portal > Customer Emails**.
 
    ![Enterprise Portal customer emails page](/images/enterprise-portal-customer-emails.png)
 
@@ -82,15 +82,13 @@ To configure customer emails:
 
      [View a larger version of this image](/images/enterprise-portal-customer-emails-edit.png)
 
-## Customize Documentation
+## Add a Link to Documentation
 
-The install instructions available in the Enterprise Portal are automatically generated based on the install types and options enabled in the customer's license. For more information about managing the installation types and options, see [Manage Install Types for a License](/vendor/licenses-install-types).
+For each of your supported install types, you can add a link your installation documentation. The link you provide is displayed on the Enterprise Portal **Install** page.
 
-You can also customize the documentation that is displayed in the Enterprise Portal by including a link to your installation instructions or by adding your own pre- and post-installation instructions. 
+To add a link to your documentation in the Enterprise Portal:
 
-To customize documentation:
-
-1. In the Vendor Portal, go to **Enterprise Portal > Knowledge Base**.
+1. In the Vendor Portal, go to **Enterprise Portal > Installation Instructions**.
 
    ![Enterprise Portal knowledge base page](/images/enterprise-portal-knowledge-base.png)
 
@@ -98,12 +96,587 @@ To customize documentation:
 
 1. In the panel on the left, select the installation type.
 
-1. Customize the documentation for the selected installation type as desired:
-    1. In the documentation links section, add a link to your installation documentation. The link is displayed on the Enterprise Portal **Install** page.
-    1. In the documentation content section, add pre- and post-installation instructions in markdown format. Click **Preview** to see a preview of your changes.
-
-    :::note
-    By default, these same instructions are shown for all release channels. To add channel-specific instructions, go to the **Channel customizations** section. 
-    :::
+1. In the documentation links section, add a link to your application install documentation.
 
 1. Click **Save changes**.
+
+## Add Pre- and Post-Install Instructions
+
+For each of your supported install types, you can add custom pre- and post-install instructions for users. This is useful if there are additional prerequisites or follow-up steps that users need to complete in addition to the primary installation instructions.
+
+:::note
+The same pre- and post- instructions are shown for all your release channels. To add channel-specific instructions, see [Customize Channel-Specific Install Instructions](#customize-channel-install-instructions).
+:::
+
+To customize the pre- and post-install instructions for your application:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Installation Instructions**.
+
+   ![Enterprise Portal knowledge base page](/images/enterprise-portal-knowledge-base.png)
+
+   [View a larger version of this image](/images/enterprise-portal-knowledge-base.png)
+
+1. In the panel on the left, select the installation type.
+
+1. In the documentation content section, add pre- and post-installation instructions in markdown format. Click **Preview** to see a preview of your changes.
+
+1. Click **Save changes**.
+
+## Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
+
+:::note
+Custom install instructions are Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+By default, the installation instructions available in the Enterprise Portal are automatically generated based on the install types and options enabled in the customer's license. These default installation instructions are the same across all release channels. For more information about managing the install types and options, see [Manage Install Types for a License](/vendor/licenses-install-types).
+
+You can also write custom, channel-specific instructions. This is useful if you need to provide unique installation steps for any of your release channels. For example, you can add custom steps, rename steps or sections to match your documentation, include videos or diagrams, and more.
+
+These custom installation instructions support MDX. MDX is a format that combines Markdown with JSX, allowing you to use components and template variables in your instructions. MDX templates support the following:
+
+- **Template variables**: Access dynamic data like application name, release version, registry settings, and customer inputs
+- **Built-in UI components**: Use UI components like code blocks, alerts, tabs, and progress indicators
+- **Conditional rendering**: Conditionally show or hide content. For example, show or hide certain steps based on the installation options supported by the customer's license
+
+### Customize Channel-Specific Instructions
+
+To customize channel-specific installation instructions:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Installation Instructions**.
+
+1. Scroll to the **Channel customizations** section.
+
+1. For the channel where you want to customize instructions, click **Enable**.
+
+   ![Enable button](/images/vendor-portal-custom-instructions-enable.png)
+
+   [View a larger version of this image](/images/vendor-portal-custom-instructions-enable.png)
+
+1. In the MDX template editor, write your custom installation instructions using Markdown, template variables, and MDX components.
+
+   The editor provides autocomplete for available template variables and components. Start typing `{` for template variables or `<` for MDX components to see suggestions. For more information about the available variables and components, see [Supported MDX Template Variables](#vars) and [Supported MDX Components](#components) below.
+
+   ![MDX template editor](/images/vendor-portal-custom-instructions-editing.png)
+
+   [View a larger version of this image](/images/vendor-portal-custom-instructions-editing.png)
+
+1. Click **Save changes** to save your custom installation instructions.
+
+### Revert to Default Instructions
+
+To disable custom instructions for a channel and revert to the default automatically-generated instructions:
+
+1. In the **Channel customizations** section, select the channel.
+
+1. For the target channel, click **Disable**. When channel customizations are disabled, the Enterprise Portal shows the default installation instructions for the channel.
+
+   :::note
+   Your custom documentation is saved in the **Channel customizations** MDX template editor. You can enable the custom instructions again by clicking **Enable** for the channel.
+   :::
+
+### Supported MDX Template Variables {#vars}
+
+:::note
+For a complete list of available variables, use the autocomplete feature in the editor.
+:::
+
+The following describes some of the supported MDX template variables:
+
+<table>
+  <tr>
+    <th width="20%">Variable</th>
+    <th width="40%">Description</th>
+    <th width="40%">Example</th>
+  </tr>
+  <tr>
+    <td><code>{`{app.name}`}</code></td>
+    <td>Application name</td>
+    <td>`My Application`</td>
+  </tr>
+  <tr>
+    <td><code>{`{app.slug}`}</code></td>
+    <td>Application slug (identifier)</td>
+    <td>`my-app`</td>
+  </tr>
+  <tr>
+    <td><code>{`{channel.name}`}</code></td>
+    <td>Channel name</td>
+    <td>`Stable`</td>
+  </tr>
+  <tr>
+    <td><code>{`{channel.slug}`}</code></td>
+    <td>Channel slug</td>
+    <td>`stable`</td>
+  </tr>
+  <tr>
+    <td><code>{`{release.versionLabel}`}</code></td>
+    <td>Release version number</td>
+    <td>`1.2.3`</td>
+  </tr>
+  <tr>
+    <td><code>{`{release.sequence}`}</code></td>
+    <td>Release sequence number</td>
+    <td>`42`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installOptions.adminConsoleUrl}`}</code></td>
+    <td>Admin Console URL (user input, dynamic)</td>
+    <td>`https://admin.example.com`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installOptions.proxyUrl}`}</code></td>
+    <td>HTTP/HTTPS proxy URL (user input, dynamic)</td>
+    <td>`https://proxy.example.com:8080`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installOptions.privateRegistryUrl}`}</code></td>
+    <td>Private registry hostname (user input, dynamic)</td>
+    <td>`registry.example.com:5000`</td>
+  </tr>
+  <tr>
+    <td><code>{`{branding?.title}`}</code></td>
+    <td>Enterprise Portal title (optional)</td>
+    <td>`MyApp Enterprise Portal`</td>
+  </tr>
+  <tr>
+    <td><code>{`{branding?.primaryColor}`}</code></td>
+    <td>Primary brand color (optional)</td>
+    <td>`#4a53b0`</td>
+  </tr>
+  <tr>
+    <td><code>{`{branding?.supportPortalLink}`}</code></td>
+    <td>Support portal URL (optional)</td>
+    <td>`https://support.example.com`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installation.licenseId}`}</code></td>
+    <td>Customer license ID</td>
+    <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installation.serviceAccountId}`}</code></td>
+    <td>Service account identifier</td>
+    <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
+  </tr>
+  <tr>
+    <td><code>{`{images.raw}`}</code></td>
+    <td>Array of image names without registry (Helm only)</td>
+    <td>`["nginx:1.19", "postgres:13"]`</td>
+  </tr>
+  <tr>
+    <td><code>{`{images.full}`}</code></td>
+    <td>Array of complete image references (Helm only)</td>
+    <td>`["registry.replicated.com/..."]`</td>
+  </tr>
+</table>
+
+### Supported MDX Components {#components}
+
+The following components are available in MDX templates. For examples of each component, see [Example](#example) below.
+
+#### Text and Formatting
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<Note>`, `<Tip>`, `<Warning>`, `<Info>`</td>
+      <td>
+        Display callout boxes with different styles.
+      </td>
+      <td>`icon` (boolean, optional): Show or hide the icon in the callout.</td>
+    </tr>
+    <tr>
+      <td>`<Alert>`</td>
+      <td>
+        General purpose alert with customizable type
+      </td>
+      <td>
+        <ul>
+          <li>`kind` ("info" | "warning" | "error" | "success", optional)</li>
+          <li>`icon` (boolean, optional): Show or hide the icon in the callout.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>`<InlineCode>`</td>
+      <td>
+        <p>Display inline code.</p>
+        <p>To use template variables inside CodeBlock, wrap them in template literals using curly braces: `{`...`}`. For example, ```<InlineCode>{`${app.slug}`}</InlineCode>```.</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>`<CodeBlock>`</td>
+      <td>
+        <p>Display multi-line code blocks with syntax highlighting.</p>
+        <p>To use template variables inside CodeBlock, wrap them in template literals using curly braces: `{`...`}`. For examples of this, see [Example](#example).</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>
+        <ul>
+          <li>`language` (string, optional)</li>
+          <li>`maxHeight` (number | string, optional)</li>
+          <li>`showCopyButton` (boolean, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<CommandBlock>`</td>
+      <td>
+        <p>Display shell commands with copy functionality.</p>
+        <p>To use template variables inside CommandBlock, wrap them in template literals using curly braces: `{`...`}`. For examples of this, see [Example](#example).</p>
+        <p><strong>Limitation:</strong> Dynamic user input variables (like `installOptions.privateRegistryUrl`, `installOptions.proxyUrl`, `installOptions.adminConsoleUrl`) are not supported in code components. Use placeholders like `<YOUR_REGISTRY>` instead.</p>
+      </td>
+      <td>
+        <ul>
+          <li>`language` (string, optional)</li>
+          <li>`maxHeight` (number | string, optional)</li>
+          <li>`showCopyButton` (boolean, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Layout
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<Tabs>`</td>
+      <td>Create tabbed content sections</td>
+      <td>`defaultActiveTab` (number, optional): Index of initially active tab</td>
+    </tr>
+    <tr>
+      <td>`<Tab>`</td>
+      <td>Individual tab within a Tabs container</td>
+      <td>`title` (string, required): Tab label text</td>
+    </tr>
+    <tr>
+      <td>`<Accordion>`</td>
+      <td>Create collapsible content sections</td>
+      <td>`title` (string, required), `defaultOpen` (boolean, optional)</td>
+    </tr>
+    <tr>
+      <td>`<ConditionalRender>`</td>
+      <td>Show or hide content based on conditions</td>
+      <td>`when` (string, required): JavaScript expression to evaluate</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Installation Components
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<InstallStep>`</td>
+      <td>Numbered installation step</td>
+      <td>
+        <ul>
+          <li>`title` (string, required)</li>
+          <li>`stepNumber` (number, optional)</li>
+          <li>`completed` (boolean, optional)</li>
+          <li>`optional` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<Prerequisites>`</td>
+      <td>Display prerequisites section</td>
+      <td>`title` (string, optional): Custom title for the section</td>
+    </tr>
+    <tr>
+      <td>`<Troubleshooting>`</td>
+      <td>Display troubleshooting section</td>
+      <td>`title` (string, optional): Custom title for the section</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Input Components
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<ProxyURLInput>`</td>
+      <td>Collect proxy URL from user</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<PrivateRegistryInput>`</td>
+      <td>Collect registry credentials</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+    <tr>
+      <td>`<AdminConsoleURLInput>`</td>
+      <td>Collect Admin Console URL</td>
+      <td>
+        <ul>
+          <li>`placeholder` (string, optional)</li>
+          <li>`disabled` (boolean, optional)</li>
+        </ul>  
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Display Components
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Name</th>
+      <th width="40%">Description</th>
+      <th width="40%">Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<SupportLink>`</td>
+      <td>Link to support resources</td>
+      <td>
+         <ul>
+           <li>`href` (string, optional): Link URL. If not set, uses `branding.supportPortalLink`.</li>
+           <li>`showIcon` (boolean, optional, default: true)</li>
+           <li>`target` ("_blank" | "_self", optional, default: "_blank")</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### MDX Templates Restrictions
+
+MDX templates are validated for security before being saved. The following restrictions apply:
+
+- Only approved MDX components can be used
+- JavaScript code execution is not allowed
+- External script imports are blocked
+- Dangerous HTML elements (script, iframe, embed) are not allowed
+- Template size is limited to 1MB
+
+### Example
+
+The following is an example of custom installation instructions that use MDX with conditional rendering based on installation type:
+
+<details>
+  <summary>MDX Example</summary>
+
+```mdx
+# Install \{app.name\}
+
+<ConditionalRender when="installOptions.installType === 'helm'">
+  ## Helm Installation
+
+  <Prerequisites>
+    - Kubernetes cluster version 1.24 or later
+    - Helm 3.8 or later installed
+    - kubectl configured to access your cluster
+  </Prerequisites>
+
+  <InstallStep title="Configure your private registry" stepNumber={1}>
+    <PrivateRegistryInput />
+
+    <Note>
+      Save your registry credentials to a Kubernetes secret:
+    </Note>
+
+    <CommandBlock>
+      {`kubectl create secret docker-registry ${app.slug}-registry \\
+  --docker-server=<YOUR_PRIVATE_REGISTRY> \\
+  --docker-username=<YOUR_USERNAME> \\
+  --docker-password=<YOUR_PASSWORD> \\
+  --namespace default`}
+    </CommandBlock>
+  </InstallStep>
+
+  <InstallStep title="Install the Helm chart" stepNumber={2}>
+    <CommandBlock>
+      {`helm install ${app.slug} oci://<YOUR_PRIVATE_REGISTRY>/${app.slug} \\
+  --version ${release.versionLabel} \\
+  --namespace default`}
+    </CommandBlock>
+  </InstallStep>
+
+  <InstallStep title="Verify the installation" stepNumber={3}>
+    <CommandBlock>
+      {`kubectl get pods -n default`}
+    </CommandBlock>
+    <br /><br />
+    <Tip>
+      All pods should be in the Running state within 5 minutes.
+    </Tip>
+  </InstallStep>
+
+  <Troubleshooting>
+    ### Pods are not starting
+
+    If your pods are not starting, check the pod logs:
+
+    <CommandBlock>
+      {`kubectl logs -n default -l app=${app.slug}`}
+    </CommandBlock>
+    <br /><br />
+    ### Need help?
+
+    Contact our support team: <SupportLink href=\{branding?.supportPortalLink\}>Get Support</SupportLink>
+  </Troubleshooting>
+</ConditionalRender>
+
+<ConditionalRender when="installOptions.installType === 'linux'">
+  ## Embedded Cluster Installation
+
+  <Prerequisites>
+    - Linux server (Ubuntu 20.04+, RHEL 8+, or equivalent)
+    - Root or sudo access
+    - Minimum 4 CPU cores and 8GB RAM
+  </Prerequisites>
+
+  <InstallStep title="Download the installation assets" stepNumber={1}>
+    <ConditionalRender when="installOptions.isAirgap">
+      <Note>
+        Download the air gap bundle to your server:
+      </Note>
+      <CommandBlock>
+        {`curl -f "https://replicated.app/embedded/${app.slug}/${channel.channelSlug}/${release.versionLabel}?airgap=true" \\
+  -H "Authorization: YOUR_LICENSE" \\
+  -o ${app.slug}-${channel.channelSlug}.tgz`}
+      </CommandBlock>
+    </ConditionalRender>
+
+    <ConditionalRender when="!installOptions.isAirgap && installOptions.proxyUrl">
+      <Note>
+        Download the installation assets via proxy:
+      </Note>
+      <ProxyURLInput />
+      <CommandBlock>
+        {`curl -f "https://replicated.app/embedded/${app.slug}/${channel.channelSlug}/${release.versionLabel}" \\
+  -H "Authorization: YOUR_LICENSE" \\
+  --proxy <YOUR_PROXY_URL> \\
+  -o ${app.slug}-${channel.channelSlug}.tgz`}
+      </CommandBlock>
+    </ConditionalRender>
+
+    <ConditionalRender when="!installOptions.isAirgap && !installOptions.proxyUrl">
+      <Note>
+        Download the installation assets:
+      </Note>
+      <CommandBlock>
+        {`curl -f "https://replicated.app/embedded/${app.slug}/${channel.channelSlug}/${release.versionLabel}" \\
+  -H "Authorization: YOUR_LICENSE" \\
+  -o ${app.slug}-${channel.channelSlug}.tgz`}
+      </CommandBlock>
+    </ConditionalRender>
+  </InstallStep>
+
+  <InstallStep title="Extract the installation assets" stepNumber={2}>
+    <CommandBlock>
+      {`tar -xvzf ${app.slug}-${channel.channelSlug}.tgz`}
+    </CommandBlock>
+  </InstallStep>
+
+  <InstallStep title="Run the installer" stepNumber={3}>
+    <ConditionalRender when="installOptions.isAirgap">
+      <CommandBlock>
+        {`sudo ./${app.slug} install --license license.yaml --airgap-bundle ${app.slug}.airgap`}
+      </CommandBlock>
+    </ConditionalRender>
+
+    <ConditionalRender when="!installOptions.isAirgap && installOptions.proxyUrl">
+      <CommandBlock>
+        {`sudo ./${app.slug} install --license license.yaml --https-proxy=<YOUR_PROXY_URL>`}
+      </CommandBlock>
+    </ConditionalRender>
+
+    <ConditionalRender when="!installOptions.isAirgap && !installOptions.proxyUrl">
+      <CommandBlock>
+        {`sudo ./${app.slug} install --license license.yaml`}
+      </CommandBlock>
+    </ConditionalRender>
+    <br /><br />
+    <Tip>
+      The installer will provision a Kubernetes cluster and deploy \{app.name\}.
+    </Tip>
+  </InstallStep>
+
+  <Troubleshooting>
+    ### Installation fails
+
+    Check the installation logs:
+
+    <CommandBlock>
+      {`sudo journalctl -u ${app.slug}`}
+    </CommandBlock>
+    <br /><br />
+    ### Need help?
+
+    Visit our <SupportLink href="https://support.example.com">support portal</SupportLink> or email support@example.com.
+  </Troubleshooting>
+</ConditionalRender>
+```
+</details>
+
+Given the MDX example above, the following show previews of how the Helm online install and Linux (Embedded Cluster) online install instructions would appear in the Enterprise Portal:
+
+<details>
+  <summary>Helm Online Install Preview</summary>
+
+![Helm online install instructions example](/images/enterprise-portal-custom-instructions-helm-online.png)
+
+[View a larger version of this image](/images/enterprise-portal-custom-instructions-helm-online.png)
+
+</details>
+
+<details>
+  <summary>Linux (Embedded Cluster) Online Install Preview</summary>
+
+![Linux online install instructions example](/images/enterprise-portal-custom-instructions-linux-online.png)
+
+[View a larger version of this image](/images/enterprise-portal-custom-instructions-linux-online.png)
+
+</details>

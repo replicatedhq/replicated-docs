@@ -1,12 +1,10 @@
 # replicated release lint
 
-Lint a directory of KOTS manifests
+Lint a directory of KOTS manifests or local resources
 
 ### Synopsis
 
-Lint a directory of KOTS manifests.
-
-For information about setting linting preferences for your project, see [Add a .replicated File](/reference/replicated-cli-config-file).
+Lint a directory of KOTS manifests or local resources. Behavior depends on the release-validation-v2 feature flag.
 
 ```
 replicated release lint [flags]
@@ -18,15 +16,17 @@ replicated release lint [flags]
       --fail-on string   The minimum severity to cause the command to exit with a non-zero exit code. Supported values are [info, warn, error, none]. (default "error")
   -h, --help             help for lint
   -o, --output string    The output format to use. One of: json|table (default "table")
-      --verbose          Show verbose output, including discovered images
+  -v, --verbose          Show detailed output including extracted container images (local lint only)
+      --yaml-dir yaml    The directory containing multiple yamls for a Kots release. Cannot be used with the yaml flag.
 ```
 
 ### Options inherited from parent commands
 
 ```
-      --app string     The app slug or app id to use in all calls
-      --debug          Enable debug output
-      --token string   The API token to use to access your app in the Vendor API
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
 ```
 
 ### SEE ALSO

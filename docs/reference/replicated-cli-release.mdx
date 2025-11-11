@@ -15,9 +15,10 @@ The release command allows vendors to create, display, and promote their release
 ### Options inherited from parent commands
 
 ```
-      --app string     The app slug or app id to use in all calls
-      --debug          Enable debug output
-      --token string   The API token to use to access your app in the Vendor API
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
 ```
 
 ### SEE ALSO
@@ -28,7 +29,7 @@ The release command allows vendors to create, display, and promote their release
 * [replicated release download](replicated-cli-release-download)	 - Download application manifests for a release.
 * [replicated release image](replicated-cli-release-image)	 - Manage release images
 * [replicated release inspect](replicated-cli-release-inspect)	 - Long: information about a release
-* [replicated release lint](replicated-cli-release-lint)	 - Lint a directory of KOTS manifests
+* [replicated release lint](replicated-cli-release-lint)	 - Lint a directory of KOTS manifests or local resources
 * [replicated release ls](replicated-cli-release-ls)	 - List all of an app's releases
 * [replicated release promote](replicated-cli-release-promote)	 - Set the release for a channel
 * [replicated release test](replicated-cli-release-test)	 - Test the application release

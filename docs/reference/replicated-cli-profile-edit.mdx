@@ -1,0 +1,55 @@
+# replicated profile edit
+
+Edit an existing authentication profile
+
+### Synopsis
+
+Edit an existing authentication profile.
+
+You can update the API token, API origin, and/or registry origin for an existing profile.
+Only the flags you provide will be updated; other fields will remain unchanged.
+
+The profile will be stored in ~/.replicated/config.yaml with file permissions 600 (owner read/write only).
+
+```
+replicated profile edit [profile-name] [flags]
+```
+
+### Examples
+
+```
+# Update the token for a profile
+replicated profile edit dev --token=new-dev-token
+
+# Update the API origin for a profile
+replicated profile edit dev --api-origin=https://vendor-api-noahecampbell.okteto.repldev.com
+
+# Update multiple fields at once
+replicated profile edit dev \
+  --token=new-token \
+  --api-origin=https://vendor-api-noahecampbell.okteto.repldev.com \
+  --registry-origin=vendor-registry-v2-noahecampbell.okteto.repldev.com
+```
+
+### Options
+
+```
+      --api-origin string        New API origin (optional, e.g., https://api.replicated.com/vendor). Mutually exclusive with --namespace
+  -h, --help                     help for edit
+      --namespace string         Okteto namespace for dev environments (e.g., 'noahecampbell'). Auto-generates service URLs. Mutually exclusive with --api-origin and --registry-origin
+      --registry-origin string   New registry origin (optional, e.g., registry.replicated.com). Mutually exclusive with --namespace
+      --token string             New API token for this profile (optional)
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+```
+
+### SEE ALSO
+
+* [replicated profile](replicated-cli-profile)	 - Manage authentication profiles
+

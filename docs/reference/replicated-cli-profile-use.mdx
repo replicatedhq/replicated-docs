@@ -1,0 +1,39 @@
+# replicated profile use
+
+Set the default authentication profile
+
+### Synopsis
+
+Set the default authentication profile that will be used when no --profile flag is specified
+and no environment variables are set.
+
+```
+replicated profile use [profile-name] [flags]
+```
+
+### Examples
+
+```
+# Use production as the default profile
+replicated profile use prod
+```
+
+### Options
+
+```
+  -h, --help   help for use
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated profile](replicated-cli-profile)	 - Manage authentication profiles
+

@@ -4,11 +4,13 @@ Update network settings
 
 ### Synopsis
 
-The 'update' command allows you to update various settings of a test network.
+The 'update' command allows you to update various settings of a test network, including network policy and report collection.
 
-You can either specify the network ID directly or provide the network name, and the command will resolve the corresponding network ID.
+You can either specify the network ID or name directly as a positional argument, or provide it using the '--id' or '--name' flags.
 
-Network Policies are currently a beta feature.
+Network policies control network traffic behavior:
+  - open: No restrictions on network traffic (default)
+  - airgap: Blocks all network egress to simulate air-gapped environments
 
 ```
 replicated network update [ID_OR_NAME] [flags]
@@ -17,34 +19,41 @@ replicated network update [ID_OR_NAME] [flags]
 ### Examples
 
 ```
-# Update a network using its ID
+# Set network policy to airgap
 replicated network update <network-id> --policy airgap
 
-# Update a network using its name
-replicated network update <network-name> --policy airgap
+# Set network policy to open
+replicated network update <network-id> --policy open
 
-# Update using --id or --name flags
-replicated network update --id <network-id> --policy airgap
-replicated network update --name <network-name> --policy airgap
+# Enable network traffic reporting
+replicated network update <network-id> --collect-report
+
+# Disable network reporting
+replicated network update <network-id> --collect-report=false
+
+# Update multiple settings at once
+replicated network update <network-id> --policy airgap --collect-report
 
 ```
 
 ### Options
 
 ```
-  -h, --help            help for update
-      --id string       id of the network to update (when name is not provided)
-      --name string     Name of the network to update
-      --output string   The output format to use. One of: json|table|wide (default "table")
-  -p, --policy string   Update network policy setting
+  -r, --collect-report   Enable report collection on this network (use --collect-report=false to disable)
+  -h, --help             help for update
+      --id string        id of the network to update (when name is not provided)
+      --name string      Name of the network to update
+      --output string    The output format to use. One of: json|table|wide (default "table")
+  -p, --policy string    Update network policy setting
 ```
 
 ### Options inherited from parent commands
 
 ```
-      --app string     The app slug or app id to use in all calls
-      --debug          Enable debug output
-      --token string   The API token to use to access your app in the Vendor API
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
 ```
 
 ### SEE ALSO

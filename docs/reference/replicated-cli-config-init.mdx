@@ -1,0 +1,51 @@
+# replicated config init
+
+Initialize a .replicated config file for your project
+
+### Synopsis
+
+Initialize a .replicated config file for your project.
+
+This command will guide you through setting up a .replicated configuration file
+by prompting for common settings like app ID, chart paths, and linting preferences.
+
+It will also attempt to auto-detect Helm charts and preflight specs in your project.
+
+```
+replicated config init [flags]
+```
+
+### Examples
+
+```
+# Initialize with interactive prompts
+replicated config init
+
+# Initialize with auto-detected resources only (no prompts)
+replicated config init --non-interactive
+
+# Initialize without auto-detection
+replicated config init --skip-detection
+```
+
+### Options
+
+```
+  -h, --help              help for init
+      --non-interactive   Run without prompts, using defaults and auto-detected values
+      --skip-detection    Skip auto-detection of resources
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated config](replicated-cli-config)	 - Manage .replicated configuration
+
