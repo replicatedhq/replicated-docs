@@ -5,6 +5,7 @@ import Dr from "../partials/snapshots/_limitation-dr.mdx"
 import Os from "../partials/snapshots/_limitation-os.mdx"
 import InstallMethod from "../partials/snapshots/_limitation-install-method.mdx"
 import CliRestores from "../partials/snapshots/_limitation-cli-restores.mdx"
+import VeleroCompatibility from "../partials/snapshots/_velero-compatibility.mdx"
 
 # About Backup and Restore with Snapshots
 
@@ -46,13 +47,7 @@ In addition to the default functionality that Velero provides, KOTS exposes hook
 
 ### Velero Version Compatibility
 
-The following table lists which versions of Velero are compatible with each version of KOTS. For more information, see the [Velero documentation](https://velero.io/docs/).
-
-| KOTS version | Velero version |
-|------|-------------|
-| 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 to 1.94.0 | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x through 1.12.x |
+<VeleroCompatibility/>
 
 ## About Backups
 

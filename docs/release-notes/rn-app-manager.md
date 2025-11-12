@@ -5,6 +5,7 @@ pagination_prev: null
 ---
 
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
+import VeleroCompatibility from "../partials/snapshots/_velero-compatibility.mdx"
 
 # KOTS Release Notes
 
@@ -15,6 +16,12 @@ This topic contains release notes for the [Replicated KOTS](../intro-kots) insta
 The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
 
 <KubernetesCompatibility/>
+
+## Velero Compatibility
+
+Velero is used to provide backup and restore functionality for the Replicated snapshots feature. For more information, see [About Backup and Restore with Snapshots](/vendor/snapshots-overview).
+
+<VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
