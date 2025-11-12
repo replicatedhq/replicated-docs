@@ -157,7 +157,7 @@
     }
     
     .whats-new-hero {
-      background: var(--ifm-color-primary);
+      background: var(--blue-nova);
       color: white;
       padding: 32px;
       border-radius: 12px;
@@ -191,8 +191,12 @@
     }
     
     .did-you-know-badge {
-      background: var(--ifm-color-primary);
+      background: var(--blue-nova);
       color: white;
+    }
+
+    .did-you-know-card a {
+      color: var(--blue-nova);
     }
   
   /* Browse documentation section styles */
@@ -253,7 +257,11 @@
   
   /* Dark mode styles for landing page */
   html[data-theme='dark'] {
-    .whats-new-hero, .did-you-know-badge, .hero-button {
+    .whats-new-hero, .did-you-know-badge {
+      background: var(--blue-nova-dark);
+    }
+
+    .hero-button {
       background: var(--ifm-color-primary-dark);
     }
     

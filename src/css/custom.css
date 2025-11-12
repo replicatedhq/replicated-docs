@@ -22,18 +22,7 @@
 :root {
   --doc-sidebar-width: 350px !important;
   --ifm-color-primary: var(--replicated-red);
-  /* 10% darker */
-  --ifm-color-primary-dark: #e6414d;
-  /* 20% darker */
-  --ifm-color-primary-darker: #cc3a45;
-  /* 30% darker */
-  --ifm-color-primary-darkest: #b3323c;
-  /* 10% lighter */
-  --ifm-color-primary-light: #ff5a67;
-  /* 20% lighter */ 
-  --ifm-color-primary-lighter: #ff6d78;
-  /* 30% lighter */
-  --ifm-color-primary-lightest: #ff7f89;
+  --ifm-color-primary-dark: var(--replicated-red-dark);
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Open Sans';
   --ifm-heading-font-family: 'Poppins', sans-serif;
@@ -56,4 +45,7 @@
   --leaf-byte: #37cc97;
   --canary-beam: #ffed58;
   --solar-flare: #ff934e;
+  /* shades */
+  --replicated-red-dark: #e6414d;
+  --blue-nova-dark: #2657b7;
 }
