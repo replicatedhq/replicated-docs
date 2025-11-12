@@ -1,6 +1,5 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
-import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
 
 # About Channels and Releases
@@ -120,13 +119,29 @@ As shown in the screenshot above, the release has the following properties:
 
   <VersionLabelReqsHelm/>
 
-* **Requirements**: Select **Prevent this release from being skipped during upgrades** to mark the release as required.
-
-  <RequiredReleasesDescription/> 
-
-  <RequiredReleasesLimitations/>
+* **Requirements**: Enable **Prevent this release from being skipped during upgrades** to mark the release as required. For more information, [Required Releases](#required-releases).
 
 * **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
+
+### Required Releases
+
+You can enable the **Prevent this release from being skipped during upgrades** release property to mark the release as required. When a release is required, your customers that use Embedded Cluster, KOTS, or kURL must upgrade to the required version before they can upgrade to a later version. For example, if release version 2.0.0 is marked as required, users with 1.5.0 deployed must upgrade to 2.0.0 before they can upgrade to 2.1.0.
+
+Required releases are indicated to your customers in the Admin Console and the Replicated Enterprise Portal.
+
+![release version list in enterprise portal](/images/enterprise-portal-required-releases.png)
+
+[View a larger version of this image](/images/enterprise-portal-required-releases.png)
+
+If this is a new install, where the Enterprise Portal does not know of any existing install versions of the app, then the list allows any version to be selected. If this is an upgrade, and the Enterprise Portal has awareness of the currently installed version, the customer will be unable to select any version later than the required version.
+
+#### Limitations
+
+Required releases have the following limitations:
+
+* After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if `allowRollback` is true in the Application custom resource manifest. For more information, see [`allowRollback`](/reference/custom-resource-application#allowrollback) in the Application custom resource topic.
+* If you change the channel an existing customer is assigned to, the Admin Console always fetches the latest release on the new channel, regardless of any required releases on the channel. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+* Required releases are not supported for Helm CLI installations. The **Prevent this release from being skipped during upgrades** option has no affect when the user installs with Helm.
 
 ## About Using Semantic Versioning {#semantic-versioning}
 

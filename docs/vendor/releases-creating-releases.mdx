@@ -1,6 +1,3 @@
-import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
-import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
-
 # Manage Releases with the Vendor Portal
 
 This topic describes how to use the Replicated Vendor Portal to create and promote releases, edit releases, edit release properties, and archive releases.
@@ -85,7 +82,9 @@ To edit a draft release:
   
 ## Edit Release Properties
 
-You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) in _About Channels and Releases_.
+You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) and [Required Releases](releases-about#required-releases) in _About Channels and Releases_.
+
+For information about disabling the the **Prevent this release from being skipped during upgrades** option for a release that was previously marked as required, see [Remove Release Requirement (KOTS 1.126.0 and Later)](#remove-req) below.
 
 To edit release properties:
 
@@ -96,6 +95,22 @@ To edit release properties:
     <img src="/images/release-properties.png" alt="Release Properties dialog in the Vendor Portal" width="300"/>
     
     [View a larger image](/images/release-properties.png)
+1. Click **Update Release**.
+
+## Remove Release Requirement (KOTS 1.126.0 and Later) {#remove-req}
+
+For online (internet-connected) installations using KOTS 1.126.0 or later, you can disable the **Prevent this release from being skipped during upgrades** option for a release to mark the release as no longer required. The requirement is removed from the given release in the Enterprise Portal instantaneously. The requirement is also removed from the Admin Console the next time that an upstream update check occurs.
+
+:::note
+For installations using KOTS 1.125.2 or earlier, if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console and Enterprise Portal, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later.
+:::
+
+To disable the **Prevent this release from being skipped during upgrades** option in installations using KOTS 1.126.0 or later:
+
+1. Go to **Channels**.
+1. In the channel where the release was promoted, click **Release History**.
+1. For the release sequence that you want to edit, open the dot menu and click **Edit release**.
+1. disable the **Prevent this release from being skipped during upgrades** option.
 1. Click **Update Release**.
 
 ## Archive a Release
