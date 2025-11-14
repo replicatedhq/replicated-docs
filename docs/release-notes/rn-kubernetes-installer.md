@@ -10,6 +10,16 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.14-0
+
+Released on November 14, 2025
+
+### New Features {#new-features-v2025-11-14-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.11.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.29.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2025-10-15T17-29-55Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.12.
+
 ## v2025.10.08-0
 
 Released on October 8, 2025
