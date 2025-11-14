@@ -727,6 +727,14 @@ const sidebars = {
   },
   {
     type: 'category',
+    label: 'Replicated CLI Configuration File (Alpha)',
+    items: [
+      'reference/replicated-cli-config-file',
+      'reference/replicated-cli-config-file-reference',
+    ],
+  },
+  {
+    type: 'category',
     label: 'KOTS CLI',
     items: [
       'reference/kots-cli-getting-started',

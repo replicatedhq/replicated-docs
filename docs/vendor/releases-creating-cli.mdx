@@ -10,17 +10,11 @@ For information about creating and managing releases with the Vendor API v3, see
 
 Before you create a release using the Replicated CLI, complete the following prerequisites:
 
-* Install the Replicated CLI and then log in to authorize the CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+* Install the Replicated CLI. See [Install the Replicated CLI](/reference/replicated-cli-installing).
   
-* Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
+* If you do not yet have an application in the Replicated Platform, create a new application using the `replicated app create APP_NAME` command. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-* Set the `REPLICATED_APP` environment variable to the slug of the target application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
-
-  **Example**:
-
-  ```bash
-  export REPLICATED_APP=my-app-slug
-  ```
+* Set the `REPLICATED_APP` environment variable to the slug of the application. See [Set Environment Variables](/reference/replicated-cli-installing#env-var) in _Installing the Replicated CLI_.
 
 ## Create a Release From a Local Directory {#dir}
 
@@ -50,7 +44,7 @@ To create and promote a release:
    1. In the same directory that contains the release files, add a HelmChart custom resource for each Helm chart in the release. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 1. Lint the application manifest files and ensure that there are no errors in the YAML:
- 
+
     ```bash
     replicated release lint --yaml-dir=PATH_TO_RELEASE_DIR
     ```
