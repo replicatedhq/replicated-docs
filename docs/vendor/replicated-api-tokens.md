@@ -4,6 +4,8 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
 
+The Replicated CLI also supports creating multiple authentication profiles for managing tokens across different accounts or environments. For more information, see [Authenticate](/reference/replicated-cli-installing#auth) in _Installing the Replicated CLI_.
+
 ## About API Tokens
 
 The Vendor API v3 is the API that manages applications in the Replicated Vendor Portal. The Replicated CLI is an implementation of the Vendor API v3.
@@ -64,9 +66,11 @@ To generate a service account:
 
 1. Copy the service account token and save it in a secure location. The token will not be available to view again.
 
-   :::note
-   To remove a service account, select **Remove** for the service account that you want to delete.
-   :::
+1. (Recommended) Add the token to a Replicated authentication profile. See [Authenticate](/reference/replicated-cli-installing#auth) in _Installing the Replicated CLI_.
+
+:::note
+To remove a service account, select **Remove** for the service account that you want to delete.
+:::
 
 ### Generate a User API Token
 
@@ -93,6 +97,8 @@ To generate a user API token:
 
 1. Copy the user API token that displays and save it in a secure location. The token will not be available to view again.
 
-   :::note
-   To revoke a token, select **Revoke token** for the token that you want to delete.
-   :::
+1. (Recommended) Add the token to a Replicated authentication profile. See [Authenticate](/reference/replicated-cli-installing#auth) in _Installing the Replicated CLI_.
+
+:::note
+To revoke a token, select **Revoke token** for the token that you want to delete.
+:::
