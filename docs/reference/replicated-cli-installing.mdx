@@ -20,14 +20,16 @@ Complete the following prerequisites before installing the Replicated CLI:
 - Create a vendor account. See [Create a Vendor Account](/vendor/vendor-portal-creating-account).
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
+- (Recommended) For Windows users, install Linux on Windows using WSL2. See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
-## Install and Run
+## Install
 
 You can install and run the Replicated CLI in the following environments: 
 
 * Directly on MacOS
 * Directly on Linux
-* Through Docker (Useful for Windows, GitHub Actions, or computers without sufficient access)
+* On Windows Subsystem for Linux (WSL)
+* Through Docker (Useful for GitHub Actions or computers without sufficient access)
 
 ### MacOS
 
@@ -39,11 +41,7 @@ To install and run the latest Replicated CLI on MacOS:
 
 1. <Verify/>
 
-1. <Login/>
-
-   <AuthToken/>
-
-1. <Logout/>
+1. To begin using the Replicated CLI to manage your applications, authenticate with your Replicated credentials. See [Authenticate](#auth).
 
 ### Linux / Windows Subsystem for Linux (WSL) {#linux-wsl2}
 
@@ -57,33 +55,77 @@ To install and run the latest Replicated CLI on Linux or Windows Subsystem for L
 
 1. <Verify/>
 
-1. <Login/>
+1. To begin using the Replicated CLI to manage your applications, authenticate with your Replicated credentials. See [Authenticate](#auth).
 
-   <AuthToken/>
-
-1. <Logout/>
-
-### Docker / Windows
+### Docker
 
 <InstallDocker/> 
 
-## (Optional) Set Environment Variables {#env-var}
+## Authenticate {#auth}
 
-The Replicated CLI supports setting the following environment variables:
+After installing the Replicated CLI, authenticate with your Replicated credentials using one of the following methods:
+* Set the `REPLICATED_API_TOKEN` environment variable to your API token
+* Create a Replicated profile at `~/.replicated/config.yaml` to store your API token
+* Generate a single authentication token by running `replicated login`
 
-* **`REPLICATED_API_TOKEN`**: A service account or user API token generated from a vendor portal team or individual account. The `REPLICATED_API_TOKEN` environment variable has the following use cases:
+The Replicated CLI determines which credentials to use for authentication in the following order:
 
-  * To use Replicated CLI commands as part of automation (such as from continuous integration and continuous delivery pipelines), authenticate by providing the `REPLICATED_API_TOKEN` environment variable.
+1. `REPLICATED_API_TOKEN` environment variable. Environment variables take precedence, allowing temporary overrides without modifying stored profiles.
+2. Replicated profile passed with the `--profile` flag. This allows for a per-command override of the default Replicated profile. 
+3. Default Replicated profile from `~/.replicated/config.yaml`
+4. Single token auth with `replicated login`
 
-  * To authorize the Replicated CLI when installing and running the CLI in Docker containers.
-  
-  * Optionally set the `REPLICATED_API_TOKEN` environment variable instead of using the `replicated login` command to authorize the Replicated CLI in MacOS or Linux environments.
+### Add Replicated Profiles {#profiles}
 
-* **`REPLICATED_APP`**: The slug of the target application.
+The Replicated CLI supports multiple authentication profiles, allowing you to manage and switch between different API credentials. This is useful when working with multiple Replicated accounts or environments.
 
-  When using the Replicated CLI to manage applications through your vendor account (including channels, releases, customers, or other objects associated with an application), you can set the `REPLICATED_APP` environment variable to avoid passing the application slug with each command.
+Authentication profiles store your API token and can also optionally store custom API endpoints. Profiles are stored securely in `~/.replicated/config.yaml` with file permissions 600 (owner read/write only).
 
-### `REPLICATED_API_TOKEN`
+The following examples show how to add and work with Replicated profiles:
+
+```bash
+# Add a production profile using an existing environment variable
+replicated profile add prod --token='$REPLICATED_API_TOKEN'
+
+# Add a development profile with a direct token
+replicated profile add dev --token=your-dev-token
+
+# List all profiles
+replicated profile ls
+
+# Switch to production profile
+replicated profile use prod
+
+# Use development profile for a single command
+replicated app ls --profile=dev
+
+# Edit a profile's token
+replicated profile edit dev --token=new-dev-token
+
+# Remove a profile
+replicated profile rm dev
+
+# Add profiles for different accounts
+replicated profile add company-a --token=token-a
+replicated profile add company-b --token=token-b
+
+# Switch between accounts
+replicated profile use company-a
+replicated app ls  # Lists apps for company-a
+
+replicated profile use company-b
+replicated app ls  # Lists apps for company-b
+```
+
+For more information, see [replicated profile](/reference/replicated-cli-profile).
+
+### Set Environment Variables {#env-var}
+
+#### Set REPLICATED_API_TOKEN
+
+The `REPLICATED_API_TOKEN` environment variable can be set to a service account or user API token generated from a Vendor Portal team or individual account.
+
+The `REPLICATED_API_TOKEN` environment variable is required to authorize the Replicated CLI when installing and running the CLI in Docker containers. It is also helpful for running Replicated CLI commands as part of automation in CI/CD pipelines.
 
 To set the `REPLICATED_API_TOKEN` environment variable:
 
@@ -113,13 +155,21 @@ To set the `REPLICATED_API_TOKEN` environment variable:
         replicated/vendor-cli --help
       ```
 
-### `REPLICATED_APP`
+#### Set REPLICATED_APP
+
+When using the Replicated CLI to manage applications through your vendor account, you can set the `REPLICATED_APP` environment variable to the target application slug to avoid having to pass the slug with each command.
 
 To set the `REPLICATED_APP` environment variable:
 
-1. In the [vendor portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
+1. Get the application slug:
+   
+   ```
+   replicated app ls
+   ```
+   
+   Or, in the [Vendor Portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
 
-1. Set the environment variable, replacing `APP_SLUG` with the slug for the target application that you retreived in the previous step:
+1. Set the environment variable, replacing `APP_SLUG` with the slug that you copied in the previous step:
 
     * **MacOs or Linux**:
 
@@ -134,6 +184,7 @@ To set the `REPLICATED_APP` environment variable:
          -e REPLICATED_APP=$APP_SLUG
          replicated/vendor-cli --help
       ```
+      For more information about the `docker run` command, see [docker run](https://docs.docker.com/engine/reference/commandline/run/) in the Docker documentation.
 
     * **Windows**:
 
@@ -142,3 +193,15 @@ To set the `REPLICATED_APP` environment variable:
         -e REPLICATED_APP=%APP_SLUG% \
         replicated/vendor-cli --help
       ```
+
+### `replicated login` {#login}
+
+The `replicated login` command creates a token after you log in to your vendor account in a browser and saves it to a config file.
+
+Using the `replicated login` command requires browser access. If you do not have access to a browser, you can authenticate by adding a Replicated profile or setting the `REPLICATED_API_TOKEN` environment variable instead. See [Add Replicated Profiles](#profiles) or [Set Environment Variables](#env-var).
+
+To authenticate using `replicated login`:
+
+1. <Login/>
+
+1. <Logout/>
