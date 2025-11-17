@@ -99,10 +99,10 @@ To edit release properties:
 
 ## Remove Release Requirement (KOTS 1.126.0 and Later) {#remove-req}
 
-For online (internet-connected) installations using KOTS 1.126.0 or later, you can disable the **Prevent this release from being skipped during upgrades** option for a release to mark the release as no longer required. The requirement is removed from the given release in the Enterprise Portal instantaneously. The requirement is also removed from the Admin Console the next time that an upstream update check occurs.
+For online (internet-connected) installations using KOTS 1.126.0 or later (Emebdded Cluster 2.10.0 or later), you can disable the **Prevent this release from being skipped during upgrades** option for a release to mark the release as no longer required. After updating the release's properties in the Vendor Portal, the requirement is then removed from the Admin Console the next time that an upstream update check occurs.
 
 :::note
-For installations using KOTS 1.125.2 or earlier, if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console and Enterprise Portal, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later.
+For installations using KOTS 1.125.2 or earlier (Emebdded Cluster 2.9.0 or earlier), if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console and Enterprise Portal, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later.
 :::
 
 To disable the **Prevent this release from being skipped during upgrades** option in installations using KOTS 1.126.0 or later:
@@ -110,7 +110,7 @@ To disable the **Prevent this release from being skipped during upgrades** optio
 1. Go to **Channels**.
 1. In the channel where the release was promoted, click **Release History**.
 1. For the release sequence that you want to edit, open the dot menu and click **Edit release**.
-1. disable the **Prevent this release from being skipped during upgrades** option.
+1. Disable the **Prevent this release from being skipped during upgrades** option.
 1. Click **Update Release**.
 
 ## Archive a Release

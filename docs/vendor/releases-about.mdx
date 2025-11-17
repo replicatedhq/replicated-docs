@@ -125,24 +125,38 @@ As shown in the screenshot above, the release has the following properties:
 
 ### Required Releases
 
-You can enable the **Prevent this release from being skipped during upgrades** release property to mark a release as required.
+You can enable the **Prevent this release from being skipped during upgrades** release property to mark a release as required. The following describes the end customer experience for required releases in the Admin Console and Enterprise Portal:
 
-When a release is required:
-* The Admin Console for Embedded Cluster, KOTS, or kURL installations requires users to upgrade to the required version before they can upgrade to a later version. For example, if release version 2.0.0 is marked as required, users with 1.5.0 deployed must upgrade to 2.0.0 before they can upgrade to 2.1.0.
-* In the Enterprise Portal, required releases are indicated in the list of available application versions. For new installations, the list allows any version to be selected. For upgrades where the Enterprise Portal has awareness of the currently installed version, the customer is prevented from selecting any version later than the required version.
-   
-     ![release version list in enterprise portal](/images/enterprise-portal-required-releases.png)
+* For Embedded Cluster, KOTS existing cluster, or kURL installations, the Admin Console requires users to upgrade to the required version before they can upgrade to a later version. For example, if release version 1.1.0 is marked as required, users with 1.0.0 deployed must upgrade to 1.1.0 before they can upgrade to 1.1.1.
 
-     [View a larger version of this image](/images/enterprise-portal-required-releases.png)
+  The following shows an example of the Admin Console **Version history** page when there is a required release:
+
+  <img alt="required release in the admin console" src="/images/admin-console-required-release.png" width="600px"/>
+
+  [View a larger version of this image](/images/admin-console-required-release.png)
+
+  As shown in the image above, the required release is labeled "Required", and the user is unable to upgrade to a later version until the required version is deployed.
+
+* In the Enterprise Portal, required releases are indicated in the list of available application versions. If the user is performing an upgrade and the Enterprise Portal has awareness of the currently-installed version, then the customer is prevented from selecting any version later than the required version. For new installations, the list allows any version to be selected.
+
+  :::note
+  The Enterprise Portal does not enforce required releases by preventing users from skipping a required version.
+  
+  For Embedded Cluster, KOTS existing cluster, or kURL installations, the Admin Console enforces required releases. For Helm CLI installations, required releases are not enforced . See [Limtiations](#limitations).
+  :::
+
+  ![release version list in enterprise portal](/images/enterprise-portal-required-releases.png)
+
+  [View a larger version of this image](/images/enterprise-portal-required-releases.png)
 
 #### Limitations
 
 Required releases have the following limitations:
 
+* Required releases are not supported for Helm CLI installations. The **Prevent this release from being skipped during upgrades** option has no affect when the user installs with Helm.
 * After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if `allowRollback` is true in the Application custom resource manifest. For more information, see [`allowRollback`](/reference/custom-resource-application#allowrollback) in the Application custom resource topic.
 * If you change the channel an existing customer is assigned to, the Admin Console always fetches the latest release on the new channel, regardless of any required releases on the channel. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
-* Required releases are not supported for Helm CLI installations. The **Prevent this release from being skipped during upgrades** option has no affect when the user installs with Helm.
-* For installations using KOTS 1.125.2 or earlier, if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console and Enterprise Portal, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later.
+* For installations using KOTS 1.125.2 or earlier, if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console and Enterprise Portal, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later. For more information, see [Remove Release Requirement (KOTS 1.126.0 and Later)](/vendor/releases-creating-releases#remove-req) in _Manage Releases with the Vendor Portal_.
 
 ## About Using Semantic Versioning {#semantic-versioning}
 
