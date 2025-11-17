@@ -10,6 +10,14 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.11.15-0
+
+Released on November 15, 2025
+
+### Bug Fixes {#bug-fixes-v2025-11-15-0}
+* Adds missing SBOM to v2025.11.14-0 release.
+
+
 ## v2025.11.14-0
 
 Released on November 14, 2025
