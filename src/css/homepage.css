@@ -240,12 +240,19 @@
   }
   
   .browse-docs-links {
-    gap: 12px 0;
+    gap: 24px 0;
+  }
+  
+  .browse-docs-link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   
   .browse-docs-link {
     text-decoration: none;
     font-size: 1rem;
+    font-weight: var(--ifm-heading-font-weight);
     transition: text-decoration 0.2s ease;
     display: inline-block;
     width: fit-content;
@@ -253,6 +260,12 @@
   
   .browse-docs-link:hover {
     text-decoration: underline;
+  }
+  
+  .browse-docs-link-description {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
   }
   
   /* Dark mode styles for landing page */
