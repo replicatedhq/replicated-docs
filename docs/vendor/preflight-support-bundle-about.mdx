@@ -129,7 +129,7 @@ Support bundles can collect a variety of important cluster-level data from custo
 
 Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response.
 
-See [Redact](### Redact) for automatic redactions in generated support bundles. 
+See [Redact](/vendor/preflight-support-bundle-about#redact) for automatic redactions in generated support bundles. 
 
 ### About Host Support Bundles
 
@@ -150,7 +150,7 @@ For more information, see [Add and Customize Support Bundles](support-bundle-cus
 Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can then share their support bundles with your team by sending you the resulting `tar.gz` file.
 
 Your customer has multiple options to provide you with the generated support bundle. We recommend adivising your customer to use one of the following methods:
-* Directly upload and manage their support bundles via their Enterprise Portal. For more information see [Upload and Manage Support Bundles](/vendor/enterprise-portal-use#collect-upload-and-manage-support-bundles). 
+* Directly upload their support bundles via their Enterprise Portal. Using this method additionally gives the customer control to download and delete their own bundles. For more information see [Upload and Manage Support Bundles](/vendor/enterprise-portal-use#collect-upload-and-manage-support-bundles). 
 * KOTS and Embedded Cluster users can also generate and share support bundles from the KOTS Admin Console. For more information, see [Generate Support Bundles](support-bundle-generating).
 
 By providing the support bundle via one of the above methods, the file and its comprehensive analysis results are directly available within the Vendor Portal, saving you the step of of manually uploading the provided file for the purpose of analaysis or sharing with Replicated Support. 
@@ -161,9 +161,15 @@ The Support Bundle Analysis page includes:
 * File Inspector: Directory tree browser for examining collected files
 * Download Option: Ability to download the bundle for offline analysis
 
+Vendors have direct control on managing uploaded support bundles, including sharing with Replicated or deleting previously uploaded bundles. 
+
+When uploaded to Vendor Poral, support bundles are stored per Replicated's data and security standards. See [Security at Replicated](https://www.replicated.com/security) for more information.
+
 ## Sharing Support Bundles with Replicated
 
+Replicated strongly recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Sharing an existing support bundle or uploading a new one is secure and provides the Replicated Support team immediate access to necessary diagnostic data, enabling them to provide faster and more informed assistance in troubleshooting your application. 
 
+See [Submit a Support Request](/vendor/support-submit-request) for more information. 
 
 
 
