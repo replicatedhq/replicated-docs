@@ -117,9 +117,9 @@ This section provides an overview of support bundles, including how support bund
 
 A support bundle is a valuable diagnostic tool that collects and analyzes key troubleshooting data from the customer deployment to enable the end user to self-diagnose and resolve, and when escalating is necessary, it provides the supoprt teams with key necessary information upfront, reducing overall issue resolution time. Replicated has found that Severity 1 issues are resolved three times faster when a support bundle is provided during an issue escalation. 
 
-The data collected in a support bundle depends on the collectors and redactors defined by the Vendor in the support bundle specification included with the application release. See Customizing Support Bundles for more information.
+The data collected in a support bundle depends on the collectors and redactors defined by the Vendor in the support bundle specification included with the application release. See [Customizing Support Bundles}(/vendor/preflight-support-bundle-about#customizing-support-bundles) for more information.
 
-When a support bundle process is generated the process collects defined data from the cluster, redacts sensitive fields, and then perform analysis on the data to provide remediation steps. The output is a compressed tar.gz file that can be subsequently shared during a support escalation. No data is shared outside the cluster unless the resulting tar.gz file is explicitly shared by the end customer. See Generating and Sharing Support Bundles for more information.
+When a support bundle process is generated the process collects defined data from the cluster, redacts sensitive fields, and then perform analysis on the data to provide remediation steps. The output is a compressed tar.gz file that can be subsequently shared during a support escalation. No data is shared outside the cluster unless the resulting tar.gz file is explicitly shared by the end customer. See [Generating and Sharing Support Bundles](/vendor/preflight-support-bundle-about#generating-and-sharing-support-bundles) for more information.
 
 Support bundles can collect a variety of important cluster-level data from customer environments, such as:
 * Pod logs
@@ -163,11 +163,11 @@ The Support Bundle Analysis page includes:
 * File Inspector: Directory tree browser for examining collected files
 * Download Option: Ability to download the bundle for offline analysis
 
-Vendors have direct control on managing uploaded support bundles, including sharing with Replicated or deleting previously uploaded bundles. 
+Vendors have direct control of uploaded support bundles, including sharing with Replicated or deleting previously uploaded bundles. 
 
 When uploaded to Vendor Poral, support bundles are stored per Replicated's data and security standards. See [Security at Replicated](https://www.replicated.com/security) for more information.
 
-## Sharing Support Bundles with Replicated
+### Sharing Support Bundles with Replicated
 
 Replicated strongly recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Sharing an existing support bundle or uploading a new one is secure and provides the Replicated Support team immediate access to necessary diagnostic data, enabling them to provide faster and more informed assistance in troubleshooting your application. 
 
