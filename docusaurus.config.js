@@ -141,6 +141,11 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'vendor/enterprise-portal-about',
+                label: 'Enterprise Portal',
+              },
+              {
+                type: 'doc',
                 docId: 'intro-kots',
                 label: 'KOTS',
               },
