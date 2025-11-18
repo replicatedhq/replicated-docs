@@ -36,7 +36,7 @@ During the redact phase, _redactors_ censor sensitive customer information from 
 - Database connection strings
 - URLs that include usernames and passwords
 
-For Replicated KOTS installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
+For Replicated KOTS and Embedded Cluster installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
 
@@ -115,9 +115,9 @@ This section provides an overview of support bundles, including how support bund
 
 ### Overview
 
-A support bundle is a valuable diagnostic tool that collects and analyzes key troubleshooting data from the customer deployment to enable the end user to self-diagnose and resolve, and when escalating is necessary, it provides the supoprt teams with key necessary information upfront, reducing overall issue resolution time.
+A support bundle is a valuable diagnostic tool that collects and analyzes key troubleshooting data from the customer deployment to enable the end user to self-diagnose and resolve, and when escalating is necessary, it provides the supoprt teams with key necessary information upfront, reducing overall issue resolution time. Replicated has found that Severity 1 issues are resolved three times faster when a support bundle is provided during an issue escalation. 
 
-The data collected in a support bundle depends on the collectors and redactors defined by the Vendor in the support bundle specification included with the application release. When a support bundle process is generated the process collects defined data from the cluster, redacts sensitive fields, and then perform analysis on the data to provide remediation steps. The output is a compressed tar.gz file that can be subsequently shared during a support escalation. 
+The data collected in a support bundle depends on the collectors and redactors defined by the Vendor in the support bundle specification included with the application release. When a support bundle process is generated the process collects defined data from the cluster, redacts sensitive fields, and then perform analysis on the data to provide remediation steps. The output is a compressed tar.gz file that can be subsequently shared during a support escalation. No data is shared outside the cluster unless the resulting tar.gz file is explicitly shared. 
 
 Support bundles can collect a variety of important cluster-level data from customer environments, such as:
 * Pod logs
@@ -129,14 +129,7 @@ Support bundles can collect a variety of important cluster-level data from custo
 
 Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response.
 
-Support bundles also include automatic redactions such as: 
-* database connection strings
-* passwords
-* AWS credentials
-* API token environment variables in JSON
-* URLs that include usernames and passwords
-
-Vendors and end customers can define additional custom redactors to protect sensitive information. Redactors are YAML specifications that define which data to remove when generating a support bundle.
+See [Redact](### Redact) for automatic redactions in generated support bundles. 
 
 ### About Host Support Bundles
 
@@ -152,9 +145,26 @@ To enable support bundles for your application, add a support bundle YAML specif
 
 For more information, see [Add and Customize Support Bundles](support-bundle-customizing).
 
-### Generating Support Bundles
+### Generating and Sharing Support Bundles
 
-Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can share their support bundles with your team by sending you the resulting `tar.gz` file.
+Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can then share their support bundles with your team by sending you the resulting `tar.gz` file.
 
-KOTS and Embedded Cluster users can also generate and share support bundles from the KOTS Admin Console.
-For more information, see [Generate Support Bundles](support-bundle-generating).
+Your customer has multiple options to provide you with the generated support bundle. We recommend adivising your customer to use one of the following methods:
+* Directly upload and manage their support bundles via their Enterprise Portal. For more information see [Upload and Manage Support Bundles](/vendor/enterprise-portal-use#collect-upload-and-manage-support-bundles). 
+* KOTS and Embedded Cluster users can also generate and share support bundles from the KOTS Admin Console. For more information, see [Generate Support Bundles](support-bundle-generating).
+
+By providing the support bundle via one of the above methods, the file and its comprehensive analysis results are directly available within the Vendor Portal, saving you the step of of manually uploading the provided file for the purpose of analaysis or sharing with Replicated Support. 
+
+The Support Bundle Analysis page includes:
+* Analysis Overview: Filterable view showing errors, warnings, and insights
+* Instance Reporting Data: Point-in-time information about the instance
+* File Inspector: Directory tree browser for examining collected files
+* Download Option: Ability to download the bundle for offline analysis
+
+## Sharing Support Bundles with Replicated
+
+
+
+
+
+
