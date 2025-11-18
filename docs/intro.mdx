@@ -144,117 +144,6 @@ import clsx from 'clsx';
       </div>
     </div>
     <div className="browse-docs-category">
-      <h3 className="browse-docs-category-title">Compatibility Matrix</h3>
-      <div className={clsx("container")}>
-        <div className={clsx("row", "browse-docs-links")}>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-about" className="browse-docs-link">Overview</a>
-              <p className="browse-docs-link-description">Test your application across Kubernetes distributions and versions</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-pricing" className="browse-docs-link">CMX Pricing</a>
-              <p className="browse-docs-link-description">Learn about pricing for CMX clusters and VMs</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-network-policy" className="browse-docs-link">Test in Air Gap Environments</a>
-              <p className="browse-docs-link-description">Simulate networks with no outbound internet access</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-vm-create" className="browse-docs-link">Use CMX VMs</a>
-              <p className="browse-docs-link-description">Create and manage virtual machines for testing</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-how-to" className="browse-docs-link">Use CMX Clusters</a>
-              <p className="browse-docs-link-description">Create and manage Kubernetes clusters for testing</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/testing-ci-cd" className="browse-docs-link">Test in CMX with CI/CD</a>
-              <p className="browse-docs-link-description">Automate testing workflows with continuous integration</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="browse-docs-category">
-      <h3 className="browse-docs-category-title">Enterprise Portal</h3>
-      <div className={clsx("container")}>
-        <div className={clsx("row", "browse-docs-links")}>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="#" className="browse-docs-link">Overview</a>
-              <p className="browse-docs-link-description">Give customers access to releases and instance data</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/enterprise-portal-configure" className="browse-docs-link">Customize the Enterprise Portal</a>
-              <p className="browse-docs-link-description">Configure branding and appearance for customers</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/enterprise-portal-invite" className="browse-docs-link">Manage Enterprise Portal Access</a>
-              <p className="browse-docs-link-description">Invite and manage customer portal users</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/packaging-private-images" className="browse-docs-link">Add and Manage External Registries</a>
-              <p className="browse-docs-link-description">Connect external image registries to your application</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/helm-image-registry" className="browse-docs-link">Use the Proxy Registry with Helm CLI Installations</a>
-              <p className="browse-docs-link-description">Access images through the Replicated proxy registry</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="browse-docs-category">
-      <h3 className="browse-docs-category-title">Replicated Proxy Registry</h3>
-      <div className={clsx("container")}>
-        <div className={clsx("row", "browse-docs-links")}>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/private-images-about" className="browse-docs-link">Overview</a>
-              <p className="browse-docs-link-description">grant proxy access to your application's private images or allow pull through access of public images</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/packaging-private-images" className="browse-docs-link">Add and Manage External Registries</a>
-              <p className="browse-docs-link-description">Connect external image registries</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/private-images-kots" className="browse-docs-link">Use the Proxy Registry with Embedded Cluster</a>
-              <p className="browse-docs-link-description">Access images through the Replicated proxy registry for Embedded Cluster installations</p>
-            </div>
-          </div>
-          <div className={clsx("col", "col--4")}>
-            <div className="browse-docs-link-container">
-              <a href="/vendor/helm-image-registry" className="browse-docs-link">Use the Proxy Registry with Helm CLI Installations</a>
-              <p className="browse-docs-link-description">Access images through the Replicated proxy registry for Helm CLI installations</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">Embedded Cluster</h3>
       <div className={clsx("container")}>
         <div className={clsx("row", "browse-docs-links")}>
@@ -317,13 +206,131 @@ import clsx from 'clsx';
       </div>
     </div>
     <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Enterprise Portal</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="#" className="browse-docs-link">Overview</a>
+              <p className="browse-docs-link-description">Give customers access to releases and instance data</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/enterprise-portal-configure" className="browse-docs-link">Customize the Enterprise Portal</a>
+              <p className="browse-docs-link-description">Configure branding and appearance for customers</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/enterprise-portal-invite" className="browse-docs-link">Manage Enterprise Portal Access</a>
+              <p className="browse-docs-link-description">Invite and manage customer portal users</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/enterprise-portal-use" className="browse-docs-link">Use the Enterprise Portal</a>
+              <p className="browse-docs-link-description">Access and use the Enterprise Portal</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/enterprise-portal-self-serve-signup" className="browse-docs-link">Self-Service Sign-ups</a>
+              <p className="browse-docs-link-description">Enable self-service access to trial or community licenses for customers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Compatibility Matrix</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-about" className="browse-docs-link">Overview</a>
+              <p className="browse-docs-link-description">Test your application across customer-representative environments</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-pricing" className="browse-docs-link">CMX Pricing</a>
+              <p className="browse-docs-link-description">Learn about pricing for CMX clusters and VMs</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-network-policy" className="browse-docs-link">Test in Air Gap Environments</a>
+              <p className="browse-docs-link-description">Simulate networks with no outbound internet access</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-vm-create" className="browse-docs-link">Use CMX VMs</a>
+              <p className="browse-docs-link-description">Create and manage virtual machines for testing</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-how-to" className="browse-docs-link">Use CMX Clusters</a>
+              <p className="browse-docs-link-description">Create and manage Kubernetes clusters for testing</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/testing-ci-cd" className="browse-docs-link">Test in CMX with CI/CD</a>
+              <p className="browse-docs-link-description">Automate testing workflows with continuous integration</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="browse-docs-category">
+      <h3 className="browse-docs-category-title">Replicated Proxy Registry</h3>
+      <div className={clsx("container")}>
+        <div className={clsx("row", "browse-docs-links")}>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/private-images-about" className="browse-docs-link">Overview</a>
+              <p className="browse-docs-link-description">Grant proxy access to private images</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/packaging-private-images" className="browse-docs-link">Add and Manage External Registries</a>
+              <p className="browse-docs-link-description">Connect external image registries</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/private-images-kots" className="browse-docs-link">Use the Proxy Registry with Embedded Cluster</a>
+              <p className="browse-docs-link-description">Proxy images for Embedded Cluster installations</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/helm-image-registry" className="browse-docs-link">Use the Proxy Registry with Helm CLI Installations</a>
+              <p className="browse-docs-link-description">Proxy images for Helm CLI installations</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/vendor/packaging-public-images" className="browse-docs-link">Connect to a Public Registry</a>
+              <p className="browse-docs-link-description">Pull images from public registries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div className="browse-docs-category">
       <h3 className="browse-docs-category-title">Replicated SDK</h3>
       <div className={clsx("container")}>
         <div className={clsx("row", "browse-docs-links")}>
           <div className={clsx("col", "col--4")}>
             <div className="browse-docs-link-container">
               <a href="/vendor/replicated-sdk-overview" className="browse-docs-link">Overview</a>
-              <p className="browse-docs-link-description">Integrate in-cluster features into your application</p>
+              <p className="browse-docs-link-description">In-cluster service and API to integrate key Replicated functionality into your application</p>
             </div>
           </div>
           <div className={clsx("col", "col--4")}>
@@ -334,7 +341,7 @@ import clsx from 'clsx';
           </div>
           <div className={clsx("col", "col--4")}>
             <div className="browse-docs-link-container">
-              <a href="/vendor/replicated-sdk-development" className="browse-docs-link">Replicated SDK Development Mode</a>
+              <a href="/vendor/replicated-sdk-development" className="browse-docs-link">Development Mode</a>
               <p className="browse-docs-link-description">Develop against the SDK API to test changes locally</p>
             </div>
           </div>
@@ -342,6 +349,12 @@ import clsx from 'clsx';
             <div className="browse-docs-link-container">
               <a href="/reference/replicated-sdk-apis" className="browse-docs-link">Replicated SDK API</a>
               <p className="browse-docs-link-description">API reference for Replicated SDK endpoints</p>
+            </div>
+          </div>
+          <div className={clsx("col", "col--4")}>
+            <div className="browse-docs-link-container">
+              <a href="/reference/replicated-sdk-apis" className="browse-docs-link">Customize the Replicated SDK</a>
+              <p className="browse-docs-link-description">Customize RBAC, set environment variables, add tolerations, and more</p>
             </div>
           </div>
         </div>
@@ -360,7 +373,7 @@ import clsx from 'clsx';
           <div className={clsx("col", "col--4")}>
             <div className="browse-docs-link-container">
               <a href="/vendor/preflight-defining" className="browse-docs-link">Define Preflight Checks</a>
-              <p className="browse-docs-link-description">Verify customer environments meet your application requirements</p>
+              <p className="browse-docs-link-description">Verify that customer environments meet application requirements</p>
             </div>
           </div>
           <div className={clsx("col", "col--4")}>
@@ -372,7 +385,7 @@ import clsx from 'clsx';
           <div className={clsx("col", "col--4")}>
             <div className="browse-docs-link-container">
               <a href="/vendor/support-bundle-generating" className="browse-docs-link">Generate Support Bundles</a>
-              <p className="browse-docs-link-description">Collect diagnostic data in customer environments</p>
+              <p className="browse-docs-link-description">Collect support bundles in customer environments</p>
             </div>
           </div>
           <div className={clsx("col", "col--4")}>
