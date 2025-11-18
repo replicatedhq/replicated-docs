@@ -35,8 +35,8 @@ function CopyMarkdown() {
         ? currentPath.slice(0, -1) 
         : currentPath;
       
-      // For the homepage/intro, use /intro.md specifically
-      const markdownPath = normalizedPath === '/' ? '/intro.md' : `${normalizedPath}.md`;
+      // For the homepage/intro, use /intro.mdx specifically
+      const markdownPath = normalizedPath === '/' ? '/intro.mdx' : `${normalizedPath}.md`;
       
       // Fetch the markdown content
       const response = await fetch(markdownPath);
@@ -74,8 +74,8 @@ function CopyMarkdown() {
         ? currentPath.slice(0, -1) 
         : currentPath;
       
-      // For the homepage/intro, use /intro.md specifically
-      const markdownPath = normalizedPath === '/' ? '/intro.md' : `${normalizedPath}.md`;
+      // For the homepage/intro, use /intro.mdx specifically
+      const markdownPath = normalizedPath === '/' ? '/intro.mdx' : `${normalizedPath}.md`;
       
       // Open in a new tab
       window.open(markdownPath, '_blank');
@@ -178,7 +178,11 @@ function CopyMarkdown() {
   if (!hasContent) {
     return null;
   }
-
+  // Don't render on the homepage
+  if (window.location.pathname === '/') {
+    return null;
+  }
+  
   return (
     <div className={clsx(styles.container, 'copy-markdown-container')}>
       <button 
