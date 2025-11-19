@@ -265,6 +265,29 @@ spec:
         key: value
 ```
 
+### Configure Velero Plugins
+
+If your license has disaster recovery enabled, the Velero built-in addon will be deployed and you can configure custom Velero plugins using the `extensions.velero.plugins` key. This allows you to extend Velero's backup and restore capabilities with additional plugins.
+
+#### Limitations
+
+* The image must be available publicly. Images behind authentication are not supported.
+* Disaster recovery must be enabled in your license for Velero plugins to work.
+
+#### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  extensions:
+    velero:
+      plugins:
+        - name: velero-plugin-postgresql
+          image: myvendor/velero-postgresql:v1.0.0
+          imagePullPolicy: Always
+```
+
 ### Configure the Kubelet
 
 You can configure the Kubelet to customize your worker nodes with Embedded Cluster. One common use case for configuring the Kubelet is that you need more pods on a single node than the default limit of 100. In this case, you could set the `maxPods` Kubelet configuration option to 150. Another common example is reducing startup time by setting `maxParallelImagePulls` to increase the maximum number of image pulls that can be done in parallel.
