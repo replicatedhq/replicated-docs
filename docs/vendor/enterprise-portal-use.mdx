@@ -1,30 +1,30 @@
-# Access and Use the Enterprise Portal
+# Log In To and Use the Enterprise Portal
 
-This topic describes how to access and use the Replicated Enterprise Portal.
+This topic describes how to log in to the Replicated Enterprise Portal as a user, and how to use the features in the Enterprise Portal.
 
-## Access the Enterprise Portal
+## Log In To the Enterprise Portal
 
-To access the Enterprise Portal for a customer:
+Users can log in to the Enterprise Portal after they are invited to join. Or, if self-service sign-ups enabled for your application, users can create an account in the Enterprise Portal without being invited.
 
-1. If your email address is not yet added to the customer's Enterprise Portal team, send an invitation. See [Invite Users](enterprise-portal-invite#invite-users). You can follow the link in the invitation email to access the Enterprise Portal.
+* **Self-service account creation:** Go to the sign-up page URL, enter your company name and email address, agree to the terms and conditions, and click **Create account**. Then, go to your email account and open the automated account creation email. Follow the link provided in the email to log in.
 
-1. In the Vendor Portal, do one of the following to get the unique Enterprise Portal link for the customer:
-   * Go to **Customers > [Customer Name] > Enterprise Portal Access**. Click **View customer's portal link**.
+    :::note
+    For more information about enabling self-service sign-ups for your application and sharing the unique sign up URL with current and prospective customers, see [Enable Self-Service Sign-Ups](/vendor/enterprise-portal-self-serve-signup).
+    :::
 
-      ![customer-specific enterprise portal access toggle](/images/customer-enterprise-portal-access-toggle.png)
+    The following shows an example of a self-service sign-up page for an application:
 
-      [View a larger version of this image](/images/customer-enterprise-portal-access-toggle.png)
+    <img alt="Self-Service Sign-Up Interaction" src="/images/self-serve-signup-screen.png" width="400px"/>
 
-   * Go to **Customers > [Customer Name] > Reporting** and click **View** in the **Enterprise Portal** section. 
+    [View a larger version of this image](/images/self-serve-signup-screen.png)
 
-      ![Enterprise Portal section of customer reporting page](/images/customer-reporting-enterprise-portal.png)
+* **Log in from the invitation email:** After you are invited to join an Enterprise Portal team, go to your email account and open the automated invitation email. Click **Activate your account** to log in. The following shows an example of an invitation email:
 
-      [View a larger version of this image](/images/customer-reporting-enterprise-portal.png)
-    
+       <img alt="enterprise portal invitation email" src="/images/enterprise-portal-invitation-email.png" width="600px"/>
 
-1. In the dialog, enter the email address for the existing Enterprise Portal user and click **Continue with email**. The Vendor Portal generates a verification code and sends it to the email address.
+       [View a larger version of this image](enterprise-portal-invitation-email.png)
 
-## View Install and Update Instructions
+## View Application Instructions
 
 This section describes how to view install and update instructions in the Enterprise Portal.
 
@@ -58,13 +58,15 @@ To view update instructions in the Enterprise Portal:
 
 1. If an **Update available** button is displayed, click it to view and follow the update instructions for the given instance.
 
-## View Active and Inactive Instances
+## View Instance Records
 
 Users can view their active and inactive instances in the Enterprise Portal, including the instance status and other details. 
 
 :::note
 Air gap instance records do not appear in the Enterprise Portal until the end customer creates an air gap instance record by either uploading a support bundle for that instance or manually entering instance information. 
 :::
+
+### View Active and Inactive Instances
 
 To view instances in the Enterprise Portal:
 
@@ -79,8 +81,8 @@ To view instances in the Enterprise Portal:
 
    <table>
       <tr>
-         <th>Field</th>
-         <th>Description</th>
+         <th width="30%">Field</th>
+         <th width="70%">Description</th>
       </tr>
       <tr>
          <td>Instance ID</td>
@@ -111,6 +113,48 @@ To view instances in the Enterprise Portal:
          <td>Any labels applied to the instance.</td>
       </tr>
    </table>
+
+### Create an Air Gap Instance Record
+
+Air gap instance records do not appear in the Enterprise Portal until the end customer creates an air gap instance record by either uploading a support bundle for that instance or manually entering instance information.
+
+:::note
+To create an air gap instance record in the Enterprise Portal, the customer license must have the **Helm CLI Air Gap Instructions (Helm CLI only)** or **Air Gap Installation Option (Replicated Installers only)** option enabled. For more information, see [Create and Manage Customers](/vendor/releases-creating-customer).
+:::
+
+#### Upload a support bundle for the air gap instance
+
+To create an air gap instance record by extracting instance details from a support bundle:
+
+1. On the **Update** page, under **Air gap instances**, click **Create air gap instance record > Upload support bundle**.
+
+   <img alt="create air gap instance button" src="/images/enterprise-portal-create-air-gap-instance.png" width="700px"/>
+
+   [View a larger version of this image](/images/enterprise-portal-create-air-gap-instance.png)
+
+1. In the **Extract instance info from a support bundle** dialog, upload the support bundle and click **Upload bundle**:    
+
+   <img alt="manually create air gap instance dialog" src="/images/enterprise-portal-extract-air-gap-instance-bundle.png" width="500px"/>
+
+   [View a larger version of this image](/images/enterprise-portal-extract-air-gap-instance-bundle.png)
+
+#### Manually create an air gap instance record
+
+To create an air gap instance record manually:
+
+1. On the **Update** page, under **Air gap instances**, click **Create air gap instance record > Enter information manually**.
+
+   <img alt="create air gap instance button" src="/images/enterprise-portal-create-air-gap-instance.png" width="700px"/>
+
+   [View a larger version of this image](/images/enterprise-portal-create-air-gap-instance.png)
+
+1. In the **Manually create air gap instance record** dialog, complete the fields and click **Create instance**.
+
+   <img alt="manually create air gap instance dialog" src="/images/enterprise-portal-manually-create-air-gap-instance.png" width="500px"/>
+
+   [View a larger version of this image](/images/enterprise-portal-manually-create-air-gap-instance.png)
+
+    
 
 ## View Release History
 
