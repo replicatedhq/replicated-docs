@@ -36,7 +36,7 @@ During the redact phase, _redactors_ censor sensitive customer information from 
 - Database connection strings
 - URLs that include usernames and passwords
 
-For Replicated KOTS installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
+For Replicated KOTS and Embedded Cluster installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
 
@@ -115,19 +115,13 @@ This section provides an overview of support bundles, including how support bund
 
 ### Overview
 
-Support bundles collect and analyze troubleshooting data from customer environments, helping both users and support teams diagnose problems with application deployments.
+A support bundle is a diagnostic tool that collects and analyzes key troubleshooting data from a customer deployment. Support bundles are designed to help end customers self-diagnose and resolve issues.
 
-Support bundles can collect a variety of important cluster-level data from customer environments, such as:
-* Pod logs
-* Node resources and status
-* The status of replicas in a Deployment
-* Cluster information
-* Resources deployed to the cluster
-* The history of Helm releases installed in the cluster
+When it is necessary for the customer to escalate their issue, support bundles provide vendor support teams with the information they need for troubleshooting upfront, reducing overall issue resolution time. Replicated has found that Severity 1 issues are resolved three times faster when a support bundle is provided during an issue escalation. 
 
-Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response.
+The data collected in a support bundle depends on the [collectors](#collect) and [redactors](#redact) defined by the vendor in the support bundle spec included with the application release. For more information about the automatic redactions that are made in support bundles, see [Redact](#redact) above. For more information about customizing the data that is collected in support bundles for your application, see [Customizing the Support Bundle Spec For Your Application](#customize) below.
 
-Support bundles then use the data collected to provide insights to users on potential problems or suggested troubleshooting steps. The troubleshooting data collected and analyzed by support bundles not only helps users to self-resolve issues with their application deployment, but also helps reduce the amount of time required by support teams to resolve requests by ensuring they have access to all the information they need up front.
+When an end customer generates a support bundle, the process uses the vendor-defined spec to collect data from the cluster, redact sensitive fields, and then perform an analysis on the data to provide remediation steps. The output is a compressed `tar.gz` file that can be shared with the vendor as part of a support escalation. No data is shared outside the cluster unless the `tar.gz` support bundle file is explicitly shared by the end customer. For more information, see [How Customers Generate and Share Support Bundles](#generate-share) below.
 
 ### About Host Support Bundles
 
@@ -137,15 +131,62 @@ For Embedded Cluster installations, a default spec can be used to generate suppo
 
 For kURL installations, vendors can customize a host support bundle spec for their application. See [Generate Host Bundles for kURL](/vendor/support-host-support-bundles).
 
-### Customizing Support Bundles
+### Customizing the Support Bundle Spec For Your Application {#customize}
 
-To enable support bundles for your application, add a support bundle YAML specification to a release. An empty support bundle specification automatically includes several default collectors and analzyers. You can also optionally customize the support bundle specification for by adding, removing, or editing collectors and analyzers.
+To enable customers to collect support bundles for your application, add a support bundle YAML specification to an application release. An empty support bundle specification automatically includes default [redactors](#redact), as well as several default [collectors](#collect) and [analzyers](#analyze). You can also optionally customize the support bundle specification by adding, removing, or editing collectors and analyzers.
+
+Support bundles can collect a variety of important cluster-level data from customer environments, such as:
+* Pod logs
+* Node resources and status
+* The status of replicas in a Deployment
+* Cluster information
+* Resources deployed to the cluster
+* The history of Helm releases installed in the cluster
+
+Support bundles can also be used for more advanced use cases, such as checking that a command successfully executes in a pod in the cluster, or that an HTTP request returns a succesful response. 
 
 For more information, see [Add and Customize Support Bundles](support-bundle-customizing).
 
-### Generating Support Bundles
+### How Customers Generate and Share Support Bundles {#generate-share}
 
-Users generate support bundles as `tar.gz` files from the command line, using the support-bundle kubectl plugin. Your customers can share their support bundles with your team by sending you the resulting `tar.gz` file.
+Users generate support bundles as `tar.gz` files from the command line using the support-bundle kubectl plugin. KOTS and Embedded Cluster users can also generate bundles from the Admin Console UI.
 
-KOTS users can also generate and share support bundles from the KOTS Admin Console.
-For more information, see [Generate Support Bundles](support-bundle-generating).
+Your customers can share their support bundles with your team by sending you the `tar.gz` file. No data is shared outside the cluster unless the `tar.gz` support bundle file is explicitly shared by the end customer.
+
+Replicated recommends that customers share their support bundles with you using one of the following methods:
+* Upload the support bundle in their Enterprise Portal. This allows the customer to download and delete their own support bundles. For more information, see [Collect, Upload, and Manage Support Bundles](/vendor/enterprise-portal-use#collect-upload-and-manage-support-bundles) in _Access and Use the Enterprise Portal_. 
+* KOTS and Embedded Cluster users can also generate and share support bundles from the Admin Console. For more information, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app).
+
+When customers upload their support bundle in the Enterprise Portal or Admin Console, the support bundle and its comprehensive analysis results are automatically made available to you in the Vendor Portal.
+
+### Managing and Inspecting Support Bundles in the Vendor Portal {#upload-inspect}
+
+Support bundles are automatically uploaded to the Vendor Portal when customers share bundles through the Enterprise Portal or Admin Console. You can also manually upload support bundle `.tar.gz` files to the Vendor Portal.
+
+From the Vendor Portal, you have control over uploaded support bundles, including sharing bundles with Replicated or deleting previously uploaded bundles. Support bundles uploaded to the Vendor Portal are stored per Replicated's data and security standards. For more information, see [Security at Replicated](https://www.replicated.com/security).
+
+You can inspect uploaded support bundles on the Vendor Portal **Support bundle analysis** page:
+
+![Support bundle analysis page](/images/support-bundle-analysis-overview.png)
+
+[View a larger version of this image](/images/support-bundle-analysis-overview.png)
+
+As shown in the image above, the **Support bundle analysis** page includes information and features to help you analyze a support bundle, such as:
+* Details about the bundle, including the customer and instance it is associated with, when it was collected and uploaded, and more
+* Any available instance details from the point in time when the bundle was collected
+* An analysis overview that can be filtered to show errors and warnings
+* A file inspector for more detailed analaysis
+
+From the **Support bundle analysis** page, you can also share the bundle with Replicated or download the bundle for offline analysis.
+
+For more information about using the **Support bundle analysis** page, see [Inspect Support Bundles](/vendor/support-inspecting-support-bundles).
+
+### Sharing Support Bundles with Replicated
+
+Replicated strongly recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Sharing an existing support bundle or uploading a new one is secure and provides the Replicated Support team immediate access to necessary diagnostic data, enabling them to provide faster and more informed assistance in troubleshooting your application. 
+
+For more information, see [Submit a Support Request](/vendor/support-submit-request). 
+
+
+
+
