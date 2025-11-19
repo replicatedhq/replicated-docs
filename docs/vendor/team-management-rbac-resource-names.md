@@ -198,6 +198,10 @@ Grants the holder permission to view Enterprise Portal customer users for the sp
 
 Grants the holder permission to create Enterprise Portal customer users for the specified application.
 
+### kots/app/[:appId]/enterprise-portal/customer-user/login
+
+Grants the holder permission to login to the Enterprise Portal for the specified application.
+
 ### kots/app/[:appId]/enterprise-portal/customer-user/[:customerId]/delete
 
 Grants the holder permission to delete Enterprise Portal customer users for the specified application.
