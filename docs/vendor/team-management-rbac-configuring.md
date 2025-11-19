@@ -79,9 +79,12 @@ This policy is automatically created for teams with the Enterprise plan only.
       "allowed": [
         "**/read",
         "**/list",
+        "platform/app/*/license/**",
         "kots/app/*/license/**",
-        "team/support-issues/read",
-        "team/support-issues/write"
+        "team/support-issues/triage",
+        "kots/app/*/enterprise-portal/customer-users/read",
+        "kots/app/*/enterprise-portal/customer-user/create",
+        "kots/app/*/enterprise-portal/customer-user/login"
       ],
       "denied": [
         "**/*"
