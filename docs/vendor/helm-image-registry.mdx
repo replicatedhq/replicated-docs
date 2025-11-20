@@ -35,7 +35,9 @@ To configure your application to use the proxy registry with Helm CLI installati
    ```yaml
    # templates/replicated-pull-secret.yaml
 
-   {{ if .Values.global.replicated.dockerconfigjson }}
+   {{- $global := default dict .Values.global -}}
+   {{- $replicated := default dict (index $global "replicated") -}}
+   {{- if hasKey $replicated "dockerconfigjson" }}
    apiVersion: v1
    kind: Secret
    metadata:
