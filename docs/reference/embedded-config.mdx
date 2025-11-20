@@ -269,12 +269,14 @@ spec:
 
 > Introduced in Embedded Cluster v2.13.0
 
-If your license has disaster recovery enabled, the Velero built-in addon will be deployed and you can configure custom Velero plugins using the `extensions.velero.plugins` key. This allows you to extend Velero's backup and restore capabilities with additional plugins.
+If the customer license has the **Allow Disaster Recovery (Alpha)** option enabled, you can add custom Velero plugins in the `extensions.velero.plugins` key to extend Velero's backup and restore capabilities. For example, you can add support for backing up databases like PostgreSQL, MySQL, or other stateful applications that require advanced disaster recovery capabilities.
 
-#### Limitations
+Each plugin that you add to the `extensions.velero.plugins` key must have a name and a publicly accessible container image. For more information about the Velero plugin system, including how to create custom plugins, see [Velero plugin system](https://velero.io/docs/v1.17/overview-plugins/) in the Velero documentation.
 
-* The image must be available publicly. Images behind authentication are not supported.
-* Disaster recovery must be enabled in your license for Velero plugins to work.
+#### Requirements
+
+* The image for the Velero plugin must be available publicly. Images behind authentication are not supported.
+* The **Allow Disaster Recovery (Alpha)** option must be enabled in the license for Velero plugins to work. For more information about how to enable the Embedded Cluster disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
 #### Example
 
@@ -284,6 +286,7 @@ kind: Config
 spec:
   extensions:
     velero:
+      # Each plugin requires a name and publicly accessible container image
       plugins:
         - name: velero-plugin-postgresql
           image: myvendor/velero-postgresql:v1.0.0
