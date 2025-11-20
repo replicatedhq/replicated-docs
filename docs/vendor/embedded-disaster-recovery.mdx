@@ -164,7 +164,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
 
 > Introduced in Embedded Cluster v2.13.0
 
-You can extend Velero's backup and restore capabilities by configuring custom Velero plugins in the Embedded Cluster Config. This is useful if you need to add support for specific backup scenarios, such as backing up databases like PostgreSQL, MySQL, or other stateful applications that require specialized plugins.
+You can extend Velero's backup and restore capabilities by configuring custom Velero plugins in the Embedded Cluster Config. This is useful if you need to add support for specific backup scenarios, such as backing up databases like PostgreSQL, MySQL, or other stateful applications that require advanced disaster recovery capabilities.
 
 To configure custom Velero plugins, use the `extensions.velero.plugins` key in the Embedded Cluster Config. Each plugin requires a name and a publicly accessible container image.
 
