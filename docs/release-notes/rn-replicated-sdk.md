@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.11.2
+
+Released on November 21, 2025
+
+### Bug Fixes {#bug-fixes-1-11-2}
+* Fixed an issue where the `enterprise-pull-secret` secret did not respect namespace overrides.
+
 ## 1.11.1
 
 Released on November 17, 2025
