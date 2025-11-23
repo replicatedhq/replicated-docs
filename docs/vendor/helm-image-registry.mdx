@@ -101,12 +101,12 @@ To configure your application to use the proxy registry with Helm CLI installati
     apiVersion: v1
     kind: Pod
     spec:
+      # Add the pull secret with your helper
+      {{- include "replicated.imagePullSecrets" . | nindent 6 }}
       containers:
         - name: api 
       # Access the registry, repository, and tag fields from the values file
             image: {{ .Values.images.api.registry }}/{{ .Values.images.api.repository }}:{{ .Values.images.api.tag }}
-            # Add the pull secret with your helper
-            {{- include "replicated.imagePullSecrets" . | nindent 6 }}
     ```
 
 1. Package your Helm chart and add it to a release. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
