@@ -1,0 +1,28 @@
+## kots.io/installer-only Annotation
+
+The `kots.io/installer-only` annotation can be added to a HelmChart custom resource to exclude the chart from Helm CLI installations and Helm-specific Security Center reports.
+
+When set to `"true"`, charts with this annotation:
+- Will not appear in Helm install instructions displayed in the Vendor Portal or Enterprise Portal
+- Will not be included in Security Center reports for Helm CLI installations
+- Will still be deployed when using Replicated installers (Embedded Cluster, KOTS, and kURL)
+- Will still be included in Security Center reports for Replicated installer deployments
+
+This annotation is useful for charts that are required only for Replicated installer-based deployments but should not be visible or installed when customers use the Helm CLI.
+
+### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: kots-only-chart
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  chart:
+    name: kots-only-chart
+    chartVersion: 1.0.0
+```
+
+In this example, the `kots-only-chart` will be deployed when using Replicated installers but will be excluded from Helm CLI install instructions and Security Center reports.
