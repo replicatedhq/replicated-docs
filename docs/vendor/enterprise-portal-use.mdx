@@ -40,7 +40,21 @@ To sign up for a self-service account and log in to the Enteprise Portal:
 
     [View a larger version of this image](/images/self-serve-signup-screen.png)
 
-1. Go to your email account and open the automated account creation email. Follow the link provided in the email to log in.    
+1. Go to your email account and open the automated account creation email. Follow the link provided in the email to log in.   
+
+### SAML Authentication (Alpha)
+
+:::note
+SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+If SAML authentication has been enabled and configured for the Enterprise Portal it will be the preferred login method and attempted automatically. 
+
+SAML authentication also supports just-in-time (JIT) provisioning of user accounts as follows:
+
+1. Identity Provider (IdP) initiated SAML login attempts always allow for JIT user provisioning
+
+1. Service Provider (SP) initiated SAML login attempts allow for JIT user provisioning if the user has an active pending invite. See [Invite or Delete Users](#invite-or-delete-users) below.
 
 ## View Install and Update Instructions
 
@@ -197,7 +211,7 @@ To manage licenses in the Enterprise Portal:
 
 ## Manage Team Settings
 
-This section includes information about how to manage users and service accounts in the Enterprise Portal.
+This section includes information about how to manage users, service accounts, and SAML authentication in the Enterprise Portal.
 
 ### Invite or Delete Users
 
@@ -221,7 +235,7 @@ To manage invite and manage users in the Enterprise Portal:
 
 To manage service accounts in the Enterprise Portal:
 
-1. In the Enterprise Portal, openthe user account dropdown in the top right of the page and select **Team settings**.
+1. In the Enterprise Portal, open the user account dropdown in the top right of the page and select **Team settings**.
 
    ![enterprise portal team settings](/images/enterprise-portal-user-account.png)
    
@@ -233,6 +247,38 @@ To manage service accounts in the Enterprise Portal:
    * To create a new service account, click **Create Service Account**.
    * To view a service account token, find the target service account in the table and click **View** under **Token**.
    * The revoke a service account's token, find the target service account in the table and open the menu under **Actions**. Select **Revoke**.
+
+### Configure SAML Authentication (Alpha)
+
+:::note
+SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+1. In the Enterprise Portal, open the user account dropdown in the top right of the page and select **Team settings**.
+
+   ![enterprise portal team settings](/images/enterprise-portal-user-account.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-user-account.png)
+
+1. Click **SAML Authentication**
+
+1. The Service provider information section will display information you can copy and paste to use in your identity provider (IdP).
+
+   ![enterprise portal SAML service provider information](/images/enterprise-portal-saml-sp-info.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-sp-info.png)
+
+1. Next, upload the required metadata XML and public certificate from your identity provider.
+
+   ![enterprise portal SAML configuration](/images/enterprise-portal-saml-config.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-config.png)
+
+1. Finally, select to enable or disable SAML authentication for the Enterprise Portal. Disabling SAML authentication will leave the stored configuration in place.
+
+   ![enterprise portal SAML enablement](/images/enterprise-portal-saml-enable.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-enable.png)
 
 ## Manage User Settings
 
