@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on November 25, 2025
 
-### New Features {#new-features-v2025-11-25-2}
+### Improvements {#improvements-v2025-11-25-2}
 * Adds the customer ID to the license.
 
 ## v2025.11.07-0
