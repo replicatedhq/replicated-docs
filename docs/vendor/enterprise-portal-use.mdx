@@ -6,7 +6,11 @@ For information about how to access the Enterprise Portal for a customer from th
 
 ## Log In To the Enterprise Portal
 
-### Log in From the Invitation Email
+:::note
+If SAML authentication has been enabled and configured for the Enterprise Portal it will be the preferred login method and attempted automatically. See [Configure SAML Authentication (Alpha)](#saml) below.
+:::
+
+### Log In From the Invitation Email
 
 Users can log in to the Enterprise Portal after they are invited to join a team. See [Invite or Delete Users](#invite-or-delete-users) below.
 
@@ -40,7 +44,21 @@ To sign up for a self-service account and log in to the Enteprise Portal:
 
     [View a larger version of this image](/images/self-serve-signup-screen.png)
 
-1. Go to your email account and open the automated account creation email. Follow the link provided in the email to log in.    
+1. Go to your email account and open the automated account creation email. Follow the link provided in the email to log in.
+
+### About SAML Logins (Alpha) {#about-saml}
+
+:::note
+SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+When SAML authentication is enabled and configured for your Enterprise Portal team, you can log in with your single sign-on (SSO) credentials either through your SAML Identity Provider (IdP) or the Enterprise Portal. For more information about how to configure SAML, see [Configure SAML Authentication (Alpha)](#saml) below.
+
+#### Just-In-Time User Provisioning
+
+The first time that you attempt to log in with SAML using your SSO credentials, if you do not already have an Enterprise Portal account, then your account is automatically created using just-in-time (JIT) user provisioning. JIT is handled differently depending on if you attempt to log in through your IdP or the Enterprise Portal:
+* IdP-initiated SAML login attempts always allow for JIT user provisioning
+* Enterprise Portal-initiated SAML login attempts allow for JIT user provisioning if your email address has already been invited to the team. See [Invite or Delete Users](#invite-or-delete-users) below.
 
 ## View Install and Update Instructions
 
@@ -197,7 +215,7 @@ To manage licenses in the Enterprise Portal:
 
 ## Manage Team Settings
 
-This section includes information about how to manage users and service accounts in the Enterprise Portal.
+This section includes information about how to manage users, service accounts, and SAML authentication in the Enterprise Portal.
 
 ### Invite or Delete Users
 
@@ -221,7 +239,7 @@ To manage invite and manage users in the Enterprise Portal:
 
 To manage service accounts in the Enterprise Portal:
 
-1. In the Enterprise Portal, openthe user account dropdown in the top right of the page and select **Team settings**.
+1. In the Enterprise Portal, open the user account dropdown in the top right of the page and select **Team settings**.
 
    ![enterprise portal team settings](/images/enterprise-portal-user-account.png)
    
@@ -233,6 +251,48 @@ To manage service accounts in the Enterprise Portal:
    * To create a new service account, click **Create Service Account**.
    * To view a service account token, find the target service account in the table and click **View** under **Token**.
    * The revoke a service account's token, find the target service account in the table and open the menu under **Actions**. Select **Revoke**.
+
+### Configure SAML Authentication (Alpha) {#saml}
+
+:::note
+SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+:::note
+SAML authentication must be enabled for the customer in the Vendor Portal before they can configure SAML for their Enterprise Portal team. For more information, see [Enable SAML Authentication (Alpha)](enterprise-portal-invite#enable-saml).
+:::
+
+To configure SAML authentication for your account:
+
+1. In the Enterprise Portal, open the user account dropdown in the top right of the page and select **Team settings**.
+
+   ![enterprise portal team settings](/images/enterprise-portal-user-account.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-user-account.png)
+
+1. Click **SAML Authentication**.
+
+1. For **Service provider information**, copy the values provided and use them to configure your identity provider (IdP).
+
+   ![enterprise portal SAML service provider information](/images/enterprise-portal-saml-sp-info.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-sp-info.png)
+
+1. Upload the required metadata XML and public certificate from your IdP.
+
+   ![enterprise portal SAML configuration](/images/enterprise-portal-saml-config.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-config.png)
+
+1. After the file upload is complete, the **Enable SAML authentication** toggle is automatically enabled.
+
+   ![enterprise portal SAML enablement](/images/enterprise-portal-saml-enable.png)
+   
+   [View a larger version of this image](/images/enterprise-portal-saml-enable.png)
+
+   :::note
+   If you disable SAML authentication, the SAML configuration details that you added to the Enterprise Portal are saved.
+   ::: 
 
 ## Manage User Settings
 
