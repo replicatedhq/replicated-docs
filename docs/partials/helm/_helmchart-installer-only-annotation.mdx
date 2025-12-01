@@ -8,6 +8,31 @@ Charts with `kots.io/installer-only: "true"` are still deployed when using Repli
 
 This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or installed when customers use the Helm CLI.
 
+### When to Use This Annotation
+
+The `kots.io/installer-only` annotation is needed in these scenarios:
+
+**Scenario 1: Resources Inside Helm Chart Templates**
+
+If you have Kubernetes resources (Deployments, Jobs, Services, etc.) **inside a Helm chart's templates** that should only deploy with Replicated installers:
+
+- Without annotation: Resource deploys with BOTH Helm CLI and Replicated installers
+- With annotation: Resource only deploys with Replicated installers
+
+**Scenario 2: Entire Helm Charts**
+
+If you have a HelmChart custom resource that references a chart needed only for Replicated installers:
+
+- The annotation on the HelmChart CR excludes the entire chart from Helm CLI installations
+
+**Scenario 3: Standalone Manifests**
+
+Standard Kubernetes resources that are NOT part of any Helm chart are **automatically excluded** from Helm CLI installations. You do not need to add this annotation to standalone manifests.
+
+:::note
+HelmChart custom resources are Replicated-specific and never deployed by Helm CLI. The annotation controls whether the chart they reference is included in Helm installation instructions.
+:::
+
 ### Example: HelmChart Custom Resource
 
 ```yaml
@@ -23,35 +48,133 @@ spec:
     chartVersion: 1.0.0
 ```
 
-### Example: Standard Kubernetes Resource
+### Example: Resource Inside a Helm Chart
+
+This example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
+
+**File:** `your-chart/templates/preflight-job.yaml`
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: installer-setup-job
+  name: {{ .Release.Name }}-preflight
   annotations:
     kots.io/installer-only: "true"
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: installer-setup
   template:
-    metadata:
-      labels:
-        app: installer-setup
     spec:
       containers:
-      - name: setup-container
-        image: myregistry/installer-tool:v1.0
+      - name: preflight-checks
+        image: replicated/preflight:latest
+        command: ["/bin/sh"]
+        args: ["-c", "echo Running Replicated-specific preflight checks"]
+      restartPolicy: Never
 ```
 
-### Troubleshooting
+**Why the annotation is needed:** Without it, this Job would run during both Helm CLI and Replicated installer deployments. The annotation ensures it only runs with Replicated installers where the preflight tooling is available.
 
-This annotation capability uses intelligent many-to-many tracking for container images. An image is **only excluded from Helm airgap bundles if ALL resources that reference it are marked as installer-only**. Example scenarios:
-* Annotated image only in installer-only Deployment → Excluded from Helm
-* Annotated image in both installer-only Job AND regular Deployment → Still included in Helm (because at least one source is not installer-only)
-* Image in multiple installer-only resources → Excluded from Helm
+**Standalone manifests:** If this Job were a standalone manifest in your release (not inside a Helm chart), it would automatically be excluded from Helm CLI installations without needing the annotation.
 
+### Container Image Handling in Airgap Bundles
 
+When determining which container images to include in Helm airgap bundles, the system uses intelligent many-to-many tracking. An image is **only excluded from Helm airgap bundles if ALL resources that reference it are marked as installer-only**.
+
+**Example scenarios:**
+
+| Scenario | Result | Why |
+|----------|--------|-----|
+| Image referenced only by installer-only resources | Excluded from Helm | All sources are installer-only |
+| Image referenced by installer-only AND regular resources | Included in Helm | At least one source is not installer-only |
+| Image referenced by multiple installer-only resources | Excluded from Helm | All sources are installer-only |
+
+**Example:**
+
+```yaml
+# In your-chart/templates/cache.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: installer-cache
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  template:
+    spec:
+      containers:
+      - image: redis:7.2  # Still in Helm airgap if used elsewhere
+---
+# In your-chart/templates/app-cache.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-cache
+  # No annotation - regular deployment
+spec:
+  template:
+    spec:
+      containers:
+      - image: redis:7.2  # Same image, non-installer-only source
+```
+
+In this example, `redis:7.2` is **included in Helm airgap bundles** because it's referenced by the `app-cache` Deployment which is NOT marked as installer-only, even though it's also used by an installer-only StatefulSet.
+
+### Common Use Cases
+
+**1. Preflight Checks and Validation**
+
+Jobs that perform Replicated-specific preflight checks or validation:
+
+```yaml
+# Inside your-chart/templates/preflight.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: preflight-validator
+  annotations:
+    kots.io/installer-only: "true"
+```
+
+**2. KOTS Admin Console Dependencies**
+
+Charts or resources needed to support the KOTS Admin Console:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: kots-postgres
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  chart:
+    name: postgresql
+```
+
+**3. Database Migration Jobs**
+
+Migration scripts that run during Replicated installer upgrades:
+
+```yaml
+# Inside your-chart/templates/migrations.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+  annotations:
+    kots.io/installer-only: "true"
+```
+
+**4. Cluster Preparation**
+
+DaemonSets or init containers that prepare the cluster environment:
+
+```yaml
+# Inside your-chart/templates/cluster-prep.yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-configurator
+  annotations:
+    kots.io/installer-only: "true"
+```
