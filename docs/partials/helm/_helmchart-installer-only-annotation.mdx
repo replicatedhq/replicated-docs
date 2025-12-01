@@ -39,12 +39,12 @@ HelmChart custom resources are Replicated-specific and never deployed by Helm CL
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
-  name: kots-only-chart
+  name: installers-only-chart
   annotations:
     kots.io/installer-only: "true"
 spec:
   chart:
-    name: kots-only-chart
+    name: installers-only-chart
     chartVersion: 1.0.0
 ```
 
@@ -68,113 +68,10 @@ spec:
       - name: preflight-checks
         image: replicated/preflight:latest
         command: ["/bin/sh"]
-        args: ["-c", "echo Running Replicated-specific preflight checks"]
+        args: ["-c", "echo Running installer-specific preflight checks"]
       restartPolicy: Never
 ```
 
 **Why the annotation is needed:** Without it, this Job would run during both Helm CLI and Replicated installer deployments. The annotation ensures it only runs with Replicated installers where the preflight tooling is available.
 
 **Standalone manifests:** If this Job were a standalone manifest in your release (not inside a Helm chart), it would automatically be excluded from Helm CLI installations without needing the annotation.
-
-### Container Image Handling in Airgap Bundles
-
-When determining which container images to include in Helm airgap bundles, the system uses intelligent many-to-many tracking. An image is **only excluded from Helm airgap bundles if ALL resources that reference it are marked as installer-only**.
-
-**Example scenarios:**
-
-| Scenario | Result | Why |
-|----------|--------|-----|
-| Image referenced only by installer-only resources | Excluded from Helm | All sources are installer-only |
-| Image referenced by installer-only AND regular resources | Included in Helm | At least one source is not installer-only |
-| Image referenced by multiple installer-only resources | Excluded from Helm | All sources are installer-only |
-
-**Example:**
-
-```yaml
-# In your-chart/templates/cache.yaml
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: installer-cache
-  annotations:
-    kots.io/installer-only: "true"
-spec:
-  template:
-    spec:
-      containers:
-      - image: redis:7.2  # Still in Helm airgap if used elsewhere
----
-# In your-chart/templates/app-cache.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: app-cache
-  # No annotation - regular deployment
-spec:
-  template:
-    spec:
-      containers:
-      - image: redis:7.2  # Same image, non-installer-only source
-```
-
-In this example, `redis:7.2` is **included in Helm airgap bundles** because it's referenced by the `app-cache` Deployment which is NOT marked as installer-only, even though it's also used by an installer-only StatefulSet.
-
-### Common Use Cases
-
-**1. Preflight Checks and Validation**
-
-Jobs that perform Replicated-specific preflight checks or validation:
-
-```yaml
-# Inside your-chart/templates/preflight.yaml
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: preflight-validator
-  annotations:
-    kots.io/installer-only: "true"
-```
-
-**2. KOTS Admin Console Dependencies**
-
-Charts or resources needed to support the KOTS Admin Console:
-
-```yaml
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: kots-postgres
-  annotations:
-    kots.io/installer-only: "true"
-spec:
-  chart:
-    name: postgresql
-```
-
-**3. Database Migration Jobs**
-
-Migration scripts that run during Replicated installer upgrades:
-
-```yaml
-# Inside your-chart/templates/migrations.yaml
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: db-migration
-  annotations:
-    kots.io/installer-only: "true"
-```
-
-**4. Cluster Preparation**
-
-DaemonSets or init containers that prepare the cluster environment:
-
-```yaml
-# Inside your-chart/templates/cluster-prep.yaml
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: node-configurator
-  annotations:
-    kots.io/installer-only: "true"
-```
