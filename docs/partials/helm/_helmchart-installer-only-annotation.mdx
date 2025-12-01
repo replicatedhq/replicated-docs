@@ -1,6 +1,6 @@
 ## kots.io/installer-only Annotation
 
-When added to a HelmChart custom resource and set to true, the `kots.io/installer-only` annotation does the following:
+When added to a HelmChart custom resource or other Kubernetes resource and set to true, the `kots.io/installer-only` annotation does the following:
 - Excludes the chart from the Helm CLI install and upgrade instructions displayed in the Vendor Portal and Enterprise Portal
 - Excludes the chart from Security Center reports for Helm CLI installations
 
@@ -8,7 +8,7 @@ Charts with `kots.io/installer-only: "true"` are still deployed when using Repli
 
 This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or installed when customers use the Helm CLI.
 
-### Example
+### Example: HelmChart Custom Resource
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -22,3 +22,36 @@ spec:
     name: kots-only-chart
     chartVersion: 1.0.0
 ```
+
+### Example: Standard Kubernetes Resource
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: installer-setup-job
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: installer-setup
+  template:
+    metadata:
+      labels:
+        app: installer-setup
+    spec:
+      containers:
+      - name: setup-container
+        image: myregistry/installer-tool:v1.0
+```
+
+### Troubleshooting
+
+This annotation capability uses intelligent many-to-many tracking for container images. An image is **only excluded from Helm airgap bundles if ALL resources that reference it are marked as installer-only**. Example scenarios:
+* Annotated image only in installer-only Deployment → Excluded from Helm
+* Annotated image in both installer-only Job AND regular Deployment → Still included in Helm (because at least one source is not installer-only)
+* Image in multiple installer-only resources → Excluded from Helm
+
+
