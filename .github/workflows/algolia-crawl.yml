@@ -1,25 +1,26 @@
-name: scrape
-concurrency: scrape
+name: Algolia Recrawl Example
+
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
+
 jobs:
-  scrape:
+  algolia_crawl:
+    name: Algolia Recrawl
     runs-on: ubuntu-latest
     steps:
-      - name: check out code 🛎d
-        uses: actions/checkout@v6
-      # when scraping the site, inject secrets as environment variables
-      # then pass their values into the Docker container using "-e" syntax
-      # and inject config.json contents as another variable
-      - name: scrape the site 🧽
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: |
-          docker run \
-          -e ALGOLIA_APP_ID -e ALGOLIA_API_KEY \
-          -e CONFIG="$(cat config.json)" \
-          algolia/docsearch-scraper
+      # checkout this repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Algolia crawler creation and crawl
+        uses: algolia/algoliasearch-crawler-github-actions@v1
+        id: algolia_crawler
+        with: # mandatory parameters
+          crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
+          crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
+          algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
+          site-url: 'https://docs.replicated.com/'
