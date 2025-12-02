@@ -199,12 +199,12 @@ The following describes some of the supported MDX template variables:
     <td>`my-app`</td>
   </tr>
   <tr>
-    <td><code>{`{channel.name}`}</code></td>
+    <td><code>{`{channel.channelName}`}</code></td>
     <td>Channel name</td>
     <td>`Stable`</td>
   </tr>
   <tr>
-    <td><code>{`{channel.slug}`}</code></td>
+    <td><code>{`{channel.channelSlug}`}</code></td>
     <td>Channel slug</td>
     <td>`stable`</td>
   </tr>
@@ -213,10 +213,30 @@ The following describes some of the supported MDX template variables:
     <td>Release version number</td>
     <td>`1.2.3`</td>
   </tr>
-  <tr>
-    <td><code>{`{release.sequence}`}</code></td>
+ <tr>
+    <td><code>{`{release.releaseSequence}`}</code></td>
     <td>Release sequence number</td>
     <td>`42`</td>
+  </tr>
+ <tr>
+    <td><code>{`{release.releaseNotes}`}</code></td>
+    <td>Release notes in markdown</td>
+    <td>`<Note>Review the release notes above before proceeding with installation.</Note>`</td>
+  </tr>
+  <tr>
+    <td><code>{`{{release.isRequired}}`}</code></td>
+    <td>Boolen: is this a required release</td>
+    <td>`Add a `ConditionalRender when={release.isRequired}` to generate a special message`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installOptions.isAirgap}`}</code></td>
+    <td>Boolean: air gap installation</td>
+    <td>`Add a `ConditionalRender when={!installOptions.isAirgap}` to add an extra Pull Images step`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installOptions.installType}`}</code></td>
+    <td>Installation type (helm, linux, embedded)</td>
+    <td>`Add a `ConditionalRender when={installOptions.installType === 'helm'}` to generate different cluster preperation instructions`</td>
   </tr>
   <tr>
     <td><code>{`{installOptions.adminConsoleUrl}`}</code></td>
@@ -239,9 +259,19 @@ The following describes some of the supported MDX template variables:
     <td>`MyApp Enterprise Portal`</td>
   </tr>
   <tr>
+    <td><code>{`{branding?.logo}`}</code></td>
+    <td>Custom logo URL (optional)</td>
+    <td>`www.mycompany.com/logo`</td>
+  </tr>
+  <tr>
     <td><code>{`{branding?.primaryColor}`}</code></td>
     <td>Primary brand color (optional)</td>
     <td>`#4a53b0`</td>
+  </tr>
+  <tr>
+    <td><code>{`{branding?.secondaryColor}`}</code></td>
+    <td>Primary brand color (optional)</td>
+    <td>`#0066cc`</td>
   </tr>
   <tr>
     <td><code>{`{branding?.supportPortalLink}`}</code></td>
@@ -250,7 +280,7 @@ The following describes some of the supported MDX template variables:
   </tr>
   <tr>
     <td><code>{`{installation.licenseId}`}</code></td>
-    <td>Customer license ID</td>
+    <td>Unique Customer license ID</td>
     <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
   </tr>
   <tr>
