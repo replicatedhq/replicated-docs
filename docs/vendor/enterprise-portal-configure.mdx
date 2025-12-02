@@ -122,6 +122,12 @@ To customize the pre- and post-install instructions for your application:
 
 1. Click **Save changes**.
 
+## Exclude Certain Images from Helm CLI Install Instructions
+
+You can use the `kots.io/installer-only` annotation to exclude the images for an entire Helm chart or for one or more resoures in a Helm chart's templates from the Helm CLI installation instructions displayed in the Enterprise Portal. This annotation is useful for charts or resources that are required for deployments with a Replicated installer (KOTS, Embedded Cluster, kURL) but should not be visible or deployed when customers install with the Helm CLI.
+
+For more information, see [`kots.io/installer-only` Annotation](/vendor/packaging-include-resources#installer-only) in _Conditionally Include or Exclude Resources_.
+
 ## Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
 
 :::note
