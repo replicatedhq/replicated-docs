@@ -58,11 +58,11 @@ import clsx from 'clsx';
   <div className={clsx("container")}>
     <div className={clsx("row")}>
       <div className={clsx("col", "col--8")}>
-        <a href="/vendor/security-center-about" className="whats-new-hero">
+        <a href="/vendor/enterprise-portal-use#saml" className="whats-new-hero">
           <div className="whats-new-badge">What's New</div>
-          <h2 className="whats-new-title">Announcing: Security Center (Alpha)</h2>
+          <h2 className="whats-new-title">SAML Authorization Support for Enterprise Portal (Alpha)</h2>
           <p className="whats-new-description">
-            The Security Center (Alpha) makes it easier for vendors and their enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each release.
+            Vendors can enable SAML authentication for the Enterprise Portal on a per-customer basis. The Enterprise Portal SAML authentication feature is Alpha. Reach out to your account representative for early access.
           </p>
         </a>
       </div>
@@ -71,11 +71,11 @@ import clsx from 'clsx';
         <div className="did-you-know-container">
           <div className="did-you-know-card">
             <div className="did-you-know-badge">Did You Know</div>
-            <h3 className="did-you-know-card-title">Simulate Air Gap Networks With CMX</h3>
+            <h3 className="did-you-know-card-title">How the HelmChart `builder` key supports air gap installs</h3>
             <p className="did-you-know-card-description">
-             Set the network policy of VMs or VM-based clusters to `airgap` to simulate an environment with no outbound internet access.
+             The `builder` key ensures all images needed to install your chart are included in the `.airgap` bundle and in the Helm CLI air gap intall instructions in the Enterprise Portal.
             </p>
-            <a href="https://docs.replicated.com/vendor/testing-network-policy" className="did-you-know-card-link">
+            <a href="/reference/custom-resource-helmchart-v2#builder" className="did-you-know-card-link">
               Learn more →
             </a>
           </div>
