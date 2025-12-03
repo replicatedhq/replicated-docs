@@ -1,1 +1,6 @@
-To deploy Helm charts, KOTS requires a unique HelmChart custom resource for each Helm chart `.tgz` archive in the release. You configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart to allow Helm values to be dynamically set during installation or upgrade.
+For installations with a Replicated installer (Embedded Cluster, KOTS, kURL), a unique HelmChart custom resource is required for each Helm chart `.tgz` archive in a release. The primary purpose of the HelmChart custom resource is to provide the necessary instructions to the Replicated installer for processing and preparing the given Helm chart for deployment.
+
+The HelmChart custom resource is also used to generate a list of required images for the chart, which is required for the following use cases:
+* Air gap installations with the Helm CLI or with a Replicated installer
+* Online installations with a Replicated installer where the user will push images to a local image registry
+* Online or air gap installations that use the [Security Center (Alpha)](/vendor/security-center-about) to scan and report on Helm chart images
