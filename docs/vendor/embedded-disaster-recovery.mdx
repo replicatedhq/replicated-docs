@@ -158,7 +158,15 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
        post.hook.restore.velero.io/wait-for-ready: 'true' # waits for the pod to be ready before running the post-restore hook
      ```
 
-1. Save and the promote the release to a development channel for testing.     
+1. Save and the promote the release to a development channel for testing.
+
+### Extend Disaster Recovery with Custom Velero Plugins
+
+> Introduced in Embedded Cluster v2.13.0
+
+You can extend Velero's backup and restore capabilities by configuring custom Velero plugins in the Embedded Cluster Config. This is useful if you need to add support for specific backup scenarios, such as backing up databases like PostgreSQL, MySQL, or other stateful applications that require advanced disaster recovery capabilities.
+
+To configure custom Velero plugins, use the `extensions.velero.plugins` key in the Embedded Cluster Config. For more information, see [Configure Velero Plugins](/reference/embedded-config#configure-velero-plugins) in _Embedded Cluster Config_.
 
 ### Enable the Disaster Recovery Feature for Your Customers
 
