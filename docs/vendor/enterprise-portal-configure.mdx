@@ -95,17 +95,15 @@ To configure customer emails:
 
    ### Using Template Variables
 
-   Variables are displayed in the UI under **Available Variables** when you expand an email template. These variables differ by email type - always check what's shown in the UI for the template you're editing.
-
-   **Variable syntax:** `{{variable_name}}`
-
-   **Example usage:**
-   - Subject: `Welcome to {{app_name}}!`
-   - Body: `Click here to join {{team_name}}: {{invite_url}}`
+   Variables are displayed in the UI under **Available Variables** when you expand an email template. 
 
    :::info Check the UI for Available Variables
    Each email template has different variables available. When editing a template, look for the **Available Variables** section below the email body editor - it shows exactly which variables you can use for that specific email type.
    :::
+
+   **Example usage:**
+   - Subject: `Welcome to {{app_name}}!`
+   - Body: `Click here to join {{team_name}}: {{invite_url}}`
 
    ### Common Template Variables
 
@@ -122,10 +120,6 @@ To configure customer emails:
    | `{{version_label}}` | Software version number | "1.2.3" |
    | `{{release_notes}}` | Release notes content | "New features and bug fixes" |
    | `{{update_url}}` | Link to update/release page | https://portal.example.com/acme/releases |
-
-   :::note
-   Not all variables are available for every email type. Always check the **Available Variables** section in the UI for the specific template you're editing.
-   :::
 
 ## Add a Link to Documentation
 
