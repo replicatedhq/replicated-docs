@@ -16,9 +16,9 @@ Before you install, complete the following prerequisites:
 
 * Declare the Replicated SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-* If the [Security Center (Alpha)](/vendor/security-center-about) is enabled for your account, add a unique HelmChart custom resource for _each_ Helm chart in your release. This is required to build the list of images that are scanned in the Security Center.
+* If the [Security Center (Alpha)](/vendor/security-center-about) is enabled for your account, add a unique HelmChart custom resource for each Helm chart in your release. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center.
 
-    The following provides an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
+    The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
 
     ```yaml
     apiVersion: kots.io/v1beta2
@@ -33,10 +33,6 @@ Before you install, complete the following prerequisites:
         chartVersion: 1.0.0
     ```
     For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
-
-    :::note
-    To support the use of the Security Center, the only required fields in the HelmChart spec are `chart.name` and `chart.chartVersion`. It is not necessary to configure any of the other fields available for the HelmChart resource.
-    :::
 
 ## Firewall Openings for Online Installations with Helm {#firewall}
 

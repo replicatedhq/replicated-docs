@@ -17,8 +17,24 @@ The Security Center is powered by Replicated’s [SecureBuild](https://securebui
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
 * Display and reporting of application images requires the [Replicated SDK version 1.8.0](/release-notes/rn-replicated-sdk#180) or later.
 * Display and reporting of Embedded Cluster images requires the [Replicated SDK version 1.9.0](/release-notes/rn-replicated-sdk#190) or later.
-* In a Helm CLI install, display of all container images observed in the cluster beyond application images requires setting the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images). This setting is automatically enabled for Embedded Cluster installations.
-* Each Helm chart in the release must have a corresponding HelmChart custom resource. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center. This HelmChart custom resource requirement applies to both Helm CLI and Embedded Cluster installations.
+* For Helm CLI installations, to include all container images observed in the cluster in the Security Center reports (rather than application images only), set the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images). This setting is automatically enabled for Embedded Cluster installations.
+* Each Helm chart in the release must have a unique [HelmChart](/reference/custom-resource-helmchart-v2) custom resource. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center. This HelmChart custom resource requirement applies to both Helm CLI and Embedded Cluster installations.
+  
+   The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
+
+    ```yaml
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: examplechart
+    spec:
+      chart:
+        # name must match the name of the chart
+        name: examplechart
+        # chartVersion must match the version of the chart
+        chartVersion: 1.0.0
+    ```
+    For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 ## Limitations
 * The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
