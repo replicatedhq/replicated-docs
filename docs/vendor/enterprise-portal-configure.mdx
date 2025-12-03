@@ -76,11 +76,56 @@ To configure customer emails:
 1. For **Email Sender Verification**, in **From email address**, add the email address that you want to use as the sender for all system notifications sent to your customers, then click **Continue**. Adding a sender address helps ensure that your emails are delivered and are not marked as spam.
 
     After the domain is verified automatically, the email address is displayed under **Verified Sender Address**.
-1. For **Customer Emails**, customize the subject line and body of the emails that are sent to your customers for various system events. You can also customize the default style component to change things like color and font. Click **Preview** to see a preview of your changes.
+1. For **Customer Emails**, customize the subject line and body of the emails that are sent to your customers for various system events. Email templates support dynamic variables that are automatically populated with relevant data when emails are sent.
 
      ![Enterprise Portal edit emails pane](/images/enterprise-portal-customer-emails-edit.png)
 
      [View a larger version of this image](/images/enterprise-portal-customer-emails-edit.png)
+
+   To edit a template:
+
+   1. Click the email type you want to customize to expand the template editor.
+   1. Modify the **Subject line** and **Email body** fields.
+   1. Use template variables (formatted as `{{variable_name}}`) to insert dynamic content.
+   1. Check the **Available Variables** section below the email body editor to see which variables you can use for this specific email type.
+   1. Click the **Preview** tab to see how your email will look with sample data.
+   1. Click **Save changes** when finished.
+
+   You can also customize the default style component to change things like color and font.
+
+   ### Using Template Variables
+
+   Variables are displayed in the UI under **Available Variables** when you expand an email template. These variables differ by email type - always check what's shown in the UI for the template you're editing.
+
+   **Variable syntax:** `{{variable_name}}`
+
+   **Example usage:**
+   - Subject: `Welcome to {{app_name}}!`
+   - Body: `Click here to join {{team_name}}: {{invite_url}}`
+
+   :::info Check the UI for Available Variables
+   Each email template has different variables available. When editing a template, look for the **Available Variables** section below the email body editor - it shows exactly which variables you can use for that specific email type.
+   :::
+
+   ### Common Template Variables
+
+   The following variables are commonly available across multiple email types:
+
+   | Variable | Description | Example Output |
+   |----------|-------------|----------------|
+   | `{{app_name}}` | Your application name | "Acme Application" |
+   | `{{team_name}}` | Customer team name | "Acme Corp" |
+   | `{{customer_name}}` | Customer organization name | "Acme Corporation" |
+   | `{{login_url}}` | Link to login page | https://portal.example.com/acme/login |
+   | `{{invite_url}}` | Link to accept invitation | https://portal.example.com/acme/invite#token |
+   | `{{verification_code}}` | Temporary verification code | "ABC123" |
+   | `{{version_label}}` | Software version number | "1.2.3" |
+   | `{{release_notes}}` | Release notes content | "New features and bug fixes" |
+   | `{{update_url}}` | Link to update/release page | https://portal.example.com/acme/releases |
+
+   :::note
+   Not all variables are available for every email type. Always check the **Available Variables** section in the UI for the specific template you're editing.
+   :::
 
 ## Add a Link to Documentation
 
