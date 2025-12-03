@@ -61,9 +61,9 @@ To manage Enterprise Portal settings:
 
 1. Click **Save**.
 
-## Configure Invitation and Notification Emails {#configure-customer-emails}
+## Customize Customer Emails {#configure-customer-emails}
 
-You can customize the the content and styling of the invitation and notification emails that are sent to your customers.
+### Configure Email Sender
 
 To configure customer emails:
 
@@ -76,51 +76,58 @@ To configure customer emails:
 1. For **Email Sender Verification**, in **From email address**, add the email address that you want to use as the sender for all system notifications sent to your customers, then click **Continue**. Adding a sender address helps ensure that your emails are delivered and are not marked as spam.
 
     After the domain is verified automatically, the email address is displayed under **Verified Sender Address**.
-1. For **Customer Emails**, customize the subject line and body of the emails that are sent to your customers for various system events. Email templates support dynamic variables that are automatically populated with relevant data when emails are sent.
 
-     ![Enterprise Portal edit emails pane](/images/enterprise-portal-customer-emails-edit.png)
+### Customize Email Templates    
 
-     [View a larger version of this image](/images/enterprise-portal-customer-emails-edit.png)
+You can customize the subject line, content, and styling of the emails that are sent to your customers.
 
-   To edit a template:
+To customize email templates:
 
-   1. Click the email type you want to customize to expand the template editor.
-   1. Modify the **Subject line** and **Email body** fields.
-   1. Use template variables (formatted as `{{variable_name}}`) to insert dynamic content.
-   1. Check the **Available Variables** section below the email body editor to see which variables you can use for this specific email type.
-   1. Click the **Preview** tab to see how your email will look with sample data.
-   1. Click **Save changes** when finished.
+1. In the Vendor Portal, go to **Enterprise Portal > Customer Emails**.
 
-   You can also customize the default style component to change things like color and font.
+   ![Enterprise Portal customer emails page](/images/enterprise-portal-customer-emails.png)
 
-   ### Using Template Variables
+   [View a larger version of this image](/images/enterprise-portal-customer-emails.png)
 
-   Variables are displayed in the UI under **Available Variables** when you expand an email template. 
+1. For **Customer Emails**, first select the email category (such as **Access & Authentication** or **Update Notifications**). Then, select the name of the email template that you want to customize.
 
-   :::info Check the UI for Available Variables
-   Each email template has different variables available. When editing a template, look for the **Available Variables** section below the email body editor - it shows exactly which variables you can use for that specific email type.
-   :::
+   The template editor opens.
 
-   **Example usage:**
-   - Subject: `Welcome to {{app_name}}!`
-   - Body: `Click here to join {{team_name}}: {{invite_url}}`
+   The following shows an example of the editor for the **Temporary Login Link** email template:
 
+   ![Enterprise Portal edit emails pane](/images/enterprise-portal-customer-emails-edit.png)
 
-   ### Common Template Variables
+   [View a larger version of this image](/images/enterprise-portal-customer-emails-edit.png)
 
-   The following variables are commonly available across multiple email types:
+1. In the editor, modify the subject line and body as desired. Note the following options:
 
-   | Variable | Description | Example Output |
-   |----------|-------------|----------------|
-   | `{{app_name}}` | Your application name | "Acme Application" |
-   | `{{team_name}}` | Customer team name | "Acme Corp" |
-   | `{{customer_name}}` | Customer organization name | "Acme Corporation" |
-   | `{{login_url}}` | Link to login page | https://portal.example.com/acme/login |
-   | `{{invite_url}}` | Link to accept invitation | https://portal.example.com/acme/invite#token |
-   | `{{verification_code}}` | Temporary verification code | "ABC123" |
-   | `{{version_label}}` | Software version number | "1.2.3" |
-   | `{{release_notes}}` | Release notes content | "New features and bug fixes" |
-   | `{{update_url}}` | Link to update/release page | https://portal.example.com/acme/releases |
+   * You can customize the default style component to change things like color and font.
+
+   * You can use template variables to insert dynamic content in the subject or body. For example, `Welcome to {{app_name}}!` or `Click here to join {{team_name}}: {{invite_url}}`. Template variables are automatically populated with relevant data when emails are sent.
+
+     :::note
+     The specific template variables that are available for use depend on the type of email template that you are editing. You can see all available variables in the **Available Variables** section of the editor. For a list of the common template variables that are available across multiple email templates, see [Common Template Variables](#common-template-variables) below.
+     :::
+
+1. Click the **Preview** tab to see how your email will look with sample data.
+
+1. Click **Save changes** when finished.
+
+### Common Template Variables
+
+The following template variables are available across multiple email types:
+
+| Variable | Description | Example Output |
+|----------|-------------|----------------|
+| `{{app_name}}` | Your application name | "Acme Application" |
+| `{{team_name}}` | Customer team name | "Acme Corp" |
+| `{{customer_name}}` | Customer organization name | "Acme Corporation" |
+| `{{login_url}}` | Link to login page | https://portal.example.com/acme/login |
+| `{{invite_url}}` | Link to accept invitation | https://portal.example.com/acme/invite#token |
+| `{{verification_code}}` | Temporary verification code | "ABC123" |
+| `{{version_label}}` | Software version number | "1.2.3" |
+| `{{release_notes}}` | Release notes content | "New features and bug fixes" |
+| `{{update_url}}` | Link to update/release page | https://portal.example.com/acme/releases |
 
 ## Add a Link to Documentation
 
