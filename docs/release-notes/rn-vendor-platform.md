@@ -10,7 +10,6 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-
 ## v2025.11.25-2
 
 Released on November 25, 2025
@@ -18,19 +17,19 @@ Released on November 25, 2025
 ### Improvements {#improvements-v2025-11-25-2}
 * Adds the customer ID to the license.
 
+## v2025.11.18-1
+
+Released on November 18, 2025
+
+### Improvements {#improvements-v2025-11-18-1}
+* Adds a link to the Submit a Support Request documentation page.
+
 ## v2025.11.07-0
 
 Released on November 7, 2025
 
 ### New Features {#new-features-v2025-11-07-0}
 * Compatibility Matrix: By default, network reports show only external traffic. For more information about network reporting, see [Collect and View Network Reports](/vendor/testing-network-policy#collect-and-view-network-reports).
-
-## v2025.11.13-1
-
-Released on November 13, 2025
-
-### New Features {#new-features-v2025-11-13-1}
-* CMX: Network report summaries will by default show only external traffic.
 
 ## v2025.11.06-3
 
