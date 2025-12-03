@@ -39,7 +39,7 @@ The Security Center is powered by Replicated’s [SecureBuild](https://securebui
 ## Limitations
 * The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
 * Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
-* If you have configured [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values set in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values set in the `builder` key.
+* If you have configured the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values provided in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values provided in the `builder` key.
 
 
 ## Security Center Interfaces
