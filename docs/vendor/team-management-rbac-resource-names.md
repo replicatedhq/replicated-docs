@@ -80,7 +80,7 @@ Grants the holder permission to promote kURL installers to a channel. For more i
 
 :::note
 The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Users must be assigned both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to have permissions to view, create, and promote installers.
-:::  
+:::
 
 ### kots/app/[:appId]/license/create
 
@@ -197,6 +197,10 @@ Grants the holder permission to view Enterprise Portal customer users for the sp
 ### kots/app/[:appId]/enterprise-portal/customer-user/create
 
 Grants the holder permission to create Enterprise Portal customer users for the specified application.
+
+### kots/app/[:appId]/enterprise-portal/customer-user/login
+
+Grants the holder permission to login to the Enterprise Portal for the specified application.
 
 ### kots/app/[:appId]/enterprise-portal/customer-user/[:customerId]/delete
 
@@ -467,6 +471,10 @@ Grants the holder permission to list team members and invitations.
 ### team/member/invite
 
 Grants the holder permission to invite additional people to the team.
+
+### team/members/create
+
+Grants the holder permission to create team members.
 
 ### team/members/delete
 

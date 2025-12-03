@@ -13,7 +13,7 @@ jobs:
     outputs:
       releaseNotes: ${{ steps.release-notes.outputs.release-notes }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Generate Release Notes
         id: release-notes
@@ -32,7 +32,7 @@ jobs:
     needs: generate-release-notes
     if: ${{ needs.generate-release-notes.outputs.releaseNotes != '' || needs.generate-release-notes.outputs.releaseNotes != null }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Update Release Notes
         env:
           PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
