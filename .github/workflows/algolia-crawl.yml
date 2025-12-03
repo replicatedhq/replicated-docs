@@ -1,25 +1,20 @@
-name: scrape
-concurrency: scrape
+name: Algolia Crawler
+
+concurrency: algolia-crawl
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
+
 jobs:
-  scrape:
+  trigger_crawl:
+    name: Trigger Algolia Crawl
     runs-on: ubuntu-latest
     steps:
-      - name: check out code 🛎d
-        uses: actions/checkout@v5
-      # when scraping the site, inject secrets as environment variables
-      # then pass their values into the Docker container using "-e" syntax
-      # and inject config.json contents as another variable
-      - name: scrape the site 🧽
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      - name: Trigger Algolia Crawler
         run: |
-          docker run \
-          -e ALGOLIA_APP_ID -e ALGOLIA_API_KEY \
-          -e CONFIG="$(cat config.json)" \
-          algolia/docsearch-scraper
+          curl -X POST \
+            'https://crawler.algolia.com/api/1/crawlers/${{ secrets.CRAWLER_ID }}/reindex' \
+            -H 'Content-Type: application/json' \
+            --user '${{ secrets.CRAWLER_USER_ID }}:${{ secrets.CRAWLER_API_KEY }}'

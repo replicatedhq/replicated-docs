@@ -48,6 +48,10 @@ To install a Helm chart:
 
      [View a larger image](/images/helm-install-button.png)
 
+     :::note
+     Helm charts marked with the `kots.io/installer-only: "true"` annotation will not appear in the Helm install instructions. These charts are deployed only when using Replicated installers (Embedded Cluster, KOTS, and kURL). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+     :::
+
 1. In the **Helm install instructions** dialog, run the first command to log in to the Replicated registry:
 
      ```bash

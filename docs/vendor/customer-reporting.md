@@ -68,7 +68,7 @@ You can use the Download Portal to give your customers access to the files they 
 ### Enterprise Portal (Beta)
 
 :::note
-The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Customer Access to the Enterprise Portal](/vendor/enterprise-portal-invite).
 :::
 
 The following shows an example of the **Enterprise Portal** section:

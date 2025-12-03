@@ -1,6 +1,3 @@
-import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
-import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
-
 # Manage Releases with the Vendor Portal
 
 This topic describes how to use the Replicated Vendor Portal to create and promote releases, edit releases, edit release properties, and archive releases.
@@ -85,7 +82,7 @@ To edit a draft release:
   
 ## Edit Release Properties
 
-You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) in _About Channels and Releases_.
+You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) and [Required Releases](releases-about#required-releases) in _About Channels and Releases_.
 
 To edit release properties:
 
@@ -96,7 +93,31 @@ To edit release properties:
     <img src="/images/release-properties.png" alt="Release Properties dialog in the Vendor Portal" width="300"/>
     
     [View a larger image](/images/release-properties.png)
+
+    :::note
+    For information about disabling the **Prevent this release from being skipped during upgrades** option for a release that was previously marked as required, see [Remove Release Requirement](#remove-req) below.
+    :::
 1. Click **Update Release**.
+
+## Remove Release Requirement {#remove-req}
+
+You can disable the **Prevent this release from being skipped during upgrades** property for a release to remove the "required" label from the release in the Enterprise Portal.
+
+Additionally, for online (internet-connected) installations using KOTS 1.126.0 or later (Embedded Cluster 2.10.0 or later), the requirement is removed from the Admin Console the next time that an upstream update check occurs.
+
+For more information about working with required releases, see [Required Releases](releases-about#required-releases) in _About Channels and Releases_.
+
+To remove the requirement from a release:
+
+1. Go to **Channels**.
+1. In the channel where the release was promoted, click **Release History**.
+1. For the release sequence that you want to edit, open the dot menu and click **Edit release**.
+1. Disable the **Prevent this release from being skipped during upgrades** option.
+1. Click **Update Release**.
+
+:::note
+To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later (Embedded Cluster 2.10.0 or later).
+:::
 
 ## Archive a Release
 

@@ -1,8 +1,8 @@
-# Manage Enterprise Portal Access
+# Manage Customer Access to the Enterprise Portal
 
-This topic describes how to enable or disable customer access to the Enterprise Portal. It also describes how to invite users to the Enterprise Portal from the Replicated Vendor Portal.
+This topic describes how to control customer access to the Enterprise Portal from the Replicated Vendor Portal.
 
-For information about customizing the invitation email, see [Customize the Enterprise Portal](enterprise-portal-configure).
+For information about how your end customers can manage, invite, and remove team members in their Enterprise Portal, see [Log In To and Use the Enterprise Portal](enterprise-portal-use).
 
 ## Manage Customer Access to the Enterprise Portal {#manage-ep-access}
 
@@ -41,6 +41,26 @@ To configure allowed domains for a customer's Enterprise Portal invitations:
    [View a larger version of this image](/images/enterprise-portal-domain-restrictions.png)
 
 1. In the text box, enter a domain to add to the allowlist. Click **Add domain**. Add more domains as needed.
+
+## Enable SAML Authentication (Alpha) {#enable-saml}
+
+:::note
+SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
+:::
+
+You can enable and disable SAML authentication for the Enterprise Portal on a per customer basis. When SAML authentication is enabled, the customer can set up SAML SSO logins for the Enterprise Portal using their identity provider (IdP). When SAML authentication is disabled, Enterprise Portal users are not able  to log in using SAML, even if the customer had already configured SAML for their Enterprise Portal previously. For more information, see [About SAML Logins (Alpha)](enterprise-portal-use#about-saml) in _Log In and Use the Enterprise Portal_.
+
+To enable SAML authentication:
+
+1. In the Vendor Portal, go to **Customers** and select the target customer.
+
+1. On the customer's page, go to **Enterprise Portal access**. In the **Authentication** section, enable the **SAML Authentication** toggle.
+
+   ![Enterprise Portal SAML authentication](/images/enterprise-portal-saml-authentication.png)
+
+   [View a larger version of this image](/images/enterprise-portal-saml-authentication.png)
+
+   After you enable SAML authentication, the customer can configure SAML in the Enterprise Portal using their IdP. For more information, see [Configure SAML Authentication (Alpha)](/vendor/enterprise-portal-use#saml) in _Log In and Use the Enterprise Portal_.
 
 ## Invite Users
 
