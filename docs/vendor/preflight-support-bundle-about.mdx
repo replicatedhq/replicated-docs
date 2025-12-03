@@ -121,7 +121,17 @@ When it is necessary for the customer to escalate their issue, support bundles p
 
 The data collected in a support bundle depends on the [collectors](#collect) and [redactors](#redact) defined by the vendor in the support bundle spec included with the application release. For more information about the automatic redactions that are made in support bundles, see [Redact](#redact) above. For more information about customizing the data that is collected in support bundles for your application, see [Customizing the Support Bundle Spec For Your Application](#customize) below.
 
-When an end customer generates a support bundle, the process uses the vendor-defined spec to collect data from the cluster, redact sensitive fields, and then perform an analysis on the data to provide remediation steps. The output is a compressed `tar.gz` file that can be shared with the vendor as part of a support escalation. No data is shared outside the cluster unless the `tar.gz` support bundle file is explicitly shared by the end customer. For more information, see [How Customers Generate and Share Support Bundles](#generate-share) below.
+When an end customer generates a support bundle, the process uses the vendor-defined spec to collect data from the cluster, redact sensitive fields, and then perform an analysis on the data to provide remediation steps. The output is a compressed `tar.gz` file that can be shared with the vendor as part of a support escalation. For more information, see [How Customers Generate and Share Support Bundles](#generate-share) below.
+
+:::note
+No data is shared outside the cluster unless the `tar.gz` support bundle file is explicitly shared by the end customer.
+:::
+
+The following diagram demonstrates how end customers can generate support bundles in their installation environment, then upload the bundle to the Enterprise Portal and share it with the vendor. It also shows how, after a support bundle is uploaded and shared, vendors can inspect the bundle from the Vendor Portal **Support bundle analysis** page. 
+
+![workflow of generating, uploading, and sharing a support bundle](/images/support-bundle-workflow.png)
+
+[View a larger version of this image](/images/support-bundle-workflow.png)
 
 ### About Host Support Bundles
 
