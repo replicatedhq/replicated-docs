@@ -12,17 +12,13 @@ These instructions assume that the customer is logged in to the portal on a work
 
 Before you install, complete the following prerequisites:
 
-* Declare the SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
+* Declare the Replicated SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-* If your Helm chart's default values do not expose all the required and optional images that might be needed to install in air-gapped environments, add the Replicated HelmChart custom resource to your release and configure `builder` key. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_. If your default values expose all images needed for air gap installations, you do not need to configure the `builder` key. 
+* For each Helm chart in your release, add the Replicated HelmChart custom resource. Additionally, if the chart's default values do not expose all the required and optional images that might be needed to install in air-gapped environments, configure the HelmChart resource's `builder` key. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-     <details>
-       <summary>What is the purpose of the `builder` key?</summary>
+   Configuring the `builder` key ensures all the images that might be needed to install in air-gapped environments are included in the Helm CLI installation instructions in the Enterprise Portal. For installations that use the [Security Center (Alpha)](/vendor/security-center-about), the HelmChart custom resource is also required to build the list of images that are scanned in the Security Center. 
 
-     Configuring the `builder` key ensures that the Vendor Portal can template the chart to discover the full list of container images required to install the chart in an air-gapped environment. The Vendor Portal uses this list of required images to create the Helm air gap installation instructions for the customer. 
-     </details> 
-
-* The customer used to install must have the following:
+* The customer record in the Vendor Portal must have the following:
 
      * A valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information, see [Creating a Customer](/vendor/releases-creating-customer).
 
@@ -36,7 +32,7 @@ Helm air gap installation instructions are provided in either the Enterprise Por
 
 For more information about enabling the Enterprise Portal for a customer, see [Manage Customer Access to the Enterprise Portal](/vendor/enterprise-portal-invite).
 
-### Enterprise Portal (Beta)
+### Enterprise Portal
 
 To install with Helm in an air gap environment using the Enterprise Portal:
 

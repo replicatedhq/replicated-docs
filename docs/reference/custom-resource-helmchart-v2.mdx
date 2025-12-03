@@ -93,17 +93,18 @@ For an example of recursive and non-recursive merging, see [About Recursive Merg
 
 The `builder` key contains the minimum Helm values required so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment.
 
-The Replicated Vendor Portal uses the Helm values that you provide in the `builder` key to run `helm template` on the chart, then parses the output to discover the list of required images for the chart. 
+The Replicated Vendor Portal uses the Helm values that you provide in the `builder` key to run `helm template` on the chart, then parses the output to generate a list of required images for the chart. 
 
-The Vendor Portal uses this list of images to create the Helm air gap installation instructions that are automatically made available to customers in the Replicated Enterprise Portal or Download Portal. For more information about installing with Helm in air-gapped environments, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap). 
-
-The list of images is also used when you build the `.airgap` bundle for a release to support air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL). For more information about how to build `.airgap` bundles, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+The Vendor Portal then uses this list of images to do the following:
+* Create the Helm CLI air gap installation instructions that are automatically made available to customers in the Replicated Enterprise Portal or Download Portal. For more information, see [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap). 
+* Build the `.airgap` bundle for a release to support air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL). For more information about how to build `.airgap` bundles, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
+* Determine which images to scan and report on in the Security Center (Alpha). For more information about the Security Center, see [About the Security Center (Alpha)](/vendor/security-center-about).
 
 The `builder` key is required to support the following installation types:
 
 * Air gap installations with a Replicated installer (Embedded Cluster, KOTS, kURL)
-* Air gap installations with Helm
-* Online installations with a Replicated installer where the user configured a local image registry in the Admin Console
+* Air gap installations with the Helm CLI
+* Online installations with a Replicated installer where the user will push images to a local image registry
 
 #### Requirements
 

@@ -3,7 +3,7 @@
 This topic provides an overview of the Replicated Security Center.
 
 :::note
-The Security Center is Alpha. To access the Security Center, a feature flag must be enabled for your team. See [Limitations](/vendor/security-center-about#limitations) below. 
+The Security Center is Alpha. To get access to the Security Center, reach out to your Replicated account representative. 
 :::
 
 ## Overview
@@ -12,13 +12,19 @@ The Security Center helps you strengthen security enablement in your application
 
 The Security Center is powered by Replicated’s [SecureBuild](https://securebuild.com/) technology. Every image is scanned continuously, not just at release time. Customers can see the same application version security information that you do, driving customer transparency, reduced security questionnaire burden, and adoption of newer, more secure versions of your application. 
 
-## Limitations
-* The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
+## Requirements
+
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
-* Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
 * Display and reporting of application images requires the [Replicated SDK version 1.8.0](/release-notes/rn-replicated-sdk#180) or later.
 * Display and reporting of Embedded Cluster images requires the [Replicated SDK version 1.9.0](/release-notes/rn-replicated-sdk#190) or later.
 * In a Helm CLI install, display of all container images observed in the cluster beyond application images requires setting the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images). This setting is automatically enabled for Embedded Cluster installations.
+* Each Helm chart in the release must have a corresponding HelmChart custom resource. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center. This HelmChart custom resource requirement applies to both Helm CLI and Embedded Cluster installations.
+
+## Limitations
+* The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
+* Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
+* If you have configured [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values set in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values set in the `builder` key.
+
 
 ## Security Center Interfaces
 
