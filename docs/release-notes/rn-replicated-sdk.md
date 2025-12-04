@@ -8,6 +8,20 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
 
+## 1.12.1
+
+Released on December 3, 2025
+
+### Improvements {#improvements-1-12-1}
+* Updates the license signature verification code to improve behavior when unsigned data has been changed.
+
+## 1.12.0
+
+Released on November 26, 2025
+
+### New Features {#new-features-1-12-0}
+* Adds the customer ID to the response of the `/license/info` endpoint.
+
 ## 1.11.2
 
 Released on November 21, 2025
@@ -28,7 +42,7 @@ Released on November 17, 2025
 
 Released on November 5, 2025
 
-### Improvements {#improvements-1-11-0}
+### New Features {#new-features-1-11-0}
 * Adds support for configuring image pull secrets with [`values.global.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L8) as well as the existing [`values.replicated.imagePullSecrets`](https://github.com/replicatedhq/replicated-sdk/blob/1.11.0/chart/values.yaml#L167).
 * Adds an image pull secret, titled `enterprise-pull-secret`.
 
@@ -36,7 +50,7 @@ Released on November 5, 2025
 
 Released on October 29, 2025
 
-### Improvements {#improvements-1-10-0}
+### New Features {#new-features-1-10-0}
 * Adds support for configuring a proxy for the SDK with [`proxy`](https://github.com/replicatedhq/replicated-sdk/blob/1.10.0/chart/values.yaml#L315). For more information, see [Proxy Configuration](/vendor/replicated-sdk-customizing#proxy).
 * Enables the use of `kots.io/v1beta2` licenses.
 
@@ -44,8 +58,10 @@ Released on October 29, 2025
 
 Released on October 16, 2025
 
-### Improvements {#improvements-1-9-0}
+### New Features {#new-features-1-9-0}
 * Adds support for reporting all running images in a cluster with [`reportAllImages`](https://github.com/replicatedhq/replicated-sdk/blob/1.9.0/chart/values.yaml#L307). For more information, see [Report All Images](/vendor/replicated-sdk-customizing#report-all-images).
+
+### Improvements {#improvements-1-9-0}
 * Enables `reportAllImages` automatically for Embedded Cluster installations.
 * Compares images using only the trailing name segments, so `alpine/curl:latest` matches `proxy.replicated.com/myapp/docker/alpine/curl:latest` and `private-registry.app.com/alpine/curl:latest`.
 * Improves image name reporting by using the image name from the container spec when available.
@@ -63,8 +79,10 @@ Released on October 8, 2025
 
 Released on August 12, 2025
 
-### Improvements {#improvements-1-8-0}
+### New Features {#features-1-8-0}
 * Adds reporting of in-use digests of app images.
+
+### Improvements {#improvements-1-8-0}
 * Expands the Minimal RBAC role to include the ability to list and watch pods within the namespace.
 
 ## 1.7.2
