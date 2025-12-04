@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.12.04-1
+
+Released on December 4, 2025
+
+### New Features {#new-features-v2025-12-04-1}
+* Adds email tracking for enterprise portal emails.
+
 ## v2025.11.25-2
 
 Released on November 25, 2025
