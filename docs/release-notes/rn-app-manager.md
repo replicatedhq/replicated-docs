@@ -31,6 +31,9 @@ Released on December 5, 2025
 
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
+### New Features {#new-features-1-129-1}
+* Adds support for kots.io/v1beta2 License format
+
 ### Bug Fixes {#bug-fixes-1-129-1}
 * Provides values for additional fields in the `LicenseFieldValue` template function.
 * Fixes a broken troubleshoot.sh link on the redactors page.
