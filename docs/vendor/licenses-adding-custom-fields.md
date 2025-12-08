@@ -56,7 +56,7 @@ To lock a built-in license field:
 
 You can create custom license fields in the Vendor Portal. For example, you can create a custom license field to set the number of active users permitted. Or, you can create a field that sets the number of nodes a customer is permitted on their cluster.
 
-The custom license fields that you create are displayed in the Vendor Portal for all new and existing customers. If the custom field is not hidden, it is also displayed to customers under the **Licenses** tab in the Replicated Admin Console.
+The custom license fields that you create are displayed in the Vendor Portal for all new and existing customers. If the custom field is not hidden, it is also displayed to customers under the **Licenses** tab in the Replicated Admin Console and in the **License Details** tab in the Enterprise Portal.
 
 ### Limitation
 
@@ -83,7 +83,7 @@ To create a custom license field:
    | Type| The field type. This value cannot be changed. See [Understanding Custom License Field Types](#understanding-custom-license-field-types) for more information.
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. The maximum size for a license field value is 64KB. |
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
-   | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
+   | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console or in their Enterprise Portal. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
 
 ### Update Custom License Fields
 
