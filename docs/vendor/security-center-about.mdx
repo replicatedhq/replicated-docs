@@ -12,13 +12,13 @@ The Security Center helps you strengthen security enablement in your application
 
 The Security Center is powered by Replicated’s [SecureBuild](https://securebuild.com/) technology. Every image is scanned continuously, not just at release time. Customers can see the same application version security information that you do, driving customer transparency, reduced security questionnaire burden, and adoption of newer, more secure versions of your application. 
 
-## Requirements
+Security Center intelligently filters vulnerability data based on installation type, ensuring customers only see relevant security information for their specific deployment type. When combined with the [Replicated SDK](/vendor/replicated-sdk-overview) you gain visibility into all container images running alongside your application, helping you identify security risks and urgent upgrade needs across your customer base. 
 
+## Requirements
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
-* Display and reporting of application images requires the [Replicated SDK version 1.8.0](/release-notes/rn-replicated-sdk#180) or later.
-* Display and reporting of Embedded Cluster images requires the [Replicated SDK version 1.9.0](/release-notes/rn-replicated-sdk#190) or later.
-* For Helm CLI installations, to include all container images observed in the cluster in the Security Center reports (rather than application images only), set the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images). This setting is automatically enabled for Embedded Cluster installations.
-* Each Helm chart in the release must have a unique [HelmChart](/reference/custom-resource-helmchart-v2) custom resource. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center. This HelmChart custom resource requirement applies to both Helm CLI and Embedded Cluster installations.
+* Display and reporting of images requires the Replicated SDK to be included as part of your release. It is recommend to use version 1.9.0 or later. 
+    * If targeting a Helm CLI installation, set the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images) to additionally report all container images observed in the cluster. This settting is already enabled by default for Embedded Cluster installations.
+* Each Helm chart in the release must have a unique [HelmChart](/reference/custom-resource-helmchart-v2) custom resource. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center. **This HelmChart custom resource requirement applies to both Helm CLI and Embedded Cluster installations.**
   
    The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
 
@@ -35,12 +35,14 @@ The Security Center is powered by Replicated’s [SecureBuild](https://securebui
         chartVersion: 1.0.0
     ```
     For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+* When wanting to optionally include or exclude images from scanning, you must do the following:
+    * If your release contains charts and resources only relevant to Embedded Cluster, and you wish to exclude these from security info shown to Helm only customers, you must mark these with an [installer-only annotation](/vendor/packaging-include-resources#installer-only).
+    * If you want to include additional images you can leverage the [additionalImages field](/vendor/operator-defining-additional-images#define-additional-images-for-air-gap-bundles).
 
 ## Limitations
 * The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
 * Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
 * If you have configured the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values provided in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values provided in the `builder` key.
-
 
 ## Security Center Interfaces
 
@@ -50,10 +52,14 @@ The Security Center is accessible through the following interfaces:
 
 ### Vendor Portal 
 
-The Vendor Portal Security Center gives you access to the following key security insights for your releases:
-* Known vulnerabilities in container images 
-* CVE details 
-* A summary of top security risks based on the assessed severity of the vulnerability
+The Vendor Portal provides comprehensive security dashboards and customer intelligence for your application:
+* **Security Overview**: Real-time CVE counts across all releases with severity breakdown (Critical, High, Medium, Low)
+* **Container Images**: Complete list of scanned images with vulnerability counts per image
+* **CVE Details**: Detailed vulnerability information including:
+  * CVE identifiers and descriptions
+  * CVSS scores and severity ratings
+  * Affected images and versions
+  * Fixed versions (when available)
 
 The following shows an example of the vendor-facing Security Center dashboard in the Vendor Portal:
 
@@ -69,11 +75,15 @@ You can also view CVE details at the individual customer level for active instan
 
 ### Enterprise Portal 
 
-The Enterprise Portal Security Center allows you to provide key security information to your enterprise customers alongside your application releases.
+The Enterprise Portal Security Center allows you to provide key security information to your enterprise customers alongside your application releases. 
+
+Enterprise Portal Security information can be enabled for all customers, or select customers at the license level. When enabled, your customers can see the same real-time security information you do, providing full transparency and building trust.
 
 On the **Security Center** tab of the Enterprise Portal, for each available release version, customers can:
-* View a detailed report of known CVEs
-* Download the Software Bill of Materials (SBOM)
+* **CVE Report**: Complete list of known vulnerabilities with severity levels
+* **Container Vulnerabilities**: Per-image vulnerability breakdown
+* **Upgrade Comparison**: See exactly how many CVEs are fixed by upgrading to newer versions
+* **SBOM Downloads**: Software Bill of Materials in SPDX format for compliance and security audits
 
 The following shows an example of the Security Center dashboard in the Enterprise Portal:
 
