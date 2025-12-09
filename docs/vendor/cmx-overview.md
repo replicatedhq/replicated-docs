@@ -11,14 +11,6 @@ You can use CMX to quickly provision ephemeral VMs or clusters so you can develo
 * Reproduce a reported issue on a customer-representative environment for troubleshooting
 
 
-## Architecture
-
-CMX uses two different infrastructure approaches to provision resources:
-
-* **Custom VMs**: VMs and VM-based clusters (such as kind, k3s, RKE2, and Red Hat OpenShift OKD) run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union. VMs give you full control over the operating system.
-
-* **Warm Pool Cloud Clusters**: Cloud-based Kubernetes distributions (such as EKS, GKE, and AKS) are run in a Replicated managed and controlled cloud account to optimize and deliver clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
-
 ### Use Cases by Customer Installation Type
 
 The following table shows which CMX infrastructure option to use based on how your customers install your application:
@@ -29,22 +21,25 @@ The following table shows which CMX infrastructure option to use based on how yo
 | **Installer** | <ul><li>[Embedded Cluster](/vendor/embedded-overview)</li><li>[kURL (Legacy)](/vendor/kurl-about)</li></ul> | <ul><li>[Helm](/vendor/helm-install-overview)</li><li>[KOTS](/intro-kots)</li></ul> |
 | **CMX Environment** | **[CMX Bare VM](cmx-vms)** | **[CMX Clusters](testing-supported-clusters)** |
 | **How to Test** | <ul><li>Create CMX VM</li><li>SSM into the VM</li><li>Install Embedded Cluster (to install Kubernetes and your application in one step)</li></ul> | <ul><li>Create CMX cluster</li><li>Shell into the Cluster</li><li>Run `helm install` or `kots install` commands to simulate customer installation in their Kubernetes clusters</li></ul>  |
-| **CMX Notes** |  Can test on [Ubuntu or AlmaLinux](cmx-vms#supported-vm-types) <br />([Embedded Cluster](testing-supported-clusters#embedded-cluster) and [kURL](testing-supported-clusters#kurl) let you skip the cluster install step to test your application install more quickly) | Can test on [EKS, GKE, AKS, OpenShift, and more](testing-supported-clusters) |
+| **CMX Notes** |  Can test on [Ubuntu or AlmaLinux](cmx-vms#supported-vm-types) <br />([Embedded Cluster](testing-supported-clusters#embedded-cluster) and [kURL](testing-supported-clusters#kurl) help automate your application install) <br /> Run [`replicated vm versions`](/reference/replicated-cli-vm-versions) for current VM options | Can test on [EKS, GKE, AKS, OpenShift, and more](testing-supported-clusters) <br /> Run [`replicated cluster versions`](/reference/replicated-cli-cluster-versions) for current cluster options |
 
 
-**Key Differences:**
+## Architecture
 
-* **Warm Pool Cloud Clusters** (EKS, GKE, AKS, OKE) - Standard managed Kubernetes environments that are already running and ready for application installation. Use these to test installations where customers bring their own cloud-managed Kubernetes clusters. These clusters provision faster because control planes are pre-warmed.
+CMX uses two different infrastructure approaches to provision resources:
 
-* **VM-Based Clusters** (kind, k3s, RKE2, OpenShift OKD, Embedded Cluster, kURL) - Kubernetes distributions that run on Replicated bare metal servers with Kubernetes already installed. Use these for quick testing of automated installer workflows. For Embedded Cluster and kURL, CMX runs the installer behind the scenes and provides access to a ready cluster with your application already installed.
 
-* **Custom VMs** (Ubuntu, AlmaLinux) - Bare Linux VMs without Kubernetes pre-installed. Use these when you need full control over the operating system to manually test the complete installation process. For Embedded Cluster and kURL installers, you run a single command that provisions Kubernetes and installs your application together. This is useful for detailed testing, troubleshooting installation issues, or validating the end-to-end customer experience.
 
-You can run [`replicated cluster versions`](/reference/replicated-cli-cluster-versions) or [`replicated vm versions`](/reference/replicated-cli-vm-versions) for an up-to-date list of the available cluster distributions or VM types.
+* **Warm Pool Cloud Clusters** (EKS, GKE, AKS, OKE): Cloud-based Kubernetes distributions run in Replicated-managed cloud accounts. Control planes are pre-warmed and a node group is added when you request a cluster, delivering clusters faster than provisioning your own. Use these to test installations where customers bring their own cloud-managed Kubernetes clusters.
 
-For more information about the supported cluster distributions, see [CMX Clusters](testing-supported-clusters).
+* **VMs**: VMs run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
 
-For more information about supported VMs, see [CMX Bare VM](cmx-vms)
+    * **Bare VMs** (Ubuntu, AlmaLinux): Linux VMs without Kubernetes pre-installed. Use these when you need full control over the operating system to test the complete installation process, including cluster install.
+    
+    * **VM-based clusters**: VMs with Kubernetes already installed. Use these for a quick development environment (kind, k3s), to simualte end customer enivronments (RKE2, OpenShift OKD), or our automations for Embedded Cluster and kURL to run the installer behind the scenes and provide a ready cluster with your application already installed.
+
+
+
 
 ## Billing and Credits
 
