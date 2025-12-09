@@ -363,7 +363,7 @@ CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.31, 1.32, 1.33{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.31, 1.32, 1.33, 1.34{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -449,7 +449,7 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_oke_VERSIONS */}1.31.1, 1.31.10, 1.32.1, 1.33.1, 1.34.1{/* END_oke_VERSIONS */}</td>
+    <td>{/* START_oke_VERSIONS */}1.32.1, 1.33.1, 1.34.1{/* END_oke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
