@@ -1,4 +1,3 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
 # CMX VMs
@@ -11,7 +10,7 @@ CMX VMs provide isolated Linux environments for testing your applications. Unlik
 
 You can use CMX VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
 
-For information about creating clusters with CMX to test Kubernetes-based deployments and Helm installations, see [CMX Clusters](testing-supported-clusters) and [Use CMX Clusters](testing-how-to).
+For information about creating clusters with CMX to test Kubernetes-based deployments and Helm installations, see [CMX Cluster Types](testing-supported-clusters) and [CMX Clusters](testing-how-to).
 
 ## Supported VM Types
 
@@ -30,20 +29,11 @@ The following describes the Replicated instance types for VMs:
 
 ## Limitations
 
-Creating VMs with CMX has the following limitations:
-
-- Creating VMs with CMX is a Beta feature.
-- Installing Embedded Cluster on a VM created with CMX is supported for Embedded Cluster versions 1.21.0 or later.
-- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for CMX VMs. 
-- The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for CMX VMs.
+For limitations, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ## Prerequisites
 
-Before you can use CMX VMs, you must complete the following prerequisites:
-
-<Prerequisites/>
-
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+For prerequisites, see [Prerequisites](/vendor/cmx-overview#prerequisites) in _CMX Overview_.
 
 ## Set Up SSH Access
 
@@ -404,12 +394,7 @@ Transferring files using CMX Forwarder is slower than using direct SSH due to ad
 
 #### Limitations
 
-Transferring files using the CMX Forwarder has the following limitations:
-- `scp` with flag `-O` (legacy scp protocol) is not supported. 
-- Relative paths is not supported. For example:
-  - Unsupported: `scp somefile VMID@replicatedvm.com:~`
-  - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
-- File permissions are not inherited.
+For limitations related to file transfers using the CMX Forwarder, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 To copy files to the VM using SCP after connecting with the CMX Forwarder:
 

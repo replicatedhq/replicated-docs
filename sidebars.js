@@ -200,9 +200,8 @@ const sidebars = {
       items: [
         'vendor/cmx-overview',
         'vendor/cmx-vms',
-        'vendor/testing-supported-clusters',
         'vendor/testing-how-to',
-        'vendor/testing-cluster-addons',
+        'vendor/testing-supported-clusters',
         'vendor/cmx-networking',
         'vendor/testing-network-policy',
         'vendor/cmx-develop',

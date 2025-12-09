@@ -1,6 +1,4 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-
-# Use CMX Clusters
+# CMX Clusters
 
 This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
 
@@ -16,33 +14,13 @@ For information about creating VMs with CMX to test Replicated Embedded Cluster 
 
 For information about using the `cluster prepare` command to streamline development workflows, see [Develop with CMX](cmx-develop).
 
-## Limitations
-
-CMX has the following limitations:
-
-- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
-- Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
-- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
-- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
-- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-- Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
-
-For additional distribution-specific limitations, see [Supported CMX Cluster Types](testing-supported-clusters).
-
 ## Prerequisites
 
-Before you can use CMX clusters, you must complete the following prerequisites:
+For prerequisites, see [Prerequisites](/vendor/cmx-overview#prerequisites) in _CMX Overview_.
 
-<Prerequisites/>
+## Limitations
 
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+For limitations, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ## Create Clusters
 
@@ -194,11 +172,82 @@ To set the network policy of a VM-based cluster to `airgap`:
    ```
    Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
 
+## Cluster Add-ons (Alpha)
+
+CMX enables you to extend your cluster with add-ons to make use of advanced features such as an AWS S3 object store. This allows you to more easily provision dependencies required by your application for testing in customer-representative environments.
+
+### CLI
+
+The Replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
+
+### Supported Add-ons
+
+This section lists the supported cluster add-ons for clusters created with CMX.
+
+#### object-store (Alpha)
+
+The Replicated cluster object store add-on can be used to create S3 compatible object store buckets for clusters (currently only AWS S3 is supported for EKS clusters).
+
+Assuming you already have a cluster, run the following command with the cluster ID to create an object store bucket:
+
+```bash
+$ replicated cluster addon create object-store 4d2f7e70 --bucket-prefix mybucket
+05929b24    Object Store    pending         {"bucket_prefix":"mybucket"}
+$ replicated cluster addon ls 4d2f7e70
+ID          TYPE            STATUS          DATA
+05929b24    Object Store    ready           {"bucket_prefix":"mybucket","bucket_name":"mybucket-05929b24-cmx","service_account_namespace":"cmx","service_account_name":"mybucket-05929b24-cmx","service_account_name_read_only":"mybucket-05929b24-cmx-ro"}
+```
+
+This will create two service accounts in a namespace, one read-write and the other read-only access to the object store bucket.
+
+Additional service accounts can be created in any namespace with access to the object store by annotating the new service account with the same `eks.amazonaws.com/role-arn` annotation found in the predefined ones (`service_account_name` and `service_account_name_read_only`).
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Distributions</th>
+    <td>EKS (AWS S3)</td>
+  </tr>
+  <tr>
+    <th>Cost</th>
+    <td>Flat fee of $0.50 per bucket.</td>
+  </tr>
+  <tr>
+    <th>Options</th>
+    <td>
+      <ul>
+        <li><strong>bucket_prefix (string):</strong> A prefix for the bucket name to be created (required)</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Data</th>
+    <td>
+      <ul>
+        <li><strong>bucket_prefix:</strong> The prefix specified by the user for the bucket name</li>
+      </ul>
+      <ul>
+        <li><strong>bucket_name:</strong> The actual bucket name</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_namespace:</strong> The namespace in which the service accounts (`service_account_name` and `service_account_name_read_only`) have been created.</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_name:</strong> The service account name for read-write access to the bucket.</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_name_read_only:</strong> The service account name for read-only access to the bucket.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
 ## Prepare Clusters
 
 For information about using the `cluster prepare` command to streamline development workflows, see [Develop with CMX](cmx-develop).
-
-## Access Clusters
 
 ## Access Clusters
 

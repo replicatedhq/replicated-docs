@@ -1,7 +1,7 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# CMX Clusters
+# CMX Cluster Types
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix (CMX).
 
@@ -15,7 +15,7 @@ CMX can provision both custom VM-based clusters and warm pool cloud clusters to 
 
 For information about provisioning VMs without pre-installed clusters that allow for more access to the OS, see [CMX VMs](cmx-vms).
 
-For information about creating and managing clusters, see [Use CMX Clusters](testing-how-to).
+For information about creating and managing clusters, see [CMX Clusters](testing-how-to).
 
 ## VM-Based Clusters
 

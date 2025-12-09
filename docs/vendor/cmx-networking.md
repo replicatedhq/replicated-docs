@@ -57,9 +57,7 @@ Replicated will route traffic from `:443` and/or `:80` into the `NodePort` servi
 
 You can expose ports on a VM and make them accessible on the public internet.
 
-### Limitation
-
-Creating wildcard DNS entries for VMs is not supported. For feedback, contact Replicated support.
+For limitations related to port exposure, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ### CLI
 
@@ -109,8 +107,7 @@ The following diagram shows how the traffic is routed into the service using CMX
 
 ### Limitations
 
-* A tunnel can only connect to one service. If you need fanout routing into different services, consider installing the nginx ingress controller as a `NodePort` service and exposing it.
-* Tunnels are not supported for cloud distributions (EKS, GKE, AKS).
+For limitations related to tunnels, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ### Supported Protocols
 

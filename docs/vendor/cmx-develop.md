@@ -1,5 +1,3 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-
 # Develop with CMX
 
 This topic describes how to use Replicated Compatibility Matrix (CMX) to streamline application development and testing workflows.
@@ -10,11 +8,7 @@ CMX provides features that make it easy to quickly provision test environments a
 
 ## Prerequisites
 
-Before you can use CMX clusters, you must complete the following prerequisites:
-
-<Prerequisites/>
-
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+For prerequisites, see [Prerequisites](/vendor/cmx-overview#prerequisites) in _CMX Overview_.
 
 ## Prepare Clusters
 
