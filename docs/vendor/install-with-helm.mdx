@@ -1,4 +1,3 @@
-import Prerequisites from "../partials/helm/_helm-install-prereqs.mdx"
 import FirewallOpeningsIntro from "../partials/install/_firewall-openings-intro.mdx"
 
 # Install with Helm
@@ -9,7 +8,31 @@ This topic describes how to use Helm to install releases that contain one or mor
 
 Before you install, complete the following prerequisites:
 
-<Prerequisites/>
+* The customer record in the Vendor Portal must have a valid email address. This email address is only used as a username for the Replicated registry and is never contacted. For more information about adding an email address for a customer, see [Creating a Customer](/vendor/releases-creating-customer).
+
+* The customer must have the **Existing Cluster (Helm CLI)** install type enabled. For more information about enabling install types for customers in the Vendor Portal, see [Manage Install Types for a License](licenses-install-types).
+
+* Create an image pull secret for the proxy registry and add it to your Helm chart. This ensures that the Replicated proxy registry can be used to grant proxy access to your application images for Helm CLI installations. To create the image pull secret and add it to your Helm chart, follow the steps in [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
+
+* Declare the Replicated SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
+
+* If the [Security Center (Alpha)](/vendor/security-center-about) is enabled for your account, add a unique HelmChart custom resource for each Helm chart in your release. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center.
+
+    The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
+
+    ```yaml
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: examplechart
+    spec:
+      chart:
+        # name must match the name of the chart
+        name: examplechart
+        # chartVersion must match the version of the chart
+        chartVersion: 1.0.0
+    ```
+    For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 ## Firewall Openings for Online Installations with Helm {#firewall}
 
