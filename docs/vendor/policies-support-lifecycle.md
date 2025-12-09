@@ -41,7 +41,7 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td><a href="/vendor/testing-about">Compatibility Matrix</a></td>
+    <td><a href="/vendor/cmx-overview">Compatibility Matrix</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>

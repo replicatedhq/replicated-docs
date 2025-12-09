@@ -27,7 +27,7 @@ The following diagram demonstrates the process of using the Replicated Platform 
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The diagram above shows an application that is packaged with the [**Replicated SDK**](/vendor/replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix (CMX)**](/vendor/testing-about), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
+The diagram above shows an application that is packaged with the [**Replicated SDK**](/vendor/replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix (CMX)**](/vendor/cmx-overview), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
 
 The application is then installed by a customer ("Big Bank") on a VM. To install, the customer downloads their license, which grants proxy access to the application images through the [**Replicated proxy registry**](/vendor/private-images-about). They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
 
@@ -103,7 +103,7 @@ The following shows an example of the Enterprise Portal dashboard:
 
 Replicated Compatibility Matrix (CMX) can be used to create VMs or Kubernetes clusters within minutes or less. You can interact with CMX through the Vendor Portal or the Replicated CLI, making it possible to integrate CMX into your existing CI/CD workflows to programmatically create test environments.
 
-For more information, see [About CMX](/vendor/testing-about).
+For more information, see [About CMX](/vendor/cmx-overview).
 
 The following shows the CMX page for creating a cluster:
 
@@ -145,7 +145,7 @@ For more information about using the Replicated SDK, see [About the Replicated S
 
 The CMX can be used to quickly provision ephemeral VMs and Kubernetes clusters. When integrated into existing CI/CD workflows, the CMX can be used to automatically create a variety of customer-representative environments for testing code changes.
 
-For more information, see [About CMX](/vendor/testing-about).
+For more information, see [About CMX](/vendor/cmx-overview).
 
 ### License
 
@@ -186,5 +186,5 @@ ISVs can also set up email and Slack notifications to get alerted of important i
 Support teams can use Replicated features to more quickly diagnose and resolve application issues. For example:
 
 - Customize and generate support bundles, which collect and analyze redacted information from the customer's cluster, environment, and application instance. See [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
-- Provision customer-representative environments with CMX to recreate and diagnose issues. See [About CMX](/vendor/testing-about).
+- Provision customer-representative environments with CMX to recreate and diagnose issues. See [About CMX](/vendor/cmx-overview).
 - Get insights into an instance's status by accessing telemetry data, which covers the health of the application, the current application version, and details about the infrastructure and cluster where the application is running. For more information, see [Customer Reporting](/vendor/customer-reporting). For more information, see [Customer Reporting](/vendor/customer-reporting).

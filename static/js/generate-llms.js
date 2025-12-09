@@ -18,7 +18,7 @@ const STATIC_HEADER = `# Replicated Documentation
 const INCLUDED_FILES = [
     // Add specific file paths, relative to the docs directory
     // Compatibility Matrix docs
-    'vendor/testing-about.md',
+    'vendor/cmx-overview.md',
     'vendor/testing-how-to.md',
     'vendor/testing-supported-clusters.md',
     // Embedded Cluster docs

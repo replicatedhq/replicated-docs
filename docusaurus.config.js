@@ -131,7 +131,7 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'vendor/testing-about',
+                docId: 'vendor/cmx-overview',
                 label: 'Compatibility Matrix',
               },
               {

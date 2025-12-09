@@ -1,19 +1,27 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# CMX Cluster Types
+# CMX Clusters
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix (CMX).
 
-CMX provisions cloud-based or virtual machine (VM) clusters.
+## Overview
 
-## VM Clusters
+CMX can provision both custom VM-based clusters and warm pool cloud clusters to meet different testing needs:
 
-This section lists the supported VM cluster distributions for clusters created with CMX.
+* **Custom VM-based clusters** (kind, k3s, RKE2, OpenShift OKD, Embedded Cluster, kURL) run on Replicated bare metal servers with the CMX cluster provisioner. This allows for greater flexibility than with cloud clusters. For example, with VM-based distributions, CMX offers warm pools to make OpenShift startup times very fast.
 
-VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, CMX offers warm pools to make Openshift startup times very fast.
+* **Warm pool cloud clusters** (EKS, GKE, AKS, OKE) are provisioned in Replicated-managed cloud accounts with control planes ready to quickly add node groups when requested.
 
-For information about provisioning VMs, which come without pre-installed clusters and allow for more access to the OS, see [Create VMs](testing-vm-create).
+For information about provisioning VMs without pre-installed clusters that allow for more access to the OS, see [CMX VMs](cmx-vms).
+
+For information about creating and managing clusters, see [Use CMX Clusters](testing-how-to).
+
+## VM-Based Clusters
+
+This section lists the supported VM-based cluster distributions for clusters created with CMX.
+
+VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with cloud clusters. For example, with VM-based distributions, CMX offers warm pools to make OpenShift startup times very fast.
 
 ### kind
 
@@ -50,7 +58,7 @@ CMX supports creating [kind](https://kind.sigs.k8s.io/) clusters.
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>See <a href="testing-about#limitations">Limitations</a></td>
+    <td>See <a href="cmx-overview#limitations">Limitations</a></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -97,7 +105,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
   </tr>  
   <tr>
     <th>Limitations</th>
-    <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -144,7 +152,7 @@ CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -202,7 +210,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
           <p><Pool/></p>
         </li>
       </ul>
-      <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
+      <p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p>
     </td>
   </tr>
   <tr>
@@ -251,7 +259,7 @@ CMX supports creating clusters with Replicated Embedded Cluster. For more inform
         <li><strong>A valid customer license is required to create an Embedded Cluster.</strong></li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
       </ul>
-      <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
+      <p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p>
     </td>
   </tr>
   <tr>
@@ -295,7 +303,7 @@ CMX supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -344,7 +352,7 @@ CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -387,7 +395,7 @@ CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) c
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>You can choose only a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>You can choose only a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -430,7 +438,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>You can choose only a minor version, not a patch version. The AKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>You can choose only a minor version, not a patch version. The AKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -473,7 +481,7 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>Provising an OKE cluster does take between 8 to 10 minutes. If needed, some timeouts in your CI pipelines might have to be adjusted.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>Provising an OKE cluster does take between 8 to 10 minutes. If needed, some timeouts in your CI pipelines might have to be adjusted.</p><p>For additional limitations that apply to all distributions, see <a href="cmx-overview#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>

@@ -1,12 +1,14 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
-# Test in CMX with CI/CD
+# CI/CD with CMX
 
-This topic describes how to integrate Replicated Compatibility Matrix (CMX) into your CI/CD workflows.
+This topic describes how to integrate Replicated Compatibility Matrix (CMX) into your CI/CD workflows for automated testing.
 
-## About Using CMX with CI/CD
+## About Integrating CMX with CI/CD
 
-Replicated recommends that you integrate CMX into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
+Replicated recommends that you integrate CMX into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. CMX's powerful automation capabilities help you validate your application across multiple Kubernetes distributions and versions efficiently.
+
+For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
 
 ### Replicated GitHub Actions
 

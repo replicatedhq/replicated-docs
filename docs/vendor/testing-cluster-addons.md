@@ -4,8 +4,7 @@ This topic describes the supported cluster add-ons for Replicated Compatibility 
 
 ## Overview
 
-CMX enables you to extend your cluster with add-ons, to make use of by your application, such as an AWS S3 object store.
-This allows you to more easily provision dependencies required by your application.
+CMX enables you to extend your cluster with add-ons to make use of advanced features such as an AWS S3 object store. This allows you to more easily provision dependencies required by your application for testing in customer-representative environments.
 
 ## CLI
 
