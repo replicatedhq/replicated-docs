@@ -4,15 +4,42 @@ This topic describes how to update custom TLS certificates in Replicated Embedde
 
 ## Update Custom TLS Certificates
 
-Users can provide custom TLS certificates with Embedded Cluster installations and can update TLS certificates through the Admin Console.
+Users can provide custom TLS certificates with Embedded Cluster installations and can update TLS certificates using the CLI or through the Admin Console.
+
+### Update Using the CLI (Recommended)
+
+:::note
+The `admin-console update-tls` command is available in Embedded Cluster v2.14.0 and later.
+:::
+
+The `admin-console update-tls` command provides a secure way to update TLS certificates for the Admin Console. This method updates the `kotsadm-tls` Kubernetes secret directly. Pods watching this secret automatically reload the TLS configuration, so no restart is required.
+
+To update TLS certificates using the CLI:
+
+1. SSH onto a controller node where Embedded Cluster is installed. Ensure the TLS certificate and key files are present on the node.
+
+1. Run the following command to update the TLS certificate and key:
+
+   ```bash
+   sudo ./APP_SLUG admin-console update-tls --tls-cert PATH_TO_CERT --tls-key PATH_TO_KEY
+   ```
+
+   Replace:
+   - `APP_SLUG` with the unique slug of the installed application.
+   - `PATH_TO_CERT` with the path to the TLS certificate file.
+   - `PATH_TO_KEY` with the path to the TLS key file.
+
+### Update Using the Admin Console
+
+You can also update TLS certificates through the Admin Console. This method requires temporarily enabling anonymous uploads.
 
 :::important
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
 
-Replicated recommends that you complete this upload process quickly to minimize the vulnerability risk.
+Replicated recommends using the CLI method above when possible. If you use this method, complete the upload process quickly to minimize the vulnerability risk.
 :::
 
-To upload a new custom TLS certificate in Embedded Cluster installations:
+To upload a new custom TLS certificate through the Admin Console:
 
 1. SSH onto a controller node where Embedded Cluster is installed. Then, run the following command to start a shell so that you can access the cluster with kubectl:
 
