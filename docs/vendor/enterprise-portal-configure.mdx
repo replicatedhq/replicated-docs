@@ -61,7 +61,9 @@ To manage Enterprise Portal settings:
 
 1. Click **Save**.
 
-## Customize Customer Emails {#configure-customer-emails}
+## Customize Emails {#configure-customer-emails}
+
+This section describes options for customizing the emails sent to customers through the Enteprise Portal. For information about how to view the delivery status of all emails sent to customers, see [View Email History and Delivery Status](#email-history) in _Manage Enterprise Portal Customer Access_.
 
 ### Configure Email Sender
 
@@ -129,7 +131,9 @@ The following template variables are available across multiple email types:
 | `{{release_notes}}` | Release notes content | "New features and bug fixes" |
 | `{{update_url}}` | Link to update/release page | https://portal.example.com/acme/releases |
 
-## Add a Link to Documentation
+## Customize User Instructions
+
+### Add a Link to Documentation
 
 For each of your supported install types, you can add a link your installation documentation. The link you provide is displayed on the Enterprise Portal **Install** page.
 
@@ -147,7 +151,7 @@ To add a link to your documentation in the Enterprise Portal:
 
 1. Click **Save changes**.
 
-## Add Pre- and Post-Install Instructions
+### Add Pre- and Post-Install Instructions
 
 For each of your supported install types, you can add custom pre- and post-install instructions for users. This is useful if there are additional prerequisites or follow-up steps that users need to complete in addition to the primary installation instructions.
 
@@ -169,13 +173,13 @@ To customize the pre- and post-install instructions for your application:
 
 1. Click **Save changes**.
 
-## Exclude Certain Images from Helm CLI Install Instructions
+### Exclude Certain Images from Helm CLI Install Instructions
 
 You can use the `kots.io/installer-only` annotation to exclude the images for an entire Helm chart or for one or more resoures in a Helm chart's templates from the Helm CLI installation instructions displayed in the Enterprise Portal. This annotation is useful for charts or resources that are required for deployments with a Replicated installer (KOTS, Embedded Cluster, kURL) but should not be visible or deployed when customers install with the Helm CLI.
 
 For more information, see [`kots.io/installer-only` Annotation](/vendor/packaging-include-resources#installer-only) in _Conditionally Include or Exclude Resources_.
 
-## Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
+### Customize Channel-Specific Install Instructions (Alpha) {#customize-channel-install-instructions}
 
 :::note
 Custom install instructions are Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.
@@ -191,9 +195,9 @@ These custom installation instructions support MDX. MDX is a format that combine
 - **Built-in UI components**: Use UI components like code blocks, alerts, tabs, and progress indicators
 - **Conditional rendering**: Conditionally show or hide content. For example, show or hide certain steps based on the installation options supported by the customer's license
 
-### Customize Channel-Specific Instructions
+#### Add Channel-Specific Instructions
 
-To customize channel-specific installation instructions:
+To add custom, channel-specific installation instructions:
 
 1. In the Vendor Portal, go to **Enterprise Portal > Installation Instructions**.
 
@@ -215,7 +219,7 @@ To customize channel-specific installation instructions:
 
 1. Click **Save changes** to save your custom installation instructions.
 
-### Revert to Default Instructions
+#### Revert to Default Instructions
 
 To disable custom instructions for a channel and revert to the default automatically-generated instructions:
 
@@ -227,7 +231,7 @@ To disable custom instructions for a channel and revert to the default automatic
    Your custom documentation is saved in the **Channel customizations** MDX template editor. You can enable the custom instructions again by clicking **Enable** for the channel.
    :::
 
-### Supported MDX Template Variables {#vars}
+#### Supported MDX Template Variables {#vars}
 
 :::note
 For a complete list of available variables, use the autocomplete feature in the editor.
@@ -353,11 +357,11 @@ The following describes some of the supported MDX template variables:
   </tr>
 </table>
 
-### Supported MDX Components {#components}
+#### Supported MDX Components {#components}
 
 The following components are available in MDX templates. For examples of each component, see [Example](#example) below.
 
-#### Text and Formatting
+##### Text and Formatting
 
 <table>
   <thead>
@@ -431,7 +435,7 @@ The following components are available in MDX templates. For examples of each co
   </tbody>
 </table>
 
-#### Layout
+##### Layout
 
 <table>
   <thead>
@@ -466,7 +470,7 @@ The following components are available in MDX templates. For examples of each co
 </table>
 
 
-#### Installation Components
+##### Installation Components
 
 <table>
   <thead>
@@ -503,7 +507,7 @@ The following components are available in MDX templates. For examples of each co
 </table>
 
 
-#### Input Components
+##### Input Components
 
 <table>
   <thead>
@@ -548,7 +552,7 @@ The following components are available in MDX templates. For examples of each co
 </table>
 
 
-#### Display Components
+##### Display Components
 
 <table>
   <thead>
@@ -573,7 +577,7 @@ The following components are available in MDX templates. For examples of each co
   </tbody>
 </table>
 
-### MDX Templates Restrictions
+#### MDX Templates Restrictions
 
 MDX templates are validated for security before being saved. The following restrictions apply:
 
@@ -583,7 +587,7 @@ MDX templates are validated for security before being saved. The following restr
 - Dangerous HTML elements (script, iframe, embed) are not allowed
 - Template size is limited to 1MB
 
-### Example
+#### Example
 
 The following is an example of custom installation instructions that use MDX with conditional rendering based on installation type:
 
