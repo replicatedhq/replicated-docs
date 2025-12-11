@@ -4,25 +4,43 @@ Download application manifests for a release.
 
 ### Synopsis
 
-Download application manifests for a release to a specified directory.
+Download application manifests for a release to a specified file or directory.
+
+For KOTS applications:
+  - Downloads release as a .tgz file if no RELEASE_SEQUENCE specified
+  - Can specify --channel to download the current release from that channel
+  - Auto-generates filename as app-slug.tgz if --dest not provided
 
 For non-KOTS applications, this is equivalent to the 'release inspect' command.
 
+If no app is specified via --app flag, the app slug will be loaded from the .replicated config file.
+
 ```
-replicated release download RELEASE_SEQUENCE [flags]
+replicated release download [RELEASE_SEQUENCE] [flags]
 ```
 
 ### Examples
 
 ```
+# Download latest release as autoci.tgz
+replicated release download
+
+# Download specific sequence
+replicated release download 42 --dest my-release.tgz
+
+# Download current release from Unstable channel
+replicated release download --channel Unstable
+
+# Download to directory (KOTS only with sequence)
 replicated release download 1 --dest ./manifests
 ```
 
 ### Options
 
 ```
-  -d, --dest string   Directory to which release manifests should be downloaded
-  -h, --help          help for download
+  -c, --channel string   Download the current release from this channel (case sensitive)
+  -d, --dest string      File or directory to which release should be downloaded. Auto-generated if not specified.
+  -h, --help             help for download
 ```
 
 ### Options inherited from parent commands
