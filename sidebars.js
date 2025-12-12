@@ -617,6 +617,8 @@ const sidebars = {
       'reference/replicated-cli-api-put',
       'reference/replicated-cli-app',
       'reference/replicated-cli-app-create',
+      'reference/replicated-cli-app-hostname',
+      'reference/replicated-cli-app-hostname-ls',
       'reference/replicated-cli-app-ls',
       'reference/replicated-cli-app-rm',
       'reference/replicated-cli-channel',

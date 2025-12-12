@@ -1,0 +1,41 @@
+# replicated app hostname
+
+Manage custom hostnames for applications
+
+### Synopsis
+
+The hostname command allows you to manage custom hostnames for your application.
+
+This command provides subcommands for listing and viewing custom hostname configurations
+including registry, proxy, download portal, and replicated app hostnames.
+
+### Examples
+
+```
+# List all custom hostnames for an app
+replicated app hostname ls --app myapp
+
+# List hostnames and output as JSON
+replicated app hostname ls --app myapp --output json
+```
+
+### Options
+
+```
+  -h, --help   help for hostname
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated app](replicated-cli-app)	 - Manage applications
+* [replicated app hostname ls](replicated-cli-app-hostname-ls)	 - List custom hostnames for an application
+
