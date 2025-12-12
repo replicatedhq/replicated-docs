@@ -60,8 +60,7 @@ The following diagram shows how the traffic is routed into the service using CMX
 
 ### Limitations
 
-* A tunnel can only connect to one service. If you need fanout routing into different services, consider installing the nginx ingress controller as a `NodePort` service and exposing it.
-* Tunnels are not supported for cloud distributions (EKS, GKE, AKS).
+For limitations related to tunnels, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ### Supported Protocols
 
