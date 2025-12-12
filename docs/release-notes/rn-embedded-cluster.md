@@ -12,6 +12,39 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.13.0
+
+Released on December 9, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.13.0+k8s-1.33</td>
+    <td id="center">2.13.0+k8s-1.32</td>
+    <td id="center">2.13.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.6</td>
+    <td id="center">1.32.10</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.1</td>
+  </tr>
+</table>
+
+### New Features {#new-features-2-13-0}
+* Adds the ability to configure custom Velero plugins through the Embedded Cluster config specification.
+
+### Improvements {#improvements-2-13-0}
+* Disable outbound traffic attempts from k0s to `updates.k0sproject.io`.
+
+### Bug Fixes {#bug-fixes-2-13-0}
+* Fixes an issue where YAML files with a leading document separator fail to parse.
+* Fixes an issue where preflight checks fail when only IPv6 nameservers are configured in resolv.conf.
+
 ## 2.12.0
 
 Released on October 30, 2025
@@ -36,7 +69,6 @@ Released on October 30, 2025
 </table>
 
 ### Bug Fixes {#bug-fixes-2-12-0}
-
 * Fixes instability in the highly available registry used for HA air gap installations, which was caused by flakiness in SeaweedFS Raft.
 * Fixes an issue where multi-document YAML files were not parsed correctly, which led to resources not being recognized in the release.
 
