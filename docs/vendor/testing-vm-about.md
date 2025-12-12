@@ -1,4 +1,3 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
 # About CMX VMs (Beta)
@@ -30,17 +29,8 @@ The following describes the Replicated instance types for VMs:
 
 ## Limitations
 
-Creating VMs with CMX has the following limitations:
-
-- Creating VMs with CMX is a Beta feature.
-- Installing Embedded Cluster on a VM created with CMX is supported for Embedded Cluster versions 1.21.0 or later.
-- [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for CMX VMs. 
-- The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for CMX VMs.
+For limitations, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ## Prerequisites
 
-Before you can use CMX VMs, you must complete the following prerequisites:
-
-<Prerequisites/>
-
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+For prerequisites, see [Prerequisites](/vendor/cmx-overview#prerequisites) in _CMX Overview_.

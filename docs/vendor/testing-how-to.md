@@ -1,6 +1,4 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-
-# Use CMX Clusters
+# CMX Clusters
 
 This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
 
@@ -12,35 +10,17 @@ CMX supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Emb
 
 You can use CMX clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
 
-For information about creating VMs with CMX to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
+For information about creating VMs with CMX to test Replicated Embedded Cluster installers or when you need full OS control, see [CMX VMs](cmx-vms).
 
-## Limitations
-
-CMX has the following limitations:
-
-- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
-- Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
-- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
-- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
-- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-- Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
-
-For additional distribution-specific limitations, see [Supported CMX Cluster Types](testing-supported-clusters).
+For information about using the `cluster prepare` command to streamline development workflows, see [Develop with CMX](cmx-develop).
 
 ## Prerequisites
 
-Before you can use CMX clusters, you must complete the following prerequisites:
+For prerequisites, see [Prerequisites](/vendor/cmx-overview#prerequisites) in _CMX Overview_.
 
-<Prerequisites/>
+## Limitations
 
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+For limitations, see [Limitations](/vendor/cmx-overview#limitations) in _CMX Overview_.
 
 ## Create Clusters
 
@@ -174,7 +154,7 @@ To create a cluster using the Vendor Portal:
 
 For any VM-based cluster distributions, you can create a cluster that uses an air-gapped network by setting the network policy to `airgap`.
 
-For more information, see [Use Air Gap Networks (Beta)](testing-network-policy).
+For more information, see [Test in Air Gap Environments](cmx-airgap).
 
 To set the network policy of a VM-based cluster to `airgap`:
 
@@ -183,7 +163,7 @@ To set the network policy of a VM-based cluster to `airgap`:
    ```bash
    replicated cluster create --distribution VM_BASED_DISTRIBUTION
    ```
-   Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
+   Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM-Based Clusters](/vendor/testing-supported-clusters#vm-based-clusters).
 
 1. Change the network policy to `airgap`:
 
@@ -192,153 +172,91 @@ To set the network policy of a VM-based cluster to `airgap`:
    ```
    Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
 
+## Cluster Add-ons (Alpha)
+
+CMX enables you to extend your cluster with add-ons to make use of advanced features such as an AWS S3 object store. This allows you to more easily provision dependencies required by your application for testing in customer-representative environments.
+
+### CLI
+
+The Replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
+
+### Supported Add-ons
+
+This section lists the supported cluster add-ons for clusters created with CMX.
+
+#### object-store (Alpha)
+
+The Replicated cluster object store add-on can be used to create S3 compatible object store buckets for clusters (currently only AWS S3 is supported for EKS clusters).
+
+Assuming you already have a cluster, run the following command with the cluster ID to create an object store bucket:
+
+```bash
+$ replicated cluster addon create object-store 4d2f7e70 --bucket-prefix mybucket
+05929b24    Object Store    pending         {"bucket_prefix":"mybucket"}
+$ replicated cluster addon ls 4d2f7e70
+ID          TYPE            STATUS          DATA
+05929b24    Object Store    ready           {"bucket_prefix":"mybucket","bucket_name":"mybucket-05929b24-cmx","service_account_namespace":"cmx","service_account_name":"mybucket-05929b24-cmx","service_account_name_read_only":"mybucket-05929b24-cmx-ro"}
+```
+
+This will create two service accounts in a namespace, one read-write and the other read-only access to the object store bucket.
+
+Additional service accounts can be created in any namespace with access to the object store by annotating the new service account with the same `eks.amazonaws.com/role-arn` annotation found in the predefined ones (`service_account_name` and `service_account_name_read_only`).
+
+<table>
+  <tr>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Distributions</th>
+    <td>EKS (AWS S3)</td>
+  </tr>
+  <tr>
+    <th>Cost</th>
+    <td>Flat fee of $0.50 per bucket.</td>
+  </tr>
+  <tr>
+    <th>Options</th>
+    <td>
+      <ul>
+        <li><strong>bucket_prefix (string):</strong> A prefix for the bucket name to be created (required)</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Data</th>
+    <td>
+      <ul>
+        <li><strong>bucket_prefix:</strong> The prefix specified by the user for the bucket name</li>
+      </ul>
+      <ul>
+        <li><strong>bucket_name:</strong> The actual bucket name</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_namespace:</strong> The namespace in which the service accounts (`service_account_name` and `service_account_name_read_only`) have been created.</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_name:</strong> The service account name for read-write access to the bucket.</li>
+      </ul>
+      <ul>
+        <li><strong>service_account_name_read_only:</strong> The service account name for read-only access to the bucket.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
 ## Prepare Clusters
 
-For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
-
-The `cluster prepare` command does the following:
-* Creates a cluster
-* Creates a release for your application based on either a Helm chart archive or a directory containing the application YAML files
-* Creates a temporary customer of type `test`
-  :::note
-  Test customers created by the `cluster prepare` command are not saved in your Vendor Portal team.
-  :::
-* Installs the release in the cluster using either the Helm CLI or Replicated KOTS
-
-The `cluster prepare` command requires either a Helm chart archive or a directory containing the application YAML files to be installed:
-
-* **Install a Helm chart with the Helm CLI**:
-
-  ```bash
-  replicated cluster prepare \
-    --distribution K8S_DISTRO \
-    --version K8S_VERSION \
-    --chart HELM_CHART_TGZ
-  ```
-  The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
-  ```bash
-  replicated cluster prepare \
-    --distribution kind \
-    --version 1.27.0 \
-    --chart nginx-chart-0.0.14.tgz \
-    --set key1=val1,key2=val2 \
-    --set-string s1=val1,s2=val2 \
-    --set-json j1='{"key1":"val1","key2":"val2"}' \
-    --set-literal l1=val1,l2=val2 \
-    --values values.yaml
-  ```
-
-* **Install with KOTS from a YAML directory**:
-
-  ```bash
-  replicated cluster prepare \
-    --distribution K8S_DISTRO \
-    --version K8S_VERSION \
-    --yaml-dir PATH_TO_YAML_DIR
-  ```
-  The following example creates a k3s cluster and installs an application in the cluster using the manifest files in a local directory named `config-validation`: 
-  ```bash
-  replicated cluster prepare \
-    --distribution k3s \
-    --version 1.26 \
-    --namespace config-validation \
-    --shared-password password \
-    --app-ready-timeout 10m \
-    --yaml-dir config-validation \
-    --config-values-file conifg-values.yaml \
-    --entitlements "num_of_queues=5"
-    ```
-
-For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
+For information about using the `cluster prepare` command to streamline development workflows, see [Develop with CMX](cmx-develop).
 
 ## Access Clusters
 
-CMX provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
-
-To access a cluster from the command line:
-
-1. Verify that the cluster is in a Running state:
-
-   ```bash
-   replicated cluster ls
-   ```
-   In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-
-1. Run the following command to open a new shell session with the kubeconfig configured for the cluster:
-
-   ```bash
-   replicated cluster shell CLUSTER_ID
-   ``` 
-   Where `CLUSTER_ID` is the unique ID for the running cluster that you want to access.
-
-   For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
-
-1. Verify that you can interact with the cluster through kubectl by running a command. For example:
-
-   ```bash
-   kubectl get ns
-   ```
-
-1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
+For information about accessing clusters to interact with kubectl, see [Access Clusters](/vendor/cmx-develop#access-clusters) in _Develop with CMX_.
 
 ## Upgrade Clusters (kURL Only)
 
-For kURL clusters provisioned with CMX, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
-
-The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
-
-```bash
-replicated cluster upgrade cabb74d5 --version 9d5a44c
-```
-
-For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+For information about upgrading kURL clusters, see [Upgrade Clusters (kURL Only)](/vendor/cmx-develop#upgrade-clusters-kurl-only) in _Develop with CMX_.
 
 ## Delete Clusters
 
-You can delete clusters using the Replicated CLI or the Vendor Portal.
-
-### Replicated CLI
-
-To delete a cluster using the Replicated CLI:
-
-1. Get the ID of the target cluster:
-
-   ```
-   replicated cluster ls
-   ```
-   In the output of the command, copy the ID for the cluster.
-
-   **Example:**
-
-   ```
-   ID        NAME              DISTRIBUTION   VERSION   STATUS    CREATED                        EXPIRES 
-   1234abc   My Test Cluster   eks            1.27      running   2023-10-09 17:08:01 +0000 UTC  - 
-   ``` 
-
-   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-
-1. Run the following command:
-
-    ```
-    replicated cluster rm CLUSTER_ID
-    ```
-    Where `CLUSTER_ID` is the ID of the target cluster. 
-    For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
-1. Confirm that the cluster was deleted:
-   ```
-   replicated cluster ls CLUSTER_ID --show-terminated
-   ```
-   Where `CLUSTER_ID` is the ID of the target cluster.
-   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-
-### Vendor Portal
-
-To delete a cluster using the Vendor Portal:
-
-1. Go to **Compatibility Matrix**.
-
-1. Under **Clusters**, in the vertical dots menu for the target cluster, click **Delete cluster**.
-
-   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="700px"/>
-
-   [View a larger version of this image](/images/cmx-delete-cluster.png) 
+For information about deleting clusters, see [Delete Clusters](/vendor/cmx-develop#delete-clusters) in _Develop with CMX_. 

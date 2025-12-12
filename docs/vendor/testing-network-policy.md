@@ -1,116 +1,21 @@
-# Test in Air Gap Environments (Beta)
+# CMX Network Reports
 
-This topic describes how to change the network policy of a virtual machine (VM) or a VM-based cluster with Replicated Compatibility Matrix (CMX), and how to collect and analyze network events to understand your application's behavior in air-gapped environments.
+This topic describes how to use Replicated Compatibility Matrix (CMX) network reporting to collect and analyze network events from VMs and clusters, helping you understand your application's network behavior in different environments including air-gapped scenarios.
 
-## Set Network Policy to `airgap`
+For information about changing the network policy of a VM or cluster to simulate air-gapped environments, see [Test in Air Gap Environments](cmx-airgap).
 
-VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with CMX can use one of the following network policies:
+## Overview
 
-| Network Policy | Description |
-| :---- | :---- |
-| `open` | No restrictions on network traffic. |
-| `airgap` | Restrict all network traffic. |
+CMX network reporting helps you understand your application's network activity by capturing and analyzing network events from VMs and VM-based clusters. You can use network reporting to:
 
-By default, all VMs and clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an air-gapped environment with no outbound internet access. This `airgap` network policy is particularly useful for previewing how your application will perform in air-gapped end customer environments.
+* Monitor network activity in real-time or review aggregated summaries
+* Identify unexpected network calls before deploying to production
+* Validate application behavior in air-gapped environments
+* Troubleshoot connectivity issues
 
-Network policies are configured at the network level and apply to all VMs and VM-based clusters within the network. 
-
-### For VM-Based Clusters
-
-To set the network policy of a VM-based cluster:
-
-1. Create a cluster:
-
-    ```bash
-    replicated cluster create --distribution VM_BASED_DISTRIBUTION
-    ```
-    Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
-
-1. Watch until the cluster status is `running`:
-
-    ```bash
-    replicated cluster ls --watch
-    ```
-
-1. Access the cluster in a shell:
-
-    ```
-    replicated cluster shell CLUSTER_ID
-    ```
-    Where `CLUSTER_ID` is the ID of the cluster that you created from the output of the `cluster ls` command.      
-
-1. Change the network policy to `airgap`:
-
-    ```bash
-    replicated network update NETWORK_ID --policy airgap
-    ```
-    Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
-
-1. Verify that the cluster's policy is `airgap` and the status is `running`:
-
-    ```bash
-    replicated cluster ls
-    ```
-
-    ```bash
-    ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   HAS REPORT
-    bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
-    ```
-
-    The air gap network is enabled when the status is `running`.
-
-1. (Optional) To verify that there is no outbound connectivity from the cluster, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
-
-1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
-
-### For VMs
-
-To set the network policy of a VM:
-
-1. Create a VM:
-
-    ```bash
-    replicated vm create --distribution ubuntu
-    ```
-
-1. Wait until the VM status is running:
-
-    ```bash
-    replicated vm ls
-    ```
-
-1. SSH onto the VM:
-
-   ```bash
-   ssh VM_ID@replicatedvm.com
-   ```  
-   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
-
-   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
-
-1. Set the network policy to `airgap`:
-
-    ```bash
-    replicated network update NETWORK_ID --policy airgap
-    ```
-    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.
-
-    **Example:**
-
-    ```bash
-    replicated network update 85eb50a8 --policy airgap
-    ```
-
-    ```bash
-    ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   HAS REPORT
-    85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
-    ```
-
-1. (Optional) To verify that there is no outbound connectivity from the VM, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
+To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report.
 
 ## Collect and View Network Reports
-
-CMX network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`. Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
 
 Network reporting is not enabled by default. For information about how to collect and view reports through the Vendor Portal or the Replicated CLI, see the sections below.
 
