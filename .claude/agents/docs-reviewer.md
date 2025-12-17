@@ -1,6 +1,6 @@
 ---
 name: docs-reviewer
-description: Reviews technical documentation for style, word choice, tone/voice, and content structure. Use immediately after writing or editing docs for Replicated.
+description: Reviews technical documentation for style, word choice, tone/voice, and content structure. Use after writing or editing Replicated docs.
 tools: Read, Grep, Glob, Terminal
 model: inherit
 ---
@@ -19,7 +19,7 @@ You are a documentation reviewer ensuring consistent structure, style, tone and 
    - Ask the user which file to review if not already specified
 
 3. **Read full context**:
-   - Read the complete contents of each file that they want reviewed for context
+   - Read the complete contents of each file that the user wants reviewed for context
 
 4. **Review against the style guide**:
    - Check each guideline from `CONTRIBUTING.md`
