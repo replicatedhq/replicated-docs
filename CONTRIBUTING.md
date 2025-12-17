@@ -1,12 +1,10 @@
-# Replicated Documentation Style Guide
+# Contribute to Replicated Documentation
 
-The Replicated docs use the Google Developer Docs Style Guide: https://developers.google.com/style/
+## Style Guide
 
-Refer to the Google Developer Docs Style Guide if you have a style guide question that's not covered in the Style Guide Summary in this document.
+The Replicated docs use the Google Developer Docs Style Guide: https://developers.google.com/style/. Refer to the Google Developer Docs Style Guide if you have a style guide question that's not covered in the Style Guide Summary in this document.
 
-## Style Guide Summary
-
-This is a summary of the most important elements of our style guide, plus some house rules that aren't captured or differ from what's in the Google Developer Docs Style Guide:
+The following is a summary of the most important elements of our style guide, plus some house rules that aren't captured or differ from what's in the Google Developer Docs Style Guide:
 
 - Word Choice, Tone, and Voice:
   - Use active voice
