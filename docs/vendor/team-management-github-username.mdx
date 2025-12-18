@@ -18,24 +18,30 @@ Replicated recommends that Vendor Portal admins manage user access to the collab
 * Users are automatically removed from the collab repository when they are removed from the Vendor Portal team.
 * Vendor portal and collab repository RBAC policies are managed from a single location.
 
-## Add Users to the Collab Repository {#add}
-
-This procedure describes how to use the Vendor Portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the Vendor Portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub.
-
-### Prerequisite
+## Prerequisite
 
 Your team must have a replicated-collab repository configured to add users to
 the repository and to manage repository access through the Vendor Portal. To get 
 a collab support repository configured in GitHub for your team, complete the onboarding 
 instructions in the email you received from Replicated. You can also access the [Replicated community help forum](https://community.replicated.com/) for assistance.
 
-### Procedure
+## Limitation
+
+GitHub Enterprise Managed Users cannot be used to grant access to a team's replicated-collab repository. Instead, add your personal GitHub username to the Vendor Portal user account for collab repository access.
+
+This is because managed user accounts like Enterprise Managed Users cannot be invited to organizations or repositories outside of the enterprise. For more information, see [Abilities and restrictions of managed user accounts](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/abilities-and-restrictions-of-managed-user-accounts#visibility-and-invitations) in the GitHub documentation.
+
+## Add Users to the Collab Repository {#add}
+
+This procedure describes how to use the Vendor Portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the Vendor Portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub.
 
 To add new and existing users to the collab repository through the Vendor Portal:
 
 1. As a Vendor Portal admin, log in to your Vendor Portal account. In the [Account Settings](https://vendor.replicated.com/account-settings) page, add your GitHub username and click **Save Changes**.
 
    <img src="/images/account-info.png" alt="Account info in the Vendor Portal" width="600"/>
+
+   [View a larger version of this image](/images/account-info.png)
 
    The Vendor Portal automatically adds your GitHub username to the collab repository and assigns it the Admin role. You receive an email with details about the collab repository when you are added.
 
