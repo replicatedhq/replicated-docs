@@ -35,7 +35,11 @@ The following is a summary of the most important elements of our style guide, pl
   - Avoid time-bound terminology like "currently", "new", "at this time", and "now". Instead, write timeless documentation that makes no assumptions about a reader's prior knowledge.
 
 - Formatting:
-  - Use bold text only to identify UI elements. For example, "Click **Save**." Do not use bold text for emphasis.
+  - Use bold and italic text sparingly.
+    - Bold text is primarily used to identify UI elements. For example, "Click **Save**." 
+    - Do not use bold text to emphasize important content. Instead, if discoverability is a concern, consider how the content could be reorganized or how you could use clearer headings. 
+    - It's okay to use bold text for introducing an example (`**Example:**`) or for run-in headings in unordered lists (`* **Item 1:** Description`)
+  - Use colons instead of dashes for run-in headings in description lists (`- Item 1: Description`, not `- Item 1 - Description`)
   - Use title case for titles and headings
   - Use a bare infinitive verb form for how-to titles/headings. As in, use "Create a Release" instead of "Creating a Release"
   - Procedural/how-to content must use numbered steps. For one-step procedures, use a bullet point. See https://developers.google.com/style/procedures#single-step-procedures for examples
@@ -64,9 +68,11 @@ When generating content for Replicated Docs with LLMs, add the following to the 
 ```md
 - Refer to the style guidelines in this repo at `README.md`
 - Don't add Troubleshooting, Best Practices, Conclusion, Summary, or Next Steps sections unless specifically asked
-- Never use bold text for emphasis or as section/category headings
+- Never use bold text to emphasize important information or as section/category headings
 - Don't repeat the same information mutiple times. Focus on being concise and using as few words as possible to get the point across
 - Use paragraphs instead of bulleted lists unless specifically asked
+- Don't number the items in unordered lists. Numbered lists are reserved for step-by-step procedures
+- 
 ```
 
 ### Use the @doc-reviewer Claude Subagent

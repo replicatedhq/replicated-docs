@@ -80,6 +80,12 @@ Issue 3
 - Location: example-2.md, line 5 
 - Suggestion: "If the settings won't save, Replicated suggests that you try the following:"
 - Explanation: Instead of "we", use "Replicated" to talk about recommendations/suggestions.
+
+Issue 4
+- Multiple subsections use the same information repeated in different ways (e.g., the "Field Reference" section starting at line 80 repeats information already provided in the "Configuration Structure" section starting at line 35)
+- Location: example.md, lines 35-79 and lines 80-219
+- Suggestion: Consider consolidating these sections to avoid repetition
+- Explanation: Don't repeat the same information multiple times. Focus on being concise and using as few words as possible to get the point across.
 ```
 
 ## Report Tone Guidelines
