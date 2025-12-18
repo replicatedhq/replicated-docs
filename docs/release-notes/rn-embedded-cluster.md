@@ -12,6 +12,36 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.13.2
+
+Released on December 17, 2025
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.13.0+k8s-1.33</td>
+    <td id="center">2.13.0+k8s-1.32</td>
+    <td id="center">2.13.0+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.6</td>
+    <td id="center">1.32.10</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.1-ec.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-13-0}
+* Disable outbound traffic attempts from k0s to `updates.k0sproject.io`.
+* Add a new `<installer> admin-console update-tls` CLI subcommand to update Admin Console TLS certificate and key.
+
+### Bug Fixes {#bug-fixes-2-13-2}
+* Removes limits from the Embedded Cluster operator pod which were leading to upgrade failures.
+
 ## 2.13.0
 
 Released on December 9, 2025
@@ -37,9 +67,6 @@ Released on December 9, 2025
 
 ### New Features {#new-features-2-13-0}
 * Adds the ability to configure custom Velero plugins through the Embedded Cluster config specification.
-
-### Improvements {#improvements-2-13-0}
-* Disable outbound traffic attempts from k0s to `updates.k0sproject.io`.
 
 ### Bug Fixes {#bug-fixes-2-13-0}
 * Fixes an issue where YAML files with a leading document separator fail to parse.
