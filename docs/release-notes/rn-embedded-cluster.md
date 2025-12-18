@@ -44,6 +44,7 @@ Released on December 9, 2025
 ### Bug Fixes {#bug-fixes-2-13-0}
 * Fixes an issue where YAML files with a leading document separator fail to parse.
 * Fixes an issue where preflight checks fail when only IPv6 nameservers are configured in resolv.conf.
+* Fixes an issue where switching channels and syncing the license while installing an application update will skip upgrading the infrastructure, causing k0s and extensions to remain outdated.
 
 ## 2.12.0
 

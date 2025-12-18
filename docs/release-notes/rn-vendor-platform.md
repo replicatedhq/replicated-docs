@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2025.12.16-3
+
+Released on December 16, 2025
+
+### New Features {#new-features-v2025-12-16-3}
+* Adds Return-Path configuration and verification alongside DKIM for Enterprise Portal email sender configuration. For more information, see [Configure Email Sender](/vendor/enterprise-portal-configure#configure-email-sender). in _Customize the Enterprise Portal_.
+
 ## v2025.12.04-1
 
 Released on December 4, 2025

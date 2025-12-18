@@ -13,10 +13,10 @@ static/llms-full.txt
 static/intro-kots.md
 static/intro-replicated.md
 static/intro.md
-static/enterprise
-static/reference
-static/release-notes
-static/vendor
+static/enterprise/
+static/reference/
+static/release-notes/
+static/vendor/
 
 # Misc
 .DS_Store

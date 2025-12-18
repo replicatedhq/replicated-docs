@@ -38,7 +38,7 @@ jobs:
         rm -rf /tmp/release-notes.txt
 
     - name: Create Pull Request # creates a PR if there are differences
-      uses: peter-evans/create-pull-request@v7
+      uses: peter-evans/create-pull-request@v8
       id: cpr
       with:
         token: ${{ secrets.REPLICATED_GH_PAT }}
