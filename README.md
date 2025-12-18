@@ -25,12 +25,12 @@ The following is a summary of the most important elements of our style guide, pl
 - Word Choice, Tone, and Voice:
   - Use active voice
   - Use the second person "you" to address the reader. Never use "let's" or "we" to refer to an action that the user is doing
-  - Instead of "we", use "Replicated" to talk about recommendations/suggestions. As in "Replicated recommends that you test your releases..."
+  - Use "Replicated" instead of "we" to talk about recommendations/suggestions. As in "Replicated recommends that you test your releases..." and not "we recommend"
   - Use present tense (for example, use "returns" and not "will return")
   - Write in a friendly tone without using slang, jargon, or frivolous words
   - Avoid marketing language that is overly promotional
   - Avoid terms like "simple" or "easy"
-  - Use common words. Don't use words like "utilize" or "leverage" when you mean "use". This make the docs more suitable for a global audience
+  - Use common words. Don't use words like "utilize" or "leverage" when you mean "use". Using common words makes the docs more suitable for a global audience
   - Try to use fewer than 26 words per sentence
   - Avoid time-bound terminology like "currently", "new", "at this time", and "now". Instead, write timeless documentation that makes no assumptions about a reader's prior knowledge.
 
@@ -72,7 +72,7 @@ When generating content for Replicated Docs with LLMs, add the following to the 
 - Don't repeat the same information mutiple times. Focus on being concise and using as few words as possible to get the point across
 - Use paragraphs instead of bulleted lists unless specifically asked
 - Don't number the items in unordered lists. Numbered lists are reserved for step-by-step procedures
-- 
+- Limit the use of notes and asides
 ```
 
 ### Use the @doc-reviewer Claude Subagent
