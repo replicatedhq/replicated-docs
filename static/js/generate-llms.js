@@ -1,3 +1,23 @@
+/**
+ * LLM Documentation Generator
+ * 
+ * This script generates LLM-accessible documentation files by processing all markdown
+ * files in the docs/ directory. It runs automatically via the prebuild npm hook.
+ * 
+ * Generated files (NOT tracked in git):
+ * - static/llms.txt - Curated list of key documentation pages
+ * - static/llms-full.txt - Complete archive of all documentation
+ * - static/vendor/*.md - Plain markdown copies of vendor docs
+ * - static/enterprise/*.md - Plain markdown copies of enterprise docs
+ * - static/reference/*.md - Plain markdown copies of reference docs
+ * - static/release-notes/*.md - Plain markdown copies of release notes
+ * 
+ * Requirements:
+ * - Must be run via `npm run build` (or `npm run generate-llms`) to execute
+ * - Netlify build command MUST be `npm run build`, not `docusaurus build` directly
+ * - Generated files are excluded from git via .gitignore
+ */
+
 const fs = require('fs');
 const path = require('path');
 

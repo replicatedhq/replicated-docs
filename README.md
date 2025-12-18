@@ -79,3 +79,14 @@ Replicated supports the [llms.txt](https://llmstxt.org/) convention for making d
 
 - [llms.txt](https://docs.replicated.com/llms.txt): This file contains Markdown versions of key docs pages.
 - [llms-full.txt](https://docs.replicated.com/llms-full.txt): This file contains the contents of the docs/ directory in the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository.
+
+### How LLM Files Are Generated
+
+The `static/js/generate-llms.js` script generates LLM files and plain Markdown versions of documentation pages:
+   - `static/llms.txt`: Curated list of key documentation pages
+   - `static/llms-full.txt`: Complete archive of all documentation
+   - Plain `.md` files in `static/vendor/`, `static/enterprise/`, `static/reference/`, and `static/release-notes/`
+
+This script runs automatically with the `prebuild` npm hook before every production build. The `prebuild` hook is defined in `package.json`. To ensure the `prebuild` npm hook runs, the Netlify build command must be `npm run build` (not `docusaurus build`).
+
+Generated files are excluded from version control (listed in `.gitignore`) because they are created fresh on every build.
