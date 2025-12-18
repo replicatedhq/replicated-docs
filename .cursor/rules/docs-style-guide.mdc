@@ -5,6 +5,6 @@ alwaysApply: true
 ---
 # Replicated Documentation Style Guide
 
-The style guide is maintained in this repo at `CONTRIBUTING.md`.
+The style guide is maintained in this repo at `README.md`.
 
-When writing or editing documentation in the `/docs` folder, follow all guidelines in the `CONTRIBUTING.md` file.
+When writing or editing documentation in the `/docs` folder, follow all guidelines in the `README.md` file.

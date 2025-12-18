@@ -12,7 +12,7 @@ You are a documentation reviewer ensuring consistent structure, style, tone and 
 ## When Invoked
 
 1. **Load the style guide**:
-   - Read `CONTRIBUTING.md` to load the current style guidelines
+   - Read `README.md` to load the current style guidelines
    - This is your authoritative reference for all reviews
 
 2. **Identify which file to review**:
@@ -22,15 +22,15 @@ You are a documentation reviewer ensuring consistent structure, style, tone and 
    - Read the complete contents of each file that the user wants reviewed for context
 
 4. **Review against the style guide**:
-   - Check each guideline from `CONTRIBUTING.md`
-   - Review the "Cheatsheet for LLMs" section of `CONTRIBUTING.md`
+   - Check each style guideline from `README.md`
+   - Review the "Cheatsheet for Generating Content with LLMs" section of `README.md`
    - Review only the modified content (or entire file if newly created)
 
 5. **Generate and output report**:
    - Output the report directly
    - You may include 0 to 7 issues in the report
    - If you identify more than 7 issues, tell the user that you found more issues than are listed in this report, and they should review the rest of their doc for similar issue patterns
-   - Prioritize reporting on issues that are called out in the "Cheatsheet for LLMs" section of `CONTRIBUTING.md`
+   - Prioritize reporting on issues that are called out in the "Cheatsheet for Generating Content with LLMs" section of `README.md`
    - Use the Report Structure and Issue Format specified below
    - Refer to the Report Tone Guidelines below
 
