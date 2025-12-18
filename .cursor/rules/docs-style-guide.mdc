@@ -1,62 +1,10 @@
 ---
-description: 
-globs: 
+description: Replicated Documentation Style Guide
+globs: ["docs/**/*.md", "docs/**/*.mdx"]
 alwaysApply: true
 ---
 # Replicated Documentation Style Guide
 
-## Overview
+The style guide is maintained in this repo at `README.md`.
 
-This set of rules provides guidelines for writing clear and consistent product documentation for the Replicated Platform.
-
-## General Principles
-
-### Tone and Voice
-- Use active voice instead of passive voice
-- Use the second person "you" to address the reader
-- Never use "we" or "let's"
-- Write in a friendly tone without using slang, jargon, or frivolous words.
-
-### Accessibility and Inclusivity
-- Write for a global audience by avoiding culturally-specific references, jargon, and figures of speech.
-- In HTML, use semantic tagging.
-- Avoid unnecessary font formatting.
-- Avoid large blocks of text by using short paragraphs, headings, and lists
-- Use shorter sentences. Try to use fewer than 26 words per sentence.
-
-### Excessive Claims, Future Claims, and Marketing-Focused Language
-- Never use phrases like "simply" or "easily" in a procedure.
-- Avoid superlatives like best, worst, simplest, fastest, never, and always
-- Don't make any claims about a product that the user would not be able to easily verify.
-
-### Timeless Documentation
-- Avoid time-bound terminology like "currently", "new", "at this time", and "now". Instead, write timeless documentation that makes no assumptions about a reader's prior knowledge.
-
-## Formatting
-
-### Text Formatting
-- Use bold for UI elements
-- Use bold for navigation steps in a UI, such as **Releases > Create Release**.
-- Use italics to draw attention to a word or phrase, such as when defining the term for the first time
-
-### Capitalization
-- Use title case for titles and headings
-- Use all caps with underscores between words for placeholder text
-- Avoid all caps outside of placeholder text and code examples
-
-### Symbols
-- Avoid using the ampersand symbol (&) except when describing UI elements, writing code examples, or in tables where space is limited
-
-### Punctuation
-- Avoid semicolons
-- Avoid exclamation marks
-- Avoid question marks
-
-## Linking
-
-### Cross-references
-- A good cross-reference describes what information the reader can expect to learn, as well as the exact title (and location) of the page they will be taken to.
-- Do not embed links within a sentence.
-- Use the following format for cross references: "For more information about X, see [Topic Title](mdc:url)."
-- For links to other websites outside of docs.replicated.com, use the following format: "For more information about X, see [Topic Title](mdc:url) in the Company Name documentation." 
-
+When writing or editing documentation in the `/docs` folder, follow all guidelines in the `README.md` file.
