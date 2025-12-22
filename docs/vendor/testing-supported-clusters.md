@@ -26,7 +26,7 @@ CMX supports creating [kind](https://kind.sigs.k8s.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_kind_VERSIONS */}1.30.13, 1.31.12, 1.32.8, 1.33.4, 1.34.0{/* END_kind_VERSIONS */}</td>
+    <td>{/* START_kind_VERSIONS */}1.30.13, 1.31.14, 1.32.11, 1.33.7, 1.34.3, 1.35.0{/* END_kind_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
