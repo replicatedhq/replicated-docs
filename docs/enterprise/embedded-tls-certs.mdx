@@ -4,7 +4,7 @@ This topic describes how to update custom TLS certificates in Replicated Embedde
 
 ## Update Custom TLS Certificates
 
-Users can provide custom TLS certificates with Embedded Cluster installations and can update TLS certificates using the CLI or through the Admin Console.
+Users can use the CLI or the Admin Console to update the TLS certificates used to secure the Admin Console in Embedded Cluster installations. This is useful when certificates expire or need to be rotated regularly.
 
 ### Update Using the CLI (Recommended)
 
@@ -12,11 +12,11 @@ Users can provide custom TLS certificates with Embedded Cluster installations an
 The `admin-console update-tls` command is available in Embedded Cluster v2.13.2 and later.
 :::
 
-The `admin-console update-tls` command provides a secure way to update TLS certificates for the Admin Console. This method updates the `kotsadm-tls` Kubernetes secret directly. Pods watching this secret automatically reload the TLS configuration, so no restart is required.
+The `admin-console update-tls` command provides a secure way to update TLS certificates for the Admin Console.
 
 To update TLS certificates using the CLI:
 
-1. SSH onto a controller node where Embedded Cluster is installed. Ensure the TLS certificate and key files are present on the node.
+1. SSH onto a controller node where Embedded Cluster is installed. Ensure the new TLS certificate and key files that you want to use are present on the node.
 
 1. Run the following command to update the TLS certificate and key:
 
