@@ -19,9 +19,9 @@ Released on December 17, 2025
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">2.13.0+k8s-1.33</td>
-    <td id="center">2.13.0+k8s-1.32</td>
-    <td id="center">2.13.0+k8s-1.31</td>
+    <td id="center">2.13.2+k8s-1.33</td>
+    <td id="center">2.13.2+k8s-1.32</td>
+    <td id="center">2.13.2+k8s-1.31</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
