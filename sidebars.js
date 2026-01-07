@@ -221,11 +221,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Replicated Installers',
-      link: {
-        type: 'generated-index',
-        title: 'Replicated Installers',
-        description: 'Learn about the Replicated installers for deploying your application.',
-      },
       items: [
         {
           type: 'category',
