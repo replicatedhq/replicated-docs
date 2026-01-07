@@ -1,6 +1,6 @@
-# About Custom Resources
+# About Replicated Custom Resources
 
-You can include custom resources in releases to control the experience for applications installed with Replicated KOTS.
+You can include Replicated custom resources in releases to control the experience for applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
 Custom resources are consumed by KOTS, the Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
 
