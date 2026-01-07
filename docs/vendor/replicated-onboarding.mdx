@@ -134,7 +134,7 @@ After packaging your Helm chart, you can create a release. The initial release f
 If you have multiple charts, you will add each chart archive to the release, plus a corresponding KOTS HelmChart custom resource for each archive.
 
 :::note
-Configuring the KOTS HelmChart custom resource includes several tasks, and involves the use of KOTS template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
+Configuring the KOTS HelmChart custom resource includes several tasks, and involves the use of Replicated template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
 :::
 
 To create the first release for your application:
@@ -255,7 +255,7 @@ To configure the KOTS Application custom resource:
 The KOTS Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
 
 :::note
-Setting up the Admin Console config screen can include the use of various types of input fields, conditional statements, and KOTS template functions. Depending on your application's configuration options, Replicated recommends that you allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
+Setting up the Admin Console config screen can include the use of various types of input fields, conditional statements, and Replicated template functions. Depending on your application's configuration options, Replicated recommends that you allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
 :::
 
 To set up the Admin Console Config screen for your application:
@@ -561,7 +561,7 @@ For more information about how to create and assign custom entitlements in the V
 
 #### Map Entitlements to Helm Values
 
-You can map license entitlements to your Helm values using KOTS template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Use KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
+You can map license entitlements to your Helm values using Replicated template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Use KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
 
 #### Query Entitlements Before Installation and at Runtime
 

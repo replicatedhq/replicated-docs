@@ -46,7 +46,7 @@ After configuring a NodePort service for your application, you can add a link to
 
 You can use the KOTS [`kots.io/when`](/vendor/packaging-include-resources#kotsiowhen) annotation to conditionally deploy a service. This is useful when you want to deploy a ClusterIP or LoadBalancer service for existing cluster installations, and deploy a NodePort service for Embedded Cluster or kURL installations.
 
-To conditionally deploy a service based on the installation method, you can use the following KOTS template functions in the `kots.io/when` annotation:
+To conditionally deploy a service based on the installation method, you can use the following Replicated template functions in the `kots.io/when` annotation:
 * [IsKurl](/reference/template-functions-static-context#iskurl): Detects kURL installations. For example, `repl{{ IsKurl }}` returns true for kURL installations, and `repl{{ not IsKurl }}` returns true for non-kURL installations.
 * [Distribution](/reference/template-functions-static-context#distribution): Returns the distribution of the cluster where KOTS is running. For example, `repl{{ eq Distribution "embedded-cluster" }}` returns true for Embedded Cluster installations and `repl{{ ne Distribution "embedded-cluster" }}` returns true for non-Embedded Cluster installations.
 

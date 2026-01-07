@@ -52,7 +52,7 @@ For an additional example of a Kubernetes SIG Application custom resource, see [
 
 ### Create URLs with User-Supplied Values Using KOTS Template Functions {#url-template}
 
-You can use KOTS template functions to template URLs in the Kubernetes SIG Application custom resource. This can be useful when all or some of the URL is a user-supplied value. For example, an application might allow users to provide their own ingress controller or load balancer. In this case, the URL can be templated to render the hostname that the user provides on the Admin Console Config screen.
+You can use Replicated template functions to template URLs in the Kubernetes SIG Application custom resource. This can be useful when all or some of the URL is a user-supplied value. For example, an application might allow users to provide their own ingress controller or load balancer. In this case, the URL can be templated to render the hostname that the user provides on the Admin Console Config screen.
 
 The following examples show how to use the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function in the Kubernetes SIG Application custom resource `spec.descriptor.links.url` field to render one or more user-supplied values:
 
@@ -83,4 +83,4 @@ The following examples show how to use the KOTS [ConfigOption](/reference/templa
             url: 'http://{{repl ConfigOption "hostname" }}:{{repl ConfigOption "node_port"}}'
     ```        
 
-For more information about working with KOTS template functions, see [About Replicated Template Functions](/reference/template-functions-about).
+For more information about working with Replicated template functions, see [About Replicated Template Functions](/reference/template-functions-about).
