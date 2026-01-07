@@ -17,7 +17,7 @@ The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmcha
 
 You can create this mapping by adding a value under `values` or `optionalValues` that uses the exact same key name as a value in the corresponding Helm chart `values.yaml` file. During installation or upgrade, KOTS sets the Helm chart `values.yaml` file with any matching values from the `values` or `optionalValues` keys.
 
-The `values` and `optionalValues` keys also support the use of Replicated KOTS template functions. When you use KOTS template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding Helm chart `values.yaml` with the rendered values. For more information, see [About Template Functions](/reference/template-functions-about).
+The `values` and `optionalValues` keys also support the use of Replicated KOTS template functions. When you use KOTS template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding Helm chart `values.yaml` with the rendered values. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
 
 Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
 * Setting Helm values based on user-supplied values from the KOTS Admin Console configuration page
@@ -68,7 +68,7 @@ During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in t
 
 ### Using KOTS Template Functions
 
-You can use KOTS template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Template Functions](/reference/template-functions-about).
+You can use KOTS template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
 
 <Tabs>
   <TabItem value="config" label="Config Context Example" default>
