@@ -6,21 +6,21 @@ import KurlContext from "../partials/template-functions/_kurl-context.mdx"
 import IdentityContext from "../partials/template-functions/_identity-context.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# About Template Functions
+# About Replicated Template Functions
 
-This topic describes Replicated KOTS template functions, including information about use cases, template function contexts, syntax.
+This topic describes Replicated template functions, including information about use cases, template function contexts, syntax.
 
 ## Overview
 
-For Kubernetes manifest files for applications deployed by Replicated KOTS, Replicated provides a set of custom template functions based on the Go text/template library. 
+For Kubernetes manifest files for applications deployed by a Replicated installer (Embedded Cluster, KOTS, kURL), Replicated provides a set of custom template functions based on the Go text/template library. 
 
 <UseCases/>
 
-All functionality of the Go templating language, including if statements, loops, and variables, is supported with KOTS template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
+All functionality of the Go templating language, including if statements, loops, and variables, is supported with Replicated template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
 ### Supported File Types
 
-You can use KOTS template functions in Kubernetes manifest files for applications deployed by KOTS, such as:
+You can use Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer, such as:
 * Custom resources in the `kots.io` API group like Application, Config, or HelmChart
 * Custom resources in other API groups like Preflight, SupportBundle, or Backup
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
@@ -32,11 +32,11 @@ You can use KOTS template functions in Kubernetes manifest files for application
 
 * Templating is not supported in the [Embedded Cluster Config](/reference/embedded-config) resource.
 
-* KOTS template functions are not directly supported in Helm charts. For more information, see [Helm Charts](#helm-charts) below.
+* Replicated template functions are not directly supported in Helm charts. For more information, see [Helm Charts](#helm-charts) below.
 
 ### Helm Charts
 
-KOTS template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by KOTS template functions to Helm chart values. This allows you to use KOTS template functions with Helm charts without making changes to those Helm charts.
+Replicated template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by Replicated template functions to Helm chart values. This allows you to use Replicated template functions with Helm charts without making changes to those Helm charts.
 
 For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
@@ -48,15 +48,15 @@ For the [Config](/reference/custom-resource-config) custom resource, KOTS templa
 
 ## Syntax {#syntax}
 
-The KOTS template function syntax supports the following functionally equivalent delimiters:
+The Replicated template function syntax supports the following functionally equivalent delimiters:
 * [`repl{{ ... }}`](#syntax-integer)
 * [`{{repl ... }}`](#syntax-string)
 
 ### Syntax Requirements
 
-KOTS template function syntax has the following requirements:
+Replicated template function syntax has the following requirements:
 * In both the `repl{{ ... }}` and `{{repl ... }}` syntaxes, there must be no whitespace between `repl` and the `{{` delimiter.
-* The manifests where KOTS template functions are used must be valid YAML. This is because the YAML manifests are linted before KOTS template functions are rendered.
+* The manifests where Replicated template functions are used must be valid YAML. This is because the YAML manifests are linted before Replicated template functions are rendered.
 
 ### `repl{{ ... }}` {#syntax-integer}
 
@@ -128,25 +128,25 @@ For more examples, see [Template Function Examples](/reference/template-function
 
 ## Contexts {#contexts}
 
-KOTS template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context of the data that is provided.
+Replicated template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context of the data that is provided.
 
 ### Static Context
 
 <StaticContext/>
 
-For a list of all KOTS template functions available in the static context, see [Static Context](template-functions-static-context).
+For a list of all Replicated template functions available in the static context, see [Static Context](template-functions-static-context).
 
 ### Config Context
 
 <ConfigContext/>
 
-For a list of all KOTS template functions available in the config context, see [Config Context](template-functions-config-context).
+For a list of all Replicated template functions available in the config context, see [Config Context](template-functions-config-context).
 
 ### License Context
 
 <LicenseContext/>
 
-For a list of all KOTS template functions available in the license context, see [License Context](template-functions-license-context).
+For a list of all Replicated template functions available in the license context, see [License Context](template-functions-license-context).
 
 ### kURL Context
 
@@ -154,10 +154,10 @@ For a list of all KOTS template functions available in the license context, see 
 
 <KurlContext/>
 
-For a list of all KOTS template functions available in the kURL context, see [kURL Context](template-functions-kurl-context).
+For a list of all Replicated template functions available in the kURL context, see [kURL Context](template-functions-kurl-context).
 
 ### Identity Context
 
 <IdentityContext/>
 
-For a list of all KOTS template functions available in the identity context, see [Identity Context](template-functions-identity-context).
+For a list of all Replicated template functions available in the identity context, see [Identity Context](template-functions-identity-context).

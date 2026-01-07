@@ -1,12 +1,12 @@
-# About Replicated Custom Resources
+# About Custom Resources
 
 You can include Replicated custom resources in releases to control the experience for applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
 Custom resources are consumed by KOTS, the Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
 
-## KOTS Custom Resources
+## Custom Resources
 
-The following are custom resources in the `kots.io` API group:
+The following are the Replicated custom resources that can be used in releases installed by a Replicated installer:
 
 | API Group/Version | Kind | Description |
 |---------------|------|-------------|
@@ -14,13 +14,6 @@ The following are custom resources in the `kots.io` API group:
 | kots.io/v1beta1 | [Config](custom-resource-config)| Defines a user-facing configuration screen in the Admin Console |
 | kots.io/v1beta2 | [HelmChart](custom-resource-helmchart-v2) | Identifies an instantiation of a Helm Chart |
 | kots.io/v1beta1 | [LintConfig](custom-resource-lintconfig) | Customizes the default rule levels for the KOTS release linter |
-
-## Other Custom Resources
-
-The following are custom resources in API groups other than `kots.io` that can be included in a KOTS release to configure additional functionality:
-
-| API Group/Version | Kind | Description |
-|---------------|------|-------------|
 | app.k8s.io/v1beta1 | [SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) | Defines metadata about the application |
 | cluster.kurl.sh/v1beta1 | [Installer](https://kurl.sh/docs/create-installer/) | Defines a Replicated kURL distribution |
 | embeddedcluster.replicated.com/v1beta1 | [Config](/reference/embedded-config) | Defines a Replicated Embedded Cluster distribution |

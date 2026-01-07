@@ -224,7 +224,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'Replicated Installers',
-        description: 'Learn about the different Replicated installer options for deploying your application.',
+        description: 'Learn about the Replicated installers for deploying your application.',
       },
       items: [
         {
@@ -589,7 +589,7 @@ const sidebars = {
   {type: 'html', value: '<h5>Reference</h5>', defaultStyle: true},
   {
     type: 'category',
-    label: 'Replicated Custom Resources',
+    label: 'Custom Resources',
     items: [
       'reference/custom-resource-about',
       'reference/custom-resource-application',
