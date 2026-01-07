@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on January 7, 2026
 
-### New Features {#new-features-v2026-01-07-3}
+### Improvements {#improvements-v2026-01-07-3}
 * Adds better error messaging when trying to set an Enterprise Managed User username as your GitHub username in the Vendor Portal.
 
 ## v2025.12.16-3
