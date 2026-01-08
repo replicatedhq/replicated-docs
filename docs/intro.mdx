@@ -58,11 +58,11 @@ import clsx from 'clsx';
   <div className={clsx("container")}>
     <div className={clsx("row")}>
       <div className={clsx("col", "col--8")}>
-        <a href="/vendor/enterprise-portal-use#saml" className="whats-new-hero">
+        <a href="/reference/embedded-config#configure-velero-plugins" className="whats-new-hero">
           <div className="whats-new-badge">What's New</div>
-          <h2 className="whats-new-title">SAML Authorization Support for Enterprise Portal (Alpha)</h2>
+          <h2 className="whats-new-title">Native support for Velero plugins</h2>
           <p className="whats-new-description">
-            Vendors can enable SAML authentication for the Enterprise Portal on a per-customer basis. The Enterprise Portal SAML authentication feature is Alpha. Reach out to your account representative for early access.
+            Embedded Cluster 2.13.0 adds official support for Velero plugins, which allow you to customize backup and restore operations without modifying Velero directly.
           </p>
         </a>
       </div>
@@ -71,9 +71,9 @@ import clsx from 'clsx';
         <div className="did-you-know-container">
           <div className="did-you-know-card">
             <div className="did-you-know-badge">Did You Know</div>
-            <h3 className="did-you-know-card-title">How the HelmChart `builder` key supports air gap installs</h3>
+            <h3 className="did-you-know-card-title">View Enterprise Portal email status</h3>
             <p className="did-you-know-card-description">
-             The `builder` key ensures all images needed to install your chart are included in the `.airgap` bundle and in the Helm CLI air gap intall instructions in the Enterprise Portal.
+             In the Vendor Portal, go to **Enterprise Portal > Customer Access > Email History** to see the delivery status of emails sent by the Enterprise Portal.
             </p>
             <a href="/reference/custom-resource-helmchart-v2#builder" className="did-you-know-card-link">
               Learn more →
