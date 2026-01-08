@@ -1,6 +1,6 @@
 # Template Annotations
 
-This topic describes how to use Replicated Replicated template functions to template annotations for resources and objects based on user-supplied values.
+This topic describes how to use Replicated template functions to template annotations for resources and objects based on user-supplied values.
 
 ## Overview
 
