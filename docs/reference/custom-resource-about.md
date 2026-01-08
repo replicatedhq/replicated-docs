@@ -1,24 +1,72 @@
 # About Custom Resources
 
-You can include Replicated custom resources in releases to control the experience for applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
+You can include custom resources in your releases to control the experience for installations with a Replicated installer, add support air gap installations, and configure functionality like preflight checks, support bundles, and disaster recovery.
 
-Custom resources are consumed by KOTS, the Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
+Custom resources are consumed by Replicated installers, the Replicated Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
 
 ## Custom Resources
 
-The following are the Replicated custom resources that can be used in releases installed by a Replicated installer:
+The following custom resources can be used in releases distributed with Replicated:
 
-| API Group/Version | Kind | Description |
-|---------------|------|-------------|
-| kots.io/v1beta1 | [Application](custom-resource-application) | Adds additional metadata (branding, release notes and more) to an application |
-| kots.io/v1beta1 | [Config](custom-resource-config)| Defines a user-facing configuration screen in the Admin Console |
-| kots.io/v1beta2 | [HelmChart](custom-resource-helmchart-v2) | Identifies an instantiation of a Helm Chart |
-| kots.io/v1beta1 | [LintConfig](custom-resource-lintconfig) | Customizes the default rule levels for the KOTS release linter |
-| app.k8s.io/v1beta1 | [SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) | Defines metadata about the application |
-| cluster.kurl.sh/v1beta1 | [Installer](https://kurl.sh/docs/create-installer/) | Defines a Replicated kURL distribution |
-| embeddedcluster.replicated.com/v1beta1 | [Config](/reference/embedded-config) | Defines a Replicated Embedded Cluster distribution |
-| troubleshoot.sh/v1beta2 | [Preflight](custom-resource-preflight) | Defines the data to collect and analyze for custom preflight checks |
-| troubleshoot.sh/v1beta2 | [Redactor](https://troubleshoot.sh/docs/redact/) | Defines custom redactors that apply to support bundles and preflight checks |
-| troubleshoot.sh/v1beta2 | [Support Bundle](custom-resource-preflight) | Defines the data to collect and analyze for a support bundle |
-| velero.io/v1 | [Backup](https://velero.io/docs/v1.10/api-types/backup/) | A Velero backup request, triggered when the user initiates a backup with Replicated snapshots |
-
+<table>
+    <tr>
+        <td width="40%">API Group/Version</td>
+        <td width="25%">Kind</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>app.k8s.io/v1beta1</td>
+        <td>[SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications)</td>
+        <td>Defines metadata about the application for installations with a Replicated installer (Embedded Cluster, KOTS, kURL)</td>
+    </tr>
+    <tr>
+        <td>embeddedcluster.replicated.com/v1beta1</td>
+        <td>[Config](/reference/embedded-config)</td>
+        <td>Defines a Replicated Embedded Cluster distribution</td>
+    </tr>
+    <tr>
+        <td>cluster.kurl.sh/v1beta1</td>
+        <td>[Installer](https://kurl.sh/docs/create-installer/)</td>
+        <td>Defines a Replicated kURL distribution</td>
+    </tr>
+    <tr>
+        <td>kots.io/v1beta1</td>
+        <td>[Application](custom-resource-application)</td>
+        <td>Adds metadata (such as branding, release notes and more) to the Admin Console for installations with a Replicated installer</td>
+    </tr>
+    <tr>
+        <td>kots.io/v1beta1</td>
+        <td>[Config](custom-resource-config)</td>
+        <td>Defines a user-facing configuration screen in the Admin Console for installations with a Replicated installer</td>
+    </tr>
+    <tr>
+        <td>kots.io/v1beta2</td>
+        <td>[HelmChart](custom-resource-helmchart-v2)</td>
+        <td>Identifies an instantiation of a Helm Chart. Used for installations with a Replicated installer and for air gap installations with the Helm CLI</td>
+    </tr>
+    <tr>
+        <td>kots.io/v1beta1</td>
+        <td>[LintConfig](custom-resource-lintconfig)</td>
+        <td>Customizes the default rule levels for the release linter</td>
+    </tr>
+    <tr>
+        <td>troubleshoot.sh/v1beta2</td>
+        <td>[Preflight](custom-resource-preflight)</td>
+        <td>Defines collectors and analyzers for preflight checks</td>
+    </tr>
+    <tr>
+        <td>troubleshoot.sh/v1beta2</td>
+        <td>[Redactor](https://troubleshoot.sh/docs/redact/)</td>
+        <td>Defines custom redactors for support bundles and preflight checks. Supported for installations with a Replicated installer</td>
+    </tr>
+    <tr>
+        <td>troubleshoot.sh/v1beta2</td>
+        <td>[Support Bundle](custom-resource-preflight)</td>
+        <td>Defines collectors and analyzers for support bundles</td>
+    </tr>
+    <tr>
+        <td>velero.io/v1</td>
+        <td>[Backup](https://velero.io/docs/v1.17/api-types/backup/)</td>
+        <td>Defines a Velero backup request. Velero provides backup and restore functionality for installations with a Replicated installer. For more information about Velero, see the [Velero](https://velero.io/docs/v1.17/) documentation.</td>
+    </tr>
+</table>
