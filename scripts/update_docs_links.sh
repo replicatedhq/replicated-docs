@@ -5,7 +5,7 @@
 
 # Define replacement patterns with the format "[search pattern]:[replacement]"
 patterns=(
-  "About Template Functions:About Replicated Template Functions"
+  "Replicated Onboarding:Onboard to the Replicated Platform"
   # Add patterns here, one per line
   # "Old Title:New Title"
 )
