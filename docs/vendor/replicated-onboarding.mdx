@@ -10,7 +10,7 @@ import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
 
-# Onboard to the Replicated Platform
+# Replicated Onboarding (Replicated Installers and Helm CLI)
 
 This topic describes how to onboard applications to the Replicated Platform.
 
@@ -86,7 +86,7 @@ To create an application:
 
 ### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry {#task-2}
 
-Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you can grant proxy access to application images without exposing registry credentials to your customers.
+Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you to grant proxy access to application images without exposing registry credentials to your customers.
 
 To modify image references to point to the proxy registry:
 
@@ -128,13 +128,13 @@ To package your Helm chart with the Replicated SDK:
 
 After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with the Embedded Cluster installer:
 * The Helm chart `.tgz` archive
-* [KOTS HelmChart custom resource](/reference/custom-resource-helmchart-v2)
+* [HelmChart custom resource](/reference/custom-resource-helmchart-v2)
 * [Embedded Cluster Config](/reference/embedded-config)
 
-If you have multiple charts, you will add each chart archive to the release, plus a corresponding KOTS HelmChart custom resource for each archive.
+If you have multiple charts, you will add each chart archive to the release, plus a corresponding HelmChart custom resource for each archive.
 
 :::note
-Configuring the KOTS HelmChart custom resource includes several tasks, and involves the use of Replicated template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
+Configuring the HelmChart custom resource includes several tasks, and involves the use of Replicated template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
 :::
 
 To create the first release for your application:
