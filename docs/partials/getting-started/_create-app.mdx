@@ -1,0 +1,23 @@
+To get started with onboarding, first create a new application. This will be the official Vendor Portal application used by your team to create and promote both internal and customer-facing releases.
+
+To create an application:
+
+1. Create a new application using the Replicated CLI or the Vendor Portal. Use an official name for your application. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
+   
+   <details>
+   <summary>Can I change the application name in the future?</summary>
+
+   You can change the application name, but you cannot change the application _slug_.
+
+   The Vendor Portal automatically generates and assigns a unique slug for each application based on the application's name. For example, the slug for "Example App" would be `example-app`.
+   
+   Application slugs are unique across all of Replicated. This means that, if necessary, the Vendor Portal will append a random word to the end of slug to ensure uniqueness. For example, `example-app-flowers`.
+   </details>
+
+1. Set the `REPLICATED_APP` environment variable to the unique slug of the application that you created. This will allow you to interact with the application from the Replicated CLI throughout onboarding. See [Set Environment Variables](/reference/replicated-cli-installing#replicated_app) in _Installing the Replicated CLI_.
+
+   For example:
+
+   ```bash
+   export REPLICATED_APP=my-app
+   ```

@@ -1,3 +1,5 @@
+import CommunityHelp from "../partials/getting-started/_community-help.mdx"
+import CreateApp from "../partials/getting-started/_create-app.mdx"
 import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import EcCr from "../partials/embedded-cluster/_ec-config.mdx"
@@ -30,11 +32,7 @@ The following are some best practices and recommendations for successfully onboa
 
 ### Getting Help from the Community {#community}
 
-The [Replicated community site](https://community.replicated.com/) is a forum where Replicated team members and users can post questions and answers related to working with the Replicated Platform. It is designed to help Replicated users troubleshoot and learn more about common tasks involved with distributing, installing, observing, and supporting their application. 
-
-Before posting in the community site, use the search to find existing knowledge base articles related to your question. If you are not able to find an existing article that addresses your question, create a new topic or add a reply to an existing topic so that a member of the Replicated community or team can respond.
-
-To search and participate in the Replicated community, see https://community.replicated.com/.
+<CommunityHelp/>
 
 ## Prerequisites
 
@@ -56,33 +54,11 @@ To search and participate in the Replicated community, see https://community.rep
 
 ## Onboard
 
-Complete the tasks in this section to onboard your application to the Replicated Platform, with support for . When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
+Complete the tasks in this section to onboard your application to the Replicated Platform. When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
 
 ### Task 1: Create An Application
 
-To get started with onboarding, first create a new application. This will be the official Vendor Portal application used by your team to create and promote both internal and customer-facing releases.
-
-To create an application:
-
-1. Create a new application using the Replicated CLI or the Vendor Portal. Use an official name for your application. See [Create an Application](/vendor/vendor-portal-manage-app#create-an-application).
-   
-   <details>
-   <summary>Can I change the application name in the future?</summary>
-
-   You can change the application name, but you cannot change the application _slug_.
-
-   The Vendor Portal automatically generates and assigns a unique slug for each application based on the application's name. For example, the slug for "Example App" would be `example-app`.
-   
-   Application slugs are unique across all of Replicated. This means that, if necessary, the Vendor Portal will append a random word to the end of slug to ensure uniqueness. For example, `example-app-flowers`.
-   </details>
-
-1. Set the `REPLICATED_APP` environment variable to the unique slug of the application that you created. This will allow you to interact with the application from the Replicated CLI throughout onboarding. See [Set Environment Variables](/reference/replicated-cli-installing#replicated_app) in _Installing the Replicated CLI_.
-
-   For example:
-
-   ```bash
-   export REPLICATED_APP=my-app
-   ```
+<CreateApp/>
 
 ### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry {#task-2}
 
