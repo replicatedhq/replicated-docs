@@ -108,7 +108,7 @@ spec:
 
 You can use the `kots.io/exclude` or `kots.io/when` annotations to include or exclude standalone Kubernetes manifests that are not part of a Helm chart. By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
-These annotations accept a boolean value. To create a conditional statement that evaluates to true or false, you can use Replicated template functions. For more information about working with Replicated template functions, see [About Template Functions](/reference/template-functions-about).
+These annotations accept a boolean value. To create a conditional statement that evaluates to true or false, you can use Replicated template functions. For more information about working with Replicated template functions, see [About Replicated Template Functions](/reference/template-functions-about).
 
 ### Requirements
 

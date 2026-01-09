@@ -2,7 +2,7 @@ import ConfigContext from "../partials/template-functions/_config-context.mdx"
 
 # Config Context
 
-This topic provides a list of the KOTS template functions in the Config context.
+This topic provides a list of the Replicated template functions in the Config context.
 
 <ConfigContext/>
 

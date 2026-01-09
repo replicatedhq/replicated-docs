@@ -68,4 +68,4 @@ The kURL registry image garbage collection feature has following limitations:
 
 * **Customer-Supplied Registries**: Image garbage collection is supported only when used with the built-in kURL registry. If the KOTS instance is configured to use a different registry, disable garbage collection to prevent image loss. For more information about configuring an image registry in the Admin Console, see [Configure Local Image Registries](/enterprise/image-registry-settings).
 
-* **Application Rollbacks**: Image garbage collection has no effect when the `allowRollback` field in the KOTS Application custom resource is set to `true`. For more information, see [Application](/reference/custom-resource-application) in _KOTS Custom Resources_.
+* **Application Rollbacks**: Image garbage collection has no effect when the `allowRollback` field in the Replicated Application custom resource is set to `true`. For more information, see [Application](/reference/custom-resource-application).

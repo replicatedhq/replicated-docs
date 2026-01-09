@@ -67,7 +67,7 @@ statusInformers:
 
 In the example above, the `deployment/my-worker` status informer is excluded unless the statement in the `ConfigOptionEquals` template function evaluates to true.
 
-For more information about using template functions in application manifest files, see [About Template Functions](/reference/template-functions-about).
+For more information about using template functions in application manifest files, see [About Replicated Template Functions](/reference/template-functions-about).
 
 ## Understanding Application Status
 

@@ -1,10 +1,10 @@
 The `optionalValues.when` field defines a conditional statement that must evaluate to true for the given values to be set. Evaluation of the conditional in the `optionalValues.when` field is deferred until render time in the customer environment. 
 
-Use KOTS template functions to write the `optionalValues.when` conditional statement. The following example shows a conditional statement for selecting a database option on the Admin Console configuration screen:
+Use Replicated template functions to write the `optionalValues.when` conditional statement. The following example shows a conditional statement for selecting a database option on the Admin Console configuration screen:
 
 ```yaml
 optionalValues:
   - when: repl{{ ConfigOptionEquals "postgres_type" "external_postgres"}}
 ```
 
-For more information about using KOTS template functions, see [About Template Functions](/reference/template-functions-about).
+For more information about using Replicated template functions, see [About Replicated Template Functions](/reference/template-functions-about).

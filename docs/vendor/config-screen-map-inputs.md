@@ -18,9 +18,9 @@ For more information about including optional resources conditionally based on u
 
 ## About Mapping Values with Template Functions
 
-To map user-supplied values, you use Replicated KOTS template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
+To map user-supplied values, you use Replicated template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
 
-For more information about template functions, including use cases and examples, see [About Template Functions](/reference/template-functions-about).
+For more information about template functions, including use cases and examples, see [About Replicated Template Functions](/reference/template-functions-about).
 
 For more information about the syntax of the template functions for mapping configuration values, see [Config Context](/reference/template-functions-config-context) in the _Template Functions_ section.
 

@@ -6,7 +6,7 @@ import UseCases from "../partials/template-functions/_use-cases.mdx"
 
 # Template Function Examples
 
-This topic provides examples of how to use Replicated KOTS template functions in various common use cases. For more information about working with KOTS template functions, including the supported syntax and the types of files where KOTS template functions can be used, see [About Template Functions](template-functions-about).
+This topic provides examples of how to use Replicated template functions in various common use cases. For more information about working with Replicated template functions, including the supported syntax and the types of files where Replicated template functions can be used, see [About Replicated Template Functions](template-functions-about).
 
 ## Overview
 
@@ -18,11 +18,11 @@ For examples demonstrating these use cases and more, see the sections below.
 
 ## Comparison Examples
 
-This section includes examples of how to use KOTS template functions to compare different types of data.
+This section includes examples of how to use Replicated template functions to compare different types of data.
 
 ### Boolean Comparison
 
-Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many KOTS template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
+Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many Replicated template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
 
 One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS Admin Console **Config** page only when the customer's license has a certain entitlement.
 
@@ -55,7 +55,7 @@ spec:
       when: repl{{ and (LicenseFieldValue "feature-1" | ParseBool) (ConfigOptionEquals "radio_example" "option_one")}}  
 ```
 
-This example uses the following KOTS template functions:
+This example uses the following Replicated template functions:
 * [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) to return the string value of a boolean type license field named `feature-1`
    :::note
    The LicenseFieldValue template function always returns a string, regardless of the license field type.
@@ -65,29 +65,29 @@ This example uses the following KOTS template functions:
 
 ### Integer Comparison
 
-Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many KOTS template functions return string values, working with integer values often requires using another function to return the integer represented by the string, such as:
+Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many Replicated template functions return string values, working with integer values often requires using another function to return the integer represented by the string, such as:
 * KOTS [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
 * Sprig [atoi](https://masterminds.github.io/sprig/conversion.html), which is equivalent to ParseInt(s, 10, 0), converted to type integer
 
-A common use case for comparing integer values with KOTS template functions is to display different configuration options on the KOTS Admin Console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
+A common use case for comparing integer values with Replicated template functions is to display different configuration options on the KOTS Admin Console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
 
 <IntegerComparison/>
 
 ### String Comparison
 
-A common use case for string comparison is to compare the rendered value of a KOTS template function against a string to conditionally show or hide fields on the KOTS Admin Console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
+A common use case for string comparison is to compare the rendered value of a Replicated template function against a string to conditionally show or hide fields on the KOTS Admin Console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
 ### Not Equal To Comparison
 
-It can be useful to compare the rendered value of a KOTS template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS Admin Console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/vendor/embedded-overview).
+It can be useful to compare the rendered value of a Replicated template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS Admin Console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/vendor/embedded-overview).
 
 <NeComparison/>
 
 ### Logical AND Comparison
 
-Logical comparisons such as AND, OR, and NOT can be used with KOTS template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
+Logical comparisons such as AND, OR, and NOT can be used with Replicated template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
 The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the Admin Console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
@@ -139,11 +139,11 @@ Alternatively, if either `Option One` or `Boolean Example` is not selected, then
 
 ## Conditional Statement Examples
 
-This section includes examples of using KOTS template functions to construct conditional statements. Conditional statements can be used with KOTS template functions to render different values depending on a given condition. 
+This section includes examples of using Replicated template functions to construct conditional statements. Conditional statements can be used with Replicated template functions to render different values depending on a given condition. 
 
 ### If-Else Statements
 
-A common use case for if-else statements with KOTS template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
+A common use case for if-else statements with Replicated template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
 
 This section includes examples of both single line and multi-line if-else statements. Using multi-line formatting can be useful to improve the readability of YAML files when longer or more complex if-else statements are needed.
 
@@ -189,7 +189,7 @@ spec:
 
 The following example uses a multi-line if-else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
 
-This example uses the following KOTS template functions:
+This example uses the following Replicated template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
@@ -228,7 +228,7 @@ images:
 
 The following example uses multi-line if-else statements in a Secret object deployed by KOTS to conditionally set the database hostname, port, username, and password depending on if the customer uses the database embedded with the application or brings their own external database.
 
-This example uses the following KOTS template functions:
+This example uses the following Replicated template functions:
 * [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
 * [ConfigOption](/reference/template-functions-config-context#configoption) to return the user-supplied value for the specified configuration option 
 * [Base64Encode](/reference/template-functions-static-context#base64encode) to encode the string with base64
@@ -277,7 +277,7 @@ data:
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if-else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
-The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following KOTS template functions:
+The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following Replicated template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
@@ -302,13 +302,13 @@ spec:
 
 ## Formatting Examples
 
-This section includes examples of how to format the rendered output of KOTS template functions.
+This section includes examples of how to format the rendered output of Replicated template functions.
 
-In addition to the examples in this section, KOTS template functions in the Static context include several options for formatting values, such as converting strings to upper or lower case and trimming leading and trailing space characters. For more information, see [Static Context](/reference/template-functions-static-context). 
+In addition to the examples in this section, Replicated template functions in the Static context include several options for formatting values, such as converting strings to upper or lower case and trimming leading and trailing space characters. For more information, see [Static Context](/reference/template-functions-static-context). 
 
 ### Indentation
 
-When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to KOTS template functions is when templating annotations in the metadata of resources or objects deployed by your application based on user-supplied values. 
+When using template functions within nested YAML, it is important that the rendered template functions are indented correctly so that the YAML renders. A common use case for adding indentation to Replicated template functions is when templating annotations in the metadata of resources or objects deployed by your application based on user-supplied values. 
 
 The [nindent](https://masterminds.github.io/sprig/strings.html) function can be used to prepend a new line to the beginning of the string and indent the string by a specified number of spaces.
 
@@ -346,7 +346,7 @@ metadata:
 
 ### Render Quoted Values
 
-To wrap a rendered value in quotes, you can pipe the result from KOTS template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
+To wrap a rendered value in quotes, you can pipe the result from Replicated template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
 
 One use case for quoted values in YAML is when indicator characters are included in values. In YAML, indicator characters (`-`, `?`, `:`) have special semantics and must be escaped if used in values. For more information, see [Indicator Charactors](https://yaml.org/spec/1.2.2/#53-indicator-characters) in the YAML documentation.
 
@@ -369,15 +369,15 @@ customTag: 'key: value'
 
 ## Variables Example
 
-This section includes an example of using variables with KOTS template functions. For more information, see [Variables](https://pkg.go.dev/text/template#hdr-Variables) in the Go documentation.
+This section includes an example of using variables with Replicated template functions. For more information, see [Variables](https://pkg.go.dev/text/template#hdr-Variables) in the Go documentation.
 
 ### Using Variables to Generate TLS Certificates in JSON
 
-You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with KOTS template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the Admin Console **Config** page.
+You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with Replicated template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the Admin Console **Config** page.
 
-The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and KOTS template functions to provide the necessary parameters when calling these functions.
+The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and Replicated template functions to provide the necessary parameters when calling these functions.
 
-The following example shows how to use variables and KOTS template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the KOTS Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
+The following example shows how to use variables and Replicated template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the KOTS Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
 
 This example uses the following:
 * KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to render the user-supplied value for the ingress hostname. This is passed as a parameter to the [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions 
@@ -435,7 +435,7 @@ The following image shows how the default values for the CA, certificate, and ke
 
 ## Additional Examples
 
-The following topics include additional examples of using KOTS template functions in Kubernetes manifests deployed by KOTS or in KOTS custom resources: 
+The following topics include additional examples of using Replicated template functions: 
 
 * [Add Status Informers](/vendor/admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_
 * [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources)
