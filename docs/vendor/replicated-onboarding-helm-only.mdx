@@ -103,19 +103,19 @@ To configure your chart to use the proxy registry:
 
 1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command.
 
-Continue to the next task to add the Helm chart `.tgz` archive(s) to your first release in the Vendor Portal.
-
 ### Task : Add the HelmChart Custom Resource and Create a Release
 
-For each HelmChart in your release, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of images that are used by your Helm chart, which enables features such as air gap installations with the Helm CLI. Then, create and promote your first release in the Vendor Portal.
+For each Helm chart used by your application, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of the images that are used by your Helm chart, which enables features such as air gap installations with the Helm CLI and scanning and reporting on application images with the [Replicated Security Center (Alpha)](/vendor/security-center-about). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-To add the HelmChart custom resource:
+After you configure the HelmChart custom resource, you can create and promote your first release in the Vendor Portal.
 
-1. In the local directory for your application Helm chart, create a subdirectory named `manifests`. This is where you will add the files for your first release.
+To add one or more HelmChart custom resources and create a release:
+
+1. In the local directory for your application Helm chart, create a subdirectory named `manifests`. This is where you will add the files for your release.
 
 1. Move the `.tgz` chart archive(s) that you packaged in the previous task to the `manifests` directory.
 
-1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`. For example, `samplechart.yaml`. In the file, add the following YAML to create a HelmChart custom resource. Update the values to match the name and version of your Helm chart.
+1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`. For example, `samplechart.yaml`. In the file, add the following YAML to create a HelmChart custom resource. Update the values to match the name and version of the corresponding Helm chart.
 
     ```yaml
     # HelmChart custom resource
@@ -130,9 +130,8 @@ To add the HelmChart custom resource:
         # chartVersion must match the chart version from the .tgz chart archive
         chartVersion: 1.2.3 
     ```
-    For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-1. If your application is deployed as multiple Helm charts, add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
+1. If your application is deployed as multiple Helm charts, repeat the previous step to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
 1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, [Managing Releases with the CLI](releases-creating-cli).
 
@@ -255,17 +254,21 @@ To add the default support bundle spec to your application:
 
 1. (Optional) Customize the support bundle spec by adding additional collectors and analyzers.
 
-### Task : Alias Replicated Endpoints
+### Task : Alias Replicated Endpoints With Your Own Custom Domains {#custom-domains}
 
 <CustomDomains/>
 
-### (Optional) Task : Add support for air gap installations with the Helm CLI
+For more information about updating image references, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
+
+## Next Steps
+
+### Add Support for Air Gap Installations
 
 Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Helm CLI installations, users install by following automatically-generated instructions provided in the Enterprise Portal to pull all images and push them to their local image registry.
 
-To add support for air gap installations:
+To add support for air gap installations with the Helm CLI:
 
-1. For each Helm chart in your release, configure the corresponding HelmChart custom resource `builder` key. In the `builder` key, define any Helm values that must be set so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment. This ensures that the Vendor Portal can build the air gap bundle for the release. See [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles) and [builder](/reference/custom-resource-helmchart-v2#builder).
+1. For each Helm chart in your release, configure the corresponding HelmChart custom resource [builder](/reference/custom-resource-helmchart-v2#builder) key. In the `builder` key, define any Helm values that must be set so that the output of `helm template` exposes all container images needed to install the chart. This ensures that the Vendor Portal can build the air gap bundle for the release and generate the customer-facing air gap install instructions in the Enterprise Portal.
 
    <details>
    <summary>How do I know if I need to configure the `builder` key?</summary>
@@ -275,17 +278,19 @@ To add support for air gap installations:
    For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images. If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
    </details>
 
-1. Create and promote a new release with your changes. For more information, see [Managing Releases with the CLI](releases-creating-cli).
+1. <CreateRelease/>
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
      * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
 
-1. Create or edit a customer with the Helm CLI air gap entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
+1. Enable the **Helm CLI Air Gap Instructions (Helm CLI only)** entitlement for the customer that you will use to test the installation. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
-1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test air gap installation in a cluster with Helm.
+1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test.
 
-## Next Steps
+    :::note
+    Replicated recommends that you use Compatibility Matrix (CMX) to create an air-gapped environment for testing the release. For more information, see [Test in Air Gap Environments](/vendor/testing-network-policy).
+    :::
 
 ### Add Custom Metrics
 
@@ -307,4 +312,8 @@ Before distributing your application to customers, ensure that your documentatio
 
 For guidance on how to get started with documentation for applications distributed with Replicated, including key considerations, examples, and templates, see [Writing Great Documentation for On-Prem Software Distributed with Replicated](https://www.replicated.com/blog/writing-great-documentation-for-on-prem-software-distributed-with-replicated) in the Replicated blog.
 
-### Add Support for Replicated Installers
+### Add Support for Replicated Embedded Cluster Installations
+
+Replicated Embedded Cluster is a UI-based installer that supports installations on VMs or bare metal servers. Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance, making it easy for enterprise users to install, update, and manage the application and the cluster in tandem. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+
+Teams with the Business or Enterprise pricing plan can modify existing releases to support Embedded Cluster installations; it is not necessary to create and manage separate releases or channels for each installation method. For more information about how to get access to Embedded Cluster, reach out to your Replicated account representative.
