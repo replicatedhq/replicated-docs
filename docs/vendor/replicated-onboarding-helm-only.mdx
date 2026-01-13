@@ -79,7 +79,7 @@ To add the Replicated SDK:
 
 The Replicated proxy regsitry allows you to grant proxy access to your application images without exposing registry credentials to your customers.
 
-To use the proxy registry in Helm CLI installations, update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. Then, add a Secret to your chart to authenticate with the proxy registry. For more information, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
+To use the proxy registry in Helm CLI installations, update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. Then, add a Replicated pull secret to your chart to authenticate with the proxy registry. For more information about this process, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
 
 To configure your chart to use the proxy registry:
 
@@ -105,7 +105,7 @@ To configure your chart to use the proxy registry:
 
 ### Task 4: Add the HelmChart Custom Resource and Create a Release
 
-For each Helm chart used by your application, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of the images that are used by your Helm chart, which enables features such as air gap installations with the Helm CLI and scanning and reporting on application images with the [Replicated Security Center (Alpha)](/vendor/security-center-about). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+For each Helm chart used by your application, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of the images that are used by your Helm chart. This enables features such as air gap installations and scanning and reporting on application images with the [Replicated Security Center (Alpha)](/vendor/security-center-about). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 After you configure the HelmChart custom resource, you can create and promote your first release in the Vendor Portal.
 
@@ -115,7 +115,9 @@ To add one or more HelmChart custom resources and create a release:
 
 1. Move the `.tgz` chart archive(s) that you packaged in the previous task to the `manifests` directory.
 
-1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`. For example, `samplechart.yaml`. In the file, add the following YAML to create a HelmChart custom resource. Update the values to match the name and version of the corresponding Helm chart.
+1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`, where `YOUR_CHART_NAME` is the name of the chart that you moved to `manifests`. For example, `samplechart.yaml`
+
+1. In the file, add the following YAML to create a HelmChart custom resource. Update the values for `chart.name` and `chart.chartVersion` to match the name and version of the corresponding Helm chart.
 
     ```yaml
     # HelmChart custom resource
@@ -133,7 +135,7 @@ To add one or more HelmChart custom resources and create a release:
 
 1. If your application is deployed as multiple Helm charts, repeat the previous step to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
-1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, [Managing Releases with the CLI](releases-creating-cli).
+1. From the `manifests` directory, use the Replicated CLI to create a release and promote it to the Unstable channel. For more information, [Managing Releases with the CLI](releases-creating-cli).
 
     ```bash
     replicated release create --yaml-dir . --promote Unstable
@@ -141,7 +143,7 @@ To add one or more HelmChart custom resources and create a release:
 
 1. Install the release in a development environment to test. See [Install with Helm](/vendor/install-with-helm).
 
-After successfully installing the release in a cluster with the Helm CLI, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then installing or upgrading to the new version in your development environment.
+After successfully installing the release in a cluster with the Helm CLI, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then installing the new version in your development environment.
 
 ### Task 5: Set up the Enterprise Portal
 
@@ -155,15 +157,13 @@ To define preflight checks for your application:
 
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Define Preflight Checks](/vendor/preflight-defining). For examples, see [Example Preflight Specs](/vendor/preflight-examples).
 
-    :::note
     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
-    :::
 
-1. Update dependencies and package the chart as a `.tgz` file:
+1. Update dependencies and package the chart as a `.tgz`:
 
    <HelmPackage/>
 
-1. Move the `.tgz` file to the `manifests` directory.
+1. Move the `.tgz` chart archive to the `manifests` directory.
 
 1. <CreateRelease/>
 
@@ -198,6 +198,8 @@ To add the default support bundle spec to your application:
 <CustomDomains/>
 
 ## Next Steps
+
+After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
 
 ### Add Support for Air Gap Installations
 
@@ -247,7 +249,7 @@ For more information, see [Configure Custom Metrics](/vendor/custom-metrics).
 
 <WriteYourDocs/>
 
-### Add Support for Replicated Embedded Cluster Installations
+### Add Support for Replicated Embedded Cluster Installations on a VM
 
 Replicated Embedded Cluster is a UI-based installer that supports installations on VMs or bare metal servers. Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance, making it easy for enterprise users to install, update, and manage the application and the cluster in tandem. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
 

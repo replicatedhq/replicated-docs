@@ -11,6 +11,7 @@ import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
 import EnterprisePortal from "../partials/getting-started/_enterprise-portal.mdx"
+import PreflightSupportBundleIntro from "../partials/getting-started/_preflight-sb-onboarding-intro.mdx"
 import SupportBundleSpec from "../partials/getting-started/_support-bundle-spec.mdx"
 import CustomDomains from "../partials/getting-started/_custom-domains.mdx"
 import CustomizeReleaseChannels from "../partials/getting-started/_customize-release-channels.mdx"
@@ -301,26 +302,19 @@ To set up the Admin Console Config screen for your application:
 
 ### Task 7: Define Preflight Checks
 
-In the next two tasks, you will add specs for _preflight checks_ and _support bundles_.
-
-Preflight checks and support bundles are provided by the Troubleshoot open source project, which is maintained by Replicated. Troubleshoot is a kubectl plugin that provides diagnostic tools for Kubernetes applications. For more information, see the open source [Troubleshoot](https://troubleshoot.sh/docs/) documentation.
-
-Preflight checks and support bundles analyze data from customer environments to provide insights that help users to avoid or troubleshoot common issues with an application:
-* **Preflight checks** run before an application is installed to check that the customer environment meets the application requirements.
-* **Support bundles** collect troubleshooting data from customer environments to help users diagnose problems with application deployments.
+<PreflightSupportBundleIntro/>
 
 To define preflight checks for your application:
 
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Define Preflight Checks](/vendor/preflight-defining). For examples, see [Example Preflight Specs](/vendor/preflight-examples).
-     :::note
-     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
-     :::
 
-1. Update dependencies and package the chart as a `.tgz` file:
+     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
+
+1. Update dependencies and package the chart as a `.tgz`:
 
    <HelmPackage/>
 
-1. Move the `.tgz` file to the `manifests` directory.
+1. Move the `.tgz` chart archive to the `manifests` directory.
 
 1. <CreateRelease/>
 
@@ -350,15 +344,15 @@ To add the default support bundle spec to your application:
 
 8. (Optional) Customize the support bundle spec by adding additional collectors and analyzers.
 
-### Task 9: Alias Replicated Endpoints With Your Own Domains {#custom-domains}
+### Task 9: Set Up the Enterprise Portal
+
+<EnterprisePortal/>
+
+### Task 10: Alias Replicated Endpoints With Your Own Domains {#custom-domains}
 
 <CustomDomains/>
 
-1. If you added a custom domain for the proxy registry or app service, update the Embedded Cluster Config so that Embedded Cluster installations use your custom domains. See [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
-
-### Task 10: Set Up the Enterprise Portal
-
-<EnterprisePortal/>
+3. If you added a custom domain for the proxy registry or app service, update the Embedded Cluster Config so that Embedded Cluster installations use your custom domains. See [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
 
 ## Next Steps
 
