@@ -37,8 +37,6 @@ The following are some best practices and recommendations for successfully onboa
 
 * Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines.
 
-* These onboarding tasks show you how to create releases in the Replicated Platform and then test the installation of each release in a cluster using the Helm CLI. For information about how to add support 
-
 ### Getting Help from the Community {#community}
 
 <CommunityHelp/>
@@ -55,7 +53,7 @@ The following are some best practices and recommendations for successfully onboa
 
 ## Onboard
 
-Complete the tasks in this section to onboard your application to the Replicated Platform.
+Complete the tasks in this section to onboard your application to the Replicated Platform. When you are done, you can continue to the [Next Steps](#next-steps) to integrate other Replicated features with your application.
 
 ### Task 1: Create An Application
 
@@ -132,6 +130,9 @@ To add one or more HelmChart custom resources and create a release:
         # chartVersion must match the chart version from the .tgz chart archive
         chartVersion: 1.2.3 
     ```
+    :::note
+    For online (internet-connected) Helm CLI installations, you do not need to configure any additional fields in the HelmChart custom resource besides `chart.name` and `chart.chartVersion`. If you also plan to support Helm CLI installations in air-gapped environments, you will update the HelmChart custom resource as part of [Next Steps > Add Support for Air Gap Installations](#air-gap).  
+    :::
 
 1. If your application is deployed as multiple Helm charts, repeat the previous step to add a separate HelmChart custom resource for each Helm chart archive in the release.
 
@@ -169,8 +170,6 @@ To define preflight checks for your application:
 
 1. Install the release in your development environment to test. See [Install with Helm](/vendor/install-with-helm).
 
-    For Helm CLI installations, users can optionally run preflight checks before installing by installing the preflight plugin.
-
 1. Continue to create and test new releases with additional preflight checks until you are ready to move on to the next task.    
 
 ### Task 7: Add a Support Bundle Spec
@@ -201,7 +200,7 @@ To add the default support bundle spec to your application:
 
 After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
 
-### Add Support for Air Gap Installations
+### Add Support for Air Gap Installations {#air-gap}
 
 Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Helm CLI installations, users install by following automatically-generated instructions provided in the Enterprise Portal to pull all images and push them to their local image registry.
 
