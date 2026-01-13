@@ -113,9 +113,9 @@ To add one or more HelmChart custom resources and create a release:
 
 1. Move the `.tgz` chart archive(s) that you packaged in the previous task to the `manifests` directory.
 
-1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`, where `YOUR_CHART_NAME` is the name of the chart that you moved to `manifests`. For example, `samplechart.yaml`
+1. In the `manifests` directory, create a new YAML file named `YOUR_CHART_NAME.yaml`, where `YOUR_CHART_NAME` is the name of your chart. For example, `samplechart.yaml`.
 
-1. In the file, add the following YAML to create a HelmChart custom resource. Update the values for `chart.name` and `chart.chartVersion` to match the name and version of the corresponding Helm chart.
+1. In the `YOUR_CHART_NAME.yaml` file, add the following YAML to create a HelmChart custom resource. Update the values for `chart.name` and `chart.chartVersion` to match the name and version of the corresponding Helm chart.
 
     ```yaml
     # HelmChart custom resource
@@ -134,7 +134,7 @@ To add one or more HelmChart custom resources and create a release:
     For online (internet-connected) Helm CLI installations, you do not need to configure any additional fields in the HelmChart custom resource besides `chart.name` and `chart.chartVersion`. If you also plan to support Helm CLI installations in air-gapped environments, you will update the HelmChart custom resource as part of [Next Steps > Add Support for Air Gap Installations](#air-gap).  
     :::
 
-1. If your application is deployed as multiple Helm charts, repeat the previous step to add a separate HelmChart custom resource for each Helm chart archive in the release.
+1. If your application is deployed as multiple Helm charts, repeat the previous steps to add a unique HelmChart custom resource for each Helm chart archive in the release.
 
 1. From the `manifests` directory, use the Replicated CLI to create a release and promote it to the Unstable channel. For more information, [Managing Releases with the CLI](releases-creating-cli).
 
