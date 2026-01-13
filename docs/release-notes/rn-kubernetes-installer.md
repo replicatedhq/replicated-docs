@@ -10,6 +10,17 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.01.13-0
+
+Released on January 13, 2026
+
+### New Features {#new-features-v2026-01-13-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.34.3 1.33.7 1.32.11 1.31.14.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.29.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.4.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.12.
+
 ## v2025.11.15-0
 
 Released on November 15, 2025
