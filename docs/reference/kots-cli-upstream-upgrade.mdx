@@ -19,7 +19,7 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `-n, --namespace`        | string | (Required) the namespace where the Admin Console is running                                    |
 | `--deploy`               | bool   | ensures the latest available release is deployed                                                 |
 | `--deploy-version-label` | string | ensures the release with the provided version label is deployed                                  |
-| `--skip-preflights`      | bool   | set to true to skip preflight checks                                                             |
+| `--skip-preflights`      | bool   | set to true to skip preflight checks if no strict preflights exist; when strict preflights are present, all preflights still run, but non-strict failures are ignored |
 | `--airgap-bundle`        | string | path to the application airgap bundle where application images and metadata will be loaded from  |
 | `--kotsadm-namespace`    | string | the registry namespace to use for application images                                             |
 | `--kotsadm-registry`     | string | the registry endpoint where application images will be pushed                                    |
