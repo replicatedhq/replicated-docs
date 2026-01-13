@@ -15,7 +15,7 @@ kubectl kots upstream download [app-slug] [flags]
 | `--kubeconfig`                    | string | The kubeconfig to use. **Default**: `$KUBECONFIG`. If unset, then `$HOME/.kube/config`.          |
 | `-n, --namespace`                 | string | (Required) The namespace where the Admin Console is running.                                    |
 | `--sequence`                      | int    | (Required) The local app sequence for the version to retry downloading.                         |
-| `--skip-preflights`               | bool   | set to `true` to skip preflight checks if no strict preflights exist; when strict preflights are present, all preflights still run, but non-strict failures are ignored |
+| `--skip-preflights`               | bool   | Set to `true` to skip preflight checks if no strict preflights exist; when strict preflights are present, all preflights still run, but non-strict failures are ignored |
 | `--skip-compatibility-check`      | bool   | Set to `true` to skip compatibility checks between the current kots version and the update.         |
 | `--wait`                          | bool   | Set to `false` to download the update in the background. **Default**: `true`.                         |
 | `-o, --output`                    | string | Output format. **Supported formats**: `json`. **Default**: Plain text.                  |
