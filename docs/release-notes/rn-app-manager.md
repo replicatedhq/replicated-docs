@@ -25,9 +25,21 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.129.2
 
+Released on January 13, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### Bug Fixes {#bug-fixes-1-129-2}
+* Fixes an issue where application upgrades could fail due to Helm v4’s default server-side apply by pinning KOTS to Helm v3 for compatibility.
+* Fixes an issue where AES-GCM nonces were incorrectly reused in KOTS encryption, now generating a unique nonce per encryption while maintaining backward compatibility with existing data.
 
 ## 1.129.1
+
+:::important
+KOTS 1.129.1 includes an upgrade to Helm 4, which causes upgrade failures for Helm charts that were originally installed using client-side apply. Helm 4 defaults to server-side apply, which conflicts with resources previously managed by client-side apply, resulting in errors like `Apply failed with 1 conflict: conflict with "kubectl-client-side-apply"`. KOTS 1.129.2 reverts to Helm 3 to avoid these upgrade issues. To avoid upgrade failures, use KOTS 1.129.2 or later instead of 1.129.1.
+:::
 
 Released on December 5, 2025
 
