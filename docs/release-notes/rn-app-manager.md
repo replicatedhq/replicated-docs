@@ -32,7 +32,7 @@ Released on January 14, 2026
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Bug Fixes {#bug-fixes-1-129-2}
-* Fixes an issue where application upgrades could fail due to Helm v4’s default server-side apply by pinning KOTS to Helm v3 for compatibility.
+* Fixes an issue introduced in KOTS 1.129.1 where application upgrades could fail due to Helm v4’s default server-side apply by pinning KOTS to Helm v3 for compatibility.
 * Fixes an issue where AES-GCM nonces were incorrectly reused in KOTS encryption, now generating a unique nonce per encryption while maintaining backward compatibility with existing data.
 
 ## 1.129.1
