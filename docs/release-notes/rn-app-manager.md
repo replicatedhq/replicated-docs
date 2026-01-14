@@ -27,7 +27,7 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 ## 1.129.2
 
-Released on January 13, 2026
+Released on January 14, 2026
 
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
