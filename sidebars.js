@@ -40,6 +40,7 @@ const sidebars = {
     "vendor/quick-start",
     "vendor/environment-setup",
     "vendor/replicated-onboarding",
+    "vendor/replicated-onboarding-helm-only",
     // {
     //   type: 'category',
     //   label: 'Planning',
