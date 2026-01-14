@@ -38,7 +38,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 ## 1.129.1
 
 :::important
-KOTS 1.129.1 includes an upgrade to Helm 4, which causes upgrade failures for Helm charts that were originally installed using client-side apply. Helm 4 defaults to server-side apply, which conflicts with resources previously managed by client-side apply, resulting in errors like `Apply failed with 1 conflict: conflict with "kubectl-client-side-apply"`. KOTS 1.129.2 reverts to Helm 3 to avoid these upgrade issues. To avoid upgrade failures, use KOTS 1.129.2 or later instead of 1.129.1.
+KOTS 1.129.1 includes an upgrade to Helm 4, which causes failures when migrating from HelmChart v1beta1 (with `useHelmInstall: false`) to v1beta2 using the `--take-ownership` flag. HelmChart v1beta1 with `useHelmInstall: false` installs resources using `kubectl apply` (client-side apply), and Helm 4's server-side apply cannot take ownership of these resources, resulting in errors like `Apply failed with 1 conflict: conflict with "kubectl-client-side-apply"`. KOTS 1.129.2 reverts to Helm 3 to avoid these migration issues. To avoid failures, use KOTS 1.129.2 or later instead of 1.129.1. For more information about this migration scenario, see [Migrate from HelmChart v1 with useHelmInstall: false](/vendor/helm-v2-migrate#migrate-from-helmchart-v1-with-usehelminstall-false). If 1.129.1 is already installed, updating to 1.129.2 and redploying will resolve any related issues. 
 :::
 
 Released on December 5, 2025
