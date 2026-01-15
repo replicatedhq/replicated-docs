@@ -250,7 +250,7 @@ Add a job with the following steps to provision clusters with CMX, deploy the re
 
    Consider the following recommendations:
 
-     * For release workflows, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To help build the matrix, you can review the most common Kubernetes distributions and versions used by your customers on the **Customers > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
+     * For release workflows, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To help build the matrix, you can review the most common Kubernetes distributions and versions used by your customers on the **Customers > [Customer Name] > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
 
      * When using the Replicated CLI, a list of representative customer instances can be obtained using the `api get` command. For example, `replicated api get /v3/app/[APP_ID]/cluster-usage | jq .` You can further filter these results by `channel_id`, `channel_sequence`, and `version_label`.
      

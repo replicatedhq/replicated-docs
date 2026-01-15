@@ -1,10 +1,10 @@
 # Customer Reporting
 
-This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated Vendor Portal.
+This topic describes the customer and instance data displayed in the customer **Reporting** page in the Replicated Vendor Portal.
 
 ## About the Customer Reporting Page {#reporting-page}
 
-The **Customers > Reporting** page displays data about the active application instances associated with each customer. The following shows an example of the **Reporting** page:
+The **Customers > [Customer Name] > Reporting** page displays data about the active application instances associated with each customer. The following shows an example of the **Reporting** page:
 
 ![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
 
