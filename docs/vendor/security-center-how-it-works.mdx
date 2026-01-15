@@ -1,0 +1,73 @@
+# How Security Center Works
+
+This topic provides technical details about how Replicated Security Center generates CVE reports and SBOMs for your application releases.
+
+## Overview
+
+When you promote a release to a channel in Vendor Portal, Replicated automatically generates comprehensive security information for all container images in that release. Security Center uses Replicated's [SecureBuild](https://securebuild.com/) technology to continuously scan your images with industry-standard open-source tools—[Grype](https://github.com/anchore/grype) for CVE scanning and [Syft](https://github.com/anchore/syft) for SBOM generation.
+
+## What Images Are Scanned?
+
+The security scanning process analyzes all container images referenced in your release:
+
+- **Container images in PodSpecs** - Any images defined in your Kubernetes manifests (Deployments, StatefulSets, DaemonSets, etc.)
+- **Additional images** - Images listed in the Application custom resource's `additionalImages` field
+- **Embedded Cluster images** - Infrastructure images used by Embedded Cluster installations (both online and airgap)
+
+## CVE Scanning: Continuous Vulnerability Detection
+
+### How It Works
+
+Replicated uses SecureBuild technology powered by [Grype](https://github.com/anchore/grype), an open-source vulnerability scanner. Unlike point-in-time scanning, Security Center scans your images continuously—not just when you promote a release. This means as new CVEs are disclosed, they automatically appear in your Security Center without requiring a new release.
+
+### The Scanning Process
+
+1. When you promote a release, Replicated identifies all container images in that release
+2. SecureBuild pulls each image digest and scans it with Grype
+3. Grype compares packages in the image against vulnerability databases (including NVD, OS-specific databases, and language-specific sources)
+4. Vulnerability counts are aggregated by severity: Critical, High, Medium, and Low
+5. Each CVE includes the identifier, description, CVSS score, affected artifacts, and available fixes
+
+### What You See
+
+- **Vendor Portal** - Vulnerability overview with severity breakdown, top risks, complete image inventory with CVE counts, and detailed CVE information per image. See [Vendor Portal Security Center Interfaces](security-center-about#vendor-portal-security-center-interfaces).
+- **Enterprise Portal** - Your customers can view CVE reports showing known vulnerabilities, per-image details, and CVE reduction metrics when comparing versions. See [Enterprise Portal Security Center Interface](security-center-about#enterprise-portal-security-center-interface).
+
+## SBOM Generation: Software Transparency
+
+### How It Works
+
+Replicated generates Software Bills of Materials using [Syft](https://github.com/anchore/syft), an open-source SBOM generation tool from Anchore. SBOMs are created in the industry-standard SPDX JSON format, which satisfies most compliance and security audit requirements.
+
+### The Generation Process
+
+1. For each container image in your release, SecureBuild runs Syft to catalog all software components
+2. Syft analyzes the image layers and extracts package information from various sources (OS packages, language-specific manifests like package.json, go.mod, requirements.txt, etc.)
+3. The output is a comprehensive SPDX document listing every software component, version, license, and relationship
+4. SBOMs are generated for multiple architectures (amd64 and arm64) when available
+5. The generated SBOMs are stored and served through the API for download
+
+### What Your Customers See
+
+Your customers can download SBOMs in SPDX format from the Enterprise Portal's Security tab. The SBOM includes detailed component information necessary for supply chain security, compliance reporting, and license auditing.
+
+## Behind the Scenes: SecureBuild API Integration
+
+When you promote a release, Replicated Vendor Portal:
+
+1. Extracts all container image references from your release manifests
+2. Sends the image URLs or digests to SecureBuild's API
+3. SecureBuild returns pre-generated vulnerability scans and SBOMs (or generates them if this is a new image)
+4. The data is stored and displayed in both Vendor Portal and Enterprise Portal
+
+For airgap installations and customer instances that report back via the Replicated SDK (v1.9.0+), Replicated uses the exact image digests deployed in the environment. This ensures the security data reflects what's actually running, not just what was in the release at promotion time.
+
+## Requirements
+
+To use Security Center features:
+
+- **Replicated SDK** v1.9.0 or later for customer instance reporting
+- **Unique HelmChart custom resources** per chart (for Helm-based applications)
+- **Security Center feature flag** enabled by your Replicated account team
+
+For additional requirements and limitations, see [Requirements](security-center-about#requirements) and [Limitations](security-center-about#limitations).

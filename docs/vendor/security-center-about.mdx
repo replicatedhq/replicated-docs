@@ -10,9 +10,15 @@ The Security Center is Alpha. To get access to the Security Center, reach out to
 
 The Security Center helps you strengthen security enablement in your application delivery process by making it easier for both you and your enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each application release.
 
-The Security Center is powered by Replicated’s [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [grype](https://github.com/anchore/grype).
+The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [grype](https://github.com/anchore/grype).
 
 The Security Center surfaces the results of image scans in both the Vendor Portal and the Enterprise Portal so that your customers can see the same security information that you do for each application version. This results in greater transparency, reduced security questionnaire burden, and the adoption of newer, more secure versions of your application.
+
+## How Security Center Works
+
+Security Center uses SecureBuild technology to continuously scan your container images with industry-standard open-source tools—[Grype](https://github.com/anchore/grype) for CVE scanning and [Syft](https://github.com/anchore/syft) for SBOM generation. Unlike point-in-time scanning, vulnerabilities are detected continuously. When new CVEs are disclosed, they automatically appear in your Security Center without requiring a new release.
+
+For technical details about the CVE scanning process, SBOM generation, and SecureBuild API integration, see [How Security Center Works](security-center-how-it-works).
 
 ## Requirements
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
