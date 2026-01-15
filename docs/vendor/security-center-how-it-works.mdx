@@ -12,7 +12,7 @@ The security scanning process analyzes all container images referenced in your r
 
 - **Container images in PodSpecs** - Any images defined in your Kubernetes manifests (Deployments, StatefulSets, DaemonSets, etc.)
 - **Additional images** - Images listed in the Application custom resource's `additionalImages` field
-- **Embedded Cluster images** - Infrastructure images used by Embedded Cluster installations (both online and airgap)
+- **Embedded Cluster images** - Infrastructure images used by Embedded Cluster installations (if relevant)
 
 ## CVE Scanning
 
@@ -23,10 +23,11 @@ Replicated uses SecureBuild technology powered by [Grype](https://github.com/anc
 ### The Scanning Process
 
 1. When you promote a release, Replicated identifies all container images in that release
-2. SecureBuild pulls each image digest and scans it with Grype
+2. SecureBuild pulls each image digest and scans it with Grype. Scanning occurs for multiple architectures (amd64 and arm64) when relevant
 3. Grype compares packages in the image against vulnerability databases (including NVD, OS-specific databases, and language-specific sources)
 4. Vulnerability counts are aggregated by severity: Critical, High, Medium, and Low
 5. Each CVE includes the identifier, description, CVSS score, affected artifacts, and available fixes
+6. If a release associated image digest is updated, the associated release version SBOM will be regenerated, which will update calculated CVEs as well
 
 ### What You See
 
@@ -46,6 +47,7 @@ Replicated generates Software Bills of Materials using [Syft](https://github.com
 3. The output is a comprehensive SPDX document listing every software component, version, license, and relationship
 4. SBOMs are generated for multiple architectures (amd64 and arm64) when available
 5. The generated SBOMs are stored and served through the API for download
+6. If a release associated image digest is updated, the associated release version SBOM will be regenerated, which will update calculated CVEs as well
 
 ### What You See
 
