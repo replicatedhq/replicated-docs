@@ -36,10 +36,10 @@ Released on January 14, 2026
 </table>
 
 ### Features {#features-2-13-3}
-* Adds the ability to override CPU and memory requests and limits for kotsadm and rqlite via [unsupportedOverrides](/reference/embedded-config#unsupportedoverrides) in the Embedded Cluster config.
+* Adds the ability to override CPU and memory requests and limits for kotsadm and rqlite through [unsupportedOverrides](/reference/embedded-config#unsupportedoverrides) in the Embedded Cluster config.
 
 ### Bug Fixes {#bug-fixes-2-13-3}
-* Fixes an issue introduced in 2.13.1 & 2.13.2 where application upgrades could fail due to Helm v4’s default server-side apply by pinning to Helm v3 for compatibility.
+* Fixes an issue introduced in 2.13.1 and 2.13.2 where application upgrades could fail due to Helm v4’s default server-side apply by pinning to Helm v3 for compatibility.
 
 ## 2.13.2
 
