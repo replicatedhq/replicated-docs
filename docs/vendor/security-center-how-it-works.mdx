@@ -14,15 +14,6 @@ The security scanning process analyzes all container images referenced in your r
 - **Additional images** - Images listed in the Application custom resource's `additionalImages` field
 - **Embedded Cluster images** - Infrastructure images used by Embedded Cluster installations (both online and airgap)
 
-When you promote a release, Replicated Vendor Portal:
-
-1. Extracts all container image references from your release manifests
-2. Sends the image URLs or digests to SecureBuild's API
-3. SecureBuild returns pre-generated vulnerability scans and SBOMs (or generates them if this is a new image)
-4. The data is stored and displayed in both Vendor Portal and Enterprise Portal
-
-For airgap installations and customer instances that report back via the Replicated SDK (v1.9.0+), Replicated uses the exact image digests deployed in the environment. This ensures the security data reflects what's actually running, not just what was in the release at promotion time.
-
 ## CVE Scanning
 
 ### How It Works
