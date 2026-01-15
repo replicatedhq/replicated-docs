@@ -8,16 +8,16 @@ This tutorial demonstrates how to test an air gap installation of a Helm chart u
 
 ## Introduction
 
-Replicated's Compatibility Matrix includes network policy and network reporting features that allow vendors to quickly provision air-gapped envrionments and to report on network activity. These features help vendors that distribute applications into customer environments with little or no outbound internet access to test their releases for any outbound network requests (or any outbound requests to domains that are not on the customer's allowlist).
+Software vendors can use Replicated's Compatibility Matrix (CMX) to quickly provision clusters and VMs that simulate air-gapped environments. CMX also has network reporting features that allow vendors to generate reports on network activity for their application, such as recording requests to domains that are not on an allowlist. These features help vendors that distribute applications into customer environments with little or no outbound internet access to more easily test their releases. For more information about using CMX to test releases in air-gapped environments, see [Test in Air Gap Environments](/vendor/testing-network-policy).
 
 In this tutorial, you will do the following to learn more about the CMX network policy and reporting features:
 
 * Download the Helm chart and release manifests for a sample NGINX application
-* Create a release for NGINX in the Replicated Platform
-* Build the `.airgap` bundle for the release
+* Create a release in the Replicated Platform
+* Build an `.airgap` bundle for the release
 * Create a VM with CMX, and set the VM's network policy to `airgap` to simulate an air-gapped environment
 * Follow the Embedded Cluster air gap installation instructions to download the air gap bundle, transfer the bundle to the air-gapped VM, and then install with Embedded Cluster
-* Make an outbound request from the NGINX app, and then view the attempt in the CMX network report
+* Make an outbound request from the NGINX app, and view the attempt in the CMX network report
 
 ## Set Up Your Environment
 
@@ -32,8 +32,6 @@ Before you begin, do the following to set up your environment:
     :::
       
 * Ensure that you have an SSH key in your GitHub account. Then, add your GitHub username to your Vendor Portal [**Account Settings**](https://vendor.replicated.com/account-settings). This will provide SSH access to VMs that you create with CMX. For more information, see [Set Up SSH Access](/vendor/testing-vm-create#set-up-ssh-access) in _Create VMs_.
-
-After you complete the prerequisites above, continue to the [Tutorial](#tutorial). You will create the VM with CMX as part of the tutorial.
 
 ## Tutorial
 
@@ -66,7 +64,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
    ```
    In the browser window that opens, follow the prompt to log in to your Vendor Portal account and authorize the CLI.
 
-1. Create an application NGINX:
+1. Create an application named NGINX:
 
    ```bash
    replicated app create "NGINX"
@@ -83,41 +81,45 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
 ### Create a Release
 
-1. Run the following command to download a tarball containing the files for the release:
+1. Run the following command to download a tarball containing the release files:
 
     ```bash
     curl -O --create-dirs --output-dir tutorial-airgap https://docs.replicated.com/nginx-0.1.0-release.tar.gz
     ```
 
 1. Untar:
-
+   
     ```bash
-    tar -xzf tutorial-airgap/nginx-0.1.0-release.tar.gz
+    cd tutorial-airgap
     ```
 
-1. View the contents:
+    ```bash
+    tar -xzf nginx-0.1.0-release.tar.gz && rm nginx-0.1.0-release.tar.gz
+    ```
+
+1. View the contents of the `manifests` directory:
 
    ```bash
-   ls
+   ls manifests
    ```
    ```bash
    ec-config.yaml      nginx-0.1.0.tgz          nginx.yaml             replicated-app.yaml
    ```
    The contents include the NGINX Helm chart archive (`nginx-0.1.0.tgz`) and some Replicated manifests that are used to define different aspects of the installation experience for the application.
 
-1. Lint the YAML files in the directory:
+1. Lint the YAML files in the `manifests` directory:
 
    ```bash
-   replicated release lint --yaml-dir .
+   replicated release lint --yaml-dir manifests
    ```
    :::note
    You can ignore `info` or `warn` messages for the purpose of this tutorial.
    :::      
 
-1. From the `tutorial-airgap` directory, create a release and promote it to the Unstable channel:
+1. Create a release and promote it to the Unstable channel:
 
    ```bash
-   replicated release create --yaml-dir . --promote Unstable
+   replicated release create --yaml-dir manifests --promote Unstable
    ```
    **Example output**:
    ```bash
@@ -142,19 +144,19 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
 1. On the **Unstable** channel card, in the **Latest release** section, click **Release history**.
 
-1. On the **Release history** page, find the release sequence that you just promoted.
+1. On the **Release History** page, find the release sequence that you just promoted.
 
     ![release sequence 1 on the release history page](/images/nginx-airgap-not-built.png)
     [View a larger version of this image](/images/nginx-airgap-not-built.png)
 
 1. (Optional) Click **View release image list** to see the images that Replicated will include in the air gap bundle. This release includes an NGINX image and the Replicated SDK image.
 
-1. Next to **Air gap not built**, click **Build**.
+1. Next to "Air gap not built", click **Build**.
 
     Wait a few minutes for the air gap bundle to build.
 
     :::note
-    You might need to refresh the page to get the latest air gap bundle build status.
+    You might need to refresh the page to check the build status.
     :::    
 
 ### Create a Customer
@@ -182,16 +184,14 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
    ![Nitflex example customer page](/images/nginx-nitflex-customer.png)
    [View a larger version of this image](/images/nginx-nitflex-customer.png)
 
-1. In the **Embedded Cluster install instructions** dialog, verify that the **Install in an air gap environment** checkbox is enabled. This checkbox is automatically enabled when the customer license has the air gap install option. 
+1. In the **Embedded Cluster install instructions** dialog, verify that the **Install in an air gap environment** checkbox is enabled. This checkbox is automatically enabled when the customer license has the air gap install option and an air gap bundle exists for the latest release on the channel. 
 
    <img alt="Embedded Cluster install instructions" src="/images/nginx-ec-install-instructions-dialog.png" width="500px"/>
    [View a larger version of this image](/images/nginx-ec-install-instructions-dialog.png)
 
 1. On your command prompt, run the first command in the dialog to download the Embedded Cluster air gap installation assets.
-
-    The installation assets include the air gap bundle that you built, the customer's license file, and Embedded Cluster binary.
     
-    It can take a few minutes to download the `.tgz`.
+    It can take a few minutes to download the installation assets.
 
 ### Create a VM with CMX
 
@@ -215,7 +215,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
    [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
 
-1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record with a **Target Port** of **30000**.
+1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record with the default **Target Port** of **30000**.
 
 1. Add another DNS record with a **Target Port** of **80**.
 
@@ -239,7 +239,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
 1. In the panel on the left side of the screen, click **Overview** to return to the Compatibility Matrix **Overview** page.
 
-1. Under **Virtual Machines**, copy the SSH command provided for your VM.
+1. Under **Virtual Machines**, after your VM is "Running", copy the SSH command provided.
 
     ![ssh command for the vm](/images/compatibility-matrix-ssh-command.png)
     [View a larger version of this image](/images/compatibility-matrix-ssh-command.png)
@@ -248,7 +248,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
 1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
 
-1. When prompted, provide the passphrase for the SSH key in your linked GitHub account. CMX uses GitHub SSH to provide access to the VM.
+1. When prompted, provide the passphrase for the SSH key in your linked GitHub account.
 
 1. Open a new command prompt window.
 
@@ -270,7 +270,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
     scp PATH_TO_TGZ scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT 
     ```
     Where:
-    * `PATH_TO_TGZ` is the path to the `.tgz` installation assets that you downloaded.
+    * `PATH_TO_TGZ` is the local path to the `.tgz` installation assets that you downloaded.
     * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
 
     **Example:**
@@ -287,7 +287,7 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 
 1. In the Vendor Portal, go back to the customer's page and reopen the **Embedded cluster install instructions** dialog.
 
-1. Copy the **Extract the installation assets** command and run it on your VM to extract the `.tgz` that you transferred.
+1. Copy the command for the **Extract the installation assets** step and run it on your VM to extract the `.tgz` that you transferred.
 
 1. Copy and run the `install` command.
 
@@ -314,17 +314,24 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
    nginx-6d58d68945-nbbzx               1/1     Running   0              29s
    replicated-6798d88b48-b6575          1/1     Running   0              29s
    ```
+   In the kostadm namespace, you can see `kotsadm` pods for the Admin Console, the `kurl-proxy-kotadm` pod for the image registry that is deployed in air gap installations, the `nginx` pod for the NGINX application, and the `replicated` pod for the Replicated SDK.
 
-1. (Optional) In a browser, go to the URL for the Admin Console. This is the URL for the DNS record that you created with a target port of 30000 as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal. Log in to the Admin Console using the password that you set during installation. 
+1. (Optional) In a browser, go to the Admin Console. The Admin Console is available at the URL for the DNS record that you created with a target port of 30000 as part of [Create a VM with CMX](#create-a-vm-with-cmx).
 
-     On the Admin Console landing page, you can see the app version that you deployed, and that the NGINX app is **Ready**.
+   :::note
+   You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal.
+   :::
 
-     ![admin console landing page](/images/nginx-airgap-admin-console.png)
-     [View a larger version of this image](/images/nginx-airgap-admin-console.png)
+   Log in to the Admin Console using the password that you set during installation. 
+
+   On the Admin Console landing page, you can see the app version that you deployed, and that the NGINX app is **Ready**:
+
+   ![admin console landing page](/images/nginx-airgap-admin-console.png)
+   [View a larger version of this image](/images/nginx-airgap-admin-console.png)
 
 ### Access the NGINX App and View the Network Report
 
-1. Get the ID for the air gap network that your VM is connected to:
+1. Get the ID for the air gap network where your VM is connected:
 
    ```
    replicated network ls
@@ -343,12 +350,12 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
    You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal.
    :::
 
-1. On the NGINX app webpage, click **Test Outbound Request** to make an outbound network request to `http://httpbin.org`. As shown below, the webpage displays an **Egress blocked** warning message because the `airgap` network policy for the VM does not allow outbound requests.
+1. On the NGINX app webpage, click **Test Outbound Request** to make an outbound network request to `http://httpbin.org`. As shown below, the webpage displays an **Egress blocked** message because the `airgap` network policy for the VM does not allow outbound requests.
 
     <img alt="egress blocked error" src="/images/nginx-egress-blocked.png" width="600px"/>
      [View a larger version of this image](/images/nginx-egress-blocked.png)
 
-1. On your command prompt where you are watching network activity for the VM, note that you can see a network event similar to the following, which records the request to `httpbin.org`:
+1. On the command prompt where you are watching network activity for the VM, note that you can see a network event similar to the following, which records the request to `httpbin.org`:
 
     ```bash
     {"timestamp":"2026-01-14T21:31:32.023130266Z","srcIp":"10.244.26.14","dstIp":"1.1.1.1","srcPort":59247,"dstPort":53,"proto":"UDP","comm":"nginx","pid":8641,"likelyService":"dns","dnsQueryName":"httpbin.org"}
@@ -373,8 +380,8 @@ After you complete the prerequisites above, continue to the [Tutorial](#tutorial
 Congratulations! As part of this tutorial, you:
 
 * Performed an air gap installation with Embedded Cluster in a VM
-* Used the Compatibility Matrix network policy feature to create an air-gapped VM
-* Used the Compatibility Matrix network reporting feature to record outbound network requests made by an application
+* Used the Compatibility Matrix network policy feature to simulate an air-gapped environment
+* Used the Compatibility Matrix network reporting feature to track outbound network requests made by an application
 
 For more information about testing with Compatibility Matrix in air-gapped environments, see [Test in Air Gap Environments](/vendor/testing-network-policy).
 
