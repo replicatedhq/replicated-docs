@@ -35,7 +35,7 @@ Released on January 14, 2026
   </tr>
 </table>
 
-### Features {#features-2-13-3}
+### New Features {#new-features-2-13-3}
 * Adds the ability to override CPU and memory requests and limits for kotsadm and rqlite through [unsupportedOverrides](/reference/embedded-config#unsupportedoverrides) in the Embedded Cluster config.
 
 ### Bug Fixes {#bug-fixes-2-13-3}
