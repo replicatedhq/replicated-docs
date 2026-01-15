@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.13.3
+
+Released on January 15, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.13.3+k8s-1.33</td>
+    <td id="center">2.13.3+k8s-1.32</td>
+    <td id="center">2.13.3+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.6</td>
+    <td id="center">1.32.10</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.2</td>
+  </tr>
+</table>
+
+### Features {#features-2-13-3}
+* Adds the ability to override CPU and memory requests and limits for kotsadm and rqlite via [unsupportedOverrides](/reference/embedded-config#unsupportedoverrides) in the Embedded Cluster config.
+
+### Bug Fixes {#bug-fixes-2-13-3}
+* Fixes an issue introduced in 2.13.1 & 2.13.2 where application upgrades could fail due to Helm v4’s default server-side apply by pinning to Helm v3 for compatibility.
+
 ## 2.13.2
 
 Released on December 17, 2025
