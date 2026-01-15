@@ -14,7 +14,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 ## 2.13.3
 
-Released on January 15, 2026
+Released on January 14, 2026
 
 <table>
   <tr>
