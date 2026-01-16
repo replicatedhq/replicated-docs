@@ -207,10 +207,7 @@ const sidebars = {
     {
       type: "category",
       label: "Security Center (Alpha)",
-      items: [
-        "vendor/security-center-about",
-        "vendor/security-center-how-it-works",
-      ],
+      items: ["vendor/security-center-about"],
     },
     {
       type: "category",
