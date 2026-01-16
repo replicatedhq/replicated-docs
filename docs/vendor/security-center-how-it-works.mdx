@@ -23,7 +23,7 @@ Replicated uses SecureBuild technology powered by [Grype](https://github.com/anc
 ### The Scanning Process
 
 1. When you promote a release, Replicated identifies all container images in that release
-2. SecureBuild pulls each image digest and scans it with Grype. Scanning occurs for multiple architectures (amd64 and arm64) when relevant
+2. SecureBuild pulls by digest and scans it with Grype. Scanning occurs for multiple architectures (amd64 and arm64) when relevant
 3. Grype compares packages in the image against vulnerability databases (including NVD, OS-specific databases, and language-specific sources)
 4. Vulnerability counts are aggregated by severity: Critical, High, Medium, and Low
 5. Each CVE includes the identifier, description, CVSS score, affected artifacts, and available fixes
