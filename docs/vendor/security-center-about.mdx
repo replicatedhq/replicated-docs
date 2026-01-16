@@ -10,11 +10,46 @@ The Security Center is Alpha. To get access to the Security Center, reach out to
 
 The Security Center helps you strengthen security enablement in your application delivery process by making it easier for both you and your enterprise customers to monitor security risks, assess known vulnerabilities, and view security information for each application release.
 
-The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [grype](https://github.com/anchore/grype).
-
 The Security Center surfaces the results of image scans in both the Vendor Portal and the Enterprise Portal so that your customers can see the same security information that you do for each application version. This results in greater transparency, reduced security questionnaire burden, and the adoption of newer, more secure versions of your application.
 
-For technical details about the CVE scanning process, SBOM generation, and SecureBuild API integration, see [How Security Center Works](/vendor/security-center-how-it-works).
+Additionally, if there is an update to any image digests associated with an existing release, the Security Center automatically regenerates the SBOM for the relevant release version, which updates calculated CVEs as well. This means that it is not necessary to promote a new release in the Replicated Platform to get an up-to-date SBOM or CVE report in the Security Center.
+
+### What Images Are Scanned and Cataloged?
+
+When you promote a release in the Replicated Platform, Replicated identifies all container images that are referenced in the release. The Security Center then automatically generates comprehensive security information for all container images in that release.
+
+The following describes the types of images that Replicated identifies for each release:
+
+- **Container images in PodSpecs**: Any images defined in your Kubernetes manifests, such as Deployments, StatefulSets, DaemonSets, and so on. To build the list of container images for any Helm charts in the release, Replicated runs `helm template` using the chart's default values (or, using the Helm values that you provide in the Replicated HelmChart custom resource `builder` key). Then, Replicated parses the output of `helm template` to generate the list of images for the chart. For more information, see [Requirements](#requirements) on this page.
+- **Additional images**: Any images listed in the Replicated Application custom resource [`additionalImages`](/reference/custom-resource-application#additionalimages) field. For example, applications packaged as Kubernetes Operators might need to include additional images that are not referenced until runtime. 
+- **Embedded Cluster images**: Any infrastructure images used by Replicated Embedded Cluster installations, if relevant.
+
+### How CVE Scanning Works
+
+The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [Grype](https://github.com/anchore/grype). This means that, as new CVEs are disclosed, they automatically appear in your Security Center without requiring a new release.
+
+The following describes the Security Center CVE scanning process:
+
+1. For each image that Replicated identified in the release, SecureBuild pulls the image by digest and scans it with Grype. SecureBuild scans for multiple architectures (amd64 and arm64) when relevant.
+1. Grype compares packages in the image against vulnerability databases, including NVD, OS-specific databases, and language-specific sources.
+1. Security Center aggregates the vulnerability counts for all images by severity: Critical, High, Medium, and Low.
+1. For each CVE, Security Center includes an identifier, description, CVSS score, affected artifacts, and available fixes.
+1. Security Center displays the results of the CVE scan in the Vendor Portal and Enterprise Portal:
+   - **Vendor Portal**: In the Vendor Portal, you can view a vulnerability overview with a severity breakdown, top risks, a complete image inventory with CVE counts, and detailed CVE information per image.
+   - **Enterprise Portal**: In the Enterprise Portal, your customers can view CVE reports showing known vulnerabilities, per-image details, and CVE reduction metrics when comparing versions.
+
+### How SBOM Generation Works
+
+Replicated generates Software Bills of Materials using [Syft](https://github.com/anchore/syft), an open-source SBOM generation tool from Anchore. SBOMs are created in the industry-standard SPDX JSON format, which satisfies most compliance and security audit requirements. The SBOM includes detailed component information necessary for supply chain security, compliance reporting, and license auditing.
+
+The following describes the Security Center SBOM generation process: 
+
+1. For each image that Replicated identified in the release, SecureBuild runs Syft to catalog all software components.
+1. Syft analyzes the image layers and extracts package information from various sources, such as OS packages, language-specific manifests like package.json, go.mod, requirements.txt, and more. The output is a comprehensive SPDX document listing every software component, version, license, and relationship.
+1. Security Center generates SBOMs for multiple architectures (amd64 and arm64) when available.
+1. Security Center stores and serves the generated SBOMs through the Replicated Vendor API to make them available for download. Users can download SBOMs from the Vendor Portal or Enterprise Portal:
+   - **Vendor Portal**: In the Vendor Portal, you can download SBOMs in SPDX format for a specific release at **Releases > [Release Version] > Security**.
+   - **Enterprise Portal**: Your customers can download release-specific SBOMs in SPDX format from the Enterprise Portal's **Security** tab.
 
 ## Requirements
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
