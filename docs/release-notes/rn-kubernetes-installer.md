@@ -15,7 +15,8 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on January 13, 2026
 
 ### New Features {#new-features-v2026-01-13-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.34.3 1.33.7 1.32.11 1.31.14.
+* Adds support for RHEL 9.7 and Rocky Linux 9.7.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.34.3, 1.33.7, 1.32.11, and 1.31.14.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.7.29.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.4.0.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.0.
