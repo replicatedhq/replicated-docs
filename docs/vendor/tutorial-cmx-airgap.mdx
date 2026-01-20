@@ -149,15 +149,21 @@ Before you begin, do the following to set up your environment:
     ![release sequence 1 on the release history page](/images/nginx-airgap-not-built.png)
     [View a larger version of this image](/images/nginx-airgap-not-built.png)
 
-1. (Optional) Click **View release image list** to see the images that Replicated will include in the air gap bundle. This release includes an NGINX image and the Replicated SDK image.
+1. (Optional) Click **View release image list** to see the images that Replicated will include in the air gap bundle. This release includes an NGINX image and the Replicated SDK image, as shown below:
+
+    <img alt="Release image list for airgap bundle" src="/images/nginx-release-image-list-airgap.png" width="500px"/>
+
+    [View a larger version of this image](/images/nginx-release-image-list-airgap.png)
 
 1. Next to "Air gap not built", click **Build**.
 
     Wait a few minutes for the air gap bundle to build.
-
+    
     :::note
-    You might need to refresh the page to check the build status.
-    :::    
+    You might need to refresh the page to see the latest air gap bundle build status.
+    :::
+
+    After the air gap bundle is done building, continue to [Create a Customer](#create-a-customer) without downloading the bundle. You will download the bundle and other required installation assets as part of a later step.
 
 ### Create a Customer
 
@@ -171,7 +177,7 @@ Before you begin, do the following to set up your environment:
 
 1. For **Customer type**, select **Development**.
 
-1. For **Install types**, enable **Embedded Cluster (current generation product)**.
+1. For **Install types**, enable **Embedded Cluster (current generation product)**. Optionally, disable any other install types that were selected by default.
 
 1. For **Additional install options**, enable **Air Gap Installation Option (Replicated Installers only)**.
 
@@ -179,7 +185,7 @@ Before you begin, do the following to set up your environment:
 
 ### Download the Installation Assets
 
-1. On the page for the customer you just created, click **Embedded Cluster install instructions**.
+1. At the top of the page for the customer you just created, click **Embedded Cluster install instructions**.
 
    ![Nitflex example customer page](/images/nginx-nitflex-customer.png)
    [View a larger version of this image](/images/nginx-nitflex-customer.png)
@@ -189,7 +195,7 @@ Before you begin, do the following to set up your environment:
    <img alt="Embedded Cluster install instructions" src="/images/nginx-ec-install-instructions-dialog.png" width="500px"/>
    [View a larger version of this image](/images/nginx-ec-install-instructions-dialog.png)
 
-1. On your command prompt, run the first command in the dialog to download the Embedded Cluster air gap installation assets.
+1. On your command prompt, run the first command in the dialog to download the Embedded Cluster air gap installation assets to your local machine.
     
     It can take a few minutes to download the installation assets.
 
@@ -224,7 +230,7 @@ Before you begin, do the following to set up your environment:
     ![DNS record for a VM](/images/nginx-cmx-ports.png)
     [View a larger version of this image](/images/nginx-cmx-ports.png)
 
-1. Copy both of the URLs under **DNS Name** for the records that you created, and save them somewhere on your local machine. You will access the Admin Console and the NGINX app at these URLs after you install.
+1. For the DNS records that you created, under **DNS Name**, copy both of the URLs and save them somewhere on your local machine. You will access the Admin Console and the NGINX app at these URLs after you install.
 
 1. In the panel on the left side of the screen, click **Network Policy**.
 
@@ -239,7 +245,7 @@ Before you begin, do the following to set up your environment:
 
 1. In the panel on the left side of the screen, click **Overview** to return to the Compatibility Matrix **Overview** page.
 
-1. Under **Virtual Machines**, after your VM is "Running", copy the SSH command provided.
+1. When your VM is listed as "Running", copy the SSH command provided.
 
     ![ssh command for the vm](/images/compatibility-matrix-ssh-command.png)
     [View a larger version of this image](/images/compatibility-matrix-ssh-command.png)
@@ -252,12 +258,18 @@ Before you begin, do the following to set up your environment:
 
 1. Open a new command prompt window.
 
-1. In the new window, get the SCP endpoint for the VM:
+1. In the new window, run the following command to get the ID of your VM:
+
+   ```bash
+   replicated vm ls
+   ```
+
+1. Return the SCP endpoint for the VM:
 
     ```bash
     replicated vm scp-endpoint VM_ID
     ```
-    Where `VM_ID` is the ID for your VM. You can get the ID by running `replicated vm ls`.
+    Where `VM_ID` is the ID that you got in the previous step.
 
     **Example output:**
     ```bash
@@ -281,32 +293,42 @@ Before you begin, do the following to set up your environment:
 
 1. When prompted, type your passphrase for your SSH key and press Enter.
 
-    Wait for the `.tgz` to transfer to your VM. This can take a few minutes.
+    Wait a few minutes for the `.tgz` to transfer to your VM.
 
 ### Extract the Installation Assets and Install NGINX
 
-1. In the Vendor Portal, go back to the customer's page and reopen the **Embedded cluster install instructions** dialog.
+1. In the Vendor Portal, go back to the customer's page (**Applications > NGINX > Customers > Nitflex**) and reopen the **Embedded cluster install instructions** dialog.
 
 1. Copy the command for the **Extract the installation assets** step and run it on your VM to extract the `.tgz` that you transferred.
 
-1. Copy and run the `install` command.
+   **Example output:**
+
+   ```bash
+   nginx-sculpin
+   license.yaml
+   nginx-sculpin.airgap
+   ```
+
+1. Copy the `install` command and run it on your VM to install NGINX with Embedded Cluster.
 
 1. When prompted, set a password for accessing the Admin Console. Remember the password that you set; you will use it to log in to the Admin Console in a later step.
 
    The installation takes a few minutes to complete.
 
-1. After the installation completes, open a shell so that you can interact with the cluster with kubectl:
+1. After the installation completes, run the following command on your VM to open a shell where you can interact with the embedded cluster using kubectl:
 
    ```
    sudo ./APP_SLUG shell
    ```
    Where `APP_SLUG` is the slug for your application.
 
-1. Use kubectl to verify that the NGINX pod is `running`:
+1. Verify that the NGINX pod is `running`:
 
    ```bash
    kubectl get pods --namespace kotsadm
    ```
+
+   **Example output:**
    ```bash
    kotsadm-7c6457b99c-gjfz6             1/1     Running   0              37s
    kotsadm-rqlite-0                     1/1     Running   0              2m1s
@@ -314,12 +336,16 @@ Before you begin, do the following to set up your environment:
    nginx-6d58d68945-nbbzx               1/1     Running   0              29s
    replicated-6798d88b48-b6575          1/1     Running   0              29s
    ```
-   In the kostadm namespace, you can see `kotsadm` pods for the Admin Console, the `kurl-proxy-kotadm` pod for the image registry that is deployed in air gap installations, the `nginx` pod for the NGINX application, and the `replicated` pod for the Replicated SDK.
+   By default, Embedded Cluster deploys into the `kotsadm` namespace. In the `kostadm` namespace, you can see the following pods:
+   * `kotsadm` and `kotsadm-rqlite` pods for the Replicated Admin Console
+   * `kurl-proxy-kotadm` pod for the image registry that is automatically deployed in air gap installations with Embedded Cluster
+   * `nginx` pod for the NGINX application
+   * `replicated` pod for the Replicated SDK
 
-1. (Optional) In a browser, go to the Admin Console. The Admin Console is available at the URL for the DNS record that you created with a target port of 30000 as part of [Create a VM with CMX](#create-a-vm-with-cmx).
+1. (Optional) In a browser, go to the Admin Console.
 
    :::note
-   You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal.
+   You generated a URL for the Admin Console as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL for the Admin Console by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 30000.
    :::
 
    Log in to the Admin Console using the password that you set during installation. 
