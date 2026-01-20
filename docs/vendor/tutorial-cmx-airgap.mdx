@@ -342,22 +342,28 @@ Before you begin, do the following to set up your environment:
    * `nginx` pod for the NGINX application
    * `replicated` pod for the Replicated SDK
 
-1. (Optional) In a browser, go to the Admin Console.
+1. In a browser, go to the URL for the Admin Console.
 
    :::note
-   You generated a URL for the Admin Console as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL for the Admin Console by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 30000.
+   You generated a URL for the Admin Console as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 30000.
    :::
 
-   Log in to the Admin Console using the password that you set during installation. 
+1. Log in to the Admin Console using the password that you set during installation.
 
-   On the Admin Console landing page, you can see the app version that you deployed, and that the NGINX app is **Ready**:
+1. In the Admin Console installation wizard, click **Continue** to skip the cluster configuration options.
+
+   The Admin Console landing page opens.
+
+1. On the Admin Console landing page, click **Deploy** to install NGINX.
+
+   You can watch the status of the NGINX app change from **Missing** to **Unavailable** to **Ready**:
 
    ![admin console landing page](/images/nginx-airgap-admin-console.png)
    [View a larger version of this image](/images/nginx-airgap-admin-console.png)
 
 ### Access the NGINX App and View the Network Report
 
-1. Get the ID for the air gap network where your VM is connected:
+1. On your command prompt, get the ID for the air gap network where your VM is connected:
 
    ```
    replicated network ls
@@ -370,16 +376,16 @@ Before you begin, do the following to set up your environment:
    ```  
    Where `NETWORK_ID` is the ID of the network.
 
-1. In a browser, go to the URL for the NGINX app. This is the URL for the DNS record with a target port of 80 that you created as part of [Create a VM with CMX](#create-a-vm-with-cmx).
+1. In a browser, go to the URL for the NGINX app.
 
    :::note
-   You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal.
+   You generated a URL for NGINX as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 80.
    :::
 
 1. On the NGINX app webpage, click **Test Outbound Request** to make an outbound network request to `http://httpbin.org`. As shown below, the webpage displays an **Egress blocked** message because the `airgap` network policy for the VM does not allow outbound requests.
 
     <img alt="egress blocked error" src="/images/nginx-egress-blocked.png" width="600px"/>
-     [View a larger version of this image](/images/nginx-egress-blocked.png)
+    [View a larger version of this image](/images/nginx-egress-blocked.png)
 
 1. On the command prompt where you are watching network activity for the VM, note that you can see a network event similar to the following, which records the request to `httpbin.org`:
 
@@ -391,14 +397,18 @@ Before you begin, do the following to set up your environment:
 
 1. Under **Domain Names Requested**, note that the `httpbin.org` domain is listed in the table along with the number of requests made.
 
+1. (Optional) On the **Compatibility Matrix > Network Policy** page, change the **Policy type** to **open** to allow outbound requests on your VM. Go back to the NGINX app in your browser and click **Test Outbound Request** to see that the outbound request is now successful:
+
+    <img alt="egress blocked error" src="/images/nginx-egress-success.png" width="600px"/>
+    [View a larger version of this image](/images/nginx-egress-success.png)
+
 ### Clean Up
 
-* Delete the VM:
+* After you are done testing the air gap installation of NGINX, delete the VM:
 
     ```bash
     replicated vm rm VM_ID
     ```
-
     Where `VM_ID` is the ID of the VM. You can run `replicated vm ls` to get the ID.
 
 ## Summary
