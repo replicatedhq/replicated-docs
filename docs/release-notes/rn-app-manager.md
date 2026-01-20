@@ -36,7 +36,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 * Fixes medium severity CVE CVE-2026-22772 in the KOTS Go binaries.
 
 ### Bug Fixes {#bug-fixes-1-129-3}
-* Fixes an issue where required release can be skipped if it failed to deploy.
+* Fixes an issue where end users could skip required releases if the required release failed to deploy. For more information about required releases, see [Required Releases](/vendor/releases-about#required-releases) in _About Channels and Releases_.
 
 ## 1.129.2
 
