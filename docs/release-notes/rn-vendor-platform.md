@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.01.21-2
+
+Released on January 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-01-21-2}
+* Fixes a bug that resulted in the **Customers** page in the vendor portal to incorrectly show some online instances as air gap.
+
 ## v2026.01.07-3
 
 Released on January 7, 2026
