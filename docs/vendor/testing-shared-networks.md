@@ -1,4 +1,4 @@
-# Use Shared Networks
+<!-- # Use Shared Networks
 
 This topic explains how to create VMs and clusters with Replicated Compatibility Matrix (CMX) on the same network.
 
@@ -81,4 +81,4 @@ To join one or more new VMs to the network of an existing VM:
     ```bash
     replicated vm create --distribution ubuntu --network NETWORK_ID
     ``` 
-    Where `NETWORK_ID` is the network ID that you copied in the previous step.
+    Where `NETWORK_ID` is the network ID that you copied in the previous step. -->

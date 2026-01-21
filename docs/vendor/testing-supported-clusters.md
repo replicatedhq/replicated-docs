@@ -1,11 +1,13 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
-# CMX Cluster Types
+# CMX Cluster and VM Types
 
-This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with Replicated Compatibility Matrix (CMX).
+CMX can create VMs, VM-based clusters (such as kind, k3s, RKE2, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
 
-CMX provisions cloud-based or virtual machine (VM) clusters.
+* Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+
+* VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
 
 ## VM Clusters
 
@@ -480,6 +482,16 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
     <td>Customer release tests</td>
   </tr>
 </table>
+
+## Supported VM Types
+
+The following VM types are supported:
+
+| Distribution | Versions | Instance Types |
+| :---- | :---- | :---- |
+| ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#replicated-instance-types).|
+| almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#replicated-instance-types). |
+
 
 ## Replicated Instance Types {#types}
 

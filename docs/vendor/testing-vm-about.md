@@ -1,4 +1,4 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
+<!-- import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
 # About CMX VMs (Beta)
@@ -43,4 +43,4 @@ Before you can use CMX VMs, you must complete the following prerequisites:
 
 <Prerequisites/>
 
-* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
+* Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal. -->

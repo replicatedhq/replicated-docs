@@ -1,4 +1,4 @@
-# CMX Cluster Add-ons (Alpha)
+<!-- # CMX Cluster Add-ons (Alpha)
 
 This topic describes the supported cluster add-ons for Replicated Compatibility Matrix (CMX).
 
@@ -75,4 +75,4 @@ Additional service accounts can be created in any namespace with access to the o
     </td>
   </tr>
 </table>
-
+ -->

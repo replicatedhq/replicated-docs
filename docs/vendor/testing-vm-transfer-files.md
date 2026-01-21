@@ -1,4 +1,4 @@
-# Copy Files to a VM
+<!-- # Copy Files to a VM
 
 This topic describes how to transfer files to a VM created with Replicated Compatibility Matrix (CMX).
 
@@ -88,4 +88,4 @@ To copy files to the VM using SCP after connecting with the CMX Forwarder:
 
    ```bash
    scp somefile 123abc@replicatedvm:/home/folder/somefile
-   ```
+   ``` -->
