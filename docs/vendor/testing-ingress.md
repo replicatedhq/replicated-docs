@@ -144,4 +144,4 @@ CMX supports ingress controllers that are running as a `NodePort` service.
 ### CMX Tunnels
 All VM-based CMX clusters support tunneling traffic into a `NodePort` service. 
 When this option is used, Replicated is responsible for creating the DNS record and TLS certs.
-Replicated will route traffic from `:443` and/or `:80` into the `NodePort` service you defined. For more information about using tunnels, see [Expose Ports Using Tunnels](testing-vm-networking).
+Replicated will route traffic from `:443` and/or `:80` into the `NodePort` service you defined.

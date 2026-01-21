@@ -116,8 +116,6 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-For information about how to copy files to a VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
-
 ### CMX Forwarder
 
 To connect to a VM using the Forwarder:

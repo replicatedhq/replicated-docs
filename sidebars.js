@@ -219,10 +219,10 @@ const sidebars = {
         "vendor/testing-vm-create",
         // "vendor/testing-vm-transfer-files",
         "vendor/testing-ingress",
-        // "vendor/testing-cluster-addons",
         // "vendor/testing-vm-about",
         // "vendor/testing-vm-networking",
         "vendor/testing-network-policy",
+        "vendor/testing-cluster-addons",
         "vendor/testing-ci-cd",
         {
           type: "category",
