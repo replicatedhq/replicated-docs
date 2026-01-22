@@ -461,6 +461,63 @@ replicated:
     value: "value"
     effect: "NoSchedule"
 ```
+## Add Affinity
+
+The Replicated SDK provides a `replicated.affinity` value that allows users to add custom affinity to the deployment. For more information about affinity, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) in the Kubernetes documentation.
+
+To add affinity to the Replicated SDK deployment, include the `replicated.affinity` map in your Helm chart `values.yaml` file. The `replicated.affinity` map accepts a standard Kubernets affinity object in the following format:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: production/node-pool
+            operator: In
+            values:
+            - private-node-pool
+```
+## Add Custom Labels
+
+With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
+
+### Requirements
+
+The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
+
+### commonLabels
+
+The `replicated.commonLabels` value allows you to add one or more labels to all resources created by the SDK chart.
+
+For example:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  commonLabels:
+    environment: production
+    team: platform
+```
+
+### podLabels
+
+The `replicated.podLabels` value allows you to add pod-specific labels to the pod template.
+
+For example:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  podLabels:
+    monitoring: enabled
+    custom.company.io/pod-label: value
+```
 
 ## Serve SDK API Endpoints Over HTTPS {#enable-ssl}
 
@@ -539,26 +596,6 @@ global:
   replicated:
     httpsProxy: http://proxy.example.com
     noProxy: internal.domain.com
-```
-## Add Affinity
-
-The Replicated SDK provides a `replicated.affinity` value that allows users to add custom affinity to the deployment. For more information about affinity, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) in the Kubernetes documentation.
-
-To add affinity to the Replicated SDK deployment, include the `replicated.affinity` map in your Helm chart `values.yaml` file. The `replicated.affinity` map accepts a standard Kubernets affinity object in the following format:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: production/node-pool
-            operator: In
-            values:
-            - private-node-pool
 ```
 
 ## Configure High Availability {#high-availability}
