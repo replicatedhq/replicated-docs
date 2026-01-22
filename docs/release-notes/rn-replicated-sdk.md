@@ -6,7 +6,14 @@ pagination_prev: null
 
 # Replicated SDK Release Notes
 
-This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes. 
+This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+
+## 1.13.0
+
+Released on January 23, 2026
+
+### New Features {#new-features-1-13-0}
+* Adds support for high availability (HA) deployments by setting [`replicaCount`](https://github.com/replicatedhq/replicated-sdk/blob/1.13.0/chart/values.yaml#L5) to a value greater than 1. When HA mode is enabled, you can configure pod anti-affinity and pod disruption budgets with the [`highAvailability`](https://github.com/replicatedhq/replicated-sdk/blob/1.13.0/chart/values.yaml#L8) configuration. For more information, see [Configure High Availability](/vendor/replicated-sdk-customizing#high-availability).
 
 ## 1.12.2
 
