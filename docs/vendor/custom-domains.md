@@ -12,14 +12,10 @@ Replicated domains are external to your domain and can require additional securi
 
 You can configure custom domains for the following services:
 
-- **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`. Replicated recommends using a CNAME such as `proxy.{your app name}.com`. 
+- **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`. Replicated recommends using a CNAME such as `proxy.{your app name}.com`.
 
      :::note
-     The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. When you configure a custom domain for the Replicated proxy registry, the SDK is pulled from that custom domain. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
-     :::
-
-     :::note
-     When using a custom domain for the proxy registry, you may observe `/v2/token` authentication endpoints in logs or network traffic. These token requests are part of the standard Docker Registry v2 API and are expected behavior. For public images, these tokens are anonymous and do not contain sensitive information.
+     If you use a custom domain for the proxy registry, you might see `/v2/token` authentication endpoints in logs or network traffic. These token requests are part of the standard Docker Registry v2 API and are expected behavior. For public images, these tokens are anonymous and do not contain sensitive information.
      :::
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from the app service. By default, this service uses the domain `replicated.app`. Replicated recommends using a CNAME such as `updates.{your app name}.com`. 
