@@ -18,6 +18,10 @@ You can configure custom domains for the following services:
      The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`. When you configure a custom domain for the Replicated proxy registry, the SDK is pulled from that custom domain. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
      :::
 
+     :::note
+     When using a custom domain for the proxy registry, you may observe `/v2/token` authentication endpoints in logs or network traffic. These token requests are part of the standard Docker Registry v2 API and are expected behavior. For public images, these tokens are anonymous and do not contain sensitive information.
+     :::
+
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from the app service. By default, this service uses the domain `replicated.app`. Replicated recommends using a CNAME such as `updates.{your app name}.com`. 
 
 - **Enterprise Portal:** The Enterprise Portal is a web-based portal that provides end customers with a centralized location for managing their installation. By default, the Enterprise Portal uses the domain **`[DOMAIN].replicated.com`**. Replicated recommending using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`.
