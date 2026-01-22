@@ -285,7 +285,7 @@ The following describes some of the supported MDX template variables:
     <td>`<Note>Review the release notes above before proceeding with installation.</Note>`</td>
   </tr>
   <tr>
-    <td><code>{`{{release.isRequired}}`}</code></td>
+    <td><code>{`{release.isRequired}`}</code></td>
     <td>Boolean: is this a required release</td>
     <td>Add a <code>ConditionalRender when={`{release.isRequired}`}</code> to generate a special message</td>
   </tr>
@@ -348,6 +348,16 @@ The following describes some of the supported MDX template variables:
     <td><code>{`{installation.serviceAccountId}`}</code></td>
     <td>Service account identifier</td>
     <td>`2cHXb1RCttzpR0xvnNWyaZCgDBP`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installation.customerEmail}`}</code></td>
+    <td>Email address associated with the customer installation. Used for registry authentication as the username in Helm CLI installation instructions.</td>
+    <td>`customer@example.com`</td>
+  </tr>
+  <tr>
+    <td><code>{`{installation.serviceAccountToken}`}</code></td>
+    <td>Authentication token for the service account. Used for registry authentication as the password in Helm CLI installation instructions.</td>
+    <td>`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`</td>
   </tr>
   <tr>
     <td><code>{`{images.raw}`}</code></td>
