@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.01.21-4
+
+Released on January 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-01-21-4}
+* Fixes the scroll on the Support Bundle Analysis page when on smaller screen sizes.
+
 ## v2026.01.21-2
 
 Released on January 21, 2026
