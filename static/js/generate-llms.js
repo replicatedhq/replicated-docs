@@ -166,12 +166,33 @@ function processContent(content, filePath) {
     // Other import statements will be left unchanged
     content = content.replace(/^import.*$/gm, ''); // Remove remaining import statements
 
-    // Replace partial references with their content
+    // Replace partial references with their content, preserving indentation
     imports.forEach(importInfo => {
         const partialName = path.basename(importInfo.path, path.extname(importInfo.path)).substring(1);
         if (partialsCache[partialName]) {
-            const regex = new RegExp(`<${importInfo.name}\\s*/>`, 'g');
-            content = content.replace(regex, partialsCache[partialName]);
+            // Use a regex that captures leading whitespace on the same line as the partial tag
+            const regex = new RegExp(`^([ \\t]*)<${importInfo.name}\\s*/>`, 'gm');
+            content = content.replace(regex, (match, leadingWhitespace) => {
+                // If there's no indentation, just return the partial content as-is
+                if (!leadingWhitespace) {
+                    return partialsCache[partialName];
+                }
+                // Apply the leading whitespace to each line of the partial content
+                // This preserves the original indentation within code blocks while adding
+                // the list indentation prefix to maintain proper markdown structure
+                const indentedContent = partialsCache[partialName]
+                    .split('\n')
+                    .map((line) => {
+                        // Empty lines don't need indentation
+                        if (line.trim() === '') {
+                            return line;
+                        }
+                        // Add the captured indentation to all non-empty lines
+                        return leadingWhitespace + line;
+                    })
+                    .join('\n');
+                return indentedContent;
+            });
         } else {
             console.warn(`Warning: Partial '${partialName}' not found for file ${filePath}`);
         }
