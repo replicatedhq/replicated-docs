@@ -462,6 +462,84 @@ replicated:
     effect: "NoSchedule"
 ```
 
+## Serve SDK API Endpoints Over HTTPS {#enable-ssl}
+
+By default, the Replicated SDK serves its API over HTTP. With the Replicated SDK version 1.6.0 and later, you can serve the SDK API endpoints over HTTPS by providing a TLS certificate and key through the `tlsCertSecretName` value. This is useful if any of your enterprise customers require that communication between Kubernetes Pods occurs over HTTPS.
+
+**Requirement:** Serving the SDK API over HTTPS requires version 1.6.0 or later of the SDK.
+
+To serve SDK API endpoints over HTTPS:
+
+1. In the same namespace as the Replicated SDK, create a Kubernetes Secret with `tls.crt` and `tls.key` fields that contain the TLS certificate and key, respectively.
+
+    **Example**:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tls-secret
+      namespace: default
+    type: kubernetes.io/tls
+    data:
+      tls.crt: ...(your certificate data)...
+      tls.key: ...(your private key data)...
+    ```
+
+    :::note
+    This is the Secret format produced by `kubectl create secret tls <secret_name> --cert=path/to/tls.crt --key=path/to/tls.key`. For more information, see [kubectl create secret tls](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_tls/) in the Kubernetes documentation.
+    :::
+
+1. Set the Replicated SDK `tlsCertSecretName` Helm value to the name of the Secret, as shown below:
+
+    ```yaml
+    # Helm chart values.yaml
+    
+    replicated:
+      tlsCertSecretName: YOUR_TLS_SECRET
+    ```
+    Where `YOUR_TLS_SECRET` is the name of the Secret in the namespace containing the TLS certificate and key.
+
+## Report All Images {#report-all-images}
+
+With the Replicated SDK version 1.9.0 and later, you can configure the SDK to report all container images observed in the cluster rather than only images from your application.
+
+When enabled, the SDK watches pod images across all accessible namespaces and reports any images that it discovers. In Embedded Cluster installations, this option is enabled automatically.
+
+To enable reporting all images, set the `replicated.reportAllImages` value in your Helm chart `values.yaml` file:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  reportAllImages: true
+```
+
+## Proxy Configuration {#proxy}
+
+With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use an HTTPS proxy when fetching license information and reporting metrics.
+
+When enabled, the SDK will use the configured proxy for requests to Replicated APIs, but will not use a proxy for requests to the Kubernetes API. Setting an additional no_proxy is not required.
+
+To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  proxy:
+    httpsProxy: http://proxy.example.com
+    noProxy: internal.domain.com
+```
+
+```yaml
+# Helm chart values.yaml
+
+global:
+  replicated:
+    httpsProxy: http://proxy.example.com
+    noProxy: internal.domain.com
+```
 ## Add Affinity
 
 The Replicated SDK provides a `replicated.affinity` value that allows users to add custom affinity to the deployment. For more information about affinity, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) in the Kubernetes documentation.
@@ -593,83 +671,4 @@ replicated:
   podLabels:
     monitoring: enabled
     custom.company.io/pod-label: value
-```
-
-## Serve SDK API Endpoints Over HTTPS {#enable-ssl}
-
-By default, the Replicated SDK serves its API over HTTP. With the Replicated SDK version 1.6.0 and later, you can serve the SDK API endpoints over HTTPS by providing a TLS certificate and key through the `tlsCertSecretName` value. This is useful if any of your enterprise customers require that communication between Kubernetes Pods occurs over HTTPS.
-
-**Requirement:** Serving the SDK API over HTTPS requires version 1.6.0 or later of the SDK.
-
-To serve SDK API endpoints over HTTPS:
-
-1. In the same namespace as the Replicated SDK, create a Kubernetes Secret with `tls.crt` and `tls.key` fields that contain the TLS certificate and key, respectively.
-
-    **Example**:
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: tls-secret
-      namespace: default
-    type: kubernetes.io/tls
-    data:
-      tls.crt: ...(your certificate data)...
-      tls.key: ...(your private key data)...
-    ```
-
-    :::note
-    This is the Secret format produced by `kubectl create secret tls <secret_name> --cert=path/to/tls.crt --key=path/to/tls.key`. For more information, see [kubectl create secret tls](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_tls/) in the Kubernetes documentation.
-    :::
-
-1. Set the Replicated SDK `tlsCertSecretName` Helm value to the name of the Secret, as shown below:
-
-    ```yaml
-    # Helm chart values.yaml
-    
-    replicated:
-      tlsCertSecretName: YOUR_TLS_SECRET
-    ```
-    Where `YOUR_TLS_SECRET` is the name of the Secret in the namespace containing the TLS certificate and key.
-
-## Report All Images {#report-all-images}
-
-With the Replicated SDK version 1.9.0 and later, you can configure the SDK to report all container images observed in the cluster rather than only images from your application.
-
-When enabled, the SDK watches pod images across all accessible namespaces and reports any images that it discovers. In Embedded Cluster installations, this option is enabled automatically.
-
-To enable reporting all images, set the `replicated.reportAllImages` value in your Helm chart `values.yaml` file:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  reportAllImages: true
-```
-
-## Proxy Configuration {#proxy}
-
-With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use an HTTPS proxy when fetching license information and reporting metrics.
-
-When enabled, the SDK will use the configured proxy for requests to Replicated APIs, but will not use a proxy for requests to the Kubernetes API. Setting an additional no_proxy is not required.
-
-To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  proxy:
-    httpsProxy: http://proxy.example.com
-    noProxy: internal.domain.com
-```
-
-```yaml
-# Helm chart values.yaml
-
-global:
-  replicated:
-    httpsProxy: http://proxy.example.com
-    noProxy: internal.domain.com
 ```
