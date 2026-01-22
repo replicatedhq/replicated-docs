@@ -489,7 +489,7 @@ With the Replicated SDK version 1.13.0 and later, you can configure the SDK for 
 
 ### Requirements
 
-Configuring high availability for the SDK requires version 1.13.0 or later.
+The `replicated.replicaCount` and `replicated.highAvailability` values are available with the Replicated SDK version 1.13.0 and later.
 
 ### Enable HA Mode
 
@@ -499,7 +499,7 @@ To enable HA mode, set `replicaCount` to a value greater than 1 in your Helm cha
 # Helm chart values.yaml
 
 replicated:
-  replicaCount: 2
+  replicaCount: 3
 ```
 
 ### Configure Pod Anti-Affinity
@@ -518,7 +518,7 @@ To configure pod anti-affinity:
 # Helm chart values.yaml
 
 replicated:
-  replicaCount: 2
+  replicaCount: 3
   highAvailability:
     podAntiAffinityPreset: "soft"
 ```
@@ -561,7 +561,7 @@ The `highAvailability` configuration only applies when `replicaCount` is set to 
 
 With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
 
-### Requirement
+### Requirements
 
 The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
 
