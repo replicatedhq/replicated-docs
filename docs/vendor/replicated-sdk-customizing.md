@@ -601,45 +601,6 @@ global:
     noProxy: internal.domain.com
 ```
 
-## Add Custom Labels
-
-With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
-
-### Requirements
-
-The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
-
-### commonLabels
-
-The `replicated.commonLabels` value allows you to add one or more labels to all resources created by the SDK chart.
-
-For example:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  commonLabels:
-    environment: production
-    team: platform
-```
-
-### podLabels
-
-The `replicated.podLabels` value allows you to add pod-specific labels to the pod template.
-
-For example:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  podLabels:
-    monitoring: enabled
-    custom.company.io/pod-label: value
-```
-
-
 ## Configure High Availability {#high-availability}
 
 With the Replicated SDK version 1.13.0 and later, you can configure the SDK for high availability (HA) by running multiple replicas of the SDK pod. HA mode improves resilience by ensuring the SDK continues to function even if a pod or node fails.
