@@ -482,7 +482,7 @@ replicated:
             - private-node-pool
 ```
 
-If affinity is configured directly, it will override the affinity presets provided when enabling [High Availability](#enable-ha-mode).
+If affinity is configured directly, it will override the affinity presets provided when enabling [High Availability](#enable-ha).
 
 ## Add Custom Labels
 
@@ -603,15 +603,16 @@ global:
 
 ## Configure High Availability {#high-availability}
 
-With the Replicated SDK version 1.13.0 and later, you can configure the SDK for high availability (HA) by running multiple replicas of the SDK pod. HA mode improves resilience by ensuring the SDK continues to function even if a pod or node fails.
+With the Replicated SDK version 1.13.0 and later, you can configure the SDK for high availability (HA) by running multiple replicas of the SDK pod. HA improves resilience by ensuring the SDK continues to function even if a pod or node fails.
 
 ### Requirements
 
-The `replicated.replicaCount` and `replicated.highAvailability` values are available with the Replicated SDK version 1.13.0 and later.
+* The `replicated.replicaCount` and `replicated.highAvailability` values are available with the Replicated SDK version 1.13.0 and later.
+* All `replicated.highAvailability` values apply only when `replicated.replicaCount` is set to a value greater than 1. When `replicaCount` is 1 (the default), the `highAvailability` settings are ignored.
 
-### Enable HA Mode
+### Enable HA
 
-To enable HA mode, set `replicaCount` to a value greater than 1 in your Helm chart `values.yaml` file:
+To enable HA for the SDK, set `replicaCount` to a value greater than 1 in your Helm chart `values.yaml` file:
 
 ```yaml
 # Helm chart values.yaml
@@ -630,7 +631,9 @@ The `replicated.highAvailability.podAntiAffinityPreset` setting supports three o
 - `hard`: Required anti-affinity. The scheduler will not start a replica if it cannot be placed on a different node from existing replicas. Use this for strict HA requirements.
 - `disabled`: No anti-affinity rules are applied.
 
-If a [custom affinity](#add-affinity) is set via the `replicated.affinity` key, then the antiAffinity presets are ignored.
+:::note
+If a [custom affinity](#add-affinity) is set with the `replicated.affinity` key, then the anti-affinity presets are ignored.
+:::
 
 To configure pod anti-affinity:
 
@@ -645,7 +648,7 @@ replicated:
 
 ### Configure Pod Disruption Budget
 
-A PodDisruptionBudget ensures that a minimum number of replicas remain available during voluntary disruptions such as node drains or cluster upgrades. This is enabled by default when running in HA mode.
+A PodDisruptionBudget ensures that a minimum number of replicas remain available during voluntary disruptions such as node drains or cluster upgrades. The pod disruption budget is enabled by default when running multiple replicas of the SDK pod.
 
 You can configure the minimum number of available replicas:
 
@@ -672,7 +675,3 @@ replicated:
       enabled: true
       maxUnavailable: 1
 ```
-
-:::note
-All `highAvailability` configuration only applies when `replicaCount` is set to a value greater than 1. When `replicaCount` is 1 (the default), these settings are ignored.
-:::
