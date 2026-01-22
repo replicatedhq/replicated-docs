@@ -142,7 +142,7 @@ To create an air-gapped VM:
    ```  
    Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
 
-   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
+   For more information and additional options, see [Connect to CMX VMs (SSH and File Transfer)](/vendor/testing-vm-create).
 
 1. Set the network policy to `airgap`:
 
@@ -177,7 +177,7 @@ After a CMX cluster or VM is running, you can access the environment using the `
 
 * **To SSH into a VM:**
 
-  1. If you have not done so already, set up SSH access using a public/private key pair. See [Prerequisite: Set Up SSH](/vendor/testing-vm-create#prerequisite-set-up-ssh) in _Connect to VMs (SSH and File Transfer)_.
+  1. If you have not done so already, set up SSH access using a public/private key pair. See [Prerequisite: Set Up SSH](/vendor/testing-vm-create#set-up-ssh) in _Connect to VMs (SSH and File Transfer)_.
 
   1. Run the following command:
 
@@ -273,7 +273,7 @@ To join one or more new VMs to the network of an existing VM:
     ``` 
     Where `NETWORK_ID` is the network ID that you copied in the previous step.
 
-## Create a Cluster and Install a Release with `cluster prepare`
+## Create a Cluster and Install a Release with `cluster prepare` {#prepare-clusters}
 
 The [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 

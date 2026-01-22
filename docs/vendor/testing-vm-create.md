@@ -2,7 +2,7 @@
 
 This topic describes how to connect to VMs created with Replicated Compatibility Matrix (CMX). It includes information about how to set up SSH access, SSH into VMs, and transfer files to VMs.
 
-## Prerequisite: Set Up SSH
+## Prerequisite: Set Up SSH {#set-up-ssh}
 
 To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.
 
@@ -118,7 +118,7 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-### CMX Forwarder
+### CMX Forwarder {#compatibility-matrix-forwarder}
 
 To connect to a VM using the Forwarder:
 
@@ -129,8 +129,6 @@ To connect to a VM using the Forwarder:
    ```
 
    Where `VMID` is the ID of the VM.
-
-For information about copying files to the VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
 
 ### Direct SSH
 
