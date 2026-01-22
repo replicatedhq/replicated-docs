@@ -481,6 +481,9 @@ replicated:
             values:
             - private-node-pool
 ```
+
+If affinity is configured directly, it will override the affinity presets provided when enabling [High Availability](#enable-ha-mode).
+
 ## Add Custom Labels
 
 With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
@@ -598,6 +601,45 @@ global:
     noProxy: internal.domain.com
 ```
 
+## Add Custom Labels
+
+With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
+
+### Requirements
+
+The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
+
+### commonLabels
+
+The `replicated.commonLabels` value allows you to add one or more labels to all resources created by the SDK chart.
+
+For example:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  commonLabels:
+    environment: production
+    team: platform
+```
+
+### podLabels
+
+The `replicated.podLabels` value allows you to add pod-specific labels to the pod template.
+
+For example:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  podLabels:
+    monitoring: enabled
+    custom.company.io/pod-label: value
+```
+
+
 ## Configure High Availability {#high-availability}
 
 With the Replicated SDK version 1.13.0 and later, you can configure the SDK for high availability (HA) by running multiple replicas of the SDK pod. HA mode improves resilience by ensuring the SDK continues to function even if a pod or node fails.
@@ -621,11 +663,13 @@ replicated:
 
 When running multiple replicas, you can configure pod anti-affinity to spread replicas across different nodes. This ensures that replicas are not scheduled on the same node, improving availability in case of node failures.
 
-The `highAvailability.podAntiAffinityPreset` setting supports three options:
+The `replicated.highAvailability.podAntiAffinityPreset` setting supports three options:
 
 - `soft` (default): Preferred anti-affinity. The scheduler tries to place replicas on different nodes but will still schedule them on the same node if necessary. This balances HA with cluster resource availability.
 - `hard`: Required anti-affinity. The scheduler will not start a replica if it cannot be placed on a different node from existing replicas. Use this for strict HA requirements.
 - `disabled`: No anti-affinity rules are applied.
+
+If a [custom affinity](#add-affinity) is set via the `replicated.affinity` key, then the antiAffinity presets are ignored.
 
 To configure pod anti-affinity:
 
@@ -669,43 +713,5 @@ replicated:
 ```
 
 :::note
-The `highAvailability` configuration only applies when `replicaCount` is set to a value greater than 1. When `replicaCount` is 1 (the default), these settings are ignored.
+All `highAvailability` configuration only applies when `replicaCount` is set to a value greater than 1. When `replicaCount` is 1 (the default), these settings are ignored.
 :::
-
-## Add Custom Labels
-
-With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
-
-### Requirements
-
-The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
-
-### commonLabels
-
-The `replicated.commonLabels` value allows you to add one or more labels to all resources created by the SDK chart.
-
-For example:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  commonLabels:
-    environment: production
-    team: platform
-```
-
-### podLabels
-
-The `replicated.podLabels` value allows you to add pod-specific labels to the pod template.
-
-For example:
-
-```yaml
-# Helm chart values.yaml
-
-replicated:
-  podLabels:
-    monitoring: enabled
-    custom.company.io/pod-label: value
-```
