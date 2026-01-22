@@ -1,6 +1,6 @@
 # Access Applications in CMX Environments
 
-This topic explains how to access applications that you install in CMX environments, including clusters or virtual machines (VMs). It includes information about exposing ports 
+This topic explains how to access applications that you install in Replicated Compatibility Matrix (CMX) environments, including clusters or virtual machines (VMs). It includes information about exposing ports as well as other ingress and networking options. 
 
 ## Expose Ports on VMs
 

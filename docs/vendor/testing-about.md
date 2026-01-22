@@ -1,6 +1,3 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-import InstanceTypes from "../partials/cmx/_instance-types.mdx"
-
 # About CMX
 
 This topic describes Replicated Compatibility Matrix (CMX), including use cases, billing, limitations, and more.
@@ -14,7 +11,7 @@ Example use cases for CMX include:
 * Get access to a cluster or VM to develop on and quickly test changes
 * Reproduce a reported issue on a customer-representative environment for troubleshooting
 * Create air-gapped environments to test that your application makes no outbound requests outside of a user's allowlist
-* You can use CMX VMs for testing and troubleshooting VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
+* Test VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
 
 You can use CMX with the Replicated CLI, the Replicated Vendor Portal, or the Vendor API.
 

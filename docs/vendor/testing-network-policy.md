@@ -1,12 +1,14 @@
 # Collect and View Network Reports
 
-This topic describes how to enable and view network reports for environments created with Compatibility Matrix (CMX). Network reports provide information about network activity in the environment.
+This topic describes how to enable and view network reports for environments created with Replicated Compatibility Matrix (CMX).
 
 ## About Network Reports
 
 CMX network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`.
 
 Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
+
+For more information about working with CMX networks, see [Create Air-Gapped Environments (Beta)](testing-how-to#air-gap) and [Create Environments on the Same Network](testing-how-to#shared-networks) in _Create and Manage Environments_
 
 ## Types of Network Reports
 
@@ -67,6 +69,10 @@ To collect and view a network report from the CLI:
      a1b2c3d4    example_network_1      running         2025-01-28 16:04 PST       2025-01-28 18:06 PST       open          off
      e5f6g7h8    example_network_2      running         2025-01-28 12:10 PST       2025-01-28 20:11 PST       airgap        on
      ```
+
+1. (Optional) Change the network policy to `airgap` to block all network egress.
+
+
 ## View Network Reports
 
 After you [Enable Network Reporting](#enable-network-reporting) for a network, you can view network reports.

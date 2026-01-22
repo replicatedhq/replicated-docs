@@ -1,5 +1,7 @@
 # Connect to CMX VMs (SSH and File Transfer)
 
+This topic describes how to connect to VMs created with Replicated Compatibility Matrix (CMX). It includes information about how to set up SSH access, SSH into VMs, and transfer files to VMs.
+
 ## Prerequisite: Set Up SSH
 
 To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.

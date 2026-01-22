@@ -1,5 +1,3 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
-
 # Create and Manage Environments with CMX
 
 This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage clusters and VMs.
@@ -8,11 +6,15 @@ This topic includes information about creating and managing environments with CM
 
 ## Prerequisites
 
-<Prerequisites/>
+* Create an account in the Replicated Vendor Portal. See [Create a Vendor Account](/vendor/vendor-portal-creating-account).
+
+* Install the Replicated CLI and then authorize the CLI using your vendor account. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+
+* If you have a contract, you can purchase more credits by going to [**Compatibility Matrix > Buy additional credits**](https://vendor.replicated.com/compatibility-matrix). Otherwise, you can request credits by going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
 * Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
-## Create and Access Environments
+## Create Environments
 
 For information about how to create environments with the CLI, see [replicated cluster create](/reference/replicated-cli-cluster-create) and [replicated vm create](/reference/replicated-cli-vm-create).
 
@@ -54,7 +56,7 @@ To create an environment with CMX from the Vendor Portal:
 
    The environment is displayed in the list on the Compatibility Matrix **Overview** page with a status of Assigned. When the environment is ready, the status is changed to Running.
 
-## Create Air-Gapped Environments (Beta)
+## Create Air-Gapped Environments (Beta) {#air-gap}
 
 :::note
 Using the `airgap` network policy to simulate an air-gapped environment is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters). Clusters that use cloud-based distributions do not support the `airgap` network policy.
@@ -67,9 +69,11 @@ VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) crea
 | `open` | No restrictions on network traffic. |
 | `airgap` | Restrict all network traffic. |
 
-By default, all VMs and VM-based clusters are created with an `open` network policy. You can change the network policy to `airgap` to simulate an air-gapped environment with no outbound internet access. This is particularly useful for previewing how your application will perform in air-gapped end customer environments.
+By default, all VMs and VM-based clusters are created with an `open` network policy. You can change the network policy to `airgap` to block outbound network requests. This is useful for simulating an air-gapped environment with no outbound internet access so that you can test how your application performs.
 
-Network policies are configured at the network level and apply to all VMs and VM-based clusters within the network. 
+Network policies are configured at the network level and apply to all VMs and environments connected to the network.
+
+You can also use CMX to generate reports that track and summarize network activity on CMX networks. For more information, see [Collect and View Network Reports](/vendor/testing-network-policy).
 
 ### VM-Based Cluster
 
@@ -113,11 +117,7 @@ To create an air-gapped cluster:
     bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
     ```
 
-    The air gap network is enabled when the status is `running`.
-
-1. (Optional) To verify that there is no outbound connectivity from the cluster, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
-
-1. (Optional) Test an air gap installation of your application in the cluster. See [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).   
+1. (Optional) Enable network reporting to track network activity. See [Collect and View Network Reports](/vendor/testing-network-policy).
 
 ### VM
 
@@ -162,9 +162,33 @@ To create an air-gapped VM:
     85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
     ```
 
-1. (Optional) To verify that there is no outbound connectivity from the VM, enable network reporting and view network events. See [Collect and View Network Reports](#collect-and-view-network-reports).
+1. (Optional) Enable network reporting to track network activity. See [Collect and View Network Reports](/vendor/testing-network-policy).
 
-## Create Environments on the Same Network
+## Access Environments
+
+After a CMX cluster or VM is running, you can access the environment using the `replicated cluster shell` or `ssh` command that is available in the Compatibility Matrix UI.
+   
+* **To access a cluster with kubectl:**
+
+  ```bash
+  replicated cluster shell CLUSTER_ID
+  ``` 
+  Where `CLUSTER_ID` is the ID of the running cluster.
+
+* **To SSH into a VM:**
+
+  1. If you have not done so already, set up SSH access using a public/private key pair. See [Prerequisite: Set Up SSH](/vendor/testing-vm-create#prerequisite-set-up-ssh) in _Connect to VMs (SSH and File Transfer)_.
+
+  1. Run the following command:
+
+      ```bash
+      ssh VMID@replicatedvm.com
+      ```
+      Where `VMID` is the ID of the running VM.
+
+  1. Respond to the prompts to add the fingerprint for `replicatedvm.com` and enter the passphrase for your SSH key.
+
+## Create Environments on the Same Network {#shared-networks}
 
 You can create VMs and clusters with CMX that use the same network.
 
@@ -251,7 +275,7 @@ To join one or more new VMs to the network of an existing VM:
 
 ## Create a Cluster and Install a Release with `cluster prepare`
 
-For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+The [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 The `cluster prepare` command does the following:
 * Creates a cluster
@@ -308,31 +332,9 @@ The `cluster prepare` command requires either a Helm chart archive or a director
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 
-## Access Environments
+## Edit Environments
 
-After a CMX cluster or VM is running, you can access the environment using the `replicated cluster shell` or `ssh` command provided in the Compatibility Matrix UI.
-   
-* **To access a cluster with kubectl:**
-
-  ```bash
-  replicated cluster shell CLUSTER_ID
-  ``` 
-  Where `CLUSTER_ID` is the ID of the running cluster.
-
-* **To SSH into a VM:**
-
-  1. If you have not done so already, set up SSH access using a public/private key pair. See [Prerequisite: Set Up SSH](/vendor/testing-vm-create#prerequisite-set-up-ssh) in _Connect to VMs (SSH and File Transfer)_.
-
-  1. Run the following command:
-
-      ```bash
-      ssh VMID@replicatedvm.com
-      ```
-      Where `VMID` is the ID of the running VM.
-
-  1. Respond to the prompts to add the fingerprint for replicatedvm.com and enter the passphrase for your SSH key. 
-
-## Edit Environments  
+You can make changes to an environment after creating it. For example, you could extent to TTL or add DNS records to expose ports on a VM.
 
 To edit environments:
 

@@ -1,7 +1,10 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
-import InstanceTypes from "../partials/cmx/_instance-types.mdx"
 
 # CMX Cluster and VM Types
+
+This topic lists the supported cluster and VM types that you can provision with Compatibility Matrix (CMX).
+
+## Overview
 
 CMX can create VMs, VM-based clusters (such as kind, k3s, RKE2, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
 
@@ -497,7 +500,38 @@ The following VM types are supported:
 
 When creating a VM-based cluster with CMX, you must specify a Replicated instance type.
 
-<InstanceTypes/>
+<table>
+  <tr>
+    <th width="30%">Type</th>
+    <th width="35%">Memory (GiB)</th>
+    <th width="35%">VCPU Count</th>
+  </tr>
+  <tr>
+    <th>r1.small</th>
+    <td>8 GB</td>
+    <td>2 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.medium</th>
+    <td>16 GB</td>
+    <td>4 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.large</th>
+    <td>32 GB</td>
+    <td>8 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.xlarge</th>
+    <td>64 GB</td>
+    <td>16 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.2xlarge</th>
+    <td>128 GB</td>
+    <td>32 VCPUs</td>
+  </tr>
+</table>
 
 ## Kubernetes Version Support Policy
 
