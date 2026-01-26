@@ -200,5 +200,5 @@ To collect and view a network report from the CLI:
 
 ## Related Topics
 
-* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Air Gap Installation with Embedded Cluster](/installer/installing-embedded-air-gap)
 * [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).

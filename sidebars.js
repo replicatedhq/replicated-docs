@@ -236,48 +236,6 @@ const sidebars = {
     },
         {
           type: "category",
-          label: "Embedded Cluster",
-          items: [
-            "vendor/embedded-overview",
-            "vendor/embedded-using",
-            "reference/embedded-config",
-            {
-              type: "category",
-              label: "Install with Embedded Cluster",
-              items: [
-                "enterprise/installing-embedded-requirements",
-                "enterprise/installing-embedded",
-                "enterprise/installing-embedded-air-gap",
-                "enterprise/installing-embedded-automation",
-              ],
-            },
-            "enterprise/embedded-manage-nodes",
-            "enterprise/updating-embedded",
-            "vendor/embedded-troubleshooting",
-            "enterprise/embedded-tls-certs",
-            "vendor/embedded-disaster-recovery",
-            {
-              type: "category",
-              label: "Embedded Cluster Commands",
-              items: [
-                "reference/embedded-cluster-admin-console",
-                "reference/embedded-cluster-completion",
-                "reference/embedded-cluster-enable-ha",
-                "reference/embedded-cluster-install",
-                "reference/embedded-cluster-join",
-                "reference/embedded-cluster-join-print-command",
-                "reference/embedded-cluster-reset",
-                "reference/embedded-cluster-restore",
-                "reference/embedded-cluster-shell",
-                "reference/embedded-cluster-support-bundle",
-                "reference/embedded-cluster-update",
-                "reference/embedded-cluster-version",
-              ],
-            },
-          ],
-        },
-        {
-          type: "category",
           label: "KOTS",
           items: [
             "intro-kots",

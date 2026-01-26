@@ -1,0 +1,40 @@
+export default {
+    installerSidebar: [
+    "embedded-overview",
+    "embedded-using",
+    "embedded-config",
+    {
+      type: "category",
+      label: "Install with Embedded Cluster",
+      items: [
+        "installing-embedded-requirements",
+        "installing-embedded",
+        "installing-embedded-air-gap",
+        "installing-embedded-automation",
+      ],
+    },
+    "embedded-manage-nodes",
+    "updating-embedded",
+    "embedded-troubleshooting",
+    "embedded-tls-certs",
+    "embedded-disaster-recovery",
+    {
+      type: "category",
+      label: "Embedded Cluster Commands",
+      items: [
+        "embedded-cluster-admin-console",
+        "embedded-cluster-completion",
+        "embedded-cluster-enable-ha",
+        "embedded-cluster-install",
+        "embedded-cluster-join",
+        "embedded-cluster-join-print-command",
+        "embedded-cluster-reset",
+        "embedded-cluster-restore",
+        "embedded-cluster-shell",
+        "embedded-cluster-support-bundle",
+        "embedded-cluster-update",
+        "embedded-cluster-version",
+      ],
+    },
+  ],
+};

@@ -213,7 +213,7 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
 
 ### Embedded Cluster
 
-CMX supports creating clusters with Replicated Embedded Cluster. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+CMX supports creating clusters with Replicated Embedded Cluster. For more information, see [Embedded Cluster Overview](/installer/embedded-overview).
 
 <table>
   <tr>

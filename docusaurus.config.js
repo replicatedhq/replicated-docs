@@ -51,6 +51,33 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'installer',
+        path: 'installer',
+        routeBasePath: 'installer',
+        sidebarPath: './sidebarsInstaller.js',
+        // Versioning configuration
+        lastVersion: 'current', // Make 3.0.0 the default version
+        includeCurrentVersion: true, // Include the "next" version from installer/ folder
+        versions: {
+          current: {
+            label: 'Embedded Cluster v3',
+            path: 'v3',
+            banner: 'none',
+          },
+          '2.0.0': {
+            label: 'Embedded Cluster v2',
+            path: 'v2',
+            banner: 'none',
+          },
+        },
+      },
+    ],
+  ],
+  
   scripts: [
     {
       src:
@@ -125,19 +152,19 @@ const config = {
             ],  
           },
           {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'installer',
+            label: 'Embedded Cluster',
+          },
+          {
             type: 'dropdown',
-            label: 'Product Docs',
+            label: 'Replicated Platform Docs',
             position: 'left',
             items: [
               {
                 type: 'doc',
-                docId: 'vendor/testing-about',
-                label: 'Compatibility Matrix',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/embedded-overview',
-                label: 'Embedded Cluster',
+                docId: 'vendor/vendor-portal-creating-account',
+                label: 'Vendor Portal',
               },
               {
                 type: 'doc',
@@ -146,29 +173,15 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'intro-kots',
-                label: 'KOTS',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/kurl-about',
-                label: 'kURL',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/private-images-about',
-                label: 'Replicated Proxy Registry',
+                docId: 'vendor/testing-about',
+                label: 'Compatibility Matrix',
               },
               {
                 type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
                 label: 'Replicated SDK',
               },
-              {
-                type: 'doc',
-                docId: 'vendor/vendor-portal-creating-account',
-                label: 'Vendor Portal',
-              },
+              
             ],  
           },
           {

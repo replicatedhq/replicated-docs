@@ -2151,7 +2151,7 @@ Released on March 21, 2022
 ### Improvements
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.67.0.
-- Adds the [`app-version-label` flag](https://kurl.sh/docs/install-with-kurl/advanced-options#reference), which takes a version label as an argument and tells KOTS to install that particular version of an application. If this flag is not passed, the latest version of the application is installed. See [Online Installation with the Kubernetes Installer​](/enterprise/installing-embedded-cluster).
+- Adds the [`app-version-label` flag](https://kurl.sh/docs/install-with-kurl/advanced-options#reference), which takes a version label as an argument and tells KOTS to install that particular version of an application. If this flag is not passed, the latest version of the application is installed. See [Online Installation with the Kubernetes Installer​](/installer/installing-embedded-cluster).
 
 ## Release v2022.03.11-0
 
