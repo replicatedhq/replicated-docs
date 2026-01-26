@@ -155,7 +155,6 @@ const config = {
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'installer',
-            label: 'Embedded Cluster',
           },
           {
             type: 'dropdown',
@@ -174,9 +173,25 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'vendor/security-center-about',
+                label: 'Security Center',
+              },
+              {
+                type: 'doc',
                 docId: 'vendor/testing-about',
                 label: 'Compatibility Matrix',
               },
+              {
+                type: 'doc',
+                docId: 'vendor/private-images-about',
+                label: 'Proxy Registry',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/preflight-support-bundle-about',
+                label: 'Preflight Checks and Support Bundles',
+              },
+
               {
                 type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
@@ -187,9 +202,19 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Developer Tools',
+            label: 'Reference',
             position: 'left',
             items: [
+              {
+                type: 'doc',
+                docId: 'reference/custom-resource-about',
+                label: 'Custom Resources',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/template-functions-about',
+                label: 'Template Functions',
+              },
               {
                 type: 'doc',
                 docId: 'reference/kots-cli-getting-started',
