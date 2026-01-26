@@ -70,11 +70,26 @@ For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/t
 
 ## How the Vendor Portal Generates Events and Insights {#about-events}
 
-When the Vendor Portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the Vendor Portal creates an _event_ to record the change. For example, a change from Ready to Degraded in the application status generates an event.
+Every time your application sends instance data to the Vendor Portal (including built-in computed metrics like "Versions behind" or any custom metrics that you configured), the system records the full metric payload with a timestamp. This creates a complete history of when your application has reported data.
 
-In addition to creating events for changes in data sent by the instance, the Vendor Portal also generates events for changes in values of computed metrics. The Vendor Portal updates the values of computed metrics each time it receives instance data. For example, the Vendor Portal computes a _Versions behind_ metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and a new update is available, the value of this metric changes and the Vendor Portal generates an event.
+The Vendor Portal then evaluates each data field to determine if there was a change in its value. For each field that changed in value, the Vendor Portal creates an _event_ to record the change.
 
-The Vendor Portal uses events to display insights for each active instance in a **Instance details** dashboard. For more information about using the Vendor Portal **Instance details** page to monitor active instances of your application, see [Instance Details](instance-insights-details).
+Events are _only_ created when values change. This means if your application sends a custom metric like `{"users": 100}` multiple times, only one event is generated to record the change in value.
+
+The following example demonstrates how the Vendor Portal generates events for custom `users` and `region` metrics: 
+
+```
+10:00 AM → Send {"users": 100, "region": "us-east"}
+           Creates two events: users=100, region=us-east
+
+10:05 AM → Send {"users": 100, "region": "us-west"}
+           Creates one event: region changed to us-west
+           No event for users because the value is unchanged
+
+10:10 AM → Send {"users": 150, "region": "us-west"}
+           Creates one event: users changed to 150
+           No event for region because the value is unchanged
+```
 
 ## Requirements
 

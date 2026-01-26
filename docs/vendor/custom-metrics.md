@@ -12,13 +12,13 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
-## How the Vendor Portal Collects Custom Metrics
+## How the SDK Sends Custom Metrics to the Vendor Portal
 
-The Vendor Portal collects custom metrics through the Replicated SDK that is installed in the cluster alongside the application.
+The Vendor Portal receives custom metrics from the Replicated SDK, which is installed in the cluster alongside the application.
 
-The SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+The SDK exposes an in-cluster API where you can configure your application to PATCH and POST metric payloads. When an application sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
-If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the Vendor Portal. For more information about how the Vendor Portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
+If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the Vendor Portal. This design reduces noise and helps you focus on actual changes in your customer deployments. For more information about how the Vendor Portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
 
 The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the Vendor Portal, as described above:
 
@@ -26,180 +26,61 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 [View a larger version of this image](/images/custom-metrics-flow.png)
 
-Custom metrics use a change-detection system to efficiently track meaningful change events from the previous value:
-
-**Data Storage:**
-- Every time your application sends metrics, the system records the full payload with a timestamp
-- This creates a complete history of when your application reported data
-
-**Event Creation:**
-- The system compares each field with its previous value
-- Events are **only created when values change** - not every time you send data
-- This means if you send `{"users": 100}` multiple times, you'll only see one event
-
-**Example:**
-
-```
-10:00 AM → Send {"users": 100, "region": "us-east"}
-           Creates 2 events: users=100, region=us-east
-
-10:05 AM → Send {"users": 100, "region": "us-west"}
-           Creates 1 event: region changed to us-west
-           No event for users (value unchanged)
-
-10:10 AM → Send {"users": 150, "region": "us-west"}
-           Creates 1 event: users changed to 150
-           No event for region (value unchanged)
-```
-
-This design reduces noise and helps you focus on actual changes in your customer deployments.
-
 ## Requirements
 
-To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance.
+* To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance. If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs. For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-The `PATCH` and `DELETE` methods described below are available in the Replicated SDK version 1.0.0-beta.23 or later.
-
-For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
-
-If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
+* The `PATCH` and `DELETE` methods described on this page require the Replicated SDK version 1.0.0-beta.23 or later.
 
 ## Limitations
 
-Custom metrics have the following limitations:
+* The label that is used to display metrics in the Vendor Portal cannot be customized. Metrics are sent to the Vendor Portal with the same name used in the `POST` or `PATCH` payload. The Vendor Portal automatically converts camel case or snake case to title case: for example, `activeUsers` or `active_users` is displayed as Active Users.
 
-* The label that is used to display metrics in the Vendor Portal cannot be customized. Metrics are sent to the Vendor Portal with the same name that is sent in the `POST` or `PATCH` payload. The Vendor Portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
+* The SDK API accepts only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-* The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
+## Define Custom Metrics in JSON Payload
 
-* When using the `POST` method any existing keys that are not included in the payload will be deleted. To create new metrics or update existing ones without sending the entire dataset, simply use the `PATCH` method.
-
-## Configure Custom Metrics
-
-You can configure your application to `POST` or `PATCH` a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.  
-
-To remove an existing custom metric use the `DELETE` endpoint with the custom metric name.
-
-The Replicated SDK provides an in-cluster API custom metrics endpoint at `http://replicated:3000/api/v1/app/custom-metrics`.
+You can define the custom metrics for your application as a set of key value pairs in a JSON metric payload. The payload must be valid JSON with proper content type headers.
 
 **Example:**
 
-```bash
-POST http://replicated:3000/api/v1/app/custom-metrics
-```
-
 ```json
 {
   "data": {
-    "num_projects": 5,
-    "weekly_active_users": 10
+    "active_users": 150,              // Number
+    "cpu_usage_percent": 75.5,        // Number
+    "sso_enabled": true,               // Boolean
+    "deployment_region": "us-east-1", // String
   }
 }
-```
-
-```bash
-PATCH http://replicated:3000/api/v1/app/custom-metrics
-```
-
-```json
-{
-  "data": {
-    "num_projects": 54,
-    "num_error": 2
-  }
-}
-```
-
-```bash
-DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 ```
 
 ### Supported Data Types
 
-Custom metric **names** (keys) must be strings.
+Custom metric names (keys) must be strings.
 
-Custom metric **values** support these JSON types:
-- **Numbers**: integers or decimals (e.g., `150`, `75.5`)
-- **Strings**: text values (e.g., `"us-east-1"`, `"enterprise"`)
-- **Booleans**: true or false (e.g., `true`, `false`)
-- **Null**: null values
+Custom metric values support these JSON types:
+- Numbers (integers or decimals)
+- Strings
+- Booleans
+- Null
 
-**Not supported**: Nested objects or arrays
+The JSON payload must contain only scalar values. Nested objects or arrays are not supported.
 
-**Example:**
+### Best Practices for Naming Custom Metrics
 
-```json
-{
-  "data": {
-    "active_users": 150,              // ✓ Number
-    "cpu_usage_percent": 75.5,        // ✓ Number
-    "sso_enabled": true,               // ✓ Boolean
-    "deployment_region": "us-east-1", // ✓ String
-    "nested": {"foo": "bar"}          // ✗ Not supported
-  }
-}
-```
+Metrics are displayed in the Vendor Portal with the same name that is used in the JSON payload. The Vendor Portal automatically converts camel case or snake case to title case: for example, `activeUsers` or `active_users` is displayed as Active Users.
 
-### POST vs PATCH
+To make it easier for team members to understand the instance reporting data for your application, Replicated recommends that you follow these best practices when naming custom metrics:
+* Use descriptive names like `active_users`. Avoid abbreviations like `au`, vague names like `user_metric`, or overly verbose names like `current_active_users`.
+* Use camel case or snake case. Don't use hyphenated names like `active-users`.
+* Use camel or snake case consistently across all of your custom metrics. 
 
-Both methods record metrics with a timestamp, but they differ in how they handle your current metric state:
+## Send Custom Metrics
 
-**POST** - Replace current state
-- Sends a complete snapshot of all metrics
-- Any metrics not included are considered removed from the instance summary
-- Use when sending your complete metric set each time
+You can configure your application to `PATCH` or `POST` a JSON metric payload to the SDK in-cluster API. For information about when to use `PATCH` or `POST`, see [PATCH vs POST](#patch-vs-post) on this page.
 
-**PATCH** - Update current state
-- Updates only the fields you include
-- Previously-sent fields remain unchanged
-- **Recommended** for most use cases
-
-**Example:**
-
-```
-// Initial state (empty)
-
-POST {"users": 100, "seats": 50}
-// Current state: users=100, seats=50
-
-PATCH {"users": 150}
-// Current state: users=150, seats=50 (seats preserved)
-
-POST {"users": 200}
-// Current state: users=200 (seats removed from summary)
-```
-
-**Best Practice**: Use PATCH unless you need to explicitly remove metrics from the instance summary.
-
-For example, if a component of your application initially sends the following via the `POST` method:
-
-```json
-{
-  "numProjects": 5,
-  "activeUsers": 10,
-}
-```
-
-Then, the component later sends the following also via the `PATCH` method:
-
-```json
-{
-  "usingCustomReports": false
-}
-```
-
-The instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload.
-
-However, if you use `POST` for the second call instead of `PATCH`:
-
-```json
-{
-  "activeUsers": 10,
-  "usingCustomReports": false
-}
-```
-
-The instance detail will show only `Active Users: 10` and `Using Custom Reports: false`. The previously-sent `numProjects` value is removed from the instance summary (though it remains accessible in the instance events history).
+The SDK API custom metrics endpoint is available at `http://replicated:3000/api/v1/app/custom-metrics`.
 
 ### NodeJS Example
 
@@ -248,6 +129,66 @@ async function startMetricsLoop(db) {
 startMetricsLoop(getDatabase());
 ```
 
+### PATCH vs POST
+
+Both the `PATCH` and `POST` methods record metrics with a timestamp, but they differ in how they handle your current metric state:
+* **`PATCH`:** Updates only the fields included in the JSON payload. Any other existing fields are unchanged. Use `PATCH` unless you need to explicitly remove metrics from the instance summary.
+* **`POST`:** Replaces the current metric state. Any existing metrics that are not included in the JSON payload are removed from the instance summary. Use `POST` only when sending your complete metric set each time.
+
+For example, if a component of your application initially sends the following with the `POST` method:
+
+```json
+{
+  "numProjects": 5,
+  "activeUsers": 10,
+}
+```
+
+Then, the component later sends the following with the `PATCH` method:
+
+```json
+{
+  "usingCustomReports": false
+}
+```
+
+Then the instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload:
+
+```json
+{
+  "numProjects": 5,
+  "activeUsers": 10,
+  "usingCustomReports": false
+}
+```
+
+However, if you use `POST` for the second call instead of `PATCH`, then the instance detail will show only `Active Users: 10` and `Using Custom Reports: false`:
+
+```json
+{
+  "activeUsers": 10,
+  "usingCustomReports": false
+}
+```
+
+In this case, the previously-sent `numProjects` value is removed from the instance summary (though it remains accessible in the instance events history).
+
+### How Often to Send Custom Metrics
+
+Replicated recommends that you add logic to your application to send metrics at regular intervals, such as daily or weekly.
+
+Avoid sending metrics too frequently as it creates unnecessary noise. Custom metrics are best for periodic product statistics reporting rather than real-time monitoring.
+
+For an example of application logic that sends custom metrics on a weekly interval, see [NodeJS Example](#nodejs-example) on this page.
+
+## Remove a Custom Metric
+
+To remove an existing custom metric, use `DELETE` with the custom metric name. For example:
+
+```bash
+DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
+```
+
 ## View Custom Metrics
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the Vendor Portal.
@@ -267,54 +208,41 @@ Custom metrics are also included in the **Instance activity** stream of the **In
 
 ## Export Custom Metrics
 
-You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
+You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programmatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
 
-## Best Practices
+## Troubleshoot Custom Metrics
 
-### Sending Frequency
-- Send metrics from the applicaiton at regular intervals (e.g., every hour or daily)
-- Avoid sending metrics too frequently (e.g., every minute) as it creates unnecessary load
-- Consider your use case. Custom metrics are best for periodic product statistics reporting vs real-time monitoring.
+### Custom metrics not showing up in the Vendor Portal
 
-### Change Detection Efficiency
-- The system only creates events when values change
-- It's safe to send the same values repeatedly - no duplicate events will be created - and it will show the instance is still active
+#### Symptom
 
-### Choosing POST vs PATCH
-- **Use PATCH** (recommended) when sending updates to specific metrics
-- **Use POST** only when you want to send a complete snapshot and remove unreported metrics from the instance summary
+After your application sends a custom metric payload to the SDK API, one or more custom metrics are not displayed in the instance details in the Vendor Portal.
 
-### Metric Naming
-- Use descriptive names: `active_users` not `au`
-- Use snake_case or camelCase consistently
-- Remember: names will be displayed in the Vendor Portal UI (camelCase converts to Title Case)
+#### Cause
 
-## Troubleshooting Custom Metrics 
+There are several possible reasons why a custom metric might not be showing up in the Vendor Portal, such as using an unsupported version of the SDK, invalid JSON, using POST rather than PATCH, or network connectivity issues.
 
-### "I'm not seeing any events"
+#### Solution
 
-**Cause**: Events are only created when values change.
+To troubleshoot this issue:
+- Ensure that the application instance is using the Replicated SDK version 1.0.0-beta.12 or later. If your application is using the `PATCH` and `DELETE` methods, version 1.0.0-beta.23 or later of the SDK is required.
+- Verify that your payload only contains scalar values (no nested objects or arrays), and is valid JSON with proper content type headers
+- Test network connectivity by confirming that the application can reach `http://replicated:3000`
+- Check that your application is using the intended method (PATCH or POST). If a metric payload is sent using the POST method, any existing metrics that are not included in the payload are removed from the instance summary. For more information, see [PATCH vs POST](#patch-vs-post).
 
-**Solution**:
-- If you send `{"users": 100}` multiple times, only the first submission creates an event
-- Try changing a value to verify the system is working: `{"users": 101}`
-- Check the **Instance activity** stream to confirm metrics are being received
+### Duplicate events for unchanged values
 
-### "My metrics aren't showing up"
+#### Symptom
 
-**Possible causes and solutions**:
-- **Verify SDK version**: Ensure you're using Replicated SDK version 1.0.0-beta.12 or later
-- **Check payload format**: Verify your payload only contains scalar values (no nested objects or arrays)
-- **Validate JSON**: Ensure you're sending valid JSON with proper content type headers
-- **Check network connectivity**: Verify the application can reach `http://replicated:3000`
+Instance reporting in the Vendor Portal displays duplicate events for one of your custom metrics, even though the metric's value was unchanged. 
 
-### "I see duplicate events for unchanged values"
+#### Cause
 
-**Cause**: Your application logic may be computing values differently between calls.
+Your application logic might be computing values differently between calls.
 
-**Solution**:
+#### Solution
+
+To troubleshoot this issue:
 - Review your metric collection logic to ensure consistent value calculation
 - Check for floating-point precision issues with numeric values
-- Verify that boolean values are consistently true/false (not truthy/falsy conversions)
-
-
+- Verify that boolean values are consistently true or false and are not truthy or falsy conversions
