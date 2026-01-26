@@ -12,9 +12,21 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
-## How Custom Metrics Work
+## How the Vendor Portal Collects Custom Metrics
 
-Custom metrics use a change-detection system to efficiently track meaningful updates:
+The Vendor Portal collects custom metrics through the Replicated SDK that is installed in the cluster alongside the application.
+
+The SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+
+If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the Vendor Portal. For more information about how the Vendor Portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
+
+The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the Vendor Portal, as described above:
+
+<img alt="Custom metrics flowing from customer environment to Vendor Portal" src="/images/custom-metrics-flow.png" width="800px"/>
+
+[View a larger version of this image](/images/custom-metrics-flow.png)
+
+Custom metrics use a change-detection system to efficiently track meaningful change events from the previous value:
 
 **Data Storage:**
 - Every time your application sends metrics, the system records the full payload with a timestamp
@@ -42,20 +54,6 @@ Custom metrics use a change-detection system to efficiently track meaningful upd
 
 This design reduces noise and helps you focus on actual changes in your customer deployments.
 
-## How the Vendor Portal Collects Custom Metrics
-
-The Vendor Portal collects custom metrics through the Replicated SDK that is installed in the cluster alongside the application.
-
-The SDK exposes an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
-
-If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the Vendor Portal. For more information about how the Vendor Portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
-
-The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the Vendor Portal, as described above:
-
-<img alt="Custom metrics flowing from customer environment to Vendor Portal" src="/images/custom-metrics-flow.png" width="800px"/>
-
-[View a larger version of this image](/images/custom-metrics-flow.png)
-
 ## Requirements
 
 To support the collection of custom metrics in online and air gap environments, the Replicated SDK version 1.0.0-beta.12 or later must be running in the cluster alongside the application instance.
@@ -65,32 +63,6 @@ The `PATCH` and `DELETE` methods described below are available in the Replicated
 For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
-
-## Supported Data Types
-
-Custom metric **names** (keys) must be strings.
-
-Custom metric **values** support these JSON types:
-- **Numbers**: integers or decimals (e.g., `150`, `75.5`)
-- **Strings**: text values (e.g., `"us-east-1"`, `"enterprise"`)
-- **Booleans**: true or false (e.g., `true`, `false`)
-- **Null**: null values
-
-**Not supported**: Nested objects or arrays
-
-**Example:**
-
-```json
-{
-  "data": {
-    "active_users": 150,              // ✓ Number
-    "cpu_usage_percent": 75.5,        // ✓ Number
-    "sso_enabled": true,               // ✓ Boolean
-    "deployment_region": "us-east-1", // ✓ String
-    "nested": {"foo": "bar"}          // ✗ Not supported
-  }
-}
-```
 
 ## Limitations
 
@@ -140,6 +112,32 @@ PATCH http://replicated:3000/api/v1/app/custom-metrics
 
 ```bash
 DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
+```
+
+### Supported Data Types
+
+Custom metric **names** (keys) must be strings.
+
+Custom metric **values** support these JSON types:
+- **Numbers**: integers or decimals (e.g., `150`, `75.5`)
+- **Strings**: text values (e.g., `"us-east-1"`, `"enterprise"`)
+- **Booleans**: true or false (e.g., `true`, `false`)
+- **Null**: null values
+
+**Not supported**: Nested objects or arrays
+
+**Example:**
+
+```json
+{
+  "data": {
+    "active_users": 150,              // ✓ Number
+    "cpu_usage_percent": 75.5,        // ✓ Number
+    "sso_enabled": true,               // ✓ Boolean
+    "deployment_region": "us-east-1", // ✓ String
+    "nested": {"foo": "bar"}          // ✗ Not supported
+  }
+}
 ```
 
 ### POST vs PATCH
@@ -250,27 +248,6 @@ async function startMetricsLoop(db) {
 startMetricsLoop(getDatabase());
 ```
 
-## Best Practices
-
-### Sending Frequency
-- Send metrics at regular intervals (e.g., every hour or daily)
-- Avoid sending metrics too frequently (e.g., every minute) as it creates unnecessary load
-- Consider your use case: real-time monitoring vs periodic reporting
-
-### Change Detection Efficiency
-- The system only creates events when values change
-- It's safe to send the same values repeatedly - no duplicate events will be created
-- Send metrics even if values haven't changed to show the instance is still active
-
-### Choosing POST vs PATCH
-- **Use PATCH** (recommended) when sending updates to specific metrics
-- **Use POST** only when you want to send a complete snapshot and remove unreported metrics from the instance summary
-
-### Metric Naming
-- Use descriptive names: `active_users` not `au`
-- Use snake_case or camelCase consistently
-- Remember: names will be displayed in the Vendor Portal UI (camelCase converts to Title Case)
-
 ## View Custom Metrics
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the Vendor Portal.
@@ -288,7 +265,31 @@ As shown in the image above, the **Custom Metrics** section of the **Instance De
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
 
-## Troubleshooting
+## Export Custom Metrics
+
+You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
+
+## Best Practices
+
+### Sending Frequency
+- Send metrics from the applicaiton at regular intervals (e.g., every hour or daily)
+- Avoid sending metrics too frequently (e.g., every minute) as it creates unnecessary load
+- Consider your use case. Custom metrics are best for periodic product statistics reporting vs real-time monitoring.
+
+### Change Detection Efficiency
+- The system only creates events when values change
+- It's safe to send the same values repeatedly - no duplicate events will be created - and it will show the instance is still active
+
+### Choosing POST vs PATCH
+- **Use PATCH** (recommended) when sending updates to specific metrics
+- **Use POST** only when you want to send a complete snapshot and remove unreported metrics from the instance summary
+
+### Metric Naming
+- Use descriptive names: `active_users` not `au`
+- Use snake_case or camelCase consistently
+- Remember: names will be displayed in the Vendor Portal UI (camelCase converts to Title Case)
+
+## Troubleshooting Custom Metrics 
 
 ### "I'm not seeing any events"
 
@@ -316,6 +317,4 @@ Custom metrics are also included in the **Instance activity** stream of the **In
 - Check for floating-point precision issues with numeric values
 - Verify that boolean values are consistently true/false (not truthy/falsy conversions)
 
-## Export Custom Metrics
 
-You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
