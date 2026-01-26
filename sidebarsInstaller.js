@@ -1,5 +1,5 @@
-export default {
-    installerSidebar: [
+module.exports = {
+  installerSidebar: [
     "embedded-overview",
     "embedded-using",
     "embedded-config",

@@ -11,6 +11,17 @@
 
 // @ts-check
 
+// Import modular sidebars
+const vendorPlatformSidebar = require('./sidebarVendorPlatform');
+const enterprisePortalSidebar = require('./sidebarEnterprisePortal');
+const securityCenterSidebar = require('./sidebarSecurityCenter');
+const compatibilityMatrixSidebar = require('./sidebarCompatibilityMatrix');
+const kotsSidebar = require('./sidebarKOTS');
+const kurlSidebar = require('./sidebarKURL');
+const helmInstallationsSidebar = require('./sidebarHelmInstallations');
+const replicatedSdkSidebar = require('./sidebarReplicatedSDK');
+const preflightSupportSidebar = require('./sidebarPreflightSupport');
+
 // @type {import('@docusaurus/plugin-content-docs').SidebarsConfig}
 const sidebars = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
@@ -91,461 +102,81 @@ const sidebars = {
     // PRODUCT DOCS
     { type: "html", value: "<h5>Product docs</h5>", defaultStyle: true },
     {
-      type: "category",
-      label: "Vendor Portal",
-      items: [
-        {
-          type: "category",
-          label: "Vendor Portal Teams and Accounts",
-          items: [
-            "vendor/vendor-portal-creating-account",
-            "vendor/team-management",
-            "vendor/team-management-github-username",
-            {
-              type: "category",
-              label: "Configure Role-based Access Control",
-              items: [
-                "vendor/team-management-rbac-configuring",
-                "vendor/team-management-rbac-resource-names",
-              ],
-            },
-            {
-              type: "category",
-              label: "Configure Authentication",
-              items: [
-                "vendor/team-management-two-factor-auth",
-                "vendor/team-management-google-auth",
-                "vendor/team-management-saml-auth",
-                "vendor/team-management-scim-provisioning",
-              ],
-            },
-            "vendor/team-management-slack-config",
-            "vendor/replicated-api-tokens",
-          ],
-        },
-        {
-          type: "category",
-          label: "Applications",
-          items: [
-            "vendor/vendor-portal-manage-app",
-            "vendor/vendor-portal-application-settings",
-          ],
-        },
-        {
-          type: "category",
-          label: "Channels and Releases",
-          items: [
-            "vendor/releases-about",
-            "vendor/releases-creating-channels",
-            "vendor/releases-creating-releases",
-            "vendor/releases-creating-cli",
-            "vendor/helm-install-release",
-            "vendor/releases-sharing-license-install-script",
-            "reference/linter",
-          ],
-        },
-        {
-          type: "category",
-          label: "Customers and Licenses",
-          items: [
-            "vendor/licenses-about",
-            "vendor/releases-creating-customer",
-            "vendor/licenses-adding-custom-fields",
-            "vendor/licenses-install-types",
-            "vendor/releases-share-download-portal",
-            "vendor/licenses-about-types",
-            "vendor/licenses-download",
-            {
-              type: "category",
-              label: "Query License Entitlements",
-              items: [
-                "vendor/licenses-using-builtin-fields",
-                "vendor/licenses-reference-sdk",
-                "vendor/licenses-reference-helm",
-                "vendor/licenses-referencing-fields",
-                "vendor/licenses-reference-kots-runtime",
-                "vendor/licenses-verify-fields-sdk-api",
-              ],
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Custom Domains",
-          items: ["vendor/custom-domains", "vendor/custom-domains-using"],
-        },
-        {
-          type: "category",
-          label: "Insights and Telemetry",
-          items: [
-            "vendor/instance-insights-event-data",
-            "vendor/insights-app-status",
-            "vendor/telemetry-air-gap",
-            "vendor/customer-adoption",
-            "vendor/customer-reporting",
-            "vendor/instance-insights-details",
-            "vendor/instance-notifications-config",
-            "vendor/custom-metrics",
-            "vendor/instance-data-export",
-          ],
-        },
-        "vendor/support-submit-request",
-      ],
+      type: "ref",
+      id: "vendor/vendor-portal-creating-account",
+      label: "Vendor Platform",
+      customProps: {
+        sidebar: "vendorPlatformSidebar"
+      }
     },
     {
-      type: "category",
+      type: "ref",
+      id: "vendor/enterprise-portal-about",
       label: "Enterprise Portal",
-      items: [
-        "vendor/enterprise-portal-about",
-        "vendor/enterprise-portal-configure",
-        "vendor/enterprise-portal-invite",
-        "vendor/enterprise-portal-self-serve-signup",
-        "vendor/enterprise-portal-access",
-        "vendor/enterprise-portal-use",
-      ],
+      customProps: {
+        sidebar: "enterprisePortalSidebar"
+      }
     },
     {
-      type: "category",
+      type: "ref",
+      id: "vendor/security-center-about",
       label: "Security Center (Alpha)",
-      items: ["vendor/security-center-about"],
+      customProps: {
+        sidebar: "securityCenterSidebar"
+      }
     },
     {
-      type: "category",
+      type: "ref",
+      id: "vendor/testing-about",
       label: "Compatibility Matrix",
-      items: [
-        "vendor/testing-about",
-        "vendor/testing-supported-clusters",
-        "vendor/testing-how-to",
-        "vendor/testing-ingress",
-        "vendor/testing-cluster-addons",
-        "vendor/testing-vm-about",
-        "vendor/testing-vm-create",
-        "vendor/testing-vm-transfer-files",
-        "vendor/testing-vm-networking",
-        "vendor/testing-network-policy",
-        "vendor/testing-ci-cd",
-        {
-          type: "category",
-          label: "Managing Cost with CMX",
-          items: [
-            "vendor/testing-pricing",
-            "vendor/compatibility-matrix-usage",
-          ],
-        },
-      ],
+      customProps: {
+        sidebar: "compatibilityMatrixSidebar"
+      }
     },
-        {
-          type: "category",
-          label: "KOTS",
-          items: [
-            "intro-kots",
-            {
-              type: "category",
-              label: "Configure KOTS",
-              items: [
-                {
-                  type: "category",
-                  label: "Configure the HelmChart Custom Resource",
-                  items: [
-                    "vendor/helm-native-about",
-                    "vendor/helm-native-v2-using",
-                    "vendor/helm-packaging-airgap-bundles",
-                    "vendor/helm-optional-value-keys",
-                    "vendor/helm-v2-migrate",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Customize the Admin Console and Download Portal",
-                  items: [
-                    "vendor/admin-console-customize-app-icon",
-                    "vendor/admin-console-adding-buttons-links",
-                    "vendor/admin-console-port-forward",
-                    "vendor/admin-console-prometheus-monitoring",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Configure the Admin Console Config Screen",
-                  items: [
-                    "vendor/config-screen-about",
-                    "vendor/admin-console-customize-config-screen",
-                    "vendor/config-screen-map-inputs",
-                    "vendor/config-screen-conditional",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Manage Resources and Objects",
-                  items: [
-                    "vendor/admin-console-display-app-status",
-                    {
-                      type: "category",
-                      label: "Conditionally Deploy Resources",
-                      items: [
-                        "vendor/packaging-include-resources",
-                        "vendor/tutorial-adding-db-config",
-                      ],
-                    },
-                    "vendor/resources-annotations-templating",
-                    "vendor/orchestrating-resource-deployment",
-                    "vendor/database-config-adding-options",
-                    "vendor/packaging-cleaning-up-jobs",
-                    "vendor/packaging-ingress",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Manage KOTS",
-                  items: [
-                    "vendor/packaging-kots-versions",
-                    "vendor/packaging-rbac",
-                    "vendor/packaging-air-gap-excluding-minio",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Distribute Kubernetes Operators with KOTS",
-                  items: [
-                    "vendor/operator-packaging-about",
-                    "vendor/operator-defining-additional-images",
-                    "vendor/operator-referencing-images",
-                    "vendor/operator-defining-additional-namespaces",
-                  ],
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Install in Existing Clusters with KOTS",
-              items: [
-                "enterprise/installing-overview",
-                "enterprise/installing-general-requirements",
-                "enterprise/installing-existing-cluster",
-                "enterprise/installing-existing-cluster-airgapped",
-                "enterprise/installing-existing-cluster-automation",
-                "enterprise/installing-stateful-component-requirements",
-              ],
-            },
-            {
-              type: "category",
-              label: "Perform Updates in Existing Cluster KOTS Installations",
-              items: [
-                "enterprise/updating-app-manager",
-                "enterprise/updating-apps",
-                "enterprise/updating-patching-with-kustomize",
-              ],
-            },
-            {
-              type: "category",
-              label: "Configure Local Image Registries",
-              items: [
-                "enterprise/image-registry-settings",
-                "enterprise/image-registry-rate-limits",
-              ],
-            },
-            "enterprise/updating-licenses",
-            {
-              type: "category",
-              label: "Perform Backup and Restore with Snapshots",
-              items: [
-                "vendor/snapshots-overview",
-                {
-                  type: "category",
-                  label: "Enable and Configure Snapshots",
-                  items: [
-                    "vendor/snapshots-configuring-backups",
-                    "reference/custom-resource-backup",
-                    "vendor/snapshots-hooks",
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Configure Backup Storage for Snaphots",
-                  items: [
-                    "enterprise/snapshots-velero-cli-installing",
-                    "enterprise/snapshots-configuring-hostpath",
-                    "enterprise/snapshots-configuring-nfs",
-                    "enterprise/snapshots-storage-destinations",
-                    "enterprise/snapshots-velero-installing-config",
-                  ],
-                },
-                "enterprise/snapshots-creating",
-                "enterprise/snapshots-restoring-full",
-                "enterprise/snapshots-updating-with-admin-console",
-                "enterprise/snapshots-troubleshooting-backup-restore",
-              ],
-            },
-            {
-              type: "category",
-              label: "Manage Admin Console User Access",
-              items: [
-                "enterprise/auth-changing-passwords",
-                "enterprise/auth-identity-provider",
-                "enterprise/auth-configuring-rbac",
-              ],
-            },
-            {
-              type: "category",
-              label: "Monitor Applications with Prometheus",
-              items: [
-                "enterprise/monitoring-applications",
-                "enterprise/monitoring-access-dashboards",
-              ],
-            },
-            "enterprise/status-viewing-details",
-            "enterprise/delete-admin-console",
-            {
-              type: "category",
-              label: "Use a GitOps Workflow",
-              items: [
-                "enterprise/gitops-workflow",
-                "enterprise/gitops-managing-secrets",
-              ],
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "kURL",
-          items: [
-            "vendor/kurl-about",
-            {
-              type: "category",
-              label: "Configure kURL Installers",
-              items: [
-                "vendor/packaging-embedded-kubernetes",
-                "vendor/packaging-installer-storage",
-                "vendor/installer-history",
-                "vendor/kurl-nodeport-services",
-              ],
-            },
-            {
-              type: "category",
-              label: "Install with kURL",
-              items: [
-                "enterprise/installing-kurl-requirements",
-                "enterprise/installing-kurl",
-                "enterprise/installing-kurl-airgap",
-                "enterprise/installing-kurl-automation",
-              ],
-            },
-            "enterprise/cluster-management-add-nodes",
-            {
-              type: "category",
-              label: "Perform Updates with kURL",
-              items: [
-                "enterprise/updating-kurl-about",
-                "enterprise/updating-kurl",
-              ],
-            },
-            "vendor/packaging-using-tls-certs",
-            "enterprise/updating-tls-cert",
-            "enterprise/image-registry-kurl",
-            "enterprise/monitoring-external-prometheus",
-            "vendor/kurl-reset",
-          ],
-        },
     {
-      type: "category",
+      type: "link",
+      href: "/installer/v3/embedded-overview",
+      label: "Embedded Cluster",
+    },
+    {
+      type: "ref",
+      id: "intro-kots",
+      label: "KOTS",
+      customProps: {
+        sidebar: "kotsSidebar"
+      }
+    },
+    {
+      type: "ref",
+      id: "vendor/kurl-about",
+      label: "kURL",
+      customProps: {
+        sidebar: "kurlSidebar"
+      }
+    },
+    {
+      type: "ref",
+      id: "vendor/helm-install-overview",
       label: "Helm Installations with Replicated",
-      items: [
-        "vendor/helm-install-overview",
-        "vendor/helm-install-values-schema",
-        "vendor/install-with-helm",
-        "vendor/helm-install-airgap",
-        "vendor/using-third-party-registry-proxy",
-        "vendor/helm-install-troubleshooting",
-      ],
+      customProps: {
+        sidebar: "helmInstallationsSidebar"
+      }
     },
     {
-      type: "category",
+      type: "ref",
+      id: "vendor/replicated-sdk-overview",
       label: "Replicated SDK",
-      items: [
-        "vendor/replicated-sdk-overview",
-        "vendor/replicated-sdk-installing",
-        "vendor/replicated-sdk-airgap",
-        "vendor/replicated-sdk-development",
-        "vendor/replicated-sdk-customizing",
-      ],
+      customProps: {
+        sidebar: "replicatedSdkSidebar"
+      }
     },
     {
-      type: "category",
+      type: "ref",
+      id: "vendor/preflight-support-bundle-about",
       label: "Preflight Checks and Support Bundles",
-      items: [
-        "vendor/preflight-support-bundle-about",
-        {
-          type: "category",
-          label: "Preflight Checks",
-          items: [
-            "vendor/preflight-defining",
-            "vendor/preflight-examples",
-            "vendor/preflight-running",
-            "vendor/preflight-host-preflights",
-          ],
-        },
-        {
-          type: "category",
-          label: "Support Bundles",
-          items: [
-            "vendor/support-bundle-customizing",
-            "vendor/support-bundle-examples",
-            "vendor/support-online-support-bundle-specs",
-            "vendor/support-modular-support-bundle-specs",
-            {
-              type: "category",
-              label: "Generate Support Bundles",
-              items: [
-                "vendor/support-bundle-generating",
-                "vendor/support-bundle-embedded",
-                "enterprise/troubleshooting-an-app",
-                "vendor/support-host-support-bundles",
-              ],
-            },
-            "vendor/support-inspecting-support-bundles",
-            "vendor/support-enabling-direct-bundle-uploads",
-          ],
-        },
-        "vendor/preflight-sb-helm-templates-about",
-        {
-          type: "category",
-          label: "Troubleshoot Custom Resources",
-          items: [
-            "reference/custom-resource-preflight",
-            "reference/custom-resource-redactor",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Replicated Proxy Registry",
-      items: [
-        "vendor/private-images-about",
-        "vendor/packaging-private-images",
-        "vendor/helm-image-registry",
-        "vendor/private-images-kots",
-        "vendor/private-images-tags-digests",
-        {
-          type: "category",
-          label: "Replicated Private Registry",
-          items: [
-            "vendor/private-images-replicated",
-            "vendor/packaging-private-registry-security",
-          ],
-        },
-        "vendor/packaging-public-images",
-        "vendor/tutorial-ecr-private-images",
-      ],
-    },
-    {
-      type: "category",
-      label: "Add Replicated to CI/CD Workflows",
-      items: [
-        "vendor/ci-overview",
-        "vendor/ci-workflows",
-        "vendor/ci-workflows-github-actions",
-      ],
+      customProps: {
+        sidebar: "preflightSupportSidebar"
+      }
     },
 
     // Reference
@@ -878,6 +509,17 @@ const sidebars = {
       ],
     },
   ],
+  
+  // Product-specific sidebars
+  ...vendorPlatformSidebar,
+  ...enterprisePortalSidebar,
+  ...securityCenterSidebar,
+  ...compatibilityMatrixSidebar,
+  ...kotsSidebar,
+  ...kurlSidebar,
+  ...helmInstallationsSidebar,
+  ...replicatedSdkSidebar,
+  ...preflightSupportSidebar,
 };
 
 module.exports = sidebars;

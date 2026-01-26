@@ -29,7 +29,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          breadcrumbs: false,
+          breadcrumbs: true,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
@@ -59,17 +59,18 @@ const config = {
         path: 'installer',
         routeBasePath: 'installer',
         sidebarPath: './sidebarsInstaller.js',
+        breadcrumbs: true,
         // Versioning configuration
         lastVersion: 'current', // Make 3.0.0 the default version
         includeCurrentVersion: true, // Include the "next" version from installer/ folder
         versions: {
           current: {
-            label: 'Embedded Cluster v3',
+            label: 'Embedded Cluster 3.0',
             path: 'v3',
             banner: 'none',
           },
           '2.0.0': {
-            label: 'Embedded Cluster v2',
+            label: 'Embedded Cluster 2.13.3',
             path: 'v2',
             banner: 'none',
           },
@@ -158,7 +159,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Replicated Platform Docs',
+            label: 'Product Docs',
             position: 'left',
             items: [
               {
