@@ -12,6 +12,36 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
+## How Custom Metrics Work
+
+Custom metrics use a change-detection system to efficiently track meaningful updates:
+
+**Data Storage:**
+- Every time your application sends metrics, the system records the full payload with a timestamp
+- This creates a complete history of when your application reported data
+
+**Event Creation:**
+- The system compares each field with its previous value
+- Events are **only created when values change** - not every time you send data
+- This means if you send `{"users": 100}` multiple times, you'll only see one event
+
+**Example:**
+
+```
+10:00 AM → Send {"users": 100, "region": "us-east"}
+           Creates 2 events: users=100, region=us-east
+
+10:05 AM → Send {"users": 100, "region": "us-west"}
+           Creates 1 event: region changed to us-west
+           No event for users (value unchanged)
+
+10:10 AM → Send {"users": 150, "region": "us-west"}
+           Creates 1 event: users changed to 150
+           No event for region (value unchanged)
+```
+
+This design reduces noise and helps you focus on actual changes in your customer deployments.
+
 ## How the Vendor Portal Collects Custom Metrics
 
 The Vendor Portal collects custom metrics through the Replicated SDK that is installed in the cluster alongside the application.
@@ -35,6 +65,32 @@ The `PATCH` and `DELETE` methods described below are available in the Replicated
 For more information about the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 If you have any customers running earlier versions of the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
+
+## Supported Data Types
+
+Custom metric **names** (keys) must be strings.
+
+Custom metric **values** support these JSON types:
+- **Numbers**: integers or decimals (e.g., `150`, `75.5`)
+- **Strings**: text values (e.g., `"us-east-1"`, `"enterprise"`)
+- **Booleans**: true or false (e.g., `true`, `false`)
+- **Null**: null values
+
+**Not supported**: Nested objects or arrays
+
+**Example:**
+
+```json
+{
+  "data": {
+    "active_users": 150,              // ✓ Number
+    "cpu_usage_percent": 75.5,        // ✓ Number
+    "sso_enabled": true,               // ✓ Boolean
+    "deployment_region": "us-east-1", // ✓ String
+    "nested": {"foo": "bar"}          // ✗ Not supported
+  }
+}
+```
 
 ## Limitations
 
@@ -88,31 +144,34 @@ DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 
 ### POST vs PATCH
 
-The `POST` method will always replace the existing data with the most recent payload received. Any existing keys not included in the most recent payload will still be accessible in the instance events API, but they will no longer appear in the instance summary.
+Both methods record metrics with a timestamp, but they differ in how they handle your current metric state:
 
-The `PATCH` method will accept partial updates or add new custom metrics if a key:value pair that does not currently exist is passed.
+**POST** - Replace current state
+- Sends a complete snapshot of all metrics
+- Any metrics not included are considered removed from the instance summary
+- Use when sending your complete metric set each time
 
-In most cases, simply using the `PATCH` method is recommended.
+**PATCH** - Update current state
+- Updates only the fields you include
+- Previously-sent fields remain unchanged
+- **Recommended** for most use cases
 
-For example, if a component of your application sends the following via the `POST` method:
+**Example:**
 
-```json
-{
-  "numProjects": 5,
-  "activeUsers": 10,
-}
+```
+// Initial state (empty)
+
+POST {"users": 100, "seats": 50}
+// Current state: users=100, seats=50
+
+PATCH {"users": 150}
+// Current state: users=150, seats=50 (seats preserved)
+
+POST {"users": 200}
+// Current state: users=200 (seats removed from summary)
 ```
 
-Then, the component later sends the following also via the `POST` method:
-
-```json
-{
-  "activeUsers": 10,
-  "usingCustomReports": false
-}
-```
-
-The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.  In order to preseve `numProjects`from the initial payload and upsert `usingCustomReports` and `activeUsers` use the `PATCH` method instead of `POST` on subsequent calls to the endpoint.
+**Best Practice**: Use PATCH unless you need to explicitly remove metrics from the instance summary.
 
 For example, if a component of your application initially sends the following via the `POST` method:
 
@@ -121,9 +180,10 @@ For example, if a component of your application initially sends the following vi
   "numProjects": 5,
   "activeUsers": 10,
 }
-``` 
+```
 
 Then, the component later sends the following also via the `PATCH` method:
+
 ```json
 {
   "usingCustomReports": false
@@ -131,6 +191,17 @@ Then, the component later sends the following also via the `PATCH` method:
 ```
 
 The instance detail will show `Num Projects: 5`, `Active Users: 10`, `Using Custom Reports: false`, which represents the merged and upserted payload.
+
+However, if you use `POST` for the second call instead of `PATCH`:
+
+```json
+{
+  "activeUsers": 10,
+  "usingCustomReports": false
+}
+```
+
+The instance detail will show only `Active Users: 10` and `Using Custom Reports: false`. The previously-sent `numProjects` value is removed from the instance summary (though it remains accessible in the instance events history).
 
 ### NodeJS Example
 
@@ -179,6 +250,27 @@ async function startMetricsLoop(db) {
 startMetricsLoop(getDatabase());
 ```
 
+## Best Practices
+
+### Sending Frequency
+- Send metrics at regular intervals (e.g., every hour or daily)
+- Avoid sending metrics too frequently (e.g., every minute) as it creates unnecessary load
+- Consider your use case: real-time monitoring vs periodic reporting
+
+### Change Detection Efficiency
+- The system only creates events when values change
+- It's safe to send the same values repeatedly - no duplicate events will be created
+- Send metrics even if values haven't changed to show the instance is still active
+
+### Choosing POST vs PATCH
+- **Use PATCH** (recommended) when sending updates to specific metrics
+- **Use POST** only when you want to send a complete snapshot and remove unreported metrics from the instance summary
+
+### Metric Naming
+- Use descriptive names: `active_users` not `au`
+- Use snake_case or camelCase consistently
+- Remember: names will be displayed in the Vendor Portal UI (camelCase converts to Title Case)
+
 ## View Custom Metrics
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the Vendor Portal.
@@ -195,6 +287,34 @@ As shown in the image above, the **Custom Metrics** section of the **Instance De
 * A time-series graph depicting the historical data trends for the selected metric.
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
+
+## Troubleshooting
+
+### "I'm not seeing any events"
+
+**Cause**: Events are only created when values change.
+
+**Solution**:
+- If you send `{"users": 100}` multiple times, only the first submission creates an event
+- Try changing a value to verify the system is working: `{"users": 101}`
+- Check the **Instance activity** stream to confirm metrics are being received
+
+### "My metrics aren't showing up"
+
+**Possible causes and solutions**:
+- **Verify SDK version**: Ensure you're using Replicated SDK version 1.0.0-beta.12 or later
+- **Check payload format**: Verify your payload only contains scalar values (no nested objects or arrays)
+- **Validate JSON**: Ensure you're sending valid JSON with proper content type headers
+- **Check network connectivity**: Verify the application can reach `http://replicated:3000`
+
+### "I see duplicate events for unchanged values"
+
+**Cause**: Your application logic may be computing values differently between calls.
+
+**Solution**:
+- Review your metric collection logic to ensure consistent value calculation
+- Check for floating-point precision issues with numeric values
+- Verify that boolean values are consistently true/false (not truthy/falsy conversions)
 
 ## Export Custom Metrics
 
