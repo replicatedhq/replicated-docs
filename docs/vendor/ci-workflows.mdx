@@ -289,11 +289,13 @@ Add a job that promotes the release to a shared internal-only or customer-facing
 
 Consider the following requirements and recommendations:
 
-* Replicated recommends that you include the `--version` flag with the `release promote` command to explicitly declare the version label for the release. Use the same version label that was used when the release was created as part of [Create a release and promote to a temporary channel](#rel-release) above. Although the `--version` flag is not required, declaring the same release version label during promotion provides additional consistency that makes the releases easier to track. 
+* Replicated recommends that you include the `--version` flag with the `release promote` command to explicitly declare the version label for the release. Use the same version label that was used when the release was created as part of [Create a release and promote to a temporary channel](#rel-release) above. Although the `--version` flag is not required, declaring the same release version label during promotion provides additional consistency that makes the releases easier to track.
 
 * The channel to which the release is promoted depends on the event triggers that you defined for the workflow. For example, if the workflow runs on every commit to the `main` branch, then promote the release to an internal-only channel, such as Unstable. For more information, see [Define Workflow Triggers](#rel-triggers) above.
 
 * Use the `--release-notes` flag to include detailed release notes in markdown.
+
+* For critical updates that require customers to install them (such as security patches or breaking changes), use the `--required` flag when creating or promoting the release. When a release is marked as required, users cannot skip the upgrade. This flag can be used with both `release create --promote` and `release promote` commands.
 
 ### Archive the temporary channel and customer {#rel-cleanup}
 
