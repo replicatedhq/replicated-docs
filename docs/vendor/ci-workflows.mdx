@@ -295,7 +295,7 @@ Consider the following requirements and recommendations:
 
 * Use the `--release-notes` flag to include detailed release notes in markdown.
 
-* For critical updates that require customers to install them (such as versions that include a required database migration), use the `--required` flag when creating or promoting the release. When a release is marked as required, users cannot skip the upgrade. This flag can be used with both `release create --promote` and `release promote` commands.
+* For release versions that must not be skipped during upgrades (such as versions that include a required database migration), use the `--required` flag to mark the release as required. This flag can be used with both `release create --promote` and `release promote` commands. For more information about required releases, see [Required Releases](/vendor/releases-about#required-releases) in _About Channels and Releases_.
 
 ### Archive the temporary channel and customer {#rel-cleanup}
 
