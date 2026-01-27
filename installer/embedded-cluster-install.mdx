@@ -1,11 +1,11 @@
-import ProxyLimitations from "../partials/embedded-cluster/_proxy-install-limitations.mdx"
-import ProxyRequirements from "../partials/embedded-cluster/_proxy-install-reqs.mdx"
-import ProxyEnvVars from "../partials/embedded-cluster/_proxy-env-vars.mdx"
-import DeprecatedPrivateCa from "../partials/embedded-cluster/_deprecated-private-ca.mdx"
+import ProxyLimitations from "../docs/partials/embedded-cluster/_proxy-install-limitations.mdx"
+import ProxyRequirements from "../docs/partials/embedded-cluster/_proxy-install-reqs.mdx"
+import ProxyEnvVars from "../docs/partials/embedded-cluster/_proxy-env-vars.mdx"
+import DeprecatedPrivateCa from "../docs/partials/embedded-cluster/_deprecated-private-ca.mdx"
 
 # install
 
-This topic describes the options available with the Embedded Cluster install command. For more information about how to install with Embedded Cluster, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded).
+This topic describes the options available with the Embedded Cluster install command. For more information about how to install with Embedded Cluster, see [Online Installation with Embedded Cluster](installing-embedded) or [Air Gap Installation with Embedded Cluster](installing-embedded).
 
 ## Usage
 
@@ -30,12 +30,12 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
      <td>`--admin-console-port`</td>
      <td>
         <p>Port on which to run the KOTS Admin Console. **Default**: By default, the Admin Console runs on port 30000.</p>
-        <p>**Limitation:** It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).</p>
+        <p>**Limitation:** It is not possible to change the port for the Admin Console during a restore with Embedded Cluster. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](embedded-disaster-recovery).</p>
       </td>
   </tr>
   <tr>
      <td>`--airgap-bundle`</td>
-     <td>The Embedded Cluster air gap bundle used for installations in air-gapped environments with no outbound internet access. For information about how to install in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).</td>
+     <td>The Embedded Cluster air gap bundle used for installations in air-gapped environments with no outbound internet access. For information about how to install in an air-gapped environment, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).</td>
   </tr>
   <tr>
      <td>`--cidr`</td>
@@ -47,7 +47,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
   <tr>
      <td>`--config-values`</td>
      <td>
-        <p>Path to the ConfigValues file for the application. The ConfigValues file can be used to pass the application configuration values from the command line during installation, such as when performing automated installations as part of CI/CD pipelines. For more information, see [Automate Installation with Embedded Cluster](/enterprise/installing-embedded-automation).</p>
+        <p>Path to the ConfigValues file for the application. The ConfigValues file can be used to pass the application configuration values from the command line during installation, such as when performing automated installations as part of CI/CD pipelines. For more information, see [Automate Installation with Embedded Cluster](installing-embedded-automation).</p>
         <p><strong>Requirement:</strong> Embedded Cluster 1.18.0 and later.</p>
      </td>
   </tr>
@@ -60,7 +60,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
         <ul>
             <li>The data directory for Embedded Cluster cannot be changed after the cluster is installed.</li>
             <li>For multi-node installations, the same data directory that is supplied at installation is used for all nodes joined to the cluster. You cannot choose a different data directory when joining nodes with the Embedded Cluster `join` command. For more information about joining nodes, see [Add Nodes to a Cluster](/enterprise/embedded-manage-nodes#add-nodes) in _Managing Multi-Node Clusters with Embedded Cluster_.</li>
-            <li>If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).</li>
+            <li>If you use the `--data-dir` flag to change the data directory during installation, then you must use the same location when restoring in a disaster recovery scenario. For more information about disaster recovery with Embedded Cluster, see [Disaster Recovery for Embedded Cluster](embedded-disaster-recovery).</li>
             <li>Replicated does not support using symlinks for the Embedded Cluster data directory. Use the `--data-dir` flag instead of symlinking `/var/lib/embedded-cluster`.</li>
         </ul>
      </td>

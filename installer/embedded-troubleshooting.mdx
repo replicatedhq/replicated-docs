@@ -1,12 +1,12 @@
-import SupportBundleIntro from "../partials/support-bundles/_ec-support-bundle-intro.mdx"
-import EmbeddedClusterSupportBundle from "../partials/support-bundles/_generate-bundle-ec.mdx"
-import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
+import SupportBundleIntro from "../docs/partials/support-bundles/_ec-support-bundle-intro.mdx"
+import EmbeddedClusterSupportBundle from "../docs/partials/support-bundles/_generate-bundle-ec.mdx"
+import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Troubleshoot Embedded Cluster
 
-This topic provides information about troubleshooting Replicated Embedded Cluster installations. For more information about Embedded Cluster, including built-in extensions and architecture, see [Embedded Cluster Overview](/vendor/embedded-overview).
+This topic provides information about troubleshooting Replicated Embedded Cluster installations. For more information about Embedded Cluster, including built-in extensions and architecture, see [Embedded Cluster Overview](embedded-overview).
 
 ## Troubleshoot with Support Bundles
 
@@ -160,7 +160,7 @@ Reasons can include:
         sudo ./APP_SLUG install --license license.yaml --cidr 172.16.136.0/16
         ```
 
-        For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
+        For more information, see [Embedded Cluster Install Options](embedded-cluster-install).
   </TabItem>
   <TabItem value="kernel" label="Incorrect kernel parameter values">
   Embedded Cluster 1.19.0 and later automatically sets the `net.ipv4.conf.default.arp_filter`, `net.ipv4.conf.default.arp_ignore`, and `net.ipv4.ip_forward` kernel parameters. Additionally, host preflight checks automatically run during installation to verify that the kernel parameters were set correctly. For more information about the Embedded Cluster preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.

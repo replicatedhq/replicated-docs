@@ -111,7 +111,7 @@ To package your Helm chart with the Replicated SDK:
 After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with the Embedded Cluster installer:
 * The Helm chart `.tgz` archive
 * [HelmChart custom resource](/reference/custom-resource-helmchart-v2)
-* [Embedded Cluster Config](/reference/embedded-config)
+* [Embedded Cluster Config](/installer/embedded-config)
 
 If you have multiple charts, you will add each chart archive to the release, plus a corresponding HelmChart custom resource for each archive.
 
@@ -137,7 +137,7 @@ To create the first release for your application:
       An Embedded Cluster Config must be included in the release to install with Embedded Cluster. The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that is created.
       </details>
     
-      For more information, see [Use Embedded Cluster](/vendor/embedded-overview).
+      For more information, see [Use Embedded Cluster](/installer/embedded-overview).
 
    1. Create a new YAML file named `YOUR_CHART_NAME.yaml`. For example, `samplechart.yaml`. In the file, add the following YAML to create a HelmChart custom resource. Update the values to match the name and version of your Helm chart.
 
@@ -170,9 +170,9 @@ To create the first release for your application:
    
       This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
 
-   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
+   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/installer/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
 
-      For more information, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.   
+      For more information, see [extensions](/installer/embedded-config#extensions) in _Embedded Cluster Config_.   
 
 1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
@@ -182,7 +182,7 @@ To create the first release for your application:
 
 1. Install the release in your development environment to test:
 
-   1. Install with Embedded Cluster on a VM. See [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+   1. Install with Embedded Cluster on a VM. See [Online Installation with Embedded Cluster](/installer/installing-embedded).
    
    1. (Optional) Install in an existing cluster with KOTS. See [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster).
 
@@ -451,7 +451,7 @@ To add support for air gap installations:
 
 1. Create or edit a customer with the **Airgap Download Enabled** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
-1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air-gapped VM to test. See [Install in Air Gap Environments with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Download the Embedded Cluster air gap installation assets, then install with Embedded Cluster on an air-gapped VM to test. See [Install in Air Gap Environments with Embedded Cluster](/installer/installing-embedded-air-gap).
 
 1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to access the Enterprise Portal for the customer and test air gap installation in a cluster with Helm.
 
@@ -461,7 +461,7 @@ To add support for air gap installations:
 
 The Embedded Cluster Config supports roles for multi-node clusters. One or more roles can be selected and assigned to a node when it is joined to the cluster. Node roles can be used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes.
 
-For more information, see [roles](/reference/embedded-config#roles-beta) in _Embedded Cluster Config_.
+For more information, see [roles](/installer/embedded-config#roles-beta) in _Embedded Cluster Config_.
 
 ### Add and Map License Entitlements
 
@@ -515,7 +515,7 @@ You can also view common examples of collectors and analyzers used in preflight 
 Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
 
 There are different steps to configure backup and restore for Embedded Cluster and for existing cluster installations with KOTS:
-* To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
+* To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/installer/embedded-disaster-recovery)
 * To configure the snapshots feature for existing cluster KOTS installations, see [Configure Snapshots](snapshots-configuring-backups).
 
 ### Add Custom Metrics

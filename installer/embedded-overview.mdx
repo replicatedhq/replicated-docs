@@ -1,7 +1,7 @@
-import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
-import Requirements from "../partials/embedded-cluster/_requirements.mdx"
-import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
-import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
+import EmbeddedCluster from "../docs/partials/embedded-cluster/_definition.mdx"
+import Requirements from "../docs/partials/embedded-cluster/_requirements.mdx"
+import EmbeddedClusterPortRequirements from "../docs/partials/embedded-cluster/_port-reqs.mdx"
+import HaArchitecture from "../docs/partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
 # Embedded Cluster Overview
 
@@ -67,9 +67,9 @@ The built-in extensions installed by Embedded Cluster include:
 
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
 
-* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](embedded-disaster-recovery).
 
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 ## Comparison to kURL
 
@@ -112,9 +112,9 @@ Embedded Cluster has the following limitations:
 
 * **Migration from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. For more information about migrating from kURL to Embedded Cluster, including key considerations before migrating and an example step-by-step migration process, see [Replicated kURL to Embedded Cluster Migration](https://docs.google.com/document/d/1Qw9owCK4xNXHRRmxDgAq_NJdxQ4O-6w2rWk_luzBD7A/edit?tab=t.0). For additional questions and to begin the migration process for your application, reach out to Alex Parker at alexp@replicated.com.
 
-* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](embedded-disaster-recovery).
 
-* **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/reference/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
+* **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 
 * **Changing node hostnames is not supported**: After a host is added to a Kubernetes cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster. For more information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
 
@@ -132,7 +132,7 @@ Embedded Cluster has the following limitations:
 
 * **Upgrading by more than one Kubernetes version at a time not supported**: Kubernetes does not support upgrading by more than one minor version at a time. However, the Admin Console does not prevent end-users from attempting to upgrade to a release that specifies a Kubernetes version more than one minor version later than what is currently installed. To avoid issues that could be caused by skipping a minor version of Kubernetes, Replicated recommends that you select **Prevent this release from being skipped during upgrades** when you promote a new application release that increases the Kubernetes version. For more information about required releases, see [Release Properties](/vendor/releases-about#release-properties) in _About Channels and Releases_.
 
-* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [Replicated template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
+* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](embedded-config) resource does not support the use of Go template functions, including [Replicated template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
 
 * **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that require higher levels of privilege. If your application installs a policy enforcement engine such as Gatekeeper or Kyverno, ensure that its policies are not enforced in the namespaces used by Embedded Cluster.
 

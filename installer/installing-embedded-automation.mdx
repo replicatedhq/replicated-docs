@@ -1,6 +1,6 @@
-import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
-import ConfigValuesProcedure from "../partials/configValues/_config-values-procedure.mdx"
-import ConfigValuesRequirements from "../partials/configValues/_requirements.mdx"
+import ConfigValuesExample from "../docs/partials/configValues/_configValuesExample.mdx"
+import ConfigValuesProcedure from "../docs/partials/configValues/_config-values-procedure.mdx"
+import ConfigValuesRequirements from "../docs/partials/configValues/_requirements.mdx"
 
 # Automate Installation with Embedded Cluster
 
@@ -28,13 +28,13 @@ For more information, see [ConfigValues](/reference/custom-resource-configvalues
 
 ## Limitation
 
-Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](updating-embedded).
 
 ## Online (Internet-Connected) Installation
 
 To install with Embedded Cluster in an online environment:
 
-1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster installation assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster installation assets. For more information, see [Online Installation with Embedded Cluster](installing-embedded).
 
 1. Run the following command to install:
 
@@ -56,13 +56,13 @@ To install with Embedded Cluster in an online environment:
     * (Optional) `CUSTOM_TLS_CERT` is the path to a custom TLS certificate for securing the Admin Console.
     * (Optional) `CUSTOM_TLS_KEY` is the TLS key for the custom certificate. 
 
-    For more information about the `install` command options, see [install](/reference/embedded-cluster-install).
+    For more information about the `install` command options, see [install](embedded-cluster-install).
 
 ## Air Gap Installation
 
 To install with Embedded Cluster in an air-gapped environment:
 
-1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster air gap installation assets. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster air gap installation assets. For more information, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 1. Ensure that the Embedded Cluster installation assets are available on the air-gapped machine, then run the following command to install:
 
@@ -86,4 +86,4 @@ To install with Embedded Cluster in an air-gapped environment:
     * (Optional) `CUSTOM_TLS_CERT` is the path to a custom TLS certificate for securing the Admin Console.
     * (Optional) `CUSTOM_TLS_KEY` is the TLS key for the custom certificate.
 
-    For more information about the `install` command options, see [install](/reference/embedded-cluster-install).
+    For more information about the `install` command options, see [install](embedded-cluster-install).

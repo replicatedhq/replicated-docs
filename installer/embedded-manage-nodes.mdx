@@ -1,4 +1,4 @@
-import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
+import HaArchitecture from "../docs/partials/embedded-cluster/_multi-node-ha-arch.mdx"
 
 # Manage Multi-Node Clusters with Embedded Cluster
 
@@ -32,13 +32,13 @@ To add a node to a cluster with Embedded Cluster:
 
 1. Do one of the following:
 
-   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
+   1. Follow the steps in [Online Installation with Embedded Cluster](installing-embedded) or [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap)to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
 
    1. Otherwise, to add a node to an existing cluster:
 
        1. Log in to the Admin Console.
       
-       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](updating-embedded).
       
        1. Go to **Cluster Management > Add node** at the top of the page.
    
@@ -127,7 +127,7 @@ You can enable high availability for a multi-node cluster when joining the third
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](installing-embedded) or [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 1. Get the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
 

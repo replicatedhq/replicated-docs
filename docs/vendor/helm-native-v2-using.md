@@ -88,7 +88,7 @@ To support KOTS existing cluster or kURL installations with HelmChart v2, comple
 1. For each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` label and `kots.io/app-slug: APP_SLUG` annotation to all resources that you want to be included in backups with Replicated snapshots. Use a `when` statement so that these are added to resources only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
 
     :::note
-    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery.mdx).
+    The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/installer/embedded-disaster-recovery).
     :::
 
     **Example**:

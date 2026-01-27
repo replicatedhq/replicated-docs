@@ -991,7 +991,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Adds the ability to update the config values for any app version using the admin console.
 
 ### Improvements {#improvements-1-108-0}
-* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/installer/embedded-overview).
 
 ### Bug Fixes {#bug-fixes-1-108-0}
 * Fixes an issue where the license upload page flashed briefly before being redirected to the login page.
@@ -2476,7 +2476,7 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/installer/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
 * Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-kots-defining).
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
