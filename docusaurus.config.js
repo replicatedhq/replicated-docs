@@ -189,15 +189,37 @@ const config = {
             label: 'Replicated SDK',
           },
           {
-            type: 'doc',
-            docId: 'vendor/preflight-support-bundle-about',
+            type: 'dropdown',
             label: 'Troubleshoot',
+            position: 'left',
+            items: [
+                {
+                  type: 'doc',
+                  docId: 'vendor/preflight-support-bundle-about',
+                  label: 'About Preflight Checks and Support Bundles',
+                },
+                {
+                  type: 'doc',
+                  docId: 'vendor/preflight-defining',
+                  label: 'Define Preflight Checks',
+                },
+                {
+                  type: 'doc',
+                  docId: 'vendor/support-bundle-customizing',
+                  label: 'Customize Support Bundles',
+                }
+            ],
           },
-          // {
-          //   type: 'doc',
-          //   docId: 'kots-intro',
-          //   label: 'KOTS',
-          // },
+          {
+            type: 'doc',
+            docId: 'intro-kots',
+            label: 'KOTS',
+          },
+          {
+            type: 'doc',
+            docId: 'vendor/kurl-about',
+            label: 'kURL',
+          },
           {
             type: 'dropdown',
             label: 'Reference',
