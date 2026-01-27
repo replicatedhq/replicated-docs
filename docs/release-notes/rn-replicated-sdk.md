@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.14.0
+
+Released on January 27, 2026
+
+### Bug Fixes {#bug-fixes-1-14-0}
+* Fixes a bug where custom metrics reporting would fail when minimal RBAC was enabled.
+
 ## 1.13.0
 
 Released on January 23, 2026
