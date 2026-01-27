@@ -133,6 +133,7 @@ rules:
   - ""
   resourceNames:
   - replicated
+  - replicated-meta-data
   resources:
   - secrets
   verbs:
@@ -260,6 +261,7 @@ rules:
   - ""
   resourceNames:
   - replicated
+  - replicated-meta-data
   resources:
   - secrets
   verbs:
