@@ -114,7 +114,7 @@ const config = {
         indexName: 'Replicated Docs',
       },
       navbar: {
-        title: 'Docs',
+        title: 'Replicated Docs',
         logo: {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
@@ -158,7 +158,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Product Docs',
+            label: 'Vendor Platform',
             position: 'left',
             items: [
               {
@@ -168,38 +168,36 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'vendor/enterprise-portal-about',
-                label: 'Enterprise Portal',
-              },
-              {
-                type: 'doc',
                 docId: 'vendor/security-center-about',
                 label: 'Security Center',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/testing-about',
-                label: 'Compatibility Matrix',
               },
               {
                 type: 'doc',
                 docId: 'vendor/private-images-about',
                 label: 'Proxy Registry',
               },
-              {
-                type: 'doc',
-                docId: 'vendor/preflight-support-bundle-about',
-                label: 'Preflight Checks and Support Bundles',
-              },
-
-              {
-                type: 'doc',
-                docId: 'vendor/replicated-sdk-overview',
-                label: 'Replicated SDK',
-              },
-              
             ],  
           },
+          {
+            type: 'doc',
+            docId: 'vendor/testing-about',
+            label: 'Compatibility Matrix',
+          },
+          {
+            type: 'doc',
+            docId: 'vendor/replicated-sdk-overview',
+            label: 'Replicated SDK',
+          },
+          {
+            type: 'doc',
+            docId: 'vendor/preflight-support-bundle-about',
+            label: 'Troubleshoot',
+          },
+          // {
+          //   type: 'doc',
+          //   docId: 'kots-intro',
+          //   label: 'KOTS',
+          // },
           {
             type: 'dropdown',
             label: 'Reference',
@@ -243,7 +241,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Replicated Docs',
             items: [
               {
                 label: 'Release Notes',

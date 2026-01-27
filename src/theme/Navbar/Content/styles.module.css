@@ -1,0 +1,65 @@
+/* First row: Logo and Search */
+.navbarRow1 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.navbarRow1Right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+
+.colorModeToggle {
+  margin-left: 0.5rem;
+}
+
+/* Second row: Navigation items */
+.navbarRow2 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0 0 0;
+}
+
+.navbarItemsLeft {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.navbarItemsRight {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Style the navigation links in second row */
+.navbarRow2 :global(.navbar__link),
+.navbarRow2 :global(.dropdown) > :global(.navbar__link) {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  /* padding: 0.25rem 0.25rem; */
+}
+
+:global(html[data-theme='dark']) .navbarRow2 :global(.navbar__link),
+:global(html[data-theme='dark']) .navbarRow2 :global(.dropdown) > :global(.navbar__link) {
+  color: #ffffff;
+}
+
+.navbarRow2 :global(.navbar__link):hover,
+.navbarRow2 :global(.dropdown) > :global(.navbar__link):hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Hide items on mobile - they'll be in the sidebar */
+@media (max-width: 996px) {
+  .navbarRow2 {
+    display: none;
+  }
+}
