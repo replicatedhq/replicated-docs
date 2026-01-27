@@ -26,6 +26,19 @@ Create a new release by providing application manifests for the next release in
 replicated release create [flags]
 ```
 
+### Examples
+
+```
+# Create and promote a release to the Unstable channel
+replicated release create --yaml-dir ./manifests --promote Unstable --version 1.0.0
+
+# Create and promote a required release (users cannot skip this upgrade)
+replicated release create --yaml-dir ./manifests --promote Unstable --version 1.0.0 --required
+
+# Create a release with auto-generated values (useful in CI/CD)
+replicated release create --auto --confirm-auto
+```
+
 ### Options
 
 ```
@@ -38,6 +51,7 @@ replicated release create [flags]
   -o, --output string          The output format to use. One of: json|table (default "table")
       --promote string         Channel name (case sensitive) or id to promote this release to
       --release-notes string   When used with --promote <channel>, sets the **markdown** release notes
+      --required               When used with --promote <channel>, marks this release as required during upgrades.
       --version string         When used with --promote <channel>, sets the version label for the release in this channel
       --yaml-dir string        The directory containing multiple yamls for a Kots release. Cannot be used with the --yaml flag.
 ```
