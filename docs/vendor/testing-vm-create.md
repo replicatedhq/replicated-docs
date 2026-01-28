@@ -1,9 +1,8 @@
-# Use CMX VMs (Beta)
+# Connect to CMX VMs (SSH and File Transfer)
 
-This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral VMs.
+This topic describes how to connect to VMs created with Replicated Compatibility Matrix (CMX). It includes information about how to set up SSH access, SSH into VMs, and transfer files to VMs.
 
-## Set Up SSH Access
-
+## Prerequisite: Set Up SSH {#set-up-ssh}
 
 To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.
 
@@ -109,114 +108,9 @@ Or, to use multiple SSH public keys:
 
 ```bash
 replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
-```      
+```
 
-## Create VMs
-
-### With the Replicated CLI
-
-To create VMs with CMX:
-
-1. (Optional) View the available VM distributions, including the supported VM distribution versions and instance types:
-
-   ```bash
-   replicated vm versions
-   ```
-   For command usage, see [vm versions](/reference/replicated-cli-vm-versions).
-
-
-1. Run the following command to create a VM:
-
-   ```bash
-   replicated vm create --distribution DISTRIBUTION
-   ```
-
-   To specify more options:
-
-
-   ```bash
-   replicated vm create  --name NAME --distribution DISTRIBUTION --version VERSION --instance-type INSTANCE_TYPE --count COUNT --ttl TTL
-   ```
-
-   Where:
-   * `NAME` is any name for the VM. If `--name` is excluded, a name is automatically generated for the VM.
-   * `DISTRIBUTION` is the operating system distribution for the VM (e.g., ubuntu, almalinux).
-   * `VERSION` is the version of the distribution to provision (e.g., 22.04, 24.04 for Ubuntu).
-   * `INSTANCE_TYPE` is the instance type to use for the VM (e.g., r1.medium, r1.large).
-   * `COUNT` is the number of VMs to create. If `--count` is excluded, one VM is created by default.
-   * `TTL` is the VM Time-To-Live duration (maximum 48h). If `--ttl` is excluded, the default TTL is 1 hour.
-
-   For command usage and additional optional flags, see [vm create](/reference/replicated-cli-vm-create).
-
-   **Example:**
-
-   The following example creates an Ubuntu VM with version 22.04, a disk size of 50 GiB, and an instance type of `r1.medium`.
-
-   ```bash
-   replicated vm create --distribution ubuntu --version 22.04 --disk 50 --instance-type r1.medium
-   ```
-
-### With the Vendor Portal
-
-To create a VM from the Vendor Portal:
-
-1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
-
-1. Click **Create > Create VM**.
-
-   ![create vm page in the vendor portal](/images/compatibility-matrix-create-vm.png)
-   
-   [View a larger version of this image](/images/compatibility-matrix-create-vm.png)
-
-1. On the **Create a Virtual Machine** page, complete the following fields:
-
-   <table>
-     <tr>
-       <th>Field</th>
-       <th>Description</th>
-     </tr>
-     <tr>
-       <td>OS distribution</td>
-       <td>Select the OS distribution for the VM.</td>
-     </tr>
-     <tr>
-       <td>Version</td>
-       <td>Select the OS version. The options available are specific to the distribution selected.</td>
-     </tr>
-     <tr>
-       <td>Name (optional)</td>
-       <td>Enter an optional name for the VM.</td>
-     </tr>
-     <tr>
-       <td>Tags</td>
-       <td>Add one or more tags to the VM as key-value pairs.</td>
-     </tr>
-     <tr>
-       <td>Set TTL</td>
-       <td>Select the Time to Live (TTL) for the VM. When the TTL expires, the VM is automatically deleted. TTL can be adjusted after VM creation with [vm update ttl](/reference/replicated-cli-vm-update-ttl).</td>
-     </tr>
-   </table>  
-
-1. For **VM Config**, complete the following fields:
-
-   <table>
-   <tr>
-       <td>Instance type</td>
-       <td>Select the instance type to use for the nodes in the node group. The options available are specific to the distribution selected.</td>
-     </tr>   
-     <tr>
-       <td>Disk size</td>
-       <td>Select the disk size in GiB to use per node.</td>
-     </tr>
-     <tr>
-       <td>Count</td>
-       <td>Select the number of VMs to provision.</td>
-     </tr>  
-   </table>
-
-1. Click **Create VM**.
-
-## Connect to a VM
+## SSH Into a VM
 
 You can SSH into a VM using one of the following methods:
 
@@ -224,9 +118,7 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-For information about how to copy files to a VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
-
-### CMX Forwarder
+### CMX Forwarder {#compatibility-matrix-forwarder}
 
 To connect to a VM using the Forwarder:
 
@@ -237,8 +129,6 @@ To connect to a VM using the Forwarder:
    ```
 
    Where `VMID` is the ID of the VM.
-
-For information about copying files to the VM after connecting, see [Copy Files to a VM](testing-vm-transfer-files).
 
 ### Direct SSH
 
@@ -302,32 +192,94 @@ To connect to a VM using direct SSH:
    ssh $(replicated vm ssh-endpoint aba1acc2)
    ```
 
-## Create Air Gap VMs (Beta)
+## Copy Files to a VM
 
-You can create a VM that uses an air-gapped network by setting the network policy to `airgap`.
+This topic describes how to transfer files to a VM created with Replicated Compatibility Matrix (CMX).
 
-For more information, see [Test in Use Air Gap Networks (Beta)](testing-network-policy).
+You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the CMX Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
 
-To set the network policy of a VM to `airgap`:
+### Using the SCP Endpoint
 
-1. Create a VM:
+To copy files to a VM using the scp endpoint:
 
-    ```bash
-    replicated vm create --distribution VM_DISTRIBUTION
-    ```
-
-1. After the VM is running, SSH onto the VM:
+1. Run the following command to get the SCP endpoint:
 
    ```bash
-   ssh VM_ID@replicatedvm.com
-   ```  
-   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
+   replicated vm scp-endpoint VMID_OR_VMNAME [--username GITHUB_USERNAME]
+   ```
 
-   For more information and additional options, see [Connect to a VM](/vendor/testing-vm-create#connect-to-a-vm).
+   Where
+   * `VMID_OR_VMNAME` is the ID or name of the VM.
+   * (Optional) `GITHUB_USERNAME` is a GitHub username used to connect to the SCP endpoint. This is an optional flag that overrides the GitHub username listed in your Vendor Portal account. The `--username` flag is required if you want to:
+      * Use a different GitHub username than what is in Vendor Portal (or if there is no username set in the Vendor Portal)
+      * When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal
 
-1. Set the network policy to `airgap`:
+   **Example**
+   ```bash
+   replicated vm scp-endpoint aba1acc2
+   ```
 
-    ```bash
-    replicated network update NETWORK_ID --policy airgap
-    ```
-    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.
+   The output of the command lists the SCP endpoint for the VM:
+
+   ```
+   scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT
+   ```
+
+   For example, `scp://yourusername@37.27.52.116:46795`.
+
+1. Copy the SCP endpoint.
+
+1. SCP files into the VM:
+
+   ```bash
+   scp somefile scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT//PATH
+   ```
+   Where:
+   * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
+   * `PATH` is the destination path on the VM.
+
+   Alternatively, run the following command to SCP files into the VM without needing to copy the endpoint:
+
+   ```bash
+   scp somefile $(replicated vm scp-endpoint VMID_OR_VMNAME)//PATH
+   ```
+
+### After Connecting to the VM with the Forwarder
+
+:::note
+Transferring files using CMX Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.
+:::
+
+#### Limitations
+Transferring files using the CMX Forwarder has the following limitations:
+- `scp` with flag `-O` (legacy scp protocol) is not supported. 
+- Relative paths is not supported. For example:
+  - Unsupported: `scp somefile VMID@replicatedvm.com:~`
+  - Supported: `scp somefile VMID@replicatedvm:/home/folder/somefile`
+- File permissions are not inherited.
+
+To copy files to the VM using SCP after connecting with the CMX Forwarder:
+
+1. SSH into the VM using the Forwarder:
+
+   ```bash
+   ssh VMID@replicatedvm.com
+   ```
+
+   Where `VMID` is the ID of the VM.
+
+1. Copy files onto the machine:
+   ```bash
+   scp FILENAME VMID@replicatedvm:PATH
+   ```
+
+   Where:
+   * `FILENAME` is the name of the file.
+   * `VMID` is the ID of the VM.
+   * `PATH` is the path on the VM where you want to copy the file. For example, `/home/folder/somefile`. Relative paths are not supported.
+
+   **Example:**
+
+   ```bash
+   scp somefile 123abc@replicatedvm:/home/folder/somefile
+   ```

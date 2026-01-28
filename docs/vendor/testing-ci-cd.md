@@ -1,6 +1,6 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
-# Test in CMX with CI/CD
+# Test in CMX Environments with CI/CD
 
 This topic describes how to integrate Replicated Compatibility Matrix (CMX) into your CI/CD workflows.
 
