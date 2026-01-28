@@ -107,7 +107,7 @@ By default, each exposed port gets a unique hostname like `boring-wozniak.ingres
 replicated cluster port expose CLUSTER_ID --port PORT --protocol https --wildcard
 ```
 
-With a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, any subdomain will route to your NodePort service. You can have an ingress controller route traffic based on the subdomain:
+With a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, any subdomain will route to your NodePort service. You can have an ingress controller route traffic based on the subdomain. For example, subdomains that correspond to dependent services:
 
 - `app1.boring-wozniak.ingress.replicatedcluster.com`
 - `app2.boring-wozniak.ingress.replicatedcluster.com`
