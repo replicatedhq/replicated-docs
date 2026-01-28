@@ -2,6 +2,26 @@
 
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 
+## About License Fields
+
+License fields allow you to control customer entitlements and configure application behavior. The Replicated Vendor Portal includes built-in fields (such as license expiration and install options) and supports custom fields for application-specific requirements.
+
+For information about how to access license field values in your application, see:
+- For Replicated SDK: [Get License Fields with the Replicated SDK API](licenses-reference-sdk)
+- For KOTS installers: [Get License Fields in KOTS Applications](licenses-reference-kots-runtime)
+- For Helm installations: [Get License Fields in Helm Installations](licenses-reference-helm)
+- For verification: [Verify Signature and Get License Fields with the SDK API](licenses-verify-fields-sdk-api)
+
+## Common Use Cases for Custom License Fields
+
+Custom license fields allow you to add business-specific data to customer licenses. Common use cases include:
+
+- **Capacity limits**: Control usage with fields like `max_users`, `seats`, `storage_gb`, or `api_calls_per_month`
+- **Feature tiers**: Use fields like `tier` (basic/premium/enterprise) or `support_level` (standard/priority) to enable different features
+- **Configuration**: Store `api_endpoint`, `region`, `data_center`, or `environment` settings
+- **Credentials**: Include `api_key`, `auth_token`, or `encryption_key` (use Password type to mask values in the UI)
+- **Business logic**: Track `contract_type`, `renewal_date`, or `account_manager` for reporting and workflows
+
 ## Manage Built-In License Fields
 
 This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
@@ -57,6 +77,39 @@ To lock a built-in license field:
 You can create custom license fields in the Vendor Portal. For example, you can create a custom license field to set the number of active users permitted. Or, you can create a field that sets the number of nodes a customer is permitted on their cluster.
 
 The custom license fields that you create are displayed in the Vendor Portal for all new and existing customers. If the custom field is not hidden, it is also displayed to customers under the **Licenses** tab in the Replicated Admin Console and in the **License Details** tab in the Enterprise Portal.
+
+Custom license fields can also be created and managed through the Vendor API v3, which enables automation and integration with your existing systems. For more information, see [Create a custom license field](https://replicated-vendor-api.readme.io/reference/createcustomlicensefield) in the Vendor API v3 documentation.
+
+### How Custom Fields Appear in Licenses
+
+Custom license fields appear in the customer's license YAML under `spec.entitlements`. Your application can read these values to enforce limits or configure behavior.
+
+The following example shows a license with custom fields:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: License
+spec:
+  licenseID: "customer-123"
+  customerName: "Acme Corp"
+  entitlements:
+    expires_at:
+      title: Expiration
+      value: "2026-12-31T00:00:00Z"
+      valueType: String
+    seats:
+      title: Maximum Users
+      value: 100
+      valueType: Integer
+    tier:
+      title: Support Tier
+      value: "enterprise"
+      valueType: String
+    premium_support:
+      title: Premium Support Enabled
+      value: true
+      valueType: Boolean
+```
 
 ### Limitation
 
@@ -127,16 +180,18 @@ To delete a custom license field:
 
 Each custom license field has a _type_ that is used to validate its value. The type also determines the widget that you use to set the license field's value on the **Manager customer** page.
 
-| Field                 | Description            | Widget              | 
-|-----------------------|------------------------|---------------------|
-| Integer | A whole number numeric value | text field |
-| String | Short form text that typically fits on a single line | text field |
-| Text | Longer form text that can contain multiple lines | text area |
-| Boolean | True or false | checkbox |
-| Password | A short string of text that is masked on display | password |
-| Enum | Provides a list of possible values | dropdown |
+| Type | Description | Purpose | When to Use | Widget |
+|------|-------------|---------|-------------|--------|
+| Integer | A whole number numeric value | Capacity limits, quotas, counts | Use for numeric limits like seats, storage amounts, or API call quotas (e.g., `seats: 100`, `max_nodes: 5`) | Text field |
+| String | Short form text that typically fits on a single line | Short identifiers, tier names, regions | Use for short text values like tier levels, regions, or environment names (e.g., `tier: enterprise`, `region: us-west-2`) | Text field |
+| Text | Longer form text that can contain multiple lines | Long configurations, JSON data, descriptions | Use for multi-line content like JSON configurations, certificates, or long descriptions | Text area |
+| Boolean | True or false value | Feature flags, support options | Use for on/off features or capabilities (e.g., `premium_support: true`, `analytics_enabled: false`) | Checkbox |
+| Password | A short string of text that is masked on display | API keys, tokens, credentials | Use for sensitive values that should be masked in the UI. Note: Values are still cleartext in the license file (e.g., `api_key`, `auth_token`) | Password field |
+| Enum | Provides a list of possible values | Limited choices like tier levels or regions | Use when there are predefined options to choose from (e.g., tier with options: basic, premium, enterprise) | Dropdown |
 
-String, Text, Password, and Enum types are all represented as strings in the license.   
+:::note
+String, Text, Password, and Enum types are all represented as strings in the license.
+:::   
 
 ## Set Customer-Specific Values for Custom License Fields
 
