@@ -2,6 +2,16 @@
 
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 
+## About License Fields
+
+License fields allow you to control customer entitlements and configure application behavior. The Replicated Vendor Portal includes built-in fields (such as license expiration and install options) and supports custom fields for application-specific requirements.
+
+For information about how to access license field values in your application, see:
+- For the Replicated SDK: [Get License Fields with the Replicated SDK API](licenses-reference-sdk)
+- For Replicated installers (Embedded Cluster, KOTS, kURL): [Get License Fields in KOTS Applications](licenses-reference-kots-runtime)
+- For Helm installations: [Get License Fields in Helm Installations](licenses-reference-helm)
+- For verification: [Verify Signature and Get License Fields with the SDK API](licenses-verify-fields-sdk-api)
+
 ## Manage Built-In License Fields
 
 This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
@@ -54,9 +64,17 @@ To lock a built-in license field:
 
 ## Manage Custom License Fields
 
-You can create custom license fields in the Vendor Portal. For example, you can create a custom license field to set the number of active users permitted. Or, you can create a field that sets the number of nodes a customer is permitted on their cluster.
+You can create custom license fields to add business- and application-specific data to customer licenses. The following are some common use cases for custom license fields:
+
+- Set usage or capacity limits with fields like `max_users`, `seats`, `storage_gb`, or `api_calls_per_month`
+- Enable access to certain features or tiers. For example, you could add a `tier` license field with values such as "basic", "premium", or "enterprise". You could also add a `support_level` field with options for "standard" or "priority".
+- Store configuration settings like `api_endpoint`, `region`, `data_center`, or `environment`
+- Include credentials in the license like `api_key`, `auth_token`, or `encryption_key` using the "Password" license field type to mask values in the UI
+- Add metadata such as `contract_type`, `renewal_date`, or `account_manager` for reporting and workflows
 
 The custom license fields that you create are displayed in the Vendor Portal for all new and existing customers. If the custom field is not hidden, it is also displayed to customers under the **Licenses** tab in the Replicated Admin Console and in the **License Details** tab in the Enterprise Portal.
+
+Custom license fields can also be created and managed through the Vendor API v3, which enables automation and integration with your existing systems. For more information, see [Create a custom license field](https://replicated-vendor-api.readme.io/reference/createcustomlicensefield) in the Vendor API v3 documentation.
 
 ### Limitation
 
@@ -80,7 +98,7 @@ To create a custom license field:
    |-----------------------|------------------------|
    | Field | The name used to reference the field. This value cannot be changed. |
    | Title| The display name for the field. This is how the field appears in the Vendor Portal and the Admin Console. You can change the title in the Vendor Portal. |
-   | Type| The field type. This value cannot be changed. See [Understanding Custom License Field Types](#understanding-custom-license-field-types) for more information.
+   | Type| The field type. This value cannot be changed. See [Custom License Field Types](#custom-license-field-types).
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. The maximum size for a license field value is 64KB. |
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
    | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console or in their Enterprise Portal. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
@@ -127,16 +145,49 @@ To delete a custom license field:
 
 Each custom license field has a _type_ that is used to validate its value. The type also determines the widget that you use to set the license field's value on the **Manager customer** page.
 
-| Field                 | Description            | Widget              | 
-|-----------------------|------------------------|---------------------|
-| Integer | A whole number numeric value | text field |
-| String | Short form text that typically fits on a single line | text field |
-| Text | Longer form text that can contain multiple lines | text area |
-| Boolean | True or false | checkbox |
-| Password | A short string of text that is masked on display | password |
-| Enum | Provides a list of possible values | dropdown |
+| Type | Description | Use cases | Widget |
+|------|-------------|-----------|--------|
+| Integer | A whole number numeric value | Use for numeric capacity limits, quotas, or counts. For example, `seats: 100` or `max_nodes: 5`. | Text field |
+| String | Single-line text values | Use for short form text that fits on a single line, like short identifiers or environment names. For example, `account_manager: jeff_noble`. | Text field |
+| Text | Longer form text that can contain multiple lines | Use for multi-line content like JSON configurations, certificates, or long descriptions. | Text area |
+| Boolean | True or false value |  Use for on/off features or capabilities like feature flags and support options. For example, `premium_support: true`, `analytics_enabled: false`. | Checkbox |
+| Password | A short string of text that is masked on display in the UI. Note: Values are cleartext in the license file. | Use for sensitive values that should be masked in the UI like API keys, tokens, or credentials. | Password field |
+| Enum | Provides a list of possible values | Use when there is a set of predefined options for the field. For example, a `tier` field might have options like basic, premium, and enterprise. | Dropdown |
 
-String, Text, Password, and Enum types are all represented as strings in the license.   
+:::note
+String, Text, Password, and Enum types are all represented as strings in the license.
+:::
+
+### How Custom Fields Appear in Licenses
+
+Custom license fields appear in the customer's license YAML under `spec.entitlements`. Your application can read these values to enforce limits or configure behavior.
+
+The following example shows a license with custom fields:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: License
+spec:
+  licenseID: "customer-123"
+  customerName: "Acme Corp"
+  entitlements:
+    expires_at:
+      title: Expiration
+      value: "2026-12-31T00:00:00Z"
+      valueType: String
+    seats:
+      title: Maximum Users
+      value: 100
+      valueType: Integer
+    tier:
+      title: Support Tier
+      value: "enterprise"
+      valueType: String
+    premium_support:
+      title: Premium Support Enabled
+      value: true
+      valueType: Boolean
+```
 
 ## Set Customer-Specific Values for Custom License Fields
 
