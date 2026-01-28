@@ -1,14 +1,36 @@
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
-# Built-In License Fields
+# Managing Customer License Fields
 
-This topic describes the built-in license fields that appear customer licenses for applications distributed with Replicated.
+This topic describes how to manage both built-in and custom license fields for customer records in the Replicated Vendor Portal.
 
 ## Overview
 
-The license associated with each customer record in the Replicated Vendor Portal includes several built-in fields. These built-in fields include customer properties (such as the customer name, customer email, and the Vendor Portal channel where the customer is assigned), the license expiration date, as well as the Replicated features that are enabled for the customer (such as the supported install types or Admin Console features).
+The Replicated Vendor Portal allows administrators to manage both built-in and custom license fields for customer records. When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-overview) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function.
 
-When a customer installs an application distributed with Replicated, the values for each built-in and custom field in their license can be accessed using the [Replicated SDK](/vendor/replicated-sdk-overview) in-cluster API [license](/reference/replicated-sdk-apis#license) endpoints. Applications installed with a Replicated installer (KOTS, kURL, Embedded Cluster) can also access license fields using the Replicated KOTS [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function.
+## Common Use Cases
+
+Custom license fields allow you to add business-specific data to customer licenses:
+
+- **Capacity limits**: Control usage with fields like `max_users`, `seats`, `storage_gb`, `api_calls_per_month`
+- **Feature tiers**: Use `tier` (basic/premium/enterprise) or `support_level` (standard/priority) to enable different features
+- **Configuration**: Store `api_endpoint`, `region`, `data_center`, or `environment` settings
+- **Credentials**: Securely include `api_key`, `auth_token`, or `encryption_key` (use Password type to mask in UI)
+- **Business logic**: Track `contract_type`, `renewal_date`, or `account_manager` for reporting and workflows
+
+## Built-In License Fields
+
+Built-in fields come standard with all customer records in the Vendor Portal. The license associated with each customer record includes several built-in fields, such as customer properties (customer name, customer email, and the Vendor Portal channel where the customer is assigned), the license expiration date, and the Replicated features that are enabled for the customer (such as the supported install types or Admin Console features).
+
+Administrators can:
+
+- **Set initial values** that populate the customer creation form
+
+  :::note
+  Initial values are not applied to new customers created through the Vendor API v3.
+  :::
+
+- **Lock fields** to prevent accidental modifications, indicated by a lock icon on customer management pages
 
 The following shows an example of a customer license:
 
@@ -51,7 +73,7 @@ spec:
   signature: eyJsaWNlbnNlRGF...
 ```
 
-## License Field Names
+### Built-In License Field Names
 
 This section lists the built-in fields that are included in customer licenses for applications distributed with Replicated.
 
@@ -59,7 +81,7 @@ This section lists the built-in fields that are included in customer licenses fo
 The built-in license fields are reserved field names.
 :::
 
-### General License Fields
+#### General License Fields
 
 <table>
     <tr>
@@ -114,9 +136,9 @@ The built-in license fields are reserved field names.
       <td>`licenseType`</td>
       <td>A string value that describes the type of the license, which is one of the following: `paid`, `trial`, `dev`, `single-tenant-vendor-managed` or `community`. For more information about license types, see [Managing License Type](licenses-about-types).</td>
     </tr>
-</table>    
+</table>
 
-### Install Types
+#### Install Types
 
 The table below describes the built-in license fields related to the supported install type(s). For more information, see [Manage Install Types for a License](/vendor/licenses-install-types).
 
@@ -141,9 +163,9 @@ The table below describes the built-in license fields related to the supported i
       <td>`isKurlInstallEnabled`</td>
       <td><p>If a license supports installation with Replicated kURL, this field is set to `true` or missing. If kURL installations are not supported, this field is `false`. </p><p>This field requires that the vendor has the kURL entitlement and a promoted kURL installer spec. This field also requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
     </tr>
-</table>    
+</table>
 
-### Install Options 
+#### Install Options
 
 The table below describes the built-in license fields related to install options.
 
@@ -167,11 +189,11 @@ The table below describes the built-in license fields related to install options
     <td>`isHelmAirgapEnabled`</td>
     <td><p>If a license supports Helm air gap installations, then this field is set to `true` or missing. If Helm air gap is not supported, this field is missing.</p><p> When you enable this feature, the `license.yaml` file will have license metadata embedded in it and must be re-downloaded.</p><p>This field requires that the "Install Types" feature is enabled for your Vendor Portal team. Reach out to your Replicated account representative to get access.</p></td>
   </tr>
-</table>    
+</table>
 
-### Admin Console Feature Options
+#### Admin Console Feature Options
 
-The table below describes the built-in license fields related to the Admin Console feature options. The Admin Console feature options apply only to licenses that support installation with the Replicated installers (KOTS, kURL, Embedded Cluster). 
+The table below describes the built-in license fields related to the Admin Console feature options. The Admin Console feature options apply only to licenses that support installation with the Replicated installers (KOTS, kURL, Embedded Cluster).
 
 <table>
     <tr>
@@ -207,3 +229,82 @@ The table below describes the built-in license fields related to the Admin Conso
         <td>If a license supports uploading a support bundle in the Admin Console, this field is set to `true`. If a license does not support uploading a support bundle, this field is either missing or `false`.</td>
     </tr>
 </table>
+
+## Custom License Fields
+
+Custom license fields allow you to add application-specific entitlements and configuration data to customer licenses beyond the built-in fields described above.
+
+### Creating Custom Fields
+
+When creating custom fields, you can specify:
+
+- **Field name** (immutable reference identifier - use lowercase with underscores, e.g., `max_users`, `support_tier`)
+- **Title** (display name across Portal and Admin Console)
+- **Type** (determines validation and UI widget)
+- **Default value** (applied to all customers unless overridden)
+- **Required flag** (enforces completion)
+- **Hidden option** (conceals field from customers while keeping it visible to vendors)
+
+For detailed instructions on creating and managing custom license fields, see [Manage Customer License Fields](licenses-adding-custom-fields).
+
+### Field Types Available
+
+The following field types are available for custom license fields:
+
+| Type | Purpose | When to Use | Interface |
+|------|---------|-------------|-----------|
+| Integer | Whole numbers | Capacity limits, quotas, counts (e.g., `seats: 100`) | Text field |
+| String | Single-line text | Short identifiers, tier names, regions (e.g., `tier: enterprise`) | Text field |
+| Text | Multi-line content | Long configurations, JSON data, descriptions | Text area |
+| Boolean | True/false values | Feature flags, support options (e.g., `premium_support: true`) | Checkbox |
+| Password | Masked text | API keys, tokens, credentials (masked in UI, cleartext in license) | Password field |
+| Enum | Predefined options | Limited choices like tier levels or regions | Dropdown |
+
+### Accessing Field Values in Your Application
+
+Custom fields appear in the license YAML under `spec.entitlements`. Your application can read these values to enforce limits or configure behavior.
+
+Example license YAML with custom fields:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: License
+spec:
+  licenseID: "customer-123"
+  customerName: "Acme Corp"
+  entitlements:
+    seats:
+      title: Maximum Users
+      value: 100
+      valueType: Integer
+    tier:
+      title: Support Tier
+      value: "enterprise"
+      valueType: String
+    premium_support:
+      title: Premium Support Enabled
+      value: true
+      valueType: Boolean
+```
+
+Your application can parse this YAML to access entitlement values programmatically using the Replicated SDK or KOTS template functions.
+
+### Managing Fields via API
+
+Custom license fields can also be created and managed through the Vendor API v3. This enables automation and integration with your existing systems. For more information, see the [Vendor API v3 documentation](https://replicated-vendor-api.readme.io/reference/createcustomlicensefield).
+
+### Important Constraints
+
+:::note
+The maximum size for a license field value is 64KB.
+:::
+
+This limit applies to the data capacity of individual field values.
+
+### Field Deletion
+
+Deleting a custom field removes associated values from licenses system-wide. When deleting a field, you have the option to preserve non-default values as hidden records for potential future recovery using the "Preserve License Values" option.
+
+## Customer-Specific Configuration
+
+Individual customer values override defaults when administrators navigate to the customer management page and populate custom fields in the designated section. This allows you to configure license entitlements on a per-customer basis.
