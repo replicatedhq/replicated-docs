@@ -55,6 +55,7 @@ const sidebars = {
       items: [
         "vendor/tutorial-embedded-cluster-automation",
         "vendor/tutorial-helm-cli",
+        "vendor/tutorial-cmx-airgap",
       ],
     },
     {
