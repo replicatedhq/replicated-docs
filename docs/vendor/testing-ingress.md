@@ -67,44 +67,29 @@ A tunnel can support one or more protocols. The supported protocols are:
 
 GRPC and other protocols are not routed into the environment.
 
-### Expose Ports on Clusters
+### Expose Ports Using the CLI
 
-To expose a port on a cluster using the Replicated CLI:
+* To expose a port in a cluster:
 
-```bash
-replicated cluster port expose CLUSTER_ID \
-    --port NODE_PORT \
-    --protocol PROTOCOL
-```
+    ```bash
+    replicated cluster port expose CLUSTER_ID \
+        --port NODE_PORT \
+        --protocol PROTOCOL
+    ```
+    For more information, see [replicated cluster port expose](/reference/replicated-cli-cluster-port-expose).
 
-For example:
+* To expose a port on a VM:
 
-```bash
-replicated cluster port expose 1e616c55 \
-    --port 32456 \
-    --protocol http \
-    --protocol https
-```
+    ```bash
+    replicated vm port expose VM_ID \
+        --port PORT \
+        --protocol PROTOCOL
+    ```
+    For more information, see [replicated vm port expose](/reference/replicated-cli-vm-port-expose).
 
-For more information, see [replicated cluster port expose](/reference/replicated-cli-cluster-port-expose).
+### Expose Ports on a VM Using the Vendor Portal
 
-### Expose Ports on VMs
-
-#### Using the CLI
-
-To expose a port on a VM using the Replicated CLI:
-
-```bash
-replicated vm port expose VM_ID \
-    --port PORT \
-    --protocol PROTOCOL
-```
-
-For more information, see [replicated vm port expose](/reference/replicated-cli-vm-port-expose).
-
-#### Using the Vendor Portal
-
-To expose ports on a VM using the Vendor Portal:
+To expose ports on a VM in the Vendor Portal:
 
 1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
 
@@ -133,7 +118,7 @@ replicated cluster port expose CLUSTER_ID --port PORT --protocol https --wildcar
 Wildcard DNS takes additional time to provision because Replicated must create a dedicated DNS record and TLS certificate.
 :::
 
-When you use wildcard DNS, any matching subdomains will resolve to the same node IP address. This means that, if you deploy a Kubernetes ingress controller as a NodePort service, the ingress controller can receive traffic and route requests based on the subdomain. For example, with a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, subdomains such as `app.boring-wozniak.ingress.replicatedcluster.com` or `api.boring-wozniak.ingress.replicatedcluster.com` will resolve to the same node IP address that exposes the ingress controller.
+When you use wildcard DNS, any matching subdomains will resolve to the same node IP address. This means that, if you deploy a Kubernetes ingress controller as a NodePort service, the ingress controller can receive traffic and route requests based on the subdomain. For example, with a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, subdomains such as `app.boring-wozniak.ingress.replicatedcluster.com` or `api.boring-wozniak.ingress.replicatedcluster.com` that correspond to dependent services will resolve to the same node IP address that exposes the ingress controller.
 
 ### Remove Exposed Ports
 
