@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.01.29-3
+
+Released on January 29, 2026
+
+### Bug Fixes {#bug-fixes-v2026-01-29-3}
+* Fixes bug that prevented editing default customer license expiry in the vendor portal.
+
 ## v2026.01.21-4
 
 Released on January 21, 2026
