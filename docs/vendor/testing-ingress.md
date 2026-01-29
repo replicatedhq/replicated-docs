@@ -1,22 +1,22 @@
-# Expose Port and Access Applications
+# Expose Ports and Access Applications
 
 This topic explains how to access applications running in Replicated Compatibility Matrix (CMX) clusters and virtual machines (VMs).
 
 ## Overview
 
-After you deploy your application into CMX clusters or VMs, there are several methods to expose ports for your application:
+After you deploy your application into CMX clusters or VMs, you can use the following methods to expose ports for your application:
 
-- **Port forwarding** works on all distributions for testing via localhost. See [Port Forwarding](#port-forwarding).
+- **Port forwarding:** For CMX clusters, you can use port forwarding to test with localhost. Supported for all Kubernetes distributions. See [Port Forwarding](#port-forwarding).
 
-- **VM-based distributions** (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster) run on Replicated-managed VMs with no public IP addresses. Use CMX Tunnels to expose ports on the public internet. See [CMX Tunnels](#cmx-tunnels).
+- **CMX Tunnels**: For VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster), you can use CMX Tunnels to expose ports on the public internet. See [CMX Tunnels](#cmx-tunnels).
 
-- **Cloud distributions** (EKS, GKE, AKS, OKE) support native Kubernetes `LoadBalancer` services to expose ports on the public internet. See [LoadBalancer Services](#loadbalancer-services).
+- **LoadBalancer:** For cloud-based clusters (EKS, GKE, AKS, OKE), you can use Kubernetes LoadBalancer services to expose ports on the public internet. See [LoadBalancer Services](#loadbalancer-services).
 
-## Port Forwarding
+## Configure Port Forwarding (Clusters Only) {#port-forwarding}
 
-Port forwarding works on all CMX clusters and provides access to your application on localhost only, not on the public internet. This is the simplest option for testing and works well for a single service or pod without complex routing requirements.
+Port forwarding works on all CMX cluster distributions and provides access to your application on localhost only, not on the public internet. This is the simplest option for testing and works well for a single service or pod without complex routing requirements.
 
-The basic steps are:
+To port forward a service in a CMX cluster:
 
 1. Get the kubeconfig for your cluster:
 
@@ -29,42 +29,45 @@ The basic steps are:
    ```bash
    kubectl --kubeconfig=kubeconfig.yaml port-forward svc/my-service 8080:80
    ```
+   For more information, see [kubectl port-forward](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_port-forward/) in the Kubernetes documentation.
 
 1. Execute your tests against `localhost:8080`.
 
 1. Shut down the port-forward when finished (Ctrl+C).
 
-## VM-Based Distributions
+## Expose Ports Using CMX Tunnels (VMs and VM-Based Clusters Only) {#cmx-tunnels}
 
-### CMX Tunnels
+You can use CMX Tunnels to get public internet access to applications running in VMs or VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). For VMs, you can use CMX Tunnels to expose ports directly on the VM. For clusters, Tunnels connect to a Kubernetes NodePort service to provide access to the cluster from the host.
 
-CMX Tunnels provide public internet access to applications running in VM-based clusters. Tunnels work by connecting to a Kubernetes NodePort service in your cluster.
+When you expose a port using CMX Tunnels, CMX creates a DNS record and a valid TLS cert and connects them to the port. By default, each exposed port gets a unique DNS name like `boring-wozniak.ingress.replicatedcluster.com`.
 
-There is no limit to the number of tunnels you can create for a cluster, and multiple tunnels can connect to a single service.
+With CMX tunnels, you can expose a NodePort that does not yet exist in a cluster. You can also expose a port on a VM that does not yet have a service listening on it. This is useful if you have a deterministic NodePort or if you know which port your application will use, and need the DNS name as a value in your Helm chart in order to deploy.
 
-:::note
-You can expose a NodePort that does not yet exist in the cluster. 
-This is useful if you have a deterministic NodePort, but need the DNS name as a value in your Helm chart.
-:::
+There is no limit to the number of tunnels you can create for an environment. Additionally, more than one tunnel can connect to a service.
 
-The following diagram shows how traffic is routed into the service using CMX Tunnels:
+The following diagram shows how traffic is routed into the service for VM-based clusters using CMX Tunnels:
 
 <img src="/images/compatibility-matrix-ingress.png" alt="Compatibility Matrix ingress"></img>
 
 [View a larger version of this image](/images/compatibility-matrix-ingress.png)
 
-#### Limitations
+### Limitations
 
-* A tunnel can only connect to one service. If you need fanout routing into different services, consider installing the nginx ingress controller as a `NodePort` service and exposing it.
+* Each tunnel can only connect to one service. If you need fanout routing into different services, consider installing the NGINX ingress controller as a NodePort service and exposing it.
 * Tunnels are not supported for cloud distributions (EKS, GKE, AKS, OKE).
+* Wildcard DNS is not supported for VMs.
 
-#### Supported Protocols
+### Supported Protocols
 
-A tunnel can support one or more protocols. Options are HTTP, HTTPS, WS, and WSS. GRPC and other protocols are not routed into the cluster.
+A tunnel can support one or more protocols. The supported protocols are:
+* HTTP
+* HTTPS
+* WS
+* WSS
 
-#### Expose Ports on Clusters
+GRPC and other protocols are not routed into the environment.
 
-##### Using the CLI
+### Expose Ports on Clusters
 
 To expose a port on a cluster using the Replicated CLI:
 
@@ -74,7 +77,7 @@ replicated cluster port expose CLUSTER_ID \
     --protocol PROTOCOL
 ```
 
-You can specify multiple protocols:
+For example:
 
 ```bash
 replicated cluster port expose 1e616c55 \
@@ -83,47 +86,11 @@ replicated cluster port expose 1e616c55 \
     --protocol https
 ```
 
-For more information, see [cluster port](/reference/replicated-cli-cluster-port).
+For more information, see [replicated cluster port expose](/reference/replicated-cli-cluster-port-expose).
 
-##### Using the Vendor Portal
+### Expose Ports on VMs
 
-To expose ports on a cluster using the Vendor Portal:
-
-1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix).
-
-1. Click the cluster name or select **Edit Cluster** from the cluster's menu.
-
-1. Select the **Ingress & Ports** tab.
-
-1. Enter the port number, select the protocols, and click **Add**.
-
-The DNS record and TLS certificate are provisioned automatically. Port status transitions from **Pending** to **Applied** to **Ready**.
-
-#### Use Wildcard DNS
-
-By default, each exposed port gets a unique hostname like `boring-wozniak.ingress.replicatedcluster.com`. If you need multiple subdomains to share a common base domain, use the `--wildcard` flag to create a wildcard DNS entry:
-
-```bash
-replicated cluster port expose CLUSTER_ID --port PORT --protocol https --wildcard
-```
-
-With a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, any subdomain will route to your NodePort service. You can have an ingress controller route traffic based on the subdomain:
-
-- `app1.boring-wozniak.ingress.replicatedcluster.com`
-- `app2.boring-wozniak.ingress.replicatedcluster.com`
-- `api.boring-wozniak.ingress.replicatedcluster.com`
-
-Wildcard DNS takes additional time to provision because Replicated must create a dedicated DNS record and TLS certificate.
-
-#### Expose Ports on VMs
-
-You can also expose ports on standalone VMs and make them accessible on the public internet.
-
-:::note
-Wildcard DNS is not supported for VMs.
-:::
-
-##### Using the CLI
+#### Using the CLI
 
 To expose a port on a VM using the Replicated CLI:
 
@@ -135,7 +102,7 @@ replicated vm port expose VM_ID \
 
 For more information, see [replicated vm port expose](/reference/replicated-cli-vm-port-expose).
 
-##### Using the Vendor Portal
+#### Using the Vendor Portal
 
 To expose ports on a VM using the Vendor Portal:
 
@@ -155,11 +122,24 @@ To expose ports on a VM using the Vendor Portal:
 
    A DNS record and valid TLS certificate are created and connected to the specified port.
 
-#### Remove Exposed Ports
+### Use Wildcard DNS (VM-Based Clusters Only)
 
-Exposed ports are automatically deleted when the cluster or VM terminates.
+By default, each exposed port is assigned a unique hostname like `boring-wozniak.ingress.replicatedcluster.com`. If you need multiple subdomains to share a common base domain, use the `--wildcard` flag to create a wildcard DNS entry:
 
-To remove a port (and the associated DNS records and TLS certificates) prior to termination:
+```bash
+replicated cluster port expose CLUSTER_ID --port PORT --protocol https --wildcard
+```
+:::note
+Wildcard DNS takes additional time to provision because Replicated must create a dedicated DNS record and TLS certificate.
+:::
+
+When you use wildcard DNS, any matching subdomains will resolve to the same node IP address. This means that, if you deploy a Kubernetes ingress controller as a NodePort service, the ingress controller can receive traffic and route requests based on the subdomain. For example, with a hostname like `*.boring-wozniak.ingress.replicatedcluster.com`, subdomains such as `app.boring-wozniak.ingress.replicatedcluster.com` or `api.boring-wozniak.ingress.replicatedcluster.com` will resolve to the same node IP address that exposes the ingress controller.
+
+### Remove Exposed Ports
+
+Exposed ports are automatically deleted when the cluster or VM terminates. You can remove one protocol, or all. Removing all protocols also removes the DNS record and TLS certificate.
+
+To remove a port (and the associated DNS records and TLS certificates) before an environment terminates:
 
 ```bash
 # For clusters
@@ -169,14 +149,9 @@ replicated cluster port rm PORT_ID --id CLUSTER_ID
 replicated vm port rm VM_ID
 ```
 
-You can remove just one protocol, or all.
-Removing all protocols also removes the DNS record and TLS certificate.
+## Create an External Load Balancer (Cloud-Based Cluster Distributions Only)
 
-## Cloud Distributions
-
-### LoadBalancer Services
-
-For cloud distributions (EKS, GKE, AKS, OKE), you can expose your application to the public internet using a Kubernetes `LoadBalancer` service. When you create a `LoadBalancer` service, the cloud provider automatically creates a load balancer with a public IP address that routes traffic to your application.
+For cloud distributions (EKS, GKE, AKS, OKE), you can expose your application to the public internet using a Kubernetes LoadBalancer service. When you create a LoadBalancer service, the cloud provider automatically creates a load balancer with a public IP address that routes traffic to your application.
 
 ```yaml
 apiVersion: v1
@@ -198,7 +173,7 @@ Query the service to get the external IP:
 kubectl get service my-service
 ```
 
-#### AKS-Specific Configuration
+### AKS-Specific Configuration for Routing LoadBalancer Traffic
 
 AKS clusters require additional annotations for LoadBalancer traffic to route correctly:
 
