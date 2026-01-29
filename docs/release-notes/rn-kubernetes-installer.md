@@ -15,8 +15,6 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on January 29, 2026
 
 ### New Features {#new-features-v2026-01-29-0}
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.83.0-74.0.0.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.83.0-75.18.1.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.87.1-80.14.4.
 
 ## v2026.01.13-0
