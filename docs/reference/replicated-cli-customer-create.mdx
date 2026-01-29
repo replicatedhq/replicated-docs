@@ -7,8 +7,8 @@ Create a new customer for the current application
 Create a new customer for the current application with specified attributes.
 
 This command allows you to create a customer record with various properties such as name,
-custom ID, channels, license type, and feature flags. You can set expiration dates,
-enable or disable specific features, and assign the customer to one or more channels.
+custom ID, channel, license type, and feature flags. You can set expiration dates,
+enable or disable specific features, and assign the customer to a channel.
 
 The --app flag must be set to specify the target application.
 
@@ -22,8 +22,8 @@ replicated customer create [flags]
 # Create a basic customer with a name and assigned to a channel
 replicated customer create --app myapp --name "Acme Inc" --channel stable
 
-# Create a customer with multiple channels and a custom ID
-replicated customer create --app myapp --name "Beta Corp" --custom-id "BETA123" --channel beta --channel stable
+# Create a customer with a custom ID to tie to external systems
+replicated customer create --app myapp --name "Beta Corp" --custom-id "BETA123" --channel stable
 
 # Create a paid customer with specific features enabled
 replicated customer create --app myapp --name "Enterprise Ltd" --type paid --channel enterprise --airgap --snapshot
@@ -33,8 +33,7 @@ replicated customer create --app myapp --name "Trial User" --type trial --channe
 
 # Create a customer with all available options
 replicated customer create --app myapp --name "Full Options Inc" --custom-id "FULL001" \
-	--channel stable --channel beta --default-channel stable --type paid \
-	--email "contact@fulloptions.com" --expires-in 8760h \
+	--channel stable --type paid --email "contact@fulloptions.com" --expires-in 8760h \
 	--airgap --snapshot --kots-install --embedded-cluster-download \
 	--support-bundle-upload --ensure-channel
 ```
@@ -43,9 +42,8 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
 
 ```
       --airgap                       If set, the license will allow airgap installs.
-      --channel stringArray          Release channel to which the customer should be assigned (can be specified multiple times)
+      --channel string               Release channel to which the customer should be assigned.
       --custom-id string             Set a custom customer ID to more easily tie this customer record to your external data systems
-      --default-channel string       Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.
       --developer-mode               If set, Replicated SDK installed in dev mode will use mock data.
       --email string                 Email address of the customer that is to be created.
       --embedded-cluster-download    If set, the license will allow Embedded Cluster downloads.
