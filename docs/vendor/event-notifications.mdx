@@ -1,0 +1,172 @@
+# Event Notifications (Beta)
+
+:::note
+Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
+:::
+
+The ability to set up notifications for key events of interest within the Replicated Vendor Portal can help you proactively manage and prevent issues across your customer instances, releases, support bundles, and more.
+
+## Overview
+
+Event Notifications allow you to subscribe to specific events and receive alerts via email or webhook. You can create highly targeted notifications using filters to focus on the events that matter most to your workflow.
+
+Event types available are predefined, but these events can cover a broad range of use cases by leveraging available filtering conditions on a given event.
+
+Events are queued to SQS for reliable processing and notifications are matched against event filters in real-time. Email notifications are sent via the configured email service, and webhook notifications include HMAC signatures for verification.
+
+## Key Differences from Legacy Instance Notifications
+
+Event Notifications offers significant improvements over the legacy [Instance Notifications (Legacy)](instance-notifications-config) system:
+
+- **More event types available**: Including customer events, support bundle events, release events, channel events, and more—not just instance events
+- **More fine-grained alert customizability**: Improved filtering options let you target exactly what matters
+- **Flexible routing**: Route each notification to different individual or team alias email addresses or webhook payloads (for integrations such as Slack)
+- **Notification history**: View a complete history of event notifications sent
+- **Better access control**: Control over your individual notification configurations with visibility into broader team notifications configured
+
+## Comparison: Legacy vs. Event Notifications (Beta)
+
+| Feature | Legacy Instance Notifications | Event Notifications (Beta) |
+|---------|------------------------------|---------------------------|
+| **Event Types** | 3 types (App Status, System Events, Custom Metrics) | 19+ types across 6 categories |
+| **Scope** | Per-instance subscriptions | Team-wide with flexible filtering |
+| **Delivery** | Slack (team webhook) + Email (user) | Email + Generic webhooks |
+| **Filtering** | Instance-level only | Multi-field filters (app, customer, channel, etc.) |
+| **Permissions** | User-scoped | Team-scoped RBAC |
+| **Webhook Security** | Basic | HMAC-SHA256 signing |
+| **Notification History** | Minimal | Full delivery attempt tracking with event details |
+| **Status** | Maintenance mode | Active development |
+
+## Available Event Types
+
+Event Notifications initially supports the following high-level event types. Each event type can be further refined using filters to match your specific needs.
+
+### Instance Events
+- **Instance Created** - When a new instance is created
+- **Instance Upgraded** - When an instance upgrades to a new release version
+- **Instance Version Behind** - When an instance falls behind by a specified number of versions
+- **Instance Inactive** - When an instance has not reported in for 24 hours (declared "Inactive")
+
+### Release Events
+- **Release Created** - When a new release is created
+- **Release Promoted** - When a release is promoted to a channel
+- **Release Demoted (Unpublished)** - When a release is demoted from a channel
+- **Release Assets Downloaded** - When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
+
+### Customer Events
+- **Customer Created** - When a new customer is created
+- **Customer Updated** - When a customer's details or license is updated
+- **Customer Archived** - When a customer is archived
+- **Customer Unarchived (Restored)** - When a customer is restored from archived state
+- **Customer License Expiring** - Time-based warning of an upcoming license expiration
+- **Pending Self-Service Signup** - When someone signs up via the self-service portal (if enabled)
+
+### Channel Events
+- **Channel Created** - When a new channel is created for an application
+- **Channel Archived** - When a channel is archived
+
+### Support Events
+- **Support Bundle Uploaded** - When a support bundle is uploaded
+- **Support Bundle Analyzed** - When a support bundle analysis is completed
+
+:::note
+Instance related notifications will include the Instance Name if set, otherwise it will contain the Instance ID.
+:::
+
+## Use Case Examples
+
+### Customer Success Manager: Key Customer Support Bundle
+**Scenario:** As a Customer Success Manager, I want to be notified if one of my key customers uploads a support bundle.
+
+- **Event Type:** Support Bundle Uploaded
+- **Configuration:**
+  - Filter - Customer: Select your key enterprise customer (e.g., "Acme Corp", "GlobalTech Inc", "Enterprise Solutions Ltd")
+  - Filter - Application: Select your production application
+- **Delivery Method:** Email to your work email (or team email alias)
+
+### Sales Manager: Trial License Expiration
+**Scenario:** As a Sales Manager, I want to be notified when a trial customer has an impending trial license expiration.
+
+- **Event Type:** Customer License Expiring
+- **Configuration:**
+  - Filter - Application: Select your production application
+  - Filter - License Type: "Trial"
+- **Delivery Method:** Email to your work email (or team email alias)
+
+### Product Manager: Release Promotion
+**Scenario:** As a Product Manager, I want to be notified when a new release version is made available to customers on the Stable channel so that I can engage key customers in adoption follow-up conversations.
+
+- **Event Type:** Release Promoted
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - Channel: Select "Stable"
+- **Delivery Method:** Email to pm-team@company.com or webhook to #pm-team channel in Slack
+
+### Development Leader: Paid Customer Installations
+**Scenario:** As a Development Leader, I want to be notified when a key customer pulls release assets to initiate a paid install.
+
+- **Event Type:** Release Asset Downloaded
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - Channel: Select "Stable"
+  - Filter - License Type: "Paid"
+  - Filter - Asset Type: Any, or narrow further
+- **Delivery Method:** Email to your work email (or team email alias)
+
+## Getting Started
+
+To start using Event Notifications:
+
+1. **Review available event types** - Identify which events are most relevant to your workflow
+2. **Plan your filters** - Determine how you want to narrow event notifications (by customer, channel, license type, etc.)
+3. **Choose delivery method** - Decide between email or webhook delivery (or both for different notifications)
+4. **Create your first notification** - See [Create Event Notification Subscriptions (Beta)](event-notifications-create)
+5. **Monitor and refine** - View notification history and adjust filters as needed
+
+## Prerequisites
+
+### RBAC Permissions
+
+To create and manage Event Notifications, you need appropriate RBAC permissions:
+
+- **Admin role** - Full access to all notification features including managing other users' subscriptions
+- **Read Only role** - Can view all team notifications and their event history, but cannot create notifications
+- **Other roles with write access** (Support Engineer, Sales, Custom) - Can create and modify their own notifications; broader team notifications are viewable but not modifiable (read-only)
+
+:::note
+When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
+:::
+
+For teams using Custom RBAC policies, the following permissions are available:
+- `team/notifications/**` - Full access to all notification features including managing other users' subscriptions
+- `team/notifications/subscriptions/read` - View all team subscriptions
+- `team/notifications/subscriptions/create` - Set up their own alerts
+- `team/notifications/subscriptions/update` - Modify their own alerts
+- `team/notifications/subscriptions/delete` - Remove their own alerts
+- `team/notifications/types/list` - See available event types
+- `team/notifications/events/read` - View notification history
+
+## Limitations
+
+Current limitations of Event Notifications (Beta):
+
+- Event Notifications does not yet cover all instance and custom metric event types from the legacy Instance Notifications feature, including Instance health state changed (aka Instance State Changed)
+- Notification events generated are not included in the Instance Bulk Data Export API
+- It is possible to create a notification for some resource types, such as customers and support bundles, but not be able to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with enterprise and custom RBAC policies. For example, someone with the Sales RBAC role can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
+- The Release Assets Downloaded event may fire per chart/image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
+
+:::note
+Event Notifications can be used concurrently with the legacy Instance Notifications system while you evaluate and transition.
+:::
+
+## Next Steps
+
+- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Learn how to create your first notification subscription
+- [Manage Event Notification Subscriptions (Beta)](event-notifications-manage) - View, edit, and delete notification subscriptions
+- [Event Notification Webhooks (Beta)](event-notifications-webhooks) - Configure webhooks for integration with tools like Slack
+
+## Related Topics
+
+- [Instance Notifications (Legacy)](instance-notifications-config) - Legacy per-instance notification system
+- [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
+- [Enabling and Understanding Application Status](insights-app-status) - Understanding application status for instance events

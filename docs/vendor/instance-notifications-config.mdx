@@ -1,7 +1,13 @@
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
-# Configure Instance Notifications (Beta)
+# Configure Instance Notifications (Legacy)
+
+:::caution Legacy System
+This notification system is being replaced by [Event Notifications (Beta)](event-notifications), which offers more event types, better filtering, and improved delivery options. While this legacy system continues to work, we recommend exploring Event Notifications for new notification configurations.
+
+For a comparison of features, see [Comparison: Legacy vs. Event Notifications](event-notifications#comparison-legacy-vs-event-notifications-beta).
+:::
 
 <NotificationsAbout/>
 
@@ -57,3 +63,9 @@ Then, look for notifications in the assigned Slack channel. You also receive an 
 :::note
 There is a 30-second buffer between event detection and notifications being sent. This buffer provides better roll-ups and reduces noise.
 :::
+
+## See Also
+
+- [Event Notifications (Beta)](event-notifications) - New notification system with more event types and better filtering
+- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Get started with Event Notifications
+- [Comparison: Legacy vs. Event Notifications](event-notifications#comparison-legacy-vs-event-notifications-beta) - Feature comparison

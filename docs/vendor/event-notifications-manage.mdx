@@ -1,0 +1,243 @@
+# Manage Event Notification Subscriptions (Beta)
+
+:::note
+Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
+:::
+
+This topic describes how to view, edit, disable, and delete event notification subscriptions in the Replicated Vendor Portal.
+
+## Overview
+
+The Notifications page in the Vendor Portal provides visibility into both personal and team notification subscriptions, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
+
+## Viewing Notification Subscriptions
+
+The Notifications list page provides three main views:
+
+### My Notifications
+
+Shows only notification subscriptions you created, giving you quick access to manage your personal monitoring setup.
+
+To view your notifications:
+
+1. Navigate to **Notifications** in the Vendor Portal
+2. Select the **My Notifications** tab
+3. View the list of your active and inactive subscriptions
+
+<!-- TODO: Add screenshot of My Notifications view -->
+
+### Team Notifications
+
+Shows all notification subscriptions created by anyone on your team. This view is useful for understanding what monitoring is in place across the organization.
+
+To view team notifications:
+
+1. Navigate to **Notifications** in the Vendor Portal
+2. Select the **Team Notifications** tab
+3. View all subscriptions created by team members
+
+**Permissions:**
+- **Team admins** can manage (edit/delete) any team member's notifications
+- **Non-admin users** can view team notifications but cannot modify subscriptions created by others
+
+<!-- TODO: Add screenshot of Team Notifications view -->
+
+### History
+
+Shows all triggered notification events for the selected time period. You can filter the history to show only your notifications or filter by a specific configured notification.
+
+To view notification history:
+
+1. Navigate to **Notifications** in the Vendor Portal
+2. Select the **History** tab
+3. Use the filters to narrow results:
+   - Filter by time period
+   - Filter to "My Notifications Only"
+   - Filter to a specific notification subscription
+
+<!-- TODO: Add screenshot of History view -->
+
+## Viewing Notification Event Details
+
+Each notification event in the history view can be expanded to show detailed information:
+
+To view event details:
+
+1. Navigate to **Notifications** > **History**
+2. Find the event you want to inspect
+3. Click to expand the event row
+
+Event details include:
+- List of all events that matched this notification's filters
+- Timestamp when each event occurred
+- Event details (customer, instance, application, etc.)
+- Delivery status (Sent, Failed, Pending)
+- For failures: Error message explaining why delivery failed
+
+This information is helpful for troubleshooting notification delivery issues and understanding which events are triggering your subscriptions.
+
+## Editing an Existing Notification
+
+To modify a notification subscription:
+
+1. Navigate to **Notifications** in the Vendor Portal
+
+2. Find the notification you want to edit in the list:
+   - Use the **My Notifications** tab for your subscriptions
+   - Use the **Team Notifications** tab to find any team member's subscription (if you're a team admin)
+
+3. Click the **Edit** icon or **"Edit"** button for that notification
+
+4. The notification form will open with all current settings populated
+
+5. Make your desired changes:
+   - Modify filters to broaden or narrow the scope
+   - Change the delivery method or destination
+   - Update the notification name
+   - Pause/unpause the notification
+
+6. Click **"Save Changes"** to update
+
+<!-- TODO: Add screenshot of Edit notification form -->
+
+**Important notes:**
+- Editing a notification does not affect past events already sent
+- Changes apply immediately to future events
+- You can only edit notifications you created, unless you're a team admin with permissions to manage all team notifications
+
+## Disabling a Notification (Pause)
+
+To temporarily stop a notification without deleting it:
+
+1. Navigate to **Notifications** in the Vendor Portal
+2. Find the notification in the list
+3. Click the **Edit** button
+4. Toggle the notification to **Disabled** or **Paused** state
+5. Save your changes
+
+When a notification is disabled:
+- It stops triggering for new events
+- The subscription configuration is preserved
+- Historical event data remains available
+- You can re-enable it at any time by editing and toggling back to active
+
+## Deleting an Existing Notification
+
+To permanently remove a notification subscription:
+
+1. Navigate to **Notifications** in the Vendor Portal
+
+2. Find the notification you want to delete in the list
+
+3. Click the **Delete** icon or **"Delete"** button for that notification
+
+4. Confirm the deletion in the prompt
+
+5. The notification is permanently removed
+
+**Important notes:**
+- Deleting a notification is permanent and cannot be undone
+- No further notifications will be sent for this subscription
+- Historical event data for the notification is preserved and remains viewable in the History view
+- You can only delete notifications you created, unless you're a team admin
+
+## Viewing Event History for a Specific Notification
+
+Each notification maintains a history of when it triggered and what events matched:
+
+1. Navigate to **Notifications** in the Vendor Portal
+2. Find the notification in the list (either **My Notifications** or **Team Notifications**)
+3. Click the **"View History"** button for that notification
+
+This filtered view shows only events that matched this specific notification subscription, making it easier to understand the notification's behavior and troubleshoot any issues.
+
+## Understanding Notification Permissions
+
+Event Notifications uses team-scoped RBAC permissions to control access. Your ability to view and manage notifications depends on your role:
+
+### Admin Role
+- Can manage any team-created notifications in addition to their own
+- Can modify, delete, and turn off/on any notification
+- Full access to all notification features
+
+### Read Only Role
+- Cannot create notifications
+- Can view all team notifications and their event history
+- No modification permissions
+
+### Other Non-Admin Roles with Write Access
+(Examples: Support Engineer, Sales, Custom roles)
+- Can create and modify their own notifications
+- Broader team notifications are viewable but not modifiable (read-only)
+- Cannot edit or delete subscriptions created by other team members
+
+:::note
+When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
+:::
+
+## Notification List Filtering and Sorting
+
+The Notifications list page supports filtering and sorting to help you find specific subscriptions:
+
+**Available filters:**
+- Active vs. Inactive subscriptions
+- Event type
+- Delivery method (Email or Webhook)
+- Created by (for Team Notifications view)
+
+**Sorting options:**
+- Name (A-Z or Z-A)
+- Created date (newest or oldest first)
+- Last triggered (most recent or least recent)
+
+Use these tools to quickly locate and manage your notification subscriptions.
+
+## Troubleshooting Notification Delivery
+
+### Viewing Delivery Status
+
+To check if notifications are being delivered successfully:
+
+1. Navigate to **Notifications** > **History**
+2. Look at the **Delivery Status** column for each event:
+   - **Sent**: Notification was successfully delivered
+   - **Failed**: Delivery failed (expand row to see error message)
+   - **Pending**: Delivery is in progress or queued
+
+### Common Delivery Issues
+
+**Email not verified:**
+- Check if the email address requires verification
+- Look for a verification email in your inbox
+- Edit the notification to enter the verification code
+
+**Filters too restrictive:**
+- Review your filter configuration
+- Check that events are actually matching your criteria
+- Temporarily broaden filters to test
+
+**Webhook endpoint issues:**
+- Verify webhook URL is correct and accessible
+- Check that your endpoint returns 2xx status codes
+- See [Event Notification Webhooks (Beta)](event-notifications-webhooks) for webhook troubleshooting
+
+**RBAC permissions:**
+- Verify you have the necessary permissions to create and manage notifications
+- Contact your team admin if you need additional permissions
+
+## Bulk Management (Future)
+
+:::note
+Bulk management features such as bulk enable/disable and bulk delete are planned for a future release.
+:::
+
+## Next Steps
+
+- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Create new notification subscriptions
+- [Event Notification Webhooks (Beta)](event-notifications-webhooks) - Configure webhooks for integrations like Slack
+- [Event Notifications (Beta)](event-notifications) - Overview and available event types
+
+## Related Topics
+
+- [Custom RBAC Policies](team-management-rbac-configuring) - Configuring custom RBAC policies for notifications
+- [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
