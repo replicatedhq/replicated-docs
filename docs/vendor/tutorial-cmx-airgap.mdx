@@ -142,7 +142,9 @@ Before you begin, do the following to set up your environment:
 
 1. Go to **Channels**.
 
-1. On the **Unstable** channel card, in the **Latest release** section, click **Release history**.
+1. On the **Unstable** channel card, click the gear icon in the top right corner to open the channel settings. In the **Edit channel settings** dialog, ensure that **Enable new air gap bundle format** is enabled. Click **Save** to close the dialog. 
+
+1. In the **Latest release** section of the **Unstable** channel card, click **Release history**.
 
 1. On the **Release History** page, find the release sequence that you just promoted.
 
@@ -221,9 +223,9 @@ Before you begin, do the following to set up your environment:
 
    [View a larger version of this image](/images/compatibility-matrix-edit-vm.png)
 
-1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record with the default **Target Port** of **30000**.
+1. Under **Ingress & Ports**, for **Add DNS record**, click **Add** to create a DNS record with the default **Target Port** (`30000`) and the default **Protocols** (`http` and `https`).
 
-1. Add another DNS record with a **Target Port** of **80**.
+1. Add another DNS record with a **Target Port** of `80`. Use the default `http` and `https` protocols for this DNS record as well.
 
     The following shows an example of both of these DNS records added to a VM:
 
@@ -254,7 +256,7 @@ Before you begin, do the following to set up your environment:
 
 1. If you are prompted to add the fingerprint for replicatedvm.com, type `yes` and press Enter.
 
-1. When prompted, provide the passphrase for the SSH key in your linked GitHub account.
+1. If prompted, provide the passphrase for the SSH key in your linked GitHub account.
 
 1. Open a new command prompt window.
 
@@ -279,11 +281,11 @@ Before you begin, do the following to set up your environment:
 1. Transfer the `.tgz` installation assets that you downloaded as part of [Download the Installation Assets](#download-the-installation-assets) to your VM using the SCP endpoint:
 
     ```bash
-    scp PATH_TO_TGZ scp://GITHUB_USERNAME@SSH_ENDPOINT:PORT 
+    scp PATH_TO_TGZ SCP_ENDPOINT 
     ```
     Where:
     * `PATH_TO_TGZ` is the local path to the `.tgz` installation assets that you downloaded.
-    * `GITHUB_USERNAME`, `SSH_ENDPOINT`, and `PORT` are all copied from the SCP endpoint that you retrieved.
+    * `SCP_ENDPOINT` is the SCP endpoint with the format `scp://yourusername@37.27.52.178:43663` that you copied in the previous step .
 
     **Example:**
     ```bash
@@ -315,6 +317,25 @@ Before you begin, do the following to set up your environment:
 
    The installation takes a few minutes to complete.
 
+1. In a browser, go to the URL for the Admin Console.
+
+   :::note
+   You generated a URL for the Admin Console as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 30000.
+   :::
+
+1. Log in to the Admin Console using the password that you set during installation.
+
+1. In the Admin Console installation wizard, click **Continue** to skip the cluster configuration options.
+
+   The Admin Console landing page opens.
+
+1. On the Admin Console landing page, click **Deploy** to install NGINX.
+
+   You can watch the status of the NGINX app change from **Missing** to **Unavailable** to **Ready**:
+
+   ![admin console landing page](/images/nginx-airgap-admin-console.png)
+   [View a larger version of this image](/images/nginx-airgap-admin-console.png)
+
 1. After the installation completes, run the following command on your VM to open a shell where you can interact with the embedded cluster using kubectl:
 
    ```
@@ -340,26 +361,7 @@ Before you begin, do the following to set up your environment:
    * `kotsadm` and `kotsadm-rqlite` pods for the Replicated Admin Console
    * `kurl-proxy-kotadm` pod for the image registry that is automatically deployed in air gap installations with Embedded Cluster
    * `nginx` pod for the NGINX application
-   * `replicated` pod for the Replicated SDK
-
-1. In a browser, go to the URL for the Admin Console.
-
-   :::note
-   You generated a URL for the Admin Console as part of [Create a VM with CMX](#create-a-vm-with-cmx). You can find the URL by going to **Compatibility Matrix > Edit VM > Ingress & Ports** in the Vendor Portal and copying the URL for the DNS record with a target port of 30000.
-   :::
-
-1. Log in to the Admin Console using the password that you set during installation.
-
-1. In the Admin Console installation wizard, click **Continue** to skip the cluster configuration options.
-
-   The Admin Console landing page opens.
-
-1. On the Admin Console landing page, click **Deploy** to install NGINX.
-
-   You can watch the status of the NGINX app change from **Missing** to **Unavailable** to **Ready**:
-
-   ![admin console landing page](/images/nginx-airgap-admin-console.png)
-   [View a larger version of this image](/images/nginx-airgap-admin-console.png)
+   * `replicated` pod for the Replicated SDK   
 
 ### Access the NGINX App and View the Network Report
 
@@ -401,6 +403,10 @@ Before you begin, do the following to set up your environment:
 
     <img alt="egress blocked error" src="/images/nginx-egress-success.png" width="600px"/>
     [View a larger version of this image](/images/nginx-egress-success.png)
+
+    :::note
+    If the outbound request fails, wait a moment for the network to open and then try again.
+    :::
 
 ### Clean Up
 
