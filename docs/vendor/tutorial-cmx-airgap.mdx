@@ -397,7 +397,7 @@ Before you begin, do the following to set up your environment:
 
 1. In the Vendor Portal, go to **Compatibility Matrix > Network Policy** and click **View report** for the network where your VM is connected.
 
-1. Under **Domain Names Requested**, note that the `httpbin.org` domain is listed in the table along with the number of requests made.
+1. In the **Network Policy Report** table, scroll to the right to see information about the request to `httpbin.org`, including the **Destination IP**, **DNS Query Name**, and more.
 
 1. (Optional) On the **Compatibility Matrix > Network Policy** page, change the **Policy type** to **open** to allow outbound requests on your VM. Go back to the NGINX app in your browser and click **Test Outbound Request** to see that the outbound request is now successful:
 
@@ -410,12 +410,16 @@ Before you begin, do the following to set up your environment:
 
 ### Clean Up
 
-* After you are done testing the air gap installation of NGINX, delete the VM:
+1. After you are done testing the air gap installation of NGINX, delete the VM:
 
     ```bash
     replicated vm rm VM_ID
     ```
     Where `VM_ID` is the ID of the VM. You can run `replicated vm ls` to get the ID.
+
+1. After the VM is terminated, go to **Compatibility Matrix > Network Policy** and click **View report** for the network where the VM was connected.
+
+1. Under **Domain Names Requested**, note that the `httpbin.org` domain is listed in the table along with the number of requests made.
 
 ## Summary
 
