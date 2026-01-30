@@ -65,7 +65,7 @@ From the **Download portal** section, you can:
 
 You can use the Download Portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Access a Customer's Download Portal](releases-share-download-portal).
 
-### Enterprise Portal (Beta)
+### Enterprise Portal
 
 :::note
 The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Customer Access to the Enterprise Portal](/vendor/enterprise-portal-invite).
