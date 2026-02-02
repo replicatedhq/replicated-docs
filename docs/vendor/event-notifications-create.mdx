@@ -21,36 +21,19 @@ For webhook delivery:
 - A webhook endpoint URL that can receive POST requests
 - (Optional) A signing secret for HMAC signature verification
 
-## Create a Notification from Scratch
+## Create an Event Notification
 
 To create a new notification subscription:
 
 1. Navigate to **Notifications** in the Vendor Portal
 
-2. Click **"New Notification"** or **"Create Notification"**
+2. Click **"Create Notification"**
 
-3. **Select an event type** from the dropdown:
-   - Events are organized by category (Instance, Release, Customer, Channel, Support)
-   - Use the search box to quickly find event types
-   - Each event displays its description to help you choose
+3. **Select an event type** from the dropdown
 
    <!-- TODO: Add screenshot of event type selection dropdown -->
 
-4. **Configure filters** for the event type:
-   - Available filters depend on the event type selected
-   - Most filters support dropdown selection from your existing resources
-   - Some filters support multiselect (e.g., License Type, Customer)
-   - Text filters allow pattern matching (e.g., Entitlement Filter)
-   - Leave filters empty to match all values
-
-   **Common Filters:**
-   - **Application**: Filter by specific application
-   - **Channel**: Filter by release channel (Stable, Beta, Unstable, etc.)
-   - **Customer**: Filter by specific customer(s)
-   - **License Type**: Filter by license type (Trial, Paid, Community, Development)
-   - **Instance**: Filter by specific instance (for instance events)
-   - **Number of Versions Behind**: Threshold for version behind alerts
-   - **Days Until Expiry**: Threshold for license expiration warnings
+4. **Configure filters** for the event type (optional)
 
    <!-- TODO: Add screenshot of filter configuration -->
 
@@ -67,11 +50,7 @@ To create a new notification subscription:
 
    <!-- TODO: Add screenshot of delivery method selection -->
 
-6. (Optional) **Name your notification** for easy identification
-   - Use descriptive names like "Trial License Expiration Alerts" or "Acme Corp Support Bundles"
-   - Names help you quickly identify subscriptions in the list view
-
-7. Click **"Create Notification"** to activate
+6. Click **"Create Notification"** to activate
 
 Your notification subscription is now active and will begin matching events based on your configured filters.
 
@@ -152,52 +131,6 @@ Understanding how filters work will help you create effective notification subsc
 
 <!-- TODO: Add screenshot showing multi-select filter UI -->
 
-## Testing Your Subscription
-
-After creating a notification subscription, verify that it works as expected:
-
-1. Trigger the event condition in a development or test environment
-   - For example, create a test customer or upload a support bundle
-2. Check your email inbox or webhook endpoint for the notification
-3. Review the notification history in the Vendor Portal:
-   - Navigate to **Notifications** > **History**
-   - Verify the event was captured and delivery was successful
-4. If notifications aren't arriving:
-   - Verify email address is validated (check for verification email)
-   - Check that filters aren't too restrictive
-   - Review notification history for delivery errors
-   - For webhooks, see [Debugging Webhooks](event-notifications-webhooks#debugging) in _Event Notification Webhooks (Beta)_
-
-## Troubleshooting
-
-### Notification Not Triggering
-
-If your notification subscription isn't triggering when expected:
-
-- **Check filters**: Ensure your filters aren't too restrictive and that the event meets all filter conditions
-- **Verify subscription is active**: Inactive or disabled subscriptions won't trigger
-- **Check email verification**: Unverified email addresses will block notifications from being sent
-- **Review notification history**: Look for attempted deliveries and error messages
-
-### Email Not Received
-
-If you created a notification but aren't receiving emails:
-
-- **Check spam folder**: Notification emails may be filtered by email clients
-- **Verify email address**: Ensure the email address is correct and has been verified
-- **Check notification history**: Verify the notification was triggered and email delivery was attempted
-- **Check your RBAC permissions**: Ensure you have `team/notifications/events/read` permission to view history
-
-### Webhook Not Receiving Notifications
-
-If your webhook endpoint isn't receiving notifications:
-
-- **Verify webhook URL**: Ensure the URL is correct and publicly accessible
-- **Check webhook endpoint logs**: Verify your endpoint is responding with 2xx status codes
-- **Test webhook manually**: Use a tool like `curl` to test your endpoint
-- **Review notification history**: Check for delivery errors and retry attempts
-- See [Event Notification Webhooks (Beta)](event-notifications-webhooks) for detailed webhook troubleshooting
-
 ## Next Steps
 
 - [Manage Event Notification Subscriptions (Beta)](event-notifications-manage) - View, edit, and delete subscriptions
@@ -207,4 +140,4 @@ If your webhook endpoint isn't receiving notifications:
 ## Related Topics
 
 - [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
-- [Custom RBAC Policies](team-management-rbac-configuring) - Configuring custom RBAC policies for notifications
+- [Custom RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy) - Configuring custom RBAC policies for notifications

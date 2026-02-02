@@ -14,19 +14,19 @@ Event types available are predefined, but these events can cover a broad range o
 
 Events are queued to SQS for reliable processing and notifications are matched against event filters in real-time. Email notifications are sent via the configured email service, and webhook notifications include HMAC signatures for verification.
 
-## Key Differences from Legacy Instance Notifications
+## Key Differences from Classic Instance Notifications
 
-Event Notifications offers significant improvements over the legacy [Instance Notifications (Legacy)](instance-notifications-config) system:
+Event Notifications offers significant improvements over the classic [Instance Notifications (Classic)](instance-notifications-config) system:
 
-- **More event types available**: Including customer events, support bundle events, release events, channel events, and more—not just instance events
+- **More event types available**: Covers customer events, support bundle events, release events, channel events, and more (not just instance events)
 - **More fine-grained alert customizability**: Improved filtering options let you target exactly what matters
 - **Flexible routing**: Route each notification to different individual or team alias email addresses or webhook payloads (for integrations such as Slack)
 - **Notification history**: View a complete history of event notifications sent
 - **Better access control**: Control over your individual notification configurations with visibility into broader team notifications configured
 
-## Comparison: Legacy vs. Event Notifications (Beta)
+## Comparison: Classic vs. Event Notifications (Beta)
 
-| Feature | Legacy Instance Notifications | Event Notifications (Beta) |
+| Feature | Classic Instance Notifications | Event Notifications (Beta) |
 |---------|------------------------------|---------------------------|
 | **Event Types** | 3 types (App Status, System Events, Custom Metrics) | 19+ types across 6 categories |
 | **Scope** | Per-instance subscriptions | Team-wide with flexible filtering |
@@ -47,12 +47,6 @@ Event Notifications initially supports the following high-level event types. Eac
 - **Instance Version Behind** - When an instance falls behind by a specified number of versions
 - **Instance Inactive** - When an instance has not reported in for 24 hours (declared "Inactive")
 
-### Release Events
-- **Release Created** - When a new release is created
-- **Release Promoted** - When a release is promoted to a channel
-- **Release Demoted (Unpublished)** - When a release is demoted from a channel
-- **Release Assets Downloaded** - When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
-
 ### Customer Events
 - **Customer Created** - When a new customer is created
 - **Customer Updated** - When a customer's details or license is updated
@@ -61,13 +55,19 @@ Event Notifications initially supports the following high-level event types. Eac
 - **Customer License Expiring** - Time-based warning of an upcoming license expiration
 - **Pending Self-Service Signup** - When someone signs up via the self-service portal (if enabled)
 
-### Channel Events
-- **Channel Created** - When a new channel is created for an application
-- **Channel Archived** - When a channel is archived
-
 ### Support Events
 - **Support Bundle Uploaded** - When a support bundle is uploaded
 - **Support Bundle Analyzed** - When a support bundle analysis is completed
+
+### Release Events
+- **Release Created** - When a new release is created
+- **Release Promoted** - When a release is promoted to a channel
+- **Release Demoted (Unpublished)** - When a release is demoted from a channel
+- **Release Assets Downloaded** - When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
+
+### Channel Events
+- **Channel Created** - When a new channel is created for an application
+- **Channel Archived** - When a channel is archived
 
 :::note
 Instance related notifications will include the Instance Name if set, otherwise it will contain the Instance ID.
@@ -137,7 +137,7 @@ To create and manage Event Notifications, you need appropriate RBAC permissions:
 When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
 :::
 
-For teams using Custom RBAC policies, the following permissions are available:
+For teams using [custom RBAC policies](team-management-rbac-configuring#configure-a-custom-rbac-policy), the following permissions are available:
 - `team/notifications/**` - Full access to all notification features including managing other users' subscriptions
 - `team/notifications/subscriptions/read` - View all team subscriptions
 - `team/notifications/subscriptions/create` - Set up their own alerts
@@ -150,13 +150,13 @@ For teams using Custom RBAC policies, the following permissions are available:
 
 Current limitations of Event Notifications (Beta):
 
-- Event Notifications does not yet cover all instance and custom metric event types from the legacy Instance Notifications feature, including Instance health state changed (aka Instance State Changed)
+- Event Notifications does not yet cover all instance and custom metric event types from the classic Instance Notifications feature, including Instance health state changed (aka Instance State Changed)
 - Notification events generated are not included in the Instance Bulk Data Export API
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not be able to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with enterprise and custom RBAC policies. For example, someone with the Sales RBAC role can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
 - The Release Assets Downloaded event may fire per chart/image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
 
 :::note
-Event Notifications can be used concurrently with the legacy Instance Notifications system while you evaluate and transition.
+Event Notifications can be used concurrently with the classic Instance Notifications system while you evaluate and transition.
 :::
 
 ## Next Steps
@@ -167,6 +167,6 @@ Event Notifications can be used concurrently with the legacy Instance Notificati
 
 ## Related Topics
 
-- [Instance Notifications (Legacy)](instance-notifications-config) - Legacy per-instance notification system
+- [Instance Notifications (Classic)](instance-notifications-config) - Classic per-instance notification system
 - [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
 - [Enabling and Understanding Application Status](insights-app-status) - Understanding application status for instance events
