@@ -37,13 +37,13 @@ To port forward a service in a CMX cluster:
 
 ## Expose Ports Using CMX Tunnels (VMs and VM-Based Clusters Only) {#cmx-tunnels}
 
-You can use CMX Tunnels to get public internet access to applications running in VMs or VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). For VMs, you can use CMX Tunnels to expose ports directly on the VM. For clusters, Tunnels connect to a Kubernetes NodePort service to provide access to the cluster from the host.
+You can use CMX Tunnels to get public internet access to applications running in VMs or VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). For VMs, you can use CMX Tunnels to expose ports directly on the VM. For clusters, Tunnels connect to a Kubernetes NodePort to provide access to the cluster from the host.
 
 When you expose a port using CMX Tunnels, CMX creates a DNS record and a valid TLS cert and connects them to the port. By default, each exposed port gets a unique DNS name like `boring-wozniak.ingress.replicatedcluster.com`.
 
-With CMX tunnels, you can expose a NodePort that does not yet exist in a cluster. You can also expose a port on a VM that does not yet have a service listening on it. This is useful if you have a deterministic NodePort or if you know which port your application will use, and need the DNS name as a value in your Helm chart in order to deploy.
+With CMX Tunnels, you can create the tunnel and DNS configuration before the NodePort service is created in the cluster. You can also expose a port on a VM that does not yet have a service listening on it. This is useful if you have a deterministic NodePort or if you know which port your application will use, and need the DNS name as a value in your Helm chart in order to deploy.
 
-There is no limit to the number of tunnels you can create for an environment. Additionally, more than one tunnel can connect to a service.
+There is no limit to the number of tunnels you can create for an environment. Additionally, more than one tunnel can connect to a single service.
 
 The following diagram shows how traffic is routed into the service for VM-based clusters using CMX Tunnels:
 
@@ -87,7 +87,7 @@ GRPC and other protocols are not routed into the environment.
     ```
     For more information, see [replicated vm port expose](/reference/replicated-cli-vm-port-expose).
 
-### Expose Ports on a VM Using the Vendor Portal
+### Expose Ports on a VM Using the Vendor Portal {#cmx-tunnels-vendor-portal}
 
 To expose ports on a VM in the Vendor Portal:
 
