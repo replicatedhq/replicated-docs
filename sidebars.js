@@ -180,6 +180,7 @@ const sidebars = {
           items: [
             "vendor/instance-insights-event-data",
             "vendor/insights-app-status",
+            "vendor/custom-metrics",
             "vendor/telemetry-air-gap",
             "vendor/customer-adoption",
             "vendor/customer-reporting",
@@ -189,7 +190,6 @@ const sidebars = {
             "vendor/event-notifications-manage",
             "vendor/event-notifications-webhooks",
             "vendor/instance-notifications-config",
-            "vendor/custom-metrics",
             "vendor/instance-data-export",
           ],
         },

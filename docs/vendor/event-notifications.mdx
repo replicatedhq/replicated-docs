@@ -4,7 +4,7 @@
 Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
 :::
 
-The ability to set up notifications for key events of interest within the Replicated Vendor Portal can help you proactively manage and prevent issues across your customer instances, releases, support bundles, and more.
+The ability to set up notifications for key events of interest within Vendor Portal can help you proactively manage and prevent issues.
 
 ## Overview
 
@@ -30,12 +30,11 @@ Event Notifications offers significant improvements over the classic [Instance N
 |---------|------------------------------|---------------------------|
 | **Event Types** | 3 types (App Status, System Events, Custom Metrics) | 19+ types across 6 categories |
 | **Scope** | Per-instance subscriptions | Team-wide with flexible filtering |
-| **Delivery** | Slack (team webhook) + Email (user) | Email + Generic webhooks |
+| **Delivery** | Slack (1 team webhook) + Email (1 user) | Per notification email or webhook |
 | **Filtering** | Instance-level only | Multi-field filters (app, customer, channel, etc.) |
 | **Permissions** | User-scoped | Team-scoped RBAC |
 | **Webhook Security** | Basic | HMAC-SHA256 signing |
 | **Notification History** | Minimal | Full delivery attempt tracking with event details |
-| **Status** | Maintenance mode | Active development |
 
 ## Available Event Types
 
@@ -100,10 +99,10 @@ Instance related notifications will include the Instance Name if set, otherwise 
 - **Configuration:**
   - Filter - Application: Select your application
   - Filter - Channel: Select "Stable"
-- **Delivery Method:** Email to pm-team@company.com or webhook to #pm-team channel in Slack
+- **Delivery Method:** Email to `pm-team@company.com` or webhook to #pm-team channel in Slack
 
 ### Development Leader: Paid Customer Installations
-**Scenario:** As a Development Leader, I want to be notified when a key customer pulls release assets to initiate a paid install.
+**Scenario:** As a Development Leader, I want to be notified when a paid customer pulls release assets to initiate a paid install.
 
 - **Event Type:** Release Asset Downloaded
 - **Configuration:**
@@ -151,8 +150,8 @@ For teams using [custom RBAC policies](team-management-rbac-configuring#configur
 Current limitations of Event Notifications (Beta):
 
 - Event Notifications does not yet cover all instance and custom metric event types from the classic Instance Notifications feature, including Instance health state changed (aka Instance State Changed)
-- Notification events generated are not included in the Instance Bulk Data Export API
-- It is possible to create a notification for some resource types, such as customers and support bundles, but not be able to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with enterprise and custom RBAC policies. For example, someone with the Sales RBAC role can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
+- Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
+- It is possible to create a notification for some resource types, such as customers and support bundles, but not be able to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
 - The Release Assets Downloaded event may fire per chart/image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
 
 :::note
@@ -167,6 +166,5 @@ Event Notifications can be used concurrently with the classic Instance Notificat
 
 ## Related Topics
 
-- [Instance Notifications (Classic)](instance-notifications-config) - Classic per-instance notification system
 - [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
 - [Enabling and Understanding Application Status](insights-app-status) - Understanding application status for instance events
