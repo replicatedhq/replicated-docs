@@ -7,8 +7,8 @@ Update an existing customer
 Update an existing customer's information and settings.
 
 	This command allows you to modify various attributes of a customer, including their name,
-	custom ID, assigned channels, license type, and feature flags. You can update expiration dates,
-	enable or disable specific features, and change channel assignments.
+	custom ID, assigned channel, license type, and feature flags. You can update expiration dates,
+	enable or disable specific features, and change the channel assignment.
 
 	The --customer flag is required to specify which customer to update.
 
@@ -22,8 +22,8 @@ replicated customer update --customer <id> --name <name> [options] [flags]
 # Update a customer's name
 replicated customer update --customer cus_abcdef123456 --name "New Company Name"
 
-# Change a customer's channel and make it the default
-replicated customer update --customer cus_abcdef123456 --channel stable --default-channel stable
+# Change a customer's channel
+replicated customer update --customer cus_abcdef123456 --channel stable
 
 # Enable airgap installations for a customer
 replicated customer update --customer cus_abcdef123456 --airgap
@@ -42,10 +42,9 @@ replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --outp
 
 ```
       --airgap                       If set, the license will allow airgap installs.
-      --channel stringArray          Release channel to which the customer should be assigned (can be specified multiple times)
+      --channel string               Release channel to which the customer should be assigned
       --custom-id string             Set a custom customer ID to more easily tie this customer record to your external data systems
       --customer string              The ID of the customer to update
-      --default-channel string       Which of the specified channels should be the default channel. if not set, the first channel specified will be the default channel.
       --developer-mode               If set, Replicated SDK installed in dev mode will use mock data.
       --email string                 Email address of the customer that is to be updated.
       --embedded-cluster-download    If set, the license will allow Embedded Cluster downloads.

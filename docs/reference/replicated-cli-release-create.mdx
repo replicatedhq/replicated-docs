@@ -22,21 +22,11 @@ Create a new release by providing application manifests for the next release in
   With this config, simply run:
     replicated release create --version 1.0.0 --promote Unstable
 
+  To mark a release as required during upgrades:
+    replicated release create --version 1.0.0 --promote Unstable --required
+
 ```
 replicated release create [flags]
-```
-
-### Examples
-
-```
-# Create and promote a release to the Unstable channel
-replicated release create --yaml-dir ./manifests --promote Unstable --version 1.0.0
-
-# Create and promote a required release (users cannot skip this upgrade)
-replicated release create --yaml-dir ./manifests --promote Unstable --version 1.0.0 --required
-
-# Create a release with auto-generated values (useful in CI/CD)
-replicated release create --auto --confirm-auto
 ```
 
 ### Options
