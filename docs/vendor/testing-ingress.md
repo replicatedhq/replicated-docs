@@ -6,11 +6,11 @@ This topic explains how to access applications running in Replicated Compatibili
 
 After you deploy your application into CMX clusters or VMs, you can use the following methods to expose ports for your application:
 
-- **Port forwarding:** For CMX clusters, you can use port forwarding to test with localhost. Supported for all Kubernetes distributions. See [Port Forwarding](#port-forwarding).
+- **Port forwarding:** For CMX clusters, you can use port forwarding to test with localhost. Supported for all Kubernetes distributions. See [Configure Port Forwarding](#port-forwarding).
 
-- **CMX Tunnels**: For VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster), you can use CMX Tunnels to expose ports on the public internet. See [CMX Tunnels](#cmx-tunnels).
+- **CMX Tunnels**: For VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster), you can use CMX Tunnels to expose ports on the public internet. See [Expose Ports Using CMX Tunnels](#cmx-tunnels).
 
-- **LoadBalancer:** For cloud-based clusters (EKS, GKE, AKS, OKE), you can use Kubernetes LoadBalancer services to expose ports on the public internet. See [LoadBalancer Services](#loadbalancer-services).
+- **LoadBalancer:** For cloud-based clusters (EKS, GKE, AKS, OKE), you can use Kubernetes LoadBalancer services to expose ports on the public internet. See [Create an External Load Balancer](#loadbalancer-services).
 
 ## Configure Port Forwarding (Clusters Only) {#port-forwarding}
 
@@ -134,7 +134,7 @@ replicated cluster port rm PORT_ID --id CLUSTER_ID
 replicated vm port rm VM_ID
 ```
 
-## Create an External Load Balancer (Cloud-Based Cluster Distributions Only)
+## Create an External Load Balancer (Cloud-Based Cluster Distributions Only) {#loadbalancer-services}
 
 For cloud distributions (EKS, GKE, AKS, OKE), you can expose your application to the public internet using a Kubernetes LoadBalancer service. When you create a LoadBalancer service, the cloud provider automatically creates a load balancer with a public IP address that routes traffic to your application.
 
