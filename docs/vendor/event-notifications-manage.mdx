@@ -4,11 +4,11 @@
 Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
 :::
 
-This topic describes how to view, edit, disable, and delete event notification subscriptions in the Replicated Vendor Portal.
+This topic describes how to view, edit, disable, and delete event notifications in the Replicated Vendor Portal.
 
 ## Overview
 
-The Notifications page in the Vendor Portal provides visibility into both personal and team notification subscriptions, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
+The Notifications page in the Vendor Portal provides visibility into both personal and team notifications, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
 
 ## Viewing Notification Subscriptions
 
@@ -16,7 +16,7 @@ The Notifications list page provides three main views:
 
 ### My Notifications
 
-Shows only notification subscriptions you created, giving you quick access to manage your personal monitoring setup.
+Shows only notifications you created, giving you quick access to manage your personal monitoring setup.
 
 To view your notifications:
 
@@ -28,7 +28,7 @@ To view your notifications:
 
 ### Team Notifications
 
-Shows all notification subscriptions created by anyone on your team. This view is useful for understanding what monitoring is in place across the organization.
+Shows all notifications created by anyone on your team. This view is useful for understanding what monitoring is in place across the organization.
 
 To view team notifications:
 
@@ -53,7 +53,7 @@ To view notification history:
 3. Use the filters to narrow results:
    - Filter by time period
    - Filter to "My Notifications Only"
-   - Filter to a specific notification subscription
+   - Filter to a specific notification
 
 <!-- TODO: Add screenshot of History view -->
 
@@ -78,7 +78,7 @@ This information is helpful for troubleshooting notification delivery issues and
 
 ## Editing an Existing Notification
 
-To modify a notification subscription:
+To modify a notification:
 
 1. Navigate to **Notifications** in the Vendor Portal
 
@@ -105,14 +105,14 @@ To modify a notification subscription:
 - Changes apply immediately to future events
 - You can only edit notifications you created, unless you're a team admin with permissions to manage all team notifications
 
-## Disabling a Notification (Pause)
+## Disable a Notification
 
 To temporarily stop a notification without deleting it:
 
 1. Navigate to **Notifications** in the Vendor Portal
 2. Find the notification in the list
 3. Click the **Edit** button
-4. Toggle the notification to **Disabled** or **Paused** state
+4. Toggle the notification to **Disabled** state
 5. Save your changes
 
 When a notification is disabled:
@@ -123,7 +123,7 @@ When a notification is disabled:
 
 ## Deleting an Existing Notification
 
-To permanently remove a notification subscription:
+To permanently remove a notification:
 
 1. Navigate to **Notifications** in the Vendor Portal
 
@@ -149,33 +149,9 @@ Each notification maintains a history of when it triggered and what events match
 2. Find the notification in the list (either **My Notifications** or **Team Notifications**)
 3. Click the **"View History"** button for that notification
 
-This filtered view shows only events that matched this specific notification subscription, making it easier to understand the notification's behavior and troubleshoot any issues.
+This filtered view shows only events that matched this specific notification, making it easier to understand the notification's behavior and troubleshoot any issues.
 
-## Understanding Notification Permissions
-
-Event Notifications uses team-scoped RBAC permissions to control access. Your ability to view and manage notifications depends on your role:
-
-### Admin Role
-- Can manage any team-created notifications in addition to their own
-- Can modify, delete, and turn off/on any notification
-- Full access to all notification features
-
-### Read Only Role
-- Cannot create notifications
-- Can view all team notifications and their event history
-- No modification permissions
-
-### Other Non-Admin Roles with Write Access
-(Examples: Support Engineer, Sales, Custom roles)
-- Can create and modify their own notifications
-- Broader team notifications are viewable but not modifiable (read-only)
-- Cannot edit or delete subscriptions created by other team members
-
-:::note
-When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
-:::
-
-## Troubleshooting Notification Delivery
+## Troubleshoot Notification Delivery
 
 ### Viewing Delivery Status
 
@@ -207,14 +183,3 @@ To check if notifications are being delivered successfully:
 **RBAC permissions:**
 - Verify you have the necessary permissions to create and manage notifications
 - Contact your team admin if you need additional permissions
-
-## Next Steps
-
-- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Create new notification subscriptions
-- [Event Notification Webhooks (Beta)](event-notifications-webhooks) - Configure webhooks for integrations like Slack
-- [Event Notifications (Beta)](event-notifications) - Overview and available event types
-
-## Related Topics
-
-- [Custom RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy) - Configuring custom RBAC policies for notifications
-- [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data

@@ -1,4 +1,4 @@
-# Event Notifications (Beta)
+# About Event Notifications (Beta)
 
 :::note
 Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
@@ -14,17 +14,11 @@ Event types available are predefined, but these events can cover a broad range o
 
 Events are queued to SQS for reliable processing and notifications are matched against event filters in real-time. Email notifications are sent via the configured email service, and webhook notifications include HMAC signatures for verification.
 
-## Key Differences from Classic Instance Notifications
+To get started, review the available event types below, plan your filters based on your workflow needs (by customer, channel, license type, etc.), and choose your delivery method (email or webhook). Then create your first notification using the steps in [Create Event Notification Subscriptions (Beta)](event-notifications-create) and monitor the notification history to refine your filters as needed.
 
-Event Notifications offers significant improvements over the classic [Instance Notifications (Classic)](instance-notifications-config) system:
+## Comparison: Classic Instance Notifications vs. Event Notifications (Beta)
 
-- **More event types available**: Covers customer events, support bundle events, release events, channel events, and more (not just instance events)
-- **More fine-grained alert customizability**: Improved filtering options let you target exactly what matters
-- **Flexible routing**: Route each notification to different individual or team alias email addresses or webhook payloads (for integrations such as Slack)
-- **Notification history**: View a complete history of event notifications sent
-- **Better access control**: Control over your individual notification configurations with visibility into broader team notifications configured
-
-## Comparison: Classic vs. Event Notifications (Beta)
+Event Notifications offers significant improvements over the classic [Instance Notifications (Classic)](instance-notifications-config) system, including more event types, fine-grained filtering, flexible routing to individual or team email addresses or webhooks, notification history tracking, and better access control.
 
 | Feature | Classic Instance Notifications | Event Notifications (Beta) |
 |---------|------------------------------|---------------------------|
@@ -112,38 +106,31 @@ Instance related notifications will include the Instance Name if set, otherwise 
   - Filter - Asset Type: Any, or narrow further
 - **Delivery Method:** Email to your work email (or team email alias)
 
-## Getting Started
+## Permissions
 
-To start using Event Notifications:
+Event Notifications uses team-scoped RBAC permissions to control access. Your ability to view and manage notifications depends on your role:
 
-1. **Review available event types** - Identify which events are most relevant to your workflow
-2. **Plan your filters** - Determine how you want to narrow event notifications (by customer, channel, license type, etc.)
-3. **Choose delivery method** - Decide between email or webhook delivery (or both for different notifications)
-4. **Create your first notification** - See [Create Event Notification Subscriptions (Beta)](event-notifications-create)
-5. **Monitor and refine** - View notification history and adjust filters as needed
+### Admin Role
+- Can manage any team-created notifications in addition to their own
+- Can modify, delete, and turn off/on any notification
+- Full access to all notification features
 
-## Prerequisites
+### Read Only Role
+- Cannot create notifications
+- Can view all team notifications and their event history
+- No modification permissions
 
-### RBAC Permissions
-
-To create and manage Event Notifications, you need appropriate RBAC permissions:
-
-- **Admin role** - Full access to all notification features including managing other users' subscriptions
-- **Read Only role** - Can view all team notifications and their event history, but cannot create notifications
-- **Other roles with write access** (Support Engineer, Sales, Custom) - Can create and modify their own notifications; broader team notifications are viewable but not modifiable (read-only)
+### Other Non-Admin Roles with Write Access
+(Examples: Support Engineer, Sales, Custom roles)
+- Can create and modify their own notifications
+- Broader team notifications are viewable but not modifiable (read-only)
+- Cannot edit or delete notifications created by other team members
 
 :::note
 When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
 :::
 
-For teams using [custom RBAC policies](team-management-rbac-configuring#configure-a-custom-rbac-policy), the following permissions are available:
-- `team/notifications/**` - Full access to all notification features including managing other users' subscriptions
-- `team/notifications/subscriptions/read` - View all team subscriptions
-- `team/notifications/subscriptions/create` - Set up their own alerts
-- `team/notifications/subscriptions/update` - Modify their own alerts
-- `team/notifications/subscriptions/delete` - Remove their own alerts
-- `team/notifications/types/list` - See available event types
-- `team/notifications/events/read` - View notification history
+For detailed information about custom RBAC policies and notification permissions, see [Create Event Notification Subscriptions (Beta)](event-notifications-create).
 
 ## Limitations
 
@@ -157,14 +144,3 @@ Current limitations of Event Notifications (Beta):
 :::note
 Event Notifications can be used concurrently with the classic Instance Notifications system while you evaluate and transition.
 :::
-
-## Next Steps
-
-- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Learn how to create your first notification subscription
-- [Manage Event Notification Subscriptions (Beta)](event-notifications-manage) - View, edit, and delete notification subscriptions
-- [Event Notification Webhooks (Beta)](event-notifications-webhooks) - Configure webhooks for integration with tools like Slack
-
-## Related Topics
-
-- [About Instance and Event Data](instance-insights-event-data) - How the Vendor Portal collects instance data
-- [Enabling and Understanding Application Status](insights-app-status) - Understanding application status for instance events
