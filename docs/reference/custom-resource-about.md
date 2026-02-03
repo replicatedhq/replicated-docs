@@ -21,7 +21,7 @@ The following custom resources can be used in releases distributed with Replicat
     </tr>
     <tr>
         <td>embeddedcluster.replicated.com/v1beta1</td>
-        <td>[Config](/reference/embedded-config)</td>
+        <td>[Config](/installer/embedded-config)</td>
         <td>Defines a Replicated Embedded Cluster distribution</td>
     </tr>
     <tr>

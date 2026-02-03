@@ -4,13 +4,13 @@ import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
 <KurlAvailability/>
 
-This topic describes how to expose NodePort services in [Replicated Embedded Cluster](/vendor/embedded-overview) or [Replicated kURL](/vendor/kurl-about) installations on VMs or bare metal servers.
+This topic describes how to expose NodePort services in [Replicated Embedded Cluster](/installer/embedded-overview) or [Replicated kURL](/vendor/kurl-about) installations on VMs or bare metal servers.
 
 ## Overview
 
 For installations into existing clusters, KOTS automatically creates a port forward tunnel to expose the Admin Console. Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on virtual machines (VMs) or bare metal servers. This is because it cannot be verified that the ports are secure and authenticated. For more information about the KOTS port forward tunnel, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
-Instead, to expose the Admin Console in installations with [Embedded Cluster](/vendor/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on a node port (port 8800 for kURL installations and port 30000 for Embedded Cluster installations). Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
+Instead, to expose the Admin Console in installations with [Embedded Cluster](/installer/embedded-overview) or [kURL](/vendor/kurl-about), KOTS creates the Admin Console as a NodePort service so it can be accessed at the node's IP address on a node port (port 8800 for kURL installations and port 30000 for Embedded Cluster installations). Additionally, for kURL installations, the UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts.
 
 For installations on VMs or bare metal servers where your application must be accessible from the user's local machine rather than from inside the cluster, you can expose application services as NodePorts to provide access to the application after installation.
 

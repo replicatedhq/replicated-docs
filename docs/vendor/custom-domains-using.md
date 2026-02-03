@@ -71,11 +71,11 @@ After you add one or more custom domains in the Vendor Portal, you can configure
 
 ### Configure Embedded Cluster to Use Custom Domains {#ec}
 
-You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service. For more information about Embedded Cluster, see [Embedded Cluster Overview](/vendor/embedded-overview).
+You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service. For more information about Embedded Cluster, see [Embedded Cluster Overview](/installer/embedded-overview).
 
 To configure Embedded Cluster to use your custom domains for the proxy registry and app service:
 
-1. In the [Embedded Cluster Config](/reference/embedded-config) spec for your application, add `domains.proxyRegistryDomain` and `domains.replicatedAppDomain`. Set each field to your custom domain for the given service.
+1. In the [Embedded Cluster Config](/installer/embedded-config) spec for your application, add `domains.proxyRegistryDomain` and `domains.replicatedAppDomain`. Set each field to your custom domain for the given service.
 
     **Example:**
 
@@ -89,7 +89,7 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
         # Your app service custom domain
         replicatedAppDomain: updates.yourcompany.com   
     ```
-    For more information, see [domains](/reference/embedded-config#domains) in _Embedded Cluster Config_.
+    For more information, see [domains](/installer/embedded-config#domains) in _Embedded Cluster Config_.
 
 1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
 

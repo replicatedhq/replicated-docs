@@ -29,7 +29,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          breadcrumbs: false,
+          breadcrumbs: true,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
@@ -51,6 +51,34 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'installer',
+        path: 'installer',
+        routeBasePath: 'installer',
+        sidebarPath: './sidebarsInstaller.js',
+        breadcrumbs: true,
+        // Versioning configuration
+        lastVersion: 'current', // Make 3.0.0 the default version
+        includeCurrentVersion: true, // Include the "next" version from installer/ folder
+        versions: {
+          current: {
+            label: 'Embedded Cluster 3.0',
+            path: 'v3',
+            banner: 'none',
+          },
+          '2.0.0': {
+            label: 'Embedded Cluster 2.13.3',
+            path: 'v2',
+            banner: 'none',
+          },
+        },
+      },
+    ],
+  ],
+  
   scripts: [
     {
       src:
@@ -125,19 +153,18 @@ const config = {
             ],  
           },
           {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'installer',
+          },
+          {
             type: 'dropdown',
             label: 'Product Docs',
             position: 'left',
             items: [
               {
                 type: 'doc',
-                docId: 'vendor/testing-about',
-                label: 'Compatibility Matrix',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/embedded-overview',
-                label: 'Embedded Cluster',
+                docId: 'vendor/vendor-portal-creating-account',
+                label: 'Vendor Portal',
               },
               {
                 type: 'doc',
@@ -146,36 +173,48 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'intro-kots',
-                label: 'KOTS',
+                docId: 'vendor/security-center-about',
+                label: 'Security Center',
               },
               {
                 type: 'doc',
-                docId: 'vendor/kurl-about',
-                label: 'kURL',
+                docId: 'vendor/testing-about',
+                label: 'Compatibility Matrix',
               },
               {
                 type: 'doc',
                 docId: 'vendor/private-images-about',
-                label: 'Replicated Proxy Registry',
+                label: 'Proxy Registry',
               },
+              {
+                type: 'doc',
+                docId: 'vendor/preflight-support-bundle-about',
+                label: 'Preflight Checks and Support Bundles',
+              },
+
               {
                 type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
                 label: 'Replicated SDK',
               },
-              {
-                type: 'doc',
-                docId: 'vendor/vendor-portal-creating-account',
-                label: 'Vendor Portal',
-              },
+              
             ],  
           },
           {
             type: 'dropdown',
-            label: 'Developer Tools',
+            label: 'Reference',
             position: 'left',
             items: [
+              {
+                type: 'doc',
+                docId: 'reference/custom-resource-about',
+                label: 'Custom Resources',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/template-functions-about',
+                label: 'Template Functions',
+              },
               {
                 type: 'doc',
                 docId: 'reference/kots-cli-getting-started',

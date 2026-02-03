@@ -41,7 +41,7 @@ It is also possible to use _virtual_ or _logical_ air gaps, in which security co
 Replicated supports installations into air-gapped environments. In an air gap installation, users first download the images and other assets required for installation on an internet-connected device. These installation assets are usually provided in an _air gap bundle_ that ISVs can build in the Replicated Vendor Portal. Then, users transfer the installation assets to their air-gapped machine where they can push the images to an internal private registry and install.
 
 For more information, see:
-* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Air Gap Installation with Embedded Cluster](/installer/installing-embedded-air-gap)
 * [Installing and Updating with Helm in Air Gap Environments](/vendor/helm-install-airgap)
 
 ### What is the Commercial Sotware Distribution Lifecycle?
@@ -103,7 +103,7 @@ To install with Embedded Cluster, users first download and extract the Embedded 
 
 After the installation command finishes, users log in to the Admin Console to provide application configuration values, optionally join more nodes to the cluster, run preflight checks, and deploy the application.
 
-Customer-specific Embedded Cluster installation instructions are provided in the Replicated Vendor Portal. For more information, see [Install with Embedded Cluster](/enterprise/installing-embedded).
+Customer-specific Embedded Cluster installation instructions are provided in the Replicated Vendor Portal. For more information, see [Install with Embedded Cluster](/installer/installing-embedded).
 
 ### Does Replicated support installations into air gap environments?
 
@@ -111,7 +111,7 @@ Yes. The Embedded Cluster and KOTS installers support installation in _air gap_ 
 
 To support air gap installations, vendors can build air gap bundles for their application in the Vendor Portal that contain all the required assets for a specific release of the application. Additionally, Replicated provides bundles that contain the assets for the Replicated installers.
 
-For more information about how to install with Embedded Cluster and KOTS in air gap environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap) and [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
+For more information about how to install with Embedded Cluster and KOTS in air gap environments, see [Air Gap Installation with Embedded Cluster](/installer/installing-embedded-air-gap) and [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
 ### Can I deploy Helm charts with KOTS?
 
@@ -125,7 +125,7 @@ Replicated Embedded Cluster is a successor to Replicated kURL. Compared to kURL,
 
 <KurlAvailability/>
 
-For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+For more information, see [Embedded Cluster Overview](/installer/embedded-overview).
 
 ### How do I enable Embedded Cluster and KOTS installations for my application?
 
@@ -133,7 +133,7 @@ Releases that support installation with KOTS include the manifests required by K
 
 In addition to the KOTS manifests, releases that support installation with Embedded Cluster also include the Embedded Cluster Config. The Embedded Cluster Config defines aspects of the cluster that will be provisioned and also sets the version of KOTS that will be installed.
 
-For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+For more information, see [Embedded Cluster Overview](/installer/embedded-overview).
 
 ### Can I use my own branding?
 

@@ -38,7 +38,7 @@ Using custom domains has the following limitations:
 
 - Each custom domain can only be used by one team.
 
-- For [Replicated Embedded Cluster](/vendor/embedded-overview) installations, any Helm [`extensions`](/reference/embedded-config) that you add in the Embedded Cluster Config do not use custom domains. During deployment, Embedded Cluster pulls both the repo for the given chart and any images in the chart as written. Embedded Cluster does not rewrite image names to use custom domains.
+- For [Replicated Embedded Cluster](/installer/embedded-overview) installations, any Helm [`extensions`](/installer/embedded-config) that you add in the Embedded Cluster Config do not use custom domains. During deployment, Embedded Cluster pulls both the repo for the given chart and any images in the chart as written. Embedded Cluster does not rewrite image names to use custom domains.
 
 ## Known Issue
 
