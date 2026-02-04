@@ -4,11 +4,11 @@ This topic explains how to access applications running in Replicated Compatibili
 
 ## Overview
 
-After you deploy your application into CMX clusters or VMs, you can use the following methods to expose ports for your application:
+After you deploy your application into CMX clusters or VMs, you can use the following methods to get access to your application:
 
 - **Port forwarding:** For CMX clusters, you can use port forwarding to test with localhost. Supported for all Kubernetes distributions. See [Configure Port Forwarding](#port-forwarding).
 
-- **CMX Tunnels**: For VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster), you can use CMX Tunnels to expose ports on the public internet. See [Expose Ports Using CMX Tunnels](#cmx-tunnels).
+- **Expose ports**: For VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster), you can use CMX to expose ports on the public internet. See [Expose Ports](#expose-ports).
 
 - **LoadBalancer:** For cloud-based clusters (EKS, GKE, AKS, OKE), you can use Kubernetes LoadBalancer services to expose ports on the public internet. See [Create an External Load Balancer](#loadbalancer-services).
 
@@ -35,17 +35,17 @@ To port forward a service in a CMX cluster:
 
 1. Shut down the port-forward when finished (Ctrl+C).
 
-## Expose Ports Using CMX Tunnels (VMs and VM-Based Clusters Only) {#cmx-tunnels}
+## Expose Ports (VMs and VM-Based Clusters Only) {#expose-ports}
 
-You can use CMX Tunnels to get public internet access to applications running in VMs or VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). For VMs, you can use CMX Tunnels to expose ports directly on the VM. For clusters, Tunnels connect to a Kubernetes NodePort to provide access to the cluster from the host.
+You can use CMX to get public internet access to applications running in VMs or VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). For VMs, you can use CMX to expose ports directly on the VM. For clusters, CMX uses a Kubernetes NodePort to provide access to the cluster from the host.
 
-When you expose a port using CMX Tunnels, CMX creates a DNS record and a valid TLS cert and connects them to the port. By default, each exposed port gets a unique DNS name like `boring-wozniak.ingress.replicatedcluster.com`.
+When you expose a port, CMX creates a DNS record and a valid TLS cert and connects them to the port. By default, each DNS record gets a unique DNS name like `boring-wozniak.ingress.replicatedcluster.com`.
 
-With CMX Tunnels, you can create the tunnel and DNS configuration before the NodePort service is created in the cluster. You can also expose a port on a VM that does not yet have a service listening on it. This is useful if you have a deterministic NodePort or if you know which port your application will use, and need the DNS name as a value in your Helm chart in order to deploy.
+You can create a DNS record to expose a port before the NodePort service is created in the cluster. You can also expose a port on a VM that does not yet have a service listening on it. This is useful if you have a deterministic NodePort or if you know which port your application will use, and need the DNS name as a value in your Helm chart in order to deploy.
 
-There is no limit to the number of tunnels you can create for an environment. Additionally, more than one tunnel can connect to a single service.
+There is no limit to the number of DNS records you can create for an environment.
 
-The following diagram shows how traffic is routed into the service for VM-based clusters using CMX Tunnels:
+The following diagram shows how traffic is routed into the service for VM-based clusters using CMX:
 
 <img src="/images/compatibility-matrix-ingress.png" alt="Compatibility Matrix ingress"></img>
 
@@ -53,13 +53,13 @@ The following diagram shows how traffic is routed into the service for VM-based 
 
 ### Limitations
 
-* Each tunnel can only connect to one service. If you need fanout routing into different services, consider installing the NGINX ingress controller as a NodePort service and exposing it.
-* Tunnels are not supported for cloud distributions (EKS, GKE, AKS, OKE).
+* Each DNS record can only connect to one service. If you need fanout routing into different services, consider installing the NGINX ingress controller as a NodePort service and exposing it.
+* Exposing ports is supported for VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). CMX does not support exposing ports for clusters that use cloud distributions (EKS, GKE, AKS, OKE).
 * Wildcard DNS is not supported for VMs.
 
 ### Supported Protocols
 
-A tunnel can support one or more protocols. The supported protocols are:
+You can expose ports using one or more of the following supported protocols:
 * HTTP
 * HTTPS
 * WS
@@ -87,7 +87,7 @@ GRPC and other protocols are not routed into the environment.
     ```
     For more information, see [replicated vm port expose](/reference/replicated-cli-vm-port-expose).
 
-### Expose Ports on a VM Using the Vendor Portal {#cmx-tunnels-vendor-portal}
+### Expose Ports on a VM Using the Vendor Portal {#expose-ports-vendor-portal}
 
 To expose ports on a VM in the Vendor Portal:
 

@@ -45,7 +45,7 @@ To create an environment with CMX from the Vendor Portal:
      1. (Optional) For **VM Config**, choose the instance type and disk size. You can also create multiple VMs of the same type by increasing the **Count**.
          
         :::note
-        You can create TLS certs and DNS records in the **Ingress & Ports** tab _after_ the VM has been created. See [Expose Ports Using CMX Tunnels](/vendor/testing-ingress#cmx-tunnels).
+        You can create TLS certs and DNS records in the **Ingress & Ports** tab _after_ the VM has been created. See [Expose Ports](/vendor/testing-ingress#expose-ports).
         :::
         
       The following is an example of the **Create a Virtual Machine** page:
