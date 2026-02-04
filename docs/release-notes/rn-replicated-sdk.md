@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.15.0
+
+Released on February 5, 2026
+
+### New Features {#new-features-1-15-0}
+* Adds the ability to not create `enterprise-pull-secret` by setting []`createPullSecret: false`](https://github.com/replicatedhq/replicated-sdk/blob/1.15.0/chart/values.yaml#L181). By default, `createPullSecret` is set to `true`.
+
 ## 1.14.0
 
 Released on January 27, 2026
