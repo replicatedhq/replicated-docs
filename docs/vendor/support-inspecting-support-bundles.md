@@ -26,7 +26,7 @@ To inspect a support bundle:
 
 1. (Optional) Click **Download bundle** to download the bundle. This can be helpful if you want to access the bundle from another system or if other team members want to access the bundle and use other tools to examine the files.
 
-1. (Optional) Navigate back to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Create cluster** to provision a cluster with Replicated Compatibility Matrix. This can be helpful for creating customer-representative environments for troubleshooting. For more information about creating clusters with Compatibility Matrix, see [Create and Manage Clusters](testing-how-to).
+1. (Optional) Navigate back to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page and click **Create infrastructure** to provision a customer-representative environment for troubleshooting with Replicated Compatibility Matrix. For more information about creating environments with Compatibility Matrix, see [Create and Manage Environments with CMX](/vendor/testing-how-to).
 
     <img alt="Cluster configuration dialog" src="/images/cmx-cluster-configuration.png" width="400px"/>
 

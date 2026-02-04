@@ -1,200 +1,281 @@
-import Prerequisites from "../partials/cmx/_prerequisites.mdx"
+# Create and Manage Environments with CMX
 
-# Use CMX Clusters
+This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage clusters and VMs.
 
-This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage ephemeral clusters to test your applications across different Kubernetes distributions and versions.
-
-This topic includes information about creating and managing clusters with CMX using the Replicated Vendor Portal or the Replicated CLI. For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
-
-## About CMX Clusters
-
-CMX supports both VM-based clusters (such as kind, k3s, RKE2, OpenShift, and Embedded Cluster) and cloud-managed clusters (such as EKS, GKE, and AKS). VM-based clusters run on Replicated bare metal servers, while cloud clusters are provisioned in Replicated-managed cloud accounts for faster delivery.
-
-You can use CMX clusters for testing and troubleshooting Kubernetes-based deployments and Helm installations for your application.
-
-For information about creating VMs with CMX to test Replicated Embedded Cluster installers or when you need full OS control, see [Create VMs](/vendor/testing-vm-create).
-
-## Limitations
-
-CMX has the following limitations:
-
-- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
-- Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
-- On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- Multi-node support is not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-- There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
-- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
-- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-- Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
-
-For additional distribution-specific limitations, see [Supported CMX Cluster Types](testing-supported-clusters).
+This topic includes information about creating and managing environments with CMX using the Replicated Vendor Portal or the Replicated CLI. For information about creating and managing clusters with the Vendor API v3, see the [clusters](https://replicated-vendor-api.readme.io/reference/listclusterusage) section in the Vendor API v3 documentation.
 
 ## Prerequisites
 
-Before you can use CMX clusters, you must complete the following prerequisites:
+* Create an account in the Replicated Vendor Portal. See [Create a Vendor Account](/vendor/vendor-portal-creating-account).
 
-<Prerequisites/>
+* Install the Replicated CLI and then authorize the CLI using your vendor account. See [Install the Replicated CLI](/reference/replicated-cli-installing).
+
+* If you have a contract, you can purchase more credits by going to [**Compatibility Matrix > Buy additional credits**](https://vendor.replicated.com/compatibility-matrix). Otherwise, you can request credits by going to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix) in the Vendor Portal. For more information, see [Billing and Credits](/vendor/testing-about#billing-and-credits).
 
 * Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
-## Create Clusters
+## Create Environments
 
-You can create clusters with CMX using the Replicated CLI or the Vendor Portal.
+For information about how to create environments with the CLI, see [replicated cluster create](/reference/replicated-cli-cluster-create) and [replicated vm create](/reference/replicated-cli-vm-create).
 
-### With the Replicated CLI
+To create an environment with CMX from the Vendor Portal:
 
-To create a cluster using the Replicated CLI:
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
 
-1. (Optional) View the available cluster distributions, including the supported Kubernetes versions, instance types, and maximum nodes for each distribution:
+1. Click **Create** and choose **Create Kubernetes cluster** or **Create VM**:
 
-   ```bash
-   replicated cluster versions
-   ```
-   For command usage, see [cluster versions](/reference/replicated-cli-cluster-versions).
+   * **Create Kubernetes cluster:**
+     
+     1. On the **Create a cluster** page, choose the Kubernetes distribution and version.
+     
+     1. (Optional) Add a name for the cluster, add tags, and adjust the Time to Live (TTL).
+     
+     1. (Optional) For **Nodes & Nodes Groups**, add and configure additional nodes and node groups for the cluster.
+      
+      The following is an example of the **Create a cluster** page:
+      <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
+      [View a larger version of this image](/images/create-a-cluster.png)
 
-1. Run the following command to create a cluster:
+   * **Create VM:**
+     
+     1. On the **Create a Virtual Machine** page, choose the OS distribution and version.
+     
+     1. (Optional) Add a name for the VM, add tags, and adjust the Time to Live (TTL).
+     
+     1. (Optional) For **VM Config**, choose the instance type and disk size. You can also create multiple VMs of the same type by increasing the **Count**.
+         
+        :::note
+        You can create TLS certs and DNS records in the **Ingress & Ports** tab _after_ the VM has been created. See [Expose Ports](/vendor/testing-ingress#expose-ports).
+        :::
+        
+      The following is an example of the **Create a Virtual Machine** page:
+      <img alt="create vm page in the vendor portal" src="/images/compatibility-matrix-create-vm.png" width="650px"/>
+      [View a larger version of this image](/images/compatibility-matrix-create-vm.png)
 
+1. Click **Create cluster** or **Create VM**.
 
-   ```bash
-   replicated cluster create --distribution DISTRIBUTION
-   ```
+   The environment is displayed in the list on the Compatibility Matrix **Overview** page with a status of Assigned. When the environment is ready, the status is changed to Running.
 
-   To specify more options:
+## Create Air-Gapped Environments (Beta) {#air-gap}
 
-   ```bash
-   replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE [--license-id LICENSE_ID]
-   ```
-   Where:
-   * `NAME` is any name for the cluster. If `--name` is excluded, a name is automatically generated for the cluster.
-   * `K8S_DISTRO` is the Kubernetes distribution for the cluster.
-   * `K8S_VERSION` is the Kubernetes version for the cluster if creating a standard Cloud or VM-based cluster. If creating an Embedded Cluster or kURL cluster type,`--version` is optional:
-      * For Embedded Cluster types, `--verison` is the latest available release on the channel by default. Otherwise, to specify a different release, set `--version` to the `Channel release sequence` value for the release.  
-      * For kURL cluster types, `--verison` is the `"latest"` kURL Installer ID by default.  Otherwise, to specify a different kURL Installer, set `--version` to the kURL Installer ID. 
-   * `DISK_SIZE` is the disk size (GiB) to request per node.
-   * `INSTANCE_TYPE` is the instance type to use for each node.
-   * (Embedded Cluster Only) `LICENSE_ID` is a valid customer license. Required to create an Embedded Cluster.
+:::note
+Using the `airgap` network policy to simulate an air-gapped environment is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters). Clusters that use cloud-based distributions do not support the `airgap` network policy.
+:::
 
-   For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
+VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters) created with CMX can use one of the following network policies:
 
-   **Example:**
+| Network Policy | Description |
+| :---- | :---- |
+| `open` | No restrictions on network traffic. |
+| `airgap` | Restrict all network traffic. |
 
-   The following example creates a kind cluster with Kubernetes version 1.27.0, a disk size of 100 GiB, and an instance type of `r1.small`. 
+By default, all VMs and VM-based clusters are created with an `open` network policy. You can change the network policy to `airgap` to block outbound network requests. This is useful for simulating an air-gapped environment with no outbound internet access so that you can test how your application performs.
 
-   ```bash
-   replicated cluster create --name kind-example --distribution kind --version 1.27.0 --disk 100 --instance-type r1.small
-   ```
+Network policies are configured at the network level and apply to all VMs and environments connected to the network.
 
-1. Verify that the cluster was created:
+You can also use CMX to generate reports that track and summarize network activity on CMX networks. For more information, see [Collect and View Network Reports](/vendor/testing-network-policy).
 
-   ```bash
-   replicated cluster ls CLUSTER_NAME
-   ```
-   Where `CLUSTER_NAME` is the name of the cluster that you created.
+### VM-Based Cluster
 
-   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`.
-
-### Vendor Portal
-
-To create a cluster using the Vendor Portal:
-
-1. Go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
-
-1. Click **Create > Create Kubernetes cluster**.
-
-    <img alt="Create a cluster page" src="/images/create-a-cluster.png" width="650px"/>
-
-    [View a larger version of this image](/images/create-a-cluster.png)
-
-1. On the **Create a Kubernetes cluster** page, complete the following fields:
-
-   <table>
-     <tr>
-       <th>Field</th>
-       <th>Description</th>
-     </tr>
-     <tr>
-       <td>Kubernetes distribution</td>
-       <td>Select the Kubernetes distribution for the cluster.</td>
-     </tr>
-     <tr>
-       <td>Version</td>
-       <td>Select the Kubernetes version for the cluster. The options available are specific to the distribution selected.</td>
-     </tr>
-     <tr>
-       <td>Name (optional)</td>
-       <td>Enter an optional name for the cluster.</td>
-     </tr>
-     <tr>
-       <td>Tags</td>
-       <td>Add one or more tags to the cluster as key-value pairs.</td>
-     </tr>
-     <tr>
-       <td>Set TTL</td>
-       <td>Select the Time to Live (TTL) for the cluster. When the TTL expires, the cluster is automatically deleted. TTL can be adjusted after cluster creation with [cluster update ttl](/reference/replicated-cli-cluster-update-ttl).</td>
-     </tr>
-   </table>  
-
-1. For **Nodes & Nodes Groups**, complete the following fields to configure nodes and node groups for the cluster:
-
-   <table>
-   <tr>
-       <td>Instance type</td>
-       <td>Select the instance type to use for the nodes in the node group. The options available are specific to the distribution selected.</td>
-     </tr>   
-     <tr>
-       <td>Disk size</td>
-       <td>Select the disk size in GiB to use per node.</td>
-     </tr>
-     <tr>
-       <td>Nodes</td>
-       <td>Select the number of nodes to provision in the node group. The options available are specific to the distribution selected.</td>
-     </tr>  
-   </table>
-
-1. (Optional) Click **Add node group** to add additional node groups.
-
-1. Click **Create cluster**.
-
-   The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
-
-   :::note
-   If the cluster is not automatically displayed, refresh your browser window.
-   :::
-
-   <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
-
-   [View a larger version of this image](/images/cmx-assigned-cluster.png)
-
-## Create Air Gap Clusters (Beta)
-
-For any VM-based cluster distributions, you can create a cluster that uses an air-gapped network by setting the network policy to `airgap`.
-
-For more information, see [Use Air Gap Networks (Beta)](testing-network-policy).
-
-To set the network policy of a VM-based cluster to `airgap`:
+To create an air-gapped cluster:
 
 1. Create a cluster:
 
-   ```bash
-   replicated cluster create --distribution VM_BASED_DISTRIBUTION
-   ```
-   Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
+    ```bash
+    replicated cluster create --distribution VM_BASED_DISTRIBUTION
+    ```
+    Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution. For a list of supported distributions, see [VM Clusters](/vendor/testing-supported-clusters#vm-clusters).
+
+1. Watch until the cluster status is `running`:
+
+    ```bash
+    replicated cluster ls --watch
+    ```
+
+1. Access the cluster in a shell:
+
+    ```
+    replicated cluster shell CLUSTER_ID
+    ```
+    Where `CLUSTER_ID` is the ID of the cluster that you created from the output of the `cluster ls` command.      
 
 1. Change the network policy to `airgap`:
 
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
+
+1. Verify that the cluster's policy is `airgap` and the status is `running`:
+
+    ```bash
+    replicated cluster ls
+    ```
+
+    ```bash
+    ID       NAME                STATUS       CREATED                 EXPIRES                POLICY   HAS REPORT
+    bdeb3515 gifted_antonelli    running      2025-01-28 18:45 PST    2025-01-28 19:45 PST   airgap   off 
+    ```
+
+1. (Optional) Enable network reporting to track network activity. See [Collect and View Network Reports](/vendor/testing-network-policy).
+
+### VM
+
+To create an air-gapped VM:
+
+1. Create a VM:
+
+    ```bash
+    replicated vm create --distribution ubuntu
+    ```
+
+1. Wait until the VM status is running:
+
+    ```bash
+    replicated vm ls
+    ```
+
+1. SSH onto the VM:
+
    ```bash
-   replicated network update NETWORK_ID --policy airgap
-   ```
-   Where `NETWORK_ID` is the ID of the network from the output of the `cluster ls` command.
+   ssh VM_ID@replicatedvm.com
+   ```  
+   Where `VM_ID` is the ID of the VM from the output of the `vm ls` command.
 
-## Prepare Clusters
+   For more information and additional options, see [Connect to CMX VMs (SSH and File Transfer)](/vendor/testing-vm-create).
 
-For applications distributed with the Replicated Vendor Portal, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+1. Set the network policy to `airgap`:
+
+    ```bash
+    replicated network update NETWORK_ID --policy airgap
+    ```
+    Where `NETWORK_ID` is the ID of the network from the output of the `vm ls` command.
+
+    **Example:**
+
+    ```bash
+    replicated network update 85eb50a8 --policy airgap
+    ```
+
+    ```bash
+    ID       NAME                STATUS        CREATED                 EXPIRES                POLICY   HAS REPORT
+    85eb50a8 silly_rosalind      updating      2025-01-28 16:16 PST    2025-01-28 17:18 PST   airgap   off
+    ```
+
+1. (Optional) Enable network reporting to track network activity. See [Collect and View Network Reports](/vendor/testing-network-policy).
+
+## Access Environments
+
+After a CMX cluster or VM is running, you can access the environment using the `replicated cluster shell` or `ssh` command that is available in the Compatibility Matrix UI.
+   
+* **To access a cluster with kubectl:**
+
+  ```bash
+  replicated cluster shell CLUSTER_ID
+  ``` 
+  Where `CLUSTER_ID` is the ID of the running cluster.
+
+* **To SSH into a VM:**
+
+  1. If you have not done so already, set up SSH access using a public/private key pair. See [Prerequisite: Set Up SSH](/vendor/testing-vm-create#set-up-ssh) in _Connect to VMs (SSH and File Transfer)_.
+
+  1. Run the following command:
+
+      ```bash
+      ssh VMID@replicatedvm.com
+      ```
+      Where `VMID` is the ID of the running VM.
+
+  1. Respond to the prompts to add the fingerprint for `replicatedvm.com` and enter the passphrase for your SSH key.
+
+## Create Environments on the Same Network {#shared-networks}
+
+You can create VMs and clusters with CMX that use the same network.
+
+### Connect a VM with a Cluster on the Same Network
+
+You can make a CMX cluster available on the same network as a CMX VM.
+
+#### Supported Cluster Distributions
+
+Openshift, K3s, RKE2, EC, kURL, kind
+
+#### Requirement
+
+Replicated CLI 0.90.0 or later
+
+To connect a VM with a cluster on the same network:
+
+1. Create a cluster:
+
+    ```bash
+    replicated cluster create --distribution K8S_DISTRIBUTION
+    ```
+
+    For example, `replicated cluster create --distribution k3s`.
+
+1. In the output of the `cluster create` command, under `NETWORK`, copy the network ID.
+
+    Example:
+
+    ```
+    ID         NAME              DISTRIBUTION    VERSION    STATUS    NETWORK     CREATED                EXPIRES  COST
+    6b14376c   ecstatic_raman    k3s             1.33.2     queued    accbd6a7    2025-08-04 13:20 PDT   -        $0.60
+    ```
+    In the example above, the network ID is `accbd6a7`.
+
+1. Create a VM on the same network:
+
+    ```bash
+    replicated vm create --distribution DISTRIBUTION --network NETWORK_ID
+    ```
+    Where `NETWORK_ID` is the network ID that you copied in the previous step.
+
+    For example, `replicated vm create --distribution ubuntu --network accbd6a7`.
+
+    Example output:
+
+    ```
+    ID         NAME                 DISTRIBUTION   VERSION   STATUS     NETWORK    CREATED                EXPIRES  COST
+    760a30b1   suspicious_poitras   ubuntu         24.04     assigned   accbd6a7   2025-08-04 13:24 PDT   -        $0.60
+    ```
+
+### Create VMs on the Same Network
+
+Use the `--count` flag to create multiple VMs with the same name, all running on the same Network ID.
+
+```bash
+replicated vm create --distribution ubuntu --count 3
+```
+
+### Join VMs to an Existing Network
+
+To join one or more new VMs to the network of an existing VM:
+
+1. Run one of the following commands to get the ID of an existing VM network:
+
+   * List VMs:
+     ```bash
+     replicated vm ls
+     ```
+
+   * List networks: 
+     ```bash
+     replicated network ls
+     ```
+
+1. In the output of the command, copy the network ID.
+
+1. Use the `--network` flag to create a new VM on the same network:
+
+    ```bash
+    replicated vm create --distribution ubuntu --network NETWORK_ID
+    ``` 
+    Where `NETWORK_ID` is the network ID that you copied in the previous step.
+
+## Create a Cluster and Install a Release with `cluster prepare` {#prepare-clusters}
+
+The [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 The `cluster prepare` command does the following:
 * Creates a cluster
@@ -251,94 +332,32 @@ The `cluster prepare` command requires either a Helm chart archive or a director
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 
-## Access Clusters
+## Edit Environments
 
-CMX provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+You can make changes to an environment after creating it. For example, you could extent to TTL or add DNS records to expose ports on a VM.
 
-To access a cluster from the command line:
+To edit environments:
 
-1. Verify that the cluster is in a Running state:
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/create-cluster). 
 
-   ```bash
-   replicated cluster ls
-   ```
-   In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+1. In the vertical dots menu for the target environment, click **Edit [VM/cluster]**.
 
-1. Run the following command to open a new shell session with the kubeconfig configured for the cluster:
+   ![Dot menu with edit and delete options](/images/cmx-vm-edit-delete.png)
+   [View a larger version of this image](/images/cmx-vm-edit-delete.png)
 
-   ```bash
-   replicated cluster shell CLUSTER_ID
-   ``` 
-   Where `CLUSTER_ID` is the unique ID for the running cluster that you want to access.
+1. Make changes to the environment as needed.   
 
-   For command usage, see [cluster shell](/reference/replicated-cli-cluster-shell).
+## Delete Environments
 
-1. Verify that you can interact with the cluster through kubectl by running a command. For example:
-
-   ```bash
-   kubectl get ns
-   ```
-
-1. Press Ctrl-D or type `exit` when done to end the shell and the connection to the server.
-
-## Upgrade Clusters (kURL Only)
-
-For kURL clusters provisioned with CMX, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
-
-The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
-
-```bash
-replicated cluster upgrade cabb74d5 --version 9d5a44c
-```
-
-For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-
-## Delete Clusters
-
-You can delete clusters using the Replicated CLI or the Vendor Portal.
-
-### Replicated CLI
-
-To delete a cluster using the Replicated CLI:
-
-1. Get the ID of the target cluster:
-
-   ```
-   replicated cluster ls
-   ```
-   In the output of the command, copy the ID for the cluster.
-
-   **Example:**
-
-   ```
-   ID        NAME              DISTRIBUTION   VERSION   STATUS    CREATED                        EXPIRES 
-   1234abc   My Test Cluster   eks            1.27      running   2023-10-09 17:08:01 +0000 UTC  - 
-   ``` 
-
-   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-
-1. Run the following command:
-
-    ```
-    replicated cluster rm CLUSTER_ID
-    ```
-    Where `CLUSTER_ID` is the ID of the target cluster. 
-    For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
-1. Confirm that the cluster was deleted:
-   ```
-   replicated cluster ls CLUSTER_ID --show-terminated
-   ```
-   Where `CLUSTER_ID` is the ID of the target cluster.
-   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-
-### Vendor Portal
+For information about deleting environments using the Replicated CLI, see [replicated cluster rm](/reference/replicated-cli-cluster-rm) and [replicated vm rm](/reference/replicated-cli-vm-rm)
 
 To delete a cluster using the Vendor Portal:
 
-1. Go to **Compatibility Matrix**.
+1. In the Vendor Portal, go to [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix/create-cluster).
 
-1. Under **Clusters**, in the vertical dots menu for the target cluster, click **Delete cluster**.
+1. In the vertical dots menu for the target environment, click **Delete [VM/cluster]**.
 
-   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="700px"/>
+   ![Dot menu with edit and delete options](/images/cmx-vm-edit-delete.png)
+   [View a larger version of this image](/images/cmx-vm-edit-delete.png)
 
-   [View a larger version of this image](/images/cmx-delete-cluster.png) 
+1. In the dialog, click **Delete [VM/cluster]** again to confirm.

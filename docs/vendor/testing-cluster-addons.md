@@ -75,4 +75,3 @@ Additional service accounts can be created in any namespace with access to the o
     </td>
   </tr>
 </table>
-

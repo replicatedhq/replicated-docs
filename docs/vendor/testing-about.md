@@ -10,22 +10,10 @@ Example use cases for CMX include:
 * Run tests before releasing a new version of your application to validate compatibility with supported Kubernetes distributions
 * Get access to a cluster or VM to develop on and quickly test changes
 * Reproduce a reported issue on a customer-representative environment for troubleshooting
+* Create air-gapped environments to test that your application makes no outbound requests outside of a user's allowlist
+* Test VM-based installations for your application with [Replicated Embedded Cluster](/intro-replicated#embedded-cluster).
 
-You can use CMX with the Replicated CLI or the Replicated Vendor Portal. For more information about how to use CMX, see [Create and Manage Clusters](testing-how-to) and [Create VMs](testing-vm-create).
-
-## Supported Clusters and VMs
-
-CMX can create VMs, VM-based clusters (such as kind, k3s, RKE2, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
-
-* Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
-
-* VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
-
-You can run [`replicated cluster versions`](/reference/replicated-cli-cluster-versions) or [`replicated vm versions`](/reference/replicated-cli-vm-versions) for an up-to-date list of the available cluster distributions or VM types.
-
-For more information about the supported cluster distributions, see [Supported CMX Cluster Types](testing-supported-clusters).
-
-For more information about supported VMs, see [Supported VM Types](/vendor/testing-vm-create#supported-vm-types)
+You can use CMX with the Replicated CLI, the Replicated Vendor Portal, or the Vendor API.
 
 ## Billing and Credits
 
@@ -33,6 +21,29 @@ Clusters and VMs created with CMX are billed by the minute, plus a startup charg
 
 For more information about pricing, see [CMX Pricing](testing-pricing).
 
-To create clusters with CMX, you must have credits in your Vendor Portal account.
+To use CMX, you must have credits in your Vendor Portal account.
 If you have a contract, you can purchase credits by logging in to the Vendor Portal and going to [**Compatibility Matrix > Buy additional credits**](https://vendor.replicated.com/compatibility-matrix).
 Otherwise, to request credits, log in to the Vendor Portal and go to [**Compatibility Matrix > Request more credits**](https://vendor.replicated.com/compatibility-matrix).
+
+## Limitations
+
+- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
+- Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
+- Creating VMs with CMX has the following limitations:
+  - Creating VMs with CMX is a Beta feature.
+  - Installing Embedded Cluster on a VM created with CMX is supported for Embedded Cluster versions 1.21.0 or later.
+  - [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for CMX VMs. 
+  - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for CMX VMs.
+- Creating clusters with CMX has the following limitations:
+  - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
+  - Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
+  - On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - Multi-node support is not available for every distribution. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
+  - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+  - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
+  - The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
+  - The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
+- For additional distribution-specific limitations, see [CMX Cluster and VM Types](testing-supported-clusters).
