@@ -144,6 +144,22 @@
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
   to="https://docs.replicated.com/vendor/testing-supported-clusters" 
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/testing-shared-networks"
+  to="https://docs.replicated.com/vendor/testing-how-to"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/testing-vm-about"
+  to="https://docs.replicated.com/vendor/testing-about"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/testing-vm-networking"
+  to="https://docs.replicated.com/vendor/testing-ingress"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/testing-transfer-files"
+  to="https://docs.replicated.com/vendor/testing-vm-create"      
+
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/repository-workflow-and-tagging-releases"
