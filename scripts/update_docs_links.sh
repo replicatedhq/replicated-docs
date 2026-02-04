@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Script to update cross-reference link text
-# Run from the root of the replicated-docs repository after changing the title of one or more pages
+# Run ./scripts/update_docs_links.sh from the root of the replicated-docs repository after changing the title of one or more pages
 
 # Define replacement patterns with the format "[search pattern]:[replacement]"
 patterns=(
-  "Replicated Onboarding:Onboard to the Replicated Platform"
+  "Supported CMX Cluster Types:CMX Cluster and VM Types"
   # Add patterns here, one per line
   # "Old Title:New Title"
 )

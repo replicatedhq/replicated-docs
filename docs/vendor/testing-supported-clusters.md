@@ -18,8 +18,6 @@ This section lists the supported VM cluster distributions for clusters created w
 
 VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, CMX offers warm pools to make Openshift startup times very fast.
 
-For information about provisioning VMs, which come without pre-installed clusters and allow for more access to the OS, see [Create VMs](testing-vm-create).
-
 ### kind
 
 CMX supports creating [kind](https://kind.sigs.k8s.io/) clusters.
