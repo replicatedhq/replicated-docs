@@ -37,13 +37,13 @@ Otherwise, to request credits, log in to the Vendor Portal and go to [**Compatib
 - Creating clusters with CMX has the following limitations:
   - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
   - Clusters cannot be rebooted. Create another cluster if you need to reset/reboot the cluster. 
-  - On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-  - Multi-node support is not available for every distribution. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-  - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
-  - GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [Supported CMX Cluster Types](/vendor/testing-supported-clusters).
+  - On cloud clusters, node groups are not available for every distribution. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - Multi-node support is not available for every distribution. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - ARM instance types are only supported on Cloud Clusters. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
+  - GPU instance types are only supported on Cloud Clusters. For distribution-specific details, see [CMX Cluster and VM Types](/vendor/testing-supported-clusters).
   - There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
   - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
   - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
   - The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
   - The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
-- For additional distribution-specific limitations, see [Supported CMX Cluster Types](testing-supported-clusters).
+- For additional distribution-specific limitations, see [CMX Cluster and VM Types](testing-supported-clusters).
