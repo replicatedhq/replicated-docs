@@ -1,0 +1,47 @@
+The `docs` key is an optional attribute for displaying documentation about the chart to users via the the Replicated Vendor Portal.
+
+The format is a YAML map: keys represent docs section names, and their value is expected to be a YAML multiline markdown block. Section names can be any string, such as `install`, `prerequisites`, and `troubleshooting` in the example below:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: myapp
+spec:
+  chart:
+    name: myapp
+    chartVersion: 3.1.7
+  releaseName: myapp-release
+  docs:
+    install: |
+      # Installation Guide
+
+      This Helm chart deploys MyApp with PostgreSQL support.
+
+      ## Prerequisites
+      - Kubernetes 1.24+
+      - Persistent volume support
+      - 4GB RAM minimum
+
+      ## Installation
+
+      The chart will automatically provision storage and create
+      the necessary services.
+
+    prerequisites: |
+      # Requirements
+
+      Before installing, ensure your cluster has:
+      - A storage class with dynamic provisioning
+      - LoadBalancer support (or NodePort for on-prem)
+      - Network access to container registries
+
+    troubleshooting: |
+      # Common Issues
+
+      **Pods stuck in Pending:**
+      Check storage class availability with kubectl get sc
+
+      **Database connection errors:**
+      Verify the postgresql.host value in your configuration.
+```
