@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.02.05-7
+
+Released on February 5, 2026
+
+### New Features {#new-features-v2026-02-05-7}
+* CMX: Added capability to report compatibility for a release and visualize the CMX compatibility results for the latest release on each channel.
+
 ## v2026.01.29-3
 
 Released on January 29, 2026
