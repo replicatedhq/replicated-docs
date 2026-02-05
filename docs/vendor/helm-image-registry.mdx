@@ -1,7 +1,6 @@
 import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
-import PullSecret from "../partials/proxy-service/_step-helm-replicated-pull-secret.mdx"
 import Helper from "../partials/proxy-service/_step-helm-helper.mdx"
 import UseHelper from "../partials/proxy-service/_step-use-helper.mdx"
 
@@ -14,6 +13,10 @@ This topic describes how to configure your application to use the Replicated pro
 During Helm CLI installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
 The [Replicated SDK](/vendor/replicated-sdk-overview) automatically uses this value to create an image pull secret named `enterprise-pull-secret`. You can configure your Helm chart to use `enterprise-pull-secret` to authenticate with the Replicated proxy registry so that your application images can be proxied.
+
+:::note
+The image used by the Replicated SDK is automatically proxied through the proxy registry. No additional configuration is required.
+:::
 
 ## Prerequisite
 
@@ -41,10 +44,6 @@ To configure your application to use the proxy registry with Helm CLI installati
 
 1. Install in a development environment to test your changes. See [Install with Helm](/vendor/install-with-helm).
 
-:::note
-The image used by the Replicated SDK is automatically proxied through the proxy registry. No additional configuration is required.
-:::
-
 ## (Optional) Create Your Own Image Pull Secret {#create-pull-secret}
 
 You can optionally create your own image pull secret to authenticate with the Replicated proxy registry instead of using the `enterprise-pull-secret` that is automatically created by the Replicated SDK. You might want to create your own pull secret if you manage the pull secret externally.
@@ -60,6 +59,24 @@ To create a pull secret for the proxy registry:
      createPullSecret: false
    ``` 
 
-1. <PullSecret/>
+1. In your Helm chart templates, add a YAML file that evaluates if the `global.replicated.dockerconfigjson` value is set, and then writes the rendered value into a Secret on the cluster, as shown below.
+
+   The following example names the Secret `enterprise-pull-secret`. If you use a different name, be sure to update any Helm helpers and image references in your chart accordingly. Do not use `replicated` for the name of the image pull secret because the Replicated SDK automatically creates a Secret named `replicated`. Using the same name causes an error.
+
+   ```yaml
+   # templates/enterprise-pull-secret.yaml
+
+   {{- $global := default dict .Values.global -}}
+   {{- $replicated := default dict (index $global "replicated") -}}
+   {{- if hasKey $replicated "dockerconfigjson" }}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: enterprise-pull-secret
+   type: kubernetes.io/dockerconfigjson
+   data:
+     .dockerconfigjson: {{ .Values.global.replicated.dockerconfigjson }}
+   {{ end }}
+   ```
 
 1. Complete the steps in [Configure Your Application to Pull Images Through the Proxy Registry](#use-proxy-registry) to create and use a Helm helper to add the `enterprise-pull-secret` that you created to image references in your chart. 
