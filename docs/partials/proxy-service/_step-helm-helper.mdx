@@ -1,4 +1,6 @@
-In your `_helper.tpl`, add a Helm helper for the image pull secret. This helper creates an `imagePullSecrets` value that lists both the Replicated pull secret that you created (if present) as well as any global or chart-level pull secrets provided by your customers. This supports use cases where customers need to provide additional pull secrets, such as in air gap installations where images are pushed to a private regitsry in the air-gapped environment.
+In your chart `_helper.tpl`, add the following Helm helper.
+
+    This helper creates an `imagePullSecrets` value that lists both the `enterprise-pull-secret` created by the SDK as well as any global or chart-level pull secrets provided by your customers. Using this helper supports use cases where customers need to provide one or more pull secrets in addition to the `enterprise-pull-secret`, such as in air gap installations where images are pushed to a private regitsry in the air-gapped environment.
 
     ```yam1
     {{/*
@@ -28,9 +30,9 @@ In your `_helper.tpl`, add a Helm helper for the image pull secret. This helper 
         {{- end -}}
       {{- end -}}
 
-      {{/* use secret created with injected docker config */}}
+      {{/* use the pull secret created by the SDK */}}
       {{- if hasKey ((.Values.global).replicated) "dockerconfigjson" }}
-        {{- $pullSecrets = append $pullSecrets "replicated-pull-secret" -}}
+        {{- $pullSecrets = append $pullSecrets "enterprise-pull-secret" -}}
       {{- end -}}
 
 

@@ -11,15 +11,21 @@ This topic describes how to configure your application to use the Replicated pro
 
 ## Overview
 
-During Helm CLI installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values.
+During Helm CLI installations with Replicated, after customers provide their unique license ID, a `global.replicated.dockerconfigjson` field that contains a base64 encoded Docker configuration file is automatically injected in the Helm chart values. For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
-You can use this `global.replicated.dockerconfigjson` field to create the pull secret required to authenticate with the proxy registry. For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to provide authentication for a private registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
+The [Replicated SDK](/vendor/replicated-sdk-overview) automatically uses this value to create an image pull secret named `enterprise-pull-secret`. You can configure your Helm chart to use `enterprise-pull-secret` to authenticate with the Replicated proxy registry so that your application images can be proxied.
+
+## Prerequisite
+
+Include the Replicated SDK version 1.15.0 or later as a dependency of your Helm chart. See [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
+
+If you want to create your own pull secret instead of using the `enterprise-pull-secret` created by the SDK (such as if you manage the pull secret externally), see [(Optional) Create Your Own Pull Secret](#create-pull-secret) on this page.
+
+## Configure Your Application to Pull Images Through the Proxy Registry {#use-proxy-registry}
 
 :::note
-For Helm charts that include the Replicated SDK as a dependency, the image used by the Replicated SDK is automatically proxied through the proxy registry. No additional configuration is required. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+The image used by the Replicated SDK is automatically proxied through the proxy registry. No additional configuration is required.
 :::
-
-## Configure Your Application to Use the Proxy Registry
 
 To configure your application to use the proxy registry with Helm CLI installations:
 
@@ -28,8 +34,6 @@ To configure your application to use the proxy registry with Helm CLI installati
 1. <StepCustomDomain/>
 
 1. <RewriteHelmValues/>
-
-1. <PullSecret/> 
 
 1. <Helper/>
 
@@ -40,3 +44,15 @@ To configure your application to use the proxy registry with Helm CLI installati
 1. Package your Helm chart and add it to a release. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
 
 1. Install in a development environment to test your changes. See [Install with Helm](/vendor/install-with-helm).
+
+## (Optional) Create Your Own Image Pull Secret {#create-pull-secret}
+
+You can optionally create your own image pull secret to authenticate with the Replicated proxy registry instead of using the `enterprise-pull-secret` that is automatically created by the Replicated SDK. You might want to create your own pull secret if you manage the pull secret externally.
+
+To create a pull secret for the proxy registry:
+
+1. Set the Replicated SDK's `createPullSecret` value to `false`. When `createPullSecret` is false, the SDK does not automatically create the enterprise-pull-secret during installation.
+
+1. <PullSecret/>
+
+1. Complete the steps in [Configure Your Application to Pull Images Through the Proxy Registry](#use-proxy-registry) to create and use a Helm helper to add the `replicated-pull-secret` that you created to image references in your chart. 
