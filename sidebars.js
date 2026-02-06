@@ -181,12 +181,22 @@ const sidebars = {
           items: [
             "vendor/instance-insights-event-data",
             "vendor/insights-app-status",
+            "vendor/custom-metrics",
             "vendor/telemetry-air-gap",
             "vendor/customer-adoption",
             "vendor/customer-reporting",
             "vendor/instance-insights-details",
+            {
+              type: "category",
+              label: "Event Notifications (Beta)",
+              items: [
+                "vendor/event-notifications",
+                "vendor/event-notifications-create",
+                "vendor/event-notifications-manage",
+                "vendor/event-notifications-webhooks",
+              ],
+            },
             "vendor/instance-notifications-config",
-            "vendor/custom-metrics",
             "vendor/instance-data-export",
           ],
         },

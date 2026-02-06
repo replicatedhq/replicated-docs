@@ -1,7 +1,13 @@
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
-# Configure a Slack Webhook (Beta)
+# Configure a Slack Webhook (Classic)
+
+:::caution Classic System
+This Slack webhook configuration is part of the classic Instance Notifications system, which is being replaced by [Event Notifications (Beta)](event-notifications). The new Event Notifications system supports direct webhook delivery to Slack (and other services) without requiring team-level Slack configuration.
+
+For new integrations, we recommend using [Event Notification Webhooks (Beta)](event-notifications-webhooks) instead.
+:::
 
 As a vendor, anyone on your team can set up Slack notifications, which are sent to a shared Slack channel. Notifications give your team visibility into customer instance statuses and changes.
 
@@ -11,7 +17,7 @@ While email notifications are specific to each user, Slack notifications setting
 
 ## Limitations
 
-As a Beta feature, the following limitations apply:
+The following limitations apply to classic Slack webhook configuration:
 
 - Only one Slack channel per team is supported.
 
@@ -33,6 +39,11 @@ To configure the Slack webhook:
 
 1. On the **Slack Notifications Setup** page, paste the Slack webhook URL. Click **Save**.
 
-## Next Step
+## Next Steps
 
-[Configure Slack notifications for customer instances](instance-notifications-config).
+**For classic Instance Notifications:**
+- [Configure Instance Notifications (Classic)](instance-notifications-config) - Configure Slack notifications for customer instances
+
+**For new Event Notifications:**
+- [Event Notification Webhooks (Beta)](event-notifications-webhooks) - Send notifications directly to Slack using webhooks (no team-level configuration required)
+- [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Set up notification subscriptions with the new system

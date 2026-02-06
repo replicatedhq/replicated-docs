@@ -1,0 +1,148 @@
+# Create Event Notification Subscriptions (Beta)
+
+:::note
+Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
+:::
+
+This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
+
+## Overview
+
+You can create notification subscriptions from scratch to receive alerts when specific events occur. Each subscription can be customized with filters to target exactly the events that matter to your workflow, and can be delivered via email or webhook.
+
+## Prerequisites
+
+### RBAC Permissions
+
+To create and manage Event Notifications, you need appropriate RBAC permissions:
+
+- **Admin role** - Full access to all notification features including managing other users' subscriptions
+- **Read Only role** - Can view all team notifications and their event history, but cannot create notifications
+- **Other roles with write access** (Support Engineer, Sales, Custom) - Can create and modify their own notifications; broader team notifications are viewable but not modifiable (read-only)
+
+:::note
+When isolating changes to "my" notifications, the logic is based on your user ID being tied to that notification creation record. You may still send to other email addresses not directly associated with your user ID, but those email addresses will need to be verified before the notification will activate.
+:::
+
+For teams using [custom RBAC policies](team-management-rbac-configuring#configure-a-custom-rbac-policy), the following permissions are available:
+- `team/notifications/**` - Full access to all notification features including managing other users' subscriptions
+- `team/notifications/subscriptions/read` - View all team subscriptions
+- `team/notifications/subscriptions/create` - Set up their own alerts
+- `team/notifications/subscriptions/update` - Modify their own alerts
+- `team/notifications/subscriptions/delete` - Remove their own alerts
+- `team/notifications/types/list` - See available event types
+- `team/notifications/events/read` - View notification history
+
+### Webhook Configuration
+
+For webhook delivery, see [Configure Event Notification Webhooks (Beta)](event-notifications-webhooks) to set up your webhook endpoint.
+
+## Create an Event Notification
+
+To create a new notification subscription:
+
+1. Navigate to **Notifications** in the Vendor Portal
+
+2. Click **"Create Notification"**
+
+3. Select an event type from the dropdown
+
+   <!-- TODO: Add screenshot of event type selection dropdown -->
+
+4. Configure filters for the event type (optional). For more information about how filters work, see [Filter Logic](#filter-logic).
+
+   <!-- TODO: Add screenshot of filter configuration -->
+
+5. Choose your notification delivery method:
+
+   ### Email Delivery
+   - Enter an email address
+   - Email addresses other than your Vendor Portal account email require verification (see [Email Verification](#email-verification) below)
+
+   ### Webhook Delivery
+   - Enter a webhook URL
+   - (Optional) Enter a signing secret for HMAC signature verification
+   - See [Event Notification Webhooks (Beta)](event-notifications-webhooks) for technical details
+
+   <!-- TODO: Add screenshot of delivery method selection -->
+
+6. Click **"Create Notification"** to activate
+
+Your notification subscription is now active and will begin matching events based on your configured filters.
+
+## Verify Your Email Address {#email-verification}
+
+When sending to an email address other than the one associated with your Vendor Portal user account, you must first validate that email before notifications can be sent.
+
+### Verification Process
+
+1. After creating a notification with an unverified email address, a verification email will be sent to that address
+2. The notification subscription will be created but remain inactive until verified
+3. To complete verification, you have two options:
+
+   **Option 1: Email Link**
+   - Open the verification email
+   - Click the validation link in the email
+   - You must be logged into Vendor Portal in your browser to validate
+
+   **Option 2: Verification Code**
+   - Copy the verification code from the email
+   - Navigate to **Notifications** in the Vendor Portal
+   - Edit the notification subscription
+   - Enter the verification code
+   - Save the notification
+
+4. Once verified, the notification subscription will become active and begin sending notifications
+
+:::note
+You must be logged into Vendor Portal to validate email addresses.
+:::
+
+## AI-Assisted Notification Builder (Optional)
+
+Vendor Portal includes an optional AI-assisted notification builder to help you quickly set up subscriptions.
+
+To use the AI builder:
+
+1. Click **"Create with AI"** for guided notification setup
+2. Describe in natural language what you want to be notified about
+   - Example: "Notify me when trial customers upload support bundles"
+   - Example: "Alert me when instances fall more than 3 versions behind on the Stable channel"
+3. The AI will suggest the appropriate event type and filters based on your description
+4. Review and adjust the AI's suggestions before creating
+5. Proceed with the standard creation workflow
+
+:::note
+The AI builder has context of pre-defined event types and filters, but cannot create new event types or filters beyond what's available in the system.
+:::
+
+## Filter Logic
+
+Understanding how filters work will help you create effective notification subscriptions.
+
+### Basic Filter Behavior
+
+- **No filters specified**: The notification will match **all events** for that event type
+- **One or more filters specified**: The event must match **all specified filters** to trigger the notification (AND logic)
+- **Multi-select filters**: If a filter contains multiple selected values, the event must match **any** of the selected values within that filter to trigger the notification (OR logic within the filter)
+
+### Examples
+
+**Example 1: Single Filter**
+- Event Type: Customer Created
+- Filter: License Type = Trial
+- **Result**: Notification triggers for all trial customer creations
+
+**Example 2: Multiple Filters (AND logic)**
+- Event Type: Instance Upgraded
+- Filter: Application = "MyApp"
+- Filter: Channel = "Stable"
+- **Result**: Notification triggers only when instances of MyApp on the Stable channel are upgraded
+
+**Example 3: Multi-Select Filter (OR logic within filter)**
+- Event Type: Customer License Expiring
+- Filter: Application = "MyApp"
+- Filter: License Type = Trial, Paid (both selected)
+- **Result**: Notification triggers when either trial OR paid customer licenses for MyApp are expiring
+
+<!-- TODO: Add screenshot showing multi-select filter UI -->

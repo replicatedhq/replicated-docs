@@ -488,6 +488,34 @@ Grants the holder permission to view the team's Slack webhook for instance notif
 
 Grants the holder permission to edit the team's Slack webhook for instance notifications.
 
+### team/notifications/\*\*
+
+Grants the holder full access to all notification features, including managing other users' event notification subscriptions. For more information, see [About Event Notifications (Beta)](event-notifications).
+
+### team/notifications/subscriptions/read
+
+Grants the holder permission to view all team event notification subscriptions.
+
+### team/notifications/subscriptions/create
+
+Grants the holder permission to create their own event notification subscriptions.
+
+### team/notifications/subscriptions/update
+
+Grants the holder permission to modify their own event notification subscriptions.
+
+### team/notifications/subscriptions/delete
+
+Grants the holder permission to delete their own event notification subscriptions.
+
+### team/notifications/types/list
+
+Grants the holder permission to see available event notification types.
+
+### team/notifications/events/read
+
+Grants the holder permission to view event notification history.
+
 ### team/policy/read
 
 Grants the holder permission to view RBAC policies for the team.
