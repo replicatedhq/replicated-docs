@@ -10,7 +10,6 @@ import StepCreds from "../partials/proxy-service/_step-creds.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 import EnterprisePortal from "../partials/getting-started/_enterprise-portal.mdx"
 import CustomDomains from "../partials/getting-started/_custom-domains.mdx"
-import PullSecret from "../partials/proxy-service/_step-helm-replicated-pull-secret.mdx"
 import Helper from "../partials/proxy-service/_step-helm-helper.mdx"
 import UseHelper from "../partials/proxy-service/_step-use-helper.mdx"
 import PreflightSupportBundleIntro from "../partials/getting-started/_preflight-sb-onboarding-intro.mdx"
@@ -77,7 +76,7 @@ To add the Replicated SDK:
 
 The Replicated proxy regsitry allows you to grant proxy access to your application images without exposing registry credentials to your customers.
 
-To use the proxy registry in Helm CLI installations, update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. Then, add a Replicated pull secret to your chart to authenticate with the proxy registry. For more information about this process, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
+To use the proxy registry in Helm CLI installations, update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. Then, provide authentication for the proxy registry by including the `enterprise-pull-secret` image pull secret in any image references. The `enterprise-pull-secret` is automatically created by the Replicated SDK. For more information about this process, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
 
 To configure your chart to use the proxy registry:
 
@@ -85,9 +84,11 @@ To configure your chart to use the proxy registry:
 
 1. <RewriteHelmValues/>
 
-1. <PullSecret/>
-
 1. <Helper/>
+
+   :::note
+   The `enterprise-pull-secret` is automatically created by the Replicated SDK. If you want to create your own image pull secret to authenticate with the Replicated proxy registry, such as if you manage the pull secret externally, see [(Optional) Create Your Own Image Pull Secret](#create-pull-secret).
+   :::
 
 1. <UseHelper/>
 
