@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.02.09-0
+
+Released on February 9, 2026
+
+### Improvements {#improvements-v2026-02-09-0}
+* The Vendor Portal preserves history after you delete notifications.
+
 ## v2026.01.29-3
 
 Released on January 29, 2026
