@@ -14,8 +14,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on February 9, 2026
 
-### New Features {#new-features-v2026-02-09-0}
-* Deleting notifications now preserves history in vendor portal.
+### Improvements {#improvements-v2026-02-09-0}
+* The Vendor Portal preserves history after you delete notifications.
 
 ## v2026.01.29-3
 
