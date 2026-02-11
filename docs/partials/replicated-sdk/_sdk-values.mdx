@@ -1,29 +1,109 @@
-When a user installs a Helm chart that includes the Replicated SDK as a dependency, a set of default SDK values are included in the `replicated` key of the parent chart's values file.
+When a user installs a Helm chart that includes the Replicated SDK as a dependency, the SDK injects a set of `replicated` values in the parent chart's values file. These values include:
+* Details about the given application release from the Vendor Portal, such as the version label, channel release sequence, and the release images.
+* Details about the customer license, including the complete YAML representation of the customer license. For more information, see [Replicated SDK `replicated.license` Value](#replicated-sdk-replicatedlicense-value) on this page.
+* Details about the SDK deployment, such as the Replicated SDK image location and properties, container resource requirements that control CPU and memory allocation, and the pod and container security context.
+* Customizable settings for the SDK, such as RBAC settings, custom labels and annotations applied to the SDK Helm chart, and high availability (HA) deployment settings. For more information about how to customize the Replicated SDK, see [Customize the Replicated SDK](/vendor/replicated-sdk-customizing).
 
-For example:
+For the complete list of Replicated SDK Helm values, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
+
+:::note
+The Replicated SDK `replicated` values are different from the `global.replicated` values that are injected by the Replicated registry during Helm CLI installations. The `global.replicated` values are injected regardless of if the Replicated SDK is distributed alongside the application as dependency. For more information about the `global.replicated` values, see [Helm global.replicated Values Schema](/vendor/helm-install-values-schema).
+:::
+
+#### Example
+
+The following is an example of Replicated SDK `replicated` values for an application named NGINX that was installed in a cluster with Helm. These values are injected in the `values.yaml` file for the parent Helm chart of the NGINX application.
 
 ```yaml
-# values.yaml 
+# NGINX parent Helm chart values.yaml file
 
 replicated:
-  enabled: true
-  appName: gitea
-  channelID: 2jKkegBMseH5w...
-  channelName: Beta
-  channelSequence: 33
-  integration:
-    enabled: true
-  license: {}
-  parentChartURL: oci://registry.replicated.com/gitea/beta/gitea
-  releaseCreatedAt: "2024-11-25T20:38:22Z"
-  releaseNotes: 'CLI release'
-  releaseSequence: 88
-  replicatedAppEndpoint: https://replicated.app
-  versionLabel: Beta-1234
+  affinity: null
+  appID: ""
+  appName: NGINX
+  automountServiceAccountToken: false
+  channelID: 38FsA8b1C8LP6Ifzql89MGXYGwx
+  channelName: Unstable
+  channelSequence: 5
+  clusterRole: ""
+  commonAnnotations: {}
+  commonLabels: {}
+  isAirgap: false
+  # ... several additional values ommitted for brevity
+  reportAllImages: false
+  resources:
+    limits:
+      cpu: 500m
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  restartPolicy: Always
+  schedulerName: ""
+  service:
+    port: 3000
+    type: ClusterIP
+  serviceAccountName: ""
+  statusInformers: null
+  terminationGracePeriodSeconds: 30
+  tlsCertSecretName: ""
+  tolerations: []
+  topologySpreadConstraints: []
+  versionLabel: 0.0.2
 ```
 
-These `replicated` values can be referenced by the application or set during installation as needed. For example, if users need to add labels or annotations to everything that runs in their cluster, then they can pass the labels or annotations to the relevant value in the SDK subchart.
+#### Replicated SDK `replicated.license` Value
 
-For the default Replicated SDK Helm chart values file, see [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) in the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk) repository in GitHub.
+The Replicated SDK includes a `replicated.license` value that contains a YAML representation of the customer license. For more information about the built-in fields included in all Replicated licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
-The SDK Helm values also include a `replicated.license` field, which is a string that contains the YAML representation of the customer license. For more information about the built-in fields in customer licenses, see [Built-In License Fields](licenses-using-builtin-fields).
+The following shows an example of the `replicated.license` value for a customer named Nitflex:
+
+```yaml
+# NGINX parent Helm chart values.yaml file 
+
+replicated:
+  # YAML representation of the customer's license
+  license: |
+    apiVersion: kots.io/v1beta1
+    kind: License
+    metadata:
+        name: nitflex
+    spec:
+      appSlug: nginx-shark
+      channelID: 38FsA8b1C8LP6Ifzql89MGXYGwx
+      channelName: Unstable
+      channels:
+        - channelID: 38FsA8b1C8LP6Ifzql89MGXYGwx
+          channelName: Unstable
+          channelSlug: unstable
+          endpoint: https://replicated.app
+          isDefault: true
+          isSemverRequired: true
+          replicatedProxyDomain: proxy.replicated.com
+      customerEmail: paige@replicated.com
+      customerName: Nitflex
+      endpoint: https://replicated.app
+      entitlements:
+        activeUsers:
+          signature:
+            v1: eyJsaWNlbnNlRGF0Y...
+          title: Active Users
+          value: 25
+          valueType: Integer
+        expires_at:
+          description: License Expiration
+          signature:
+            v1: eyJsaWNlbnNlRGF0Y...
+          title: Expiration
+          value: ""
+          valueType: String
+      isAirgapSupported: true
+      isEmbeddedClusterDownloadEnabled: true
+      isSemverRequired: true
+      isSupportBundleUploadSupported: true
+      licenseID: 38FtQgjZqjRFAxUnVJXGrlGi2X7
+      licenseSequence: 4
+      licenseType: dev
+      replicatedProxyDomain: proxy.replicated.com
+      signature: eyJsaWNlbnNlRGF0Y...
+```
