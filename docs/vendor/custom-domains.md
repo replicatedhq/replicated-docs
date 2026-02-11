@@ -14,6 +14,8 @@ You can configure custom domains for the following services:
 
 - **Proxy registry:** Images can be proxied from external private registries using the Replicated proxy registry. By default, the proxy registry uses the domain `proxy.replicated.com`. Replicated recommends using a CNAME such as `proxy.{your app name}.com`.
 
+     The image used by the [Replicated SDK](replicated-sdk-overview) Helm chart is automatically pulled through the Replicated proxy registry during deployment. This means that, when you add a custom domain for the proxy registry, the SDK image also uses that custom domain automatically. No additional configuration is required. For the default Replicated SDK image properties, see [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L52) in the replicated-sdk repository in GitHub.
+
      :::note
      If you use a custom domain for the proxy registry, you might see `/v2/token` authentication endpoints in logs or network traffic. These token requests are part of the standard Docker Registry v2 API and are expected behavior. For public images, these tokens are anonymous and do not contain sensitive information.
      :::
@@ -24,7 +26,7 @@ You can configure custom domains for the following services:
 
 - **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, the Replicated registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`.
+- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, the Replicated registry uses the domain `registry.replicated.com`. Replicated recommends using a CNAME such as `registry.{your app name}.com`. 
 
 ## Limitations
 
