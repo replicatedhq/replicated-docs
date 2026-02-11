@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.02.10-2
+
+Released on February 10, 2026
+
+### Improvements {#improvements-v2026-02-10-2}
+* Adds a dropdown in the Enterprise Portal that allows users to select a v3 Embedded Cluster version during upgrade.
+
 ## v2026.02.09-0
 
 Released on February 9, 2026
