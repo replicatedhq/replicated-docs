@@ -2,8 +2,6 @@
 
 This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
 
-For information about how to use a custom domain for the Replicated SDK image, see [Use a Custom Domain for the Replicated SDK Image](custom-domains-using#sdk) in _Using Custom Domains_.
-
 ## Customize RBAC for the SDK
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, and how to install the SDK with custom RBAC.
@@ -677,3 +675,10 @@ replicated:
       enabled: true
       maxUnavailable: 1
 ```
+## Use a Custom Domain for the Replicated SDK
+
+The image used by the Replicated SDK Helm chart is automatically pulled through the Replicated proxy registry during deployment. The default location for the SDK image is `proxy.replicated.com/library/replicated-sdk-image`. You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
+
+When you add a custom domain for the proxy registry, the SDK image also uses that custom domain. No additional configuration is required. For information about how to add a custom domain for the proxy registry, see [Add a Custom Domain in the Vendor Portal](#add-domain) on this page.
+
+For information about how to add custom domains in the Vendor Portal, see [Use Custom Domains](custom-domains-using).
