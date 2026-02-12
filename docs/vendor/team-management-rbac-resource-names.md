@@ -512,10 +512,6 @@ Grants the holder permission to delete the addon for a vm.
 
 Grants the holder permission to view team details and settings.
 
-### team/activity-stream/read
-
-Grants the holder permission to view the team activity stream.
-
 ### team/auditlog/read
 
 Grants the holder permission to view the audit log for the team.
