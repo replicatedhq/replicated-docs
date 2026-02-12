@@ -19,6 +19,14 @@ When allowed, the holder will be allowed to create new applications.
 ### kots/app/[:appId]/read
 Grants the holder permission to view the application. If the holder does not have permissions to view an application, it will not appear in lists.
 
+### kots/app/[:appId]/delete
+
+Grants the holder permission to delete an application.
+
+### kots/app/[:appId]/update
+
+Grants the holder permission to modify application settings, such as renaming the application, toggling trial signup, configuring security center settings, and managing support bundle upload visibility.
+
 ### kots/externalregistry/list
 Grants the holder the ability to list external docker registry for application(s).
 
@@ -30,6 +38,18 @@ Grants the holder the ability to link a new external docker registry to applicat
 
 Grants the holder the ability to delete the specified linked external docker registry in application(s).
 
+### kots/externalregistry/update
+
+Grants the holder the ability to update external registry settings.
+
+### kots/externalregistry/test
+
+Grants the holder the ability to test an external registry connection.
+
+### kots/externalregistry/logs/read
+
+Grants the holder the ability to view external registry sync logs.
+
 ### kots/app/[:appId]/channel/create
 
 Grants the holder the ability to create a new channel in the specified application(s).
@@ -37,6 +57,10 @@ Grants the holder the ability to create a new channel in the specified applicati
 ### kots/app/[:appId]/channel/[:channelId]/archive
 
 Grants the holder permission to archive the specified channel(s) of the specified application(s).
+
+### kots/app/[:appId]/channel/[:channelId]/delete
+
+Grants the holder permission to delete the specified channel of the specified application(s).
 
 ### kots/app/[:appId]/channel/[:channelId]/promote
 
@@ -54,6 +78,14 @@ Grants the holder the permission to view information about the specified channel
 
 Grants the holder the permission to view information about the specified enterprise channel of the specified application(s).
 
+### kots/app/[:appId]/channel/[:channelId]/releases/read
+
+Grants the holder permission to list releases promoted to the specified channel of the specified application(s).
+
+### kots/app/[:appId]/channel/[:channelId]/releases/update
+
+Grants the holder permission to update a release on the specified channel of the specified application(s).
+
 ### kots/app/[:appId]/channel/[:channelId]/releases/airgap
 
 Grants the holder permission to trigger airgap builds for the specified channel.
@@ -61,6 +93,22 @@ Grants the holder permission to trigger airgap builds for the specified channel.
 ### kots/app/[:appId]/channel/[:channelId]/releases/airgap/download-url
 
 Grants the holder permission to get an airgap bundle download URL for any release on the specified channel.
+
+### kots/app/[:appId]/channel/[:channelId]/installers/read
+
+Grants the holder permission to list installers promoted to the specified channel of the specified application(s).
+
+### kots/app/[:appId]/channel/[:channelId]/embeddedcluster/release
+
+Grants the holder permission to manage embedded cluster releases on the specified channel of the specified application(s).
+
+### kots/app/[:appId]/channel/[:channelId]/release/[:sequence]/demote
+
+Grants the holder permission to demote a release from the specified channel of the specified application(s).
+
+### kots/app/[:appId]/channel/[:channelId]/release/[:sequence]/undemote
+
+Grants the holder permission to un-demote a previously demoted release on the specified channel of the specified application(s).
 
 ### kots/app/[:appId]/installer/create
 
@@ -94,6 +142,14 @@ Grants the holder permission to view the license specified by ID. If this is den
 
 Grants the holder permission to edit the license specified by ID for the specified application(s).
 
+### kots/app/[:appId]/license/[:customerId]/delete
+
+Grants the holder permission to delete the customer specified by ID for the specified application(s).
+
+### kots/app/[:appId]/license/[:customerId]/unarchive
+
+Grants the holder permission to unarchive (restore) the customer specified by ID for the specified application(s).
+
 ### kots/app/[:appId]/license/[:customerId]/slack-notifications/read
 
 Grants the holder permission to view the team's Slack notification subscriptions for instances associated with the specified license.
@@ -117,6 +173,10 @@ Grants the holder permission to generate a new download portal password for the 
 ### kots/license/[:customerId]/archive
 
 Grants the holder permission to archive the specified license (by ID).
+
+### kots/license/[:customerId]/delete
+
+Grants the holder permission to delete the specified customer (by ID).
 
 ### kots/license/[:customerId]/unarchive
 
@@ -150,6 +210,14 @@ Grants the holder permission to update the files saved in release sequence `[:se
 
 Grants the holder permission to read the files at release sequence `[:sequence]` in the specified application(s).
 
+### kots/app/[:appId]/release/[:sequence]/archive
+
+Grants the holder permission to archive the release at sequence `[:sequence]` in the specified application(s).
+
+### kots/app/[:appId]/releases/test
+
+Grants the holder permission to run release compatibility tests for the specified application(s).
+
 ### kots/app/[:appId]/customhostname/list
 
 Grants the holder permission to view custom hostnames for the team.
@@ -169,6 +237,10 @@ Grants the holder permission to set default custom hostnames.
 ### kots/app/[:appId]/customhostname/default/unset
 
 Grants the holder permission to unset the default custom hostnames.
+
+### kots/app/[:appId]/defaulthostname/list
+
+Grants the holder permission to list default hostnames for the specified application(s).
 
 ### kots/app/[:appId]/supportbundle/read
 
@@ -436,6 +508,14 @@ Grants the holder permission to delete the addon for a vm.
 
 ## Team
 
+### team/read
+
+Grants the holder permission to view team details and settings.
+
+### team/activity-stream/read
+
+Grants the holder permission to view the team activity stream.
+
 ### team/auditlog/read
 
 Grants the holder permission to view the audit log for the team.
@@ -567,6 +647,40 @@ Grants the holder Admin permissions in the Replicated collab repository in GitHu
 For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
 <CollabRbacResourcesImportant/>
+
+## Notifications
+
+### team/notifications/subscriptions/read
+
+Grants the holder permission to view notification subscriptions.
+
+### team/notifications/subscriptions/create
+
+Grants the holder permission to create a notification subscription.
+
+### team/notifications/subscriptions/update
+
+Grants the holder permission to update a notification subscription created by the current user.
+
+### team/notifications/user/[:userId]/subscriptions/update
+
+Grants the holder permission to update a notification subscription created by another user.
+
+### team/notifications/subscriptions/delete
+
+Grants the holder permission to delete a notification subscription created by the current user.
+
+### team/notifications/user/[:userId]/subscriptions/delete
+
+Grants the holder permission to delete a notification subscription created by another user.
+
+### team/notifications/types/list
+
+Grants the holder permission to list available notification event types.
+
+### team/notifications/events/read
+
+Grants the holder permission to view notification event delivery history.
 
 ## User
 
