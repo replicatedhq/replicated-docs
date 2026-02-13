@@ -21,15 +21,7 @@ Defaults are especially useful when:
 - You want to standardize which install types are enabled by default.
 - You want to pre-populate custom entitlement values like seat counts or feature tiers.
 
-### Set a Default Value for a Built-In Field
-
-1. In the Vendor Portal, go to **License Fields**.
-1. In the **Built-in License Options** table, click **Edit** on the field you want to configure.
-1. In the modal, set the **Initial value**.
-1. (Optional) Check **Locked** to prevent the value from being changed during customer creation in the Vendor Portal. For more information, see [Lock Built-In License Fields](#lock-built-in-license-fields).
-1. Click **Update**.
-
-To revert a built-in field to its original default, click **Reset initial value** in the edit modal.
+To set defaults for built-in fields, see [Set Initial Values for Built-In License Fields](#set-initial-values-for-built-in-license-fields). To set defaults for custom fields, see [Create Custom License Fields](#create-custom-license-fields) or [Update Custom License Fields](#update-custom-license-fields). You can also lock built-in fields to prevent changes during customer creation; see [Lock Built-In License Fields](#lock-built-in-license-fields).
 
 The following built-in fields support configurable defaults:
 
@@ -51,15 +43,6 @@ Additional install-type and feature fields may be available depending on which i
 :::note
 The `name`, `email`, and `custom_id` fields cannot have defaults configured.
 :::
-
-### Set a Default Value for a Custom Field
-
-1. In the Vendor Portal, go to **License Fields**.
-1. In the **Custom License Fields** table, click **Edit** on the field.
-1. Set the **Default** value.
-1. Click **Update**.
-
-Default values are supported for all custom field types: Integer, String, Text, Boolean, Password, and Enum.
 
 ### How Defaults Are Applied
 
