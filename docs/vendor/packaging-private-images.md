@@ -334,6 +334,6 @@ You can view image pull activity for each of your external registries that are c
     </tr>
     <tr>
       <td>Was successful</td>
-      <td>If the image pull was successful</td>
+      <td>If the action was successful</td>
     </tr>
   </table>
