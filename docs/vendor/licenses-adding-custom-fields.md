@@ -12,6 +12,27 @@ For information about how to access license field values in your application, se
 - For Helm installations: [Get License Fields in Helm Installations](licenses-reference-helm)
 - For verification: [Verify Signature and Get License Fields with the SDK API](licenses-verify-fields-sdk-api)
 
+## Configure License Field Defaults
+
+You can configure default values for both built-in and custom license fields from the **License Fields** page. These defaults are automatically applied when you create new customers, reducing repetitive configuration and enforcing consistency across your customer base.
+
+Defaults are especially useful when:
+- Most of your customers share the same license configuration (for example, all customers are assigned a specific channel).
+- You want to standardize which install types are enabled by default.
+- You want to pre-populate custom entitlement values like seat counts or feature tiers.
+
+To set defaults for built-in fields, see [Set Initial Values for Built-In License Fields](#set-initial-values-for-built-in-license-fields). To set defaults for custom fields, see [Create Custom License Fields](#create-custom-license-fields) or [Update Custom License Fields](#update-custom-license-fields). You can also lock built-in fields to prevent changes during customer creation; see [Lock Built-In License Fields](#lock-built-in-license-fields).
+
+:::note
+The `name`, `email`, and `custom_id` fields cannot have defaults configured.
+:::
+
+### How Defaults Are Applied
+
+When you create a new customer in the **Vendor Portal**, the default values pre-populate the Create Customer form. You can override them before saving, unless the field is locked.
+
+When you create a new customer through the **Vendor API**, defaults are applied only to fields that are omitted from the request. If you explicitly set a field in the API request — even to an empty or `false` value — the default is not applied. This lets you use defaults as a convenience while retaining full control through the API.
+
 ## Manage Built-In License Fields
 
 This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
@@ -21,7 +42,7 @@ This section describes how to manage the built-in license fields that are includ
 You can set initial values to populate the **Create Customer** form in the Vendor Portal when a new customer is created. This ensures that each new customer created from the Vendor Portal UI starts with the same set of built-in license field values. These _initial_ values differ from _default_ values in that setting initial values does not update the license field values for any existing customers.
 
 :::note
-Initial values are not applied to new customers created through the Vendor API v3. For more information, see [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) in the Vendor API v3 documentation.
+For details on how initial values are applied differently in the Vendor Portal versus the API, see [How Defaults Are Applied](#how-defaults-are-applied).
 :::
 
 To set initial values for built-in license fields:
