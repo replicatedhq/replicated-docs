@@ -73,17 +73,9 @@ To set initial values for built-in license fields:
 
 ### Lock Built-In License Fields
 
-You can lock a built-in field to prevent it from being changed when creating customers in the Vendor Portal. This is useful when you want to enforce a standard value across all new customers — for example, always setting the license type to `production` or always enabling a specific install type.
-
-Locked fields:
-- Display a lock icon on both the **Create a new customer** and **Manage customer** pages.
-- Cannot be edited unless you click the lock icon to temporarily unlock the field.
-- Can still be overridden through the Vendor API (locking is a Vendor Portal UI-only constraint).
-- Can still be changed when editing an existing customer after unlocking.
+When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages. To edit a locked field, click the lock icon to temporarily unlock it. Locking a license field makes it more difficult to accidentally change the field's value.
 
 To lock a built-in license field:
-
-1. In the Vendor Portal, go to **License Fields**.
 
 1. Under **Built-in license options**, open the menu for the license field that you want to lock and click **Edit**.
 
