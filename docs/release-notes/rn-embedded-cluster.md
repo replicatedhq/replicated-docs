@@ -36,7 +36,7 @@ Released on February 13, 2026
 </table>
 
 ### Bug Fixes {#bug-fixes-2-13-4}
-* Fixes an issue introduced in KOTS where `REPLICATED_APP_ENDPOINT` environment variable is required causing upgrades to fail from embedded cluster versions older than `2.2.0` to any newer ones
+* Fixes an issue in KOTS where `REPLICATED_APP_ENDPOINT` was introduced as mandatory environment variable in EC `2.2.0`, causing upgrades from earlier embedded cluster versions to fail because they do not have this variable
 
 ## 2.13.3
 
