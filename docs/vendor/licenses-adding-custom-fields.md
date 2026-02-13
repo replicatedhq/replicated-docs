@@ -17,28 +17,11 @@ For information about how to access license field values in your application, se
 You can configure default values for both built-in and custom license fields from the **License Fields** page. These defaults are automatically applied when you create new customers, reducing repetitive configuration and enforcing consistency across your customer base.
 
 Defaults are especially useful when:
-- Most of your customers share the same license configuration (for example, all customers are `production` type with a 30-day expiration).
+- Most of your customers share the same license configuration (for example, all customers are assigned a specific channel).
 - You want to standardize which install types are enabled by default.
 - You want to pre-populate custom entitlement values like seat counts or feature tiers.
 
 To set defaults for built-in fields, see [Set Initial Values for Built-In License Fields](#set-initial-values-for-built-in-license-fields). To set defaults for custom fields, see [Create Custom License Fields](#create-custom-license-fields) or [Update Custom License Fields](#update-custom-license-fields). You can also lock built-in fields to prevent changes during customer creation; see [Lock Built-In License Fields](#lock-built-in-license-fields).
-
-The following built-in fields support configurable defaults:
-
-| Field | Type | Default |
-|-------|------|---------|
-| License Type | Text | `trial` |
-| Assigned Channel | Text | `Stable` |
-| Expiration | Date (days) | 30 days |
-| KOTS Install Enabled | Boolean | Varies by app |
-| Helm Install Enabled | Boolean | Varies by app |
-| Embedded Cluster Enabled | Boolean | Varies by app |
-| Airgap Enabled | Boolean | `false` |
-| Support Bundle Upload Enabled | Boolean | `true` |
-| GitOps Supported | Boolean | `false` |
-| Snapshots Supported | Boolean | `false` |
-
-Additional install-type and feature fields may be available depending on which installers are enabled for your application.
 
 :::note
 The `name`, `email`, and `custom_id` fields cannot have defaults configured.
