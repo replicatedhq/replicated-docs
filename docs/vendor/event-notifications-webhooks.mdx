@@ -62,10 +62,15 @@ Event Notifications webhooks deliver a JSON payload with the following structure
     "customer_id": "38ljzNKNZZSIp3bUQYSPzJUUBpd",
     "channel_name": "Stable",
     "license_type": "trial",
-    "customer_name": "Testy McTestface"
+    "customer_name": "Testy McTestface",
+    "subscription_name": "Trial Customer Alerts"
   }
 }
 ```
+
+:::note
+The `subscription_name` field is included in the `data` object only when a custom name is set on the subscription. For email notifications, the custom name is prepended to the email subject line.
+:::
 
 ### Payload Fields
 
@@ -82,6 +87,7 @@ The `data` object contains fields specific to each event type. Common fields inc
 - `app_name` - Application name
 - `app_slug` - Application slug (URL-safe identifier)
 - `event_type` - Event type identifier
+- `subscription_name` - Custom subscription name, if set
 - Additional fields specific to the event type (customer_id, instance_id, channel_id, etc.)
 
 ## Webhook Signing (HMAC-SHA256)

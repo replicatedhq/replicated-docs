@@ -45,15 +45,21 @@ To create a new notification subscription:
 
 2. Click **"Create Notification"**
 
-3. Select an event type from the dropdown
+3. (Optional) Enter a custom name for the subscription. Custom names help you identify subscriptions when you have multiple subscriptions for the same event type. The name is also included in email subjects and webhook payloads.
+
+   :::note
+   Subscription names can contain up to 255 ASCII characters (letters, numbers, and basic punctuation).
+   :::
+
+4. Select an event type from the dropdown
 
    <!-- TODO: Add screenshot of event type selection dropdown -->
 
-4. Configure filters for the event type (optional). For more information about how filters work, see [Filter Logic](#filter-logic).
+5. Configure filters for the event type. If filters are available for the selected event type, the filter configuration modal opens automatically. For more information about how filters work, see [Filter Logic](#filter-logic).
 
    <!-- TODO: Add screenshot of filter configuration -->
 
-5. Choose your notification delivery method:
+6. Choose your notification delivery method:
 
    ### Email Delivery
    - Enter an email address
@@ -66,7 +72,7 @@ To create a new notification subscription:
 
    <!-- TODO: Add screenshot of delivery method selection -->
 
-6. Click **"Create Notification"** to activate
+7. Click **"Create Notification"** to activate
 
 Your notification subscription is now active and will begin matching events based on your configured filters.
 
