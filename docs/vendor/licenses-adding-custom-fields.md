@@ -12,6 +12,61 @@ For information about how to access license field values in your application, se
 - For Helm installations: [Get License Fields in Helm Installations](licenses-reference-helm)
 - For verification: [Verify Signature and Get License Fields with the SDK API](licenses-verify-fields-sdk-api)
 
+## Configure License Field Defaults
+
+You can configure default values for both built-in and custom license fields from the **License Fields** page. These defaults are automatically applied when you create new customers, reducing repetitive configuration and enforcing consistency across your customer base.
+
+Defaults are especially useful when:
+- Most of your customers share the same license configuration (for example, all customers are `production` type with a 30-day expiration).
+- You want to standardize which install types are enabled by default.
+- You want to pre-populate custom entitlement values like seat counts or feature tiers.
+
+### Set a Default Value for a Built-In Field
+
+1. In the Vendor Portal, go to **License Fields**.
+1. In the **Built-in License Options** table, click **Edit** on the field you want to configure.
+1. In the modal, set the **Initial value**.
+1. (Optional) Check **Locked** to prevent the value from being changed during customer creation in the Vendor Portal. For more information, see [Lock Built-In License Fields](#lock-built-in-license-fields).
+1. Click **Update**.
+
+To revert a built-in field to its original default, click **Reset initial value** in the edit modal.
+
+The following built-in fields support configurable defaults:
+
+| Field | Type | Default |
+|-------|------|---------|
+| License Type | Text | `trial` |
+| Assigned Channel | Text | `Stable` |
+| Expiration | Date (days) | 30 days |
+| KOTS Install Enabled | Boolean | Varies by app |
+| Helm Install Enabled | Boolean | Varies by app |
+| Embedded Cluster Enabled | Boolean | Varies by app |
+| Airgap Enabled | Boolean | `false` |
+| Support Bundle Upload Enabled | Boolean | `true` |
+| GitOps Supported | Boolean | `false` |
+| Snapshots Supported | Boolean | `false` |
+
+Additional install-type and feature fields may be available depending on which installers are enabled for your application.
+
+:::note
+The `name`, `email`, and `custom_id` fields cannot have defaults configured.
+:::
+
+### Set a Default Value for a Custom Field
+
+1. In the Vendor Portal, go to **License Fields**.
+1. In the **Custom License Fields** table, click **Edit** on the field.
+1. Set the **Default** value.
+1. Click **Update**.
+
+Default values are supported for all custom field types: Integer, String, Text, Boolean, Password, and Enum.
+
+### How Defaults Are Applied
+
+When you create a new customer in the **Vendor Portal**, the default values pre-populate the Create Customer form. You can override them before saving, unless the field is locked.
+
+When you create a new customer through the **Vendor API**, defaults are applied only to fields that are omitted from the request. If you explicitly set a field in the API request — even to an empty or `false` value — the default is not applied. This lets you use defaults as a convenience while retaining full control through the API.
+
 ## Manage Built-In License Fields
 
 This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
@@ -21,7 +76,7 @@ This section describes how to manage the built-in license fields that are includ
 You can set initial values to populate the **Create Customer** form in the Vendor Portal when a new customer is created. This ensures that each new customer created from the Vendor Portal UI starts with the same set of built-in license field values. These _initial_ values differ from _default_ values in that setting initial values does not update the license field values for any existing customers.
 
 :::note
-Initial values are not applied to new customers created through the Vendor API v3. For more information, see [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) in the Vendor API v3 documentation.
+For details on how initial values are applied differently in the Vendor Portal versus the API, see [How Defaults Are Applied](#how-defaults-are-applied).
 :::
 
 To set initial values for built-in license fields:
@@ -52,9 +107,17 @@ To set initial values for built-in license fields:
 
 ### Lock Built-In License Fields
 
-When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages. To edit a locked field, click the lock icon to temporarily unlock it. Locking a license field makes it more difficult to accidentally change the field's value.
+You can lock a built-in field to prevent it from being changed when creating customers in the Vendor Portal. This is useful when you want to enforce a standard value across all new customers — for example, always setting the license type to `production` or always enabling a specific install type.
+
+Locked fields:
+- Display a lock icon on both the **Create a new customer** and **Manage customer** pages.
+- Cannot be edited unless you click the lock icon to temporarily unlock the field.
+- Can still be overridden through the Vendor API (locking is a Vendor Portal UI-only constraint).
+- Can still be changed when editing an existing customer after unlocking.
 
 To lock a built-in license field:
+
+1. In the Vendor Portal, go to **License Fields**.
 
 1. Under **Built-in license options**, open the menu for the license field that you want to lock and click **Edit**.
 
