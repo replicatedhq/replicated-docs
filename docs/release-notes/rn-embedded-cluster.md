@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.13.4
+
+Released on February 13, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.13.4+k8s-1.33</td>
+    <td id="center">2.13.4+k8s-1.32</td>
+    <td id="center">2.13.4+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.6</td>
+    <td id="center">1.32.10</td>
+    <td id="center">1.31.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.3</td>
+  </tr>
+</table>
+
+### Bug Fixes {#bug-fixes-2-13-4}
+* Fixes an issue where `REPLICATED_APP_ENDPOINT` was introduced as a mandatory environment variable in Embedded Cluster 2.2.0. This caused upgrades from earlier versions of Embedded Cluster to fail because they did not have this variable.
+
 ## 2.13.3
 
 Released on January 14, 2026
