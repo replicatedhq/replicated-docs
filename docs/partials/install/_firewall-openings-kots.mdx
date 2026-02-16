@@ -1,0 +1,34 @@
+<table>
+  <tr>
+      <th width="50%">Domain</th>
+      <th>Description</th>
+  </tr>
+  <tr>
+      <td>Docker Hub</td>
+      <td><p>Some dependencies of KOTS are hosted as public images in Docker Hub. The required domains for this service are `index.docker.io`, `cdn.auth0.com`, `*.docker.io`, and `*.docker.com.`</p></td>
+  </tr>
+  <tr>
+      <td>`proxy.replicated.com` &#42;</td>
+      <td><p>Private Docker images are proxied through `proxy.replicated.com`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `proxy.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p></td>
+  </tr>
+  <tr>
+      <td>`replicated.app`</td>
+      <td><p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p></td>
+  </tr>
+  <tr>
+      <td>`registry.replicated.com` &#42;&#42;</td>
+      <td><p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p> For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p></td>
+  </tr>
+  <tr>
+      <td>`kots.io`</td>
+      <td><p>Requests are made to this domain when installing the Replicated KOTS CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p></td>
+  </tr>
+  <tr>
+     <td>`github.com`</td>
+     <td>Requests are made to this domain when installing the Replicated KOTS CLI. For information about retrieving GitHub IP addresses, see [About GitHub&#39;s IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses) in the GitHub documentation.</td>
+  </tr>
+</table>
+
+&#42; Required only if the application uses the [Replicated proxy registry](/vendor/private-images-about).
+
+&#42;&#42; Required only if the application uses the [Replicated registry](/vendor/private-images-replicated).
