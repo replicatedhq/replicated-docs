@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.02.17-3
+
+Released on February 17, 2026
+
+### New Features {#new-features-v2026-02-17-3}
+* Updates the Sales and Support Engineer RBAC policy defaults.
+
 ## v2026.02.10-2
 
 Released on February 10, 2026
