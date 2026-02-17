@@ -881,6 +881,7 @@ const sidebars = {
 
     // POLICIES
     { type: "html", value: "<h5>Platform overview</h5>", defaultStyle: true },
+    'vendor/firewall-openings',
     {
       type: "category",
       label: "Replicated Policies",
