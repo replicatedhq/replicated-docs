@@ -8,43 +8,30 @@ This topic describes how to view, edit, disable, and delete event notifications 
 
 ## Overview
 
-The Notifications page in the Vendor Portal provides visibility into both personal and team notifications, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
+The Notifications page in the Vendor Portal provides visibility into your notification subscriptions and, optionally, team subscriptions, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
 
 ## Viewing Notification Subscriptions
 
-The Notifications list page provides three main views:
+The Notifications page provides two main views:
 
-### My Notifications
+### Overview
 
-Shows only notifications you created, giving you quick access to manage your personal monitoring setup.
+Shows your notification subscriptions. You can optionally include team notifications using the **Show team notifications** checkbox.
 
-To view your notifications:
+To view notification subscriptions:
 
-1. Navigate to **Notifications** in the Vendor Portal
-2. Select the **My Notifications** tab
-3. View the list of your active and inactive subscriptions
-4. (Optional) Use the search bar to filter subscriptions by name or event type
+1. Navigate to **Notifications** in the Vendor Portal.
+2. The **Overview** tab displays your active and inactive subscriptions.
+3. (Optional) Select the **Show team notifications** checkbox to include notifications created by other team members.
+4. (Optional) Use the search bar to filter subscriptions by name or event type.
 
-<!-- TODO: Add screenshot of My Notifications view -->
+<!-- TODO: Add screenshot of Overview view -->
 
 Each subscription card displays the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title.
-
-### Team Notifications
-
-Shows all notifications created by anyone on your team. This view is useful for understanding what monitoring is in place across the organization.
-
-To view team notifications:
-
-1. Navigate to **Notifications** in the Vendor Portal
-2. Select the **Team Notifications** tab
-3. View all subscriptions created by team members
-4. (Optional) Use the search bar to filter subscriptions by name or event type
 
 **Permissions:**
 - **Team admins** can manage (edit/delete) any team member's notifications
 - **Non-admin users** can view team notifications but cannot modify subscriptions created by others
-
-<!-- TODO: Add screenshot of Team Notifications view -->
 
 ### History
 
@@ -86,13 +73,11 @@ To modify a notification:
 
 1. Navigate to **Notifications** in the Vendor Portal
 
-2. Find the notification you want to edit in the list:
-   - Use the **My Notifications** tab for your subscriptions
-   - Use the **Team Notifications** tab to find any team member's subscription (if you're a team admin)
+2. Find the notification you want to edit in the list. Select the **Show team notifications** checkbox if the notification was created by another team member.
 
-3. Click the **Edit** icon or **"Edit"** button for that notification
+3. Click the **Edit** icon or **Edit** button for that notification
 
-4. The notification form will open with all current settings populated
+4. The notification form opens with all current settings populated
 
 5. Make your desired changes:
    - Add or update a custom subscription name to help identify the subscription
@@ -100,14 +85,14 @@ To modify a notification:
    - Change the delivery method or destination
    - Pause/unpause the notification
 
-6. Click **"Save Changes"** to update
+6. Click **Save Changes** to update
 
 <!-- TODO: Add screenshot of Edit notification form -->
 
 **Important notes:**
 - Editing a notification does not affect past events already sent
 - Changes apply immediately to future events
-- You can only edit notifications you created, unless you're a team admin with permissions to manage all team notifications
+- You can only edit notifications you created, unless you are a team admin with permissions to manage all team notifications
 
 ## Disable a Notification
 
@@ -150,7 +135,7 @@ To permanently remove a notification:
 Each notification maintains a history of when it triggered and what events matched:
 
 1. Navigate to **Notifications** in the Vendor Portal
-2. Find the notification in the list (either **My Notifications** or **Team Notifications**)
+2. Find the notification in the list. Select the **Show team notifications** checkbox if the notification was created by another team member.
 3. Click the **"View History"** button for that notification
 
 This filtered view shows only events that matched this specific notification, making it easier to understand the notification's behavior and troubleshoot any issues.

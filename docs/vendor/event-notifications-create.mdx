@@ -132,6 +132,29 @@ Understanding how filters work will help you create effective notification subsc
 - **One or more filters specified**: The event must match **all specified filters** to trigger the notification (AND logic)
 - **Multi-select filters**: If a filter contains multiple selected values, the event must match **any** of the selected values within that filter to trigger the notification (OR logic within the filter)
 
+### License Field Condition Filters
+
+For customer-related and instance-related events, you can filter notifications based on custom license field (entitlement) values. This allows you to create targeted notifications based on your customers' entitlement data.
+
+License field conditions use a three-part structure: field, operator, and value. The available operators depend on the field type:
+
+| Field Type | Available Operators |
+|------------|-------------------|
+| Integer | equals, does not equal, greater than, less than, greater than or equal, less than or equal |
+| String / Text | equals, does not equal, contains, does not contain |
+| Boolean | is true, is false |
+
+When multiple license field conditions are specified, all conditions must match for the notification to trigger (AND logic).
+
+License field conditions are available for the following event types:
+- All Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+- All Instance events (Instance Created, Instance Upgraded, Instance Version Behind, Instance Inactive)
+- Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+
+:::note
+License field conditions are not available for Pending Self-Service Signup, Release, or Channel events.
+:::
+
 ### Examples
 
 **Example 1: Single Filter**
@@ -150,5 +173,11 @@ Understanding how filters work will help you create effective notification subsc
 - Filter: Application = "MyApp"
 - Filter: License Type = Trial, Paid (both selected)
 - **Result**: Notification triggers when either trial OR paid customer licenses for MyApp are expiring
+
+**Example 4: License Field Condition Filter**
+- Event Type: Instance Upgraded
+- Filter: Application = "MyApp"
+- License Field Condition: `tier` equals "premium" AND `seats` greater than or equal to 100
+- **Result**: Notification triggers only when instances belonging to premium-tier customers with 100 or more seats are upgraded
 
 <!-- TODO: Add screenshot showing multi-select filter UI -->

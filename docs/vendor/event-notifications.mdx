@@ -10,7 +10,7 @@ The ability to set up notifications for key events of interest within Vendor Por
 
 Event Notifications allow you to subscribe to specific events and receive alerts via email or webhook. You can create highly targeted notifications using filters to focus on the events that matter most to your workflow.
 
-Event types available are predefined, but these events can cover a broad range of use cases by leveraging available filtering conditions on a given event.
+Event types are predefined, but you can cover a broad range of use cases by leveraging available filtering conditions on a given event, including filters by application, customer, channel, license type, and custom license field values (entitlements).
 
 Events are queued to SQS for reliable processing and notifications are matched against event filters in real-time. Email notifications are sent via the configured email service, and webhook notifications include HMAC signatures for verification.
 
@@ -73,8 +73,9 @@ Instance related notifications will include the Instance Name if set, otherwise 
 
 - **Event Type:** Support Bundle Uploaded
 - **Configuration:**
-  - Filter - Customer: Select your key enterprise customer (e.g., "Acme Corp", "GlobalTech Inc", "Enterprise Solutions Ltd")
   - Filter - Application: Select your production application
+  - Filter - Customer: Select your key enterprise customer (for example, "Acme Corp", "GlobalTech Inc")
+  - License Field Condition: `tier` equals "Enterprise" AND `seats` greater than or equal to 100
 - **Delivery Method:** Email to your work email (or team email alias)
 
 ### Sales Manager: Trial License Expiration
