@@ -294,6 +294,8 @@ To duplicate an existing external registry:
 
 You can view image pull activity for each of your external registries that are connected to the Replicated proxy registry. This includes a summary of recent pull activity as well as the full history of image pulls.
 
+You can also use the Replicated Vendor API `/v3/external_registry/logs` endpoint to get image pull activity. For more information, see [Get the logs for a specific external registry either by endpoint or slug, or both](https://replicated-vendor-api.readme.io/reference/externalregistrylogs) in the Vendor API documentation.
+
 * To view a summary of recent pull activity: In the **Vendor Portal**, go to **Image Registries > Available Image Registries > [Registry Name] > Recent Pull Activity**.
 
   ![Recent pull activity log](/images/proxy-registry-view-recent-pull-activity.png)
@@ -310,19 +312,30 @@ You can view image pull activity for each of your external registries that are c
     </tr>
     <tr>
       <td>Date</td>
-      <td>The timestamp of the pull event</td>
+      <td>The timestamp of the event</td>
     </tr>
     <tr>
       <td>Customer</td>
-      <td>The customer license used to authenticate with the proxy registry</td>
+      <td>
+        <p>The name of the customer license used to authenticate with the proxy registry.</p>
+        <p>If Replicated systems performed the pull using the application's registry key rather than a specific customer's license (for example, when testing installations using the Replicated Compatibility Matrix), then "Replicated Infrastructure" is listed for Customer. </p>
+      </td>
     </tr>
     <tr>
       <td>Action</td>
-      <td>The type of registry operation (`auth` or `manifest`)</td>
+      <td>
+        <p>The type of registry operation:</p>
+        <ul>
+          <li>`auth`: Authentication request to the registry</li>
+          <li>`manifest`: Image pull</li>
+          <li>`HEAD`: Check if a manifest exists</li>
+          <li>`blob`: Blob/layer download request</li>
+        </ul>  
+      </td>
     </tr>
     <tr>
       <td>Image</td>
-      <td>The name of the image that was pulled</td>
+      <td>The name of the image</td>
     </tr>
     <tr>
       <td>Tag</td>
@@ -330,10 +343,10 @@ You can view image pull activity for each of your external registries that are c
     </tr>
     <tr>
       <td>Status code</td>
-      <td></td>
+      <td>For failed operations, the HTTP status code returned by the registry (such as 401, 403, 500, 502). If the operation was successful, the status code is null.</td>
     </tr>
     <tr>
       <td>Was successful</td>
-      <td>If the action was successful</td>
+      <td>If the registry operation was successful</td>
     </tr>
   </table>
