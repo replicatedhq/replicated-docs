@@ -8,7 +8,7 @@ This topic describes how to create and manage customers in the Replicated Vendor
 
 ## Create a Customer
 
-This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time.
+This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time. The license ID, which is the unique identifier for the customer, never changes.
 
 For information about creating a customer with the Replicated CLI, see [customer create](/reference/replicated-cli-customer-create).
 
@@ -32,7 +32,7 @@ To create a customer:
    A customer email address is required for Helm installations. This email address is never used to send emails to customers.
    :::
 
-1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install.
 
    :::note
    <ChangeChannel/>
@@ -56,13 +56,11 @@ To create a customer:
 
 ## Edit a Customer
 
-You can edit the built-in and custom license fields for a customer at any time by going to the **Manage customer** for a customer. For more information, see [Manage Customer Page](licenses-about#about-the-manage-customer-page) in _About Customers and Licensing_.
-   
-Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
-
 :::important
 For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query and enforce the target entitlement before making any changes.
 :::
+
+You can make changes to a customer record in the Vendor Portal at any time. The license ID, which is the unique identifier for the customer, never changes.
 
 To edit license fields:
 
@@ -74,9 +72,9 @@ To edit license fields:
 
    ![Full manage customer page for a customer named Prestige Financial](/images/customer-details.png)
 
-1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
+1. Test the changes by installing or updating in a development environment:
     * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
-    * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses in the Admin Console_.
+    * For applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), update the license in the Admin Console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses in the Admin Console_.
 
 ## Edit a Locked License Field
 
@@ -124,3 +122,7 @@ If there is adoption rate data available for the channel that you are filtering 
 You can also filter customers by custom ID or email address. To filter customers by custom ID or email, use the search box and prepend your search term with "customId:" (ex: `customId:1234`) or "email:" (ex: `email:bob@replicated.com`).
 
 If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
+
+## Replace a License in an Existing Installation
+
+Unless the existing customer is using a Community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license. For more information, see [Community Licenses](licenses-about-types).
