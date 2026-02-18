@@ -644,6 +644,10 @@ For more information about the Admin role in GitHub, see [Permissions for each r
 
 <CollabRbacResourcesImportant/>
 
+### team/activity-stream/read
+
+Grants the holder permission to view the team activity stream.
+
 ## Notifications
 
 ### team/notifications/subscriptions/read

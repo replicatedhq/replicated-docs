@@ -65,7 +65,7 @@ This policy is automatically created for all plans.
 
 ### Support Engineer
 
-The Support Engineer policy grants read access to release, channels, and application data, and read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles. 
+The Support Engineer policy grants read access to releases, channels, and application data, and read-write access to customer and license details. It also grants permission to open and triage Replicated support issues, manage Enterprise Portal customer users, and manage the user's own notification subscriptions.
 
 :::note
 This policy is automatically created for teams with the Enterprise plan only.
@@ -82,9 +82,14 @@ This policy is automatically created for teams with the Enterprise plan only.
         "platform/app/*/license/**",
         "kots/app/*/license/**",
         "team/support-issues/triage",
+        "team/support-issues/write",
         "kots/app/*/enterprise-portal/customer-users/read",
         "kots/app/*/enterprise-portal/customer-user/create",
-        "kots/app/*/enterprise-portal/customer-user/login"
+        "kots/app/*/enterprise-portal/customer-user/login",
+        "kots/app/*/enterprise-portal/customer-user/*/delete",
+        "team/notifications/subscriptions/create",
+        "team/notifications/subscriptions/update",
+        "team/notifications/subscriptions/delete"
       ],
       "denied": [
         "**/*"
@@ -96,7 +101,7 @@ This policy is automatically created for teams with the Enterprise plan only.
 
 ### Sales
 
-The Sales policy grants read-write access to customers and license details and read-only access to resources necessary to manage licenses (applications, channels, and license fields). No additional access is granted.
+The Sales policy grants read-write access to customers and license details, read-only access to resources necessary to manage licenses (applications, channels, and license fields), the ability to manage the user's own notification subscriptions, and read-only access to the activity stream and Enterprise Portal data.
 
 :::note
 This policy is automatically created for teams with the Enterprise plan only.
@@ -111,7 +116,16 @@ This policy is automatically created for teams with the Enterprise plan only.
         "kots/app/*/read",
         "kots/app/*/channel/*/read",
         "kots/app/*/licensefields/read",
-        "kots/app/*/license/**"
+        "kots/app/*/license/**",
+        "kots/license/**",
+        "team/notifications/subscriptions/read",
+        "team/notifications/subscriptions/create",
+        "team/notifications/subscriptions/update",
+        "team/notifications/subscriptions/delete",
+        "team/notifications/types/list",
+        "team/notifications/events/read",
+        "team/activity-stream/read",
+        "kots/app/*/enterprise-portal/**/read"
       ],
       "denied": [
         "**/*"
