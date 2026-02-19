@@ -15,6 +15,21 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 <EmbeddedClusterPortRequirements/>
 
+### Unix Accounts for Kubernetes Components
+
+During installation, Embedded Cluster automatically creates the following Unix accounts that are required by internal Kubernetes components:
+
+* **etcd**: Used by the Kubernetes etcd database, which stores cluster state.
+* **konnectivity-server**: Used by the Konnectivity service, which facilitates secure communication between internal components.
+* **kube-apiserver**: Used by the Kubernetes API server.
+* **kube-scheduler**: Used by the Kubernetes scheduler to schedule workloads such as pods.
+
+No action is required to create these roles. Removing them will make the cluster non-functional.
+
+For more information about the internal Kubernetes components, see [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/) in the Kubernetes documentation.
+
+For more information about the Konnectivity service, see [Set up Konnectivity service](https://kubernetes.io/docs/tasks/extend-kubernetes/setup-konnectivity/) in the Kubernetes documentation.
+
 ## Firewall Openings for Online Installations with Embedded Cluster {#firewall}
 
 <FirewallOpeningsIntro/>

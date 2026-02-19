@@ -1,8 +1,5 @@
 import EmbeddedCluster from "../partials/embedded-cluster/_definition.mdx"
-import Requirements from "../partials/embedded-cluster/_requirements.mdx"
-import EmbeddedClusterPortRequirements from "../partials/embedded-cluster/_port-reqs.mdx"
 import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
-import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 
 # Embedded Cluster Overview
 
@@ -137,31 +134,6 @@ The built-in extensions installed by Embedded Cluster include:
 * **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
-
-## Requirements
-
-### System Requirements
-
-<Requirements/>
-
-### Port Requirements
-
-<EmbeddedClusterPortRequirements/>
-
-### Unix Accounts for Kubernetes Components
-
-During installation, Embedded Cluster automatically creates the following Unix accounts that are required by internal Kubernetes components:
-
-* **etcd**: Used by the Kubernetes etcd database, which stores cluster state.
-* **konnectivity-server**: Used by the Konnectivity service, which facilitates secure communication between internal components.
-* **kube-apiserver**: Used by the Kubernetes API server.
-* **kube-scheduler**: Used by the Kubernetes scheduler to schedule workloads such as pods.
-
-No action is required to create these roles. Removing them will make the cluster non-functional.
-
-For more information about the internal Kubernetes components, see [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/) in the Kubernetes documentation.
-
-For more information about the Konnectivity service, see [Set up Konnectivity service](https://kubernetes.io/docs/tasks/extend-kubernetes/setup-konnectivity/) in the Kubernetes documentation.
 
 ## Limitations
 
