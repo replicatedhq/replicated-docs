@@ -68,7 +68,9 @@ To create a new notification subscription:
    ### Webhook Delivery
    - Enter a webhook URL
    - (Optional) Enter a signing secret for HMAC signature verification
-   - See [Event Notification Webhooks (Beta)](event-notifications-webhooks) for technical details
+   - After entering a URL, you can expand the **Webhook payload format** section to preview the exact JSON payload structure your endpoint receives for the selected event type. Click **Copy payload** to copy the format to your clipboard.
+   - Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity. The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
+   - For more information about webhook payload structure, signing, and delivery behavior, see [Configure Event Notification Webhooks (Beta)](event-notifications-webhooks).
 
    <!-- TODO: Add screenshot of delivery method selection -->
 

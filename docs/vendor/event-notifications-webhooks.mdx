@@ -12,6 +12,8 @@ Webhooks allow you to receive Event Notifications as HTTP POST requests to an en
 
 Event Notifications webhooks include:
 - JSON payload with event data
+- Event-specific payload format preview with copy support
+- Built-in test webhook to verify endpoint connectivity before activating
 - HMAC-SHA256 signature for verification
 - Automatic retries with exponential backoff
 - Delivery attempt tracking
@@ -34,11 +36,51 @@ To configure a webhook for Event Notifications:
    - (Optional but recommended) Enter a signing secret for HMAC verification
 
 3. **Test your webhook:**
-   - Trigger a test event to verify webhook delivery
-   - Check your endpoint logs for incoming requests
-   - Verify the payload structure matches your expectations
+   - Click **Send test webhook** in the notification form to send a sample payload to your endpoint
+   - The test result displays the HTTP status code and response time on success, or an error message on failure
+   - You can also expand the **Webhook payload format** section to preview the exact JSON structure your endpoint receives before testing
 
 See [Create Event Notification Subscriptions (Beta)](event-notifications-create) for detailed instructions on creating subscriptions.
+
+## Previewing the Webhook Payload Format {#payload-preview}
+
+When you create or edit a webhook notification and select an event type, you can expand the **Webhook payload format** section in the notification form to see the exact JSON structure your endpoint receives for that event type.
+
+The preview shows:
+- The top-level payload envelope (`event`, `timestamp`, `data`, `text`)
+- All event-specific fields in the `data` object, with type annotations (string, number, boolean, ISO-8601-timestamp, array, or object)
+
+The preview updates dynamically when you change the selected event type. Click **Copy payload** to copy the format to your clipboard, which is useful when building your endpoint's request parser.
+
+<!-- TODO: Add screenshot of expanded webhook payload format preview -->
+
+## Testing Webhooks {#test-webhook}
+
+You can test your webhook endpoint directly from the notification form before activating the subscription. This verifies that your endpoint is reachable, responds correctly, and (if a signing secret is configured) that your signature validation logic works.
+
+To test a webhook:
+
+1. Enter a webhook URL in the notification form
+2. (Optional) Enter a signing secret
+3. Click **Send test webhook**
+
+The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. The test result displays:
+
+- **On success:** The HTTP status code and response time in milliseconds (for example, "200 OK in 120ms")
+- **On failure:** An error message describing the issue (for example, network errors, non-2xx status codes, or timeouts)
+
+<!-- TODO: Add screenshot of test webhook button with success result -->
+
+:::note
+Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.
+:::
+
+### Test Webhook Requirements
+
+- Your endpoint must be publicly accessible (or reachable through a secure tunnel)
+- Your endpoint must respond within 5 seconds with a 2xx status code
+- If a signing secret is configured, the test payload is signed with HMAC-SHA256 using the same `X-Replicated-Signature` header as real deliveries
+- Private and internal IP addresses (localhost, RFC 1918 ranges, link-local, cloud metadata endpoints) are blocked for security
 
 ## Webhook Payload Structure
 
@@ -254,19 +296,21 @@ To debug webhook delivery issues:
 
 ### Testing Webhooks Locally
 
-To test webhooks during development:
+To test webhooks against a local development endpoint:
 
-1. **Use a tunnel service** like ngrok to expose your local endpoint:
-   ```bash
+1. Use a tunnel service like ngrok to expose your local endpoint:
+   ```
    ngrok http 3000
    ```
 
-2. **Use the ngrok URL** as your webhook URL in the notification configuration:
+2. Enter the ngrok URL as your webhook URL in the notification form:
    ```
    https://abc123.ngrok.io/webhook
    ```
 
-3. **Trigger test events** and watch the ngrok dashboard or your application logs
+3. Click **Send test webhook** to send a sample payload to your local endpoint through the tunnel
+
+4. Check the ngrok dashboard or your application logs to verify the request was received and processed correctly
 
 ## Next Steps
 
