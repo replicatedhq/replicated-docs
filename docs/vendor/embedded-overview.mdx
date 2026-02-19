@@ -6,7 +6,7 @@ import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 
 # Embedded Cluster Overview
 
-This topic provides an introduction to Replicated Embedded Cluster, including a description of the built-in extensions installed by Embedded Cluster, an overview of the Embedded Cluster single-node and multi-node architecture, and requirements and limitations.
+This topic provides an introduction to Replicated Embedded Cluster.
 
 :::note
 If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
@@ -16,7 +16,17 @@ If you are instead looking for information about creating Kubernetes Installers 
 
 <EmbeddedCluster/>
 
-### About Installing with Embedded Cluster
+### Comparison to kURL
+
+Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster offers several improvements such as:
+* Significantly faster installation, updates, and node joins
+* A redesigned Admin Console UI for managing the cluster
+* Improved support for multi-node clusters
+* One-click updates of both the application and the cluster at the same time
+
+Additionally, Embedded Cluster automatically deploys several built-in extensions like KOTS and OpenEBS to provide capabilities such as application management and storage. This represents an improvement over kURL because vendors distributing their application with Embedded Cluster no longer need choose and define various add-ons in the installer spec. For additional functionality that is not included in the built-in extensions, such as an ingress controller, vendors can provide their own [`extensions`](/reference/embedded-config#extensions) that will be deployed alongside the application.
+
+## About Installing with Embedded Cluster
 
 Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
 
@@ -32,13 +42,7 @@ For more information about how to install with Embedded Cluster, see:
 * [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
 * [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
 
-### About Configuring Embedded Cluster
-
-To support installations with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
-
-For more information, see [Embedded Cluster Config](/reference/embedded-config).
-
-### About Embedded Cluster Host Preflight Checks {#about-host-preflight-checks}
+### Embedded Cluster Host Preflight Checks {#about-host-preflight-checks}
 
 During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
 * The system has sufficient disk space
@@ -56,7 +60,7 @@ Embedded Cluster host preflight checks have the following limitations:
 * The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
 * Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
 
-### About Multi-Node Clusters
+### Multi-Node Installations
 
 Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the Admin Console. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
 
@@ -72,31 +76,15 @@ You can optionally define node roles in the Embedded Cluster Config. For multi-n
 
 For more information, see [roles](/reference/embedded-config#roles-beta) in _Embedded Cluster Config_.
 
-### About Performing Updates with Embedded Cluster
+## About Configuring Embedded Cluster
 
-<UpdateOverview/>
+To support installations with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
 
-For more information about updating, see [Perform Updates with Embedded Cluster](/enterprise/updating-embedded).
-
-## Built-In Extensions {#built-in-extensions}
-
-Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Each built-in extension is installed in its own namespace.
-
-The built-in extensions installed by Embedded Cluster include:
-
-* **Embedded Cluster Operator**: The Operator is used for reporting purposes as well as some clean up operations.
-
-* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
-
-* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
-
-* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
-
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+For more information, see [Embedded Cluster Config](/reference/embedded-config).
 
 ## Architecture
 
-This section describes the Embedded Cluster architecture, including the built-in extensions deployed by Embedded Cluster.
+This section describes the Embedded Cluster architecture, including the built-in extensions deployed by Embedded Cluster. For more information about these extensions, see [Built-In Extensions](#built-in-extensions) on this page.
 
 ### Single-Node Architecture
 
@@ -110,7 +98,7 @@ As shown in the diagram above, the user downloads the Embedded Cluster installat
 
 When the user runs the Embedded Cluster install command, the Embedded Cluster binary first installs the k0s cluster as a systemd service.
 
-After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions. For more information about these extensions, see [Built-In Extensions](#built-in-extensions) below.
+After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions.
 
 Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config.
 
@@ -134,15 +122,21 @@ Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) tha
 
 <HaArchitecture/>
 
-## Comparison to kURL
+### Built-In Extensions {#built-in-extensions}
 
-Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded Cluster offers several improvements such as:
-* Significantly faster installation, updates, and node joins
-* A redesigned Admin Console UI for managing the cluster
-* Improved support for multi-node clusters
-* One-click updates of both the application and the cluster at the same time
+Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Each built-in extension is installed in its own namespace.
 
-Additionally, Embedded Cluster automatically deploys several built-in extensions like KOTS and OpenEBS to provide capabilities such as application management and storage. This represents an improvement over kURL because vendors distributing their application with Embedded Cluster no longer need choose and define various add-ons in the installer spec. For additional functionality that is not included in the built-in extensions, such as an ingress controller, vendors can provide their own [`extensions`](/reference/embedded-config#extensions) that will be deployed alongside the application.
+The built-in extensions installed by Embedded Cluster include:
+
+* **Embedded Cluster Operator**: The Operator is used for reporting purposes as well as some clean up operations.
+
+* **KOTS:** Embedded Cluster installs the KOTS Admin Console in the kotsadm namespace. End customers use the Admin Console to configure and install the application. Rqlite is also installed in the kotsadm namespace alongside KOTS. Rqlite is a distributed relational database that uses SQLite as its storage engine. KOTS uses rqlite to store information such as support bundles, version history, application metadata, and other small amounts of data needed to manage the application. For more information about rqlite, see the [rqlite](https://rqlite.io/) website.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
+
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
 ## Requirements
 
