@@ -163,7 +163,7 @@ Reasons can include:
         For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
   </TabItem>
   <TabItem value="kernel" label="Incorrect kernel parameter values">
-  Embedded Cluster 1.19.0 and later automatically sets the `net.ipv4.conf.default.arp_filter`, `net.ipv4.conf.default.arp_ignore`, and `net.ipv4.ip_forward` kernel parameters. Additionally, host preflight checks automatically run during installation to verify that the kernel parameters were set correctly. For more information about the Embedded Cluster preflight checks, see [About Host Preflight Checks](/vendor/embedded-using#about-host-preflight-checks) in _Using Embedded Cluster_.
+  Embedded Cluster 1.19.0 and later automatically sets the `net.ipv4.conf.default.arp_filter`, `net.ipv4.conf.default.arp_ignore`, and `net.ipv4.ip_forward` kernel parameters. Additionally, host preflight checks automatically run during installation to verify that the kernel parameters were set correctly. For more information about the Embedded Cluster preflight checks, see [About Host Preflight Checks](/vendor/embedded-overview#about-host-preflight-checks) in _Using Embedded Cluster_.
 
   If kernel parameters are not set correctly and these preflight checks fail, you might see a message such as `IP forwarding must be enabled.` or `ARP filtering must be disabled by default for newly created interfaces.`.
 

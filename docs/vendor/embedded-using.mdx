@@ -36,135 +36,6 @@ You can use the following steps to get started quickly with Embedded Cluster. Mo
 
      The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. During the installation process in the Admin Console, you have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-## About Configuring Embedded Cluster
-
-To install an application with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
-
-For more information, see [Embedded Cluster Config](/reference/embedded-config).
-
-## About Installing with Embedded Cluster
-
-This section provides an overview of installing applications with Embedded Cluster.
-
-### Installation Overview
-
-The following diagram demonstrates how Kubernetes and an application are installed into a customer environment using Embedded Cluster: 
-
-![Embedded Cluster installs an app in a customer environment](/images/embedded-cluster-install.png)
-
-[View a larger version of this image](/images/embedded-cluster-install.png)
-
-As shown in the diagram above, the Embedded Cluster Config is included in the application release in the Replicated Vendor Portal and is used to generate the Embedded Cluster installation assets. Users can download these installation assets from the Replicated app service (`replicated.app`) on the command line, then run the Embedded Cluster installation command to install Kubernetes and the KOTS Admin Console. Finally, users access the Admin Console to optionally add nodes to the cluster and to configure and install the application.
-
-### Installation Options
-
-Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
-
-For online installations, Embedded Cluster also supports installing behind a proxy server.
-
-For more information about how to install with Embedded Cluster, see:
-* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
-* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
-
-### Customer-Specific Installation Instructions
-
-To install with Embedded Cluster, you can follow the customer-specific instructions provided on the **Customer** page in the Vendor Portal. For example:
-
-<img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog.png" width="500px"/>
-
-[View a larger version of this image](/images/embedded-cluster-install-dialog.png)
-
-### (Optional) Serve Installation Assets Using the Vendor API
-
-To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
-
-To serve Embedded Cluster installation assets with the Vendor API:
-
-1. If you have not done so already, create an API token for the Vendor API. See [Use the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
-
-1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
-
-     Note the following:
-
-     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
-
-     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
-
-### About Host Preflight Checks
-
-During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
-* The system has sufficient disk space
-* The system has at least 2G of memory and 2 CPU cores
-* The system clock is synchronized
-
-For Embedded Cluster requirements, see [Embedded Cluster Installation Requirements](/enterprise/installing-embedded-requirements). For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
-
-If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed. For more information about host preflight checks for installations on VMs or bare metal servers, see [About Host Preflights](preflight-support-bundle-about#host-preflights).
-
-#### Limitations
-
-Embedded Cluster host preflight checks have the following limitations:
-
-* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
-* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
-
-#### Ignore Host Preflight Checks
-
-You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. The `--ignore-host-preflights` flag allows users to see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
-
-Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
-
-:::note
-Ignoring host preflight checks is _not_ recommended for production installations.
-:::
-
-To ignore the Embedded Cluster host preflight checks:
-
-* **During installation:**
-
-     1. Pass the `--ignore-host-preflights` flag with the install command:
-          
-          ```bash
-          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights
-          ```
-          Where `APP_SLUG` is the unique slug for the application.
-
-     1. Review the results of the preflight checks. When prompted, type `yes` to ignore the preflight checks.      
-
-* **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
-
-          ```bash
-          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
-          ```
-
-## About Managing Multi-Node Clusters with Embedded Cluster
-
-This section describes managing nodes in multi-node clusters created with Embedded Cluster.
-
-### Defining Node Roles for Multi-Node Clusters
-
-You can optionally define node roles in the Embedded Cluster Config. For multi-node clusters, roles can be useful for the purpose of assigning specific application workloads to nodes. If nodes roles are defined, users access the Admin Console to assign one or more roles to a node when it is joined to the cluster. 
-
-For more information, see [roles](/reference/embedded-config#roles-beta) in _Embedded Cluster Config_.
-
-### Adding Nodes
-
-Users can add nodes to a cluster with Embedded Cluster from the Admin Console. The Admin Console provides the join command used to add nodes to the cluster.
-
-For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
-
-### High Availability for Multi-Node Clusters
-
-Multi-node clusters are not highly available by default. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
-
-For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability for Multi-Node Clusters](/enterprise/embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
-
-## About Performing Updates with Embedded Cluster
-
-<UpdateOverview/>
-
-For more information about updating, see [Perform Updates with Embedded Cluster](/enterprise/updating-embedded).
-
 ## Access the Cluster
 
 With Embedded Cluster, end users rarely need to use the CLI. Typical workflows, like updating the application and the cluster, can be done through the Admin Console. Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
@@ -197,6 +68,52 @@ To reset a node:
     :::note
     Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
     :::
+
+## (Optional) Serve Installation Assets Using the Vendor API
+
+To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
+
+To serve Embedded Cluster installation assets with the Vendor API:
+
+1. If you have not done so already, create an API token for the Vendor API. See [Use the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+
+     Note the following:
+
+     * (Recommended) Provide the `customerId` query parameter so that the customer’s license is included in the downloaded tarball. This mirrors what is returned when a customer downloads the binary directly using the Replicated app service and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
+
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+
+## Ignore Host Preflight Checks During Installation
+
+You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. The `--ignore-host-preflights` flag allows users to see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
+
+Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
+
+:::note
+Ignoring host preflight checks is _not_ recommended for production installations.
+:::
+
+To ignore the Embedded Cluster host preflight checks:
+
+* **During installation:**
+
+     1. Pass the `--ignore-host-preflights` flag with the install command:
+          
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights
+          ```
+          Where `APP_SLUG` is the unique slug for the application.
+
+     1. Review the results of the preflight checks. When prompted, type `yes` to ignore the preflight checks.      
+
+* **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
+
+          ```bash
+          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
+          ```
+
 
 ## Additional Use Cases
 
