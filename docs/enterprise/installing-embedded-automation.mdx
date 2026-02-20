@@ -41,10 +41,7 @@ To install with Embedded Cluster in an online environment:
     ```bash
     sudo ./APP_SLUG install --license PATH_TO_LICENSE \
       --config-values PATH_TO_CONFIGVALUES \
-      --admin-console-password ADMIN_CONSOLE_PASSWORD \
-      [--ignore-app-preflights] \
-      [--tls-cert CUSTOM_TLS_CERT] \
-      [--tls-key CUSTOM_TLS_KEY]
+      --admin-console-password ADMIN_CONSOLE_PASSWORD
     ```
 
     Where:
@@ -52,9 +49,6 @@ To install with Embedded Cluster in an online environment:
     * `PATH_TO_LICENSE` is the path to the customer license.
     * `ADMIN_CONSOLE_PASSWORD` is a password for accessing the Admin Console.
     * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file.
-    * (Optional) `--ignore-app-preflights` is an optional flag that can be passed to ignore any warnings and failures in application-specific preflight checks.
-    * (Optional) `CUSTOM_TLS_CERT` is the path to a custom TLS certificate for securing the Admin Console.
-    * (Optional) `CUSTOM_TLS_KEY` is the TLS key for the custom certificate. 
 
     For more information about the `install` command options, see [install](/reference/embedded-cluster-install).
 
@@ -70,10 +64,7 @@ To install with Embedded Cluster in an air-gapped environment:
     sudo ./APP_SLUG install --license PATH_TO_LICENSE \
       --config-values PATH_TO_CONFIGVALUES \
       --admin-console-password ADMIN_CONSOLE_PASSWORD \
-      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-      [--ignore-app-preflights] \
-      [--tls-cert CUSTOM_TLS_CERT] \
-      [--tls-key CUSTOM_TLS_KEY]
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE
     ```
 
     Replace:
@@ -82,8 +73,20 @@ To install with Embedded Cluster in an air-gapped environment:
     * `PATH_TO_CONFIGVALUES` with the path to the ConfigValues file.
     * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
     * `PATH_TO_AIRGAP_BUNDLE` with the path to the Embedded Cluster `.airgap` bundle for the release.
-    * (Optional) `--ignore-app-preflights` is an optional flag that can be passed to ignore any warnings and failures in application-specific preflight checks.
-    * (Optional) `CUSTOM_TLS_CERT` is the path to a custom TLS certificate for securing the Admin Console.
-    * (Optional) `CUSTOM_TLS_KEY` is the TLS key for the custom certificate.
 
-    For more information about the `install` command options, see [install](/reference/embedded-cluster-install).
+    For the complete list of `install` options, see [install](/reference/embedded-cluster-install).
+
+## (Optional) Ignore Preflight Checks During Installation
+
+You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](/reference/embedded-cluster-install).
+
+Ignoring host preflight checks is _not_ recommended for production installations.
+
+* To ignore preflight checks:
+
+    ```bash
+    sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --ignore-app-preflights --yes
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application
+    * The `--yes` flag addresses the prompt for `--ignore-host-preflights` to continue with installation

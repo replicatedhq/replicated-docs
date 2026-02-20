@@ -16,11 +16,11 @@ The Embedded Cluster air gap bundle not only contains the assets normally contai
 
 During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
 
-### Requirement
+## Requirement
 
 Air gap installations are supported with Embedded Cluster version 1.3.0 or later.
 
-### Limitations and Known Issues
+## Limitations and Known Issues
 
 Embedded Cluster installations in air gap environments have the following limitations and known issues:
 
@@ -86,9 +86,7 @@ To install with Embedded Cluster in an air gap environment:
     ```
     Where `APP_SLUG` is the unique application slug.
     
-    :::note
-    Embedded Cluster supports installation options such as installing behind a proxy and changing the data directory used by Embedded Cluster. For the list of flags supported with the Embedded Cluster `install` command, see [install](/reference/embedded-cluster-install).
-    :::
+    For the list of flags supported with the Embedded Cluster `install` command, see [install](/reference/embedded-cluster-install).
 
 1. When prompted, enter a password for accessing the KOTS Admin Console.
 
@@ -133,10 +131,10 @@ To install with Embedded Cluster in an air gap environment:
 
     Preflight checks are conformance tests that run against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
-The Admin Console dashboard opens.
+    The Admin Console dashboard opens.
 
-On the Admin Console dashboard, the application status changes from Missing to Unavailable while the application is being installed. When the installation is complete, the status changes to Ready. For example:
+    On the Admin Console dashboard, the application status changes from Missing to Unavailable while the application is being installed. When the installation is complete, the status changes to Ready. For example:
 
-![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
+    ![Admin console dashboard showing ready status](/images/gitea-ec-ready.png)
 
-[View a larger version of this image](/images/gitea-ec-ready.png)
+    [View a larger version of this image](/images/gitea-ec-ready.png)
