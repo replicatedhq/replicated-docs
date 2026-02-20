@@ -85,36 +85,6 @@ To serve Embedded Cluster installation assets with the Vendor API:
 
      * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
 
-## Ignore Host Preflight Checks During Installation
-
-You can pass the `--ignore-host-preflights` flag with the install command to ignore the Embedded Cluster host preflight checks. When `--ignore-host-preflights` is passed, the host preflight checks are still run, but the user is prompted and can choose to continue with the installation if preflight failures occur. If there are no failed preflights, no user prompt is displayed. The `--ignore-host-preflights` flag allows users to see any incompatibilities in their environment, while enabling them to bypass failures if necessary.
-
-Additionally, if users choose to ignore the host preflight checks during installation, the Admin Console still runs any application-specific preflight checks before the application is deployed.
-
-:::note
-Ignoring host preflight checks is _not_ recommended for production installations.
-:::
-
-To ignore the Embedded Cluster host preflight checks:
-
-* **During installation:**
-
-     1. Pass the `--ignore-host-preflights` flag with the install command:
-          
-          ```bash
-          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights
-          ```
-          Where `APP_SLUG` is the unique slug for the application.
-
-     1. Review the results of the preflight checks. When prompted, type `yes` to ignore the preflight checks.      
-
-* **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
-
-          ```bash
-          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
-          ```
-
-
 ## Additional Use Cases
 
 This section outlines some additional use cases for Embedded Cluster. These are not officially supported features from Replicated, but are ways of using Embedded Cluster that we or our customers have experimented with that might be useful to you.
