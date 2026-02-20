@@ -2,76 +2,64 @@ import UpdateOverview from "../partials/embedded-cluster/_update-overview.mdx"
 import EcConfig from "../partials/embedded-cluster/_ec-config.mdx"
 import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 
-# Use Embedded Cluster
+# Configure Embedded Cluster
 
-This topic provides information about using Replicated Embedded Cluster, including how to get started, configure Embedded Cluster, access the cluster using kubectl, and more. For an introduction to Embedded Cluster, see [Embedded Cluster Overview](embedded-overview).
+This topic provides information about how to configure your application releases to support installations with Replicated Embedded Cluster. For an introduction to Embedded Cluster, see [Embedded Cluster Overview](embedded-overview).
 
-## Quick Start
+## Add the Embedded Cluster Config Resource
 
-You can use the following steps to get started quickly with Embedded Cluster. More detailed documentation is available below.
+An Embedded Cluster Config must be present in the application release to support installation with Embedded Cluster. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster in the Config.
 
-1. Create a new customer or edit an existing customer and select the **Embedded Cluster Enabled** license option. Save the customer.
+:::note
+These steps assume that you have at least one release for your application that supports installation with Replicated KOTS or Replicated kURL. If you have not yet onboarded to Replicated, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
+:::
 
-1. Create a new release that includes your application. In that release, create an Embedded Cluster Config that includes, at minimum, the Embedded Cluster version you want to use. See the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster) to find the latest version. Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
+To add the Embedded Cluster cluster for your application:
 
-     Example Embedded Cluster Config:
+1. Create a new release that includes your application and the Replicated [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource. If you have not yet created any releases for your application, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
+
+1. In the release, add an [Embedded Cluster Config](/reference/embedded-config) manifest. At minimum, the Config must include the Embedded Cluster version to use.
 
      <EcConfig/>
 
-1. Save the release and promote it to the channel the customer is assigned to.
+1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions).
 
-1. Return to the customer page where you enabled Embedded Cluster. At the top right, click **Install instructions** and choose **Embedded Cluster**. A dialog appears with instructions on how to download the Embedded Cluster installation assets and install your application.
+1. Save the release and promote it to the channel that you use for testing internally.
 
-     ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+1. Install with Embedded Cluster in a development environment to test:
 
-     [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
+     1. Go to the **Manage customer** page for a new or existing Development customer.
+     
+     1. Under **Install types**, enable the **Embedded Cluster (current generation product)** option. Save the customer.
+
+     1. At the top right of the customer page, click **Install instructions** and choose **Embedded Cluster**. A dialog appears with instructions on how to download the Embedded Cluster installation assets and install your application.
+
+        ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
+
+        [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
  
-1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
+     1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
 
-     <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-latest.png" width="550px"/>
+          <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-latest.png" width="550px"/>
 
-     [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
+          [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
 
-1. Enter an Admin Console password when prompted.
+     1. Enter an Admin Console password when prompted.
 
-     The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. During the installation process in the Admin Console, you have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+        The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. During the installation process in the Admin Console, you have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
 
-## Access the Cluster
-
-With Embedded Cluster, end users rarely need to use the CLI. Typical workflows, like updating the application and the cluster, can be done through the Admin Console. Nonetheless, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
-
-:::note
-If you encounter a typical workflow where your customers have to use the Embedded Cluster shell, reach out to Alex Parker at alexp@replicated.com. These workflows might be candidates for additional Admin Console functionality.
-:::
-
-<ShellCommand/>
-
-## Reset a Node
-
-Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
-
-If you want to completely remove a cluster, you need to reset each node individually.
-
-When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
-
-To reset a node:
-
-1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
-
-1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
-
-    ```
-    sudo ./APP_SLUG reset
-    ```
-    Where `APP_SLUG` is the unique slug for the application.
-
-    :::note
-    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
-    :::
+1. After successfully installing your application with Embedded Cluster, customize the [Embedded Cluster Config](/reference/embedded-config) as desired:
+     * Add your custom domain for the Replicated proxy registry and Replicated app service. See [domains](/reference/embedded-config#domains).
+     * Add custom Helm extensions. Extensions allow you to provide Helm charts that are deployed before your application. For example, you can add a Helm extension to ship an ingress controller. See [extensions](/reference/embedded-config#extensions).
+     * Define roles to assign workloads to specific nodes in multi-node installations. See [roles](/reference/embedded-config#roles).
+     
+     Replicated recommends that you work in small iterations and test your changes frequently by installing in development environments.
 
 ## (Optional) Serve Installation Assets Using the Vendor API
 
-To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
+To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle.
+
+Your end customers can download all these Embedded Cluster installation assets from the Replicated Enterprise Portal. No additional configuration is required. However, some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
 
 To serve Embedded Cluster installation assets with the Vendor API:
 
@@ -110,18 +98,19 @@ To ignore the Embedded Cluster host preflight checks:
 
 * **In automation:** Use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`.
 
-          ```bash
-          sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
-          ```
+     ```bash
+     sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --yes
+     ```
 
+## Distribute the NVIDIA GPU Operator with Embedded Cluster
 
-## Additional Use Cases
-
-This section outlines some additional use cases for Embedded Cluster. These are not officially supported features from Replicated, but are ways of using Embedded Cluster that we or our customers have experimented with that might be useful to you.
-
-### NVIDIA GPU Operator
+:::note
+Distributing the NVIDIA GPU Operator with Embedded Cluster is not an officially supported feature from Replicated. However, it is a common use case.
+:::
 
 The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation.
+
+### Include the NVIDIA GPU Operator and Configure Containerd Options
 
 You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
 
@@ -149,10 +138,11 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
              - name: CONTAINERD_SOCKET
                value: /run/k0s/containerd.sock
 ```
+
+### Containerd Known Issue 
+
 When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
 
-:::note
 If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster. If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia-gpu-operator) in _Troubleshooting Embedded Cluster_.
 
 This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
-:::
