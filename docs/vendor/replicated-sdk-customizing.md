@@ -61,7 +61,7 @@ The permissions included in the Minimal RBAC role vary depending on if you defin
 <details>
   <summary>What are status informers?</summary>
   
-  The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm Installations](/vendor/insights-app-status#helm-cli-installations) in _Enabling and Understanding Application Status_.
+  The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm CLI Installations](/vendor/insights-app-status#helm-cli-installations) in _Enabling and Understanding Application Status_.
 </details>
 
 #### Default Minimal RBAC Role Without Custom Status Informers {#default-no-status-informers}
