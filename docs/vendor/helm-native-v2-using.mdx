@@ -18,8 +18,6 @@ To configure a release to support installations with HelmChart v2:
 
 1. For each HelmChart resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-### Task 1: Rewrite Image Names {#rewrite-image-names}
-
 1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) key so that KOTS rewrites any application image references in your Helm values when a local image registry is used.
 
     **Example:**

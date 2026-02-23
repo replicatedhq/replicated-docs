@@ -126,7 +126,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
                     repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
                     tag: 1.24-alpine
       ``` 
-      For more information about how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, including additional examples, see [Task 1: Rewrite Image Names](/vendor/helm-native-v2-using#rewrite-image-names) in _Configuring the HelmChart v2 Custom Resource_.
+      For more information about how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, including additional examples, see [Support Installations with HelmChart v2](/vendor/helm-native-v2-using).
 
 1. If you support air gap installations, add any images that are referenced in your Backup and Restore resources to the `additionalImages` field of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release so they can be used during the backup and restore process in environments with limited or no outbound internet access. For more information, see [additionalImages](/reference/custom-resource-application#additionalimages) in _Application_.
 
