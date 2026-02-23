@@ -469,7 +469,7 @@ Released on September 1, 2023
 * Adds support for sending [custom application metrics](/vendor/custom-metrics) via the `/api/v1/app/custom-metrics` endpoint.
 * Adds support for installing the Helm chart via `helm template` then `kubectl apply` the generated manifests. Limitations to installing with this approach include:
   - The [app history endpoint](/reference/replicated-sdk-apis#get-apphistory) will always return an empty array because there is no Helm history in the cluster.
-  - Status informers will not be automatically generated and would have to be provided via the [replicated-sdk.statusInformers](/vendor/insights-app-status#helm-installations) Helm value.
+  - Status informers will not be automatically generated and would have to be provided via the [replicated-sdk.statusInformers](/vendor/insights-app-status#helm-cli-installations) Helm value.
 
 ## 0.0.1-beta.4
 
