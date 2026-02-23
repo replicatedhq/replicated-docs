@@ -14,7 +14,7 @@ As shown in the image above, the **Reporting** page has the following main secti
 * [Manage Customer](#manage-customer)
 * [Time to Install](#time-to-install)
 * [Download Portal](#download-portal)
-* [Enterprise Portal](#enterprise-portal-beta)
+* [Enterprise Portal](#enterprise-portal)
 * [Instances](#instances)
 * [Install Attempts](#install-attempts-beta)
 
@@ -56,7 +56,7 @@ For more information about how to interpret the time to install metrics, see [Ti
 ### Download Portal
 
 :::note
-If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal-beta) below.
+If the Replicated Enterprise Portal is enabled for the customer, then an **Enterprise Portal** section is displayed instead of the **Download Portal** section. For more information, see [Enterprise Portal](#enterprise-portal) below.
 :::
 
 From the **Download portal** section, you can:
@@ -65,7 +65,7 @@ From the **Download portal** section, you can:
 
 You can use the Download Portal to give your customers access to the files they need to install your application, such as their license file or air gap bundles. For more information, see [Access a Customer's Download Portal](releases-share-download-portal).
 
-### Enterprise Portal {#enterprise-portal-beta}
+### Enterprise Portal {#enterprise-portal}
 
 :::note
 The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Customer Access to the Enterprise Portal](/vendor/enterprise-portal-invite).
