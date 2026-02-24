@@ -14,6 +14,7 @@ Event Notifications webhooks include:
 - JSON payload with event data
 - Event-specific payload format preview with copy support
 - Built-in test webhook to verify endpoint connectivity before activating
+- Optional custom HTTP headers for webhook authentication
 - HMAC-SHA256 signature for verification
 - Automatic retries with exponential backoff
 - Delivery attempt tracking
@@ -34,6 +35,7 @@ To configure a webhook for Event Notifications:
    - Choose **Webhook** as the delivery method
    - Enter your webhook URL
    - (Optional but recommended) Enter a signing secret for HMAC verification
+   - (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint. For more information, see [Custom HTTP Headers](#custom-headers).
 
 3. **Test your webhook:**
    - Click **Send test webhook** in the notification form to send a sample payload to your endpoint
@@ -41,6 +43,26 @@ To configure a webhook for Event Notifications:
    - You can also expand the **Webhook payload format** section to preview the exact JSON structure your endpoint receives before testing
 
 See [Create Event Notification Subscriptions (Beta)](event-notifications-create) for detailed instructions on creating subscriptions.
+
+## Custom HTTP Headers {#custom-headers}
+
+You can add custom HTTP headers to webhook subscriptions to authenticate with your receiving endpoint. This is useful when your endpoint requires an API key, bearer token, or other credentials in the request headers.
+
+To add custom headers:
+
+1. In the webhook notification form, expand **Advanced configuration**
+1. Click **Add header**
+1. Enter the header name and value
+1. (Optional) Repeat to add additional headers
+
+Custom headers have the following constraints:
+
+- Maximum of 5 headers per subscription
+- Header values can be up to 2048 characters
+- Duplicate header names are not allowed
+- Certain reserved headers (such as `Content-Type` and `Host`) cannot be overridden
+
+Header values are encrypted at rest and masked in the UI after you save the subscription. To update a saved header value, you must re-enter it. Custom headers are included in both real webhook deliveries and test webhook requests.
 
 ## Previewing the Webhook Payload Format {#payload-preview}
 
@@ -80,6 +102,7 @@ Test webhook payloads include a `"test": true` field to distinguish them from re
 - Your endpoint must be publicly accessible (or reachable through a secure tunnel)
 - Your endpoint must respond within 5 seconds with a 2xx status code
 - If a signing secret is configured, the test payload is signed with HMAC-SHA256 using the same `X-Replicated-Signature` header as real deliveries
+- If custom HTTP headers are configured, they are included in the test request so you can verify your endpoint's authentication logic
 - Private and internal IP addresses (localhost, RFC 1918 ranges, link-local, cloud metadata endpoints) are blocked for security
 
 ## Webhook Payload Structure
