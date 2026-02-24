@@ -61,7 +61,7 @@ The permissions included in the Minimal RBAC role vary depending on if you defin
 <details>
   <summary>What are status informers?</summary>
   
-  The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
+  The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm CLI Installations](/vendor/insights-app-status#helm-cli-installations) in _Enabling and Understanding Application Status_.
 </details>
 
 #### Default Minimal RBAC Role Without Custom Status Informers {#default-no-status-informers}
@@ -679,6 +679,6 @@ replicated:
 
 The image used by the Replicated SDK Helm chart is automatically pulled through the Replicated proxy registry during deployment. The default location for the SDK image is `proxy.replicated.com/library/replicated-sdk-image`. You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
 
-When you add a custom domain for the proxy registry, the SDK image also uses that custom domain. No additional configuration is required. For information about how to add a custom domain for the proxy registry, see [Add a Custom Domain in the Vendor Portal](#add-domain) on this page.
+When you add a custom domain for the proxy registry, the SDK image also uses that custom domain. No additional configuration is required. For information about how to add a custom domain for the proxy registry, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
 
 For information about how to add custom domains in the Vendor Portal, see [Use Custom Domains](custom-domains-using).

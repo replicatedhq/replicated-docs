@@ -18,7 +18,7 @@ To configure a release to support installations with HelmChart v2:
 
 1. For each HelmChart resource in the release, configure the `builder` key. This ensures that all the required and optional images for your application are available for users to push to their own local image registry. Using a local image registry is required in air gap installations and optional in online installations. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key so that KOTS rewrites any application image references in your Helm values when a local image registry is used.
+1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) key so that KOTS rewrites any application image references in your Helm values when a local image registry is used.
 
     **Example:**
 
@@ -52,7 +52,7 @@ To configure a release to support installations with HelmChart v2:
        Image names must be unique. If you have more than one image with the same name (even if the images are in different registries or namespaces) KOTS will overwrite one with the other.
        :::
 
-1. In the HelmChart resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalValues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
+1. In the HelmChart resource that corresponds to the chart where the Replicated SDK is declared as a dependency, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) key using the same method as in the previous step to conditionally rewrite the Replicated SDK image reference.
 
     **Example:**
 
