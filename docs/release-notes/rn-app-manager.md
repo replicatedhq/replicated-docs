@@ -32,7 +32,7 @@ Released on February 24, 2026
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Bug Fixes {#bug-fixes-1-129-4}
-* Fix panic caused when upgrading older versions of Embedded Cluster to newer versions.
+* Fixes panic caused when upgrading Embedded Cluster.
 
 ## 1.129.3
 
