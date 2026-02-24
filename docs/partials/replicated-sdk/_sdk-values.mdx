@@ -8,7 +8,7 @@ For the complete list of Replicated SDK Helm values, see the [`values.yaml`](htt
 
 ### Limitation
 
-The Replicated SDK reads its configuration from Helm values only and does not support reading from Kubernetes Secrets or CSI-mounted volumes. Any values used by the SDK must be set in the chart's `values.yaml`, with the `--set` flag during deployment, or in a values file from a GitOps/CI workflow.
+The Replicated SDK reads its configuration from Helm values only and does not support reading from Kubernetes Secrets or CSI-mounted volumes. Any values used by the SDK must be set in the chart's `values.yaml` or with the `--set` flag during deployment.
 
 ### Example
 
