@@ -6,11 +6,11 @@ When a user installs a Helm chart that includes the Replicated SDK as a dependen
 
 For the complete list of Replicated SDK Helm values, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
 
-:::note
-The Replicated SDK `replicated` values are different from the `global.replicated` values that are injected by the Replicated registry during Helm CLI installations. The `global.replicated` values are injected regardless of if the Replicated SDK is distributed alongside the application as dependency. For more information about the `global.replicated` values, see [Helm global.replicated Values Schema](/vendor/helm-install-values-schema).
-:::
+### Limitation
 
-#### Example
+The Replicated SDK reads its configuration from Helm values only and does not support reading from Kubernetes Secrets or CSI-mounted volumes. Any values used by the SDK must be set in the chart's `values.yaml`, with the `--set` flag during deployment, or in a values file from a GitOps/CI workflow.
+
+### Example
 
 The following is an example of Replicated SDK `replicated` values for an application named NGINX that was installed in a cluster with Helm. These values are injected in the `values.yaml` file for the parent Helm chart of the NGINX application.
 
@@ -52,7 +52,7 @@ replicated:
   versionLabel: 0.0.2
 ```
 
-#### Replicated SDK `replicated.license` Value
+### Replicated SDK `replicated.license` Value
 
 The Replicated SDK includes a `replicated.license` value that contains a YAML representation of the customer license. For more information about the built-in fields included in all Replicated licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 

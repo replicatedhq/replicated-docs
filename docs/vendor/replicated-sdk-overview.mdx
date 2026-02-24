@@ -10,10 +10,6 @@ This topic provides an introduction to using the Replicated SDK with your applic
 <SDKOverview/>
 
 For more information about the Replicated SDK API, see [Replicated SDK API](/reference/replicated-sdk-apis).
-
-## Limitation
-
-Some popular enterprise continuous delivery tools, such as ArgoCD and Pulumi, deploy Helm charts by running `helm template` then `kubectl apply` on the generated manifests, rather than running `helm install` or `helm upgrade`.  The following limitations apply to applications installed by running `helm template` then `kubectl apply`
  
 ## SDK Resiliency
 
@@ -24,5 +20,9 @@ If the upstream APIs are not available at startup, the SDK does not accept conne
 When serving requests, if the upstream APIs become unavailable, the SDK serves from the memory cache and sets the `X-Replicated-Served-From-Cache` header to `true`.  Additionally, rapid successive requests to same SDK endpoint with the same request properties will be rate-limited returning the last cached payload and status code without reaching out to the upstream APIs. A `X-Replicated-Rate-Limited` header will set to `true`.
 
 ## Replicated SDK Helm Values
+
+:::note
+The Replicated SDK `replicated` values are different from the `global.replicated` values that are injected by the Replicated registry during Helm CLI installations. The `global.replicated` values are injected regardless of if the Replicated SDK is distributed alongside the application as dependency. For more information about the `global.replicated` values, see [Helm global.replicated Values Schema](/vendor/helm-install-values-schema).
+:::
 
 <SdkValues/>
