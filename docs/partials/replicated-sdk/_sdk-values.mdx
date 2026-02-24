@@ -6,10 +6,6 @@ When a user installs a Helm chart that includes the Replicated SDK as a dependen
 
 For the complete list of Replicated SDK Helm values, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
 
-### Limitation
-
-The Replicated SDK reads its configuration from Helm values only and does not support reading from Kubernetes Secrets or CSI-mounted volumes. Any values used by the SDK must be set in the chart's `values.yaml` or with the `--set` flag during deployment.
-
 ### Example
 
 The following is an example of Replicated SDK `replicated` values for an application named NGINX that was installed in a cluster with Helm. These values are injected in the `values.yaml` file for the parent Helm chart of the NGINX application.
