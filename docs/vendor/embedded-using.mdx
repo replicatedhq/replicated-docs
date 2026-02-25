@@ -8,21 +8,19 @@ This topic provides information about how to configure your application releases
 
 ## Add the Embedded Cluster Config Resource
 
-An Embedded Cluster Config must be present in the application release to support installation with Embedded Cluster. At minimum, the Embedded Cluster Config sets the version of Embedded Cluster that will be installed. You can also define several characteristics about the cluster in the Config.
-
-:::note
-These steps assume that you have at least one release for your application that supports installation with Replicated KOTS or Replicated kURL. If you have not yet onboarded to Replicated, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
-:::
+An [Embedded Cluster Config](/reference/embedded-config) must be present in the application release to support installation with Embedded Cluster. The Embedded Cluster Config sets the version of Embedded Cluster that will be installed, and lets you define additional characteristics about the cluster.
 
 To add the Embedded Cluster cluster for your application:
 
-1. Create a new release that includes your application and the Replicated [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource. If you have not yet created any releases for your application, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
+1. Create a new release. At minimum, the release must include your application and a separate [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource for each Helm chart in the release. The HelmChart custom resource is required to support installation with a Replicated installer.
 
-1. In the release, add an [Embedded Cluster Config](/reference/embedded-config) manifest. At minimum, the Config must include the Embedded Cluster version to use.
+   If you have not yet created a release for your application that supports installation with a Replicated installer (KOTS or kURL), see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
+
+1. In the release, add an [Embedded Cluster Config](/reference/embedded-config) manifest that specifies the Embedded Cluster version to use:
 
      <EcConfig/>
 
-1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions).
+1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, update the Embedded Cluster Config to add [extensions](/reference/embedded-config#extensions).
 
 1. Save the release and promote it to the channel that you use for testing internally.
 
@@ -30,7 +28,7 @@ To add the Embedded Cluster cluster for your application:
 
      1. Go to the **Manage customer** page for a new or existing Development customer.
      
-     1. Under **Install types**, enable the **Embedded Cluster (current generation product)** option. Save the customer.
+     1. Under **Install types**, enable the **Embedded Cluster (current generation product)** option. Click **Save**.
 
      1. At the top right of the customer page, click **Install instructions** and choose **Embedded Cluster**. A dialog appears with instructions on how to download the Embedded Cluster installation assets and install your application.
 
@@ -46,20 +44,20 @@ To add the Embedded Cluster cluster for your application:
 
      1. Enter an Admin Console password when prompted.
 
-        The Admin Console URL is printed when the installation finishes. Access the Admin Console to begin installing your application. During the installation process in the Admin Console, you have the opportunity to add nodes if you want a multi-node cluster. Then you can provide application config, run preflights, and deploy your application.
+        The Admin Console URL is printed when the installation finishes. Access the Admin Console and follow the instructions in the wizard to install your application.
 
 1. After successfully installing your application with Embedded Cluster, customize the [Embedded Cluster Config](/reference/embedded-config) as desired:
      * Add your custom domain for the Replicated proxy registry and Replicated app service. See [domains](/reference/embedded-config#domains).
      * Add custom Helm extensions. Extensions allow you to provide Helm charts that are deployed before your application. For example, you can add a Helm extension to ship an ingress controller. See [extensions](/reference/embedded-config#extensions).
      * Define roles to assign workloads to specific nodes in multi-node installations. See [roles](/reference/embedded-config#roles).
      
-     Replicated recommends that you work in small iterations and test your changes frequently by installing in development environments.
+     Replicated recommends that you work in small iterations and test your changes frequently in your development environment.
 
 ## (Optional) Serve Installation Assets Using the Vendor API
 
-To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle.
+To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle. End customers can download all these installation assets using a curl command by following the installation steps available in the [Replicated Enterprise Portal](/vendor/enterprise-portal-about).
 
-Your end customers can download all these Embedded Cluster installation assets from the Replicated Enterprise Portal. No additional configuration is required. However, some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
+However, some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation assets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
 
 To serve Embedded Cluster installation assets with the Vendor API:
 
