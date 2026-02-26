@@ -69,6 +69,22 @@ To reset a node:
     Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
     :::
 
+The reset command in Embedded Cluster performs a sequence of steps:
+
+1. Drain the node and evict all the Pods gracefully
+1. Delete the node from the cluster
+1. Stop & reset k0s
+1. Remove all Embedded Cluster files
+1. Reboot the node
+
+There will be some safety checks to run during the reset as well, such as:
+
+     * No removal when the etcd cluster is not healthy
+     * No removal of the controller node when worker nodes are still available
+
+When cleaning up a single node or deleting a test environment, this command can be used with --force and -y flag.
+For production clusters, make sure to run this on worker nodes first and leave the controller nodes until last if you want to delete the entire cluster, the controller node will also remove itself from etcd membership.
+
 ## (Optional) Serve Installation Assets Using the Vendor API
 
 To install with Embedded Cluster, you need to download the Embedded Cluster installer binary and a license. Air gap installations also require an air gap bundle. Some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation essets yourself using the Replicated Vendor API, rather than having customers download the assets from the Replicated app service using a curl command during installation.
