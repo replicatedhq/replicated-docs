@@ -277,7 +277,11 @@ A webhook delivery is considered failed when:
 - The request times out (exceeds 5 seconds)
 - A network error occurs (endpoint unreachable, DNS failure, etc.)
 
-After all retry attempts are exhausted, the notification is marked as permanently failed and can be viewed in the notification history.
+After all retry attempts are exhausted, the notification is marked as permanently failed and can be viewed in the notification history. An email is also sent to the subscription creator and team admins with details about the failure, including the event type, the last error message, and a link to the delivery history in the Vendor Portal.
+
+### Auto-Disable
+
+If a webhook subscription has 10 consecutive permanent failures, it is automatically disabled to prevent continued delivery attempts to an unreachable endpoint. To resume deliveries, verify that your endpoint is reachable and then re-enable the subscription from the **Notifications** page.
 
 ## Debugging Webhooks {#debugging}
 
