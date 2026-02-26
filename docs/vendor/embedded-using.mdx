@@ -46,44 +46,49 @@ If you encounter a typical workflow where your customers have to use the Embedde
 
 <ShellCommand/>
 
-## Reset a Node
+## Reset Nodes
 
-Resetting a node removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made, so you can reset a machine and reuse it instead of having to procure another machine.
+This section describes how to reset nodes with Embedded Cluster, including details about the Embedded Cluster `reset` command and best practices for resetting nodes.
 
-If you want to completely remove a cluster, you need to reset each node individually.
+### About the `reset` Command
 
-When resetting a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet will be recreated automatically on another node. To recreate other PVCs, the application will need to be redeployed.
+Resetting a node with Embedded Cluster removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made because you can reuse the machine instead of having to procure a new one.
+
+The `reset` command performs the following steps:
+
+1. Run safety checks. For example, `reset` will not remove a controller node when there are workers nodes available. And, it will not remove a node when the etcd cluster is unhealthy.
+1. Drain the node and evict all the Pods gracefully
+1. Delete the node from the cluster
+1. Stop and reset k0s
+1. Remove all Embedded Cluster files
+1. Reboot the node
+
+### Best Practices for Multi-Node Clusters
+
+When resetting nodes in multi-node clusters in production environments, consider the following best practices to avoid issues:
+
+* When deleting the entire cluster, run `reset` on each of the worker nodes first. Then, run `reset` on controller nodes. Controller nodes also remove thmselves from etcd membership.
+
+* If you need to reset a controller node in a three-node cluster, first join a fourth controller node to the cluster before removing the target node. This ensures that you maintain a minimum of three nodes for the Kubernetes control plane. You can add and remove worker nodes as needed because they do not have any control plane components.
+
+### Limitation
+
+When you reset a node, OpenEBS PVCs on the node are deleted. Only PVCs created as part of a StatefulSet are recreated automatically on another node in the cluster. To recreate other PVCs, redeploy the application in the cluster.
+
+### Reset a Node
 
 To reset a node:
 
 1. SSH onto the machine. Ensure that the Embedded Cluster binary is still available on that machine.
 
-1. Run the following command to reset the node and automatically reboot the machine to ensure that transient configuration is also reset:
+1. Run the following command to remove the node and reboot the machine:
 
     ```
     sudo ./APP_SLUG reset
     ```
     Where `APP_SLUG` is the unique slug for the application.
 
-    :::note
-    Pass the `--no-prompt` flag to disable interactive prompts. Pass the `--force` flag to ignore any errors encountered during the reset.
-    :::
-
-The reset command in Embedded Cluster performs a sequence of steps:
-
-1. Drain the node and evict all the Pods gracefully
-1. Delete the node from the cluster
-1. Stop & reset k0s
-1. Remove all Embedded Cluster files
-1. Reboot the node
-
-There will be some safety checks to run during the reset as well, such as:
-
-     * No removal when the etcd cluster is not healthy
-     * No removal of the controller node when worker nodes are still available
-
-When cleaning up a single node or deleting a test environment, this command can be used with --force and -y flag.
-For production clusters, make sure to run this on worker nodes first and leave the controller nodes until last if you want to delete the entire cluster, the controller node will also remove itself from etcd membership.
+    When resetting a single node or deleting a test environment, you can include the `--force` and `-y` flags to ignore any errors. For more information, see [reset](/reference/embedded-cluster-reset).
 
 ## (Optional) Serve Installation Assets Using the Vendor API
 
