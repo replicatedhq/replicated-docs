@@ -81,6 +81,27 @@ For more information about using `optionalValues`, see [Setting Helm Chart Value
 
 For an example of recursive and non-recursive merging, see [About Recursive Merge](/vendor/helm-optional-value-keys#recursive-merge).
 
+### optionalValues.values
+
+In the `optionalValues.values` key, you list the values to set if the specified condition is met.
+
+For example:
+
+```yaml
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
+      recursiveMerge: false
+      values:
+        externalDatabase:
+          host: "repl{{ ConfigOption `external_db_host`}}"
+          user: "repl{{ ConfigOption `external_db_user`}}"
+          password: "repl{{ ConfigOption `external_db_password`}}"
+          database: "repl{{ ConfigOption `external_db_database`}}"
+          port: "repl{{ ConfigOption `external_ db_port`}}"
+```
+
+In this example, the Replicated installer renders the template functions and sets the `externalDatabase` values only when the user selects the `external` option for the `mariadb_type` config option.
+
 ## namespace
 
 <Namespace/>
