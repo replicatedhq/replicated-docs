@@ -1,0 +1,7 @@
+For Helm charts distributed with Replicated, teams should take caution when storing the chart's `values.yaml` file in Git. This is because the Helm chart tarball that is pulled from the Replicated registry contains secrets and other customer-specific values, including the `global.replicated.dockerconfigjson` registry authentication credentials and customer license data.
+
+For teams that use GitOps or other CI/CD workflows to deploy Helm charts, Replicated recommends that you do one of the following to avoid accidentally exposing secrets or sensitive data in Git:
+
+* Pull the Helm chart at deploy time only, rather than committing the chart in Git
+
+* Alternatively, remove the `global.replicated` values from the chart's `values.yaml` file before committing the chart. Then re-inject the `global.replicated` values at deploy time using a secret manager.
