@@ -6,20 +6,22 @@ For information about how your end customers can manage, invite, and remove team
 
 ## Manage Access to the Enterprise Portal {#manage-ep-access}
 
-You can enable and disable access to the Enterprise Portal for all customers, or on a per-customer basis. When access to the Enterprise Portal is disabled, the customer has access to the Replicated Download Portal instead.
+You can enable the Enterprise Portal for all customers at once, or on a per-customer basis. When the Enterprise Portal is disabled for a customer, they have access to the Replicated Download Portal instead.
 
 :::note
-The Enterprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal. 
+The Enterprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal.
 :::
 
-Do one of the following to enable or disable Enterprise Portal access for your customers:
-   
-* Go to **Enterprise Portal > Customer Access**. For **Portal access**, enable or disable the toggle to control if all customers have access to the Enterprise Portal or the Download Portal.
+Do one of the following to manage Enterprise Portal access for your customers:
+
+* Go to **Enterprise Portal > Customer Access**. In the **Portal Access** section, enable the **Enable Enterprise Portal for all customers** toggle to route all customers to the Enterprise Portal. When this global setting is enabled, all per-customer toggles are disabled and display context about the active override.
 
    ![enterprise portal access toggle](/images/enterprise-portal-access-toggle.png)
    [View a larger version of this image](/images/enterprise-portal-access-toggle.png)
 
-* Go to **Customers** and select the target customer. On the customer's page, go to **Enterprise Portal access** and enable or disable the **Enterprise Portal access** toggle to control if the customer has access to the Enterprise Portal or the Download Portal.
+* Go to **Customers** and select the target customer. On the customer's page, go to **Enterprise Portal access** and enable the **Enable Enterprise Portal for this customer** toggle to route that customer to the Enterprise Portal.
+
+   When the global **Enable Enterprise Portal for all customers** setting is on, the per-customer toggle is disabled. An info banner explains that the global setting is active and shows what the customer's individual setting would be if the global override were turned off.
 
    ![customer-specific enterprise portal access toggle](/images/customer-enterprise-portal-access-toggle.png)
    [View a larger version of this image](/images/customer-enterprise-portal-access-toggle.png)
