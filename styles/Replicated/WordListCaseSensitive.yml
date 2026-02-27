@@ -1,0 +1,24 @@
+# This file is used to lint for proper casing of the terms and proper nouns in the Replicated word list
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
+level: warning
+ignorecase: false
+action:
+  name: replace
+swap:
+  admin console: Admin Console
+  compatibility matrix: Compatibility Matrix
+  download portal: Download Portal
+  embedded cluster: Embedded Cluster
+  enterprise portal: Enterprise Portal
+  kots CLI: KOTS CLI
+  Kots: KOTS
+  kurl: kURL
+  Preflight Checks: preflight checks
+  Proxy Registry: proxy registry
+  replicated CLI: Replicated CLI
+  Replicated platform: Replicated Platform
+  security center: Security Center
+  Support Bundles: support bundles
+  vendor portal: Vendor Portal

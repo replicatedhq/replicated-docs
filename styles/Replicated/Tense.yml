@@ -1,0 +1,12 @@
+# This file is used to lint temporal words.
+extends: existence
+message: "Avoid temporal words like '%s'."
+link: 'https://developers.google.com/style/timeless-documentation'
+ignorecase: true
+level: warning
+tokens:
+  - "[a-zA-Z]*'ll"
+  - currently
+  - now
+  - will
+  - won't

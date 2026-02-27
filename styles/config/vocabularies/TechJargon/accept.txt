@@ -1,0 +1,22 @@
+# Acronyms, protocols, and general tech terminology.
+# One term per line. Add as you find false positives.
+
+API
+APIs
+CLI
+CSS
+HTML
+HTTP
+HTTPS
+JSON
+MDX
+Node
+RBAC
+SDK
+SSL
+TLS
+VMs
+YAML
+Kubernetes
+Helm
+npm

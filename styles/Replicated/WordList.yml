@@ -1,0 +1,36 @@
+# This file is used to lint for proper use of the Replicated word list
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
+level: warning
+ignorecase: false
+action:
+  name: replace
+swap:
+  "(?:e-mail|Email|E-mail)": email
+  "(?:kill|terminate|abort)": stop|exit|cancel|end
+  air gapped: air-gapped
+  air-gap: air-gapped|air gap
+  airgap: air-gapped|air gap
+  easy|easily: ''
+  file name: filename
+  in order to: to
+  leverage: use|apply|take advantage of
+  once: after|one time
+  once the: after the
+  once you: after you
+  on(?:\s|-)premise: on-premises|on-prem
+  open-source: open source
+  please: ''
+  quickstart: quick start
+  seamless|seamlessly: ''
+  sign into: sign in to
+  simple|simply: ''
+  stand for: represent|mean
+  synchronize: sync
+  url: URL
+  utilize: use
+  Vendor API v3: Vendor API
+  via: with|through
+  very: ''
+  we recommend: Replicated recommends
