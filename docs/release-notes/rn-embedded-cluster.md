@@ -12,6 +12,36 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.13.5
+
+Released on February 27, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.13.5+k8s-1.33</td>
+    <td id="center">2.13.5+k8s-1.32</td>
+    <td id="center">2.13.5+k8s-1.31</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+    <td id="center">1.31.14</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-13-5}
+* Updates the host support bundle to detect additional security products and increase the process list width to improve troubleshooting visibility.
+
+### Bug Fixes {#bug-fixes-2-13-5}
+* Updates Go to 1.25.7 to address multiple CVEs, including a critical severity vulnerability ([CVE-2025-68121](https://nvd.nist.gov/vuln/detail/CVE-2025-68121)) in `crypto/tls` and several high severity vulnerabilities in `net/url`, `crypto/x509`, `cmd/go`, and `cgo`.
+* Fixes an issue where pulling container images that use zstd compression without annotations could fail.
+
 ## 2.13.4
 
 Released on February 13, 2026
