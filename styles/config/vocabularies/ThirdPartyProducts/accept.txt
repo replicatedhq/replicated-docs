@@ -1,0 +1,12 @@
+# Third-party product and tool names.
+# One term per line. Add as you find false positives.
+
+clsx
+Docusaurus
+Gitea
+Grafana
+Kustomize
+kustomize
+Prometheus
+systemd
+Velero

@@ -1,0 +1,14 @@
+# Replicated product names, UI, and vendor-specific terminology.
+# One term per line. Add as you find false positives.
+
+Config
+Lightbulb
+onboarding
+KOTS
+kurl
+kURL
+Kurl
+preflight
+airgap
+air-gapped
+CMX
