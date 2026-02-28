@@ -1,4 +1,4 @@
-# Global flags
+Hi# Global flags
 
 All KOTS CLI commands support a set of global flags to be used to connect to the cluster.
 
