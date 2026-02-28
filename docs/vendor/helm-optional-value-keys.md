@@ -1,6 +1,5 @@
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
-import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
 import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
 import ConfigExample from "../partials/helm/_set-values-config-example.mdx"
 import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
