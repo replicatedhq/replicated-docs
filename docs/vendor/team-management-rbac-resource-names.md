@@ -558,11 +558,15 @@ Grants the holder permission to delete other team members.
 
 ### team/notifications/slack-webhook/read
 
-Grants the holder permission to view the team's Slack webhook for instance notifications.
+Grants the holder permission to view the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
 
 ### team/notifications/slack-webhook/update
 
-Grants the holder permission to edit the team's Slack webhook for instance notifications.
+Grants the holder permission to edit the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
+
+### team/notifications/\*\*
+
+Grants the holder full access to all notification features, including managing other users' event notification subscriptions. For more information, see [About Event Notifications (Beta)](event-notifications).
 
 ### team/policy/read
 
