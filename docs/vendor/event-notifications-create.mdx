@@ -51,11 +51,15 @@ To create a new notification subscription:
    Subscription names can contain up to 255 ASCII characters (letters, numbers, and basic punctuation).
    :::
 
-4. Select an event type from the dropdown
+4. Select one or more event types from the categorized event list. Events are grouped by category (Instance, Customer, Support, Release, Channel). Check the checkbox next to each event type you want to include in this subscription.
 
-   <!-- TODO: Add screenshot of event type selection dropdown -->
+   <!-- TODO: Add screenshot of event type selection -->
 
-5. Configure filters for the event type. If filters are available for the selected event type, the filter configuration modal opens automatically. For more information about how filters work, see [Filter Logic](#filter-logic).
+   :::note
+   A single subscription can include multiple event types. Each selected event type can have its own independent filter configuration.
+   :::
+
+5. (Optional) Configure filters for selected event types. Click the filter icon next to a selected event to open the inline filter configuration panel. Configure your filters, then click **Done** to close the panel. For more information about how filters work, see [Filter Logic](#filter-logic).
 
    <!-- TODO: Add screenshot of filter configuration -->
 
@@ -69,7 +73,7 @@ To create a new notification subscription:
    - Enter a webhook URL
    - (Optional) Enter a signing secret for HMAC signature verification
    - (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [Custom HTTP Headers](event-notifications-webhooks#custom-headers).
-   - After entering a URL, you can expand the **Webhook payload format** section to preview the exact JSON payload structure your endpoint receives for the selected event type. Click **Copy payload** to copy the format to your clipboard.
+   - After entering a URL, click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard.
    - Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity. The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
    - For more information about webhook payload structure, signing, headers, and delivery behavior, see [Configure Event Notification Webhooks (Beta)](event-notifications-webhooks).
 
@@ -77,7 +81,7 @@ To create a new notification subscription:
 
 7. Click **"Create Notification"** to activate
 
-Your notification subscription is now active and will begin matching events based on your configured filters.
+Your notification subscription is now active and will begin matching events based on your selected event types and configured filters.
 
 ## Verify Your Email Address {#email-verification}
 
@@ -113,7 +117,7 @@ Vendor Portal includes an optional AI-assisted notification builder to help you 
 
 To use the AI builder:
 
-1. Click **"Create with AI"** for guided notification setup
+1. Click **"Configure with AI instead"** next to the Name field for guided notification setup
 2. Describe in natural language what you want to be notified about
    - Example: "Notify me when trial customers upload support bundles"
    - Example: "Alert me when instances fall more than 3 versions behind on the Stable channel"
@@ -127,13 +131,14 @@ The AI builder has context of pre-defined event types and filters, but cannot cr
 
 ## Filter Logic
 
-Understanding how filters work will help you create effective notification subscriptions.
+Understanding how filters work will help you create effective notification subscriptions. Filters are configured per event type — each selected event type in a subscription can have its own independent set of filters.
 
 ### Basic Filter Behavior
 
 - **No filters specified**: The notification will match **all events** for that event type
 - **One or more filters specified**: The event must match **all specified filters** to trigger the notification (AND logic)
 - **Multi-select filters**: If a filter contains multiple selected values, the event must match **any** of the selected values within that filter to trigger the notification (OR logic within the filter)
+- **Multiple event types**: When a subscription includes multiple event types, each event type is evaluated independently against its own filters. The subscription triggers when any of the included event types matches its filters.
 
 ### License Field Condition Filters
 

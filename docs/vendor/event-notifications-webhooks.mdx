@@ -31,7 +31,7 @@ To configure a webhook for Event Notifications:
 
 2. **Create a notification subscription with webhook delivery:**
    - Navigate to **Notifications** > **Create Notification**
-   - Select your event type and configure filters
+   - Select your event types and configure filters
    - Choose **Webhook** as the delivery method
    - Enter your webhook URL
    - (Optional but recommended) Enter a signing secret for HMAC verification
@@ -40,7 +40,7 @@ To configure a webhook for Event Notifications:
 3. **Test your webhook:**
    - Click **Send test webhook** in the notification form to send a sample payload to your endpoint
    - The test result displays the HTTP status code and response time on success, or an error message on failure
-   - You can also expand the **Webhook payload format** section to preview the exact JSON structure your endpoint receives before testing
+   - You can also click **View example** to open the payload preview modal and see the exact JSON structure your endpoint receives before testing
 
 See [Create Event Notification Subscriptions (Beta)](event-notifications-create) for detailed instructions on creating subscriptions.
 
@@ -66,13 +66,13 @@ Header values are encrypted at rest and masked in the UI after you save the subs
 
 ## Previewing the Webhook Payload Format {#payload-preview}
 
-When you create or edit a webhook notification and select an event type, you can expand the **Webhook payload format** section in the notification form to see the exact JSON structure your endpoint receives for that event type.
+When you create or edit a webhook notification and select event types, you can click the **View example** button to open the payload preview modal and see the exact JSON structure your endpoint receives.
 
 The preview shows:
 - The top-level payload envelope (`event`, `timestamp`, `data`, `text`)
 - All event-specific fields in the `data` object, with type annotations (string, number, boolean, ISO-8601-timestamp, array, or object)
 
-The preview updates dynamically when you change the selected event type. Click **Copy payload** to copy the format to your clipboard, which is useful when building your endpoint's request parser.
+Click **Copy payload** to copy the format to your clipboard, which is useful when building your endpoint's request parser.
 
 <!-- TODO: Add screenshot of expanded webhook payload format preview -->
 
@@ -242,7 +242,7 @@ To send Event Notifications to a Slack channel using webhooks:
 
 2. **Create an Event Notification subscription:**
    - Navigate to **Notifications** > **Create Notification** in the Vendor Portal
-   - Select your event type and configure filters
+   - Select your event types and configure filters
    - Choose **Webhook** as the delivery method
    - Paste your Slack webhook URL
    - (Optional) Add a signing secret if you want to verify signatures

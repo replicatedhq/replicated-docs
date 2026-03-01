@@ -8,13 +8,13 @@ The ability to set up notifications for key events of interest within Vendor Por
 
 ## Overview
 
-Event Notifications allow you to subscribe to specific events and receive alerts via email or webhook. You can create highly targeted notifications using filters to focus on the events that matter most to your workflow.
+Event Notifications allow you to subscribe to specific events and receive alerts via email or webhook. A single subscription can include multiple event types, each with its own independent filter configuration. You can create highly targeted notifications using filters to focus on the events that matter most to your workflow.
 
-Event types are predefined, but you can cover a broad range of use cases by leveraging available filtering conditions on a given event, including filters by application, customer, channel, license type, and custom license field values (entitlements).
+Event types are predefined and organized by category (Instance, Customer, Support, Release, Channel). You can cover a broad range of use cases by selecting the event types you care about and leveraging available filtering conditions on each event, including filters by application, customer, channel, license type, and custom license field values (entitlements).
 
 Events are queued to SQS for reliable processing and notifications are matched against event filters in real-time. Email notifications are sent via the configured email service, and webhook notifications include HMAC signatures for verification.
 
-To get started, review the available event types below, plan your filters based on your workflow needs (by customer, channel, license type, etc.), and choose your delivery method (email or webhook). Then create your first notification using the steps in [Create Event Notification Subscriptions (Beta)](event-notifications-create) and monitor the notification history to refine your filters as needed.
+To get started, review the available event types below, plan your filters based on your workflow needs (by customer, channel, license type, etc.), and choose your delivery method (email or webhook). Then create your first subscription using the steps in [Create Event Notification Subscriptions (Beta)](event-notifications-create) and monitor the notification history to refine your event types and filters as needed.
 
 ## Comparison: Classic Instance Notifications vs. Event Notifications (Beta)
 
@@ -33,7 +33,7 @@ Event Notifications offers significant improvements over the classic [Instance N
 
 ## Available Event Types
 
-Event Notifications initially supports the following high-level event types. Each event type can be further refined using filters to match your specific needs.
+Event Notifications supports the following event types, organized by category. Each event type can be further refined using filters to match your specific needs. You can select multiple event types in a single subscription.
 
 ### Instance Events
 - **Instance Created** - When a new instance is created
