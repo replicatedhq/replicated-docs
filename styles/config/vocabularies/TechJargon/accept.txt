@@ -20,6 +20,8 @@ YAML
 Kubernetes
 lifecycle
 Helm
+hostname
+Namespace
 npm
 onboarding
 onboard

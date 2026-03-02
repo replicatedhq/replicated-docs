@@ -8,5 +8,9 @@ tokens:
   - "[a-zA-Z]*'ll"
   - currently
   - now
-  - will
+  - in the future
+  - in the past
+  - in the present
+  - at present
+  - at this time
   - won't
