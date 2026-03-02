@@ -161,7 +161,7 @@ For detailed information about custom RBAC policies and notification permissions
 
 Current limitations of Event Notifications (Alpha):
 
-- Event Notifications does not yet cover all instance and custom metric event types from the classic Instance Notifications feature
+- Event Notifications does not yet cover custom metric change event types from the classic Instance Notifications feature
 - Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not be able to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
 - The Release Assets Downloaded event may fire per chart/image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
