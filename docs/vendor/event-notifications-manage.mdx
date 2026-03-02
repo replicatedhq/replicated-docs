@@ -45,6 +45,7 @@ To view notification history:
    - Filter by time period
    - Filter to "My Notifications Only"
    - Filter to a specific notification (active or deleted)
+   - Filter by delivery status (Delivered, Failed, or Pending)
 
 <!-- TODO: Add screenshot of History view -->
 
@@ -62,7 +63,7 @@ Event details include:
 - List of all events that matched this notification's filters
 - Timestamp when each event occurred
 - Event details (customer, instance, application, etc.)
-- Delivery status (Sent, Failed, Pending)
+- Delivery status (Delivered, Failed, Pending)
 - For failures: Error message explaining why delivery failed
 
 This information is helpful for troubleshooting notification delivery issues and understanding which events are triggering your subscriptions.
@@ -140,6 +141,21 @@ Each notification maintains a history of when it triggered and what events match
 
 This filtered view shows only events that matched this specific notification, making it easier to understand the notification's behavior and troubleshoot any issues.
 
+## Resend a Failed Notification
+
+If a notification event fails to deliver, you can manually resend it.
+
+To resend a failed notification:
+
+1. Navigate to **Notifications** > **History**
+1. Find the failed event and expand it
+1. Click **Resend email** or **Resend webhook**, depending on the delivery channel
+1. Confirm the resend in the confirmation dialog
+
+:::note
+The resend option is only available for events with a Failed delivery status.
+:::
+
 ## Troubleshoot Notification Delivery
 
 ### Viewing Delivery Status
@@ -148,7 +164,7 @@ To check if notifications are being delivered successfully:
 
 1. Navigate to **Notifications** > **History**
 2. Look at the **Delivery Status** column for each event:
-   - **Sent**: Notification was successfully delivered
+   - **Delivered**: Notification was successfully delivered
    - **Failed**: Delivery failed (expand row to see error message)
    - **Pending**: Delivery is in progress or queued
 
