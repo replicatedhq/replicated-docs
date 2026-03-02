@@ -1,3 +1,4 @@
+# This file is used to lint acronyms.
 extends: conditional
 message: "Spell out '%s', if it's unfamiliar to the audience."
 link: 'https://developers.google.com/style/abbreviations'
@@ -10,6 +11,7 @@ second: '(?:\b[A-Z][a-z]+ )+\(([A-Z]{3,5})\)'
 exceptions:
   - API
   - ASP
+  - CIDR
   - CLI
   - CPU
   - CSS
@@ -36,6 +38,7 @@ exceptions:
   - LESS
   - LLDB
   - NET
+  - NGINX
   - NOTE
   - NVDA
   - OSS
@@ -49,6 +52,7 @@ exceptions:
   - SCM
   - SCSS
   - SDK
+  - SIG
   - SQL
   - SSH
   - SSL
@@ -60,6 +64,7 @@ exceptions:
   - URL
   - USB
   - UTF
+  - VXLAN
   - XML
   - XSS
   - YAML

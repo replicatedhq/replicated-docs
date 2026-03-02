@@ -2,16 +2,41 @@
 # One term per line. Add as you find false positives.
 
 clsx
+containerd
 bcrypt
 Dex
 Docusaurus
 Gitea
 Grafana
+HubSpot
+journalctl
 k0s
 K0s
+k3s
+kubectl
 Kustomize
 kustomize
+kind
+NGINX
+NVIDIA
+OpenShift
+Openshift
+PostgreSQL
+Postgresql
 Prometheus
+RKE2
 systemd
 Velero
-Postgresql
+# Cloud / infra
+AKS
+AlmaLinux
+AWS
+EKS
+GKE
+Hetzner
+Longhorn
+OKE
+OKD
+CRC
+Ubuntu
+ubuntu

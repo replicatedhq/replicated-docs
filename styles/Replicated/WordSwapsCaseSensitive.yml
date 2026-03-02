@@ -4,6 +4,8 @@ message: "Use '%s' instead of '%s'."
 link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
 level: warning
 ignorecase: false
+scope:
+  - ~heading
 action:
   name: replace
 swap:
@@ -15,6 +17,9 @@ swap:
   kots CLI: KOTS CLI
   Kots: KOTS
   kurl: kURL
+  kubernetes: Kubernetes
+  Postgresql: PostgreSQL
+  Openshift: OpenShift
   Preflight Checks: preflight checks
   Proxy Registry: proxy registry
   replicated CLI: Replicated CLI

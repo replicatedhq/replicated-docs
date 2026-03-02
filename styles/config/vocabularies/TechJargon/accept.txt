@@ -3,11 +3,17 @@
 
 API
 APIs
+CIDR
+cidr
 CLI
 CSS
+EOL
+GiB
+GPU
 HTML
 HTTP
 HTTPS
+ipv4
 JSON
 MDX
 Node
@@ -15,9 +21,17 @@ RBAC
 SDK
 SSL
 TLS
+VCPU
+VCPUs
+VM
+vm
 VMs
 YAML
+enablement
+kotsadm
 Kubernetes
+kubeadmin
+kubeconfig
 lifecycle
 Helm
 hostname
@@ -25,3 +39,6 @@ Namespace
 npm
 onboarding
 onboard
+AMI
+subnet
+subnets

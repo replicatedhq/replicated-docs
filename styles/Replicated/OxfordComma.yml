@@ -1,0 +1,7 @@
+# This file is used to lint the Oxford comma.
+extends: existence
+message: "Use the Oxford comma in '%s'."
+scope: sentence
+level: suggestion
+tokens:
+  - '(?:[^,]+,){1,}\s\w+\s(?:and|or)'
