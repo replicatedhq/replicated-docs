@@ -1,7 +1,7 @@
-# Create Event Notification Subscriptions (Beta)
+# Create Event Notification Subscriptions (Alpha)
 
 :::note
-Event Notifications is in Beta. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
+Event Notifications is in Alpha. Features and functionality are subject to change as we continue to iterate this functionality towards General Availability.
 :::
 
 This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
@@ -35,7 +35,7 @@ For teams using [custom RBAC policies](team-management-rbac-configuring#configur
 
 ### Webhook Configuration
 
-For webhook delivery, see [Configure Event Notification Webhooks (Beta)](event-notifications-webhooks) to set up your webhook endpoint.
+For webhook delivery, see [Configure Event Notification Webhooks (Alpha)](event-notifications-webhooks) to set up your webhook endpoint.
 
 ## Create an Event Notification
 
@@ -79,7 +79,7 @@ To create a new notification subscription:
    - (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [Custom HTTP Headers](event-notifications-webhooks#custom-headers).
    - After entering a URL, click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard.
    - Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity. The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
-   - For more information about webhook payload structure, signing, headers, and delivery behavior, see [Configure Event Notification Webhooks (Beta)](event-notifications-webhooks).
+   - For more information about webhook payload structure, signing, headers, and delivery behavior, see [Configure Event Notification Webhooks (Alpha)](event-notifications-webhooks).
 
    <!-- TODO: Add screenshot of delivery method selection -->
 
@@ -144,6 +144,33 @@ Understanding how filters work will help you create effective notification subsc
 - **Multi-select filters**: If a filter contains multiple selected values, the event must match **any** of the selected values within that filter to trigger the notification (OR logic within the filter)
 - **Multiple event types**: When a subscription includes multiple event types, each event type is evaluated independently against its own filters. The subscription triggers when any of the included event types matches its filters.
 
+### Event-Specific Required Filters
+
+Some event types require additional configuration beyond the standard optional filters. These required filters appear in the filter configuration panel when the event type is selected.
+
+**Instance State Duration:**
+
+This event type requires you to specify the target state and duration threshold. Only one Instance State Duration event is allowed per subscription.
+
+| Filter | Required | Options |
+|--------|----------|---------|
+| State | Yes | Ready, Unavailable, Degraded, Updating, Missing |
+| Duration | Yes | 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, 8 hours, 24 hours |
+
+The notification triggers when an instance has been in the specified state for at least the configured duration. If the instance recovers and later re-enters the monitored state, the notification can trigger again after the duration threshold is met.
+
+**Instance State Flapping:**
+
+This event type requires you to specify the sensitivity of flapping detection.
+
+| Filter | Required | Default | Options |
+|--------|----------|---------|---------|
+| Minimum State Changes | Yes | — | 3, 5, 10, 15, 20 |
+| Time Window | Yes | — | 30 minutes, 1 hour, 2 hours |
+| Cooldown Period | No | 1 hour | 15 minutes, 30 minutes, 1 hour, 2 hours, 1 day |
+
+The notification triggers when an instance accumulates the specified number of state changes within the time window. The cooldown period prevents repeated notifications for the same instance within the configured interval.
+
 ### License Field Condition Filters
 
 For customer-related and instance-related events, you can filter notifications based on custom license field (entitlement) values. This allows you to create targeted notifications based on your customers' entitlement data.
@@ -160,7 +187,7 @@ When multiple license field conditions are specified, all conditions must match 
 
 License field conditions are available for the following event types:
 - All Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
-- All Instance events (Instance Created, Instance Upgraded, Instance Version Behind, Instance Inactive)
+- All Instance events (Instance Created, Instance Upgraded, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
 - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
 
 :::note
