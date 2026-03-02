@@ -2,9 +2,12 @@
 # One term per line. Add as you find false positives.
 
 clsx
+Dex
 Docusaurus
 Gitea
 Grafana
+k0s
+K0s
 Kustomize
 kustomize
 Prometheus

@@ -18,5 +18,8 @@ TLS
 VMs
 YAML
 Kubernetes
+lifecycle
 Helm
 npm
+onboarding
+onboard
