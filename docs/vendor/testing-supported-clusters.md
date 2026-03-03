@@ -29,7 +29,7 @@ CMX supports creating [kind](https://kind.sigs.k8s.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_kind_VERSIONS */}1.30.13, 1.31.14, 1.32.11, 1.33.7, 1.34.3, 1.35.0{/* END_kind_VERSIONS */}</td>
+    <td>{/* START_kind_VERSIONS */}1.30.13, 1.31.14, 1.32.11, 1.33.7, 1.34.3, 1.35.1{/* END_kind_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -76,7 +76,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_k3s_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.34.1, 1.34.2, 1.34.3, 1.35.0{/* END_k3s_VERSIONS */}</td>
+    <td>{/* START_k3s_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.35.0, 1.35.1{/* END_k3s_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -123,7 +123,7 @@ CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_rke2_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.34.1, 1.34.2, 1.34.3, 1.35.0{/* END_rke2_VERSIONS */}</td>
+    <td>{/* START_rke2_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.35.0, 1.35.1{/* END_rke2_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -366,7 +366,7 @@ CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.32, 1.33, 1.34{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.32, 1.33, 1.34, 1.35{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
