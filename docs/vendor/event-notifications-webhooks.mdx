@@ -4,22 +4,11 @@
 Event Notifications is in Alpha. Features and functionality are subject to change.
 :::
 
-This topic describes how to configure and use webhooks for Event Notifications, including webhook payload structure, HMAC signature verification, and integration with services like Slack.
-
-## Overview
+This topic describes how to configure and use webhooks for Event Notifications.
 
 Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations.
 
-Event Notifications webhooks include:
-- JSON payload with event data
-- Event-specific payload format preview with copy support
-- Built-in test webhook to verify endpoint connectivity before activating
-- Optional custom HTTP headers for webhook authentication
-- HMAC-SHA256 signature for verification
-- Automatic retries with exponential backoff
-- Delivery attempt tracking
-
-## Add Custom HTTP Headers {#custom-headers}
+## About Adding Custom HTTP Headers {#custom-headers}
 
 You can add custom HTTP headers to webhook subscriptions to authenticate with your receiving endpoint. This is useful when your endpoint requires an API key, bearer token, or other credentials in the request headers.
 
@@ -32,22 +21,13 @@ Custom headers have the following limitations:
 - Duplicate header names are not allowed
 - Certain reserved headers (such as `Content-Type` and `Host`) cannot be overridden
 
-To add custom headers:
+## About the Webhook Payload Format {#payload-preview}
 
-1. In the webhook notification form, expand **Advanced configuration**
-1. Click **Add header**
-1. Enter the header name and value
-1. (Optional) Repeat to add additional headers
-
-## Preview the Webhook Payload Format {#payload-preview}
-
-When you create or edit a webhook notification and select event types, you can click the **View example** button to open the payload preview modal and see the exact JSON structure your endpoint receives.
+When you create or edit a webhook notification and select event types, you can click the **View example** button to open the payload preview modal and see the exact JSON structure your endpoint receives. This is useful when building your endpoint's request parser.
 
 The preview shows:
 - The top-level payload envelope (`event`, `timestamp`, `data`, `text`)
 - All event-specific fields in the `data` object, with type annotations (string, number, boolean, ISO-8601-timestamp, array, or object)
-
-Click **Copy payload** to copy the format to your clipboard, which is useful when building your endpoint's request parser.
 
 {/* Add screenshot of expanded webhook payload format preview */}
 
@@ -85,42 +65,53 @@ The `subscription_name` field is included in the `data` object only when a custo
 
 ### Payload Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `event` | string | Event type identifier (e.g., "customer.created", "instance.upgraded") |
-| `timestamp` | string | ISO 8601 timestamp when the event occurred |
-| `text` | string | Human-readable text description of the event, formatted for readability in Slack and other chat tools |
-| `data` | object | Event-specific data containing detailed information about the event |
+The following describes the fields in the webhook payload:
 
-The `data` object contains fields specific to each event type. Common fields include:
-- `app_id` - Application identifier
-- `team_id` - Team identifier
-- `app_name` - Application name
-- `app_slug` - Application slug (URL-safe identifier)
-- `event_type` - Event type identifier
-- `subscription_name` - Custom subscription name, if set
-- Additional fields specific to the event type (customer_id, instance_id, channel_id, etc.)
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Description</th>
+   </tr>
+  <tr>
+    <td>`event`</td>
+    <td>string</td>
+    <td>Event type identifier (e.g., "customer.created", "instance.upgraded")</td>
+   </tr>
+  <tr>
+    <td>`timestamp`</td>
+    <td>string</td>
+    <td>ISO 8601 timestamp when the event occurred</td>
+   </tr>
+  <tr>
+    <td>`text`</td>
+    <td>string</td>
+    <td>Human-readable text description of the event, formatted for readability in Slack and other chat tools</td>
+    </tr>
+  <tr>
+    <td>`data`</td>
+    <td>object</td>
+    <td>
+      <p>Event-specific data containing detailed information about the event. The `data` object contains fields specific to each event type. Common fields include:</p>
+      <ul>
+        <li>`app_id` - Application identifier</li>
+        <li>`team_id` - Team identifier</li>
+        <li>`app_name` - Application name</li>
+        <li>`app_slug` - Application slug (URL-safe identifier)</li>
+        <li>`event_type` - Event type identifier</li>
+        <li>`subscription_name` - Custom subscription name, if set</li>
+        <li>Additional fields specific to the event type (customer_id, instance_id, channel_id, etc.)</li>
+      </ul>
+    </td>
+   </tr>
+</table>
 
 ## Verify Webhook Signatures
 
 Event Notifications webhooks include an HMAC-SHA256 signature for verification. This allows you to verify that webhook requests are genuinely from Replicated and have not been tampered with.
 
-When you configure a webhook with a signing secret:
-
-1. Replicated generates an HMAC-SHA256 signature of the webhook payload using your secret
-2. The signature is sent in the `X-Replicated-Signature` HTTP header
-3. Your endpoint can verify the signature to ensure authenticity
-
-The `X-Replicated-Signature` header contains the signature in the following format:
-
-```
-X-Replicated-Signature: sha256=<hex-encoded-signature>
-```
-
-Example:
-```
-X-Replicated-Signature: sha256=5d7f8e9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e
-```
+When you configure a webhook with a signing secret, Replicated generates an HMAC-SHA256 signature of the webhook payload using your secret. The signature is sent in the `X-Replicated-Signature` HTTP header. The `X-Replicated-Signature` header contains the signature in the following format: `X-Replicated-Signature: sha256=<hex-encoded-signature>`. For example:
+`X-Replicated-Signature: sha256=5d7f8e9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e`.
 
 To verify webhook signatures in your endpoint:
 
@@ -168,58 +159,34 @@ For more information about configuring incoming webhooks with Slack, see the [Se
 To send notifications to a Slack channel using webhooks:
 
 1. Go to your Slack workspace settings.
-
-1. Navigate to **Apps** > **Incoming Webhooks** and click **Add to Slack**.
-
+1. Go to **Apps** > **Incoming Webhooks** and click **Add to Slack**.
 1. Select the channel where you want to receive notifications.
-
 1. Copy the webhook URL.
-
-1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL.
-
+1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL. See [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
 1. Trigger a test event to verify that the webhook is configured properly.
 
-## Test Webhooks {#test-webhook}
+## Test Webhooks Locally {#test-webhook}
 
-You can test webhooks from the notification form in the Vendor Portal or aginst a local development endpoint.
-
-Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.
-
-### Test a Webhook from the Vendor Portal
-
-You can test your webhook endpoint from the Vendor Portal **Notifications** page before activating the subscription. This verifies that your endpoint is reachable, responds correctly, and (if a signing secret is configured) that your signature validation logic works.
-
-To test a webhook:
-
-1. Enter a webhook URL in the notification form
-2. (Optional) Enter a signing secret
-3. Click **Send test webhook**
-
-The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. The test result displays:
-
-- **On success:** The HTTP status code and response time in milliseconds (for example, "200 OK in 120ms")
-- **On failure:** An error message describing the issue (for example, network errors, non-2xx status codes, or timeouts)
-
-{/* Add screenshot of test webhook button with success result */}
-
-### Test a Webhook Locally
-
-You can test a webhook locally using a development endpoint that is either publicly accessible, or reachable through a secure tunnel. Ensure that your local endpoint meet the 
+You can test a webhook locally using a development endpoint that is either publicly accessible, or reachable through a secure tunnel.
 
 Note the following:
 - If you configured a signing secret, the test payload is signed with HMAC-SHA256 using the same `X-Replicated-Signature` header as real deliveries
 - If you configured custom HTTP headers, they are included in the test request so you can verify your endpoint's authentication logic
 - Private and internal IP addresses (localhost, RFC 1918 ranges, link-local, cloud metadata endpoints) are blocked for security
 
+You can also test webhooks from the Vendor Portal when you create a webhook notification subscription. For more information, see [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
+
 To test webhooks against a local development endpoint:
 
 1. Use a tunnel service like ngrok to expose your local endpoint:
-   ```
+   
+   ```bash
    ngrok http 3000
    ```
 
 2. Enter the ngrok URL as your webhook URL in the notification form:
-   ```
+   
+   ```bash
    https://abc123.ngrok.io/webhook
    ```
 

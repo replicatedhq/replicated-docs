@@ -61,10 +61,14 @@ To create an event notification subscription:
          - Must be publicly accessible (or use a secure tunnel for testing)
          - Must respond with a 2xx status code (200-299) for successful delivery
          - Response time must be less than five seconds
-      1. (Optional) Enter a signing secret for HMAC signature verification
-      1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [Custom HTTP Headers](event-notifications-webhooks#custom-headers).
-      1. After entering a URL, click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard.
-      1. Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity. The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
+      1. (Recommended) Enter a signing secret for HMAC signature verification. For more information, see [Verify Webhook Signatures](event-notifications-webhooks#verify-webhook-signatures).
+      1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About Adding Custom HTTP Headers](event-notifications-webhooks#custom-headers).
+      1. Click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard. For more information, see [About the Webhook Payload Format](event-notifications-webhooks#payload-preview).
+      1. Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity.
+      
+         The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.
+         
+         The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
 
    <!-- TODO: Add screenshot of delivery method selection -->
 
