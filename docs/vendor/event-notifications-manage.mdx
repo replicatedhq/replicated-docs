@@ -6,17 +6,9 @@ Event Notifications is in Alpha. Features and functionality are subject to chang
 
 This topic describes how to view, edit, disable, and delete event notifications in the Replicated Vendor Portal.
 
-## Overview
+## View Notification Subscriptions
 
-The Notifications page in the Vendor Portal provides visibility into your notification subscriptions and, optionally, team subscriptions, as well as a complete history of notification events. You can manage your own subscriptions and, if you have the appropriate permissions, view and manage team subscriptions.
-
-## Viewing Notification Subscriptions
-
-The Notifications page provides two main views:
-
-### Overview
-
-Shows your notification subscriptions. You can optionally include team notifications using the **Show team notifications** checkbox.
+For each notification subscription, you can view the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title.
 
 To view notification subscriptions:
 
@@ -25,166 +17,87 @@ To view notification subscriptions:
 3. (Optional) Select the **Show team notifications** checkbox to include notifications created by other team members.
 4. (Optional) Use the search bar to filter subscriptions by name or event type.
 
-<!-- TODO: Add screenshot of Overview view -->
+{/* TODO: Add screenshot of Overview view */}
 
-Each subscription card displays the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title.
-
-**Permissions:**
-- **Team admins** can manage (edit/delete) any team member's notifications
-- **Non-admin users** can view team notifications but cannot modify subscriptions created by others
-
-### History
+## View Notification History and Status
 
 Shows all triggered notification events for the selected time period. You can filter the history to show only your notifications or filter by a specific notification, including deleted subscriptions.
 
 To view notification history:
 
-1. Navigate to **Notifications** in the Vendor Portal
-2. Select the **History** tab
+1. In the Vendor Portal, go to **Notifications > History**.
 3. Use the filters to narrow results:
    - Filter by time period
    - Filter to "My Notifications Only"
    - Filter to a specific notification (active or deleted)
    - Filter by delivery status (Delivered, Failed, or Pending)
+1. (Optional) Click on an event to view details:
+   - List of all events that matched this notification's filters
+   - Timestamp when each event occurred
+   - Event details (customer, instance, application, etc.)
+   - Delivery status (Delivered, Failed, Pending)
+   - For failures: Error message explaining why delivery failed   
 
-<!-- TODO: Add screenshot of History view -->
+{/* TODO: Add screenshot of History view */}
 
-## Viewing Notification Event Details
+## Resend a Failed Notification
 
-Each notification event in the history view can be expanded to show detailed information:
+You can manually resend events with a **Failed** delivery status.
 
-To view event details:
+To resend a failed notification:
 
-1. Navigate to **Notifications** > **History**
-2. Find the event you want to inspect
-3. Click to expand the event row
+1. Go to **Notifications** > **History**.
+1. Expand the failed event and click **Resend email** or **Resend webhook**.
+1. Confirm the resend.
 
-Event details include:
-- List of all events that matched this notification's filters
-- Timestamp when each event occurred
-- Event details (customer, instance, application, etc.)
-- Delivery status (Delivered, Failed, Pending)
-- For failures: Error message explaining why delivery failed
+## Edit a Notification
 
-This information is helpful for troubleshooting notification delivery issues and understanding which events are triggering your subscriptions.
+You can edit any notifications that you created. Team Admins can also edit notifications created by other team members.
 
-## Editing an Existing Notification
+Editing a notification does not affect the notification history for past events.
 
-To modify a notification:
+To edit a notification:
 
-1. Navigate to **Notifications** in the Vendor Portal
+1. In the Vendor Portal, go to **Notifications**.
 
-2. Find the notification you want to edit in the list. Select the **Show team notifications** checkbox if the notification was created by another team member.
+1. Next to the notification that you want to modify, click **Edit**.
 
-3. Click the **Edit** icon or **Edit** button for that notification
-
-4. The notification form opens with all current settings populated
-
-5. Make your desired changes:
+1. Make your changes. For example:
    - Add or update a custom subscription name to help identify the subscription
    - Add or remove event types, or modify filters on existing event types to broaden or narrow the scope
    - Change the delivery method or destination
    - Check or uncheck the **Enable this notification** checkbox to pause or unpause the notification
 
-6. Click **Save Changes** to update
+1. Click **Save Changes**.
 
-<!-- TODO: Add screenshot of Edit notification form -->
+{/* Add screenshot of Edit notification form */}
 
-**Important notes:**
-- Editing a notification does not affect past events already sent
-- Changes apply immediately to future events
-- You can only edit notifications you created, unless you are a team admin with permissions to manage all team notifications
+## Temporarily Disable a Notification
 
-## Disable a Notification
+When you disable a notification, it stops triggering for new events. The Vendor Portal saves the subscription configuration and any historical event data is still available.
 
-To temporarily stop a notification without deleting it:
+You can re-enable notifications at any time.
 
-1. Navigate to **Notifications** in the Vendor Portal
-2. Find the notification in the list
-3. Click the **Edit** button
-4. Uncheck the **Enable this notification** checkbox at the bottom of the form
-5. Save your changes
+To temporarily disable a notification without deleting its history or configuration:
 
-When a notification is disabled:
-- It stops triggering for new events
-- The subscription configuration is preserved
-- Historical event data remains available
-- You can re-enable it at any time by editing and checking the **Enable this notification** checkbox
+1. In the Vendor Portal, go to **Notifications**.
 
-## Deleting an Existing Notification
+1. Next to the notification that you want to disable, click **Edit**.
 
-To permanently remove a notification:
+1. Disable the **Enable this notification** checkbox at the bottom of the form.
 
-1. Navigate to **Notifications** in the Vendor Portal
+1. Click **Save Changes**.
 
-2. Find the notification you want to delete in the list
+## Delete a Notification
 
-3. Click the **Delete** icon or **"Delete"** button for that notification
+You can delete notifications that you created. Team Admins can also delete notifications created by other team members.
 
-4. Confirm the deletion in the prompt
+Deleting a notification is permanent and cannot be undone. When you delete a notification, historical event data for the notification remains available in the Vendor Portal **Notifications > History** view.
 
-5. The notification is permanently removed
+To permanently delete a notification:
 
-**Important notes:**
-- Deleting a notification is permanent and cannot be undone
-- No further notifications will be sent for this subscription
-- Historical event data for the notification is preserved and remains viewable in the History view
-- You can only delete notifications you created, unless you're a team admin
+1. Navigate to **Notifications** in the Vendor Portal.
 
-## Viewing Event History for a Specific Notification
+1. For the notification that you want to delete, click **Delete**.
 
-Each notification maintains a history of when it triggered and what events matched:
-
-1. Navigate to **Notifications** in the Vendor Portal
-2. Find the notification in the list. Select the **Show team notifications** checkbox if the notification was created by another team member.
-3. Click the **"View History"** button for that notification
-
-This filtered view shows only events that matched this specific notification, making it easier to understand the notification's behavior and troubleshoot any issues.
-
-## Resend a Failed Notification
-
-If a notification event fails to deliver, you can manually resend it.
-
-To resend a failed notification:
-
-1. Navigate to **Notifications** > **History**
-1. Find the failed event and expand it
-1. Click **Resend email** or **Resend webhook**, depending on the delivery channel
-1. Confirm the resend in the confirmation dialog
-
-:::note
-The resend option is only available for events with a Failed delivery status.
-:::
-
-## Troubleshoot Notification Delivery
-
-### Viewing Delivery Status
-
-To check if notifications are being delivered successfully:
-
-1. Navigate to **Notifications** > **History**
-2. Look at the **Delivery Status** column for each event:
-   - **Delivered**: Notification was successfully delivered
-   - **Failed**: Delivery failed (expand row to see error message)
-   - **Pending**: Delivery is in progress or queued
-
-### Common Delivery Issues
-
-**Email not verified:**
-- Check if the email address requires verification
-- Look for a verification email in your inbox
-- Edit the notification to enter the verification code
-
-**Filters too restrictive:**
-- Review your filter configuration
-- Check that events are actually matching your criteria
-- Temporarily broaden filters to test
-
-**Webhook endpoint issues:**
-- Verify webhook URL is correct and accessible
-- Check that your endpoint returns 2xx status codes
-- See [Event Notification Webhooks (Alpha)](event-notifications-webhooks) for webhook troubleshooting
-
-**RBAC permissions:**
-- Verify you have the necessary permissions to create and manage notifications
-- Contact your team admin if you need additional permissions
+1. Confirm the deletion in the prompt.
