@@ -3,7 +3,7 @@ Using Replicated template functions in the [License](/reference/template-functio
 For example, the following HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate if the license has the boolean `newFeatureEntitlement` field set to `true`:
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -21,4 +21,4 @@ spec:
       enabled: repl{{ LicenseFieldValue "newFeatureEntitlement" }}
 ```
 
-During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, KOTS sets the matching `newFeature.enabled` value in the Helm chart `values.yaml` file accordingly.
+During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, the Replicated installer sets the matching `newFeature.enabled` value in the Helm chart `values.yaml` file accordingly.
