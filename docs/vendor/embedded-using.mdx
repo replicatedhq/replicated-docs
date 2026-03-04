@@ -8,13 +8,13 @@ This topic provides information about how to configure your application releases
 
 ## Add the Embedded Cluster Config Resource
 
-An [Embedded Cluster Config](/reference/embedded-config) must be present in the application release to support installation with Embedded Cluster. The Embedded Cluster Config sets the version of Embedded Cluster that will be installed, and lets you define additional characteristics about the cluster.
+An [Embedded Cluster Config](/reference/embedded-config) must be present in the release to support installation with Embedded Cluster. The Embedded Cluster Config sets the version of Embedded Cluster to install, and lets you define additional characteristics about the cluster.
 
-To add the Embedded Cluster cluster for your application:
+To add the Embedded Cluster Config:
 
-1. Create a new release. At minimum, the release must include your application and a separate [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource for each Helm chart in the release. The HelmChart custom resource is required to support installation with a Replicated installer.
+1. Create a new release that includes your application and a unique [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource for each Helm chart in the release.
 
-   If you have not yet created a release for your application that supports installation with a Replicated installer (KOTS or kURL), see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to create your first release.
+   If you have not yet configured the HelmChart custom resource for your application, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding) for more detailed instructions on how to configure releases that support installation with a Replicated installer.
 
 1. In the release, add an [Embedded Cluster Config](/reference/embedded-config) manifest that specifies the Embedded Cluster version to use:
 
