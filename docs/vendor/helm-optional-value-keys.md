@@ -20,11 +20,7 @@ Common use cases for the `values` and `optionalValues` keys include:
 * Setting certain Helm values only when a given condition is met
 * Excluding a default value key from the Helm chart `values.yaml` file when the user installs with a Replicated installer
 
-## Set Values
-
-This section describes how to configure the HelmChart custom resource `values` key to set pre-existing values in the Helm chart's `values.yaml` file.
-
-### Static Values
+## Set Static Values
 
 You can use static values to set Helm values for Replicated installations, without affecting values for any installations that use the Helm CLI.
 
@@ -59,11 +55,12 @@ spec:
 
 During installation or upgrade with a Replicated installer, the installer sets `replicatedOnlyValue.enabled` in the Helm chart `values.yaml` file to `true`. For installations with the Helm CLI, `replicatedOnlyValue.enabled` remains `false`.
 
-### Replicated Template Functions
+## Set Values with Replicated Template Functions
 
-You can use Replicated template functions in the HelmChart custom resource `values` and `optionalValues` keys. For more information about working with template functions, see [About Replicated Template Functions](/reference/template-functions-about).
+You can use Replicated template functions to render values like customer-specific license field values,
+user-provided configuration values, or information about the customer environment. For more information about working with template functions, see [About Replicated Template Functions](/reference/template-functions-about).
 
-The following examples show how to use template functions to render config- and license-specific values:
+The following examples show how to use Replicated template functions in the `values` key to render config- and license-specific values:
 
 <Tabs>
   <TabItem value="config" label="Config Context Example" default>
