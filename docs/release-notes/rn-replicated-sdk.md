@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on March 4, 2026
 
 ### New Features {#new-features-1-17-0}
-* Adds a new `POST /api/v1/app/supportbundle` endpoint that allows uploading support bundles through the SDK. This endpoint streams uploads the bundle to Replicated and requires the `Content-Length` header. The `isSupportBundleUploadSupported` license entitlement must be enabled and the environment must not be airgapped.
+* Adds a `POST /api/v1/app/supportbundle` endpoint that allows uploading support bundles to Replicated through the SDK. This endpoint requires the `Content-Length` header. The `isSupportBundleUploadSupported` license entitlement must be enabled and the environment must not be air-gapped.
 
 ### Improvements {#improvements-1-17-0}
 * Updates Kubernetes libraries from v0.35.0 to v0.35.2.
