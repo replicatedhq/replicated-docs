@@ -8,6 +8,23 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.17.0
+
+Released on March 4, 2026
+
+### New Features {#new-features-1-17-0}
+* Adds a new `POST /api/v1/app/supportbundle` endpoint that allows uploading support bundles through the SDK. This endpoint streams uploads the bundle to Replicated and requires the `Content-Length` header. The `isSupportBundleUploadSupported` license entitlement must be enabled and the environment must not be airgapped.
+
+### Improvements {#improvements-1-17-0}
+* Updates Kubernetes libraries from v0.35.0 to v0.35.2.
+
+## 1.16.0
+
+Released on February 10, 2026
+
+### Improvements {#improvements-1-16-0}
+* Embedded Cluster versions added to reporting data.
+
 ## 1.15.0
 
 Released on February 5, 2026
