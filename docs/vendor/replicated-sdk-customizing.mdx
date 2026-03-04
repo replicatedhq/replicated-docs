@@ -1,6 +1,18 @@
+import SdkValuesLimitation from "../partials/replicated-sdk/_limitation-config-with-helm-values-only.mdx"
+
 # Customize the Replicated SDK
 
-This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub.
+This topic describes how to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
+
+## About Customizing the Replicated SDK
+
+You can customize various aspects of the Replicated SDK by setting the `replicated` values in the parent Helm chart's `values.yaml` file. These `replicated` values are automatically injected by the Replicated SDK during installation. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub. For more information about the SDK values, see [Replicated SDK Helm Values](/vendor/replicated-sdk-overview#replicated-sdk-helm-values).
+
+Common use cases for customizing the SDK include adding common labels and pod labels to the Replicated SDK, installing the SDK with custom RBAC settings, and enabling high availability for the SDK.
+
+## Limitation
+
+<SdkValuesLimitation/>
 
 ## Customize RBAC for the SDK
 

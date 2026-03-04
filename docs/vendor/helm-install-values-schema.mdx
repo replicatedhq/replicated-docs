@@ -1,18 +1,20 @@
 import SdkValues from "../partials/replicated-sdk/_sdk-values.mdx"
+import SdkValuesLimitation from "../partials/replicated-sdk/_limitation-config-with-helm-values-only.mdx"
+import GitStorage from "../partials/helm/_storing-charts-git.mdx"
 
 # Helm global.replicated Values Schema
 
-This topic describes the `global.replicated` values that are injected in the values file of an application's parent Helm chart during Helm installations with Replicated.
+This topic describes the `global.replicated` values that are injected into a Helm chart's `values.yaml` by the Replicated registry. The information in this topic applies to Helm CLI installations with Replicated.
 
 ## Overview
 
-When a user installs a Helm application with the Helm CLI, the Replicated registry injects a set of customer-specific values into the `global.replicated` key of the parent Helm chart's values file.
+During Helm CLI installations with Replicated, the application Helm chart(s) are pulled from the Replicated registry. When an authenticated user pulls a chart from the Replicated registry (with `helm pull`, `helm install`, or `helm upgrade`, or from any OCI-compatible client), the Replicated registry injects customer-specific values into the `global.replicated` key of the chart's `values.yaml` file before serving the chart.
 
-The values in the `global.replicated` field include the following:
+These customer-specific values that are injected into the `global.replicated` key include:
 
 * The fields in the customer's license, such as the field names, descriptions, signatures, values, and any custom license fields that you define. Vendors can use this license information to check entitlements before the application is installed. For more information, see [Check Entitlements in Helm Charts Before Deployment](/vendor/licenses-reference-helm).
 
-* A base64 encoded Docker configuration file. To proxy images from an external private registry with the Replicated proxy registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy registry. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry).
+* A base64-encoded Docker configuration file (`global.replicated.dockerconfigjson`) that contains registry authentication credentials. To proxy images from an external private registry with the Replicated proxy registry, you use this `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy registry. For more information, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
 
 The following is an example of a Helm values file containing the `global.replicated` values:
 
@@ -56,6 +58,12 @@ The `global.replicated` values schema contains the following fields:
 | `licenseID` | String | The unique identifier for the license |
 | `licenseType` | String | The type of license, such as "dev" or "prod". For more information, see [Customer Types](/vendor/licenses-about#customer-types) in _About Customers and Licensing_. |
 
+## About Securely Storing Charts in Git
+
+<GitStorage/>
+
 ## Replicated SDK Helm Values
 
 <SdkValues/>
+
+<SdkValuesLimitation/>

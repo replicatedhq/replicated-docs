@@ -1,0 +1,1 @@
+The Replicated SDK reads its configuration from Helm values only and does not support reading from Kubernetes Secrets or CSI-mounted volumes. Any values used by the SDK must be set in the chart's `values.yaml` or with the `--set` flag during deployment.
