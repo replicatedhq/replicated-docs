@@ -77,13 +77,13 @@ For more information about using `optionalValues`, see [Setting Helm Chart Value
 
 <OptionalValuesRecursiveMerge/>
 
-**Default**: False
+By default, `optionalValues.recursiveMerge` is false.
 
 For an example of recursive and non-recursive merging, see [About Recursive Merge](/vendor/helm-optional-value-keys#recursive-merge).
 
 ### optionalValues.values
 
-In the `optionalValues.values` key, you list the values to set if the specified condition is met.
+In the `optionalValues.values` key, include the values to set if the specified condition is met. The `optionalValues.values` key supports static values and Replicated template functions.
 
 For example:
 
@@ -100,7 +100,7 @@ For example:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-In this example, the Replicated installer renders the template functions and sets the `externalDatabase` values only when the user selects the `external` option for the `mariadb_type` config option.
+In this example, the Replicated installer renders the template functions and sets the `externalDatabase` values _only_ when the user selects the `external` option for the `mariadb_type` config option.
 
 ## namespace
 

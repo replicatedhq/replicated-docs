@@ -6,46 +6,40 @@ import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Set Helm Values with KOTS
+# Set Helm Values with Replicated HelmChart
 
-This topic describes how to use the Replicated KOTS HelmChart custom resource to set and delete values in `values.yaml` files for Helm charts deployed with Replicated KOTS.
+This topic describes how to use the Replicated HelmChart custom resource to set and delete values in `values.yaml` files for Helm charts. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
 ## Overview
 
-The KOTS HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys create a mapping between KOTS and the `values.yaml` file for the corresponding Helm chart. This allows you to set or delete Helm values during installation or upgrade with KOTS, without having to make any changes to the Helm chart itself.
+The HelmChart custom resource [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) keys create a mapping between the Replicated installer and the corresponding Helm chart's `values.yaml` file. This allows you to set or delete Helm values during installation or upgrade, without having to make any changes to the Helm chart itself.
 
-You can create this mapping by adding a value under `values` or `optionalValues` that uses the exact same key name as a value in the corresponding Helm chart `values.yaml` file. During installation or upgrade, KOTS sets the Helm chart `values.yaml` file with any matching values from the `values` or `optionalValues` keys.
-
-The `values` and `optionalValues` keys also support the use of Replicated template functions. When you use Replicated template functions in the `values` and `optionalValues` keys, KOTS renders the template functions and then sets any matching values in the corresponding Helm chart `values.yaml` with the rendered values. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
-
-Common use cases for the HelmChart custom resource `values` and `optionalValues` keys include:
-* Setting Helm values based on user-supplied values from the KOTS Admin Console configuration page
-* Setting values based on the user's unique license entitlements
-* Conditionally setting values when a given condition is met
-* Deleting a default value key from the `values.yaml` file that should not be included for KOTS installations
-
-For more information about the syntax for these fields, see [`values`](/reference/custom-resource-helmchart-v2#values) and [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
+Common use cases for the `values` and `optionalValues` keys include:
+* Setting Helm values based on user-supplied values from the Admin Console configuration page
+* Setting Helm values based on the user's license entitlements
+* Setting certain Helm values only when a given condition is met
+* Excluding a default value key from the Helm chart `values.yaml` file when the user installs with a Replicated installer
 
 ## Set Values
 
-This section describes how to use Replicated template functions or static values in the HelmChart custom resource `values` key to set existing Helm values.
+This section describes how to configure the HelmChart custom resource `values` key to set pre-existing values in the Helm chart's `values.yaml` file.
 
-### Using a Static Value
+### Static Values
 
-You can use static values in the HelmChart custom resource `values` key when a given Helm value must be set the same for all KOTS installations. This allows you to set values for KOTS installations only, without affecting values for any installations that use the Helm CLI.
+You can use static values to set Helm values for Replicated installations, without affecting values for any installations that use the Helm CLI.
 
-For example, the following Helm chart `values.yaml` file contains `kotsOnlyValue.enabled`, which is set to `false` by default: 
+For example, the following Helm chart `values.yaml` file contains `replicatedOnlyValue.enabled`, which is set to `false` by default: 
 
 ```yaml
 # Helm chart values.yaml
-kotsOnlyValue:
+replicatedOnlyValue:
   enabled: false
 ```
 
-The following HelmChart custom resource contains a mapping to `kotsOnlyValue.enabled` in its `values` key, which is set to `true`:
+The following HelmChart custom resource contains a mapping to `replicatedOnlyValue.enabled` in its `values` key, which is set to `true`:
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -59,15 +53,17 @@ spec:
   releaseName: samplechart-release-1
 
   values:
-    kotsOnlyValue:
+    replicatedOnlyValue:
       enabled: true
 ```
 
-During installation or upgrade with KOTS, KOTS sets `kotsOnlyValue.enabled` in the Helm chart `values.yaml` file to `true` so that the KOTS-only value is enabled for the installation. For installations that use the Helm CLI instead of KOTS, `kotsOnlyValue.enabled` remains `false`.
+During installation or upgrade with a Replicated installer, the installer sets `replicatedOnlyValue.enabled` in the Helm chart `values.yaml` file to `true`. For installations with the Helm CLI, `replicatedOnlyValue.enabled` remains `false`.
 
-### Using KOTS Template Functions
+### Replicated Template Functions
 
-You can use Replicated template functions in the HelmChart custom resource `values` key to set Helm values with the rendered template functions. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
+You can use Replicated template functions in the HelmChart custom resource `values` and `optionalValues` keys. For more information about working with template functions, see [About Replicated Template Functions](/reference/template-functions-about).
+
+The following examples show how to use template functions to render config- and license-specific values:
 
 <Tabs>
   <TabItem value="config" label="Config Context Example" default>
@@ -85,7 +81,7 @@ You can use Replicated template functions in the HelmChart custom resource `valu
 For example, the following HelmChart custom resource uses the `optionalValues` key and the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to set user-supplied values for an external MariaDB database:
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -110,7 +106,7 @@ spec:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-During installation, KOTS renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file only when the user selects the `external` option for `mariadb_type` on the Admin Console configuration page.
+During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
 ### About Recursive Merge for optionalValues {#recursive-merge}
 
