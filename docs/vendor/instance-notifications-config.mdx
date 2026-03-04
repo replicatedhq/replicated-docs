@@ -1,7 +1,11 @@
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
-# Configure Instance Notifications (Beta)
+# Configure Instance Notifications (Classic)
+
+:::caution
+The Instance Notifications (Classic) system is replaced by [Event Notifications (Alpha)](event-notifications), which offers more event types, better filtering, and improved delivery options. While Instance Notifications (Classic) is still supported, Replicated recommends using Event Notifications (Alpha). For more information about how to configure event notifications, see [About Event Notifications (Alpha)](event-notifications).
+:::
 
 <NotificationsAbout/>
 
@@ -57,3 +61,9 @@ Then, look for notifications in the assigned Slack channel. You also receive an 
 :::note
 There is a 30-second buffer between event detection and notifications being sent. This buffer provides better roll-ups and reduces noise.
 :::
+
+## See Also
+
+- [Event Notifications (Alpha)](event-notifications) - New notification system with more event types and better filtering
+- [Create Event Notification Subscriptions (Alpha)](event-notifications-create) - Get started with Event Notifications
+- [Comparison: Classic vs. Event Notifications](event-notifications#comparison-classic-instance-notifications-vs-event-notifications-alpha) - Feature comparison

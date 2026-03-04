@@ -1,0 +1,245 @@
+# Create Event Notification Subscriptions (Alpha)
+
+:::note
+Event Notifications is in Alpha. Features and functionality are subject to change.
+:::
+
+This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
+
+## RBAC Requirements
+
+Roles with write access (Admin, Support Engineer, Sales, or custom roles) can create and manage their own notifications. They can also view team notifications.
+
+Only Admins can create and manage team notifications. Admins can also manage notifications created by other team members.
+
+For teams that use custom RBAC policies, the following permissions are available:
+- `team/notifications/**`: Full access to all notification features including managing other users' subscriptions
+- `team/notifications/subscriptions/read`: View all team subscriptions
+- `team/notifications/subscriptions/create`: Set up their own alerts
+- `team/notifications/subscriptions/update`: Modify their own alerts
+- `team/notifications/subscriptions/delete`: Remove their own alerts
+- `team/notifications/types/list`: See available event types
+- `team/notifications/events/read`: View notification history
+
+For more information, see [Configure RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
+
+## Create an Event Notification
+
+To create an event notification subscription:
+
+1. In the Vendor Portal, go to **Notifications**.
+
+1. Click **Create Notification**.
+
+1. (Optional) Enter a custom name for the subscription. Custom names help you identify subscriptions when you have multiple subscriptions for the same event type. The name is also included in email subjects and webhook payloads.
+
+   Subscription names can contain up to 255 ASCII characters (letters, numbers, and basic punctuation).
+
+1. Select one or more event types to include in the subscription. For more information, see [Event Types](#event-types) on this page.
+
+   :::note
+   Alternatively, click **Configure with AI instead**. With the AI-assisted notification builder, you can describe in natural language the events that you want to be notified about. For example, "Notify me when trial customers upload support bundles" or "Alert me when instances fall more than 3 versions behind on the Stable channel". The AI builder has context of pre-defined event types and filters, but cannot create new event types or filters.
+   :::
+
+   <!-- TODO: Add screenshot of event type selection -->
+
+1. (Optional) For each of the event types that you selected, click the filter icon to configure event filters. For more information, see [Event Filter Logic and Requirements](#filter-logic) on this page.
+
+   :::note
+   To configure a channel filter, you must first select an application.
+   :::
+
+1. Click **Done**.
+
+   <!-- TODO: Add screenshot of filter configuration -->
+
+1. Do one of the following, depending on your notification delivery method:
+   * For email delivery, enter an email address.
+   * For webhook delivery: 
+      1. Enter a webhook URL. The endpoint must meet the following requirements:
+         - Must be able to receive HTTP POST requests
+         - Must be publicly accessible (or use a secure tunnel for testing)
+         - Must respond with a 2xx status code (200-299) for successful delivery
+         - Response time must be less than five seconds
+      1. (Recommended) Enter a signing secret for HMAC signature verification. For more information, see [Verify Webhook Signatures](event-notifications-webhooks#verify-webhook-signatures).
+      1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About Adding Custom HTTP Headers](event-notifications-webhooks#custom-headers).
+      1. Click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard. For more information, see [About the Webhook Payload Format](event-notifications-webhooks#payload-preview).
+      1. Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity.
+      
+         The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.
+         
+         The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
+
+   <!-- TODO: Add screenshot of delivery method selection -->
+
+1. Click **Create Notification**.
+
+1. For email subscriptions, if you used an email address other than your Vendor Portal user account email, follow the instructions in the verification email to validate the email address.
+
+## Event Types
+
+Event Notifications (Alpha) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
+
+### Instance Events
+- **Instance Created**: When a new instance is created
+- **Instance Upgraded**: When an instance upgrades to a new release version
+- **Instance Version Behind**: When an instance falls behind by a specified number of versions
+- **Instance Inactive**: When an instance has not reported in for 24 hours (declared "Inactive"). Air-gapped instances are excluded from this event type.
+- **Instance State Duration**: When an instance has been in a specific state (such as Unavailable or Degraded) for a specified duration
+- **Instance State Flapping**: When an instance is changing states frequently within a configured time window
+
+:::note
+Instance event notifications use the **Instance Name** if set. Otherwise, they use the Instance ID.
+:::
+
+### Customer Events
+- **Customer Created**: When a new customer is created
+- **Customer Updated**: When a customer's details or license is updated
+- **Customer Archived**: When a customer is archived
+- **Customer Unarchived (Restored)**: When a customer is restored from archived state
+- **Customer License Expiring**: Time-based warning of an upcoming license expiration
+- **Pending Self-Service Signup**: When someone signs up via the self-service portal (if enabled)
+
+### Support Events
+- **Support Bundle Uploaded**: When a support bundle is uploaded
+- **Support Bundle Analyzed**: When a support bundle analysis is completed
+
+### Release Events
+- **Release Created**: When a new release is created
+- **Release Promoted**: When a release is promoted to a channel
+- **Release Demoted (Unpublished)**: When a release is demoted from a channel
+- **Release Assets Downloaded**: When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
+
+### Channel Events
+- **Channel Created**: When a new channel is created for an application
+- **Channel Archived**: When a channel is archived
+
+
+## Event Filter Logic and Requirements
+
+This section describes how per-event filtering works in notification subscriptions. It also describes filter requirements for different types of events.
+
+### Filter Logic
+
+Each event type that you select in a notification subscription has its own set of filters.
+
+For subscriptions that include multiple event types, each event type is evaluated independently against its filters. In this case, any events of the included types that matches its filters triggers a notification.
+
+The following describes the filter logic used for each event:
+
+- **No filters**: Any event of the given type triggers the notification.
+- **One or more filters**: An event must match _all_ specified filters (AND logic) to trigger the notification.
+
+If a filter contains multiple selected values, the event must match _any_ of the selected values (OR logic) to satisfy the filter.
+
+### Instance State Duration Filter Requirements
+
+The Instance State Duration event type requires you to specify the target state and duration threshold. Only one Instance State Duration event is allowed per subscription.
+
+| Filter | Required | Options |
+|--------|----------|---------|
+| State | Yes | Ready, Unavailable, Degraded, Updating, Missing |
+| Duration | Yes | 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, 8 hours, 24 hours |
+
+The notification triggers when an instance has been in the specified state for at least the configured duration. If the instance recovers and later re-enters the monitored state, the notification can trigger again after the duration threshold is met.
+
+### Instance State Flapping Filter Requirements
+
+The Instance State Flapping event type requires you to specify the sensitivity of flapping detection:
+
+| Filter | Required | Default | Options |
+|--------|----------|---------|---------|
+| Minimum State Changes | Yes | — | 3, 5, 10, 15, 20 |
+| Time Window | Yes | — | 30 minutes, 1 hour, 2 hours |
+| Cooldown Period | No | 1 hour | 15 minutes, 30 minutes, 1 hour, 2 hours, 1 day |
+
+The notification triggers when an instance accumulates the specified number of state changes within the time window. The cooldown period prevents repeated notifications for the same instance within the configured interval.
+
+### License Field Condition Filters
+
+You can filter notifications based on your custom license field values. This allows you to create targeted notifications based on your customers' entitlement data. For more information about adding custom license fields, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
+
+Filtering by custom license fields is supported for the following event types:
+- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+- Instance events (Instance Created, Instance Upgraded, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
+- Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+
+License field conditions have a field, an operator, and a value. The available operators depend on the field type:
+
+| Field Type | Available Operators |
+|------------|-------------------|
+| Integer | equals, does not equal, greater than, less than, greater than or equal, less than or equal |
+| String / Text | equals, does not equal, contains, does not contain |
+| Boolean | is true, is false |
+
+When multiple license field conditions are specified, all conditions must match for the notification to trigger (AND logic).
+
+## Event Notification Examples
+
+The following are example event notifications based on common use cases.
+
+### Customer Success Manager: Support Bundle Uploaded
+
+As a Customer Success Manager, I want to be notified if one of my key customers uploads a support bundle.
+
+- **Event Type:** Support Bundle Uploaded
+- **Configuration:**
+  - Filter - Application: Select your production application
+  - Filter - Customer: Select your key enterprise customer (for example, "Acme Corp", "GlobalTech Inc")
+  - License Field Condition: `tier` equals "Enterprise" AND `seats` greater than or equal to 100
+- **Delivery Method:** Email to your work email (or team email alias)
+
+### Sales Manager: Trial License Expiration
+
+As a Sales Manager, I want to be notified when a trial customer has an impending trial license expiration.
+
+- **Event Type:** Customer License Expiring
+- **Configuration:**
+  - Filter - Application: Select your production application
+  - Filter - License Type: "Trial"
+- **Delivery Method:** Email to your work email (or team email alias)
+
+### Product Manager: Release Promoted
+
+As a Product Manager, I want to be notified when a new release version is made available to customers on the Stable channel so that I can engage key customers in adoption follow-up conversations.
+
+- **Event Type:** Release Promoted
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - Channel: Select "Stable"
+- **Delivery Method:** Email to `pm-team@company.com` or webhook to #pm-team channel in Slack
+
+### Development Leader: Paid Customer Downloads Release Assets
+
+As a Development Leader, I want to be notified when a paid customer pulls release assets to initiate a paid install.
+
+- **Event Type:** Release Asset Downloaded
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - Channel: Select "Stable"
+  - Filter - License Type: "Paid"
+  - Filter - Asset Type: Any, or narrow further
+- **Delivery Method:** Email to your work email (or team email alias)
+
+### Support Engineer: Unhealthy Instance Alert
+
+As a Support Engineer, you want to be notified when a customer instance has been in an unhealthy state for an extended period so that you can proactively reach out.
+
+- **Event Type:** Instance State Duration
+- **Configuration:**
+  - Filter - State: Select "Unavailable", "Missing", and "Degraded"
+  - Filter - Duration: "1 hour"
+  - Filter - Application: Select your production application
+  - Filter - License Type: "Paid"
+- **Delivery Method:** Webhook to #support-escalations channel in Slack
+
+### Operations Lead: Instance Instability
+
+As an Operations Lead, you want to be notified when a customer instance is rapidly changing states, which may indicate an underlying infrastructure or configuration issue.
+
+- **Event Type:** Instance State Flapping
+- **Configuration:**
+  - Filter - Minimum State Changes: 5
+  - Filter - Time Window: 30 minutes
+  - Filter - Application: Select your application
+- **Delivery Method:** Email to `ops-team@example.com`

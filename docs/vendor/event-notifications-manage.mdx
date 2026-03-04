@@ -1,0 +1,103 @@
+# Manage Event Notification Subscriptions (Alpha)
+
+:::note
+Event Notifications is in Alpha. Features and functionality are subject to change.
+:::
+
+This topic describes how to view, edit, disable, and delete event notifications in the Replicated Vendor Portal.
+
+## View Notification Subscriptions
+
+For each notification subscription, you can view the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title.
+
+To view notification subscriptions:
+
+1. Navigate to **Notifications** in the Vendor Portal.
+2. The **Overview** tab displays your active and inactive subscriptions.
+3. (Optional) Select the **Show team notifications** checkbox to include notifications created by other team members.
+4. (Optional) Use the search bar to filter subscriptions by name or event type.
+
+{/* TODO: Add screenshot of Overview view */}
+
+## View Notification History and Status
+
+Shows all triggered notification events for the selected time period. You can filter the history to show only your notifications or filter by a specific notification, including deleted subscriptions.
+
+To view notification history:
+
+1. In the Vendor Portal, go to **Notifications > History**.
+3. Use the filters to narrow results:
+   - Filter by time period
+   - Filter to "My Notifications Only"
+   - Filter to a specific notification (active or deleted)
+   - Filter by delivery status (Delivered, Failed, or Pending)
+1. (Optional) Click on an event to view details:
+   - List of all events that matched this notification's filters
+   - Timestamp when each event occurred
+   - Event details (customer, instance, application, etc.)
+   - Delivery status (Delivered, Failed, Pending)
+   - For failures: Error message explaining why delivery failed   
+
+{/* TODO: Add screenshot of History view */}
+
+## Resend a Failed Notification
+
+You can manually resend events with a **Failed** delivery status.
+
+To resend a failed notification:
+
+1. Go to **Notifications** > **History**.
+1. Expand the failed event and click **Resend email** or **Resend webhook**.
+1. Confirm the resend.
+
+## Edit a Notification
+
+You can edit any notifications that you created. Team Admins can also edit notifications created by other team members.
+
+Editing a notification does not affect the notification history for past events.
+
+To edit a notification:
+
+1. In the Vendor Portal, go to **Notifications**.
+
+1. Next to the notification that you want to modify, click **Edit**.
+
+1. Make your changes. For example:
+   - Add or update a custom subscription name to help identify the subscription
+   - Add or remove event types, or modify filters on existing event types to broaden or narrow the scope
+   - Change the delivery method or destination
+   - Check or uncheck the **Enable this notification** checkbox to pause or unpause the notification
+
+1. Click **Save Changes**.
+
+{/* Add screenshot of Edit notification form */}
+
+## Temporarily Disable a Notification
+
+When you disable a notification, it stops triggering for new events. The Vendor Portal saves the subscription configuration and any historical event data is still available.
+
+You can re-enable notifications at any time.
+
+To temporarily disable a notification without deleting its history or configuration:
+
+1. In the Vendor Portal, go to **Notifications**.
+
+1. Next to the notification that you want to disable, click **Edit**.
+
+1. Disable the **Enable this notification** checkbox at the bottom of the form.
+
+1. Click **Save Changes**.
+
+## Delete a Notification
+
+You can delete notifications that you created. Team Admins can also delete notifications created by other team members.
+
+Deleting a notification is permanent and cannot be undone. When you delete a notification, historical event data for the notification remains available in the Vendor Portal **Notifications > History** view.
+
+To permanently delete a notification:
+
+1. Navigate to **Notifications** in the Vendor Portal.
+
+1. For the notification that you want to delete, click **Delete**.
+
+1. Confirm the deletion in the prompt.
