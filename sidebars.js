@@ -251,7 +251,6 @@ const sidebars = {
           items: [
             "vendor/embedded-overview",
             "vendor/embedded-using",
-            "reference/embedded-config",
             {
               type: "category",
               label: "Install with Embedded Cluster",
@@ -611,6 +610,7 @@ const sidebars = {
         "reference/custom-resource-application",
         "reference/custom-resource-config",
         "reference/custom-resource-configvalues",
+        "reference/embedded-config",
         "reference/custom-resource-helmchart-v2",
         "reference/custom-resource-helmchart",
         "reference/custom-resource-lintconfig",
