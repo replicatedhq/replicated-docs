@@ -1,0 +1,32 @@
+# This file is used to lint for proper word use.
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
+level: warning
+ignorecase: false
+action:
+  name: replace
+swap:
+  # "(?:kill|terminate|abort)": stop|exit|cancel|end
+  air gapped: air-gapped
+  air-gap: air-gapped|air gap
+  airgap: air-gapped|air gap
+  file name: filename
+  in order to: to
+  k8s: Kubernetes
+  leverage: use|apply|take advantage of
+  once: after|one time
+  once the: after the
+  once you: after you
+  on(?:\s|-)premise: on-premises|on-prem
+  open-source: open source
+  quickstart: quick start
+  realtime: real time|real-time
+  sign into: sign in to
+  stand for: represent|mean
+  synchronize: sync
+  url: URL
+  utilize: use
+  Vendor API v3: Vendor API
+  via: with|through
+  we recommend: Replicated recommends

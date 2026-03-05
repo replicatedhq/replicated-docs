@@ -61,6 +61,19 @@ The following is a summary of the most important elements of our style guide, pl
       :::
       ```
 
+### Vale Prose Linter
+
+[Vale](https://github.com/errata-ai/vale) is a prose linter that checks documentation in Markdown or MDX formats against the Replicated style guide.  
+
+When you open a new PR or make commits to an existing PR, Vale automatically scans any files you've changed.
+
+You can also run Vale locally using its CLI:
+1. `brew install vale`
+1. `vale sync`
+1. `vale <path-to-file>`
+
+For more information, see https://vale.sh/docs.
+
 ### Cheatsheet for Generating Content with LLMs
 
 When generating content for Replicated Docs with LLMs, add the following to the context window:
