@@ -184,6 +184,32 @@ Request:
 
 Response: Status `200` OK
 
+### POST /app/supportbundle
+
+Upload a support bundle through the SDK. The bundle is streamed to Replicated for analysis and is available in the Vendor Portal.
+
+**Requirements:**
+* Replicated SDK 1.17.1 or later
+* The environment must have outbound internet access
+* The request must include the `Content-Length` header
+
+```bash
+POST http://replicated:3000/api/v1/app/supportbundle
+Content-Type: application/gzip
+Content-Length: <bundle-size-in-bytes>
+
+<binary support bundle data>
+```
+
+Response: Status `201` Created
+
+```json
+{
+  "bundleId": "abc123-def456",
+  "slug": "my-app-supportbundle-abc123"
+}
+```
+
 ## license
 
 ### GET /license/info
