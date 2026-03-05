@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.17.1
+
+Released on March 5, 2026
+
+### Improvements {#improvements-1-17-1}
+* Removes the `isSupportBundleUploadSupported` license entitlement requirement from the support bundle upload endpoint. All licenses can now upload support bundles through the SDK.
+
 ## 1.17.0
 
 Released on March 4, 2026
