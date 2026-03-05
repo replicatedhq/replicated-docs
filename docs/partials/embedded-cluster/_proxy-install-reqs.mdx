@@ -1,1 +1,5 @@
-**Requirement:** Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.
+**Requirements:**
+
+* Proxy installations require Embedded Cluster 1.5.1 or later with Kubernetes 1.29 or later.
+
+* When installing behind a proxy, set both `--https-proxy` and `--http-proxy`. If you don't use an HTTP proxy, set `--http-proxy` to the same host and port as your HTTPS proxy server.
