@@ -42,3 +42,6 @@ onboard
 AMI
 subnet
 subnets
+allowlist
+signup
+Signup
