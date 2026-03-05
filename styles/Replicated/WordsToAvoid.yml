@@ -1,0 +1,18 @@
+# This file is used to lint for common words to avoid.
+extends: existence
+message: "Avoid using the word '%s'."
+link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
+level: warning
+ignorecase: false
+action:
+  name: remove
+tokens:
+  - completely
+  - easy
+  - easily
+  - please
+  - seamless
+  - seamlessly
+  - simple
+  - simply
+  - very

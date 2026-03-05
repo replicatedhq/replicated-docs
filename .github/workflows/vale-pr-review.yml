@@ -1,0 +1,39 @@
+# Run Vale linter only on changed docs when a PR is opened or updated against main.
+name: Vale PR review
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  vale:
+    name: Vale
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed doc files
+        id: changed
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            docs/**/*.md
+            docs/**/*.mdx
+          files_ignore: |
+            docs/reference/kots-cli-*
+            docs/reference/replicated-cli-*
+            docs/release-notes/rn-*
+          separator: " "
+
+      - name: Run Vale on changed files
+        if: steps.changed.outputs.all_changed_files_count != '0'
+        uses: errata-ai/vale-action@v2
+        with:
+          files: ${{ steps.changed.outputs.all_changed_files }}
+          separator: " "
+          fail_on_error: false
+          reporter: github-pr-review

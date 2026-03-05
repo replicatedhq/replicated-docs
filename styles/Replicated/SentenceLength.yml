@@ -1,0 +1,12 @@
+# This file is used to lint sentence length.
+extends: occurrence
+message: "Try to keep your sentence length to 26 words or fewer."
+level: suggestion
+# Count the number of words
+# in a sentence.
+#
+# If there are more than 26, flag it.
+scope: sentence
+ignorecase: false
+max: 26
+token: \b(\w+)\b
