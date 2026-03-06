@@ -1,1 +1,3 @@
-Embedded Cluster 2.4.0 and later also respects the `http_proxy`, `https_proxy`, and `no_proxy` environment variables for installing behind a proxy. When set, the `--http-proxy`, `--https-proxy`, `--no-proxy` flags take precedence over environment variables. Additionally, lowercase environment variables (`http_proxy`) take precedence over uppercase (`HTTP_PROXY`).
+Embedded Cluster 2.4.0 and later also respects the `http_proxy`, `https_proxy`, and `no_proxy` environment variables for installing behind a proxy. When set, flags take precedence over environment variables. Additionally, lowercase environment variables (`http_proxy`) take precedence over uppercase (`HTTP_PROXY`).
+
+Because the install command runs with `sudo`, environment variables must be available in sudo's environment. Use `sudo -E` to preserve the current user's environment, or pass variables explicitly with `sudo env http_proxy=... https_proxy=...`.
