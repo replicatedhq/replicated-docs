@@ -1,12 +1,12 @@
-# Validate Provenance of Releases for the Replicated SDK
+# Validate provenance of releases for the Replicated SDK
 
 This topic describes how to verify the authenticity and integrity of Replicated SDK container images using SLSA provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
 
-## About Supply Chain Levels for Software Artifacts (SLSA)
+## About supply chain levels for software artifacts (SLSA)
 
 [Supply Chain Levels for Software Artifacts (SLSA)](https://slsa.dev/), pronounced "salsa," is a security framework that comprises standards and controls designed to prevent tampering, enhance integrity, and secure software packages and infrastructure.
 
-## Purpose of Attestations
+## Purpose of attestations
 
 Attestations enable the inspection of an image to determine its origin, the identity of its creator, the creation process, and its contents. When building software using the Replicated SDK, the image's Software Bill of Materials (SBOM) and SLSA-based provenance attestations empower your customers to make informed decisions regarding the impact of an image on the supply chain security of your application.
 
@@ -21,8 +21,8 @@ Before performing these tasks, install the following tools:
 - [cosign](https://github.com/sigstore/cosign)
 - [jq](https://stedolan.github.io/jq/)
 
-## Verify SDK Image Integrity
-### Using the Verification Script
+## Verify SDK image integrity
+### Using the verification script
 Replicated provides a verification script within the replicated-sdk repo that you can use directly or use it as a basis to develop your own verification automation. The script is located at https://github.com/replicatedhq/replicated-sdk/blob/main/certs/verify-image.sh
 
 The verification script performs three key security checks:
@@ -51,7 +51,7 @@ Optional Arguments:
   --digest sha256:7cb8e0c8e0fba8e4a7157b4fcef9e7345538f7543a4e5925bb8b30c9c1375400
 ```
 
-### Verification Process
+### Verification process
 
 The script performs the following checks:
 

@@ -1,4 +1,4 @@
-# Manage Releases with the Vendor Portal
+# Manage releases with the Vendor Portal
 
 This topic describes how to use the Replicated Vendor Portal to create and promote releases, edit releases, edit release properties, and archive releases.
 
@@ -6,7 +6,7 @@ For information about creating and managing releases with the CLI, see [Manage R
 
 For information about creating and managing releases with the Vendor API v3, see the [releases](https://replicated-vendor-api.readme.io/reference/createrelease) and [channelReleases](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbundleurl) sections in the Vendor API v3 documentation.
 
-## Create a Release
+## Create a release
 
 To create and promote a release in the Vendor Portal:
 
@@ -66,7 +66,7 @@ To create and promote a release in the Vendor Portal:
 
    The release appears in an **Active** state on the Releases page.
 
-## Edit a Draft Release
+## Edit a draft release
 
 To edit a draft release:
 
@@ -80,7 +80,7 @@ To edit a draft release:
 1. Click **Save** to save your updated draft.
 1. (Optional) Click **Promote**.
   
-## Edit Release Properties
+## Edit release properties
 
 You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) and [Required Releases](releases-about#required-releases) in _About Channels and Releases_.
 
@@ -99,7 +99,7 @@ To edit release properties:
     :::
 1. Click **Update Release**.
 
-## Remove Release Requirement {#remove-req}
+## Remove release requirement {#remove-req}
 
 You can disable the **Prevent this release from being skipped during upgrades** property for a release to remove the "required" label from the release in the Enterprise Portal.
 
@@ -119,7 +119,7 @@ To remove the requirement from a release:
 To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later (Embedded Cluster 2.10.0 or later).
 :::
 
-## Archive a Release
+## Archive a release
 
 You can archive releases to remove them from view on the **Releases** page. Archiving a release that has been promoted does _not_ remove the release from the channel's **Release History** page or prevent KOTS from downloading the archived release.
 
@@ -130,7 +130,7 @@ To archive one or more releases:
 1. Click **Archive Releases**.
 1. Confirm the archive action when prompted.
 
-## Demote a Release
+## Demote a release
 
 A channel release can be demoted from a channel. When a channel release is demoted, the release is no longer available for download, but is not withdrawn from environments where it was already downloaded or installed. For more information, see [Demotion](/vendor/releases-about#demotion) in _About Channels and Releases_.
 
