@@ -1,4 +1,4 @@
-# Manage SCIM Provisioning (Beta)
+# Manage SCIM provisioning (Beta)
 
 This topic describes how to configure SCIM (System for Cross-domain Identity Management) v2.0 provisioning for the Replicated Vendor Portal.
 
@@ -46,11 +46,11 @@ Before you configure SCIM, ensure that:
 
 ## Configure SCIM
 
-### Okta Configuration
+### Okta configuration
 
 This section describes how to enable SCIM provisioning for Replicated in Okta. For other identity providers, see [Other Identity Providers](#other-identity-providers) below.
 
-#### Step 1: Add Replicated Application
+#### Step 1: Add Replicated application
 1. In the Okta Admin Console, go to **Applications > Applications**.
 2. Create a custom SAML 2.0 application.
 3. Click **Add Integration**.
@@ -59,7 +59,7 @@ This section describes how to enable SCIM provisioning for Replicated in Okta. F
 1. Configure SAML settings as described in [Manage SAML Authentication](team-management-saml-auth).
 2. Ensure SAML is working before you proceed with SCIM.
 
-#### Step 3: Enable SCIM Provisioning
+#### Step 3: Enable SCIM provisioning
 1. In your Okta account's Replicated application listing, go to the **Provisioning** tab.
 2. Click **Configure API Integration**.
 3. Check **Enable API integration**.
@@ -70,14 +70,14 @@ This section describes how to enable SCIM provisioning for Replicated in Okta. F
    - **Supported Actions:** Import Users, Push New Users, Push Profile Updates (deactivate only)
    - **API Token:** Your Replicated Vendor API token
 
-#### Step 4: Configure Provisioning Settings
+#### Step 4: Configure provisioning settings
 1. Go to **Provisioning > To App**.
 2. Enable the following:
    - Create Users
    - Update User Attributes
    - Deactivate Users
 
-#### Step 5: Attribute Mapping
+#### Step 5: Attribute mapping
 Configure the following attribute mappings:
 
 | Okta Attribute | Replicated Attribute | Required | Notes |
@@ -92,7 +92,7 @@ Configure the following attribute mappings:
 If name fields are not provided, users are still created, but might have incomplete profile information. Internally, Replicated stores names as `firstName` and `lastName`; these map to SCIM `name.givenName` and `name.familyName` respectively.
 :::
 
-#### Step 6: Assign Users
+#### Step 6: Assign users
 
 :::note
 If your team already has users in Replicated, synchronize them with Okta before you assign users. See [Migrate from Existing User Management](#migrate) below.
@@ -104,7 +104,7 @@ To assign users in Okta:
 
 Users are provisioned to your Replicated team automatically.
 
-### Other Identity Providers
+### Other identity providers
 
 For identity providers other than Okta, you can use the following basic settings to configure SCIM:
 - **SCIM Base URL:** `https://api.replicated.com/vendor/scim/v2`
@@ -114,7 +114,7 @@ For identity providers other than Okta, you can use the following basic settings
 
 For more information, see [SCIM API](#scim-api) below.
 
-## Migrate from Existing User Management {#migrate}
+## Migrate from existing user management {#migrate}
 
 If your team already has users in Replicated before you enable SCIM, you can synchronize the existing users with your identity provider.
 
@@ -125,7 +125,7 @@ The following are best practices for migrating from existing user management:
 * Document the current user list and permissions before migration.
 * Monitor for provisioning errors during the first few days.
 
-### (Recommended) Automatic User Matching
+### (Recommended) Automatic user matching
 
 To automatically match users:
 
@@ -154,7 +154,7 @@ To automatically match users:
        https://api.replicated.com/vendor/scim/v2/Users
      ```
 
-### Manual User Migration
+### Manual user migration
 
 If email addresses do not match exactly or users exist in other teams, you can manually sync users instead.
 
@@ -181,9 +181,9 @@ To manually migrate users:
     ```
     Where `YOUR_TOKEN` is a Replicated Vendor Service Account token scoped to your team with permissions to manage team members. For more information, see [Authentication](#authentication) below.
 
-## Test the SCIM Integration
+## Test the SCIM integration
 
-### Test SCIM Endpoints
+### Test SCIM endpoints
 
 You can use the following curl commands to manually test SCIM endpoints:
 
@@ -210,7 +210,7 @@ curl -X POST \
   https://api.replicated.com/vendor/scim/v2/Users
 ```
 
-### Test Using Your Identity Provider
+### Test using your identity provider
 
 To test the SCIM integration using your identity provider:
 
@@ -234,17 +234,17 @@ curl -H "Authorization: Bearer YOUR_TOKEN" \
   https://api.replicated.com/vendor/scim/v2/Users
 ```
 
-### SCIM Endpoints
+### SCIM endpoints
 
 Base URL: `https://api.replicated.com/vendor/scim/v2`
 
-#### Discovery Endpoints
+#### Discovery endpoints
 
 - `GET /ServiceProviderConfig` — SCIM implementation capabilities
 - `GET /ResourceTypes` — Supported resource types (User, Group)
 - `GET /Schemas` — Detailed schema information
 
-#### User Management Endpoints
+#### User management endpoints
 
 - `GET /Users` — List users with filtering and pagination
 - `POST /Users` — Create users
@@ -253,11 +253,11 @@ Base URL: `https://api.replicated.com/vendor/scim/v2`
 - `PUT /Users/{userId}` — Replace user (deactivation only)
 - `DELETE /Users/{userId}` — Delete user
 
-#### Group Endpoints
+#### Group endpoints
 
 - `GET /Groups` — Returns an empty list (read-only for compliance)
 
-### Unique Identifier
+### Unique identifier
 
 - **Primary identifier:** `userName` (must be the user's email address)
 - **Resource ID:** The `id` in responses is the user's email address
@@ -269,7 +269,7 @@ Base URL: `https://api.replicated.com/vendor/scim/v2`
 2. Otherwise, if `userName` is set, it is used.
 3. Otherwise, if `emails[]` has values, the first `emails[0].value` is used.
 
-### Required Attributes
+### Required attributes
 
 Minimum required attributes (only email is strictly required):
 

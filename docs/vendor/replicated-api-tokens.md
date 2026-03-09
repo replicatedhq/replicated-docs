@@ -1,12 +1,12 @@
 import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
-# Generate API Tokens
+# Generate API tokens
 
 This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
 
 The Replicated CLI also supports creating multiple authentication profiles for managing tokens across different accounts or environments. For more information, see [Authenticate](/reference/replicated-cli-installing#auth) in _Installing the Replicated CLI_.
 
-## About API Tokens
+## About API tokens
 
 The Vendor API v3 is the API that manages applications in the Replicated Vendor Portal. The Replicated CLI is an implementation of the Vendor API v3.
 
@@ -19,7 +19,7 @@ The following types of tokens are available:
 
 <TeamTokenNote/>
 
-### Service Accounts
+### Service accounts
 
 Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy when they create a service account.
 
@@ -27,7 +27,7 @@ Service accounts are useful for operations that are not tied to a particular use
 
 Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its tokens are also invalidated.
 
-### User API Tokens
+### User API tokens
 
 User API tokens are private to the user creating the token. User tokens assume the user's account when used, including any RBAC permissions.
 
@@ -35,11 +35,11 @@ Updates to a user's RBAC role are applied to all of the tokens belonging to that
 
 Revoking a user token immediately invalidates that token. When a user account is deleted, its user tokens are also deleted.
 
-## Generate Tokens
+## Generate tokens
 
 To use the Replicated CLI or the Vendor API v3, you need a User API token or a Service Account token. Existing team API tokens also continue to work.
 
-### Generate a Service Account
+### Generate a service account
 
 To generate a service account:
 
@@ -72,7 +72,7 @@ To generate a service account:
 To remove a service account, select **Remove** for the service account that you want to delete.
 :::
 
-### Generate a User API Token
+### Generate a user API token
 
 To generate a user API token:
 

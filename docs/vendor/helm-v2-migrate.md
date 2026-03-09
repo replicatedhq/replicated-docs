@@ -1,4 +1,4 @@
-# Migrate Existing Installations to HelmChart v2
+# Migrate existing installations to HelmChart v2
 
 This topic describes how to migrate existing Replicated KOTS installations to the KOTS HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
 
@@ -12,7 +12,7 @@ This topic describes how to migrate existing Replicated KOTS installations to th
 
 * The `kots.io/keep` annotation is supported with KOTS v1.122.0 and later.
 
-### Migrate From HelmChart v1 with `useHelmInstall: true`
+### Migrate from HelmChart v1 with `useHelmInstall: true`
 
 To migrate existing installations from HelmChart v1 with `useHelmInstall: true` to HelmChart v2:
 
@@ -28,7 +28,7 @@ To migrate existing installations from HelmChart v1 with `useHelmInstall: true` 
 
 1. When you are done testing, promote the release to one or more of your customer-facing channels. Customers can follow the standard upgrade process in the Admin Console to update their instance.
 
-### Migrate From HelmChart v1 with `useHelmInstall: false`
+### Migrate from HelmChart v1 with `useHelmInstall: false`
 
 This section describes how to migrate existing HelmChart v1 installations with `useHelmInstall: false`.
 
@@ -97,7 +97,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
 
 1. In subsequent releases, remove the `--take-ownership` flag from the `helmUpgradeFlags` field and remove the `kots.io/keep` annotation from resources in your Helm templates.  
 
-### Migrate From Standard Kubernetes Manifests
+### Migrate from standard Kubernetes manifests
 
 This section describes how to migrate existing KOTS installations of applications that were previously packaged as standard Kubernetes manifests and are now packaged as one or more Helm charts. This migration path involves performing two upgrades to ensure that KOTS does not uninstall any resources that were adopted into Helm charts, and that Helm can take ownership of resources that were previously deployed without Helm.
 
@@ -161,7 +161,7 @@ To migrate applications that were previously packaged as standard Kubernetes man
 
 1. In subsequent releases, remove the `--take-ownership` flag from the `helmUpgradeFlags` field and remove the `kots.io/keep` annotation from resources in your Helm templates.  
 
-## Support Customers on KOTS Versions Earlier Than v1.99.0 {#support-both-v1-v2}
+## Support customers on KOTS versions earlier than v1.99.0 {#support-both-v1-v2}
 
 The HelmChart v2 installation method requires KOTS v1.99.0 or later. If you have existing customers that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you support both the HelmChart v2 and v1 installation methods from the same release until all installations are running KOTS v1.99.0 or later.
 
@@ -171,7 +171,7 @@ When you include both versions of the HelmChart custom resource for a Helm chart
 
 After all customers are using KOTS v1.99.0 or later, you can remove the HelmChart v1 custom resources so that all customers are using the HelmChart v2 method.
 
-## HelmChart v2 Migration FAQs
+## HelmChart v2 migration faqs
 
 This section includes FAQs related to migrating existing installations to the KOTS HelmChart v2 method.
 

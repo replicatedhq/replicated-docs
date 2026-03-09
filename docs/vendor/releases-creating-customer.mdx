@@ -2,11 +2,11 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import Download from "../partials/customers/_download.mdx"
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
-# Create and Manage Customers
+# Create and manage customers
 
 This topic describes how to create and manage customers in the Replicated Vendor Portal. For more information about customer licenses, see [About Customers](licenses-about).
 
-## Create a Customer
+## Create a customer
 
 This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time. The license ID, which is the unique identifier for the customer, never changes.
 
@@ -54,7 +54,7 @@ To create a customer:
 
 1. Click **Save Changes**.
 
-## Edit a Customer
+## Edit a customer
 
 :::important
 For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query and enforce the target entitlement before making any changes.
@@ -76,7 +76,7 @@ To edit license fields:
     * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
     * For applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), update the license in the Admin Console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses in the Admin Console_.
 
-## Edit a Locked License Field
+## Edit a locked license field
 
 When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages. For more information about how to lock and unlock license fields, see [Lock Built-In License Fields](licenses-adding-custom-fields#lock-built-in-license-fields) in _Manage Customer License Fields_.
 
@@ -88,7 +88,7 @@ To edit a locked field:
 
    [View a larger version of this image](/images/locked-license-field.png)
 
-## Archive a Customer
+## Archive a customer
 
 When you archive a customer in the Vendor Portal, the customer is hidden from search by default and becomes read-only. Archival does not affect the utility of license files downloaded before the customer was archived.
 
@@ -102,12 +102,12 @@ To archive a customer:
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Manage customer** page.
 
-## Export Customer and Instance Data {#export}
+## Export customer and instance data {#export}
 
 <Download/>
 
 For more information about the data fields in the CSV downloads, see [Data Dictionary](/vendor/instance-data-export#data-dictionary) in _Export Customers and Instance Data_.
-## Filter and Search Customers
+## Filter and search customers
 
 The **Customers** page provides a search box and filters that help you find customers:
 
@@ -123,6 +123,6 @@ You can also filter customers by custom ID or email address. To filter customers
 
 If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
 
-## Replace a License in an Existing Installation
+## Replace a license in an existing installation
 
 Unless the existing customer is using a Community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license. For more information, see [Community Licenses](licenses-about-types).

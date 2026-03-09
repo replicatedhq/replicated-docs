@@ -1,4 +1,4 @@
-# Template Annotations
+# Template annotations
 
 This topic describes how to use Replicated template functions to template annotations for resources and objects based on user-supplied values.
 
@@ -32,13 +32,13 @@ For Helm chart-based applications installed with KOTS, Replicated recommends tha
 For an example, see [Map User-Supplied Annotations to Helm Chart Values](#map-user-supplied-annotations-to-helm-chart-values) below.
 :::
 
-## Annotation Templating Examples
+## Annotation templating examples
 
 This section includes common examples of templating annotations in resources and objects to map user-supplied values.
 
 For additional examples of how to map values to Helm chart-based applications, see [Applications](https://github.com/replicatedhq/platform-examples/tree/main/applications) in the platform-examples repository in GitHub.
 
-### Map Multiple Annotations from a Single Configuration Field
+### Map multiple annotations from a single configuration field
 
 You can map one or more annotations from a single `textarea` field on the **Config** page. The `textarea` type defines multi-line text input and supports properties such as `rows` and `cols`. For more information, see [textarea](/reference/custom-resource-config#textarea) in _Config_.
 
@@ -82,7 +82,7 @@ metadata:
 During installation, KOTS renders the YAML with the multi-line input from the configuration field as shown below:
 
 ```yaml
-# Rendered Ingress object
+# Rendered ingress object
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -95,7 +95,7 @@ metadata:
     key3: value3
 ```
 
-### Map Annotations from Multiple Configuration Fields
+### Map annotations from multiple configuration fields
 
 You can specify multiple annotations using the same `kots.io/placeholder` annotation.
 
@@ -115,7 +115,7 @@ metadata:
 During installation, KOTS renders the YAML as shown below:
 
 ```yaml
-# Rendered Ingress object
+# Rendered ingress object
 
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -128,7 +128,7 @@ metadata:
     my.custom/annotation.ingress.hostname: example.hostname.com
 ```
 
-### Map User-Supplied Value to a Key
+### Map user-supplied value to a key
 
 You can map a user-supplied value from the **Config** page to a pre-defined annotation key.
 
@@ -147,7 +147,7 @@ metadata:
 During installation, KOTS renders the YAML as shown below:
 
 ```yaml
-# Rendered Ingress object
+# Rendered ingress object
 
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -159,7 +159,7 @@ metadata:
     my.custom/annotation.ingress.hostname: example.hostname.com
 ```
 
-### Include Conditional Statements in Templated Annotations
+### Include conditional statements in templated annotations
 
 You can include or exclude templated annotations based on a conditional statement.
 
@@ -182,7 +182,7 @@ spec:
 During installation, if the user enables the `custom_annotation` configuration field, KOTS renders the YAML as shown below:
 
 ```yaml
-# Rendered Ingress object
+# Rendered ingress object
 
 apiVersion: v1
 kind: Ingress
@@ -212,7 +212,7 @@ spec:
 ...  
 ```
 
-### Map User-Supplied Annotations to Helm Chart Values
+### Map user-supplied annotations to Helm chart values
 
 For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
 
@@ -237,7 +237,7 @@ spec:
 The `values.services.myservice.annotations` field in the HelmChart custom resource corresponds to a `services.myservice.annotations` field in the `value.yaml` file of the application Helm chart, as shown in the example below:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 services:
   myservice:
@@ -249,7 +249,7 @@ During installation, the ConfigOption template function in the HelmChart custom 
 Then, KOTS replaces the value in the corresponding field in the `values.yaml` in the chart archive, as shown in the example below.
 
 ```yaml
-# Rendered Helm chart values.yaml
+# Rendered Helm chart values.YAML
 
 services:
   myservice:

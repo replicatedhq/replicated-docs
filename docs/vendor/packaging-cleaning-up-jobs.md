@@ -1,8 +1,8 @@
-# Clean Up Kubernetes Jobs
+# Clean up Kubernetes jobs
 
 This topic describes how to use the Replicated KOTS `kots.io/hook-delete-policy` annotation to remove Kubernetes job objects from the cluster after they complete.
 
-## About Kubernetes Jobs
+## About Kubernetes jobs
 
 Kubernetes Jobs are designed to run and then terminate. But, they remain in the namespace after completion. Because Job objects are immutable, this can cause conflicts and errors when attempting to update the Job later.
 
@@ -13,7 +13,7 @@ This allows the same Job to be deployed again without polluting the namespace wi
 
 For more information about Job objects, see [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/) in the Kubernetes documentation.
 
-## KOTS `hook-delete-policy` Annotation
+## KOTS `hook-delete-policy` annotation
 
 To enable the built-in KOTS operator/controller to automatically delete Jobs when they complete, specify a delete hook policy as an annotation on the Job object.
 

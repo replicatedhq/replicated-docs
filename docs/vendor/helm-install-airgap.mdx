@@ -1,4 +1,4 @@
-# Install and Update with Helm in Air Gap Environments
+# Install and update with Helm in air gap environments
 
 This topic describes how to install and update releases with Helm in air-gapped environments.
 
@@ -104,11 +104,11 @@ To install with Helm in an air gap environment using the Download Portal:
 
 1. Use the commands provided and the values file or files that you edited to run preflight checks and then install the release.
 
-## Perform Updates
+## Perform updates
 
 This section describes the processes of performing manual and automatic updates with Helm in air gap environments using the instructions provided in the Enterprise Portal or the Download Portal.
 
-### Manual Updates
+### Manual updates
 
 The manual update instructions provided in the Enterprise Portal or Download Portal are similar to the installation instructions.
 
@@ -118,7 +118,7 @@ The additional steps are consistent with installation process until the `preflig
 
 If the new version introduces new images or other values, Replicated recommends that you explain this at the top of your release notes so that customers know they will need to make additional edits to the `values.yaml` before installing. 
 
-### Automate Updates (Download Portal Only)
+### Automate updates (Download Portal only)
 
 The instructions in the Download Portal for automating updates use API endpoints that your customers can automate against. 
 
@@ -132,6 +132,6 @@ With the list of images the provided `bash` script will automate the process of 
 
 Unless the customer has set up the `values` to preserve the updated tag (for example, by using the `latest` tag), they need to edit the `values.yaml` to reference the new image tags. After doing so, they can log in to the OCI registry and perform the commands to install the updated chart.
 
-## Use a Harbor or Artifactory Registry Proxy
+## Use a Harbor or Artifactory registry proxy
 
 You can integrate the Replicated proxy registry with an existing Harbor or jFrog Artifactory instance to proxy and cache images on demand. For more information, see [Using a Registry Proxy for Helm Air Gap Installations](using-third-party-registry-proxy).

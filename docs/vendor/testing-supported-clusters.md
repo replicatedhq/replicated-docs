@@ -1,6 +1,6 @@
 import Pool from "../partials/cmx/_openshift-pool.mdx"
 
-# CMX Cluster and VM Types
+# CMX cluster and VM types
 
 This topic lists the supported cluster and VM types that you can provision with Compatibility Matrix (CMX).
 
@@ -12,7 +12,7 @@ CMX can create VMs, VM-based clusters (such as kind, k3s, RKE2, and Red Hat Open
 
 * VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
 
-## VM Clusters
+## VM clusters
 
 This section lists the supported VM cluster distributions for clusters created with CMX.
 
@@ -306,7 +306,7 @@ CMX supports creating [kURL](https://kurl.sh) clusters.
   </tr>
 </table>
 
-## Cloud Clusters
+## Cloud clusters
 
 This section lists the supported cloud clusters for compatibility testing.
 
@@ -484,7 +484,7 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
   </tr>
 </table>
 
-## Supported VM Types
+## Supported VM types
 
 The following VM types are supported:
 
@@ -494,7 +494,7 @@ The following VM types are supported:
 | almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#types). |
 
 
-## Replicated Instance Types {#types}
+## Replicated instance types {#types}
 
 When creating a VM-based cluster with CMX, you must specify a Replicated instance type.
 
@@ -531,6 +531,6 @@ When creating a VM-based cluster with CMX, you must specify a Replicated instanc
   </tr>
 </table>
 
-## Kubernetes Version Support Policy
+## Kubernetes version support policy
 
 We do not maintain forks or patches of the supported distributions. When a Kubernetes version in CMX is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.

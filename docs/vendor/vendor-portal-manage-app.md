@@ -1,10 +1,10 @@
-# Manage Applications
+# Manage applications
 
 This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
 
 For information about creating and managing application with the Vendor API v3, see the [apps](https://replicated-vendor-api.readme.io/reference/createapp) section in the Vendor API v3 documentation.
 
-## Create an Application
+## Create an application
 
 Teams can create one or more applications. It is common to create multiple applications for testing purposes.
 
@@ -55,11 +55,11 @@ To create an application with the Replicated CLI:
    1xy9t8G9CO0PRGzTwSwWFkMUjZO    cli-app            cli-app            kots
    ```  
 
-## Get the Application Slug {#slug}
+## Get the application slug {#slug}
 
 Each application has a slug, which is used for interacting with the application using the Replicated CLI. The slug is automatically generated based on the application name and cannot be changed.
 
-### Vendor Portal 
+### Vendor Portal
 
 To get an application slug in the Vendor Portal:
 
@@ -94,11 +94,11 @@ To get an application slug with the Replicated CLI:
 
 1. Copy the value in the `SLUG` field.
 
-## Delete an Application
+## Delete an application
 
 When you delete an application, you also delete all licenses and data associated with the application. You can also optionally delete all images associated with the application from the Replicated registry. Deleting an application cannot be undone.
 
-### Vendor Portal 
+### Vendor Portal
 
 To delete an application in the Vendor Portal:
 

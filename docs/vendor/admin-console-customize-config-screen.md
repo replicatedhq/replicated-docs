@@ -1,8 +1,8 @@
-# Create and Edit Configuration Fields
+# Create and edit configuration fields
 
 This topic describes how to use the KOTS Config custom resource manifest file to add and edit fields in the KOTS Admin Console configuration screen.
 
-## About the Config Custom Resource
+## About the Config custom resource
 
 Applications distributed with Replicated KOTS can include a configuration screen in the Admin Console to collect required or optional values from your users that are used to run your application. For more information about the configuration screen, see [About the Configuration Screen](config-screen-about).
 
@@ -16,7 +16,7 @@ You define the fields that appear on the configuration screen as an array of `gr
 
 For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config).
 
-## About Regular Expression Validation
+## About regular expression validation
 
 You can use [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
 
@@ -38,7 +38,7 @@ The following example shows a common password complexity rule:
           message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letter, lowercase letters, digits, and special characters.
 ```
 
-## Add Fields to the Configuration Screen
+## Add fields to the configuration screen
 
 To add fields to the Admin Console configuration screen:
 
@@ -128,7 +128,7 @@ To add fields to the Admin Console configuration screen:
 
 4. Save and promote the release to a development environment to test your changes.
 
-## Next Steps
+## Next steps
 
 After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to manifest files in your release. If you use a Helm chart for your application, you map the values to the Helm chart `values.yaml` file using the HelmChart custom resource.
 

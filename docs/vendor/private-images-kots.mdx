@@ -5,11 +5,11 @@ import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-valu
 import AdditionalNs from "../partials/proxy-service/_step-additional-ns.mdx"
 import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
 
-# Use the Proxy Registry with Replicated Installers
+# Use the proxy registry with Replicated installers
 
 This topic describes how to use the Replicated proxy registry for applications deployed with Replicated installers (Embedded Cluster, KOTS existing cluster, or kURL). For more information about the proxy registry, see [About the Replicated Proxy Registry](private-images-about).
 
-## Configure Your Application to Use the Proxy Registry
+## Configure your application to use the proxy registry
 
 These steps assume that you package your application with Helm and that you install with the KOTS [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource.
 
@@ -33,11 +33,11 @@ To configure your application to use the proxy registry for installations with a
 
 1. Install in a development environment to test your changes.
 
-## Configure Other Application Types {#other}
+## Configure other application types {#other}
 
 If you are installing with the HelmChart v1 custom resource, or if your application is not packaged with Helm, there are different steps for configuring your application to use the proxy registry.
 
-### HelmChart v1 or Standard Manifests
+### HelmChart v1 or standard manifests
 
 :::note
 <Deprecated/>
@@ -92,7 +92,7 @@ images:
 ```
 </details> 
 
-### Kubernetes Operators
+### Kubernetes operators
 
 To use the proxy registry with applications packaged as Kubernetes Operators:
 

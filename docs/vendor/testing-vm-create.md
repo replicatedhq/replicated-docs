@@ -1,12 +1,12 @@
-# Connect to CMX VMs (SSH and File Transfer)
+# Connect to CMX VMs (SSH and file transfer)
 
 This topic describes how to connect to VMs created with Replicated Compatibility Matrix (CMX). It includes information about how to set up SSH access, SSH into VMs, and transfer files to VMs.
 
-## Prerequisite: Set Up SSH {#set-up-ssh}
+## Prerequisite: Set up SSH {#set-up-ssh}
 
 To access VMs that you create with Compatibility Matrix, you need to set up SSH access. You can do this using your GitHub account, a personal public/private key, or a service account or bot with shared access.
 
-### Use Your GitHub Account
+### Use your GitHub account
 
 :::note
 Your GitHub usernames and SSH keys are synced to a VM when it is first created. If you update your GitHub username or keys after creating a VM, you can manually sync by updating your [Account Settings](https://vendor.replicated.com/account-settings) in the Vendor Portal and clicking **Save**.
@@ -58,7 +58,7 @@ To set up and verify SSH access for CMX VMs using your personal GitHub account:
       If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
       :::
 
-### Use a Personal Public/Private Key
+### Use a personal public/private key
 
 To set up and verify SSH access for Compatibility Matrix VMs using a personal public/private key pair:
 
@@ -94,7 +94,7 @@ To set up and verify SSH access for Compatibility Matrix VMs using a personal pu
       If you see the prompt `Are you sure you want to continue connecting (yes/no/[fingerprint])?`, type `yes` and press Enter to continue. You might see this prompt if it is the first time you are authenticating with the public/private SSH key in your GitHub account. 
       :::
 
-### Use a Service Account {#github-service-account}
+### Use a service account {#github-service-account}
 
 If you are setting up SSH access for VMs created in CI/CD workflows used by your team, you can use the SSH key of a service account or bot with shared access.
 
@@ -110,7 +110,7 @@ Or, to use multiple SSH public keys:
 replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
 ```
 
-## SSH Into a VM
+## SSH into a VM
 
 You can SSH into a VM using one of the following methods:
 
@@ -118,7 +118,7 @@ You can SSH into a VM using one of the following methods:
 
 * [**Direct SSH**](#direct-ssh): When you connect to a VM using direct SSH, you can use your SSH tool of choice and pass any client supported flags, without any added connection lag of being routed through the CMX Forwarder. Example use cases for direct SSH include transferring large assets such as air gap bundles to the VM using SCP, or passing specific SHH flags during testing workflows.
 
-### CMX Forwarder {#compatibility-matrix-forwarder}
+### CMX forwarder {#compatibility-matrix-forwarder}
 
 To connect to a VM using the Forwarder:
 
@@ -192,13 +192,13 @@ To connect to a VM using direct SSH:
    ssh $(replicated vm ssh-endpoint aba1acc2)
    ```
 
-## Copy Files to a VM
+## Copy files to a VM
 
 This topic describes how to transfer files to a VM created with Replicated Compatibility Matrix (CMX).
 
 You can copy files to a VM either using direct SSH and an SCP endpoint, or by using SCP after connecting to the VM with the CMX Forwarder. Transferring files using direct SSH allows you to use your SSH tool of choice, and pass any client-supported flags. 
 
-### Using the SCP Endpoint
+### Using the scp endpoint
 
 To copy files to a VM using the scp endpoint:
 
@@ -244,7 +244,7 @@ To copy files to a VM using the scp endpoint:
    scp somefile $(replicated vm scp-endpoint VMID_OR_VMNAME)//PATH
    ```
 
-### After Connecting to the VM with the Forwarder
+### After connecting to the VM with the forwarder
 
 :::note
 Transferring files using CMX Forwarder is slower than using direct SSH due to added latency. If you want to transfer large files such as air gap bundles onto the VM, use direct SSH in combination with SCP. See [Using the SCP Endpoint](#using-the-scp-endpoint) above.

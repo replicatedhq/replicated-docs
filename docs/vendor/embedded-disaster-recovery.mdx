@@ -1,4 +1,4 @@
-# Disaster Recovery for Embedded Cluster (Alpha)
+# Disaster recovery for Embedded Cluster (Alpha)
 
 This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application. It also describes how end users can configure disaster recovery in the Replicated KOTS Admin Console and restore from a backup.
 
@@ -26,7 +26,7 @@ Embedded Cluster disaster recovery has the following requirements:
 * Embedded Cluster version 1.22.0 or later
 * Backups must be stored in S3-compatible storage
 
-## Limitations and Known Issues
+## Limitations and known issues
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
 
@@ -46,11 +46,11 @@ Embedded Cluster disaster recovery has the following limitations and known issue
 
 * If the `--admin-console-port` flag was used during install to change the port for the Admin Console, note that during a restore the Admin Console port will be used from the backup and cannot be changed. For more information, see [install](/reference/embedded-cluster-install).
 
-## Configure Disaster Recovery
+## Configure disaster recovery
 
 This section describes how to configure disaster recovery for Embedded Cluster installations. It also describes how to enable access to the disaster recovery feature on a per-customer basis.
 
-### Configure the Velero Custom Resources {#config-velero-resources}
+### Configure the Velero custom resources {#config-velero-resources}
 
 This section describes how to set up Embedded Cluster disaster recovery for your application by configuring Velero [Backup](https://velero.io/docs/latest/api-types/backup/) and [Restore](https://velero.io/docs/latest/api-types/restore/) custom resources in a release.
 
@@ -160,7 +160,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
 
 1. Save and the promote the release to a development channel for testing.
 
-### Extend Disaster Recovery with Custom Velero Plugins
+### Extend disaster recovery with custom Velero plugins
 
 > Introduced in Embedded Cluster v2.13.0
 
@@ -168,7 +168,7 @@ You can extend Velero's backup and restore capabilities by configuring custom Ve
 
 To configure custom Velero plugins, use the `extensions.velero.plugins` key in the Embedded Cluster Config. For more information, see [Configure Velero Plugins](/reference/embedded-config#configure-velero-plugins) in _Embedded Cluster Config_.
 
-### Enable the Disaster Recovery Feature for Your Customers
+### Enable the disaster recovery feature for your customers
 
 After configuring disaster recovery for your application, you can enable it on a per-customer basis with the **Allow Disaster Recovery (Alpha)** license field.
 
@@ -180,11 +180,11 @@ To enable disaster recovery for a customer:
    
    When your customer installs with Embedded Cluster, Velero will be deployed if the **Allow Disaster Recovery (Alpha)** license field is enabled.
 	
-## Take Backups and Restore
+## Take backups and restore
 
 This section describes how your customers can configure backup storage, take backups, and restore from backups.
 
-### Configure Backup Storage and Take Backups in the Admin Console
+### Configure backup storage and take backups in the Admin Console
 
 Customers with the **Allow Disaster Recovery (Alpha)** license field can configure their backup storage location and take backups from the Admin Console.
 
@@ -210,7 +210,7 @@ To configure backup storage and take backups:
 
      [View a larger version of this image](/images/dr-backups.png)
 
-### Restore from a Backup
+### Restore from a backup
 
 To restore from a backup:
 

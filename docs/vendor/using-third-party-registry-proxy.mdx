@@ -1,4 +1,4 @@
-# Use a Registry Proxy for Helm Air Gap Installations
+# Use a registry proxy for Helm air gap installations
 
 This topic describes how to connect the Replicated proxy registry to a Harbor or jFrog Artifactory instance to support pull-through image caching. It also includes information about how to set up replication rules in Harbor for image mirroring.
 
@@ -16,11 +16,11 @@ In addition to the support for on-demand pull-through caching, connecting the Re
 
 Artifactory does not support mirroring or replication for Docker registries. If you need to set up image mirroring, use Harbor. See [Set Up Mirroring in Harbor](#harbor-mirror) below.
 
-## Connect the Replicated Proxy Registry to Harbor
+## Connect the Replicated proxy registry to Harbor
 
 [Harbor](https://goharbor.io) is a popular open-source container registry. Users can connect the Replicated proxy registry to Harbor in order to cache images on demand and set up pull-based replication rules to proactively mirror images. Connecting the Replicated proxy registry to Harbor also allows customers use Harbor's security features.
 
-### Use Harbor for Pull-Through Proxy Caching {#harbor-proxy-cache}
+### Use Harbor for pull-through proxy caching {#harbor-proxy-cache}
 
 To connect the Replicated proxy registry to Harbor for pull-through proxy caching:
 
@@ -39,7 +39,7 @@ To connect the Replicated proxy registry to Harbor for pull-through proxy cachin
 
 1. (Optional) Add a pull-based replication rule to support image mirroring. See [Configure Image Mirroring in Harbor](#harbor-mirror) below.
 
-### Configure Image Mirroring in Harbor {#harbor-mirror}
+### Configure image mirroring in Harbor {#harbor-mirror}
 
 To enable image mirroring with Harbor, users create a pull-based replication rule. This periodically (or when manually triggered) pulls images from the Replicated proxy registry to store them in Harbor. 
 
@@ -57,7 +57,7 @@ Image mirroring with Harbor has the following limitations:
 
 * Only authenticated users can perform catalog calls or list tags. Authenticated users are those with an email address and license ID associated with a customer in the Vendor Portal.
 
-#### Create a Pull-Based Replication Rule in Harbor for Image Mirroring
+#### Create a pull-based replication rule in Harbor for image mirroring
 
 To configure image mirroring in Harbor:
 
@@ -65,7 +65,7 @@ To configure image mirroring in Harbor:
 
 1. Create a **pull-based** replication rule in Harbor to mirror images proactively. For more information, see [Creating a replication rule](https://goharbor.io/docs/2.11.0/administration/configuring-replication/create-replication-rules/) in the Harbor documentation.
 
-## Use Artifactory for Pull-Through Proxy Caching
+## Use Artifactory for pull-through proxy caching
 
 [jFrog Artifactory](https://jfrog.com/help/r/jfrog-artifactory-documentation) supports pull-through caching for Docker registries.
 

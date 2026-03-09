@@ -1,10 +1,10 @@
-# Configure Snapshots
+# Configure snapshots
 
 This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 
 For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
 
-## Storage Class Requirement
+## Storage class requirement
 
 For backup and restore operations to work properly, PersistentVolumes must use a StorageClass with a reclaim policy of `Delete`. Backup and restore operations are not supported for volumes with `Retain` reclaim policy.
 
@@ -15,7 +15,7 @@ kubectl get storageclass -o wide
 
 If needed, update the StorageClass reclaim policy to `Delete` before configuring snapshots.
 
-## Configure Snapshots
+## Configure snapshots
 
 Add a Velero Backup custom resource (`kind: Backup`, `apiVersion: velero.io/v1`) to your release and configure it as needed. After configuring the Backup resource, add annotations for each volume that you want to be included in backups.
 

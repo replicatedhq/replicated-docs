@@ -2,7 +2,7 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
-# Install SlackerNews With Embedded Cluster From the Command Line
+# Install SlackerNews with Embedded Cluster from the command line
 
 This tutorial demonstrates how to perform an automated or _headless_ installation for an application distributed with Replicated using the Replicated Embedded Cluster installer.
 
@@ -17,7 +17,7 @@ In this tutorial, you will:
 * Create a [ConfigValues](/reference/custom-resource-configvalues) file to pass application-specific configuration values to the installation from the command line
 * On a VM, run the Embedded Cluster `install` command to perform a headless install of SlackerNews
 
-## Set Up Your Environment
+## Set up your environment
 
 Before you begin, do the following to set up your environment:
 
@@ -47,7 +47,7 @@ Before you begin, do the following to set up your environment:
 
 ## Tutorial
 
-### Create an Application
+### Create an application
 
 1. On your local machine, install the Replicated CLI:
 
@@ -94,7 +94,7 @@ Before you begin, do the following to set up your environment:
 
    Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
-### Create a Release
+### Create a release
 
 1. Run the following command to download a tarball containing the files for the release:
 
@@ -141,7 +141,7 @@ Before you begin, do the following to set up your environment:
       • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
    ```
 
-### Create a Customer
+### Create a customer
 
 1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
@@ -169,7 +169,7 @@ Before you begin, do the following to set up your environment:
 
 1. Click **Save Changes**.
 
-### Create a CMX VM   
+### Create a CMX VM
 
 :::note
 If you are using your own VM, skip these steps and continue to [Create the ConfigValues](#create-the-configvalues) below.
@@ -210,7 +210,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
 
 1. Copy the URL for the DNS record with a target port of 443 (the hostname for accessing SlackerNews) and save it somewhere on your local machine. You will provide this hostname in the ConfigValues file that you create in the next step.
 
-### Create the ConfigValues      
+### Create the ConfigValues
 
 1. On your local machine, create a ConfigValues file:
 
@@ -241,7 +241,7 @@ If you are using your own VM, skip these steps and continue to [Create the Confi
          value: serene-jones.ingress.replicatedvm.com
      ```
 
-### SSH Onto the VM
+### SSH onto the VM
 
 * **If you brought your own VM:**
 

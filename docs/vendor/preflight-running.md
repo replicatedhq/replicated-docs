@@ -1,4 +1,4 @@
-# Run Preflight Checks for Helm Installations
+# Run preflight checks for Helm installations
 
 This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
 
@@ -50,7 +50,7 @@ helm template gitea | kubectl preflight -
 helm template oci://myregistry.io/org/examplechart | kubectl preflight -
 ```
 
-## Run Preflight Checks from a Release
+## Run preflight checks from a release
 
 When you promote a release that contains one or more Helm charts, the Helm charts are automatically pushed to the Replicated registry. To run preflight checks before installing a release, your users must first log in to the Replicated registry where they can access your application Helm chart containing the preflight specification.   
 
@@ -119,7 +119,7 @@ To run preflights checks from a release before installation:
 
     1. (Optional) Run the fourth command to install the application. For more information, see [Install with Helm](install-with-helm).      
 
-## (Optional) Save Preflight Check Results
+## (Optional) Save preflight check results
 
 The output of the preflight plugin shows the success, warning, or fail message for each preflight, depending on how they were configured. You can ask your users to send you the results of the preflight checks if needed.
 

@@ -1,4 +1,4 @@
-# About Community Licenses
+# About community licenses
 
 This topic describes community licenses. For more information about other types of licenses, see [Customer Types](licenses-about#customer-types) in _About Customers_.
 
@@ -22,7 +22,7 @@ exceptions:
 * Community licenses cannot support air gapped installations.
 * Community licenses cannot include an expiration date.
 
-## Community License Admin Console Branding
+## Community license Admin Console branding
 
 For applications installed with KOTS, the branding in the admin console for community users differs in the following ways:
 

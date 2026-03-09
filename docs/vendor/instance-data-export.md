@@ -1,6 +1,6 @@
 import Download from "../partials/customers/_download.mdx"
 
-# Export Customer and Instance Data
+# Export customer and instance data
 
 This topic describes how to download and export customer and instance data from the Replicated Vendor Portal.
 
@@ -13,7 +13,7 @@ While you can always consume customer and instance insight data directly in the 
 
 By collecting and organizing this data wherever it is most visible and valuable, you can enable your team to make better decisions about where to focus efforts across product, sales, engineering, and customer success.
 
-## Bulk Export Instance Event Timeseries Data
+## Bulk export instance event timeseries data
 
 You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Get instance events in either JSON or CSV format](https://replicated-vendor-api.readme.io/reference/listappinstanceevents) in the Vendor API v3 documentation.
 
@@ -23,7 +23,7 @@ By bulk exporting this instance event data with the `/app/{app_id}/events` endpo
 * Identify trends and potential problem areas 
 * Demonstrate the impact, adoption, and usage of recent product features
 
-### Filter Bulk Data Exports
+### Filter bulk data exports
 
 You can use the following types of filters to filter timeseries data for bulk export:
 
@@ -59,10 +59,10 @@ If any filter is passed for an object that does not exist, no warning is given. 
 :::
 
 
-## Download Customer Instance Data CSVs
+## Download customer instance data csvs
 <Download/>
 
-### Data Dictionary
+### Data dictionary
 
 The following table lists the data fields that can be included in the customers and instances CSV downloads, including the label, data type, and description.
 

@@ -1,4 +1,4 @@
-# Offsite Data Backup
+# Offsite data backup
 
 Replicated stores customer data in multiple databases across Amazon Web
 Services (AWS) S3 buckets. Clustering and network redundancies help to avoid a

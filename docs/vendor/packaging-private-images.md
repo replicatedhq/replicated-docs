@@ -1,10 +1,10 @@
-# Add and Manage External Registries
+# Add and manage external registries
 
 This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy registry. For more information, see [About the Replicated Proxy Registry](private-images-about).
 
 For information about adding a registry with the Vendor API v3, see [Create an external registry with the specified parameters](https://replicated-vendor-api.readme.io/reference/createexternalregistry) in the Vendor API v3 documentation.
 
-## Supported Registries
+## Supported registries
 
 Replicated recommends that application vendors use one the following external private registries:
 
@@ -20,7 +20,7 @@ These registries have been tested for compatibility with KOTS.
 
 You can also configure access to most other external registries if the registry conforms to the Open Container Initiative (OCI) standard. 
 
-## Add Credentials for an External Registry
+## Add credentials for an external registry
 
 All applications in your team have access to the external registry that you add. This means that you can use the images in the external registry across multiple apps in the same team.
 
@@ -235,7 +235,7 @@ To configure access to private images in an external registry using the Replicat
    To prevent the password from being saved in your shell history, Replicated recommends that you use the `--password-stdin` flag and entering the password when prompted.
    :::
 
-## Test External Registry Credentials
+## Test external registry credentials
 
 Replicated recommends that you test external registry credentials to ensure that the saved credentials on Replicated servers can pull the specified image.
 
@@ -256,7 +256,7 @@ For example:
 replicated registry test index.docker.io --image my-company/my-image:v1.2.3
 ```
 
-## Scope a Registry to Specific Applications
+## Scope a registry to specific applications
 
 You can scope each external registry to one or more applications in your Vendor Portal team.
 
@@ -272,7 +272,7 @@ To scope a registry to specific applications:
 
 1. Click **Save**.  
 
-## Duplicate a Registry
+## Duplicate a registry
 
 You can duplicate an existing registry. This can be useful when you want to add an external registry with the same credentials, but change the proxy URI to use the `/name/` instead of the full upstream endpoint. 
 
@@ -290,7 +290,7 @@ To duplicate an existing external registry:
 
 1. Click **Save**.
 
-## View Pull Activity
+## View pull activity
 
 You can view image pull activity for each of your external registries that are connected to the Replicated proxy registry. This includes a summary of recent pull activity as well as the full history of image pulls.
 

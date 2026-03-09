@@ -1,4 +1,4 @@
-# Enable Support Bundle Uploads (Beta)
+# Enable support bundle uploads (Beta)
 
 :::note
 Direct bundle uploads is in beta. The functionality, requirements, and limitations of direct bundle uploads are subject to change.
@@ -14,7 +14,7 @@ After clicking this button, the bundle will be immediately available under the T
 
 For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app).
 
-### How to Enable Direct Bundle Uploads
+### How to enable direct bundle uploads
 
 Direct bundle uploads are disabled by default. To enable this feature for your customer:
 

@@ -1,4 +1,4 @@
-# Use Helm Templates in Specifications
+# Use Helm templates in specifications
 
 You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles for Helm installations.
 
@@ -9,7 +9,7 @@ Helm templates can be useful when you need to:
 
 You can also use Helm templating with the Troubleshoot template functions for the `clusterPodStatuses` analyzer. For more information, see [Helm and Troubleshoot Template Example](#troubleshoot).
 
-## Helm Template Example
+## Helm template example
 
 In the following example, the `mysql` collector is included in a preflight check if the customer does not want to use the default MariaDB. This is indicated by the template `{{- if eq .Values.global.mariadb.enabled false -}}`.
 
@@ -82,7 +82,7 @@ stringData:
 {{- include "preflight.spec"  . | indent 4 }}
 ```
 
-## Helm and Troubleshoot Template Example {#troubleshoot}
+## Helm and troubleshoot template example {#troubleshoot}
 
 You can also use Helm templates with the Troubleshoot template functions to automatically add the Pod name and namespace to a message when a `clusterPodStatuses` analyzer fails. For more information about the Troubleshoot template function, see [Cluster Pod Statuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/) in the Troubleshoot documentation.
 
@@ -91,7 +91,7 @@ When you add the `clusterPodStatuses` analyzer template function values (such as
 The following example shows an analyzer that uses Troubleshoot templates and the override for Helm:
 
 ```yaml
-# This is the support bundle config secret that will be used to generate the support bundle
+# This is the support bundle Config secret that will be used to generate the support bundle
 apiVersion: v1
 kind: Secret
 metadata:

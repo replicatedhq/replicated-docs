@@ -1,4 +1,4 @@
-# Verify License Field Signatures with the Replicated SDK API
+# Verify license field signatures with the Replicated SDK API
 
 This topic describes how to verify the signatures of license fields when checking customer license entitlements with the Replicated SDK.
 
@@ -27,7 +27,7 @@ Replicated recommends that you use signature verification to ensure the integrit
 
 Include the Replicated SDK as a dependency of your application Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-## Use Your Public Key to Verify License Field Signatures
+## Use your public key to verify license field signatures
 
 In your application, you can use your public key (available in the Vendor Portal) and the MD5 hash of a license field value to verify the PSS signature of the license field.
 

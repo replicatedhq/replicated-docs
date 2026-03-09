@@ -1,4 +1,4 @@
-# Conditionally Include or Exclude Resources
+# Conditionally include or exclude resources
 
 This topic describes how to use Replicated `kots.io` annotations to explicitly include or exclude application resources from deployments based on one or more conditions.
 
@@ -10,17 +10,17 @@ Another common use case is needing to explicitly include or exclude a resource f
 
 For applications distributed with Replicated, there are options for explicitly including and excluding entire Helm charts, resources within a Helm chart's templates, and resources defined by standalone Kubernetes manifests.
 
-## Include or Exclude Helm Charts
+## Include or exclude Helm charts
 
 This section describes methods for including or excluding Helm charts and resources within a chart's templates.
 
-### Helm Optional Dependencies 
+### Helm optional dependencies
 
 Helm supports adding a `condition` field to dependencies in the Helm chart `Chart.yaml` file to include subcharts based on one or more boolean values evaluating to true.
 
 For more information about working with dependencies and defining optional dependencies for Helm charts, see [Dependencies](https://helm.sh/docs/chart_best_practices/dependencies/) in the Helm documentation.
 
-### HelmChart `exclude` Field
+### HelmChart `exclude` field
 
 For Helm chart applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), you can exclude certain Helm charts from deployment using the HelmChart custom resource [`exclude`](/reference/custom-resource-helmchart#exclude) field. When the `exclude` field is set to a conditional statement, the chart is excluded if the condition evaluates to `true`.
 
@@ -53,7 +53,7 @@ This annotation is useful for charts that are required for Replicated installer-
 Any Kubernetes resources in your releases that are not part of a Helm chart are never included in Helm CLI installations. You do not need to add this annotation to standalone manifests.
 :::
 
-#### Exclude an Entire Helm Chart from Helm CLI Installations
+#### Exclude an entire Helm chart from Helm CLI installations
 
 You can add `kots.io/installer-only` to a Replicated [HelmChart](/reference/custom-resource-helmchart) custom resource to prevent the associated Helm chart from being deployed in Helm CLI installations.
 
@@ -76,7 +76,7 @@ spec:
 HelmChart custom resources are never deployed by Helm CLI. The annotation controls whether the chart they reference is included in Helm CLI installation and update instructions.
 :::
 
-#### Exclude Resources Inside a Chart's Templates from Helm CLI Installations
+#### Exclude resources inside a chart's templates from Helm CLI installations
 
 You can add `kots.io/installer-only` to a Kubernetes resource in a Helm chart's templates directory to prevent the resource from being deployed in Helm CLI installations.
 
@@ -85,7 +85,7 @@ You can add `kots.io/installer-only` to a Kubernetes resource in a Helm chart's 
 The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
 
 ```yaml
-# example-chart/templates/preflight-job.yaml
+# Example-chart/templates/preflight-job.YAML
 
 apiVersion: batch/v1
 kind: Job
@@ -104,7 +104,7 @@ spec:
       restartPolicy: Never
 ```
 
-## Include or Exclude Kubernetes Manifests
+## Include or exclude Kubernetes manifests
 
 You can use the `kots.io/exclude` or `kots.io/when` annotations to include or exclude standalone Kubernetes manifests that are not part of a Helm chart. By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 

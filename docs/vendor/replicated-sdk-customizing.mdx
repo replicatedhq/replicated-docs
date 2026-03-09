@@ -4,7 +4,7 @@ import SdkValuesLimitation from "../partials/replicated-sdk/_limitation-config-w
 
 This topic describes how to customize the Replicated SDK, including customizing RBAC, setting environment variables, adding tolerations, and more.
 
-## About Customizing the Replicated SDK
+## About customizing the Replicated SDK
 
 You can customize various aspects of the Replicated SDK by setting the `replicated` values in the parent Helm chart's `values.yaml` file. These `replicated` values are automatically injected by the Replicated SDK during installation. For a complete list of supported configuration options for the SDK, see the [`values.yaml`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml) file for the SDK Helm chart in GitHub. For more information about the SDK values, see [Replicated SDK Helm Values](/vendor/replicated-sdk-overview#replicated-sdk-helm-values).
 
@@ -60,7 +60,7 @@ rules:
 With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true in your Helm chart values, as shown below:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   minimalRBAC: true
@@ -76,7 +76,7 @@ The permissions included in the Minimal RBAC role vary depending on if you defin
   The Replicated Vendor Portal uses status informers to provide application status data. For more information about status informers, see [Helm CLI Installations](/vendor/insights-app-status#helm-cli-installations) in _Enabling and Understanding Application Status_.
 </details>
 
-#### Default Minimal RBAC Role Without Custom Status Informers {#default-no-status-informers}
+#### Default minimal RBAC role without custom status informers {#default-no-status-informers}
 
 If you did _not_ define custom status informers for your application, then the default minimal RBAC Role includes permissions for the SDK to `get`, `list`, and `watch` the following resources in the namespace:
 * Secrets 
@@ -95,7 +95,7 @@ These permissions allow the SDK to discover the Helm chart secret for your appli
 The following shows the default RBAC role for the SDK when Minimal RBAC is enabled and no custom status informers are defined:
 
 ```yaml
-# Generated RBAC role with no statusInformers
+# Generated RBAC role with no statusinformers
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -200,14 +200,14 @@ rules:
   - list
 ```
 
-#### Default Minimal RBAC Role With Custom Status Informers {#default-status-informers}
+#### Default minimal RBAC role with custom status informers {#default-status-informers}
 
 If you defined custom status informers for your application, then the default Minimal RBAC role is _not_ created with the ability to access all secrets, and other resources are specified by name when possible.
 
 For example, the following custom `statusInformer` configuration defines specific Deployment and Service resources as status informers for the application:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   minimalRBAC: true
@@ -221,7 +221,7 @@ replicated:
 Given the custom `statusInformer` configuration above, the following Minimal RBAC role is created:
 
 ```yaml
-# Generated RBAC role with deployment/replicated, deployment/myapp, service/replicated and service/myapp statusinformers
+# Generated RBAC role with deployment/Replicated, deployment/myapp, service/Replicated and service/myapp statusinformers
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -320,11 +320,11 @@ rules:
   - get
 ```
 
-### Install the SDK with Custom RBAC
+### Install the SDK with custom RBAC
 
 To install with custom RBAC, you can use a custom ServiceAccount or a custom ClusterRole. See the sections below for more information.
 
-#### Minimum RBAC Requirements
+#### Minimum RBAC requirements
 
 Any custom RBAC role that you create must include these permissions.
 
@@ -351,7 +351,7 @@ The SDK requires the following minimum RBAC permissions for status informers:
 * For any DaemonSet and StatefulSet resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
 * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.
 
-#### Use a Custom ServiceAccount
+#### Use a custom serviceaccount
 
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.
 
@@ -368,7 +368,7 @@ To install the SDK with custom RBAC:
 
    For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).  
 
-#### Use a Custom ClusterRole
+#### Use a custom clusterrole
 
 To use the SDK with an existing ClusterRole, provide the name for a custom ClusterRole object during installation. When a cluster role is provided, the SDK uses the RBAC permissions granted to the cluster role and does not create the default RoleBinding. Instead, the SDK creates a ClusterRoleBinding as well as a ServiceAccount object.
 
@@ -385,7 +385,7 @@ To install the SDK with a custom ClusterRole:
 
    For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).
 
-## Set Environment Variables {#env-var}
+## Set environment variables {#env-var}
 
 The Replicated SDK provides a `replicated.extraEnv` value that allows users to set additional environment variables for the deployment that are not exposed as Helm values.
 
@@ -394,7 +394,7 @@ This ensures that users can set the environment variables that they require with
 To add environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   extraEnv:
@@ -409,7 +409,7 @@ If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with
 **Example**:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   extraEnv:
@@ -419,11 +419,11 @@ replicated:
     value: my-value-2  
 ```
 
-## Custom Certificate Authority
+## Custom certificate authority
 
 When installing the Replicated SDK behind a proxy server that terminates TLS and injects a custom certificate, you must provide the CA to the SDK. This can be done by storing the CA in a ConfigMap or a Secret prior to installation and providing appropriate values during installation.
 
-### Using a ConfigMap
+### Using a configmap
 
 To use a CA stored in a ConfigMap:
 
@@ -441,7 +441,7 @@ To use a CA stored in a ConfigMap:
 If the `--private-ca-configmap` flag is used with the [kots install](/reference/kots-cli-install) command, this value will be populated in the Replicated SDK automatically.
 :::
 
-### Using a Secret
+### Using a secret
 
 To use a CA stored in a Secret:
 
@@ -457,14 +457,14 @@ To use a CA stored in a Secret:
        key: ca.crt
    ```
 
-## Add Tolerations
+## Add tolerations
 
 The Replicated SDK provides a `replicated.tolerations` value that allows users to add custom tolerations to the deployment. For more information about tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) in the Kubernetes documentation.
 
 To add tolerations to the Replicated SDK deployment, include the `replicated.tolerations` array in your Helm chart `values.yaml` file. The `replicated.tolerations` array accepts a list of tolerations in the following format:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   tolerations:
@@ -473,14 +473,14 @@ replicated:
     value: "value"
     effect: "NoSchedule"
 ```
-## Add Affinity
+## Add affinity
 
 The Replicated SDK provides a `replicated.affinity` value that allows users to add custom affinity to the deployment. For more information about affinity, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) in the Kubernetes documentation.
 
 To add affinity to the Replicated SDK deployment, include the `replicated.affinity` map in your Helm chart `values.yaml` file. The `replicated.affinity` map accepts a standard Kubernets affinity object in the following format:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   affinity:
@@ -496,7 +496,7 @@ replicated:
 
 If affinity is configured directly, it will override the affinity presets provided when enabling [High Availability](#enable-ha).
 
-## Add Custom Labels
+## Add custom labels
 
 With the Replicated SDK version 1.1.0 and later, you can pass custom labels to the Replicated SDK Helm Chart by setting the `replicated.commonLabels` and `replicated.podLabels` Helm values in your Helm chart.
 
@@ -504,14 +504,14 @@ With the Replicated SDK version 1.1.0 and later, you can pass custom labels to t
 
 The `replicated.commonLabels` and `replicated.podLabels` values are available with the Replicated SDK version 1.1.0 and later.
 
-### commonLabels
+### Commonlabels
 
 The `replicated.commonLabels` value allows you to add one or more labels to all resources created by the SDK chart.
 
 For example:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   commonLabels:
@@ -519,14 +519,14 @@ replicated:
     team: platform
 ```
 
-### podLabels
+### Podlabels
 
 The `replicated.podLabels` value allows you to add pod-specific labels to the pod template.
 
 For example:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   podLabels:
@@ -534,7 +534,7 @@ replicated:
     custom.company.io/pod-label: value
 ```
 
-## Serve SDK API Endpoints Over HTTPS {#enable-ssl}
+## Serve SDK API endpoints over HTTPS {#enable-ssl}
 
 By default, the Replicated SDK serves its API over HTTP. With the Replicated SDK version 1.6.0 and later, you can serve the SDK API endpoints over HTTPS by providing a TLS certificate and key through the `tlsCertSecretName` value. This is useful if any of your enterprise customers require that communication between Kubernetes Pods occurs over HTTPS.
 
@@ -572,7 +572,7 @@ To serve SDK API endpoints over HTTPS:
     ```
     Where `YOUR_TLS_SECRET` is the name of the Secret in the namespace containing the TLS certificate and key.
 
-## Report All Images {#report-all-images}
+## Report all images {#report-all-images}
 
 With the Replicated SDK version 1.9.0 and later, you can configure the SDK to report all container images observed in the cluster rather than only images from your application.
 
@@ -581,13 +581,13 @@ When enabled, the SDK watches pod images across all accessible namespaces and re
 To enable reporting all images, set the `replicated.reportAllImages` value in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   reportAllImages: true
 ```
 
-## Proxy Configuration {#proxy}
+## Proxy configuration {#proxy}
 
 With the Replicated SDK version 1.10.0 and later, you can configure the SDK to use an HTTPS proxy when fetching license information and reporting metrics.
 
@@ -596,7 +596,7 @@ When enabled, the SDK will use the configured proxy for requests to Replicated A
 To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   proxy:
@@ -605,7 +605,7 @@ replicated:
 ```
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 global:
   replicated:
@@ -613,7 +613,7 @@ global:
     noProxy: internal.domain.com
 ```
 
-## Configure High Availability {#high-availability}
+## Configure high availability {#high-availability}
 
 With the Replicated SDK version 1.13.0 and later, you can configure the SDK for high availability (HA) by running multiple replicas of the SDK pod. HA improves resilience by ensuring the SDK continues to function even if a pod or node fails.
 
@@ -627,13 +627,13 @@ With the Replicated SDK version 1.13.0 and later, you can configure the SDK for 
 To enable HA for the SDK, set `replicaCount` to a value greater than 1 in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   replicaCount: 3
 ```
 
-### Configure Pod Anti-Affinity
+### Configure pod anti-affinity
 
 When running multiple replicas, you can configure pod anti-affinity to spread replicas across different nodes. This ensures that replicas are not scheduled on the same node, improving availability in case of node failures.
 
@@ -650,7 +650,7 @@ If a [custom affinity](#add-affinity) is set with the `replicated.affinity` key,
 To configure pod anti-affinity:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   replicaCount: 3
@@ -658,14 +658,14 @@ replicated:
     podAntiAffinityPreset: "soft"
 ```
 
-### Configure Pod Disruption Budget
+### Configure pod disruption budget
 
 A PodDisruptionBudget ensures that a minimum number of replicas remain available during voluntary disruptions such as node drains or cluster upgrades. The pod disruption budget is enabled by default when running multiple replicas of the SDK pod.
 
 You can configure the minimum number of available replicas:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   replicaCount: 3
@@ -678,7 +678,7 @@ replicated:
 Alternatively, you can specify the maximum number of unavailable replicas:
 
 ```yaml
-# Helm chart values.yaml
+# Helm chart values.YAML
 
 replicated:
   replicaCount: 3
@@ -687,7 +687,7 @@ replicated:
       enabled: true
       maxUnavailable: 1
 ```
-## Use a Custom Domain for the Replicated SDK
+## Use a custom domain for the Replicated SDK
 
 The image used by the Replicated SDK Helm chart is automatically pulled through the Replicated proxy registry during deployment. The default location for the SDK image is `proxy.replicated.com/library/replicated-sdk-image`. You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
 

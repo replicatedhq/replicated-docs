@@ -2,7 +2,7 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Requirements from "../partials/embedded-cluster/_requirements.mdx"
 
-# Test an Air Gap Installation with Compatibility Matrix
+# Test an air gap installation with compatibility matrix
 
 This tutorial demonstrates how to test an air gap installation of a Helm chart using Replicated Embedded Cluster and Replicated Compatiblity Matrix (CMX).
 
@@ -19,7 +19,7 @@ In this tutorial, you will do the following to learn more about the CMX network 
 * Follow the Embedded Cluster air gap installation instructions to download the air gap bundle, transfer the bundle to the air-gapped VM, and then install with Embedded Cluster
 * Make an outbound request from the NGINX app, and view the attempt in the CMX network report
 
-## Set Up Your Environment
+## Set up your environment
 
 Before you begin, do the following to set up your environment:
 
@@ -35,7 +35,7 @@ Before you begin, do the following to set up your environment:
 
 ## Tutorial
 
-### Create an Application
+### Create an application
 
 1. On your local machine, install the Replicated CLI:
 
@@ -79,7 +79,7 @@ Before you begin, do the following to set up your environment:
 
    Setting the `REPLICATED_APP` environment variable allows you to interact with the application using the Replicated CLI without needing to use the `--app` flag with every command.  
 
-### Create a Release
+### Create a release
 
 1. Run the following command to download a tarball containing the release files:
 
@@ -130,7 +130,7 @@ Before you begin, do the following to set up your environment:
       • Channel 2kvjwEj4uBaCMoTigW5xty1iiw6 successfully set to release 1
    ```
 
-### Build the Air Gap Bundle
+### Build the air gap bundle
 
 1. Log in to the [Vendor Portal](https://vendor.replicated.com).
 
@@ -167,7 +167,7 @@ Before you begin, do the following to set up your environment:
 
     After the air gap bundle is done building, continue to [Create a Customer](#create-a-customer) without downloading the bundle. You will download the bundle and other required installation assets as part of a later step.
 
-### Create a Customer
+### Create a customer
 
 1. Click **Customers > Create customer**.
 
@@ -185,7 +185,7 @@ Before you begin, do the following to set up your environment:
 
 1. Click **Save Changes**.
 
-### Download the Installation Assets
+### Download the installation assets
 
 1. At the top of the page for the customer you just created, click **Embedded Cluster install instructions**.
 
@@ -243,7 +243,7 @@ Before you begin, do the following to set up your environment:
 
 1. Then, toggle **Reporting** for the network to **on**. This allows you to view a network report for the air-gapped VM, which includes details about all connection attempts and DNS queries.
 
-### SSH Onto the VM and Transfer the Installation Assets
+### SSH onto the VM and transfer the installation assets
 
 1. In the panel on the left side of the screen, click **Overview** to return to the Compatibility Matrix **Overview** page.
 
@@ -297,7 +297,7 @@ Before you begin, do the following to set up your environment:
 
     Wait a few minutes for the `.tgz` to transfer to your VM.
 
-### Extract the Installation Assets and Install NGINX
+### Extract the installation assets and install Nginx
 
 1. In the Vendor Portal, go back to the customer's page (**Applications > NGINX > Customers > Nitflex**) and reopen the **Embedded cluster install instructions** dialog.
 
@@ -363,7 +363,7 @@ Before you begin, do the following to set up your environment:
    * `nginx` pod for the NGINX application
    * `replicated` pod for the Replicated SDK   
 
-### Access the NGINX App and View the Network Report
+### Access the Nginx app and view the network report
 
 1. On your command prompt, get the ID for the air gap network where your VM is connected:
 
@@ -408,7 +408,7 @@ Before you begin, do the following to set up your environment:
     If the outbound request fails, wait a moment for the network to open and then try again.
     :::
 
-### Clean Up
+### Clean up
 
 1. After you are done testing the air gap installation of NGINX, delete the VM:
 

@@ -1,8 +1,8 @@
-# Create Event Notification Subscriptions (Beta)
+# Create event notification subscriptions (Beta)
 
 This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
 
-## RBAC Requirements
+## RBAC requirements
 
 Roles with write access (Admin, Support Engineer, Sales, or custom roles) can create and manage their own notifications. They can also view team notifications.
 
@@ -19,7 +19,7 @@ For teams that use custom RBAC policies, the following permissions are available
 
 For more information, see [Configure RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
 
-## Create an Event Notification
+## Create an event notification
 
 To create an event notification subscription:
 
@@ -72,11 +72,11 @@ To create an event notification subscription:
 
 1. For email subscriptions, if you used an email address other than your Vendor Portal user account email, follow the instructions in the verification email to validate the email address.
 
-## Event Types
+## Event types
 
 Event Notifications (Beta) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
 
-### Instance Events
+### Instance events
 - **Instance Created**: When a new instance is created
 - **Instance Upgraded**: When an instance upgrades to a new release version
 - **Instance Version Behind**: When an instance falls behind by a specified number of versions
@@ -89,7 +89,7 @@ Event Notifications (Beta) supports the following event types, organized by cate
 Instance event notifications use the **Instance Name** if set. Otherwise, they use the Instance ID.
 :::
 
-### Customer Events
+### Customer events
 - **Customer Created**: When a new customer is created
 - **Customer Updated**: When a customer's details or license is updated
 - **Customer Archived**: When a customer is archived
@@ -97,26 +97,26 @@ Instance event notifications use the **Instance Name** if set. Otherwise, they u
 - **Customer License Expiring**: Time-based warning of an upcoming license expiration
 - **Pending Self-Service Signup**: When someone signs up via the self-service portal (if enabled)
 
-### Support Events
+### Support events
 - **Support Bundle Uploaded**: When a support bundle is uploaded
 - **Support Bundle Analyzed**: When a support bundle analysis is completed
 
-### Release Events
+### Release events
 - **Release Created**: When a new release is created
 - **Release Promoted**: When a release is promoted to a channel
 - **Release Demoted (Unpublished)**: When a release is demoted from a channel
 - **Release Assets Downloaded**: When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
 
-### Channel Events
+### Channel events
 - **Channel Created**: When a new channel is created for an application
 - **Channel Archived**: When a channel is archived
 
 
-## Event Filter Logic and Requirements
+## Event filter logic and requirements
 
 This section describes how per-event filtering works in notification subscriptions. It also describes filter requirements for different types of events.
 
-### Filter Logic
+### Filter logic
 
 Each event type that you select in a notification subscription has its own set of filters.
 
@@ -129,7 +129,7 @@ The following describes the filter logic used for each event:
 
 If a filter contains multiple selected values, the event must match _any_ of the selected values (OR logic) to satisfy the filter.
 
-### Instance State Duration Filter Requirements
+### Instance state duration filter requirements
 
 The Instance State Duration event type requires you to specify the target state and duration threshold. Only one Instance State Duration event is allowed per subscription.
 
@@ -140,7 +140,7 @@ The Instance State Duration event type requires you to specify the target state 
 
 The notification triggers when an instance has been in the specified state for at least the configured duration. If the instance recovers and later re-enters the monitored state, the notification can trigger again after the duration threshold is met.
 
-### Instance State Flapping Filter Requirements
+### Instance state flapping filter requirements
 
 The Instance State Flapping event type requires you to specify the sensitivity of flapping detection:
 
@@ -152,7 +152,7 @@ The Instance State Flapping event type requires you to specify the sensitivity o
 
 The notification triggers when an instance accumulates the specified number of state changes within the time window. The cooldown period prevents repeated notifications for the same instance within the configured interval.
 
-### Custom Metric Threshold Reached Filter Requirements
+### Custom metric threshold reached filter requirements
 
 The Custom Metric Threshold Reached event type requires a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
 
@@ -165,7 +165,7 @@ The following table describes each of the filters for the Custom Metric Threshol
 | Threshold Value | Conditional | Required for all operators except `is_true`, `is_false`, `exists`, and `not_exists` |
 | Frequency | Yes | Controls how often you receive the notification. For more information, see [Frequency Options](#frequency-options). |
 
-#### Available Operators
+#### Available operators
 
 The available operators depend on the type of metric value:
 
@@ -175,7 +175,7 @@ The available operators depend on the type of metric value:
 | Boolean | is true, is false, equals, does not equal, exists, does not exist |
 | String | contains, starts with, ends with, equals, does not equal, exists, does not exist |
 
-#### Frequency Options
+#### Frequency options
 
 The following frequency options control how often the notification triggers:
 
@@ -185,7 +185,7 @@ The following frequency options control how often the notification triggers:
 | When Changed | Notifies when the metric meets the threshold and its value has changed since the last notification. |
 | Each Time | Notifies every time a metric report meets the threshold condition. |
 
-### License Field Condition Filters
+### License field condition filters
 
 You can filter notifications based on your custom license field values. This allows you to create targeted notifications based on your customers' entitlement data. For more information about adding custom license fields, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
 
@@ -204,11 +204,11 @@ License field conditions have a field, an operator, and a value. The available o
 
 When multiple license field conditions are specified, all conditions must match for the notification to trigger (AND logic).
 
-## Event Notification Examples
+## Event notification examples
 
 The following are example event notifications based on common use cases.
 
-### Customer Success Manager: Support Bundle Uploaded
+### Customer success manager: Support bundle uploaded
 
 As a Customer Success Manager, I want to be notified if one of my key customers uploads a support bundle.
 
@@ -219,7 +219,7 @@ As a Customer Success Manager, I want to be notified if one of my key customers 
   - License Field Condition: `tier` equals "Enterprise" AND `seats` greater than or equal to 100
 - **Delivery Method:** Email to your work email (or team email alias)
 
-### Sales Manager: Trial License Expiration
+### Sales manager: Trial license expiration
 
 As a Sales Manager, I want to be notified when a trial customer has an impending trial license expiration.
 
@@ -229,7 +229,7 @@ As a Sales Manager, I want to be notified when a trial customer has an impending
   - Filter - License Type: "Trial"
 - **Delivery Method:** Email to your work email (or team email alias)
 
-### Product Manager: Release Promoted
+### Product manager: Release promoted
 
 As a Product Manager, I want to be notified when a new release version is made available to customers on the Stable channel so that I can engage key customers in adoption follow-up conversations.
 
@@ -239,7 +239,7 @@ As a Product Manager, I want to be notified when a new release version is made a
   - Filter - Channel: Select "Stable"
 - **Delivery Method:** Email to `pm-team@company.com` or webhook to #pm-team channel in Slack
 
-### Development Leader: Paid Customer Downloads Release Assets
+### Development leader: Paid customer downloads release assets
 
 As a Development Leader, I want to be notified when a paid customer pulls release assets to initiate a paid install.
 
@@ -251,7 +251,7 @@ As a Development Leader, I want to be notified when a paid customer pulls releas
   - Filter - Asset Type: Any, or narrow further
 - **Delivery Method:** Email to your work email (or team email alias)
 
-### Support Engineer: Unhealthy Instance Alert
+### Support engineer: Unhealthy instance alert
 
 As a Support Engineer, you want to be notified when a customer instance has been in an unhealthy state for an extended period so that you can proactively reach out.
 
@@ -263,7 +263,7 @@ As a Support Engineer, you want to be notified when a customer instance has been
   - Filter - License Type: "Paid"
 - **Delivery Method:** Webhook to #support-escalations channel in Slack
 
-### Operations Engineer: Custom Metric Alert
+### Operations engineer: Custom metric alert
 
 As an Operations Engineer, you want to receive an alert when a custom metric from a customer instance exceeds a threshold.
 
@@ -276,7 +276,7 @@ As an Operations Engineer, you want to receive an alert when a custom metric fro
   - Filter - Application: Select your application
 - **Delivery Method:** Webhook to your monitoring system or email to `ops-team@example.com`
 
-### Operations Lead: Instance Instability
+### Operations lead: Instance instability
 
 As an Operations Lead, you want to be notified when a customer instance is rapidly changing states, which may indicate an underlying infrastructure or configuration issue.
 

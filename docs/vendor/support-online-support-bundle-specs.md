@@ -1,4 +1,4 @@
-# Make Support Bundle Specs Available Online
+# Make support bundle specs available online
 
 This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
 
@@ -12,7 +12,7 @@ You update collectors and analyzers in the online specification to manage bug fi
 
 If you are using a modular approach to designing support bundles, you can use multiple online specs. Each specification supports one URI link. For more information about modular specs, see [About Creating Modular Support Bundle Specs](support-modular-support-bundle-specs).
 
-## Example: URI Linking to a Source Repository
+## Example: URI linking to a source repository
 
 This example shows how Replicated could set up a URI link for one of its own components. You can follow a similar process to link to your own online repository for your support bundles.
 

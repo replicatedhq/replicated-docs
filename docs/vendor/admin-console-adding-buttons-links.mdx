@@ -1,4 +1,4 @@
-# Add Links to the Dashboard
+# Add links to the dashboard
 
 This topic describes how to use the Kubernetes SIG Application custom resource to add links to the Replicated KOTS Admin Console dashboard.
 
@@ -18,7 +18,7 @@ For example, the following shows an **Open App** button on the dashboard of the 
 KOTS uses the Kubernetes SIG Application custom resource as metadata and does not require or use an in-cluster controller to handle this custom resource. An application that follows best practices does not require cluster admin privileges or any cluster-wide components to be installed.
 :::
 
-## Add a Link
+## Add a link
 
 To add a link to the Admin Console dashboard, include a [Kubernetes SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) custom resource in the release with a `spec.descriptor.links` field. The `spec.descriptor.links` field is an array of links that are displayed on the Admin Console dashboard after the application is deployed.
 
@@ -29,7 +29,7 @@ Each link in the `spec.descriptor.links` array contains two fields:
 For example:
 
 ```yaml
-# app.k8s.io/v1beta1 Application Custom resource
+# App.k8s.io/v1beta1 application custom resource
 
 apiVersion: app.k8s.io/v1beta1
 kind: Application
@@ -50,7 +50,7 @@ When the application is deployed, the "About Wordpress" link is displayed on the
 
 For an additional example of a Kubernetes SIG Application custom resource, see [application.yaml](https://github.com/kubernetes-sigs/application/blob/master/docs/examples/wordpress/application.yaml) in the kubernetes-sigs GitHub repository.
 
-### Create URLs with User-Supplied Values Using KOTS Template Functions {#url-template}
+### Create URLs with user-supplied values using KOTS template functions {#url-template}
 
 You can use Replicated template functions to template URLs in the Kubernetes SIG Application custom resource. This can be useful when all or some of the URL is a user-supplied value. For example, an application might allow users to provide their own ingress controller or load balancer. In this case, the URL can be templated to render the hostname that the user provides on the Admin Console Config screen.
 

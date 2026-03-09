@@ -1,4 +1,4 @@
-# Customer Application Deployment Questionnaire
+# Customer application deployment questionnaire
 
 Before you package and distribute an application, Replicated recommends that you
 understand several key characteristics about the environments where your customers
@@ -9,7 +9,7 @@ To gather this information about your customers' environments:
 1. Replace $APP with the name of your application.
 1. Send the questionnaire to your users.
 
-## $APP Deployment Questionnaire
+## $App deployment questionnaire
 
 ### Infrastructure
 
@@ -32,7 +32,7 @@ If it’s more convenient, limit answers to the scope of the target infrastructu
 
 - If there is an issue causing downtime in the on-prem application, would you be willing to give the $APP team direct SSH access to the instance(s)?
 
-### Development and Deployment Processes
+### Development and deployment processes
 
 - Do you require applications be deployed by a configuration management framework like Chef, Ansible, or Puppet?
 
@@ -46,7 +46,7 @@ If it’s more convenient, limit answers to the scope of the target infrastructu
 
 - If you are deploying $APP to your existing Kubernetes cluster, can your cluster nodes pull images from the public internet, or do you require images to be stored in an internal registry?
 
-### Change Management
+### Change management
 
 - How do you test new releases of COTS software? Do you have a UAT or Staging environment? Are there other change management requirements?
 
@@ -57,7 +57,7 @@ If it’s more convenient, limit answers to the scope of the target infrastructu
 - Do you drive production deploys automatically from version control (“gitops”)?
 
 
-### Application Usage and Policy Requirements
+### Application usage and policy requirements
 
 - For applications that expose a web UI, how will you be connecting to the instance? As much as possible, include details about your workstation, any tunneling/VPN/proxy infrastructure, and what browsers you intend to use.
 

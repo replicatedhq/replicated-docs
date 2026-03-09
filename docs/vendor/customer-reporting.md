@@ -1,8 +1,8 @@
-# Customer Reporting
+# Customer reporting
 
 This topic describes the customer and instance data displayed in the customer **Reporting** page in the Replicated Vendor Portal.
 
-## About the Customer Reporting Page {#reporting-page}
+## About the customer reporting page {#reporting-page}
 
 The **Customers > [Customer Name] > Reporting** page displays data about the active application instances associated with each customer. The following shows an example of the **Reporting** page:
 
@@ -18,7 +18,7 @@ As shown in the image above, the **Reporting** page has the following main secti
 * [Instances](#instances)
 * [Install Attempts](#install-attempts-beta)
 
-### Manage Customer
+### Manage customer
 
 The manage customer section displays the following information about the customer:
 
@@ -36,7 +36,7 @@ The manage customer section displays the following information about the custome
   
 In this section, you can also view the Helm CLI installation instructions for the customer and download the customer license.
 
-### Time to Install
+### Time to install
 
 If the customer has one or more application instances that have reached a Ready status at least one time, then the **Time to install** section displays _License time to install_ and _Instance time to install_ metrics:
 
@@ -117,7 +117,7 @@ The **Instances** section displays the following details about each active insta
    * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
 
-### Install Attempts (Beta)
+### Install attempts (Beta)
 
 :::note
 The **Install Attempts** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).

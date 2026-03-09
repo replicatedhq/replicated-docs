@@ -1,4 +1,4 @@
-# Customize the Application Icon
+# Customize the application icon
 
 You can add a custom application icon that displays in the Replicated Admin Console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
 
@@ -6,7 +6,7 @@ You can add a custom application icon that displays in the Replicated Admin Cons
 You can also use a custom domain for the download portal. For more information, see [About Custom Domains](custom-domains).
 :::
 
-## Add a Custom Icon
+## Add a custom icon
 
 For information about how to choose an image file for your custom application icon that displays well in the Admin Console, see [Icon Image File Recommendations](#icon-image-file-recommendations) below.
 
@@ -49,7 +49,7 @@ To add a custom application icon:
 1. Click **Save Release**.
 
 
-## Icon Image File Recommendations
+## Icon image file recommendations
 
 For your custom application icon to look best in the Admin Console, consider the following recommendations:
 

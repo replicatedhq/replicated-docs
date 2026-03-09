@@ -1,5 +1,5 @@
 
-# Infrastructure and Subprocessor Providers
+# Infrastructure and subprocessor providers
 
 This lists describes the infrastructure environment, subprocessors and other entities material to the Replicated products and services.
 
@@ -18,7 +18,7 @@ The fields that Replicated may posess as identifiable to a physical person may i
 Note: This does not imply that all these fields are collected for each person. It also does not mean all these datapoints are used with each declared provider.
 
 
-## Replicated Infrastructure Providers
+## Replicated infrastructure providers
 
 Replicated might use the following entities to provide infrastructure that helps with delivery of our products:
 

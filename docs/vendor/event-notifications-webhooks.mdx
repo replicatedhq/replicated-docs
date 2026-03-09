@@ -1,10 +1,10 @@
-# Configure and Use Webhooks (Beta)
+# Configure and use webhooks (Beta)
 
 This topic describes how to configure and use webhooks for Event Notifications.
 
 Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations.
 
-## About Adding Custom HTTP Headers {#custom-headers}
+## About adding custom HTTP headers {#custom-headers}
 
 You can add custom HTTP headers to webhook subscriptions to authenticate with your receiving endpoint. This is useful when your endpoint requires an API key, bearer token, or other credentials in the request headers.
 
@@ -17,7 +17,7 @@ Custom headers have the following limitations:
 - Duplicate header names are not allowed
 - Certain reserved headers (such as `Content-Type` and `Host`) cannot be overridden
 
-## About the Webhook Payload Format {#payload-preview}
+## About the webhook payload format {#payload-preview}
 
 When you create or edit a webhook notification and select event types, you can click the **View example** button to open the payload preview modal and see the exact JSON structure your endpoint receives. This is useful when building your endpoint's request parser.
 
@@ -27,7 +27,7 @@ The preview shows:
 
 {/* Add screenshot of expanded webhook payload format preview */}
 
-### Webhook Payload Structure
+### Webhook payload structure
 
 Event Notifications webhooks deliver a JSON payload with the following structure:
 
@@ -59,7 +59,7 @@ Event Notifications webhooks deliver a JSON payload with the following structure
 The `subscription_name` field is included in the `data` object only when a custom name is set on the subscription. For email notifications, the custom name is prepended to the email subject line.
 :::
 
-### Payload Fields
+### Payload fields
 
 The following describes the fields in the webhook payload:
 
@@ -102,7 +102,7 @@ The following describes the fields in the webhook payload:
    </tr>
 </table>
 
-## Verify Webhook Signatures
+## Verify webhook signatures
 
 Event Notifications webhooks include an HMAC-SHA256 signature for verification. This allows you to verify that webhook requests are genuinely from Replicated and have not been tampered with.
 
@@ -148,7 +148,7 @@ To verify webhook signatures in your endpoint:
    // Signature verified - process the webhook
    ```
 
-## Integrate with Slack Using Webhooks
+## Integrate with Slack using webhooks
 
 For more information about configuring incoming webhooks with Slack, see the [Sending messages using incoming webhooks](https://api.slack.com/messaging/webhooks) in the Slack documentation.
 
@@ -161,7 +161,7 @@ To send notifications to a Slack channel using webhooks:
 1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL. See [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
 1. Trigger a test event to verify that the webhook is configured properly.
 
-## Test Webhooks Locally {#test-webhook}
+## Test webhooks locally {#test-webhook}
 
 You can test a webhook locally using a development endpoint that is either publicly accessible, or reachable through a secure tunnel.
 
@@ -190,7 +190,7 @@ To test webhooks against a local development endpoint:
 
 4. Check the ngrok dashboard or your application logs to verify the request was received and processed correctly.
 
-## About Delivery Retries and Timeouts for Webhooks
+## About delivery retries and timeouts for webhooks
 
 The Vendor Portal automatically retries failed webhook deliveries to ensure reliability. When a webhook delivery attempt fails, the Vendor Portal makes up to eight retry attempts. Each delivery attempt times out after five seconds. The retry schedule is approximately 1m, 2m, 4m, 8m, 16m, 32m, 64m, 128m after the first failed attempt.
 

@@ -2,7 +2,7 @@ import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 
-# Orchestrate Resource Deployment
+# Orchestrate resource deployment
 
 This topic describes how to orchestrate the deployment order of resources deployed as part of your application. The information in this topic applies to Helm chart- and standard manifest-based applications deployed with Replicated KOTS.
 
@@ -18,7 +18,7 @@ For applications deployed with KOTS, you can manage the order in which resources
 
 * For standard manifests, add KOTS annotations to the resources. See [Standard Manifest Deployment Order with KOTS Annotations](#manifests).
 
-## Helm Chart Deployment Order with `weight` {#weight}
+## Helm chart deployment order with `weight` {#weight}
 
 You can configure the [`weight`](/reference/custom-resource-helmchart-v2#weight) property of the Replicated HelmChart custom resource to define the order in which the Helm charts in your release are installed.
 
@@ -50,7 +50,7 @@ The `weight` field in the HelmChart custom resource has the following limitation
 
 * When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart. The `weight` property does not allow Helm charts to be deployed before standard manifests.
   
-## Standard Manifest Deployment Order with KOTS Annotations {#manifests}
+## Standard manifest deployment order with KOTS annotations {#manifests}
 
 You can use the KOTS annotations described in this section to control the order in which standard manifests are deployed.
 
@@ -58,7 +58,7 @@ You can use the KOTS annotations described in this section to control the order 
 
 You must quote the boolean or integer values in annotations because Kubernetes annotations must be strings. For more information about working with annotations in Kubernetes resources, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation.
 
-### `kots.io/creation-phase` 
+### `kots.io/creation-phase`
 
 When the `kots.io/creation-phase: '<integer>'` annotation is present on a resource, KOTS groups the resource into the specified creation phase. KOTS deploys each phase in order from lowest to highest. Phases can be any positive or negative integer ranging from `'-9999'` to `'9999'`.
 
