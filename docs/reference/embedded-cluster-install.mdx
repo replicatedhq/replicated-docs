@@ -193,13 +193,13 @@ sudo ./my-app install --license license.yaml \
 
 ```bash
 sudo ./APP_SLUG install --license license.yaml \
-  --http-proxy=HOST:PORT \
-  --https-proxy=HOST:PORT \
-  --no-proxy=LIST_OF_HOSTS
+  --http-proxy=http://HOST:PORT \
+  --https-proxy=http://HOST:PORT \
+  [--no-proxy=LIST_OF_HOSTS]
 ```
 Where:
-
-* `HOST:PORT` is the host and port of the proxy server
+* `HOST` is the proxy server hostname.
+* `PORT` is the proxy server port.
 * `LIST_OF_HOSTS` is the list of hosts to not proxy. For example, the IP address of the node where you are installing. Or, for multi-node clusters, the list of IP addresses for all nodes in the cluster, typically in CIDR notation.
 
 ### Set Admin Console Password
