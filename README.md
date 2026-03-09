@@ -63,9 +63,22 @@ The following is a summary of the most important elements of our style guide, pl
 
 ### Vale Prose Linter
 
-[Vale](https://github.com/errata-ai/vale) is a prose linter that checks documentation in Markdown or MDX formats against the Replicated style guide.  
+[Vale](https://github.com/errata-ai/vale) is a prose linter that checks documentation in Markdown or MDX formats against the Replicated Docs style guide.  
 
-When you open a new PR or make commits to an existing PR, Vale automatically scans any files you've changed.
+#### GitHub Action
+
+When you open a new PR or make commits to an existing PR, the Vale GitHub action automatically scans your changes and reports any style issues in comments.  
+
+Vale reports style issues as errors, warnings, and suggestions:
+* Errors are issues that need to be fixed, like typos or formatting issues
+* Warnings catch issues with terminology and word choice, like improper capitalization of Replicated products and features, or using imprecise terms such as "via" or "leverage"
+* Suggestions flag issues with prose, like passive voice or long sentences.
+
+When reviewing Vale's comments, keep in mind that these are guidelines, not rules. Use your best judgement, and depart from the guidelines when doing so improves our content.
+
+If you notice any false positives from Vale, post in the #product-docs channel, open a GitHub issue, or propose a change to the corresponding rule in the `styles` directory in this repo.
+
+#### CLI
 
 You can also run Vale locally using its CLI:
 1. `brew install vale`
