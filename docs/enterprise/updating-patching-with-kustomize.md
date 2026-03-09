@@ -135,7 +135,7 @@ The `skippedFiles` directory lists files that KOTS is not able to process or ren
 
 The `_index.yaml` file contains metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
 
-## Patch an Application
+## Patch an application
 
 To patch the application with Kustomize so that your changes persist between updates, edit the files in the `overlays/downstream/this-cluster` directory.
 

@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# About kURL Cluster Updates
+# About kURL cluster updates
 
 <KurlAvailability/>
 
@@ -10,7 +10,7 @@ This topic provides an overview of Replicated kURL cluster updates. For informat
 
 The Replicated kURL installer spec specifies the kURL add-ons and the Kubernetes version that are deployed in kURL clusters. You can run the kURL installation script to apply the latest installer spec and update the cluster.
 
-## About Kubernetes Updates {#kubernetes}
+## About Kubernetes updates {#kubernetes}
 
 The version of Kubernetes running in a kURL cluster can be upgraded by one or more minor versions.
 
@@ -22,7 +22,7 @@ Then, if there are any remote primary nodes to upgrade, the script drains each s
 
 The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
 
-### Air Gap Multi-Version Kubernetes Updates {#kubernetes-multi}
+### Air gap multi-version Kubernetes updates {#kubernetes-multi}
 
 To upgrade Kubernetes by more than one minor version in air gapped kURL clusters, you must provide a package that includes the assets required for the upgrade.
 

@@ -100,7 +100,7 @@ When configuring the Admin Console to store backups on S3-compatible storage, th
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### NFS Fields
+### NFS fields
 
 When configuring the Admin Console to store backups on network file system (NFS) storage, the following fields are available:
 

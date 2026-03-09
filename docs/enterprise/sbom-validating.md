@@ -1,4 +1,4 @@
-# Validate SBOM Signatures
+# Validate SBOM signatures
 
 This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated KOTS, Replicated kURL, and Troubleshoot releases.
 
@@ -13,7 +13,7 @@ When you install software, validating an SBOM signature can help you understand 
 Before you perform these tasks, you must install cosign. For more information, see the [sigstore repository](https://github.com/sigstore/cosign) in GitHub.
 
 
-## Validate a KOTS SBOM Signature
+## Validate a KOTS SBOM signature
 
 Each KOTS release includes a signed SBOM for KOTS Go dependencies. 
 
@@ -33,7 +33,7 @@ To validate a KOTS SBOM signature:
     cosign verify-blob --key sbom/key.pub --signature sbom/kots-sbom.tgz.sig sbom/kots-sbom.tgz
     ```
 
-## Validate a kURL SBOM Signature
+## Validate a kURL SBOM signature
 
 If a kURL installer is used, then signed SBOMs for kURL Go and Javascript dependencies are combined into a TAR file and are included with the release.
 

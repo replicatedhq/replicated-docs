@@ -2,7 +2,7 @@ import FirewallOpeningsIntro from "../partials/install/_firewall-openings-intro.
 import FirewallOpeningsKurl from "../partials/install/_firewall-openings-kurl.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Kurl installation requirements
+# kURL installation requirements
 
 This topic lists the installation requirements for Replicated kURL. Ensure that the installation environment meets these requirements before attempting to install.
 
@@ -37,14 +37,14 @@ You must meet the additional kURL system requirements when applicable:
 
 - **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
 
-## Network Requirements for Online Installations
+## Network requirements for online installations
 
-### Firewall Openings {#firewall}
+### Firewall openings {#firewall}
 
 <FirewallOpeningsIntro/>
 
 <FirewallOpeningsKurl/>
 
-### IPv4 or IPv4/IPv6 Dual-Stack Only
+### IPv4 or IPv4/IPv6 dual-stack only
 
 kURL does not support online installations in single-stack IPv6-only environments. Environments that use IPv4 or dual-stack IPv4/IPv6 networking are supported.

@@ -14,7 +14,7 @@ This topic describes how to use the Replicated snapshots feature to create backu
 
    If any Backup custom resource files are missing, contact your vendor.
 
-## Create a full Backup (recommended) {#full}
+## Create a full backup (recommended) {#full}
 
 Full backups, or _instance snapshots_, back up the Admin Console and all application data, including application volumes and manifest files. If you manage multiple applications with the Admin Console, data from all applications that support backups is included in a full backup.
 
@@ -27,7 +27,7 @@ You can create a full backup with the following methods:
 * [Create a Backup with the CLI](#cli-backup)
 * [Create a Backup in the Admin Console](#admin-console-backup)
 
-### Create a Backup with the CLI {#cli-backup}
+### Create a backup with the CLI {#cli-backup}
 
 To create a full backup with the Replicated KOTS CLI, run the following command:
 
@@ -38,7 +38,7 @@ To create a full backup with the Replicated KOTS CLI, run the following command:
    
 For more information, see [backup](/reference/kots-cli-backup-index) in _KOTS CLI_.
 
-### Create a Backup in the Admin Console {#admin-console-backup}
+### Create a backup in the Admin Console {#admin-console-backup}
 
 To create a full backup in the Admin Console:
 
@@ -51,7 +51,7 @@ To create a full backup in the Admin Console:
    
    ![Full snapshot page with one completed snapshot](/images/snapshot-instance-list.png)
 
-## Create a Partial Backup {#partial}
+## Create a partial backup {#partial}
 
 Partial backups, or _application snapshots_, back up application volumes and application manifests only. Partial backups do not back up Admin Console data.
 

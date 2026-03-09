@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Work with the kURL Image Registry
+# Work with the kURL image registry
 
 <KurlAvailability/>
 

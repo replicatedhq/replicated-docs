@@ -100,13 +100,13 @@ To automate controller node joins with Embedded Cluster:
 
 1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
-## Configure High Availability for Multi-Node Clusters {#ha}
+## Configure high availability for multi-node clusters {#ha}
 
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
 Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA with the `enable-ha` command after adding three or more controller nodes.
 
-### HA Architecture
+### HA architecture
 
 <HaArchitecture/>
 

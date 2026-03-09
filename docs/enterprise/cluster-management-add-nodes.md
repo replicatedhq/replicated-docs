@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Add Nodes to kURL Clusters
+# Add nodes to kURL clusters
 
 <KurlAvailability/>
 

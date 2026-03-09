@@ -71,7 +71,7 @@ To install Velero and configure a GCP storage destination:
      --use-volume-snapshots=false
    ```
 
-## Configure Azure Storage for Online Environments
+## Configure Azure storage for online environments
 
 In this procedure, you install Velero and configure an Azure storage destination in online environments.
 
