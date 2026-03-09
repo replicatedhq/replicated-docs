@@ -1,0 +1,9 @@
+# This file is used to lint for vague link text.
+extends: existence
+message: "Avoid vague link text like '%s'. Link text should clearly describe the link's destination or purpose."
+link: "https://github.com/replicatedhq/replicated-docs/blob/main/README.md"
+level: warning
+ignorecase: true
+scope: raw
+raw:
+  - '\[\s*(click here|link here|go here|see here|see this page|see this article|see this blog|see this topic|read more|learn more|more info|more information|read this|check this out)\s*\]\s*(?=\()'
