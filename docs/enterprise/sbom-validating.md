@@ -53,7 +53,7 @@ To validate a kURL SBOM signature:
     
     ```
 
-## Validate a Troubleshoot SBOM Signature
+## Validate a Troubleshoot SBOM signature
 
 A signed SBOM for Troubleshoot dependencies is included in each release.
 
