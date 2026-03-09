@@ -154,14 +154,18 @@ The notification triggers when an instance accumulates the specified number of s
 
 ### Custom Metric Threshold Reached Filter Requirements
 
-The Custom Metric Threshold Reached event type requires you to configure a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
+The Custom Metric Threshold Reached event type requires a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
+
+The following table describes each of the filters for the Custom Metric Threshold Reached event type:
 
 | Filter | Required | Description |
 |--------|----------|-------------|
 | Metric Name | Yes | Select from previously reported custom metrics or enter a metric name manually |
-| Operator | Yes | Comparison operator (options depend on metric type; see table below) |
+| Operator | Yes | Comparison operator. The operators available depend on the metric type. For more information, see [Available Operators](#available-operators). |
 | Threshold Value | Conditional | Required for all operators except `is_true`, `is_false`, `exists`, and `not_exists` |
-| Frequency | Yes | Controls how often you receive the notification (see frequency options below) |
+| Frequency | Yes | Controls how often you receive the notification. For more information, see [Frequency Options](#frequency-options). |
+
+#### Available Operators
 
 The available operators depend on the type of metric value:
 
@@ -170,6 +174,8 @@ The available operators depend on the type of metric value:
 | Number | greater than, greater than or equal, less than, less than or equal, equals, does not equal, exists, does not exist |
 | Boolean | is true, is false, equals, does not equal, exists, does not exist |
 | String | contains, starts with, ends with, equals, does not equal, exists, does not exist |
+
+#### Frequency Options
 
 The following frequency options control how often the notification triggers:
 
