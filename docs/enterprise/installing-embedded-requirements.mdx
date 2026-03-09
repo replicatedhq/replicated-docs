@@ -30,7 +30,7 @@ For more information about the internal Kubernetes components, see [Kubernetes C
 
 For more information about the Konnectivity service, see [Set up Konnectivity service](https://kubernetes.io/docs/tasks/extend-kubernetes/setup-konnectivity/) in the Kubernetes documentation.
 
-## Firewall Openings for Online Installations with Embedded Cluster {#firewall}
+## Firewall openings for online installations with Embedded Cluster {#firewall}
 
 <FirewallOpeningsIntro/>
 
@@ -40,7 +40,7 @@ For more information about the Konnectivity service, see [Set up Konnectivity se
 If you monitor the outbound traffic attempts made by Embedded Cluster, you might see an attempted call to `updates.k0sproject.io` approximately every 30 minutes. These calls are made by a feature of the upstream k0s project called `update-prober`, which checks for k0s updates. Embedded Cluster does not use the `update-prober` feature and blocking it in your firewall rules will not affect Replicated product functionality.
 :::
 
-## About Firewalld Configuration
+## About firewalld configuration
 
 When Firewalld is enabled in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks and to open the required ports on the host. No additional configuration is required.
 

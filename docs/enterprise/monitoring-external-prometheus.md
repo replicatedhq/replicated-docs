@@ -1,7 +1,7 @@
 import OverviewProm from "../partials/monitoring/_overview-prom.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Consume Prometheus Metrics Externally
+# Consume Prometheus metrics externally
 
 <KurlAvailability/>
 
@@ -36,7 +36,7 @@ For more information about NodePort services, see [Type NodePort](https://kubern
 
 Before you can consume Prometheus metrics in kURL clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
 
-## Consume Metrics from External Services
+## Consume metrics from external services
 
 You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by kURL clusters.
 

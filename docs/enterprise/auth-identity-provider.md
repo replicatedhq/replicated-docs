@@ -1,4 +1,4 @@
-# Use an Identity Provider for User Access (Beta)
+# Use an identity provider for user access (Beta)
 
 When you install an application for the first time, the Replicated KOTS Admin Console is secured with a single shared password for all users. It is possible to further configure the Admin Console to authenticate users with your organization's user management system. This feature is only available for licenses that have the Replicated identity service feature enabled.
 
@@ -19,11 +19,11 @@ Here you can configure access to the Admin Console, integrating with one of the 
 
 ![Configure Identity Provider](/images/access-identity.png)
 
-## Supported Providers
+## Supported providers
 
 **OpenID Connect:** For more information, see the [OpenID Connect documentation](https://openid.net/connect/).
 
-## Resetting Authentication
+## Resetting authentication
 
 When you enable identity provider access to the Admin Console, shared password authentication is disabled.
 If you want to re-enable the shared password authentication, run the `kubectl kots identity-service enable-shared-password --namespace [namespace]` command. For more information, see [identity-service enable-shared-password](/reference/kots-cli-identity-service-enable-shared-password/) in the KOTS CLI documentation.

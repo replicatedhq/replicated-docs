@@ -1,4 +1,4 @@
-# Update Storage Settings
+# Update storage settings
 
 This topic describes how to update existing storage destination settings using the Replicated Admin Console.
 
@@ -9,7 +9,7 @@ If you are changing from one provider to another provider, make sure that you me
 - [Configure an NFS Storage Destination](snapshots-configuring-nfs)
 - [Configure Other Storage Destinations](snapshots-storage-destinations)
 
-## Update Storage Settings
+## Update storage settings
 
 You can update storage destination settings for online and air gapped environments at any time using the Admin Console. 
 
@@ -34,7 +34,7 @@ To update storage destination settings:
 
 1. Click **Update storage settings**. The update can take several minutes.
 
-### AWS Fields
+### AWS fields
 
 When configuring the Admin Console to store backups on Amazon Web Services (AWS), the following fields are available:
 
@@ -48,7 +48,7 @@ When configuring the Admin Console to store backups on Amazon Web Services (AWS)
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### GCP Fields
+### GCP fields
 
 When configuring the Admin Console to store backups on Google Cloud Provide (GCP), the following fields are available:
 
@@ -59,7 +59,7 @@ When configuring the Admin Console to store backups on Google Cloud Provide (GCP
 | Service Account | The GCP IAM Service Account JSON file that has permissions to read from and write to the storage location |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### Azure Fields
+### Azure fields
 
 When configuring the Admin Console to store backups on Microsoft Azure, the following fields are available:
 
@@ -80,7 +80,7 @@ Only connections with Service Principles are supported at this time.
 
 For more information about authentication methods and setting up Azure, see [Velero plugins for Microsoft Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure) in the velero-plugin-for-microsoft-azure GitHub repository.
 
-### S3-Compatible Fields
+### S3-compatible fields
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
 
@@ -109,7 +109,7 @@ When configuring the Admin Console to store backups on network file system (NFS)
 | Server | The hostname or IP address of the NFS server |
 | Path   | The path that is exported by the NFS server  |
 
-### Host Path Fields
+### Host path fields
 
 When configuring the Admin Console to store backups on host path storage, the following fields are available:
 

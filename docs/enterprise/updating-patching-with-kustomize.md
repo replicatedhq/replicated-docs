@@ -14,7 +14,7 @@ For more information, see the [Kustomize website](https://kustomize.io).
 
 For Helm charts deployed with version `kots.io/v1beta2` of the KOTS HelmChart custom resource, editing the downstream Kustomization files to make changes to the application before deploying is not supported. This is because KOTS does not use Kustomize when installing Helm charts with the `kots.io/v1beta2` HelmChart custom resource. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-## About the Directory Structure
+## About the directory structure
 
 You can patch an application with Kustomize from the **View files** page in the Admin Console. The **View files** page shows the Kubernetes manifest files for the application.
 

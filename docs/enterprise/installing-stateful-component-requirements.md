@@ -1,4 +1,4 @@
-# Install KOTS in Existing Clusters Without Object Storage
+# Install KOTS in existing clusters without object storage
 
 This topic describes how to install Replicated KOTS in existing clusters without the default object storage, including limitations of installing without object storage.
 
@@ -15,7 +15,7 @@ For existing cluster installations, KOTS deploys MinIO for object storage by def
 
 You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the Admin Console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment. In this case, support bundles and application archives are stored in the attached PV instead of in object storage. Additionally, for local snapshots storage, KOTS uses the `local-volume-provider` Velero plugin to store backups on local PVs instead of using object storage. The `local-volume-provider` plugin uses the existing Velero service account credentials to mount volumes directly to the Velero node-agent pods. For more information, see [`local-volume-provider`](https://github.com/replicatedhq/local-volume-provider) in GitHub.
 
-## How to Install and Upgrade Without Object Storage
+## How to install and upgrade without object storage
 
 To install KOTS without object storage in an existing cluster, you can use the `--with-minio=false` flag.
 

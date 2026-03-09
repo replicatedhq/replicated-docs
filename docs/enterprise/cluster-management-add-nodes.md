@@ -12,7 +12,7 @@ You can generate commands in the Replicated KOTS Admin Console to join additiona
 
 For high availability clusters, Kubernetes recommends using at least three primary nodes, and that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
 
-## Join Primary and Secondary Nodes
+## Join primary and secondary nodes
 
 You can join primary and secondary nodes on the Admin Console **Cluster management** page.
 

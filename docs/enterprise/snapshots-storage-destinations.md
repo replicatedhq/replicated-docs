@@ -2,7 +2,7 @@ import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.md
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configure Other Storage Destinations
+# Configure other storage destinations
 
 This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provider (GCP), Microsoft Azure, and S3-compatible providers.
 
@@ -19,7 +19,7 @@ Complete the following items before you install Velero and configure a storage d
 * Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Install the Velero CLI](snapshots-velero-cli-installing).
 
-## Configure AWS Storage for Online Environments
+## Configure AWS storage for online environments
 
 In this procedure, you install Velero and configure an AWS storage destination in online environments.
 
@@ -47,7 +47,7 @@ To install Velero and configure an AWS storage destination:
       --use-volume-snapshots=false
    ```
 
-## Configure GCP Storage for Online Environments
+## Configure GCP storage for online environments
 
 In this procedure, you install Velero and configure a GCP storage destination in online environments.
 
@@ -97,7 +97,7 @@ To install Velero and configure an Azure storage destination:
      --use-volume-snapshots=false
    ```
 
-## Configure S3-Compatible Storage for Online Environments
+## Configure s3-compatible storage for online environments
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
 
@@ -139,7 +139,7 @@ kubectl kots velero configure-other-s3 \
 
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
-## Configure S3-Compatible Storage for Air Gapped Environments
+## Configure s3-compatible storage for air gapped environments
 
 > Introduced in Replicated KOTS v1.94.0
 
@@ -180,12 +180,12 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 <RegistryCredNote/>
 
-## Next Steps
+## Next steps
 
 * (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * (Optional) Increase the default memory limits. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Create and Schedule Backups](snapshots-creating).
 
-## Additional Resources
+## Additional resources
 
 * [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

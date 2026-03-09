@@ -30,7 +30,7 @@ Applications can specify one or more of the supported Kubernetes workloads liste
 
 For more information about how to interpret the application status displayed on the Admin Console dashboard, see [Resource Statuses](#resource-statuses) and [Aggregate Application Status](#aggregate-application-status) below. 
 
-### Resource Statuses
+### Resource statuses
 
 Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 

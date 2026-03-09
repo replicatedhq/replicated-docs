@@ -14,7 +14,7 @@ If you have uploaded a custom TLS certificate instead, then no renewal is attemp
 
 For information about TLS renewal for registry and Kubernetes control plane with Replicated kURL, see [TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs) in the kURL documentation.
 
-## Update Custom TLS Certificates
+## Update custom TLS certificates
 
 If you are using a custom TLS certificate in a kURL cluster, you manually upload a new certificate when the previous one expires.                
 

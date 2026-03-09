@@ -113,12 +113,12 @@ To install Velero and configure NFS storage for existing clusters:
 
 1. Return to the Admin Console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 
-## Next Steps
+## Next steps
 
 * (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * (Optional) Increase the default memory limits. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Create and Schedule Backups](snapshots-creating).
 
-## Additional Resources
+## Additional resources
 
 * [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

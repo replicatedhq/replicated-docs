@@ -1,4 +1,4 @@
-# Configure Role-based Access Control (Beta)
+# Configure role-based access control (Beta)
 
 You can regulate access to the Replicated KOTS Admin Console resources based on the roles of individual users within your organization.
 
@@ -10,7 +10,7 @@ To configure role based access control (RBAC) for the Admin Console:
 
 ![Role Based Access Control](/images/identity-service-kotsadm-rbac.png)
 
-## Admin Console Roles
+## Admin Console roles
 
 The Admin Console comes with pre-defined identity service roles that can be assigned to groups when you configure RBAC for the Admin Console.
 
@@ -18,7 +18,7 @@ The Admin Console comes with pre-defined identity service roles that can be assi
 
 - **Write Access:** This role has write permissions to all resources.
 
-## Support Roles
+## Support roles
 
 - **Read Access:** This role has read permissions to all resources except the application's file tree.
 
