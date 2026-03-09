@@ -1,10 +1,6 @@
-# About Event Notifications (Alpha)
+# About Event Notifications (Beta)
 
-:::note
-Event Notifications is in Alpha. Features and functionality are subject to change.
-:::
-
-This topic provides an introduction to the Event Notifications (Alpha) feature, which allows you to set up notifications for key events from the Vendor Portal.
+This topic provides an introduction to the Event Notifications (Beta) feature, which allows you to set up notifications for key events from the Vendor Portal.
 
 ## Overview
 
@@ -14,17 +10,17 @@ Event types are predefined and organized by category (Instance, Customer, Suppor
 
 Events are queued to SQS for reliable processing, and notifications are matched against event filters in real-time. Email notifications are sent through the email service that you configure. Webhook notifications include HMAC signatures for verification.
 
-For more information about how to configure notifications, see [Create Event Notification Subscriptions (Alpha)](event-notifications-create).
+For more information about how to configure notifications, see [Create Event Notification Subscriptions (Beta)](event-notifications-create).
 
 ## Comparison to Instance Notifications (Classic)
 
-Event Notifications (Alpha) is the next generation of instance notification functionality in the Vendor Portal. Compared to [Instance Notifications (Classic)](instance-notifications-config), Event Notifications offers more event types, fine-grained filtering, flexible routing to individual or team email addresses or webhooks, notification history tracking, and better access control.
+Event Notifications (Beta) is the next generation of instance notification functionality in the Vendor Portal. Compared to [Instance Notifications (Classic)](instance-notifications-config), Event Notifications offers more event types, fine-grained filtering, flexible delivery routing, notification history tracking, and better access control.
 
-You can use Event Notifications (Alpha) concurrently with Instance Notifications (Classic) while you evaluate and transition.
+You can use Event Notifications (Beta) concurrently with Instance Notifications (Classic) while you evaluate and transition.
 
-The following table compares the functionality offered by Instance Notifications (Classic) and Event Notifications (Alpha):
+The following table compares the functionality offered by Instance Notifications (Classic) and Event Notifications (Beta):
 
-| Feature | Instance Notifications (Classic) | Event Notifications (Alpha) |
+| Feature | Instance Notifications (Classic) | Event Notifications (Beta) |
 |---------|------------------------------|---------------------------|
 | **Event Types** | Three event types: App Status, System Events, Custom Metrics | More than 20 event types across six categories |
 | **Scope** | Per-instance subscriptions | Team-wide with flexible filtering |
@@ -37,7 +33,6 @@ The following table compares the functionality offered by Instance Notifications
 
 ## Limitations
 
-- Event Notifications (Alpha) does not support notifying on custom metric change event types
 - Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
 - The Release Assets Downloaded event might fire per chart or image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.

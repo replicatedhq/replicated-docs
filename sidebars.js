@@ -188,7 +188,7 @@ const sidebars = {
             "vendor/instance-insights-details",
             {
               type: "category",
-              label: "Event Notifications (Alpha)",
+              label: "Event Notifications (Beta)",
               items: [
                 "vendor/event-notifications",
                 "vendor/event-notifications-create",
