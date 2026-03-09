@@ -158,14 +158,14 @@ The notification triggers when an instance accumulates the specified number of s
 
 ### Custom Metric Threshold Reached Filter Requirements
 
-The Custom Metric Threshold Reached event type requires you to configure a metric name, comparison operator, and notification frequency. Only one Custom Metric Threshold Reached event is allowed per subscription.
+The Custom Metric Threshold Reached event type requires you to configure a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
 
 | Filter | Required | Description |
 |--------|----------|-------------|
 | Metric Name | Yes | Select from previously reported custom metrics or enter a metric name manually |
 | Operator | Yes | Comparison operator (options depend on metric type; see table below) |
 | Threshold Value | Conditional | Required for all operators except `is_true`, `is_false`, `exists`, and `not_exists` |
-| Frequency | Yes | Controls how often the notification is sent (see frequency options below) |
+| Frequency | Yes | Controls how often you receive the notification (see frequency options below) |
 
 The available operators depend on the type of metric value:
 
@@ -179,8 +179,8 @@ The following frequency options control how often the notification triggers:
 
 | Frequency | Behavior |
 |-----------|----------|
-| Send Once | Notifies the first time the threshold is reached. Does not notify again until the condition clears and is met again. |
-| When Changed | Notifies when the threshold is reached and the metric value has changed since the last notification. |
+| Send Once | Notifies the first time the metric meets the threshold. Does not notify again until the condition clears and the metric meets the threshold again. |
+| When Changed | Notifies when the metric meets the threshold and its value has changed since the last notification. |
 | Each Time | Notifies every time a metric report meets the threshold condition. |
 
 ### License Field Condition Filters
@@ -263,7 +263,7 @@ As a Support Engineer, you want to be notified when a customer instance has been
 
 ### Operations Engineer: Custom Metric Alert
 
-As an Operations Engineer, you want to be notified when a custom metric reported by a customer instance exceeds an expected threshold so that you can investigate potential issues.
+As an Operations Engineer, you want to receive an alert when a custom metric from a customer instance exceeds a threshold.
 
 - **Event Type:** Custom Metric Threshold Reached
 - **Configuration:**
