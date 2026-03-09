@@ -1,7 +1,7 @@
-# Create Event Notification Subscriptions (Alpha)
+# Create Event Notification Subscriptions (Beta)
 
 :::note
-Event Notifications is in Alpha. Features and functionality are subject to change.
+Event Notifications is in Beta.
 :::
 
 This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
@@ -78,7 +78,7 @@ To create an event notification subscription:
 
 ## Event Types
 
-Event Notifications (Alpha) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
+Event Notifications (Beta) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
 
 ### Instance Events
 - **Instance Created**: When a new instance is created
@@ -87,6 +87,7 @@ Event Notifications (Alpha) supports the following event types, organized by cat
 - **Instance Inactive**: When an instance has not reported in for 24 hours (declared "Inactive"). Air-gapped instances are excluded from this event type.
 - **Instance State Duration**: When an instance has been in a specific state (such as Unavailable or Degraded) for a specified duration
 - **Instance State Flapping**: When an instance is changing states frequently within a configured time window
+- **Custom Metric Threshold Reached**: When a custom metric value reported by an instance meets a configured threshold condition
 
 :::note
 Instance event notifications use the **Instance Name** if set. Otherwise, they use the Instance ID.
@@ -154,6 +155,33 @@ The Instance State Flapping event type requires you to specify the sensitivity o
 | Cooldown Period | No | 1 hour | 15 minutes, 30 minutes, 1 hour, 2 hours, 1 day |
 
 The notification triggers when an instance accumulates the specified number of state changes within the time window. The cooldown period prevents repeated notifications for the same instance within the configured interval.
+
+### Custom Metric Threshold Reached Filter Requirements
+
+The Custom Metric Threshold Reached event type requires you to configure a metric name, comparison operator, and notification frequency. Only one Custom Metric Threshold Reached event is allowed per subscription.
+
+| Filter | Required | Description |
+|--------|----------|-------------|
+| Metric Name | Yes | Select from previously reported custom metrics or enter a metric name manually |
+| Operator | Yes | Comparison operator (options depend on metric type; see table below) |
+| Threshold Value | Conditional | Required for all operators except `is_true`, `is_false`, `exists`, and `not_exists` |
+| Frequency | Yes | Controls how often the notification is sent (see frequency options below) |
+
+The available operators depend on the type of metric value:
+
+| Metric Type | Available Operators |
+|-------------|-------------------|
+| Number | greater than, greater than or equal, less than, less than or equal, equals, does not equal, exists, does not exist |
+| Boolean | is true, is false, equals, does not equal, exists, does not exist |
+| String | contains, starts with, ends with, equals, does not equal, exists, does not exist |
+
+The following frequency options control how often the notification triggers:
+
+| Frequency | Behavior |
+|-----------|----------|
+| Send Once | Notifies the first time the threshold is reached. Does not notify again until the condition clears and is met again. |
+| When Changed | Notifies when the threshold is reached and the metric value has changed since the last notification. |
+| Each Time | Notifies every time a metric report meets the threshold condition. |
 
 ### License Field Condition Filters
 
@@ -232,6 +260,19 @@ As a Support Engineer, you want to be notified when a customer instance has been
   - Filter - Application: Select your production application
   - Filter - License Type: "Paid"
 - **Delivery Method:** Webhook to #support-escalations channel in Slack
+
+### Operations Engineer: Custom Metric Alert
+
+As an Operations Engineer, you want to be notified when a custom metric reported by a customer instance exceeds an expected threshold so that you can investigate potential issues.
+
+- **Event Type:** Custom Metric Threshold Reached
+- **Configuration:**
+  - Metric Name: `error_count`
+  - Operator: Greater Than
+  - Threshold Value: `100`
+  - Frequency: When Changed
+  - Filter - Application: Select your application
+- **Delivery Method:** Webhook to your monitoring system or email to `ops-team@example.com`
 
 ### Operations Lead: Instance Instability
 
