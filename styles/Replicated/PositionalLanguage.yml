@@ -1,0 +1,17 @@
+# This file is used to lint for positional language.
+extends: existence
+message: "Avoid spacial and directional language like '%s'. Instead, use 'on this page', 'the following', or link to the section."
+link: "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide#use_accessible_language"
+level: warning
+ignorecase: true
+tokens:
+  - below
+  - above
+  - here
+  - left
+  - right
+  - beneath
+  - next to
+  - under
+  - underneath
+  - beside
