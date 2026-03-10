@@ -2,19 +2,33 @@
     display: none;
 }
 
+/* Hide navbar site title; logo alone links to home */
+.navbar__title {
+  display: none;
+}
+
 .DocSearch-Footer  {
     justify-content: center !important;
 }
 
-.dropdown__link:hover, .navbar__link {
-    background-color: transparent;
-    color: var(--ifm-dropdown-link-color);
-    text-decoration: none;
+/* Dropdown and navbar links: transparent background, no underline */
+.dropdown__link,
+.navbar__link {
+  background-color: transparent;
+  text-decoration: none;
 }
 
-.dropdown__link--active, .navbar__link--active {
-    background-color: transparent;
-    color: #2f2f2f;
+/* Hover: replicated red only, no background */
+.navbar__link:hover,
+.dropdown__link:hover {
+  color: var(--replicated-red);
+  background-color: transparent;
+}
+
+.dropdown__link--active,
+.navbar__link--active {
+  background-color: transparent;
+  color: #2f2f2f;
 }
 
 .dropdown > .navbar__link:after {

@@ -159,18 +159,14 @@ const config = {
             items: [
               {
                 type: 'doc',
-                docId: 'vendor/vendor-portal-creating-account',
-                label: 'Vendor Portal',
+                docId: 'embedded-overview',
+                docsPluginId: 'installer',
+                label: 'Embedded Cluster',
               },
               {
                 type: 'doc',
-                docId: 'vendor/security-center-about',
-                label: 'Security Center',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/private-images-about',
-                label: 'Proxy Registry',
+                docId: 'vendor/enterprise-portal-about',
+                label: 'Enterprise Portal',
               },
               {
                 type: 'doc',
@@ -179,23 +175,23 @@ const config = {
               },
               {
                 type: 'doc',
+                docId: 'vendor/kurl-about',
+                label: 'kURL',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/private-images-about',
+                label: 'Replicated proxy registry',
+              },
+              {
+                type: 'doc',
                 docId: 'vendor/replicated-sdk-overview',
                 label: 'Replicated SDK',
               },
               {
                 type: 'doc',
-                docId: 'vendor/preflight-support-bundle-about',
-                label: 'Preflight checks and support bundles',
-              },
-              {
-                type: 'doc',
-                docId: 'intro-kots',
-                label: 'KOTS',
-              },
-              {
-                type: 'doc',
-                docId: 'vendor/kurl-about',
-                label: 'kURL',
+                docId: 'vendor/vendor-portal-creating-account',
+                label: 'Vendor Portal',
               },
             ],  
           },

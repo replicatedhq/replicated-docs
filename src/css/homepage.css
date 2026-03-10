@@ -286,11 +286,6 @@
       color: var(--ifm-color-content);
     }
   
-    .dropdown__link:hover, .navbar__link {
-      color: var(--ifm-dropdown-link-color);
-      text-decoration: none;
-    }
-  
     /* Get started icons - swap to white versions in dark mode */
     .get-started-box img[src="/images/icons/lightbulb-black.svg"] {
       content: url("/images/icons/lightbulb-white.svg");
