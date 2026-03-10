@@ -6,7 +6,7 @@ import KurlContext from "../partials/template-functions/_kurl-context.mdx"
 import IdentityContext from "../partials/template-functions/_identity-context.mdx"
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# About Replicated Template Functions
+# About Replicated template functions
 
 This topic describes Replicated template functions, including information about use cases, template function contexts, syntax.
 
@@ -18,7 +18,7 @@ For Kubernetes manifest files for applications deployed by a Replicated installe
 
 All functionality of the Go templating language, including if statements, loops, and variables, is supported with Replicated template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
-### Supported File Types
+### Supported file types
 
 You can use Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer, such as:
 * Custom resources in the `kots.io` API group like Application, Config, or HelmChart
@@ -34,13 +34,13 @@ You can use Replicated template functions in Kubernetes manifest files for appli
 
 * Replicated template functions are not directly supported in Helm charts. For more information, see [Helm Charts](#helm-charts) below.
 
-### Helm Charts
+### Helm charts
 
 Replicated template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by Replicated template functions to Helm chart values. This allows you to use Replicated template functions with Helm charts without making changes to those Helm charts.
 
 For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
-### Template Function Rendering
+### Template function rendering
 
 During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
 
@@ -52,7 +52,7 @@ The Replicated template function syntax supports the following functionally equi
 * [`repl{{ ... }}`](#syntax-integer)
 * [`{{repl ... }}`](#syntax-string)
 
-### Syntax Requirements
+### Syntax requirements
 
 Replicated template function syntax has the following requirements:
 * In both the `repl{{ ... }}` and `{{repl ... }}` syntaxes, there must be no whitespace between `repl` and the `{{` delimiter.
@@ -64,7 +64,7 @@ This syntax is recommended for most use cases.
 
 Any quotation marks wrapped around this syntax are stripped during rendering. If you need the rendered value to be quoted, you can pipe into quote (`| quote`) or use the [`{{repl ... }}`](#syntax-string) syntax instead.
 
-#### Integer Example
+#### Integer example
 
 ```yaml
 http:
@@ -84,7 +84,7 @@ customTag: repl{{ ConfigOption "tag" | quote }}
 customTag: 'key: value'
 ```
 
-#### If-Else Example
+#### If-else example
 
 ```yaml
 http:
@@ -103,7 +103,7 @@ This syntax can be useful when having the delimiters outside the template functi
 
 To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character and manifests consumed by KOTS must be valid YAML. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
 
-#### Example With Quotes
+#### Example with quotes
 
 The following example is wrapped in quotes because it is used at the beginning of a statement in YAML:
 
@@ -114,7 +114,7 @@ customTag: '{{repl ConfigOption "tag" }}'
 customTag: 'key: value'
 ```
 
-#### If-Else Example
+#### If-else example
 ```yaml
 my-service:
   type: '{{repl if ConfigOptionEquals "ingress_type" "load_balancer" }}LoadBalancer{{repl else }}ClusterIP{{repl end }}'
@@ -130,25 +130,25 @@ For more examples, see [Template Function Examples](/reference/template-function
 
 Replicated template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context of the data that is provided.
 
-### Static Context
+### Static context
 
 <StaticContext/>
 
 For a list of all Replicated template functions available in the static context, see [Static Context](template-functions-static-context).
 
-### Config Context
+### Config context
 
 <ConfigContext/>
 
 For a list of all Replicated template functions available in the config context, see [Config Context](template-functions-config-context).
 
-### License Context
+### License context
 
 <LicenseContext/>
 
 For a list of all Replicated template functions available in the license context, see [License Context](template-functions-license-context).
 
-### kURL Context
+### kURL context
 
 <KurlAvailability/>
 
@@ -156,7 +156,7 @@ For a list of all Replicated template functions available in the license context
 
 For a list of all Replicated template functions available in the kURL context, see [kURL Context](template-functions-kurl-context).
 
-### Identity Context
+### Identity context
 
 <IdentityContext/>
 

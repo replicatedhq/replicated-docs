@@ -4,7 +4,7 @@ import NeComparison from "../partials/template-functions/_ne-comparison.mdx"
 import GoSprig from "../partials/template-functions/_go-sprig.mdx"
 import UseCases from "../partials/template-functions/_use-cases.mdx"
 
-# Template Function Examples
+# Template function examples
 
 This topic provides examples of how to use Replicated template functions in various common use cases. For more information about working with Replicated template functions, including the supported syntax and the types of files where Replicated template functions can be used, see [About Replicated Template Functions](template-functions-about).
 
@@ -16,11 +16,11 @@ This topic provides examples of how to use Replicated template functions in vari
 
 For examples demonstrating these use cases and more, see the sections below.
 
-## Comparison Examples
+## Comparison examples
 
 This section includes examples of how to use Replicated template functions to compare different types of data.
 
-### Boolean Comparison
+### Boolean comparison
 
 Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many Replicated template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
 
@@ -63,7 +63,7 @@ This example uses the following Replicated template functions:
 * [ParseBool](/reference/template-functions-static-context#parsebool) to convert the string returned by the LicenseFieldValue template function to a boolean
 * [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
 
-### Integer Comparison
+### Integer comparison
 
 Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many Replicated template functions return string values, working with integer values often requires using another function to return the integer represented by the string, such as:
 * KOTS [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
@@ -73,19 +73,19 @@ A common use case for comparing integer values with Replicated template function
 
 <IntegerComparison/>
 
-### String Comparison
+### String comparison
 
 A common use case for string comparison is to compare the rendered value of a Replicated template function against a string to conditionally show or hide fields on the KOTS Admin Console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
-### Not Equal To Comparison
+### Not equal to comparison
 
 It can be useful to compare the rendered value of a Replicated template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS Admin Console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/vendor/embedded-overview).
 
 <NeComparison/>
 
-### Logical AND Comparison
+### Logical AND comparison
 
 Logical comparisons such as AND, OR, and NOT can be used with Replicated template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
@@ -137,11 +137,11 @@ Alternatively, if either `Option One` or `Boolean Example` is not selected, then
 
 [View a larger version of this image](/images/conditional-item-false-boolean.png)
 
-## Conditional Statement Examples
+## Conditional statement examples
 
 This section includes examples of using Replicated template functions to construct conditional statements. Conditional statements can be used with Replicated template functions to render different values depending on a given condition. 
 
-### If-Else Statements
+### If-else statements
 
 A common use case for if-else statements with Replicated template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
 
@@ -153,7 +153,7 @@ Multi-line if-else statements can be constructed using YAML block scalars and bl
 For Helm-based applications that need to use more complex or nested if-else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
 :::
 
-#### Single Line
+#### Single line
 
 The following example shows if-else statements used in the KOTS HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
@@ -185,7 +185,7 @@ spec:
             targetPort: 8081
 ```
 
-#### Multi-Line in KOTS HelmChart Values
+#### Multi-line in KOTS HelmChart values
 
 The following example uses a multi-line if-else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
 
@@ -224,7 +224,7 @@ images:
   replicated-sdk: 'docker.io/replicated/replicated-sdk:1.0.0-beta.29'
 ```
 
-#### Multi-Line in Secret Object
+#### Multi-line in Secret object
 
 The following example uses multi-line if-else statements in a Secret object deployed by KOTS to conditionally set the database hostname, port, username, and password depending on if the customer uses the database embedded with the application or brings their own external database.
 
@@ -273,7 +273,7 @@ data:
     {{repl end}}
 ```
 
-### Ternary Operators
+### Ternary operators
 
 Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if-else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
 
@@ -300,7 +300,7 @@ spec:
       tag: v1.0.1
 ```
 
-## Formatting Examples
+## Formatting examples
 
 This section includes examples of how to format the rendered output of Replicated template functions.
 
@@ -312,7 +312,7 @@ When using template functions within nested YAML, it is important that the rende
 
 The [nindent](https://masterminds.github.io/sprig/strings.html) function can be used to prepend a new line to the beginning of the string and indent the string by a specified number of spaces.
 
-#### Indent Templated Helm Chart Values
+#### Indent templated Helm chart values
 
 The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
 
@@ -330,7 +330,7 @@ spec:
         annotations: repl{{ ConfigOption "additional_annotations" | nindent 10 }}
 ```
 
-#### Indent Templated Annotations in Manifest Files
+#### Indent templated annotations in manifest files
 
 The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value four spaces.
 
@@ -344,13 +344,13 @@ metadata:
       repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
 ```
 
-### Render Quoted Values
+### Render quoted values
 
 To wrap a rendered value in quotes, you can pipe the result from Replicated template functions with the `repl{{ ... }}` syntax into quotes using `| quote`. Or, you can use the `'{{repl ... }}'` syntax instead.
 
 One use case for quoted values in YAML is when indicator characters are included in values. In YAML, indicator characters (`-`, `?`, `:`) have special semantics and must be escaped if used in values. For more information, see [Indicator Charactors](https://yaml.org/spec/1.2.2/#53-indicator-characters) in the YAML documentation.
 
-#### Example with `'{{repl ... }}'` Syntax
+#### Example with `'{{repl ... }}'` syntax
 
 ```yaml
 customTag: '{{repl ConfigOption "tag" }}'
@@ -367,11 +367,11 @@ The result for both examples is:
 customTag: 'key: value'
 ```
 
-## Variables Example
+## Variables example
 
 This section includes an example of using variables with Replicated template functions. For more information, see [Variables](https://pkg.go.dev/text/template#hdr-Variables) in the Go documentation.
 
-### Using Variables to Generate TLS Certificates in JSON
+### Using variables to generate TLS certificates in JSON
 
 You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with Replicated template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the Admin Console **Config** page.
 
@@ -433,7 +433,7 @@ The following image shows how the default values for the CA, certificate, and ke
 
 [View a larger version of this image](/images/certificate-chain-default-values.png)
 
-## Additional Examples
+## Additional examples
 
 The following topics include additional examples of using Replicated template functions: 
 

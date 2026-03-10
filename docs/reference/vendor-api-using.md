@@ -8,7 +8,7 @@ This topic describes how to use Replicated Vendor API authentication tokens to m
 
 <ApiAbout/>
 
-## API Token Requirement
+## API token requirement
 
 To use the Vendor API v3, you need a token for authorization. You provide the token as the value of the `Authorization` header of Vendor API calls. For example, to pass a token as the authorization header in a request:
 
@@ -21,7 +21,7 @@ curl --request GET \
 
 Generate a service account or user API token in the Vendor Portal. The token must have `Read/Write` access to create new releases. See [Generating API Tokens](/vendor/replicated-api-tokens).
 
-## Vendor API v3 Documentation
+## Vendor API v3 documentation
 
 For Vendor API documentation and an interactive API console, see [Vendor API v3 Reference](https://replicated-vendor-api.readme.io/v3/reference/createapp).
 
