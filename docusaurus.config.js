@@ -153,10 +153,6 @@ const config = {
             ],  
           },
           {
-            type: 'docsVersionDropdown',
-            docsPluginId: 'installer',
-          },
-          {
             type: 'dropdown',
             label: 'Vendor Platform',
             position: 'left',
